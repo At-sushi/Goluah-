@@ -1,0 +1,61 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<title></title>
+
+</head>
+
+<body>
+
+<p class=midasi>オブジェクト概要解説</p>
+
+<br>
+
+<p class=midasi2>オブジェクトって？</p>
+<p class=nakami>
+　なんかの物体です。キャラクターも飛び道具もヒットマークなどのエフェクトなども全部「オブジェクト」として同じ方法で管理することにしました。<br>
+　オブジェクト指向とか、クラスのインスタンスをオブジェクトって呼んだりするのとは関係ありません。<br>
+</p>
+
+<p class=midasi2>オブジェクトの生成</p>
+<p class=nakami>
+　オブジェクトの生成はCreateCharacter(Stage)関数の引数として渡される<a href="ref_sysfunc.html">システム関数</a>のDI_FUNCTIONS_O.objcreate を使います。戻り値にオブジェクトのID(DWORD値)が渡されるので、DI_FUNCTIONS_O.getinfo でGOBJECT構造体へのポインタを取得できます。<br>
+　オブジェクトを生成したらシステム側に制御が帰る前に、必要なデータをセットしてください。主に必要なのは tid（チームID）、objtype（オブジェクトのタイプ）、msghandler（システム側からメッセージを受け取る関数ポインタ）です。他に、自前描画をせずにCELL描画する場合必要なGCD_なんたらとかのポインタもほぼ必須項目みたいな感じです。<br>
+<br>
+　<b>通常はこれらの処理を<a href="../doxy_docs/class_CGoluahObject.html">CGoluahObjectクラス</a>を継承したクラスを生成することによって行います。</b>CGoluahObjectクラスはコンストラクタ内で上記の手続きを行い、CGoluahObjectクラスひとつがオブジェクトひとつにまるまる相当します。<br>
+</p>
+
+<p class=midasi2>オブジェクトの持つデータ</p>
+<p class=nakami>
+　オブジェクトは全て<a href="ref_objectdata.html">GOBJECT構造体</a>のデータを持ちます。（この構造体の実体はシステム側が生成・管理しています。）
+　一つ特殊なのはpobjdat_uですが、この値にはユーザーが自分で定義したデータ構造体のポインタを入れて使います。この構造体を使って、GOBJECT構造体には入れることのできないデータをオブジェクトに持たせることができます。注意として、mallocやnewでメモリ確保したポインタをココに入れた場合はGOBJMSG_DELETEメッセージなどできちんとfreeまたはdeleteしてください。<br>
+<br>
+　CGoluahObject継承クラスの場合はGOBJECT構造体は pdat メンバ変数か、CGoluahObject::GetGObject() 関数で取得できます。引数など、場所によってはクラスを直接代入しても所得出来ます。<br>
+pobjdat_uにはクラスのポインタが入るので、継承側ではこの変数を変更しないでください。
+</p>
+
+<p class=midasi2>オブジェクトの動作設定</p>
+<p class=nakami>
+　オブジェクトを作成すると、さまざまなメッセージが通知されます。オブジェクトの動作は、これらのメッセージに対する応答で決まります。主なものとしては、<br>
+　GOBJMSG_ACTION：1フレームに1回呼ばれます。オブジェクトの動作を記述します。<br>
+　GOBJMSG_DRAW：描画が必要になった時に呼ばれます。<br>
+　GOBJMSG_COMMAND：ユーザー入力を処理し、オブジェクトの動作に反映させるためのメッセージです。<br>
+・・・などです。詳しくは<a href="ref_message1.html">オブジェクトメッセージ</a>の項目を参照してください。<br>
+</p>
+
+<p class=midasi2>オブジェクトの利用方法</p>
+<p class=nakami>
+　まず第一にキャラクターがオブジェクトなわけですが、他にオブジェクトの利用方法としては、飛道具・自前で作成するエフェクト・スタンド(?)などが挙げられます。<br>
+</p>
+
+<p class=midasi2>オブジェクトの最大数</p>
+<p class=nakami>
+　<del>システム・1P・2P合わせて、一度に生成できるオブジェクトは1024個です。1024個のオブジェクトが存在する状態でオブジェクトを作成しようとすると、関数が失敗して0が返ります。（そうなるとDI_FUNCTIONS_O.getinfoでNULLがかえってしまいます）キャラクターオブジェクトは試合開始直後に作成されるため、そのようなことはありませんが、飛道具など試合中に作成するオブジェクトには注意が必要です。また、最大数を超えないために、作成したオブジェクトは不用になったらDI_FUNCTIONS_O.suicideなどで削除するようにしてください。</del><br>
+　飛び道具等のオブジェクトもなるべくCreateCharacter時に全て生成しておき、必要に応じて画面外に隠したり表示したりして使うようにしてください。<br>
+</p>
+
+
+
+<hr><p align="center"><a href="../index.html">もどる</a></p>
+</body>

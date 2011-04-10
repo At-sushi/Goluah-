@@ -1,0 +1,15 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<title></title>
+
+</head>
+
+<body>
+
+HTML“_ƒvƒŒ
+
+
+<hr><p align="center"><a href="../index.html">‚à‚Ç‚é</a></p>
+</body>

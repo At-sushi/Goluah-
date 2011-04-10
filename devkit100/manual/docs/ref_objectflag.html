@@ -1,0 +1,98 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<title></title>
+
+</head>
+
+<body>
+
+
+<!-- ************************************************************************ -->
+<p class=midasi>オブジェクトの性質</p>
+
+<p class=nakami>
+　GOBJECT::objtypeに以下のフラグを設定することにより、オブジェクトの持つ性質が決定されます。<br>
+　CGoluahObject継承クラスの場合はAddProperty , RemoveProperty関数を使ってフラグを個別に追加／削除することができます。
+
+</p>
+<p class=midasi2>GOBJFLG_KURAI</p><p class=nakami2>
+　オブジェクトは攻撃を喰らいます。このフラグが立っていない場合当たり判定（喰らい側）が行われません。
+
+</p>
+<p class=midasi2>GOBJFLG_NAGERARE</p><p class=nakami2>
+　オブジェクトは投げられることができます。投げられるということはつまり、デフォルトセルに指定された番号のセルが全てそろっていなければなりません。そうでなければ、表示がおかしくなります。
+
+</p>
+<p class=midasi2>GOBJFLG_ATTACK</p><p class=nakami2>
+　オブジェクトは攻撃をすることができます。このフラグが立っていない場合当たり判定（攻撃側）が行われません。
+
+</p>
+<p class=midasi2>GOBJFLG_KASANARI</p><p class=nakami2>
+　重なり判定をやる。このフラグが立っていない場合は重なり判定が行われません。
+
+</p>
+<p class=midasi2>GOBJFLG_TOBETARGET</p><p class=nakami2>
+　オブジェクトは他オブジェクトのターゲットになることができる。システムはGOBJFLG_NEEDTARGETフラグが指定されたオブジェクトに対してターゲットオブジェクトを設定します(GOBJECT.eid)。このフラグが立っていない場合、他オブジェクトのターゲットになることはありません。
+
+</p>
+<p class=midasi2>GOBJFLG_NEEDTARGET</p><p class=nakami2>
+　ターゲットが必要である。このフラグが立っている場合、システムは近くにいるオブジェクト（かつ、チームが異なり、GOBJFLG_TOBETARGETフラグが立っているオブジェクト）のIDをGOBJECT.eidに入れます。この値はオブジェクトが移動して遠近関係が変化すると変わることがあります。
+
+</p>
+<p class=midasi2>GOBJFLG_COMPUTER</p><p class=nakami2>
+　コンピュータに制御させる。通常のキャラクター（CreateCharacter関数の戻り値にIDを指定したオブジェクト）には、ゲーム状況によりシステムがこのフラグを付加します。このフラグが立っている場合GOBJMSG_COMMANDメッセージのかわりに、システムがGOBJECT.wazの情報を参照して適当な行動遷移を行います。その際にはGOBJMSG_COMMANDメッセージで行動遷移の可/不可を制御します。
+
+</p>
+<p class=midasi2>GOBJFLG_ZCHARACTER</p><p class=nakami2>
+　キャラクター「属性」 - 今のところ特に使っていません。
+
+</p>
+<p class=midasi2>GOBJFLG_ZBULLET</p><p class=nakami2>
+　飛び道具「属性」- 他の飛び道具と相殺処理します。相殺の当たり判定は、攻撃-喰らいの当たり判定とは独立に行っています。この判定はお互いの攻撃矩形の重なりを判定します。
+
+</p>
+<p class=midasi2>GOBJFLG_DISPZAHYO</p><p class=nakami2>
+　座標指定はディスプレイ上の座標であり、ステージ上の表示位置に左右されない。座標系についてを参照してください。
+
+</p>
+<p class=midasi2>GOBJFLG_DONOTSTOP</p><p class=nakami2>
+　超必等でstopエフェクトがかかっていてもGOBJMSG_ACTIONが通知されます。
+
+</p>
+<p class=midasi2>GOBJFLG_HANSAYOU</p><p class=nakami2>
+　攻撃したオブジェクトが画面端まで到達すると押し戻される（メッセージを受け取ることができる）
+
+</p>
+<p class=midasi2>GOBJFLG_CLIPX</p><p class=nakami2>
+　オブジェクトはx方向に関してステージ(-640～640)外に行くことはできない
+
+</p>
+<p class=midasi2>GOBJFLG_CLIPX2</p><p class=nakami2>
+　オブジェクトはx方向に関して画面外に出ることはしない。このフラグがたっているオブジェクトはGOBJMSG_CLIPXメッセージを受け取ることができます。
+
+</p>
+<p class=midasi2>GOBJFLG_DISPLAYME</p><p class=nakami2>
+　ステージ上でディスプレイ中心を算出するときにこのキャラクターの座標を参照する。このフラグが立っている全てのオブジェクトのX座標の平均値がディスプレイ中心になります。
+
+</p>
+<p class=midasi2>GOBJFLG_TAIKI</p><p class=nakami2>
+　キャラクターは待機中である
+</p>
+
+<p class=nakami>以下はフラグの標準的な組み合わせです</p>
+
+</p>
+<p class=midasi2>GOBJTYPE_CHARACTER</p><p class=nakami2>
+　キャラクターが通常持っているべきフラグの組合わせ
+
+</p>
+<p class=midasi2>GOBJTYPE_BULLET</p><p class=nakami2>
+　飛道具が通常持っているべきフラグの組み合わせ
+</p>
+
+
+
+<hr><p align="center"><a href="../index.html">もどる</a></p>
+</body>

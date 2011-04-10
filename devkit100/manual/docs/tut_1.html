@@ -1,0 +1,277 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<title></title>
+
+</head>
+
+<body>
+
+<p class=midasi>処理の流れ</p>
+
+<br>
+
+<p class=midasi2>概要</p>
+<p class=nakami2>
+　本体実行ファイル（以下、システムと呼びます）から"直接"呼び出される関数は３つあります。　「直接」呼び出されるのは３つですが、実際にはこれらの関数がさらに別の関数を呼び出すので、拡大解釈すれば全ての関数が呼ばれるということになりますが・・・ プログラムの流れはこれら3つのうちのどれかからきているということです。<br>
+<br>
+　最初のひとつは<b> CharacterInfo</b>関数で、ゲーム開始のキャラクター検索時に呼ばれます。DLLはこの関数でキャラクターの名前とDLLのバージョンをシステムに通知します。<br>
+　CharacterInfo関数のコール後はキャラクターが選択されて読み込まれるまでの間、DLLはアンロードされます。この間はゲームの進行にDLLが関与することはできません。<br>
+
+<br>
+　もうひとつは<b>CreateCharacter</b>関数です。これはキャラクターが選択されてキャラクターに必要なファイルの読み込み等を行うときに呼び出されます。<br>
+<br>
+　CreateCharacter関数のなかでは「<a href="ref_object.html">オブジェクト</a>」の作成処理を行います。最後のひとつはこの<b>オブジェクトに設定したコールバック関数</b>です。<br>
+　この関数はゲーム中で起こるさまざまなイベントをDLL側に通知するもので、引数にイベントの種類が渡されるのでそれに応じてDLLはキャラクタの表示画像・表示位置の更新等さまざまな処理を行います。<br>
+
+<br>
+
+
+<br>
+</p><p align="center"><img src=images/flow.jpg></p>
+<br>
+
+
+<br><br>
+
+<p class=midasi2>CharacterInfo関数</p>
+<p class=nakami2>
+　CharacterInfo関数は、charディレクトリ下にあるDLLが正当なものであることのチェック、および、名前やオプション項目等のキャラクター
+固有の情報を取得するために、ゲームの初期化時に一度だけ呼ばれる関数です。<br>
+　CharacterInfo関数自体は通常いじる必要ありませんし、それほど意識する必要もないところですが、ここでキャラクターのオプション項目の設定が行われます。<br>
+<br>
+　第一義的にはCharacterInfo関数は <a href="../doxy_docs/class_CDI_CHARACTERINFO.html">CDI_CHARACTERINFO構造体</a>に必要な情報を代入してシステム側に通知する関数です。
+テンプレートではこの処理はSET_CHARACTERINFOマクロ内で、<a href="../doxy_docs/class_CCharacterInfo.html">CCharacterInfoクラス</a>によって代行されています。<br>
+<br>
+　CharacterInfo関数はSET_CHARACTERINFOマクロによって、通常chaeacter.cppに自動生成されます。gobjbase.hにあるSET_CHARACTERINFOマクロの定義を自分で展開してみれば
+その内容がわかることでしょう。このマクロはCharacterInfo関数以外にもCreateCharacte関数も生成しています。両関数はモジュール定義ファイル( .def )の定義に従って
+外部(=システム)から参照可能な形式でDLLに保持されます。<br>
+<br>
+　SET_CHARACTERINFOマクロには2つの引数があります。そのうちのひとつはメインキャラクタークラスの型で、この後CreateCharacte関数で説明します。<br>
+　もうひとつは<a href="../doxy_docs/class_CCharacterInfo.html">CCharacterInfoクラス</a>です。<br>
+　CCharacterInfoクラスは通常グローバルな変数が宣言され、コンストラクタによって必要な情報を収集します。これらは順番に キャラクターの名前、DLLがビルドされた
+DLL⇔システム間インターフェースのバージョン、オプション情報、オプション最大ポイント数　です。ほとんどはここで即値を代入しますが、オプション情報は
+さらに<a href="../doxy_docs/class_CHARACTER_LOAD_OPTION.html">CHARACTER_LOAD_OPTION構造体</a>の配列をとります。CHARACTER_LOAD_OPTION構造体はキャラクターの持つオプション項目の、1項目分の情報を持ちます。
+この配列はCCharacterInfoクラスのコンストラクタに渡った後、CCharacterInfoクラスによってCDI_CHARACTERINFO 構造体に渡され、
+最終的にシステムへと通知されます。通常、このCHARACTER_LOAD_OPTION構造体の配列はcharacter.cppのグローバル変数として宣言し、
+各種情報を定数で初期化しておきます。<br>
+<br>
+　CharacterInfo関数は引数の CDI_CHARACTERINFO 構造体に必要な情報を入力するのみで処理は終了します。<br>
+　<b>実際にやるべきこと</b> はcharacter.cppの頭あたりにあるCHARACTER_LOAD_OPTION構造体の配列にオプション項目を設定することと、
+CCharacterInfoクラスのコンストラクタ引数の値を変更するぐらいです。
+</p>
+
+<br>
+
+<p class=midasi2>CreateCharacte関数</p>
+<p class=nakami2>
+
+　CharacterInfo関数でも説明しましたが、この関数もまたSET_CHARACTERINFOマクロによってchaeacter.cppに自動生成されます。<br>
+　CharacterInfo関数は第一義的には、引数の<a href="../doxy_docs/class_CDI_CHARACTERINFO2.html">CDI_CHARACTERINFO2構造体</a>
+によってシステムから渡されたキャラクターの初期化情報と、各種サービス関数の関数ポインタを受け取って、
+キャラクター<a href="ref_object.html">オブジェクト</a>を生成してそのオブジェクトIDを返す関数です。ここで返したIDが示すオブジェクトはその
+"キャラクター"を代表するオブジェクトであり、死亡判定や交代要求等の試合進行に関わる処理にはこのオブジェクトの持つ体力値等のパラメータが参照され
+たり、あるいは試合進行に関わるメッセージの発行が行われます。<br>
+<br>
+　CharacterInfo関数はSET_CHARACTERINFOマクロの引数のうちもうひとつの、メインキャラクタークラスを生成します。<br>
+　指定するメインキャラクターのクラスは<a href="../doxy_docs/class_CCharacterBase.html">CCharacterBase</a>の派生クラスでなければなりません。
+それは、CreateCharacte関数からこのクラスのInitializeCharacter関数が呼び出されるからです。初期状態のソースコードでキャラクタークラスとして
+実装されているCCharacterクラスはCCharacterBaseクラスの派生クラスになっています。
+InitializeCharacter関数はさらにInitから始まる諸々の初期化関数を呼び出します。<br>
+　CCharacterBaseはさらに<a href="../doxy_docs/class_CGoluahObject.html">CGoluahObject</a>の派生クラスであり、このクラスの生成時には
+CGoluahObjectクラスのコンストラクタも呼び出されます。
+CGoluahObjectクラスはオブジェクトの生成を自動化するためのクラスで、このクラスのインスタンスひとつがゲーム中でのオブジェクトひとつに
+相当します。最終的に、CharacterInfo関数はメインキャラクタークラスに生成されたオブジェクトのIDをシステムに返却します。<br>
+
+<br>
+システム、試合開始時のDLL初期化処理<br>
+　↓<br>
+CharacterInfo関数<br>
+　↓<br>
+（クラス生成）　CGoluahObjectコンストラクタ<br>
+　　　　　　　　　　　　　→CCharacterBaseコンストラクタ<br>
+　　　　　　　　　　　　　→　メインキャラクタークラスのコンストラクタ<br>
+　↓<br>
+CCharacterBase::InitializeAll 関数<br>
+　　　　　　　　　　　　　→InitParameters関数　パラメータの初期化<br>
+　　　　　　　　　　　　　→InitAttackInfo関数　攻撃力情報の初期化<br>
+　　　　　　　　　　　　　→InitGCDandBMP関数　ビットマップおよびGCDのロード<br>
+　　　　　　　　　　　　　→InitWazInfo関数　コンピュータ用技情報の初期化<br>
+　　　　　　　　　　　　　→InitMySound関数　wavサウンドファイルのロード<br>
+　　　　　　　　　　　　　→InitBullets関数　飛び道具等の、付随オブジェクトの生成<br>
+　↓<br>
+CharacterInfo関数からゲームシステムへ制御が戻る。<br>
+CharacterInfo関数の戻り値として、キャラクタークラスが生成したオブジェクトのIDがシステムに返却される<br>
+以降システムはこのオブジェクトを、キャラクターオブジェクトとして扱う。<br>
+<br>
+<br>
+　また、ここでひとつ覚えておきたいことは、<a href="../doxy_docs/class_CDI_CHARACTERINFO2.html">CDI_CHARACTERINFO2構造体</a>
+の各種情報はキャラクタークラスの基底である<a href="../doxy_docs/class_CGoluahObject.html">CGoluahObjectクラス</a>とgobjbase.cppのグローバル変数に保持され、
+それらの情報はCGoluahObjectクラスの各種サービス関数やメンバー変数によってアクセスできるということです。特に、
+<a href="ref_sysfunc.html">システム側のサービス関数</a>がCGoluahObjectクラスの各種サービス関数にマッピングされていることを覚えておいてください。<br>
+<br>
+　キャラクターの初期化処理は<a href="../doxy_docs/class_CCharacterBase.html">CCharacterBase</a>クラスが持つ各種Init～関数をオーバーライドすることによって
+カスタマイズします。カスタマイズする必要のない初期化処理はCCharacterBaseクラス自体が持つ初期化処理をそのまま使えばいいわけです。<br>
+<br>
+　<b>実際にやるべきこと</b> はInit～系関数の適切な場所に適切な初期化コードを記述してくださいということです。
+</p>
+
+
+<br><br>
+
+
+<p class=midasi2>オブジェクトコールバック関数</p>
+<p class=nakami2>
+　ここまでの処理は前処理に過ぎません。大切なのはここから。<br>
+<br>
+　システムは試合開始時に選択された全てのキャラクターのDLLをロードし、各キャラクターに関してそれぞれCharacterInfo関数を呼び出します。
+DLLはその中でシステムへオブジェクト生成を要求し、結果としてシステムは生成された<a href="ref_object.html">オブジェクト</a>のリストを持つことになります。
+試合が始まったら、システムはゲーム中でのさまざまなイベントをオブジェクトに対して通知し、オブジェクトはその
+<a href="ref_message1.html">イベントメッセージ</a>に対応した適切な処理を行わなければなりません。<br>
+<br>
+プログラム的にはこの処理は、DLLからシステムに対して通知されたコールバック関数の呼び出しというかたちで行われます。
+コールバック関数は<a href="ref_objectdata.html">オブジェクト情報構造体</a>（以降単に"オブジェクトデータ"やGOBJECTと呼びます）
+のmsghandlerメンバが使用されます。この値は通常オブジェクト生成手続きの中で行われますが、CGoluahObject派生クラスではCGoluahObjectクラスが
+ここに適切なポインタを設定します。通常のDLL製作者は、<b>(CGoluahObject::)Message関数に対してシステムからのイベントメッセージが通知される</b>
+と覚えておけばよいでしょう。Message関数は仮想関数であって、継承クラスでこの関数をオーバーライドした場合はその関数が呼ばれるということになります。<br>
+<br>
+　Message関数がシステムから呼び出されるということはわかりました。しかし、この関数の中にあらゆる処理を記述するのは、
+（可能ではありますが）まともなやりかたではありません。<br>
+　Message関数は、<a href="ref_message1.html">メッセージのID</a>でswitchしてさらに他の関数へと処理を振り分けます。注意しなければならないことは、
+クラス継承の各階層でMessage関数が再定義されるということです。そして、CGoluahObjectクラスやCCharacterBaseクラスにはMessage関数に通知される
+あらゆるイベントメッセージIDに対応するcase文が記述しているわけではありません。メッセージの中には重要なものもあれば無視しても問題のないものもあり、
+応答する必要のないメッセージに関しては処理を行わずに関数を終了することもできるのです。<br>
+<br>
+　以上のことを踏まえた上で、初期状態のCCharacterクラスのMessage関数の処理のフローは以下のようになります：<br>
+
+<br><br>
+
+（システム、イベントの発生）<br>
+　↓<br>
+CCharacter::Message関数<br>
+　　　　case （初期状態では何もなし）<br>
+　　　　default<br>
+　　　　　↓<br>
+　　　　CCharacterBase::Message関数<br>
+　　　　　　　　case GOBJMSG_ACTION → Action関数<br>
+　　　　　　　　．．．<br>
+　　　　　　　　default<br>
+　　　　　　　　　↓<br>
+　　　　　　　　CGoluahObject::Message関数<br>
+　　　　　　　　　　　　case GOBJMSG_COMMAND → Command関数<br>
+　　　　　　　　　　　　case GOBJMSG_COMMANDCOM → CommandCOM関数<br>
+　　　　　　　　　　　　case GOBJMSG_TOUCHA → TouchA関数<br>
+　　　　　　　　　　　　case GOBJMSG_TOUCHB → TouchB関数<br>
+　　　　　　　　　　　　case GOBJMSG_TOUCHC → TouchC関数<br>
+　　　　　　　　　　　　case GOBJMSG_DRAW → Draw関数<br>
+　　　　　　　　　　　　．．．<br>
+　　　　　　　　　　　　default<br>
+　　　　　　　　　　　　　↓<br>
+　　　　　　　　　　　　(Message関数が戻り値 0 でシステムに制御が返される)<br>
+　　　　　　　　　　　　　　　　　→システムで実装されている、各メッセージに特有のデフォルト処理<br>
+<br>
+<br>
+　細かい部分は省きました。<br>
+　このような感じで、メッセージとそのメッセージを処理する関数のマッピングが既にある程度なされています。もし、基底クラスが拾っていない
+メッセージの中で拾いたいメッセージがあれば、CCharacter::Message関数のcase文を追加して処理を記述します。ただしここで、
+defaultに基底クラスのMessage関数呼び出しを忘れてしまうと、基底クラスが拾っているメッセージに関する処理がなされなくなってしまうということに
+注意してください。<br>
+　また、上記の図はCCharacter←CCharacterBase←CgoluahObjectのクラス階層の場合であって、
+<a href="../doxy_docs/class_CBulletBase.html">飛び道具ベースクラス(CBulletBase)</a>などを継承したり、
+CGoluahObjectクラスから直接派生クラスを作った場合は（基本的には同じですが）また少々異ります。<br>
+<br>
+　<b>要するに</b> CharacterInfo関数、CreateCharacter関数以外のあらゆる処理は(生成したオブジェクトクラス)::Messageを
+起点に始まっているということです。<br>
+
+<br>
+<br>
+<br>
+
+　処理の流れの説明は、まだ十分ではありません。<br>
+<br>
+　イベントメッセージへの応答のうち、最も大きな比重を占めるのは GOBJMSG_ACTIONメッセージと
+ GOBJMSG_COMMAND、GOBJMSG_COMMANDCOMメッセージです。（それぞれの意味に関しては
+<a href="ref_message1.html">メッセージのリファレンス</a>を参照してください。）<br>
+　これらのメッセージに関する応答の処理は1関数にまとめるととても長くなるので、さらに条件分岐して他の関数を呼び出しています。<br>
+　なぜ長くなるかというと、DLLの行う処理はメッセージの種類だけでなく、キャラクター（あるいは飛び道具などのオブジェクト）の現在とっている
+行動を元に分けられなければならないからです。
+<b>キャラクターのとる行動を表す変数を、行動IDと呼びます</b>。行動IDは<a href="ref_objectdata.html">オブジェクトデータ</a>のaid変数によって表されます。
+行動は必殺技等の、「技」に限らず、ニュートラル(立ち)、しゃがみ、ジャンプ、歩き などの、キャラクターがとるあらゆる行動に対して
+それらを識別するための一意な値が振られています。（あるいは新規に値を定義して、振ります）<br>
+<br>
+　GOBJMSG_COMMAND、GOBJMSG_COMMANDCOMメッセージは、
+キー入力等に従ってコマンド処理を行ってこの行動IDを変更するための処理を行うためのイベントですが、例えば、「必殺技からは通常技は出せない」
+「空中にいるときは地上の技は出せない」などの制約があり、「現在とっている行動」を考慮して処理を行わなければなりません。
+そういった判断を支援するために、対応する Command関数、CommandCOM関数 は行動IDによっていくつかの下位の関数に処理を
+振り分けます：<br>
+<br>
+Command関数<br>
+　　　　　　　　→Command_OnSystem　システム定義動作（ガード・喰らい等）中<br>
+　　　　　　　　→Command_OnHissatuAttacking　必殺技中<br>
+　　　　　　　　→Command_Hissatu　必殺技コマンド判定<br>
+　　　　　　　　→Command_OnAttacking　攻撃動作中<br>
+　　　　　　　　→Command_OnNormal　基本動作中<br>
+　　　　　　　　→Command_Normal　基本動作コマンド判定<br>
+<br>
+CommandCOM関数<br>
+　　　　　　　　→CmdCom_OnSystem　システム定義動作中<br>
+　　　　　　　　→CmdCom_OnHissatuAttacking　必殺技中<br>
+　　　　　　　　→CmdCom_OnKucyu　空中動作中<br>
+　　　　　　　　→CmdCom_OnNormal　基本動作中<br>
+<br>
+　これらの関数の中で、行動IDの変更を行います。<br>
+　注意したいことはより先に行われるコマンド判定のほうが優先度が高いということです。例えば、
+a) キーの前方入力で前方歩行の行動に遷移 , b)↓＼→+ボタンで必殺技の行動へ遷移 ...というコマンドがあったとして、
+b) の判定より a)の判定を先に行ってしまえば、b)は絶対出せないということになってしまいます。<br>
+　<b>CCharacterBaseは歩きやジャンプ、必殺技以外の基本攻撃のコマンド判定の処理を既に持っています</b>。が、キャラクターに新しい技を
+持たせる場合にはこれらの関数のうち適切なものをオーバーライドしてコマンド処理を追加しなければなりません。
+<br>
+<br>
+　さて、Command系の関数で行動IDの制御を行ったら、それぞれの行動に関して適切な処理を行わなければなりません。
+これは表示するセル番号の変更であったり、キャラクターの位置座標の移動であったりします。このような処理は
+ GOBJMSG_ACTION メッセージへの対応として行います。<br>
+　キャラクターの取る行動の種類は、（ガードや喰らい等、システム側で暗黙のうちに行われる行動を除いても） 50前後はあります。
+これらの処理の全てをAction関数内に収めるのは（できますけど）非常識なやり方です。そこで、Action関数は
+行動IDでswitchして各行動をつかさどる行動関数へ処理をわける働きをします。Message関数と似ています：<br>
+<br>
+CCharacter::Action関数<br>
+　　　　case （初期状態では何もなし）<br>
+　　　　default<br>
+　　　　　↓<br>
+　　　　CCharacterBase::Action関数<br>
+　　　　　　　　case ACTID_NEUTRAL → act_neutral関数<br>
+　　　　　　　　case ACTID_CROUCH → act_crouch関数<br>
+　　　　　　　　case ACTID_WALKF → act_walkf関数<br>
+　　　　　　　　．．．<br>
+　　　　　　　　default<br>
+　　　　　　　　　↓<br>
+　　　　　　　　(Action関数を抜け、Message関数が戻り値 0 でシステムに制御が返される)<br>
+　　　　　　　　　　　　case ACTID_DAMAGE1 → デフォルトの弱・立ち喰らい動作<br>
+　　　　　　　　　　　　case ACTID_GUARD1 → デフォルトの弱・ガード動作<br>
+　　　　　　　　　　　　．．．<br>
+<br>
+　Command系関数でも述べたとおり、CCharacterBaseクラスは基本動作のコマンド判定処理を既に持っています。
+つまり、基本動作の行動IDの値は、CCharacterBaseが定義しているということです(gobjbase.h参照)。そして、
+これら基本動作の関数定義と、Action関数での処理の振り分け処理もCCharacterBaseクラスにおいて実装されています。
+<b>基本動作に関しては、CCharacterBaseで定義された（だが実装されていない）関数に処理を記述すれば、
+行動IDの値定義や、Action関数での処理の振り分けを新規に書かなくても出来上がります。</b>一番初めにやるべきことは
+これらの関数の処理を実装することです。<br>
+　必殺技等の、キャラクター固有の行動を新規に追加する場合は、①行動IDを新規に定義、②対応する行動関数を新しく作って、
+③CCharacter::Action 関数に 「case 行動ID : 行動関数(); break; 」の一文を追加、④Command系関数の適切な位置で
+コマンド判定を行って行動IDをその値に変更　といった処理を追加します。<br>
+
+<br>
+<br>
+
+　以上がおおまかな処理の流れです。<br>
+　あとは必要に応じてソースコードを解析して理解を深めてください。<br>
+
+</p>
+
+<hr><p align="center"><a href="../index.html">もどる</a></p>
+</body>
+
+
+
+

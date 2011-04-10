@@ -1,0 +1,67 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<title></title>
+
+</head>
+
+<body>
+
+<p class=midasi>行動関数の追加</p>
+<p class=nakami>
+　ここまでの項で、基本動作と通常攻撃を持ったキャラクターが出来上がったと思います。ここからは必殺技等、追加の行動を追加していく作業となります。<a href="tut_1.html">処理の流れ</a>のほうでも述べましたが、ここで改めて行動関数を追加する手順を説明します。<br>
+</p>
+
+<p class=midasi2>１：行動IDの定義</p>
+<p class=nakami>
+　行動IDは単に他のIDとかぶらないように適当な数値を定義すればいいっていうものではありません。コマンド処理のとき、現在の行動IDを参照して「今は空中動作中だから地上必殺技は出せないな」とか、「今は通常攻撃が出てる最中だからダッシュはできないけど必殺技ならキャンセルできるな」とかいう判断材料として使われます。他にも攻撃喰らったときにどの喰らい動作に移行するかなど。<br>
+　というわけで、行動IDを定義する時には値に適切なフラグを追加してください。主なフラグは以下<br>
+<br>
+ACTID_KUCYU　：　空中動作である。割と重要です。<br>
+ACTID_SYAGAMI　：　しゃがみ動作中である。つけてなくてもあんまり問題なし。<br>
+ACTID_ATTACK　：　攻撃中である。<br>
+ACTID_HISSATU　：　必殺技中である。<br>
+ACTID_NAGE　：　投げ動作中である。無敵+投げ無敵 扱いになります。<br>
+<br>
+　これ以外は <a href="../doxy_docs/group_GObject.html#a4">gobject.h の定義</a>を参照してください。<br>
+　それからもちろん、他の行動IDとかぶらないことも必須条件です。通常上記フラグ＋通し番号　でID定義を行います。<br>
+　CCharacterBaseで定義されているIDは通し番号が0x8000から始まっているのでかぶることはないと思いますが、
+システム側で定義されたデフォルトの行動ID（主に喰らい動作からの復帰にこれらのIDを使用する）を以下にあげておきます。<br>
+<br>
+<table>
+<tr><td>#define ACTID_NEUTRAL</td><td>　1//ニュートラルポーズ</td></tr>
+<tr><td>#define ACTID_TOJYO</td><td>　2//登場</td></tr>
+<tr><td>#define ACTID_SYORI</td><td>　3//勝利</td></tr>
+<tr><td>#define ACTID_CROUCH</td><td>　ACTID_SYAGAMI//しゃがみポーズ</td></tr>
+<tr><td>#define ACTID_RAKKA	</td><td>　ACTID_KUCYU//落下</td></tr>
+</table>
+</p>
+
+<p class=midasi2>２：行動関数の作成</p>
+<p class=nakami>
+　クラスの宣言部分に関数の宣言文を追加します。<br>
+　関数の実体も他のact_～関数同様、適当なソースファイル中に記述してください。
+</p>
+
+<p class=midasi2>３：Actionの分岐処理に２の関数を追加</p>
+<p class=nakami>
+　Action関数のswitchに項目を追加します。
+</p>
+
+<p class=midasi2>４：Command系関数の適切なところに、コマンド処理を追加</p>
+<p class=nakami>
+　多分ここが一番難しいです。Commandは複数の関数に処理が分かれているので、適切な場所に行動IDの変化処理を記述する必要があります。たぶん最初はうまくいかないと思うので、試行錯誤でいろいろやってみてください。意外と難しいのが、キー入力で継続するタイプの行動（主にダッシュ）で、行動を遷移させるところと、他の行動でキャンセルされないようにするのが結構面倒です。
+</p>
+
+<p class=midasi2>４’：CommandCom系関数の適切なところに、コマンド処理を追加</p>
+<p class=nakami>
+　Commandは人間プレイヤーの場合の処理です。プレイヤーがコンピュータの場合はキー入力を判定しても
+コマンドを判断できないので、Command系の処理とは別に処理行う必要があります。
+CommandCom系の処理は、システムから渡された「次に遷移するべき行動のID」に対して、可/不可を判定して返す処理を行います。
+<br>
+　またタイトルと趣旨がずれますが、<a href="tut_6.html">技情報の設定</a>も行わなければシステムは行動遷移の候補として技の行動IDを選択することができません。
+</p>
+
+<hr><p align="center"><a href="../index.html">もどる</a></p>
+</body>

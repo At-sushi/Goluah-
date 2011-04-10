@@ -1,0 +1,134 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<title></title>
+
+</head>
+
+<body>
+
+<p class=midasi>攻撃情報フラグ</p>
+<br>
+<p class=midasi2>リアクション</p>
+<pre class=nakami2>
+HITINFO_REACT1		普通の弱のけぞり
+HITINFO_REACT2		普通の中のけぞり
+HITINFO_REACT3		普通の強のけぞり
+HITINFO_DOWN		ダウソする（転ぶ）
+HITINFO_FUTTOBI		吹っ飛ぶ
+HITINFO_FUTTOBI2	吹っ飛ぶ（ちょっと上のほうへ）
+HITINFO_REACT1A		弱、のけぞりなし
+HITINFO_REACT2A		中、のけぞりなし
+HITINFO_REACT3A		強、のけぞりなし
+HITINFO_TATAKI1A	真下叩きつけバウンド有り
+HITINFO_TATAKI2A	真下叩きつけバウンドなし
+HITINFO_TATAKI1B	斜め叩きつけバウンド有り
+HITINFO_TATAKI2B	斜め叩きつけバウンドなし
+HITINFO_USERDEFINE	ユーザー定義の喰らい行動(地上/空中自動判別)（通常はマクロにより指定されます）
+HITINFO_USERDEFINE2	ユーザー定義の喰らい行動(強制的に空中に浮かせる)（通常はマクロにより指定されます）
+</pre>
+
+<p class=midasi2>ヒットマーク</p>
+<pre class=nakami2>
+HITINFO_MARK1		ヒットしたときにちっちゃいマークを表示します
+HITINFO_MARK2		ヒットしたときに中ぐらいのマークを表示します
+HITINFO_MARK3		ヒットしたときにでっかいマークを表示します
+HITINFO_MARK4		ヒットしたときにさらにでっかいマークを表示します
+</pre>
+
+<p class=midasi2>効果音</p>
+<pre class=nakami2>
+HITINFO_SNDHIT1		ヒット音弱
+HITINFO_SNDHIT2		ヒット音中
+HITINFO_SNDHIT3		ヒット音強
+HITINFO_SNDSHK1		電撃音1
+HITINFO_SNDSHK2		電撃音2
+</pre>
+
+<p class=midasi2>ヒットストップ</p>
+<pre class=nakami2>
+HITINFO_SIV1		ヒットストップ、短い
+HITINFO_SIV2		ヒットストップ、ふつう
+HITINFO_SIV3		ヒットストップ、長い
+HITINFO_STOP		ヒットストップ、めちゃ長
+</pre>
+
+<p class=midasi2>エフェクト</p>
+<pre class=nakami2>
+HITINFO_EFCTSINDO	攻撃が当たったとき、地面を振動させる
+HITINFO_EFCTBURN	攻撃を喰らうとキャラクターが燃え出す(赤)
+HITINFO_EFCTBURN_B	攻撃を喰らうとキャラクターが燃え出す(青)
+HITINFO_EFCTBURN_G	攻撃を喰らうとキャラクターが燃え出す(緑)
+</pre>
+
+<p class=midasi2>その他</p>
+<pre class=nakami2>
+HITINFO_USER(id)	ユーザー定義ヒットフラグ作成マクロ。　IDは0～255で与えること
+HITINFO_USER2(id)	ユーザー定義ヒットフラグ作成マクロ。　IDは0～255で与えること
+</pre>
+
+
+
+<br><br>
+
+
+
+<p class=midasi>ガード情報フラグ</p>
+<br>
+<p class=midasi2>ガード種類</p>
+<pre class=nakami2>
+GUARDINFO_XSTAND	立ちガードできません
+GUARDINFO_XCROUCH	しゃがみガードできません
+GUARDINFO_XJAMP		空中ガードできません
+GUARDINFO_XAUTO		オートガードできない
+</pre>
+
+<p class=midasi2>リアクション</p>
+<pre class=nakami2>
+GUARDINFO_REACT1	弱ガード
+GUARDINFO_REACT2	中ガード
+GUARDINFO_REACT3	強ガード
+GUARDINFO_USERDEFINE	ユーザー定義ガード行動（通常はマクロにより指定されます）
+</pre>
+
+<p class=midasi2>ヒットストップ</p>
+<pre class=nakami2>
+GUARDINFO_SIV1		ヒットストップ、短い
+GUARDINFO_SIV2		ヒットストップ、ふつう
+GUARDINFO_SIV3		ヒットストップ、長い
+GUARDINFO_STOP		ヒットストップ、めちゃ長
+</pre>
+
+<p class=midasi2>エフェクト</p>
+<pre class=nakami2>
+GUARDINFO_EFCTSINDO	攻撃が当たったとき、地面を振動させる
+</pre>
+
+<p class=midasi2>リアクション</p>
+<pre class=nakami2>
+GUARDINFO_USER(id)	ユーザー定義ガードフラグ作成マクロ。　IDは0～255で与えること
+</pre>
+
+
+
+<br><br>
+
+
+
+<p class=midasi>ユーザー定義ガード・ヒットのやりかた</p>
+<p class=nakami>
+　ユーザー定義ヒット・ガードを利用すると、攻撃側でのけぞりや吹っ飛び方を記述することができます。
+その場合には、リアクションのフラグのかわりに　HITINFO_USER(id)、GUARDINFO_USER(id) マクロを使用します。
+idにはDLL側で適当な（だけど重複しない） 値を指定してください。このマクロによって生成されたフラグを持つ攻撃が敵にヒットした場合、
+投げと同じように、喰らい側へGOBJMSG_ACTIONが送信されるかわりに、攻撃側のメッセージ処理関数に (GOBJMSG_USERDEFINE | 指定ID)が
+送信されます。投げなどの他のユーザー定義メッセージIDとかぶらないよう注意してください。開放時には、敵の行動IDをニュートラルやしゃがみ、ダウン、落下等の適当なデフォルト行動へ変化させます。<br>
+<br>
+　攻撃ヒット後の行動で相手側の行動IDに空中扱いフラグがつくかどうかは、 攻撃ヒット時に相手が地上にいたか空中にいたかに依存します。
+ヒット時に強制的に相手を空中に浮かせたい場合はHITINFO_USER(id)マクロのかわりに HITINFO_USER2(id) マクロを使用してください。
+</p>
+
+
+
+<hr><p align="center"><a href="../index.html">もどる</a></p>
+</body>

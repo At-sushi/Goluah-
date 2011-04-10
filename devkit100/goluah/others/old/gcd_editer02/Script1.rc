@@ -1,0 +1,250 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// “ú–{Œê resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG1 DIALOG DISCARDABLE  0, 0, 431, 319
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "ÀÞ²±Û¸Þ"
+FONT 9, "‚l‚r ‚oƒSƒVƒbƒN"
+BEGIN
+    PUSHBUTTON      "Load",IDC_BUTTON_LOAD,369,12,25,14
+    PUSHBUTTON      "Save",IDC_BUTTON_SAVE,395,12,23,14
+    GROUPBOX        "file",IDC_STATIC,364,2,60,44
+    PUSHBUTTON      "ƒ",IDC_BUTTON_P,290,27,32,14
+    PUSHBUTTON      "„",IDC_BUTTON_N,323,27,32,14
+    PUSHBUTTON      "ƒƒ",IDC_BUTTON_P10,290,41,32,14
+    PUSHBUTTON      "„„",IDC_BUTTON_N10,323,41,32,14
+    EDITTEXT        IDC_EDIT1,288,11,69,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "BLANK „",IDC_BUTTON_NB,323,55,32,14
+    PUSHBUTTON      "ƒ BLANK",IDC_BUTTON_PB,290,55,32,14
+    PUSHBUTTON      "FIND „",IDC_BUTTON_NF,323,69,32,14
+    PUSHBUTTON      "ƒ FIND",IDC_BUTTON_PF,290,69,32,14
+    GROUPBOX        "cell#",IDC_STATIC,283,2,78,98
+    PUSHBUTTON      "0",IDC_BUTTON_KASANARI0,311,260,13,14
+    PUSHBUTTON      "ƒf[ƒ^Á‹Ž",IDC_BUTTON_ERASE,292,130,64,14
+    PUSHBUTTON      "0",IDC_BUTTON_KURAI0,311,278,13,14
+    GROUPBOX        "‹éŒ`Œˆ’è",IDC_STATIC,283,251,76,61
+    PUSHBUTTON      ">",IDC_BUTTON_BN,122,252,20,14
+    PUSHBUTTON      ">>",IDC_BUTTON_BN10,147,252,19,14
+    PUSHBUTTON      "<",IDC_BUTTON_BP,69,252,23,14
+    PUSHBUTTON      "<<",IDC_BUTTON_BP10,42,252,23,14
+    GROUPBOX        "",IDC_STATIC,7,244,170,42
+    CONTROL         "X•ûŒü”½“]",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,273,47,10
+    CONTROL         "‚x•ûŒü”½“]",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,60,273,48,10
+    PUSHBUTTON      "ƒRƒs[",IDC_BUTTON_COPY,292,102,64,14
+    PUSHBUTTON      "“\‚è•t‚¯",IDC_BUTTON_PASTE,292,116,64,14
+    EDITTEXT        IDC_EDIT2,54,293,122,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Save Header",IDC_BUTTON_SAVE2,369,28,49,14
+    CONTROL         "1",IDC_RADIOSEL1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+                    368,54,14,10
+    CONTROL         "2",IDC_RADIOSEL2,"Button",BS_AUTORADIOBUTTON,368,68,15,
+                    10
+    CONTROL         "3",IDC_RADIOSEL3,"Button",BS_AUTORADIOBUTTON,368,82,16,
+                    10
+    CONTROL         "4",IDC_RADIOSEL4,"Button",BS_AUTORADIOBUTTON,368,96,16,
+                    10
+    CONTROL         "5",IDC_RADIOSEL5,"Button",BS_AUTORADIOBUTTON,368,109,15,
+                    10
+    CONTROL         "6",IDC_RADIOSEL6,"Button",BS_AUTORADIOBUTTON,368,123,15,
+                    10
+    CONTROL         "7",IDC_RADIOSEL7,"Button",BS_AUTORADIOBUTTON,368,137,15,
+                    10
+    CONTROL         "8",IDC_RADIOSEL8,"Button",BS_AUTORADIOBUTTON,368,150,15,
+                    10
+    PUSHBUTTON      "ŒðŠ·(1Ì2)",IDC_BUTTONFLIP1,385,55,34,14
+    PUSHBUTTON      "ŒðŠ·(2Ì3)",IDC_BUTTONFLIP2,385,70,34,14
+    PUSHBUTTON      "ŒðŠ·(3Ì4)",IDC_BUTTONFLIP3,385,85,34,14
+    PUSHBUTTON      "ŒðŠ·(4Ì5)",IDC_BUTTONFLIP4,385,100,34,14
+    PUSHBUTTON      "ŒðŠ·(5Ì6)",IDC_BUTTONFLIP5,385,114,34,14
+    PUSHBUTTON      "ŒðŠ·(6Ì7)",IDC_BUTTONFLIP6,385,128,34,14
+    PUSHBUTTON      "ŒðŠ·(7Ì8)",IDC_BUTTONFLIP7,385,142,34,14
+    CONTROL         "¶‰E”½“](ƒeƒXƒg)",IDC_TESTCHECK1,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,364,166,60,10
+    GROUPBOX        "",IDC_STATIC,364,45,60,117
+    PUSHBUTTON      "Šgk‰ñ“]‚ð”Žš‚ÅŽw’è",IDC_BUTTON_MAG,181,250,94,14
+    LTEXT           "RECT#",IDC_STATIC,12,256,22,8
+    LTEXT           "#define CELL_",IDC_STATIC,11,295,42,8
+    GROUPBOX        "•ÒWƒ‚[ƒh",IDC_STATIC,283,147,76,86
+    LTEXT           "d‚È‚è",IDC_STATIC,291,264,19,8
+    PUSHBUTTON      "1",IDC_BUTTON_KASANARI1,326,260,13,14
+    PUSHBUTTON      "2",IDC_BUTTON_KASANARI2,341,260,12,14
+    LTEXT           "‹ò‚ç‚¢",IDC_STATIC,291,282,20,8
+    PUSHBUTTON      "1",IDC_BUTTON_KURAI1,326,278,13,14
+    PUSHBUTTON      "2",IDC_BUTTON_KURAI2,341,278,12,14
+    PUSHBUTTON      "0",IDC_BUTTON_KOUGEKI0,311,296,13,14
+    LTEXT           "UŒ‚",IDC_STATIC,291,298,15,8
+    PUSHBUTTON      "1",IDC_BUTTON_KOUGEKI1,325,296,14,14
+    PUSHBUTTON      "2",IDC_BUTTON_KOUGEKI2,341,296,12,14
+    CONTROL         "ŽŸ‚ÌCELL‚ÆƒŠƒ“ƒN",IDC_CHECK_LINK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,287,236,63,10
+    GROUPBOX        "•\Ž¦",IDC_STATIC,364,233,61,78
+    CONTROL         "25%",IDC_RADIO_VIEW1,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,370,244,26,10
+    CONTROL         "50%",IDC_RADIO_VIEW2,"Button",BS_AUTORADIOBUTTON,370,
+                    255,26,10
+    CONTROL         "75%",IDC_RADIO_VIEW3,"Button",BS_AUTORADIOBUTTON,370,
+                    266,26,10
+    CONTROL         "100%",IDC_RADIO_VIEW4,"Button",BS_AUTORADIOBUTTON,370,
+                    277,30,10
+    CONTROL         "200%",IDC_RADIO_VIEW5,"Button",BS_AUTORADIOBUTTON,370,
+                    288,30,10
+    CONTROL         "400%",IDC_RADIO_VIEW6,"Button",BS_AUTORADIOBUTTON,370,
+                    299,30,10
+    CONTROL         "ˆÚ“®",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+                    291,159,30,10
+    CONTROL         "‹éŒ`•ÒW",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,291,
+                    171,43,10
+    CONTROL         "dSŽw’è",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,291,
+                    183,43,10
+    CONTROL         "ã‰º”½“](ƒeƒXƒg)",IDC_TESTCHECK2,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,364,178,61,11
+    CONTROL         "‰ñ“]",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,291,195,30,
+                    10
+    CONTROL         "Šg‘åk¬(X)",IDC_RADIO5,"Button",BS_AUTORADIOBUTTON,291,
+                    207,52,10
+    CONTROL         "Šg‘åk¬(Y)",IDC_RADIO6,"Button",BS_AUTORADIOBUTTON,291,
+                    220,52,10
+    PUSHBUTTON      "”»’è‹éŒ`‚ðƒŠƒZƒbƒg",IDC_BUTTON_RESETHANTEI,181,270,94,
+                    14
+    GROUPBOX        "”wŒiF",IDC_STATIC,364,194,60,36
+    CONTROL         "”’",IDC_RADIO_BG1,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,370,204,19,10
+    CONTROL         "•",IDC_RADIO_BG2,"Button",BS_AUTORADIOBUTTON,392,204,
+                    23,10
+    CONTROL         "Ž‡",IDC_RADIO_BG3,"Button",BS_AUTORADIOBUTTON,371,216,
+                    21,10
+    CONTROL         "…F",IDC_RADIO_BG4,"Button",BS_AUTORADIOBUTTON,392,217,
+                    30,10
+    CONTROL         "ØÝ¸¾Ù‚ð”ò‚Î‚·",IDC_TOBASILINK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,292,86,62,10
+END
+
+IDD_DIALOG2 DIALOG DISCARDABLE  0, 0, 173, 99
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "‰ñ“]Šp‚ÆŠg‘å—¦‚ÌŽw’è"
+FONT 9, "‚l‚r ‚oƒSƒVƒbƒN"
+BEGIN
+    DEFPUSHBUTTON   "‚±‚ê‚Å‚æ‚µ",IDOK,62,78,50,14
+    PUSHBUTTON      "‚¾‚ß",IDCANCEL,116,78,50,14
+    PUSHBUTTON      "”’l‚ðƒŠƒZƒbƒg",IDC_BUTTON1,7,78,50,14
+    EDITTEXT        IDC_EDIT1,29,22,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT3,29,44,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT4,94,35,40,14,ES_AUTOHSCROLL
+    LTEXT           "X:",IDC_STATIC,19,24,8,8
+    LTEXT           "Y:",IDC_STATIC,19,46,8,8
+    GROUPBOX        "Šg‘å•k¬",IDC_STATIC,7,7,74,61
+    GROUPBOX        "‰ñ“]",IDC_STATIC,88,7,75,61
+    LTEXT           "[‹]",IDC_STATIC,138,37,12,8
+END
+
+IDD_DIALOG3 DIALOG DISCARDABLE  0, 0, 187, 93
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "ÀÞ²±Û¸Þ"
+FONT 9, "‚l‚r ‚oƒSƒVƒbƒN"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,130,7,50,14
+    PUSHBUTTON      "·¬Ý¾Ù",IDCANCEL,130,24,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 424
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 312
+    END
+
+    IDD_DIALOG2, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 166
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 92
+    END
+
+    IDD_DIALOG3, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 86
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // “ú–{Œê resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

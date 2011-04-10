@@ -1,0 +1,70 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<title></title>
+
+</head>
+
+<body>
+
+<p class=midasi>COMの動作設定</p>
+
+<br>
+
+<p class=midasi2>技情報の通知</p>
+<p class=nakami>
+　コンピュータに動作をさせるためには、どのような動作がどのIDで出るのかをシステム側に知らせる必要があります。<br>
+　pdat->winfo に<a href="ref_struct.html">技情報構造体</a>のポインタを設定することによりそれを行いますが、CCharacterBaseを継承した場合はポインタ設定はすでになされているので、CCharacterBase::waz に設定すればOKです。一応、InitWazInfo をオーバーライドしてそのなかで処理をしてください。
+</p>
+
+<p class=midasi2>行動遷移の許可・不許可</p>
+<p class=nakami>
+　当然、システム側はどの行動からどの行動に遷移していいか・だめなのか 、 を知りません。そこでシステムは次に遷移する行動IDの候補が決まったら、その行動に遷移していいかどうかをDLLに問い合わせるため、GOBJMSG_COMMANDCOM メッセージを送信します。このメッセージはCCharacterBaseのメッセージ処理関数のなかで拾われ、CommandCom関数を経由して CmdCom_～系の関数がコールされます。通常は行動IDのフラグで大体の判断はできますが、特殊なものに関してはここに処理を追加する必要があります。TRUEを返したら指定行動IDに遷移してもいいよってことです。<br>
+</p>
+
+<p class=midasi2>COMの投げ</p>
+<p class=nakami>
+　投げの場合行動IDがわかり、その行動に遷移したとしても、システムはその投げ行動に関連付けられた間合いや、
+敵側制御に使用するユーザー定義メッセージの値等の情報を持ち合わせていません。
+そこで、GOBJMSG_COMMANDCOM メッセージの次の行動ID候補に投げの行動IDが渡され、その問い合わせに対してTRUEを返す場合は、
+DLL側の処理で適切な投げの開始処理を行わなければなりません。投げの開始処理に失敗した場合は、FALSEを返さなければなりません。
+</p>
+
+<p class=midasi2>DLL側からの行動遷移の制御</p>
+<p class=nakami>
+　とはいえ、出せる技を適当に出していたのでは弱いに決まっています。そこでver0.99から DLLがシステム側に追加の情報を
+提供する仕組みを用意しました。<br>
+<br>
+<b>・リーチ長の設定</b><br>
+　いままで<a href="ref_struct.html">技情報構造体</a>のshort , middle , long に設定された技のうちどれを使用するかの
+間合いの閾値はシステムが適当な値を使用していました。が、なんか長すぎるんじゃねえの？ということでこれをDLLから指定できます。<br>
+<br>
+<a href="../doxy_docs/class_CGoluahObject.html">CGoluahObject</a>::SetComReach( idx, reach)<br>
+<a href="../doxy_docs/class_DI_FUNCTIONS_O.html">DI_FUNCTIONS_O</a>::setcomreach<br>
+<br>
+　指定しなかった場合は今までどおりの値が使用されます。<br>
+<br>
+
+<b>・行動遷移制御</b><br>
+
+　以下の関数で次に起こすべき行動の候補をDLL側から指定します。ある攻撃があたったときこの関数を使用して、連続技をさせることができます。
+また、この関数で行動IDに0を渡すと(ComDelayはそういう操作です)、指定ディレイ値の間は他の行動への遷移を抑制することができます。
+これは、行動の遷移から攻撃力の発生が長い技を出した場合に、攻撃力の発生前に別の行動でその技をキャンセルしてしまうのを防ぐときに使用します。<br>
+<br>
+<a href="../doxy_docs/class_CGoluahObject.html">CGoluahObject</a>::SetComAct<br>
+<a href="../doxy_docs/class_CGoluahObject.html">CGoluahObject</a>::ComDelay<br>
+<a href="../doxy_docs/class_DI_FUNCTIONS_O.html">DI_FUNCTIONS_O</a>::setcomact<br>
+
+<br>
+<b>・レベル(難易度)判定</b><br>
+　連続技をやらせると強くなるでしょう。でも、強くなくなって欲しいこともあるのです。
+以下の関数で難易度を取得して連続技のつながりっぷりを調整してください。<br>
+<br>
+<a href="../doxy_docs/class_CGoluahObject.html">CGoluahObject</a>::GetComLevel<br>
+<a href="../doxy_docs/class_DI_FUNCTIONS_O.html">DI_FUNCTIONS_O</a>::getcomlevel <br>
+</p>
+
+
+<hr><p align="center"><a href="../index.html">もどる</a></p>
+</body>

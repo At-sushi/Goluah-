@@ -1,0 +1,93 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<title></title>
+
+</head>
+
+<body>
+
+
+
+<!-- ************************************************************************ -->
+<p class=midasi> その他の構造体</p>
+<p class=nakami>
+　リンクは同じ構造体のdoxgenドキュメント(ソースコードから直接自動生成された)に通じています。
+</p>
+<br>
+<p class="midasi2">攻撃力情報構造体</p>
+
+<pre class=source2>
+struct <a href="../doxy_docs/class_ATTACKINFO.html">ATTACKINFO</a>
+{
+	DWORD hit;	//ヒット情報。フラグ(HITINFO_～)の論理和を指定
+	DWORD guard;	//ガード情報。フラグ(GUARDINFO_～)の論理和を指艇
+	DWORD id;		//キャラクタ側で勝手に定義して
+
+	DWORD damage;	//ダメージ
+	DWORD kezuri;	//削り
+
+	BOOL muki;	//相手がのけぞる向き(FALSEならば、自分が向いている方向と同じ)
+};
+</pre>
+
+<p class=nakami2>
+　hit , guard に指定するフラグは<a href="ref_atk_grd.html">攻撃・ガードフラグ</a>を参照してください</p>
+
+<p class="midasi2">攻撃力情報構造体2</p>
+<pre class=source2>
+struct <a href="../doxy_docs/class_ATTACKINFO2.html">ATTACKINFO2</a>
+{
+	ATTACKINFO *info1;
+	DWORD oid;//攻撃を行ったヤツのオブジェクトID
+	DWORD flags;//下に示すフラグ
+};
+</pre>
+
+<p class=nakami2>
+　こちらは敵から喰らった攻撃力情報です。</p>
+
+<p class="midasi2">技情報構造体</p>
+<pre class=source2>
+struct <a href="../doxy_docs/class_WAZAINFO.html">WAZAINFO</a>
+{
+	DWORD walkf;//前進
+	DWORD walkb;//後退
+	DWORD jampf;//まゑジャンプ
+	DWORD jampb;//裏ジャンプ
+	DWORD dashf;//まゑダッシュ
+	DWORD dashb;//裏ダッシュ
+
+	DWORD att_short[6];//短リーチ攻撃
+	DWORD att_middle[6];//中リーチ攻撃
+	DWORD att_long[6];//長リーチ攻撃
+	DWORD att_jamp[6];//空中で出す攻撃
+	DWORD att_tai[6];//対空に使える攻撃
+	DWORD att_bullet[6];//飛び道具など
+
+	DWORD nageid[6];	//投げ行動ID
+
+	...
+};
+</pre>
+<p class=nakami2>
+　それぞれのDWORD値には対応する技の行動ＩＤを代入します。</p>
+
+
+<p class=midasi2>オブジェクト投げ用構造体</p>
+
+<pre class=source2>
+struct <a href="../doxy_docs/class_CATCHYOU.html">CATCHYOU</a>
+{
+	DWORD oid;//掴むオブジェクト
+	DWORD actmsg;//掴んだオブジェクトが、つかまれたオブジェクトを操作するために使うメッセージ
+};
+</pre>
+
+<p class=nakami2>
+　詳しくはチュートリアル-投げの実装をよんでください。<br>
+CGoluahObject継承クラスではCGoluahObject::ObjCatchを利用できるので、この構造体を直接使用する機会はありません。</p>
+
+<hr><p align="center"><a href="../index.html">もどる</a></p>
+</body>

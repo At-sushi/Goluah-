@@ -1,0 +1,6 @@
+
+LIBRARY		"defstg"
+
+EXPORTS
+	StageInfo		@1
+	CreateStage		@2

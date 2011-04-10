@@ -1,0 +1,44 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<title></title>
+
+</head>
+
+<body>
+
+<p class=midasi>飛び道具です</p>
+<p class=nakami>
+　飛び道具は本体とは独立したオブジェクトとして作成しなければなりません。やり方は２種類あって、
+<a href="../doxy_docs/class_CBulletBase.html">CBulletBase</a>継承クラスを作って飛び道具とするか、
+<a href="../doxy_docs/class_BULLETINFO_A.html">旧飛び道具構造体</a>を使って
+<a href="../doxy_docs/class_CClassicalBullet.html">CClassicalBullet</a>のインスタンスを作るかです。<br>
+　ここでは前者について解説します。<br>
+<br>
+　飛び道具だけでなくエフェクトなんかも攻撃を行わない飛び道具みたいなものなので、既存キャラは結構飛び道具を使ってます。<br>
+　CBulletBase、CClassicalBullet、ともにキャラクタクラスでロードされたビットマップ・GCDを使いまわすので、表示絵の指定にはキャラクタと同様にセル番号を指定できます。この"データの使いまわし"は、CBulletBaseクラスのコンストラクタにCCharacterBaseのポインタを"親オブジェクト"として渡すことにより実現されます。そのため、これらの派生クラスを作成した場合にもコンストラクタ引数にCCharacterBaseのポインタをとり、イニシャライザでCBulletBaseへ通知する必要があります。
+</p>
+
+<p class=midasi2>最低限どこを書け（オーバーライドすれ）ばいいか？</p>
+<p class=nakami>
+　試してないのではっきりとはいえませんが、act_系のいくつかの純仮想関数をオーバーライド
+するだけでよいはずです。
+</p>
+
+<p class=midasi2>初期化</p>
+<p class=nakami>
+　一応後々のことも考えて、飛び道具オブジェクトはキャラクタロード時に生成しておいて、必要がないときは描画をOFFにしておき、必要なときに発現させる、みたいな方式を推奨します。ってわけで、飛び道具クラスを作ったら、それのポインタをメンバ関数に保持し、InitBullets関数中でクラスを new してください。<br>
+　問題は所得に失敗したときの対処ですが、CREATE_GOBJマクロを使えば自動で処理してくれます。<br>
+使い方は、例えばpBulletにCBulletクラスを生成したい場合、「CREATE_OBJ(pBullet, CBullet)」です、セミコロンは不要。<br>
+　注意：CGoluahObject継承クラスはオブジェクト消滅時（通常は試合終了時）に自動的に delete されるため、必ず動的に確保を行い、deleteしないでください。
+</p>
+
+<p class=midasi2>発射</p>
+<p class=nakami>
+　CBulletBase::Go を実行します。<br>
+　連射の効く飛び道具（同時に画面上に２つ以上の飛び道具が出る可能性がある）の場合は飛び道具クラスのインスタンスを複数生成して順番に使うといいかもしれません。
+</p>
+
+<hr><p align="center"><a href="../index.html">もどる</a></p>
+</body>

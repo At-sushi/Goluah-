@@ -1,0 +1,8 @@
+; キャラクターがシステムに反応するための設定です。
+; このファイルの内容は改変しないでください。
+
+LIBRARY		"action"
+
+EXPORTS
+	CharacterInfo		@1
+	CreateCharacter		@2

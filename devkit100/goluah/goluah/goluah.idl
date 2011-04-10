@@ -1,0 +1,18 @@
+// goluah.idl : goluah の IDL ソース
+//
+
+// このファイルは、タイプ ライブラリ (goluah.tlb) およびマーシャリング コードを
+// 作成するために MIDL ツールによって処理されます。
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	uuid(91B92962-2142-4134-9F67-4AF9DF3C0C98),
+	version(1.0),
+	helpstring("goluah 1.0 タイプ ライブラリ")
+]
+library goluahLib
+{
+	importlib("stdole2.tlb");
+};

@@ -1,0 +1,469 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<title>～システム関数リファレンス～</title>
+
+</head>
+
+<body>
+
+<p align="center">～システム関数リファレンス～</p>
+<p class="nakami">
+　キャラクター、あるいはステージを作成するときに呼び出される関数の引数に渡される構造体の中には関数ポインタの詰まった構造体へのポインタがはいっています。これらを利用することによってシステム側から提供された機能を利用することができます。<br><br>
+　<a href="../doxy_docs/class_CGoluahObject.html">CGoluahObject</a>継承クラスの場合はそれぞれ対応する（ほぼ）同名の関数が用意されているので、それを使ってください。
+<a href="../doxy_docs/class_DI_FUNCTIONS_S.html">DI_FUNCTIONS_S</a>　、　
+<a href="../doxy_docs/class_DI_FUNCTIONS_O.html">DI_FUNCTIONS_O</a>　、
+<a href="../doxy_docs/class_DI_FUNCTIONS_D.html">DI_FUNCTIONS_D</a>　
+のドキュメントから、それぞれ対応するCGoluahObjectの関数を参照できます。<br>
+<br>
+　<b>現在、以下のドキュメントにはver0.95以降の追加機能は含まれていません</b>
+</p>
+
+<!-- **************************************************************************** -->
+<p class=midasi>DI_FUNCTIONS_S（システムに関する関数群）</p>
+<pre .source>
+struct <a href="../doxy_docs/class_DI_FUNCTIONS_S.html">DI_FUNCTIONS_S</a>
+{
+	PFUNCS_GETKEY		getkey;
+	PFUNCS_SEEKKEY		seekkey;
+	PFUNCS_SETKATISERIF	setkatiserif;
+	PFUNCS_ADDEFFECT		addeffect;
+	PFUNCS_PLAYSYSSOUND	playsyssound;
+	PFUNCS_LOADMYSOUND		loadmysound;
+	PFUNCS_PLAYMYSOUND		playmysound;
+	PFUNCS_KILLMYSOUND		killmysound;
+	PFUNCS_MESSAGE2SYSTEM	msg2system;
+	PFUNCS_GETENEMYNAME	getenemyname;
+	PFUNCS_GETDISPCENTERX	getdispcenterx;
+	PFUNCS_GETDISPCENTERY	getdispcentery;
+
+	PFUNCS_GETTEAMNUM		getteamnum;
+	PFUNCS_GETTAISENKEISIKI	gettaisenkeisiki;
+};
+</pre>
+
+<p class=midasi2>DWORD getkey(DWORD,DWORD)</p><p class=nakami2>
+引数1：キー入力番号<br>
+引数2：何フレーム前の入力を取得するか<br>
+戻り値：キー入力<br>
+<br>
+解説<br>
+　キー入力を取得します。引数1にはCDI_CHARACTERINFO2.keyinputで渡されたDWORD値を渡します。第２引数で0以外の値を渡すと過去の入力を得ることができます（ただし、255フレームまで）。戻り値はKEYSTA_～の和です。<br>
+　動作・戻り値に関してはver0.55以前から変わりありません。<br>
+<br>
+</p>
+<p class=midasi2>int seekkey(DWORD,int,int,DWORD)</p><p class=nakami2>
+引数1：チームID<br>
+引数2：何フレーム前から検索を始めるか<br>
+引数3：何フレーム前まで検索を行うか<br>
+引数4：検索するキー入力値<br>
+戻り値：見つかったフレーム数または-1<br>
+<br>
+解説<br>
+　キー入力を検索します。引数1はgetkeyと同様です。引数2から3までの間で引数4のキー入力を検索し、見つかったフレーム数（「現在」からいくつ前のフレームか）を返します。その間で引数4のキー入力が見つからなかった場合-1が返ります。255より以前のフレームのキー入力を検索しようとすると失敗します。<br>
+　動作・戻り値に関してはver0.55以前から変わりありません。<br>
+<br>
+
+</p>
+<p class=midasi2>void setkatiserif(DWORD,char*)</p><p class=nakami2>
+引数1：チームID<br>
+引数2：設定する勝ち台詞<br>
+<br>
+解説<br>
+　勝利画面での勝ち台詞を設定します。引数1にはキャラクターに格納しているチームID(GOBJECT.tid)を渡せばいいと思います。勝利ポーズを行う際に設定すればいいと思います。<br>
+<br>
+
+</p>
+<p class=midasi2>void addeffect(DWORD,int,int,DWORD)</p><p class=nakami2>
+引数1：システムエフェクトID<br>
+引数2：パラメータ1<br>
+引数3：パラメータ2<br>
+引数4：パラメータ3<br>
+<br>
+解説<br>
+　ヒットマーク・画面振動等のシステムエフェクトを発生させます。ver0.55以前と互換性があります。<br>
+　第一引数のIDによって第2-4引数の意味は異なります。以下のとおり("-"は、その引数に意味がないということです)<br>
+
+<table border=1>
+<tr><td>エフェクトＩＤ		</td><td>意味			</td><td>prm1</td><td>prm2</td><td>prm3</td></tr>
+<tr><td>EFCTID_MARK1	</td><td>ヒットマーク（小）		</td><td>x座標</td><td>y座標</td><td>向き</td></tr>
+<tr><td>EFCTID_MARK2	</td><td>ヒットマーク（中）		</td><td>x座標</td><td>y座標</td><td>向き</td></tr>
+<tr><td>EFCTID_MARK3	</td><td>ヒットマーク（大）		</td><td>x座標</td><td>y座標</td><td>向き</td></tr>
+<tr><td>EFCTID_MARK4	</td><td>ヒットマーク（特大）		</td><td>x座標</td><td>y座標</td><td>向き</td></tr>
+<tr><td>EFCTID_MARKG	</td><td>ガードマーク（削りなし）	</td><td>x座標</td><td>y座標</td><td>向き</td></tr>
+<tr><td>EFCTID_MARKG2	</td><td>ガードマーク（削りあり）	</td><td>x座標</td><td>y座標</td><td>向き</td></tr>
+<tr><td>EFCTID_HIKARI	</td><td>丸い光？			</td><td>x座標</td><td>y座標</td><td>-</td></tr>
+<tr><td>EFCTID_STOP	</td><td>ストップ			</td><td>ストップしてる時間</td><td>-</td><td>-</td></tr>
+<tr><td>EFCTID_DARK	</td><td>背景を暗くする		</td><td>暗くなってる時間</td><td>-</td><td>-</td></tr>
+<tr><td>EFCTID_MARKC	</td><td>相手を掴んだときのマーク	</td><td>x座標</td><td>y座標</td><td>-</td></tr>
+<tr><td>EFCTID_GNDCIR	</td><td>地面に丸い衝撃波		</td><td>x座標</td><td>y座標</td><td>-</td></tr>
+<tr><td>EFCTID_SINDO	</td><td>振動が起こる		</td><td>振幅</td><td>持続時間</td><td>- </td></tr>
+<tr><td>EFCTID_NOBG	</td><td>背景の描画を無しにする	</td><td>持続時間</td><td>-</td><td>-</td></tr>
+<tr><td>EFCTID_CYOHI	</td><td>超必エフェクト		</td><td>光がでるx座標</td><td>y座標</td><td>-</td></tr>
+<tr><td>EFCTID_TUBUTUBU	</td><td>パーティクル散乱		</td><td>発生中心x座標</td><td>y座標</td><td>粒々パラメータ</td></tr>
+<tr><td>EFCTID_TUBUTUBU2	</td><td>でっかいパーティクル散乱	</td><td>発生中心x座標</td><td>y座標</td><td>粒々パラメータ</td></tr>
+<tr><td>EFCTID_BURN	</td><td>指定オブジェクトが燃える	</td><td>-</td><td>-</td><td>オブジェクトID</td></tr>
+</table>
+　粒々パラメータは マクロ TUBUTUBUPRM(a,b,c,d,e,f,g,h) で入力します。a：粒子数、b：粒の速度　c：粒の速度のばらつき　d：最低速度　e：初期位置のばらつき　f：寿命のばらつき　g：粒の最短寿命 h：フラグ（TUBUTUBU_～）で、a～gは0から15までの値を入力します。<br>
+
+<br>
+
+</p>
+<p class=midasi2>void playsyssound(DWORD)</p><p class=nakami2>
+引数：システムサウンドID<br>
+<br>
+解説<br>
+　ヒット音などのシステム効果音を鳴らします。SYSTEMSOUND_～の値が使用できます。<br>
+　ver0.55以前から変わりありません。<br>
+<br>
+
+</p>
+<p class=midasi2>LPVOID loadmysound(char*)</p><p class=nakami2>
+引数：ファイル名<br>
+戻り値：ロードしたサウンドへのポインタ<br>
+<br>
+解説<br>
+　waveファイルをロードします。ここで戻ってきたポインタはDI_FUNCTIONS_S.playmysoundで使用します。<br>
+<br>
+
+</p>
+<p class=midasi2>void playmysound(LPVOID)</p><p class=nakami2>
+引数：再生するサウンドのポインタ<br>
+<br>
+解説<br>
+　DI_FUNCTIONS_S.loadmysoundでロードしたwaveサウンドを再生します。<br>
+<br>
+
+</p>
+<p class=midasi2>void killmysound(LPVOID)</p><p class=nakami2>
+引数：開放するサウンドのポインタ<br>
+<br>
+解説<br>
+　DI_FUNCTIONS_S.loadmysoundでロードしたwaveサウンドを開放します。<br>
+<br>
+
+</p>
+<p class=midasi2>DWORD msg2system(DWORD,DWORD,DWORD)</p><p class=nakami2>
+引数1：メッセージ発信元のオブジェクトID<br>
+引数2：システムメッセージID<br>
+引数3：パラメータ<br>
+戻り値：システムメッセージIDにより可変<br>
+<br>
+解説<br>
+　システムに対してメッセージを送信します。詳細はシステムメッセージの項を参照してください。<br>
+<br>
+
+</p>
+<p class=midasi2>char* getenemyname(DWORD)</p><p class=nakami2>
+引数1：自分のチームID<br>
+戻り値：敵の名前<br>
+<br>
+解説<br>
+　敵の名前を取得します。<br>
+<br>
+
+</p>
+<p class=midasi2>double getdispcenterx()</p><p class=nakami2>
+戻り値：X方向表示中心位置<br>
+<br>
+解説<br>
+　現在どの座標が画面中心に来ているかを取得します。<br>
+<br>
+
+</p>
+<p class=midasi2>double getdispcentery()</p><p class=nakami2>
+戻り値：Y方向画面中心位置<br>
+<br>
+解説<br>
+　現在どの座標が画面中心に来ているかを取得します。<br>
+　現行バージョンでは固定値です。
+<br>
+
+
+</p>
+<p class=midasi2>DWORD getteamnum()</p><p class=nakami2>
+戻り値：チームメンバー数<br>
+<br>
+解説<br>
+　何対何で戦っているかを取得します。<br>
+　現行バージョンでは1P側のチーム人数の取得になります。非推奨関数。
+<br>
+
+</p>
+<p class=midasi2>DWORD gettaisenkeisiki()</p><p class=nakami2>
+戻り値：対戦形式<br>
+<br>
+解説<br>
+　対戦形式を取得します。TAISENKEISIKI_～の値が戻り値になります。<br>
+<br>
+
+</p>
+
+<!-- **************************************************************************** -->
+<p class=midasi>DI_FUNCTIONS_O（オブジェクトに関する関数群）</p>
+<pre class=source>
+struct <a href="../doxy_docs/class_DI_FUNCTIONS_S.html">DI_FUNCTIONS_O</a>
+{
+	PFUNCO_CREATE			objcreate;
+	PFUNCO_DELETE			objdelete;
+	PFUNCO_CATCH			objcatch;
+	PFUNCO_GETINFO			getinfo;
+	PFUNCO_ADDDAMAGE			adddamage;
+	PFUNCO_ACTIDCHANGED		actidchanged;
+	PFUNCO_GETACTIVECHARACTER 		getactivechar;
+	PFUNCO_SUICIDE			suicide;
+	PFUNCO_GETMAAI_H			getmaai_h;
+	PFUNCO_GETMAAI_V			getmaai_v;
+
+	PFUNCO_GETCHARACTERID	getcharid;
+};
+</pre>
+
+<p class=midasi2>DWORD objcreate()</p><p class=nakami2>
+戻り値：作成したオブジェクトのオブジェクトID<br>
+<br>
+解説<br>
+　オブジェクトを作成します。失敗すると0が返ります。<br>
+<br>
+
+</p>
+<p class=midasi2>void objdelete(DWORD)</p><p class=nakami2>
+引数1：削除するオブジェクトID<br>
+<br>
+解説<br>
+　オブジェクトを削除します。通常はこの関数ではなく、DI_FUNCTIONS_O.suicideを使用してください。<br>
+<br>
+
+</p>
+<p class=midasi2>BOOL objcatch(DWORD,LPVOID)</p><p class=nakami2>
+引数1：相手のオブジェクトID<br>
+引数2：CATCHYOU構造体へのポインタ<br>
+戻り値：成功すればTRUE<br>
+<br>
+解説<br>
+　オブジェクトをつかみ（投げ）る行動を開始します。詳細は投げに関する項を参照してください。<br>
+<br>
+
+</p>
+<p class=midasi2>LPVOID getinfo(DWORD)</p><p class=nakami2>
+引数1：オブジェクトID<br>
+戻り値：GOBJECT構造体のポインタ<br>
+<br>
+解説<br>
+　オブジェクトのデータを取得します。失敗するとNULLが返ります。GOBJMSG_COMMAND、GOBJMSG_ACTION以外のメッセージ処理で行動IDを変化させたときに使用します。<br>
+<br>
+
+</p>
+<p class=midasi2>void adddamage(DWORD,DWORD,LPVOID,int,int)</p><p class=nakami2>
+引数1：攻撃するオブジェクトのID<br>
+引数2：攻撃されるオブジェクトのID<br>
+引数3：攻撃があたった（ことにする）座標のx値<br>
+引数4：攻撃があたった（ことにする）座標のy値<br>
+<br>
+解説<br>
+　当たり判定を行わず、強制的にダメージを与えます。投げなどのときに使用します。GOBJDAT.atkに攻撃力情報をセットしてから関数を実行してください。それが相手に与えるダメージになります。<br>
+<br>
+
+</p>
+<p class=midasi2>void actidchanged(DWORD)</p><p class=nakami2>
+引数：オブジェクトID<br>
+<br>
+解説<br>
+　行動IDが変化したときの処理を強制的に行います。<br>
+<br>
+
+</p>
+<p class=midasi2>void* getactivechar(DWORD)</p><p class=nakami2>
+引数1：チームID<br>
+戻り値：GOBJECT構造体のポインタ<br>
+<br>
+解説<br>
+　指定したチームで"アクティブ"なキャラクターのオブジェクトデータを取得します。通常は戦闘している（待機していない、体力ゲージの色が明るい）キャラクターです。<br>
+<br>
+
+</p>
+<p class=midasi2>void suicide(DWORD)</p><p class=nakami2>
+引数：オブジェクトID<br>
+<br>
+解説<br>
+　オブジェクトを破棄します。この関数が実行されるとそのオブジェクトは破棄リストに入り、1フレームに1回リストに載っているオブジェクト全てを開放する処理をしています。<br>
+<br>
+
+</p>
+<p class=midasi2>DWORD getmaai_h(DWORD,DWORD)</p><p class=nakami2>
+引数1：オブジェクトID<br>
+引数2：オブジェクトID<br>
+<br>
+解説<br>
+　2オブジェクト間の水平間合いをとります。間合いは両者の重なり判定がどれだけ離れているかで計算されます。<br>
+<br>
+
+</p>
+<p class=midasi2>DWORD getmaai_v(DWORD,DWORD)</p><p class=nakami2>
+引数1：オブジェクトID<br>
+引数2：オブジェクトID<br>
+<br>
+解説<br>
+　2オブジェクト間の垂直間合いをとります。間合いは両者の重なり判定がどれだけ離れているかで計算されます。<br>
+<br>
+
+</p>
+<p class=midasi2>DWORD  getcharid(DWORD tid,DWORD index);</p><p class=nakami2>
+戻り値：引数で指定したキャラクターのオブジェクトID
+引数1：チームIDID<br>
+引数2：何人目を取得するか(0,1,2)<br>
+<br>
+解説<br>
+　キャラクターのオブジェクトIDを取得します。<br>
+<br>
+
+</p>
+
+
+<!-- **************************************************************************** -->
+<p class=midasi>DI_FUNCTIONS_D（描画に関する関数群）</pre>
+<pre class=source>
+struct <a href="../doxy_docs/class_DI_FUNCTIONS_D.html">DI_FUNCTIONS_D</a>
+{
+	PFUNCD_GETD3D		getd3d;
+	PFUNCD_GETD3DD		getd3dd;
+	PFUNCD_LOADCELLDAT		loadcelldat;
+	PFUNCD_LOADBMP		loadbmp;
+	PFUNCD_UNLOADBMP		unloadbmp;
+	PFUNCD_CELLDRAW		celldraw;
+	PFUNCD_CKBLT		ckblt;
+	PFUNCD_BLT3D		blt3d;
+	PFUNCD_SETTRANSFORM 	settrans;
+	PFUNCD_SETBLEND		setblend;
+	PFUNCD_SETPARENTMATRIX 	setparentmat;
+};
+</pre>
+
+
+</p>
+<p class=midasi2>LPVOID getd3d()</p><p class=nakami2>
+戻り値：IDirect3D8のポインタ<br>
+<br>
+解説<br>
+　システムが作成したIDirect3D8のポインタを取得します。あんまり、使い道ないかも。<br>
+<br>
+
+</p>
+<p class=midasi2>LPVOID getd3dd()</p><p class=nakami2>
+戻り値：IDirect3DDevice8のポインタ<br>
+<br>
+解説<br>
+　システムが作成したIDirect3DDevice8のポインタを取得します。<br>
+<br>
+
+</p>
+<p class=midasi2>void loadcelldat(char*,LPVOID,LPVOID,LPVOID)</p><p class=nakami2>
+引数1：ファイル名<br>
+引数2：GCD_CELL2[1024] 配列<br>
+引数3：GCD_RECT[1024] 配列<br>
+引数4：GCD_HANTEI[1024] 配列<br>
+<br>
+解説<br>
+　GCDファイルをロードし、引数2-4にデータを格納します。格納するデータのメモリ管理はDLL側で行ってください。<br>
+<br>
+
+</p>
+<p class=midasi2>LPVOID loadbmp(char*,char*)</p><p class=nakami2>
+引数1：ビットマップファイル名<br>
+引数2：パレットファイル名<br>
+戻り値：MYSURFACE構造体へのポインタ<br>
+<br>
+解説<br>
+　ビットマップを読み込みます。ここの関数で読み込んだデータ（MYSURFACE）は特殊な構造なので、下のほうにある関数でしか描画できません。少なくともDLLがアンロードされるまでにDI_FUNCTIONS_D.unloadbmpを使って開放を行ってください。<br>
+<br>
+
+</p>
+<p class=midasi2>void unloadbmp(LPVOID)</p><p class=nakami2>
+引数：MYSURFACE構造体のポインタ<br>
+<br>
+解説<br>
+　DI_FUNCTIONS_D.loadbmpで読み込んだビットマップを開放します。<br>
+<br>
+
+</p>
+<p class=midasi2>void celldraw(LPVOID*,LPVOID,LPVOID,DWORD,int,int,float,int,BOOL,BOOL,DWORD,float,float)</p><p class=nakami2>
+引数1：MYSURFACE構造体のポインタの配列<br>
+引数2：GCD_CELL2構造体配列<br>
+引数3：GCD_RECT構造体配列<br>
+引数4：セル番号<br>
+引数5：表示座標x<br>
+引数6：表示座標y<br>
+引数7：表示座標z<br>
+引数8：CELLの回転角度(degree)<br>
+引数9：X反転フラグ<br>
+引数10：Y反転フラグ<br>
+引数11：ディフューズ色<br>
+引数12：拡大率X<br>
+引数13：拡大率Y<br>
+<br>
+解説<br>
+　セルを描画します。<br>
+<br>
+
+</p>
+<p class=midasi2>void ckblt(void*,int,int,RECT,double,double,BOOL,BOOL,float,DWORD)</p><p class=nakami2>
+引数：MYSURFACE構造体のポインタ<br>
+引数：転送先左上座標x<br>
+引数：転送先左上座標y<br>
+引数：転送元切り取り矩形<br>
+引数：拡大率x<br>
+引数：拡大率y<br>
+引数：ｘ反転フラグ<br>
+引数：y反転フラグ<br>
+引数：転送先z座標<br>
+引数：ディフューズ色<br>
+<br>
+解説<br>
+　RECT構造体で示されたビットマップの一部を画面上に描画します<br>
+<br>
+
+</p>
+<p class=midasi2>void blt3d(void*,RECT,MYRECT3D,DWORD)</p><p class=nakami2>
+引数：MYSURFACE構造体のポインタ<br>
+引数：転送元切り取り矩形<br>
+引数：転送先矩形<br>
+引数：ディフューズ色<br>
+<br>
+解説<br>
+　引数1で示されるビットマップの、引数2の矩形部分を、引数3の座標に転送（描画）します。<br>
+<br>
+
+</p>
+<p class=midasi2>void settrans(BOOL)</p><p class=nakami2>
+引数1：座標変換の有無<br>
+<br>
+解説<br>
+　通常はステージの座標系(足元が0、ステージ中央が0)で描画の座標を指定しますが、FALSEを渡すとそれがディスプレイ座標（ (左上)-（右上） が(0,0)-(640,480) または (-1,-1)-(1,1) ）に設定します。FALSEを指定して座標変換を切った後は、必ずもう一度TRUEを設定して元に戻してください。<br>
+　詳しくは座標系の解説を参照してください。<br>
+<br>
+
+</p>
+<p class=midasi2>void setblend(DWORD)</p><p class=nakami2>
+引数：α合成の方法<br>
+<br>
+解説<br>
+　α合成の方法を指定します。GBLEND_HANTOUMEIを指定すると普通の半透明になります。GBLEND_KASANを指定するとちょっと光った感じになりますGBLEND_INVを指定すると転送先の色を反転します（転送元の色は無視）。<br>
+　GBLEND_HANTOUMEI以外の値を使用した後は、必ず設定をGBLEND_HANTOUMEIに戻しておいてください。<br>
+<br>
+
+</p>
+<p class=midasi2>void setparentmat(LPVOID,BOOL,LPVOID)</p><p class=nakami2>
+引数1(in)：設定するD3DXMATRIX構造体のポインタ<br>
+引数2：それまでの親を消して設定するかどうか<br>
+引数3(out)：現在設定されているD3DXMATRIX構造体のポインタ<br>
+<br>
+解説<br>
+　「親」のワールド変換行列を指定します。DI_FUNCTIONS_D.celldraw , ckblt , blt3dに対して有効です。この3つの描画関数は、setparentmatで設定した座標変換を加えて描画します。<br>
+　第3引数で関数実行以前に設定されていた変換行列が返るので、描画後はその変換行列を再び設定しておいてください。<br>
+　第2引数にFALSEを指定すると以前に指定されてあった親変換行列との積が、新たな親変換行列になります<br>
+<br>
+</p>
+
+<hr><p align="center"><a href="../index.html">もどる</a></p>
+</body>

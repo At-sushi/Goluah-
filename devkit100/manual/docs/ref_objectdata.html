@@ -1,0 +1,306 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<title></title>
+
+</head>
+
+<body>
+
+
+<!-- ************************************************************************ -->
+<p class=midasi> オブジェクトデータ</p>
+
+<p class="nakami">
+　オブジェクトの持つデータ構造体の定義とそれぞれの変数の意味です。
+</p>
+
+<p class=midasi2>GOBJECT構造体</p>
+
+<pre class=source2>
+struct GOBJECT
+{
+	DWORD id;			//オブジェクトid
+	DWORD uid;		//ユーザーが割り当てるid
+	DWORD tid;		//チームid
+	DWORD eid;		//敵のid
+	PFOBJ_MSGHANDLER msghandler;//メッセージ処理関数
+	DWORD objtype;		//オブジェクトの持つ性質
+	
+	double x,y;		//位置
+	double vx,vy;		//速度
+	double ax,ay;		//加速度
+	
+	DWORD counter;		//カウンタ
+	DWORD aid;		//行動ID
+	DWORD cnow;		//表示セル
+	int hp;			//体力
+	DWORD hpmax;		//体力の最大値。デフォルトは1024
+	double gauge;		//ゲージ
+	DWORD gaugemax;		//ゲージのマックス値 1-9の値を指定。タイプ2のゲージは関係なし
+	DWORD gaugetype;		//どのパワーゲージを使用するか。下のフラグ。デフォルトはゲージ無し
+
+	BOOL muki;		//向き（FALSEは右向き）
+	BOOL revx;		//x反転
+	BOOL revy;		//y反転
+	int rot;			//回転
+	float magx,magy;		//拡大率
+	float z;			//z座標
+	DWORD color;		//色（自前描画の場合もこの色で描画してください）
+	DWORD alphamode;		//合成方法（GBLEND_～）フラグ
+
+	BOOL kougeki;		//攻撃力on/off
+	BOOL kasanari;		//重なり判定on/off
+	BOOL muteki;		//無敵on/off
+	BOOL nagerare;		//投げられ判定on/off
+
+	MYSURFACE **pmsarr; 	//ビットマップの配列
+	GCD_RECT *prdat;		//矩形情報配列
+	GCD_CELL2 *pcdat;		//セル情報配列
+	GCD_HANTEI *phdat;		//重なり・当たり・喰らい判定配列
+
+	ATTACKINFO *atk;		//いま自分が持っている攻撃情報
+	ATTACKINFO2 atk2;		//他のオブジェクトから喰らった攻撃情報
+	WAZAINFO  *winfo;		//コンピュータ用技情報
+
+	LPVOID pobjdat_u;		//ユーザー定義データ
+};
+</pre>
+
+<p class=midasi2>id</p><p class=nakami2>
+　オブジェクトのIDです。<br>
+　この値はシステムがオブジェクト生成要求を受けたときに設定します。
+この値は<b>絶対に変更しないでください</b>。
+</p>
+<p class=midasi2>uid</p><p class=nakami2>
+　ユーザーがオブジェクトに対して割り当てるIDです。この値の使用は任意です。
+使い道としては飛び道具オブジェクトを個々に識別したりするときに使えると思います。
+</p>
+<p class=midasi2>tid</p><p class=nakami2>
+　チームIDです。TEAM_～の値が入ります。当たり判定処理、飛び道具相殺処理、ターゲット変更処理などに影響します。<br>
+　この値はオブジェクト生成後にDLLが適切な値を設定する責任があります。CGoluahObjectおよびその派生クラスはコンストラクタ内でこの値を適切な値に初期化します。
+</p>
+<p class=midasi2>eid</p><p class=nakami2>
+　ターゲット（敵）のIDです。objtypeにGOBJFLG_NEEDTARGETフラグが立っている場合、システムは最も近くにいてかつGOBJFLG_TOBETARGETフラグが立っているオブジェクトのIDをここに入れます。<br>
+　CGoluahBase派生クラスの場合、この値が振り向き処理・投げ開始処理に影響します。
+
+</p>
+<p class=midasi2>msghandler</p><p class=nakami2>
+　システムからメッセージを受け取るための関数ポインタです。
+この値はオブジェクト生成後にDLLが適切な値を設定する責任があります。<br>
+　CGoluahObjectおよびその派生クラスはコンストラクタ内でこの値を適切な値に初期化します。
+その場合、通常はこの値を<b>変更してはいけません</b>。変更したい場合はCGoluahObjectの
+行っている処理を把握し、適切な代替処理を実装できる場合にのみ行ってください。
+
+</p>
+<p class=midasi2>objtype</p><p class=nakami2>
+　オブジェクトの性質を表すフラグの和です。
+詳細については<a href="ref_objectflag.html">オブジェクトフラグ</a>の項目を参照してください。<br>
+　この値は交代・支援攻撃等で変更する必要ができる場合がありますが、
+基本的にはオブジェクト生成時に適切なフラグを設定したらあとは変更しません。<br>
+　CCharacterBase、CbulletBaseは コンストラクタ内で それぞれキャラクター・飛び道具のための
+標準的なフラグの組み合わせをここに設定します。
+
+
+</p>
+<p class=midasi2>x,y</p><p class=nakami2>
+　オブジェクトの座標値です。デフォルト描画時の描画位置、当たり判定処理、間合い判定処理、
+ターゲット変更処理等に影響します。この値は主に、GOBJMSG_ACTIONメッセージ処理中に
+対応する行動にしたがって変更します。<br>
+　キャラクターオブジェクト(CreateCharacter関数でIDを返したオブジェクト)は、ラウンドの開始時に
+この値が変更されます。その他のオブジェクトはDLLが適切な初期位置を与える必要があります。<br>
+
+</p>
+<p class=midasi2>vx , vy , ax , ay</p><p class=nakami2>
+　この値の使用は任意です。
+つまり、他オブジェクトのこの値を移動速度や加速度として信用してはいけないということです。<br>
+　ジャンプするときに使ったり使わなかったりします。
+ダメージ・ガード動作をしている間、システムはこの値を利用しています。
+
+
+
+</p>
+<p class=midasi2>counter</p><p class=nakami2>
+　この値は1フレームに1回(GOBJMSG_ACTIONが送信された後) システムによって自動的に
+インクリメントされます。また、行動ID（GOBJECT.aid）の値が変化すると0に戻されます。(注1<br>
+　この値の変更は可能ですが、推奨されません。
+
+</p>
+<p class=midasi2>aid</p><p class=nakami2>
+　行動IDです。DLLが独自に定義した行動IDを（主にコマンド判定処理で）設定します。あるいは、
+当たり判定の結果として、システムが<a href="ref_defaultact.html">デフォルト行動ID</a>を割り当てます。<br>
+　値には ACTID_～で定義されているフラグと、0x0000～0xFFFFの値を組み合わせて定義した値を用います。
+　この値は当たり判定でシステムが参照したり、コマンド判定等で判断材料として使用されるため、値に追加する
+フラグは適切なものを過不足なく選択する必要があります。<br>
+　また、この値の変更は counter メンバをはじめとする諸々のパラメータのリセットを伴うことに注意してください。(注1
+
+</p>
+<p class=midasi2>cnow</p><p class=nakami2>
+　オブジェクトの現在のセル番号です。当たり判定とデフォルト描画に影響します。
+　当たり判定の際には phdat[cnow]が使われ、デフォルト描画ではpcdat[cnow]が使用されます。<br>
+　この値はDLLがオブジェクトにアニメーションをさせるために（主にGOBJMSG_ACTIONメッセージの応答処理で）
+値を設定します。もしくは、喰らい・ガード等のデフォルト動作時にはシステムが
+<a href="ref_defaultcell.html">デフォルトセル</a>のいずれかの値を代入します。
+
+</p>
+<p class=midasi2>hp</p><p class=nakami2>
+　体力値です。キャラクターオブジェクト（CreateCharacter関数の戻り値に指定したIDのオブジェクト）の場合、この値が0以下になると試合に負けます。キャラクター以外のオブジェクトでのこの値の使用は任意です。<br>
+　キャラクターオブジェクトの場合、この値はラウンド開始時に hpmax の値で初期化されます。
+また、交代なし試合形式の勝利時、交代あり試合形式の待機時、当たり判定でダメージを受けた場合
+　にこの値は変更されます。
+
+</p>
+<p class=midasi2>hpmax</p><p class=nakami2>
+　体力の最大値です。キャラクターの場合CreateCharacter関数の処理中にこの値を指定します。
+CreateCharacter関数が処理をシステム側に戻しラウンドが開始されるまでの初期化処理において、
+システムはゲームの難易度によりこの値を増減し、以降 hp メンバの初期値および最大値として扱います。
+また、この値は体力ゲージ描画にも影響を与えます。<br>
+　キャラクター以外のオブジェクトでのこの値の使用は任意です。
+
+</p>
+<p class=midasi2>gaugemax</p><p class=nakami2>
+　パワーゲージのマックス値を入れておきます。システム的にはパワーゲージ描画時に参照されますが、
+gaugeメンバがこの値を超えないように制限処理を行うのはDLL側の責任です。超えた場合の
+ゲージの描画は保障されません。<br>
+　キャラクター以外のオブジェクトでのこの値の使用は任意です。
+
+</p>
+<p class=midasi2>gaugetype</p><p class=nakami2>
+　キャラクターオブジェクトの場合、パワーゲージ表示の種類に影響します。
+GOBJFLGA_POWGAUGE1 またはGOBJFLGA_POWGAUGE2 を指定できます。
+初期状態ではこの値は0（ゲージ描画なし）です。<br>
+　キャラクター以外のオブジェクトでのこの値の使用は任意です。
+
+</p>
+<p class=midasi2>muki</p><p class=nakami2>
+　オブジェクトがどちらを向いているか。右向きはFALSE、左向きはTRUEです。
+デフォルト描画、当たり判定　に影響します。通常、この値はDLLが振り向き処理の結果として設定します。
+
+</p>
+<p class=midasi2>revx , revy</p><p class=nakami2>
+　この値がTRUEになっている場合、当たり判定・デフォルト描画の際にセルをそれぞれX、Y方向に反転させます。Y反転の中心はセルに指定された重心になります。<br>
+　それぞれ、行動ID遷移時にFALSEにリセットされます (注1
+
+</p>
+<p class=midasi2>rot</p><p class=nakami2>
+　この値の分だけセルが回転されます。単位はdegreeです。当たり判定・デフォルト描画に影響します。
+行動ID遷移時に0にリセットされます (注1
+
+</p>
+<p class=midasi2>magx , magy</p><p class=nakami2>
+　セルのX、Y方向の拡大率です。当たり判定・デフォルト描画に影響します。
+行動ID遷移時に1.0にリセットされます (注1
+
+</p>
+<p class=midasi2>z</p><p class=nakami2>
+　オブジェクトがデフォルト描画されるときのZ(奥行き)座標です。
+この値の変更およびリセットはDLL側で適切に行う必要があります。
+Z座標の標準的な値については、gobject.hのZZAHYO_～定義を参照してください。<br>
+　CGoluahObjectは行動ID変更時にこの値を CGoluahObject::base_z メンバの値でリセットします。
+また、CCharacterBase、CBulletBaseクラスはコンストラクタ内でCGoluahObject::base_zの値を
+それぞれキャラクター・飛び道具の標準z座標に設定します。また、CCharacterBaseクラスには
+この値(GOBJECT::z)を操作するための関数、ZFront()、ZBack()関数が用意されています。
+
+</p>
+<p class=midasi2>color</p><p class=nakami2>
+　オブジェクトがデフォルト描画されるときの色です。8ビットごとに 不透明度、赤成分、緑成分、青成分
+の値を指定します。
+　例：0xFF00FF00を指定すると緑っぽく、0x99FFFFFFを指定すると半透明に描画されます。<br>
+　通常は0xFFFFFFFFを指定し、行動IDが変化したときもこの値の戻されます。（注1
+
+</p>
+<p class=midasi2>alphamode</p><p class=nakami2>
+　オブジェクトがデフォルト描画されるときのα合成方法です。GBLEND_HANTOUMEI、GBLEND_KASAN、GBLEND_INVのいずれかです。<br>
+　通常はGBLEND_HANTOUMEIを指定し、行動IDが変化したときもこの値に戻されます。（注1　（注2<br>
+
+
+</p>
+<p class=midasi2>kougeki</p><p class=nakami2>
+　この値がTRUEで、かつGOBJECT.objtypeにGOBJFLG_ATTACKが指定されている場合、
+システムはこのオブジェクトと他オブジェクトとの当たり判定（攻撃側）を行います。
+この値はDLLが「攻撃開始処理」としてTRUEを設定します。<br>
+　行動IDが変化するとFALSEに戻されます。(注1
+
+</p>
+<p class=midasi2>kasanari</p><p class=nakami2>
+　この値がTRUEで、かつGOBJECT.objtypeにGOBJFLG_KASANARIフラグが立っている場合システムは
+他オブジェクトと重なり判定を行います。
+　行動IDが変化するとTRUEに戻されます。(注1
+
+</p>
+<p class=midasi2>muteki</p><p class=nakami2>
+　この値がTRUEの場合、GOBJECT.objtypeにGOBJFLG_KURAIフラグが立っていてもシステムはこのオブジェクトと
+他オブジェクトとの当たり判定（喰らい側）を行いません。
+　行動IDが変化するとFALSEに戻されます。(注1
+
+</p>
+<p class=midasi2>nagerare</p><p class=nakami2>
+　この値がFALSEの場合、GOBJECT.objtypeにGOBJFLG_NAGERAREフラグが立っていても他オブジェクトに投げられることがありません。
+　行動IDが変化するとTRUEに戻されます。(注1
+
+
+
+</p>
+<p class=midasi2>pmsarr</p><p class=nakami2>
+　読み込んだビットマップの配列です。デフォルト描画に影響します。
+この値は通常、オブジェクト生成後にDLLが
+<a href="../doxy_docs/class_DI_FUNCTIONS_D.html">DI_FUNCTIONS_D</a>::loadbmpで読み込んだ
+ビットマップイメージをさすポインタの配列を設定します。<br>
+　CCharacterBase継承クラスの場合、（ビットマップ初期化処理をオーバーライドしていなければ）
+InitializeCharacter関数の初期化処理中にこの値に image1～12.bmp の読み込み結果を与えます。また、
+CBulletBase継承クラスの場合はコンストラクタ引数でCCharacterBaseクラスを与えることによって
+同じ値をコピーし、それを使用します。
+
+</p>
+<p class=midasi2>prdat</p><p class=nakami2>
+　オブジェクトがデフォルト描画されるときに使用される切り取り矩形データの配列です。この値は通常、オブジェクト生成後にDLLが
+<a href="../doxy_docs/class_DI_FUNCTIONS_S.html">DI_FUNCTIONS_S</a>::loadcelldatで読み込んだものを設定します。<br>
+　CCharacterBase、CBulletBase継承クラスは上記の pmsarr と同様に、初期化処理中で cell.gcd ファイルがロードされ
+設定されます。
+
+</p>
+<p class=midasi2>pcdat</p><p class=nakami2>
+　オブジェクトがデフォルト描画されるときに使用されるセルデータの配列です。この値は通常、オブジェクト生成後にDLLが
+<a href="../doxy_docs/class_DI_FUNCTIONS_S.html">DI_FUNCTIONS_S</a>::loadcelldatで読み込んだものを
+設定します。<br>
+　CCharacterBase、CBulletBase継承クラスは上記の prdat と同様に、初期化処理中で cell.gcd ファイルがロードされ
+設定されます。
+
+</p>
+<p class=midasi2>phdat</p><p class=nakami2>
+　当たり判定の際に使用されるGCD_HANTEI構造体の配列です。この値は通常、オブジェクト生成後にDLLが
+<a href="../doxy_docs/class_DI_FUNCTIONS_S.html">DI_FUNCTIONS_S</a>::loadcelldatで読み込んだものを
+設定します。<br>
+　CCharacterBase、CBulletBase継承クラスは上記の prdat と同様に、初期化処理中で cell.gcd ファイルがロードされ
+設定されます。
+
+
+
+
+</p>
+<p class=midasi2>winfo</p><p class=nakami2>
+　<a href="ref_struct.html">技情報構造体</a>です。
+コンピュータがオブジェクトを操作する場合、どの行動IDがどのような攻撃に結びついているかを設定します。この値はオブジェクトの生成後にDLLが適切な値を設定する必要があります。
+
+</p>
+<p class=midasi2>pobjdat_u</p><p class=nakami2>
+　ユーザーデータ保持用のポインタです。システムはこの値に関与しません。GOBJECT構造体で格納することのできないもののうち、DLLが、オブジェクトに必要であると思われるデータを入れるために使用します。<br>
+　CGoluahObjectはここに自身のポインタを代入して使用します。継承クラスで<b>この値を変更しないでください</b>。
+
+</p>
+<p class=makami>
+＜注1＞<br>
+　システムによる行動IDの変化チェックはGOBJMSG_COMMANDメッセージとGOBJMSG_ACTIONメッセージの送信後しかしていません。それ以外のメッセージ処理中に行動IDが変化した場合は、システム側の処理としてのリセット処理は行われません。これら2つのメッセージ処理以外の場所で行動IDを変化させた場合はDI_FUNCTIONS_O::actidchanged関数を実行して行動ID変化時の処理を明示的に行う必要があります。
+　CGoluahObject継承クラスの場合はChangeAction関数を使って行動IDを変更すると以上の処理を行えます。そのため、
+行動IDの変更処理は、現在のメッセージの種類にかかわらずChangeAction関数を使って行うのが安全です。<br>
+<br>
+<br>
+＜注2＞<br>
+　ver0.9以降の GCDデータ を使って矩形ごとにアルファブレンドモードを設定している場合、期待通りに動作しないことがあります。
+</p>
+
+
+
+<hr><p align="center"><a href="../index.html">もどる</a></p>
+</body>

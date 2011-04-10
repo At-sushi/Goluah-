@@ -1,0 +1,139 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 日本語 resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG1 DIALOG DISCARDABLE  0, 0, 391, 327
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "ﾀﾞｲｱﾛｸﾞ"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    GROUPBOX        "file",IDC_STATIC,301,2,83,47
+    PUSHBUTTON      "LOAD",IDC_BUTTON_LOAD,315,12,50,14
+    PUSHBUTTON      "SAVE",IDC_BUTTON_SAVE,315,30,50,14
+    CONTROL         "bitmap1",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,299,52,39,10
+    CONTROL         "bitmap2",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,299,65,
+                    39,10
+    CONTROL         "bitmap3",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,299,78,
+                    39,10
+    CONTROL         "bitmap4",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,299,91,
+                    39,10
+    PUSHBUTTON      "＜",IDC_BUTTON_P,301,163,39,14
+    PUSHBUTTON      "＞",IDC_BUTTON_N,344,163,32,14
+    PUSHBUTTON      "＜＜",IDC_BUTTON_P10,301,181,39,14
+    PUSHBUTTON      "＞＞",IDC_BUTTON_N10,344,181,32,14
+    EDITTEXT        IDC_EDIT1,303,143,69,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "BLANK ＞",IDC_BUTTON_NB,344,197,33,14
+    PUSHBUTTON      "＜ BLANK",IDC_BUTTON_PB,301,197,39,14
+    PUSHBUTTON      "FIND ＞",IDC_BUTTON_NF,344,215,32,14
+    PUSHBUTTON      "＜ FIND",IDC_BUTTON_PF,302,215,38,14
+    GROUPBOX        "RECT#",IDC_STATIC,296,131,88,105
+    PUSHBUTTON      "決定",IDC_BUTTON_KETTEI,308,268,64,26
+    PUSHBUTTON      "矩形消去",IDC_BUTTON_ERASE,308,297,64,14
+    CONTROL         "bitmap5",IDC_RADIO5,"Button",BS_AUTORADIOBUTTON,299,104,
+                    39,10
+    CONTROL         "bitmap6",IDC_RADIO6,"Button",BS_AUTORADIOBUTTON,299,117,
+                    39,10
+    CONTROL         "bitmap7",IDC_RADIO7,"Button",BS_AUTORADIOBUTTON,340,52,
+                    39,10
+    CONTROL         "bitmap8",IDC_RADIO8,"Button",BS_AUTORADIOBUTTON,340,65,
+                    39,10
+    CONTROL         "bitmap9",IDC_RADIO9,"Button",BS_AUTORADIOBUTTON,340,78,
+                    39,10
+    CONTROL         "bitmap10",IDC_RADIO10,"Button",BS_AUTORADIOBUTTON,340,
+                    91,42,10
+    CONTROL         "bitmap11",IDC_RADIO11,"Button",BS_AUTORADIOBUTTON,340,
+                    104,42,10
+    CONTROL         "bitmap12",IDC_RADIO12,"Button",BS_AUTORADIOBUTTON,340,
+                    117,42,10
+    GROUPBOX        "edit",IDC_STATIC,296,240,88,80
+    CONTROL         "矩形編集",IDC_RADIO_E1,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,300,252,39,10
+    CONTROL         "重心編集",IDC_RADIO_E2,"Button",BS_AUTORADIOBUTTON,341,
+                    252,43,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 384
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 320
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // 日本語 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

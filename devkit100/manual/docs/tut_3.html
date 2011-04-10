@@ -1,0 +1,76 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<title></title>
+
+</head>
+
+<body>
+
+<p class=midasi>攻撃してみよう</p>
+<p class=nakami>
+　前の項目までで基本的な動作を行うキャラクターが出来上がったはずです。<br>
+<br>
+　攻撃してみます。<br>
+　当たり判定は基本的に矩形データ作成時に設定したセルの当たり判定同士の衝突を判定します。が、プログラム側から「攻撃力を有効にするよ」っていう処理をしないと、攻撃が有効になりません。それからダメージ値や削り値、しゃがみガード不能等のフラグ設定もプログラム側で行います。<br>
+<br>
+　基本クラスを使わない場合の処理をまず説明しておくと、pdat->kougekiをTRUEにして、pdat->atkに攻撃力情報構造体のポインタを設定して・・・という処理になってます。<br>
+<br>
+　基本クラスを使った場合は、以下の手順で攻撃開始処理を行ってください<br>
+</p>
+
+<p class=midasi2>１、InitAttackInfo 関数をオーバーライドして攻撃力設定を行う</p>
+<p class=nakami>
+　攻撃力の設定は、通常 <a href="ref_struct.html">ATTACKINFO</a> aif[～]　に保持します。<br>
+　何番に何の攻撃力情報を設定したか、は、自分で適当に定数定義して管理してください。
+</p>
+
+<p class=midasi2>２、行動関数中で StartAttack 関数を実行</p>
+<p class=nakami>
+　StartAttack( 攻撃力情報のインデックス )　で、攻撃を有効にします。<br>
+　一度有効化された攻撃判定は、攻撃が相手にヒットするか、行動IDの変更によって無効化されます。注意しなければならないことは、1行動中でStartAttack関数を（タイミングをずらして）複数回呼び出すと多段ヒットになるということです。
+</p>
+
+<br>
+<p class=midasi>その他、攻撃時に必要そうな操作</p>
+<br>
+
+<p class=midasi2>相手よりも前面（背面）に描画する</p>
+<p class=nakami>
+　見た目的に、相手よりも前面に描画してもらいたい場合があると思います。その場合は ZFront() を使います。また、逆に相手よりも背面に描いてほしいときには ZBack() を使用します。<br>
+<br>
+　両者とも内部的にやっているのは pdat->z の操作です。行動IDが変化したときには元に戻ります。
+</p>
+
+<p class=midasi2>無敵状態にする</p>
+<p class=nakami>
+　当たり判定を行わない（無敵）状態にするときは、pdat->muteki をTRUEに設定します。無敵から元に戻す場合はこれをFALSEに戻します。行動ID変化時には自動的にFALSEに戻ります。
+</p>
+
+<p class=midasi2>投げられない状態にする</p>
+<p class=nakami>
+　pdat->nagerare をFALSEにします。 mutekiとほぼ同様。
+</p>
+
+<p class=midasi2>重なり判定を無効にする</p>
+<p class=nakami>
+　pdat->kasanari をFALSEにします。 mutekiとほぼ同様。
+</p>
+
+<p class=midasi2>セルを回転・拡縮して表示させる</p>
+<p class=nakami>
+　pdat->rot （回転）<br>
+　pdat->magx （x拡大率）<br>
+　pdat->magy （y拡大率）<br>
+　キャラっていうより飛び道具とかで使いそうな気もしますが。回転の単位はdegreeです。
+</p>
+
+<p class=midasi2>キャラクタを半透明にする</p>
+<p class=nakami>
+　pdat->color　を操作します。<br>
+　32ビット値で、8ビットごとに Alpha , Red , Green , Blue に相当します。透明にしたい場合は 0x99FFFFFFなど。
+</p>
+
+<hr><p align="center"><a href="../index.html">もどる</a></p>
+</body>

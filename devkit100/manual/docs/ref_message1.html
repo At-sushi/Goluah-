@@ -1,0 +1,194 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<title></title>
+
+</head>
+
+<body>
+
+
+<br><br>
+<!-- ************************************************************************ -->
+<p class=midasi> オブジェクトメッセージの種類とデフォルト処理</p>
+
+<p class=nakami>
+　ゲーム中で発生するさまざまなイベントを、システムは、オブジェクトに設定されたメッセージ処理関数（GOBJECT.msghandler）を通じてオブジェクトに通知します。<br>
+　メッセージ処理関数は、</p>
+<pre class=source>
+typedef DWORD (*PFOBJ_MSGHANDLER)(DWORD,LPVOID,DWORD);
+</pre><p class=nakami>
+となっており、第一引数にはメッセージID（GOBJFLG_～）、第2引数にはそのオブジェクトのデータ(GOBJECT構造体のポインタ）が渡されます。<br>
+　第3引数と関数の戻り値に関しては、送信されたメッセージの種類により意味が異なります（意味がない場合がほとんどです）。が、戻り値に関してはメッセージに関わらず、0を返すとそのメッセージに対する「デフォルトの処理」を行います。多くのメッセージはこのデフォルト処理を行うことで済ますことができると思います。メッセージに対する戻り値に特に意味はなく、デフォルトの処理を行わせたくない場合はTRUEかなんかを返しておいてください。<br>
+<br>
+ CGoluahObject継承クラスの場合はMessage関数をオーバーライドすることによってこれらのメッセージを取得できます。
+</p>
+
+<p class=nakami>～メイン～</p>
+
+</p>
+<p class=midasi2>GOBJMSG_DELETE</p><p class=nakami2>
+　オブジェクトがシステムの制御を離れるときに呼ばれる。<br>
+　DI_FUNCTIONS_O.objdeleteやDI_FUNCTIONS_O.suicideなどを呼ぶと、システム側で確保していたGOBJECT構造体（と、それを操作するためのクラス）のメモリが開放され、メッセージ処理がなされなくなります。オブジェクトに対して明示的に確保していたメモリがある場合はこのメッセージ中で開放を行ってください。ビットマップ、GCDデータ、ユーザー定義データなどがこれにあたります。<br>
+　デフォルト処理はありません。
+
+</p>
+<p class=midasi2>GOBJMSG_ACTION</p><p class=nakami2>
+　基本的に1フレームに一回呼ばれます。オブジェクトの動作（カウンタのインクリメントや座標値の更新など）は基本的にココで行い、GOBJMSG_DRAW中で行わないようにしてください。<br>
+　例外的に、ヒットストップや超必エフェクトなどでシステムにstopエフェクトがかかっているときはこのメッセージは送信されません。そこにまた例外があって、GOBJECT.objtypeにGOBJFLG_DONOTSTOPフラグが立っている場合にはstopエフェクトに関わらずこのメッセージを受け取ることができます。<br>
+　デフォルト処理では喰らい・ガード時の動作を行います。
+
+</p>
+<p class=midasi2>GOBJMSG_COMMAND</p><p class=nakami2>
+　コマンド判定をする必要があるときに呼ばれる。<br>
+　GOBJECT.objtypeにGOBJFLG_COMMANDCOMフラグが立っていない場合、このメッセージが送られます。キー入力に従ってコマンド判定を行い、オブジェクトの行動を遷移させます。キー入力はDI_FUNCTIONS_S.getkeyまたはDI_FUNCTIONS_S.seekkeyで取得します。<br>
+　デフォルト処理はありません。
+
+</p>
+<p class=midasi2>GOBJMSG_COMMANDCOM</p><p class=nakami2>
+　コンピュータコマンド判定をするときに呼ばれる。<br>
+　GOBJECT.objtypeにGOBJFLG_COMMANDCOMフラグが立っている場合、GOBJMSG_COMMANDメッセージの代わりにコンピュータ動作処理が行われます。オブジェクトが取れる行動はGOBJECT.winfo（技情報構造体）が参照されます。<br>
+　このメッセージの引数には次に行いたい技の行動IDが渡されるので、現在のオブジェクトの状態からその行動に移る事ができるかどうかを判定し、TRUEまたはFALSEを返してください。<br>
+　このメッセージで投げ行動が指定された場合には、関数内で投げの行動遷移判定を行った後に投げ開始の処理も行う必要があります。
+
+</p>
+<p class=midasi2>GOBJMSG_TOUCHA</p><p class=nakami2>
+　攻撃を喰らったときに呼ばれる。<br>
+　オブジェクトが敵オブジェクトの攻撃に触ったときにこのメッセージが送信されます。現在オブジェクトがとっている行動とガードキー入力、当たった攻撃力情報(GOBJECT.atk2)を判定してTOUCHA_～の値を返します。<br>
+　デフォルトではオブジェクトがとっている行動IDに立っているフラグから標準的な処理を行います。<br>
+<br>
+　引数３は攻撃したオブジェクトのIDです。
+
+</p>
+<p class=midasi2>GOBJMSG_TOUCHB</p><p class=nakami2>
+　自分の攻撃が相手に当たった時に呼ばれる。<br>
+　ゲージを増やしたり、他の行動に移るなどの処理を行うことができます。<br>
+　デフォルト処理はありません。<br>
+<br>
+　引数３は攻撃を喰らったオブジェクトのIDです。
+
+</p>
+<p class=midasi2>GOBJMSG_TOUCHC</p><p class=nakami2>
+　自分の攻撃が相手に当たったとき (相手の状態が変化する前に呼ばれる)。<br>
+　攻撃が当たったときの処理は、GOBJMSG_TOUCHC送信(攻撃側)→GOBJMSG_TOUCHA送信(喰らい側)→喰らい側の状態遷移→GOBJMSG_TOUCHB送信（攻撃側）となります。<br>
+　このメッセージを利用することにより、相手が取っている行動によって場合分けをして攻撃力を再設定することができます。戻り値はTOUCHC_～で定義された値で、矩形衝突をなかったことにすることもできます。<br>
+<br>
+　引数３は攻撃を喰らったオブジェクトのIDです。デフォルトではそのまま衝突時の処理を続行します。<br>
+
+</p>
+<p class=midasi2>GOBJMSG_CNGAID</p><p class=nakami2>
+　行動IDが変化したときに呼ばれます。<br>
+　呼ばれるタイミングはシステム側が行う「行動IDが変化したときのパラメータのリセット（GOBJECT.counterを0にするなど）」のあとです。
+
+</p>
+
+
+<p class=nakami>～描画～</p>
+
+</p>
+<p class=midasi2>GOBJMSG_DRAW</p><p class=nakami2>
+　描画を行う際に呼ばれる。<br>
+　このメッセージが送信されたら画面描画を行ってください。描画の際のz座標の標準的な値はZZAHYO_～で定義されています。<br>
+　デフォルトではオブジェクトの持っているビットマップ、GCDデータ、セル番号、座標、回転角度、x/y反転、向き、色、α合成方法、拡大率x/y などをもとにしてセル描画を行います。基本的にはデフォルト描画を行ってください。<br>
+
+</p>
+<p class=midasi2>GOBJMSG_DRAWBACK</p><p class=nakami2>
+　背景ステージに描画<br>
+　描画は3ステージあり、全オブジェクトにGOBJMSG_DRAWBACKメッセージ送信→zバッファクリア→〃GOBJMSG_DRAW送信→zバッファクリア→〃GOBJMSG_DRAWFRONT送信　という順番になっています。背景中に存在するオブジェクトはGOBJMSG_DRAWメッセージではなく、このメッセージを用いて描画を行います。<br>
+　このメッセージは背景なしエフェクトがかかっているとき、背景なしモードになっているときには送信されません。<br>
+　デフォルト処理はありません。
+
+</p>
+<p class=midasi2>GOBJMSG_DRAWFRONT</p><p class=nakami2>
+　前景ステージに描画<br>
+　詳しくはGOBJMSG_DRAWBACKメッセージを参照してください。ここではゲージなど、キャラクターよりも必ず前にあるものが描画されます。
+
+
+<p class=nakami>～交代・支援攻撃～</p>
+
+</p>
+<p class=midasi2>GOBJMSG_DOTOJYO</p><p class=nakami2>
+　登場ポーズに移行し、終わったらMSGOBJ2SYS_TOJYOENDメッセージを返せ。<br>
+　オブジェクトが登場ポーズを行う必要のあるときにこの関数が呼ばれます。登場ポーズが終了したらシステムにMSGOBJ2SYS_TOJYOENDメッセージを送信し、ゲームを進行させます。<br>
+　デフォルト処理はありません。
+
+</p>
+<p class=midasi2>GOBJMSG_DOYOUWIN</p><p class=nakami2>
+　勝利ポーズに移行し、終わったらMSGOBJ2SYS_WINPOSEENDメッセージを返せ。<br>
+　オブジェクトが勝利ポーズを行う必要があるときにこの関数が呼ばれます。勝利ポーズが終了したらシステムにMSGOBJ2SYS_WINPOSEENDメッセージを送信し、ゲームを進行させます。<br>
+　デフォルト処理はありません。
+
+</p>
+<p class=midasi2>GOBJMSG_DOTIMEOVERLOSE</p><p class=nakami2>
+　タイムオーバーで負けた<br>
+　タイムオーバーで負けたときにこのメッセージが送信されます。くやしそーな顔をしてください。<br>
+　デフォルト処理はありません。
+
+</p>
+<p class=midasi2>GOBJMSG_TAIKI</p><p class=nakami2>
+　画面外に待機していてください<br>
+　同時対戦でない2vs2や3ｖｓ3で、試合開始後に画面外に対比していろ、というメッセージです。画面外にジャンプして待機状態になってください。<br>
+　デフォルト処理はありません。
+
+</p>
+<p class=midasi2>GOBJMSG_KOUTAI</p><p class=nakami2>
+　選手交代。画面の向こうから飛んできてください。（ダメなときは0を返す）<br>
+　選手交代が要求された場合このメッセージが送信されます。交代可能な場合はTRUEを返し、画面内に飛び込んでで逝ってください。<br>
+　デフォルト処理では要求に対して交代不可を返します。
+
+</p>
+<p class=midasi2>GOBJMSG_KOUTAI2</p><p class=nakami2>
+　選手交代。画面の向こうから飛んできてください。終わったらMSGOBJ2SYS_KOUTAIENDメッセージを返せ<br>
+　交代無しの2vs2または3vs3対戦において前のキャラクターがやられたときにこのメッセージが送信されます。画面内に飛び込んでいってください。飛び込んでいってからシステムにMSGOBJ2SYS_KOUTAIENDメッセージを送信するまで試合は中断されているので、画面内に着地してから登場ポーズなどをキメても構いません。<br>
+　デフォルト処理はありません。
+
+</p>
+<p class=midasi2>GOBJMSG_STRIKER</p><p class=nakami2>
+　支援攻撃をやらかしてください（ダメなときは0を返す）<br>
+　支援攻撃が要求されたときにこのメッセージが送信されます。攻撃可能な場合はTRUEを返し画面内に飛び込んでいって攻撃し、再び画面外に退避してください。GOBJMSG_KOUTAIと違ってこのメッセージを無視してもゲームの進行には特に支障はありません。実装が面倒な場合は無視しても構わないと思います。<br>
+　デフォルトでは要求に対して不可を返します。
+
+</p>
+<p class=midasi2>GOBJMSG_DOYOUWIN2</p><p class=nakami2>
+　キャラクターが待機状態で、チームが勝利したときにこのメッセージが送信されます。画面内に飛んできて勝利ポーズを行い、喜びを分かち合ってください。<br>
+　このメッセージは無視してもゲームの進行に支障はありません。
+
+<p class=nakami>～その他～</p>
+
+</p>
+<p class=midasi2>GOBJMSG_CNGTARGET</p><p class=nakami2>
+　ターゲットが変わったときに呼ばれる。<br>
+　GOBJECT.eidが変化したときに呼ばれます。きちんと実装されているかどうかは、わかりません。
+
+</p>
+<p class=midasi2>GOBJMSG_CNGROUND</p><p class=nakami2>
+　ラウンドが変わったときに呼ばれる。<br>
+　デフォルト処理はオブジェクトの削除です。キャラクターまたはステージは削除されないようにTRUEを返してください。
+
+</p>
+<p class=midasi2>GOBJMSG_KNOCKBACK</p><p class=nakami2>
+　攻撃したオブジェクトが画面端まで到達。後に押し戻される。prmは移動量。<br>
+　GOBJECT.objtypeにGOBJFLG_HANSAYOUフラグが立っている場合、攻撃したオブジェクトが画面端まで達するとこのメッセージが送信されます。このメッセージは画面端で間合いを離すために用います。<br>
+　デフォルト処理では地上にいる場合prmの分だけx座標が変化します。
+
+</p>
+<p class=midasi2>GOBJMSG_CLIPX</p><p class=nakami2>
+　座標が画面外に逝ってしまっているよ
+　GOBJECT.objtypeにGOBJFLG_CLIPX2が立っていて、オブジェクトが画面外に出てしまった場合このメッセージが送信されます。prmに移動量が指定されますので、この値の分だけ移動すれば画面内にとどまることができます。<br>
+　デフォルト処理では座標値を戻し、地上で攻撃を喰らっている場合攻撃者に対してGOBJMSG_KNOCKBACKメッセージを送信します。デフォルト処理に任せてください。
+
+</p>
+<p class=midasi2>GOBJMSG_SOUSAI</p><p class=nakami2>
+　他飛び道具と接触。
+　GOBJECT.objtypeにGOBJFLG_ZBULLET（飛道具属性）が指定されている場合、他の飛道具と衝突判定をし、このメッセージが送信されます。攻撃力の無効化や飛道具の消滅などの処理を行ってください。<br>
+　デフォルト処理はありません。
+
+</p>
+<p class=midasi2>GOBJMSG_USERDEFINE</p><p class=nakami2>
+　このフラグはユーザー定義のオブジェクトメッセージを作成する場合に使用します。
+</p>
+
+
+<hr><p align="center"><a href="../index.html">もどる</a></p>
+</body>

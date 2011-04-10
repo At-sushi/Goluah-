@@ -1,0 +1,75 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<title></title>
+
+</head>
+
+<body>
+
+<p class=midasi>概要</p>
+<p class=nakami>
+　オプション値に関してシステムが行うサービスはそれぞれの項目のON/OFFをユーザーに選択させ、
+結果の32ビット値をDLLへ通知するのみです。各キャラクターはプレイヤーの選択結果である
+整数値を受け取ったら、各ビットを調べて適切な処理を行う必要があります。<br>
+</p>
+
+
+<p class=midasi>オプション値の通知</p>
+<p class=nakami>
+　キャラクターDLL製作者は、CharacterInfo関数呼び出し時にシステムへキャラクターの持つオプション項目を通知します。
+詳しくは<a href="tut_1.html">処理の流れ</a>を参照してください。
+オプションの1項目は32ビットフラグ値、名称文字列、排他オプションフラグ、競合オプションフラグ値、消費オプション値　の
+セットで構成されます。詳しくは<a href="../doxy_docs/class_CHARACTER_LOAD_OPTION.html">CHARACTER_LOAD_OPTION構造体</a>
+を参照してください。最終的に結果が通知される値は32ビットですが、上位の4ビットを「フェイス変更値」(後述)として
+使用するため、これらのビットに通常のオプション値を割り当てないでください。<br>
+<br>
+　CharacterInfo関数はSET_CHARACTERINFOマクロに依って隠蔽・自動化され、その処理の実体はあつし氏作の
+CCharacterInfoクラスによって代行されます。SET_CHARACTERINFOマクロとこのクラスとを使用する場合、オプションの指定はCHARACTER_LOAD_OPTION構造体の配列によって行います。
+通常この構造体の配列をグローバルに配置、値を初期化してその配列をSET_CHARACTERINFOマクロに指定することによって
+CharacterInfo関数の内部でCCharacterInfoが生成され、オプション項目の設定が行われます。
+初期状態のソースコードではこの配列の変数は option [] です。<br>
+　gobjbase.h/cppを使用しない場合は <a href="../doxy_docs/class_CDI_CHARACTERINFO.html">CDI_CHARACTERINFO</a>
+に新たに追加されたoptionsメンバに値を設定します。<br>
+<br>
+　各オプションのフラグは互いに重複するビットがないように定義しなければなりません。複数のオプションのフラグ値が
+同一のビットを共有する場合、システム側でのオプション選択時の動作は保証しません。フラグ値は通常#define等で
+定数を定義してそれを使用します。<br>
+<br>
+　競合オプション値・依存オプション値の値はオプション値の定数をそのまま使用します。<br>
+　オプション名称はCHARACTER_LOAD_OPTIONのグローバルな配列の初期化時に文字列定数によって決定されます。<br>
+</p>
+
+
+<p class=midasi>オプション値の解釈</p>
+<p class=nakami>
+　CreateCharacter時に渡される<a href="../doxy_docs/class_CDI_CHARACTERINFO2.html">CDI_CHARACTERINFO2構造体</a>の
+ options_flag メンバにプレイヤーのオプション選択結果が
+渡されます。CCharacterBase継承クラスの場合、この値はCCharacterBase::option_flags メンバでアクセスできます。<br>
+　あとはこの値のビットを調べて適切な処理を行ってください。通常はCCharacterBaseから継承されたInit～系の関数の
+いずれかで処理を行います。
+</p>
+
+
+<p class=midasi>フェイス変更値</p>
+<p class=nakami>
+　モララー/モララエル のようなキャラクターの切り替えを行う場合、試合中に関してはDLL側でどうにでもできますが、
+キャラクター選択時や勝利画面時の face2,3 の変更はDLL側では制御できません。そこで、オプションの上位4ビットを
+「フェイス変更値」としてあります。この上位4ビットの表す0～15までの整数値を「フェイス変更値」と呼びます。<br>
+　この値が0のとき、システムは今までどおり face2.bmp および face3.bmp をロードして使用しますが、
+この値が0でない場合、順番に<br>
+　フェイス変更値=1 ： face2a.bmp , face3a.bmp<br>
+　フェイス変更値=2 ： face2b.bmp , face3b.bmp<br>
+　フェイス変更値=3 ： face2c.bmp , face3c.bmp<br>
+　フェイス変更値=4 ： face2d.bmp , face3d.bmp<br>
+　・・・<br>
+を適用します。<br>
+<br>
+　また、キャラクターの名前はゲームの開始から終了まで変更することはできませんが、勝利台詞を選択する際にフェイス変更値
+が欲しくなる場合があります。ver0.99から新規に追加された DI_FUNCTIONS_S::getenemyface 、
+もしくは CGoluahObject::GetEnemyFace 関数により取得することができます。
+</p>
+
+<hr><p align="center"><a href="../index.html">もどる</a></p>
+</body>

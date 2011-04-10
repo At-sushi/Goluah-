@@ -1,0 +1,121 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<title>■DLL仕様編■</title>
+
+</head>
+
+<body>
+
+<p align="center">～ＤＬＬ仕様編～<br>
+なんか記述が古い部分がちらほらあります。これらの関数はDLLテンプレートを使用した場合、マクロにより自動生成されます。
+</p>
+
+<p class="midasi">DLLに必要なもの</p>
+
+<p class="nakami">
+<br>
+　DLLに必要なのは2つの関数です。これら2つの関数は名前と引数と戻り値が決まっており、とりあえずこれさえあればキャラクター/ステージDLLとして認識されます。<br>
+<br>
+キャラクターの場合<br>
+　1. extern "C" __declspec(dllexport) BOOL CharacterInfo(LPVOID info)<br>
+　2. extern "C" __declspec(dllexport) DWORD CreateCharacter(PVOID info)<br>
+<br>
+ステージの場合<br>
+　1. extern "C" __declspec(dllexport) BOOL StageInfo(LPVOID info)<br>
+　2. extern "C" __declspec(dllexport) DWORD CreateStage(PVOID info)<br>
+</p>
+
+
+<p class="midasi">キャラクタDLLの場合</p>
+<br>
+<p class="midasi2"> CharacterInfo</p>
+<p class="nakami2">
+　引数：CDI_CHARACTERINFO構造体のポインタ<br>
+　戻り値：成功(TRUE)または失敗(FALSE)<br>
+<br>
+　この関数はゲーム起動時、キャラクター格納フォルダを検索してDLLがあった場合、そのDLLがキャラクターDLLとして有効かどうかを確認するために呼ばれます。FALSEを返した場合キャラクターとして認識されなくなりますが、普通は常にTRUEを返します。<br>
+　この関数内でやるべきことは、渡されたCDI_CHARACTERINFO構造体に必要な情報を書き込むことです。CDI_CHARACTERINFO構造体は、</p>
+<pre class=source2>
+struct CDI_CHARACTERINFO
+{
+	char dummy[32];
+	char name[32];//ココに名前をコピーすること
+	LPVOID dummy2[4];
+	DWORD ver;//ココにバージョンをコピーすること
+};
+</pre>
+<p class="nakami2">
+・・・と定義されており、nameとverに値を代入します。<br>
+nameは文字列であり、普通にキャラクターの名前を入れればOKです。verはCDI_VERSIONを代入します。dummyというメンバがいっぱいありますが、これは以前のDLLと構造体のサイズを同じにするためのもので、現在は使われていません。<br>
+<br></p>
+
+<p class="midasi2"> CreateCharacter</p>
+<p class="nakami2">
+　この関数はゲーム中でキャラクターが選択され、ロードするときに呼ばれます。<br>
+　この関数は引数にCDI_CHARACTERINFO2構造体が渡されます。<br>
+</p>
+<pre class=source2>
+struct CDI_CHARACTERINFO2
+{
+	char dir[64];//dllがあるディレクトリ
+	DWORD tid;//チームID
+	DWORD color;//どの色にするか
+	DI_FUNCTIONS_S *funcs;
+	DI_FUNCTIONS_O *funco;
+	DI_FUNCTIONS_D *funcd;
+};
+</pre><p class="nakami2">
+　DI_FUNCTIONS_Xはシステム側の関数ポインタがはいった構造体です。ここに入っている関数を利用してキャラクターを作成します。また、作成後の動作に関してもこれらの関数は必要になるので、DI_FUNCTIONS_Xのポインタは全てグローバル変数にコピーして置いてください。ここに入っている関数に関しては<a href="sysfunc.html">関数リファレンス</a>を参照してください。<br>
+　また、dir[64]はキャラクターが置かれているディレクトリです。DLLでファイルアクセスをする際、カレントディレクトリがDLLのあるディレクトリではなく、本体実行ファイル(goluah.exe)があるディレクトリであることに注意してください。この値もどこかにコピーしておくことをお勧めします。<br>
+　tidは「チームＩＤ」で、キャラクターの場合TEAM_PLAYER1かTEAM_PLAYER2です。これものちのち使います。<br>
+　colorはキャラクター選択時に選ばれたカラーです。1-3の値が入ってくるので、ビットマップ読み込み時はこの値を使用します。<br>
+<br>
+　さて、この関数でやるべきことはこれらの与えられた情報をグローバル変数などに保存し、キャラクターの「オブジェクト」を作成することです。オブジェクトの作成・制御に関しては次の<a href="object.html">オブジェクト編</a>に述べます。関数の戻り値には作成したオブジェクトのオブジェクトIDを返します。<br>
+</p>
+
+
+
+
+<p class="midasi">ステージDLLの場合</p>
+<p class="nakami">
+　基本的にやることはキャラクターと同じですので、違いだけ説明します。
+</p>
+<p class="midasi2"> StageInfo</p>
+<p class="nakami2">
+　引数がSDI_STAGEINFO構造体のポインタです。CDI_CHARACTERINFO構造体は、</p>
+<pre class=source2>
+struct SDI_STAGEINFO
+{
+	char name[32];
+	DWORD ver;
+};
+</pre>
+<p class="nakami2">
+・・・と定義されており、verにSDI_VERSIONを代入します。nameは name.txt ファイルから取得されるため、代入する必要はありません。<br>
+　この関数はTRUEを返すだけでOKです。
+<br></p>
+
+<p class="midasi2"> CreateStage</p>
+<p class="nakami2">
+　この関数は引数にSDI_STAGEINFO2構造体が渡されます。<br>
+</p>
+<pre class=source2>
+struct SDI_STAGEINFO2
+{
+	char dir[64];//dllがあるディレクトリ
+	DWORD tid;//チームID
+	DI_FUNCTIONS_S *funcs;
+	DI_FUNCTIONS_O *funco;
+	DI_FUNCTIONS_D *funcd;
+};
+</pre><p class="nakami2">
+　キャラクター同様、ここで渡された関数ポインタを使ってステージの「オブジェクト」を作成し、そのオブジェクトＩＤを返します。チームIDは常にTEAM_STAGEです。<br>
+</p>
+
+<hr>
+<p align="center"><a href="./index.html">もどる</a></p>
+
+
+</body>

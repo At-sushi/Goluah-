@@ -1,0 +1,63 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<title></title>
+
+</head>
+
+<body>
+
+<p class=midasi>投げ概要</p>
+<p class=nakami>
+　投げのめんどくさいところは、敵側の動作もセットで作らないといけないことです。<br>
+<br>
+　投げを実装する場合まず、自分と相手の距離が投げの間合い以内であるかどうかを判断しないといけません。間合いとコマンド入力の条件をクリアしたら、
+次に相手をつかむよってことをシステム側に要求します。システムは投げられフラグ等を考慮して、ＯＫであれば敵側を"投げられ状態"にします。それに成功したら、
+キャラクタの行動を投げ行動にします。通常ここまでの処理はCommand/CommandCOM系関数内で行います。<br>
+<br>
+　投げられ状態になった相手オブジェクトは、GOBJMAG_ACTIONメッセージ送信時に本来のメッセージ処理関数ではなく、投げた側（つまり自分の）の
+メッセージ処理関数に、投げ要求時に指定したユーザー定義メッセージを送信します。投げた側はそのメッセージを拾って相手側の投げられ行動を行わなければなりません。<br>
+　メッセージ処理がよくわからない場合は<a href="tut_1.html">処理の流れ</a>を復習してください。
+</p>
+
+<p class=midasi2>相手との間合い取得</p>
+<p class=nakami>
+　GetMaai_H( pdat->oid , pdat->eid) ;　//水平方向<br>
+　GetMaai_V( pdat->oid , pdat->eid) ;　//垂直方向<br>
+　<br>
+　戻り値は符号無し整数でピクセル単位の間合い値が返ります。<br>
+　投げの間合いと比較して判断します。通常はCommand系関数の処理の内部で行います。
+また、コンピュータに投げを行わせる場合はCommandCom系の関数にも同様の処理を記述しなければなりません。
+</p>
+
+<p class=midasi2>投げの開始</p>
+<p class=nakami>
+　ObjCatch( pdat->eid , 投げ喰らい側用のメッセージID ) ;<br>
+<br>
+　TRUEが帰ってきたら投げ成功です。<br>
+　相手側のGOBJMSG_ACTIONメッセージの代わりに引数で渡したIDが自分のメッセージ処理関数( Message関数 )に配信されるので、それを拾って喰らい側の処理を実装します。
+相手オブジェクトの情報はMessage関数の第3引数を相手のオブジェクトIDとしてCGoluahObject::GetInfo関数で<a href="ref_object.html">GOBJECT構造体</a>を取得して使用します。
+</p>
+
+<p class=midasi2>投げられ行動の記述</p>
+<p class=nakami>
+　上記のようにして拾ったメッセージ中で相手側の動作を記述します。<br>
+　当然、喰らい動作のなかでは相手がどの番号にどういうセルを持ってるかはわかりません。そこで、喰らい動作には<a href="ref_defaultcell.html">デフォルトセル</a>を指定することになります。<br>
+<br>
+　投げ中には矩形の当たり判定は行われないので、AddDamage(DWORD eid,int x,int y);　を使います。相手側のGOBJECT構造体のhpの値を直接変更した場合はヒットマークでないし、連続技のヒット数も更新されません。<br>
+<br>
+　このメッセージ処理での引数は、0：投げの継続　0以外：投げの終了、<a href="docs\ref_defaultact.html">デフォルト喰らい動作ID</a>のうちのどれか　です。相手を投げから解放するときに0以外を返すことを忘れないでください。相手側のGOBJECT構造体のaidを直接変更するのはダメです。
+</p>
+
+
+<p class=midasi2>キャッチマーク？エフェクトの表示</p>
+<p class=nakami>
+　AddEffect( エフェクトID , int prm1, int prm2, DWORD prm3) ;<br>
+<br>
+　投げが成功したとき、普通は相手をつかんだよマークを表示します。上記はシステムで用意されたエフェクトを発生させる関数で、詳しくは<a href="ref_sysfunc.html">システム関数</a>のaddeffectのほうを参照してください。掴みの場合は EFCTID_MARKC です。<br>
+</p>
+
+
+<hr><p align="center"><a href="../index.html">もどる</a></p>
+</body>

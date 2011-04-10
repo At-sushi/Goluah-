@@ -1,0 +1,57 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<title></title>
+
+</head>
+
+<body>
+
+
+<!-- ************************************************************************ -->
+<p class=midasi> システムメッセージ</p>
+
+　システムメッセージはオブジェクトメッセージとは逆に、オブジェクトからシステムにイベントを通知します。メッセージの送信にはDI_FUNCTIONS_S.msg2system関数 、あるいはCGoluahObject::Message2System関数 を使用します。
+
+</p>
+<p class=midasi2>MSGOBJ2SYS_TOJYOEND</p><p class=nakami2>
+　登場デモが終了したことを通知します。
+
+</p>
+<p class=midasi2>MSGOBJ2SYS_FINALDOWNEND</p><p class=nakami2>
+　最終ダウンが終了したことを通知します。通常は必要ありません。
+
+</p>
+<p class=midasi2>MSGOBJ2SYS_WINPOSEEND</p><p class=nakami2>
+　勝利デモが終了したことを通知します。
+
+</p>
+<p class=midasi2>MSGOBJ2SYS_KOUTAI1</p><p class=nakami2>
+　交代要請(キャラクター1)。<br>
+　システムにキャラクターの交代が可能かどうかを問い合わせます。戻り値がTRUEの場合は交代が可能であり、すでにそのキャラクターに対してGOBJMSG_KOUTAIメッセージが送信されているので、画面外に出なければなりません。
+
+</p>
+<p class=midasi2>MSGOBJ2SYS_KOUTAI2</p><p class=nakami2>
+　交代要請(キャラクター2)。<br>
+　こちらはもう一人のキャラクターに対して交代を要請します。
+
+</p>
+<p class=midasi2>MSGOBJ2SYS_STRIKER1</p><p class=nakami2>
+　支援攻撃要請(キャラクター1)。<br>
+　システムに支援攻撃を要請します。戻り値がTRUEの場合支援攻撃が来ますが、別にその戻り値は無視しても構わないと思います。
+
+</p>
+<p class=midasi2>MSGOBJ2SYS_STRIKER2</p><p class=nakami2>
+　支援攻撃要請(キャラクター2)。<br>
+　こちらはもう一人のキャラクターに対して支援攻撃を要請します。
+
+</p>
+<p class=midasi2>MSGOBJ2SYS_KOUTAIEND</p><p class=nakami2>
+　「交代なし」ゲームモードの場合はキャラクターの交代中はゲームの進行が止まっているので、このメッセージを送信してゲームを再開します。
+</p>
+
+
+
+<hr><p align="center"><a href="../index.html">もどる</a></p>
+</body>

@@ -1,0 +1,1 @@
+#define ___GCDEDITER

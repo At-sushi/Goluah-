@@ -1,0 +1,78 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<title></title>
+
+</head>
+
+<body>
+
+<p class=midasi>攻撃フラグ</p>
+HITINFO_REACT1			0x00000001//!< 普通の弱のけぞり
+#define HITINFO_REACT2			0x00000002//!< 普通の中のけぞり
+#define HITINFO_REACT3			0x00000003//!< 普通の強のけぞり
+#define HITINFO_DOWN			0x00000004//!< ダウソする（転ぶ）
+#define HITINFO_FUTTOBI			0x00000005//!< 吹っ飛ぶ
+#define HITINFO_FUTTOBI2		0x00000006//!< 吹っ飛ぶ（ちょっと上のほうへ）
+#define HITINFO_REACT1A			0x00000007//!< 弱、のけぞりなし
+#define HITINFO_REACT2A			0x00000008//!< 中、のけぞりなし
+#define HITINFO_REACT3A			0x00000009//!< 強、のけぞりなし
+#define HITINFO_TATAKI1A		0x0000000A//!< 真下叩きつけバウンド有り
+#define HITINFO_TATAKI2A		0x0000000B//!< 真下叩きつけバウンドなし
+#define HITINFO_TATAKI1B		0x0000000C//!< 斜め叩きつけバウンド有り
+#define HITINFO_TATAKI2B		0x0000000D//!< 斜め叩きつけバウンドなし
+#define HITINFO_USERDEFINE		0x0000000E//!< ユーザー定義の喰らい行動(地上/空中自動判別)
+#define HITINFO_USERDEFINE2		0x0000000F//!< ユーザー定義の喰らい行動(強制的に空中に浮かせる)
+
+#define HITINFO_MARK1			0x00010000//!< ヒットしたときにちっちゃいマークを表示します
+#define HITINFO_MARK2			0x00020000//!< ヒットしたときに中ぐらいのマークを表示します
+#define HITINFO_MARK3			0x00030000//!< ヒットしたときにでっかいマークを表示します
+#define HITINFO_MARK4			0x00040000//!< ヒットしたときにさらにでっかいマークを表示します
+
+#define HITINFO_SNDHIT1			0x00100000//!< ヒット音弱
+#define HITINFO_SNDHIT2			0x00200000//!< ヒット音中
+#define HITINFO_SNDHIT3			0x00300000//!< ヒット音強
+#define HITINFO_SNDSHK1			0x00400000//!< 電撃音1
+#define HITINFO_SNDSHK2			0x00500000//!< 電撃音2
+
+#define HITINFO_SIV1			0x01000000//!< ヒットストップ、短い
+#define HITINFO_SIV2			0x02000000//!< ヒットストップ、ふつう
+#define HITINFO_SIV3			0x03000000//!< ヒットストップ、長い
+#define HITINFO_STOP			0x04000000//!< ヒットストップ、めちゃ長
+
+#define HITINFO_EFCTSINDO		0x00001000//!< 攻撃が当たったとき、地面を振動させる
+#define HITINFO_EFCTBURN		0x00002000//!< 攻撃を喰らうとキャラクターが燃え出す(赤)
+#define HITINFO_EFCTBURN_B		0x00004000//!< 攻撃を喰らうとキャラクターが燃え出す(青)
+#define HITINFO_EFCTBURN_G		0x00008000//!< 攻撃を喰らうとキャラクターが燃え出す(緑)
+
+#define HITINFO_USERIDMASK		0x00000FF0//!< ユーザー定義ヒットID
+
+//guard
+#define GUARDINFO_XSTAND		0x10000000//!< 立ちガードできません
+#define GUARDINFO_XCROUCH		0x20000000//!< しゃがみガードできません
+#define GUARDINFO_XJAMP			0x40000000//!< 空中ガードできません
+#define GUARDINFO_XAUTO			0x80000000//!< オートガードできない
+
+#define GUARDINFO_REACT1		0x00000001//!< 弱ガード
+#define GUARDINFO_REACT2		0x00000002//!< 中ガード
+#define GUARDINFO_REACT3		0x00000003//!< 強ガード
+#define GUARDINFO_USERDEFINE	0x00000004//!< ユーザー定義ガード行動
+
+#define GUARDINFO_SIV1			0x01000000//!< ヒットストップ、短い
+#define GUARDINFO_SIV2			0x02000000//!< ヒットストップ、ふつう
+#define GUARDINFO_SIV3			0x03000000//!< ヒットストップ、長い
+#define GUARDINFO_STOP			0x04000000//!< ヒットストップ、めちゃ長
+
+#define GUARDINFO_EFCTSINDO		0x00001000//!< 攻撃が当たったとき、地面を振動させる
+
+#define GUARDINFO_USERIDMASK	0x00000FF0//!< ユーザー定義ガードID
+
+//ユーザー定義フラグ設定用マクロ
+#define HITINFO_USER(id)		(((id)<<4) | HITINFO_USERDEFINE)		//!< IDは0～255で与えること
+#define HITINFO_USER2(id)		(((id)<<4) | HITINFO_USERDEFINE2)		//!< IDは0～255で与えること
+#define GUARDINFO_USER(id)		(((id)<<4) | GUARDINFO_USERDEFINE)		//!< IDは0～255で与えること
+
+
+<hr><p align="center"><a href="../index.html">もどる</a></p>
+</body>

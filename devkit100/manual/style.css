@@ -1,0 +1,74 @@
+
+
+a:link { color: #7722FF;}
+a:visited { color: #FF22FF;}
+a:active { color: #FF0000;}
+a:hover {background-color:EEEEFF;color:000000;}
+
+  BODY {
+   margin-top:40px;
+   margin-left:70px;
+   margin-right:10px;
+   margin-bottom:50px;
+
+   background-image:url(./docs/images/bg.png);
+   background-repeat: repeat-y;
+  }
+
+  .midasi {
+   margin:1px;
+   padding-left:5px;
+   color:#000000;
+   background-image:url(./docs/images/bg_blue.png);
+   font-size:16pt;
+   border-style:solid;
+   border-left-width:3px;
+   border-right-width:0px;
+   border-top-width:1px;
+   border-bottom-width:0px;
+   border-color:#7755FF;
+}
+
+
+  .midasi2 {
+   margin:1px;
+   padding-left:5px;
+   color:#000000;
+   font-size:12pt;
+   border-style:solid;
+   border-left-width:1px;
+   border-right-width:0px;
+   border-top-width:0px;
+   border-bottom-width:1px;
+   border-color:#7755FF;
+   background-color:#EEDDFF;
+   margin-left:20px;
+}
+
+ .nakami{
+   margin-left:20px;
+   margin-right:20px;
+   color:#000000;
+   font-size:12pt;
+}
+
+ .nakami2{
+   margin-left:40px;
+   margin-right:20px;
+   color:#000000;
+   font-size:12pt;
+}
+
+ .source{
+   margin-left:20px;
+   margin-right:20px;
+   color:#000000;
+   font-size:10pt;
+}
+
+ .source2{
+   margin-left:40px;
+   margin-right:20px;
+   color:#000000;
+   font-size:10pt;
+}
