@@ -26,11 +26,12 @@ void CDlgKBKeyGet::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 }
 
-
+#ifndef ON_WM_KEYDOWN
 #define ON_WM_KEYDOWN() \
 	{ WM_KEYDOWN, 0, 0, 0, AfxSig_vwww, \
 		(AFX_PMSG)(AFX_PMSGW) \
 		(static_cast< void (AFX_MSG_CALL CWnd::*)(UINT, UINT, UINT) > (&CDlgKBKeyGet::OnKeyDown)) },
+#endif
 
 BEGIN_MESSAGE_MAP(CDlgKBKeyGet, CDialog)
 	ON_WM_KEYDOWN()

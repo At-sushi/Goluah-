@@ -77,7 +77,7 @@ BOOL CStorm::Go(BOOL muki,double x,double y,double vx,double vy)
 	{
 		drot[i] = 360.0f/(float)(STORM_NUM) * i;
 	}
-	for(i=0;i<NUM_GNDSHK;i++)
+	for(int i=0;i<NUM_GNDSHK;i++)
 	{
 		m_info[i].Reset();
 	}

@@ -7,7 +7,6 @@
 #endif
 */
 #include "../resource.h"       // ƒƒCƒ“ ƒVƒ“ƒ{ƒ‹
-#include "../../goluah_i.h"
 
 
 /*!

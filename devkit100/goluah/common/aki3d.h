@@ -11,7 +11,7 @@
 
 #include <vector>
 #include <d3d8.h>
-#include <d3dx8.h>
+#include "d3dx8.h"
 
 #define FAR_CLIP	(50.0f)
 #define NEAR_CLIP	( 0.1f)

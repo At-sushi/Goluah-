@@ -23,7 +23,7 @@
 #include "dx_draw.h"
 #include "dx_input.h"
 #include "dx_sound.h"
-#include "dx_play.h"		// è¡ñ≈
+#include "dx_play.h"
 
 #include "system.h"
 

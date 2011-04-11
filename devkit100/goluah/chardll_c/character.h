@@ -7,7 +7,7 @@
 #pragma once
 
 #include <d3d8.h>
-#include <d3dx8.h>
+#include "d3dx8.h"
 
 #include <windows.h>
 #include <stdio.h>

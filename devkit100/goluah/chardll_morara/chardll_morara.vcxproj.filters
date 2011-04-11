@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="morara">
+      <UniqueIdentifier>{c852478e-33ef-4fcf-be69-aa5acb677d8f}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{4581c06a-679c-447e-bc9b-5393b44f09bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="morarael">
+      <UniqueIdentifier>{85552616-3586-4f4d-81b5-df1f80a58e73}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="action_attack.cpp">
+      <Filter>morara</Filter>
+    </ClCompile>
+    <ClCompile Include="action_hissatu.cpp">
+      <Filter>morara</Filter>
+    </ClCompile>
+    <ClCompile Include="action_normal.cpp">
+      <Filter>morara</Filter>
+    </ClCompile>
+    <ClCompile Include="bullets.cpp">
+      <Filter>morara</Filter>
+    </ClCompile>
+    <ClCompile Include="character.cpp">
+      <Filter>morara</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\aki3d.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\aki3d_internal.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\gobjbase.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="el_action_attack.cpp">
+      <Filter>morarael</Filter>
+    </ClCompile>
+    <ClCompile Include="el_action_hissatu.cpp">
+      <Filter>morarael</Filter>
+    </ClCompile>
+    <ClCompile Include="el_action_normal.cpp">
+      <Filter>morarael</Filter>
+    </ClCompile>
+    <ClCompile Include="el_bullets.cpp">
+      <Filter>morarael</Filter>
+    </ClCompile>
+    <ClCompile Include="el_character.cpp">
+      <Filter>morarael</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>morara</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cell.h">
+      <Filter>morara</Filter>
+    </ClInclude>
+    <ClInclude Include="character.h">
+      <Filter>morara</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\aki3d_internal.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\define_gcd.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\gobjbase.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\gobject.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="el_cell.h">
+      <Filter>morarael</Filter>
+    </ClInclude>
+    <ClInclude Include="el_character.h">
+      <Filter>morarael</Filter>
+    </ClInclude>
+    <ClInclude Include="opt.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="..\common\NewFunc.asm">
+      <Filter>common</Filter>
+    </MASM>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{793df2c6-821e-4295-be32-6a0d93e6bf88}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{4e237947-6d6f-421f-bf8d-8f87aa868d15}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="jisaku.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="stage.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\aki3d.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\aki3d_internal.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\gobjbase.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="jisaku.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="stage.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\aki3d.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\aki3d_internal.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\define_gcd.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\gobjbase.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\gobject.h">
+      <Filter>common</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

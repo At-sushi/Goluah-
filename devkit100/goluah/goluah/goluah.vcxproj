@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Template|Win32">
+      <Configuration>Template</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{016B2A2D-A8D0-4F5C-A8C9-9D0E9DA8595C}</ProjectGuid>
+    <RootNamespace>goluah</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Static</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)/execenv/\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Debug\</IntDir>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</IgnoreImportLibrary>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)/execenv/\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Release\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\SDL-1.2.14\include;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;C:\Program Files %28x86%29\Microsoft DirectX SDK %28April 2007%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\SDL-1.2.14\lib;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;C:\Program Files %28x86%29\Microsoft DirectX SDK %28April 2007%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">goluah_d</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">goluah_r</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(ProjectDir)/source/app;$(ProjectDir)/source/battle/effect;$(ProjectDir)/source/battle/subtask;$(SolutionDir)/common/directx;$(SolutionDir)/common;$(ProjectDir)/source/battle;$(ProjectDir)/source/task;$(ProjectDir)/source/system;$(ProjectDir)/source/script;$(ProjectDir)/source/global;$(ProjectDir)/source/debug;$(ProjectDir)/source/dataHandler;$(ProjectDir)/source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <FloatingPointModel>Fast</FloatingPointModel>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>d3d8.lib;d3dx8.lib;strmiids.lib;dxguid.lib;dinput8.lib;winmm.lib;dsound.lib;Netapi32.lib;zlib.lib;libpng.lib;libjpeg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)/execenv/goluah_d.exe</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)/lib/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>LIBCMT; MSVCRT; LIBCD; libci;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>$(ProjectDir)/source/app;$(ProjectDir)/source/battle/effect;$(ProjectDir)/source/battle/subtask;$(SolutionDir)/common/directx;$(SolutionDir)/common;$(ProjectDir)/source/battle;$(ProjectDir)/source/task;$(ProjectDir)/source/system;$(ProjectDir)/source/script;$(ProjectDir)/source/global;$(ProjectDir)/source/debug;$(ProjectDir)/source/dataHandler;$(ProjectDir)/source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;GOLUAH_BODY;USE_GOLUAH_COMMON_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <FloatingPointModel>Fast</FloatingPointModel>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>d3d8.lib;d3dx8.lib;strmiids.lib;dxguid.lib;dinput8.lib;winmm.lib;dsound.lib;Netapi32.lib;zlib.lib;libpng.lib;libjpeg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)/execenv/goluah_r.exe</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)/lib/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>LIBCMT; MSVCRT; libci;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+      <MinimumRequiredVersion>5</MinimumRequiredVersion>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="source\system\Name.cpp" />
+    <ClCompile Include="source\system\NameC.cpp" />
+    <ClCompile Include="source\system\NetState.cpp" />
+    <ClCompile Include="source\battle\task_demobattle.cpp" />
+    <ClCompile Include="source\app\goluah.cpp" />
+    <ClCompile Include="source\app\main.cpp" />
+    <ClCompile Include="source\app\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\system\system.cpp" />
+    <ClCompile Include="source\system\task.cpp" />
+    <ClCompile Include="source\global\battle_load_info.cpp" />
+    <ClCompile Include="source\global\bigface_cache.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\global\export.cpp" />
+    <ClCompile Include="source\global\global.cpp" />
+    <ClCompile Include="source\global\log2file.cpp" />
+    <ClCompile Include="source\dataHandler\charlist.cpp" />
+    <ClCompile Include="source\dataHandler\stagelist.cpp" />
+    <ClCompile Include="source\dataHandler\storylist.cpp" />
+    <ClCompile Include="source\task\task_demo.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\task\task_fade.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\task\task_items.cpp" />
+    <ClCompile Include="source\task\task_opening.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\task\task_optselecter.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\task\task_select.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\task\task_select_practice.cpp" />
+    <ClCompile Include="source\task\task_select_story.cpp" />
+    <ClCompile Include="source\task\task_simpleoptsel.cpp" />
+    <ClCompile Include="source\task\task_staffroll.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\task\task_storymode.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\task\task_title.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\task\task_vsmode.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\task\task_win.cpp" />
+    <ClCompile Include="source\battle\battleTaskBase.cpp" />
+    <ClCompile Include="source\battle\gauge.cpp" />
+    <ClCompile Include="source\battle\object.cpp" />
+    <ClCompile Include="source\battle\task_battle.cpp" />
+    <ClCompile Include="source\battle\task_battle_net.cpp" />
+    <ClCompile Include="source\battle\task_Bonus.cpp" />
+    <ClCompile Include="source\battle\task_practice.cpp" />
+    <ClCompile Include="source\battle\effect\efct_hit.cpp" />
+    <ClCompile Include="source\battle\effect\efct_other.cpp" />
+    <ClCompile Include="source\battle\effect\efct_sys.cpp" />
+    <ClCompile Include="source\battle\effect\efctlist.cpp" />
+    <ClCompile Include="source\battle\subtask\task_loading.cpp" />
+    <ClCompile Include="source\battle\subtask\task_pause.cpp" />
+    <ClCompile Include="source\battle\adaptor\a_action.cpp" />
+    <ClCompile Include="source\battle\adaptor\adapt_main.cpp" />
+    <ClCompile Include="source\battle\adaptor\adaptor.cpp" />
+    <ClCompile Include="source\battle\adaptor\mimikaki.cpp" />
+    <ClCompile Include="source\script\script_demo.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\script\script_loader.cpp" />
+    <ClCompile Include="source\script\script_story.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\common\aki3d.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\common\aki3d_internal.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\common\config.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\common\gcdhandler.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\common\limcut.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\common\directx\dx_draw.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\common\directx\dx_input.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\common\directx\dx_play.cpp" />
+    <ClCompile Include="..\common\directx\dx_sound.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\debug\debug_endurance.cpp" />
+    <ClCompile Include="source\debug\debug_menu.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\app\define_const.h" />
+    <ClInclude Include="source\app\define_macro.h" />
+    <ClInclude Include="source\app\goluah.h" />
+    <ClInclude Include="source\app\stdafx.h" />
+    <ClInclude Include="source\app\system_cell.h" />
+    <ClInclude Include="source\system\system.h" />
+    <ClInclude Include="source\system\task.h" />
+    <ClInclude Include="source\global\battle_load_info.h" />
+    <ClInclude Include="source\global\bigface_cache.h" />
+    <ClInclude Include="source\global\export.h" />
+    <ClInclude Include="source\global\global.h" />
+    <ClInclude Include="source\global\log2file.h" />
+    <ClInclude Include="source\dataHandler\charlist.h" />
+    <ClInclude Include="source\dataHandler\stagelist.h" />
+    <ClInclude Include="source\dataHandler\storylist.h" />
+    <ClInclude Include="source\task\task_demo.h" />
+    <ClInclude Include="source\task\task_fade.h" />
+    <ClInclude Include="source\task\task_items.h" />
+    <ClInclude Include="source\task\task_opening.h" />
+    <ClInclude Include="source\task\task_optselecter.h" />
+    <ClInclude Include="source\task\task_select.h" />
+    <ClInclude Include="source\task\task_select_practice.h" />
+    <ClInclude Include="source\task\task_select_story.h" />
+    <ClInclude Include="source\task\task_simpleoptsel.h" />
+    <ClInclude Include="source\task\task_staffroll.h" />
+    <ClInclude Include="source\task\task_storymode.h" />
+    <ClInclude Include="source\task\task_title.h" />
+    <ClInclude Include="source\task\task_vsmode.h" />
+    <ClInclude Include="source\task\task_win.h" />
+    <ClInclude Include="source\battle\battleTaskBase.h" />
+    <ClInclude Include="source\battle\gauge.h" />
+    <ClInclude Include="source\battle\object.h" />
+    <ClInclude Include="source\battle\task_battle.h" />
+    <ClInclude Include="source\battle\task_battle_net.h" />
+    <ClInclude Include="source\battle\task_practice.h" />
+    <ClInclude Include="source\battle\effect\efct_hit.h" />
+    <ClInclude Include="source\battle\effect\efct_other.h" />
+    <ClInclude Include="source\battle\effect\efct_sys.h" />
+    <ClInclude Include="source\battle\effect\efctlist.h" />
+    <ClInclude Include="source\battle\subtask\task_loading.h" />
+    <ClInclude Include="source\battle\subtask\task_pause.h" />
+    <CustomBuildStep Include="source\battle\adaptor\adaptor.h" />
+    <CustomBuildStep Include="source\battle\adaptor\define_char.h" />
+    <CustomBuildStep Include="source\battle\adaptor\define_data.h" />
+    <CustomBuildStep Include="source\battle\adaptor\mimikaki.h" />
+    <ClInclude Include="source\script\script_loader.h" />
+    <ClInclude Include="source\script\script_story.h" />
+    <ClInclude Include="source\script\srcipt_demo.h" />
+    <ClInclude Include="..\common\aki3d.h" />
+    <ClInclude Include="..\common\aki3d_internal.h" />
+    <ClInclude Include="..\common\config.h" />
+    <ClInclude Include="..\common\define_gcd.h" />
+    <ClInclude Include="..\common\gcdhandler.h" />
+    <ClInclude Include="..\common\gobject.h" />
+    <ClInclude Include="..\common\goluah_dll.h" />
+    <ClInclude Include="..\common\directx\dx_draw.h" />
+    <ClInclude Include="..\common\directx\dx_input.h" />
+    <ClInclude Include="..\common\directx\dx_play.h" />
+    <ClInclude Include="..\common\directx\dx_sound.h" />
+    <ClInclude Include="source\debug\debug_endurance.h" />
+    <ClInclude Include="source\debug\debug_menu.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="source\system\Name.h" />
+    <ClInclude Include="source\system\NameC.h" />
+    <ClInclude Include="NetMessage.h" />
+    <ClInclude Include="source\system\NetState.h" />
+    <ClInclude Include="source\battle\task_Bonus.h" />
+    <ClInclude Include="source\battle\task_demobattle.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\goluah.ico" />
+    <None Include="res\goluah.rc2" />
+    <None Include="goluah2.ico" />
+    <None Include="ReadMe.txt" />
+    <None Include="TODO.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="goluah.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="..\common\NewFunc.asm">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </MASM>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="goluah.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

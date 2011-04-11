@@ -15,7 +15,11 @@
 #endif
 
 #ifndef _WIN32_WINNT		// Windows NT 4 以降のバージョンに固有の機能の使用を許可します。
+#if _MSC_VER >= 1500
+#define _WIN32_WINNT 0x0500		// VC2008以降向け
+#else
 #define _WIN32_WINNT 0x0400		// これを Windows 98 および Windows 2000 またはそれ以降のバージョン向けに適切な値に変更してください。
+#endif // _MSC_VER
 #endif						
 
 #ifndef _WIN32_WINDOWS		// Windows 98 以降のバージョンに固有の機能の使用を許可します。

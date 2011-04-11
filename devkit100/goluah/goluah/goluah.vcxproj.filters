@@ -1,0 +1,459 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="source">
+      <UniqueIdentifier>{989d0257-ce47-44fe-b240-00616356bde6}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
+    </Filter>
+    <Filter Include="source\app">
+      <UniqueIdentifier>{82382341-16b3-4e36-b392-b988baa0d742}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\system">
+      <UniqueIdentifier>{1191d550-87b6-4c51-9fe4-e2ef868100f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\global">
+      <UniqueIdentifier>{e0149c11-c8d8-4a2b-83e0-bda5164d9ca4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\datahandler">
+      <UniqueIdentifier>{763ec32d-54a8-4982-b8ee-1eb37ddc40c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\task">
+      <UniqueIdentifier>{6b8fd002-cfcc-45ae-b401-260b01ef25dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\battle">
+      <UniqueIdentifier>{0e0eff59-f36a-4174-8eb6-557c5b527dc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\battle\effect">
+      <UniqueIdentifier>{e25af821-2b89-44af-a867-9d1475e369ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\battle\subtask">
+      <UniqueIdentifier>{4dce408a-c551-4aa3-89ec-8f1a1208e17d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\battle\adaptor">
+      <UniqueIdentifier>{0095d751-7b88-47fc-8c04-2652f4e9eb02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\script">
+      <UniqueIdentifier>{43399721-a1d9-44a7-a0f0-7aac29488609}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\common">
+      <UniqueIdentifier>{a167bf85-82a4-4161-a640-3391b76a4ac9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\common_dx">
+      <UniqueIdentifier>{34dc04bc-0a17-4abb-aa06-681bcfbf8838}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\debug">
+      <UniqueIdentifier>{7fddbc45-4568-4838-a836-5fe69aaf4a1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{8527d171-a476-49ff-88c1-d1a6e187ef83}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;jpg;jpeg;jpe;manifest</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\system\Name.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\system\NameC.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\system\NetState.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\battle\task_demobattle.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\app\goluah.cpp">
+      <Filter>source\app</Filter>
+    </ClCompile>
+    <ClCompile Include="source\app\main.cpp">
+      <Filter>source\app</Filter>
+    </ClCompile>
+    <ClCompile Include="source\app\stdafx.cpp">
+      <Filter>source\app</Filter>
+    </ClCompile>
+    <ClCompile Include="source\system\system.cpp">
+      <Filter>source\system</Filter>
+    </ClCompile>
+    <ClCompile Include="source\system\task.cpp">
+      <Filter>source\system</Filter>
+    </ClCompile>
+    <ClCompile Include="source\global\battle_load_info.cpp">
+      <Filter>source\global</Filter>
+    </ClCompile>
+    <ClCompile Include="source\global\bigface_cache.cpp">
+      <Filter>source\global</Filter>
+    </ClCompile>
+    <ClCompile Include="source\global\export.cpp">
+      <Filter>source\global</Filter>
+    </ClCompile>
+    <ClCompile Include="source\global\global.cpp">
+      <Filter>source\global</Filter>
+    </ClCompile>
+    <ClCompile Include="source\global\log2file.cpp">
+      <Filter>source\global</Filter>
+    </ClCompile>
+    <ClCompile Include="source\dataHandler\charlist.cpp">
+      <Filter>source\datahandler</Filter>
+    </ClCompile>
+    <ClCompile Include="source\dataHandler\stagelist.cpp">
+      <Filter>source\datahandler</Filter>
+    </ClCompile>
+    <ClCompile Include="source\dataHandler\storylist.cpp">
+      <Filter>source\datahandler</Filter>
+    </ClCompile>
+    <ClCompile Include="source\task\task_demo.cpp">
+      <Filter>source\task</Filter>
+    </ClCompile>
+    <ClCompile Include="source\task\task_fade.cpp">
+      <Filter>source\task</Filter>
+    </ClCompile>
+    <ClCompile Include="source\task\task_items.cpp">
+      <Filter>source\task</Filter>
+    </ClCompile>
+    <ClCompile Include="source\task\task_opening.cpp">
+      <Filter>source\task</Filter>
+    </ClCompile>
+    <ClCompile Include="source\task\task_optselecter.cpp">
+      <Filter>source\task</Filter>
+    </ClCompile>
+    <ClCompile Include="source\task\task_select.cpp">
+      <Filter>source\task</Filter>
+    </ClCompile>
+    <ClCompile Include="source\task\task_select_practice.cpp">
+      <Filter>source\task</Filter>
+    </ClCompile>
+    <ClCompile Include="source\task\task_select_story.cpp">
+      <Filter>source\task</Filter>
+    </ClCompile>
+    <ClCompile Include="source\task\task_simpleoptsel.cpp">
+      <Filter>source\task</Filter>
+    </ClCompile>
+    <ClCompile Include="source\task\task_staffroll.cpp">
+      <Filter>source\task</Filter>
+    </ClCompile>
+    <ClCompile Include="source\task\task_storymode.cpp">
+      <Filter>source\task</Filter>
+    </ClCompile>
+    <ClCompile Include="source\task\task_title.cpp">
+      <Filter>source\task</Filter>
+    </ClCompile>
+    <ClCompile Include="source\task\task_vsmode.cpp">
+      <Filter>source\task</Filter>
+    </ClCompile>
+    <ClCompile Include="source\task\task_win.cpp">
+      <Filter>source\task</Filter>
+    </ClCompile>
+    <ClCompile Include="source\battle\battleTaskBase.cpp">
+      <Filter>source\battle</Filter>
+    </ClCompile>
+    <ClCompile Include="source\battle\gauge.cpp">
+      <Filter>source\battle</Filter>
+    </ClCompile>
+    <ClCompile Include="source\battle\object.cpp">
+      <Filter>source\battle</Filter>
+    </ClCompile>
+    <ClCompile Include="source\battle\task_battle.cpp">
+      <Filter>source\battle</Filter>
+    </ClCompile>
+    <ClCompile Include="source\battle\task_battle_net.cpp">
+      <Filter>source\battle</Filter>
+    </ClCompile>
+    <ClCompile Include="source\battle\task_Bonus.cpp">
+      <Filter>source\battle</Filter>
+    </ClCompile>
+    <ClCompile Include="source\battle\task_practice.cpp">
+      <Filter>source\battle</Filter>
+    </ClCompile>
+    <ClCompile Include="source\battle\effect\efct_hit.cpp">
+      <Filter>source\battle\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="source\battle\effect\efct_other.cpp">
+      <Filter>source\battle\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="source\battle\effect\efct_sys.cpp">
+      <Filter>source\battle\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="source\battle\effect\efctlist.cpp">
+      <Filter>source\battle\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="source\battle\subtask\task_loading.cpp">
+      <Filter>source\battle\subtask</Filter>
+    </ClCompile>
+    <ClCompile Include="source\battle\subtask\task_pause.cpp">
+      <Filter>source\battle\subtask</Filter>
+    </ClCompile>
+    <ClCompile Include="source\battle\adaptor\a_action.cpp">
+      <Filter>source\battle\adaptor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\battle\adaptor\adapt_main.cpp">
+      <Filter>source\battle\adaptor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\battle\adaptor\adaptor.cpp">
+      <Filter>source\battle\adaptor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\battle\adaptor\mimikaki.cpp">
+      <Filter>source\battle\adaptor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\script\script_demo.cpp">
+      <Filter>source\script</Filter>
+    </ClCompile>
+    <ClCompile Include="source\script\script_loader.cpp">
+      <Filter>source\script</Filter>
+    </ClCompile>
+    <ClCompile Include="source\script\script_story.cpp">
+      <Filter>source\script</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\aki3d.cpp">
+      <Filter>source\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\aki3d_internal.cpp">
+      <Filter>source\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\config.cpp">
+      <Filter>source\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\gcdhandler.cpp">
+      <Filter>source\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\limcut.cpp">
+      <Filter>source\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\directx\dx_draw.cpp">
+      <Filter>source\common_dx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\directx\dx_input.cpp">
+      <Filter>source\common_dx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\directx\dx_play.cpp">
+      <Filter>source\common_dx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\directx\dx_sound.cpp">
+      <Filter>source\common_dx</Filter>
+    </ClCompile>
+    <ClCompile Include="source\debug\debug_endurance.cpp">
+      <Filter>source\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="source\debug\debug_menu.cpp">
+      <Filter>source\debug</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\app\define_const.h">
+      <Filter>source\app</Filter>
+    </ClInclude>
+    <ClInclude Include="source\app\define_macro.h">
+      <Filter>source\app</Filter>
+    </ClInclude>
+    <ClInclude Include="source\app\goluah.h">
+      <Filter>source\app</Filter>
+    </ClInclude>
+    <ClInclude Include="source\app\stdafx.h">
+      <Filter>source\app</Filter>
+    </ClInclude>
+    <ClInclude Include="source\app\system_cell.h">
+      <Filter>source\app</Filter>
+    </ClInclude>
+    <ClInclude Include="source\system\system.h">
+      <Filter>source\system</Filter>
+    </ClInclude>
+    <ClInclude Include="source\system\task.h">
+      <Filter>source\system</Filter>
+    </ClInclude>
+    <ClInclude Include="source\global\battle_load_info.h">
+      <Filter>source\global</Filter>
+    </ClInclude>
+    <ClInclude Include="source\global\bigface_cache.h">
+      <Filter>source\global</Filter>
+    </ClInclude>
+    <ClInclude Include="source\global\export.h">
+      <Filter>source\global</Filter>
+    </ClInclude>
+    <ClInclude Include="source\global\global.h">
+      <Filter>source\global</Filter>
+    </ClInclude>
+    <ClInclude Include="source\global\log2file.h">
+      <Filter>source\global</Filter>
+    </ClInclude>
+    <ClInclude Include="source\dataHandler\charlist.h">
+      <Filter>source\datahandler</Filter>
+    </ClInclude>
+    <ClInclude Include="source\dataHandler\stagelist.h">
+      <Filter>source\datahandler</Filter>
+    </ClInclude>
+    <ClInclude Include="source\dataHandler\storylist.h">
+      <Filter>source\datahandler</Filter>
+    </ClInclude>
+    <ClInclude Include="source\task\task_demo.h">
+      <Filter>source\task</Filter>
+    </ClInclude>
+    <ClInclude Include="source\task\task_fade.h">
+      <Filter>source\task</Filter>
+    </ClInclude>
+    <ClInclude Include="source\task\task_items.h">
+      <Filter>source\task</Filter>
+    </ClInclude>
+    <ClInclude Include="source\task\task_opening.h">
+      <Filter>source\task</Filter>
+    </ClInclude>
+    <ClInclude Include="source\task\task_optselecter.h">
+      <Filter>source\task</Filter>
+    </ClInclude>
+    <ClInclude Include="source\task\task_select.h">
+      <Filter>source\task</Filter>
+    </ClInclude>
+    <ClInclude Include="source\task\task_select_practice.h">
+      <Filter>source\task</Filter>
+    </ClInclude>
+    <ClInclude Include="source\task\task_select_story.h">
+      <Filter>source\task</Filter>
+    </ClInclude>
+    <ClInclude Include="source\task\task_simpleoptsel.h">
+      <Filter>source\task</Filter>
+    </ClInclude>
+    <ClInclude Include="source\task\task_staffroll.h">
+      <Filter>source\task</Filter>
+    </ClInclude>
+    <ClInclude Include="source\task\task_storymode.h">
+      <Filter>source\task</Filter>
+    </ClInclude>
+    <ClInclude Include="source\task\task_title.h">
+      <Filter>source\task</Filter>
+    </ClInclude>
+    <ClInclude Include="source\task\task_vsmode.h">
+      <Filter>source\task</Filter>
+    </ClInclude>
+    <ClInclude Include="source\task\task_win.h">
+      <Filter>source\task</Filter>
+    </ClInclude>
+    <ClInclude Include="source\battle\battleTaskBase.h">
+      <Filter>source\battle</Filter>
+    </ClInclude>
+    <ClInclude Include="source\battle\gauge.h">
+      <Filter>source\battle</Filter>
+    </ClInclude>
+    <ClInclude Include="source\battle\object.h">
+      <Filter>source\battle</Filter>
+    </ClInclude>
+    <ClInclude Include="source\battle\task_battle.h">
+      <Filter>source\battle</Filter>
+    </ClInclude>
+    <ClInclude Include="source\battle\task_battle_net.h">
+      <Filter>source\battle</Filter>
+    </ClInclude>
+    <ClInclude Include="source\battle\task_practice.h">
+      <Filter>source\battle</Filter>
+    </ClInclude>
+    <ClInclude Include="source\battle\effect\efct_hit.h">
+      <Filter>source\battle\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="source\battle\effect\efct_other.h">
+      <Filter>source\battle\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="source\battle\effect\efct_sys.h">
+      <Filter>source\battle\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="source\battle\effect\efctlist.h">
+      <Filter>source\battle\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="source\battle\subtask\task_loading.h">
+      <Filter>source\battle\subtask</Filter>
+    </ClInclude>
+    <ClInclude Include="source\battle\subtask\task_pause.h">
+      <Filter>source\battle\subtask</Filter>
+    </ClInclude>
+    <ClInclude Include="source\script\script_loader.h">
+      <Filter>source\script</Filter>
+    </ClInclude>
+    <ClInclude Include="source\script\script_story.h">
+      <Filter>source\script</Filter>
+    </ClInclude>
+    <ClInclude Include="source\script\srcipt_demo.h">
+      <Filter>source\script</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\aki3d.h">
+      <Filter>source\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\aki3d_internal.h">
+      <Filter>source\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\config.h">
+      <Filter>source\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\define_gcd.h">
+      <Filter>source\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\gcdhandler.h">
+      <Filter>source\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\gobject.h">
+      <Filter>source\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\goluah_dll.h">
+      <Filter>source\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\directx\dx_draw.h">
+      <Filter>source\common_dx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\directx\dx_input.h">
+      <Filter>source\common_dx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\directx\dx_play.h">
+      <Filter>source\common_dx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\directx\dx_sound.h">
+      <Filter>source\common_dx</Filter>
+    </ClInclude>
+    <ClInclude Include="source\debug\debug_endurance.h">
+      <Filter>source\debug</Filter>
+    </ClInclude>
+    <ClInclude Include="source\debug\debug_menu.h">
+      <Filter>source\debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="source\system\Name.h" />
+    <ClInclude Include="source\system\NameC.h" />
+    <ClInclude Include="NetMessage.h" />
+    <ClInclude Include="source\system\NetState.h" />
+    <ClInclude Include="source\battle\task_Bonus.h" />
+    <ClInclude Include="source\battle\task_demobattle.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\goluah.ico">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\goluah.rc2">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="goluah2.ico">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="ReadMe.txt" />
+    <None Include="TODO.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="goluah.rc">
+      <Filter>リソース ファイル</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuildStep Include="source\battle\adaptor\adaptor.h">
+      <Filter>source\battle\adaptor</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="source\battle\adaptor\define_char.h">
+      <Filter>source\battle\adaptor</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="source\battle\adaptor\define_data.h">
+      <Filter>source\battle\adaptor</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="source\battle\adaptor\mimikaki.h">
+      <Filter>source\battle\adaptor</Filter>
+    </CustomBuildStep>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="..\common\NewFunc.asm">
+      <Filter>source\common</Filter>
+    </MASM>
+  </ItemGroup>
+</Project>

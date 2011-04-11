@@ -265,7 +265,7 @@ void CCharacter::InitBullets()
 	}
 	else
 	{
-		for(i=0;i<6;i++)
+		for(int i=0;i<6;i++)
 			clabul_folx[i] = NULL;
 	}
 }

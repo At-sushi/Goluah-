@@ -18,9 +18,16 @@ extern "C"
 #include "jpeglib.h"
 } // extern "C"
 #include "task_loading.h"
+#else
+enum NowLoading_IconItem
+{
+	NowLoading_DLL,
+	NowLoading_Image,
+	NowLoading_GCD,
+};
 #endif
 
-#include <setjmpex.h>
+#include <setjmp.h>
 #include "png.h"
 #include "dx_draw.h"
 #define HALF_HEIGHT		(g_DISPLAYHEIGHT*0.5f)
@@ -1541,7 +1548,7 @@ BOOL CDirectDraw::Load256PNGbits(MYPALLET **pbits,DWORD *width,DWORD *height,cha
 		long pos = ftell(fp);
 
 		int len = fread(sig, sizeof(BYTE), 8, fp);
-		if ( !png_check_sig(sig, len) )
+		if ( png_sig_cmp(sig, 0, len) != 0 )
 		{
 			//ODS("CDirectDraw::Load256PNGbits : つーかこのファイルはPNGではない。\n");
 			fclose(fp);
@@ -1558,7 +1565,7 @@ BOOL CDirectDraw::Load256PNGbits(MYPALLET **pbits,DWORD *width,DWORD *height,cha
 		// イメージヘッダ所得
 		int bit_depth = 0, color_type = 0;
 
-		if ( !png_get_IHDR(strPNG, infoPNG, width, height, &bit_depth, &color_type, NULL, NULL, NULL) )
+		if ( !png_get_IHDR(strPNG, infoPNG, (UINT*)width, (UINT*)height, &bit_depth, &color_type, NULL, NULL, NULL) )
 		{
 			ODS("CDirectDraw::Load256PNGbits : IHDR読み込み失敗\n");
 			fclose(fp);
@@ -1983,7 +1990,7 @@ BOOL CDirectDraw::GetPalletPNG(char *filename,MYPALLET *pal)
 	long pos = ftell(fp);
 
 	int len = fread(sig, sizeof(BYTE), 8, fp);
-	if ( !png_check_sig(sig, len) )
+	if ( png_sig_cmp(sig, 0, len) != 0 )
 	{
 		//ODS("CDirectDraw::GetPalletPNG : つーかこのファイルはPNGではない。\n");
 		fclose(fp);

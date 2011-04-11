@@ -17,7 +17,7 @@
 
 #ifdef USE_DIRECT3D_DIRECT
 #include <d3d8.h>
-#include <d3dx8.h>
+#include "d3dx8.h"
 #endif
 
 #include "gobjbase.h"

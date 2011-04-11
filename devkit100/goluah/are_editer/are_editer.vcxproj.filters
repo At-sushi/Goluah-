@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{19da8819-2964-4e0e-a726-d031df9390db}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
+    </Filter>
+    <Filter Include="ソース ファイル\RECT">
+      <UniqueIdentifier>{d0219e7c-b480-486f-b5fc-9eb3ad677e38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\CELL">
+      <UniqueIdentifier>{8eac406f-9234-49bb-acab-86a9d1a352cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\全体">
+      <UniqueIdentifier>{9fa1e433-26dc-40f9-8226-1a2ae7c82dd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\common">
+      <UniqueIdentifier>{d2881e96-6d8c-4cca-877b-2811b01a3cf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\common\directx">
+      <UniqueIdentifier>{fc7f483d-8373-48ec-8a8e-db0e41a2f184}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ファイル">
+      <UniqueIdentifier>{3ad9b013-1090-4069-8c6c-e7786e9b4e8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\その他">
+      <UniqueIdentifier>{c4f69a24-559a-4c46-bfa4-c665883ab558}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{6488f626-2ba2-423c-9495-00f00643771d}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;jpg;jpeg;jpe;manifest</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="define.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgRPage1.h">
+      <Filter>ソース ファイル\RECT</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgTPage2.h">
+      <Filter>ソース ファイル\RECT</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgCellDisp.h">
+      <Filter>ソース ファイル\CELL</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgCPageTool.h">
+      <Filter>ソース ファイル\CELL</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgPage2.h">
+      <Filter>ソース ファイル\CELL</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgPage3.h">
+      <Filter>ソース ファイル\CELL</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgPage4.h">
+      <Filter>ソース ファイル\CELL</Filter>
+    </ClInclude>
+    <ClInclude Include="are_editer.h">
+      <Filter>ソース ファイル\全体</Filter>
+    </ClInclude>
+    <ClInclude Include="are_editerDlg.h">
+      <Filter>ソース ファイル\全体</Filter>
+    </ClInclude>
+    <ClInclude Include="CelleditDlg.h">
+      <Filter>ソース ファイル\全体</Filter>
+    </ClInclude>
+    <ClInclude Include="ChildWnd.h">
+      <Filter>ソース ファイル\全体</Filter>
+    </ClInclude>
+    <ClInclude Include="RecteditDlg.h">
+      <Filter>ソース ファイル\全体</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\define_gcd.h">
+      <Filter>ソース ファイル\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\gcdhandler.h">
+      <Filter>ソース ファイル\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\directx\dx_draw.h">
+      <Filter>ソース ファイル\common\directx</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgPage1.h">
+      <Filter>ソース ファイル\ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgOther.h">
+      <Filter>ソース ファイル\その他</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>リソース ファイル</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgRPage1.cpp">
+      <Filter>ソース ファイル\RECT</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgTPage2.cpp">
+      <Filter>ソース ファイル\RECT</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgCellDisp.cpp">
+      <Filter>ソース ファイル\CELL</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgCPageTool.cpp">
+      <Filter>ソース ファイル\CELL</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgPage2.cpp">
+      <Filter>ソース ファイル\CELL</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgPage3.cpp">
+      <Filter>ソース ファイル\CELL</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgPage4.cpp">
+      <Filter>ソース ファイル\CELL</Filter>
+    </ClCompile>
+    <ClCompile Include="are_editer.cpp">
+      <Filter>ソース ファイル\全体</Filter>
+    </ClCompile>
+    <ClCompile Include="are_editerDlg.cpp">
+      <Filter>ソース ファイル\全体</Filter>
+    </ClCompile>
+    <ClCompile Include="CelleditDlg.cpp">
+      <Filter>ソース ファイル\全体</Filter>
+    </ClCompile>
+    <ClCompile Include="ChildWnd.cpp">
+      <Filter>ソース ファイル\全体</Filter>
+    </ClCompile>
+    <ClCompile Include="RecteditDlg.cpp">
+      <Filter>ソース ファイル\全体</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\gcdhandler.cpp">
+      <Filter>ソース ファイル\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\directx\dx_draw.cpp">
+      <Filter>ソース ファイル\common\directx</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgPage1.cpp">
+      <Filter>ソース ファイル\ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgOther.cpp">
+      <Filter>ソース ファイル\その他</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\are_editer.ico">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\are_editer.rc2">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="are_editer.rc">
+      <Filter>リソース ファイル</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="..\common\NewFunc.asm">
+      <Filter>ソース ファイル\common</Filter>
+    </MASM>
+  </ItemGroup>
+</Project>

@@ -862,7 +862,7 @@ void CStage::DrawRoad()
 	d3ddev->DrawPrimitive(D3DPT_TRIANGLELIST,0,NUM_GURDPOLL*2);
 	//ŠX“”
 	d3ddev->SetTexture(0,ptex_light);
-	for(i=0;i<NUM_LIGHT;i++){
+	for(int i=0;i<NUM_LIGHT;i++){
 		d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,
 			vb_light[i],sizeof(MYVERTEX3D));
 	}
@@ -884,7 +884,7 @@ void CStage::DrawRoad()
 	d3ddev->DrawPrimitive(D3DPT_TRIANGLELIST,0,NUM_GURDPOLL*2);
 	//ŠX“”
 	d3ddev->SetTexture(0,ptex_light);
-	for(i=0;i<NUM_LIGHT;i++){
+	for(int i=0;i<NUM_LIGHT;i++){
 		d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,
 			vb_light[i],sizeof(MYVERTEX3D));
 	}

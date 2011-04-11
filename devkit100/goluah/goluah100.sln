@@ -1,46 +1,46 @@
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual C++ Express 2005
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "goluah", "goluah\goluah.vcproj", "{016B2A2D-A8D0-4F5C-A8C9-9D0E9DA8595C}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "goluah", "goluah\goluah.vcxproj", "{016B2A2D-A8D0-4F5C-A8C9-9D0E9DA8595C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chardll_8mona", "chardll_8mona\chardll_8mona.vcproj", "{FFEC8445-E910-40A1-B892-435C7847D4AE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chardll_8mona", "chardll_8mona\chardll_8mona.vcxproj", "{FFEC8445-E910-40A1-B892-435C7847D4AE}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chardll_wassoi", "chardll_wassoi\chardll_wassoi.vcproj", "{AEA44699-8000-461F-9CF9-6A52366F89F9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chardll_wassoi", "chardll_wassoi\chardll_wassoi.vcxproj", "{AEA44699-8000-461F-9CF9-6A52366F89F9}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chardll_zonu", "chardll_zonu\chardll_zonu.vcproj", "{B0F6316A-C6F0-457E-8535-DE01BAAD59B4}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chardll_zonu", "chardll_zonu\chardll_zonu.vcxproj", "{B0F6316A-C6F0-457E-8535-DE01BAAD59B4}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "goluah_config", "goluah_config\goluah_config.vcproj", "{48959368-F6BF-40B3-B4B2-EAAC7EF66B99}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "goluah_config", "goluah_config\goluah_config.vcxproj", "{48959368-F6BF-40B3-B4B2-EAAC7EF66B99}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stagedll_datocean", "stagedll_datocean\stagedll_datocean.vcproj", "{9838DCF1-7637-43DF-9DA2-6FF74B8D49EE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stagedll_datocean", "stagedll_datocean\stagedll_datocean.vcxproj", "{9838DCF1-7637-43DF-9DA2-6FF74B8D49EE}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stagedll_systemdefault", "stagedll_systemdefault\stagedll_systemdefault.vcproj", "{5EDF5C97-84A3-4885-A95E-F9831BF783D9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stagedll_systemdefault", "stagedll_systemdefault\stagedll_systemdefault.vcxproj", "{5EDF5C97-84A3-4885-A95E-F9831BF783D9}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stagedll_geocity", "stagedll_geocity\stagedll_geocity.vcproj", "{51DFADFC-09D6-4090-AEE9-87F087CDC4D6}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stagedll_geocity", "stagedll_geocity\stagedll_geocity.vcxproj", "{51DFADFC-09D6-4090-AEE9-87F087CDC4D6}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stagedll_iseki", "stagedll_iseki\stagedll_iseki.vcproj", "{FEE4E1F4-DB7B-4145-9909-2F3191F0CDD7}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stagedll_iseki", "stagedll_iseki\stagedll_iseki.vcxproj", "{FEE4E1F4-DB7B-4145-9909-2F3191F0CDD7}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stagedll_iceland", "stagedll_iceland\stagedll_iceland.vcproj", "{7046D259-4232-40B0-A2DF-AA80096ADC2D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stagedll_iceland", "stagedll_iceland\stagedll_iceland.vcxproj", "{7046D259-4232-40B0-A2DF-AA80096ADC2D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stagedll_yuki", "stagedll_yuki\stagedll_yuki.vcproj", "{77956B37-3205-4FBB-9558-AA32FFD718FE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stagedll_yuki", "stagedll_yuki\stagedll_yuki.vcxproj", "{77956B37-3205-4FBB-9558-AA32FFD718FE}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stagedll_yuuyake", "stagedll_yuuyake\stagedll_yuuyake.vcproj", "{9F58836D-49C6-4A5D-9093-B53904EFC6EF}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stagedll_yuuyake", "stagedll_yuuyake\stagedll_yuuyake.vcxproj", "{9F58836D-49C6-4A5D-9093-B53904EFC6EF}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stagedll_asa", "stagedll_asa\stagedll_asa.vcproj", "{2BFE304E-7905-45E8-B2D2-76EED9C689C0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stagedll_asa", "stagedll_asa\stagedll_asa.vcxproj", "{2BFE304E-7905-45E8-B2D2-76EED9C689C0}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chardll_morara", "chardll_morara\chardll_morara.vcproj", "{681E9330-F19F-4A2F-976D-24B8EB08C554}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chardll_morara", "chardll_morara\chardll_morara.vcxproj", "{681E9330-F19F-4A2F-976D-24B8EB08C554}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chardll_mona", "chardll_mona\chardll_mona.vcproj", "{FA39FC31-E324-4016-ACB1-0FE05F250E59}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chardll_mona", "chardll_mona\chardll_mona.vcxproj", "{FA39FC31-E324-4016-ACB1-0FE05F250E59}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chardll_giko", "chardll_giko\chardll_giko.vcproj", "{D269D9CE-A012-43B4-8B33-DB6264764B74}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chardll_giko", "chardll_giko\chardll_giko.vcxproj", "{D269D9CE-A012-43B4-8B33-DB6264764B74}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "are_editer", "are_editer\are_editer.vcproj", "{D3859D2E-72A0-4BCA-91B4-C2530AC836F2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "are_editer", "are_editer\are_editer.vcxproj", "{D3859D2E-72A0-4BCA-91B4-C2530AC836F2}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chardll_c", "chardll_c\chardll_c.vcproj", "{E8D9BAF2-EF8F-4B96-A5F4-9F66A0EAFC7F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chardll_c", "chardll_c\chardll_c.vcxproj", "{E8D9BAF2-EF8F-4B96-A5F4-9F66A0EAFC7F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MeshBack", "MeshBack\MeshBack.vcproj", "{16B0110B-8EE6-452A-B9B7-610B2011B324}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MeshBack", "MeshBack\MeshBack.vcxproj", "{16B0110B-8EE6-452A-B9B7-610B2011B324}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "goluah_c100", "goluah_c100\goluah_c100.vcproj", "{96B5300B-63C1-4685-B560-9763F1EAF7EF}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "goluah_c100", "goluah_c100\goluah_c100.vcxproj", "{96B5300B-63C1-4685-B560-9763F1EAF7EF}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "goluah_efct", "goluah_efct\goluah_efct.vcproj", "{148A3693-7A61-497C-91AC-E2E59D345080}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "goluah_efct", "goluah_efct\goluah_efct.vcxproj", "{148A3693-7A61-497C-91AC-E2E59D345080}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
