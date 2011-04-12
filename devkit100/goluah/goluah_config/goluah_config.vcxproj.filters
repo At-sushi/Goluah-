@@ -117,9 +117,4 @@
       <Filter>リソース ファイル</Filter>
     </CustomBuildStep>
   </ItemGroup>
-  <ItemGroup>
-    <MASM Include="..\common\NewFunc.asm">
-      <Filter>common</Filter>
-    </MASM>
-  </ItemGroup>
 </Project>

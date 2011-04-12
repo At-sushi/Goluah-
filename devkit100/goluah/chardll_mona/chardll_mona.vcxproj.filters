@@ -53,9 +53,4 @@
       <Filter>ソース ファイル</Filter>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <MASM Include="..\common\NewFunc.asm">
-      <Filter>common</Filter>
-    </MASM>
-  </ItemGroup>
 </Project>

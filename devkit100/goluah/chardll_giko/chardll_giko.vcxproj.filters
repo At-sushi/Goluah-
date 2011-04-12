@@ -5,9 +5,8 @@
       <UniqueIdentifier>{f3ba83b1-05ca-46e3-a7bc-9b7bde10d7be}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
     </Filter>
-    <Filter Include="comon">
-      <UniqueIdentifier>{f5765e03-2f49-46b0-afc4-3e8aaf3f6160}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc</Extensions>
+    <Filter Include="common">
+      <UniqueIdentifier>{998f764c-e0c9-4b46-b35c-6fb2d04269dc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -27,13 +26,13 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="..\common\aki3d.cpp">
-      <Filter>comon</Filter>
+      <Filter>common</Filter>
     </ClCompile>
     <ClCompile Include="..\common\aki3d_internal.cpp">
-      <Filter>comon</Filter>
+      <Filter>common</Filter>
     </ClCompile>
     <ClCompile Include="..\common\gobjbase.cpp">
-      <Filter>comon</Filter>
+      <Filter>common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -44,26 +43,21 @@
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="..\common\aki3d_internal.h">
-      <Filter>comon</Filter>
+      <Filter>common</Filter>
     </ClInclude>
     <ClInclude Include="..\common\define_gcd.h">
-      <Filter>comon</Filter>
+      <Filter>common</Filter>
     </ClInclude>
     <ClInclude Include="..\common\gobjbase.h">
-      <Filter>comon</Filter>
+      <Filter>common</Filter>
     </ClInclude>
     <ClInclude Include="..\common\gobject.h">
-      <Filter>comon</Filter>
+      <Filter>common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="character.def">
       <Filter>ソース ファイル</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <MASM Include="..\common\NewFunc.asm">
-      <Filter>comon</Filter>
-    </MASM>
   </ItemGroup>
 </Project>

@@ -124,7 +124,7 @@
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>d3d8.lib;d3dx8.lib;strmiids.lib;dxguid.lib;dinput8.lib;winmm.lib;dsound.lib;Netapi32.lib;zlib.lib;libpng.lib;libjpeg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d8.lib;d3dx8.lib;strmiids.lib;dxguid.lib;dinput8.lib;winmm.lib;dsound.lib;Netapi32.lib;zlib.lib;libpng.lib;libjpeg.lib;NewFunc.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)/execenv/goluah_r.exe</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)/lib/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -375,12 +375,6 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="goluah.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <MASM Include="..\common\NewFunc.asm">
-      <FileType>Document</FileType>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </MASM>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

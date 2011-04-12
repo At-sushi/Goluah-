@@ -160,9 +160,4 @@
       <Filter>リソース ファイル</Filter>
     </ResourceCompile>
   </ItemGroup>
-  <ItemGroup>
-    <MASM Include="..\common\NewFunc.asm">
-      <Filter>ソース ファイル\common</Filter>
-    </MASM>
-  </ItemGroup>
 </Project>

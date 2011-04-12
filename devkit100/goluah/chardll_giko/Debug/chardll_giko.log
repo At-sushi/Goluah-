@@ -1,32 +1,13 @@
-﻿2011/04/12 13:50:04 にビルドを開始しました。
-     1>ノード 4 上のプロジェクト "C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\chardll_giko\chardll_giko.vcxproj" (build ターゲット)。
+﻿2011/04/12 16:25:31 にビルドを開始しました。
+     1>ノード 5 上のプロジェクト "C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\chardll_giko\chardll_giko.vcxproj" (build ターゲット)。
      1>InitializeBuildStatus:
          "AlwaysCreate" が指定されたため "Debug\chardll_giko.unsuccessfulbuild" を作成しています。
        _MASM:
          Assembling [Inputs]...
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\\common" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D CHARDLL_GIKO_EXPORTS /D USE_DIRECT3D_DIRECT /D USE_GOLUAH_COMMON_DLL /D _VC80_UPGRADE=0x0710 /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:fast /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt action_attack.cpp action_hissatu.cpp action_normal.cpp bullets.cpp character.cpp ..\common\aki3d.cpp ..\common\aki3d_internal.cpp ..\common\gobjbase.cpp
-         gobjbase.cpp
-         aki3d_internal.cpp
-     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\common\aki3d_internal.cpp(33): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : 'sprintf' の宣言を確認してください。
-     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\common\aki3d_internal.cpp(35): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : 'strcpy' の宣言を確認してください。
-     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\common\aki3d_internal.cpp(52): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : 'strcpy' の宣言を確認してください。
-     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\common\aki3d_internal.cpp(109): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : 'strcpy' の宣言を確認してください。
-         aki3d.cpp
-     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\common\aki3d.cpp(329): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : 'vsprintf' の宣言を確認してください。
-         character.cpp
-         bullets.cpp
-         action_normal.cpp
-         action_hissatu.cpp
-         action_attack.cpp
-         コードを生成中...
+         すべての出力が最新のものです。
        ManifestResourceCompile:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\chardll_giko.dll.embed.manifest.res" Debug\chardll_giko_manifest.rc 
+         すべての出力が最新のものです。
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(990,5): warning MSB8012: TargetPath(C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\chardll_giko\Debug\chardll_giko.dll) が Linker の OutputFile プロパティ値 (C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\execenv\char\std\giko\action.dll) と一致しません。このため、プロジェクトが正常にビルドされない可能性があります。この問題を解決するには、$(OutDir)、$(TargetName)、および $(TargetExt) の各プロパティ値が、%(Link.OutputFile) で指定されている値と一致することを確認してください。
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(992,5): warning MSB8012: TargetName(chardll_giko) が Linker の OutputFile プロパティ値 (action) と一致しません。このため、プロジェクトが正常にビルドされない可能性があります。この問題を解決するには、$(OutDir)、$(TargetName)、および $(TargetExt) の各プロパティ値が、%(Link.OutputFile) で指定されている値と一致することを確認してください。
        Link:
@@ -42,18 +23,9 @@
             ライブラリ Debug\chardll_giko.lib とオブジェクト Debug\chardll_giko.exp を作成中
        Manifest:
          C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\chardll_giko.dll.embed.manifest" /manifest Debug\chardll_giko.dll.intermediate.manifest
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\chardll_giko.dll.embed.manifest.res" Debug\chardll_giko_manifest.rc 
+         すべての出力が最新のものです。
        LinkEmbedManifest:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/execenv/char/std/giko/action.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/lib/" winmm.lib d3dx8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /DEF:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/common/character_vc.def" /MANIFEST /ManifestFile:"Debug\chardll_giko.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"Debug\chardll_giko.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Debug\chardll_giko.lib" /MACHINE:X86 /DLL Debug\chardll_giko.dll.embed.manifest.res
-         Debug\action_attack.obj
-         Debug\action_hissatu.obj
-         Debug\action_normal.obj
-         Debug\bullets.obj
-         Debug\character.obj
-         Debug\aki3d.obj
-         Debug\aki3d_internal.obj
-         Debug\gobjbase.obj /nodefaultlib:libci 
-            ライブラリ Debug\chardll_giko.lib とオブジェクト Debug\chardll_giko.exp を作成中
+         すべての出力が最新のものです。
          chardll_giko.vcxproj -> C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\chardll_giko\Debug\chardll_giko.dll
        FinalizeBuildStatus:
          ファイル "Debug\chardll_giko.unsuccessfulbuild" を削除しています。
@@ -62,4 +34,4 @@
 
 ビルドに成功しました。
 
-経過時間 00:00:25.30
+経過時間 00:00:09.28

@@ -1,24 +1,11 @@
-﻿2011/04/12 13:49:37 にビルドを開始しました。
+﻿2011/04/12 16:25:12 にビルドを開始しました。
      1>ノード 2 上のプロジェクト "C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\goluah_efct\goluah_efct.vcxproj" (build ターゲット)。
      1>InitializeBuildStatus:
          "AlwaysCreate" が指定されたため "Debug\goluah_efct.unsuccessfulbuild" を作成しています。
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D GOLUAH_EFCT_EXPORTS /D _VC80_UPGRADE=0x0710 /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:fast /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\common\aki3d.cpp ..\common\aki3d_internal.cpp
-         aki3d_internal.cpp
-     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\common\aki3d_internal.cpp(33): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : 'sprintf' の宣言を確認してください。
-     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\common\aki3d_internal.cpp(35): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : 'strcpy' の宣言を確認してください。
-     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\common\aki3d_internal.cpp(52): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : 'strcpy' の宣言を確認してください。
-     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\common\aki3d_internal.cpp(109): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : 'strcpy' の宣言を確認してください。
-         aki3d.cpp
-     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\common\aki3d.cpp(329): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : 'vsprintf' の宣言を確認してください。
-         コードを生成中...
+         すべての出力が最新のものです。
        ManifestResourceCompile:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\goluah_efct.dll.embed.manifest.res" Debug\goluah_efct_manifest.rc 
+         すべての出力が最新のものです。
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(990,5): warning MSB8012: TargetPath(C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\goluah_efct\Debug\goluah_efct.dll) が Linker の OutputFile プロパティ値 (C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\execenv\goluah_efct.dll) と一致しません。このため、プロジェクトが正常にビルドされない可能性があります。この問題を解決するには、$(OutDir)、$(TargetName)、および $(TargetExt) の各プロパティ値が、%(Link.OutputFile) で指定されている値と一致することを確認してください。
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/execenv/goluah_efct.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/lib" d3dx8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:libci /MANIFEST /ManifestFile:"Debug\goluah_efct.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"Debug\goluah_efct.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Debug\goluah_efct.lib" /MACHINE:X86 /DLL Debug\goluah_efct.dll.embed.manifest.res
@@ -26,11 +13,9 @@
          Debug\aki3d_internal.obj
        Manifest:
          C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\goluah_efct.dll.embed.manifest" /manifest Debug\goluah_efct.dll.intermediate.manifest
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\goluah_efct.dll.embed.manifest.res" Debug\goluah_efct_manifest.rc 
+         すべての出力が最新のものです。
        LinkEmbedManifest:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/execenv/goluah_efct.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/lib" d3dx8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:libci /MANIFEST /ManifestFile:"Debug\goluah_efct.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"Debug\goluah_efct.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Debug\goluah_efct.lib" /MACHINE:X86 /DLL Debug\goluah_efct.dll.embed.manifest.res
-         Debug\aki3d.obj
-         Debug\aki3d_internal.obj
+         すべての出力が最新のものです。
          goluah_efct.vcxproj -> C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\goluah_efct\Debug\goluah_efct.dll
        FinalizeBuildStatus:
          ファイル "Debug\goluah_efct.unsuccessfulbuild" を削除しています。
@@ -39,4 +24,4 @@
 
 ビルドに成功しました。
 
-経過時間 00:00:24.92
+経過時間 00:00:16.64
