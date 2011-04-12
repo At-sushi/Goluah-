@@ -61,12 +61,13 @@ void CCharacterList::Initialize()
 	//3)
 	CCLRingInfoList::iterator ite = ringlist.begin();
 	CCLRingInfoList::iterator itee= ringlist.end();
-	for(;ite!=itee;ite++){
+	while (ite!=itee){
 		if(ite->ring2serialIndex.size() == 0){
-			ringlist.erase(ite);
-			ite = ringlist.begin();
+			ite = ringlist.erase(ite);
 			itee= ringlist.end();
 		}
+		else
+			ite++;
 	}
 
 	//4)
