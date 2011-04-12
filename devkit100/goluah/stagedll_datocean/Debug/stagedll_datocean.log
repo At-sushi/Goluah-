@@ -1,9 +1,63 @@
-﻿2011/04/11 19:03:19 にビルドを開始しました。
-     1>ノード 2 上のプロジェクト "C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\stagedll_datocean\stagedll_datocean.vcxproj" (clean ターゲット)。
-     1>_PrepareForClean:
-         ファイル "Debug\stagedll_datocean.lastbuildstate" を削除しています。
-     1>プロジェクト "C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\stagedll_datocean\stagedll_datocean.vcxproj" (clean ターゲット) のビルドが完了しました。
+﻿2011/04/12 13:50:54 にビルドを開始しました。
+     1>ノード 3 上のプロジェクト "C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\stagedll_datocean\stagedll_datocean.vcxproj" (build ターゲット)。
+     1>InitializeBuildStatus:
+         "AlwaysCreate" が指定されたため "Debug\stagedll_datocean.unsuccessfulbuild" を作成しています。
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/common" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D STAGEDLL_DATOCIAN_EXPORTS /D USE_GOLUAH_COMMON_DLL /D _VC80_UPGRADE=0x0710 /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:fast /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt floor.cpp main.cpp sky.cpp soul.cpp soul_down.cpp stage.cpp ..\common\aki3d.cpp ..\common\aki3d_internal.cpp
+         aki3d_internal.cpp
+     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\common\aki3d_internal.cpp(33): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : 'sprintf' の宣言を確認してください。
+     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\common\aki3d_internal.cpp(35): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : 'strcpy' の宣言を確認してください。
+     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\common\aki3d_internal.cpp(52): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : 'strcpy' の宣言を確認してください。
+     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\common\aki3d_internal.cpp(109): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : 'strcpy' の宣言を確認してください。
+         aki3d.cpp
+     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\common\aki3d.cpp(329): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : 'vsprintf' の宣言を確認してください。
+         stage.cpp
+         soul_down.cpp
+         soul.cpp
+         sky.cpp
+         main.cpp
+         floor.cpp
+         コードを生成中...
+       ManifestResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\stagedll_datocean.dll.embed.manifest.res" Debug\stagedll_datocean_manifest.rc 
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(990,5): warning MSB8012: TargetPath(C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\stagedll_datocean\Debug\stagedll_datocean.dll) が Linker の OutputFile プロパティ値 (C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\execenv\stage\3D\datocean\stage.dll) と一致しません。このため、プロジェクトが正常にビルドされない可能性があります。この問題を解決するには、$(OutDir)、$(TargetName)、および $(TargetExt) の各プロパティ値が、%(Link.OutputFile) で指定されている値と一致することを確認してください。
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(992,5): warning MSB8012: TargetName(stagedll_datocean) が Linker の OutputFile プロパティ値 (stage) と一致しません。このため、プロジェクトが正常にビルドされない可能性があります。この問題を解決するには、$(OutDir)、$(TargetName)、および $(TargetExt) の各プロパティ値が、%(Link.OutputFile) で指定されている値と一致することを確認してください。
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/execenv/stage/3D/datocean/stage.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/lib/" d3d8.lib d3dx8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\stagedll_datocean.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"Debug\stagedll_datocian.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Debug\stagedll_datocian.lib" /MACHINE:X86 /DLL Debug\stagedll_datocean.dll.embed.manifest.res
+         Debug\floor.obj
+         Debug\main.obj
+         Debug\sky.obj
+         Debug\soul.obj
+         Debug\soul_down.obj
+         Debug\stage.obj
+         Debug\aki3d.obj
+         Debug\aki3d_internal.obj /nodefaultlib:libci 
+            ライブラリ Debug\stagedll_datocian.lib とオブジェクト Debug\stagedll_datocian.exp を作成中
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\stagedll_datocean.dll.embed.manifest" /manifest Debug\stagedll_datocean.dll.intermediate.manifest
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\stagedll_datocean.dll.embed.manifest.res" Debug\stagedll_datocean_manifest.rc 
+       LinkEmbedManifest:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/execenv/stage/3D/datocean/stage.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/lib/" d3d8.lib d3dx8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\stagedll_datocean.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"Debug\stagedll_datocian.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Debug\stagedll_datocian.lib" /MACHINE:X86 /DLL Debug\stagedll_datocean.dll.embed.manifest.res
+         Debug\floor.obj
+         Debug\main.obj
+         Debug\sky.obj
+         Debug\soul.obj
+         Debug\soul_down.obj
+         Debug\stage.obj
+         Debug\aki3d.obj
+         Debug\aki3d_internal.obj /nodefaultlib:libci 
+            ライブラリ Debug\stagedll_datocian.lib とオブジェクト Debug\stagedll_datocian.exp を作成中
+         stagedll_datocean.vcxproj -> C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\stagedll_datocean\Debug\stagedll_datocean.dll
+       FinalizeBuildStatus:
+         ファイル "Debug\stagedll_datocean.unsuccessfulbuild" を削除しています。
+         "Debug\stagedll_datocean.lastbuildstate" のタッチ タスクを実行しています。
+     1>プロジェクト "C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\stagedll_datocean\stagedll_datocean.vcxproj" (build ターゲット) のビルドが完了しました。
 
 ビルドに成功しました。
 
-経過時間 00:00:00.21
+経過時間 00:00:28.25

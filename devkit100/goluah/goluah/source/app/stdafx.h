@@ -11,7 +11,11 @@
 // 下で指定された定義の前に対象プラットフォームを指定しなければならない場合、以下の定義を変更してください。
 // 異なるプラットフォームに対応する値に関する最新情報については、MSDN を参照してください。
 #ifndef WINVER				// Windows 95 および Windows NT 4 以降のバージョンに固有の機能の使用を許可します。
+#if _MSC_VER >= 1500
+#define WINVER 0x0500		// VC2008以降向け
+#else
 #define WINVER 0x0400		// これを Windows 98 および Windows 2000 またはそれ以降のバージョン向けに適切な値に変更してください。
+#endif // _MSC_VER
 #endif
 
 #ifndef _WIN32_WINNT		// Windows NT 4 以降のバージョンに固有の機能の使用を許可します。
@@ -90,4 +94,5 @@
 #define _DEBUG
 #endif // DOBASHI
 
+#pragma warning( disable:4995 )
 #pragma warning( disable:4996 )		// とりあえずsprintf_s警告を無視

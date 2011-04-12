@@ -44,6 +44,18 @@ struct CCL_CHARACTERINFO
 	UINT  previous_favorite;	//!< 前回選択オプション? 未使用っぽい
 
 	CCL_CHARACTERINFO(){previous_option=0;previous_favorite=0;}
+	//! エラー対策
+	CCL_CHARACTERINFO(const CCL_CHARACTERINFO& par){
+		strcpy_s(dir, par.dir);
+		strcpy_s(name, par.name);
+		ver = par.ver;
+		caps = par.caps;
+		options = par.options;
+		maxpoint = par.maxpoint;
+		previous_option = par.previous_option;
+		fav_opts = par.fav_opts;
+		previous_favorite = par.previous_favorite;
+	}
 };
 typedef std::vector<CCL_CHARACTERINFO> CCLCharacterInfoList;	//!< キャラクター情報配列(STL)
 

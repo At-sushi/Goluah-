@@ -430,7 +430,6 @@
       <Filter>リソース ファイル</Filter>
     </None>
     <None Include="ReadMe.txt" />
-    <None Include="TODO.txt" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="goluah.rc">

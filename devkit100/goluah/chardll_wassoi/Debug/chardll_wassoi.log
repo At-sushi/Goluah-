@@ -1,9 +1,51 @@
-﻿2011/04/11 19:03:17 にビルドを開始しました。
-     1>ノード 3 上のプロジェクト "C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\chardll_wassoi\chardll_wassoi.vcxproj" (clean ターゲット)。
-     1>_PrepareForClean:
-         ファイル "Debug\chardll_wassoi.lastbuildstate" を削除しています。
-     1>プロジェクト "C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\chardll_wassoi\chardll_wassoi.vcxproj" (clean ターゲット) のビルドが完了しました。
+﻿2011/04/12 13:50:56 にビルドを開始しました。
+     1>ノード 5 上のプロジェクト "C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\chardll_wassoi\chardll_wassoi.vcxproj" (build ターゲット)。
+     1>InitializeBuildStatus:
+         "AlwaysCreate" が指定されたため "Debug\chardll_wassoi.unsuccessfulbuild" を作成しています。
+       _MASM:
+         Assembling [Inputs]...
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\\common" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D CHARDLL_WASSOI_EXPORTS /D NOUSE_COMMON_DLL /D USE_DIRECT3D_DIRECT /D USE_GOLUAH_COMMON_DLL /D _VC80_UPGRADE=0x0710 /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:fast /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt action_attack.cpp action_hissatu.cpp action_normal.cpp bullets.cpp character.cpp ..\common\gobjbase.cpp
+         gobjbase.cpp
+         character.cpp
+     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\chardll_wassoi\character.cpp(411): warning C4244: '=' : 'double' から 'int' への変換です。データが失われる可能性があります。
+     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\chardll_wassoi\character.cpp(412): warning C4244: '=' : 'double' から 'int' への変換です。データが失われる可能性があります。
+         bullets.cpp
+         action_normal.cpp
+         action_hissatu.cpp
+         action_attack.cpp
+         コードを生成中...
+       ManifestResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\chardll_wassoi.dll.embed.manifest.res" Debug\chardll_wassoi_manifest.rc 
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(990,5): warning MSB8012: TargetPath(C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\chardll_wassoi\Debug\chardll_wassoi.dll) が Linker の OutputFile プロパティ値 (C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\execenv\char\std\wassoi\action.dll) と一致しません。このため、プロジェクトが正常にビルドされない可能性があります。この問題を解決するには、$(OutDir)、$(TargetName)、および $(TargetExt) の各プロパティ値が、%(Link.OutputFile) で指定されている値と一致することを確認してください。
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(992,5): warning MSB8012: TargetName(chardll_wassoi) が Linker の OutputFile プロパティ値 (action) と一致しません。このため、プロジェクトが正常にビルドされない可能性があります。この問題を解決するには、$(OutDir)、$(TargetName)、および $(TargetExt) の各プロパティ値が、%(Link.OutputFile) で指定されている値と一致することを確認してください。
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/execenv/char/std/wassoi/action.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/lib/" winmm.lib d3dx8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /DEF:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/common/character_vc.def" /MANIFEST /ManifestFile:"Debug\chardll_wassoi.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"Debug\chardll_wassoi.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Debug\chardll_wassoi.lib" /MACHINE:X86 /DLL Debug\chardll_wassoi.dll.embed.manifest.res
+         Debug\action_attack.obj
+         Debug\action_hissatu.obj
+         Debug\action_normal.obj
+         Debug\bullets.obj
+         Debug\character.obj
+         Debug\gobjbase.obj /nodefaultlib:libci 
+            ライブラリ Debug\chardll_wassoi.lib とオブジェクト Debug\chardll_wassoi.exp を作成中
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\chardll_wassoi.dll.embed.manifest" /manifest Debug\chardll_wassoi.dll.intermediate.manifest
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\chardll_wassoi.dll.embed.manifest.res" Debug\chardll_wassoi_manifest.rc 
+       LinkEmbedManifest:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/execenv/char/std/wassoi/action.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/lib/" winmm.lib d3dx8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /DEF:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/common/character_vc.def" /MANIFEST /ManifestFile:"Debug\chardll_wassoi.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"Debug\chardll_wassoi.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Debug\chardll_wassoi.lib" /MACHINE:X86 /DLL Debug\chardll_wassoi.dll.embed.manifest.res
+         Debug\action_attack.obj
+         Debug\action_hissatu.obj
+         Debug\action_normal.obj
+         Debug\bullets.obj
+         Debug\character.obj
+         Debug\gobjbase.obj /nodefaultlib:libci 
+            ライブラリ Debug\chardll_wassoi.lib とオブジェクト Debug\chardll_wassoi.exp を作成中
+         chardll_wassoi.vcxproj -> C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\chardll_wassoi\Debug\chardll_wassoi.dll
+       FinalizeBuildStatus:
+         ファイル "Debug\chardll_wassoi.unsuccessfulbuild" を削除しています。
+         "Debug\chardll_wassoi.lastbuildstate" のタッチ タスクを実行しています。
+     1>プロジェクト "C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\chardll_wassoi\chardll_wassoi.vcxproj" (build ターゲット) のビルドが完了しました。
 
 ビルドに成功しました。
 
-経過時間 00:00:00.21
+経過時間 00:00:16.72

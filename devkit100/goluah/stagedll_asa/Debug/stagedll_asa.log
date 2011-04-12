@@ -1,9 +1,62 @@
-﻿2011/04/11 19:03:21 にビルドを開始しました。
-     1>ノード 3 上のプロジェクト "C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\stagedll_asa\stagedll_asa.vcxproj" (clean ターゲット)。
-     1>_PrepareForClean:
-         ファイル "Debug\stagedll_asa.lastbuildstate" を削除しています。
-     1>プロジェクト "C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\stagedll_asa\stagedll_asa.vcxproj" (clean ターゲット) のビルドが完了しました。
+﻿2011/04/12 13:50:26 にビルドを開始しました。
+     1>ノード 2 上のプロジェクト "C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\stagedll_asa\stagedll_asa.vcxproj" (build ターゲット)。
+     1>InitializeBuildStatus:
+         "AlwaysCreate" が指定されたため "Debug\stagedll_asa.unsuccessfulbuild" を作成しています。
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/common" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D STAGEDLL_ASA_EXPORTS /D USE_DIRECT3D_DIRECT /D USE_GOLUAH_COMMON_DLL /D _VC80_UPGRADE=0x0710 /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:fast /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt jisaku.cpp stage.cpp ..\common\aki3d.cpp ..\common\aki3d_internal.cpp ..\common\gobjbase.cpp
+         gobjbase.cpp
+         aki3d_internal.cpp
+     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\common\aki3d_internal.cpp(33): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : 'sprintf' の宣言を確認してください。
+     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\common\aki3d_internal.cpp(35): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : 'strcpy' の宣言を確認してください。
+     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\common\aki3d_internal.cpp(52): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : 'strcpy' の宣言を確認してください。
+     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\common\aki3d_internal.cpp(109): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : 'strcpy' の宣言を確認してください。
+         aki3d.cpp
+     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\common\aki3d.cpp(329): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : 'vsprintf' の宣言を確認してください。
+         stage.cpp
+     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\stagedll_asa\stage.cpp(110): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : 'sprintf' の宣言を確認してください。
+     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\stagedll_asa\stage.cpp(116): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : 'sprintf' の宣言を確認してください。
+         jisaku.cpp
+     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\stagedll_asa\jisaku.cpp(44): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : 'sprintf' の宣言を確認してください。
+     1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\stagedll_asa\jisaku.cpp(47): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : 'sprintf' の宣言を確認してください。
+         コードを生成中...
+       ManifestResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\stagedll_asa.dll.embed.manifest.res" Debug\stagedll_asa_manifest.rc 
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(990,5): warning MSB8012: TargetPath(C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\stagedll_asa\Debug\stagedll_asa.dll) が Linker の OutputFile プロパティ値 (C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\execenv\stage\3D\asa\stage.dll) と一致しません。このため、プロジェクトが正常にビルドされない可能性があります。この問題を解決するには、$(OutDir)、$(TargetName)、および $(TargetExt) の各プロパティ値が、%(Link.OutputFile) で指定されている値と一致することを確認してください。
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(992,5): warning MSB8012: TargetName(stagedll_asa) が Linker の OutputFile プロパティ値 (stage) と一致しません。このため、プロジェクトが正常にビルドされない可能性があります。この問題を解決するには、$(OutDir)、$(TargetName)、および $(TargetExt) の各プロパティ値が、%(Link.OutputFile) で指定されている値と一致することを確認してください。
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/execenv/stage/3D/asa/stage.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/lib" d3dx8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:libci.lib /DEF:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/common/stage_vc.def" /MANIFEST /ManifestFile:"Debug\stagedll_asa.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"Debug\stagedll_asa.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Debug\stagedll_asa.lib" /MACHINE:X86 /DLL Debug\stagedll_asa.dll.embed.manifest.res
+         Debug\jisaku.obj
+         Debug\stage.obj
+         Debug\aki3d.obj
+         Debug\aki3d_internal.obj
+         Debug\gobjbase.obj /nodefaultlib:libci 
+            ライブラリ Debug\stagedll_asa.lib とオブジェクト Debug\stagedll_asa.exp を作成中
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\stagedll_asa.dll.embed.manifest" /manifest Debug\stagedll_asa.dll.intermediate.manifest
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\stagedll_asa.dll.embed.manifest.res" Debug\stagedll_asa_manifest.rc 
+       LinkEmbedManifest:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/execenv/stage/3D/asa/stage.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/lib" d3dx8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:libci.lib /DEF:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/common/stage_vc.def" /MANIFEST /ManifestFile:"Debug\stagedll_asa.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"Debug\stagedll_asa.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Debug\stagedll_asa.lib" /MACHINE:X86 /DLL Debug\stagedll_asa.dll.embed.manifest.res
+         Debug\jisaku.obj
+         Debug\stage.obj
+         Debug\aki3d.obj
+         Debug\aki3d_internal.obj
+         Debug\gobjbase.obj /nodefaultlib:libci 
+            ライブラリ Debug\stagedll_asa.lib とオブジェクト Debug\stagedll_asa.exp を作成中
+         stagedll_asa.vcxproj -> C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\stagedll_asa\Debug\stagedll_asa.dll
+       FinalizeBuildStatus:
+         ファイル "Debug\stagedll_asa.unsuccessfulbuild" を削除しています。
+         "Debug\stagedll_asa.lastbuildstate" のタッチ タスクを実行しています。
+     1>プロジェクト "C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\stagedll_asa\stagedll_asa.vcxproj" (build ターゲット) のビルドが完了しました。
 
 ビルドに成功しました。
 
-経過時間 00:00:00.26
+経過時間 00:00:19.84

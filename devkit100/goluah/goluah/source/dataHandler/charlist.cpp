@@ -185,7 +185,7 @@ BOOL CCharacterList::VerifyCharacterDir(char *dir,DWORD ringindex)
 	//構造体へデータコピー
 	CCL_CHARACTERINFO newitem;
 	ZeroMemory(&newitem,sizeof(CCL_CHARACTERINFO));
-	strcpy(newitem.dir  , dir);
+	strcpy_s(newitem.dir  , dir);						// ここだけstrcpy_s対応、って…
 	strcpy(newitem.name , info.name);
 	newitem.ver = info.ver;
 	newitem.caps = info.caps;

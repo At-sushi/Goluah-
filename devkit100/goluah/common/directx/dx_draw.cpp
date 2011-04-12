@@ -13,10 +13,7 @@
 
 #ifndef GCD_EDITER
 #include "stdafx.h"//–{‘Ì‚Ìê‡
-extern "C"
-{
 #include "jpeglib.h"
-} // extern "C"
 #include "task_loading.h"
 #else
 enum NowLoading_IconItem
