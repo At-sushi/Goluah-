@@ -400,7 +400,8 @@ void CBattleTaskNet::T_Action(BOOL stop)
 	int i;
 	for(i=0;i<(int)p_objects.size();i++){
 		if(p_objects[i]!=NULL && 
-			(p_objects[i]->data.id & BATTLETASK_FXOBJFLAG || IsLocal(p_objects[i]->dll_id))){
+			(p_objects[i]->data.id & BATTLETASK_FXOBJFLAG || IsLocal(p_objects[i]->dll_id) ||
+			p_objects[i]->dll_id == 0 || p_objects[i]->dll_id == 7)){
 			if(!stop)
 				p_objects[i]->Message(GOBJMSG_ACTION);
 			else if(p_objects[i]->data.objtype & GOBJFLG_DONOTSTOP ||
@@ -1358,7 +1359,32 @@ DWORD CBattleTaskNet::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
 
 BOOL CBattleTaskNet::CatchObject(DWORD eoid,LPVOID cy)
 {
-	return(FALSE);
+	if(cy==NULL)return(FALSE);
+
+	CGObject *peobj = (CGObject*)GetGObject(eoid);
+	if(peobj==NULL)return(FALSE);
+
+	if(!(peobj->data.objtype & GOBJFLG_NAGERARE))return(FALSE);//相手が投げられフラグを持っていなかったら失敗
+	if(!peobj->data.nagerare)return(FALSE);
+	if(peobj->nage_muteki_cnt>0)return FALSE;
+	if(peobj->data.counter==0)return(FALSE);//相手が行動遷移直後だったら止めておく
+	if(peobj->data.aid & ACTID_GUARD)return(FALSE);//ガード中も、一応ダメってことにしておく
+	if(peobj->data.aid & ACTID_NAGE)return(FALSE);//投げ中も、一応ダメってことにしておく
+	if(peobj->data.aid & ACTID_INOUT)return(FALSE);//交代orストライカー攻撃中
+
+	if(!(peobj->data.aid&ACTID_KURAI)){
+		peobj->hitcount=0;
+	}
+
+	//成功
+	peobj->data.aid = ACTID_NAGERARE;
+	peobj->ActionIDChanged(TRUE,TRUE);
+	peobj->data.muteki=TRUE;//喰らい判定OFF
+	peobj->data.kasanari=FALSE;//重なり判定OFF
+	peobj->data.nagerare=FALSE;//投げられ判定OFF
+	peobj->cy = *(CATCHYOU*)cy;
+
+	return(TRUE);
 }
 
 CGObject* CBattleTaskNet::GetGObject(DWORD oid)

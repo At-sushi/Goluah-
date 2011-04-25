@@ -13,13 +13,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// 日本語 resources
+// 日本語 (日本) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
-#ifdef _WIN32
 LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
 #pragma code_page(932)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -64,7 +62,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_DIALOG1, DIALOG
     BEGIN
@@ -112,9 +110,7 @@ CAPTION "Goluah!! character&stage information"
 FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x0
 BEGIN
     DEFPUSHBUTTON   "開始",IDOK,196,196,50,14
-    LISTBOX         IDC_LIST1,7,6,240,186,NOT LBS_NOTIFY | 
-                    LBS_DISABLENOSCROLL | LBS_NOSEL | WS_VSCROLL | 
-                    WS_HSCROLL | WS_TABSTOP
+    LISTBOX         IDC_LIST1,7,6,240,186,NOT LBS_NOTIFY | LBS_DISABLENOSCROLL | LBS_NOSEL | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
     PUSHBUTTON      "終了",IDC_BUTTON1,139,196,50,14
 END
 
@@ -123,7 +119,7 @@ STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION
 CAPTION "設定"
 FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x0
 BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,75,53,50,14
+    PUSHBUTTON      "OK",IDOK,75,53,50,14
     EDITTEXT        IDC_EDIT_NAME,57,7,84,14,ES_AUTOHSCROLL
     LTEXT           "名前 : ",IDC_STATIC,36,12,20,8
     EDITTEXT        IDC_EDIT_PORT,57,30,84,14,ES_AUTOHSCROLL | ES_NUMBER
@@ -136,15 +132,14 @@ STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION
 CAPTION "接続設定"
 FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x0
 BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,77,148,50,14
+    PUSHBUTTON      "OK",IDOK,77,148,50,14
     EDITTEXT        IDC_EDIT_NAME,63,31,84,14,ES_AUTOHSCROLL
     LTEXT           "名前 : ",IDC_STATIC,42,36,20,8
     EDITTEXT        IDC_EDIT_PORT,63,54,84,14,ES_AUTOHSCROLL | ES_NUMBER
     LTEXT           "ポート番号 : ",IDC_STATIC,24,56,38,8
     EDITTEXT        IDC_EDIT_HOSTIP,70,98,74,14,ES_AUTOHSCROLL
     LTEXT           "IPアドレス : ",IDC_STATIC,22,102,35,8
-    EDITTEXT        IDC_EDIT_HOSTPORT,70,120,74,14,ES_AUTOHSCROLL | 
-                    ES_NUMBER
+    EDITTEXT        IDC_EDIT_HOSTPORT,70,120,74,14,ES_AUTOHSCROLL | ES_NUMBER
     LTEXT           "ポート番号 : ",IDC_STATIC,21,122,38,8
     GROUPBOX        "自分の",IDC_STATIC,7,17,173,60
     GROUPBOX        "ホストの",IDC_STATIC,8,84,173,60
@@ -156,40 +151,25 @@ STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION
 CAPTION "Goluah!! network info"
 FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x0
 BEGIN
-    EDITTEXT        IDC_EDIT_CHAT,7,85,257,14,ES_MULTILINE | ES_AUTOVSCROLL | 
-                    ES_AUTOHSCROLL | ES_WANTRETURN
-    LISTBOX         IDC_MEMBER,7,18,84,52,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
-                    WS_VSCROLL | WS_TABSTOP
-    LISTBOX         IDC_LOG,7,102,257,116,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
-                    WS_HSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_CHAT,7,85,257,14,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN
+    LISTBOX         IDC_MEMBER,7,18,84,52,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_LOG,7,102,257,116,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
     LTEXT           "メンツ",IDC_STATIC,7,7,18,8
     LTEXT           "ログ",IDC_STATIC,7,74,13,8
-    CONTROL         "Progress1",IDC_PROGRESSL1,"msctls_progress32",WS_BORDER | 
-                    0x1,92,20,78,6
+    CONTROL         "Progress1",IDC_PROGRESSL1,"msctls_progress32",PBS_SMOOTH | WS_BORDER,92,20,78,6
     LTEXT           "遅延時間 (max 1000ms)",IDC_STATIC,92,7,72,8
     LTEXT           "スループット(max 10KB/s)",IDC_STATIC,179,7,78,8
-    CONTROL         "Progress1",IDC_PROGRESST1,"msctls_progress32",WS_BORDER | 
-                    0x1,179,20,78,6
-    CONTROL         "Progress1",IDC_PROGRESSL3,"msctls_progress32",WS_BORDER | 
-                    0x1,92,37,78,6
-    CONTROL         "Progress1",IDC_PROGRESSL4,"msctls_progress32",WS_BORDER | 
-                    0x1,92,45,78,6
-    CONTROL         "Progress1",IDC_PROGRESSL5,"msctls_progress32",WS_BORDER | 
-                    0x1,92,53,78,6
-    CONTROL         "Progress1",IDC_PROGRESSL6,"msctls_progress32",WS_BORDER | 
-                    0x1,92,62,78,6
-    CONTROL         "Progress1",IDC_PROGRESSL2,"msctls_progress32",WS_BORDER | 
-                    0x1,92,28,78,6
-    CONTROL         "Progress1",IDC_PROGRESST2,"msctls_progress32",WS_BORDER | 
-                    0x1,179,29,78,6
-    CONTROL         "Progress1",IDC_PROGRESST3,"msctls_progress32",WS_BORDER | 
-                    0x1,179,38,78,6
-    CONTROL         "Progress1",IDC_PROGRESST4,"msctls_progress32",WS_BORDER | 
-                    0x1,179,46,78,6
-    CONTROL         "Progress1",IDC_PROGRESST5,"msctls_progress32",WS_BORDER | 
-                    0x1,179,54,78,6
-    CONTROL         "Progress1",IDC_PROGRESST6,"msctls_progress32",WS_BORDER | 
-                    0x1,179,62,78,6
+    CONTROL         "Progress1",IDC_PROGRESST1,"msctls_progress32",PBS_SMOOTH | WS_BORDER,179,20,78,6
+    CONTROL         "Progress1",IDC_PROGRESSL3,"msctls_progress32",PBS_SMOOTH | WS_BORDER,92,37,78,6
+    CONTROL         "Progress1",IDC_PROGRESSL4,"msctls_progress32",PBS_SMOOTH | WS_BORDER,92,45,78,6
+    CONTROL         "Progress1",IDC_PROGRESSL5,"msctls_progress32",PBS_SMOOTH | WS_BORDER,92,53,78,6
+    CONTROL         "Progress1",IDC_PROGRESSL6,"msctls_progress32",PBS_SMOOTH | WS_BORDER,92,62,78,6
+    CONTROL         "Progress1",IDC_PROGRESSL2,"msctls_progress32",PBS_SMOOTH | WS_BORDER,92,28,78,6
+    CONTROL         "Progress1",IDC_PROGRESST2,"msctls_progress32",PBS_SMOOTH | WS_BORDER,179,29,78,6
+    CONTROL         "Progress1",IDC_PROGRESST3,"msctls_progress32",PBS_SMOOTH | WS_BORDER,179,38,78,6
+    CONTROL         "Progress1",IDC_PROGRESST4,"msctls_progress32",PBS_SMOOTH | WS_BORDER,179,46,78,6
+    CONTROL         "Progress1",IDC_PROGRESST5,"msctls_progress32",PBS_SMOOTH | WS_BORDER,179,54,78,6
+    CONTROL         "Progress1",IDC_PROGRESST6,"msctls_progress32",PBS_SMOOTH | WS_BORDER,179,62,78,6
 END
 
 
@@ -208,7 +188,7 @@ IDI_ICON1               ICON                    "goluah2.ico"
 //
 
 IDR_GOLUAH              REGISTRY                "goluah.rgs"
-#endif    // 日本語 resources
+#endif    // 日本語 (日本) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

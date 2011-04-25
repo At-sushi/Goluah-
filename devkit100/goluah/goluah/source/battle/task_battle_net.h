@@ -19,7 +19,7 @@ typedef struct NetMessage{
 #define GNETMSG_TESTSYNC		0
 struct TestSyncMes : NetMessage{
 	DWORD id;
-	double x, y;
+	float x, y;
 	DWORD aid, /*now, */counter;
 	BOOL muki;
 };
@@ -29,7 +29,7 @@ struct TestSyncMes : NetMessage{
 struct Sync2Mes : NetMessage{
 	DWORD pid;
 	int hp;
-	double gauge;
+	float gauge;
 };
 
 //!フレームが１進んだ通知

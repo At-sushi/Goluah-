@@ -67,11 +67,7 @@ HRESULT CDirectPlay::Initialize(const char* Name, const char* Port)
 	if ( FAILED(hr = CoCreateInstance(CLSID_DirectPlay8Address, NULL, CLSCTX_INPROC_SERVER,
 		 IID_IDirectPlay8Address, (void**)&pMyAddr)) )
 		 return hr;
-#ifdef _DEBUG
-	pMyAddr->SetSP(&CLSID_NETWORKSIMULATOR_DP8SP_TCPIP);
-#else
 	pMyAddr->SetSP(&CLSID_DP8SP_TCPIP);
-#endif
 	// ƒ|[ƒgÝ’è
 	if (Port[0] != '\0')
 	{
@@ -129,11 +125,7 @@ HRESULT CDirectPlay::Connect(const char* IP, DWORD Port)
 	if ( FAILED(hr = CoCreateInstance(CLSID_DirectPlay8Address, NULL, CLSCTX_INPROC_SERVER,
 		 IID_IDirectPlay8Address, (void**)&pHostAddr)) )
 		 return hr;
-#ifdef _DEBUG
-	pHostAddr->SetSP(&CLSID_NETWORKSIMULATOR_DP8SP_TCPIP);
-#else
 	pHostAddr->SetSP(&CLSID_DP8SP_TCPIP);
-#endif
 
 	hr = pHostAddr->AddComponent(DPNA_KEY_HOSTNAME, IP, strlen(IP) + 1, DPNA_DATATYPE_STRING_ANSI);
 	hr = pHostAddr->AddComponent(

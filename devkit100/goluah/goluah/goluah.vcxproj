@@ -368,6 +368,7 @@
     <ClInclude Include="source\battle\task_demobattle.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="goluah.rgs" />
     <None Include="res\goluah.ico" />
     <None Include="res\goluah.rc2" />
     <None Include="goluah2.ico" />
