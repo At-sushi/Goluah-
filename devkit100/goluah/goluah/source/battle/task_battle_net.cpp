@@ -122,6 +122,8 @@ void CBattleTaskNet::InitializeParameters()
 	disp_center_x=0;
 	disp_center_y=-(double)tan(D3DXToRadian(40)) * 240.0;
 	battle_end = FALSE;
+	actcount = 0;
+	hoststop = false;
 
 	int i,j;
 	for(i=0;i<MAXNUM_TEAM;i++){
@@ -292,6 +294,8 @@ BOOL CBattleTaskNet::Execute(DWORD time)
 			efct_hitstop--;
 			act_stop=TRUE;
 		}
+		if (hoststop)
+			act_stop=TRUE;
 
 		T_Command();//command
 		T_Action(act_stop);//action
@@ -401,14 +405,15 @@ void CBattleTaskNet::T_Action(BOOL stop)
 	for(i=0;i<(int)p_objects.size();i++){
 		if(p_objects[i]!=NULL && 
 			(p_objects[i]->data.id & BATTLETASK_FXOBJFLAG || IsLocal(p_objects[i]->dll_id) ||
-			p_objects[i]->dll_id == 0 || p_objects[i]->dll_id == 7)){
+			p_objects[i]->dll_id == 0 || p_objects[i]->dll_id == 7 || actcount > 0)
+			){
 			if(!stop)
 				p_objects[i]->Message(GOBJMSG_ACTION);
 			else if(p_objects[i]->data.objtype & GOBJFLG_DONOTSTOP ||
 					p_objects[i]->data.nonstop)
 				p_objects[i]->Message(GOBJMSG_ACTION);
 
-			if (BATTLETASK_ISNOTFXOBJ((&p_objects[i]->data)) &&
+			if (BATTLETASK_ISNOTFXOBJ((&p_objects[i]->data)) && IsLocal(p_objects[i]->dll_id) &&
 				p_objects[i]->dll_id != 0 && p_objects[i]->dll_id != 7){	// システム、背景ではない。
 				if (p_objects[i]->data.counter % 15 == 1){
 					struct TestSyncMes tsm;
@@ -427,13 +432,17 @@ void CBattleTaskNet::T_Action(BOOL stop)
 		}
 	}
 
-	if (g_play.IsHost() && GetGObjectInfo(0)->counter % 15 != 1) {	// アクションだけ（将来的に１ＰＣの全キャラ分を一括する予定 もうした）
+	// カウント減算
+	if (actcount > 0)
+		actcount--;
+
+	if (g_play.IsHost() && GetGObjectInfo(0)->counter % 2 != 1) {	// アクションだけ（将来的に１ＰＣの全キャラ分を一括する予定 もうした）
 		struct ActionMes am;
 
-		am.msgid = GNETMSG_ACTION;
+		am.msgid = (GetGObjectInfo(0)->counter % 15 != 1 ? GNETMSG_ACTION2 : GNETMSG_ACTION);		// testsyncとのダブり対策
 		am.isStop = (act_stop == TRUE);
 		// am.aid = p_objects[i]->data.aid;
-		g_play.SendMsg(DPNID_ALL_PLAYERS_GROUP, am, sizeof(am), 20, DPNSEND_NOLOOPBACK | DPNSEND_NONSEQUENTIAL);
+		g_play.SendMsg(DPNID_ALL_PLAYERS_GROUP, am, sizeof(am), 40, DPNSEND_NOLOOPBACK | DPNSEND_NONSEQUENTIAL);
 	}
 
 	g_system.PopSysTag();
@@ -1198,19 +1207,20 @@ HRESULT CBattleTaskNet::DPlayMessage(PVOID UserCont, DWORD mtype, PVOID pmes)
 					{
 						struct ActionMes* pmes = (struct ActionMes*)pMsg->pReceiveData;
 
-						int i;
-						for(i=0;i<(int)p_objects.size();i++){
-							CGObject* pobj = p_objects[i];
+						actcount++;
+						hoststop = pmes->isStop;
+					}
+					break;
+				}
+				
+			case GNETMSG_ACTION2:
+				{
+					if (pMsg->dwReceiveDataSize >= sizeof(struct ActionMes) && !g_play.IsHost())
+					{
+						Action2Mes* pmes = (struct ActionMes*)pMsg->pReceiveData;
 
-	/*						if (pobj->data.aid != pmes->aid){
-								pobj->data.aid = pmes->aid;
-								pobj->ActionIDChanged(FALSE, TRUE);
-							}
-	*/						if ( pobj && BATTLETASK_ISNOTFXOBJ((&pobj->data)) &&
-								 pobj->dll_id != 0 && pobj->dll_id != 7 &&
-									(!pmes->isStop || pobj->data.objtype & GOBJFLG_DONOTSTOP || pobj->data.nonstop) )
-								pobj->Message(GOBJMSG_ACTION);
-						}
+						actcount += 2;
+						hoststop = pmes->isStop;		// 若干のずれは許容する方針で
 					}
 					break;
 				}
@@ -1424,6 +1434,40 @@ CGObject* CBattleTaskNet::GetCharacterObject(DWORD j,DWORD i)
 
 void CBattleTaskNet::AddEffect(DWORD efctid,int prm1,int prm2,int prm3)
 {
+	g_system.PushSysTag(__FUNCTION__);
+
+	switch(efctid){
+	//CBattleTaskが担うエフェクト
+	// Stop系はホスト以外とりあえず保留
+	case EFCTID_STOP:
+		if (g_play.IsHost())
+			efct_stop = prm1;
+		break;
+	case EFCTID_DARK:
+		efct_darkbg = prm1;
+		break;
+	case EFCTID_SINDO:
+		efct_sindo = prm2;
+		efct_sindom= prm1;
+		break;
+	case EFCTID_NOBG:
+		efct_nobg = prm1;
+		break;
+	case EFCTID_CYOHI:
+		cp_efctlist->AddEffect(EFCTID_CYOHILIGHT,prm1,prm2,0);
+		g_system.PlaySystemSound(SYSTEMSOUND_CYOHI);
+		efct_darkbg = 30;
+		if (g_play.IsHost())
+			efct_stop = 30;
+		break;
+	case EFCTID_FLASH:
+		efct_flash = prm1;
+		break;
+	default://あとはCEffectListに任せるyo
+		cp_efctlist->AddEffect(efctid,prm1,prm2,prm3);
+	}
+
+	g_system.PopSysTag();
 }
 
 

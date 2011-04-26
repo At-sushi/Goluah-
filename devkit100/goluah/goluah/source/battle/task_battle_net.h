@@ -64,6 +64,10 @@ struct SyncHPMes : NetMessage{
 	int hp;
 };
 
+//!フレームが２進んだ通知
+#define GNETMSG_ACTION2				7
+typedef struct ActionMes Action2Mes;
+
 /*!
 *	@brief ネット対戦版戦闘タスク
 *	@ingroup Battle
@@ -140,7 +144,9 @@ protected:
 
 	//状態
 	DWORD hprecratio[2][MAXNUM_TEAM];	//!<自由交代制のときの体力回復率
-	BOOL  battle_end;		//!<タスクをヌけるのに使用
+	BOOL  battle_end;					//!<タスクをヌけるのに使用
+	int	  actcount;						//!<あと何回Actionの実行が許可されたか
+	bool  hoststop;						//!<ホストが停止中
 
 	//!デバッグテキスト表示用バッファ
 	char *debugmsgbuff;
