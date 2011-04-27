@@ -428,7 +428,7 @@ void CBattleTaskNet::T_Action(BOOL stop)
 					// tsm.cnow = p_objects[i]->data.cnow;
 					tsm.counter = p_objects[i]->data.counter;
 					tsm.muki = p_objects[i]->data.muki ? true : false;
-					g_play.SendMsg(DPNID_ALL_PLAYERS_GROUP, tsm, sizeof(tsm), 300, DPNSEND_NOLOOPBACK);
+					g_play.SendMsg(DPNID_ALL_PLAYERS_GROUP, tsm, sizeof(tsm), 300, DPNSEND_NOLOOPBACK | DPNSEND_COALESCE);
 				}
 			}
 		}
@@ -1937,7 +1937,7 @@ void CBattleTaskNet::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 					tsm.aid = higaisya->data.aid;
 					tsm.counter = higaisya->data.counter;
 					tsm.muki = higaisya->data.muki ? true : false;
-					g_play.SendMsg(DPNID_ALL_PLAYERS_GROUP, tsm, sizeof(tsm), 300, DPNSEND_NOLOOPBACK);
+					g_play.SendMsg(DPNID_ALL_PLAYERS_GROUP, tsm, sizeof(tsm), 300, DPNSEND_NOLOOPBACK | DPNSEND_COALESCE);
 
 					struct SyncHPMes s2m;
 
@@ -1945,7 +1945,7 @@ void CBattleTaskNet::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 					s2m.pid = higaisya->dll_id;
 					s2m.hp = higaisya->data.hp;
 					g_play.SendMsg(DPNID_ALL_PLAYERS_GROUP, s2m, sizeof(s2m), 200,
-									DPNSEND_NOLOOPBACK | DPNSEND_NONSEQUENTIAL);
+									DPNSEND_NOLOOPBACK | DPNSEND_NONSEQUENTIAL | DPNSEND_COALESCE);
 		}
 	}
 	else if(res & 0x20000000){//ƒK[ƒh‚µ‚½
@@ -2037,7 +2037,7 @@ void CBattleTaskNet::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 					tsm.aid = higaisya->data.aid;
 					tsm.counter = higaisya->data.counter;
 					tsm.muki = higaisya->data.muki ? true : false;
-					g_play.SendMsg(DPNID_ALL_PLAYERS_GROUP, tsm, sizeof(tsm), 300, DPNSEND_NOLOOPBACK);
+					g_play.SendMsg(DPNID_ALL_PLAYERS_GROUP, tsm, sizeof(tsm), 300, DPNSEND_NOLOOPBACK | DPNSEND_COALESCE);
 
 					struct SyncHPMes s2m;
 
@@ -2045,7 +2045,7 @@ void CBattleTaskNet::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 					s2m.pid = higaisya->dll_id;
 					s2m.hp = higaisya->data.hp;
 					g_play.SendMsg(DPNID_ALL_PLAYERS_GROUP, s2m, sizeof(s2m), 200,
-									DPNSEND_NOLOOPBACK | DPNSEND_NONSEQUENTIAL);
+									DPNSEND_NOLOOPBACK | DPNSEND_NONSEQUENTIAL | DPNSEND_COALESCE);
 		}
 	}
 	else{
