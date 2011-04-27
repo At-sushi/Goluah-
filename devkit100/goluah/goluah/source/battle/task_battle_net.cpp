@@ -1193,12 +1193,15 @@ HRESULT CBattleTaskNet::DPlayMessage(PVOID UserCont, DWORD mtype, PVOID pmes)
 
 			case GNETMSG_SYNC2:
 				{
+					if (pMsg->dwReceiveDataSize >= sizeof(struct Sync2Mes))
+					{
 						struct Sync2Mes* pmes = (struct Sync2Mes*)pMsg->pReceiveData;
 						GOBJECT* pdat = GetCharacterInfo(pmes->pid / MAXNUM_TEAM, pmes->pid % MAXNUM_TEAM);
 
 						pdat->hp = pmes->hp;
 						pdat->gauge = pmes->gauge;
-						break;
+					}
+					break;
 				}
 
 			case GNETMSG_ACTION:
@@ -1215,12 +1218,24 @@ HRESULT CBattleTaskNet::DPlayMessage(PVOID UserCont, DWORD mtype, PVOID pmes)
 				
 			case GNETMSG_ACTION2:
 				{
-					if (pMsg->dwReceiveDataSize >= sizeof(struct ActionMes) && !g_play.IsHost())
+					if (pMsg->dwReceiveDataSize >= sizeof(Action2Mes) && !g_play.IsHost())
 					{
-						Action2Mes* pmes = (struct ActionMes*)pMsg->pReceiveData;
+						Action2Mes* pmes = (Action2Mes*)pMsg->pReceiveData;
 
 						actcount += 2;
 						hoststop = pmes->isStop;		// ŽáŠ±‚Ì‚¸‚ê‚Í‹–—e‚·‚é•ûj‚Å
+					}
+					break;
+				}
+
+			case GNETMSG_SYNCHP:
+				{
+					if (pMsg->dwReceiveDataSize >= sizeof(struct SyncHPMes))
+					{
+						struct SyncHPMes* pmes = (struct SyncHPMes*)pMsg->pReceiveData;
+						GOBJECT* pdat = GetCharacterInfo(pmes->pid / MAXNUM_TEAM, pmes->pid % MAXNUM_TEAM);
+
+						pdat->hp = pmes->hp;
 					}
 					break;
 				}
