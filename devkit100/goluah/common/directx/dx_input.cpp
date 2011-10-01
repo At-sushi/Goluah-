@@ -406,7 +406,7 @@ int CDirectInput::SeekKey(DWORD cid,int offset,int num_seek,DWORD key)
 int CDirectInput::SeekKeyNet(DWORD cid,int offset,int num_seek,DWORD key)
 {
 	for(int i=offset;i<num_seek;i++){
-		if((GetKeyNet(cid,i)&0x00003333) == key){
+		if((GetKeyNet(cid,i)& ((i == 0) ? 0x00001111 : 0x00003333)) == key){	// 暫定措置（自動ダッシュよけ）
 			return(i);
 		}
 	}
