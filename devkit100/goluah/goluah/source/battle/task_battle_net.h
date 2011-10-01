@@ -9,6 +9,7 @@
 #define DEBUGMSGBUFFERSIZE	(1024*4)
 #define OBJECTS_MEMINCRATE	32//!< オブジェクト配列、メモリ増分値
 
+#include <PshPack1.h>
 //! ネットに送信するメッセージのベース
 typedef struct NetMessage{
 	BYTE msgid;
@@ -63,6 +64,7 @@ struct SyncHPMes : NetMessage{
 	BYTE pid;
 	int hp;
 };
+#include <PopPack.h>						// ネットメッセージ終わり
 
 //!フレームが２進んだ通知
 #define GNETMSG_ACTION2				7

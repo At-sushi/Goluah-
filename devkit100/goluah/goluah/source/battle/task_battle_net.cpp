@@ -412,6 +412,8 @@ void CBattleTaskNet::T_Action(BOOL stop)
 			else if(p_objects[i]->data.objtype & GOBJFLG_DONOTSTOP ||
 					p_objects[i]->data.nonstop)
 				p_objects[i]->Message(GOBJMSG_ACTION);
+			else
+				break;											// ヒットストップ中は同期送信しない
 
 			if (BATTLETASK_ISNOTFXOBJ((&p_objects[i]->data)) && IsLocal(p_objects[i]->dll_id) &&
 				p_objects[i]->dll_id != 0 && p_objects[i]->dll_id != 7){	// システム、背景ではない。
@@ -436,7 +438,7 @@ void CBattleTaskNet::T_Action(BOOL stop)
 	if (actcount > 0)
 		actcount--;
 
-	if (g_play.IsHost() && GetGObjectInfo(0)->counter % 2 != 1) {	// アクションだけ（将来的に１ＰＣの全キャラ分を一括する予定 もうした）
+	if (g_play.IsHost() && GetGObjectInfo(0)->counter % 2 != 1) {	// アクションだけ（１ＰＣの全キャラ分を一括）
 		struct ActionMes am;
 
 		am.msgid = (GetGObjectInfo(0)->counter % 15 != 1 ? GNETMSG_ACTION2 : GNETMSG_ACTION);		// testsyncとのダブり対策
@@ -866,6 +868,105 @@ void CBattleTaskNet::T_AtariHantei()
 ------------------------------------------------------------------*/
 void CBattleTaskNet::T_Sousai()
 {
+	g_system.PushSysTag(__FUNCTION__);
+
+	int i,j,k,l;
+	int num_kas;
+	MY2DVECTOR kas_point[3*6];
+	GOBJECT *pdat1,*pdat2;
+	GCD_CELL2  c_a,c_k;
+	GCD_HANTEI h_a,h_k;
+	BOOL revx1,revx2;
+	UINT magmode1,magmode2;
+
+	for(i=1;i<(int)p_objects.size()-1;i++){
+		if(p_objects[i]!=NULL){//オブジェクトが存在する
+			pdat1 = &(p_objects[i]->data);
+			if((pdat1->tid==TEAM_PLAYER1 || pdat1->tid==TEAM_PLAYER2)  && BATTLETASK_ISNOTFXOBJ(pdat1)){
+				if(pdat1->objtype & GOBJFLG_ZBULLET){//オブジェクトは飛び道具属性を持つ
+					if(pdat1->kougeki){//攻撃力を失っていない
+						if(pdat1->phdat!=NULL){
+							if(pdat1->pcdat!=NULL)
+							{
+								if( ((GCD_CELL2_070*)pdat1->pcdat)[0].cell[0].flag==700 ){
+									magmode1 = 1;//重心中心
+								}
+								else{
+									if(pdat1->pcdat[pdat1->cnow].flag & GCDCELL2_ROT_BASEPOINT){
+										magmode1 = 0;//足元中心
+									}
+									else magmode1=1;
+								}
+								for(j=i+1;j<(int)p_objects.size();j++){//** 他の全てのオブジェクトに対して **
+									if(p_objects[j]!=NULL){
+										pdat2 = &(p_objects[j]->data);
+										if((pdat2->tid==TEAM_PLAYER1 || pdat2->tid==TEAM_PLAYER2)  && BATTLETASK_ISNOTFXOBJ(pdat2)){
+											if(pdat1->tid != pdat2->tid){
+												if(pdat2->objtype & GOBJFLG_ZBULLET){//オブジェクトは飛び道具属性を持つ
+													if(pdat2->kougeki ){//攻撃力を失っていない
+														if(pdat2->phdat!=NULL){
+															if(pdat2->pcdat!=NULL)
+															{
+																if( ((GCD_CELL2_070*)pdat2->pcdat)[0].cell[0].flag==700 ){
+																	magmode2 = 1;//重心中心
+																}
+																else{
+																	if(pdat2->pcdat[pdat2->cnow].flag & GCDCELL2_ROT_BASEPOINT){
+																		magmode2 = 0;//足元中心
+																	}
+																	else magmode2=1;
+																}
+																//当たり判定を行う
+																num_kas=0;
+																h_a = (pdat1->phdat[ pdat1->cnow ]);
+																h_k = (pdat2->phdat[ pdat2->cnow ]);
+																/*if ( ((GCD_CELL2_070*)pdat2->pcdat)[0].cell[0].flag==700 )
+																{
+																	CGCDHandler::GCDConvCell_070_090( &( ((GCD_CELL2_070*)pdat1->pcdat)[ pdat1->cnow ]), &c_a);
+																	CGCDHandler::GCDConvCell_070_090( &( ((GCD_CELL2_070*)pdat2->pcdat)[ pdat2->cnow ]), &c_k);
+																}
+																else
+																{*/
+																	c_a = (pdat1->pcdat[ pdat1->cnow ]);
+																	c_k = (pdat2->pcdat[ pdat2->cnow ]);
+																/*}*/
+																if(pdat1->muki && !pdat1->revx)revx1=TRUE;
+																else if(!pdat1->muki && pdat1->revx)revx1=TRUE;
+																else revx1=FALSE;
+																if(pdat2->muki && !pdat2->revx)revx2=TRUE;
+																else if(!pdat2->muki && pdat2->revx)revx2=TRUE;
+																else revx2=FALSE;
+																for(k=0;k<3;k++){
+																	for(l=0;l<3;l++){
+																		if(gbl.Syototu2RECTs(h_a.attack[k],h_k.attack[l],&kas_point[num_kas],
+																			c_a.gcx,c_a.gcy,revx1,pdat1->revy,pdat1->rot,pdat1->x,pdat1->y,pdat1->magx,pdat1->magy,
+																			c_k.gcx,c_k.gcy,revx2,pdat2->revy,pdat2->rot,pdat2->x,pdat2->y,pdat2->magx,pdat2->magy,magmode1,magmode2))
+																		{
+																			num_kas++;
+																		}
+																	}
+																}
+																if(num_kas>0){//一つ以上の矩形が衝突した
+																	p_objects[i]->Message(GOBJMSG_SOUSAI,0);
+																	p_objects[j]->Message(GOBJMSG_SOUSAI,0);
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	g_system.PopSysTag();
 }
 
 
@@ -875,6 +976,50 @@ void CBattleTaskNet::T_Sousai()
 ------------------------------------------------------------------*/
 void CBattleTaskNet::T_ChangeTarget()
 {
+	g_system.PushSysTag(__FUNCTION__);
+
+	double minimum_distance;
+	int i,j;
+	static int change_target_index=0;
+	DWORD newtarget;
+
+	GOBJECT *pdat,*pedat;
+
+	newtarget=0;
+	change_target_index += 64;
+	if(change_target_index >= (int)p_objects.size())
+		change_target_index = 0;
+	for(i=change_target_index;i<min(change_target_index+64, (int)p_objects.size());i++){
+		if(p_objects[i]!=NULL){
+			pdat=&(p_objects[i]->data);
+			if((pdat->objtype & GOBJFLG_NEEDTARGET) && BATTLETASK_ISNOTFXOBJ(pdat)){//ターゲットが必要
+				minimum_distance=9999*9999;
+				for(j=0;j<(int)p_objects.size();j++){
+					if(j!=i){
+						if(p_objects[j]!=NULL){
+							pedat=&(p_objects[j]->data);
+							if((pdat->tid!=pedat->tid) && BATTLETASK_ISNOTFXOBJ(pedat)){//チームが違う
+								if(pedat->objtype & GOBJFLG_TOBETARGET){//ターゲットになれる
+									if(pedat->hp > 0){//まだ生きている
+										//距離を測る
+										if( (pedat->x-pdat->x)*(pedat->x-pdat->x) < minimum_distance){//近い
+											minimum_distance = (pedat->x-pdat->x)*(pedat->x-pdat->x);
+											newtarget=j;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				if(p_objects[newtarget]->data.id != pdat->eid && newtarget!=0){
+					p_objects[i]->Message(GOBJMSG_CNGTARGET,p_objects[newtarget]->data.id);
+				}
+			}
+		}
+	}
+
+	g_system.PopSysTag();
 }
 
 
@@ -1778,6 +1923,17 @@ void CBattleTaskNet::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 
 		// HP情報を送信
 		if (g_play.IsHost()){
+					struct TestSyncMes tsm;
+
+					tsm.msgid = GNETMSG_TESTSYNC;
+					tsm.id = higaisya->data.id;
+					tsm.x = higaisya->data.x;
+					tsm.y = higaisya->data.y;
+					tsm.aid = higaisya->data.aid;
+					tsm.counter = higaisya->data.counter;
+					tsm.muki = higaisya->data.muki;
+					g_play.SendMsg(DPNID_ALL_PLAYERS_GROUP, tsm, sizeof(tsm), 300, DPNSEND_NOLOOPBACK);
+
 					struct SyncHPMes s2m;
 
 					s2m.msgid = GNETMSG_SYNCHP;
@@ -1867,6 +2023,17 @@ void CBattleTaskNet::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 
 		if (g_play.IsHost()){
 			// HP情報を送信
+					struct TestSyncMes tsm;
+
+					tsm.msgid = GNETMSG_TESTSYNC;
+					tsm.id = higaisya->data.id;
+					tsm.x = higaisya->data.x;
+					tsm.y = higaisya->data.y;
+					tsm.aid = higaisya->data.aid;
+					tsm.counter = higaisya->data.counter;
+					tsm.muki = higaisya->data.muki;
+					g_play.SendMsg(DPNID_ALL_PLAYERS_GROUP, tsm, sizeof(tsm), 300, DPNSEND_NOLOOPBACK);
+
 					struct SyncHPMes s2m;
 
 					s2m.msgid = GNETMSG_SYNCHP;

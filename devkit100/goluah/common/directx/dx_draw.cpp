@@ -1446,7 +1446,7 @@ void PngErrHandler(png_structp Png,png_const_charp message)
 // プログレス表示用のコールバック
 static void png_read_row_callback(png_structp strPNG, png_uint_32 row, int pass)
 {
-	if (row * strPNG->rowbytes % 524288 < strPNG->rowbytes)
+	if (row * strPNG->rowbytes % (524288 * 8) < strPNG->rowbytes)
 	{
 			//進行状況表示
 			CTNowLoading* task = dynamic_cast<CTNowLoading*>( g_system.FindTask('LOAD') );
