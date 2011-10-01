@@ -1331,7 +1331,12 @@ HRESULT CBattleTaskNet::DPlayMessage(PVOID UserCont, DWORD mtype, PVOID pmes)
 					pobj->data.x = pmes->x;
 					pobj->data.y = pmes->y;
 					// pobj->data.cnow = pmes->cnow;
-					pobj->data.muki = pmes->muki;
+
+					// Žb’è‘[’uB‚ß‚­‚è‚É‚Í‘Î‰ž‚µ‚Ä‚È‚¢B
+					if (pobj->data.muki = pmes->muki) 
+						pobj->data.atk2.flags |= ATKINFO2_RIGHTBACK;
+					else
+						pobj->data.atk2.flags &= ~ATKINFO2_RIGHTBACK;
 				}
 				break;
 			}
