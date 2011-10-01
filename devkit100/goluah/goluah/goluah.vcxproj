@@ -25,7 +25,7 @@
     <UseOfMfc>Static</UseOfMfc>
     <UseOfAtl>false</UseOfAtl>
     <CharacterSet>MultiByte</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>PGUpdate</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -368,6 +368,7 @@
     <ClInclude Include="source\battle\task_demobattle.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\docs\ネット対戦感想.txt" />
     <None Include="goluah.rgs" />
     <None Include="res\goluah.ico" />
     <None Include="res\goluah.rc2" />

@@ -433,6 +433,7 @@
     <None Include="goluah.rgs">
       <Filter>リソース ファイル</Filter>
     </None>
+    <None Include="..\docs\ネット対戦感想.txt" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="goluah.rc">

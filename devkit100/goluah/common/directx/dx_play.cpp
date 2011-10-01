@@ -62,7 +62,7 @@ HRESULT CDirectPlay::Initialize(const char* Name, const char* Port)
 		return DD_FALSE;
 	}
 
-	hr = pDPlay->Initialize(this, G_OnMessage, 0);
+	hr = pDPlay->Initialize(this, G_OnMessage, DPNINITIALIZE_HINT_LANSESSION);
 	// ƒAƒhƒŒƒX‚Á‚Û‚¢‚à‚ÌŠ“¾
 	if ( FAILED(hr = CoCreateInstance(CLSID_DirectPlay8Address, NULL, CLSCTX_INPROC_SERVER,
 		 IID_IDirectPlay8Address, (void**)&pMyAddr)) )
