@@ -289,6 +289,12 @@ void CGauge::DrawHPGauge1()//体力ゲージの描画（TAISENKEISIKI_GOCYAMAZE）
 				vb[2].y = (float)( 0.18 - 0.02 +turiage_y +0.05*j);
 				vb[3].x = (float)( 320.0/240.0  - 210.0/240.0*hiritu - 50.0/240.0 );
 				vb[3].y = (float)( 0.18 + 0.02 +turiage_y +0.05*j);
+				// キャラ数が一人の時だけふとましくする。
+				if (g_battleinfo.GetNumTeam(0) == 1)
+				{
+					vb[0].y -= 0.01f;
+					vb[2].y -= 0.01f;
+				}
 				gauge_blue = (BYTE)(255*hiritu);
 				gauge_yellow = (BYTE)(255*(1-hiritu));
 				vb[2].color = vb[3].color = 0xFF000000 + gauge_yellow*256*256 + gauge_yellow*256 +gauge_blue;
@@ -348,6 +354,12 @@ void CGauge::DrawHPGauge1()//体力ゲージの描画（TAISENKEISIKI_GOCYAMAZE）
 				vb[2].y = (float)( 0.18 - 0.02 +turiage_y +0.05*j);
 				vb[3].x = (float)( 320.0/240.0  + 210.0/240.0*hiritu + 50.0/240.0 );
 				vb[3].y = (float)( 0.18 + 0.02 +turiage_y +0.05*j);
+				// キャラ数が一人の時だけふとましくする。
+				if (g_battleinfo.GetNumTeam(1) == 1)
+				{
+					vb[0].y -= 0.01f;
+					vb[2].y -= 0.01f;
+				}
 				gauge_blue = (BYTE)(255*hiritu);
 				gauge_yellow = (BYTE)(255*(1-hiritu));
 				vb[2].color = vb[3].color = 0xFF000000 + gauge_yellow*256*256 + gauge_yellow*256 +gauge_blue;
