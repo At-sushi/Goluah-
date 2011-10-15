@@ -427,7 +427,7 @@ void CBattleTaskNet::T_Action(BOOL stop)
 					tsm.aid = p_objects[i]->data.aid;
 					// tsm.cnow = p_objects[i]->data.cnow;
 					tsm.counter = p_objects[i]->data.counter;
-					tsm.muki = p_objects[i]->data.muki;
+					tsm.muki = p_objects[i]->data.muki ? true : false;
 					g_play.SendMsg(DPNID_ALL_PLAYERS_GROUP, tsm, sizeof(tsm), 300, DPNSEND_NOLOOPBACK);
 				}
 			}
@@ -1333,7 +1333,7 @@ HRESULT CBattleTaskNet::DPlayMessage(PVOID UserCont, DWORD mtype, PVOID pmes)
 					// pobj->data.cnow = pmes->cnow;
 
 					// Žb’è‘[’uB‚ß‚­‚è‚É‚Í‘Î‰ž‚µ‚Ä‚È‚¢B
-					if (pobj->data.muki = pmes->muki) 
+					if (pobj->data.muki = (pmes->muki ? TRUE : FALSE)) 
 						pobj->data.atk2.flags |= ATKINFO2_RIGHTBACK;
 					else
 						pobj->data.atk2.flags &= ~ATKINFO2_RIGHTBACK;
@@ -1936,7 +1936,7 @@ void CBattleTaskNet::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 					tsm.y = higaisya->data.y;
 					tsm.aid = higaisya->data.aid;
 					tsm.counter = higaisya->data.counter;
-					tsm.muki = higaisya->data.muki;
+					tsm.muki = higaisya->data.muki ? true : false;
 					g_play.SendMsg(DPNID_ALL_PLAYERS_GROUP, tsm, sizeof(tsm), 300, DPNSEND_NOLOOPBACK);
 
 					struct SyncHPMes s2m;
@@ -2036,7 +2036,7 @@ void CBattleTaskNet::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 					tsm.y = higaisya->data.y;
 					tsm.aid = higaisya->data.aid;
 					tsm.counter = higaisya->data.counter;
-					tsm.muki = higaisya->data.muki;
+					tsm.muki = higaisya->data.muki ? true : false;
 					g_play.SendMsg(DPNID_ALL_PLAYERS_GROUP, tsm, sizeof(tsm), 300, DPNSEND_NOLOOPBACK);
 
 					struct SyncHPMes s2m;
