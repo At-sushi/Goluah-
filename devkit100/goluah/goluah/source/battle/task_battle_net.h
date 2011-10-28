@@ -22,13 +22,13 @@ struct TestSyncMes : NetMessage{
 	DWORD id;
 	float x, y;
 	DWORD aid, /*now, */counter;
-	BOOL muki;
+	bool muki;
 };
 
 //!HP・ゲージ同期(要改良）
 #define GNETMSG_SYNC2			1
 struct Sync2Mes : NetMessage{
-	DWORD pid;
+	BYTE pid;
 	int hp;
 	float gauge;
 };

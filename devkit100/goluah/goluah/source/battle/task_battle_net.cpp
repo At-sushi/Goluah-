@@ -1,4 +1,6 @@
-
+/*
+2011/10/29	別キャラ対戦出来るよう、「net1」「net2」を読み込むように
+*/
 /*============================================================================
 
 	戦闘タスククラス
@@ -59,13 +61,13 @@ void CBattleTaskNet::Initialize()
 	g_battleinfo.SetBattleType( TAISENKEISIKI_GOCYAMAZE );
 	g_battleinfo.SetLimitTime(-1);
 	g_battleinfo.AddCharacter(TEAM_PLAYER1,
-			g_charlist.FindCharacter("おにぎり"),
+			g_charlist.FindCharacter("net1"),
 			1,
 			g_play.IsHost() ? 0 : CASSIGN_NONE,
 			/*g_charlist.GetRandomOption( g_charlist.FindCharacter("おにぎり") )*/0
 			);
 	g_battleinfo.AddCharacter(TEAM_PLAYER2,
-			g_charlist.FindCharacter("おにぎり"),
+			g_charlist.FindCharacter("net2"),
 			2,
 			g_play.IsHost() ? 1 : 0,
 			/*g_charlist.GetRandomOption( g_charlist.FindCharacter("おにぎり") )*/0
@@ -427,7 +429,7 @@ void CBattleTaskNet::T_Action(BOOL stop)
 					tsm.aid = p_objects[i]->data.aid;
 					// tsm.cnow = p_objects[i]->data.cnow;
 					tsm.counter = p_objects[i]->data.counter;
-					tsm.muki = p_objects[i]->data.muki;
+					tsm.muki = p_objects[i]->data.muki ? true : false;
 					g_play.SendMsg(DPNID_ALL_PLAYERS_GROUP, tsm, sizeof(tsm), 300, DPNSEND_NOLOOPBACK);
 				}
 			}
@@ -1333,7 +1335,7 @@ HRESULT CBattleTaskNet::DPlayMessage(PVOID UserCont, DWORD mtype, PVOID pmes)
 					// pobj->data.cnow = pmes->cnow;
 
 					// 暫定措置。めくりには対応してない。
-					if (pobj->data.muki = pmes->muki) 
+					if (pobj->data.muki = (pmes->muki ? TRUE : FALSE)) 
 						pobj->data.atk2.flags |= ATKINFO2_RIGHTBACK;
 					else
 						pobj->data.atk2.flags &= ~ATKINFO2_RIGHTBACK;
@@ -1936,7 +1938,7 @@ void CBattleTaskNet::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 					tsm.y = higaisya->data.y;
 					tsm.aid = higaisya->data.aid;
 					tsm.counter = higaisya->data.counter;
-					tsm.muki = higaisya->data.muki;
+					tsm.muki = higaisya->data.muki ? true : false;
 					g_play.SendMsg(DPNID_ALL_PLAYERS_GROUP, tsm, sizeof(tsm), 300, DPNSEND_NOLOOPBACK);
 
 					struct SyncHPMes s2m;
@@ -2036,7 +2038,7 @@ void CBattleTaskNet::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 					tsm.y = higaisya->data.y;
 					tsm.aid = higaisya->data.aid;
 					tsm.counter = higaisya->data.counter;
-					tsm.muki = higaisya->data.muki;
+					tsm.muki = higaisya->data.muki ? true : false;
 					g_play.SendMsg(DPNID_ALL_PLAYERS_GROUP, tsm, sizeof(tsm), 300, DPNSEND_NOLOOPBACK);
 
 					struct SyncHPMes s2m;

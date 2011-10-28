@@ -1,4 +1,7 @@
-
+/*
+2011/10/29	timeoverのボイスに対応
+			数字の描写に使うcellを時間制限・Hit・Damage等で分けた
+*/
 /*=========================================================================
 	
 	戦闘タスク基礎
@@ -99,6 +102,11 @@ public:
 	void DrawNumber2(DWORD num,int x,int y,float z);
 	void DrawNumber3(double numd,int x,int y,float z);			//!< ゲージ1用 数字描画
 	void DrawNumber4(double numd,int x,int y,float z);			//!< ゲージ2用 数字描画
+	void DrawNumber5(DWORD num,int x,int y,BOOL hits,float z, float magx = 1.0f, float magy = 1.0f);
+	void DrawNumber6(DWORD num,int x,int y,float z);
+	void DrawNumber7(double numd,int x,int y,float z);			//!< ゲージ1用 数字描画
+	void DrawNumber8(double numd,int x,int y,float z);			//!< ゲージ2用 数字描画
+	void DrawNumber9(DWORD num,int x,int y,BOOL hits,float z, float magx = 1.0f, float magy = 1.0f);	//時間制限
 	void DrawGObject(GOBJECT* pdat);
 
 	//オブジェクト生成に必要
@@ -146,6 +154,7 @@ protected:
 	LPDIRECTSOUNDBUFFER dsb_round;		//!< サウンド 「ラウンド～」
 	LPDIRECTSOUNDBUFFER dsb_fight;		//!< サウンド 「ファイト」
 	LPDIRECTSOUNDBUFFER dsb_ko;			//!< サウンド 「ＫＯ」
+	LPDIRECTSOUNDBUFFER dsb_timeover;	//!< サウンド 「タイムオーバー」
 
 	//ラウンド通して変化しないパラメータ
 	CDI_CHARACTERINFO2 m_cinfo[2][MAXNUM_TEAM];	//!< DLLとやり取りするキャラクター情報

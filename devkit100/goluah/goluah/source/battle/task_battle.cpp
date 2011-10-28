@@ -1,4 +1,8 @@
-
+/*
+2011/10/29	timeoverのボイスに対応
+			数字の独立
+			交代・ストライカーで呼ぶ方向を左右逆に
+*/
 /*============================================================================
 
 	戦闘タスククラス
@@ -1234,8 +1238,8 @@ void CBattleTask::Draw()
 					float scale = (float)(30 - (int)bf_hitdisp[1]) / 15.0f;
 
 					if (scale < 1.0f) scale = 1.0f;
-					DrawNumber(pobj->hitcount,hitdispx,120,TRUE,0.0f,scale,scale);
-					DrawNumber2(pobj->sexydamage_anim,hitdispx+25,145,0.0f);
+					DrawNumber5(pobj->hitcount,hitdispx,120,TRUE,0.0f,scale,scale);
+					DrawNumber6(pobj->sexydamage_anim,hitdispx+25,145,0.0f);
 
 					// 表示用の数字アニメ
 					if (pobj->sexydamage > pobj->sexydamage_anim)
@@ -1546,10 +1550,10 @@ DWORD CBattleTask::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
 
 			//「次の」キャラクター取得
 			DWORD next_act;
-			switch(cidx){
-				case 0:next_act= striker_front ? 1 : 2 ;break;
-				case 1:next_act= striker_front ? 2 : 0 ;break;
-				case 2:next_act= striker_front ? 0 : 1 ;break;
+			switch(cidx){	//HPとface1の配置変更に伴い、左右を逆に
+				case 0:next_act= striker_front ? 2 : 1 ;break;
+				case 1:next_act= striker_front ? 0 : 2 ;break;
+				case 2:next_act= striker_front ? 1 : 0 ;break;
 				default:
 					g_system.LogWarning("%s msg=%08X ,失敗(cidx=%d)",__FUNCTION__,msg,cidx);
 					g_system.PopSysTag();
@@ -1601,10 +1605,10 @@ DWORD CBattleTask::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
 			
 			//「次の」キャラクター取得
 			DWORD next_act;
-			switch(cidx){
-				case 0:next_act= striker_front ? 1 : 2 ;break;
-				case 1:next_act= striker_front ? 2 : 0 ;break;
-				case 2:next_act= striker_front ? 0 : 1 ;break;
+			switch(cidx){	//HPとface1の配置変更に伴い、左右を逆に
+				case 0:next_act= striker_front ? 2 : 1 ;break;
+				case 1:next_act= striker_front ? 0 : 2 ;break;
+				case 2:next_act= striker_front ? 1 : 0 ;break;
 				default:
 					g_system.PopSysTag();
 					return(FALSE);
@@ -2407,6 +2411,9 @@ void CBattleTask::T_UpdateStatus_Fighting()
 	{
 		if(bf_counter%70==0)limittime--;
 		if(limittime==0){
+
+			if(dsb_timeover!=NULL)dsb_timeover->Play(0,0,0);
+
 			AddEffect(EFCTID_TIMEOVER,0,0,0);
 			bf_state = BFSTATE_TIMEOVER;
 			bf_counter = 0;
