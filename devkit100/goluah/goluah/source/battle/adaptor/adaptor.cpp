@@ -1,3 +1,6 @@
+/*
+2011/10/29	Marvelã§ç©ºä¸­ã§ã®äº¤ä»£ã‚’ä¸å¯ã«
+*/
 #include "StdAfx.h"
 
 #define LPDIRECT3DTEXTURE8 LPVOID
@@ -11,7 +14,7 @@
 // #include "CharacterList.h"
 // #include "cell.h"
 
-DWORD extwin = 250;		// ‘Î‰‚Å‚«‚éH
+DWORD extwin = 250;		// å¯¾å¿œã§ãã‚‹ï¼Ÿ
 extern GOBJECT* pchar[2];
 extern DWORD pnagerare[2];
 
@@ -24,7 +27,7 @@ extern DI_FUNCTIONS_D *funcd;
 extern FUNCTIONPACK oldfunc;
 extern HMODULE hAction2;
 
-WAZAINFO waz;//‹Zî•ñ
+WAZAINFO waz;//æŠ€æƒ…å ±
 ATTACKINFO atkmuki;
 
 DWORD gMessage(DWORD msg,LPVOID dat,DWORD);
@@ -45,17 +48,17 @@ void CCharAdaptor::InitAdaptor(CDI_CHARACTERINFO2 *info)
 {
 	BOOL (*pCreate)(DWORD,PVOID);
 
-	oid = (*funco->objcreate)();//ƒIƒuƒWƒFƒNƒg‚ğ¶¬
-	pdat = (GOBJECT*)(*funco->getinfo)(oid);//ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğget
-	keynumber = info->keyinput;//‰½”Ô‚©‚çƒL[“ü—Í‚ğó‚¯æ‚é‚©
+	oid = (*funco->objcreate)();//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
+	pdat = (GOBJECT*)(*funco->getinfo)(oid);//ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’get
+	keynumber = info->keyinput;//ä½•ç•ªã‹ã‚‰ã‚­ãƒ¼å…¥åŠ›ã‚’å—ã‘å–ã‚‹ã‹
 
-	//ƒf[ƒ^‚ğ‰Šú‰»
-	pdat->tid			= info->tid;//ƒ`[ƒ€ID
-	pdat->msghandler	= gMessage;//ƒƒbƒZ[ƒWˆ—ŠÖ”
-	pdat->objtype		= GOBJTYPE_CHARACTER;//ƒIƒuƒWƒFƒNƒgƒ^ƒCƒv
-	pdat->hpmax			= 1000;//Å‘å‘Ì—Í’l
-//	pdat->gaugemax		= 1;//Å‘åƒQ[ƒW
-//	pdat->gaugetype		= GOBJFLGA_POWGAUGE2;//ƒQ[ƒWƒ^ƒCƒv
+	//ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–
+	pdat->tid			= info->tid;//ãƒãƒ¼ãƒ ID
+	pdat->msghandler	= gMessage;//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†é–¢æ•°
+	pdat->objtype		= GOBJTYPE_CHARACTER;//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚¿ã‚¤ãƒ—
+	pdat->hpmax			= 1000;//æœ€å¤§ä½“åŠ›å€¤
+//	pdat->gaugemax		= 1;//æœ€å¤§ã‚²ãƒ¼ã‚¸
+//	pdat->gaugetype		= GOBJFLGA_POWGAUGE2;//ã‚²ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—
 	pdat->winfo			= NULL;
 	pg_hit = 0.0;
 	pg_guard = 0.0;
@@ -65,7 +68,7 @@ void CCharAdaptor::InitAdaptor(CDI_CHARACTERINFO2 *info)
 
 	pCreate = (BOOL (*)(DWORD,PVOID))
 		GetProcAddress(hAction2, "CreateCharacter");
-	if(pCreate == NULL){ // ¸”s
+	if(pCreate == NULL){ // å¤±æ•—
 		funco->suicide(pdat->id);
 		oid = 0; return;
 	}
@@ -85,15 +88,15 @@ void CCharAdaptor::InitAdaptor(CDI_CHARACTERINFO2 *info)
 	pdat->pobjdat_u = this;
 	m_pchar[olddat.cid] = pdat;
 	memcpy(pchar, m_pchar, sizeof(pchar));
-	if (!pCreate(olddat.cid, &olddat)){ // ¸”s
+	if (!pCreate(olddat.cid, &olddat)){ // å¤±æ•—
 		funco->suicide(pdat->id);
 		oid = 0; return;
 	}
 	Exchange(pdat, &olddat, TRUE);
 
-	InitializeGCDandBMP(pdat,info->color);//ƒrƒbƒgƒ}ƒbƒv‚Æcell.gcd‚ğ“Ç‚İ‚İ
-	InitializeMySound();//ƒTƒEƒ“ƒh‚Ì“Ç‚İ‚İ
-	InitAttackInfo();//UŒ‚—Íî•ñ‚Ì‰Šú‰»
+	InitializeGCDandBMP(pdat,info->color);//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã¨cell.gcdã‚’èª­ã¿è¾¼ã¿
+	InitializeMySound();//ã‚µã‚¦ãƒ³ãƒ‰ã®èª­ã¿è¾¼ã¿
+	InitAttackInfo();//æ”»æ’ƒåŠ›æƒ…å ±ã®åˆæœŸåŒ–
 
 	Exchange(pdat, &olddat, FALSE);
 	if (olddat.initchar != NULL)
@@ -103,7 +106,7 @@ void CCharAdaptor::InitAdaptor(CDI_CHARACTERINFO2 *info)
 
 
 //**************************************************************************************
-//   ƒVƒXƒeƒ€‚©‚ç‚ÌƒƒbƒZ[ƒW
+//   ã‚·ã‚¹ãƒ†ãƒ ã‹ã‚‰ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 //**************************************************************************************
 
 DWORD CCharAdaptor::Message(DWORD msg,LPVOID dat,DWORD prm)
@@ -114,7 +117,7 @@ DWORD CCharAdaptor::Message(DWORD msg,LPVOID dat,DWORD prm)
 	int hp;
 	BULLETATKINFO* pbulainfo;
 
-	// ƒLƒƒƒ‰‚ÌID‚ğƒOƒ[ƒoƒ‹•Ï”‚É‘—‚é
+	// ã‚­ãƒ£ãƒ©ã®IDã‚’ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«é€ã‚‹
 	if (msg != GOBJMSG_DELETE)
 	{
 		memcpy(pchar, m_pchar, sizeof(pchar));
@@ -129,7 +132,7 @@ DWORD CCharAdaptor::Message(DWORD msg,LPVOID dat,DWORD prm)
 		return(TRUE);
 	case GOBJMSG_COMMANDCOM:
 		return(CommandCOM(prm));
-	case GOBJMSG_DRAW://•`‰æ‚ÍƒVƒXƒeƒ€‚É”C‚¹‚é
+	case GOBJMSG_DRAW://æç”»ã¯ã‚·ã‚¹ãƒ†ãƒ ã«ä»»ã›ã‚‹
 		return(FALSE);
 	case GOBJMSG_TOUCHA:
 		return(TouchA(pdat->atk2.info1));
@@ -139,47 +142,47 @@ DWORD CCharAdaptor::Message(DWORD msg,LPVOID dat,DWORD prm)
 		pdat->aid = ACTID_TOJYO;
 		funco->actidchanged(pdat->id);
 		return(TRUE);
-	case GOBJMSG_DOYOUWIN://Ÿ—˜
+	case GOBJMSG_DOYOUWIN://å‹åˆ©
 		pdat->aid = ACTID_SYORI;
 		funco->actidchanged(pdat->id);
 		return(TRUE);
-	case GOBJMSG_TAIKI://‘Ò‹@‚µ‚Æ‚¯ƒƒbƒZ[ƒW
+	case GOBJMSG_TAIKI://å¾…æ©Ÿã—ã¨ã‘ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		pdat->aid = ACTID_TAIKI;
-		pdat->objtype &= GOBJTYPE_NODISPLAY;//‰æ–ÊŠO‚Ö‚¢‚¯‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­
-		pdat->objtype |= GOBJFLG_TAIKI;//‘Ò‹@ƒtƒ‰ƒO‚ğ—§‚Ä‚é
-		pdat->objtype &= ~GOBJFLG_TOBETARGET;//ƒ^[ƒQƒbƒg‚É‚Í‚È‚ç‚È‚¢
+		pdat->objtype &= GOBJTYPE_NODISPLAY;//ç”»é¢å¤–ã¸ã„ã‘ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã
+		pdat->objtype |= GOBJFLG_TAIKI;//å¾…æ©Ÿãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
+		pdat->objtype &= ~GOBJFLG_TOBETARGET;//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ã¯ãªã‚‰ãªã„
 		(*funco->actidchanged)(pdat->id);
 		break;
-	case GOBJMSG_KOUTAI://Œğ‘ã‚µ‚ëƒƒbƒZ[ƒW
+	case GOBJMSG_KOUTAI://äº¤ä»£ã—ã‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		if(pdat->aid == ACTID_TAIKICYU){
 			pdat->aid = ACTID_KOUTAIIN;
-			pdat->objtype |= GOBJFLG_TOBETARGET;//ƒ^[ƒQƒbƒg‚È‚é
+			pdat->objtype |= GOBJFLG_TOBETARGET;//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãªã‚‹
 			(*funco->actidchanged)(pdat->id);
 			return(YEAH);
 		}
 		return(0);
 		break;
-	case GOBJMSG_STRIKER://x‰‡UŒ‚—v¿
-		return(FALSE);//x‰‡UŒ‚‚Ís‚¢‚Ü‚¹‚ñ
+	case GOBJMSG_STRIKER://æ”¯æ´æ”»æ’ƒè¦è«‹
+		return(FALSE);//æ”¯æ´æ”»æ’ƒã¯è¡Œã„ã¾ã›ã‚“
 		break;
-	case GOBJMSG_KOUTAI2://Œğ‘ã‚µ‚ëƒƒbƒZ[ƒW2i‚Ì‚ñ‚Ñ‚è‚Æ“oêƒ|[ƒY‚ğŒˆ‚ß‚Ä‚Ä—Ç‚µj
+	case GOBJMSG_KOUTAI2://äº¤ä»£ã—ã‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸2ï¼ˆã®ã‚“ã³ã‚Šã¨ç™»å ´ãƒãƒ¼ã‚ºã‚’æ±ºã‚ã¦ã¦è‰¯ã—ï¼‰
 		pdat->aid = ACTID_KOUTAI;
-		pdat->objtype |= GOBJTYPE_DISPLAY;//‰æ–Ê“à‚É‚¢‚é
-		pdat->objtype |= GOBJFLG_TOBETARGET;//ƒ^[ƒQƒbƒg‚É‚È‚é
+		pdat->objtype |= GOBJTYPE_DISPLAY;//ç”»é¢å†…ã«ã„ã‚‹
+		pdat->objtype |= GOBJFLG_TOBETARGET;//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ãªã‚‹
 		funco->actidchanged(pdat->id);
 		break;
 	case GOBJMSG_CLIPX:
 		if(pdat->aid == ACTID_KOUTAI)return(TRUE);
 		else return(0);
 	case GOBJMSG_CNGROUND:
-		return(TRUE);//ƒ‰ƒEƒ“ƒh‚ª•Ï‚í‚Á‚Ä‚àÁ‚¦‚È‚¢
+		return(TRUE);//ãƒ©ã‚¦ãƒ³ãƒ‰ãŒå¤‰ã‚ã£ã¦ã‚‚æ¶ˆãˆãªã„
 	case GOBJMSG_CNGAID:
 		ActionIDChanged();
 		break;
 	case MYGOBJMSG_NAGE:
 		stock = 0;
 		pobjdat = (GOBJECT*)funco->getinfo(prm);
-		GetEnemyDat(olddat.cid, &objdat); // ‹Œ®‚É–|–ó
+		GetEnemyDat(olddat.cid, &objdat); // æ—§å¼ã«ç¿»è¨³
 		m_pnagerare[olddat.cid] = prm;
 		objdat.cid = 0x00010000 | olddat.cid;
 		Exchange(pobjdat, &objdat, FALSE);
@@ -218,11 +221,11 @@ DWORD CCharAdaptor::Message(DWORD msg,LPVOID dat,DWORD prm)
 		}
 		return stock;
 	case MYGOBJMSG_BULLETHIT:
-		pbulainfo = (BULLETATKINFO*)prm;// ‹­ˆø
+		pbulainfo = (BULLETATKINFO*)prm;// å¼·å¼•
 		return(BulletHit(&((STRUCT_BULLETA*)pbulainfo->pbul->pobjdat_u)->
 			pbinfo_a->atk, pbulainfo->hit));
 	default:
-		return(0);//‚ ‚Æ‚ÍA’m‚ç‚ñ
+		return(0);//ã‚ã¨ã¯ã€çŸ¥ã‚‰ã‚“
 	}
 	return(TRUE);
 }
@@ -249,7 +252,7 @@ void CCharAdaptor::Command()
 	DWORD key_now = (*funcs->getkey)(keynumber,0);
 	BOOL callstriker=FALSE;
 
-	if(pdat->aid & ACTID_SYSTEM){//ƒVƒXƒeƒ€’è‹`“®ì’†‚È‚Ì‚ÅAŠî–{“I‚É‚Í‚¢‚¶‚ç‚È‚¢
+	if(pdat->aid & ACTID_SYSTEM){//ã‚·ã‚¹ãƒ†ãƒ å®šç¾©å‹•ä½œä¸­ãªã®ã§ã€åŸºæœ¬çš„ã«ã¯ã„ã˜ã‚‰ãªã„
 		Exchange(pdat, &olddat, FALSE);
 		if (olddat.command_a != NULL)
 			olddat.command_a();
@@ -260,7 +263,7 @@ void CCharAdaptor::Command()
 //	if(pdat->aid & ACTID_NAGE)return;
 	if(pdat->aid & ACTID_INOUT)return;
 
-	//ƒXƒgƒ‰ƒCƒJ[‚ğŒÄ‚Ô
+	//ã‚¹ãƒˆãƒ©ã‚¤ã‚«ãƒ¼ã‚’å‘¼ã¶
 	if( (key_now&KEYSTA_FOWORD) && (key_now&KEYSTA_DOWN) && (key_now&KEYSTA_BD2) ){
 		if((*funcs->msg2system)(pdat->id,MSGOBJ2SYS_STRIKER1,0)){
 			ADDEFFECT(EFCTID_COMEON,(int)pdat->x,(int)pdat->y-100,0);
@@ -275,18 +278,18 @@ void CCharAdaptor::Command()
 	}
 
 
-/*	if(pdat->aid & ACTID_HISSATU){//•KE‹Z’†iŠî–{“I‚É‚¢‚¶‚é‚×‚©‚ç‚¸j
+/*	if(pdat->aid & ACTID_HISSATU){//å¿…æ®ºæŠ€ä¸­ï¼ˆåŸºæœ¬çš„ã«ã„ã˜ã‚‹ã¹ã‹ã‚‰ãšï¼‰
 		return;
 	}
 
-	//•KE‹ZƒRƒ}ƒ“ƒh”»’è
-	if(pdat->aid & ACTID_KUCYU){//‹ó’†•KE‹Z‚ÌƒRƒ}ƒ“ƒh”»’è
+	//å¿…æ®ºæŠ€ã‚³ãƒãƒ³ãƒ‰åˆ¤å®š
+	if(pdat->aid & ACTID_KUCYU){//ç©ºä¸­å¿…æ®ºæŠ€ã®ã‚³ãƒãƒ³ãƒ‰åˆ¤å®š
 	}
-	else{//’nã•KE‹Z‚ÌƒRƒ}ƒ“ƒh”»’è
+	else{//åœ°ä¸Šå¿…æ®ºæŠ€ã®ã‚³ãƒãƒ³ãƒ‰åˆ¤å®š
 	}
 
-	if(pdat->aid & ACTID_ATTACK){//UŒ‚“®ì’†iŠî–{“I‚É‚¢‚¶‚ç‚È‚¢Bƒ`ƒF[ƒ“ƒRƒ“ƒ{o‚·‚È‚ç‚±‚±‚Å‚¢‚¶‚éj
-		if(pdat->aid & ACTID_KUCYU){////ƒWƒƒƒ“ƒv“®ì’†
+	if(pdat->aid & ACTID_ATTACK){//æ”»æ’ƒå‹•ä½œä¸­ï¼ˆåŸºæœ¬çš„ã«ã„ã˜ã‚‰ãªã„ã€‚ãƒã‚§ãƒ¼ãƒ³ã‚³ãƒ³ãƒœå‡ºã™ãªã‚‰ã“ã“ã§ã„ã˜ã‚‹ï¼‰
+		if(pdat->aid & ACTID_KUCYU){////ã‚¸ãƒ£ãƒ³ãƒ—å‹•ä½œä¸­
 			return;
 		}
 		else{
@@ -306,7 +309,7 @@ void CCharAdaptor::Command()
 		return;
 	}
 
-	if(pdat->aid & ACTID_KUCYU){//ƒWƒƒƒ“ƒv“®ì’†
+	if(pdat->aid & ACTID_KUCYU){//ã‚¸ãƒ£ãƒ³ãƒ—å‹•ä½œä¸­
 		if(key_now & 0x22220000){
 			if(key_now & KEYSTA_BC2){pdat->aid = ACTID_ATT_JC;return;}
 			else if(key_now & KEYSTA_BB2){pdat->aid = ACTID_ATT_JB;return;}
@@ -315,7 +318,7 @@ void CCharAdaptor::Command()
 		return;
 	}
 
-	//Šî–{“®ì’†
+	//åŸºæœ¬å‹•ä½œä¸­
 	if(key_now & 0x22220000){
 		if(key_now & KEYSTA_DOWN){
 			if(key_now & KEYSTA_BC2){pdat->aid = ACTID_ATT_CC;return;}
@@ -336,11 +339,11 @@ void CCharAdaptor::Command()
 	}
 
 	if(pdat->aid == ACTID_JAMPS){
-		if(key_now & KEYSTA_FOWORD){//‘OƒWƒƒƒ“ƒv
+		if(key_now & KEYSTA_FOWORD){//å‰ã‚¸ãƒ£ãƒ³ãƒ—
 			pdat->aid = ACTID_JAMPF;
 			return;
 		}
-		else if(key_now & KEYSTA_BACK){//ŒãƒWƒƒƒ“ƒv
+		else if(key_now & KEYSTA_BACK){//å¾Œã‚¸ãƒ£ãƒ³ãƒ—
 			pdat->aid = ACTID_JAMPB;
 			return;
 		}
@@ -354,26 +357,26 @@ void CCharAdaptor::Command()
 		olddat.command_a();
 	Exchange(pdat, &olddat, TRUE);
 
-	//ƒXƒgƒ‰ƒCƒJ[
+	//ã‚¹ãƒˆãƒ©ã‚¤ã‚«ãƒ¼
 	if(callstriker){
 		pdat->aid = ACTID_STRIKERCOMEON;
 		return;
 	}
-	//‚±[‚½‚¢
-	else if( (key_now&KEYSTA_FOWORD) && (key_now&KEYSTA_BD2) && !(key_now&KEYSTA_DOWN) ){
+	//ã“ãƒ¼ãŸã„
+	else if( (key_now&KEYSTA_FOWORD) && (key_now&KEYSTA_BD2) && !(key_now&KEYSTA_DOWN) && pdat->y == 0 ){
 		if((*funcs->msg2system)(pdat->id,MSGOBJ2SYS_KOUTAI1,0)){
 			pdat->aid = ACTID_KOUTAIOUT;
 			return;
 		}
 	}
-	else if( (key_now&KEYSTA_BACK) && (key_now&KEYSTA_BD2) && !(key_now&KEYSTA_DOWN) ){
+	else if( (key_now&KEYSTA_BACK) && (key_now&KEYSTA_BD2) && !(key_now&KEYSTA_DOWN)  && pdat->y == 0 ){
 		if((*funcs->msg2system)(pdat->id,MSGOBJ2SYS_KOUTAI2,0)){
 			pdat->aid = ACTID_KOUTAIOUT;
 			return;
 		}
 	}
 
-	if(pdat->aid==ACTID_STRIKERCOMEON){//“ü—Í‚ª‚È‚¯‚ê‚Îƒ|[ƒYƒLƒ
+	if(pdat->aid==ACTID_STRIKERCOMEON){//å…¥åŠ›ãŒãªã‘ã‚Œã°ãƒãƒ¼ã‚ºã‚­ãƒ¡
 		if(!(key_now & (KEYSTA_UP2|KEYSTA_DOWN2|KEYSTA_FOWORD2|KEYSTA_BACK2))){
 			return;
 		}
@@ -401,28 +404,28 @@ DWORD CCharAdaptor::CommandCOM(DWORD wid)
 		stock = olddat.command_b(wid);
 	Exchange(pdat, &olddat, TRUE);
 	return(stock);
-/*	if(pdat->aid & ACTID_HISSATU){//•KE‹Z’†iŠî–{“I‚É‚¢‚¶‚é‚×‚©‚ç‚¸j
+/*	if(pdat->aid & ACTID_HISSATU){//å¿…æ®ºæŠ€ä¸­ï¼ˆåŸºæœ¬çš„ã«ã„ã˜ã‚‹ã¹ã‹ã‚‰ãšï¼‰
 		return(FALSE);
 	}
 
 	if(pdat->aid & ACTID_KUCYU){
-		if(pdat->aid & ACTID_ATTACK){//‹ó’†UŒ‚’†
-			if(wid&ACTID_HISSATU && wid&ACTID_KUCYU)return(TRUE);//‹ó’†•KE‹Z‚È‚çOK
-			return(FALSE);//‚»‚êˆÈŠO‚Í‚¾‚ß
+		if(pdat->aid & ACTID_ATTACK){//ç©ºä¸­æ”»æ’ƒä¸­
+			if(wid&ACTID_HISSATU && wid&ACTID_KUCYU)return(TRUE);//ç©ºä¸­å¿…æ®ºæŠ€ãªã‚‰OK
+			return(FALSE);//ãã‚Œä»¥å¤–ã¯ã ã‚
 		}
-		else{//‹ó’†’Êí“®ì’†
-			if(wid&ACTID_ATTACK && wid&ACTID_KUCYU)return(TRUE);//‹ó’†’Êí‹Z‚È‚çOK
-			return(FALSE);//‚»‚êˆÈŠO‚Í‚¾‚ß
+		else{//ç©ºä¸­é€šå¸¸å‹•ä½œä¸­
+			if(wid&ACTID_ATTACK && wid&ACTID_KUCYU)return(TRUE);//ç©ºä¸­é€šå¸¸æŠ€ãªã‚‰OK
+			return(FALSE);//ãã‚Œä»¥å¤–ã¯ã ã‚
 		}
 	}
 	else{
-		if(pdat->aid & ACTID_ATTACK){//’nãUŒ‚’†
-			if(wid&ACTID_HISSATU && !(wid&ACTID_KUCYU))return(TRUE);//’nã•KE‹Z‚È‚çOK
-			return(FALSE);//‚»‚êˆÈŠO‚Í‚¾‚ß
+		if(pdat->aid & ACTID_ATTACK){//åœ°ä¸Šæ”»æ’ƒä¸­
+			if(wid&ACTID_HISSATU && !(wid&ACTID_KUCYU))return(TRUE);//åœ°ä¸Šå¿…æ®ºæŠ€ãªã‚‰OK
+			return(FALSE);//ãã‚Œä»¥å¤–ã¯ã ã‚
 		}
-		else{//’nã’Êí“®ì
-			if(wid&ACTID_KUCYU && wid&ACTID_ATTACK)return(FALSE);//‹ó’†UŒ‚‚Í‚¾‚ß
-			return(TRUE);//‚»‚êˆÈŠO‚È‚çOK
+		else{//åœ°ä¸Šé€šå¸¸å‹•ä½œ
+			if(wid&ACTID_KUCYU && wid&ACTID_ATTACK)return(FALSE);//ç©ºä¸­æ”»æ’ƒã¯ã ã‚
+			return(TRUE);//ãã‚Œä»¥å¤–ãªã‚‰OK
 		}
 	}*/
 }
@@ -500,7 +503,7 @@ DWORD CCharAdaptor::TouchA(ATTACKINFO *info)
 		return(TOUCHA_AVOID);
 	}
 
-	return(key_now);//‚ ‚Æ‚ÍƒfƒtƒHƒ‹ƒg‚É”C‚¹‚é‚º
+	return(key_now);//ã‚ã¨ã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«ä»»ã›ã‚‹ãœ
 }
 
 DWORD CCharAdaptor::TouchB(ATTACKINFO *info,BOOL hit)
@@ -517,7 +520,7 @@ DWORD CCharAdaptor::TouchB(ATTACKINFO *info,BOOL hit)
 		stock = olddat.touch_b(&mainfo, hit);
 	Exchange(pdat, &olddat, TRUE);
 
-	//ƒQ[ƒW‚Ì‘‰Á
+	//ã‚²ãƒ¼ã‚¸ã®å¢—åŠ 
 	if(hit) AddPowerGauge(pdat, pg_hit);
 	else AddPowerGauge(pdat, pg_guard);
 
