@@ -1,0 +1,1977 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Goluah!!: クラス CDirectDraw</title>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css">
+<link href="../../tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- 作成： Doxygen 1.5.3 -->
+<div class="tabs">
+  <ul>
+    <li><a href="../../main.html"><span>メインページ</span></a></li>
+    <li><a href="../../modules.html"><span>モジュール</span></a></li>
+    <li class="current"><a href="../../annotated.html"><span>クラス</span></a></li>
+    <li><a href="../../files.html"><span>ファイル</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="../../annotated.html"><span>構成</span></a></li>
+    <li><a href="../../hierarchy.html"><span>クラス階層</span></a></li>
+    <li><a href="../../functions.html"><span>構成メンバ</span></a></li>
+  </ul>
+</div>
+<h1>クラス CDirectDraw<br>
+<small>
+[<a class="el" href="../../da/d83/group___direct_x.html">DirectX</a>]</small>
+</h1><!-- doxytag: class="CDirectDraw" -->描画管理クラス。  
+<a href="#_details">[詳細]</a>
+<p>
+<code>#include &lt;dx_draw.h&gt;</code>
+<p>
+<div class="dynheader">
+CDirectDrawのコラボレーション図</div>
+<div class="dynsection">
+<p><center><img src="../../d5/d9a/class_c_direct_draw__coll__graph.png" border="0" usemap="#d3/d5a/_c_direct_draw__coll__map" alt="Collaboration graph"></center>
+<map name="d3/d5a/_c_direct_draw__coll__map">
+<area shape="rect" href="../../d2/d26/struct_m_y_s_u_r_f_a_c_e.html" title="c?��e?aa?��a??a??a?3a??a?&#45;a?��a??a??a?��a??a?1" alt="" coords="5,5,112,32"></map>
+<center><font size="2">[<a target="top" href="../../graph_legend.html">凡例</a>]</font></center></div>
+
+<p>
+<a href="../../d2/dd0/class_c_direct_draw-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#2d7527413f7fd32ac1fedb64682af549">CDirectDraw</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">BOOL&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#afb519ba1bcdabb9b44e3031a0937a6d">Initialize</a> (HWND hwnd, BOOL win)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#42f4739a262b31b2954d66645361d344">Destroy</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#9624c7dafbc9e64781e5d83222be54ce">StartDraw</a> (BOOL erbs)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">描画開始 毎フレームの描画を開始するときにこの操作を行うこと。 あらゆる描画処理は、この関数と、EndDraw の間に行わなければならない。  <a href="#9624c7dafbc9e64781e5d83222be54ce"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#e882c246ab6044a437d2b5109325fa49">EndDraw</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="../../d2/d26/struct_m_y_s_u_r_f_a_c_e.html">MYSURFACE</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#04f5bc293a3c6d84e6628275fe139f8d">CreateSurfaceFrom256BMP</a> (char *filename, char *pallet=NULL, BOOL dmy=TRUE)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#84045eae70cf4d6113db8c3ac1e4bf0e">RelSurface</a> (<a class="el" href="../../d2/d26/struct_m_y_s_u_r_f_a_c_e.html">MYSURFACE</a> *s)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="../../d2/d26/struct_m_y_s_u_r_f_a_c_e.html">MYSURFACE</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#ac5d0b68567bbb707a767014de32e4c0">CreateSurfaceFrom256Image</a> (char *filename, char *pallet=NULL, BOOL dmy=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">各種形式の画像を読み込む。PNGと合わせるために追加。  <a href="#ac5d0b68567bbb707a767014de32e4c0"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#99ab1230e9e38eafde55481aa13130c5">MyBlt3D</a> (<a class="el" href="../../d2/d26/struct_m_y_s_u_r_f_a_c_e.html">MYSURFACE</a> *dds, RECT src, <a class="el" href="../../de/d5b/struct_m_y_r_e_c_t3_d.html">MYRECT3D</a> dst, DWORD flag=0, DWORD color=0xFFFFFFFF)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">独自形式2Dサーフェイス描画　２  <a href="#99ab1230e9e38eafde55481aa13130c5"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#469e6039e081831dd4189ff3ab70fea2">CheckBlt</a> (<a class="el" href="../../d2/d26/struct_m_y_s_u_r_f_a_c_e.html">MYSURFACE</a> *dds, int x, int y, RECT r, BOOL revx=FALSE, BOOL revy=FALSE, DWORD flag=0, float z=0.0f, DWORD color=0xFFFFFFFF, BOOL drawShadow=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">CheckBlt2 引数省略簡易版  <a href="#469e6039e081831dd4189ff3ab70fea2"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#32ff574a33c5f6b306907ecf881d6e83">CheckBlt2</a> (<a class="el" href="../../d2/d26/struct_m_y_s_u_r_f_a_c_e.html">MYSURFACE</a> *dds, int x, int y, RECT r, double magx=1.0, double magy=1.0, BOOL revx=FALSE, BOOL revy=FALSE, DWORD flag=0, float z=0.0f, DWORD color=0xFFFFFFFF, BOOL drawShadow=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">サーフェースの矩形転送(描画)  <a href="#32ff574a33c5f6b306907ecf881d6e83"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">LPDIRECT3DTEXTURE8&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#2e7863fe0f5010bc452cdc17b70d73a5">GetFrontBufferCopy</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">DWORD *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#1253b87c4bc9f882c6658a00df378b97">GetFrontBufferCopyRaw</a> (UINT *wdt, UINT *hgt)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#ce60fd0a58e20f74fe4d6c4ad439e598">CellDraw</a> (<a class="el" href="../../d2/d26/struct_m_y_s_u_r_f_a_c_e.html">MYSURFACE</a> **psuf, LPVOID pcdat, LPVOID prdat, DWORD cn, int x, int y, float z, int rot, BOOL revx=FALSE, BOOL revy=FALSE, DWORD color=0xFFFFFFFF, float magx=1.0f, float magy=1.0f, BOOL shadowed=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Goluah GCD(バージョン自動判別)形式セル描画  <a href="#ce60fd0a58e20f74fe4d6c4ad439e598"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#d9c3046b11e8c37710dabe9a8e04d377">CellDraw090</a> (<a class="el" href="../../d2/d26/struct_m_y_s_u_r_f_a_c_e.html">MYSURFACE</a> **psuf, LPVOID pcdat, LPVOID prdat, DWORD cn, int x, int y, float z, int rot, BOOL revx=FALSE, BOOL revy=FALSE, DWORD color=0xFFFFFFFF, float magx=1.0f, float magy=1.0f, BOOL shadowed=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Goluah GCD(090)形式セル描画  <a href="#d9c3046b11e8c37710dabe9a8e04d377"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#dfbb27aa4d5b714454ac1e063a836536">CellDraw070</a> (<a class="el" href="../../d2/d26/struct_m_y_s_u_r_f_a_c_e.html">MYSURFACE</a> **psuf, LPVOID pcdat, LPVOID prdat, DWORD cn, int x, int y, float z, int rot, BOOL revx=FALSE, BOOL revy=FALSE, DWORD color=0xFFFFFFFF, float magx=1.0f, float magy=1.0f, BOOL shadowed=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Goluah GCD(070)形式セル描画  <a href="#dfbb27aa4d5b714454ac1e063a836536"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#b43cddac88d1727305f9ea619e5c3453">HanteiDraw</a> (LPVOID pcdat, LPVOID phdat, DWORD cn, BOOL b_atr, BOOL b_kas, BOOL b_atk, int x, int y, float z, int rot, BOOL revx=FALSE, BOOL revy=FALSE, float magx=1.0f, float magy=1.0f)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Goluah GCD形式あたり判定矩形描画  <a href="#b43cddac88d1727305f9ea619e5c3453"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#d7e73965e4d68188506240fb2348a58c">HRectDraw</a> (LPVOID cdat, LPVOID phdat, DWORD cn, int x, int y, float z, int rot, BOOL revx=FALSE, BOOL revy=FALSE, float magx=1.0f, float magy=1.0f)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">GCDあたり判定矩形描画  <a href="#d7e73965e4d68188506240fb2348a58c"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#34a2e0177db73731b54ef99cc9f47110">GCenterDraw</a> (LPVOID cdat, DWORD cn, int x, int y, float z, int rot, BOOL revx=FALSE, BOOL revy=FALSE, float magx=1.0f, float magy=1.0f)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Goluah GCD形式重心位置マーカー描画  <a href="#34a2e0177db73731b54ef99cc9f47110"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#579c3cd7483301a86fd92de238312169">DrawLine</a> (int sx, int sy, int gx, int gy, DWORD col)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">単純線描画  <a href="#579c3cd7483301a86fd92de238312169"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#60c73628a232783c8cd80a597a7b4e24">ClearBackBuffer</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#a067ad7b22eb8d39d8cff0c30b2b2578">DrawCircle</a> (int x, int y, int rad, int w, float z=0, DWORD color=0xFF55AAFF, BOOL toumei=FALSE, float rot=0, BOOL rot_y=TRUE, BOOL hosei=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">円の描画  <a href="#a067ad7b22eb8d39d8cff0c30b2b2578"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#02acce16f9d051e43788d5f335944990">DrawBlueText</a> (RECT &amp;r, char *text, int len, DWORD method, DWORD size)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">テキスト描画  <a href="#02acce16f9d051e43788d5f335944990"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b8471567756eb163e7cb9b15aea56ffe"></a><!-- doxytag: member="CDirectDraw::DrawRedText" ref="b8471567756eb163e7cb9b15aea56ffe" args="(RECT &amp;r, char *text, int len, DWORD method, DWORD size)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#b8471567756eb163e7cb9b15aea56ffe">DrawRedText</a> (RECT &amp;r, char *text, int len, DWORD method, DWORD size)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">sa DrawBlueText <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#1772a2c85b3b82ca735798720a779070">SetAlphaMode</a> (DWORD alphamode)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#81c6e3f9717be6789bc17ba9a071865f">EnableZ</a> (BOOL test=TRUE, BOOL write=TRUE)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#262f25bb0a394af792a6f5018c1b1353">ResetTransformMatrix</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ワールド→ディスプレイ座標変換マトリクス設定  <a href="#262f25bb0a394af792a6f5018c1b1353"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#abde329f3367f8b74651b3ef4e7c10a8">SetTransform</a> (BOOL b)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">カメラ、ビュー　マトリックスの設定  <a href="#abde329f3367f8b74651b3ef4e7c10a8"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#3a6af200c22e8289c00b5aa707c2591c">SetWorldMatrix</a> (D3DXMATRIX *pmat)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ワールド変換マトリクスを指定  <a href="#3a6af200c22e8289c00b5aa707c2591c"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">D3DXMATRIX&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#7a4fdb830cb4b08bbd8a2a3fcd021d32">SetParentMatrix</a> (D3DXMATRIX &amp;mat, BOOL root=TRUE, BOOL insert=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">「親」マトリクスを設定  <a href="#7a4fdb830cb4b08bbd8a2a3fcd021d32"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">D3DXMATRIX&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#f4417b67c9cda09ab99eb02fee4817f0">ResetParentMatrix</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">「親」マトリクスに単位行列を設定する  <a href="#f4417b67c9cda09ab99eb02fee4817f0"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#dfa4510b7e35db81e6df030d2e945dd7">SetParentMatrix2</a> (D3DXMATRIX *mat, BOOL root, D3DXMATRIX *matprv)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">「親」マトリクスを設定  <a href="#dfa4510b7e35db81e6df030d2e945dd7"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#fe8b6187cd0e2d5d65e610bc71591ea9">TraceCreateDeviceError</a> (HRESULT ret, HWND hwnd)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="241f8f39201494dfccd09c51af8f4175"></a><!-- doxytag: member="CDirectDraw::OnWindowResized" ref="241f8f39201494dfccd09c51af8f4175" args="(int width, int height)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#241f8f39201494dfccd09c51af8f4175">OnWindowResized</a> (int width, int height)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ウィンドウサイズ変更処理 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c104483af9dd4da3f2d30e7648200593"></a><!-- doxytag: member="CDirectDraw::ChangeScreenMode" ref="c104483af9dd4da3f2d30e7648200593" args="(BOOL win)" -->
+BOOL&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#c104483af9dd4da3f2d30e7648200593">ChangeScreenMode</a> (BOOL win)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">スクリーンモード変更 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="03d47136fb1b84ee2c50c58d28a280cd"></a><!-- doxytag: member="CDirectDraw::ReduceColor" ref="03d47136fb1b84ee2c50c58d28a280cd" args="(DWORD alpha, bool isShadow=false)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#03d47136fb1b84ee2c50c58d28a280cd">ReduceColor</a> (DWORD alpha, bool isShadow=false)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">画面を暗くするエフェクト、未完成。 <br></td></tr>
+<tr><td colspan="2"><br><h2>Public 変数</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="25f448120ff3554916b2c0091ffa8daf"></a><!-- doxytag: member="CDirectDraw::state" ref="25f448120ff3554916b2c0091ffa8daf" args="" -->
+<a class="el" href="../../df/dbe/dx__draw_8h.html#21415b28ab5359b3d2a3425eb519776a">CDIRECTDRAW_STATE</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#25f448120ff3554916b2c0091ffa8daf">state</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">クラスの状態 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="52bc6a09c77a15f91ccf0b2c263f9a44"></a><!-- doxytag: member="CDirectDraw::dd" ref="52bc6a09c77a15f91ccf0b2c263f9a44" args="" -->
+LPDIRECT3D8&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#52bc6a09c77a15f91ccf0b2c263f9a44">dd</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">[重要]Direct3Dオブジェクト <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="384e1c9667779803c0cfa8b4f4a4b5fa"></a><!-- doxytag: member="CDirectDraw::d3ddev" ref="384e1c9667779803c0cfa8b4f4a4b5fa" args="" -->
+LPDIRECT3DDEVICE8&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#384e1c9667779803c0cfa8b4f4a4b5fa">d3ddev</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">[重要]Direct3Dデバイスオブジェクト <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="730f4736a2f1e3788c3e4f793ad43480"></a><!-- doxytag: member="CDirectDraw::d3dpp" ref="730f4736a2f1e3788c3e4f793ad43480" args="" -->
+D3DPRESENT_PARAMETERS&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#730f4736a2f1e3788c3e4f793ad43480">d3dpp</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">なんだっけ？これ。 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b24bbb0580339d51e163ffdeb0589e5c"></a><!-- doxytag: member="CDirectDraw::devtypenow" ref="b24bbb0580339d51e163ffdeb0589e5c" args="" -->
+D3DDEVTYPE&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#b24bbb0580339d51e163ffdeb0589e5c">devtypenow</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">現在のデバイスタイプ。HALとかSWとか、そういうの <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5590dcff6de79d0630343da64d19c6ca"></a><!-- doxytag: member="CDirectDraw::maxtextureheight" ref="5590dcff6de79d0630343da64d19c6ca" args="" -->
+DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#5590dcff6de79d0630343da64d19c6ca">maxtextureheight</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">デバイスで規定されるテクスチャの最大サイズ <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="80cb238aa34304e33b42e213accbda05"></a><!-- doxytag: member="CDirectDraw::dispformat" ref="80cb238aa34304e33b42e213accbda05" args="" -->
+D3DFORMAT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#80cb238aa34304e33b42e213accbda05">dispformat</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">使用する画像フォーマット <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="243f940368a1a5248ae05358ded9658f"></a><!-- doxytag: member="CDirectDraw::matparent" ref="243f940368a1a5248ae05358ded9658f" args="" -->
+D3DXMATRIX&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#243f940368a1a5248ae05358ded9658f">matparent</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">2D描画関数マトリックス <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f546400fdc808e2c1d2ea91c40a0cd91"></a><!-- doxytag: member="CDirectDraw::ms" ref="f546400fdc808e2c1d2ea91c40a0cd91" args="[MAXNUMGOLUAHTEXTURES]" -->
+<a class="el" href="../../d2/d26/struct_m_y_s_u_r_f_a_c_e.html">MYSURFACE</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#f546400fdc808e2c1d2ea91c40a0cd91">ms</a> [MAXNUMGOLUAHTEXTURES]</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">独自形式サーフェイス管理 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d32d3d36ea8485cd2642b6217667ec7e"></a><!-- doxytag: member="CDirectDraw::yurey" ref="d32d3d36ea8485cd2642b6217667ec7e" args="" -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#d32d3d36ea8485cd2642b6217667ec7e">yurey</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">画面揺れエフェクトに使用するY方向のずらし量 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ce3452ff6b5d5ca275aeec57f428162f"></a><!-- doxytag: member="CDirectDraw::camera_z" ref="ce3452ff6b5d5ca275aeec57f428162f" args="" -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#ce3452ff6b5d5ca275aeec57f428162f">camera_z</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">カメラの位置 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9d9d10d97661c53bce70f1e46a31905e"></a><!-- doxytag: member="CDirectDraw::camera_zuray" ref="9d9d10d97661c53bce70f1e46a31905e" args="" -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#9d9d10d97661c53bce70f1e46a31905e">camera_zuray</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">カメラずらし？よく分からん <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="93c02226dde546fc88f8babd1b636cda"></a><!-- doxytag: member="CDirectDraw::clearbgcolor" ref="93c02226dde546fc88f8babd1b636cda" args="" -->
+DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#93c02226dde546fc88f8babd1b636cda">clearbgcolor</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">バックバッファクリア時に使用する塗りつぶし色 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c3042168b540296a18c55640089f3171"></a><!-- doxytag: member="CDirectDraw::lpFont" ref="c3042168b540296a18c55640089f3171" args="[AKIDX_FONTNUM]" -->
+LPD3DXFONT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#c3042168b540296a18c55640089f3171">lpFont</a> [AKIDX_FONTNUM]</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">テキスト描画に使用するフォント <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d00132c3f0944faaa52e6924b49d8627"></a><!-- doxytag: member="CDirectDraw::pMyVertex" ref="d00132c3f0944faaa52e6924b49d8627" args="" -->
+LPDIRECT3DVERTEXBUFFER8&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da5/class_c_direct_draw.html#d00132c3f0944faaa52e6924b49d8627">pMyVertex</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">頂点バッファ、一応作ってみた。 <br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>説明</h2>
+描画管理クラス。 
+<p>
+現在はDirectX8以上のDirect3Dを使用するが、以前はDirectDrawを使っていたのでこんな名前。 由緒正しい古株クラス。<p>
+2D描画： 任意サイズのビットマップを最大テクスチャサイズで分割した独自形式のニセサーフェイスを 使用することによって、DirectDrawのときと同じような感じで描画を行うことができる。 （2の累乗以外のサイズのビットマップを使ってもボケたりしない）<p>
+3D描画： Direct3DDeviceオブジェクトを渡すからあとはDXのAPI自分でたたいてなんとかしておくれ？ <hr><h2>コンストラクタとデストラクタ</h2>
+<a class="anchor" name="2d7527413f7fd32ac1fedb64682af549"></a><!-- doxytag: member="CDirectDraw::CDirectDraw" ref="2d7527413f7fd32ac1fedb64682af549" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDirectDraw::CDirectDraw           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+構築。 パラメータのリセットを行うのみ 
+</div>
+</div><p>
+<hr><h2>関数</h2>
+<a class="anchor" name="afb519ba1bcdabb9b44e3031a0937a6d"></a><!-- doxytag: member="CDirectDraw::Initialize" ref="afb519ba1bcdabb9b44e3031a0937a6d" args="(HWND hwnd, BOOL win)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL CDirectDraw::Initialize           </td>
+          <td>(</td>
+          <td class="paramtype">HWND&nbsp;</td>
+          <td class="paramname"> <em>hwnd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>win</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+初期化 Direct3Dの初期化を行う。 フルスクリーンモードの場合、この時点でフルスクリーン状態になる<p>
+<dl compact><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>hwnd</em>&nbsp;</td><td>アプリケーションのメインウインドウハンドル </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>win</em>&nbsp;</td><td>TRUE:ウインドウモード, FALSE:フルスクリーン </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>戻り値:</b></dt><dd>TRUE:成功, FALSE:失敗 </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="42f4739a262b31b2954d66645361d344"></a><!-- doxytag: member="CDirectDraw::Destroy" ref="42f4739a262b31b2954d66645361d344" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::Destroy           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+破棄 
+</div>
+</div><p>
+<a class="anchor" name="9624c7dafbc9e64781e5d83222be54ce"></a><!-- doxytag: member="CDirectDraw::StartDraw" ref="9624c7dafbc9e64781e5d83222be54ce" args="(BOOL erbs)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::StartDraw           </td>
+          <td>(</td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>erbs</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+描画開始 毎フレームの描画を開始するときにこの操作を行うこと。 あらゆる描画処理は、この関数と、EndDraw の間に行わなければならない。 
+<p>
+<dl compact><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>erbs</em>&nbsp;</td><td>TRUE:以前の描画内容を消去する </td></tr>
+  </table>
+</dl>
+<dl class="see" compact><dt><b>参照:</b></dt><dd><a class="el" href="../../d8/da5/class_c_direct_draw.html#93c02226dde546fc88f8babd1b636cda" title="バックバッファクリア時に使用する塗りつぶし色">clearbgcolor</a> <p>
+<a class="el" href="../../d8/da5/class_c_direct_draw.html#e882c246ab6044a437d2b5109325fa49">EndDraw</a> </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="e882c246ab6044a437d2b5109325fa49"></a><!-- doxytag: member="CDirectDraw::EndDraw" ref="e882c246ab6044a437d2b5109325fa49" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::EndDraw           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+描画終了（フリップ） StartDraw からこの関数の呼び出しまでになされた描画内容が実際に表示される。<p>
+<dl class="see" compact><dt><b>参照:</b></dt><dd><a class="el" href="../../d8/da5/class_c_direct_draw.html#9624c7dafbc9e64781e5d83222be54ce" title="描画開始 毎フレームの描画を開始するときにこの操作を行うこと。...">StartDraw</a> </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="04f5bc293a3c6d84e6628275fe139f8d"></a><!-- doxytag: member="CDirectDraw::CreateSurfaceFrom256BMP" ref="04f5bc293a3c6d84e6628275fe139f8d" args="(char *filename, char *pallet=NULL, BOOL dmy=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d26/struct_m_y_s_u_r_f_a_c_e.html">MYSURFACE</a> * CDirectDraw::CreateSurfaceFrom256BMP           </td>
+          <td>(</td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>palname</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>dmy</em> = <code>TRUE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+256ビットマップを独自形式でロード<p>
+256色でなければならないのは、パレットの挿げ替えを行わなければならないため。 ビットマップのサイズから適切なテクスチャサイズを計算し、複数に分割してロードする。 尚、この関数で生成されたインチキサーフェイスはCDirectDrawクラスがリスト管理し、 クラスの破棄時にアンロードされていないサーフェイスを破棄する（最終手段）<p>
+<dl compact><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>filename</em>&nbsp;</td><td>イメージを読み込むビットマップファイルのファイル名。 palnameがNULLでないときは、このファイルのパレットは無視される </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>palname</em>&nbsp;</td><td>パレットを読み込むビットマップファイル名。 NULLの場合はfilenameのファイルのパレットが適用される </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>dmy</em>&nbsp;</td><td>未使用。まだDirectDrawを使っていた頃、VRAMに読むかシステムメモリに読むかのフラグだったもの。</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>戻り値:</b></dt><dd>独自形式インチキサーフェイスのポインタ。失敗した場合はNULL </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="84045eae70cf4d6113db8c3ac1e4bf0e"></a><!-- doxytag: member="CDirectDraw::RelSurface" ref="84045eae70cf4d6113db8c3ac1e4bf0e" args="(MYSURFACE *s)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::RelSurface           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d2/d26/struct_m_y_s_u_r_f_a_c_e.html">MYSURFACE</a> *&nbsp;</td>
+          <td class="paramname"> <em>s</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+ロードされた独自形式2Dサーフェイスを開放<p>
+<dl compact><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>s</em>&nbsp;</td><td>開放するサーフェイス </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="ac5d0b68567bbb707a767014de32e4c0"></a><!-- doxytag: member="CDirectDraw::CreateSurfaceFrom256Image" ref="ac5d0b68567bbb707a767014de32e4c0" args="(char *filename, char *pallet=NULL, BOOL dmy=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d26/struct_m_y_s_u_r_f_a_c_e.html">MYSURFACE</a> * CDirectDraw::CreateSurfaceFrom256Image           </td>
+          <td>(</td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>pallet</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>dmy</em> = <code>TRUE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+各種形式の画像を読み込む。PNGと合わせるために追加。 
+<p>
+256色画像を独自形式でロード<p>
+PNG対応に伴い、読み込み処理に柔軟性を求めるために作りました。 拡張子を除いたファイル名から、.pngと.bmpの２種類のタイプから自動で読み込みます(PNG優先）。 あとは、ほとんどCreateSurfaceFrom256BMPと変わりません。<p>
+<dl compact><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>filename</em>&nbsp;</td><td>イメージを読み込むファイルの、拡張子を除いたファイル名。 palnameがNULLでないときは、このファイルのパレットは無視される </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>palname</em>&nbsp;</td><td>パレットを読み込むファイルの、拡張子を除いたファイル名。 NULLの場合はfilenameのファイルのパレットが適用される </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>dmy</em>&nbsp;</td><td>未使用。まだDirectDrawを使っていた頃、VRAMに読むかシステムメモリに読むかのフラグだったもの。</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>戻り値:</b></dt><dd>サーフェイスのポインタ。失敗した場合はNULL</dd></dl>
+<dl class="see" compact><dt><b>参照:</b></dt><dd><a class="el" href="../../d8/da5/class_c_direct_draw.html#04f5bc293a3c6d84e6628275fe139f8d">CreateSurfaceFrom256BMP</a> </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="99ab1230e9e38eafde55481aa13130c5"></a><!-- doxytag: member="CDirectDraw::MyBlt3D" ref="99ab1230e9e38eafde55481aa13130c5" args="(MYSURFACE *dds, RECT src, MYRECT3D dst, DWORD flag=0, DWORD color=0xFFFFFFFF)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::MyBlt3D           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d2/d26/struct_m_y_s_u_r_f_a_c_e.html">MYSURFACE</a> *&nbsp;</td>
+          <td class="paramname"> <em>dds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">RECT&nbsp;</td>
+          <td class="paramname"> <em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/d5b/struct_m_y_r_e_c_t3_d.html">MYRECT3D</a>&nbsp;</td>
+          <td class="paramname"> <em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>flag</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>color</em> = <code>0xFFFFFFFF</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+独自形式2Dサーフェイス描画　２ 
+<p>
+転送位置を3D空間上で指定することができる。転送先は通常、常にバックバッファ（描画ターゲット）です。 CheckBlt2よりも引数が少ないけど、MYRECT3Dにいろいろあってこっちのほうが自由度が高い。多分。<p>
+<dl compact><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>dds</em>&nbsp;</td><td>転送元サーフェイス </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>src</em>&nbsp;</td><td>転送元矩形 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>dst</em>&nbsp;</td><td>転送先矩形 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>flag</em>&nbsp;</td><td>その他動作フラグ </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>color</em>&nbsp;</td><td>32ビット形式頂点カラー。通常 0xFFFFFFFF </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="469e6039e081831dd4189ff3ab70fea2"></a><!-- doxytag: member="CDirectDraw::CheckBlt" ref="469e6039e081831dd4189ff3ab70fea2" args="(MYSURFACE *dds, int x, int y, RECT r, BOOL revx=FALSE, BOOL revy=FALSE, DWORD flag=0, float z=0.0f, DWORD color=0xFFFFFFFF, BOOL drawShadow=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::CheckBlt           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d2/d26/struct_m_y_s_u_r_f_a_c_e.html">MYSURFACE</a> *&nbsp;</td>
+          <td class="paramname"> <em>dds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">RECT&nbsp;</td>
+          <td class="paramname"> <em>r</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>revx</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>revy</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>flag</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>z</em> = <code>0.0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>color</em> = <code>0xFFFFFFFF</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>drawShadow</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+CheckBlt2 引数省略簡易版 
+<p>
+<dl compact><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>dds</em>&nbsp;</td><td>転送元サーフェイス </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>x</em>&nbsp;</td><td>転送先X座標 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>y</em>&nbsp;</td><td>転送先Y座標 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>r</em>&nbsp;</td><td>転送元矩形 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>revx</em>&nbsp;</td><td>X反転 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>revy</em>&nbsp;</td><td>Y反転 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>flag</em>&nbsp;</td><td>その他動作フラグ </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>z</em>&nbsp;</td><td>転送先Z座標 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>color</em>&nbsp;</td><td>32ビット形式頂点カラー。通常 0xFFFFFFFF</td></tr>
+  </table>
+</dl>
+<dl class="see" compact><dt><b>参照:</b></dt><dd><a class="el" href="../../d8/da5/class_c_direct_draw.html#32ff574a33c5f6b306907ecf881d6e83" title="サーフェースの矩形転送(描画)">CheckBlt2</a> </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="32ff574a33c5f6b306907ecf881d6e83"></a><!-- doxytag: member="CDirectDraw::CheckBlt2" ref="32ff574a33c5f6b306907ecf881d6e83" args="(MYSURFACE *dds, int x, int y, RECT r, double magx=1.0, double magy=1.0, BOOL revx=FALSE, BOOL revy=FALSE, DWORD flag=0, float z=0.0f, DWORD color=0xFFFFFFFF, BOOL drawShadow=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::CheckBlt2           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d2/d26/struct_m_y_s_u_r_f_a_c_e.html">MYSURFACE</a> *&nbsp;</td>
+          <td class="paramname"> <em>dds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">RECT&nbsp;</td>
+          <td class="paramname"> <em>r</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>magx</em> = <code>1.0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>magy</em> = <code>1.0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>revx</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>revy</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>flag</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>z</em> = <code>0.0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>color</em> = <code>0xFFFFFFFF</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>drawShadow</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+サーフェースの矩形転送(描画) 
+<p>
+転送先は通常、常にバックバッファです。（描画ターゲットによる） DirectDrawの頃のBlt関数をそれなりに踏襲して、だんだん引数が増えたり減ったりして今に至る。 なんかそんな感じの由緒正しい関数です。よろしくねっ！<p>
+<dl compact><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>dds</em>&nbsp;</td><td>転送元サーフェイス </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>x</em>&nbsp;</td><td>転送先X座標 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>y</em>&nbsp;</td><td>転送先Y座標 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>r</em>&nbsp;</td><td>転送元矩形 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>magx</em>&nbsp;</td><td>X拡大率 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>magy</em>&nbsp;</td><td>Y拡大率 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>revx</em>&nbsp;</td><td>X反転 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>revy</em>&nbsp;</td><td>Y反転 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>flag</em>&nbsp;</td><td>その他動作フラグ </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>z</em>&nbsp;</td><td>転送先Z座標 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>color</em>&nbsp;</td><td>32ビット形式頂点カラー。通常 0xFFFFFFFF </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="2e7863fe0f5010bc452cdc17b70d73a5"></a><!-- doxytag: member="CDirectDraw::GetFrontBufferCopy" ref="2e7863fe0f5010bc452cdc17b70d73a5" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">LPDIRECT3DTEXTURE8 CDirectDraw::GetFrontBufferCopy           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+現在のフロントバッファーの内容をコピーして返す。 テクスチャーは呼び出し側でReleaseすること。 ウィンドウモードの場合、別なウインドウが邪魔してるとそれも写りこむ。 戻されるテクスチャーのフォーマットはA1R5G5B5。<p>
+<dl class="return" compact><dt><b>戻り値:</b></dt><dd>失敗したらNULL </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="1253b87c4bc9f882c6658a00df378b97"></a><!-- doxytag: member="CDirectDraw::GetFrontBufferCopyRaw" ref="1253b87c4bc9f882c6658a00df378b97" args="(UINT *wdt, UINT *hgt)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DWORD * CDirectDraw::GetFrontBufferCopyRaw           </td>
+          <td>(</td>
+          <td class="paramtype">UINT *&nbsp;</td>
+          <td class="paramname"> <em>wdt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UINT *&nbsp;</td>
+          <td class="paramname"> <em>hgt</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+現在のフロントバッファーの内容をコピーして返す。 スクリーンショット用。 戻されたポインタは呼び出し側でdeleteすること。<p>
+<dl compact><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>wdt</em>&nbsp;</td><td>[out]コピーしたイメージの幅 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>hgt</em>&nbsp;</td><td>[out]コピーしたイメージの高さ </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>戻り値:</b></dt><dd>32ビット配列。失敗はNULL。 </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="ce60fd0a58e20f74fe4d6c4ad439e598"></a><!-- doxytag: member="CDirectDraw::CellDraw" ref="ce60fd0a58e20f74fe4d6c4ad439e598" args="(MYSURFACE **psuf, LPVOID pcdat, LPVOID prdat, DWORD cn, int x, int y, float z, int rot, BOOL revx=FALSE, BOOL revy=FALSE, DWORD color=0xFFFFFFFF, float magx=1.0f, float magy=1.0f, BOOL shadowed=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::CellDraw           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d2/d26/struct_m_y_s_u_r_f_a_c_e.html">MYSURFACE</a> **&nbsp;</td>
+          <td class="paramname"> <em>pbuf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">LPVOID&nbsp;</td>
+          <td class="paramname"> <em>pcdat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">LPVOID&nbsp;</td>
+          <td class="paramname"> <em>prdat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>cn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>rot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>revx</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>revy</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>color</em> = <code>0xFFFFFFFF</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>magx</em> = <code>1.0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>magy</em> = <code>1.0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>shadowed</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Goluah GCD(バージョン自動判別)形式セル描画 
+<p>
+GCDのうち、指定インデックスのCELLを描画します。 <dl compact><dt><b>引数: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>pbuf</em>&nbsp;</td><td>
+GCDで利用するビットマップ配列 </td></tr>
+<tr><td valign="top"><em>pcdat</em>&nbsp;</td><td>
+GCD,CELL (<a class="el" href="../../db/d80/struct_g_c_d___c_e_l_l2.html" title="GCDセル (GCD_CELLのセット)">GCD_CELL2</a>)配列 </td></tr>
+<tr><td valign="top"><em>prdat</em>&nbsp;</td><td>
+GCD,切り取り矩形 (<a class="el" href="../../dd/d39/struct_g_c_d___r_e_c_t.html" title="GCD切り取り矩形構造体">GCD_RECT</a>)配列 </td></tr>
+<tr><td valign="top"><em>cn</em>&nbsp;</td><td>
+描画するセル番号 </td></tr>
+<tr><td valign="top"><em>x</em>&nbsp;</td><td>
+描画先基準x </td></tr>
+<tr><td valign="top"><em>y</em>&nbsp;</td><td>
+描画先基準y </td></tr>
+<tr><td valign="top"><em>z</em>&nbsp;</td><td>
+描画先z </td></tr>
+<tr><td valign="top"><em>rot</em>&nbsp;</td><td>
+全体回転角 </td></tr>
+<tr><td valign="top"><em>revx</em>&nbsp;</td><td>
+全体反転X </td></tr>
+<tr><td valign="top"><em>revy</em>&nbsp;</td><td>
+全体反転Y </td></tr>
+<tr><td valign="top"><em>color</em>&nbsp;</td><td>
+全体色 </td></tr>
+<tr><td valign="top"><em>magx</em>&nbsp;</td><td>
+全体拡大率X </td></tr>
+<tr><td valign="top"><em>magy</em>&nbsp;</td><td>
+全体拡大率Y </td></tr>
+<tr><td valign="top"><em>shadowed</em>&nbsp;</td><td>
+影付き </td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+<a class="anchor" name="d9c3046b11e8c37710dabe9a8e04d377"></a><!-- doxytag: member="CDirectDraw::CellDraw090" ref="d9c3046b11e8c37710dabe9a8e04d377" args="(MYSURFACE **psuf, LPVOID pcdat, LPVOID prdat, DWORD cn, int x, int y, float z, int rot, BOOL revx=FALSE, BOOL revy=FALSE, DWORD color=0xFFFFFFFF, float magx=1.0f, float magy=1.0f, BOOL shadowed=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::CellDraw090           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d2/d26/struct_m_y_s_u_r_f_a_c_e.html">MYSURFACE</a> **&nbsp;</td>
+          <td class="paramname"> <em>pbuf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">LPVOID&nbsp;</td>
+          <td class="paramname"> <em>pcdat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">LPVOID&nbsp;</td>
+          <td class="paramname"> <em>prdat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>cn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>rot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>revx</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>revy</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>color</em> = <code>0xFFFFFFFF</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>magx</em> = <code>1.0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>magy</em> = <code>1.0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>shadowed</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Goluah GCD(090)形式セル描画 
+<p>
+CellDraw070とCellDraw090は、内部での座標変換の順番が微妙に入れ替わっているので注意 <dl compact><dt><b>引数: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>pbuf</em>&nbsp;</td><td>
+GCDで利用するビットマップ配列 </td></tr>
+<tr><td valign="top"><em>pcdat</em>&nbsp;</td><td>
+GCD,CELL (GCD_CELL2_090)配列 </td></tr>
+<tr><td valign="top"><em>prdat</em>&nbsp;</td><td>
+GCD,切り取り矩形 (GCD_RECT_090)配列 </td></tr>
+<tr><td valign="top"><em>cn</em>&nbsp;</td><td>
+描画するセル番号 </td></tr>
+<tr><td valign="top"><em>x</em>&nbsp;</td><td>
+描画先基準x </td></tr>
+<tr><td valign="top"><em>y</em>&nbsp;</td><td>
+描画先基準y </td></tr>
+<tr><td valign="top"><em>z</em>&nbsp;</td><td>
+描画先z </td></tr>
+<tr><td valign="top"><em>rot</em>&nbsp;</td><td>
+全体回転角 </td></tr>
+<tr><td valign="top"><em>revx</em>&nbsp;</td><td>
+全体反転X </td></tr>
+<tr><td valign="top"><em>revy</em>&nbsp;</td><td>
+全体反転Y </td></tr>
+<tr><td valign="top"><em>color</em>&nbsp;</td><td>
+全体色 </td></tr>
+<tr><td valign="top"><em>magx</em>&nbsp;</td><td>
+全体拡大率X </td></tr>
+<tr><td valign="top"><em>magy</em>&nbsp;</td><td>
+全体拡大率Y </td></tr>
+<tr><td valign="top"><em>shadowed</em>&nbsp;</td><td>
+影付き </td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+<a class="anchor" name="dfbb27aa4d5b714454ac1e063a836536"></a><!-- doxytag: member="CDirectDraw::CellDraw070" ref="dfbb27aa4d5b714454ac1e063a836536" args="(MYSURFACE **psuf, LPVOID pcdat, LPVOID prdat, DWORD cn, int x, int y, float z, int rot, BOOL revx=FALSE, BOOL revy=FALSE, DWORD color=0xFFFFFFFF, float magx=1.0f, float magy=1.0f, BOOL shadowed=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::CellDraw070           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d2/d26/struct_m_y_s_u_r_f_a_c_e.html">MYSURFACE</a> **&nbsp;</td>
+          <td class="paramname"> <em>pbuf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">LPVOID&nbsp;</td>
+          <td class="paramname"> <em>pcdat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">LPVOID&nbsp;</td>
+          <td class="paramname"> <em>prdat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>cn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>rot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>revx</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>revy</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>color</em> = <code>0xFFFFFFFF</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>magx</em> = <code>1.0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>magy</em> = <code>1.0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>shadowed</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Goluah GCD(070)形式セル描画 
+<p>
+CellDraw070とCellDraw090は、内部での座標変換の順番が微妙に入れ替わっているので注意 <dl compact><dt><b>引数: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>pbuf</em>&nbsp;</td><td>
+GCDで利用するビットマップ配列 </td></tr>
+<tr><td valign="top"><em>pcdat</em>&nbsp;</td><td>
+GCD,CELL (<a class="el" href="../../d6/d39/struct_g_c_d___c_e_l_l2__070.html" title="旧バージョンCELL構造体">GCD_CELL2_070</a>)配列 </td></tr>
+<tr><td valign="top"><em>prdat</em>&nbsp;</td><td>
+GCD,切り取り矩形 (GCD_RECT_070)配列 </td></tr>
+<tr><td valign="top"><em>cn</em>&nbsp;</td><td>
+描画するセル番号 </td></tr>
+<tr><td valign="top"><em>x</em>&nbsp;</td><td>
+描画先基準x </td></tr>
+<tr><td valign="top"><em>y</em>&nbsp;</td><td>
+描画先基準y </td></tr>
+<tr><td valign="top"><em>z</em>&nbsp;</td><td>
+描画先z </td></tr>
+<tr><td valign="top"><em>rot</em>&nbsp;</td><td>
+全体回転角 </td></tr>
+<tr><td valign="top"><em>revx</em>&nbsp;</td><td>
+全体反転X </td></tr>
+<tr><td valign="top"><em>revy</em>&nbsp;</td><td>
+全体反転Y </td></tr>
+<tr><td valign="top"><em>color</em>&nbsp;</td><td>
+全体色 </td></tr>
+<tr><td valign="top"><em>magx</em>&nbsp;</td><td>
+全体拡大率X </td></tr>
+<tr><td valign="top"><em>magy</em>&nbsp;</td><td>
+全体拡大率Y </td></tr>
+<tr><td valign="top"><em>shadowed</em>&nbsp;</td><td>
+影付き </td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+<a class="anchor" name="b43cddac88d1727305f9ea619e5c3453"></a><!-- doxytag: member="CDirectDraw::HanteiDraw" ref="b43cddac88d1727305f9ea619e5c3453" args="(LPVOID pcdat, LPVOID phdat, DWORD cn, BOOL b_atr, BOOL b_kas, BOOL b_atk, int x, int y, float z, int rot, BOOL revx=FALSE, BOOL revy=FALSE, float magx=1.0f, float magy=1.0f)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::HanteiDraw           </td>
+          <td>(</td>
+          <td class="paramtype">LPVOID&nbsp;</td>
+          <td class="paramname"> <em>pcdat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">LPVOID&nbsp;</td>
+          <td class="paramname"> <em>phdat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>cn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>b_atr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>b_kas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>b_atk</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>rot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>revx</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>revy</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>magx</em> = <code>1.0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>magy</em> = <code>1.0f</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Goluah GCD形式あたり判定矩形描画 
+<p>
+あたり判定の四角形を描画する。半透明の四角形によって描画される。 引数は基本的にCellDrawとおんなじもんである <dl compact><dt><b>引数: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>phdat</em>&nbsp;</td><td>
+GCD判定矩形(<a class="el" href="../../df/da5/struct_g_c_d___h_a_n_t_e_i.html" title="GCDあたり判定矩形">GCD_HANTEI</a>)配列 </td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+<a class="anchor" name="d7e73965e4d68188506240fb2348a58c"></a><!-- doxytag: member="CDirectDraw::HRectDraw" ref="d7e73965e4d68188506240fb2348a58c" args="(LPVOID cdat, LPVOID phdat, DWORD cn, int x, int y, float z, int rot, BOOL revx=FALSE, BOOL revy=FALSE, float magx=1.0f, float magy=1.0f)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::HRectDraw           </td>
+          <td>(</td>
+          <td class="paramtype">LPVOID&nbsp;</td>
+          <td class="paramname"> <em>pcdat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">LPVOID&nbsp;</td>
+          <td class="paramname"> <em>phdat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>cn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>rot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>revx</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>revy</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>magx</em> = <code>1.0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>magy</em> = <code>1.0f</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+GCDあたり判定矩形描画 
+<p>
+ラインにより描画される <dl class="see" compact><dt><b>参照:</b></dt><dd><a class="el" href="../../d8/da5/class_c_direct_draw.html#b43cddac88d1727305f9ea619e5c3453" title="Goluah GCD形式あたり判定矩形描画">HanteiDraw</a> <p>
+<a class="el" href="../../d8/da5/class_c_direct_draw.html#ce60fd0a58e20f74fe4d6c4ad439e598" title="Goluah GCD(バージョン自動判別)形式セル描画">CellDraw</a> </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="34a2e0177db73731b54ef99cc9f47110"></a><!-- doxytag: member="CDirectDraw::GCenterDraw" ref="34a2e0177db73731b54ef99cc9f47110" args="(LPVOID cdat, DWORD cn, int x, int y, float z, int rot, BOOL revx=FALSE, BOOL revy=FALSE, float magx=1.0f, float magy=1.0f)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::GCenterDraw           </td>
+          <td>(</td>
+          <td class="paramtype">LPVOID&nbsp;</td>
+          <td class="paramname"> <em>pcdat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>cn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>rot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>revx</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>revy</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>magx</em> = <code>1.0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>magy</em> = <code>1.0f</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Goluah GCD形式重心位置マーカー描画 
+<p>
+<dl class="see" compact><dt><b>参照:</b></dt><dd><a class="el" href="../../d8/da5/class_c_direct_draw.html#ce60fd0a58e20f74fe4d6c4ad439e598" title="Goluah GCD(バージョン自動判別)形式セル描画">CellDraw</a> </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="579c3cd7483301a86fd92de238312169"></a><!-- doxytag: member="CDirectDraw::DrawLine" ref="579c3cd7483301a86fd92de238312169" args="(int sx, int sy, int gx, int gy, DWORD col)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::DrawLine           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>sx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>sy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>gx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>gy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>col</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+単純線描画 
+<p>
+<dl compact><dt><b>引数: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>sx</em>&nbsp;</td><td>
+始点x </td></tr>
+<tr><td valign="top"><em>sy</em>&nbsp;</td><td>
+始点y </td></tr>
+<tr><td valign="top"><em>gx</em>&nbsp;</td><td>
+終点x </td></tr>
+<tr><td valign="top"><em>gy</em>&nbsp;</td><td>
+終点y </td></tr>
+<tr><td valign="top"><em>col</em>&nbsp;</td><td>
+描画色 </td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+<a class="anchor" name="60c73628a232783c8cd80a597a7b4e24"></a><!-- doxytag: member="CDirectDraw::ClearBackBuffer" ref="60c73628a232783c8cd80a597a7b4e24" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::ClearBackBuffer           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+バックバッファのクリア Zバッファもクリアされる 
+</div>
+</div><p>
+<a class="anchor" name="a067ad7b22eb8d39d8cff0c30b2b2578"></a><!-- doxytag: member="CDirectDraw::DrawCircle" ref="a067ad7b22eb8d39d8cff0c30b2b2578" args="(int x, int y, int rad, int w, float z=0, DWORD color=0xFF55AAFF, BOOL toumei=FALSE, float rot=0, BOOL rot_y=TRUE, BOOL hosei=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::DrawCircle           </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>rad</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>z</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>color</em> = <code>0xFF55AAFF</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>toumei</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>rot</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>rot_y</em> = <code>TRUE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>hosei</em> = <code>TRUE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+円の描画 
+<p>
+<dl compact><dt><b>引数: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>x</em>&nbsp;</td><td>
+円の中心位置x </td></tr>
+<tr><td valign="top"><em>y</em>&nbsp;</td><td>
+円の中心位置y </td></tr>
+<tr><td valign="top"><em>rad</em>&nbsp;</td><td>
+円の半径 </td></tr>
+<tr><td valign="top"><em>w</em>&nbsp;</td><td>
+線のふとさ </td></tr>
+<tr><td valign="top"><em>z</em>&nbsp;</td><td>
+円のz位置 </td></tr>
+<tr><td valign="top"><em>color</em>&nbsp;</td><td>
+円の色 </td></tr>
+<tr><td valign="top"><em>toumei</em>&nbsp;</td><td>
+線の内側を透明化するか </td></tr>
+<tr><td valign="top"><em>rot</em>&nbsp;</td><td>
+円の回転角 </td></tr>
+<tr><td valign="top"><em>rot_y</em>&nbsp;</td><td>
+TRUE:Y軸を軸として回転する,FALSE:X軸を軸として回転する </td></tr>
+<tr><td valign="top"><em>hosei</em>&nbsp;</td><td>
+補正をいれるかどうか(なんの?) </td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+<a class="anchor" name="02acce16f9d051e43788d5f335944990"></a><!-- doxytag: member="CDirectDraw::DrawBlueText" ref="02acce16f9d051e43788d5f335944990" args="(RECT &amp;r, char *text, int len, DWORD method, DWORD size)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::DrawBlueText           </td>
+          <td>(</td>
+          <td class="paramtype">RECT &amp;&nbsp;</td>
+          <td class="paramname"> <em>r</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>text</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>method</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>size</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+テキスト描画 
+<p>
+フォントを使って描画します。結構重いっぽい。 色はブルー固定らしい。（なんで？） <dl compact><dt><b>引数: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>r</em>&nbsp;</td><td>
+描画する矩形領域 </td></tr>
+<tr><td valign="top"><em>text</em>&nbsp;</td><td>
+テキスト文字列 </td></tr>
+<tr><td valign="top"><em>len</em>&nbsp;</td><td>
+テキスト文字数 </td></tr>
+<tr><td valign="top"><em>method</em>&nbsp;</td><td>
+Win32APIのDrawText参照。DT_LEFTとかそういうの </td></tr>
+<tr><td valign="top"><em>size</em>&nbsp;</td><td>
+描画サイズ。1〜(AKIDX_FONTNUM-1) </td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+<a class="anchor" name="1772a2c85b3b82ca735798720a779070"></a><!-- doxytag: member="CDirectDraw::SetAlphaMode" ref="1772a2c85b3b82ca735798720a779070" args="(DWORD alphamode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::SetAlphaMode           </td>
+          <td>(</td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>alphamode</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+αブレンドのモードを設定する 通常の合成、加算合成、反転 が選べる 
+</div>
+</div><p>
+<a class="anchor" name="81c6e3f9717be6789bc17ba9a071865f"></a><!-- doxytag: member="CDirectDraw::EnableZ" ref="81c6e3f9717be6789bc17ba9a071865f" args="(BOOL test=TRUE, BOOL write=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::EnableZ           </td>
+          <td>(</td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>test</em> = <code>TRUE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>write</em> = <code>TRUE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Zテスト・ライトの有効・無効を設定<p>
+<dl compact><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>test</em>&nbsp;</td><td>TRUE:ｚテストを行う </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>write</em>&nbsp;</td><td>TRUE:ｚバッファーへの書き込みを行う </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="262f25bb0a394af792a6f5018c1b1353"></a><!-- doxytag: member="CDirectDraw::ResetTransformMatrix" ref="262f25bb0a394af792a6f5018c1b1353" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::ResetTransformMatrix           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+ワールド→ディスプレイ座標変換マトリクス設定 
+<p>
+カメラとビューの座標変換マトリクスをリセットする D3DTS_VIEW と、D3DTS_PROJECTION のマトリクスが設定される<p>
+<dl class="see" compact><dt><b>参照:</b></dt><dd>camera_x <p>
+camera_zurax <p>
+camera_y <p>
+<a class="el" href="../../d8/da5/class_c_direct_draw.html#9d9d10d97661c53bce70f1e46a31905e" title="カメラずらし？よく分からん">camera_zuray</a> <p>
+<a class="el" href="../../d8/da5/class_c_direct_draw.html#ce3452ff6b5d5ca275aeec57f428162f" title="カメラの位置">camera_z</a> </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="abde329f3367f8b74651b3ef4e7c10a8"></a><!-- doxytag: member="CDirectDraw::SetTransform" ref="abde329f3367f8b74651b3ef4e7c10a8" args="(BOOL b)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::SetTransform           </td>
+          <td>(</td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>b</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+カメラ、ビュー　マトリックスの設定 
+<p>
+試合のときに描画位置がキャラクターの位置によって移動するけど、 それを考慮して描画するかどうか。 D3DTS_VIEW と、D3DTS_PROJECTION が影響を受けます。 <dl class="see" compact><dt><b>参照:</b></dt><dd><a class="el" href="../../d8/da5/class_c_direct_draw.html#262f25bb0a394af792a6f5018c1b1353" title="ワールド→ディスプレイ座標変換マトリクス設定">ResetTransformMatrix</a></dd></dl>
+<dl compact><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>b</em>&nbsp;</td><td>カメラの位置を考慮するか否かみたいなもの FALSE の場合、x:0-640 , y:0-480 のディスプレイ座標系で指定して2D描画すると、 そのまんまに表示されるようになる。はず </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="3a6af200c22e8289c00b5aa707c2591c"></a><!-- doxytag: member="CDirectDraw::SetWorldMatrix" ref="3a6af200c22e8289c00b5aa707c2591c" args="(D3DXMATRIX *pmat)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::SetWorldMatrix           </td>
+          <td>(</td>
+          <td class="paramtype">D3DXMATRIX *&nbsp;</td>
+          <td class="paramname"> <em>pmat</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+ワールド変換マトリクスを指定 
+<p>
+D3DTS_WORLDに指定マトリックスを設定します。 たぶん、「D3DTS_WORLD」って綴りを覚えてなかったからこの関数が生まれたんだと思われる。 
+</div>
+</div><p>
+<a class="anchor" name="7a4fdb830cb4b08bbd8a2a3fcd021d32"></a><!-- doxytag: member="CDirectDraw::SetParentMatrix" ref="7a4fdb830cb4b08bbd8a2a3fcd021d32" args="(D3DXMATRIX &amp;mat, BOOL root=TRUE, BOOL insert=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">D3DXMATRIX CDirectDraw::SetParentMatrix           </td>
+          <td>(</td>
+          <td class="paramtype">D3DXMATRIX &amp;&nbsp;</td>
+          <td class="paramname"> <em>mat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>root</em> = <code>TRUE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>insert</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+「親」マトリクスを設定 
+<p>
+CDirectDrawのほとんどの描画関数は、ここで設定されたマトリクスの影響を受ける。 このマトリクスは、ローカル → ワールド → カメラ → ビュー 変換のうち、 ワールド→ローカル 変換に挿入されるもんである。<p>
+通常は単位行列が指定されている。 また、変更した場合には、描画後に元の変換行列に戻しておくこと。<p>
+<dl compact><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>mat</em>&nbsp;</td><td>新規に設定する変換マトリクス </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>root</em>&nbsp;</td><td>FALSEの場合、設定されるマトリクスは、旧マトリクス*新マトリクス　の掛け算をしたもんである </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>insert</em>&nbsp;</td><td>TRUEの場合、設定されるマトリクスは、新マトリクス*旧マトリクス　の掛け算をしたもんである </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>戻り値:</b></dt><dd>関数の実行前に設定されていた古いマトリクス </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="f4417b67c9cda09ab99eb02fee4817f0"></a><!-- doxytag: member="CDirectDraw::ResetParentMatrix" ref="f4417b67c9cda09ab99eb02fee4817f0" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">D3DXMATRIX CDirectDraw::ResetParentMatrix           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+「親」マトリクスに単位行列を設定する 
+<p>
+<dl class="see" compact><dt><b>参照:</b></dt><dd><a class="el" href="../../d8/da5/class_c_direct_draw.html#7a4fdb830cb4b08bbd8a2a3fcd021d32" title="「親」マトリクスを設定">SetParentMatrix</a> </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="dfa4510b7e35db81e6df030d2e945dd7"></a><!-- doxytag: member="CDirectDraw::SetParentMatrix2" ref="dfa4510b7e35db81e6df030d2e945dd7" args="(D3DXMATRIX *mat, BOOL root, D3DXMATRIX *matprv)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::SetParentMatrix2           </td>
+          <td>(</td>
+          <td class="paramtype">D3DXMATRIX *&nbsp;</td>
+          <td class="paramname"> <em>mat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">D3DXMATRIX *&nbsp;</td>
+          <td class="paramname"> <em>matprv</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+「親」マトリクスを設定 
+<p>
+SetParentMatrixとなにがちがうのかな？忘れちゃいました。 
+</div>
+</div><p>
+<a class="anchor" name="fe8b6187cd0e2d5d65e610bc71591ea9"></a><!-- doxytag: member="CDirectDraw::TraceCreateDeviceError" ref="fe8b6187cd0e2d5d65e610bc71591ea9" args="(HRESULT ret, HWND hwnd)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectDraw::TraceCreateDeviceError           </td>
+          <td>(</td>
+          <td class="paramtype">HRESULT&nbsp;</td>
+          <td class="paramname"> <em>ret</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">HWND&nbsp;</td>
+          <td class="paramname"> <em>hwnd</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+CreateDeviceに失敗した理由をMessageBoxで表示する<p>
+D3DのCreateDeviceが返したリターンコードから、SDKヘルプの解説をコピペしたものに 直してメッセージボックス表示する。<p>
+<dl compact><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>ret</em>&nbsp;</td><td>CreateDeviceが返したリターンコード </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>hwnd</em>&nbsp;</td><td>メッセージボックスの親になるウインドウハンドル </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<hr>このクラスの説明は次のファイルから生成されました:<ul>
+<li>devkit100/goluah/common/directx/<a class="el" href="../../df/dbe/dx__draw_8h.html">dx_draw.h</a><li>devkit100/goluah/common/directx/dx_draw.cpp</ul>
+<hr size="1"><address style="text-align: right;"><small>Goluah!!に対してWed Oct 13 14:02:08 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="../../doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.3 </small></address>
+</body>
+</html>

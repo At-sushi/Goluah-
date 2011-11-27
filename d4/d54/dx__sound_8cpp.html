@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Goluah!!: devkit100/goluah/common/directx/dx_sound.cpp</title>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css">
+<link href="../../tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- ä½œæˆï¼š Doxygen 1.5.3 -->
+<div class="tabs">
+  <ul>
+    <li><a href="../../main.html"><span>ãƒ¡ã‚¤ãƒ³ãƒšãƒ¼ã‚¸</span></a></li>
+    <li><a href="../../modules.html"><span>ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«</span></a></li>
+    <li><a href="../../annotated.html"><span>ã‚¯ãƒ©ã‚¹</span></a></li>
+    <li class="current"><a href="../../files.html"><span>ãƒ•ã‚¡ã‚¤ãƒ«</span></a></li>
+  </ul>
+</div>
+<h1>devkit100/goluah/common/directx/dx_sound.cpp</h1>DirectSoundã‚¯ãƒ©ã‚¹ <a href="#_details">[è©³ç´°]</a>
+<p>
+<code>#include &quot;stdafx.h&quot;</code><br>
+<code>#include &quot;<a class="el" href="../../d2/d49/global_8h.html">global.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="../../db/da4/task_8h.html">task.h</a>&quot;</code><br>
+<code>#include &quot;<a class="el" href="../../d3/d54/dx__sound_8h.html">dx_sound.h</a>&quot;</code><br>
+<code>#include &quot;locale.h&quot;</code><br>
+
+<p>
+<div class="dynheader">
+dx_sound.cppã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ä¾å­˜é–¢ä¿‚å›³</div>
+<div class="dynsection">
+<p><center><img src="../../dd/ddd/dx__sound_8cpp__incl.png" border="0" usemap="#devkit100/goluah/common/directx/dx_sound.cpp_map" alt=""></center>
+<map name="devkit100/goluah/common/directx/dx_sound.cpp_map">
+<area shape="rect" href="../../d2/d49/global_8h.html" title="DirectSounda?Pa?ca?1" alt="" coords="479,80,545,107"><area shape="rect" href="../../d3/d54/dx__sound_8h.html" title="a?‹a?&#45;a??a??a?áe?‘a?‹ a?‹a?&#45;a??a??a?áa??a?‹a€€a?aa?c" alt="" coords="896,155,987,181"><area shape="rect" href="../../db/da4/task_8h.html" title="a?Ea?1a??a??a?Pa?ca?1c&#45;?a?RaR?c?c a?!a??a?3a?Ea?1a??a??a€?a?2a??a??a?Ne?Êa?RcƒÊ}a?Ê..." alt="" coords="429,229,488,256"><area shape="rect" title="DirectSounda?Pa?ca?1" alt="" coords="1061,80,1128,107"><area shape="rect" href="../../df/dbe/dx__draw_8h.html" title="a?‹a?&#45;a??a??a?áe?‘a?‹ a?‹a?&#45;a??a??a?áa??a?‹a€€a?aa?c" alt="" coords="817,229,900,256"><area shape="rect" href="../../d5/d98/dx__input_8h.html" title="a?‹a?&#45;a??a??a?áe?‘a?‹ a?‹a?&#45;a??a??a?áa??a?‹a€€a?aa?c" alt="" coords="197,155,280,181"><area shape="rect" href="../../db/d16/config_8h.html" title="CDirectInput" alt="" coords="243,229,312,256"><area shape="rect" href="../../dd/dd2/dx__play_8h.html" title="a?‹a?&#45;a??a??a?áe?‘a?‹ a?‹a?&#45;a??a??a?áa??a?‹a€€a?aa?c" alt="" coords="744,155,821,181"><area shape="rect" href="../../dc/db2/system_8h.html" title="a?‹a?&#45;a??a??a?áe?‘a?‹ a?‹a?&#45;a??a??a?áa??a?‹a€€a?aa?c" alt="" coords="355,155,429,181"><area shape="rect" href="../../db/db5/export_8h.html" title="a?‹a?&#45;a??a??a?áe?‘a?‹ a?‹a?&#45;a??a??a?áa??a?‹a€€a?aa?c" alt="" coords="104,155,173,181"><area shape="rect" href="../../d4/dbd/charlist_8h.html" title="a?‹a?&#45;a??a??a?áe?‘a?‹ a?‹a?&#45;a??a??a?áa??a?‹a€€a?aa?c" alt="" coords="5,155,80,181"><area shape="rect" href="../../df/d33/battle__load__info_8h.html" title="a?‹a?&#45;a??a??a?áe?‘a?‹ a?‹a?&#45;a??a??a?áa??a?‹a€€a?aa?c" alt="" coords="595,155,720,181"><area shape="rect" href="../../d6/d29/bigface__cache_8h.html" title="a?‹a?&#45;a??a??a?áe?‘a?‹ a?‹a?&#45;a??a??a?áa??a?‹a€€a?aa?c" alt="" coords="453,155,571,181"><area shape="rect" href="../../d9/d62/define__gcd_8h.html" title="DXa??c?âc3â" alt="" coords="409,304,508,331"><area shape="rect" title="DirectPlay" alt="" coords="697,229,793,256"><area shape="rect" href="../../d7/d82/gobject_8h.html" title="DLLa?áaP?a??a?|a??a??a??a??e?‘a?‹a?RaR?c?c" alt="" coords="101,229,176,256"></map>
+</div>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>æ§‹æˆ</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d74/class_c_b_g_m_loop_message_listener.html">CBGMLoopMessageListener</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">BGMãƒ«ãƒ¼ãƒ—ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—ã‚¯ãƒ©ã‚¹  <a href="../../dd/d74/class_c_b_g_m_loop_message_listener.html#_details">[è©³ç´°]</a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>èª¬æ˜</h2>
+DirectSoundã‚¯ãƒ©ã‚¹ 
+<p>
+ãƒ»ãƒ»ãƒ»ã¨ã„ã„ã¤ã¤DirectShowã‚‚ä½¿ç”¨<p>
+.wavãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€ã€‚é–‹æ”¾ã¯è‡ªåˆ†ã§(å‘¼ã³å‡ºã—å´ãŒ)ã‚„ã‚‹ã€‚ DirectShowã‚’ä½¿ã£ã¦ .mid .mp3 .wma ç­‰ã®å†ç”Ÿã‚’è¡Œã†ã€‚å‹•ç”»ã®å†ç”Ÿã‚‚ã§ããŸã‚Šã™ã‚‹ã€‚ <hr size="1"><address style="text-align: right;"><small>Goluah!!ã«å¯¾ã—ã¦Wed Oct 13 14:00:53 2010ã«ç”Ÿæˆã•ã‚Œã¾ã—ãŸã€‚&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="../../doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.3 </small></address>
+</body>
+</html>

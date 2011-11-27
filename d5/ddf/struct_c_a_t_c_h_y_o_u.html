@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Goluah!!: 構造体 CATCHYOU</title>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css">
+<link href="../../tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- 作成： Doxygen 1.5.3 -->
+<div class="tabs">
+  <ul>
+    <li><a href="../../main.html"><span>メインページ</span></a></li>
+    <li><a href="../../modules.html"><span>モジュール</span></a></li>
+    <li class="current"><a href="../../annotated.html"><span>クラス</span></a></li>
+    <li><a href="../../files.html"><span>ファイル</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="../../annotated.html"><span>構成</span></a></li>
+    <li><a href="../../hierarchy.html"><span>クラス階層</span></a></li>
+    <li><a href="../../functions.html"><span>構成メンバ</span></a></li>
+  </ul>
+</div>
+<h1>構造体 CATCHYOU<br>
+<small>
+[<a class="el" href="../../d6/d7d/group___g_object.html">GObject</a>,&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html">GObject</a>]</small>
+</h1><!-- doxytag: class="CATCHYOU" -->相手つかみ情報  
+<a href="#_details">[詳細]</a>
+<p>
+<code>#include &lt;gobject.h&gt;</code>
+<p>
+
+<p>
+<a href="../../d6/ddf/struct_c_a_t_c_h_y_o_u-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Public 変数</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7458b5695d70e9cf2668e35e9b74354e"></a><!-- doxytag: member="CATCHYOU::oid" ref="7458b5695d70e9cf2668e35e9b74354e" args="" -->
+DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/ddf/struct_c_a_t_c_h_y_o_u.html#7458b5695d70e9cf2668e35e9b74354e">oid</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">掴むオブジェクト <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="141680c0a182334348957b09260d302d"></a><!-- doxytag: member="CATCHYOU::actmsg" ref="141680c0a182334348957b09260d302d" args="" -->
+DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/ddf/struct_c_a_t_c_h_y_o_u.html#141680c0a182334348957b09260d302d">actmsg</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">掴んだオブジェクトが、つかまれたオブジェクトを操作するために使うユーザー定義メッセージ <br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>説明</h2>
+相手つかみ情報 
+<p>
+<dl class="see" compact><dt><b>参照:</b></dt><dd><a class="el" href="../../de/d8c/struct_d_i___f_u_n_c_t_i_o_n_s___o.html#b5ed909fa062f096b630a258054ff831" title="投げとかで相手をつかむ">DI_FUNCTIONS_O::objcatch</a></dd></dl>
+オブジェクト関数objcatch にCATCHYOU構造体のポインタを入れて実行し、TRUEが返れば投げ開始 渡した関数が 相手の行動関数になる。表示セルにはデフォルトセルを利用する<p>
+投げられ状態に移行したオブジェクトにはGOBJMSG_ACTIONが送信されなくなる。 その代わりに投げたオブジェクトに対してここで指定したユーザーメッセージが、投げた側の オブジェクトに対して送信される。そのメッセージに対して0以外(デフォルト行動IDのいずれか) を返したときに、オブジェクトは投げられ状態から開放される。投げ側は指定したメッセージIDに対応する 適切な処理を行うこと。 <hr>この構造体の説明は次のファイルから生成されました:<ul>
+<li>devkit100/goluah/common/<a class="el" href="../../d7/d82/gobject_8h.html">gobject.h</a></ul>
+<hr size="1"><address style="text-align: right;"><small>Goluah!!に対してWed Oct 13 14:01:36 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="../../doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.3 </small></address>
+</body>
+</html>

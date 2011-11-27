@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Goluah!!: クラス CLog2File</title>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css">
+<link href="../../tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- 作成： Doxygen 1.5.3 -->
+<div class="tabs">
+  <ul>
+    <li><a href="../../main.html"><span>メインページ</span></a></li>
+    <li><a href="../../modules.html"><span>モジュール</span></a></li>
+    <li class="current"><a href="../../annotated.html"><span>クラス</span></a></li>
+    <li><a href="../../files.html"><span>ファイル</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="../../annotated.html"><span>構成</span></a></li>
+    <li><a href="../../hierarchy.html"><span>クラス階層</span></a></li>
+    <li><a href="../../functions.html"><span>構成メンバ</span></a></li>
+  </ul>
+</div>
+<h1>クラス CLog2File<br>
+<small>
+[<a class="el" href="../../d6/da4/group__global.html">Global</a>]</small>
+</h1><!-- doxytag: class="CLog2File" -->テキストファイルへのログ保存クラス  
+<a href="#_details">[詳細]</a>
+<p>
+<code>#include &lt;log2file.h&gt;</code>
+<p>
+
+<p>
+<a href="../../d0/dfe/class_c_log2_file-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d9d/class_c_log2_file.html#cc377fd0408905d0bace3e79dccb5764">CLog2File</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d9d/class_c_log2_file.html#a794ee7539771cf8fee042d9b0ff9999">AddLog</a> (char *str)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ログを追加する。 一定量ログがたまると自動的にバッファからファイルへ書き出す  <a href="#a794ee7539771cf8fee042d9b0ff9999"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d9d/class_c_log2_file.html#54fe218c9855006601a5f1aa5fccdc7c">Flush</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">バッファに保持しているログをファイルへ書き出す。 通常はAddLog()かデストラクタで行われるので明示的にコールする必要はない  <a href="#54fe218c9855006601a5f1aa5fccdc7c"></a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>説明</h2>
+テキストファイルへのログ保存クラス 
+<p>
+system/log/ にテキストを保存します。 一定量のバッファを持ち、それがいっぱいにならないと出力しません。 なので、ログがファイルへ吐き出される前（メモリ上にあるうち）に いきなり落ちるとそのログは失われます。 重要なログを出力する場合はFlush()を呼ぶとバッファーされているログが 即座にファイルへ書き出されます。 <hr><h2>コンストラクタとデストラクタ</h2>
+<a class="anchor" name="cc377fd0408905d0bace3e79dccb5764"></a><!-- doxytag: member="CLog2File::CLog2File" ref="cc377fd0408905d0bace3e79dccb5764" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CLog2File::CLog2File           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+コンストラクタで取得された日付と時間で出力ファイル名が決定されます。<p>
+構築 
+</div>
+</div><p>
+<hr><h2>関数</h2>
+<a class="anchor" name="a794ee7539771cf8fee042d9b0ff9999"></a><!-- doxytag: member="CLog2File::AddLog" ref="a794ee7539771cf8fee042d9b0ff9999" args="(char *str)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CLog2File::AddLog           </td>
+          <td>(</td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>str</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+ログを追加する。 一定量ログがたまると自動的にバッファからファイルへ書き出す 
+<p>
+ログ追加 バッファがあるので、直接ファイルへ行っちゃうわけではない。 必要があればFlushを明示的に実行すること。<p>
+<dl compact><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>str</em>&nbsp;</td><td>吐き出す文字列。末尾に改行を自動付加するので注意。 </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="54fe218c9855006601a5f1aa5fccdc7c"></a><!-- doxytag: member="CLog2File::Flush" ref="54fe218c9855006601a5f1aa5fccdc7c" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CLog2File::Flush           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+バッファに保持しているログをファイルへ書き出す。 通常はAddLog()かデストラクタで行われるので明示的にコールする必要はない 
+<p>
+バッファ内容をファイルへ書き込み 通常はバッファが心もとなくなってきたときに自動的に行われる。 重要なログを吐いた場合は明示的に行う。 
+</div>
+</div><p>
+<hr>このクラスの説明は次のファイルから生成されました:<ul>
+<li>devkit100/goluah/goluah/source/global/log2file.h<li>devkit100/goluah/goluah/source/global/log2file.cpp</ul>
+<hr size="1"><address style="text-align: right;"><small>Goluah!!に対してWed Oct 13 14:02:45 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="../../doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.3 </small></address>
+</body>
+</html>

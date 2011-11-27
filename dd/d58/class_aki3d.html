@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Goluah!!: クラス Aki3d</title>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css">
+<link href="../../tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- 作成： Doxygen 1.5.3 -->
+<div class="tabs">
+  <ul>
+    <li><a href="../../main.html"><span>メインページ</span></a></li>
+    <li><a href="../../modules.html"><span>モジュール</span></a></li>
+    <li class="current"><a href="../../annotated.html"><span>クラス</span></a></li>
+    <li><a href="../../files.html"><span>ファイル</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="../../annotated.html"><span>構成</span></a></li>
+    <li><a href="../../hierarchy.html"><span>クラス階層</span></a></li>
+    <li><a href="../../functions.html"><span>構成メンバ</span></a></li>
+  </ul>
+</div>
+<h1>クラス Aki3d</h1><!-- doxytag: class="Aki3d" -->3D描画サービスクラス  
+<a href="#_details">[詳細]</a>
+<p>
+<code>#include &lt;aki3d.h&gt;</code>
+<p>
+
+<p>
+<a href="../../db/d69/class_aki3d-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d58/class_aki3d.html#b03b880ab7b7975d13e3d1f7ed923a6b">Initialize</a> (LPDIRECT3DDEVICE8 d3d_device, const char *tex_path, WarningReportFunctionPtr pwf=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">初期化。全ての操作の前に行うこと  <a href="#b03b880ab7b7975d13e3d1f7ed923a6b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1adb2b1ead6d223ea575e3a1920d4cc5"></a><!-- doxytag: member="Aki3d::CreateTristripObject" ref="1adb2b1ead6d223ea575e3a1920d4cc5" args="()" -->
+<a class="el" href="../../d9/d41/class_c_tristrip.html">CTristrip</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d58/class_aki3d.html#1adb2b1ead6d223ea575e3a1920d4cc5">CreateTristripObject</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">CTristripクラスインスタンス取得。deleteしないこと <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ddea906526632e1b624a6f9c4e2c7e4d"></a><!-- doxytag: member="Aki3d::CreateParticleObject" ref="ddea906526632e1b624a6f9c4e2c7e4d" args="()" -->
+<a class="el" href="../../da/dfa/class_c_particle.html">CParticle</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d58/class_aki3d.html#ddea906526632e1b624a6f9c4e2c7e4d">CreateParticleObject</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">CParticleクラスインスタンス取得。deleteしないこと <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7ccc7dafc47800b2ae3219ffd60e6867"></a><!-- doxytag: member="Aki3d::CreateFlatBoardsObject" ref="7ccc7dafc47800b2ae3219ffd60e6867" args="()" -->
+<a class="el" href="../../d6/d43/class_c_flat_boards.html">CFlatBoards</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d58/class_aki3d.html#7ccc7dafc47800b2ae3219ffd60e6867">CreateFlatBoardsObject</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">CFlatBordsクラスインスタンス取得。deleteしないこと <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0ab5015adc893c7c2717f12a4f3c7b12"></a><!-- doxytag: member="Aki3d::CreateMeshObject" ref="0ab5015adc893c7c2717f12a4f3c7b12" args="()" -->
+<a class="el" href="../../da/d02/class_c_mesh.html">CMesh</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d58/class_aki3d.html#0ab5015adc893c7c2717f12a4f3c7b12">CreateMeshObject</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">CMeshクラスインスタンス取得。deleteしないこと <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="70dd7faa69753fa33adc45f4e2f148c7"></a><!-- doxytag: member="Aki3d::DestroyTristripObject" ref="70dd7faa69753fa33adc45f4e2f148c7" args="(CTristrip *)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d58/class_aki3d.html#70dd7faa69753fa33adc45f4e2f148c7">DestroyTristripObject</a> (<a class="el" href="../../d9/d41/class_c_tristrip.html">CTristrip</a> *)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">CTristripクラスインスタンス明示破棄。 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="39134541806e9ed74b064c986d64dd35"></a><!-- doxytag: member="Aki3d::DestroyParticleObject" ref="39134541806e9ed74b064c986d64dd35" args="(CParticle *)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d58/class_aki3d.html#39134541806e9ed74b064c986d64dd35">DestroyParticleObject</a> (<a class="el" href="../../da/dfa/class_c_particle.html">CParticle</a> *)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">CParticleクラスインスタンス明示破棄。 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4efb7a6466a9aa10d73b07dec953b108"></a><!-- doxytag: member="Aki3d::DestroyFlatBoardsObject" ref="4efb7a6466a9aa10d73b07dec953b108" args="(CFlatBoards *)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d58/class_aki3d.html#4efb7a6466a9aa10d73b07dec953b108">DestroyFlatBoardsObject</a> (<a class="el" href="../../d6/d43/class_c_flat_boards.html">CFlatBoards</a> *)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">CFlatBordsクラスインスタンス明示破棄。 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7e0c0bcb9641718dd45854b9cb309153"></a><!-- doxytag: member="Aki3d::DestroyMeshObject" ref="7e0c0bcb9641718dd45854b9cb309153" args="(CMesh *)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d58/class_aki3d.html#7e0c0bcb9641718dd45854b9cb309153">DestroyMeshObject</a> (<a class="el" href="../../da/d02/class_c_mesh.html">CMesh</a> *)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">CMeshクラスインスタンス明示破棄。 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">D3DXMATRIX &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d58/class_aki3d.html#58bd397b6017bbb7912e401e5260b1d2">CreateMatrix</a> (V3d *scale, V3d *rotation, V3d *trans)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">マトリックス生成  <a href="#58bd397b6017bbb7912e401e5260b1d2"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Static Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8d155cca9cab76081c668464239bccd7"></a><!-- doxytag: member="Aki3d::RandomOne" ref="8d155cca9cab76081c668464239bccd7" args="()" -->
+static float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d58/class_aki3d.html#8d155cca9cab76081c668464239bccd7">RandomOne</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">0〜1実数ランダム <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6006a615f15985e62ee3cd725809b184"></a><!-- doxytag: member="Aki3d::RandomOne2" ref="6006a615f15985e62ee3cd725809b184" args="()" -->
+static float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d58/class_aki3d.html#6006a615f15985e62ee3cd725809b184">RandomOne2</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">-1〜1実数ランダム <br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>説明</h2>
+3D描画サービスクラス 
+<p>
+主にDLL向けに3D描画機能を提供する。テクスチャ管理等も。 このクラスはライブラリ中に aki3d というグローバルなインスタンスが存在するので、 それを使用すること。<p>
+取得した各クラスのインスタンスはこのクラスの破棄時に自動的にdeleteされるので、 取得側でdeleteしないこと。(生成したインスタンスをリストで持ってるので) インスタンスの生成と破棄が頻繁に行われる場合(goluah本体)は、Destroy〜系の関数で破棄を行う。 そのときテクスチャーも参照カウントにかかわらず全て破棄される。 <hr><h2>関数</h2>
+<a class="anchor" name="b03b880ab7b7975d13e3d1f7ed923a6b"></a><!-- doxytag: member="Aki3d::Initialize" ref="b03b880ab7b7975d13e3d1f7ed923a6b" args="(LPDIRECT3DDEVICE8 d3d_device, const char *tex_path, WarningReportFunctionPtr pwf=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Aki3d::Initialize           </td>
+          <td>(</td>
+          <td class="paramtype">LPDIRECT3DDEVICE8&nbsp;</td>
+          <td class="paramname"> <em>d3d_device</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&nbsp;</td>
+          <td class="paramname"> <em>tex_path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">WarningReportFunctionPtr&nbsp;</td>
+          <td class="paramname"> <em>pwf</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+初期化。全ての操作の前に行うこと 
+<p>
+<dl compact><dt><b>引数: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>d3d_device</em>&nbsp;</td><td>
+D3Dデバイスオブジェクト </td></tr>
+<tr><td valign="top"><em>tex_path</em>&nbsp;</td><td>
+テクスチャロード用のベースディレクトリ </td></tr>
+<tr><td valign="top"><em>pwf</em>&nbsp;</td><td>
+エラーリポート用の関数ポインタ </td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+<a class="anchor" name="58bd397b6017bbb7912e401e5260b1d2"></a><!-- doxytag: member="Aki3d::CreateMatrix" ref="58bd397b6017bbb7912e401e5260b1d2" args="(V3d *scale, V3d *rotation, V3d *trans)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">D3DXMATRIX &amp; Aki3d::CreateMatrix           </td>
+          <td>(</td>
+          <td class="paramtype">V3d *&nbsp;</td>
+          <td class="paramname"> <em>scale</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">V3d *&nbsp;</td>
+          <td class="paramname"> <em>rotation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">V3d *&nbsp;</td>
+          <td class="paramname"> <em>trans</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+マトリックス生成 
+<p>
+<dl compact><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>scale</em>&nbsp;</td><td>スケール。マイナス値で反転を行うことができる </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>rotation</em>&nbsp;</td><td>ベクトルの向きを回転軸として、長さをラジアン単位の回転角として解釈 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>trans</em>&nbsp;</td><td>平行移動量 </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>戻り値:</b></dt><dd>指定ベクトルから生成した座標変換マトリクス</dd></dl>
+引数がそれぞれNULLの場合に該当する操作を行わない. ゼロベクトルが操作なしではないことに注意すること （例えばゼロベクトルによるスケールを行うと描画されなくなる） 
+</div>
+</div><p>
+<hr>このクラスの説明は次のファイルから生成されました:<ul>
+<li>devkit100/goluah/common/<a class="el" href="../../de/d55/aki3d_8h.html">aki3d.h</a><li>devkit100/goluah/common/aki3d.cpp</ul>
+<hr size="1"><address style="text-align: right;"><small>Goluah!!に対してWed Oct 13 14:01:33 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="../../doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.3 </small></address>
+</body>
+</html>

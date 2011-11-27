@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Goluah!!: クラス CGObject</title>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css">
+<link href="../../tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- 作成： Doxygen 1.5.3 -->
+<div class="tabs">
+  <ul>
+    <li><a href="../../main.html"><span>メインページ</span></a></li>
+    <li><a href="../../modules.html"><span>モジュール</span></a></li>
+    <li class="current"><a href="../../annotated.html"><span>クラス</span></a></li>
+    <li><a href="../../files.html"><span>ファイル</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="../../annotated.html"><span>構成</span></a></li>
+    <li><a href="../../hierarchy.html"><span>クラス階層</span></a></li>
+    <li><a href="../../functions.html"><span>構成メンバ</span></a></li>
+  </ul>
+</div>
+<h1>クラス CGObject<br>
+<small>
+[<a class="el" href="../../d9/d6c/group___battle.html">Battle</a>]</small>
+</h1><!-- doxytag: class="CGObject" -->GOBJECT内部処理クラス  
+<a href="#_details">[詳細]</a>
+<p>
+<code>#include &lt;object.h&gt;</code>
+<p>
+<div class="dynheader">
+CGObjectのコラボレーション図</div>
+<div class="dynsection">
+<p><center><img src="../../d3/d6f/class_c_g_object__coll__graph.png" border="0" usemap="#d3/d3a/_c_g_object__coll__map" alt="Collaboration graph"></center>
+<map name="d3/d3a/_c_g_object__coll__map">
+<area shape="rect" href="../../d0/d1d/struct_g_o_b_j_e_c_t.html" title="a?aa??a?�Ca?��a?�Pa??a??a??a??" alt="" coords="519,179,604,205"><area shape="rect" href="../../dd/d97/struct_w_a_z_a_i_n_f_o.html" title="a?3a?3a??a?\a??a??a??a??a??a?��a??c?�Na??a??a��?e�?a??" alt="" coords="268,107,361,133"><area shape="rect" href="../../d9/d38/struct_a_t_t_a_c_k_i_n_f_o.html" title="a?��a??a??a??a?�}a��?e�?a??" alt="" coords="20,179,129,205"><area shape="rect" href="../../d8/da9/struct_a_t_t_a_c_k_i_n_f_o2.html" title="a?��a??a??a??a?�}a��?e�?a??i??a?��a??a??a?�Li??" alt="" coords="257,221,372,248"><area shape="rect" href="../../db/d80/struct_g_c_d___c_e_l_l2.html" title="GCDa?��a?�� (GCD_CELLa?Ra?��a??a??)" alt="" coords="265,56,364,83"><area shape="rect" href="../../d7/de5/struct_g_c_d___c_e_l_l.html" title="GCDa?��a?��(1e|?c�L?)" alt="" coords="29,56,120,83"><area shape="rect" href="../../df/da5/struct_g_c_d___h_a_n_t_e_i.html" title="GCDa??a??a??a??aR?c?ca?��" alt="" coords="261,272,368,299"><area shape="rect" href="../../dd/d39/struct_g_c_d___r_e_c_t.html" title="GCDa??a??a??a??c?ca?��a��?e�?a??" alt="" coords="267,323,363,349"><area shape="rect" href="../../d2/d26/struct_m_y_s_u_r_f_a_c_e.html" title="c?��e?aa?��a??a??a?3a??a?&#45;a?��a??a??a?��a??a?1" alt="" coords="261,5,368,32"><area shape="rect" href="../../da/d13/class_c_battle_task_base.html" title="a?|e??a??a?1a?�Pa??a??a?1a?�Pa?ca?1" alt="" coords="499,404,624,431"><area shape="rect" href="../../da/da5/class_c_exclusive_task_base.html" title="a??a��?a??a?1a?�P" alt="" coords="241,508,388,535"><area shape="rect" href="../../df/d1d/class_c_task_base.html" title="a?oa?��a??a?1a?�P" alt="" coords="29,520,120,547"><area shape="rect" href="../../d9/dcf/struct_s_d_i___s_t_a_g_e_i_n_f_o2.html" title="CreateStagee?��a?��a?��a�C!a??a??a??a��?e�?a??" alt="" coords="247,428,383,455"><area shape="rect" href="../../de/d8c/struct_d_i___f_u_n_c_t_i_o_n_s___o.html" title="a?aa??a?�Ca?��a?�Pa??e?��a?��a??a??a?3a??a?��a??a??" alt="" coords="5,348,144,375"><area shape="rect" href="../../d4/d1f/struct_c_d_i___c_h_a_r_a_c_t_e_r_i_n_f_o2.html" title="CreateCharacter a?Ra??a?��a?��a�C!a??a??a??a��?e�?a??" alt="" coords="227,376,403,403"><area shape="rect" href="../../df/dfd/struct_d_i___f_u_n_c_t_i_o_n_s___s.html" title="a?�Ea?1a??a??e?��a?��a??a??a?3a??a?��a??a??" alt="" coords="7,277,143,304"><area shape="rect" href="../../dd/d10/struct_d_i___f_u_n_c_t_i_o_n_s___d.html" title="a??c?��c3��e?��a?��a??a??a?3a??a?��a??a??" alt="" coords="5,437,144,464"><area shape="rect" href="../../d5/ddf/struct_c_a_t_c_h_y_o_u.html" title="c?�Ca??a??a??a??a??a?�}" alt="" coords="513,455,609,481"></map>
+<center><font size="2">[<a target="top" href="../../graph_legend.html">凡例</a>]</font></center></div>
+
+<p>
+<a href="../../d9/ddc/class_c_g_object-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Public 変数</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e60057124a18eb661fcb797ae36f286b"></a><!-- doxytag: member="CGObject::data" ref="e60057124a18eb661fcb797ae36f286b" args="" -->
+<a class="el" href="../../d0/d1d/struct_g_o_b_j_e_c_t.html">GOBJECT</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3a/class_c_g_object.html#e60057124a18eb661fcb797ae36f286b">data</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">データ <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5fa33203f4cf92ddc88385c479b01280"></a><!-- doxytag: member="CGObject::comguard" ref="5fa33203f4cf92ddc88385c479b01280" args="" -->
+double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3a/class_c_g_object.html#5fa33203f4cf92ddc88385c479b01280">comguard</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">コンピュータガード確率 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="78558a2f461edeac08ea5c22be04fae9"></a><!-- doxytag: member="CGObject::siver" ref="78558a2f461edeac08ea5c22be04fae9" args="" -->
+int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3a/class_c_g_object.html#78558a2f461edeac08ea5c22be04fae9">siver</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ダメージ食らったときのしびれ（のこり持続時間） <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e38434942712429d13d4c2513dbf941d"></a><!-- doxytag: member="CGObject::cy" ref="e38434942712429d13d4c2513dbf941d" args="" -->
+<a class="el" href="../../d5/ddf/struct_c_a_t_c_h_y_o_u.html">CATCHYOU</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3a/class_c_g_object.html#e38434942712429d13d4c2513dbf941d">cy</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">投げられ情報 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="75c1137095a5eb2efd8b82bc7047a948"></a><!-- doxytag: member="CGObject::hitcount" ref="75c1137095a5eb2efd8b82bc7047a948" args="" -->
+DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3a/class_c_g_object.html#75c1137095a5eb2efd8b82bc7047a948">hitcount</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">連続技ヒット数 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d4f33bdea7f3cffad0716236b4d2e423"></a><!-- doxytag: member="CGObject::sexydamage" ref="d4f33bdea7f3cffad0716236b4d2e423" args="" -->
+DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3a/class_c_g_object.html#d4f33bdea7f3cffad0716236b4d2e423">sexydamage</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">連続技蓄積ダメージ <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="82242d4e40fb3efd14d10bf3e7f5bcb4"></a><!-- doxytag: member="CGObject::sexydamage_anim" ref="82242d4e40fb3efd14d10bf3e7f5bcb4" args="" -->
+DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3a/class_c_g_object.html#82242d4e40fb3efd14d10bf3e7f5bcb4">sexydamage_anim</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">連続技蓄積ダメージ（画面表示用） <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0230fb973f26db2b17614fe3a72e603d"></a><!-- doxytag: member="CGObject::sexydamage_haba" ref="0230fb973f26db2b17614fe3a72e603d" args="" -->
+DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3a/class_c_g_object.html#0230fb973f26db2b17614fe3a72e603d">sexydamage_haba</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">連続技蓄積ダメージ（画面表示用の増減幅） <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a02c731da451b65e53b5f2e6aecb07f7"></a><!-- doxytag: member="CGObject::userhit_attacker" ref="a02c731da451b65e53b5f2e6aecb07f7" args="" -->
+DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3a/class_c_g_object.html#a02c731da451b65e53b5f2e6aecb07f7">userhit_attacker</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ユーザー定義喰らいの場合、攻撃者 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="104024b9de8bcc2f18faa73030c7c0ba"></a><!-- doxytag: member="CGObject::userhit_id" ref="104024b9de8bcc2f18faa73030c7c0ba" args="" -->
+DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3a/class_c_g_object.html#104024b9de8bcc2f18faa73030c7c0ba">userhit_id</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ユーザー定義喰らいの場合、ID <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5d2cf83801d86a22219c1af9ffd0f87e"></a><!-- doxytag: member="CGObject::comreach" ref="5d2cf83801d86a22219c1af9ffd0f87e" args="[3]" -->
+int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3a/class_c_g_object.html#5d2cf83801d86a22219c1af9ffd0f87e">comreach</a> [3]</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">リーチ. 短中長 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="72eef42ad97fd72a53a59944c837e97a"></a><!-- doxytag: member="CGObject::comhint_aid" ref="72eef42ad97fd72a53a59944c837e97a" args="" -->
+DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3a/class_c_g_object.html#72eef42ad97fd72a53a59944c837e97a">comhint_aid</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">DLLからの行動遷移命令.行動ID <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1a991ca7986822d574f90435c865e87a"></a><!-- doxytag: member="CGObject::comhint_delay" ref="1a991ca7986822d574f90435c865e87a" args="" -->
+int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3a/class_c_g_object.html#1a991ca7986822d574f90435c865e87a">comhint_delay</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">DLLからの行動遷移命令.ディレイ(マイナス値は無効) <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ef4096b675c34ba410fa010ac2b2272a"></a><!-- doxytag: member="CGObject::com_level" ref="ef4096b675c34ba410fa010ac2b2272a" args="" -->
+<a class="el" href="../../d6/da4/group__global.html#ge49b65fa582b3d4b311441b3e6fff278">Config2_Difficulty</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3a/class_c_g_object.html#ef4096b675c34ba410fa010ac2b2272a">com_level</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">コンピュータのレベル(難易度) <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f6ba17c1baf9791a18343fcde294a763"></a><!-- doxytag: member="CGObject::dll_id" ref="f6ba17c1baf9791a18343fcde294a763" args="" -->
+BYTE&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3a/class_c_g_object.html#f6ba17c1baf9791a18343fcde294a763">dll_id</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">DLLID <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="203e390ad1794f27e377368978af4dd8"></a><!-- doxytag: member="CGObject::nage_muteki_cnt" ref="203e390ad1794f27e377368978af4dd8" args="" -->
+BYTE&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3a/class_c_g_object.html#203e390ad1794f27e377368978af4dd8">nage_muteki_cnt</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">起き上がり、ガード後投げ無敵カウンタ <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e3fd0b9907958050f7deecbcd304df2f"></a><!-- doxytag: member="CGObject::object_id_original" ref="e3fd0b9907958050f7deecbcd304df2f" args="" -->
+DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3a/class_c_g_object.html#e3fd0b9907958050f7deecbcd304df2f">object_id_original</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">オブジェクトID（チェック用） <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e9a5ee8c711793fe265573585e5f252d"></a><!-- doxytag: member="CGObject::comrange" ref="e9a5ee8c711793fe265573585e5f252d" args="" -->
+DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3a/class_c_g_object.html#e9a5ee8c711793fe265573585e5f252d">comrange</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">COMの基本間合い <br></td></tr>
+<tr><td colspan="2"><br><h2>Protected 変数</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="37205f04378656c87e1760281f453fb1"></a><!-- doxytag: member="CGObject::comcounter" ref="37205f04378656c87e1760281f453fb1" args="" -->
+int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3a/class_c_g_object.html#37205f04378656c87e1760281f453fb1">comcounter</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">コンピュータ動作用カウンタ <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="aa74d1975fd00273773368f33ace78fd"></a><!-- doxytag: member="CGObject::actid_prv" ref="aa74d1975fd00273773368f33ace78fd" args="" -->
+DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3a/class_c_g_object.html#aa74d1975fd00273773368f33ace78fd">actid_prv</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">前回行動ID <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a2203c27e7567e8282a7354a60fe52ed"></a><!-- doxytag: member="CGObject::battleTask" ref="a2203c27e7567e8282a7354a60fe52ed" args="" -->
+<a class="el" href="../../da/d13/class_c_battle_task_base.html">CBattleTaskBase</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3a/class_c_g_object.html#a2203c27e7567e8282a7354a60fe52ed">battleTask</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">戦闘タスク <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="67a8fe0df95770ed28b0f7d55d5ad2a0"></a><!-- doxytag: member="CGObject::actloop_count" ref="67a8fe0df95770ed28b0f7d55d5ad2a0" args="" -->
+int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3a/class_c_g_object.html#67a8fe0df95770ed28b0f7d55d5ad2a0">actloop_count</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">行動IDのループ回数 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b22b0c517a14ab832becc3c5d3f7a662"></a><!-- doxytag: member="CGObject::comhint_counterprev" ref="b22b0c517a14ab832becc3c5d3f7a662" args="" -->
+DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3a/class_c_g_object.html#b22b0c517a14ab832becc3c5d3f7a662">comhint_counterprev</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">前回のカウンター、比較用。 <br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>説明</h2>
+GOBJECT内部処理クラス 
+<p>
+DLLからオブジェクトの生成要求があったときに内部ではこのクラスが作られ、 このクラスのGOBJECT構造体が返される。 GOBJECTを扱いやすくラップすることと、各オブジェクトメッセージのデフォルト動作を実装するのが目的。 一部のデフォルト行動関数は、staticでDLL側に公開される。<p>
+クラスの生成時に、CBattleTaskBaseから"現在のDLL-ID"を取得する。 また、DLL側の関数の呼び出し前にCBattleTaskBaseの"現在のDLL-ID"を、自分のIDに設定する。 これにより、基本的にはどのオブジェクトがどのDLLで作られたかがわかる。 (thisポインタごと渡しておいたほうがいろいろできていいかも)<p>
+同様に、クラスの生成時に CBattleTaskBaseからコンピュータレベル値(ゲーム難易度)を取得する。 これにより、コンピュータレベルがキャラクターごとに設定できるようになった。 <hr>このクラスの説明は次のファイルから生成されました:<ul>
+<li>devkit100/goluah/goluah/source/battle/object.h<li>devkit100/goluah/goluah/source/battle/object.cpp</ul>
+<hr size="1"><address style="text-align: right;"><small>Goluah!!に対してWed Oct 13 14:02:42 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="../../doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.3 </small></address>
+</body>
+</html>

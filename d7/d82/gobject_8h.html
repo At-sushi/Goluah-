@@ -1,0 +1,808 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Goluah!!: devkit100/goluah/common/gobject.h</title>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css">
+<link href="../../tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- 作成： Doxygen 1.5.3 -->
+<div class="tabs">
+  <ul>
+    <li><a href="../../main.html"><span>メインページ</span></a></li>
+    <li><a href="../../modules.html"><span>モジュール</span></a></li>
+    <li><a href="../../annotated.html"><span>クラス</span></a></li>
+    <li class="current"><a href="../../files.html"><span>ファイル</span></a></li>
+  </ul>
+</div>
+<h1>devkit100/goluah/common/gobject.h</h1>DLLインターフェース定義 GOLUAH キャラクター・ステージDLL のビルドに必要な各種構造体の定義 <a href="#_details">[詳細]</a>
+<p>
+<code>#include &quot;<a class="el" href="../../d9/d62/define__gcd_8h.html">define_gcd.h</a>&quot;</code><br>
+
+<p>
+<div class="dynheader">
+gobject.hのインクルード依存関係図</div>
+<div class="dynsection">
+<p><center><img src="../../d1/d95/gobject_8h__incl.png" border="0" usemap="#devkit100/goluah/common/gobject.h_map" alt=""></center>
+<map name="devkit100/goluah/common/gobject.h_map">
+<area shape="rect" href="../../d9/d62/define__gcd_8h.html" title="DLLa??a?3a??a??a??a?��a??a?1aR?c?c GOLUAH a?&#45;a?��a?ca?�Pa??a??a?��a?1a??a??a?�CDLL a?Ra??a?��a??a?��a??e|?a..." alt="" coords="73,80,172,107"></map>
+</div>
+
+<p>
+<div class="dynheader">
+このグラフは、どのファイルから直接、間接的にインクルードされているかを示しています。</div>
+<div class="dynsection">
+<p><center><img src="../../d2/dd0/gobject_8h__dep__incl.png" border="0" usemap="#devkit100/goluah/common/gobject.hdep_map" alt=""></center>
+<map name="devkit100/goluah/common/gobject.hdep_map">
+<area shape="rect" href="../../d4/dbd/charlist_8h.html" title="DLLa??a?3a??a??a??a?��a??a?1aR?c?c GOLUAH a?&#45;a?��a?ca?�Pa??a??a?��a?1a??a??a?�CDLL a?Ra??a?��a??a?��a??e|?a..." alt="" coords="337,80,681,107"><area shape="rect" href="../../db/db5/export_8h.html" title="DLLa??a?3a??a??a??a?��a??a?1aR?c?c GOLUAH a?&#45;a?��a?ca?�Pa??a??a?��a?1a??a??a?�CDLL a?Ra??a?��a??a?��a??e|?a..." alt="" coords="705,80,1007,107"><area shape="rect" href="../../de/d50/gobjbase_8h.html" title="DLLa??a?3a??a??a??a?��a??a?1aR?c?c GOLUAH a?&#45;a?��a?ca?�Pa??a??a?��a?1a??a??a?�CDLL a?Ra??a?��a??a?��a??e|?a..." alt="" coords="1031,80,1276,107"><area shape="rect" href="../../d2/d49/global_8h.html" title="a?&#45;a?��a?ca?�Pa??a??cR!c?? a??a?��a?��a?�Pa??a?aa??a??a?&#45;a?��a?ca?�Pa??a??a?Ra?aa?1a??a??a??a??a??a?|cR!c??..." alt="" coords="533,155,832,181"><area shape="rect" href="../../dc/da8/script__story_8cpp.html" title="a?��a?&#45;a??a??a?��e?��a?�� a?��a?&#45;a??a??a?��a??a?��a��a?aa?c" alt="" coords="5,229,349,256"><area shape="rect" href="../../d1/dfd/dx__input_8cpp.html" title="a?��a?&#45;a??a??a?��e?��a?�� a?��a?&#45;a??a??a?��a??a?��a��a?aa?c" alt="" coords="373,229,672,256"><area shape="rect" href="../../db/d00/dx__play_8cpp.html" title="a?��a?&#45;a??a??a?��e?��a?�� a?��a?&#45;a??a??a?��a??a?��a��a?aa?c" alt="" coords="696,229,992,256"><area shape="rect" href="../../d4/d54/dx__sound_8cpp.html" title="a?��a?&#45;a??a??a?��e?��a?�� a?��a?&#45;a??a??a?��a??a?��a��a?aa?c" alt="" coords="1016,229,1323,256"></map>
+</div>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>構成</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d38/struct_a_t_t_a_c_k_i_n_f_o.html">ATTACKINFO</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">攻撃力情報構造体  <a href="../../d9/d38/struct_a_t_t_a_c_k_i_n_f_o.html#_details">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da9/struct_a_t_t_a_c_k_i_n_f_o2.html">ATTACKINFO2</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">攻撃力情報構造体（喰らい側）  <a href="../../d8/da9/struct_a_t_t_a_c_k_i_n_f_o2.html#_details">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d97/struct_w_a_z_a_i_n_f_o.html">WAZAINFO</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">コンピュータ動作時に使用する構造体  <a href="../../dd/d97/struct_w_a_z_a_i_n_f_o.html#_details">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d1d/struct_g_o_b_j_e_c_t.html">GOBJECT</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">オブジェクトデータ  <a href="../../d0/d1d/struct_g_o_b_j_e_c_t.html#_details">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dfd/struct_d_i___f_u_n_c_t_i_o_n_s___s.html">DI_FUNCTIONS_S</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">システム関数ポインタセット  <a href="../../df/dfd/struct_d_i___f_u_n_c_t_i_o_n_s___s.html#_details">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d8c/struct_d_i___f_u_n_c_t_i_o_n_s___o.html">DI_FUNCTIONS_O</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">オブジェクト関数ポインタセット  <a href="../../de/d8c/struct_d_i___f_u_n_c_t_i_o_n_s___o.html#_details">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/ddf/struct_c_a_t_c_h_y_o_u.html">CATCHYOU</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">相手つかみ情報  <a href="../../d5/ddf/struct_c_a_t_c_h_y_o_u.html#_details">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d10/struct_d_i___f_u_n_c_t_i_o_n_s___d.html">DI_FUNCTIONS_D</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">描画系関数ポインタセット  <a href="../../dd/d10/struct_d_i___f_u_n_c_t_i_o_n_s___d.html#_details">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d07/struct_c_h_a_r_a_c_t_e_r___l_o_a_d___o_p_t_i_o_n.html">CHARACTER_LOAD_OPTION</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">キャラクターオプション定義構造体  <a href="../../df/d07/struct_c_h_a_r_a_c_t_e_r___l_o_a_d___o_p_t_i_o_n.html#_details">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d34/struct_c_d_i___c_h_a_r_a_c_t_e_r_i_n_f_o.html">CDI_CHARACTERINFO</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">CharacterInfo関数で渡される構造体  <a href="../../dd/d34/struct_c_d_i___c_h_a_r_a_c_t_e_r_i_n_f_o.html#_details">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d1f/struct_c_d_i___c_h_a_r_a_c_t_e_r_i_n_f_o2.html">CDI_CHARACTERINFO2</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">CreateCharacter の引数に渡される構造体  <a href="../../d4/d1f/struct_c_d_i___c_h_a_r_a_c_t_e_r_i_n_f_o2.html#_details">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dff/struct_s_d_i___s_t_a_g_e_i_n_f_o.html">SDI_STAGEINFO</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">StageInfo関数で渡される構造体  <a href="../../d7/dff/struct_s_d_i___s_t_a_g_e_i_n_f_o.html#_details">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dcf/struct_s_d_i___s_t_a_g_e_i_n_f_o2.html">SDI_STAGEINFO2</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">CreateStage関数で渡される構造体  <a href="../../d9/dcf/struct_s_d_i___s_t_a_g_e_i_n_f_o2.html#_details">[詳細]</a><br></td></tr>
+<tr><td colspan="2"><br><h2>マクロ定義</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gca66f352f63b27375db8f449fc82621c"></a><!-- doxytag: member="gobject.h::HITINFO_USER" ref="gca66f352f63b27375db8f449fc82621c" args="(id)" -->
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gca66f352f63b27375db8f449fc82621c">HITINFO_USER</a>(id)&nbsp;&nbsp;&nbsp;(((id)&lt;&lt;4) | HITINFO_USERDEFINE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">IDは0〜255で与えること <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gf7be3d290a7711b89295f245a9a03759"></a><!-- doxytag: member="gobject.h::HITINFO_USER2" ref="gf7be3d290a7711b89295f245a9a03759" args="(id)" -->
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gf7be3d290a7711b89295f245a9a03759">HITINFO_USER2</a>(id)&nbsp;&nbsp;&nbsp;(((id)&lt;&lt;4) | HITINFO_USERDEFINE2)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">IDは0〜255で与えること <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g56c2f8083c8403dbe9401d03d1ae4a71"></a><!-- doxytag: member="gobject.h::GUARDINFO_USER" ref="g56c2f8083c8403dbe9401d03d1ae4a71" args="(id)" -->
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g56c2f8083c8403dbe9401d03d1ae4a71">GUARDINFO_USER</a>(id)&nbsp;&nbsp;&nbsp;(((id)&lt;&lt;4) | GUARDINFO_USERDEFINE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">IDは0〜255で与えること <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gc656e75a9ed801a36ce3888d689ef2cb"></a><!-- doxytag: member="gobject.h::GOBJTYPE_CHARACTER2" ref="gc656e75a9ed801a36ce3888d689ef2cb" args="" -->
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gc656e75a9ed801a36ce3888d689ef2cb">GOBJTYPE_CHARACTER2</a>&nbsp;&nbsp;&nbsp;( GOBJFLG_KURAI | GOBJFLG_NAGERARE | GOBJFLG_ATTACK | GOBJFLG_KASANARI | GOBJFLG_CLIPX | GOBJFLG_CLIPX2 | GOBJFLG_DISPLAYME)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">標準的なキャラクターが持つフラグ <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g487a5a52088c5d71d8f11758a2553598"></a><!-- doxytag: member="gobject.h::GOBJTYPE_CHARACTER" ref="g487a5a52088c5d71d8f11758a2553598" args="" -->
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g487a5a52088c5d71d8f11758a2553598">GOBJTYPE_CHARACTER</a>&nbsp;&nbsp;&nbsp;( GOBJTYPE_CHARACTER2 | GOBJFLG_TOBETARGET | GOBJFLG_NEEDTARGET | GOBJFLG_ZCHARACTER | GOBJFLG_HANSAYOU | GOBJFLG_CLIPX)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">標準的なキャラクターが持つフラグ <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g4c53c0be092a312544dacaea4adbebca"></a><!-- doxytag: member="gobject.h::GOBJTYPE_BULLET" ref="g4c53c0be092a312544dacaea4adbebca" args="" -->
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g4c53c0be092a312544dacaea4adbebca">GOBJTYPE_BULLET</a>&nbsp;&nbsp;&nbsp;(GOBJFLG_ATTACK | GOBJFLG_ZBULLET)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">標準的な飛び道具のフラグ <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ge0810313d43001471989e8c3a49b44ef"></a><!-- doxytag: member="gobject.h::TUBUTUBU_GOUP" ref="ge0810313d43001471989e8c3a49b44ef" args="" -->
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#ge0810313d43001471989e8c3a49b44ef">TUBUTUBU_GOUP</a>&nbsp;&nbsp;&nbsp;0x00000001</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">上方向に偏った速度を持たせる <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g507e1189c309892ecd430633cf5297df"></a><!-- doxytag: member="gobject.h::TUBUTUBU_GODOWN" ref="g507e1189c309892ecd430633cf5297df" args="" -->
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g507e1189c309892ecd430633cf5297df">TUBUTUBU_GODOWN</a>&nbsp;&nbsp;&nbsp;0x00000002</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">下向に偏った速度を持たせる <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g54215c100a0e3ab9974db72834f34e30"></a><!-- doxytag: member="gobject.h::TUBUTUBU_GOLEFT" ref="g54215c100a0e3ab9974db72834f34e30" args="" -->
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g54215c100a0e3ab9974db72834f34e30">TUBUTUBU_GOLEFT</a>&nbsp;&nbsp;&nbsp;0x00000004</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">左方向に <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gf7b59a073c2f538ed009a24453688448"></a><!-- doxytag: member="gobject.h::TUBUTUBU_GORIGHT" ref="gf7b59a073c2f538ed009a24453688448" args="" -->
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gf7b59a073c2f538ed009a24453688448">TUBUTUBU_GORIGHT</a>&nbsp;&nbsp;&nbsp;0x00000008</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">右 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gb5339b13f6470eb39c840b5a13f477db"></a><!-- doxytag: member="gobject.h::CHARACTER_LOAD_OPTION_FACENUMBERMASK" ref="gb5339b13f6470eb39c840b5a13f477db" args="" -->
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gb5339b13f6470eb39c840b5a13f477db">CHARACTER_LOAD_OPTION_FACENUMBERMASK</a>&nbsp;&nbsp;&nbsp;(0xF0000000)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ここのビットをface変更のために使用する <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ga3fc40492000f578a200bd70385669c6"></a><!-- doxytag: member="gobject.h::CHARACTER_LOAD_OPTION_FACE_A" ref="ga3fc40492000f578a200bd70385669c6" args="" -->
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#ga3fc40492000f578a200bd70385669c6">CHARACTER_LOAD_OPTION_FACE_A</a>&nbsp;&nbsp;&nbsp;(0x10000000)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">face2a , face3a <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g2d64525550e8ffd9992353a7a4fb432f"></a><!-- doxytag: member="gobject.h::CHARACTER_LOAD_OPTION_FACE_B" ref="g2d64525550e8ffd9992353a7a4fb432f" args="" -->
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g2d64525550e8ffd9992353a7a4fb432f">CHARACTER_LOAD_OPTION_FACE_B</a>&nbsp;&nbsp;&nbsp;(0x20000000)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">face2b , face3b <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ga5e7149810d1f9432a6ebe757d5c4692"></a><!-- doxytag: member="gobject.h::CHARACTER_LOAD_OPTION_FACE_C" ref="ga5e7149810d1f9432a6ebe757d5c4692" args="" -->
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#ga5e7149810d1f9432a6ebe757d5c4692">CHARACTER_LOAD_OPTION_FACE_C</a>&nbsp;&nbsp;&nbsp;(0x30000000)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">face2c , face3c 以下,定義はしないけどp(0xF)まで同様 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gf38bed40c9d11e6920f0af1a0f8c6d3d"></a><!-- doxytag: member="gobject.h::CHARACTER_CAPS_NET" ref="gf38bed40c9d11e6920f0af1a0f8c6d3d" args="" -->
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gf38bed40c9d11e6920f0af1a0f8c6d3d">CHARACTER_CAPS_NET</a>&nbsp;&nbsp;&nbsp;0x00000001</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ネットワーク対戦で使用可能 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gf7c1341e673358d0530c5d36eca06d22"></a><!-- doxytag: member="gobject.h::CHARACTER_CAPS_OFFLINE" ref="gf7c1341e673358d0530c5d36eca06d22" args="" -->
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gf7c1341e673358d0530c5d36eca06d22">CHARACTER_CAPS_OFFLINE</a>&nbsp;&nbsp;&nbsp;0x00000002</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">かつ、オフラインモードでも使用可能 <br></td></tr>
+<tr><td colspan="2"><br><h2>型定義</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">typedef DWORD(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g5f73807773b2c7eb6a83f72f00f52204">PFOBJ_MSGHANDLER</a> )(DWORD, LPVOID, DWORD)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">オブジェクト用メッセージ処理関数型定義  <a href="../../d6/d7d/group___g_object.html#g5f73807773b2c7eb6a83f72f00f52204"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g9969824d21bc35444e53ef63b7a688fc"></a><!-- doxytag: member="gobject.h::PFUNCS_GETKEY" ref="g9969824d21bc35444e53ef63b7a688fc" args=")(DWORD, DWORD)" -->
+typedef DWORD(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g9969824d21bc35444e53ef63b7a688fc">PFUNCS_GETKEY</a> )(DWORD, DWORD)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">キー入力get <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gdd2fe88fe505346a9fd01e440f0628b9"></a><!-- doxytag: member="gobject.h::PFUNCS_SEEKKEY" ref="gdd2fe88fe505346a9fd01e440f0628b9" args=")(DWORD, int, int, DWORD)" -->
+typedef int(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gdd2fe88fe505346a9fd01e440f0628b9">PFUNCS_SEEKKEY</a> )(DWORD, int, int, DWORD)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">キー入力検索 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g5c44f7d1b67f905e77758b1d139aaa80"></a><!-- doxytag: member="gobject.h::PFUNCS_SETKATISERIF" ref="g5c44f7d1b67f905e77758b1d139aaa80" args=")(DWORD, char *)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g5c44f7d1b67f905e77758b1d139aaa80">PFUNCS_SETKATISERIF</a> )(DWORD, char *)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">勝ち台詞設定 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g1742712df8e86f03bcc540865d79fce6"></a><!-- doxytag: member="gobject.h::PFUNCS_ADDEFFECT" ref="g1742712df8e86f03bcc540865d79fce6" args=")(DWORD, int, int, DWORD)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g1742712df8e86f03bcc540865d79fce6">PFUNCS_ADDEFFECT</a> )(DWORD, int, int, DWORD)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">エフェクト発生 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ga4d27cca66e300b45b1de85c58c10859"></a><!-- doxytag: member="gobject.h::PFUNCS_PLAYSYSSOUND" ref="ga4d27cca66e300b45b1de85c58c10859" args=")(DWORD)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#ga4d27cca66e300b45b1de85c58c10859">PFUNCS_PLAYSYSSOUND</a> )(DWORD)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">システムwav再生 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g9713137688b1964c965dc7d54256c5b4"></a><!-- doxytag: member="gobject.h::PFUNCS_LOADMYSOUND" ref="g9713137688b1964c965dc7d54256c5b4" args=")(char *)" -->
+typedef LPVOID(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g9713137688b1964c965dc7d54256c5b4">PFUNCS_LOADMYSOUND</a> )(char *)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">wav読み込み <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g473c18500c1ecad2f32513bc5b1ddc8d"></a><!-- doxytag: member="gobject.h::PFUNCS_PLAYMYSOUND" ref="g473c18500c1ecad2f32513bc5b1ddc8d" args=")(LPVOID)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g473c18500c1ecad2f32513bc5b1ddc8d">PFUNCS_PLAYMYSOUND</a> )(LPVOID)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">wav再生 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g6ea5b022a4f44d497a7bb3dbccf939d2"></a><!-- doxytag: member="gobject.h::PFUNCS_KILLMYSOUND" ref="g6ea5b022a4f44d497a7bb3dbccf939d2" args=")(LPVOID)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g6ea5b022a4f44d497a7bb3dbccf939d2">PFUNCS_KILLMYSOUND</a> )(LPVOID)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">wav消去 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gde7cdd64a74a3c1df3bec7c17b8beaea"></a><!-- doxytag: member="gobject.h::PFUNCS_MESSAGE2SYSTEM" ref="gde7cdd64a74a3c1df3bec7c17b8beaea" args=")(DWORD, DWORD, DWORD)" -->
+typedef DWORD(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gde7cdd64a74a3c1df3bec7c17b8beaea">PFUNCS_MESSAGE2SYSTEM</a> )(DWORD, DWORD, DWORD)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">メッセージ <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g74a969b8591769c3dbcc27cc80178c7f"></a><!-- doxytag: member="gobject.h::PFUNCS_GETENEMYNAME" ref="g74a969b8591769c3dbcc27cc80178c7f" args=")(DWORD)" -->
+typedef char *(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g74a969b8591769c3dbcc27cc80178c7f">PFUNCS_GETENEMYNAME</a> )(DWORD)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"敵"の名前を取得する <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g21812d97852a9cdf97e03e6bbb9c8844"></a><!-- doxytag: member="gobject.h::PFUNCS_GETDISPCENTERX" ref="g21812d97852a9cdf97e03e6bbb9c8844" args=")()" -->
+typedef double(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g21812d97852a9cdf97e03e6bbb9c8844">PFUNCS_GETDISPCENTERX</a> )()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">現在の画面中心(X)を得る <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g8293a530953f2611df5402d986087fd6"></a><!-- doxytag: member="gobject.h::PFUNCS_GETDISPCENTERY" ref="g8293a530953f2611df5402d986087fd6" args=")()" -->
+typedef double(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g8293a530953f2611df5402d986087fd6">PFUNCS_GETDISPCENTERY</a> )()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">現在の画面中心(Y)を得る <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g2fb32c40a7fe8fe9ab610a39173aceff"></a><!-- doxytag: member="gobject.h::PFUNCS_GETTEAMNUM" ref="g2fb32c40a7fe8fe9ab610a39173aceff" args=")()" -->
+typedef DWORD(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g2fb32c40a7fe8fe9ab610a39173aceff">PFUNCS_GETTEAMNUM</a> )()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">何対何かをゲット ※ 1P側人数が返ります。非推奨関数 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g81e63d82892d9c0b826e70b48c55a821"></a><!-- doxytag: member="gobject.h::PFUNCS_GETTAISENKEISIKI" ref="g81e63d82892d9c0b826e70b48c55a821" args=")()" -->
+typedef DWORD(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g81e63d82892d9c0b826e70b48c55a821">PFUNCS_GETTAISENKEISIKI</a> )()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">対戦形式をゲト <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g57a909522c01e2cd2a3d766c0e1d7f6e"></a><!-- doxytag: member="gobject.h::PFUNCS_GETENEMYFACE" ref="g57a909522c01e2cd2a3d766c0e1d7f6e" args=")(DWORD tid)" -->
+typedef BYTE(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g57a909522c01e2cd2a3d766c0e1d7f6e">PFUNCS_GETENEMYFACE</a> )(DWORD tid)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">フェイス変更値(通常0)を取得 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gb8afe183334d5f6aecf27dac6a8f105a"></a><!-- doxytag: member="gobject.h::PFUNCS_GETTEAMNUM2" ref="gb8afe183334d5f6aecf27dac6a8f105a" args=")(DWORD tid)" -->
+typedef DWORD(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gb8afe183334d5f6aecf27dac6a8f105a">PFUNCS_GETTEAMNUM2</a> )(DWORD tid)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">チーム人数を取得します <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g8dedc00a27bd649a365cc076b9da2680"></a><!-- doxytag: member="gobject.h::PFUNCS_TID2ETID" ref="g8dedc00a27bd649a365cc076b9da2680" args=")(DWORD tid)" -->
+typedef DWORD(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g8dedc00a27bd649a365cc076b9da2680">PFUNCS_TID2ETID</a> )(DWORD tid)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">チームID変換 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ga92f8416e5a1068470295491fcbeed05"></a><!-- doxytag: member="gobject.h::PFUNCS_IS_NETWORK" ref="ga92f8416e5a1068470295491fcbeed05" args=")()" -->
+typedef BOOL(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#ga92f8416e5a1068470295491fcbeed05">PFUNCS_IS_NETWORK</a> )()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ネット対戦かどうかを取得します <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gb90ef0b1240993c22974d4d5d374fc47"></a><!-- doxytag: member="gobject.h::PFUNCS_PUSHDLLEXECTAG" ref="gb90ef0b1240993c22974d4d5d374fc47" args=")(const char *)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gb90ef0b1240993c22974d4d5d374fc47">PFUNCS_PUSHDLLEXECTAG</a> )(const char *)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">実行個所のタグ付けを行う(エラーログ時に出力) <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gcfd8265211f3e9d85f7843229e000a4b"></a><!-- doxytag: member="gobject.h::PFUNCS_POPDLLEXECTAG" ref="gcfd8265211f3e9d85f7843229e000a4b" args=")()" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gcfd8265211f3e9d85f7843229e000a4b">PFUNCS_POPDLLEXECTAG</a> )()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">実行個所のタグをひとつ削除する <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g1c61b451260f26d7ceec93bbf066681d"></a><!-- doxytag: member="gobject.h::PFUNCS_LOGERROR" ref="g1c61b451260f26d7ceec93bbf066681d" args=")(const char *)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g1c61b451260f26d7ceec93bbf066681d">PFUNCS_LOGERROR</a> )(const char *)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">エラーログを記録する <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gd34a8032f084a421bff155cc70aabc44"></a><!-- doxytag: member="gobject.h::PFUNCS_LOGWARNING" ref="gd34a8032f084a421bff155cc70aabc44" args=")(const char *)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gd34a8032f084a421bff155cc70aabc44">PFUNCS_LOGWARNING</a> )(const char *)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">警告ログを記録する <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g9cb5ccc19bfcfd293e163161b1d26fde"></a><!-- doxytag: member="gobject.h::PFUNCS_LOGDEBUG" ref="g9cb5ccc19bfcfd293e163161b1d26fde" args=")(const char *)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g9cb5ccc19bfcfd293e163161b1d26fde">PFUNCS_LOGDEBUG</a> )(const char *)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">デバッグログを記録する <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gffee6c765f2cea43579c9d283e8c4551"></a><!-- doxytag: member="gobject.h::PFUNCS_LOGINFO" ref="gffee6c765f2cea43579c9d283e8c4551" args=")(const char *)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gffee6c765f2cea43579c9d283e8c4551">PFUNCS_LOGINFO</a> )(const char *)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">情報ログを記録する <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gd02acccfb538641e2d9634444af8654c"></a><!-- doxytag: member="gobject.h::PFUNCO_CREATE" ref="gd02acccfb538641e2d9634444af8654c" args=")()" -->
+typedef DWORD(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gd02acccfb538641e2d9634444af8654c">PFUNCO_CREATE</a> )()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">オブジェクト生成 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gb073d4d8ee609efe11a5e23fc98547f7"></a><!-- doxytag: member="gobject.h::PFUNCO_DELETE" ref="gb073d4d8ee609efe11a5e23fc98547f7" args=")(DWORD)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gb073d4d8ee609efe11a5e23fc98547f7">PFUNCO_DELETE</a> )(DWORD)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">オブジェクト消滅 非推奨 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g7be0c5c5a02ee5bb7ad6ae7c3c347c50"></a><!-- doxytag: member="gobject.h::PFUNCO_CATCH" ref="g7be0c5c5a02ee5bb7ad6ae7c3c347c50" args=")(DWORD, LPVOID)" -->
+typedef BOOL(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g7be0c5c5a02ee5bb7ad6ae7c3c347c50">PFUNCO_CATCH</a> )(DWORD, LPVOID)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">投げとかで相手をつかむ <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gf66c0d01ba9ab72bce7b988b6932f170"></a><!-- doxytag: member="gobject.h::PFUNCO_GETINFO" ref="gf66c0d01ba9ab72bce7b988b6932f170" args=")(DWORD)" -->
+typedef LPVOID(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gf66c0d01ba9ab72bce7b988b6932f170">PFUNCO_GETINFO</a> )(DWORD)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">GOBJECT構造体取得 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g192c48c2e9ab9c61ccc39b9953c0187e"></a><!-- doxytag: member="gobject.h::PFUNCO_ADDDAMAGE" ref="g192c48c2e9ab9c61ccc39b9953c0187e" args=")(DWORD, DWORD, int x, int y)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g192c48c2e9ab9c61ccc39b9953c0187e">PFUNCO_ADDDAMAGE</a> )(DWORD, DWORD, int x, int y)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">(主に投げのとき)強制的にダメージを与える <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gb0979571db00715e1818572892386b1a"></a><!-- doxytag: member="gobject.h::PFUNCO_ACTIDCHANGED" ref="gb0979571db00715e1818572892386b1a" args=")(DWORD)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gb0979571db00715e1818572892386b1a">PFUNCO_ACTIDCHANGED</a> )(DWORD)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">行動IDが変化したときの処理を明示的に行う <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g7b506ea46deb1552f04f9389eb96b8ed"></a><!-- doxytag: member="gobject.h::PFUNCO_GETACTIVECHARACTER" ref="g7b506ea46deb1552f04f9389eb96b8ed" args=")(DWORD)" -->
+typedef void *(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g7b506ea46deb1552f04f9389eb96b8ed">PFUNCO_GETACTIVECHARACTER</a> )(DWORD)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">現在アクティブな※キャラクターの情報 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g5282be03a70ad7fd5f2ba3de05481a32"></a><!-- doxytag: member="gobject.h::PFUNCO_SUICIDE" ref="g5282be03a70ad7fd5f2ba3de05481a32" args=")(DWORD)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g5282be03a70ad7fd5f2ba3de05481a32">PFUNCO_SUICIDE</a> )(DWORD)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">オブジェクト消滅 Fxオブジェクト以外は非推奨 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g7ad58bfbc8788216b87a96b3e1ec9c02"></a><!-- doxytag: member="gobject.h::PFUNCO_GETMAAI_H" ref="g7ad58bfbc8788216b87a96b3e1ec9c02" args=")(DWORD oid, DWORD eoid)" -->
+typedef DWORD(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g7ad58bfbc8788216b87a96b3e1ec9c02">PFUNCO_GETMAAI_H</a> )(DWORD oid, DWORD eoid)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">間合いをget(水平) <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ga026c54920d812504982a30f381d32d5"></a><!-- doxytag: member="gobject.h::PFUNCO_GETMAAI_V" ref="ga026c54920d812504982a30f381d32d5" args=")(DWORD oid, DWORD eoid)" -->
+typedef DWORD(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#ga026c54920d812504982a30f381d32d5">PFUNCO_GETMAAI_V</a> )(DWORD oid, DWORD eoid)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">間合いをget(垂直) <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gaefdf605a38aaaa82682899e3e79c296"></a><!-- doxytag: member="gobject.h::PFUNCO_GETCHARACTERID" ref="gaefdf605a38aaaa82682899e3e79c296" args=")(DWORD tid, DWORD index)" -->
+typedef DWORD(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gaefdf605a38aaaa82682899e3e79c296">PFUNCO_GETCHARACTERID</a> )(DWORD tid, DWORD index)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">キャラクターのオブジェクトID取得 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g332dfdfed9540aaf1d99faa93958da0d"></a><!-- doxytag: member="gobject.h::PFUNCO_GETCOMLEVEL" ref="g332dfdfed9540aaf1d99faa93958da0d" args=")(DWORD oid)" -->
+typedef DWORD(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g332dfdfed9540aaf1d99faa93958da0d">PFUNCO_GETCOMLEVEL</a> )(DWORD oid)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">COMレベル取得 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gf49de0337dec3f86e26c2b6ddbcc82d5"></a><!-- doxytag: member="gobject.h::PFUNCO_SETCOMREACH" ref="gf49de0337dec3f86e26c2b6ddbcc82d5" args=")(DWORD oid, DWORD idx, int length)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gf49de0337dec3f86e26c2b6ddbcc82d5">PFUNCO_SETCOMREACH</a> )(DWORD oid, DWORD idx, int length)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">COM判定のリーチ長を設定 idx=0:短 , 1:中 , 2:長 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g0b7fdb9dffb36f1b4aaef1d40b329cb3"></a><!-- doxytag: member="gobject.h::PFUNCO_SETCOMACT" ref="g0b7fdb9dffb36f1b4aaef1d40b329cb3" args=")(DWORD oid, DWORD aid, int delay)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g0b7fdb9dffb36f1b4aaef1d40b329cb3">PFUNCO_SETCOMACT</a> )(DWORD oid, DWORD aid, int delay)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">COM行動制御. aid:遷移行動ID(0は抑制) ,delay:発動遅延 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g7ea83c1043ba5bfd91fd382dfe017237"></a><!-- doxytag: member="gobject.h::PFUNCO_CREATE_FX" ref="g7ea83c1043ba5bfd91fd382dfe017237" args=")()" -->
+typedef DWORD(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g7ea83c1043ba5bfd91fd382dfe017237">PFUNCO_CREATE_FX</a> )()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">エフェクト用オブジェクト生成 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ge137d95c2ba604bde5ff93a5ea973233"></a><!-- doxytag: member="gobject.h::PFUNCO_IS_LOCAL" ref="ge137d95c2ba604bde5ff93a5ea973233" args=")(DWORD oid)" -->
+typedef BOOL(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#ge137d95c2ba604bde5ff93a5ea973233">PFUNCO_IS_LOCAL</a> )(DWORD oid)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ローカルかどうか <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g7c4986bfd3dd309325c0d9201afac735"></a><!-- doxytag: member="gobject.h::PFUNCO_DACTION" ref="g7c4986bfd3dd309325c0d9201afac735" args=")(GOBJECT *pdat)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g7c4986bfd3dd309325c0d9201afac735">PFUNCO_DACTION</a> )(<a class="el" href="../../d0/d1d/struct_g_o_b_j_e_c_t.html">GOBJECT</a> *pdat)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">指定オブジェクトにデフォルト動作をさせる <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gda32643a5dc8d1515780495e9f96791a"></a><!-- doxytag: member="gobject.h::PFUNCO_SETCOMRANGE" ref="gda32643a5dc8d1515780495e9f96791a" args=")(DWORD oid, DWORD idx)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gda32643a5dc8d1515780495e9f96791a">PFUNCO_SETCOMRANGE</a> )(DWORD oid, DWORD idx)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">COM判定のリーチ長を設定 idx=0:短 , 1:中 , 2:長 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g659237cf5b14059d800c5e0b4685dc29"></a><!-- doxytag: member="gobject.h::PFUNCO_GETCHARNAME" ref="g659237cf5b14059d800c5e0b4685dc29" args=")(DWORD)" -->
+typedef char *(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g659237cf5b14059d800c5e0b4685dc29">PFUNCO_GETCHARNAME</a> )(DWORD)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">指定キャラの名前を取得する <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g36d922c5b6142a9663d3cbe42b9f58b3"></a><!-- doxytag: member="gobject.h::PFUNCO_GETKEYINPUT" ref="g36d922c5b6142a9663d3cbe42b9f58b3" args=")(DWORD)" -->
+typedef DWORD(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g36d922c5b6142a9663d3cbe42b9f58b3">PFUNCO_GETKEYINPUT</a> )(DWORD)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">指定キャラのキーIDを取得する <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g6f8aae83beed45350072a2c7ed33e9d0"></a><!-- doxytag: member="gobject.h::PFUNCD_GETD3D" ref="g6f8aae83beed45350072a2c7ed33e9d0" args=")()" -->
+typedef LPVOID(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g6f8aae83beed45350072a2c7ed33e9d0">PFUNCD_GETD3D</a> )()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">IDirect3D* の取得 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gb1471bc4f7e967cf5aace17e6b3c4846"></a><!-- doxytag: member="gobject.h::PFUNCD_GETD3DD" ref="gb1471bc4f7e967cf5aace17e6b3c4846" args=")()" -->
+typedef LPVOID(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gb1471bc4f7e967cf5aace17e6b3c4846">PFUNCD_GETD3DD</a> )()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">IDirect3DDevice* の取得 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g6770fd75a51a12be86b6f5d14be27b18"></a><!-- doxytag: member="gobject.h::PFUNCD_LOADCELLDAT" ref="g6770fd75a51a12be86b6f5d14be27b18" args=")(char *, LPVOID, LPVOID, LPVOID)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g6770fd75a51a12be86b6f5d14be27b18">PFUNCD_LOADCELLDAT</a> )(char *, LPVOID, LPVOID, LPVOID)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">GCDデータ読み込み関数 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g8a5959cfdc494828171ffec36c074067"></a><!-- doxytag: member="gobject.h::PFUNCD_LOADBMP" ref="g8a5959cfdc494828171ffec36c074067" args=")(char *, char *)" -->
+typedef LPVOID(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g8a5959cfdc494828171ffec36c074067">PFUNCD_LOADBMP</a> )(char *, char *)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ビットマップ読み込み関数 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g2477d8ef22644745911ca6928c423e81"></a><!-- doxytag: member="gobject.h::PFUNCD_UNLOADBMP" ref="g2477d8ef22644745911ca6928c423e81" args=")(LPVOID)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g2477d8ef22644745911ca6928c423e81">PFUNCD_UNLOADBMP</a> )(LPVOID)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ビットマップ後始末関数 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g09950d4e16663fcdf6034f007cf8864f"></a><!-- doxytag: member="gobject.h::PFUNCD_CELLDRAW" ref="g09950d4e16663fcdf6034f007cf8864f" args=")(LPVOID *, LPVOID, LPVOID, DWORD, int, int, float, int, BOOL, BOOL, DWORD, float, float)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g09950d4e16663fcdf6034f007cf8864f">PFUNCD_CELLDRAW</a> )(LPVOID *, LPVOID, LPVOID, DWORD, int, int, float, int, BOOL, BOOL, DWORD, float, float)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">セル描画関数 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g029a2a40f6626ecaf7a082275590eed6"></a><!-- doxytag: member="gobject.h::PFUNCD_CKBLT" ref="g029a2a40f6626ecaf7a082275590eed6" args=")(void *, int, int, RECT, double, double, BOOL, BOOL, float, DWORD)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g029a2a40f6626ecaf7a082275590eed6">PFUNCD_CKBLT</a> )(void *, int, int, RECT, double, double, BOOL, BOOL, float, DWORD)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Blt2 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g8ebcf6c310c5d4b022d0209922468bd7"></a><!-- doxytag: member="gobject.h::PFUNCD_BLT3D" ref="g8ebcf6c310c5d4b022d0209922468bd7" args=")(void *, RECT, MYRECT3D, DWORD)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g8ebcf6c310c5d4b022d0209922468bd7">PFUNCD_BLT3D</a> )(void *, RECT, <a class="el" href="../../de/d5b/struct_m_y_r_e_c_t3_d.html">MYRECT3D</a>, DWORD)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Blt3 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ge06db5b0319bb807cb7b9177d82585c5"></a><!-- doxytag: member="gobject.h::PFUNCD_SETTRANSFORM" ref="ge06db5b0319bb807cb7b9177d82585c5" args=")(BOOL)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#ge06db5b0319bb807cb7b9177d82585c5">PFUNCD_SETTRANSFORM</a> )(BOOL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">変換行列設定 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g55527e61aa610ea4df8332fa9a4a5d7e"></a><!-- doxytag: member="gobject.h::PFUNCD_SETBLEND" ref="g55527e61aa610ea4df8332fa9a4a5d7e" args=")(DWORD)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g55527e61aa610ea4df8332fa9a4a5d7e">PFUNCD_SETBLEND</a> )(DWORD)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ブレンドの仕方を変更 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gffc34b40fe92000c558de39a960bdd00"></a><!-- doxytag: member="gobject.h::PFUNCD_SETPARENTMATRIX" ref="gffc34b40fe92000c558de39a960bdd00" args=")(LPVOID, BOOL, LPVOID)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gffc34b40fe92000c558de39a960bdd00">PFUNCD_SETPARENTMATRIX</a> )(LPVOID, BOOL, LPVOID)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">「親」の変換行列設定 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gcca46764005654cab4ab47d140432e05"></a><!-- doxytag: member="gobject.h::PFUNCD_CREATEGCDDAT" ref="gcca46764005654cab4ab47d140432e05" args=")(char *filename, LPVOID *cdat, LPVOID *rdat, LPVOID *hdat)" -->
+typedef DWORD(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gcca46764005654cab4ab47d140432e05">PFUNCD_CREATEGCDDAT</a> )(char *filename, LPVOID *cdat, LPVOID *rdat, LPVOID *hdat)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">セルデータ読み込み。ver0.90以降ではLoadCellDatからこちらに変更するべき <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="gfef9da4f9b825184aa370f768d545683"></a><!-- doxytag: member="gobject.h::PFUNCD_DESTROYGCDDAT" ref="gfef9da4f9b825184aa370f768d545683" args=")(LPVOID *cdat, LPVOID *rdat, LPVOID *hdat)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gfef9da4f9b825184aa370f768d545683">PFUNCD_DESTROYGCDDAT</a> )(LPVOID *cdat, LPVOID *rdat, LPVOID *hdat)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">CreateCellDatで生成されたバッファをクリア <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g355626eb9bc48f3d350993f48e830de4"></a><!-- doxytag: member="gobject.h::PFUNCD_LOADIMAGE" ref="g355626eb9bc48f3d350993f48e830de4" args=")(char *, char *)" -->
+typedef LPVOID(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g355626eb9bc48f3d350993f48e830de4">PFUNCD_LOADIMAGE</a> )(char *, char *)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">画像読み込み関数、PNG対応に伴い追加。 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="g8994853e9054399ef38c1c7f968db9e2"></a><!-- doxytag: member="gobject.h::PFUNCD_CREATEGCDDAT2" ref="g8994853e9054399ef38c1c7f968db9e2" args=")(char *filename, LPVOID *cdat, LPVOID *rdat, LPVOID *hdat)" -->
+typedef DWORD(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g8994853e9054399ef38c1c7f968db9e2">PFUNCD_CREATEGCDDAT2</a> )(char *filename, LPVOID *cdat, LPVOID *rdat, LPVOID *hdat)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">セルデータ読み込み。ver0.90以降ではLoadCellDatからこちらに変更するべき <br></td></tr>
+<tr><td colspan="2"><br><h2>列挙型</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gedbab9b0047329e3e6467a06ad754aff">HITINFO_FLAGS</a> { <br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754aff576f2f112fbadaf819fcb191a88982f6">HITINFO_REACT1</a> =  0x00000001, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754affe6681ba6082e22fe68ab35c6ad4eac32">HITINFO_REACT2</a> =  0x00000002, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754aff2984de29270886d299d0f76c575ee441">HITINFO_REACT3</a> =  0x00000003, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754aff58022c8b981a793f37102524a3a4a07b">HITINFO_DOWN</a> =  0x00000004, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754affd69aedd42e8f60e521f68e23312c4aac">HITINFO_FUTTOBI</a> =  0x00000005, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754aff2b1509604f738287d7196223492c74b3">HITINFO_FUTTOBI2</a> =  0x00000006, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754affd8b81983265a522f2b6a56876276406e">HITINFO_REACT1A</a> =  0x00000007, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754affca604b04522495cc17dc5a4084ab72d7">HITINFO_REACT2A</a> =  0x00000008, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754affe459794fc53248d4d999e06dbb9b9143">HITINFO_REACT3A</a> =  0x00000009, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754aff22780cababd662b72a636a6a78879f4e">HITINFO_TATAKI1A</a> =  0x0000000A, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754affba33ca6a3e8777ffafcaa9996538c02a">HITINFO_TATAKI2A</a> =  0x0000000B, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754aff9edf22d7f2abef6f40551fae4eda3782">HITINFO_TATAKI1B</a> =  0x0000000C, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754aff52e4a8a6ba38c8970ae6860be64d385f">HITINFO_TATAKI2B</a> =  0x0000000D, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754affe71a2f9059f9f9fe0a151235df9920d7">HITINFO_USERDEFINE</a> =  0x0000000E, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754affb62c0535b5f6f610b892b1af45153915">HITINFO_USERDEFINE2</a> =  0x0000000F, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754aff6be5c09c995e48a6ee1008110f2e671e">HITINFO_MARK1</a> =  0x00010000, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754aff6e2e09a21c91948f377c5f17585c4c4e">HITINFO_MARK2</a> =  0x00020000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754aff8b61c8a817bcfd3c7d3993b226aab325">HITINFO_MARK3</a> =  0x00030000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754aff831dbd814877781b103b958c49b7211f">HITINFO_MARK4</a> =  0x00040000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754affeaba53cbe9addfc0806a57ed74eff310">HITINFO_SNDHIT1</a> =  0x00100000, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754affff2fc9c87e787669e6fab6a06857c51e">HITINFO_SNDHIT2</a> =  0x00200000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754aff9beb3963b362ba86b3a2ae8daa007de2">HITINFO_SNDHIT3</a> =  0x00300000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754aff06c367922e72bade53d5423a4566214f">HITINFO_SNDSHK1</a> =  0x00400000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754affc58c895848bd25f8447616082411f3e6">HITINFO_SNDSHK2</a> =  0x00500000, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754aff7f05229ab6c5e32561838978aac48a62">HITINFO_SIV1</a> =  0x01000000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754aff1e7f3a9c6f8ec252c7c01bcaf76b1e81">HITINFO_SIV2</a> =  0x02000000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754aff113a4bda3ac00788f1f5e38d42e9dddb">HITINFO_SIV3</a> =  0x03000000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754afff81843331d88bc68bb58f67f412064c4">HITINFO_STOP</a> =  0x04000000, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754aff6de4a9a5d6b9cf9525194599b8985caf">HITINFO_EFCTSINDO</a> =  0x00001000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754affaa8d184bfdf69304f26ad1902ab712d5">HITINFO_EFCTBURN</a> =  0x00002000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754aff78799888af0eeec59a76d842e6a4ff8c">HITINFO_EFCTBURN_B</a> =  0x00004000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754aff07641b4c3d7825438ffa7054760b2c5f">HITINFO_EFCTBURN_G</a> =  0x00008000, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754aff1071cf507b6c0f0edab48e06c1d14e4c">HITINFO_EFCTFLASH</a> =  0x10000000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggedbab9b0047329e3e6467a06ad754affb7bc5274e65895298771ad86467b511c">HITINFO_USERIDMASK</a> =  0x00000FF0
+<br>
+ }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ヒット情報フラグ  <a href="../../d6/d7d/group___g_object.html#gedbab9b0047329e3e6467a06ad754aff">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gcb29813032a348efa421dbb0762d0fa9">GUARDINFO_FLAGS</a> { <br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggcb29813032a348efa421dbb0762d0fa97825be8df026610f78bb02158e569d30">GUARDINFO_XSTAND</a> =  0x10000000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggcb29813032a348efa421dbb0762d0fa9d6c6d3441c7d9ebd4ea0843396ec48ec">GUARDINFO_XCROUCH</a> =  0x20000000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggcb29813032a348efa421dbb0762d0fa9222e869c01279f3c2bda572d685c5081">GUARDINFO_XJAMP</a> =  0x40000000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggcb29813032a348efa421dbb0762d0fa90512be8e49179d6168a3cc597352b1b8">GUARDINFO_XAUTO</a> =  0x80000000, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggcb29813032a348efa421dbb0762d0fa906e24149abe0ec5775c8eee29178e703">GUARDINFO_REACT1</a> =  0x00000001, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggcb29813032a348efa421dbb0762d0fa99d0829f6e6a0d6b53f07d5ea3ea7b027">GUARDINFO_REACT2</a> =  0x00000002, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggcb29813032a348efa421dbb0762d0fa9022bc5205482b7e1cc6af489839906ec">GUARDINFO_REACT3</a> =  0x00000003, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggcb29813032a348efa421dbb0762d0fa981984f7a5dc8db1462a5a6bc8f2945c7">GUARDINFO_USERDEFINE</a> =  0x00000004, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggcb29813032a348efa421dbb0762d0fa9e59d251efab1d84fb7e63a28a7deec54">GUARDINFO_SIV1</a> =  0x01000000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggcb29813032a348efa421dbb0762d0fa930da21440184a19c36b48c7d451f454f">GUARDINFO_SIV2</a> =  0x02000000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggcb29813032a348efa421dbb0762d0fa9159845bf5a8d86d273385d9529319749">GUARDINFO_SIV3</a> =  0x03000000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggcb29813032a348efa421dbb0762d0fa9d7119d7dcdc464ec352e8e0a6ae189d1">GUARDINFO_STOP</a> =  0x04000000, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggcb29813032a348efa421dbb0762d0fa9226d6ce15267fd6127dbc8bc8922f437">GUARDINFO_EFCTSINDO</a> =  0x00001000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggcb29813032a348efa421dbb0762d0fa9fd1593f257471574f21b9ec478436d0d">GUARDINFO_EFCTFLASH</a> =  0x00002000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggcb29813032a348efa421dbb0762d0fa9daf243f029a7003afd021dd701cfa456">GUARDINFO_USERIDMASK</a> =  0x00000FF0
+<br>
+ }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ガード情報フラグ  <a href="../../d6/d7d/group___g_object.html#gcb29813032a348efa421dbb0762d0fa9">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="../../d6/d7d/group___g_object.html#gg80155586fa275b28773c9b203f52caba2d45a686b21009963d6eef2f0ff420db">ATKINFO2_RIGHTBACK</a> =  0x00000001, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg80155586fa275b28773c9b203f52caba9475c40ed2adbfe79c8986dcb68814d5">ATKINFO2_ATTACKERBACK</a> =  0x00000002
+ }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">攻撃力情報フラグ（喰らい側）  <a href="../../d6/d7d/group___g_object.html#g80155586fa275b28773c9b203f52caba">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g2cabd141085607326ffd43e8a446c367">ACTION_FLAGS</a> { <br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg2cabd141085607326ffd43e8a446c36714cd96f403d778626ed1eaefe2fd505e">ACTID_KUCYU</a> =  0x00010000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg2cabd141085607326ffd43e8a446c367a4e260e45a7ac65740608fcf344121ed">ACTID_SYAGAMI</a> =  0x00020000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg2cabd141085607326ffd43e8a446c36708dd9940166576a70e9346b467f43d66">ACTID_ATTACK</a> =  0x00100000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg2cabd141085607326ffd43e8a446c367e8faa4a3a6c4d240712f8b1ae4e43615">ACTID_HISSATU</a> =  0x00200000, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg2cabd141085607326ffd43e8a446c367226c3c2a2df894d53cf7977c71a9602e">ACTID_SYSTEM</a> =  0x80000000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg2cabd141085607326ffd43e8a446c36780516f32ca275a7541306bf9284b29e4">ACTID_KURAI</a> =  0x40000000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg2cabd141085607326ffd43e8a446c367bcccf80611b5f263ee7182a855f10251">ACTID_GUARD</a> =  0x20000000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg2cabd141085607326ffd43e8a446c36748c711ec5cfff65da9b54ba3c4a1d3b6">ACTID_NAGE</a> =  0x00040000, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg2cabd141085607326ffd43e8a446c367f3fed9dfbddf62595a859be923a9ceec">ACTID_INOUT</a> =  0x10000000
+<br>
+ }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">行動種別フラグ  <a href="../../d6/d7d/group___g_object.html#g2cabd141085607326ffd43e8a446c367">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g7d21f15f339e97d2f69fbfbb4933341c">DEFAULT_ACTION_IDs</a> { <br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c7113961084807ffad073427e2168395b">ACTID_NEUTRAL</a> =  1, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c703628c5c07957d8f628d902d92f37e1">ACTID_TOJYO</a> =  2, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341cd94f764cd324c432f0a569cb0e382c03">ACTID_SYORI</a> =  3, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341ce9ec47bba320c450e1a05c63a838fcad">ACTID_CROUCH</a> =  ACTID_SYAGAMI, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c1d11812f485d62a4e7edbc551c6dceac">ACTID_RAKKA</a> =  ACTID_KUCYU, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341cfa61a9511eaf9af950798cb03989466a">ACTID_DAMAGE1</a> =  (ACTID_SYSTEM | ACTID_KURAI | 0x0001), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c25da1130e8a5a4ccfae9ca72a68e7b59">ACTID_DAMAGE2</a> =  (ACTID_SYSTEM | ACTID_KURAI | 0x0002), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c167c5b3c338792dd40ab0cdcd29077c7">ACTID_DAMAGE3</a> =  (ACTID_SYSTEM | ACTID_KURAI | 0x0003), 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341cfee5ca244758840d9415f3f19d1a9c62">ACTID_DAMAGEC1</a> =  (ACTID_SYSTEM | ACTID_KURAI | ACTID_SYAGAMI | 0x0001), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341ced9b75db444d894bfe9a44e0e33aa5a3">ACTID_DAMAGEC2</a> =  (ACTID_SYSTEM | ACTID_KURAI | ACTID_SYAGAMI | 0x0002), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c3ee9b7a9cd381c7e2997f49c4b4e82ab">ACTID_DAMAGEC3</a> =  (ACTID_SYSTEM | ACTID_KURAI | ACTID_SYAGAMI | 0x0003), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341cfd2450028d97107655d95ba0f6f117e6">ACTID_DAMAGEJ1</a> =  (ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x0001), 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c377beba49ba4a674236f293db91b2f59">ACTID_DAMAGEJ2</a> =  (ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x0002), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341cd72e85d066123eb06b3a6299aeee36d3">ACTID_DAMAGEJ3</a> =  (ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x0003), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c5333983c862aa4fa47f38b549266aac9">ACTID_DOWN</a> =  (ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x0004), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c3de04518853f5baaaa9f994f9a87b1c5">ACTID_DOWN2</a> =  (ACTID_SYSTEM | ACTID_KURAI | 0x0004), 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341cd04b03a13e240137f0df11f14a62cc62">ACTID_OKIAGARI</a> =  (ACTID_SYSTEM | 0x0001), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341cb94a56288a0e541525171141b6be6f18">ACTID_FINALDOWN</a> =  (ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x0005), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341ca0feebea52470479d4952ee64099ad80">ACTID_FUTTOBI</a> =  (ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x0006), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341ca4ff006ecefc0bee2a5691449d2a4da6">ACTID_BOUND</a> =  (ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x0007), 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c332eca23a056afbdc9d40baf2c012155">ACTID_FINALBOUND</a> =  (ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x0008), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341cf1ac1510d01c7de10670c8da084d3a17">ACTID_FINALDOWN2</a> =  (ACTID_SYSTEM | ACTID_KURAI | 0x0005), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c3e86cdf8e8d1b8b8e5fd27e77b86ca1e">ACTID_FUTTOBI2</a> =  (ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x0009), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c5aa2777f3cb682334ea3733b8f513a21">ACTID_NAGERARE</a> =  (ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | ACTID_NAGE | 0x0001), 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341ce987039b1004156051b06f5dd214af9d">ACTID_DAMAGE1A</a> =  (ACTID_SYSTEM | ACTID_KURAI | 0x0006), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c2478ccc3a11aabce692489efc9332ae2">ACTID_DAMAGE2A</a> =  (ACTID_SYSTEM | ACTID_KURAI | 0x0007), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341ce90e83a8bb2d1e27c0d8a2ad01f45a56">ACTID_DAMAGE3A</a> =  (ACTID_SYSTEM | ACTID_KURAI | 0x0008), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341ccfd1414a85601917c30bace555aca620">ACTID_DAMAGEC1A</a> =  (ACTID_SYSTEM | ACTID_KURAI | ACTID_SYAGAMI | 0x0004), 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c4528e26c4a365f33f322c1262ea9dc61">ACTID_DAMAGEC2A</a> =  (ACTID_SYSTEM | ACTID_KURAI | ACTID_SYAGAMI | 0x0005), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341cbcf6875d6f7b8dca389392c479c4ed21">ACTID_DAMAGEC3A</a> =  (ACTID_SYSTEM | ACTID_KURAI | ACTID_SYAGAMI | 0x0006), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c64747d3a0afc4002a71bc349d01c170a">ACTID_TATAKITUKE1A</a> =  (ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x000A), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c359c1db2bd006bcf0e2b12b3478a9785">ACTID_TATAKITUKE2A</a> =  (ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x000B), 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c3bf95146b497e8eaec04037f6e00f5e1">ACTID_TATAKITUKE1B</a> =  (ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x000C), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341ca792f5cf8f0d6515fc9383eba2e9e571">ACTID_TATAKITUKE2B</a> =  (ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x000D), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341cb4105eb6c6388dd89264d489095e6b91">ACTID_KAITENFINISH</a> =  (ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x000E), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c3af233b92cc35701b9698d5ff3d1baca">ACTID_USERHIT1</a> =  (ACTID_SYSTEM | ACTID_KURAI | 0x0010), 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c9b496750980a6ede517b07156d38c3b3">ACTID_USERHIT2</a> =  (ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x0011), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c632dbbb118a573e6b70cf3e0dd1dd01f">ACTID_GUARD1</a> =  (ACTID_SYSTEM | ACTID_GUARD | 0x0001), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c9c7a8b5632d4e37954c847d7eb0385ef">ACTID_GUARD2</a> =  (ACTID_SYSTEM | ACTID_GUARD | 0x0002), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c39013c24473a40cdc5250e547d5f01d2">ACTID_GUARD3</a> =  (ACTID_SYSTEM | ACTID_GUARD | 0x0003), 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341ca7b3a03cb0b941cae5368e877e924006">ACTID_GUARDC1</a> =  (ACTID_SYSTEM | ACTID_GUARD | ACTID_SYAGAMI | 0x0001), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341cbc00a0e2ff36adab448338c9290a441c">ACTID_GUARDC2</a> =  (ACTID_SYSTEM | ACTID_GUARD | ACTID_SYAGAMI | 0x0002), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341cbaac7f4d0950dbf1c8acc15e3dcd5304">ACTID_GUARDC3</a> =  (ACTID_SYSTEM | ACTID_GUARD | ACTID_SYAGAMI | 0x0003), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c929e45262449e0384079174cd80f29a0">ACTID_GUARDJ1</a> =  (ACTID_SYSTEM | ACTID_GUARD | ACTID_KUCYU | 0x0001), 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341cfccf872dad55d736a91039bf4496ef57">ACTID_GUARDJ2</a> =  (ACTID_SYSTEM | ACTID_GUARD | ACTID_KUCYU | 0x0002), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c10a55be1bc9211c6f22e162624569c21">ACTID_GUARDJ3</a> =  (ACTID_SYSTEM | ACTID_GUARD | ACTID_KUCYU | 0x0003), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341cf257f5b0e1f627bafa235db5d998285c">ACTID_USERGUARD1</a> =  (ACTID_SYSTEM | ACTID_GUARD | 0x0010), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg7d21f15f339e97d2f69fbfbb4933341c2c2411cf82a5aa3ed7656235e2ca67f1">ACTID_USERGUARD2</a> =  (ACTID_SYSTEM | ACTID_GUARD | ACTID_KUCYU | 0x0011)
+<br>
+ }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">行動種別フラグ  <a href="../../d6/d7d/group___g_object.html#g7d21f15f339e97d2f69fbfbb4933341c">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g1528db263b46d87c269e6226e9938abe">DEFAULT_CELL_IDs</a> { <br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abeae8e0a0c9a7f1c5acb59b8032629f684">DCELL_DAMAGES1</a> =  1, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abec5b38ebd77f647b82f5a0e6ed07b61a8">DCELL_DAMAGES2</a> =  2, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abe438047a64ea86e84ae0a6077731f4ff7">DCELL_DAMAGES3</a> =  3, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abeabfb7e14bfd23bd4d1f1f6d28471d0e5">DCELL_DAMAGES4</a> =  4, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abe97660361a50a33ae48fdd03e3cf83c08">DCELL_DAMAGEC1</a> =  5, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abee3b567b004237ac2245d4b3b78b698c9">DCELL_DAMAGEC2</a> =  6, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abe2dee5caa01b3213ba03af3c67046ab4a">DCELL_DAMAGEC3</a> =  7, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abe6d98894401da7d65b661c06ed63ac427">DCELL_DAMAGEC4</a> =  8, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abe41b7703487ad39af60de98750b3216f5">DCELL_GUARDS1</a> =  9, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abe6f0e4af3ad9cdce46031574982ba38c5">DCELL_GUARDS2</a> = 10, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abea3bd413a2675d9f7347248cc8b257e55">DCELL_GUARDS3</a> = 11, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abe2045fd90784ce5b3f94d69fdef60f292">DCELL_GUARDS4</a> = 12, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abe1209f793a8779fede6f504b378a98194">DCELL_GUARDC1</a> = 13, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abeb894fe2501bc23bbfa27990acb48a2b3">DCELL_GUARDC2</a> = 14, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abe1fd884b7ce6055e4b8c3ac5515e137e4">DCELL_GUARDC3</a> = 15, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abeb77bad126ff88f4777ac1ed486b22740">DCELL_GUARDC4</a> = 16, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abe1af1504c6f024190070ded06f6d897b3">DCELL_DAMAGEJ</a> = 17, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abe9872f1bebe7985e3ca59929b8aa4fc93">DCELL_RAKKA1</a> = 18, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abe11401f76feaee64282f1ef9e8af89849">DCELL_RAKKA2</a> = 19, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abed8a25ec7c834ddd906f9942f61e503ed">DCELL_GUARDJ1</a> = 20, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abe9f1281ad4a0611d45030967a8da13fda">DCELL_GUARDJ2</a> = 21, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abe70f115ad6f331e7b86f6ebce4ec8a6d7">DCELL_GUARDJ3</a> = 22, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abe597c9318ed651de718e6d6138519fd06">DCELL_BOUND</a> = 23, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abececb2b203efb21915307f3ab024919be">DCELL_DOWN</a> = 24, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abe17169c2e8e378bc18ca2d9a5e763849f">DCELL_OKIAGARI1</a> = 25, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abe4c6f5576a8bbf51f017b6515efabfc22">DCELL_OKIAGARI2</a> = 26, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abe144994d26fc3566d2dd839926ab8437b">DCELL_OKIAGARI3</a> = 27, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abe94c380dfab219e4adc909972f1d81898">DCELL_OKIAGARI4</a> = 28, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abee6197aa966da9f54f2cfbb0223ffbcd8">DCELL_OKIAGARI5</a> = 29, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abef0d77f2f69770c904db9e687417dec87">DCELL_NAGERARE1</a> = 30, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abe73b787aa7780810d3e9e5a8abdbf10f2">DCELL_KAITENFUTTOBI</a> = 31, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg1528db263b46d87c269e6226e9938abe057643394b5a2ef06621a37d203948a4">DCELL_END</a> = 99
+<br>
+ }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">デフォルトcell ID  <a href="../../d6/d7d/group___g_object.html#g1528db263b46d87c269e6226e9938abe">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#ga0ff5855ad1767de74600527eafc3978">TEAM_IDs</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">チームID  <a href="../../d6/d7d/group___g_object.html#ga0ff5855ad1767de74600527eafc3978">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#ge48a10c39207bd79857cc75cd2e36768">GOBJECT_PROPERTIES</a> { <br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gge48a10c39207bd79857cc75cd2e36768c2591135a1ce5941e69b5e01f9a20d0b">GOBJFLG_KURAI</a> =  0x00000001, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge48a10c39207bd79857cc75cd2e367688af9aa01efa9b76cf962c770063eeff8">GOBJFLG_NAGERARE</a> =  0x00000002, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge48a10c39207bd79857cc75cd2e367682568d4ca31f443e242c9869b10c3c304">GOBJFLG_ATTACK</a> =  0x00000004, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge48a10c39207bd79857cc75cd2e36768e776de7e08dc7b5632b7098a543649ac">GOBJFLG_KASANARI</a> =  0x00000008, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gge48a10c39207bd79857cc75cd2e36768e1a1ddda3208e8d02c18cd1ae2d9ed14">GOBJFLG_TOBETARGET</a> =  0x10000000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge48a10c39207bd79857cc75cd2e36768ef26a52aa5c99ce3850e064450bd406c">GOBJFLG_NEEDTARGET</a> =  0x20000000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge48a10c39207bd79857cc75cd2e3676860c4a89fd952e1eaede64beb03c2a080">GOBJFLG_COMPUTER</a> =  0x40000000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge48a10c39207bd79857cc75cd2e3676824710b78eee8e062848028873145227d">GOBJFLG_ZCHARACTER</a> =  0x80000000, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gge48a10c39207bd79857cc75cd2e36768badafd528a7ed8d628cbc30b9565eef2">GOBJFLG_ZBULLET</a> =  0x01000000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge48a10c39207bd79857cc75cd2e3676811cc08fc543c94ad3aef67554773da95">GOBJFLG_DISPZAHYO</a> =  0x00000020, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge48a10c39207bd79857cc75cd2e367682cbbff09a7d0c28e94c5f4ec4e6dd978">GOBJFLG_DONOTSTOP</a> =  0x00000040, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge48a10c39207bd79857cc75cd2e36768d9a78c1e95123741d2a826c827e4a54e">GOBJFLG_HANSAYOU</a> =  0x00000080, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gge48a10c39207bd79857cc75cd2e367680e298e2eb2f82c07288820cf9dccbb38">GOBJFLG_CLIPX</a> =  0x00000100, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge48a10c39207bd79857cc75cd2e367685eaa59a07321f0125b279fda16b07c0c">GOBJFLG_CLIPX2</a> =  0x00000200, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge48a10c39207bd79857cc75cd2e3676880b6162f50c6edbf7110e28df952955e">GOBJFLG_DISPLAYME</a> =  0x00000400, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge48a10c39207bd79857cc75cd2e36768650fd6b87a4e29616af647d5411394fb">GOBJFLG_TAIKI</a> =  0x00000800
+<br>
+ }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">オブジェクトプロパティ  <a href="../../d6/d7d/group___g_object.html#ge48a10c39207bd79857cc75cd2e36768">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#ge6ebd980fb486015948035de6ec72435">GOBJECT_GAUGE_TYPE</a> { <a class="el" href="../../d6/d7d/group___g_object.html#gge6ebd980fb486015948035de6ec72435d4c0db13bf7436c024c4543a15eb54ea">GOBJFLGA_POWGAUGE_NONE</a> =  0x00000000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge6ebd980fb486015948035de6ec72435c33bbabeb2e1a4b6a2ff1ba6d2094ae8">GOBJFLGA_POWGAUGE1</a> =  0x00000001, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge6ebd980fb486015948035de6ec724358a73412e249a883e38509dc40bd103e1">GOBJFLGA_POWGAUGE2</a> =  0x00000002
+ }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ゲージ描画タイプ  <a href="../../d6/d7d/group___g_object.html#ge6ebd980fb486015948035de6ec72435">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gdaf821b32379c9343ac93348b3bdbe4b">GBLENDMODES</a> { <a class="el" href="../../d6/d7d/group___g_object.html#ggdaf821b32379c9343ac93348b3bdbe4b7f2e5fce38733a661e4cd934bb319a47">GBLEND_HANTOUMEI</a> =  (0), 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggdaf821b32379c9343ac93348b3bdbe4b12733d048847d952d8103efe2e0598a8">GBLEND_KASAN</a> =  (1), 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggdaf821b32379c9343ac93348b3bdbe4b9490b50798d2946d2b75e8676ac665bc">GBLEND_INV</a> =  (3)
+ }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">αブレンドタイプ  <a href="../../d6/d7d/group___g_object.html#gdaf821b32379c9343ac93348b3bdbe4b">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g8bdc4be5494aacf0ed35eb0d258dd241">GOBJECT_MESSAGE</a> { <br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd24131c85b2c1e4a5b7b6f3bcff3c7eb3919">GOBJMSG_DELETE</a> =  1, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd241db2c7e1588ad980ddc2182b116a6f35d">GOBJMSG_ACTION</a> =  2, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd241c7014689e28d7eab51a77360ebb77aab">GOBJMSG_COMMAND</a> =  3, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd241c67fd72f6af72f357cb05f1bd861dcb7">GOBJMSG_COMMANDCOM</a> =  4, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd24113fd37c258e0f4cfbb5364e9ef6d46a7">GOBJMSG_TOUCHA</a> =  5, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd241018b90c5dc21cd5a9fc16bb589066a8b">GOBJMSG_TOUCHB</a> =  6, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd241b94b73ab90ae0c53e69a7f519588e1e6">GOBJMSG_TOUCHC</a> =  7, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd2416b580d839747940f016b20bfe7e0e69a">GOBJMSG_CNGAID</a> =  8, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd2410b6e233165e0f7cbbe6e7a2cf3ccd937">GOBJMSG_COMTHINK</a> =  9, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd241d1c2feb3fe54ab7087aeda2a9c57d560">GOBJMSG_DRAW</a> =  101, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd2416ee7606f8722753d6ff1b5a5e55247b4">GOBJMSG_DRAWBACK</a> =  102, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd241622ca9b01a01b2d376b62faa57f61eb6">GOBJMSG_DRAWFRONT</a> =  103, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd241eab4548a5954d908db07a0357b876e4a">GOBJMSG_DOTOJYO</a> =  201, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd2414bd5160a3fbd650ff9d067505412ba1a">GOBJMSG_DOTIMEOVERLOSE</a> =  202, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd24118fcc5d99efe795142717ebc8d7aaf0a">GOBJMSG_DOYOUWIN</a> =  203, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd2419c452d1eb78d7c45a25bd7e24bd31648">GOBJMSG_TAIKI</a> =  204, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd2412618acdef24935782be6a01dbf111d00">GOBJMSG_KOUTAI</a> =  205, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd241dce4b4b253ad69ecebe2d9a59e2c17b6">GOBJMSG_KOUTAI2</a> =  206, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd2414d2eb649fe3312e76923a9076c9561ab">GOBJMSG_STRIKER</a> =  207, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd24151bfa1bfe2c32f1fa832ad2f335697f7">GOBJMSG_DOYOUWIN2</a> =  208, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd241d404d0f7eb8b236d1c448829d7dd754b">GOBJMSG_STRIKERREADY</a> =  209, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd241ee9d68d26043139fed02b1a1f1f23b56">GOBJMSG_KNOCKBACK</a> =  301, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd24155085bbf74bb382a8c4e2bdba35f0110">GOBJMSG_CLIPX</a> =  302, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd241fbc3ff5510a3fb4afcc4564c33375cd7">GOBJMSG_CNGTARGET</a> =  401, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd241dbcfcd56d0b7a1a4f8083086e0d0d733">GOBJMSG_SOUSAI</a> =  402, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd241f89ee9067cb6f13217507759136cae82">GOBJMSG_CNGROUND</a> =  502, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd241bb22957b471cf0c1b2d1161d74c4ca46">GOBJMSG_SYNC</a> =  601, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg8bdc4be5494aacf0ed35eb0d258dd24103ecf56a8102ad2eb039a73c6a9b068b">GOBJMSG_USERDEFINE</a> = 0x80000000
+<br>
+ }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">オブジェクトメッセージID  <a href="../../d6/d7d/group___g_object.html#g8bdc4be5494aacf0ed35eb0d258dd241">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gab8f2f17808bfcb085c57794f27a94bd">GOBJMSG_TOUCHA_RETURNS</a> { <br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggab8f2f17808bfcb085c57794f27a94bd9abeb0ea9ddd50ad644b0f1467c30718">TOUCHA_DEFAULT</a> =  0x00000000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggab8f2f17808bfcb085c57794f27a94bd82f256100b9539b8a71f54f3c0bb5483">TOUCHA_KURAIS</a> =  0x10000001, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggab8f2f17808bfcb085c57794f27a94bd8802d1c498a9a8525590ad6de9585d20">TOUCHA_KURAIC</a> =  0x10000002, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggab8f2f17808bfcb085c57794f27a94bd4f03a625d785fb927a57da65078c1af5">TOUCHA_KURAIJ</a> =  0x10000003, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggab8f2f17808bfcb085c57794f27a94bd452dfb9b52e5f0893cc5ff8970d835ec">TOUCHA_GUARDS</a> =  0x20000001, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggab8f2f17808bfcb085c57794f27a94bdf70e09e1deba6bb4e8eff5bf4cca3338">TOUCHA_GUARDC</a> =  0x20000002, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggab8f2f17808bfcb085c57794f27a94bd2d2c036b1b74f0aedaa733ed3633f474">TOUCHA_GUARDJ</a> =  0x20000003, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggab8f2f17808bfcb085c57794f27a94bd299bdaf6a0ce439072ccfb2c63580b38">TOUCHA_MUSI</a> =  0x50000000, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggab8f2f17808bfcb085c57794f27a94bdffb0f3f263cc7ef405d9b7a38a71ccfd">TOUCHA_MUSI2</a> =  0x60000000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggab8f2f17808bfcb085c57794f27a94bd78f388e4b0360c8939b0a9aa372d61b8">TOUCHA_AVOID</a> =  0x80000000
+<br>
+ }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">GOBJMSG_TOUCHA メッセージに対する戻り値  <a href="../../d6/d7d/group___g_object.html#gab8f2f17808bfcb085c57794f27a94bd">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g4c0e16417224e916fc157b82d86dfa9c">GOBJMSG_TOUCHC_RETURNS</a> { <a class="el" href="../../d6/d7d/group___g_object.html#gg4c0e16417224e916fc157b82d86dfa9c713119c0775b20506b9389457c6ed731">TOUCHC_OK</a> =  0x00000000, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg4c0e16417224e916fc157b82d86dfa9cda992e89b1318d392e8a75b47c669ec9">TOUCHC_CANCEL</a> =  0x00000001
+ }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">GOBJMSG_TOUCHCメッセージに対する戻り値  <a href="../../d6/d7d/group___g_object.html#g4c0e16417224e916fc157b82d86dfa9c">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#g12d9f7b6d1430370b9c75f7ce5043ce5">GOBJMSG_STRIKERREADY_RETURNS</a> { <br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg12d9f7b6d1430370b9c75f7ce5043ce5ee8b34157a887377fcc84a14de9cb879">STRIKERREADY_UNKNOWN</a> =  (0), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg12d9f7b6d1430370b9c75f7ce5043ce562b391843be770fa39c91cd6d2efcb9c">STRIKERREADY_OK</a> =  (1), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg12d9f7b6d1430370b9c75f7ce5043ce5d3a03ade29ffc0394f7d40e51424486b">STRIKERREADY_NOTREADY</a> =  (2), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gg12d9f7b6d1430370b9c75f7ce5043ce590535995b622466bca81e13aad31ea1b">STRIKERREADY_NOTSUPPORTED</a> =  (3), 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gg12d9f7b6d1430370b9c75f7ce5043ce5d6c76b794d88c60b319d66d32a70774f">STRIKERREADY_NOPOINT</a> =  (4)
+<br>
+ }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">支援攻撃問い合わせ  <a href="../../d6/d7d/group___g_object.html#g12d9f7b6d1430370b9c75f7ce5043ce5">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#ge846aa3f6a8ab25fd18b428623efe35c">GKEYSTATES</a> { <br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35cbb68ee930241e1947cbc1f832c2cd448">KEYSTA_LEFT</a> =  (0x00000100), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35cf7b047b726d88287e806ea1bd0b1d79e">KEYSTA_LEFT2</a> =  (0x00000200), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35cf610fbf26189d930a3c96ece0491f9d0">KEYSTA_RIGHT</a> =  (0x00001000), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35caf4fce6f3f5fc68ce9b359e1477efdaa">KEYSTA_RIGHT2</a> =  (0x00002000), 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35c4dbd023cc407b7d403d5d37e337133b4">KEYSTA_ALEFT</a> =  (0x00000400), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35c827dd0a3fb6ee22a3c8a8271b5b608c2">KEYSTA_ALEFT2</a> =  (0x00000800), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35c1f5f92a006681574c41fb303173b021c">KEYSTA_ARIGHT</a> =  (0x00004000), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35c049ee358c32fca19ce8963bc421039fe">KEYSTA_ARIGHT2</a> =  (0x00008000), 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35cc3fc492026ec40bea178c09ba0bd6d8b">KEYSTA_UP</a> =  (0x00000001), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35c0bc8d458889aee24fc8b612d78cd1d4d">KEYSTA_UP2</a> =  (0x00000002), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35c5aef8d81b0419a9190bc6e7cbd95ec81">KEYSTA_DOWN</a> =  (0x00000010), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35cd460a29b6a7dd45c18c899065513b3ad">KEYSTA_DOWN2</a> =  (0x00000020), 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35c6db3a47cac5ab44edd7bdaa91fa9136c">KEYSTA_FOWORD</a> =  KEYSTA_RIGHT, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35c07bc0893d92cdcee8c63641c0f76c71d">KEYSTA_FOWORD2</a> =  KEYSTA_RIGHT2, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35cb9153a0774b77ea813cfc1b87f1fb87a">KEYSTA_BACK</a> =  KEYSTA_LEFT, 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35c6122dc8fde4c5c04f9a65f79f2be5fef">KEYSTA_BACK2</a> =  KEYSTA_LEFT2, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35ce4616dcbe755396919d80dd15bf82ff4">KEYSTA_BA</a> =  (0x00010000), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35c5dc41b127afd569fe7cf2ed98b58afc8">KEYSTA_BA2</a> =  (0x00020000), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35cb407d7e04127f89ba6fa847455b53d5f">KEYSTA_BB</a> =  (0x00100000), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35c2bcbedfd22ed9e7b905c33f89939c38d">KEYSTA_BB2</a> =  (0x00200000), 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35c941d12719697eea81c70b7584abc085c">KEYSTA_BC</a> =  (0x01000000), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35cfb6c89f4f058ca8cdefa411cb4a92731">KEYSTA_BC2</a> =  (0x02000000), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35cada450280b47dc34dfb9a1f2d78c9fa0">KEYSTA_BD</a> =  (0x10000000), 
+<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35c5b6d4a338f69fe324e271256102f1828">KEYSTA_BD2</a> =  (0x20000000), 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#gge846aa3f6a8ab25fd18b428623efe35c30d120bc1dcbcbfae299943e44c06512">KEYSTA_BUTTONS</a> =  (0x22220000)
+<br>
+ }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">キー入力値  <a href="../../d6/d7d/group___g_object.html#ge846aa3f6a8ab25fd18b428623efe35c">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gd3bccfa445940a5ee9644180ae7c264e">MESSAGE_OBJ2SYS</a> { <br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggd3bccfa445940a5ee9644180ae7c264ea355e3bb304216f3178a0cddb8656e13">MSGOBJ2SYS_TOJYOEND</a> =  1, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggd3bccfa445940a5ee9644180ae7c264ee389e98801a77c7c0f0cf9547eb2a1e2">MSGOBJ2SYS_FINALDOWNEND</a> =  2, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggd3bccfa445940a5ee9644180ae7c264ef9fc5f9913522ea9558ca2981cddaae7">MSGOBJ2SYS_WINPOSEEND</a> =  3, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggd3bccfa445940a5ee9644180ae7c264e95fd0ae498921dd69f694c13e0056cbc">MSGOBJ2SYS_KOUTAI1</a> =  4, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggd3bccfa445940a5ee9644180ae7c264e6385b0398034e3a5f11e82eed1ea8942">MSGOBJ2SYS_KOUTAI2</a> =  5, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggd3bccfa445940a5ee9644180ae7c264edec90ef7d2a7c2b537ac259979bbbd70">MSGOBJ2SYS_STRIKER1</a> =  6, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggd3bccfa445940a5ee9644180ae7c264e90cba52a1b7596af28f8ce4582cc6cf4">MSGOBJ2SYS_STRIKER2</a> =  7, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggd3bccfa445940a5ee9644180ae7c264e46773e07aa0fc558073a9309068884c2">MSGOBJ2SYS_KOUTAIEND</a> =  8
+<br>
+ }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">オブジェクトからシステムへのメッセージ  <a href="../../d6/d7d/group___g_object.html#gd3bccfa445940a5ee9644180ae7c264e">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gdb50237b42a0a5c6eada94268c49a3d7">SYSTEM_EFFECT_IDs</a> { <br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggdb50237b42a0a5c6eada94268c49a3d7e4dd887e49cdf1b81bdb98df612f83ae">EFCTID_MARK1</a> =  1, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggdb50237b42a0a5c6eada94268c49a3d7e618ff302ac2902eefcc9f32ec66baaf">EFCTID_MARK2</a> =  2, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggdb50237b42a0a5c6eada94268c49a3d7e55e3fbc32d56a5c99acecd19ed25005">EFCTID_MARK3</a> =  3, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggdb50237b42a0a5c6eada94268c49a3d7e1d7af092d2d151911733de8ceac583e">EFCTID_MARK4</a> =  4, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggdb50237b42a0a5c6eada94268c49a3d7d60999fed8fb033df82ad9cfe033e9f5">EFCTID_MARKG</a> =  5, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggdb50237b42a0a5c6eada94268c49a3d76629822f241bddc37b482a24743552fb">EFCTID_MARKG2</a> =  6, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggdb50237b42a0a5c6eada94268c49a3d79a5ed537495e05e4663c0826bbc3e8d5">EFCTID_HIKARI</a> =  7, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggdb50237b42a0a5c6eada94268c49a3d7989441fa02f5e892d4356cd64a725ad2">EFCTID_STOP</a> =  8, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggdb50237b42a0a5c6eada94268c49a3d7e67097cb1aaef5a009752ff52f95fd7b">EFCTID_DARK</a> =  9, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggdb50237b42a0a5c6eada94268c49a3d787e477a3e74aab58cf6067f956e1c4b9">EFCTID_MARKC</a> =  10, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggdb50237b42a0a5c6eada94268c49a3d7cecaaae2fd2008d1226e8b8d2ac9501a">EFCTID_GNDCIR</a> =  11, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggdb50237b42a0a5c6eada94268c49a3d7139cb5e78b014abb4ad1a518f9a8120a">EFCTID_SINDO</a> =  12, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggdb50237b42a0a5c6eada94268c49a3d764de8d7002e063b68c94f26ffdc8f1d2">EFCTID_NOBG</a> =  13, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggdb50237b42a0a5c6eada94268c49a3d78d244c39fb3b57c95f7e03f395607971">EFCTID_CYOHI</a> =  14, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggdb50237b42a0a5c6eada94268c49a3d70cf2e3baef7e913382b478b7a09af962">EFCTID_TUBUTUBU</a> =  15, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggdb50237b42a0a5c6eada94268c49a3d7c6c719d613b03c1c73c6c9768fdd6f00">EFCTID_TUBUTUBU2</a> =  16, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggdb50237b42a0a5c6eada94268c49a3d7fa0785ae704423c8367aad79b38e1403">EFCTID_COMEON</a> =  17, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggdb50237b42a0a5c6eada94268c49a3d7abda4c0b0e8e42e39bdc4cfe2b68db36">EFCTID_BURN</a> =  18, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggdb50237b42a0a5c6eada94268c49a3d7989a3a3930916f115421c9f9c7268486">EFCTID_BURN_B</a> =  19, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggdb50237b42a0a5c6eada94268c49a3d7c30c95820bd8aa6f5419996834afe4eb">EFCTID_BURN_G</a> =  20, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggdb50237b42a0a5c6eada94268c49a3d7cb7cf565ce6a8e95b530e13997685514">EFCTID_GCANCEL</a> =  21, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggdb50237b42a0a5c6eada94268c49a3d7c39371af97d7e525150c948fdf6169d4">EFCTID_SUPERARMER</a> =  22, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggdb50237b42a0a5c6eada94268c49a3d7d3eed66b552e418df467ea6d781c0d0f">EFCTID_FLASH</a> =  23
+<br>
+ }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">システムエフェクトID  <a href="../../d6/d7d/group___g_object.html#gdb50237b42a0a5c6eada94268c49a3d7">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gc1b9aa9242e52f26e69b52d44d060cff">SYSTEM_SOUND_IDs</a> { <br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggc1b9aa9242e52f26e69b52d44d060cffd337c552c2d49b77a40b7e4879611706">SYSTEMSOUND_HIT1</a> =  0, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggc1b9aa9242e52f26e69b52d44d060cfffa37ad5f5b338ac869ce06c9ae41a2cd">SYSTEMSOUND_HIT2</a> =  1, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggc1b9aa9242e52f26e69b52d44d060cff386bc52bfe6ec082b4c4504d9b7262c8">SYSTEMSOUND_HIT3</a> =  2, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggc1b9aa9242e52f26e69b52d44d060cff7b79fd0c06d21de6d69fb56cd2ffa0e5">SYSTEMSOUND_SHOCK1</a> =  3, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggc1b9aa9242e52f26e69b52d44d060cffff95982c8b51a2f4a3b9c4caf9c02ac9">SYSTEMSOUND_SHOCK2</a> =  4, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggc1b9aa9242e52f26e69b52d44d060cffaa58601acf34c94bc340f81cf3176f0d">SYSTEMSOUND_GUARD</a> =  5, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggc1b9aa9242e52f26e69b52d44d060cff11dbece9bf4ba53f2c365777d6fd48d9">SYSTEMSOUND_CATCH</a> =  6, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggc1b9aa9242e52f26e69b52d44d060cff6c59e7d20f0dbb6d2272c0e57e7a768b">SYSTEMSOUND_CYOHI</a> =  7, 
+<br>
+&nbsp;&nbsp;<a class="el" href="../../d6/d7d/group___g_object.html#ggc1b9aa9242e52f26e69b52d44d060cff4b16063fed7968f1c4a9e6136619242b">SYSTEMSOUND_CHARGE</a> =  8
+<br>
+ }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">システムエフェクトID  <a href="../../d6/d7d/group___g_object.html#gc1b9aa9242e52f26e69b52d44d060cff">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d7d/group___g_object.html#gd9304f3c7e3606af9817601060e47f74">TAISENKEISIKI</a> { <a class="el" href="../../d6/d7d/group___g_object.html#ggd9304f3c7e3606af9817601060e47f7496e1785ee10b145888436e2e0623ed1f">TAISENKEISIKI_GOCYAMAZE</a> = 1, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggd9304f3c7e3606af9817601060e47f74fdc44c85baa3f942c1cb61e3494d1d87">TAISENKEISIKI_KOUTAI</a> = 2, 
+<a class="el" href="../../d6/d7d/group___g_object.html#ggd9304f3c7e3606af9817601060e47f74ef30191c97e956dba24fef3e629381c7">TAISENKEISIKI_JYUNBAN</a> = 3
+ }</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">対戦形式  <a href="../../d6/d7d/group___g_object.html#gd9304f3c7e3606af9817601060e47f74">[詳細]</a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>説明</h2>
+DLLインターフェース定義 GOLUAH キャラクター・ステージDLL のビルドに必要な各種構造体の定義 
+<p>
+<hr size="1"><address style="text-align: right;"><small>Goluah!!に対してWed Oct 13 14:01:04 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="../../doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.3 </small></address>
+</body>
+</html>

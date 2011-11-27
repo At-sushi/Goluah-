@@ -1,0 +1,469 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Goluah!!: クラス CDirectInput</title>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css">
+<link href="../../tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- 作成： Doxygen 1.5.3 -->
+<div class="tabs">
+  <ul>
+    <li><a href="../../main.html"><span>メインページ</span></a></li>
+    <li><a href="../../modules.html"><span>モジュール</span></a></li>
+    <li class="current"><a href="../../annotated.html"><span>クラス</span></a></li>
+    <li><a href="../../files.html"><span>ファイル</span></a></li>
+  </ul>
+</div>
+<div class="tabs">
+  <ul>
+    <li><a href="../../annotated.html"><span>構成</span></a></li>
+    <li><a href="../../hierarchy.html"><span>クラス階層</span></a></li>
+    <li><a href="../../functions.html"><span>構成メンバ</span></a></li>
+  </ul>
+</div>
+<h1>クラス CDirectInput<br>
+<small>
+[<a class="el" href="../../da/d83/group___direct_x.html">DirectX</a>]</small>
+</h1><!-- doxytag: class="CDirectInput" -->キー入力管理クラス。  
+<a href="#_details">[詳細]</a>
+<p>
+<code>#include &lt;dx_input.h&gt;</code>
+<p>
+<div class="dynheader">
+CDirectInputのコラボレーション図</div>
+<div class="dynsection">
+<p><center><img src="../../dd/dbb/class_c_direct_input__coll__graph.png" border="0" usemap="#dc/d0f/_c_direct_input__coll__map" alt="Collaboration graph"></center>
+<map name="dc/d0f/_c_direct_input__coll__map">
+<area shape="rect" href="../../d8/d55/struct_k_e_y_c_o_n_f_i_g.html" title="a?&#45;a??a?3a?3a??a?��a?Ra?\a?��a??a?�Ea?��a?3a??a??a??" alt="" coords="5,5,107,32"></map>
+<center><font size="2">[<a target="top" href="../../graph_legend.html">凡例</a>]</font></center></div>
+
+<p>
+<a href="../../d3/d27/class_c_direct_input-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6e67cc89549cfd70edb44bddbf60f0c1"></a><!-- doxytag: member="CDirectInput::CDirectInput" ref="6e67cc89549cfd70edb44bddbf60f0c1" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#6e67cc89549cfd70edb44bddbf60f0c1">CDirectInput</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">構築 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">BOOL&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#433131894eb8bbadfef2a458d9a8eef0">Initialize</a> (HWND hwnd)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">初期化  <a href="#433131894eb8bbadfef2a458d9a8eef0"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0717336a4491f23519fe5ed9cfba2a65"></a><!-- doxytag: member="CDirectInput::Destroy" ref="0717336a4491f23519fe5ed9cfba2a65" args="()" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#0717336a4491f23519fe5ed9cfba2a65">Destroy</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">破棄 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#ddcbf356f2381d3ce9a796db26f96316">KeyLog</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">キー状態ログ生成  <a href="#ddcbf356f2381d3ce9a796db26f96316"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="884168b2fb431b55b41b5489d92e9f89"></a><!-- doxytag: member="CDirectInput::KeyLock" ref="884168b2fb431b55b41b5489d92e9f89" args="(BOOL lk=TRUE)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#884168b2fb431b55b41b5489d92e9f89">KeyLock</a> (BOOL lk=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">入力取得関数の戻り値を0に固定することによって、仮想的にキー入力を禁止する <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#a5fb033579e7cc7e4c89f4b9019df647">ClearKeyLog</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">全キーログを消去する  <a href="#a5fb033579e7cc7e4c89f4b9019df647"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d3db77c33c0cb12a6b3d6f66eb5b5734"></a><!-- doxytag: member="CDirectInput::StartForce" ref="d3db77c33c0cb12a6b3d6f66eb5b5734" args="(DWORD cid, DWORD num)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#d3db77c33c0cb12a6b3d6f66eb5b5734">StartForce</a> (DWORD cid, DWORD num)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">フォース始動 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#598380cc18891848ea60d47ec50dfe93">GetKeyEx</a> (DWORD cid, DWORD ofst)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">（外部からの）キー状態の取得  <a href="#598380cc18891848ea60d47ec50dfe93"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#b9555046b4735fa71796f9bbaea4a800">SeekKeyEx</a> (DWORD cid, int offset, int num_seek, DWORD key)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">指定キー入力をログの中から探す  <a href="#b9555046b4735fa71796f9bbaea4a800"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#433e92a3c5f090bf56b2c109fe400f61">GetKeyNet</a> (DWORD cid, DWORD ofst)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">生のキー入力を取得する  <a href="#433e92a3c5f090bf56b2c109fe400f61"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#5de7e384ebdece01da9f3a6f63afcbaf">SeekKeyNet</a> (DWORD cid, int offset, int num_seek, DWORD key)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">指定キー入力をログの中から探す  <a href="#5de7e384ebdece01da9f3a6f63afcbaf"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#b8721f30ded5ecfbdcec0169900c7a48">GetKey</a> (DWORD cid, DWORD ofst)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">生のキー入力を取得する  <a href="#b8721f30ded5ecfbdcec0169900c7a48"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#d31f836af3855c422974f30bdf420b65">SeekKey</a> (DWORD cid, int offset, int num_seek, DWORD key)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">指定キー入力をログの中から探す  <a href="#d31f836af3855c422974f30bdf420b65"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Static Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="90d21182819da9d49a1227351dddcb10"></a><!-- doxytag: member="CDirectInput::VirtKeyToDInputKey" ref="90d21182819da9d49a1227351dddcb10" args="(int vKey)" -->
+static BYTE&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#90d21182819da9d49a1227351dddcb10">VirtKeyToDInputKey</a> (int vKey)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">仮想キーをDirectInputキーに変換 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a908637f22e5a08851bb4c9fef7bc1d4"></a><!-- doxytag: member="CDirectInput::EnumGamePad" ref="a908637f22e5a08851bb4c9fef7bc1d4" args="(LPCDIDEVICEINSTANCE lpddi, LPVOID pvref)" -->
+static BOOL FAR CALLBACK&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#a908637f22e5a08851bb4c9fef7bc1d4">EnumGamePad</a> (LPCDIDEVICEINSTANCE lpddi, LPVOID pvref)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">初期化時に必要なコールバック関数 <br></td></tr>
+<tr><td colspan="2"><br><h2>Public 変数</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6d5b9c918ba0ed892f9a6e84199b629e"></a><!-- doxytag: member="CDirectInput::keylognow" ref="6d5b9c918ba0ed892f9a6e84199b629e" args="" -->
+int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#6d5b9c918ba0ed892f9a6e84199b629e">keylognow</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ログ開始位置 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f0f033ade010eab8b8c01561ed36aea8"></a><!-- doxytag: member="CDirectInput::keylog" ref="f0f033ade010eab8b8c01561ed36aea8" args="[MAXNUM_KEYI][256+256]" -->
+DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#f0f033ade010eab8b8c01561ed36aea8">keylog</a> [MAXNUM_KEYI][256+256]</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">キー入力のログ <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2850f8e50253722fb7df1fc98fe0591b"></a><!-- doxytag: member="CDirectInput::netkey" ref="2850f8e50253722fb7df1fc98fe0591b" args="[MAXNUM_KEYI][256+256]" -->
+DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#2850f8e50253722fb7df1fc98fe0591b">netkey</a> [MAXNUM_KEYI][256+256]</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ネット対戦時のキーログ（パスワードクラックに使うアレではない） <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="774c8feb133a3dcb3d24c039d8808a02"></a><!-- doxytag: member="CDirectInput::jsnum" ref="774c8feb133a3dcb3d24c039d8808a02" args="" -->
+int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#774c8feb133a3dcb3d24c039d8808a02">jsnum</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">認識したパッドの数 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3e1e0d298e83f13f7e543e4c39a5aa63"></a><!-- doxytag: member="CDirectInput::gamepadname" ref="3e1e0d298e83f13f7e543e4c39a5aa63" args="[DINPUT_MAX_GAMEPAD][256]" -->
+char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#3e1e0d298e83f13f7e543e4c39a5aa63">gamepadname</a> [DINPUT_MAX_GAMEPAD][256]</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">パッドの名前 <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6286a67fb8080fb9bcc88e5247548df1"></a><!-- doxytag: member="CDirectInput::pdi" ref="6286a67fb8080fb9bcc88e5247548df1" args="" -->
+LPDIRECTINPUT8&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#6286a67fb8080fb9bcc88e5247548df1">pdi</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">DirectInputオブジェクト <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="36d8262e7c307767a139d5e803c21ee5"></a><!-- doxytag: member="CDirectInput::pdidev" ref="36d8262e7c307767a139d5e803c21ee5" args="[DINPUT_MAX_GAMEPAD]" -->
+LPDIRECTINPUTDEVICE8&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#36d8262e7c307767a139d5e803c21ee5">pdidev</a> [DINPUT_MAX_GAMEPAD]</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">デバイスオブジェクト <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b878882e7738bf98e93bbbca17664040"></a><!-- doxytag: member="CDirectInput::pdidev_kb" ref="b878882e7738bf98e93bbbca17664040" args="" -->
+LPDIRECTINPUTDEVICE8&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#b878882e7738bf98e93bbbca17664040">pdidev_kb</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">キーボードデバイスを所得してみるテスト <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f92f4dff70178be9f7f41ad0b166df53"></a><!-- doxytag: member="CDirectInput::pdieffect" ref="f92f4dff70178be9f7f41ad0b166df53" args="[DINPUT_MAX_GAMEPAD][3]" -->
+LPDIRECTINPUTEFFECT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#f92f4dff70178be9f7f41ad0b166df53">pdieffect</a> [DINPUT_MAX_GAMEPAD][3]</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">フォースフィードバックのエフェクト <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b751a8e453bd95247b13da622e00239d"></a><!-- doxytag: member="CDirectInput::com_grd_key" ref="b751a8e453bd95247b13da622e00239d" args="" -->
+DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#b751a8e453bd95247b13da622e00239d">com_grd_key</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">COMガードキー <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="323fa0ba6a1ad79e6164aef63480369b"></a><!-- doxytag: member="CDirectInput::com_grd_enabled" ref="323fa0ba6a1ad79e6164aef63480369b" args="" -->
+BOOL&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d7a/class_c_direct_input.html#323fa0ba6a1ad79e6164aef63480369b">com_grd_enabled</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">COMガードキーが有効 <br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>説明</h2>
+キー入力管理クラス。 
+<p>
+入力のログをとり、ボタンが押されている・いないの判断だけでなく、 押しっぱなしの状態なのか、現在フレームで押されたものなのかも判断できる。<p>
+キーボードの入力とパッド（DirectX8以上のDirectInputを使用）の 両方の入力を入力を合成して処理する。<p>
+都合により生のキー入力を返さない場合がある ・KeyLock で入力をロックした場合 ・EnableComKey でコンピュータのガードキー入力を有効にした場合 <hr><h2>関数</h2>
+<a class="anchor" name="433131894eb8bbadfef2a458d9a8eef0"></a><!-- doxytag: member="CDirectInput::Initialize" ref="433131894eb8bbadfef2a458d9a8eef0" args="(HWND hwnd)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL CDirectInput::Initialize           </td>
+          <td>(</td>
+          <td class="paramtype">HWND&nbsp;</td>
+          <td class="paramname"> <em>hwndg</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+初期化 
+<p>
+<dl compact><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>hwnd</em>&nbsp;</td><td>メインウインドウのウインドウハンドル。 パッドの入力復帰のために必要 </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>戻り値:</b></dt><dd>TRUE:成功, FALSE:残念 </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="ddcbf356f2381d3ce9a796db26f96316"></a><!-- doxytag: member="CDirectInput::KeyLog" ref="ddcbf356f2381d3ce9a796db26f96316" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectInput::KeyLog           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+キー状態ログ生成 
+<p>
+1フレ分の入力を処理し、ログの位置を更新する。 どの入力をどのプレイヤーに割り当てるかを知るために、グローバルのg_configを参照する。 
+</div>
+</div><p>
+<a class="anchor" name="a5fb033579e7cc7e4c89f4b9019df647"></a><!-- doxytag: member="CDirectInput::ClearKeyLog" ref="a5fb033579e7cc7e4c89f4b9019df647" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CDirectInput::ClearKeyLog           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+全キーログを消去する 
+<p>
+キー入力ログをクリア<p>
+キー入力ログのバッファーをゼロクリアする。 タスク切り替わり直後の誤動作を防ごうと思ったけど、かえってそれがよくなかった。 (おしっぱなしであっても、この直後に「押した瞬間」フラグが立つ) 今はその対策を講じてみた。 
+</div>
+</div><p>
+<a class="anchor" name="598380cc18891848ea60d47ec50dfe93"></a><!-- doxytag: member="CDirectInput::GetKeyEx" ref="598380cc18891848ea60d47ec50dfe93" args="(DWORD cid, DWORD ofst)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DWORD CDirectInput::GetKeyEx           </td>
+          <td>(</td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>cid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>ofst</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+（外部からの）キー状態の取得 
+<p>
+この関数はKeyLock と COMガードキーを考慮する。 生の入力を直接取りたいときはGetKeyを利用する。 <dl compact><dt><b>引数: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>cid</em>&nbsp;</td><td>
+キー入力インデックス(PLAYER) </td></tr>
+<tr><td valign="top"><em>ofst</em>&nbsp;</td><td>
+何フレ前の入力を取得するか </td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+<a class="anchor" name="b9555046b4735fa71796f9bbaea4a800"></a><!-- doxytag: member="CDirectInput::SeekKeyEx" ref="b9555046b4735fa71796f9bbaea4a800" args="(DWORD cid, int offset, int num_seek, DWORD key)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CDirectInput::SeekKeyEx           </td>
+          <td>(</td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>cid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>num_seek</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>key</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+指定キー入力をログの中から探す 
+<p>
+<dl class="return" compact><dt><b>戻り値:</b></dt><dd>0以上：見つかった位置, マイナス：見つからなかった </dd></dl>
+<dl compact><dt><b>引数: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>cid</em>&nbsp;</td><td>
+入力インデックス(PLAYER) </td></tr>
+<tr><td valign="top"><em>offset</em>&nbsp;</td><td>
+検索開始位置 </td></tr>
+<tr><td valign="top"><em>num_seek</em>&nbsp;</td><td>
+検索終了位置 </td></tr>
+<tr><td valign="top"><em>key</em>&nbsp;</td><td>
+検索キー </td></tr>
+</table>
+</dl>
+</div>
+</div><p>
+<a class="anchor" name="433e92a3c5f090bf56b2c109fe400f61"></a><!-- doxytag: member="CDirectInput::GetKeyNet" ref="433e92a3c5f090bf56b2c109fe400f61" args="(DWORD cid, DWORD ofst)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DWORD CDirectInput::GetKeyNet           </td>
+          <td>(</td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>cid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>ofst</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+生のキー入力を取得する 
+<p>
+<dl class="see" compact><dt><b>参照:</b></dt><dd><a class="el" href="../../d1/d7a/class_c_direct_input.html#598380cc18891848ea60d47ec50dfe93" title="（外部からの）キー状態の取得">GetKeyEx</a> </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="5de7e384ebdece01da9f3a6f63afcbaf"></a><!-- doxytag: member="CDirectInput::SeekKeyNet" ref="5de7e384ebdece01da9f3a6f63afcbaf" args="(DWORD cid, int offset, int num_seek, DWORD key)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CDirectInput::SeekKeyNet           </td>
+          <td>(</td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>cid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>num_seek</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>key</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+指定キー入力をログの中から探す 
+<p>
+<dl class="see" compact><dt><b>参照:</b></dt><dd><a class="el" href="../../d1/d7a/class_c_direct_input.html#b9555046b4735fa71796f9bbaea4a800" title="指定キー入力をログの中から探す">SeekKeyEx</a> </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="b8721f30ded5ecfbdcec0169900c7a48"></a><!-- doxytag: member="CDirectInput::GetKey" ref="b8721f30ded5ecfbdcec0169900c7a48" args="(DWORD cid, DWORD ofst)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DWORD CDirectInput::GetKey           </td>
+          <td>(</td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>cid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>ofst</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+生のキー入力を取得する 
+<p>
+<dl class="see" compact><dt><b>参照:</b></dt><dd><a class="el" href="../../d1/d7a/class_c_direct_input.html#598380cc18891848ea60d47ec50dfe93" title="（外部からの）キー状態の取得">GetKeyEx</a> </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="d31f836af3855c422974f30bdf420b65"></a><!-- doxytag: member="CDirectInput::SeekKey" ref="d31f836af3855c422974f30bdf420b65" args="(DWORD cid, int offset, int num_seek, DWORD key)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CDirectInput::SeekKey           </td>
+          <td>(</td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>cid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>num_seek</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DWORD&nbsp;</td>
+          <td class="paramname"> <em>key</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+指定キー入力をログの中から探す 
+<p>
+<dl class="see" compact><dt><b>参照:</b></dt><dd><a class="el" href="../../d1/d7a/class_c_direct_input.html#b9555046b4735fa71796f9bbaea4a800" title="指定キー入力をログの中から探す">SeekKeyEx</a> </dd></dl>
+
+</div>
+</div><p>
+<hr>このクラスの説明は次のファイルから生成されました:<ul>
+<li>devkit100/goluah/common/directx/<a class="el" href="../../d5/d98/dx__input_8h.html">dx_input.h</a><li>devkit100/goluah/common/directx/<a class="el" href="../../d1/dfd/dx__input_8cpp.html">dx_input.cpp</a></ul>
+<hr size="1"><address style="text-align: right;"><small>Goluah!!に対してWed Oct 13 14:02:08 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="../../doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.3 </small></address>
+</body>
+</html>

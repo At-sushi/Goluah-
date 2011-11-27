@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Goluah!!: Application</title>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css">
+<link href="../../tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- 作成： Doxygen 1.5.3 -->
+<div class="tabs">
+  <ul>
+    <li><a href="../../main.html"><span>メインページ</span></a></li>
+    <li><a href="../../modules.html"><span>モジュール</span></a></li>
+    <li><a href="../../annotated.html"><span>クラス</span></a></li>
+    <li><a href="../../files.html"><span>ファイル</span></a></li>
+  </ul>
+</div>
+<h1>Application</h1>アプリケーション  
+<a href="#_details">[詳細]</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>構成</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dfc/class_cgoluah_app.html">CgoluahApp</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">アプリケーションクラス プロジェクトがMFCアプリになったためしょうがなくあるクラス。 InitInstanceで旧WinMainを呼んで終了  <a href="../../d7/dfc/class_cgoluah_app.html#_details">[詳細]</a><br></td></tr>
+<tr><td colspan="2"><br><h2>関数</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">INT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d29/group___application.html#ga8050391c6d6c9fed8450118dcee2cf2">gOldEntryPoint</a> (HINSTANCE hInst)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Win32プロジェクトだったときの旧WinMain  <a href="#ga8050391c6d6c9fed8450118dcee2cf2"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">HWND&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d29/group___application.html#gcc0eab941cfcb1042c89f7f52f62b170">CreateMyWindow</a> (BOOL win)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">メインウインドウの生成  <a href="#gcc0eab941cfcb1042c89f7f52f62b170"></a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>説明</h2>
+アプリケーション 
+<p>
+<hr><h2>関数</h2>
+<a class="anchor" name="gcc0eab941cfcb1042c89f7f52f62b170"></a><!-- doxytag: member="main.cpp::CreateMyWindow" ref="gcc0eab941cfcb1042c89f7f52f62b170" args="(BOOL win)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">HWND CreateMyWindow           </td>
+          <td>(</td>
+          <td class="paramtype">BOOL&nbsp;</td>
+          <td class="paramname"> <em>win</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+メインウインドウの生成 
+<p>
+フルスクリーンであってもウインドウは必要なので、ウインドウは作られます。 が、なんか忘れたけど事情があって、ウインドウスタイルを枠ナシに設定しなければ いけなかった覚えが。 そのため、引数にウィンドウモードかどうかのフラグをとります<p>
+<dl compact><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>win</em>&nbsp;</td><td>TRUE:ウィンドウモード, FALSE:フルスクリーン </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="ga8050391c6d6c9fed8450118dcee2cf2"></a><!-- doxytag: member="main.cpp::gOldEntryPoint" ref="ga8050391c6d6c9fed8450118dcee2cf2" args="(HINSTANCE hInst)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">INT gOldEntryPoint           </td>
+          <td>(</td>
+          <td class="paramtype">HINSTANCE&nbsp;</td>
+          <td class="paramname"> <em>hInst</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Win32プロジェクトだったときの旧WinMain 
+<p>
+事実上のエントリーポイントです。 現在はCgoluahAppのInitInstanceから呼ばれてますが、 この関数を抜けたらアプリケーション終了です。<p>
+<dl class="return" compact><dt><b>戻り値:</b></dt><dd>意味ないみたい。常に0 </dd></dl>
+
+</div>
+</div><p>
+<hr size="1"><address style="text-align: right;"><small>Goluah!!に対してWed Oct 13 14:01:27 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="../../doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.3 </small></address>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Goluah!!: GObjectBase</title>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css">
+<link href="../../tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- 作成： Doxygen 1.5.3 -->
+<div class="tabs">
+  <ul>
+    <li><a href="../../main.html"><span>メインページ</span></a></li>
+    <li><a href="../../modules.html"><span>モジュール</span></a></li>
+    <li><a href="../../annotated.html"><span>クラス</span></a></li>
+    <li><a href="../../files.html"><span>ファイル</span></a></li>
+  </ul>
+</div>
+<h1>GObjectBase</h1>Goluah キャラクタ/ステージDLL向けの基礎クラス群  
+<a href="#_details">[詳細]</a><table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>構成</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/da2/class_c_effect_base.html">CEffectBase</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">エフェクトベース  <a href="../../d9/da2/class_c_effect_base.html#_details">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d91/class_c_stage_base.html">CStageBase</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ステージベースクラス  <a href="../../de/d91/class_c_stage_base.html#_details">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d3e/class_c_character_info.html">CCharacterInfo</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">キャラクター情報設定クラス  <a href="../../d3/d3e/class_c_character_info.html#_details">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dc0/class_c_goluah_object.html">CGoluahObject</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">DLL向けオブジェクト基本クラス  <a href="../../d2/dc0/class_c_goluah_object.html#_details">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd3/class_c_character_base.html">CCharacterBase</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">キャラクター基本クラス  <a href="../../db/dd3/class_c_character_base.html#_details">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d70/class_c_bullet_base.html">CBulletBase</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">飛道具基本クラス  <a href="../../d8/d70/class_c_bullet_base.html#_details">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/db9/class_c_classical_bullet.html">CClassicalBullet</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">自動飛道具クラス  <a href="../../df/db9/class_c_classical_bullet.html#_details">[詳細]</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d1f/class_c_bullet_list.html">CBulletList</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">飛び道具リストクラス  <a href="../../d6/d1f/class_c_bullet_list.html#_details">[詳細]</a><br></td></tr>
+<tr><td colspan="2"><br><h2>マクロ定義</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da3/group___g_object_base.html#g3ec5559bb8c2a5384a8a2bbe2edcda8d">SET_CHARACTERINFO</a>(cinfo, Type)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">キャラクター設定マクロ  <a href="#g3ec5559bb8c2a5384a8a2bbe2edcda8d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da3/group___g_object_base.html#g3a8880bafe7417f13115cb14258c0cb8">CREATE_GOBJ</a>(pointer, obj)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">オブジェクト作成マクロ  <a href="#g3a8880bafe7417f13115cb14258c0cb8"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da3/group___g_object_base.html#g6506ae96ea4671b7e17d71deaad53bf1">CREATE_GOBJ_FX</a>(obj)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">エフェクト用オブジェクト作成マクロ  <a href="#g6506ae96ea4671b7e17d71deaad53bf1"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da3/group___g_object_base.html#g423c0cc2f38f99563dcf291163a47e48">SET_STAGEINFO</a>(Type)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">設定用マクロ(ステージ)  <a href="#g423c0cc2f38f99563dcf291163a47e48"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/da3/group___g_object_base.html#g494a2ec9447f140e7d564b749d39bf95">SET_STAGEINFO_VERCHK</a>(Type, Ver)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">設定用マクロ(ステージ、バージョンチェック機能付き)  <a href="#g494a2ec9447f140e7d564b749d39bf95"></a><br></td></tr>
+</table>
+<hr><a name="_details"></a><h2>説明</h2>
+Goluah キャラクタ/ステージDLL向けの基礎クラス群 
+<p>
+<hr><h2>マクロ定義</h2>
+<a class="anchor" name="g3a8880bafe7417f13115cb14258c0cb8"></a><!-- doxytag: member="gobjbase.h::CREATE_GOBJ" ref="g3a8880bafe7417f13115cb14258c0cb8" args="(pointer, obj)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CREATE_GOBJ          </td>
+          <td>(</td>
+          <td class="paramtype">pointer,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">obj&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>値:</b><div class="fragment"><pre class="fragment">{ pointer = <span class="keyword">new</span> obj; <span class="keywordflow">if</span> ( pointer &amp;&amp; !pointer-&gt;GetGObject() )\
+                                                                                { <span class="keyword">delete</span> pointer; pointer = NULL; }\
+                                                                        }
+</pre></div>オブジェクト作成マクロ 
+<p>
+<dl compact><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>pointer</em>&nbsp;</td><td>作成したオブジェクトのアドレスを格納するポインタ </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>obj</em>&nbsp;</td><td>作成するオブジェクトのクラス名</td></tr>
+  </table>
+</dl>
+オブジェクト生成時の推奨マクロです。 オブジェクト作成の他、エラー処理などを自動で行ってくれます。<p>
+引数を持つコンストラクタを呼び出す場合、クラス名と同時に設定してください。 
+</div>
+</div><p>
+<a class="anchor" name="g6506ae96ea4671b7e17d71deaad53bf1"></a><!-- doxytag: member="gobjbase.h::CREATE_GOBJ_FX" ref="g6506ae96ea4671b7e17d71deaad53bf1" args="(obj)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CREATE_GOBJ_FX          </td>
+          <td>(</td>
+          <td class="paramtype">obj&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>値:</b><div class="fragment"><pre class="fragment">{ <a class="code" href="../../d2/dc0/class_c_goluah_object.html" title="DLL向けオブジェクト基本クラス">CGoluahObject</a>* pointer = <span class="keyword">new</span> obj; <span class="keywordflow">if</span> ( pointer &amp;&amp; !pointer-&gt;<a class="code" href="../../d2/dc0/class_c_goluah_object.html#51c33dc7e9a5d4730793aea6a847c40b">GetGObject</a>() )\
+                                                                                { <span class="keyword">delete</span> pointer; }\
+                                                                        }
+</pre></div>エフェクト用オブジェクト作成マクロ 
+<p>
+<dl compact><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>obj</em>&nbsp;</td><td>作成するオブジェクトのクラス名</td></tr>
+  </table>
+</dl>
+エフェクトオブジェクト生成時の推奨マクロです。 オブジェクト作成の他、エラー処理などを自動で行ってくれます。 自動で削除される可能性のあるクラスなので、ポインタ変数への格納は出来ません。<p>
+引数を持つコンストラクタを呼び出す場合、クラス名と同時に設定してください。 
+</div>
+</div><p>
+<a class="anchor" name="g3ec5559bb8c2a5384a8a2bbe2edcda8d"></a><!-- doxytag: member="gobjbase.h::SET_CHARACTERINFO" ref="g3ec5559bb8c2a5384a8a2bbe2edcda8d" args="(cinfo, Type)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SET_CHARACTERINFO          </td>
+          <td>(</td>
+          <td class="paramtype">cinfo,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Type&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>値:</b><div class="fragment"><pre class="fragment"><span class="keyword">extern</span> <span class="stringliteral">"C"</span> BOOL CharacterInfo(LPVOID info) {\
+        <span class="keywordflow">return</span> cinfo.DllCharacterInfo(info);\
+}\
+<span class="keyword">extern</span> <span class="stringliteral">"C"</span> DWORD CreateCharacter(PVOID info) {\
+        cinfo.DllCreateCharacter(info);\
+        Type* pc = <span class="keyword">new</span> Type((<a class="code" href="../../d4/d1f/struct_c_d_i___c_h_a_r_a_c_t_e_r_i_n_f_o2.html" title="CreateCharacter の引数に渡される構造体">CDI_CHARACTERINFO2</a>*)info);\
+        pc-&gt;InitializeCharacter();\
+        <span class="keywordflow">return</span>(pc-&gt;GetObjectID());\
+}
+</pre></div>キャラクター設定マクロ 
+<p>
+<dl compact><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>cinfo</em>&nbsp;</td><td>必要な情報を格納したCCharacterInfoクラスのインスタンス </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>Type</em>&nbsp;</td><td>メインキャラクターとして生成するクラスの型</td></tr>
+  </table>
+</dl>
+DLLは、このマクロが生成する関数を外部にエクスポートしなければならない。 適切なモジュール定義ファイルを使用すること。 
+</div>
+</div><p>
+<a class="anchor" name="g423c0cc2f38f99563dcf291163a47e48"></a><!-- doxytag: member="gobjbase.h::SET_STAGEINFO" ref="g423c0cc2f38f99563dcf291163a47e48" args="(Type)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SET_STAGEINFO          </td>
+          <td>(</td>
+          <td class="paramtype">Type&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>値:</b><div class="fragment"><pre class="fragment"><span class="keyword">extern</span> <span class="stringliteral">"C"</span> BOOL StageInfo(LPVOID info) {\
+        ((<a class="code" href="../../d7/dff/struct_s_d_i___s_t_a_g_e_i_n_f_o.html" title="StageInfo関数で渡される構造体">SDI_STAGEINFO</a>*)info)-&gt;ver = SDI_VERSION;\
+        <span class="keywordflow">return</span> CStage::CheckSTB();\
+}\
+<span class="keyword">extern</span> <span class="stringliteral">"C"</span> DWORD CreateStage(PVOID info) {\
+        CStage::SetupStageDLL((<a class="code" href="../../d9/dcf/struct_s_d_i___s_t_a_g_e_i_n_f_o2.html" title="CreateStage関数で渡される構造体">SDI_STAGEINFO2</a>*)info);\
+        Type* pstgobj = <span class="keyword">new</span> Type((<a class="code" href="../../d9/dcf/struct_s_d_i___s_t_a_g_e_i_n_f_o2.html" title="CreateStage関数で渡される構造体">SDI_STAGEINFO2</a>*)info);\
+        pstgobj-&gt;InitializeStage();\
+        <span class="keywordflow">return</span>(pstgobj-&gt;GetObjectID());\
+}
+</pre></div>設定用マクロ(ステージ) 
+<p>
+<dl compact><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Type</em>&nbsp;</td><td>ステージとして生成するCStageBase継承クラスの型</td></tr>
+  </table>
+</dl>
+DLLは、このマクロが生成する関数を外部にエクスポートしなければならない。 適切なモジュール定義ファイルを使用すること。 
+</div>
+</div><p>
+<a class="anchor" name="g494a2ec9447f140e7d564b749d39bf95"></a><!-- doxytag: member="gobjbase.h::SET_STAGEINFO_VERCHK" ref="g494a2ec9447f140e7d564b749d39bf95" args="(Type, Ver)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SET_STAGEINFO_VERCHK          </td>
+          <td>(</td>
+          <td class="paramtype">Type,         <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Ver&nbsp;</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>値:</b><div class="fragment"><pre class="fragment"><span class="keyword">extern</span> <span class="stringliteral">"C"</span> BOOL StageInfo(LPVOID info) {\
+        ((<a class="code" href="../../d7/dff/struct_s_d_i___s_t_a_g_e_i_n_f_o.html" title="StageInfo関数で渡される構造体">SDI_STAGEINFO</a>*)info)-&gt;ver = SDI_VERSION;\
+        <span class="keywordflow">return</span> CStage::CheckSTB(Ver);\
+}\
+<span class="keyword">extern</span> <span class="stringliteral">"C"</span> DWORD CreateStage(PVOID info) {\
+        CStage::SetupStageDLL((<a class="code" href="../../d9/dcf/struct_s_d_i___s_t_a_g_e_i_n_f_o2.html" title="CreateStage関数で渡される構造体">SDI_STAGEINFO2</a>*)info);\
+        Type* pstgobj = <span class="keyword">new</span> Type((<a class="code" href="../../d9/dcf/struct_s_d_i___s_t_a_g_e_i_n_f_o2.html" title="CreateStage関数で渡される構造体">SDI_STAGEINFO2</a>*)info);\
+        pstgobj-&gt;InitializeStage();\
+        <span class="keywordflow">return</span>(pstgobj-&gt;GetObjectID());\
+}
+</pre></div>設定用マクロ(ステージ、バージョンチェック機能付き) 
+<p>
+<dl compact><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Type</em>&nbsp;</td><td>ステージとして生成するCStageBase継承クラスの型 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>Ver</em>&nbsp;</td><td>ライブラリのバージョン</td></tr>
+  </table>
+</dl>
+DLLは、このマクロが生成する関数を外部にエクスポートしなければならない。 適切なモジュール定義ファイルを使用すること。 
+</div>
+</div><p>
+<hr size="1"><address style="text-align: right;"><small>Goluah!!に対してWed Oct 13 14:01:30 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="../../doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.3 </small></address>
+</body>
+</html>
