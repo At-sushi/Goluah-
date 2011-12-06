@@ -1916,15 +1916,6 @@ void CBattleTaskNet::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 		}
 		//攻撃が当たったことを攻撃したやつに通知
 		attacker->Message(GOBJMSG_TOUCHB,TRUE);
-/*		struct HitMes hmes;
-
-		hmes.msgid = GNETMSG_HIT;
-		hmes.oid = a_id;
-//		hmes.aid = aif->id;
-		hmes.hit = TRUE;
-		g_play.SendMsg(DPNID_ALL_PLAYERS_GROUP, hmes, sizeof(hmes), 10000,
-			DPNSEND_GUARANTEED | DPNSEND_PRIORITY_HIGH | DPNSEND_NOLOOPBACK | DPNSEND_NONSEQUENTIAL);	// 送り先限定した方がよさそう
-*/
 
 		// HP情報を送信
 		if (g_play.IsHost()){
@@ -2017,14 +2008,6 @@ void CBattleTaskNet::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 		}
 		//攻撃が当たったことを攻撃したやつに通知
 		attacker->Message(GOBJMSG_TOUCHB,FALSE);
-/*		struct HitMes hmes;
-
-		hmes.msgid = GNETMSG_HIT;
-		hmes.oid = a_id;
-		hmes.hit = FALSE;
-		g_play.SendMsg(DPNID_ALL_PLAYERS_GROUP, hmes, sizeof(hmes), 10000,
-			DPNSEND_GUARANTEED | DPNSEND_PRIORITY_HIGH | DPNSEND_NOLOOPBACK | DPNSEND_NONSEQUENTIAL);	// 送り先限定した方がよさそう
-*/
 
 		if (g_play.IsHost()){
 			// HP情報を送信
