@@ -1,7 +1,6 @@
-
 /*=======================================================================================
 
-	vsCOM ‚Ü‚½‚Í 1Pvs2P ‚Å‚ÌƒLƒƒƒ‰ƒZƒŒ
+	vsCOM ï¿½Ü‚ï¿½ï¿½ï¿½ 1Pvs2P ï¿½Å‚ÌƒLï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½
 
 =========================================================================================*/
 
@@ -14,11 +13,11 @@
 
 /*=======================================================================================
 
-	ƒLƒƒƒ‰ƒZƒŒƒNƒ‰ƒX–{‘Ì
+	ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½Xï¿½{ï¿½ï¿½
 
 =========================================================================================*/
 
-//ŠeƒTƒuƒ^ƒXƒN‚Ì•`‰æƒvƒ‰ƒCƒIƒŠƒeƒB
+//ï¿½eï¿½Tï¿½uï¿½^ï¿½Xï¿½Nï¿½Ì•`ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½Iï¿½ï¿½ï¿½eï¿½B
 int CCharacterSelect::m_pri_background	= 2000;
 int CCharacterSelect::m_pri_face		= 1500;
 int CCharacterSelect::m_pri_firstSetting= 1060;
@@ -28,19 +27,19 @@ int CCharacterSelect::m_pri_oselecter	= 1020;
 int CCharacterSelect::m_pri_sselecter	= 1010;
 
 /*-----------------------------------------------------------
-	\’z
+	ï¿½\ï¿½z
 -------------------------------------------------------------*/
 CCharacterSelect::CCharacterSelect()
 {
-	//“Á‚É‚â‚é‚±‚Æ–³‚µ
+	//ï¿½ï¿½É‚ï¿½é‚±ï¿½Æ–ï¿½ï¿½ï¿½
 }
 
 /*----------------------------------------------------------
-	‰Šú‰»
+	ï¿½ï¿½ï¿½ï¿½
 ------------------------------------------------------------*/
 void CCharacterSelect::Initialize()
 {
-	//ƒpƒ‰ƒ[ƒ^ƒŠƒZƒbƒg
+	//ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^ï¿½ï¿½ï¿½Zï¿½bï¿½g
 	charsel_ok[0]=charsel_ok[1]=FALSE;
 	stgsel_ok = FALSE;
 	num_selected[0]=num_selected[1]=0;
@@ -52,15 +51,15 @@ void CCharacterSelect::Initialize()
 		}
 	}
 
-	//BGMÄ¶
+	//BGMï¿½Äï¿½
 	g_sound.BGMPlay(".\\system\\bgm\\choice");
 
-	//¡ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒZƒŒƒNƒ^[“o˜^
+	//ï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½fï¿½Bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½oï¿½^
 	CTConditionSelecter *csel = new CTConditionSelecter;
 	csel->SetPriority( m_pri_firstSetting );
 	g_system.AddTask(csel);
 
-	//¡”qŒ[•`‰æƒNƒ‰ƒX“o˜^
+	//ï¿½ï¿½ï¿½qï¿½[ï¿½`ï¿½ï¿½Nï¿½ï¿½ï¿½Xï¿½oï¿½^
 	m_bg = new CTCharacterSelectBG();
 	m_bg->SetPriority(m_pri_background);
 	g_system.AddTask(m_bg);
@@ -68,7 +67,7 @@ void CCharacterSelect::Initialize()
 
 
 /*----------------------------------------------------------
-	”jŠü
+	ï¿½jï¿½ï¿½
 ------------------------------------------------------------*/
 void CCharacterSelect::Terminate()
 {
@@ -76,30 +75,30 @@ void CCharacterSelect::Terminate()
 }
 
 /*-----------------------------------------------------------
-	XVˆ—
+	ï¿½Xï¿½Vï¿½ï¿½ï¿½ï¿½
 -------------------------------------------------------------*/
 BOOL CCharacterSelect::Execute(DWORD time)
 {
-	//¡step1
-	if(!m_condition_sel_ok)return TRUE;//‡İ’è‚ª‚Ü‚¾I‚í‚Á‚Ä‚¢‚È‚¢
+	//ï¿½ï¿½step1
+	if(!m_condition_sel_ok)return TRUE;//ï¿½ï¿½ï¿½ï¿½ï¿½İ’è‚ªï¿½Ü‚ï¿½ï¿½Iï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½
 
-	//¡step2
+	//ï¿½ï¿½step2
 	if(!charsel_ok[0] || !charsel_ok[1]){
-		//ƒfƒJfaceXV
+		//ï¿½fï¿½Jfaceï¿½Xï¿½V
 		m_bface[0]->SetTemporary(m_ring[0]->GetSelected(),selected_color[0][num_selected[0]],OPT2ALT(selected_option[0][num_selected[0]]));
 		m_bface[1]->SetTemporary(m_ring[1]->GetSelected(),selected_color[1][num_selected[1]],OPT2ALT(selected_option[1][num_selected[1]]));
-		//ƒIƒr•\¦XV
+		//ï¿½Iï¿½rï¿½\ï¿½ï¿½ï¿½Xï¿½V
 		m_belt[0]->SetRing(m_ring[0]->GetRing());
 		m_belt[1]->SetRing(m_ring[1]->GetRing());
 		return TRUE;
 	}
 
-	//¡step3
-	if(stgsel_ok)//ƒXƒe[ƒW‘I‘ğŒã‚Ì‰‰oƒXƒLƒbƒv”»’è
+	//ï¿½ï¿½step3
+	if(stgsel_ok)//ï¿½Xï¿½eï¿½[ï¿½Wï¿½Iï¿½ï¿½ï¿½Ì‰ï¿½ï¿½oï¿½Xï¿½Lï¿½bï¿½vï¿½ï¿½ï¿½ï¿½
 	{
 		DWORD keystate = 0;
 
-		//‡‚ÉQ‰Á‚·‚é‘S‚Ä‚ÌƒvƒŒƒCƒ„[‚ÌƒL[ó‘Ô‚ğ‘«‚·
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ÉQï¿½ï¿½ï¿½ï¿½ï¿½Sï¿½Ä‚Ìƒvï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ÌƒLï¿½[ï¿½ï¿½Ô‚ğ‘«‚ï¿½
 		int ass_num=0;
 		for(int i=0;i<2;i++){
 			for(int j=0;j<MAXNUM_TEAM;j++){
@@ -109,11 +108,11 @@ BOOL CCharacterSelect::Execute(DWORD time)
 				}
 			}
 		}
-		if(!ass_num){//‘S•”ƒRƒ“ƒsƒ…[ƒ^‚È‚ç‚Î‚µ‚å‚¤‚ª‚È‚¢‚©‚çƒvƒŒƒCƒ„[1‚Ì“ü—Í‚ğó‚¯æ‚é
+		if(!ass_num){//ï¿½Sï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½sï¿½ï¿½ï¿½[ï¿½^ï¿½È‚ï¿½Î‚ï¿½ï¿½å‚¤ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[1ï¿½Ì“ï¿½Í‚ï¿½ó‚¯ï¿½ï¿½
 			keystate = g_input.GetKey(0,0);
 		}
 
-		//ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚Ä‚¢‚½‚çŸ‚Éi‚ñ‚¶‚á‚¤
+		//ï¿½{ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½çŸï¿½Éiï¿½ñ‚¶‚á‚¤
 		if(keystate & KEYSTA_BUTTONS){
 			ResolveRandom();
 			SetupBattleInfo();
@@ -130,16 +129,16 @@ void CCharacterSelect::CreateNextTask()
 }
 
 /*-----------------------------------------------------------
-	‡ƒRƒ“ƒfƒBƒVƒ‡ƒ“‘I‘ğˆ—
+	ï¿½ï¿½ï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½fï¿½Bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½
 -------------------------------------------------------------*/
 void CCharacterSelect::OnConditionDecided(CTConditionSelecter *pcsel)
 {
 	m_condition_sel_ok = TRUE;
 	int i,j;
 
-	//Š„‚è“–‚Äî•ñ‚ğƒRƒs[
+	//ï¿½ï¿½ï¿½è“–ï¿½Äï¿½ï¿½ï¿½Rï¿½sï¿½[
 	memcpy(m_assign , pcsel->m_assign , sizeof(BYTE)*MAXNUM_TEAM*2);
-	//l”ƒJƒEƒ“ƒg
+	//ï¿½lï¿½ï¿½ï¿½Jï¿½Eï¿½ï¿½ï¿½g
 	for(i=0;i<2;i++){
 		wanted_char_num[i] = 0;
 		for(j=0;j<MAXNUM_TEAM;j++){
@@ -148,15 +147,15 @@ void CCharacterSelect::OnConditionDecided(CTConditionSelecter *pcsel)
 			}
 		}
 	}
-	//ƒ\[ƒgiuŠ„‚è“–‚Ä‚È‚µv‚ğAŒã‚ë‚Ì‚Ù‚¤‚ÉˆÚ“®j
+	//ï¿½\ï¿½[ï¿½gï¿½iï¿½uï¿½ï¿½ï¿½è“–ï¿½Ä‚È‚ï¿½ï¿½vï¿½ï¿½Aï¿½ï¿½ï¿½Ì‚Ù‚ï¿½ï¿½ÉˆÚ“ï¿½ï¿½j
 	for(i=0;i<2;i++){
 		for(j=0;j<MAXNUM_TEAM-1;j++){
 			if(m_assign[i][j]==CASSIGN_NONE)
 			{
-				for(int k=j+1;k<MAXNUM_TEAM;k++)//j‚æ‚è‚àŒã‚ÅAŠ„‚è“–‚Ä‚Ì‚ ‚é‚à‚Ì‚ğ’T‚·
+				for(int k=j+1;k<MAXNUM_TEAM;k++)//jï¿½ï¿½ï¿½ï¿½ï¿½ÅAï¿½ï¿½ï¿½è“–ï¿½Ä‚Ì‚ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½Tï¿½ï¿½
 				{
-					if(m_assign[i][k]!=CASSIGN_NONE){//ƒnƒP[ƒ“
-						//ŒğŠ·
+					if(m_assign[i][k]!=CASSIGN_NONE){//ï¿½nï¿½Pï¿½[ï¿½ï¿½
+						//ï¿½ï¿½
 						m_assign[i][j] = m_assign[i][k];
 						m_assign[i][k] = CASSIGN_NONE;
 						break;
@@ -166,69 +165,69 @@ void CCharacterSelect::OnConditionDecided(CTConditionSelecter *pcsel)
 		}
 	}
 
-	g_battleinfo.Initialize();					//‘Îíî•ñ‰Šú‰»
-	g_battleinfo.SetBattleType(pcsel->m_type);	//‘ÎíŒ`®‚ğİ’è
+	g_battleinfo.Initialize();					//ï¿½Îï¿½ï¿½ñ‰Šï¿½
+	g_battleinfo.SetBattleType(pcsel->m_type);	//ï¿½Îï¿½`ï¿½ï¿½ï¿½ï¿½İ’ï¿½
 	g_battleinfo.SetLimitTime(
-		pcsel->m_limit_time[pcsel->m_limit_time_index]);//§ŒÀŠÔ‚ğİ’è
+		pcsel->m_limit_time[pcsel->m_limit_time_index]);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ï¿½İ’ï¿½
 
 	for(i=0;i<2;i++)
 	{
-		//¡ƒLƒƒƒ‰ƒNƒ^[ƒŠƒ“ƒOƒNƒ‰ƒX“o˜^
+		//ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½Nï¿½ï¿½ï¿½Xï¿½oï¿½^
 		m_ring[i] = new CTCharacterRing();
 		m_ring[i]->SetPriority( m_pri_cselecter );
 		m_ring[i]->SetPos(320,i==0?160:320);
 		m_ring[i]->SetHeight(25);
 		g_system.AddTask(m_ring[i]);
-		//¡ƒLƒƒƒ‰ƒNƒ^[ƒŠƒ“ƒO‰ºEƒIƒr
+		//ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Eï¿½Iï¿½r
 		m_belt[i] = new CTCharacterSelectBelt;
 		i==0 ? m_belt[i]->SetLeft() : m_belt[i]->SetRight();
 		m_belt[i]->SetPriority( m_pri_belt );
 		m_belt[i]->SetBaseY(i==0 ? 160.0f : 320.0f);
 		g_system.AddTask(m_belt[i]);
-		//¡ƒfƒJŠç•\¦ƒNƒ‰ƒX“o˜^
+		//ï¿½ï¿½ï¿½fï¿½Jï¿½ï¿½\ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½Xï¿½oï¿½^
 		m_bface[i] = new CTCharacterBigFace();
 		m_bface[i]->SetPriority( m_pri_face );
 		m_bface[i]->SetLeftRight(i==0 ? TRUE : FALSE);
 		m_bface[i]->SetNum(wanted_char_num[i]);
 		g_system.AddTask( m_bface[i] );
-		//¡ƒIƒvƒVƒ‡ƒ“ƒZƒŒƒNƒ^[ƒNƒ‰ƒX
+		//ï¿½ï¿½ï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Nï¿½ï¿½ï¿½X
 		m_selecter[i] = new CTSimpleOptionSelecter;
 		m_selecter[i]->SetPriority( m_pri_oselecter );
 		g_system.AddTask(m_selecter[i]);
 	}
 	
-	//ƒLƒƒƒ‰‘I‘ğƒL[“ü—ÍŠ„‚è“–‚Ä
+	//ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½Lï¿½[ï¿½ï¿½ÍŠï¿½ï¿½è“–ï¿½ï¿½
 	AssignKeys(0);
 	AssignKeys(1);
 }
 
 /*-----------------------------------------------------------
-	ƒLƒƒƒ‰ƒNƒ^‘I‘ğƒL[“ü—ÍŠ„‚è“–‚Ä
-	+ƒIƒrƒNƒ‰ƒX‚ÉCOM,ƒL[“ü—Í”Ô†‚Ì’Ê’m
+	ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½Iï¿½ï¿½Lï¿½[ï¿½ï¿½ÍŠï¿½ï¿½è“–ï¿½ï¿½
+	+ï¿½Iï¿½rï¿½Nï¿½ï¿½ï¿½Xï¿½ï¿½COM,ï¿½Lï¿½[ï¿½ï¿½Í”Ôï¿½ï¿½Ì’Ê’m
 -------------------------------------------------------------*/
 void CCharacterSelect::AssignKeys(int team)
 {
 	int team2 = AnotherTeam(team);
 
-	//Ÿ‚É‘I‘ğ‚·‚é‚Ì‚ÍƒRƒ“ƒsƒ…[ƒ^
+	//ï¿½ï¿½ï¿½É‘Iï¿½ï¿½ï¿½Ì‚ÍƒRï¿½ï¿½ï¿½sï¿½ï¿½ï¿½[ï¿½^
 	if(m_assign[team][num_selected[team]]==CASSIGN_COM||m_assign[team][num_selected[team]]==CASSIGN_STABLE)
 	{
 		m_belt[team]->SetCom(TRUE);
-		if(CkAllCom(team))//ƒ`[ƒ€‚ª‘S‚ÄCOM‚¾‚Á‚½‚çA
+		if(CkAllCom(team))//ï¿½`ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Sï¿½ï¿½COMï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½A
 		{
-			if(CkAllCom(team2))//‚à‚¤•Ğ•û‚Ìƒ`[ƒ€‚à‘SˆõCOM
+			if(CkAllCom(team2))//ï¿½ï¿½ï¿½Ğ•ï¿½Ìƒ`ï¿½[ï¿½ï¿½ï¿½ï¿½Sï¿½ï¿½COM
 			{
-				if(team==0 || charsel_ok[team2]){	//ƒ`[ƒ€1 ‚Ü‚½‚Í ‚à‚¤•Ğ•û‚Ìƒ`[ƒ€‚ª‘I‘ğI—¹Ï‚İ
+				if(team==0 || charsel_ok[team2]){	//ï¿½`ï¿½[ï¿½ï¿½1 ï¿½Ü‚ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ğ•ï¿½Ìƒ`ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½Iï¿½ï¿½ï¿½Ï‚ï¿½
 					m_ring[team]->SetKeyInputIndex(0);
 					m_belt[team]->SetKey(0);
 					return;
 				}
 			}
 
-			if(charsel_ok[team2]){//‚à‚¤•Ğ•û‚Ìƒ`[ƒ€‚Í‘I‘ğI—¹Ï‚İ
+			if(charsel_ok[team2]){//ï¿½ï¿½ï¿½Ğ•ï¿½Ìƒ`ï¿½[ï¿½ï¿½ï¿½Í‘Iï¿½ï¿½Iï¿½ï¿½ï¿½Ï‚ï¿½
 				for(int i=0;i<MAXNUM_KEYI;i++)
 				{
-					//‚à‚¤•Ğ•û‚Ìƒ`[ƒ€‚É‘¶İ‚·‚éƒL[“ü—Í”Ô†‚ğŠ„‚è“–‚Ä
+					//ï¿½ï¿½ï¿½Ğ•ï¿½Ìƒ`ï¿½[ï¿½ï¿½ï¿½É‘ï¿½ï¿½İ‚ï¿½ï¿½ï¿½Lï¿½[ï¿½ï¿½Í”Ôï¿½ï¿½ï¿½è“–ï¿½ï¿½
 					if(CkKey(team2,i))
 					{
 						m_ring[team]->SetKeyInputIndex(i);
@@ -238,7 +237,7 @@ void CCharacterSelect::AssignKeys(int team)
 				}
 			}
 
-			//‚à‚¤•Ğ•û‚Ìƒ`[ƒ€‚Ì‘I‘ğ‚ªI‚í‚é‚Ü‚Å‚ÍƒƒbƒN
+			//ï¿½ï¿½ï¿½Ğ•ï¿½Ìƒ`ï¿½[ï¿½ï¿½ï¿½Ì‘Iï¿½ï¿½Iï¿½ï¿½ï¿½Ü‚Å‚Íƒï¿½ï¿½bï¿½N
 			m_ring[team]->SetKeyInputIndex(-1);
 			m_belt[team]->SetKey(-1);
 			return;
@@ -247,7 +246,7 @@ void CCharacterSelect::AssignKeys(int team)
 		{
 			for(int i=0;i<MAXNUM_KEYI;i++)
 			{
-				//‚»‚Ìƒ`[ƒ€‚É‘¶İ‚·‚éƒL[“ü—Í”Ô†‚ğŠ„‚è“–‚Ä
+				//ï¿½ï¿½ï¿½Ìƒ`ï¿½[ï¿½ï¿½ï¿½É‘ï¿½ï¿½İ‚ï¿½ï¿½ï¿½Lï¿½[ï¿½ï¿½Í”Ôï¿½ï¿½ï¿½è“–ï¿½ï¿½
 				if(CkKey(team,i))
 				{
 					m_ring[team]->SetKeyInputIndex(i);
@@ -257,7 +256,7 @@ void CCharacterSelect::AssignKeys(int team)
 			}
 		}
 	}
-	//Ÿ‚É‘I‘ğ‚·‚é‚Ì‚ÍƒvƒŒƒCƒ„[
+	//ï¿½ï¿½ï¿½É‘Iï¿½ï¿½ï¿½Ì‚Íƒvï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[
 	else{
 		m_belt[team]->SetCom(FALSE);
 		m_ring[team]->SetKeyInputIndex( m_assign[team][num_selected[team]] );
@@ -266,7 +265,7 @@ void CCharacterSelect::AssignKeys(int team)
 	}
 }
 
-//w’èƒ`[ƒ€‚Éw’èƒL[“ü—Í”Ô†‚ÌƒvƒŒƒCƒ„[‚ªŠ„‚è“–‚Ä‚ç‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©
+//ï¿½wï¿½ï¿½`ï¿½[ï¿½ï¿½ï¿½Éwï¿½ï¿½Lï¿½[ï¿½ï¿½Í”Ôï¿½ï¿½Ìƒvï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½è“–ï¿½Ä‚ï¿½ï¿½Ä‚ï¿½ï¿½é‚©ï¿½Ç‚ï¿½ï¿½ï¿½
 BOOL CCharacterSelect::CkKey(int team,BYTE ki)
 {
 	for(int i=0;i<MAXNUM_TEAM;i++){
@@ -277,7 +276,7 @@ BOOL CCharacterSelect::CkKey(int team,BYTE ki)
 	return FALSE;
 }
 
-//w’èƒ`[ƒ€‚Ìc‚è‘I‘ğ‚ªAƒRƒ“ƒsƒ…[ƒ^‚Ì‚İ‚©‚Ç‚¤‚©
+//ï¿½wï¿½ï¿½`ï¿½[ï¿½ï¿½ï¿½Ìcï¿½ï¿½Iï¿½ï¿½Aï¿½Rï¿½ï¿½ï¿½sï¿½ï¿½ï¿½[ï¿½^ï¿½Ì‚İ‚ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½
 BOOL CCharacterSelect::CkAllCom(int team)
 {
 	for(int i=0;i<wanted_char_num[team];i++){
@@ -299,7 +298,7 @@ void CCharacterSelect::OnCancel()
 		m_belt[i]->Show(FALSE);
 		m_bface[i]->SetPriority(0);
 		m_bface[i]->ResetNum();
-//		g_system.RemoveTask(m_selecter[i]->GetID());	// ¡‚Ì‚Æ‚±‚ëŒø‰Ê–³‚µ
+//		g_system.RemoveTask(m_selecter[i]->GetID());	// ï¿½ï¿½ï¿½Ì‚Æ‚ï¿½ï¿½ï¿½ï¿½Ê–ï¿½ï¿½ï¿½
 		for (int j = 0; j < MAXNUM_TEAM; j++)
 		{
 			m_bface[i]->Set(j, 0, 0);
@@ -310,11 +309,11 @@ void CCharacterSelect::OnCancel()
 }
 
 /*-----------------------------------------------------------
-	ƒLƒƒƒ‰ƒNƒ^‘I‘ğˆ—
+	ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½
 -------------------------------------------------------------*/
 void CCharacterSelect::OnSelect(CTCharacterRing *pring,int cindex)
 {
-	//‚Ç‚ÌƒŠƒ“ƒO‚©‚çH
+	//ï¿½Ç‚Ìƒï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½H
 	DWORD team = 3;
 	if(pring==m_ring[0])	team = 0;
 	if(pring==m_ring[1])	team = 1;
@@ -324,28 +323,30 @@ void CCharacterSelect::OnSelect(CTCharacterRing *pring,int cindex)
 
 	if(cindex>=0){
 		m_ring[team]->Hide();
-		/* “¯‚¶ƒ`[ƒ€“à‚Å‚Ì“¯ƒLƒƒƒ‰‘I‘ğ‚É‘Î‰‚µ‚æ‚¤‚Æ‚µ‚Ä•Û—¯’†BƒJƒ‰[‚ª–â‘è‚É‚È‚éB
+		/* ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½[ï¿½ï¿½ï¿½ï¿½Å‚Ì“ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½É‘Î‰ï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½Æ‚ï¿½ï¿½Ä•Û—ï¿½ï¿½ï¿½ï¿½Bï¿½Jï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½É‚È‚ï¿½B
 		if (g_charlist.GetCharacterVer(cindex) < 1000 &&
 			g_charlist.GetCharacterVer(cindex) >= 680)*/
-			m_ring[team]->AddSelected(cindex);		// ƒo[ƒWƒ‡ƒ“0.6x`0.8x‚ÌƒLƒƒƒ‰‚Í1ƒ`[ƒ€•¡”Q‰Á‚É‘Î‰‚µ‚Ä‚È‚¢
+			m_ring[team]->AddSelected(cindex);		// ï¿½oï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½0.6xï¿½`0.8xï¿½ÌƒLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½`ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Qï¿½ï¿½É‘Î‰ï¿½ï¿½ï¿½ï¿½Ä‚È‚ï¿½
 		ResolveColor(team,num_selected[team]);
 		int optnum = m_selecter[team]->SetAndShow(cindex, pring->GetKeyInputIndex() );
-		//ƒIƒvƒVƒ‡ƒ“ƒZƒŒƒNƒ^[‚Ì‚‚³ŒvZEˆÊ’uw’è
+		//ï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Ìï¿½ï¿½ï¿½ï¿½vï¿½Zï¿½Eï¿½Ê’uï¿½wï¿½ï¿½
 		if(optnum<1)optnum=1;
-		float optheight = m_selecter[team]->GetHeight() + 10.0f;//10:‚Ü[‚¶‚ñ
+		float optheight = m_selecter[team]->GetHeight() + 15.0f;//10:ï¿½Ü[ï¿½ï¿½ï¿½ï¿½
 		float base_y = team==0 ? 160.0f : 320.0f;
-		float top_y = base_y - optheight*( team==0 ? 0.65f : 0.35f );
-		float btm_y = base_y + optheight*( team==0 ? 0.35f : 0.65f );
-		m_selecter[team]->SetPos( team==0 ? 50.0f : 250.0f , top_y+5.0f );
+		float top_y = base_y - optheight*( team==0 ? 0.65f : 0.25f );
+		float btm_y = base_y + optheight*( team==0 ? 0.25f : 0.65f );
+		if(top_y < 0.0f)top_y = 5.0f;
+		if(btm_y > 480.0f)btm_y = 475.0f;
+		m_selecter[team]->SetPos( team==0 ? 50.0f : 235.0f , top_y+5.0f );
 		m_belt[team]->Extend( top_y , btm_y );
 		return;
 	}
 
-	//ˆÈ‰ºƒ‰ƒ“ƒ_ƒ€ƒLƒƒƒ‰ˆ—
-	m_bface[team]->Set(cindex,selected_color[team][num_selected[team]],0);//ƒfƒJfaceXV
+	//ï¿½È‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	m_bface[team]->Set(cindex,selected_color[team][num_selected[team]],0);//ï¿½fï¿½Jfaceï¿½Xï¿½V
 	num_selected[team]++;
 
-	if(num_selected[team]==wanted_char_num[team])//ƒ`[ƒ€ƒƒ“ƒo[‚ª‚»‚ë‚Á‚½
+	if(num_selected[team]==wanted_char_num[team])//ï¿½`ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	{
 		charsel_ok[team] = TRUE;
 		m_ring[team]->Hide();
@@ -353,53 +354,53 @@ void CCharacterSelect::OnSelect(CTCharacterRing *pring,int cindex)
 		CheckCharacterSelectOK();
 	}
 	else{
-		AssignKeys(team);//ƒL[ÄŠ„‚è“–‚Ä
+		AssignKeys(team);//ï¿½Lï¿½[ï¿½ÄŠï¿½ï¿½è“–ï¿½ï¿½
 	}
 }
 
 
 /*-----------------------------------------------------------
-	ƒIƒvƒVƒ‡ƒ“‘I‘ğˆ—
+	ï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½
 -------------------------------------------------------------*/
 void CCharacterSelect::OnOptionSelect(CTOptionSelecter *pselecter,DWORD option)
 {
 	if (pselecter->State() == 0xFFFFFF)
 		return;
 
-	//teamH
+	//teamï¿½H
 	DWORD team = 3;
 	if(pselecter==m_selecter[0] || pselecter==m_selecter[0]->GetCustomSelecter())team = 0;
 	if(pselecter==m_selecter[1] || pselecter==m_selecter[1]->GetCustomSelecter())team = 1;
 	if(team>1)return;
 	
 	selected_option[team][num_selected[team]] = option;
-	m_bface[team]->Set(selected_char[team][num_selected[team]],selected_color[team][num_selected[team]],OPT2ALT(option));//ƒfƒJfaceXV
+	m_bface[team]->Set(selected_char[team][num_selected[team]],selected_color[team][num_selected[team]],OPT2ALT(option));//ï¿½fï¿½Jfaceï¿½Xï¿½V
 	num_selected[team]++;
 
 	if(!(m_assign[team][num_selected[team]-1] & CASSIGN_SPECIFIC)){
 		pselecter->ApplyToPreviousSelect();
 	}
 
-	if(num_selected[team]==wanted_char_num[team])//ƒ`[ƒ€ƒƒ“ƒo[‚ª‚»‚ë‚Á‚½
+	if(num_selected[team]==wanted_char_num[team])//ï¿½`ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	{
 		charsel_ok[team] = TRUE;
 		m_belt[team]->Show(FALSE);
 		CheckCharacterSelectOK();
 	}
-	else//‘±s
+	else//ï¿½ï¿½ï¿½s
 	{
-		AssignKeys(team);//ƒL[ÄŠ„‚è“–‚Ä
+		AssignKeys(team);//ï¿½Lï¿½[ï¿½ÄŠï¿½ï¿½è“–ï¿½ï¿½
 		m_ring[team]->Restore();
 		m_belt[team]->Restore();
 	}
 }
 
 /*-----------------------------------------------------------
-	F•ÏXˆ—
+	ï¿½Fï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 -------------------------------------------------------------*/
 void CCharacterSelect::OnChangeColor(CTCharacterRing *pring)
 {
-	//‚Ç‚ÌƒŠƒ“ƒO‚©‚çH
+	//ï¿½Ç‚Ìƒï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½H
 	DWORD team = 3;
 	if(pring==m_ring[0])	team = 0;
 	if(pring==m_ring[1])	team = 1;
@@ -411,11 +412,11 @@ void CCharacterSelect::OnChangeColor(CTCharacterRing *pring)
 
 
 /*-----------------------------------------------------------
-	ƒCƒ“ƒXƒgON/OFFˆ—
+	ï¿½Cï¿½ï¿½ï¿½Xï¿½gON/OFFï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 -------------------------------------------------------------*/
 void CCharacterSelect::OnInstOnOff(CTCharacterRing *pring)
 {
-	//‚Ç‚ÌƒŠƒ“ƒO‚©‚çH
+	//ï¿½Ç‚Ìƒï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½H
 	DWORD team = 3;
 	if(pring==m_ring[0])	team = 0;
 	if(pring==m_ring[2])	team = 1;
@@ -424,24 +425,24 @@ void CCharacterSelect::OnInstOnOff(CTCharacterRing *pring)
 
 
 /*-----------------------------------------------------------
-	ƒLƒƒƒ‰ƒNƒ^[‘I‘ğEƒIƒvƒVƒ‡ƒ“‘I‘ğƒCƒxƒ“ƒgŒã‚É
-	ƒXƒe[ƒW‘I‘ğ‚Éi‚Ş‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN
+	ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Iï¿½ï¿½Eï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½ï¿½ï¿½
+	ï¿½Xï¿½eï¿½[ï¿½Wï¿½Iï¿½ï¿½Éiï¿½Ş‚ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½Ìƒ`ï¿½Fï¿½bï¿½N
 -------------------------------------------------------------*/
 void CCharacterSelect::CheckCharacterSelectOK()
 {
-/*	if(g_battleinfo.GetCharacterIsCOM(1,0)){//1PvsCOM‚Ìê‡
-		//ƒŠƒ“ƒO1‚ğ–³Œø‚É‚µ‚ÄƒŠƒ“ƒO2‚Ì“ü—Í‚ğ—LŒø‚É‚·‚é
+/*	if(g_battleinfo.GetCharacterIsCOM(1,0)){//1PvsCOMï¿½Ìê‡
+		//ï¿½ï¿½ï¿½ï¿½ï¿½O1ï¿½ğ–³Œï¿½É‚ï¿½ï¿½Äƒï¿½ï¿½ï¿½ï¿½O2ï¿½Ì“ï¿½Í‚ï¿½Lï¿½ï¿½É‚ï¿½ï¿½ï¿½
 		if(charsel_ok[0]){
 			m_ring[0]->SetKeyInputIndex(-1);
 			m_ring[1]->SetKeyInputIndex(0);
 		}
 	}*/
 
-	//ƒXƒe[ƒWƒZƒŒƒNƒg‚ÌŠJn
+	//ï¿½Xï¿½eï¿½[ï¿½Wï¿½Zï¿½ï¿½ï¿½Nï¿½gï¿½ÌŠJï¿½n
 	if(charsel_ok[0] && charsel_ok[1]){
 		CTStageSelecter *sselect = new CTStageSelecter;
 		sselect->SetPriority( m_pri_sselecter );
-		//ƒL[Š„‚è“–‚Ä
+		//ï¿½Lï¿½[ï¿½ï¿½ï¿½è“–ï¿½ï¿½
 		int ass_num=0;
 		for(int i=0;i<2;i++){
 			for(int j=0;j<MAXNUM_TEAM;j++){
@@ -459,7 +460,7 @@ void CCharacterSelect::CheckCharacterSelectOK()
 		m_bg->ChangeState(TRUE);
 	}
 
-	//ƒLƒƒƒ‰ƒZƒŒEƒL[ÄŠ„‚è“–‚Ä
+	//ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½Eï¿½Lï¿½[ï¿½ÄŠï¿½ï¿½è“–ï¿½ï¿½
 	if(charsel_ok[0]){
 		AssignKeys(1);
 	}
@@ -470,7 +471,7 @@ void CCharacterSelect::CheckCharacterSelectOK()
 
 
 /*-----------------------------------------------------------
-	ƒXƒe[ƒW‘I‘ğˆ—
+	ï¿½Xï¿½eï¿½[ï¿½Wï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½
 -------------------------------------------------------------*/
 void CCharacterSelect::OnStageSelect(CTStageSelecter *spelecter,int sindex)
 {
@@ -480,7 +481,7 @@ void CCharacterSelect::OnStageSelect(CTStageSelecter *spelecter,int sindex)
 
 
 /*-----------------------------------------------------------
-	I—¹ƒAƒjƒ[ƒVƒ‡ƒ“ƒJƒ“—¹’Ê’m
+	ï¿½Iï¿½ï¿½ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½Ê’m
 -------------------------------------------------------------*/
 void CCharacterSelect::OnEndAnimComplete(CTaskBase* ptask)
 {
@@ -492,7 +493,7 @@ void CCharacterSelect::OnEndAnimComplete(CTaskBase* ptask)
 }
 
 /*-----------------------------------------------------------
-	•`‰æ
+	ï¿½`ï¿½ï¿½
 -------------------------------------------------------------*/
 void CCharacterSelect::Draw()
 {
@@ -501,11 +502,11 @@ void CCharacterSelect::Draw()
 
 
 /*-----------------------------------------------------------
-	I—¹‘Oˆ—
+	ï¿½Iï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½
 -------------------------------------------------------------*/
 void CCharacterSelect::SetupBattleInfo()
 {
-	//ƒLƒƒƒ‰ƒNƒ^İ’è
+	//ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½İ’ï¿½
 	for(int i=0;i<2;i++){
 		for(int j=0;j<wanted_char_num[i];j++){
 			g_battleinfo.AddCharacter(i,
@@ -516,23 +517,23 @@ void CCharacterSelect::SetupBattleInfo()
 		}
 	}
 
-	//ƒXƒe[ƒWİ’è
+	//ï¿½Xï¿½eï¿½[ï¿½Wï¿½İ’ï¿½
 	g_battleinfo.SetStage( selected_stage );
 }
 
 
 /*-----------------------------------------------------------
-	ƒ‰ƒ“ƒ_ƒ€w’è‚³‚ê‚½ƒLƒƒƒ‰ƒNƒ^[EƒXƒe[ƒW‚É
-	—LŒø‚ÈƒCƒ“ƒfƒbƒNƒX‚ğŠ„‚è“–‚Ä‚é
+	ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½wï¿½è‚³ï¿½ê‚½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Eï¿½Xï¿½eï¿½[ï¿½Wï¿½ï¿½
+	ï¿½Lï¿½ï¿½ÈƒCï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½ï¿½è“–ï¿½Ä‚ï¿½
 -------------------------------------------------------------*/
 void CCharacterSelect::ResolveRandom()
 {
 	srand(timeGetTime());
-	BOOL jyufuku;	//•Êƒ`[ƒ€‚Ìd•¡
-	BOOL jyufuku2;	//©ƒ`[ƒ€‚Ìd•¡
+	BOOL jyufuku;	//ï¿½Êƒ`ï¿½[ï¿½ï¿½ï¿½Ìdï¿½ï¿½
+	BOOL jyufuku2;	//ï¿½ï¿½ï¿½`ï¿½[ï¿½ï¿½ï¿½Ìdï¿½ï¿½
 	int count;
 
-	//ƒLƒƒƒ‰ƒNƒ^[Eƒ‰ƒ“ƒ_ƒ€‰ğŒˆ
+	//ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Eï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½ï¿½
 	for(int j=0;j<2;j++){
 		for(int i=0;i<wanted_char_num[j];i++)
 		{
@@ -544,7 +545,7 @@ void CCharacterSelect::ResolveRandom()
 					selected_char[j][i] = rand()%g_charlist.GetCharacterCount();
 					jyufuku = FALSE;
 					jyufuku2 = FALSE;
-					for(int k=0;k<2;k++){//d•¡ƒ`ƒFƒbƒN
+					for(int k=0;k<2;k++){//ï¿½dï¿½ï¿½ï¿½`ï¿½Fï¿½bï¿½N
 						for(int l=0;l<wanted_char_num[j];l++){
 							if(!(k==j && l==i)){
 								if(selected_char[j][i] == selected_char[k][l]){
@@ -554,11 +555,11 @@ void CCharacterSelect::ResolveRandom()
 							}
 						}
 					}
-					count--;//count‚ª0‚É‚È‚Á‚½‚çd•¡‚µ‚Ä‚Ä‚à‚»‚Ì‚Ü‚Ü‚¢‚Á‚¿‚á‚¤
+					count--;//countï¿½ï¿½0ï¿½É‚È‚ï¿½ï¿½ï¿½ï¿½dï¿½ï¿½ï¿½ï¿½ï¿½Ä‚Ä‚ï¿½ï¿½Ì‚Ü‚Ü‚ï¿½ï¿½ï¿½ï¿½ï¿½á‚¤
 				}//while
 				selected_option[j][i] = g_charlist.GetRandomOption(selected_char[j][i]);
 				selected_color[j][i] = rand()%MAXNUM_CHARACTERCOLOR+1;
-				ResolveColor(j,i);//ƒJƒ‰[‚Ìd•¡‚ğƒ`ƒFƒbƒN
+				ResolveColor(j,i);//ï¿½Jï¿½ï¿½ï¿½[ï¿½Ìdï¿½ï¿½ï¿½ï¿½`ï¿½Fï¿½bï¿½N
 			}
 		}
 	}
@@ -569,7 +570,7 @@ void CCharacterSelect::ResolveRandom()
 }
 
 /*-----------------------------------------------------------
-	ƒJƒ‰[‚ªd•¡‚µ‚È‚¢‚æ‚¤A“KØ‚ÈƒJƒ‰[‚ğ‘I‘ğ‚µ‚È‚¨‚·
+	ï¿½Jï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½dï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½æ‚¤ï¿½Aï¿½Kï¿½Ø‚ÈƒJï¿½ï¿½ï¿½[ï¿½ï¿½Iï¿½ï¿½È‚ï¿½ï¿½ï¿½
 -------------------------------------------------------------*/
 void CCharacterSelect::ResolveColor(int team,int index)
 {
@@ -577,9 +578,9 @@ void CCharacterSelect::ResolveColor(int team,int index)
 
 	for(int i=0;i<num_selected[team2];i++)
 	{
-		if(selected_char[team][index]==selected_char[team2][i])//ƒLƒƒƒ‰ƒNƒ^[‚ª“¯‚¶
+		if(selected_char[team][index]==selected_char[team2][i])//ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		{
-			if(selected_color[team][index]==selected_color[team2][i])//F‚ª“¯‚¶
+			if(selected_color[team][index]==selected_color[team2][i])//ï¿½Fï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			{
 				switch(selected_color[team2][i]){
 				case 1:selected_color[team][index]=2;break;
@@ -596,7 +597,7 @@ void CCharacterSelect::ResolveColor(int team,int index)
 
 /*=======================================================================================
 
-	ƒ~ƒjŠçƒŠƒ“ƒO
+	ï¿½~ï¿½jï¿½çƒŠï¿½ï¿½ï¿½O
 
 =========================================================================================*/
 
@@ -609,11 +610,11 @@ UINT CTCharacterRing::sm_selected_ring2p	=0;
 UINT CTCharacterRing::sm_selected_index2p	=0;
 
 /*-----------------------------------------------------------
-	‰Šú‰»
+	ï¿½ï¿½ï¿½ï¿½
 -------------------------------------------------------------*/
 void CTCharacterRing::InitializeSub()
 {
-	//ƒpƒ‰ƒ[ƒ^ƒŠƒZƒbƒg
+	//ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^ï¿½ï¿½ï¿½Zï¿½bï¿½g
 	m_counter = 0;
 	m_state = CTCRS_NotReady;
 	m_radius_base = 120;
@@ -624,11 +625,11 @@ void CTCharacterRing::InitializeIcons()
 {
 	char *filepath = new char [MAX_PATH];
 
-	//static‚©‚ç‘I‘ğ‚³‚ê‚Ä‚¢‚½’l•œ‹A
+	//staticï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½lï¿½ï¿½ï¿½A
 	m_selected_ring = (m_instanceCount==0) ? sm_selected_ring1p : sm_selected_ring2p;
 	m_selected_index = (m_instanceCount==0) ? sm_selected_index1p : sm_selected_index2p;
 
-	//ƒ~ƒjŠç‚Ì“Ç‚İ‚İ
+	//ï¿½~ï¿½jï¿½ï¿½Ì“Ç‚İï¿½ï¿½ï¿½
 	if(m_instanceCount==0){
 		m_dds_miniface = new MYSURFACE* [g_charlist.GetCharacterCount()];
 		for(int i=0;i<g_charlist.GetCharacterCount();i++){
@@ -643,23 +644,23 @@ void CTCharacterRing::InitializeIcons()
 
 
 /*-----------------------------------------------------------
-	”jŠü
+	ï¿½jï¿½ï¿½
 -------------------------------------------------------------*/
 
 void CTCharacterRing::DestroyIcons()
 {
 	m_instanceCount--;
 
-	//static ‚É’l‚ğ•Û‘¶
+	//static ï¿½É’lï¿½ï¿½Û‘ï¿½
 	if(m_instanceCount==0)
 	{
-		//i‚½‚Ô‚ñj2P
+		//ï¿½iï¿½ï¿½ï¿½Ô‚ï¿½j2P
 		sm_selected_ring2p = m_selected_ring;
 		sm_selected_index2p = m_selected_index;
 	}
 	else
 	{
-		//i‚½‚Ô‚ñj1P
+		//ï¿½iï¿½ï¿½ï¿½Ô‚ï¿½j1P
 		sm_selected_ring1p = m_selected_ring;
 		sm_selected_index1p = m_selected_index;
 	}
@@ -674,7 +675,7 @@ void CTCharacterRing::DestroyIcons()
 }
 
 /*-----------------------------------------------------------
-	‘I‘ğ‚³‚ê‚½ƒLƒƒƒ‰ƒNƒ^‚ğæ“¾
+	ï¿½Iï¿½ï¿½ê‚½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½ï¿½æ“¾
 -------------------------------------------------------------*/
 UINT CTCharacterRing::GetSelected()
 {
@@ -683,7 +684,7 @@ UINT CTCharacterRing::GetSelected()
 
 
 /*-----------------------------------------------------------
-	•`‰æ—p‚ÌF‚ğæ“¾
+	ï¿½`ï¿½ï¿½pï¿½ÌFï¿½ï¿½æ“¾
 -------------------------------------------------------------*/
 DWORD CTCharacterRing::GetColor(UINT ridx,UINT idx)
 {
@@ -692,15 +693,15 @@ DWORD CTCharacterRing::GetColor(UINT ridx,UINT idx)
 	std::list<DWORD>::iterator i=m_selectedlist.begin();
 	std::list<DWORD>::iterator ied=m_selectedlist.end();
 	for(;i!=ied;i++){
-		if(*i==sindex){//Šù‚É‘I‘ğ‚³‚ê‚½ƒLƒƒƒ‰ƒNƒ^[
+		if(*i==sindex){//ï¿½ï¿½É‘Iï¿½ï¿½ê‚½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[
 			return 0x00888888;
 		}
 	}
-	return 0x00FFFFFF;//‚Ü‚¾‘I‘ğ‚³‚ê‚Ä‚¢‚È‚¢ƒLƒƒƒ‰ƒNƒ^[
+	return 0x00FFFFFF;//ï¿½Ü‚ï¿½ï¿½Iï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[
 }
 
 /*------------------------------------------------------------
-	w’èƒLƒƒƒ‰ƒNƒ^[‚ªŠù‚É‘I‘ğ‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+	ï¿½wï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½ï¿½É‘Iï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚©ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½`ï¿½Fï¿½bï¿½N
 --------------------------------------------------------------*/
 BOOL CTCharacterRing::IsSelected(DWORD cindex)
 {
@@ -713,7 +714,7 @@ BOOL CTCharacterRing::IsSelected(DWORD cindex)
 }
 
 /*--------------------------------------------------------------------------------------
-	•\¦‚·‚éƒAƒCƒRƒ“‰æ‘œ‚ğæ“¾iDraw‚©‚çƒR[ƒ‹j
+	ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½Cï¿½Rï¿½ï¿½ï¿½æ‘œï¿½ï¿½æ“¾ï¿½iDrawï¿½ï¿½ï¿½ï¿½Rï¿½[ï¿½ï¿½ï¿½j
 ----------------------------------------------------------------------------------------*/
 MYSURFACE* CTCharacterRing::GetIcon(UINT ridx,UINT idx)
 {
@@ -726,26 +727,26 @@ MYSURFACE* CTCharacterRing::GetIcon(UINT ridx,UINT idx)
 }
 
 /*--------------------------------------------------------------------------------------
-	ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚Ìˆ—
+	ï¿½{ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½Æ‚ï¿½ï¿½Ìï¿½ï¿½ï¿½
 ----------------------------------------------------------------------------------------*/
 void CTCharacterRing::OnButtonDown(DWORD key)
 {
-	//SELECTƒ^ƒXƒNƒQƒbƒg
+	//SELECTï¿½^ï¿½Xï¿½Nï¿½Qï¿½bï¿½g
 	CCharacterSelectBase* ccselect = dynamic_cast<CCharacterSelectBase*>(g_system.GetCurrentMainTask());
 	if(!ccselect)return;
 
-	//Œˆ’è
-	if(key & KEYSTA_BA2){//uAvŒˆ’è
+	//ï¿½ï¿½ï¿½ï¿½
+	if(key & KEYSTA_BA2){//ï¿½uAï¿½vï¿½ï¿½ï¿½ï¿½
 		if(!IsSelected(GetSelected())){
 			ccselect->OnSelect(this,GetSelected());
 		}
 	}
-	else if(key & KEYSTA_BD2){//ƒ‰ƒ“ƒ_ƒ€Œˆ’è
+	else if(key & KEYSTA_BD2){//ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		ccselect->OnSelect(this,-1);
 	}
-	else if(key & KEYSTA_BB2){//~ on/off instruction
+	else if(key & KEYSTA_BB2){//ï¿½~ on/off instruction
 		//ccselect->OnInstOnOff(this);
-		ccselect->OnCancel();	// —Õ(ƒLƒƒƒ“ƒZƒ‹)
+		ccselect->OnCancel();	// ï¿½Õï¿½(ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½)
 	}
 	else if(key & KEYSTA_BC2){//change color
 		ccselect->OnChangeColor(this);
@@ -753,23 +754,23 @@ void CTCharacterRing::OnButtonDown(DWORD key)
 }
 
 /*--------------------------------------------------------------------------------------
-	ƒŠƒ“ƒO‚ª‚Ü‚í‚³‚ê‚ÄƒCƒ“ƒfƒbƒNƒX‚ª•Ï‰»‚µ‚½‚Æ‚«‚Ìˆ—
+	ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Ü‚í‚³ï¿½ï¿½ÄƒCï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½ï¿½ï¿½Ï‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Ìï¿½ï¿½ï¿½
 ----------------------------------------------------------------------------------------*/
 void CTCharacterRing::OnChangeIndex()
 {
-	//“Á‚É‚â‚é‚±‚Æ–³‚µ
+	//ï¿½ï¿½É‚ï¿½é‚±ï¿½Æ–ï¿½ï¿½ï¿½
 }
 
 /*--------------------------------------------------------------------------------------
-	ƒŠƒ“ƒO‚ª•ÏX‚³‚ê‚½‚Æ‚«‚Ìˆ—
+	ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ÏXï¿½ï¿½ï¿½ê‚½ï¿½Æ‚ï¿½ï¿½Ìï¿½ï¿½ï¿½
 ----------------------------------------------------------------------------------------*/
 void CTCharacterRing::OnChangeRing()
 {
-	//“Á‚É‚â‚é‚±‚Æ–³‚µ
+	//ï¿½ï¿½É‚ï¿½é‚±ï¿½Æ–ï¿½ï¿½ï¿½
 }
 
 /*--------------------------------------------------------------------------------------
-	ƒŠƒ“ƒO‚Ì‘”‚ğæ“¾‚·‚é
+	ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½Ì‘ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
 ----------------------------------------------------------------------------------------*/
 UINT CTCharacterRing::GetMaxRing()
 {
@@ -777,7 +778,7 @@ UINT CTCharacterRing::GetMaxRing()
 }
 
 /*--------------------------------------------------------------------------------------
-	w’èƒŠƒ“ƒO‚ª‚Á‚Ä‚¢‚éƒAƒCƒRƒ“‚Ì”‚ğæ“¾
+	ï¿½wï¿½èƒŠï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Aï¿½Cï¿½Rï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½æ“¾
 ----------------------------------------------------------------------------------------*/
 UINT CTCharacterRing::GetMaxIndex(UINT ridx)
 {
@@ -785,31 +786,31 @@ UINT CTCharacterRing::GetMaxIndex(UINT ridx)
 }
 
 /*--------------------------------------------------------------------------------------
-	•`‰æ
+	ï¿½`ï¿½ï¿½
 ----------------------------------------------------------------------------------------*/
 void CTCharacterRing::Draw()
 {
 	CTIconRingBase::Draw();
 
-	// ‘I‘ğ‚³‚ê‚Ä‚éÔ¼‚Ì–¼‘O‚ğ•\¦
+	// ï¿½Iï¿½ï¿½ï¿½Ä‚ï¿½Ô¼ï¿½Ì–ï¿½ï¿½Oï¿½ï¿½\ï¿½ï¿½
 	//g_system.DrawBMPText(m_radius_base, m_height, 0, g_charlist.GetCharacterDir( GetSelected() ), 0xFF4455AA);
 }
 
 
 /*=======================================================================================
 
-	ƒfƒJface•\¦ƒNƒ‰ƒX
+	ï¿½fï¿½Jfaceï¿½\ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½X
 
 =========================================================================================*/
 
 /*-----------------------------------------------------------
-	‰Šú‰»
+	ï¿½ï¿½ï¿½ï¿½
 -------------------------------------------------------------*/
 void CTCharacterBigFace::Initialize()
 {
 	int j;
 	
-	//ƒpƒ‰ƒ[ƒ^ƒŠƒZƒbƒg
+	//ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^ï¿½ï¿½ï¿½Zï¿½bï¿½g
 	m_counter  = 0;
 	m_counter2 = 0;
 	m_selected_num = 0;
@@ -822,28 +823,28 @@ void CTCharacterBigFace::Initialize()
 }
 
 /*-----------------------------------------------------------
-	”jŠü
+	ï¿½jï¿½ï¿½
 -------------------------------------------------------------*/
 void CTCharacterBigFace::Terminate()
 {
-	//“Á‚É‚â‚é‚±‚Æ–³‚µ
+	//ï¿½ï¿½É‚ï¿½é‚±ï¿½Æ–ï¿½ï¿½ï¿½
 }
 
 /*-----------------------------------------------------------
-	Às
+	ï¿½ï¿½s
 -------------------------------------------------------------*/
 BOOL CTCharacterBigFace::Execute(DWORD time)
 {
-	m_counter+=10;//Œˆ’è‰Ÿ‚µ‚â‚ç‚êƒJƒEƒ“ƒ^‰ÁZ
+	m_counter+=10;//ï¿½ï¿½ï¿½èï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½Eï¿½ï¿½ï¿½^ï¿½ï¿½Z
 	if(m_counter>100)m_counter=100;
 
-	m_counter2+=35;//‘I‘ğ•ÏXoŒ»ƒJƒEƒ“ƒ^‰ÁZ
+	m_counter2+=35;//ï¿½Iï¿½ï¿½ÏXï¿½ï¿½ï¿½oï¿½ï¿½ï¿½Jï¿½Eï¿½ï¿½ï¿½^ï¿½ï¿½Z
 
 	return TRUE;
 }
 
 /*-----------------------------------------------------------
-	•`‰æ
+	ï¿½`ï¿½ï¿½
 -------------------------------------------------------------*/
 void CTCharacterBigFace::Draw()
 {
@@ -855,13 +856,13 @@ void CTCharacterBigFace::Draw()
 	RECT r_face;
 	MYSURFACE *pddstmp;
 
-	//•`‰æ”Œˆ’è
+	//ï¿½`ï¿½æ”ï¿½ï¿½ï¿½ï¿½
 	int kmax;
 	if(m_draw_temporary)kmax= m_selected_num==m_max_num ? m_max_num : m_selected_num+1;
 	else				kmax= m_max_num;
 
 	for(int k=0;k<kmax;k++){
-		l=m_selected_num-k;//‰œ‚Ì‚Ù‚¤‚É‰Ÿ‚µ‚â‚ç‚ê‚é”
+		l=m_selected_num-k;//ï¿½ï¿½ï¿½Ì‚Ù‚ï¿½ï¿½É‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é”
 		if(m_selected_num==m_max_num)l--;
 		if(l==1)l=(int)(80*(m_counter/100.0));
 		if(l==2)l=(int)(80+80*(m_counter/100.0));
@@ -918,7 +919,7 @@ DWORD CTCharacterBigFace::GetDispColor(UINT idx)
 }
 
 /*-----------------------------------------------------------
-	ƒLƒƒƒ‰Šm’è
+	ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½mï¿½ï¿½
 -------------------------------------------------------------*/
 void CTCharacterBigFace::Set(int cid,DWORD color,int alt)
 {
@@ -931,12 +932,12 @@ void CTCharacterBigFace::Set(int cid,DWORD color,int alt)
 
 	if(*tgt!=NULL){
 		if(m_cindex[m_selected_num]==cid && m_color[m_selected_num]==color && m_alt[m_selected_num]==alt){
-			//“¯‚¶ƒ‚ƒm‚ªŠù‚Éƒ[ƒh‚³‚ê‚Ä‚¢‚é
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mï¿½ï¿½ï¿½ï¿½Éƒï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
 			needReload = FALSE;
 		}
 	}
 	if(cid<0){
-		//ƒ‰ƒ“ƒ_ƒ€w’è
+		//ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½wï¿½ï¿½
 		if(*tgt){
 			RELSURFACE(*tgt);
 		}
@@ -965,18 +966,18 @@ void CTCharacterBigFace::Set(int cid,DWORD color,int alt)
 }
 
 /*-----------------------------------------------------------
-	–¢‘I‘ğƒLƒƒƒ‰Šçİ’è
+	ï¿½ï¿½ï¿½Iï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½
 -------------------------------------------------------------*/
 void CTCharacterBigFace::SetTemporary(int cid,DWORD color,int alt)
 {
 	if(m_selected_num==m_max_num)return;
 
 	if(m_cindex[m_selected_num]==cid && m_color[m_selected_num]==color && m_alt[m_selected_num]==alt){
-		//“¯‚¶ƒ‚ƒm‚ªŠù‚Éƒ[ƒh‚³‚ê‚Ä‚¢‚éEEEƒnƒY
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mï¿½ï¿½ï¿½ï¿½Éƒï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Eï¿½Eï¿½Eï¿½nï¿½Y
 		return;
 	}
 
-	if(cid<0){//ƒ‰ƒ“ƒ_ƒ€w’è
+	if(cid<0){//ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½wï¿½ï¿½
 		m_cindex[m_selected_num] = cid ;
 		m_color[m_selected_num] = color;
 		m_alt[m_selected_num] = alt;
@@ -987,13 +988,13 @@ void CTCharacterBigFace::SetTemporary(int cid,DWORD color,int alt)
 	char *filepath,*palpath;
 
 	if(m_cindex[m_selected_num]==cid && m_color[m_selected_num]==color && m_alt[m_selected_num]==alt){
-		//“¯‚¶ƒ‚ƒm‚ªŠù‚Éƒ[ƒh‚³‚ê‚Ä‚¢‚éEEEƒnƒY
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mï¿½ï¿½ï¿½ï¿½Éƒï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Eï¿½Eï¿½Eï¿½nï¿½Y
 		return;
 	}
 	if(*tgt){
 		RELSURFACE(*tgt);
 	}
-	if(cid<0){//ƒ‰ƒ“ƒ_ƒ€w’è
+	if(cid<0){//ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½wï¿½ï¿½
 		m_cindex[m_selected_num] = cid ;
 		m_color[m_selected_num] = color;
 		return;
@@ -1017,17 +1018,17 @@ void CTCharacterBigFace::SetTemporary(int cid,DWORD color,int alt)
 
 /*=======================================================================================
 
-	”wŒi•`‰æ
+	ï¿½wï¿½iï¿½`ï¿½ï¿½
 
 =========================================================================================*/
 
 
 /*-----------------------------------------------------------
-	‰Šú‰»
+	ï¿½ï¿½ï¿½ï¿½
 -------------------------------------------------------------*/
 void CTCharacterSelectBG::Initialize()
 {
-	//ƒeƒNƒXƒ`ƒƒƒ[ƒh
+	//ï¿½eï¿½Nï¿½Xï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½h
 	D3DXCreateTextureFromFileEx(g_draw.d3ddev,
 		"system\\texture\\tex_cs1.png",
 		0,0,
@@ -1041,7 +1042,7 @@ void CTCharacterSelectBG::Initialize()
 		NULL,
 		&ptex_cs1);
 
-	//’¸“_À•Wİ’è
+	//ï¿½ï¿½ï¿½_ï¿½ï¿½Wï¿½İ’ï¿½
 	vbg[0].x = -0.3f;//-(ASPECTRATIO);
 	vbg[0].y = -0.2f;//-(1.0f);
 	vbg[0].z = 0.2f;
@@ -1055,29 +1056,29 @@ void CTCharacterSelectBG::Initialize()
 	vbg[3].y = (1.0f)*2.2f;
 	vbg[3].z = 0.2f;
 
-	//ƒpƒ‰ƒ[ƒ^ƒŠƒZƒbƒg
+	//ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^ï¿½ï¿½ï¿½Zï¿½bï¿½g
 	m_state = FALSE;
 	m_counter = 0;
 }
 
 
 /*-----------------------------------------------------------
-	”jŠü
+	ï¿½jï¿½ï¿½
 -------------------------------------------------------------*/
 void CTCharacterSelectBG::Terminate()
 {
-	RELEASE(ptex_cs1);//ƒeƒNƒXƒ`ƒƒŒãn––
+	RELEASE(ptex_cs1);//ï¿½eï¿½Nï¿½Xï¿½`ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½
 }
 
 
 /*-----------------------------------------------------------
-	Às
+	ï¿½ï¿½s
 -------------------------------------------------------------*/
 BOOL CTCharacterSelectBG::Execute(DWORD time)
 {
 	if(!ptex_cs1)return FALSE;
 
-	BYTE bgcolor;//0:ƒLƒƒƒ‰ƒZƒŒF@255:ƒXƒe[ƒWƒZƒŒƒNƒgF
+	BYTE bgcolor;//0:ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½Fï¿½@255:ï¿½Xï¿½eï¿½[ï¿½Wï¿½Zï¿½ï¿½ï¿½Nï¿½gï¿½F
 	double ratio;
 	if(m_state){
 		ratio = m_counter/60.0/4.0;
@@ -1088,7 +1089,7 @@ BOOL CTCharacterSelectBG::Execute(DWORD time)
 	}
 	bgcolor = (BYTE)(255*ratio);
 
-	//ƒJƒ‰[İ’è
+	//ï¿½Jï¿½ï¿½ï¿½[ï¿½İ’ï¿½
 	vbg[0].color = 0xFF0000FF;
 	vbg[0].color |= bgcolor*256*256 + bgcolor*256;
 	vbg[1].color = vbg[2].color = 0xFF000000;
@@ -1097,7 +1098,7 @@ BOOL CTCharacterSelectBG::Execute(DWORD time)
 	vbg[3].color = 0xFFFF0000;
 	vbg[3].color |= bgcolor*256 + bgcolor;
 
-	//ƒeƒNƒXƒ`ƒƒUVİ’è
+	//ï¿½eï¿½Nï¿½Xï¿½`ï¿½ï¿½UVï¿½İ’ï¿½
 	float texzurasi= (float)(timeGetTime()%5000) / 5000.0f;
 	vbg[0].tu = texzurasi;
 	vbg[0].tv = texzurasi;
@@ -1114,7 +1115,7 @@ BOOL CTCharacterSelectBG::Execute(DWORD time)
 
 
 /*-----------------------------------------------------------
-	•`‰æ
+	ï¿½`ï¿½ï¿½
 -------------------------------------------------------------*/
 void CTCharacterSelectBG::Draw()
 {
@@ -1135,7 +1136,7 @@ void CTCharacterSelectBG::Draw()
 
 
 /*-----------------------------------------------------------
-	ƒ‚[ƒh•ÏX
+	ï¿½ï¿½ï¿½[ï¿½hï¿½ÏX
 -------------------------------------------------------------*/
 void CTCharacterSelectBG::ChangeState(BOOL f)
 {
@@ -1147,13 +1148,13 @@ void CTCharacterSelectBG::ChangeState(BOOL f)
 
 /*=======================================================================================
 
-	ƒŠƒ“ƒO”wŒiƒIƒr•\¦ƒNƒ‰ƒX
+	ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½wï¿½iï¿½Iï¿½rï¿½\ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½X
 
 =========================================================================================*/
 
 
 /*-----------------------------------------------------------
-	‰Šú‰»
+	ï¿½ï¿½ï¿½ï¿½
 -------------------------------------------------------------*/
 void CTCharacterSelectBelt::Initialize()
 {
@@ -1163,23 +1164,23 @@ void CTCharacterSelectBelt::Initialize()
 
 	UpdateText();
 
-	m_txtTop	= m_pos==0 ? TRUE : FALSE;		//ƒeƒLƒXƒg‚ğã‚É”z’u‚·‚é‚©A‰º‚É”z’u‚·‚é‚©
-	m_txtLeft	= m_pos==0 ? 50.0f : 590.0f;	//ƒeƒLƒXƒg‚Ì¶ˆÊ’u
-	m_txtR2L	= m_pos==0 ? FALSE : TRUE;		//ƒeƒLƒXƒg‰E¨¶•`‰æ
+	m_txtTop	= m_pos==0 ? TRUE : FALSE;		//ï¿½eï¿½Lï¿½Xï¿½gï¿½ï¿½ï¿½É”zï¿½uï¿½ï¿½ï¿½é‚©ï¿½Aï¿½ï¿½ï¿½É”zï¿½uï¿½ï¿½ï¿½é‚©
+	m_txtLeft	= m_pos==0 ? 50.0f : 590.0f;	//ï¿½eï¿½Lï¿½Xï¿½gï¿½Ìï¿½ï¿½Ê’u
+	m_txtR2L	= m_pos==0 ? FALSE : TRUE;		//ï¿½eï¿½Lï¿½Xï¿½gï¿½Eï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½
 
 	m_alpha1	= 230;
-	m_alpha2	= 20;									//ƒ¿A”Z‚¢‚Æ‚±E”–‚¢‚Æ‚±
-	m_lineCol	= m_pos==0 ? 0x002200FF : 0x00FF0022;	//ƒ‰ƒCƒ“‚ÌƒJƒ‰[iƒ¿ˆÈŠOj
-	m_bodyCol	= 0x00FFFFFF;							//–{‘Ì‚ÌƒJƒ‰[iƒ¿ˆÈŠOj
+	m_alpha2	= 20;									//ï¿½ï¿½ï¿½Aï¿½Zï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Eï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½
+	m_lineCol	= m_pos==0 ? 0x002200FF : 0x00FF0022;	//ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ÌƒJï¿½ï¿½ï¿½[ï¿½iï¿½ï¿½ï¿½ÈŠOï¿½j
+	m_bodyCol	= 0x00FFFFFF;							//ï¿½{ï¿½Ì‚ÌƒJï¿½ï¿½ï¿½[ï¿½iï¿½ï¿½ï¿½ÈŠOï¿½j
 	m_txtCol1	= m_pos==0 ? 0x77220099 : 0x77990022;
-	m_txtCol2	= m_pos==0 ? 0xFF8888FF : 0xFFFF8888;	//ƒeƒLƒXƒgƒJƒ‰[iƒ¿ŠÜj
+	m_txtCol2	= m_pos==0 ? 0xFF8888FF : 0xFFFF8888;	//ï¿½eï¿½Lï¿½Xï¿½gï¿½Jï¿½ï¿½ï¿½[ï¿½iï¿½ï¿½ï¿½Üj
 
-	m_lineWidth = 2.0f;			//F‚Â‚«ƒ‰ƒCƒ“‘¾‚³
+	m_lineWidth = 2.0f;			//ï¿½Fï¿½Â‚ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 }
 
 
 /*-----------------------------------------------------------
-	”jŠü
+	ï¿½jï¿½ï¿½
 -------------------------------------------------------------*/
 void CTCharacterSelectBelt::Terminate()
 {
@@ -1187,7 +1188,7 @@ void CTCharacterSelectBelt::Terminate()
 
 
 /*-----------------------------------------------------------
-	Às
+	ï¿½ï¿½s
 -------------------------------------------------------------*/
 BOOL CTCharacterSelectBelt::Execute(DWORD time)
 {
@@ -1323,7 +1324,7 @@ void CTCharacterSelectBelt::UpdateText()
 }
 
 /*-----------------------------------------------------------
-	‚»‚Ì‘¼ ‘€ì
+	ï¿½ï¿½ï¿½Ì‘ï¿½ ï¿½ï¿½ï¿½ï¿½
 -------------------------------------------------------------*/
 void CTCharacterSelectBelt::SetRing(DWORD ringIndex)
 {
@@ -1376,7 +1377,7 @@ void CTCharacterSelectBelt::Restore()
 
 /*=======================================================================================
 
-	ƒIƒvƒVƒ‡ƒ“‘I‘ğƒNƒ‰ƒX
+	ï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½Nï¿½ï¿½ï¿½X
 
 =========================================================================================*/
 void CTOptionSelecter::EndSelect()
@@ -1389,7 +1390,7 @@ void CTOptionSelecter::EndSelect()
 
 /*=======================================================================================
 
-	ƒXƒe[ƒW‘I‘ğƒNƒ‰ƒX
+	ï¿½Xï¿½eï¿½[ï¿½Wï¿½Iï¿½ï¿½Nï¿½ï¿½ï¿½X
 
 =========================================================================================*/
 
@@ -1397,7 +1398,7 @@ DWORD CTStageSelecter::m_previous_selected_ring  =0;
 DWORD CTStageSelecter::m_previous_selected_index =0;
 
 /*-----------------------------------------------------------
-	‰Šú‰»
+	ï¿½ï¿½ï¿½ï¿½
 -------------------------------------------------------------*/
 void CTStageSelecter::Initialize()
 {
@@ -1410,17 +1411,17 @@ void CTStageSelecter::Initialize()
 	
 	LoadBMP();
 
-	//ƒIƒrƒpƒ‰ƒ[ƒ^‰Šú‰»
-	m_txtTop	= TRUE;				//ƒeƒLƒXƒg‚ğã‚É”z’u‚·‚é‚©A‰º‚É”z’u‚·‚é‚©
-	m_txtLeft	= 50.0f;			//ƒeƒLƒXƒg‚Ì¶ˆÊ’u
-	m_txtR2L	= FALSE;			//ƒeƒLƒXƒg‰E¨¶•`‰æ
+	//ï¿½Iï¿½rï¿½pï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^ï¿½ï¿½ï¿½ï¿½
+	m_txtTop	= TRUE;				//ï¿½eï¿½Lï¿½Xï¿½gï¿½ï¿½ï¿½É”zï¿½uï¿½ï¿½ï¿½é‚©ï¿½Aï¿½ï¿½ï¿½É”zï¿½uï¿½ï¿½ï¿½é‚©
+	m_txtLeft	= 50.0f;			//ï¿½eï¿½Lï¿½Xï¿½gï¿½Ìï¿½ï¿½Ê’u
+	m_txtR2L	= FALSE;			//ï¿½eï¿½Lï¿½Xï¿½gï¿½Eï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½
 	m_alpha1	= 230;
-	m_alpha2	= 150;				//ƒ¿A”Z‚¢‚Æ‚±E”–‚¢‚Æ‚±
-	m_lineCol	= 0x00555555;		//ƒ‰ƒCƒ“‚ÌƒJƒ‰[iƒ¿ˆÈŠOj
-	m_bodyCol	= 0x00FFFFFF;		//–{‘Ì‚ÌƒJƒ‰[iƒ¿ˆÈŠOj
+	m_alpha2	= 150;				//ï¿½ï¿½ï¿½Aï¿½Zï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Eï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½
+	m_lineCol	= 0x00555555;		//ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ÌƒJï¿½ï¿½ï¿½[ï¿½iï¿½ï¿½ï¿½ÈŠOï¿½j
+	m_bodyCol	= 0x00FFFFFF;		//ï¿½{ï¿½Ì‚ÌƒJï¿½ï¿½ï¿½[ï¿½iï¿½ï¿½ï¿½ÈŠOï¿½j
 	m_txtCol1	= 0xFF555555;
-	m_txtCol2	= 0xFF000000;		//ƒeƒLƒXƒgƒJƒ‰[iƒ¿ŠÜj
-	m_lineWidth = 2.0f;				//F‚Â‚«ƒ‰ƒCƒ“‘¾‚³
+	m_txtCol2	= 0xFF000000;		//ï¿½eï¿½Lï¿½Xï¿½gï¿½Jï¿½ï¿½ï¿½[ï¿½iï¿½ï¿½ï¿½Üj
+	m_lineWidth = 2.0f;				//ï¿½Fï¿½Â‚ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	m_base_y = 240.0f;
 	m_height_base = 380.0f;
 
@@ -1429,7 +1430,7 @@ void CTStageSelecter::Initialize()
 
 
 /*-----------------------------------------------------------
-	”jŠü
+	ï¿½jï¿½ï¿½
 -------------------------------------------------------------*/
 void CTStageSelecter::Terminate()
 {
@@ -1440,7 +1441,7 @@ void CTStageSelecter::Terminate()
 
 
 /*-----------------------------------------------------------
-	XV
+	ï¿½Xï¿½V
 -------------------------------------------------------------*/
 BOOL CTStageSelecter::Execute(DWORD time)
 {
@@ -1546,15 +1547,15 @@ BOOL CTStageSelecter::Execute(DWORD time)
 
 
 /*-----------------------------------------------------------
-	•`‰æ
+	ï¿½`ï¿½ï¿½
 -------------------------------------------------------------*/
 void CTStageSelecter::Draw()
 {
-	//ƒIƒrEƒ^ƒCƒgƒ‹•`‰æ
+	//ï¿½Iï¿½rï¿½Eï¿½^ï¿½Cï¿½gï¿½ï¿½ï¿½`ï¿½ï¿½
 	CTBeltBase::CalcTopBottom();
 	CTBeltBase::Draw();
 
-	if(m_dds)//ƒvƒŒƒrƒ…[•`‰æ
+	if(m_dds)//ï¿½vï¿½ï¿½ï¿½rï¿½ï¿½ï¿½[ï¿½`ï¿½ï¿½
 	{
 		RECT rsrc;
 		MYRECT3D rdst;
@@ -1569,7 +1570,7 @@ void CTStageSelecter::Draw()
 		g_draw.MyBlt3D(m_dds,rsrc,rdst);
 	}
 
-	// ƒXƒe[ƒW–¼‚ğ•\¦
+	// ï¿½Xï¿½eï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½
 	if (m_state != CTSSS_NotReady && m_state != CTSSS_Hide)
 	{
 		RECT r;
@@ -1583,7 +1584,7 @@ void CTStageSelecter::Draw()
 
 
 /*-----------------------------------------------------------
-	ƒvƒŒƒrƒ…[‚Ì“Ç‚İ’¼‚µ
+	ï¿½vï¿½ï¿½ï¿½rï¿½ï¿½ï¿½[ï¿½Ì“Ç‚İ’ï¿½ï¿½ï¿½
 -------------------------------------------------------------*/
 void CTStageSelecter::LoadBMP()
 {
@@ -1599,7 +1600,7 @@ void CTStageSelecter::LoadBMP()
 
 
 /*-----------------------------------------------------------
-	ƒeƒLƒXƒgXV
+	ï¿½eï¿½Lï¿½Xï¿½gï¿½Xï¿½V
 -------------------------------------------------------------*/
 void CTStageSelecter::UpdateText()
 {
@@ -1609,22 +1610,22 @@ void CTStageSelecter::UpdateText()
 
 	for(UINT i=0;i<strlen(m_disp_str);i++){
 		if(m_disp_str[i]=='\\'){
-			m_disp_str[i]='/';//‚±‚Á‚¿‚Ì‚Ù‚¤‚ª‚©‚Á‚±‚æ‚³‚°
+			m_disp_str[i]='/';//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Ù‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ‚³ï¿½ï¿½
 		}
 	}
 }
 
 
 /*-----------------------------------------------------------
-	ƒL[“ü—Íˆ—
+	ï¿½Lï¿½[ï¿½ï¿½Íï¿½ï¿½ï¿½
 -------------------------------------------------------------*/
 void CTStageSelecter::HandlePad()
 {
-	//SELECTƒ^ƒXƒNƒQƒbƒg
+	//SELECTï¿½^ï¿½Xï¿½Nï¿½Qï¿½bï¿½g
 	CCharacterSelectBase* ccselect = dynamic_cast<CCharacterSelectBase*>(g_system.GetCurrentMainTask());
 	if(!ccselect)return;
 
-	//ƒL[“ü—Íæ“¾
+	//ï¿½Lï¿½[ï¿½ï¿½Íæ“¾
 	DWORD keystate=0;
 	std::vector<DWORD>::iterator ite=m_keyIndexList.begin();
 	std::vector<DWORD>::iterator itee=m_keyIndexList.end();
@@ -1635,16 +1636,16 @@ void CTStageSelecter::HandlePad()
 	DWORD prvring = m_selected_ring;
 	DWORD prvindx = m_selected_index;
 
-	//Œˆ’è
-	if(keystate & KEYSTA_BA2){//uAvŒˆ’è
+	//ï¿½ï¿½ï¿½ï¿½
+	if(keystate & KEYSTA_BA2){//ï¿½uAï¿½vï¿½ï¿½ï¿½ï¿½
 		ccselect->OnStageSelect(this,GetSelection());
 		m_state = CTSSS_Hide;
 	}
-	else if(keystate & KEYSTA_BD2){//ƒ‰ƒ“ƒ_ƒ€Œˆ’è
+	else if(keystate & KEYSTA_BD2){//ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		ccselect->OnStageSelect(this,-1);
 		m_state = CTSSS_Hide;
 	}
-	//©E¨
+	//ï¿½ï¿½ï¿½Eï¿½ï¿½
 	else if(keystate & KEYSTA_ARIGHT2){//LEFT2){
 		if(m_selected_index==0)m_selected_index =g_stagelist.GetStageCountRing(m_selected_ring)-1;
 		else m_selected_index--;
@@ -1658,7 +1659,7 @@ void CTStageSelecter::HandlePad()
 		m_state = CTSSS_Change;
 		m_counter = 0;
 	}
-	//ªE«(ƒŠƒ“ƒO•ÏX)
+	//ï¿½ï¿½ï¿½Eï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ÏX)
 	else if( keystate & KEYSTA_UP2 ){
 		if(m_selected_ring==0)m_selected_ring=g_stagelist.GetRingNum()-1;
 		else m_selected_ring--;
@@ -1690,7 +1691,7 @@ void CTStageSelecter::HandlePad()
 }
 
 
-//ƒŠƒ“ƒO+ƒCƒ“ƒfƒbƒNƒX@¨@‘S‘Ì‚Å‚ÌƒCƒ“ƒfƒbƒNƒX
+//ï¿½ï¿½ï¿½ï¿½ï¿½O+ï¿½Cï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½@ï¿½ï¿½ï¿½@ï¿½Sï¿½Ì‚Å‚ÌƒCï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½X
 int CTStageSelecter::GetSelection()
 {
 	return g_stagelist.Ring2Serial( m_selected_ring , m_selected_index );
@@ -1702,7 +1703,7 @@ int CTStageSelecter::GetSelection()
 
 /*=======================================================================================
 
-	‘ÎíEŠî–{İ’èİ’èƒ^ƒXƒN
+	ï¿½Îï¿½Eï¿½ï¿½{ï¿½İ’ï¿½İ’ï¿½^ï¿½Xï¿½N
 
 =========================================================================================*/
 
@@ -1718,7 +1719,7 @@ int CTConditionSelecter::m_limit_time_index = 1;
 int CTConditionSelecter::m_limit_time[5] = {40,60,99,120,-1};
 
 /*---------------------------------------------------------------------------------------
-	‰Šú‰»
+	ï¿½ï¿½ï¿½ï¿½
 -----------------------------------------------------------------------------------------*/
 void CTConditionSelecter::Initialize()
 {
@@ -1729,17 +1730,17 @@ void CTConditionSelecter::Initialize()
 	m_selected = MAXNUM_TEAM*2;
 	m_ratio = 0.0f;
 
-	//ƒIƒrƒpƒ‰ƒ[ƒ^‰Šú‰»
-	m_txtTop	= TRUE;				//ƒeƒLƒXƒg‚ğã‚É”z’u‚·‚é‚©A‰º‚É”z’u‚·‚é‚©
-	m_txtLeft	= 50.0f;			//ƒeƒLƒXƒg‚Ì¶ˆÊ’u
-	m_txtR2L	= FALSE;			//ƒeƒLƒXƒg‰E¨¶•`‰æ
+	//ï¿½Iï¿½rï¿½pï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^ï¿½ï¿½ï¿½ï¿½
+	m_txtTop	= TRUE;				//ï¿½eï¿½Lï¿½Xï¿½gï¿½ï¿½ï¿½É”zï¿½uï¿½ï¿½ï¿½é‚©ï¿½Aï¿½ï¿½ï¿½É”zï¿½uï¿½ï¿½ï¿½é‚©
+	m_txtLeft	= 50.0f;			//ï¿½eï¿½Lï¿½Xï¿½gï¿½Ìï¿½ï¿½Ê’u
+	m_txtR2L	= FALSE;			//ï¿½eï¿½Lï¿½Xï¿½gï¿½Eï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½
 	m_alpha1	= 230;
-	m_alpha2	= 150;				//ƒ¿A”Z‚¢‚Æ‚±E”–‚¢‚Æ‚±
-	m_lineCol	= 0x00555555;		//ƒ‰ƒCƒ“‚ÌƒJƒ‰[iƒ¿ˆÈŠOj
-	m_bodyCol	= 0x00FFFFFF;		//–{‘Ì‚ÌƒJƒ‰[iƒ¿ˆÈŠOj
+	m_alpha2	= 150;				//ï¿½ï¿½ï¿½Aï¿½Zï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Eï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½
+	m_lineCol	= 0x00555555;		//ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ÌƒJï¿½ï¿½ï¿½[ï¿½iï¿½ï¿½ï¿½ÈŠOï¿½j
+	m_bodyCol	= 0x00FFFFFF;		//ï¿½{ï¿½Ì‚ÌƒJï¿½ï¿½ï¿½[ï¿½iï¿½ï¿½ï¿½ÈŠOï¿½j
 	m_txtCol1	= 0xFF555555;
-	m_txtCol2	= 0xFF000000;		//ƒeƒLƒXƒgƒJƒ‰[iƒ¿ŠÜj
-	m_lineWidth = 2.0f;				//F‚Â‚«ƒ‰ƒCƒ“‘¾‚³
+	m_txtCol2	= 0xFF000000;		//ï¿½eï¿½Lï¿½Xï¿½gï¿½Jï¿½ï¿½ï¿½[ï¿½iï¿½ï¿½ï¿½Üj
+	m_lineWidth = 2.0f;				//ï¿½Fï¿½Â‚ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	m_base_y = 240.0f;
 	m_height_base = 380.0f;
 	sprintf(m_disp_str,"SETTINGS");
@@ -1747,7 +1748,7 @@ void CTConditionSelecter::Initialize()
 	for(int j=0;j<2;j++){
 		for(int i=0;i<MAXNUM_TEAM;i++)
 		{
-			// Stable‚Íg‚í‚È‚¢
+			// Stableï¿½Ígï¿½ï¿½È‚ï¿½
 			if (m_assign[j][i] == CASSIGN_STABLE)
 				m_assign[j][i] = CASSIGN_COM;
 		}
@@ -1756,7 +1757,7 @@ void CTConditionSelecter::Initialize()
 
 
 /*---------------------------------------------------------------------------------------
-	I—¹ˆ—
+	ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 -----------------------------------------------------------------------------------------*/
 void CTConditionSelecter::Terminate()
 {
@@ -1765,7 +1766,7 @@ void CTConditionSelecter::Terminate()
 
 
 /*---------------------------------------------------------------------------------------
-	XV
+	ï¿½Xï¿½V
 -----------------------------------------------------------------------------------------*/
 BOOL CTConditionSelecter::Execute(DWORD time)
 {
@@ -1774,7 +1775,7 @@ BOOL CTConditionSelecter::Execute(DWORD time)
 
 	switch(m_state)
 	{
-	case CTCoS_Start://oŒ»’†
+	case CTCoS_Start://ï¿½oï¿½ï¿½ï¿½ï¿½
 		{
 			float tick = (float)m_counter/20.0f;
 			if(tick>1.0f){
@@ -1783,36 +1784,36 @@ BOOL CTConditionSelecter::Execute(DWORD time)
 			}
 			m_ratio = tick;
 		}break;
-	case CTCoS_Execute://Às’†
+	case CTCoS_Execute://ï¿½ï¿½sï¿½ï¿½
 		{
 			m_ratio = 1.0f;
 
 			DWORD key = g_input.GetAllKey();
-			if(m_selected==select_max-1 && (key&KEYSTA_ALEFT2 || key&KEYSTA_BA2) && m_ok){//ƒPƒe[ƒC
+			if(m_selected==select_max-1 && (key&KEYSTA_ALEFT2 || key&KEYSTA_BA2) && m_ok){//ï¿½Pï¿½eï¿½[ï¿½C
 				CCharacterSelect* ccselect = dynamic_cast<CCharacterSelect*>(g_system.GetCurrentMainTask());
 				ccselect->OnConditionDecided(this);
 				m_state = CTCoS_Hide;
 			}
 			else if( (m_selected==select_max && (key&KEYSTA_ALEFT2 || key&KEYSTA_BA2)) ||
-					  key&KEYSTA_BD2 ){//ƒ^ƒCƒgƒ‹‚É–ß‚é
+					  key&KEYSTA_BD2 ){//ï¿½^ï¿½Cï¿½gï¿½ï¿½ï¿½É–ß‚ï¿½
 				g_system.ReturnTitle();
 				return FALSE;
 			}
-			else if(key&KEYSTA_ALEFT2 || key&KEYSTA_BA2){//•ÏX
+			else if(key&KEYSTA_ALEFT2 || key&KEYSTA_BA2){//ï¿½ÏX
 				Change(FALSE);
 			}
-			else if(key&KEYSTA_ARIGHT2 || key&KEYSTA_BB2){//•ÏX
+			else if(key&KEYSTA_ARIGHT2 || key&KEYSTA_BB2){//ï¿½ÏX
 				Change(TRUE);
 			}
-			else if(key&KEYSTA_DOWN2){//ˆÚ“®
+			else if(key&KEYSTA_DOWN2){//ï¿½Ú“ï¿½
 				m_selected++;
 			}
-			else if(key&KEYSTA_UP2){//ˆÚ“®
+			else if(key&KEYSTA_UP2){//ï¿½Ú“ï¿½
 				m_selected--;
 			}
 			m_selected = (m_selected+select_max+1) % (select_max+1);
 		}break;
-	case CTCoS_Hide://Á¸’†
+	case CTCoS_Hide://ï¿½ï¿½ï¿½ï¿½ï¿½
 		{
 			float tick = (float)m_counter/20.0f;
 			if(tick>1.0f){
@@ -1821,7 +1822,7 @@ BOOL CTConditionSelecter::Execute(DWORD time)
 			}
 			m_ratio = 1.0f-tick;
 		}break;
-	case CTCoS_HideComplete://Á¸Š®—¹
+	case CTCoS_HideComplete://ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		{
 			m_ratio = 0.0f;
 		}break;
@@ -1834,10 +1835,10 @@ BOOL CTConditionSelecter::Execute(DWORD time)
 	return TRUE;
 }
 
-//İ’è•ÏX
+//ï¿½İ’ï¿½ÏX
 void CTConditionSelecter::Change(BOOL key)
 {
-	//‘ÎíŒ`®•ÏX
+	//ï¿½Îï¿½`ï¿½ï¿½ï¿½ÏX
 	if(m_selected==0)
 	{
 		m_type += key ? 1 : -1;
@@ -1845,7 +1846,7 @@ void CTConditionSelecter::Change(BOOL key)
 		Check();
 		return;
 	}
-	//§ŒÀŠÔ•ÏX
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô•ÏX
 	else if(m_selected==1 && m_type==TAISENKEISIKI_GOCYAMAZE)
 	{
 		m_limit_time_index += key ? 1 : -1;
@@ -1869,14 +1870,14 @@ void CTConditionSelecter::Change(BOOL key)
 	}
 
 	else{
-		//’Êí”ÍˆÍ‚ğ’´‚¦‚Ä‚µ‚Ü‚¤ê‡
+		//ï¿½Êï¿½ÍˆÍ‚ğ’´‚ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½ê‡
 		if(m_assign[sel1][sel2]==0 && !key){
 			m_assign[sel1][sel2] = CASSIGN_NONE;
 		}
 		else if(m_assign[sel1][sel2]==MAXNUM_KEYI-1 && key){
 			m_assign[sel1][sel2] = CASSIGN_COM;
 		}
-		//•’Ê
+		//ï¿½ï¿½ï¿½ï¿½
 		else{
 			m_assign[sel1][sel2] += key ? 1 : -1;
 		}
@@ -1887,16 +1888,16 @@ void CTConditionSelecter::Change(BOOL key)
 
 
 /*---------------------------------------------------------------------------------------
-	•`‰æ
+	ï¿½`ï¿½ï¿½
 -----------------------------------------------------------------------------------------*/
 void CTConditionSelecter::Draw()
 {
 	CTBeltBase::CalcTopBottom();
-	CTBeltBase::Draw();//ƒIƒrEƒ^ƒCƒgƒ‹•`‰æ
+	CTBeltBase::Draw();//ï¿½Iï¿½rï¿½Eï¿½^ï¿½Cï¿½gï¿½ï¿½ï¿½`ï¿½ï¿½
 
-	const float x=100;					//•\¦¶ˆÊ’u
-	const float txt_xr=0.65f;			//ƒeƒLƒXƒgEyŠg‘å—¦
-	const float txt_yr=0.65f*m_ratio;	//ƒeƒLƒXƒgExŠg‘å—¦
+	const float x=100;					//ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½Ê’u
+	const float txt_xr=0.65f;			//ï¿½eï¿½Lï¿½Xï¿½gï¿½Eyï¿½gï¿½å—¦
+	const float txt_yr=0.65f*m_ratio;	//ï¿½eï¿½Lï¿½Xï¿½gï¿½Exï¿½gï¿½å—¦
 	float y = 100.0f;
 	const float ystep = 24.0f;
 
@@ -1906,7 +1907,7 @@ void CTConditionSelecter::Draw()
 
 	char *tstr = new char[64];
 
-	//‘ÎíŒ`®
+	//ï¿½Îï¿½`ï¿½ï¿½
 	char *typenames[]={
 		"Cooperation",
 		"Marvel Like",
@@ -1917,7 +1918,7 @@ void CTConditionSelecter::Draw()
 				tstr,
 				TxtCol(0),txt_xr,txt_yr,SYSBMPTXT_PROP);
 	y += ystep;
-	//§ŒÀŠÔ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if(m_type==TAISENKEISIKI_GOCYAMAZE){
 		if(m_limit_time[m_limit_time_index]>0)
 			sprintf(tstr,"Limit Time : %d",m_limit_time[m_limit_time_index]);
@@ -1932,12 +1933,12 @@ void CTConditionSelecter::Draw()
 	y += ystep;
 	y += ystep;
 
-	//TEAM*-x : `
+	//TEAM*-x : ï¿½`
 	for(j=0;j<2;j++){
 		for(i=0;i<MAXNUM_TEAM;i++)
 		{
 			sprintf(tstr,"TEAM%d-%d : ",j+1,i+1);
-			if(m_assign[j][i]&CASSIGN_SPECIFIC)//“Á•Ê
+			if(m_assign[j][i]&CASSIGN_SPECIFIC)//ï¿½ï¿½ï¿½
 			{
 				switch(m_assign[j][i]){
 				case CASSIGN_COM:	sprintf(&tstr[strlen(tstr)],"Computer");break;
@@ -1955,7 +1956,7 @@ void CTConditionSelecter::Draw()
 		y += ystep;
 	}
 
-	//"OK"•`‰æ
+	//"OK"ï¿½`ï¿½ï¿½
 	g_system.DrawBMPTextEx(640.0f-x,y,0.0f,
 				m_ok ? "OK" : m_str_error,
 				TxtCol(2*MAXNUM_TEAM+2),txt_xr,txt_yr,SYSBMPTXT_PROP|SYSBMPTXT_R2L);
@@ -1970,14 +1971,14 @@ void CTConditionSelecter::Draw()
 
 
 /*---------------------------------------------------------------------------------------
-	İ’è‚Ì³“–«ƒ`ƒFƒbƒN
+	ï¿½İ’ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½Fï¿½bï¿½N
 -----------------------------------------------------------------------------------------*/
 void CTConditionSelecter::Check()
 {
 	m_ok=TRUE;
 	int i,j;
 
-	//‚·‚×‚ÄNONE‚É‚È‚Á‚Ä‚È‚¢‚©H
+	//ï¿½ï¿½ï¿½×‚ï¿½NONEï¿½É‚È‚ï¿½Ä‚È‚ï¿½ï¿½ï¿½ï¿½H
 	BOOL ok;
 	for(i=0;i<2;i++){
 		ok=FALSE;
@@ -1994,7 +1995,7 @@ void CTConditionSelecter::Check()
 	}
 
 	if(m_type==TAISENKEISIKI_GOCYAMAZE){
-		//ƒvƒŒƒCƒ„[‚ªd•¡‚µ‚Ä‚¢‚È‚¢‚©H
+		//ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½dï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½H
 		int cnt;
 		for(int k=0;k<MAXNUM_KEYI;k++)
 		{
@@ -2012,7 +2013,7 @@ void CTConditionSelecter::Check()
 		}
 	}
 	else{
-		//1ƒvƒŒƒCƒ„[‚ª2‚Â‚Ìƒ`[ƒ€‚É‚Ü‚½‚ª‚Á‚Ä”z’u‚³‚ê‚Ä‚¢‚È‚¢‚©H
+		//1ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½2ï¿½Â‚Ìƒ`ï¿½[ï¿½ï¿½ï¿½É‚Ü‚ï¿½ï¿½ï¿½ï¿½ï¿½Ä”zï¿½uï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½H
 		BOOL belong[2];
 		for(int k=0;k<MAXNUM_KEYI;k++)
 		{
@@ -2023,7 +2024,7 @@ void CTConditionSelecter::Check()
 				}
 			}
 			if(belong[0] && belong[1]){
-				sprintf(m_str_error,"Error , Player%d is Betrayer",k+1);//— Ø‚èÒƒnƒP[ƒ“
+				sprintf(m_str_error,"Error , Player%d is Betrayer",k+1);//ï¿½ï¿½ï¿½Ø‚ï¿½Òƒnï¿½Pï¿½[ï¿½ï¿½
 				m_ok=FALSE;
 				return;
 			}
