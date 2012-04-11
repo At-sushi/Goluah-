@@ -14,6 +14,7 @@
 #include "gauge.h"
 #include "global.h"
 #include "gobject.h"
+#include <math.h>
 
 
 /*-------------------------------------------------------------------
@@ -277,7 +278,7 @@ void CGauge::DrawHPGauge1()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æiTAISENKEISIKI_GOCYAMAZEj
 		if(pdat!=NULL){
 			//‘Ì—Í
 			if(pdat->hpmax!=0){
-				gauge_prv2[0][j] -= 20;
+				gauge_prv2[0][j] -= (gauge_prv2[0][j] - pdat->hp) / 2.718282;
 					if(gauge_prv2[0][j] < pdat->hp)gauge_prv2[0][j] = pdat->hp;
 				hiritu = (double)gauge_prv2[0][j] / (double)pdat->hpmax;
 				if(hiritu<0)hiritu=0;
@@ -342,7 +343,7 @@ void CGauge::DrawHPGauge1()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æiTAISENKEISIKI_GOCYAMAZEj
 		if(pdat!=NULL){
 			//‘Ì—Í
 			if(pdat->hpmax!=0){
-				gauge_prv2[1][j] -= 20;
+				gauge_prv2[1][j] -= (gauge_prv2[1][j] - pdat->hp) / 2.718282;
 					if(gauge_prv2[1][j] < pdat->hp)gauge_prv2[1][j] = pdat->hp;
 				hiritu = (double)gauge_prv2[1][j] / (double)pdat->hpmax;
 				if(hiritu<0)hiritu=0;

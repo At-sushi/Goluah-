@@ -938,6 +938,7 @@ void CFxFight::Update()
 	{
 		(*i)->mat *= (*i)->matr ;
 		(*i)->ctr += (*i)->vel;
+		(*i)->vel.y += 0.01f;
 	}
 }
 

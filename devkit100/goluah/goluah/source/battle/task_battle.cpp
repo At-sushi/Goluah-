@@ -1990,6 +1990,7 @@ void CBattleTask::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 			if(aif->hit & HITINFO_EFCTBURN )AddEffect(EFCTID_BURN,0,0,k_id);
 			if(aif->hit & HITINFO_EFCTBURN_B )AddEffect(EFCTID_BURN_B,0,0,k_id);
 			if(aif->hit & HITINFO_EFCTBURN_G )AddEffect(EFCTID_BURN_G,0,0,k_id);
+			AddEffect(EFCTID_SINDO,2,20);
 		}
 
 		//エフェクト
