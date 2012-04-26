@@ -1,27 +1,5 @@
-﻿2011/04/12 16:25:12 にビルドを開始しました。
-     1>ノード 2 上のプロジェクト "C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\goluah_efct\goluah_efct.vcxproj" (build ターゲット)。
-     1>InitializeBuildStatus:
-         "AlwaysCreate" が指定されたため "Debug\goluah_efct.unsuccessfulbuild" を作成しています。
-       ClCompile:
-         すべての出力が最新のものです。
-       ManifestResourceCompile:
-         すべての出力が最新のものです。
-     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(990,5): warning MSB8012: TargetPath(C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\goluah_efct\Debug\goluah_efct.dll) が Linker の OutputFile プロパティ値 (C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\execenv\goluah_efct.dll) と一致しません。このため、プロジェクトが正常にビルドされない可能性があります。この問題を解決するには、$(OutDir)、$(TargetName)、および $(TargetExt) の各プロパティ値が、%(Link.OutputFile) で指定されている値と一致することを確認してください。
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/execenv/goluah_efct.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/lib" d3dx8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:libci /MANIFEST /ManifestFile:"Debug\goluah_efct.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"Debug\goluah_efct.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Debug\goluah_efct.lib" /MACHINE:X86 /DLL Debug\goluah_efct.dll.embed.manifest.res
-         Debug\aki3d.obj
-         Debug\aki3d_internal.obj
-       Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\goluah_efct.dll.embed.manifest" /manifest Debug\goluah_efct.dll.intermediate.manifest
-         すべての出力が最新のものです。
-       LinkEmbedManifest:
-         すべての出力が最新のものです。
-         goluah_efct.vcxproj -> C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\goluah_efct\Debug\goluah_efct.dll
-       FinalizeBuildStatus:
-         ファイル "Debug\goluah_efct.unsuccessfulbuild" を削除しています。
-         "Debug\goluah_efct.lastbuildstate" のタッチ タスクを実行しています。
-     1>プロジェクト "C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\goluah_efct\goluah_efct.vcxproj" (build ターゲット) のビルドが完了しました。
+﻿2012/04/17 1:31:46 にビルドを開始しました。
 
-ビルドに成功しました。
+ビルドに失敗しました。
 
-経過時間 00:00:16.64
+経過時間 00:00:01.82
