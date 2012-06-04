@@ -1,14 +1,13 @@
-
 /*==============================================================
 
-	s“®ŠÖ”i’ÊíUŒ‚‹Zj
+	ï¿½sï¿½ï¿½ï¿½Öï¿½ï¿½iï¿½Êï¿½Uï¿½ï¿½ï¿½Zï¿½j
 
 ================================================================*/
 #include "character.h"
 
 
 /*---------------------------------------------------------------
-	—§ã
+	ï¿½ï¿½ï¿½ï¿½
 -----------------------------------------------------------------*/
 void CCharacter::act_att_sa()
 {
@@ -21,7 +20,7 @@ void CCharacter::act_att_sa()
 }
 
 /*---------------------------------------------------------------
-	—§’†
+	ï¿½ï¿½ï¿½ï¿½
 -----------------------------------------------------------------*/
 void CCharacter::act_att_sb()
 {
@@ -42,7 +41,7 @@ void CCharacter::act_att_sb()
 }
 
 /*---------------------------------------------------------------
-	—§‹­
+	ï¿½ï¿½ï¿½ï¿½
 -----------------------------------------------------------------*/
 void CCharacter::act_att_sc()
 {
@@ -62,7 +61,7 @@ void CCharacter::act_att_sc()
 }
 
 /*---------------------------------------------------------------
-	—§’† - ƒŒƒo[‘O“ü‚ê
+	ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½oï¿½[ï¿½Oï¿½ï¿½ï¿½
 -----------------------------------------------------------------*/
 void CCharacter::act_att_sd()
 {
@@ -91,7 +90,7 @@ void CCharacter::act_att_sd()
 }
 
 /*---------------------------------------------------------------
-	—§‹­ - ƒŒƒo[‘O“ü‚ê
+	ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½oï¿½[ï¿½Oï¿½ï¿½ï¿½
 -----------------------------------------------------------------*/
 void CCharacter::act_att_se()
 {
@@ -104,7 +103,7 @@ void CCharacter::act_att_se()
 	if(ccounter==8)movex(22);
 	if(ccounter==10)movex(13);
 	if(ccounter==15)movex(8);
-	if(ccounter==19)movex(9);
+	if(ccounter==20)movex(9);
 
 	if(ccounter<2)cell(CELL_SE1);
 	else if(ccounter<4)cell(CELL_SE2);
@@ -112,14 +111,14 @@ void CCharacter::act_att_se()
 	else if(ccounter<8)cell(CELL_SE4);
 	else if(ccounter<10)cell(CELL_SE5);
 	else if(ccounter<15)cell(CELL_SE6);//*
-	else if(ccounter<19)cell(CELL_SE7);
-	else if(ccounter<23)cell(CELL_SE8);
+	else if(ccounter<20)cell(CELL_SE7);
+	else if(ccounter<25)cell(CELL_SE8);
 	else ChangeAction(ACTID_NEUTRAL);
 }
 
 
 /*---------------------------------------------------------------
-	‹üã
+	ï¿½ï¿½ï¿½
 -----------------------------------------------------------------*/
 void CCharacter::act_att_ca()
 {
@@ -131,7 +130,7 @@ void CCharacter::act_att_ca()
 }
 
 /*---------------------------------------------------------------
-	‹ü’†
+	ï¿½ï¿½
 -----------------------------------------------------------------*/
 void CCharacter::act_att_cb()
 {
@@ -149,7 +148,7 @@ void CCharacter::act_att_cb()
 }
 
 /*---------------------------------------------------------------
-	‹ü‹­
+	ï¿½ï¿½
 -----------------------------------------------------------------*/
 void CCharacter::act_att_cc()
 {
@@ -169,7 +168,7 @@ void CCharacter::act_att_cc()
 }
 
 /*---------------------------------------------------------------
-	”òã
+	ï¿½ï¿½ï¿½
 -----------------------------------------------------------------*/
 void CCharacter::act_att_ja()
 {
@@ -186,7 +185,7 @@ void CCharacter::act_att_ja()
 }
 
 /*---------------------------------------------------------------
-	”ò’†
+	ï¿½ï¿½
 -----------------------------------------------------------------*/
 void CCharacter::act_att_jb()
 {	
@@ -217,7 +216,7 @@ void CCharacter::act_att_jb()
 }
 
 /*---------------------------------------------------------------
-	”ò‹­
+	ï¿½ï¿½
 -----------------------------------------------------------------*/
 void CCharacter::act_att_jc()
 {
@@ -242,7 +241,7 @@ void CCharacter::act_att_jc()
 }
 
 /*---------------------------------------------------------------
-	“Š‚°
+	ï¿½ï¿½ï¿½ï¿½
 -----------------------------------------------------------------*/
 void CCharacter::act_nage()
 {
@@ -262,7 +261,7 @@ void CCharacter::act_nage()
 	}
 }
 
-//“Š‚°i“G‘¤j
+//ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½Gï¿½ï¿½ï¿½j
 DWORD CCharacter::eact_nage(GOBJECT *pedat)
 {
 	if(pedat->counter < 18+10){
@@ -283,7 +282,7 @@ DWORD CCharacter::eact_nage(GOBJECT *pedat)
 
 
 /*---------------------------------------------------------------
-	x‰‡UŒ‚
+	ï¿½xï¿½ï¿½ï¿½Uï¿½ï¿½
 -----------------------------------------------------------------*/
 void CCharacter::act_striker_in()
 {
@@ -291,7 +290,7 @@ void CCharacter::act_striker_in()
 	pdat->kasanari=FALSE;
 
 	if(pdat->counter==0){
-		AddProperty( GOBJTYPE_DISPLAY );//‰æ–Ê“à‚É‚¢‚é
+		AddProperty( GOBJTYPE_DISPLAY );//ï¿½ï¿½Ê“ï¿½É‚ï¿½ï¿½ï¿½
 	}
 
 	GOBJECT *pedat;
@@ -355,7 +354,7 @@ void CCharacter::act_striker_attack()
 		pdat->kasanari=FALSE;
 
 		pdat->y += pdat->vy;
-		pdat->vy += 0.4;//‚ä‚Á‚­‚è
+		pdat->vy += 0.4;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		switch( (pdat->counter+2)%5 )
 		{
@@ -370,7 +369,7 @@ void CCharacter::act_striker_attack()
 	else
 	{
 		pdat->y += pdat->vy;
-		pdat->vy += 0.4;//‚ä‚Á‚­‚è
+		pdat->vy += 0.4;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		pdat->cnow = CELL_TATU4;
 	
 		if(pdat->y > 0){
@@ -388,8 +387,8 @@ void CCharacter::act_striker_out()
 	pdat->kasanari=FALSE;
 
 	if(pdat->counter==0){
-		pdat->objtype &= GOBJTYPE_NODISPLAY;//‰æ–ÊŠO‚Ö‚¢‚¯‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­
-		pdat->objtype |= GOBJFLG_TAIKI;//‘Ò‹@ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		pdat->objtype &= GOBJTYPE_NODISPLAY;//ï¿½ï¿½ÊŠOï¿½Ö‚ï¿½ï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
+		pdat->objtype |= GOBJFLG_TAIKI;//ï¿½Ò‹@ï¿½tï¿½ï¿½ï¿½Oï¿½ğ—§‚Ä‚ï¿½
 	}
 
 	if(pdat->counter < 2){

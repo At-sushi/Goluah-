@@ -1,4 +1,6 @@
-
+/*
+2011/10/29	別キャラ対戦出来るよう、「net1」「net2」を読み込むように
+*/
 /*============================================================================
 
 	戦闘タスククラス
@@ -59,13 +61,13 @@ void CBattleTaskNet::Initialize()
 	g_battleinfo.SetBattleType( TAISENKEISIKI_GOCYAMAZE );
 	g_battleinfo.SetLimitTime(-1);
 	g_battleinfo.AddCharacter(TEAM_PLAYER1,
-			g_charlist.FindCharacter("おにぎり"),
+			g_charlist.FindCharacter("net1"),
 			1,
 			g_play.IsHost() ? 0 : CASSIGN_NONE,
 			/*g_charlist.GetRandomOption( g_charlist.FindCharacter("おにぎり") )*/0
 			);
 	g_battleinfo.AddCharacter(TEAM_PLAYER2,
-			g_charlist.FindCharacter("おにぎり"),
+			g_charlist.FindCharacter("net2"),
 			2,
 			g_play.IsHost() ? 1 : 0,
 			/*g_charlist.GetRandomOption( g_charlist.FindCharacter("おにぎり") )*/0
@@ -168,7 +170,7 @@ void CBattleTaskNet::StartRound()
 	DWORD k;
 	GOBJECT	  *pdat;
 	for(j=0;j<2;j++){
-		for(i=0;i<(int)g_battleinfo.GetNumTeam(j);i++){	
+		for(i=0;i<(int)g_battleinfo.GetNumTeam(j);i++){
 			k=charobjid[j][i];
 			if(k!=0){
 				pdat = &(GetGObject(k)->data);
@@ -181,7 +183,7 @@ void CBattleTaskNet::StartRound()
 				pdat->y = 0;
 				pdat->x = (150 + 50*i) *(j==0 ? -1 : 1);
 				pdat->muki = (j==0 ? FALSE : TRUE);
-	
+
 				if(pdat != NULL){
 					pdat->hp = pdat->hpmax;		//HP回復
 					pdat->aid = ACTID_NEUTRAL;	//行動ID
@@ -194,11 +196,11 @@ void CBattleTaskNet::StartRound()
 			}
 		}
 	}
-	
+
 //	bf_state = BFSTATE_WAITFORENDPOSE;
 	bf_state = BFSTATE_FIGHTING;
 	bf_counter=0;
-	
+
 	//エフェクトすべて無効
 	efct_slowdown=0;
 	efct_stop=0;
@@ -269,7 +271,7 @@ BOOL CBattleTaskNet::Execute(DWORD time)
 
 	//local vals
 	int i;
-	
+
 	act_stop=FALSE;
 	g_input.KeyLock( bf_state==BFSTATE_FIGHTING ? FALSE : TRUE );
 
@@ -354,7 +356,7 @@ BOOL CBattleTaskNet::Execute(DWORD time)
 			AddEffect(EFCTID_HATTEN,640, 5);//Hatten
 
 	g_system.PopSysTag();
-	
+
 	return battle_end ? FALSE : TRUE;
 }
 
@@ -366,11 +368,11 @@ BOOL CBattleTaskNet::Execute(DWORD time)
 void CBattleTaskNet::T_Command()
 {
 	g_system.PushSysTag(__FUNCTION__);
-	
+
 	// リモート側を処理しないようにする必要有り（もうした）
 	int i;
 	for(i=0;i<(int)p_objects.size();i++){
-		if(p_objects[i]!=NULL && 
+		if(p_objects[i]!=NULL &&
 			(p_objects[i]->data.id & BATTLETASK_FXOBJFLAG || IsLocal(p_objects[i]->dll_id)))
 			p_objects[i]->Message(GOBJMSG_COMMAND);
 	}
@@ -403,7 +405,7 @@ void CBattleTaskNet::T_Action(BOOL stop)
 
 	int i;
 	for(i=0;i<(int)p_objects.size();i++){
-		if(p_objects[i]!=NULL && 
+		if(p_objects[i]!=NULL &&
 			(p_objects[i]->data.id & BATTLETASK_FXOBJFLAG || IsLocal(p_objects[i]->dll_id) ||
 			p_objects[i]->dll_id == 0 || p_objects[i]->dll_id == 7 || actcount > 0)
 			){
@@ -1059,7 +1061,7 @@ void CBattleTaskNet::Draw()
 			objlist[i]->Message(GOBJMSG_DRAWBACK);
 		}
 	}
-	
+
 	g_draw.d3ddev->Clear(0,NULL,D3DCLEAR_ZBUFFER|D3DCLEAR_STENCIL,0,1.0f,0);// clear z buffer
 	if (!g_draw.StencilEnable())
 		g_draw.d3ddev->Clear(0,NULL,D3DCLEAR_ZBUFFER,0,1.0f,0);// clear z buffer
@@ -1105,7 +1107,7 @@ void CBattleTaskNet::Draw()
 	g_draw.d3ddev->Clear(0,NULL,D3DCLEAR_ZBUFFER|D3DCLEAR_STENCIL,0,1.0f,0);// clear z buffer
 	if (!g_draw.StencilEnable())
 		g_draw.d3ddev->Clear(0,NULL,D3DCLEAR_ZBUFFER,0,1.0f,0);// clear z buffer
-	
+
 	int hitdispx;
 	CGObject *pobj;
 	if(!(!g_system.sw_showbg && g_config.IsDebugMode())){
@@ -1245,9 +1247,9 @@ void CBattleTaskNet::Draw()
 		{
 			float ar = 320.0f/240.0f;
 
-			vb[0].color = 
-			vb[1].color = 
-			vb[2].color = 
+			vb[0].color =
+			vb[1].color =
+			vb[2].color =
 			vb[3].color = ((int)((float)efct_fadein / 20.0f * 0xFF) * 0x01000000) | 0x00FFFFFF;
 
 			vb[0].x =  0.0f*ar;
@@ -1260,16 +1262,16 @@ void CBattleTaskNet::Draw()
 			vb[2].y =  0.0f;
 			vb[3].y =  2.0f;
 
-			vb[0].z = 
-			vb[1].z = 
-			vb[2].z = 
+			vb[0].z =
+			vb[1].z =
+			vb[2].z =
 			vb[3].z = 0.0f;
 
 			vb[0].tu = 0.0f;
 			vb[1].tu = 0.0f;
 			vb[2].tu = 1.0f;
 			vb[3].tu = 1.0f;
-			
+
 			vb[0].tv = 0.0f;
 			vb[1].tv = 1.0f;
 			vb[2].tv = 0.0f;
@@ -1333,7 +1335,7 @@ HRESULT CBattleTaskNet::DPlayMessage(PVOID UserCont, DWORD mtype, PVOID pmes)
 					// pobj->data.cnow = pmes->cnow;
 
 					// 暫定措置。めくりには対応してない。
-					if (pobj->data.muki = (pmes->muki ? TRUE : FALSE)) 
+					if (pobj->data.muki = (pmes->muki ? TRUE : FALSE))
 						pobj->data.atk2.flags |= ATKINFO2_RIGHTBACK;
 					else
 						pobj->data.atk2.flags &= ~ATKINFO2_RIGHTBACK;
@@ -1365,7 +1367,7 @@ HRESULT CBattleTaskNet::DPlayMessage(PVOID UserCont, DWORD mtype, PVOID pmes)
 					}
 					break;
 				}
-				
+
 			case GNETMSG_ACTION2:
 				{
 					if (pMsg->dwReceiveDataSize >= sizeof(Action2Mes) && !g_play.IsHost())
@@ -1652,7 +1654,7 @@ void CBattleTaskNet::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 		g_system.PopSysTag();
 		return;
 	}
-	
+
 	//とりあえず当たったことを通知
 	if(attacker->Message(GOBJMSG_TOUCHC,k_id)==TOUCHC_CANCEL)
 	{
@@ -1696,7 +1698,7 @@ void CBattleTaskNet::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 		if(rand()%100 < higaisya->comguard){
 			comgrdkey = KEYSTA_BACK;
 		}
-		
+
 		cool_guard = (rand()%8 < higaisya->com_level) ? TRUE : FALSE;
 
 		//上下段判定
@@ -1993,7 +1995,7 @@ void CBattleTaskNet::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 			AddEffect(EFCTID_FLASH,4,0);
 			break;
 		}
-	
+
 		if(pdat->hp<=0){//死亡
 			if(g_battleinfo.GetBattleType()==TAISENKEISIKI_GOCYAMAZE)
 				pdat->aid=ACTID_FINALDOWN;
@@ -2035,7 +2037,7 @@ void CBattleTaskNet::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 		//攻撃を無視したならば元の攻撃力情報に戻しておく
 		higaisya->data.atk2 = tmpatkinfo;
 	}
-	
+
 	g_system.PopSysTag();
 }
 

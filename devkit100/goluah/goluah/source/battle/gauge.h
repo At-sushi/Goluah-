@@ -1,11 +1,13 @@
-
+/*
+2011/10/29	gauge.cppの変更に伴い変更
+*/
 /*===================================================================
 
-	�̗̓Q�[�W
-	�L�����N�^��E�����J�E���g�EFPS
-	�p���[�Q�[�W
+	体力ゲージ
+	キャラクタ顔・勝利カウント・FPS
+	パワーゲージ
 
-	������A�퓬���̃V�X�e�����`��֌W
+	･･･等、戦闘時のシステム情報描画関係
 
 =====================================================================*/
 #pragma once
@@ -14,10 +16,10 @@
 class CBattleTaskBase;
 
 /*!
-*	@brief �������̉�ʏ�̕\���n�S��
+*	@brief 試合中の画面上の表示系全般
 *	@ingroup Battle
 *	
-*	�̗̓Q�[�W�A�p���[�Q�[�W + ��ʏ�̕\���n�S�ʁB�i��A�����J�E���g�A�e�o�r�j���s���B
+*	体力ゲージ、パワーゲージ + 画面上の表示系全般。（顔、勝利カウント、ＦＰＳ）を行う。
 */
 class CGauge
 {
@@ -30,39 +32,41 @@ public:
 	void Initialize(DWORD num);
 	void ActivateGauge(DWORD t,DWORD n);
 
-	//�퓬�I�u�W�F�N�g�Ƃ��Ă̓���
+	//戦闘オブジェクトとしての動作
 	static DWORD GaugeObjectMessage(DWORD msg,LPVOID pdat,DWORD prm);
 	void Action();
 	void Draw();
 
 protected:
-	void DrawHPGauge1();		//!< �����፬���̏ꍇ
-	void DrawHPGauge2();		//!< ����ȊO
-	void DrawPowerGauge1();		//!< �����፬���̏ꍇ
-	void DrawPowerGauge2();		//!< ����ȊO
-	void DrawPowerGaugeType1(BOOL player,int pindex,int x,int y);			//!< �p���[�Q�[�W�`��(�X�g�b�N)
-	void DrawPowerGaugeType2(BOOL player,int pindex,int x,int y,BOOL pow);	//!< �p���[�Q�[�W�`��(0-100%)
+//	void DrawHPGauge1();		ごちゃ混ぜの場合
+//	void DrawHPGauge2();		それ以外
+	void DrawPowerGauge1();		//!< ごちゃ混ぜの場合
+	void DrawPowerGauge2();		//!< それ以外
+	void DrawPowerGaugeType1(BOOL player,int pindex,int x,int y);			//!< パワーゲージ描画(ストック)
+	void DrawPowerGaugeType2(BOOL player,int pindex,int x,int y,BOOL pow);	//!< パワーゲージ描画(0-100%)
+	void DrawHPwaku1();	//　HP枠coop
+	void DrawHPwaku2();	//	HP枠marvel kof
+	void DrawHPG1();	//	DrawHPGauge1()の代替品
+	void DrawHPG2();	//	DrawHPGauge2()の代替品
 
-//*�ϐ�*
+//*変数*
 protected:
 	CBattleTaskBase* battleTask;
 
-	DWORD oid;					//!< �Q�[�W�́A�퓬�I�u�W�F�N�g�Ƃ��ẴI�u�W�F�N�gID
-	DWORD num_teammember;		//!< 1�`�[�����l��
-	DWORD activegauge[2];		//!< �ǂ̃v���C���[�����ݑΐ킵�Ă���̂��H0,1,2
+	DWORD oid;					//!< ゲージの、戦闘オブジェクトとしてのオブジェクトID
+//	DWORD num_teammember;		1チーム何人か 未使用っぽいので削除予定
+	DWORD activegauge[2];		//!< どのプレイヤーが現在対戦しているのか？0,1,2
 	DWORD flip_counter;
-	MYSURFACE *dds_face[2][MAXNUM_TEAM];	//!< ����������
+	MYSURFACE *dds_face[2][MAXNUM_TEAM];	//!< ちっこい顔
 	BYTE dll_id;				//!< DLLID
 
-	//�̗̓Q�[�W
-	int gauge_prv[2][MAXNUM_TEAM];		//!< �H������������킶�팸���Ă����̂Ɏg�p
-	int gauge_prv2[2][MAXNUM_TEAM];		//!< �}�Ɍ��炷�p
+	//体力ゲージ
+	int gauge_prv[2][MAXNUM_TEAM];		//!< 食らった分がじわじわ減っていくのに使用
+	int gauge_prv2[2][MAXNUM_TEAM];		//!< 急に減らす用
 
-	//�p���[�Q�[�W
-	double pgauge_prv[2][MAXNUM_TEAM];	//!< �������O�ɕ\�����Ă��Q�[�W��
-	DWORD numprv[2][MAXNUM_TEAM];			//!< �������O�̃Q�[�W�X�g�b�N���Bcharge���Ɏg�p
-	BOOL pg_draw[2][MAXNUM_TEAM];			//!< �p���[�Q�[�W��`�悷�邩�ǂ���
-	int pg_dx[2][MAXNUM_TEAM];			//!< �p���[�Q�[�W�̂��炵���B�Q�[�W�̌������Ɏg�p
+	//パワーゲージ
+	double pgauge_prv[2][MAXNUM_TEAM];	//!< いっこ前に表示してたゲージ量
+	DWORD numprv[2][MAXNUM_TEAM];			//!< いっこ前のゲージストック数。charge音に使用
+	BOOL pg_draw[2][MAXNUM_TEAM];			//!< パワーゲージを描画するかどうか
+	int pg_dx[2][MAXNUM_TEAM];			//!< パワーゲージのずらし幅。ゲージの交換時に使用
 };
-
-
