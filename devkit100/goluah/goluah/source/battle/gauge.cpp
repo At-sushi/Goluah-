@@ -80,7 +80,7 @@ void CGauge::Initialize()
 			pdat = battleTask->GetCharacterInfo(i,j);
 			if(pdat!=NULL){
 				gauge_prv[i][j] = pdat->hpmax;
-				gauge_prv2[i][j] = pdat->hpmax;
+				gauge_prv2[i][j] = 0;
 			}
 			pgauge_prv[i][j]=0;
 			numprv[i][j]=0;
