@@ -2303,15 +2303,15 @@ void CBattleTask::SetTransform(BOOL b)
 
 	if(b){
 		g_draw.camera_x = (float)GetDisplayCenterX()/320.0f  * ASPECTRATIO;
-		g_draw.camera_z = max(min(2.99f * (max(xmaai, ymaai*ASPECTRATIO) / (640 - 200)), 2.99f), 1.49f);
-		g_draw.camera_y = -(float)tan(D3DXToRadian(40 * (g_draw.camera_z/2.99f))) + dy_sindo;
+		g_draw.camera_z = -max(min(2.99f * (max(xmaai, ymaai*ASPECTRATIO) / (640 - 200)), 2.99f), 1.49f);
+		g_draw.camera_y = -(float)tan(D3DXToRadian(40 * (-g_draw.camera_z/2.99f))) + dy_sindo;
 		g_draw.ResetTransformMatrix();
 		g_draw.ResetParentMatrix();
 	}
 	else{
 		g_draw.camera_x = 1.0f*ASPECTRATIO;
 		g_draw.camera_y = 1.0f;
-		g_draw.camera_z = 2.99f;
+		g_draw.camera_z = -2.99f;
 		g_draw.ResetTransformMatrix();
 		g_draw.ResetParentMatrix();
 		g_draw.d3ddev->SetTransform(D3DTS_WORLD,&(g_draw.matparent));
