@@ -675,8 +675,8 @@ void CBattleTask::T_KasanariHantei()
 		else disp_center_x+=4;
 		if(disp_center_x > new_disp_center_x)disp_center_x = new_disp_center_x;//いきすぎ
 	}
-	if(disp_center_x>320)disp_center_x=320;
-	else if(disp_center_x<-320)disp_center_x=-320;
+//	if(disp_center_x>320)disp_center_x=320;
+//	else if(disp_center_x<-320)disp_center_x=-320;
 
 	//画面外に行っちゃってるおメッセージ
 	int gamengai;
@@ -2294,6 +2294,8 @@ void CBattleTask::HitStop(DWORD len,DWORD oid)
 void CBattleTask::SetTransform(BOOL b)
 {
 	float dy_sindo=0;
+	float xmaai = abs(GetCharacterObject(0, 0)->data.x - GetCharacterObject(1, 0)->data.x),
+		ymaai = abs(GetCharacterObject(0, 0)->data.y - GetCharacterObject(1, 0)->data.y);
 	if(efct_sindo > 0){
 		if( (timeGetTime()/30)%2==0 )dy_sindo = efct_sindom/240.0f;
 		else dy_sindo = efct_sindom/240.0f*(-1);
@@ -2301,13 +2303,15 @@ void CBattleTask::SetTransform(BOOL b)
 
 	if(b){
 		g_draw.camera_x = (float)GetDisplayCenterX()/320.0f  * ASPECTRATIO;
-		g_draw.camera_y = -(float)tan(D3DXToRadian(40)) + dy_sindo;
+		g_draw.camera_z = min(2.99f * (max(xmaai, ymaai*ASPECTRATIO) / (640 - 200)), 2.99f);
+		g_draw.camera_y = -(float)tan(D3DXToRadian(40 * (g_draw.camera_z/2.99f))) + dy_sindo;
 		g_draw.ResetTransformMatrix();
 		g_draw.ResetParentMatrix();
 	}
 	else{
 		g_draw.camera_x = 1.0f*ASPECTRATIO;
 		g_draw.camera_y = 1.0f;
+		g_draw.camera_z = 2.99f;
 		g_draw.ResetTransformMatrix();
 		g_draw.ResetParentMatrix();
 		g_draw.d3ddev->SetTransform(D3DTS_WORLD,&(g_draw.matparent));
