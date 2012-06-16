@@ -110,12 +110,12 @@ DWORD CGObject::Message(DWORD type,DWORD prm)
 	case GOBJMSG_DRAW:
 		if(siver>0){
 			if(siver%2==0){
-				data.x-=5;
-				siverdx = 5;
+				data.x-=2.5;
+				siverdx = 2.5;
 			}
 			else {
-				data.x+=5;
-				siverdx = -5;
+				data.x+=2.5;
+				siverdx = -2.5;
 			}
 			siver--;
 		}
