@@ -1995,6 +1995,7 @@ void CBattleTask::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 			if(aif->hit & HITINFO_EFCTBURN_B )AddEffect(EFCTID_BURN_B,0,0,k_id);
 			if(aif->hit & HITINFO_EFCTBURN_G )AddEffect(EFCTID_BURN_G,0,0,k_id);
 			AddEffect(EFCTID_SINDO,2,20);
+			AddEffect(EFCTID_FLASH, 4, 0);
 		}
 
 		//エフェクト
@@ -2294,7 +2295,22 @@ void CBattleTask::HitStop(DWORD len,DWORD oid)
 void CBattleTask::SetTransform(BOOL b)
 {
 	float dy_sindo=0;
-	float xmaai = abs(GetCharacterObject(0, 0)->data.x - GetCharacterObject(1, 0)->data.x),
+	double xmin = 320, xmax = -320;
+
+	for(int i=0; i<(int)p_objects.size(); i++){
+		if(p_objects[i] != NULL){
+			if( (p_objects[i]->data.objtype & GOBJFLG_DISPLAYME) )//&& !(p_objects[i]->data.objtype & GOBJFLG_COMPUTER))
+			{
+				double x = p_objects[i]->data.x;
+				if (x < xmin)
+					xmin = x;
+				if (x > xmax)
+					xmax = x;
+			}
+		}
+	}
+
+	float xmaai = abs(xmax - xmin),
 		ymaai = abs(GetCharacterObject(0, 0)->data.y - GetCharacterObject(1, 0)->data.y);
 	if(efct_sindo > 0){
 		if( (timeGetTime()/30)%2==0 )dy_sindo = efct_sindom/240.0f;
@@ -2303,7 +2319,7 @@ void CBattleTask::SetTransform(BOOL b)
 
 	if(b){
 		g_draw.camera_x = (float)GetDisplayCenterX()/320.0f  * ASPECTRATIO;
-		g_draw.camera_z = -max(min(2.99f * (max(xmaai, ymaai*ASPECTRATIO) / (640 - 200)), 2.99f), 1.49f);
+		g_draw.camera_z = -max(min(2.99f * (max(xmaai, ymaai*ASPECTRATIO) / (640 - 250)), 2.99f), 1.49f);
 		g_draw.camera_y = -(float)tan(D3DXToRadian(40 * (-g_draw.camera_z/2.99f))) + dy_sindo;
 		g_draw.ResetTransformMatrix();
 		g_draw.ResetParentMatrix();
