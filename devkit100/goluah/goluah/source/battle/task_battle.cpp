@@ -675,8 +675,8 @@ void CBattleTask::T_KasanariHantei()
 		else disp_center_x+=4;
 		if(disp_center_x > new_disp_center_x)disp_center_x = new_disp_center_x;//いきすぎ
 	}
-	if(disp_center_x>480)disp_center_x=480;
-	else if(disp_center_x<-480)disp_center_x=-480;
+	if(disp_center_x>400)disp_center_x=400;
+	else if(disp_center_x<-400)disp_center_x=-400;
 
 	//画面外に行っちゃってるおメッセージ
 	int gamengai;
@@ -2295,7 +2295,8 @@ void CBattleTask::HitStop(DWORD len,DWORD oid)
 void CBattleTask::SetTransform(BOOL b)
 {
 	float dy_sindo=0;
-	double xmin = 320, xmax = -320;
+	double xmin = 640, xmax = -640;
+	double ymin = 0, ymax = -640;
 
 	for(int i=0; i<(int)p_objects.size(); i++){
 		if(p_objects[i] != NULL){
@@ -2304,6 +2305,8 @@ void CBattleTask::SetTransform(BOOL b)
 				double x = p_objects[i]->data.x;
 				if (x < xmin)
 					xmin = x;
+				if (p_objects[i]->data.y < ymin)
+					ymin = p_objects[i]->data.y;
 				if (x > xmax)
 					xmax = x;
 			}
@@ -2311,7 +2314,7 @@ void CBattleTask::SetTransform(BOOL b)
 	}
 
 	float xmaai = abs(xmax - xmin),
-		ymaai = abs(GetCharacterObject(0, 0)->data.y - GetCharacterObject(1, 0)->data.y);
+		ymaai = abs(ymin - 50);
 	if(efct_sindo > 0){
 		if( (timeGetTime()/30)%2==0 )dy_sindo = efct_sindom/240.0f;
 		else dy_sindo = efct_sindom/240.0f*(-1);
@@ -2319,7 +2322,7 @@ void CBattleTask::SetTransform(BOOL b)
 
 	if(b){
 		g_draw.camera_x = (float)GetDisplayCenterX()/320.0f  * ASPECTRATIO;
-		g_draw.camera_z = -max(min(2.99f * (max(xmaai, ymaai*ASPECTRATIO) / (640 - 250)), 2.99f), 1.49f);
+		g_draw.camera_z = -max(min(2.99f * (max(xmaai, ymaai*ASPECTRATIO) / (640 - 250)), 2.99f), 2.24f);
 		g_draw.camera_y = -(float)tan(D3DXToRadian(40 * (-g_draw.camera_z/2.99f))) + dy_sindo;
 		g_draw.ResetTransformMatrix();
 		g_draw.ResetParentMatrix();
