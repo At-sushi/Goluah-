@@ -653,11 +653,14 @@ void CBattleTask::T_KasanariHantei()
 	//画面中心を出す
 	j=0;
 	int new_disp_center_x=0;
+	double ymin = 0;
 	for(i=0;i<(int)p_objects.size();i++){
 		if(p_objects[i]!=NULL){
 			if((p_objects[i]->data.objtype & GOBJFLG_DISPLAYME) )//&& !(p_objects[i]->data.objtype & GOBJFLG_COMPUTER))
 			{
 				new_disp_center_x += (int)p_objects[i]->data.x;
+				if (ymin > p_objects[i]->data.y)
+					ymin = p_objects[i]->data.y;
 				j++;
 			}
 		}
@@ -675,8 +678,9 @@ void CBattleTask::T_KasanariHantei()
 		else disp_center_x+=4;
 		if(disp_center_x > new_disp_center_x)disp_center_x = new_disp_center_x;//いきすぎ
 	}
-	if(disp_center_x>400)disp_center_x=400;
-	else if(disp_center_x<-400)disp_center_x=-400;
+	int limitline = max(320, min(400, 640 - -ymin * ASPECTRATIO));
+	if(disp_center_x>limitline)disp_center_x=limitline;
+	else if(disp_center_x<-limitline)disp_center_x=-limitline;
 
 	//画面外に行っちゃってるおメッセージ
 	int gamengai;
