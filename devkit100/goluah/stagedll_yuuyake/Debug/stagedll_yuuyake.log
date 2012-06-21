@@ -1,9 +1,9 @@
-﻿2011/04/12 13:50:29 にビルドを開始しました。
-     1>ノード 4 上のプロジェクト "C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\stagedll_yuuyake\stagedll_yuuyake.vcxproj" (build ターゲット)。
+﻿2012/06/21 19:05:37 にビルドを開始しました。
+     1>ノード 5 上のプロジェクト "C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\stagedll_yuuyake\stagedll_yuuyake.vcxproj" (build ターゲット)。
      1>InitializeBuildStatus:
          "AlwaysCreate" が指定されたため "Debug\stagedll_yuuyake.unsuccessfulbuild" を作成しています。
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/common/" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D STAGEDLL_YUUYAKE_EXPORTS /D USE_DIRECT3D_DIRECT /D USE_GOLUAH_COMMON_DLL /D _VC80_UPGRADE=0x0710 /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:fast /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt stage.cpp ..\common\gobjbase.cpp
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/common/" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D STAGEDLL_YUUYAKE_EXPORTS /D USE_DIRECT3D_DIRECT /D USE_GOLUAH_COMMON_DLL /D _VC80_UPGRADE=0x0710 /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:fast /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt stage.cpp ..\common\gobjbase.cpp
          gobjbase.cpp
          stage.cpp
      1>c:\msysgit\msysgit\git\goluah-\devkit100\goluah\stagedll_yuuyake\stage.cpp(395): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
@@ -28,7 +28,7 @@
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(990,5): warning MSB8012: TargetPath(C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\stagedll_yuuyake\Debug\stagedll_yuuyake.dll) が Linker の OutputFile プロパティ値 (C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\execenv\stage\3D\yuuyake\stage.dll) と一致しません。このため、プロジェクトが正常にビルドされない可能性があります。この問題を解決するには、$(OutDir)、$(TargetName)、および $(TargetExt) の各プロパティ値が、%(Link.OutputFile) で指定されている値と一致することを確認してください。
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(992,5): warning MSB8012: TargetName(stagedll_yuuyake) が Linker の OutputFile プロパティ値 (stage) と一致しません。このため、プロジェクトが正常にビルドされない可能性があります。この問題を解決するには、$(OutDir)、$(TargetName)、および $(TargetExt) の各プロパティ値が、%(Link.OutputFile) で指定されている値と一致することを確認してください。
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/execenv/stage/3D/yuuyake/stage.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/lib/" d3dx8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /DEF:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/common/stage_vc.def" /MANIFEST /ManifestFile:"Debug\stagedll_yuuyake.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"Debug\stagedll_yuuyake.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Debug\stagedll_yuuyake.lib" /MACHINE:X86 /DLL Debug\stagedll_yuuyake.dll.embed.manifest.res
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/execenv/stage/3D/yuuyake/stage.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/lib/" d3dx8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /DEF:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/common/stage_vc.def" /MANIFEST /ManifestFile:"Debug\stagedll_yuuyake.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"Debug\stagedll_yuuyake.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Debug\stagedll_yuuyake.lib" /MACHINE:X86 /DLL Debug\stagedll_yuuyake.dll.embed.manifest.res
          Debug\stage.obj
          Debug\gobjbase.obj /nodefaultlib:libci 
             ライブラリ Debug\stagedll_yuuyake.lib とオブジェクト Debug\stagedll_yuuyake.exp を作成中
@@ -36,7 +36,7 @@
          C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\stagedll_yuuyake.dll.embed.manifest" /manifest Debug\stagedll_yuuyake.dll.intermediate.manifest
          C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\stagedll_yuuyake.dll.embed.manifest.res" Debug\stagedll_yuuyake_manifest.rc 
        LinkEmbedManifest:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/execenv/stage/3D/yuuyake/stage.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/lib/" d3dx8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /DEF:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/common/stage_vc.def" /MANIFEST /ManifestFile:"Debug\stagedll_yuuyake.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"Debug\stagedll_yuuyake.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Debug\stagedll_yuuyake.lib" /MACHINE:X86 /DLL Debug\stagedll_yuuyake.dll.embed.manifest.res
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/execenv/stage/3D/yuuyake/stage.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/lib/" d3dx8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /DEF:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/common/stage_vc.def" /MANIFEST /ManifestFile:"Debug\stagedll_yuuyake.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"Debug\stagedll_yuuyake.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Debug\stagedll_yuuyake.lib" /MACHINE:X86 /DLL Debug\stagedll_yuuyake.dll.embed.manifest.res
          Debug\stage.obj
          Debug\gobjbase.obj /nodefaultlib:libci 
             ライブラリ Debug\stagedll_yuuyake.lib とオブジェクト Debug\stagedll_yuuyake.exp を作成中
@@ -48,4 +48,4 @@
 
 ビルドに成功しました。
 
-経過時間 00:00:07.61
+経過時間 00:00:10.54
