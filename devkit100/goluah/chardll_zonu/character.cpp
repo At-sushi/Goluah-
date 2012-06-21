@@ -17,8 +17,7 @@ CHARACTER_LOAD_OPTION option[] = {
 
 	// 記入内容：
 	// 　{ フラグ, 競合するｵﾌﾟｼｮﾝ,依存するｵﾌﾟｼｮﾝ, オプション名, 消費ポイント }
-	{ OPTIONS_CHAIN_COMBO	,OPTIONS_HEAVY_HIT	, 0, "Chain Combo"	, 8 } ,
-	{ OPTIONS_HEAVY_HIT		,OPTIONS_CHAIN_COMBO, 0, "Heavy Hit"	, 6 } ,
+	{ OPTIONS_CHAIN_COMBO	,0					, 0, "Chain Combo"	, 8 } ,
 	{ OPTIONS_SUPER_ARMER	,0					, 0, "Super Armer"	, 10} ,
 	{ OPTIONS_HP_UP			,0					, 0, "HP+20%"		, 8 } ,
 	{ OPTIONS_HP_UP2		,0	, OPTIONS_HP_UP	, "HP+20%"			, 8 } ,
@@ -68,7 +67,7 @@ CCharacter::~CCharacter()
 void CCharacter::InitParameters()
 {
 	chainComboEnabled	= (option_flags&OPTIONS_CHAIN_COMBO) ? TRUE : FALSE;
-	opt_heavy_hit		= (option_flags&OPTIONS_HEAVY_HIT) ? TRUE : FALSE;
+	opt_heavy_hit		= FALSE;
 	opt_super_armer		= (option_flags&OPTIONS_SUPER_ARMER ) ? TRUE : FALSE;
 
 	//最大体力値

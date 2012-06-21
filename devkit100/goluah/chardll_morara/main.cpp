@@ -15,10 +15,9 @@ CHARACTER_LOAD_OPTION option[] = {
 
 	// 記入内容：
 	// 　{ フラグ, 競合するｵﾌﾟｼｮﾝ,依存するｵﾌﾟｼｮﾝ, オプション名, 消費ポイント }
-	{ OPTIONS_CHAIN_COMBO		,OPTIONS_MORARAEL_MODE, 0, "Chain Combo"	, 5}, //記入例（消してもOK）
 	{ OPTIONS_EXTRA_ATTACK		,OPTIONS_MORARAEL_MODE, 0, "Extra Attack"	, 3},
 	{ OPTIONS_AUTO_GUARD		,OPTIONS_MORARAEL_MODE, 0, "Auto Guard"		, 5},
-	{ OPTIONS_GUARD_CANCEL		,OPTIONS_MORARAEL_MODE, OPTIONS_AUTO_GUARD, "Guard Cancel"	, 3},
+	{ OPTIONS_GUARD_CANCEL		,OPTIONS_MORARAEL_MODE, OPTIONS_AUTO_GUARD, "Guard Cancel"	, 5},
 	{ OPTIONS_G_CUTTER_PLUS		,OPTIONS_MORARAEL_MODE, 0, "G.Cutter +"		, 4},
 	{ OPTIONS_CHIBASIRI_PLUS	,OPTIONS_MORARAEL_MODE, 0, "Chibasiri +"	, 3},
 	{ OPTIONS_2ND_STEP			,OPTIONS_MORARAEL_MODE, 0, "2nd-Step"		, 3},
@@ -37,7 +36,7 @@ CCharacterInfo CharInfo("モララー",		// キャラクターの名前（最大31バイト）
 						CDI_VERSION,		// キャラクターDLLインターフェイスのバージョン
 						option,				// オプション構造体へのポインタ
 						sizeof(option) / sizeof(CHARACTER_LOAD_OPTION), // オプションの数
-						20,					// オプション最大ポイント数
+						15,					// オプション最大ポイント数
 						FALSE);				// ネット対戦対応かどうか 将来の拡張のために用意されている。現在は0を渡さなければならない（笑）
 
 char* CharDirectory = NULL;

@@ -21,8 +21,7 @@ CHARACTER_LOAD_OPTION option[] = {
 	{ OPTIONS_GCANCEL			,0						,0, "Guard Cancel"		, 5 },
 	{ OPTIONS_QUICK_CHARGE		,OPTIONS_STOCKABLE_GAUGE,0, "Quick Charge"		, 7 },
 	{ OPTIONS_STOCKABLE_GAUGE	,OPTIONS_QUICK_CHARGE	,0, "Stockable Gauge"	, 7 },
-	{ OPTIONS_HEAVY_HIT			,OPTIONS_IRON_SKIN		,0, "Heavy Hit"			, 7 },
-	{ OPTIONS_IRON_SKIN			,OPTIONS_HEAVY_HIT		,0,	"Iron Skin"			, 7 },
+	{ OPTIONS_HEAVY_HIT			,0						,0, "Heavy Hit"			, 7 },
 	{ OPTIONS_NO_CHAIN_COMBO	,0						,0, "No Chain Comb"		,-5 }
 };
 
@@ -83,7 +82,7 @@ void CCharacter::InitParameters()
 	
 	BOOL st_gauge	= (option_flags&OPTIONS_STOCKABLE_GAUGE	) ? TRUE : FALSE;
 	chainComboEnabled=(option_flags&OPTIONS_NO_CHAIN_COMBO	) ? FALSE : TRUE;
-	BOOL iron		= (option_flags&OPTIONS_IRON_SKIN		) ? TRUE : FALSE;
+	BOOL iron		= FALSE;
 
 	pdat->hpmax			= iron ? 1200 : 1000;	//Å‘å‘Ì—Í’l
 	pdat->gaugemax		= st_gauge ? 4 : 1;		//Å‘åƒQ[ƒW

@@ -92,7 +92,7 @@ void CCharacter::InitParameters()
 //DWORD オプション指定を BOOLメンバ変数に分割する
 void CCharacter::InitAnalyzeOptions()
 {
-	chainComboEnabled	 = (option_flags&OPTIONS_CHAIN_COMBO) ? TRUE : FALSE ;
+	chainComboEnabled	 = FALSE ;
 	isAutoGuard			 = (option_flags&OPTIONS_AUTO_GUARD) ? TRUE : FALSE ;
 	m_opt_ExtraAttack	 = (option_flags&OPTIONS_EXTRA_ATTACK) ? TRUE : FALSE ;
 	m_opt_GuardCancel	 = (option_flags&OPTIONS_GUARD_CANCEL) ? TRUE : FALSE ;

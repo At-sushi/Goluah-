@@ -21,7 +21,6 @@ CHARACTER_LOAD_OPTION option[] = {
 	{ OPTIONS_AUTO_GUARD	, 0, 0,						"Auto Guard"	, /*10*/5 },//オートガード
 	{ OPTIONS_GUARD_CANCEL	, 0, OPTIONS_AUTO_GUARD,	"Guard Cancel"	, 5 },//ガードキャンセル
 	{ OPTIONS_HADOUKEN		, 0, 0,						"Hadou-Ken"		, 5 },//波動拳
-	{ OPTIONS_HPPLUS30		, 0, 0,						"HP+30%"		, 5 } //HP+30%
 };
 
 
@@ -83,7 +82,7 @@ void CCharacter::InitAnalyzeOptions()
 
 	m_opt_exAttack	= (option_flags&OPTIONS_EXTRA_ATTACK) ? TRUE : FALSE;
 	m_opt_hadou		= (option_flags&OPTIONS_HADOUKEN) ? TRUE : FALSE;
-	m_opt_hpp30		= (option_flags&OPTIONS_HPPLUS30) ? TRUE : FALSE;
+	m_opt_hpp30		= FALSE;
 
 	m_opt_AAttack	= (option_flags&OPTIONS_AERIAL_ATTACK) ? TRUE : FALSE;
 	m_opt_AStep		= (option_flags&OPTIONS_AERIAL_STEP) ? TRUE : FALSE;

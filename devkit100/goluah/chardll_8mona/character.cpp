@@ -16,7 +16,6 @@ CHARACTER_LOAD_OPTION option[] = {
 	// 　{ フラグ, 競合するｵﾌﾟｼｮﾝ,依存するｵﾌﾟｼｮﾝ, オプション名, 消費ポイント }
 	{ OPTIONS_GUARD_CANCEL,		0, 0,	"Guard Cancel"	, 6 } ,
 	{ OPTIONS_EXTRA_ATTACK,		0, 0,	"Extra Attacks"	, 6 } ,
-	{ OPTIONS_IKARI,			0, 0,	"'Ikari'"		, 6 } ,
 	{ OPTIONS_SUPER_ARMER,		0, 0,	"Super Armer"	, 10} ,
 	{ OPTIONS_EXTRA_FRIENDS,	0, 0,	"Extra Friends"	, 6 } ,
 };
@@ -31,7 +30,7 @@ CCharacterInfo CharInfo("8頭身モナー",		// キャラクターの名前（最大31バイト）
 						CDI_VERSION,		// キャラクターDLLインターフェイスのバージョン
 						option,				// オプション構造体へのポインタ
 						sizeof(option) / sizeof(CHARACTER_LOAD_OPTION), // オプションの数
-						20,					// オプション最大ポイント数
+						14,					// オプション最大ポイント数
 						FALSE);				// ネット対戦対応かどうか 将来の拡張のために用意されている。現在は0を渡さなければならない（笑）
 
 char* CharDirectory = NULL;
@@ -66,7 +65,7 @@ void CCharacter::InitParameters()
 {
 	opt_gcancel		= (option_flags&OPTIONS_GUARD_CANCEL) ? TRUE : FALSE;
 	opt_exattack	= (option_flags&OPTIONS_EXTRA_ATTACK) ? TRUE : FALSE;
-	opt_ikari		= (option_flags&OPTIONS_IKARI		) ? TRUE : FALSE;
+	opt_ikari		= TRUE;
 	opt_super_armer	= (option_flags&OPTIONS_SUPER_ARMER ) ? TRUE : FALSE;
 	opt_exfriend	= (option_flags&OPTIONS_EXTRA_FRIENDS) ? TRUE : FALSE;
 

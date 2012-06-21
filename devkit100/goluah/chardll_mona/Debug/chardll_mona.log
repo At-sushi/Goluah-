@@ -1,17 +1,23 @@
-﻿2011/04/12 16:25:33 にビルドを開始しました。
-     1>ノード 3 上のプロジェクト "C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\chardll_mona\chardll_mona.vcxproj" (build ターゲット)。
+﻿2012/06/21 19:05:00 にビルドを開始しました。
+     1>ノード 5 上のプロジェクト "C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\chardll_mona\chardll_mona.vcxproj" (build ターゲット)。
      1>InitializeBuildStatus:
-         "AlwaysCreate" が指定されたため "Debug\chardll_mona.unsuccessfulbuild" を作成しています。
-       _MASM:
-         Assembling [Inputs]...
+         "Debug\chardll_mona.unsuccessfulbuild" のタッチ タスクを実行しています。
        ClCompile:
-         すべての出力が最新のものです。
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\\common" /I"C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\PlatformSDK\Include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D CHARDLL_MORARA_EXPORTS /D USE_DIRECT3D_DIRECT /D USE_GOLUAH_COMMON_DLL /D _VC80_UPGRADE=0x0710 /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:fast /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\common\gobjbase.cpp action_attack.cpp action_damage.cpp action_hissatu.cpp action_normal.cpp bullets.cpp character.cpp
+         character.cpp
+         bullets.cpp
+         action_normal.cpp
+         action_hissatu.cpp
+         action_damage.cpp
+         action_attack.cpp
+         gobjbase.cpp
+         コードを生成中...
        ManifestResourceCompile:
-         すべての出力が最新のものです。
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\chardll_mona.dll.embed.manifest.res" Debug\chardll_mona_manifest.rc 
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(990,5): warning MSB8012: TargetPath(C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\chardll_mona\Debug\chardll_mona.dll) が Linker の OutputFile プロパティ値 (C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\execenv\char\std\mona\action.dll) と一致しません。このため、プロジェクトが正常にビルドされない可能性があります。この問題を解決するには、$(OutDir)、$(TargetName)、および $(TargetExt) の各プロパティ値が、%(Link.OutputFile) で指定されている値と一致することを確認してください。
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(992,5): warning MSB8012: TargetName(chardll_mona) が Linker の OutputFile プロパティ値 (action) と一致しません。このため、プロジェクトが正常にビルドされない可能性があります。この問題を解決するには、$(OutDir)、$(TargetName)、および $(TargetExt) の各プロパティ値が、%(Link.OutputFile) で指定されている値と一致することを確認してください。
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/execenv/char/std/mona/action.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/lib" winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:libc.lib /DEF:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/common/character_vc.def" /MANIFEST /ManifestFile:"Debug\chardll_mona.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"Debug\chardll_mona.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Debug\chardll_mona.lib" /MACHINE:X86 /DLL Debug\chardll_mona.dll.embed.manifest.res
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/execenv/char/std/mona/action.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/lib" winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:libc.lib /DEF:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/common/character_vc.def" /MANIFEST /ManifestFile:"Debug\chardll_mona.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"Debug\chardll_mona.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Debug\chardll_mona.lib" /MACHINE:X86 /DLL Debug\chardll_mona.dll.embed.manifest.res
          Debug\action_attack.obj
          Debug\action_damage.obj
          Debug\action_hissatu.obj
@@ -22,3 +28,23 @@
             ライブラリ Debug\chardll_mona.lib とオブジェクト Debug\chardll_mona.exp を作成中
        Manifest:
          C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\chardll_mona.dll.embed.manifest" /manifest Debug\chardll_mona.dll.intermediate.manifest
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\chardll_mona.dll.embed.manifest.res" Debug\chardll_mona_manifest.rc 
+       LinkEmbedManifest:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/execenv/char/std/mona/action.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/lib" winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:libc.lib /DEF:"C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\/common/character_vc.def" /MANIFEST /ManifestFile:"Debug\chardll_mona.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"Debug\chardll_mona.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Debug\chardll_mona.lib" /MACHINE:X86 /DLL Debug\chardll_mona.dll.embed.manifest.res
+         Debug\action_attack.obj
+         Debug\action_damage.obj
+         Debug\action_hissatu.obj
+         Debug\action_normal.obj
+         Debug\bullets.obj
+         Debug\character.obj
+         Debug\gobjbase.obj /nodefaultlib:libci 
+            ライブラリ Debug\chardll_mona.lib とオブジェクト Debug\chardll_mona.exp を作成中
+         chardll_mona.vcxproj -> C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\chardll_mona\Debug\chardll_mona.dll
+       FinalizeBuildStatus:
+         ファイル "Debug\chardll_mona.unsuccessfulbuild" を削除しています。
+         "Debug\chardll_mona.lastbuildstate" のタッチ タスクを実行しています。
+     1>プロジェクト "C:\msysgit\msysgit\git\Goluah-\devkit100\goluah\chardll_mona\chardll_mona.vcxproj" (build ターゲット) のビルドが完了しました。
+
+ビルドに成功しました。
+
+経過時間 00:00:36.39
