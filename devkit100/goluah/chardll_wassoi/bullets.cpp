@@ -42,13 +42,13 @@ void CCharacter::InitBullets()
 	bul.ax  =0;
 	bul.ay	=0;
 	bul.dur	=80;
-	bul.atk.damage	= 30;
+	bul.atk.damage	= 20;
 	bul.atk.dur		= 90;
 	bul.atk.pg_hit	= 0.04;
 	bul.atk.pg_guard	= 0.02;
-	bul.atk.hit		= HITINFO_MARK4 | HITINFO_REACT3 | HITINFO_SNDHIT3 | HITINFO_SIV3;
-	bul.atk.guard	= GUARDINFO_REACT3 | GUARDINFO_SIV3 ;
-	bul.atk.kezuri	= 2;
+	bul.atk.hit		= HITINFO_MARK4 | HITINFO_REACT2 | HITINFO_SNDHIT3 | HITINFO_SIV3;
+	bul.atk.guard	= GUARDINFO_REACT2 | GUARDINFO_SIV3 ;
+	bul.atk.kezuri	= 1;
 	bul.atk.muki	= pdat->muki;
 	//’ÊíŠC‘Û
 	b_nori = new CClassicalBullet(this,NULL,&bul);
