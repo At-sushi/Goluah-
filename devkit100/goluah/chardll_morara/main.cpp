@@ -1,24 +1,22 @@
-
 /*=====================================================================================
 
-	ƒLƒƒƒ‰ƒNƒ^[¶¬
+	ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½ï¿½
 
 =======================================================================================*/
 
-#include "character.h"		//ƒ‚ƒ‰ƒ‰[
-extern CCharacterBase* CreateMorarael(CDI_CHARACTERINFO2* info);	//ƒ‚ƒ‰ƒ‰ƒGƒ‹
+#include "character.h"		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[
+extern CCharacterBase* CreateMorarael(CDI_CHARACTERINFO2* info);	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Gï¿½ï¿½
 
 
 CHARACTER_LOAD_OPTION option[] = {
-	// ƒLƒƒƒ‰ƒNƒ^[‚ÌƒIƒvƒVƒ‡ƒ“‚ð‚±‚±‚É‘‚¢‚Ä‚­‚¾‚³‚¢BiÅ‘å32ŒÂj
-	// ‚È‚¨AƒIƒvƒVƒ‡ƒ“‚ÆƒIƒvƒVƒ‡ƒ“‚ÌŠÔ‚ÍƒRƒ“ƒ}(,)‚Å‹æØ‚Á‚Ä‚­‚¾‚³‚¢B
+	// ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ÌƒIï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Bï¿½iï¿½Å‘ï¿½32ï¿½Âj
+	// ï¿½È‚ï¿½ï¿½Aï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ÆƒIï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ÌŠÔ‚ÍƒRï¿½ï¿½ï¿½}(,)ï¿½Å‹ï¿½Ø‚ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 
-	// ‹L“ü“à—eF
-	// @{ ƒtƒ‰ƒO, ‹£‡‚·‚éµÌß¼®Ý,ˆË‘¶‚·‚éµÌß¼®Ý, ƒIƒvƒVƒ‡ƒ“–¼, Á”ïƒ|ƒCƒ“ƒg }
-	{ OPTIONS_CHAIN_COMBO		,OPTIONS_MORARAEL_MODE, 0, "Chain Combo"	, 5}, //‹L“ü—áiÁ‚µ‚Ä‚àOKj
+	// ï¿½Lï¿½ï¿½ï¿½eï¿½F
+	// ï¿½@{ ï¿½tï¿½ï¿½ï¿½O, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½ï¿½,ï¿½Ë‘ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½ï¿½, ï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½|ï¿½Cï¿½ï¿½ï¿½g }
 	{ OPTIONS_EXTRA_ATTACK		,OPTIONS_MORARAEL_MODE, 0, "Extra Attack"	, 3},
 	{ OPTIONS_AUTO_GUARD		,OPTIONS_MORARAEL_MODE, 0, "Auto Guard"		, 5},
-	{ OPTIONS_GUARD_CANCEL		,OPTIONS_MORARAEL_MODE, OPTIONS_AUTO_GUARD, "Guard Cancel"	, 3},
+	{ OPTIONS_GUARD_CANCEL		,OPTIONS_MORARAEL_MODE, OPTIONS_AUTO_GUARD, "Guard Cancel"	, 5},
 	{ OPTIONS_G_CUTTER_PLUS		,OPTIONS_MORARAEL_MODE, 0, "G.Cutter +"		, 4},
 	{ OPTIONS_CHIBASIRI_PLUS	,OPTIONS_MORARAEL_MODE, 0, "Chibasiri +"	, 3},
 	{ OPTIONS_2ND_STEP			,OPTIONS_MORARAEL_MODE, 0, "2nd-Step"		, 3},
@@ -30,27 +28,27 @@ CHARACTER_LOAD_OPTION option[] = {
 
 //**************************************************************************************
 //  Character Information
-//@‚±‚±‚ÉƒLƒƒƒ‰ƒNƒ^[‚Ì–¼‘O‚ð‹Lq‚µ‚Ü‚·
+//ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½ÉƒLï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Ì–ï¿½ï¿½Oï¿½ï¿½Lï¿½qï¿½ï¿½ï¿½Ü‚ï¿½
 //**************************************************************************************
 
-CCharacterInfo CharInfo("ƒ‚ƒ‰ƒ‰[",		// ƒLƒƒƒ‰ƒNƒ^[‚Ì–¼‘OiÅ‘å31ƒoƒCƒgj
-						CDI_VERSION,		// ƒLƒƒƒ‰ƒNƒ^[DLLƒCƒ“ƒ^[ƒtƒFƒCƒX‚Ìƒo[ƒWƒ‡ƒ“
-						option,				// ƒIƒvƒVƒ‡ƒ“\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-						sizeof(option) / sizeof(CHARACTER_LOAD_OPTION), // ƒIƒvƒVƒ‡ƒ“‚Ì”
-						20,					// ƒIƒvƒVƒ‡ƒ“Å‘åƒ|ƒCƒ“ƒg”
-						FALSE);				// ƒlƒbƒg‘Îí‘Î‰ž‚©‚Ç‚¤‚© «—ˆ‚ÌŠg’£‚Ì‚½‚ß‚É—pˆÓ‚³‚ê‚Ä‚¢‚éBŒ»Ý‚Í0‚ð“n‚³‚È‚¯‚ê‚Î‚È‚ç‚È‚¢iÎj
+CCharacterInfo CharInfo("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[",		// ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Ì–ï¿½ï¿½Oï¿½iï¿½Å‘ï¿½31ï¿½oï¿½Cï¿½gï¿½j
+						CDI_VERSION,		// ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[DLLï¿½Cï¿½ï¿½ï¿½^ï¿½[ï¿½tï¿½Fï¿½Cï¿½Xï¿½Ìƒoï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½
+						option,				// ï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½Ì‚Ö‚Ìƒ|ï¿½Cï¿½ï¿½ï¿½^
+						sizeof(option) / sizeof(CHARACTER_LOAD_OPTION), // ï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½
+						15,					// ï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Å‘ï¿½|ï¿½Cï¿½ï¿½ï¿½gï¿½ï¿½
+						FALSE);				// ï¿½lï¿½bï¿½gï¿½Îï¿½Î‰ï¿½ï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ÌŠgï¿½ï¿½ï¿½Ì‚ï¿½ï¿½ß‚É—pï¿½Ó‚ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Bï¿½ï¿½ï¿½Ý‚ï¿½0ï¿½ï¿½nï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½Î‚È‚ï¿½È‚ï¿½ï¿½iï¿½Îj
 
 char* CharDirectory = NULL;
 
 
 
-//ƒLƒƒƒ‰ƒNƒ^[“o˜^ˆ—i’Êí’Ê‚èj
+//ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½oï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½Êï¿½Ê‚ï¿½j
 extern "C" BOOL CharacterInfo(LPVOID info) 
 {
 	return CharInfo.DllCharacterInfo(info);
 }
 
-//ƒLƒƒƒ‰ƒNƒ^[¶¬ˆ—iØ‚è‘Ö‚¦j
+//ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½Ø‚ï¿½Ö‚ï¿½ï¿½j
 extern "C" DWORD CreateCharacter(PVOID info) 
 {
 	CharInfo.DllCreateCharacter(info);
@@ -58,11 +56,11 @@ extern "C" DWORD CreateCharacter(PVOID info)
 	
 	CCharacterBase *pc;
 	if(cinfo->options_flag&OPTIONS_MORARAEL_MODE){
-		//ƒ‚ƒ‰ƒ‰ƒGƒ‹ƒ‚[ƒh
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½h
 		pc = CreateMorarael((CDI_CHARACTERINFO2*)info);
 	}
 	else{
-		//ƒ‚ƒ‰ƒ‰[ƒ‚[ƒh
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[ï¿½h
 		pc = new CCharacter((CDI_CHARACTERINFO2*)info);
 	}
 	pc->InitializeCharacter();
