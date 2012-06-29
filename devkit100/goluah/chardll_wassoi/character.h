@@ -1,7 +1,6 @@
-
 /*==============================================================
 
-	ƒLƒƒƒ‰ƒNƒ^[’è‹`ƒwƒbƒ_
+	ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½`ï¿½wï¿½bï¿½_
 
 ================================================================*/
 #pragma once
@@ -13,9 +12,9 @@
 #include <d3dx8.h>
 
 #include "gobjbase.h"
-#include "cell.h"// ’ÊíAare_editer‚Å¶¬‚µ‚½ƒwƒbƒ_[ƒtƒ@ƒCƒ‹‚ğ‚±‚±‚Éinclude‚µ‚Ü‚·
+#include "cell.h"// ï¿½Êï¿½Aare_editerï¿½Åï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½wï¿½bï¿½_ï¿½[ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½includeï¿½ï¿½ï¿½Ü‚ï¿½
 
-//ƒIƒvƒVƒ‡ƒ“’è‹`
+//ï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`
 #define OPTIONS_HEAVY_HIT		0x00000001
 #define OPTIONS_AUTO_GUARD		0x00000002
 #define OPTIONS_GUARD_CANCEL	0x00000004
@@ -31,7 +30,7 @@
 class CWassoiLight;
 
 /*--------------------------------------------------------------
-	ƒƒCƒ“ƒLƒƒƒ‰ƒNƒ^[ƒNƒ‰ƒX
+	ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Nï¿½ï¿½ï¿½X
 ----------------------------------------------------------------*/
 class CCharacter : public CCharacterBase
 {
@@ -41,7 +40,7 @@ public:
 
 protected:
 	//*********************************************
-	//  ƒI[ƒo[ƒ‰ƒCƒh‚·‚éŠÖ”
+	//  ï¿½Iï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½Cï¿½hï¿½ï¿½ï¿½ï¿½Öï¿½
 	//*********************************************
 
 	DWORD Message(DWORD msg,LPVOID pd,DWORD prm);
@@ -57,51 +56,51 @@ protected:
 	DWORD CommandCOM(DWORD wid);
 	DWORD CmdCom_OnSystem(DWORD wid);
 	DWORD CmdCom_OnNormal(DWORD wid);
-	void InitAttackInfo();//UŒ‚—Íî•ñ‚Ì‰Šú‰»
-	void InitWazInfo();//‹Zî•ñ‚Ì‰Šú‰»
+	void InitAttackInfo();//ï¿½Uï¿½ï¿½ï¿½Íï¿½ï¿½Ìï¿½ï¿½ï¿½
+	void InitWazInfo();//ï¿½Zï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
 	void InitBullets();
 	DWORD ComThink();
 	DWORD Draw();
 
-	//’Êí“®ì
-	void act_neutral();//ƒjƒ…[ƒgƒ‰ƒ‹
-	void act_crouch();//‚µ‚á‚ª‚İ
-	void act_rakka();//—‰º
-	void act_tojyo();//“oê
-	void act_win();//Ÿ—˜
-	void act_walkf();//‘Oi
-	void act_walkb();//Œã‘Ş
-	void act_jamps();//ƒWƒƒƒ“ƒv—\”õ“®ì
-	void act_jampc();//‚’¼ƒWƒƒƒ“ƒv
-	void act_jampf();//‘OƒWƒƒƒ“ƒv
-	void act_jampb();//ŒãƒWƒƒƒ“ƒv
-	//’Êí.UŒ‚
-	void act_att_sa();//—§ã
-	void act_att_sb();//—§’†
-	void act_att_sc();//—§‹­
-	void act_att_ca();//‹üã
-	void act_att_cb();//‹ü’†
-	void act_att_cc();//‹ü‹­
-	void act_att_ja();//”òã
-	void act_att_jb();//”ò’†
-	void act_att_jc();//”ò‹­
-	//‚»‚Ì‘¼
+	//ï¿½Êí“®ï¿½ï¿½
+	void act_neutral();//ï¿½jï¿½ï¿½ï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½
+	void act_crouch();//ï¿½ï¿½ï¿½á‚ªï¿½ï¿½
+	void act_rakka();//ï¿½ï¿½ï¿½ï¿½
+	void act_tojyo();//ï¿½oï¿½ï¿½
+	void act_win();//ï¿½ï¿½ï¿½ï¿½
+	void act_walkf();//ï¿½Oï¿½i
+	void act_walkb();//ï¿½ï¿½ï¿½
+	void act_jamps();//ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½\ï¿½ï¿½ï¿½
+	void act_jampc();//ï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½v
+	void act_jampf();//ï¿½Oï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½v
+	void act_jampb();//ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½v
+	//ï¿½Êï¿½.ï¿½Uï¿½ï¿½
+	void act_att_sa();//ï¿½ï¿½ï¿½ï¿½
+	void act_att_sb();//ï¿½ï¿½ï¿½ï¿½
+	void act_att_sc();//ï¿½ï¿½ï¿½ï¿½
+	void act_att_ca();//ï¿½ï¿½ï¿½
+	void act_att_cb();//ï¿½ï¿½
+	void act_att_cc();//ï¿½ï¿½
+	void act_att_ja();//ï¿½ï¿½ï¿½
+	void act_att_jb();//ï¿½ï¿½
+	void act_att_jc();//ï¿½ï¿½
+	//ï¿½ï¿½ï¿½Ì‘ï¿½
 	void act_taiki();
 	void act_koutai_out();
 	void act_koutai_in();
 	void act_koutai();
 	void act_koutai2();
 
-	void act_timeoverlose();//ƒ^ƒCƒ€ƒI[ƒo[
+	void act_timeoverlose();//ï¿½^ï¿½Cï¿½ï¿½ï¿½Iï¿½[ï¿½oï¿½[
 
 	//*********************************************
-	//@CCharacterƒNƒ‰ƒX“Æ©‚ÌŠÖ”
+	//ï¿½@CCharacterï¿½Nï¿½ï¿½ï¿½Xï¿½Æï¿½ï¿½ÌŠÖï¿½
 	//*********************************************
 private:
-	void InitParameters();//ƒpƒ‰ƒ[ƒ^‰Šú‰»
+	void InitParameters();//ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^ï¿½ï¿½ï¿½ï¿½
 	void StartAttack(DWORD atk_info_id);
 
-	//’Ç‰Ás“®ŠÖ”
+	//ï¿½Ç‰ï¿½sï¿½ï¿½ï¿½Öï¿½
 	void act_dashf();
 	void act_dashb();
 	void act_att_smc();
@@ -133,24 +132,24 @@ private:
 	void act_striker3();
 	void act_striker4();
 
-	//UŒ‚—Íî•ñ
+	//ï¿½Uï¿½ï¿½ï¿½Íï¿½ï¿½
 	ATTACKINFO aif[AIF_NUM];
 	
-	//”ò“¹‹ï
+	//ï¿½ò“¹‹ï¿½
 	CClassicalBullet	*b_nori;
 	CClassicalBullet	*b_nori2;
 	CWassoiLight		*b_wlight;
 
 	//options
 	DWORD option_flag;
-	BOOL OptHeavyHit()		{return (option_flag&OPTIONS_HEAVY_HIT)		? TRUE : FALSE;}
+	BOOL OptHeavyHit()		{return FALSE;}
 	BOOL OptGuardCancel()	{return (option_flag&OPTIONS_GUARD_CANCEL)	? TRUE : FALSE;}
 	BOOL OptKoroKoro()		{return (option_flag&OPTIONS_KOROKORO)		? TRUE : FALSE;}
 	BOOL OptRegenerator()	{return (option_flag&OPTIONS_REGENERATOR)	? TRUE : FALSE;}
 
 	DWORD hp_to_regenerate;
 
-	// ƒuƒ‰[
+	// ï¿½uï¿½ï¿½ï¿½[
 	struct BLUR {
 		DWORD cnum;
 		int x, y;
@@ -165,7 +164,7 @@ private:
 
 extern LPTSTR CharDirectory;
 
-//s“®ID
+//ï¿½sï¿½ï¿½ID
 #define ACTID_ATT_SMC			(ACTID_ATTACK | 0x0001)
 #define ACTID_WASSYORYUKEN1		(ACTID_ATTACK | ACTID_HISSATU | ACTID_KUCYU | 0x0002)
 #define ACTID_WASSYORYUKEN2		(ACTID_ATTACK | ACTID_HISSATU | ACTID_KUCYU | 0x0003)
@@ -196,7 +195,7 @@ extern LPTSTR CharDirectory;
 #define ACTID_STRIKER3			(ACTID_INOUT  | 0x001C)
 #define ACTID_STRIKER4			(ACTID_INOUT  | 0x001D)
 
-//UŒ‚—Í”Ô†
+//ï¿½Uï¿½ï¿½ï¿½Í”Ôï¿½
 #define ATTACKINFO_STAND_A		0
 #define ATTACKINFO_STAND_B		1
 #define ATTACKINFO_STAND_C		2
@@ -218,7 +217,7 @@ extern LPTSTR CharDirectory;
 #define ATTACKINFO_FESTA_F		18
 #define ATTACKINFO_NAGE			19
 
-//UŒ‚IDi•K—v‚ª‚ ‚ê‚Î•ÏX‚·‚éj
+//ï¿½Uï¿½ï¿½IDï¿½iï¿½Kï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î•ÏXï¿½ï¿½ï¿½ï¿½j
 #define ATTACK_WEAK				1
 #define ATTACK_MIDDLE			2
 #define ATTACK_STRONG			3
@@ -226,17 +225,17 @@ extern LPTSTR CharDirectory;
 #define ATTACK_CYOHI			5
 #define ATTACK_SCDASH			6
 
-//ƒ†[ƒU[’è‹`ƒƒbƒZ[ƒW
-#define GOBJMSG_NAGE				(GOBJMSG_USERDEFINE | 0x0001)	//“Š‚°—p
-#define GOBJMSG_FESTIVAL_NORI_HIT	(GOBJMSG_USERDEFINE | 0x0002)	//ŠC‘Ûƒqƒbƒg
+//ï¿½ï¿½ï¿½[ï¿½Uï¿½[ï¿½ï¿½`ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½W
+#define GOBJMSG_NAGE				(GOBJMSG_USERDEFINE | 0x0001)	//ï¿½ï¿½ï¿½ï¿½ï¿½p
+#define GOBJMSG_FESTIVAL_NORI_HIT	(GOBJMSG_USERDEFINE | 0x0002)	//ï¿½Cï¿½Ûƒqï¿½bï¿½g
 
-//ŠÔ‡‚¢
+//ï¿½Ôï¿½ï¿½ï¿½
 #define MAAI_SHORT				(50)
 #define MAAI_MIDDLE				(120)
 #define MAAI_LONG				(220)
 #define MAAI_NAGE				(20)
 
-//waveƒiƒ“ƒo[
+//waveï¿½iï¿½ï¿½ï¿½oï¿½[
 #define wave_tojyo				4
 #define wave_win				5
 #define wave_nage				6
@@ -251,7 +250,7 @@ extern LPTSTR CharDirectory;
 #define CHAIN_SMC				0x00000001
 
 
-//Œõ‚ ‚ê
+//ï¿½ï¿½ï¿½
 #define WLIGHT_NUM	16
 class CWassoiLight : public CBulletBase
 {
