@@ -1,6 +1,6 @@
 /*==============================================================
 
-	”ò‚Ñ“¹‹ï
+	ï¿½ï¿½Ñ“ï¿½ï¿½ï¿½
 
 ================================================================*/
 #include "character.h"
@@ -42,15 +42,15 @@ void CCharacter::InitBullets()
 	bul.ax  =0;
 	bul.ay	=0;
 	bul.dur	=80;
-	bul.atk.damage	= 30;
+	bul.atk.damage	= 20;
 	bul.atk.dur		= 90;
 	bul.atk.pg_hit	= 0.04;
 	bul.atk.pg_guard	= 0.02;
-	bul.atk.hit		= HITINFO_MARK4 | HITINFO_REACT3 | HITINFO_SNDHIT3 | HITINFO_SIV3;
-	bul.atk.guard	= GUARDINFO_REACT3 | GUARDINFO_SIV3 ;
-	bul.atk.kezuri	= 2;
+	bul.atk.hit		= HITINFO_MARK4 | HITINFO_REACT2 | HITINFO_SNDHIT3 | HITINFO_SIV3;
+	bul.atk.guard	= GUARDINFO_REACT2 | GUARDINFO_SIV3 ;
+	bul.atk.kezuri	= 1;
 	bul.atk.muki	= pdat->muki;
-	//’ÊíŠC‘Û
+	//ï¿½Êï¿½Cï¿½ï¿½
 	b_nori = new CClassicalBullet(this,NULL,&bul);
 
 	bul.muki=pdat->muki;
@@ -68,12 +68,12 @@ void CCharacter::InitBullets()
 	bul.atk.guard	= GUARDINFO_REACT3 | GUARDINFO_SIV3 ;
 	bul.atk.kezuri	= 5;
 	bul.atk.muki	= pdat->muki;
-	//’´•KŠC‘Û
+	//ï¿½ï¿½ï¿½Kï¿½Cï¿½ï¿½
 
 	b_nori2 = new CClassicalBullet(this,NULL,&bul);
 	b_nori2->SetHitMessage(GOBJMSG_FESTIVAL_NORI_HIT,0);
 
-	//’¸“_İ’è
+	//ï¿½ï¿½ï¿½_ï¿½İ’ï¿½
 	{
 		int i,j;
 
@@ -81,11 +81,11 @@ void CCharacter::InitBullets()
 		float nagasa;
 		double rot;
 		double rot_prv;
-		double sita;//ƒÆ
+		double sita;//ï¿½ï¿½
 
-		double ng_s_min=0.2;//‚±‚Ì’·‚³ˆÈ‰º‚ÅƒÆˆê’è
-		double ng_s_max=1.0;//‚±‚Ì’·‚³ˆÈã‚ÅƒÆˆê’è
-		double sita_max=80;//ƒÆmax
+		double ng_s_min=0.2;//ï¿½ï¿½ï¿½Ì’ï¿½ï¿½ï¿½ï¿½È‰ï¿½ï¿½ÅƒÆˆï¿½ï¿½
+		double ng_s_max=1.0;//ï¿½ï¿½ï¿½Ì’ï¿½ï¿½ï¿½ï¿½Èï¿½ÅƒÆˆï¿½ï¿½
+		double sita_max=80;//ï¿½ï¿½max
 
 		MYVERTEX3D *pvb[3];
 
@@ -93,29 +93,29 @@ void CCharacter::InitBullets()
 
 		for(j=0;j<WHITELIGHT_LINES;j++){
 			nagasa_wariai = (float)( 1.0 + (rand()%100)*0.004 );
-			rot_prv = (360.0/WHITELIGHT_LINES)*j;//‰Šú‰ñ“]Šp
+			rot_prv = (360.0/WHITELIGHT_LINES)*j;//ï¿½ï¿½ï¿½ï¿½ï¿½]ï¿½p
 			for(i=0;i<WHITELIGHT_LIFETIME;i++){
 
 				pvb[0] = &p_vbwl[i][j*3];
 				pvb[1] = &p_vbwl[i][j*3+1];
 				pvb[2] = &p_vbwl[i][j*3+2];
 
-				//’·‚³
+				//ï¿½ï¿½ï¿½ï¿½
 				if(i<10)nagasa = 0.8f - 0.03f*i;
 				else nagasa = (0.8f - 0.03f*10) + 0.04f*(i-10);
 				nagasa *= nagasa_wariai;
 
-				//Šp“x
+				//ï¿½pï¿½x
 				if(nagasa > ng_s_max)sita=0;
 				else if(nagasa < ng_s_min)sita=sita_max;
 				else {
 					sita = (sita_max/(ng_s_max-ng_s_min))*nagasa - (ng_s_max*(sita_max/(ng_s_max-ng_s_min)));
 				}
 
-				//‰ñ“]Šp“xi’·‚³‚©‚çŒˆ‚ß‚éj
+				//ï¿½ï¿½]ï¿½pï¿½xï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½çŒˆï¿½ß‚ï¿½j
 				rot = rot_prv + (0.8-nagasa)*7;
 
-				//‚´‚Ğ‚å[
+				//ï¿½ï¿½ï¿½Ğ‚ï¿½[
 				pvb[0]->z = pvb[1]->z = pvb[2]->z = 0;
 				pvb[0]->x = pvb[0]->y = 0;
 				pvb[1]->x = nagasa*(float)sin( (rot+sita)/360*2*PI );
@@ -123,12 +123,12 @@ void CCharacter::InitBullets()
 				pvb[2]->x = nagasa*(float)sin( (rot-sita)/360*2*PI );
 				pvb[2]->y = nagasa*(float)cos( (rot-sita)/360*2*PI );
 
-				//F
+				//ï¿½F
 				pvb[0]->color = pvb[1]->color = pvb[2]->color = 0xFFAAAAAA;
 				pvb[1]->color &= 0x00FFFFFF;
 				pvb[2]->color &= 0x00FFFFFF;
 
-				//UVÀ•W
+				//UVï¿½ï¿½W
 				pvb[0]->tu = pvb[1]->tu = pvb[2]->tu = 0;
 				pvb[0]->tv = pvb[1]->tv = pvb[2]->tv = 0;
 
@@ -142,7 +142,7 @@ void CCharacter::InitBullets()
 
 
 /*---------------------------------------------------------
-	àŠ‚­‰½‚©
+	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 -----------------------------------------------------------*/
 CWassoiLight::CWassoiLight(CCharacterBase* parent) : CBulletBase(parent)
 {
