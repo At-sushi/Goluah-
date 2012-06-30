@@ -1943,8 +1943,8 @@ BOOL CCharacterBase::Command_OnAttacking(DWORD keyinfo)
 		if(chainComboEnabled && keyinfo & 0x22220000){
 			if(keyinfo & KEYSTA_DOWN){
 				if(keyinfo & KEYSTA_BC2){if(ChainCombo(CHAIN_CC)){ChangeAction(ACTID_ATT_CC);return TRUE;}}
-				else if(keyinfo & KEYSTA_BB2){if(ChainCombo(CHAIN_CB))){ChangeAction(ACTID_ATT_CB);return TRUE;}}
-				else if(keyinfo & KEYSTA_BA2){if(ChainCombo(CHAIN_CA))){ChangeAction(ACTID_ATT_CA);return TRUE;}}
+				else if(keyinfo & KEYSTA_BB2){if(ChainCombo(CHAIN_CB)){ChangeAction(ACTID_ATT_CB);return TRUE;}}
+				else if(keyinfo & KEYSTA_BA2){if(ChainCombo(CHAIN_CA)){ChangeAction(ACTID_ATT_CA);return TRUE;}}
 			}
 			else{
 				if(keyinfo & KEYSTA_BC2){if(ChainCombo(CHAIN_SC)){ChangeAction(ACTID_ATT_SC);return TRUE;}}
