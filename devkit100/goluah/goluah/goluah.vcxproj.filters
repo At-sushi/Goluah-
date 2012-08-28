@@ -236,6 +236,9 @@
     <ClCompile Include="source\debug\debug_menu.cpp">
       <Filter>source\debug</Filter>
     </ClCompile>
+    <ClCompile Include="source\script\script_story_new.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\app\define_const.h">
@@ -418,6 +421,7 @@
     <ClInclude Include="source\system\NetState.h" />
     <ClInclude Include="source\battle\task_Bonus.h" />
     <ClInclude Include="source\battle\task_demobattle.h" />
+    <ClInclude Include="source\script\script_story_new.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\goluah.ico">
