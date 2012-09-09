@@ -15,7 +15,6 @@
 #include <stdio.h>
 
 #ifdef USE_DIRECT3D_DIRECT
-#include <d3d8.h>
 #include "d3dx8.h"
 #endif
 
@@ -2033,7 +2032,7 @@ DWORD CCharacterBase::TouchA(ATTACKINFO *info,DWORD ta_eid)
 	{
 		if(IsCom())
 		{
-			auto_guard = (rand()%4) ? TRUE : FALSE;
+			auto_guard = (rand()%2) ? TRUE : FALSE;
 		}
 		else
 		{

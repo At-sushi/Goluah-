@@ -601,6 +601,8 @@ DWORD CCharacter::TouchB(ATTACKINFO *info,BOOL hit)
 			{
 				if (m_opt_AAttack && ComLevelCk(3))
 					SetComAct(ACTID_AJAMP, 3);
+				else if (ComLevelCk(3))
+					SetComAct(ACTID_REIKU1C,5);
 			}
 			break;
 		//ÉåÉCÉN

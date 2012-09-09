@@ -1714,6 +1714,11 @@ void CBattleTask::AddEffect(DWORD efctid,int prm1,int prm2,int prm3)
 	case EFCTID_SINDO:
 		efct_sindo = prm2;
 		efct_sindom= prm1;
+
+		// フェードアウト開始
+		RELEASE(tex_fb);
+		tex_fb = g_draw.GetFrontBufferCopy();
+		efct_fadein = min(prm2, 8);
 		break;
 	case EFCTID_NOBG:
 		efct_nobg = prm1;

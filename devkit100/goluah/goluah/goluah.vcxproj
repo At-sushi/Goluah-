@@ -18,6 +18,7 @@
     <ProjectGuid>{016B2A2D-A8D0-4F5C-A8C9-9D0E9DA8595C}</ProjectGuid>
     <RootNamespace>goluah</RootNamespace>
     <Keyword>MFCProj</Keyword>
+    <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and $(VisualStudioVersion) == ''">$(VCTargetsPath11)</VCTargetsPath>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -26,11 +27,16 @@
     <UseOfAtl>false</UseOfAtl>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -86,7 +92,7 @@
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>d3d8.lib;d3dx8.lib;strmiids.lib;dxguid.lib;dinput8.lib;winmm.lib;dsound.lib;Netapi32.lib;zlib.lib;libpng.lib;libjpeg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d8.lib;d3dx8.lib;strmiids.lib;dxguid.lib;dinput8.lib;winmm.lib;dsound.lib;Netapi32.lib;zlib.lib;libpng.lib;libjpeg.lib;lua52.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)/execenv/goluah_d.exe</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)/lib/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -94,6 +100,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -124,7 +131,7 @@
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>d3d8.lib;d3dx8.lib;strmiids.lib;dxguid.lib;dinput8.lib;winmm.lib;dsound.lib;Netapi32.lib;zlib.lib;libpng.lib;libjpeg.lib;NewFunc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d8.lib;d3dx8.lib;strmiids.lib;dxguid.lib;dinput8.lib;winmm.lib;dsound.lib;Netapi32.lib;zlib.lib;libpng.lib;libjpeg.lib;lua52.lib;NewFunc.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)/execenv/goluah_r.exe</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)/lib/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -135,9 +142,11 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
       <MinimumRequiredVersion>5</MinimumRequiredVersion>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\script\script_story_new.cpp" />
     <ClCompile Include="source\system\Name.cpp" />
     <ClCompile Include="source\system\NameC.cpp" />
     <ClCompile Include="source\system\NetState.cpp" />
@@ -303,6 +312,7 @@
     <ClInclude Include="source\app\goluah.h" />
     <ClInclude Include="source\app\stdafx.h" />
     <ClInclude Include="source\app\system_cell.h" />
+    <ClInclude Include="source\script\script_story_new.h" />
     <ClInclude Include="source\system\system.h" />
     <ClInclude Include="source\system\task.h" />
     <ClInclude Include="source\global\battle_load_info.h" />
