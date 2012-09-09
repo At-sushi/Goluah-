@@ -1,14 +1,13 @@
-
 /*=======================================================================================
 
-	Goluah Šî–{ƒNƒ‰ƒXŒQ
+	Goluah ï¿½ï¿½ï¿½{ï¿½Nï¿½ï¿½ï¿½Xï¿½Q
 
-	CCharacterInfo	@ƒLƒƒƒ‰ƒNƒ^[î•ñİ’èƒNƒ‰ƒX
-	CGoluahObject	@GoluahƒIƒuƒWƒFƒNƒgŠî–{ƒNƒ‰ƒX
-	CCharacterBase	@ƒLƒƒƒ‰ƒNƒ^[ƒIƒuƒWƒFƒNƒgŠî–{ƒNƒ‰ƒX
-	CBulletBase		@”ò‚Ñ“¹‹ïŠî–{ƒNƒ‰ƒX
-	CClassicalBullet@‹Œ”ò“¹‹ï\‘¢‘ÌŒİŠ·”ò‚Ñ“¹‹ïƒNƒ‰ƒX
-	CBulletList		@”ò“¹‹ïƒŠƒXƒgƒNƒ‰ƒX
+	CCharacterInfo	ï¿½@ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½ï¿½Nï¿½ï¿½ï¿½X
+	CGoluahObject	ï¿½@Goluahï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½{ï¿½Nï¿½ï¿½ï¿½X
+	CCharacterBase	ï¿½@ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½{ï¿½Nï¿½ï¿½ï¿½X
+	CBulletBase		ï¿½@ï¿½ï¿½ï¿½Ñ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½{ï¿½Nï¿½ï¿½ï¿½X
+	CClassicalBulletï¿½@ï¿½ï¿½ï¿½ò“¹‹ï¿½ï¿½\ï¿½ï¿½ï¿½ÌŒİŠï¿½ï¿½ï¿½ï¿½Ñ“ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½X
+	CBulletList		ï¿½@ï¿½ò“¹‹ïƒŠï¿½Xï¿½gï¿½Nï¿½ï¿½ï¿½X
 
 =========================================================================================*/
 
@@ -32,7 +31,7 @@ DI_FUNCTIONS_D *funcd = NULL;
 size_t num_allocs = 0;
 #endif
 
-//ƒfƒtƒHƒ‹ƒg‚Ìİ’èƒtƒ@ƒCƒ‹ƒpƒX
+//ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½Ìİ’ï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½pï¿½X
 #define MYSOUND_LIST		"list.txt"
 #define MYSOUND_PATH		"sound"
 #define WIN_SERIFU_TXT		"serifu.txt"
@@ -47,47 +46,47 @@ int GetRandNum(int num);
 //macro
 #define DELETE_ARRAY(p)		if((p)){ delete [] (p); (p)=NULL; }
 
-// Å’áŒÀŒğŠ·«‚Ì‚ ‚éƒo[ƒWƒ‡ƒ“
+// ï¿½Å’ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½ï¿½ï¿½oï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½
 #define DTB_LEASTVER	1060
 #define STB_LEASTVER	1060
 
 /*! **************************************************************************
 
 	@class CCharacterInfo
-	@brief ƒLƒƒƒ‰ƒNƒ^[î•ñİ’èƒNƒ‰ƒX
+	@brief ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½ï¿½Nï¿½ï¿½ï¿½X
 	@ingroup GObjectBase
 
-@ƒ\ƒtƒg‚ªƒLƒƒƒ‰ƒNƒ^[‚ğ”F¯‚·‚é‚½‚ß‚É•K—v‚Èî•ñ‚ğİ’è‚·‚éƒNƒ‰ƒX‚Å‚·B
-@ƒLƒƒƒ‰ƒNƒ^[DLL“à‚ÅA‚±‚ÌƒNƒ‰ƒX‚ğƒOƒ[ƒoƒ‹éŒ¾‚µA
-@SET_CHARACTERINFOƒ}ƒNƒ‚ğg—p‚µ‚Ä‚­‚¾‚³‚¢B
+ï¿½@ï¿½\ï¿½tï¿½gï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½Fï¿½ï¿½ï¿½ï¿½ï¿½é‚½ï¿½ß‚É•Kï¿½vï¿½Èï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ’è‚·ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½Xï¿½Å‚ï¿½ï¿½B
+ï¿½@ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[DLLï¿½ï¿½ï¿½ÅAï¿½ï¿½ï¿½ÌƒNï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½[ï¿½oï¿½ï¿½ï¿½éŒ¾ï¿½ï¿½ï¿½A
+ï¿½@SET_CHARACTERINFOï¿½}ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 */
 /* ************************************************************************** */
 
 //////////////////////////////////////////////////////////////////////
-// \’z/Á–Å
+// ï¿½\ï¿½z/ï¿½ï¿½ï¿½ï¿½
 //////////////////////////////////////////////////////////////////////
 /*!
-	@brief \’z
-	@param CharName ƒLƒƒƒ‰ƒNƒ^[‚Ì–¼‘OiÅ‘å31ƒoƒCƒgj
-	@param CdiVersion ƒLƒƒƒ‰ƒNƒ^[DLLƒCƒ“ƒ^[ƒtƒFƒCƒX‚Ìƒo[ƒWƒ‡ƒ“
-	@param Options ƒIƒvƒVƒ‡ƒ“\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	@param num_Options ƒIƒvƒVƒ‡ƒ“‚Ì”
-	@param max_option_point ƒIƒvƒVƒ‡ƒ“Å‘åƒ|ƒCƒ“ƒg”
-	@param isNetworkable ƒlƒbƒg‘Îí‘Î‰‚©‚Ç‚¤‚©
-						 «—ˆ‚ÌŠg’£‚Ì‚½‚ß‚É—pˆÓ‚³‚ê‚Ä‚¢‚éBŒ»İ‚ÍFALSE‚ğ“n‚³‚È‚¯‚ê‚Î‚È‚ç‚È‚¢iÎj
-	@param DtbVersion DLLƒeƒ“ƒvƒŒ[ƒgƒx[ƒXƒNƒ‰ƒX‚Ìƒo[ƒWƒ‡ƒ“
+	@brief ï¿½\ï¿½z
+	@param CharName ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Ì–ï¿½ï¿½Oï¿½iï¿½Å‘ï¿½31ï¿½oï¿½Cï¿½gï¿½j
+	@param CdiVersion ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[DLLï¿½Cï¿½ï¿½ï¿½^ï¿½[ï¿½tï¿½Fï¿½Cï¿½Xï¿½Ìƒoï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½
+	@param Options ï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½Ì‚Ö‚Ìƒ|ï¿½Cï¿½ï¿½ï¿½^
+	@param num_Options ï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½
+	@param max_option_point ï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Å‘ï¿½ï¿½|ï¿½Cï¿½ï¿½ï¿½gï¿½ï¿½
+	@param isNetworkable ï¿½lï¿½bï¿½gï¿½Îï¿½ï¿½Î‰ï¿½ï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½
+						 ï¿½ï¿½ï¿½ï¿½ï¿½ÌŠgï¿½ï¿½ï¿½Ì‚ï¿½ï¿½ß‚É—pï¿½Ó‚ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½Bï¿½ï¿½ï¿½İ‚ï¿½FALSEï¿½ï¿½ï¿½nï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½Î‚È‚ï¿½ï¿½È‚ï¿½ï¿½iï¿½Îj
+	@param DtbVersion DLLï¿½eï¿½ï¿½ï¿½vï¿½ï¿½ï¿½[ï¿½gï¿½xï¿½[ï¿½Xï¿½Nï¿½ï¿½ï¿½Xï¿½Ìƒoï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½
 
-	ƒLƒƒƒ‰ƒNƒ^[‚Ìî•ñ‚ğİ’è‚µ‚ÄƒNƒ‰ƒX‚ğ\’z‚µ‚Ü‚·B
-	ì‚Á‚½Œã‚ÍA“Á‚É–â‘è‚ª‚È‚¯‚ê‚Îƒ}ƒNƒ”C‚¹‚É‚µ‚Ä‚µ‚Ü‚¢‚Ü‚µ‚å‚¤R(ßÍß)ÉB
+	ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ’è‚µï¿½ÄƒNï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½\ï¿½zï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÍAï¿½ï¿½ï¿½É–ï¿½ï¿½è‚ªï¿½È‚ï¿½ï¿½ï¿½ï¿½Îƒ}ï¿½Nï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½É‚ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½Ü‚ï¿½ï¿½å‚¤ï¿½R(ßï¿½ï¿½)ÉB
 */
-CCharacterInfo::CCharacterInfo(LPCTSTR CharName/* = "–¼–³‚µ‚³‚ñ" */, DWORD CdiVersion/* = CDI_VERSION */, CHARACTER_LOAD_OPTION* Options/* = NULL */,
+CCharacterInfo::CCharacterInfo(LPCTSTR CharName/* = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" */, DWORD CdiVersion/* = CDI_VERSION */, CHARACTER_LOAD_OPTION* Options/* = NULL */,
 		int num_Options/* = 0 */, DWORD max_option_point/* = 0 */, BOOL isNetworkable/* = FALSE */, DWORD DtbVersion/* = DTB_VERSION */)
 {
 	version = DtbVersion;
 	if(version > DTB_VERSION || version < DTB_LEASTVER){ 
 #		ifdef _DEBUG
 			char dbgmsg[256];
-			sprintf(dbgmsg,"CCharacterInfo:DTBƒo[ƒWƒ‡ƒ“ˆá‚¢(%d!=%d)\n",version,DTB_VERSION);
+			sprintf(dbgmsg,"CCharacterInfo:DTBï¿½oï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½á‚¢(%d!=%d)\n",version,DTB_VERSION);
 			OutputDebugString(dbgmsg);
 #		endif
 		m_Error=TRUE;
@@ -128,7 +127,7 @@ CCharacterInfo::CCharacterInfo(LPCTSTR CharName/* = "–¼–³‚µ‚³‚ñ" */, DWORD CdiVe
 	}
 }
 
-//! ‚ ‚Ú‚ñ‚Ê
+//! ï¿½ï¿½ï¿½Ú‚ï¿½ï¿½ï¿½
 CCharacterInfo::~CCharacterInfo()
 {
 	if (charactername)
@@ -139,10 +138,10 @@ CCharacterInfo::~CCharacterInfo()
 }
 
 /*!
-	@brief CharacterInfoˆ—
+	@brief CharacterInfoï¿½ï¿½ï¿½ï¿½
 
-	ƒ}ƒNƒ‚©‚çŒÄ‚Ño‚³‚êA–{‘Ì‚ÉƒLƒƒƒ‰‚Ìî•ñ‚ğ‘—M‚µ‚Ä‚Ü‚·B
-	ˆÓ¯‚µ‚Äg‚¤•K—v‚Í‚ ‚ñ‚Ü‚è–³‚¢‚Å‚·B
+	ï¿½}ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚Ñoï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½{ï¿½Ì‚ÉƒLï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ğ‘—Mï¿½ï¿½ï¿½Ä‚Ü‚ï¿½ï¿½B
+	ï¿½Óï¿½ï¿½ï¿½ï¿½Ägï¿½ï¿½ï¿½Kï¿½vï¿½Í‚ï¿½ï¿½ï¿½ï¿½Ü‚è–³ï¿½ï¿½ï¿½Å‚ï¿½ï¿½B
 */
 BOOL CCharacterInfo::DllCharacterInfo(LPVOID info)
 {
@@ -150,8 +149,8 @@ BOOL CCharacterInfo::DllCharacterInfo(LPVOID info)
 
 	CDI_CHARACTERINFO *pif = (CDI_CHARACTERINFO*)info;
 	if (charactername)
-		lstrcpy(pif->name,charactername);//–¼‘O
-	pif->ver=version;//ƒo[ƒWƒ‡ƒ“
+		lstrcpy(pif->name,charactername);//ï¿½ï¿½ï¿½O
+	pif->ver=version;//ï¿½oï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½
 
 	if(pif->system_version!=0){
 		if (m_isNetworkable)
@@ -163,11 +162,11 @@ BOOL CCharacterInfo::DllCharacterInfo(LPVOID info)
 }
 
 /*!
-	@brief CreateaCharacterˆ—
+	@brief CreateaCharacterï¿½ï¿½ï¿½ï¿½
 
-	ƒ}ƒNƒ‚©‚çŒÄ‚Ño‚³‚êA‚³‚Á‚­‚è‚Æ‰Šú‰»‚µ‚Ü‚·B
-	ƒNƒ‰ƒX\’z‚Íƒ}ƒNƒ‚ª‚â‚Á‚Ä‚é‚µB
-	‚±‚ê‚àAˆÓ¯‚µ‚Äg‚¤•K—v‚Í–³‚¢‚Å‚·B
+	ï¿½}ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚Ñoï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½Nï¿½ï¿½ï¿½Xï¿½\ï¿½zï¿½Íƒ}ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚é‚µï¿½B
+	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½Óï¿½ï¿½ï¿½ï¿½Ägï¿½ï¿½ï¿½Kï¿½vï¿½Í–ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½B
 */
 void CCharacterInfo::DllCreateCharacter(PVOID info)
 {
@@ -179,10 +178,10 @@ void CCharacterInfo::DllCreateCharacter(PVOID info)
 }
 
 /*!
-	@brief ƒIƒvƒVƒ‡ƒ“‘—Mˆ—
+	@brief ï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½ï¿½
 
-	ƒIƒvƒVƒ‡ƒ“î•ñ‚ğ\‘¢‘Ì‚©‚ç‚³‚Î‚¢‚ÄA–{‘Ì‚É‘—M‚µ‚Ü‚·B
-	‚±‚ê‚Ü‚½AˆÓ¯‚µ‚Äg‚¤•K—v‚Í–³‚¢‚Å‚·B
+	ï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½ç‚³ï¿½Î‚ï¿½ï¿½ÄAï¿½{ï¿½Ì‚É‘ï¿½ï¿½Mï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½Aï¿½Óï¿½ï¿½ï¿½ï¿½Ägï¿½ï¿½ï¿½Kï¿½vï¿½Í–ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½B
 */
 void CCharacterInfo::SetOptionItems(CDI_CHARACTERINFO* pif)
 {
@@ -195,18 +194,18 @@ void CCharacterInfo::SetOptionItems(CDI_CHARACTERINFO* pif)
 /*! **************************************************************************
 
 	@class CGoluahObject
-	@brief DLLŒü‚¯ƒIƒuƒWƒFƒNƒgŠî–{ƒNƒ‰ƒX
+	@brief DLLï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½{ï¿½Nï¿½ï¿½ï¿½X
 	@ingroup GObjectBase
 
-@	å‚È–ğŠ„‚ÍƒIƒuƒWƒFƒNƒg‚Ìì¬‚ÆƒƒbƒZ[ƒWˆ—ŠÖ”‚Ìİ’èB
-@	‚æ‚­g‚¤ƒƒbƒZ[ƒW‚ÉŠÖ‚µ‚Ä‚ÍŠÖ”‚ª‚·‚Å‚É’è‹`‚³‚ê‚Ä‚¢‚é‚Ì‚ÅA‚»‚ê‚ğƒI[ƒo[ƒ‰ƒCƒhB
-@	‘«‚è‚È‚¢•ª‚ÍMessageŠÖ”‚ğƒI[ƒo[ƒ‰ƒCƒh‚µ‚ÄƒƒbƒZ[ƒWˆ—‚ğ’Ç‰Á‚·‚éB
+ï¿½@	ï¿½ï¿½ï¿½È–ï¿½ï¿½ï¿½ï¿½ÍƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Ìì¬ï¿½Æƒï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½ï¿½Ìİ’ï¿½ï¿½B
+ï¿½@	ï¿½æ‚­ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ÉŠÖ‚ï¿½ï¿½Ä‚ÍŠÖï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å‚É’ï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½Ì‚ÅAï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½Cï¿½hï¿½B
+ï¿½@	ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½Messageï¿½Öï¿½ï¿½ï¿½ï¿½Iï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½Cï¿½hï¿½ï¿½ï¿½Äƒï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 
-	”jŠü‚ÍƒIƒuƒWƒFƒNƒgƒƒbƒZ[ƒWAGOBJMSG_DELETE‚ÌóM‚És‚Á‚Ä‚¢‚é‚Ì‚ÅA
-	‚»‚êˆÈŠO‚ÌêŠ‚ÅŒp³ƒNƒ‰ƒX‚ğdelete‚µ‚Ä‚Í‚¢‚¯‚Ü‚¹‚ñB
-	‚Ü‚½AƒƒbƒZ[ƒWˆ—ŠÖ”(GOBJECT.msghandler)‚ªƒXƒ^ƒeƒBƒbƒN‚ÌgMessageToObjectŠÖ”A
-	ƒ†[ƒU[ƒf[ƒ^(GOBJECT.pobjdat_u)‚ªAƒNƒ‰ƒX‚Ìƒ|ƒCƒ“ƒ^‚Æ‚µ‚Äg—p‚³‚ê‚Ä‚¢‚é‚Ì‚ÅA
-	Œp³ƒNƒ‰ƒX‘¤‚Å‚±‚ê‚ç‚Ìƒf[ƒ^‚ğ•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+	ï¿½jï¿½ï¿½ï¿½ÍƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½AGOBJMSG_DELETEï¿½Ìï¿½ï¿½Mï¿½ï¿½ï¿½Ésï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½Ì‚ÅA
+	ï¿½ï¿½ï¿½ï¿½ï¿½ÈŠOï¿½ÌêŠï¿½ÅŒpï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½Xï¿½ï¿½deleteï¿½ï¿½ï¿½Ä‚Í‚ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B
+	ï¿½Ü‚ï¿½ï¿½Aï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½(GOBJECT.msghandler)ï¿½ï¿½ï¿½Xï¿½^ï¿½eï¿½Bï¿½bï¿½Nï¿½ï¿½gMessageToObjectï¿½Öï¿½ï¿½A
+	ï¿½ï¿½ï¿½[ï¿½Uï¿½[ï¿½fï¿½[ï¿½^(GOBJECT.pobjdat_u)ï¿½ï¿½ï¿½Aï¿½Nï¿½ï¿½ï¿½Xï¿½Ìƒ|ï¿½Cï¿½ï¿½ï¿½^ï¿½Æ‚ï¿½ï¿½Ägï¿½pï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½Ì‚ÅA
+	ï¿½pï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìƒfï¿½[ï¿½^ï¿½ï¿½ï¿½ÏXï¿½ï¿½ï¿½È‚ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 */
 /* ************************************************************************** */
 
@@ -214,37 +213,37 @@ CGoluahObject* CGoluahObject::pObjToDelete = NULL;
 CGoluahObject* CGoluahObject::pObjDeleting = NULL;
 
 /*!
-	@brief \’z
-	@param is_effect ƒGƒtƒFƒNƒgƒIƒuƒWƒFƒNƒg‚©‚Ç‚¤‚©BƒGƒtƒFƒNƒgƒIƒuƒWƒFƒNƒg‚Í‚ ‚½‚è”»’è‚ğs‚¢‚Ü‚¹‚ñB
-					‚±‚Ìˆ—‚ÍAƒIƒuƒWƒFƒNƒgƒtƒ‰ƒO‚Å‚Í‚È‚­AƒVƒXƒeƒ€“à•”‚ÌƒIƒuƒWƒFƒNƒgŠÇ—‹@\‚É‚æ‚Á‚Äˆ—‚³‚ê‚Ü‚·B
-					¶¬Œã‚É•ÏX‚·‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñB
+	@brief ï¿½\ï¿½z
+	@param is_effect ï¿½Gï¿½tï¿½Fï¿½Nï¿½gï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½Bï¿½Gï¿½tï¿½Fï¿½Nï¿½gï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Í‚ï¿½ï¿½ï¿½ï¿½è”»ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B
+					ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ÍAï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½tï¿½ï¿½ï¿½Oï¿½Å‚Í‚È‚ï¿½ï¿½Aï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Ç—ï¿½ï¿½@ï¿½\ï¿½É‚ï¿½ï¿½ï¿½ï¿½Äï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+					ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É•ÏXï¿½ï¿½ï¿½é‚±ï¿½Æ‚Í‚Å‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B
 */
 CGoluahObject::CGoluahObject(BOOL is_effect/* = FALSE */)
 {
 	if(is_effect)
 	{
-		oid = (*funco->objcreate_fx)();//ƒGƒtƒFƒNƒg—pƒIƒuƒWƒFƒNƒg‚ğ¶¬
+		oid = (*funco->objcreate_fx)();//ï¿½Gï¿½tï¿½Fï¿½Nï¿½gï¿½pï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ğ¶ï¿½
 	}
 	else
 	{
-		oid = (*funco->objcreate)();//ƒIƒuƒWƒFƒNƒg‚ğ¶¬
+		oid = (*funco->objcreate)();//ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ğ¶ï¿½
 	}
 
-	pdat = (GOBJECT*)(*funco->getinfo)(oid);//ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğget
+	pdat = (GOBJECT*)(*funco->getinfo)(oid);//ï¿½fï¿½[ï¿½^ï¿½Ö‚Ìƒ|ï¿½Cï¿½ï¿½ï¿½^ï¿½ï¿½get
 	if(pdat!=NULL){
 		pdat->pobjdat_u = this;
-		pdat->msghandler= gMessageToObject;//ƒƒbƒZ[ƒWˆ—ŠÖ”
+		pdat->msghandler= gMessageToObject;//ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½
 	}
 	base_z				= 0;
-	g_chardir = "";//?@caki½Ï¿A‚½‚¾‚Ì‰Šú‰»‚Å‚·B
+	g_chardir = "";//?ï¿½@ï¿½cakiï¿½ï¿½ï¿½Ï¿ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½B
 }
 
 
 /*!
-	@brief ”jŠü
+	@brief ï¿½jï¿½ï¿½
 
-	”jŠü‚ÍƒƒbƒZ[ƒWˆ—ŠÖ”‚ª GOBJMSG_DELETE‚ğóM‚µ‚½‚Æ‚«‚És‚í‚ê‚é‚Ì‚ÅA
-	‚»‚êˆÈŠO‚ÌêŠ‚Ådelete‚µ‚Ä‚Í‚¢‚¯‚Ü‚¹‚ñB
+	ï¿½jï¿½ï¿½ï¿½Íƒï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½ï¿½ï¿½ GOBJMSG_DELETEï¿½ï¿½ï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Ésï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ÅA
+	ï¿½ï¿½ï¿½ï¿½ï¿½ÈŠOï¿½ÌêŠï¿½ï¿½deleteï¿½ï¿½ï¿½Ä‚Í‚ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B
 */
 CGoluahObject::~CGoluahObject()
 {
@@ -257,9 +256,9 @@ CGoluahObject::~CGoluahObject()
 }
 
 /*!
-	@brief Šî–{ƒƒbƒZ[ƒWˆ—ŠÖ”
+	@brief ï¿½ï¿½ï¿½{ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½
 
-	‚¢‚­‚Â‚©‚ÌŠî–{“I‚ÈƒƒbƒZ[ƒW‚ÉŠÖ‚µ‚ÄA‰¼‘zŠÖ”‚Éˆ—‚ğU‚è•ª‚¯‚Ü‚·B
+	ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½ÌŠï¿½ï¿½{ï¿½Iï¿½Èƒï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ÉŠÖ‚ï¿½ï¿½ÄAï¿½ï¿½ï¿½zï¿½Öï¿½ï¿½Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Uï¿½è•ªï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 DWORD CGoluahObject::Message(DWORD msg,LPVOID pd,DWORD prm)
 {
@@ -277,7 +276,7 @@ DWORD CGoluahObject::Message(DWORD msg,LPVOID pd,DWORD prm)
 	case GOBJMSG_DRAWBACK:	return(DrawBack());
 	case GOBJMSG_CNGROUND:	return(OnChangeRound());
 	default:
-		//‚ ‚Æ‚ÌƒƒbƒZ[ƒW‚ÍƒfƒtƒHƒ‹ƒgˆ—‚É”C‚¹‚é
+		//ï¿½ï¿½ï¿½Æ‚Ìƒï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½Íƒfï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½É”Cï¿½ï¿½ï¿½ï¿½
 		return(0);
 	}
 
@@ -286,11 +285,11 @@ DWORD CGoluahObject::Message(DWORD msg,LPVOID pd,DWORD prm)
 
 
 /*!
-	@brief ‹¤’ÊƒƒbƒZ[ƒWˆ—ŠÖ”
+	@brief ï¿½ï¿½ï¿½Êƒï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½
 
-	‘S‚Ä‚ÌCGoluahObjectŒp³ƒNƒ‰ƒX‚ÌƒIƒuƒWƒFƒNƒg‚ÍAƒƒbƒZ[ƒWˆ—‚É‚±‚ÌŠÖ”‚ğg‚¢‚Ü‚·B
-	‚Ü‚½AGOBJECT.pobjdat_u ‚ÍƒNƒ‰ƒX‚Ìƒ|ƒCƒ“ƒ^‚Æ‚µ‚Äg—p‚³‚ê‚é‚Ì‚ÅAŒp³ƒNƒ‰ƒX‚Å
-	‚±‚Ì’l‚ğ•ÏX‚µ‚Ä‚Í‚¢‚¯‚Ü‚¹‚ñB
+	ï¿½Sï¿½Ä‚ï¿½CGoluahObjectï¿½pï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½Xï¿½ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ÍAï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½ÌŠÖï¿½ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½Ü‚ï¿½ï¿½AGOBJECT.pobjdat_u ï¿½ÍƒNï¿½ï¿½ï¿½Xï¿½Ìƒ|ï¿½Cï¿½ï¿½ï¿½^ï¿½Æ‚ï¿½ï¿½Ägï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ÅAï¿½pï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½Xï¿½ï¿½
+	ï¿½ï¿½ï¿½Ì’lï¿½ï¿½ï¿½ÏXï¿½ï¿½ï¿½Ä‚Í‚ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B
 */
 DWORD CGoluahObject::gMessageToObject(DWORD msg,LPVOID pd,DWORD prm)
 {
@@ -301,15 +300,15 @@ DWORD CGoluahObject::gMessageToObject(DWORD msg,LPVOID pd,DWORD prm)
 	if(pc!=NULL){
 		DWORD result;
 
-		if (pObjDeleting == pc) {	// è“®‰ğ•úƒGƒ‰[–h~
+		if (pObjDeleting == pc) {	// ï¿½è“®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½[ï¿½hï¿½~
 			if(msg==GOBJMSG_DELETE) pObjDeleting = NULL;
-			return 1;	// ƒfƒtƒHƒ‹ƒg“®ì‚Ís‚¢‚Ü‚¹‚ñ
+			return 1;	// ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Ísï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½
 		}
 
-		// ƒƒbƒZ[ƒW‚ğˆ—
+		// ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		result = pc->Message(msg,pd,prm);
 
-		// ^E‰ü‚´‚ñƒXƒgƒbƒp[@‘‚«Š·‚¦‚ç‚ê‚Ü‚¹‚ñ‚æBBBiP[PjÆÔØ¯
+		// ï¿½^ï¿½Eï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½gï¿½bï¿½pï¿½[ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Bï¿½Bï¿½Bï¿½iï¿½Pï¿½[ï¿½Pï¿½jï¿½ï¿½Ø¯
 		pdat->id = pc->oid;
 		pdat->pobjdat_u = pc;
 		pdat->msghandler = gMessageToObject;
@@ -317,7 +316,7 @@ DWORD CGoluahObject::gMessageToObject(DWORD msg,LPVOID pd,DWORD prm)
 
 		if(msg==GOBJMSG_DELETE){
 			#ifdef _DEBUG
-				OutputDebugString("DLL GOBJMSG_DELETEƒƒbƒZ[ƒW—ˆ‚Ü‚µ‚½\n");
+				OutputDebugString("DLL GOBJMSG_DELETEï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½\n");
 			#endif
 			pObjToDelete = pc;
 			delete(pc);
@@ -330,114 +329,114 @@ DWORD CGoluahObject::gMessageToObject(DWORD msg,LPVOID pd,DWORD prm)
 
 
 /*!
-	@brief GOBJMSG_ACTIONƒƒbƒZ[ƒWˆ—ŠÖ”
+	@brief GOBJMSG_ACTIONï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½
 
-	Šî–{“I‚É1ƒtƒŒ‚É1‰ñŒÄ‚Ño‚³‚ê‚Ü‚·B
-	Œp³‚µ‚ÄA‚±‚Ì‚È‚©i‚Ì‚³‚ç‚É•ªŠò‚µ‚½ŠÖ”j‚ÅƒLƒƒƒ‰ƒNƒ^[‚â”ò‚Ñ“¹‹ï“™‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ğ‹Lq‚µ‚Ü‚·B
+	ï¿½ï¿½ï¿½{ï¿½Iï¿½ï¿½1ï¿½tï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½Ä‚Ñoï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ÄAï¿½ï¿½ï¿½Ì‚È‚ï¿½ï¿½iï¿½Ì‚ï¿½ï¿½ï¿½ï¿½É•ï¿½ï¿½ò‚µ‚ï¿½ï¿½Öï¿½ï¿½jï¿½ÅƒLï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Ñ“ï¿½ï¿½ï“™ï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½qï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 DWORD CGoluahObject::Action(){return(TRUE);}
 
 /*!
-	@brief GOBJMSG_COMMANDƒƒbƒZ[ƒWˆ—ŠÖ”
+	@brief GOBJMSG_COMMANDï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½
 
-	ƒRƒ}ƒ“ƒh”»’èˆ—‚ğs‚¤‚½‚ß‚ÉAŠî–{“I‚É1ƒtƒŒ‚É1‰ñŒÄ‚Ño‚³‚ê‚Ü‚·B
-	Œp³‚µ‚ÄA‚±‚Ì‚È‚©i‚Ì‚³‚ç‚É•ªŠò‚µ‚½ŠÖ”j‚ÅƒRƒ}ƒ“ƒhˆ—‚ğÀ‘•‚µ‚Ü‚·B
+	ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½èˆï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ß‚ÉAï¿½ï¿½ï¿½{ï¿½Iï¿½ï¿½1ï¿½tï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½Ä‚Ñoï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ÄAï¿½ï¿½ï¿½Ì‚È‚ï¿½ï¿½iï¿½Ì‚ï¿½ï¿½ï¿½ï¿½É•ï¿½ï¿½ò‚µ‚ï¿½ï¿½Öï¿½ï¿½jï¿½ÅƒRï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 void CGoluahObject::Command(){}
 
 /*!
-	@brief GOBJMSG_COMMANDCOMƒƒbƒZ[ƒWˆ—ŠÖ”
+	@brief GOBJMSG_COMMANDCOMï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½
 
-	ƒRƒ“ƒsƒ…[ƒ^‚Ìs“®‘JˆÚ‚Ì‰ÂE•s‰Â‚ğ”»’è‚·‚é‚½‚ß‚ÉŒÄ‚Ño‚³‚ê‚Ü‚·B
-	Œ»İ‚Ìs“®‚©‚çAwid‚Ö‚Ìs“®‘JˆÚ‚ª‰Â‚Å‚ ‚ê‚Î0ˆÈŠO‚ğA•s‰Â‚Å‚ ‚ê‚Î0‚ğ•Ô‚·‚æ‚¤‚Èˆ—‚ğ‹Lq‚µ‚Ä‚­‚¾‚³‚¢B
+	ï¿½Rï¿½ï¿½ï¿½sï¿½ï¿½ï¿½[ï¿½^ï¿½Ìsï¿½ï¿½ï¿½Jï¿½Ú‚Ì‰ÂEï¿½sï¿½Â‚ğ”»’è‚·ï¿½é‚½ï¿½ß‚ÉŒÄ‚Ñoï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½ï¿½ï¿½İ‚Ìsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Awidï¿½Ö‚Ìsï¿½ï¿½ï¿½Jï¿½Ú‚ï¿½ï¿½Â‚Å‚ï¿½ï¿½ï¿½ï¿½ï¿½0ï¿½ÈŠOï¿½ï¿½ï¿½Aï¿½sï¿½Â‚Å‚ï¿½ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½æ‚¤ï¿½Èï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½qï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 
-	@param wid ‹Z‚Ìs“®ID
-	@return 0:”ñ‹–‰Â, 0ˆÈŠO:‹–‰Â
+	@param wid ï¿½Zï¿½Ìsï¿½ï¿½ID
+	@return 0:ï¿½ñ‹–‰ï¿½, 0ï¿½ÈŠO:ï¿½ï¿½ï¿½ï¿½
 */
 DWORD CGoluahObject::CommandCOM(DWORD wid){return(FALSE);}
 
 /*!
-	@brief GOBJMSG_TOUCHAƒƒbƒZ[ƒWˆ—ŠÖ”
+	@brief GOBJMSG_TOUCHAï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½
 	@sa GOBJMSG_TOUCHA_RETURNS
 
-	‘Šè‚ÌUŒ‚‚ª©•ª‚É‚ ‚½‚Á‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚Ü‚·B
-	ƒL[“ü—Í‚âŒ»İ‚Æ‚Á‚Ä‚¢‚és“®‚È‚Ç‚©‚ç”»’f‚µAƒK[ƒhE‹ò‚ç‚¢“™‚Ì“KØ‚È
-	ƒŠƒ^[ƒ“ƒR[ƒh‚ğ•Ô‚·‚æ‚¤‚Èˆ—‚ğ‹Lq‚µ‚Ä‚­‚¾‚³‚¢B
+	ï¿½ï¿½ï¿½ï¿½ï¿½ÌUï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ÉŒÄ‚Î‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½Lï¿½[ï¿½ï¿½ï¿½Í‚âŒ»ï¿½İ‚Æ‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½È‚Ç‚ï¿½ï¿½ç”»ï¿½fï¿½ï¿½ï¿½Aï¿½Kï¿½[ï¿½hï¿½Eï¿½ï¿½ï¿½ç‚¢ï¿½ï¿½ï¿½Ì“Kï¿½Ø‚ï¿½
+	ï¿½ï¿½ï¿½^ï¿½[ï¿½ï¿½ï¿½Rï¿½[ï¿½hï¿½ï¿½ï¿½Ô‚ï¿½ï¿½æ‚¤ï¿½Èï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½qï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 
-	@param info “–‚Ä‚ç‚ê‚½UŒ‚‚Ìî•ñ
-	@param ta_eid UŒ‚Ò‚ÌƒIƒuƒWƒFƒNƒgID
-	@return TOUCHA_`‚ÌƒŠƒ^[ƒ“ƒR[ƒh
+	@param info ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ê‚½ï¿½Uï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
+	@param ta_eid ï¿½Uï¿½ï¿½ï¿½Ò‚ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gID
+	@return TOUCHA_ï¿½`ï¿½Ìƒï¿½ï¿½^ï¿½[ï¿½ï¿½ï¿½Rï¿½[ï¿½h
 */
 DWORD CGoluahObject::TouchA(ATTACKINFO *info,DWORD ta_eid)
 {
-	return(0);//ƒfƒtƒHƒ‹ƒg‚ÌƒK[ƒh”»’èˆ—
+	return(0);//ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½ÌƒKï¿½[ï¿½hï¿½ï¿½ï¿½èˆï¿½ï¿½
 }
 
 /*!
-	@brief GOBJMSG_TOUCHBƒƒbƒZ[ƒWˆ—ŠÖ”
+	@brief GOBJMSG_TOUCHBï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½
 
-	©•ª‚ÌUŒ‚‚ª‘Šè‚É‚ ‚½‚Á‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚Ü‚·B
-	’Êí‚Í‚±‚±‚ÅƒQ[ƒW‚Ì‘‰Áˆ—‚ğÀ‘•‚µ‚Ü‚·B
-	CGoluahObject::TouchB ‚ÍUŒ‚—Í‚Ì–³Œø‰»‚ğs‚¢‚Ü‚·B
+	ï¿½ï¿½ï¿½ï¿½ï¿½ÌUï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ÉŒÄ‚Î‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½Êï¿½ï¿½Í‚ï¿½ï¿½ï¿½ï¿½ÅƒQï¿½[ï¿½Wï¿½Ì‘ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	CGoluahObject::TouchB ï¿½ÍUï¿½ï¿½ï¿½Í‚Ì–ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 
-	@param info “–‚Ä‚½UŒ‚‚Ìî•ñ
-	@param hit TRUE:ƒqƒbƒg‚µ‚½, FALSE:ƒK[ƒh‚³‚ê‚½
-	@return í‚É0
+	@param info ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Uï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
+	@param hit TRUE:ï¿½qï¿½bï¿½gï¿½ï¿½ï¿½ï¿½, FALSE:ï¿½Kï¿½[ï¿½hï¿½ï¿½ï¿½ê‚½
+	@return ï¿½ï¿½ï¿½ï¿½0
 */
 DWORD CGoluahObject::TouchB(ATTACKINFO *info,BOOL hit)
 {
-	pdat->kougeki=FALSE;//UŒ‚—Í‚Ì–³Œø‰»
+	pdat->kougeki=FALSE;//ï¿½Uï¿½ï¿½ï¿½Í‚Ì–ï¿½ï¿½ï¿½ï¿½ï¿½
 	return(0);
 }
 
 /*!
-	@brief GOBJMSG_TOUCHCƒƒbƒZ[ƒWˆ—ŠÖ”
+	@brief GOBJMSG_TOUCHCï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½
 	@sa GOBJMSG_TOUCHC_RETURNS
 
-	©•ª‚ÌUŒ‚‚ª‘Šè‚É“–‚½‚èA‚È‚¨‚©‚Â‘Šè‘¤‚ÉGOBJMSG_TOUCHA‚ª‘—M‚³‚ê‚é‘O‚ÉŒÄ‚Ño‚³‚ê‚Ü‚·B
-	’Êí‚Í‚±‚ÌƒƒbƒZ[ƒW‚ğˆ—‚·‚é•K—v‚Í‚ ‚è‚Ü‚¹‚ñB
+	ï¿½ï¿½ï¿½ï¿½ï¿½ÌUï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½È‚ï¿½ï¿½ï¿½ï¿½Â‘ï¿½ï¿½è‘¤ï¿½ï¿½GOBJMSG_TOUCHAï¿½ï¿½ï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ÉŒÄ‚Ñoï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½Êï¿½ï¿½Í‚ï¿½ï¿½Ìƒï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Kï¿½vï¿½Í‚ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B
 
-	@param info “–‚Ä‚½UŒ‚‚Ìî•ñ
-	@param tc_eid ”íŠQÒ‚ÌƒIƒuƒWƒFƒNƒgID
-	@return TOUCHC_`‚ÌƒŠƒ^[ƒ“ƒR[ƒh
+	@param info ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Uï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
+	@param tc_eid ï¿½ï¿½ï¿½Qï¿½Ò‚ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gID
+	@return TOUCHC_ï¿½`ï¿½Ìƒï¿½ï¿½^ï¿½[ï¿½ï¿½ï¿½Rï¿½[ï¿½h
 */
 DWORD CGoluahObject::TouchC(ATTACKINFO *info,DWORD tc_eid){return(0);}
 
 /*!
-	@brief GOBJMSG_TOUCHCƒƒbƒZ[ƒWˆ—ŠÖ”
+	@brief GOBJMSG_TOUCHCï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½
 
-	ƒLƒƒƒ‰ƒNƒ^[‚ªCOM‘€ì‚ÅACOM‚ª“®ì‚ğŒˆ’è‚·‚é‚ÉŒÄ‚Ño‚³‚ê‚Ü‚·B
-	‚±‚ÌŠÖ”‚ğg‚Á‚ÄAƒ†[ƒU[“Æ©‚Ìvlƒ‹[ƒ`ƒ“‚ğ‘g‚Ş‚±‚Æ‚ªo—ˆ‚Ü‚·B
+	ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½COMï¿½ï¿½ï¿½ï¿½ï¿½ÅACOMï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è‚·ï¿½éï¿½ÉŒÄ‚Ñoï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ÄAï¿½ï¿½ï¿½[ï¿½Uï¿½[ï¿½Æï¿½ï¿½Ìvï¿½lï¿½ï¿½ï¿½[ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½gï¿½Ş‚ï¿½ï¿½Æ‚ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 
-	@return ˆÚs‚·‚é“®ì‚ÌACTID
+	@return ï¿½Úsï¿½ï¿½ï¿½é“®ï¿½ï¿½ï¿½ï¿½ACTID
 */
 DWORD CGoluahObject::ComThink() { return 0; }
 
 
 /*-----------------------------------------------------------------------------
-	‚»‚Ì‚½‚à‚ë‚à‚ë
+	ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 -------------------------------------------------------------------------------*/
 
 /*!
-	@brief GOBJMSG_CNGAIDƒƒbƒZ[ƒWˆ—
+	@brief GOBJMSG_CNGAIDï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½
 
-	s“®ID•Ï‰»‚Ìˆ—‚ğ‚±‚±‚É‹Lq‚µ‚Ü‚·B
-	CGoluahObject::ActionIDChanged ‚ÍAz’l(GOBJECT::z)‚ğAŠî€zˆÊ’u(CGoluahObject::base_z)‚É
-	–ß‚µ‚Ü‚·B
+	ï¿½sï¿½ï¿½IDï¿½Ï‰ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É‹Lï¿½qï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	CGoluahObject::ActionIDChanged ï¿½ÍAzï¿½l(GOBJECT::z)ï¿½ï¿½ï¿½Aï¿½î€zï¿½Ê’u(CGoluahObject::base_z)ï¿½ï¿½
+	ï¿½ß‚ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 void CGoluahObject::ActionIDChanged()
 {
-	pdat->z=base_z;//zÀ•W‚ğŠî€’l‚É–ß‚·
+	pdat->z=base_z;//zï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½î€ï¿½lï¿½É–ß‚ï¿½
 }
 
 /*!
-	@brief GOBJMSG_CNGROUNDƒƒbƒZ[ƒWˆ—ŠÖ”
+	@brief GOBJMSG_CNGROUNDï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½
 
-	‡ƒ‰ƒEƒ“ƒhisƒƒbƒZ[ƒWB
-	‚±‚ÌƒƒbƒZ[ƒW‚Ì‰“š‚Æ‚µ‚Ä0‚ğ•Ô‚·‚ÆA‚»‚ÌƒIƒuƒWƒFƒNƒg‚ÍÁ‹‚³‚ê‚Ü‚·B
-	’Êí‚ÍTRUE‚ğ•Ô‚µAÁ‹‚³‚ê‚È‚¢‚æ‚¤‚É‚µ‚Ä‚­‚¾‚³‚¢B
+	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½hï¿½iï¿½sï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½B
+	ï¿½ï¿½ï¿½Ìƒï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½Ì‰ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½0ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½ÆAï¿½ï¿½ï¿½ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Íï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½Êï¿½ï¿½ï¿½TRUEï¿½ï¿½ï¿½Ô‚ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 
-	@return FALSE:ƒIƒuƒWƒFƒNƒg‚ÌÁ‹ATRUE:Ÿ‚Ìƒ‰ƒEƒ“ƒh‚Ö‚¿‰z‚µ
+	@return FALSE:ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Ìï¿½ï¿½ï¿½ï¿½ATRUE:ï¿½ï¿½ï¿½Ìƒï¿½ï¿½Eï¿½ï¿½ï¿½hï¿½Öï¿½ï¿½ï¿½ï¿½zï¿½ï¿½
 */
 BOOL CGoluahObject::OnChangeRound()
 {
@@ -445,16 +444,16 @@ BOOL CGoluahObject::OnChangeRound()
 }
 
 /*!
-	@brief ƒIƒuƒWƒFƒNƒg‚ÌŒü‚«‚ğ”»’è‚µ‚ÄxƒIƒtƒZƒbƒg’l‚ğì¬
+	@brief ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ÌŒï¿½ï¿½ï¿½ï¿½ğ”»’è‚µï¿½ï¿½xï¿½Iï¿½tï¿½Zï¿½bï¿½gï¿½lï¿½ï¿½ï¿½ì¬
 
-	ƒIƒtƒZƒbƒg—Ê‚Ì¶¬‚Å‚·B
-	—á‚¦‚ÎA”ò‚Ñ“¹‹ï‚ğƒLƒƒƒ‰ƒNƒ^[‚ÌŠî€À•W‚©‚ç100"‘O"‚ÌˆÊ’u‚©‚ç
-	ŠJn‚µ‚½‚¢ê‡AGOBJECT::muki‚Ì’l‚ğQÆ‚µ‚Ä +‚©- ‚ğ”»’è‚µ‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñ‚ªA
-	‚±‚ÌŠÖ”‚Í‚»‚ê‚ğl—¶‚µ‚½’l‚ğ•Ô‚µ‚Ü‚·B
-	ƒqƒbƒgƒ}[ƒN‚Ì”­¶ˆÊ’uƒIƒtƒZƒbƒg‚È‚Ç‚É‚àg—p‚µ‚Ü‚·B
+	ï¿½Iï¿½tï¿½Zï¿½bï¿½gï¿½Ê‚Ìï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½B
+	ï¿½á‚¦ï¿½ÎAï¿½ï¿½ï¿½Ñ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ÌŠî€ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½100"ï¿½O"ï¿½ÌˆÊ’uï¿½ï¿½ï¿½ï¿½
+	ï¿½Jï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½AGOBJECT::mukiï¿½Ì’lï¿½ï¿½ï¿½Qï¿½Æ‚ï¿½ï¿½ï¿½ +ï¿½ï¿½- ï¿½ğ”»’è‚µï¿½È‚ï¿½ï¿½ï¿½ï¿½Î‚È‚ï¿½ï¿½Ü‚ï¿½ï¿½ñ‚ªA
+	ï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½Í‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½lï¿½ï¿½ï¿½Ô‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½qï¿½bï¿½gï¿½}ï¿½[ï¿½Nï¿½Ì”ï¿½ï¿½ï¿½ï¿½Ê’uï¿½Iï¿½tï¿½Zï¿½bï¿½gï¿½È‚Ç‚É‚ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 
-	@param x ƒIƒtƒZƒbƒg—Ê(+‚Í‘O•ûA-‚ÍŒã•û)
-	@return Œü‚«‚ğl—¶‚µ‚½ƒIƒtƒZƒbƒg—Ê
+	@param x ï¿½Iï¿½tï¿½Zï¿½bï¿½gï¿½ï¿½(+ï¿½Í‘Oï¿½ï¿½ï¿½A-ï¿½ÍŒï¿½ï¿½ï¿½)
+	@return ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½tï¿½Zï¿½bï¿½gï¿½ï¿½
 */
 double CGoluahObject::zurex(double x)
 {
@@ -463,10 +462,10 @@ double CGoluahObject::zurex(double x)
 }
 
 /*!
-	@brief ƒIƒuƒWƒFƒNƒg‚ÌŒü‚«‚ğ”»’è‚µ‚ÄxƒIƒtƒZƒbƒg’l‚ğì¬
+	@brief ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ÌŒï¿½ï¿½ï¿½ï¿½ğ”»’è‚µï¿½ï¿½xï¿½Iï¿½tï¿½Zï¿½bï¿½gï¿½lï¿½ï¿½ï¿½ì¬
 
-	double”Å‚Ì‚à‚Ì‚ğ int ‚ÉƒI[ƒo[ƒ[ƒh‚µ‚½‚à‚Ì‚Å‚·B
-	double”Å‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+	doubleï¿½Å‚Ì‚ï¿½ï¿½Ì‚ï¿½ int ï¿½ÉƒIï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Å‚ï¿½ï¿½B
+	doubleï¿½Å‚ï¿½ï¿½Qï¿½Æ‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 */
 int CGoluahObject::zurex(int x)
 {
@@ -475,13 +474,13 @@ int CGoluahObject::zurex(int x)
 }
 
 /*!
-	@brief ƒIƒuƒWƒFƒNƒg‚ÌŒü‚«‚ğ”»’è‚µ‚ÄX•ûŒüˆÚ“®
+	@brief ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ÌŒï¿½ï¿½ï¿½ï¿½ğ”»’è‚µï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½Ú“ï¿½
 
-	ƒLƒƒƒ‰ƒNƒ^[‚ª‰E‚ğŒü‚¢‚Ä‚¢‚é‚Æ‚«‚ÆAƒLƒƒƒ‰ƒNƒ^[‚ª¶‚ğŒü‚¢‚Ä‚¢‚é‚Æ‚«‚Å‚ÍA
-	ƒLƒƒƒ‰ƒNƒ^[‚ğˆÚ“®‚·‚é‚Æ‚«‚Éx’l‚É‰Á‚¦‚é‚×‚«’l‚Ì•„‡‚ªˆÙ‚È‚è‚Ü‚·B
-	‚±‚ÌŠÖ”‚ÍGOBJECT::muki‚ğl—¶‚µ‚ÄƒLƒƒƒ‰ƒNƒ^[‚ÌxˆÊ’u(GOBJECT::x)‚ğˆÚ“®‚µ‚Ü‚·B
+	ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ÆAï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Å‚ÍA
+	ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½Ú“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½xï¿½lï¿½É‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×‚ï¿½ï¿½lï¿½Ì•ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù‚È‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½ï¿½GOBJECT::mukiï¿½ï¿½ï¿½lï¿½ï¿½ï¿½ï¿½ï¿½ÄƒLï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½xï¿½Ê’u(GOBJECT::x)ï¿½ï¿½ï¿½Ú“ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 
-	@param dx ˆÚ“®—Ê(+‚Í‘O•ûA-‚ÍŒã•û)
+	@param dx ï¿½Ú“ï¿½ï¿½ï¿½(+ï¿½Í‘Oï¿½ï¿½ï¿½A-ï¿½ÍŒï¿½ï¿½ï¿½)
 */
 void CGoluahObject::movex(double dx)
 {
@@ -490,10 +489,10 @@ void CGoluahObject::movex(double dx)
 }
 
 /*!
-	@brief ƒIƒuƒWƒFƒNƒg‚ÌŒü‚«‚ğ”»’è‚µ‚ÄX•ûŒüˆÚ“®
+	@brief ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ÌŒï¿½ï¿½ï¿½ï¿½ğ”»’è‚µï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½Ú“ï¿½
 
-	double”Å‚Ì‚à‚Ì‚ğ int ‚ÉƒI[ƒo[ƒ[ƒh‚µ‚½‚à‚Ì‚Å‚·B
-	double”Å‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+	doubleï¿½Å‚Ì‚ï¿½ï¿½Ì‚ï¿½ int ï¿½ÉƒIï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Å‚ï¿½ï¿½B
+	doubleï¿½Å‚ï¿½ï¿½Qï¿½Æ‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 */
 void CGoluahObject::movex(int dx)
 {
@@ -502,14 +501,14 @@ void CGoluahObject::movex(int dx)
 }
 
 /*!
-	@brief ƒIƒuƒWƒFƒNƒgƒvƒƒpƒeƒB‚Ì’Ç‰Á
+	@brief ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½vï¿½ï¿½ï¿½pï¿½eï¿½Bï¿½Ì’Ç‰ï¿½
 	@sa GOBJECT_PROPERTIES
 
-	GOBJECT::objtype‚Éw’èƒtƒ‰ƒO‚ğ’Ç‰Á‚µ‚Ü‚·B‚à‚Æ‚à‚Æİ’è‚³‚ê‚Ä‚ ‚éƒtƒ‰ƒO‚Í•Û‚³‚ê‚Ü‚·B
+	GOBJECT::objtypeï¿½Éwï¿½ï¿½ï¿½tï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½Bï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Æİ’è‚³ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½Oï¿½Í•Ûï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 	( pdat->objtype |= prop; )
-	GOBJECT::objtype‚ğˆêŠ‡‚Åw’è‚µ‚½‚¢ê‡‚ÍCGoluahObject::SetProperty‚ğg—p‚µ‚Ä‚­‚¾‚³‚¢B
+	GOBJECT::objtypeï¿½ï¿½ï¿½êŠ‡ï¿½Åwï¿½è‚µï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ï¿½CGoluahObject::SetPropertyï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 
-	@param prop ’Ç‰Á‚·‚éƒIƒuƒWƒFƒNƒgƒvƒƒpƒeƒBƒtƒ‰ƒO
+	@param prop ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½vï¿½ï¿½ï¿½pï¿½eï¿½Bï¿½tï¿½ï¿½ï¿½O
 */
 void CGoluahObject::AddProperty(DWORD prop)
 {
@@ -517,13 +516,13 @@ void CGoluahObject::AddProperty(DWORD prop)
 }
 
 /*!
-	@brief ƒIƒuƒWƒFƒNƒgƒvƒƒpƒeƒB‚Ìíœ
+	@brief ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½vï¿½ï¿½ï¿½pï¿½eï¿½Bï¿½Ìíœ
 	@sa GOBJECT_PROPERTIES
 
-	GOBJECT::objtype‚©‚çw’èƒtƒ‰ƒO‚ğœ‹‚µ‚Ü‚·Bw’è‚³‚ê‚½ƒtƒ‰ƒOˆÈŠO‚Ìƒtƒ‰ƒO‚Í•Û‚³‚ê‚Ü‚·B
+	GOBJECT::objtypeï¿½ï¿½ï¿½ï¿½ï¿½wï¿½ï¿½ï¿½tï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½Bï¿½wï¿½è‚³ï¿½ê‚½ï¿½tï¿½ï¿½ï¿½Oï¿½ÈŠOï¿½Ìƒtï¿½ï¿½ï¿½Oï¿½Í•Ûï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 	( pdat->objtype &= ~prop; )
 
-	@param prop íœ‚·‚éƒIƒuƒWƒFƒNƒgƒvƒƒpƒeƒBƒtƒ‰ƒO
+	@param prop ï¿½íœï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½vï¿½ï¿½ï¿½pï¿½eï¿½Bï¿½tï¿½ï¿½ï¿½O
 */
 void CGoluahObject::RemoveProperty(DWORD prop)
 {
@@ -531,13 +530,13 @@ void CGoluahObject::RemoveProperty(DWORD prop)
 }
 
 /*!
-	@brief ƒIƒuƒWƒFƒNƒgƒvƒƒpƒeƒB‚Ì‘Sİ’è
+	@brief ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½vï¿½ï¿½ï¿½pï¿½eï¿½Bï¿½Ì‘Sï¿½İ’ï¿½
 	@sa GOBJECT_PROPERTIES
 
-	GOBJECT::objtype‚Éw’è’l‚ğİ’è‚µ‚Ü‚·BŒ³X‚Ìƒtƒ‰ƒO‚Í‘S‚Ä¸‚í‚ê‚Ü‚·B
+	GOBJECT::objtypeï¿½Éwï¿½ï¿½ï¿½lï¿½ï¿½ï¿½İ’è‚µï¿½Ü‚ï¿½ï¿½Bï¿½ï¿½ï¿½Xï¿½Ìƒtï¿½ï¿½ï¿½Oï¿½Í‘Sï¿½Äï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 	( pdat->objtype = prop; )
 
-	@param prop İ’è‚·‚éƒIƒuƒWƒFƒNƒgƒvƒƒpƒeƒBƒtƒ‰ƒO
+	@param prop ï¿½İ’è‚·ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½vï¿½ï¿½ï¿½pï¿½eï¿½Bï¿½tï¿½ï¿½ï¿½O
 */
 void CGoluahObject::SetProperty(DWORD prop)
 {
@@ -545,54 +544,54 @@ void CGoluahObject::SetProperty(DWORD prop)
 }
 
 /*!
-	@brief GOBJMSG_DRAWFRONTƒƒbƒZ[ƒWŠÖ”
+	@brief GOBJMSG_DRAWFRONTï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½Öï¿½
 	@sa GOBJECT_MESSAGE
 
-	GOBJMSG_DRAWFRONTƒƒbƒZ[ƒW‚É‘Î‰‚·‚éˆ—‚Å‚·B
-	’Êí‚Í‚±‚±‚Å‚Í•`‰æˆ—‚ğs‚¢‚Ü‚¹‚ñBCGoluahObject::DrawFront‚Íí‚ÉFALSEi•`‰æ‚ğs‚í‚È‚¢j
-	‚ğ•Ô‚µ‚Ü‚·B
+	GOBJMSG_DRAWFRONTï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½É‘Î‰ï¿½ï¿½ï¿½ï¿½éˆï¿½ï¿½ï¿½Å‚ï¿½ï¿½B
+	ï¿½Êï¿½ï¿½Í‚ï¿½ï¿½ï¿½ï¿½Å‚Í•`ï¿½æˆï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½BCGoluahObject::DrawFrontï¿½Íï¿½ï¿½ï¿½FALSEï¿½iï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½È‚ï¿½ï¿½j
+	ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½Ü‚ï¿½ï¿½B
 
-	@return TRUE:ƒfƒtƒHƒ‹ƒg‚ÌƒZƒ‹•`‰æ‚ğs‚í‚¹‚é,FALSE:ƒfƒtƒHƒ‹ƒg•`‰æ‚ğs‚í‚È‚¢
+	@return TRUE:ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½ÌƒZï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½í‚¹ï¿½ï¿½,FALSE:ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½È‚ï¿½
 */
 DWORD CGoluahObject::DrawFront(){return(FALSE);}
 
 /*!
-	@brief GOBJMSG_DRAWBACKƒƒbƒZ[ƒWŠÖ”
+	@brief GOBJMSG_DRAWBACKï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½Öï¿½
 	@sa GOBJECT_MESSAGE
 
-	GOBJMSG_DRAWBACKƒƒbƒZ[ƒW‚É‘Î‰‚·‚éˆ—‚Å‚·B
-	’Êí‚Í‚±‚±‚Å‚Í•`‰æˆ—‚ğs‚¢‚Ü‚¹‚ñBƒXƒe[ƒWƒIƒuƒWƒFƒNƒg‚Í‚±‚±‚Å•`‰æˆ—‚ğs‚¢‚Ü‚·B
-	CGoluahObject::DrawFront‚Íí‚ÉFALSEi•`‰æ‚ğs‚í‚È‚¢j‚ğ•Ô‚µ‚Ü‚·B
+	GOBJMSG_DRAWBACKï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½É‘Î‰ï¿½ï¿½ï¿½ï¿½éˆï¿½ï¿½ï¿½Å‚ï¿½ï¿½B
+	ï¿½Êï¿½ï¿½Í‚ï¿½ï¿½ï¿½ï¿½Å‚Í•`ï¿½æˆï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½Bï¿½Xï¿½eï¿½[ï¿½Wï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Í‚ï¿½ï¿½ï¿½ï¿½Å•`ï¿½æˆï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	CGoluahObject::DrawFrontï¿½Íï¿½ï¿½ï¿½FALSEï¿½iï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½È‚ï¿½ï¿½jï¿½ï¿½ï¿½Ô‚ï¿½ï¿½Ü‚ï¿½ï¿½B
 
-	@return TRUE:ƒfƒtƒHƒ‹ƒg‚ÌƒZƒ‹•`‰æ‚ğs‚í‚¹‚é,FALSE:ƒfƒtƒHƒ‹ƒg•`‰æ‚ğs‚í‚È‚¢
+	@return TRUE:ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½ÌƒZï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½í‚¹ï¿½ï¿½,FALSE:ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½È‚ï¿½
 */
 DWORD CGoluahObject::DrawBack(){return(FALSE);}
 
 /*!
-	@brief GOBJMSG_DRAWƒƒbƒZ[ƒWˆ—
+	@brief GOBJMSG_DRAWï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½
 	@sa GOBJECT_MESSAGE
 
-	GOBJMSG_DRAWBACKƒƒbƒZ[ƒW‚É‘Î‰‚·‚éˆ—‚Å‚·B
-	CGoluahObject::Draw‚Íí‚ÉFALSE(ƒfƒtƒHƒ‹ƒg‚Ì•`‰æ‚ğs‚¤)‚ğ•Ô‚µ‚Ü‚·B
-	’Êí‚ÌƒIƒuƒWƒFƒNƒg‚ÍAGCD‚ÌƒZƒ‹•`‰æ‚ğs‚¤‚½‚ßA‚±‚ÌŠÖ”‚ğƒI[ƒo[ƒ‰ƒCƒh‚·‚é•K—v‚Í‚ ‚è‚Ü‚¹‚ñB
-	å‚ÉƒGƒtƒFƒNƒg“™‚ÅD3D‚ğ’¼Ú‚½‚½‚¢‚Ä•`‰æ‚µ‚½‚¢ê‡A‚±‚ÌŠÖ”‚Ìˆ—‚ğ‘‚«Š·‚¦‚Ü‚·B
+	GOBJMSG_DRAWBACKï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½É‘Î‰ï¿½ï¿½ï¿½ï¿½éˆï¿½ï¿½ï¿½Å‚ï¿½ï¿½B
+	CGoluahObject::Drawï¿½Íï¿½ï¿½ï¿½FALSE(ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½Ì•`ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½)ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½Êï¿½ï¿½ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ÍAGCDï¿½ÌƒZï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ßAï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½ï¿½ï¿½Iï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½Cï¿½hï¿½ï¿½ï¿½ï¿½ï¿½Kï¿½vï¿½Í‚ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B
+	ï¿½ï¿½ï¿½ÉƒGï¿½tï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½D3Dï¿½ğ’¼Ú‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä•`ï¿½æ‚µï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½Aï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 
-	@return FALSE:ƒfƒtƒHƒ‹ƒg‚ÌƒZƒ‹•`‰æ‚ğs‚í‚¹‚é,TRUE:ƒfƒtƒHƒ‹ƒg•`‰æ‚ğs‚í‚È‚¢
+	@return FALSE:ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½ÌƒZï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½í‚¹ï¿½ï¿½,TRUE:ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½È‚ï¿½
 */
 DWORD CGoluahObject::Draw(){return(FALSE);}
 
 /*!
-	@brief s“®ID•ÏXˆ—
+	@brief ï¿½sï¿½ï¿½IDï¿½ÏXï¿½ï¿½ï¿½ï¿½
 
-	s“®ID‚ğw’è’l‚ÉƒZƒbƒg‚µ‚ÄAƒpƒ‰ƒ[ƒ^‚ÌƒŠƒZƒbƒg‚ğs‚¢‚Ü‚·B
+	ï¿½sï¿½ï¿½IDï¿½ï¿½ï¿½wï¿½ï¿½ï¿½lï¿½ÉƒZï¿½bï¿½gï¿½ï¿½ï¿½ÄAï¿½pï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^ï¿½Ìƒï¿½ï¿½Zï¿½bï¿½gï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 
-	GOBJMSG_ACTION ‚Æ GOBJMSG_COMMAND ƒƒbƒZ[ƒWˆ—’†‚És“®ID(GOBJECT.aid)‚ğ•ÏX‚µ‚½ê‡‚ÍA
-	ƒVƒXƒeƒ€‘¤‚Å•ÏX‚ğŒŸ’m‚µAƒpƒ‰ƒ[ƒ^‚ÌƒŠƒZƒbƒg‚ğs‚Á‚Ä GOBJMSG_CNGAIDƒƒbƒZ[ƒW ‚ª‘—M‚³‚ê‚Ü‚·B
-	‚»‚êˆÈŠO‚ÌêŠ‚Ås“®ID‚ğ•ÏX‚µ‚½ê‡Aƒpƒ‰ƒ[ƒ^‚ÌƒŠƒZƒbƒg‚Í–¾¦“I‚És‚í‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB
+	GOBJMSG_ACTION ï¿½ï¿½ GOBJMSG_COMMAND ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ésï¿½ï¿½ID(GOBJECT.aid)ï¿½ï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ÍA
+	ï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½ï¿½ï¿½Å•ÏXï¿½ï¿½ï¿½ï¿½ï¿½mï¿½ï¿½ï¿½Aï¿½pï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^ï¿½Ìƒï¿½ï¿½Zï¿½bï¿½gï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ GOBJMSG_CNGAIDï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½W ï¿½ï¿½ï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½ï¿½ï¿½ï¿½ï¿½ÈŠOï¿½ÌêŠï¿½Åsï¿½ï¿½IDï¿½ï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½Aï¿½pï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^ï¿½Ìƒï¿½ï¿½Zï¿½bï¿½gï¿½Í–ï¿½ï¿½ï¿½ï¿½Iï¿½Ésï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½Î‚È‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B
 
-	s“®ID‚Ì•ÏX‚ÍA’l‚ğ’¼Ú‘ã“ü‚·‚é‚Ì‚Å‚Í‚È‚­A‚±‚ÌŠÖ”‚ğg‚Á‚Äs‚¤‚Ì‚ªˆÀ‘S‚Å‚·B
+	ï¿½sï¿½ï¿½IDï¿½Ì•ÏXï¿½ÍAï¿½lï¿½ğ’¼Ú‘ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Å‚Í‚È‚ï¿½ï¿½Aï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½Äsï¿½ï¿½ï¿½Ì‚ï¿½ï¿½ï¿½ï¿½Sï¿½Å‚ï¿½ï¿½B
 
-	@param actid •ÏX‚·‚éV‚µ‚¢s“®ID’l
+	@param actid ï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½IDï¿½l
 */
 void CGoluahObject::ChangeAction(DWORD actid)
 {
@@ -603,9 +602,9 @@ void CGoluahObject::ChangeAction(DWORD actid)
 }
 
 /*!
-	@brief newˆ—
+	@brief newï¿½ï¿½ï¿½ï¿½
 
-	deleteˆ—‚ª“Æ©‚È‚Ì‚ÅA‚Â‚¢‚Å‚É‚±‚Á‚¿‚àB
+	deleteï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æï¿½ï¿½È‚Ì‚ÅAï¿½Â‚ï¿½ï¿½Å‚É‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 */
 void* CGoluahObject::operator new(size_t size)
 {
@@ -622,9 +621,9 @@ void* CGoluahObject::operator new(size_t size)
 }
 
 /*!
-	@brief deleteˆ—
+	@brief deleteï¿½ï¿½ï¿½ï¿½
 
-	ƒAƒT[ƒVƒ‡ƒ“‚ªƒEƒUƒC‚Ì‚ÅA©‘O‚Å‘‚«‚Ü‚µ‚½B
+	ï¿½Aï¿½Tï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½Uï¿½Cï¿½Ì‚ÅAï¿½ï¿½ï¿½Oï¿½Åï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B
 */
 void CGoluahObject::operator delete(void* p, size_t size)
 {
@@ -637,147 +636,147 @@ void CGoluahObject::operator delete(void* p, size_t size)
 
 
 /*-----------------------------------------------------------------------------
-	ƒVƒXƒeƒ€ŠÖ˜A‚ÌŠÖ”
+	ï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½Ö˜Aï¿½ÌŠÖï¿½
 -------------------------------------------------------------------------------*/
 
 /*!
-	@brief ƒL[“ü—Íæ“¾
+	@brief ï¿½Lï¿½[ï¿½ï¿½ï¿½Íæ“¾
 	@sa GKEYSTATES
 	@sa DI_FUNCTIONS_S::getkey
-	@param keyinput ƒL[“ü—ÍƒCƒ“ƒfƒbƒNƒX’l(CreateCharacter‚Éæ“¾‚µ‚½’l)
-	@param interval ‰½ƒtƒŒ[ƒ€‘O‚Ì“ü—Í‚ğæ“¾‚·‚é‚©H(Å‘å255) 0‚ÅŒ»İƒtƒŒ[ƒ€‚Ì“ü—Í‚ğæ“¾B
-	@retuen ƒL[“ü—ÍƒR[ƒhBKEYSTA_`‚Ì’è‹`‚ğQÆ
+	@param keyinput ï¿½Lï¿½[ï¿½ï¿½ï¿½ÍƒCï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½l(CreateCharacterï¿½ï¿½ï¿½Éæ“¾ï¿½ï¿½ï¿½ï¿½ï¿½l)
+	@param interval ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Oï¿½Ì“ï¿½ï¿½Í‚ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½é‚©ï¿½H(ï¿½Å‘ï¿½255) 0ï¿½ÅŒï¿½ï¿½İƒtï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Ì“ï¿½ï¿½Í‚ï¿½ï¿½æ“¾ï¿½B
+	@retuen ï¿½Lï¿½[ï¿½ï¿½ï¿½ÍƒRï¿½[ï¿½hï¿½BKEYSTA_ï¿½`ï¿½Ì’ï¿½ï¿½`ï¿½ï¿½ï¿½Qï¿½ï¿½
 
-	ƒVƒXƒeƒ€‚ª•Û‚·‚éƒL[“ü—Í‚ÌƒƒO‚©‚çAw’èƒtƒŒ[ƒ€”•ª‰ß‹‚Ì’l‚ğæ“¾‚µ‚Ü‚·B
-	’Êí‚Í0(Œ»İ)‚Ì“ü—Í‚ğæ“¾‚µ‚Ü‚·B
+	ï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½ï¿½ï¿½Ûï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½[ï¿½ï¿½ï¿½Í‚Ìƒï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½wï¿½ï¿½ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß‹ï¿½ï¿½Ì’lï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½Êï¿½ï¿½ï¿½0(ï¿½ï¿½ï¿½ï¿½)ï¿½Ì“ï¿½ï¿½Í‚ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 DWORD CGoluahObject::GetKey(DWORD keyinput, DWORD interval) {
 	return funcs->getkey(keyinput, interval);
 }
 /*!
-	@brief ƒL[“ü—ÍŒŸõ
+	@brief ï¿½Lï¿½[ï¿½ï¿½ï¿½ÍŒï¿½ï¿½ï¿½
 	@sa GKEYSTATES
 	@sa DI_FUNCTIONS_S::seekkey
-	@param keyinput ƒL[“ü—ÍƒCƒ“ƒfƒbƒNƒX’l(CreateCharacter‚Éæ“¾‚µ‚½’l)
-	@param offset ‰½ƒtƒŒ[ƒ€‘O‚©‚çŒŸõ‚ğŠJn‚·‚é‚©
-	@param delay ‰½ƒtƒŒ[ƒ€‘O‚Ü‚ÅŒŸõ‘ÎÛ‚Æ‚·‚é‚©
-	@return Œ©‚Â‚©‚Á‚½ê‡AŒ»İƒtƒŒ[ƒ€‚©‚ç‰½ƒtƒŒ‘O‚©‚ğ•Ô‚µ‚Ü‚·BŒ©‚Â‚©‚ç‚È‚©‚Á‚½ê‡ƒ}ƒCƒiƒX’l
+	@param keyinput ï¿½Lï¿½[ï¿½ï¿½ï¿½ÍƒCï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½l(CreateCharacterï¿½ï¿½ï¿½Éæ“¾ï¿½ï¿½ï¿½ï¿½ï¿½l)
+	@param offset ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½çŒŸï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½nï¿½ï¿½ï¿½é‚©
+	@param delay ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Oï¿½Ü‚ÅŒï¿½ï¿½ï¿½ï¿½ÎÛ‚Æ‚ï¿½ï¿½é‚©
+	@return ï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½Aï¿½ï¿½ï¿½İƒtï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ç‰½ï¿½tï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½Ü‚ï¿½ï¿½Bï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½}ï¿½Cï¿½iï¿½Xï¿½l
 
-	ƒVƒXƒeƒ€‚Ì•Û‚·‚éƒL[“ü—ÍƒƒO‚©‚çw’èƒL[“ü—Í‚ğŒŸõ‚µ‚Ü‚·.
-	ƒRƒ}ƒ“ƒh”»’è‚ğs‚¤‚Æ‚«‚Ég—p‚µ‚Ü‚·B
+	ï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½Ì•Ûï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½[ï¿½ï¿½ï¿½Íƒï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½wï¿½ï¿½ï¿½Lï¿½[ï¿½ï¿½ï¿½Í‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½.
+	ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Égï¿½pï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 int CGoluahObject::SeekKey(DWORD keyinput, int offset, int delay, DWORD keystate) {
 	return funcs->seekkey(keyinput,  offset,  delay, keystate);
 }
 /*!
-	@brief Ÿ—˜‘äŒİ’è
+	@brief ï¿½ï¿½ï¿½ï¿½ï¿½äŒï¿½İ’ï¿½
 	@sa DI_FUNCTIONS_S::setkatiserif
-	@param tid ‚Ç‚¿‚ç‚Ìƒ`[ƒ€‚©
-	@param serif İ’è‚·‚é‘äŒ•¶š—ñ
+	@param tid ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½Ìƒ`ï¿½[ï¿½ï¿½ï¿½ï¿½
+	@param serif ï¿½İ’è‚·ï¿½ï¿½ï¿½äŒï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	ƒVƒXƒeƒ€‚ÉŸ—˜‘äŒ•¶š—ñ‚ğ’Ê’m‚µ‚Äİ’è‚µ‚Ü‚·B
-	’Êí‚ÍAŠO•”ƒeƒLƒXƒg‚©‚çİ’è‚ğ“Ç‚İ‚ñ‚Åİ’è‚·‚éACCharacterBase::LoadAndSetKatiSerif
-	‚ğg—p‚µ‚Ü‚·B
+	ï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½Éï¿½ï¿½ï¿½ï¿½äŒï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê’mï¿½ï¿½ï¿½Äİ’è‚µï¿½Ü‚ï¿½ï¿½B
+	ï¿½Êï¿½ï¿½ÍAï¿½Oï¿½ï¿½ï¿½eï¿½Lï¿½Xï¿½gï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½ï¿½ï¿½ï¿½Ç‚İï¿½ï¿½ï¿½ï¿½Åİ’è‚·ï¿½ï¿½ï¿½ACCharacterBase::LoadAndSetKatiSerif
+	ï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 void CGoluahObject::SetKatiSerif(DWORD tid, char* serif) {
 	funcs->setkatiserif(tid, serif);
 }
 /*!
-	@brief ƒVƒXƒeƒ€ƒGƒtƒFƒNƒg”­¶
+	@brief ï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½Gï¿½tï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½
 	@sa DI_FUNCTIONS_S::addeffect
 	@sa SYSTEM_EFFECT_IDs
-	@param EffectID ƒGƒtƒFƒNƒg‚ÌID(EFCTID_`)
-	@param prm1 EffectID‚É‚æ‚è‰Â•Ï
-	@param prm2 EffectID‚É‚æ‚è‰Â•Ï
-	@param prm3 EffectID‚É‚æ‚è‰Â•Ï
+	@param EffectID ï¿½Gï¿½tï¿½Fï¿½Nï¿½gï¿½ï¿½ID(EFCTID_ï¿½`)
+	@param prm1 EffectIDï¿½É‚ï¿½ï¿½ï¿½ï¿½Â•ï¿½
+	@param prm2 EffectIDï¿½É‚ï¿½ï¿½ï¿½ï¿½Â•ï¿½
+	@param prm3 EffectIDï¿½É‚ï¿½ï¿½ï¿½ï¿½Â•ï¿½
 
-	ƒVƒXƒeƒ€ƒGƒtƒFƒNƒg‚ğ”­¶‚³‚¹‚Ü‚·B
-	‚»‚ê‚¼‚ê‚ÌƒGƒtƒFƒNƒg‚ÌID‚Æˆø”‚ÌˆÓ–¡‚ÍSYSTEM_EFFECT_IDs‚ğQÆB
+	ï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½Gï¿½tï¿½Fï¿½Nï¿½gï¿½ğ”­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½ï¿½ï¿½ê‚¼ï¿½ï¿½ï¿½ÌƒGï¿½tï¿½Fï¿½Nï¿½gï¿½ï¿½IDï¿½Æˆï¿½ï¿½ï¿½ï¿½ÌˆÓ–ï¿½ï¿½ï¿½SYSTEM_EFFECT_IDsï¿½ï¿½ï¿½Qï¿½ÆB
 */
 void CGoluahObject::AddEffect(DWORD EffectID, int prm1, int prm2, DWORD prm3) {
 	funcs->addeffect(EffectID, prm1, prm2, prm3);
 }
 /*!
-	@brief ƒVƒXƒeƒ€ƒTƒEƒ“ƒhÄ¶
+	@brief ï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½Äï¿½
 	@sa DI_FUNCTIONS_S::playsyssound
 	@sa SYSTEM_SOUND_IDs
-	@param SoundNo ƒVƒXƒeƒ€ƒTƒEƒ“ƒh‚ÌID
+	@param SoundNo ï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½ï¿½ID
 
-	ƒVƒXƒeƒ€‚Å—pˆÓ‚³‚ê‚Ä‚¢‚éƒTƒEƒ“ƒh‚ğÄ¶‚·‚éB
-	ˆø”‚ÍSYSTEM_SOUND_IDs‚ğQÆ‚Ì‚±‚ÆB
+	ï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½Å—pï¿½Ó‚ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½ï¿½ï¿½Äï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
+	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½SYSTEM_SOUND_IDsï¿½ï¿½ï¿½Qï¿½Æ‚Ì‚ï¿½ï¿½ÆB
 */
 void CGoluahObject::PlaySysSound(DWORD SoundNo) {
 	funcs->playsyssound(SoundNo);
 }
 /*!
-	@brief wavƒTƒEƒ“ƒhƒ[ƒh
-	@param pathname ƒtƒ@ƒCƒ‹–¼(–{‘ÌÀsƒtƒ@ƒCƒ‹‚©‚ç‚Ì‘Š‘Î)
-	@return ¬Œ÷‚Å‚ ‚ê‚ÎƒTƒEƒ“ƒh‚Ö‚Ìƒ|ƒCƒ“ƒ^A¸”s‚Å‚ ‚ê‚ÎNULL
+	@brief wavï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½ï¿½ï¿½[ï¿½h
+	@param pathname ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½(ï¿½{ï¿½Ìï¿½ï¿½sï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‘ï¿½ï¿½ï¿½)
+	@return ï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½ÎƒTï¿½Eï¿½ï¿½ï¿½hï¿½Ö‚Ìƒ|ï¿½Cï¿½ï¿½ï¿½^ï¿½Aï¿½ï¿½ï¿½sï¿½Å‚ï¿½ï¿½ï¿½ï¿½ï¿½NULL
 	@sa DI_FUNCTIONS_S::loadmysound
 	@sa CGoluahObject::PlayMySound
 	@sa CGoluahObject::KillMySound
 
-	wavƒTƒEƒ“ƒh‚ğƒ[ƒh‚·‚éB
-	–ß‚è’l‚Å—^‚¦‚ç‚ê‚½ƒ|ƒCƒ“ƒ^‚ÍA•K‚¸CGoluahObject::KillMySound‚Å”jŠü‚·‚é‚±‚ÆB
+	wavï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½B
+	ï¿½ß‚ï¿½ï¿½lï¿½Å—^ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½|ï¿½Cï¿½ï¿½ï¿½^ï¿½ÍAï¿½Kï¿½ï¿½CGoluahObject::KillMySoundï¿½Å”jï¿½ï¿½ï¿½ï¿½ï¿½é‚±ï¿½ÆB
 */
 LPVOID CGoluahObject::LoadMySound(char* pathname) {
 	return funcs->loadmysound(pathname);
 }
 /*!
-	@brief wavƒTƒEƒ“ƒhÄ¶
-	@param psound ƒTƒEƒ“ƒh‚Ìƒ|ƒCƒ“ƒ^
+	@brief wavï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½Äï¿½
+	@param psound ï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½Ìƒ|ï¿½Cï¿½ï¿½ï¿½^
 	@sa DI_FUNCTIONS_S::playmysound
 	@sa CGoluahObject::LoadMySound
 
-	LoadMySound‚Åƒ[ƒh‚µ‚½wavƒTƒEƒ“ƒh‚ğÄ¶‚·‚éB
+	LoadMySoundï¿½Åƒï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½wavï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½ï¿½ï¿½Äï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 */
 void CGoluahObject::PlayMySound(LPVOID psound) {
 	funcs->playmysound(psound);
 }
 /*!
-	@brief wavƒTƒEƒ“ƒh”jŠü
-	@param psound ƒTƒEƒ“ƒh‚Ìƒ|ƒCƒ“ƒ^
+	@brief wavï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½jï¿½ï¿½
+	@param psound ï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½Ìƒ|ï¿½Cï¿½ï¿½ï¿½^
 	@sa DI_FUNCTIONS_S::killmysound
 	@sa CGoluahObject::LoadMySound
 
-	LoadMySound‚Åƒ[ƒh‚µ‚½wavƒTƒEƒ“ƒh‚ğƒAƒ“ƒ[ƒh‚·‚é
+	LoadMySoundï¿½Åƒï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½wavï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½
 */
 void CGoluahObject::KillMySound(LPVOID psound) {
 	funcs->killmysound(psound);
 }
 
 /*!
-	@brief ƒVƒXƒeƒ€‚ÖƒƒbƒZ[ƒW‘—M
-	@param mes ƒƒbƒZ[ƒWID
-	@param prm ƒpƒ‰ƒ[ƒ^
-	@return ƒƒbƒZ[ƒWID‚É‘Î‰‚µ‚½ƒŠƒ^[ƒ“ƒR[ƒh
+	@brief ï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½Öƒï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½M
+	@param mes ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½WID
+	@param prm ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^
+	@return ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½WIDï¿½É‘Î‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½^ï¿½[ï¿½ï¿½ï¿½Rï¿½[ï¿½h
 	@sa DI_FUNCTIONS_S::msg2system
 	@sa MESSAGE_OBJ2SYS
 
-	ƒVƒXƒeƒ€‚ÖƒƒbƒZ[ƒW‚ğ‘—M‚µ‚Ü‚·B‘—M‚Å‚«‚éƒƒbƒZ[ƒW‚Ì’l‚Æ‚»‚ê‚¼‚ê‚ÌˆÓ–¡‚ÉŠÖ‚µ‚Ä‚ÍMESSAGE_OBJ2SYS‚ğQÆB
-	‡is‚ÉŠÖŒW‚·‚éƒCƒxƒ“ƒg‚âAx‰‡UŒ‚AŒğ‘ã“™‚Ì—v¿‚È‚Ç‚ª‚±‚ê‚É‚ ‚½‚è‚Ü‚·B
+	ï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½Öƒï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ğ‘—Mï¿½ï¿½ï¿½Ü‚ï¿½ï¿½Bï¿½ï¿½ï¿½Mï¿½Å‚ï¿½ï¿½éƒï¿½bï¿½Zï¿½[ï¿½Wï¿½Ì’lï¿½Æ‚ï¿½ï¿½ê‚¼ï¿½ï¿½ï¿½ÌˆÓ–ï¿½ï¿½ÉŠÖ‚ï¿½ï¿½Ä‚ï¿½MESSAGE_OBJ2SYSï¿½ï¿½ï¿½Qï¿½ÆB
+	ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½sï¿½ÉŠÖŒWï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½xï¿½ï¿½ï¿½gï¿½ï¿½ï¿½Aï¿½xï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ã“™ï¿½Ì—vï¿½ï¿½ï¿½È‚Ç‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 DWORD CGoluahObject::Message2System(DWORD mes, DWORD prm) {
 	return funcs->msg2system(pdat->id, mes, prm);
 }
 
 /*!
-	@brief “G‚Ì–¼‘O‚ğæ“¾‚·‚é
-	@param tid ©•ª‘¤‚Ìƒ`[ƒ€ID
-	@return “G‚Ì–¼‘O•¶š—ñ
+	@brief ï¿½Gï¿½Ì–ï¿½ï¿½Oï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
+	@param tid ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìƒ`ï¿½[ï¿½ï¿½ID
+	@return ï¿½Gï¿½Ì–ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@sa DI_FUNCTIONS_S::getenemyname
 
-	æ“¾‚Å‚«‚é“G‚Ì–¼‘O‚ÍA‘ÎíŒ`®‚ª“¯‘Îí‚Ìê‡•s’è‚Å‚·B
-	‚»‚êˆÈŠO‚Ìê‡‚ÍÅŒã‚ÉKO‚³‚ê‚½ƒLƒƒƒ‰ƒNƒ^[‚Ì–¼‘O‚ªæ“¾‚³‚ê‚Ü‚·B
+	ï¿½æ“¾ï¿½Å‚ï¿½ï¿½ï¿½ï¿½Gï¿½Ì–ï¿½ï¿½Oï¿½ÍAï¿½Îï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îï¿½ï¿½Ìê‡ï¿½sï¿½ï¿½ï¿½Å‚ï¿½ï¿½B
+	ï¿½ï¿½ï¿½ï¿½ï¿½ÈŠOï¿½Ìê‡ï¿½ÍÅŒï¿½ï¿½ï¿½KOï¿½ï¿½ï¿½ê‚½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Ì–ï¿½ï¿½Oï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 char* CGoluahObject::GetEnemyName(DWORD tid) {
 	return funcs->getenemyname(tid);
 }
 
 /*!
-	@brief ƒIƒuƒWƒFƒNƒgŠ—LƒLƒƒƒ‰‚Ì–¼‘O‚ğæ“¾‚·‚é
-	@param oid ƒIƒuƒWƒFƒNƒgID
-	@return w’èƒLƒƒƒ‰‚Ì–¼‘O•¶š—ñ
+	@brief ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½Lï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Ì–ï¿½ï¿½Oï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
+	@param oid ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gID
+	@return ï¿½wï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Ì–ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@sa DI_FUNCTIONS_O::getcharname
 */
 char* CGoluahObject::GetCharacterName(DWORD oid) {
@@ -785,9 +784,9 @@ char* CGoluahObject::GetCharacterName(DWORD oid) {
 }
 
 /*!
-	@brief ƒIƒuƒWƒFƒNƒgŠ—LƒLƒƒƒ‰‚ÌƒL[“ü—ÍƒCƒ“ƒfƒbƒNƒX’l‚ğæ“¾‚·‚é
-	@param oid ƒIƒuƒWƒFƒNƒgID
-	@return w’èƒLƒƒƒ‰‚ÌƒL[“ü—ÍƒCƒ“ƒfƒbƒNƒX’l
+	@brief ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½Lï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½ÌƒLï¿½[ï¿½ï¿½ï¿½ÍƒCï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½lï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
+	@param oid ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gID
+	@return ï¿½wï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½ÌƒLï¿½[ï¿½ï¿½ï¿½ÍƒCï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½l
 	@sa DI_FUNCTIONS_O::getkeyinput
 */
 DWORD CGoluahObject::GetKeyInput(DWORD oid) {
@@ -796,76 +795,76 @@ DWORD CGoluahObject::GetKeyInput(DWORD oid) {
 
 
 /*!
-	@brief Œ»İ‚Ì•\¦’†SˆÊ’uX‚ğæ“¾
-	@return •\¦’†SXÀ•W
+	@brief ï¿½ï¿½ï¿½İ‚Ì•\ï¿½ï¿½ï¿½ï¿½ï¿½Sï¿½Ê’uXï¿½ï¿½ï¿½æ“¾
+	@return ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½SXï¿½ï¿½ï¿½W
 	@sa DI_FUNCTIONS_S::etdispcenterx
 
-	ƒXƒe[ƒW‚Ì•\¦ˆÊ’u‚ÍƒLƒƒƒ‰ƒNƒ^[‚ÌˆÚ“®‚É‚æ‚Á‚Ä•Ï‰»‚µ‚Ü‚·B
-	‚±‚ÌŠÖ”‚ÍƒXƒe[ƒW‚ÌŒ»İ‚Ì•\¦’†SˆÊ’u‚ÌXÀ•W‚ğæ“¾‚µ‚Ü‚·B
+	ï¿½Xï¿½eï¿½[ï¿½Wï¿½Ì•\ï¿½ï¿½ï¿½Ê’uï¿½ÍƒLï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ÌˆÚ“ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½Ä•Ï‰ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½ÍƒXï¿½eï¿½[ï¿½Wï¿½ÌŒï¿½ï¿½İ‚Ì•\ï¿½ï¿½ï¿½ï¿½ï¿½Sï¿½Ê’uï¿½ï¿½Xï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 double CGoluahObject::GetDisplayCenter_X() {
 	return funcs->getdispcenterx();
 }
 /*!
-	@brief Œ»İ‚Ì•\¦’†SˆÊ’uY‚ğæ“¾
-	@return •\¦’†SYÀ•W
+	@brief ï¿½ï¿½ï¿½İ‚Ì•\ï¿½ï¿½ï¿½ï¿½ï¿½Sï¿½Ê’uYï¿½ï¿½ï¿½æ“¾
+	@return ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½SYï¿½ï¿½ï¿½W
 	@sa DI_FUNCTIONS_S::etdispcentery
 
-	ƒXƒe[ƒW‚Ì•\¦ˆÊ’u‚ÍƒLƒƒƒ‰ƒNƒ^[‚ÌˆÚ“®‚É‚æ‚Á‚Ä•Ï‰»‚µ‚Ü‚·B
-	‚±‚ÌŠÖ”‚ÍƒXƒe[ƒW‚ÌŒ»İ‚Ì•\¦’†SˆÊ’u‚ÌXÀ•W‚ğæ“¾‚µ‚Ü‚·B
+	ï¿½Xï¿½eï¿½[ï¿½Wï¿½Ì•\ï¿½ï¿½ï¿½Ê’uï¿½ÍƒLï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ÌˆÚ“ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½Ä•Ï‰ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½ÍƒXï¿½eï¿½[ï¿½Wï¿½ÌŒï¿½ï¿½İ‚Ì•\ï¿½ï¿½ï¿½ï¿½ï¿½Sï¿½Ê’uï¿½ï¿½Xï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 double CGoluahObject::GetDisplayCenter_Y() {
 	return funcs->getdispcentery();
 }
 /*!
-	@brief ƒ`[ƒ€‚Ìl”‚ğæ“¾
-	@return TEAM_PLAYER1‘¤‚Ìƒ`[ƒ€l”
+	@brief ï¿½`ï¿½[ï¿½ï¿½ï¿½Ìlï¿½ï¿½ï¿½ï¿½ï¿½æ“¾
+	@return TEAM_PLAYER1ï¿½ï¿½ï¿½Ìƒ`ï¿½[ï¿½ï¿½ï¿½lï¿½ï¿½
 	@sa CGoluahObject::GetTeamNum2
 	@sa DI_FUNCTIONS_S::getteamnum
 
-	ˆÈ‘O‚Í1P/2P‘¤‚Ìl”‚ª“¯ˆê‚¾‚Á‚½‚Ì‚Å‚±‚ÌŠÖ”‚ğg—p‚µ‚Ü‚µ‚½‚ªAŒ»İ‚Í
-	ˆá‚¤‚Ì‚ÅA‚±‚ÌŠÖ”‚Ìg—p‚Í”ğ‚¯‚Ä‚­‚¾‚³‚¢B
-	‘ã‘Ö‹@”\‚Æ‚µ‚ÄCGoluahObject::GetTeamNum2‚ğg—p‚µ‚Ü‚·B
+	ï¿½È‘Oï¿½ï¿½1P/2Pï¿½ï¿½ï¿½Ìlï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚¾ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Å‚ï¿½ï¿½ÌŠÖï¿½ï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½İ‚ï¿½
+	ï¿½á‚¤ï¿½Ì‚ÅAï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½Ìgï¿½pï¿½Í”ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
+	ï¿½ï¿½ï¿½Ö‹@ï¿½\ï¿½Æ‚ï¿½ï¿½ï¿½CGoluahObject::GetTeamNum2ï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 DWORD CGoluahObject::GetTeamNum() {
 	return funcs->getteamnum();
 }
 /*!
-	@brief ‡Œ`®æ“¾
-	@return TAISENKEISIKI_`‚Ì’l
+	@brief ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½æ“¾
+	@return TAISENKEISIKI_ï¿½`ï¿½Ì’l
 	@sa TAISENKEISIKI
 	@sa DI_FUNCTIONS_S::gettaisenkeisiki
 
-	Œ»İ‚Ì‡Œ`®‚ğæ“¾‚·‚éB
+	ï¿½ï¿½ï¿½İ‚Ìï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½ï¿½B
 */
 DWORD CGoluahObject::GetTaisenKeisiki() {
 	return funcs->gettaisenkeisiki();
 }
 /*!
-	@brief “G‚Ìface•ÏX’l‚ğæ“¾‚·‚é
-	@param tid ©•ª‘¤‚Ìƒ`[ƒ€ID
-	@return face•ÏX’l(’Êí0)
+	@brief ï¿½Gï¿½ï¿½faceï¿½ÏXï¿½lï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
+	@param tid ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìƒ`ï¿½[ï¿½ï¿½ID
+	@return faceï¿½ÏXï¿½l(ï¿½Êï¿½0)
 	@sa DI_FUNCTIONS_S::getenemyface
 
-	“G‚Ìƒ`[ƒ€‚É•¡”‚ÌƒLƒƒƒ‰ƒNƒ^[‚ª‘¶İ‚·‚éê‡A‚Ç‚ÌƒLƒƒƒ‰ƒNƒ^[‚ª‘I‘ğ‚³‚ê‚é‚©‚Í
-	CGoluahObject::GetEnemyName‚Æ“¯—l‚Å‚·B
-	‚±‚ÌŠÖ”‚ª•Ô‚·’l‚Í’Êí0‚Å‚·Bƒ‚ƒ‰ƒ‰[/ƒ‚ƒ‰ƒ‰ƒGƒ‹‚Ì‚æ‚¤‚ÉAƒIƒvƒVƒ‡ƒ“İ’è‚É‚æ‚Á‚Ä
-	face2,3.bmp ‚ÌƒCƒ[ƒW‚ª•Ï‰»‚·‚éƒLƒƒƒ‰ƒNƒ^[‚Ìê‡AƒIƒvƒVƒ‡ƒ“’l‚ğQÆ‚µ‚Ä
-	‚Ç‚ÌƒCƒ[ƒW‚ªg—p‚³‚ê‚Ä‚¢‚é‚©‚ğ•Ô‚µ‚Ü‚·B
-	Ÿ—˜‘äŒİ’è‚È‚Ç‚É—˜—p‚µ‚Ü‚·B
+	ï¿½Gï¿½Ìƒ`ï¿½[ï¿½ï¿½ï¿½É•ï¿½ï¿½ï¿½ï¿½ÌƒLï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½ï¿½ï¿½ê‡ï¿½Aï¿½Ç‚ÌƒLï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é‚©ï¿½ï¿½
+	CGoluahObject::GetEnemyNameï¿½Æ“ï¿½ï¿½lï¿½Å‚ï¿½ï¿½B
+	ï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½lï¿½Í’Êï¿½0ï¿½Å‚ï¿½ï¿½Bï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½Ì‚æ‚¤ï¿½ÉAï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½
+	face2,3.bmp ï¿½ÌƒCï¿½ï¿½ï¿½[ï¿½Wï¿½ï¿½ï¿½Ï‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Ìê‡ï¿½Aï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½lï¿½ï¿½ï¿½Qï¿½Æ‚ï¿½ï¿½ï¿½
+	ï¿½Ç‚ÌƒCï¿½ï¿½ï¿½[ï¿½Wï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚©ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½ï¿½ï¿½ï¿½ï¿½äŒï¿½İ’èï¿½È‚Ç‚É—ï¿½ï¿½pï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 BYTE CGoluahObject::GetEnemyFace(DWORD tid) {
 	return funcs->getenemyface(tid);
 }
 /*!
-	@brief ƒ`[ƒ€‚Ìl”‚ğæ“¾
-	@param tid l”‚ğæ“¾‚·‚éƒ`[ƒ€‚Ìƒ`[ƒ€ID
-	@return w’èƒ`[ƒ€‚Ìl”
+	@brief ï¿½`ï¿½[ï¿½ï¿½ï¿½Ìlï¿½ï¿½ï¿½ï¿½ï¿½æ“¾
+	@param tid ï¿½lï¿½ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½[ï¿½ï¿½ï¿½Ìƒ`ï¿½[ï¿½ï¿½ID
+	@return ï¿½wï¿½ï¿½ï¿½`ï¿½[ï¿½ï¿½ï¿½Ìlï¿½ï¿½
 	@sa DI_FUNCTIONS_S::getteamnum2
 
-	w’èƒ`[ƒ€‚Ìl”‚ğæ“¾‚µ‚Ü‚·B
-	tid‚É‚Í’Êí©•ª‚Ìƒ`[ƒ€ID(GOBJECT::tid)‚ğw’è‚µ‚Ü‚·B
-	“Gƒ`[ƒ€‚ÉŠÖ‚µ‚Ä’²‚×‚½‚¢ê‡‚ÍCGoluahObject::EnemyTID‚ğg—p‚µ‚Ü‚·B
+	ï¿½wï¿½ï¿½ï¿½`ï¿½[ï¿½ï¿½ï¿½Ìlï¿½ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	tidï¿½É‚Í’Êí©ï¿½ï¿½ï¿½Ìƒ`ï¿½[ï¿½ï¿½ID(GOBJECT::tid)ï¿½ï¿½ï¿½wï¿½è‚µï¿½Ü‚ï¿½ï¿½B
+	ï¿½Gï¿½`ï¿½[ï¿½ï¿½ï¿½ÉŠÖ‚ï¿½ï¿½Ä’ï¿½ï¿½×‚ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ï¿½CGoluahObject::EnemyTIDï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 DWORD CGoluahObject::GetTeamNum2(DWORD tid)
 {
@@ -873,12 +872,12 @@ DWORD CGoluahObject::GetTeamNum2(DWORD tid)
 }
 
 /*!
-	@brief ƒ`[ƒ€ID‚ğ“G‘¤‚Ìƒ`[ƒ€ID‚É•ÏŠ·
-	@param tid –¡•û‘¤ƒ`[ƒ€ID
-	@return “G‘¤ƒ`[ƒ€ID
+	@brief ï¿½`ï¿½[ï¿½ï¿½IDï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½Ìƒ`ï¿½[ï¿½ï¿½IDï¿½É•ÏŠï¿½
+	@param tid ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½[ï¿½ï¿½ID
+	@return ï¿½Gï¿½ï¿½ï¿½`ï¿½[ï¿½ï¿½ID
 	@sa DI_FUNCTIONS_S::tid2etid
 
-	ƒ`[ƒ€ID‚ğ“G‘¤‚Ìƒ`[ƒ€ID‚É•ÏŠ·‚µ‚Ü‚·B
+	ï¿½`ï¿½[ï¿½ï¿½IDï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½Ìƒ`ï¿½[ï¿½ï¿½IDï¿½É•ÏŠï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 
 */
 DWORD CGoluahObject::TID2EnemyTID(DWORD tid)
@@ -886,38 +885,38 @@ DWORD CGoluahObject::TID2EnemyTID(DWORD tid)
 	return funcs->tid2etid(tid);
 }
 /*!
-	@brief “G‘¤‚Ìƒ`[ƒ€ID‚ğæ“¾
-	@return “G‚Ìƒ`[ƒ€ID
+	@brief ï¿½Gï¿½ï¿½ï¿½Ìƒ`ï¿½[ï¿½ï¿½IDï¿½ï¿½ï¿½æ“¾
+	@return ï¿½Gï¿½Ìƒ`ï¿½[ï¿½ï¿½ID
 
-	©•ª‚Ìƒ`[ƒ€ID(GOBJECT::tid)‚ğCGoluahObject::TID2EnemyTID(DWORD tid)‚É‚Â‚Á‚±‚ñ‚Å
-	“G‘¤‚Ìƒ`[ƒ€ID‚ğæ‚µ‚Ü‚·B
+	ï¿½ï¿½ï¿½ï¿½ï¿½Ìƒ`ï¿½[ï¿½ï¿½ID(GOBJECT::tid)ï¿½ï¿½CGoluahObject::TID2EnemyTID(DWORD tid)ï¿½É‚Â‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	ï¿½Gï¿½ï¿½ï¿½Ìƒ`ï¿½[ï¿½ï¿½IDï¿½ï¿½ï¿½æ‚µï¿½Ü‚ï¿½ï¿½B
 */
 DWORD CGoluahObject::EnemyTID()
 {
 	return TID2EnemyTID(pdat->tid);
 }
 /*!
-	@brief ƒlƒbƒgƒ[ƒNƒ‚[ƒh‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
-	@return Œ»İ‚Íí‚ÉFALSE
+	@brief ï¿½lï¿½bï¿½gï¿½ï¿½ï¿½[ï¿½Nï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
+	@return ï¿½ï¿½ï¿½İ‚Íï¿½ï¿½ï¿½FALSE
 	@sa DI_FUNCTIONS_S::is_net
 
-	Œ»İ‚Íí‚ÉFALSE‚ª•Ô‚è‚Ü‚·
+	ï¿½ï¿½ï¿½İ‚Íï¿½ï¿½ï¿½FALSEï¿½ï¿½ï¿½Ô‚ï¿½ï¿½Ü‚ï¿½
 */
 BOOL CGoluahObject::IsNetwork(){
 	return funcs->is_net();
 }
 
 /*!
-*	@brief ƒ^ƒO‚ÌƒZƒbƒg
-*	@param tag ƒGƒ‰[”­¶‚ÉƒƒO‚Éo—Í‚³‚ê‚é•¶š—ñ
+*	@brief ï¿½^ï¿½Oï¿½ÌƒZï¿½bï¿½g
+*	@param tag ï¿½Gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éƒï¿½ï¿½Oï¿½Éoï¿½Í‚ï¿½ï¿½ï¿½ï¿½é•¶ï¿½ï¿½ï¿½ï¿½
 *	@sa DI_FUNCTIONS_S::pushtag
 *
-*	—áŠO”­¶A‚±‚ÌŠÖ”‚É‚æ‚Á‚Äİ’è‚³‚ê‚½•¶š—ñ‚ªƒGƒ‰[ƒƒO‚É’Ç‰Á‚³‚ê‚Ü‚·B
-*	—áŠO‚ğ“Š‚°‚éƒoƒO‚Ì”­¶‚µ‚»‚¤‚ÈêŠ‚ğ PushTag , PopTag ‚ÅˆÍ‚Ş‚±‚Æ‚É‚æ‚Á‚ÄA
-*	ƒGƒ‰[”­¶ŒÂŠ‚Ì“Á’è‚É–ğ—§‚Â‚©‚à‚µ‚ê‚È‚¢B
-*	İ’è‚µ‚½ƒ^ƒO‚ÍƒXƒ^ƒbƒN®‚É•Û‚³‚ê‚é‚Ì‚ÅA‚±‚ÌŠÖ”‚ğ•¡”‰ñÀs‚·‚é‚±‚Æ‚à‰Â”\‚Å‚·B
-*	ƒVƒXƒeƒ€‚Í‚±‚ÌŠÖ”‚Å“n‚³‚ê‚½•¶š—ñ‚ÌƒRƒs[‚Íì¬‚µ‚È‚¢‚Ì‚ÅA
-*	‚±‚ÌŠÖ”‚Åİ’è‚·‚é•¶š—ñ‚Í”jŠü‚³‚ê‚È‚¢êŠ‚ÉŠm•Û‚µ‚Ä‚­‚¾‚³‚¢B
+*	ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½Äİ’è‚³ï¿½ê‚½ï¿½ï¿½ï¿½ï¿½ï¿½ñ‚ªƒGï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Oï¿½É’Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+*	ï¿½ï¿½ï¿½Oï¿½ğ“Š‚ï¿½ï¿½ï¿½ï¿½oï¿½Oï¿½Ì”ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÈêŠï¿½ï¿½ PushTag , PopTag ï¿½ÅˆÍ‚Ş‚ï¿½ï¿½Æ‚É‚ï¿½ï¿½ï¿½ï¿½ÄA
+*	ï¿½Gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Âï¿½ï¿½Ì“ï¿½ï¿½ï¿½ï¿½É–ğ—§‚Â‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½B
+*	ï¿½İ’è‚µï¿½ï¿½ï¿½^ï¿½Oï¿½ÍƒXï¿½^ï¿½bï¿½Nï¿½ï¿½ï¿½É•Ûï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ÅAï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½ğ•¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½Â”\ï¿½Å‚ï¿½ï¿½B
+*	ï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½Í‚ï¿½ï¿½ÌŠÖï¿½ï¿½Å“nï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÌƒRï¿½sï¿½[ï¿½Íì¬ï¿½ï¿½ï¿½È‚ï¿½ï¿½Ì‚ÅA
+*	ï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½Åİ’è‚·ï¿½é•¶ï¿½ï¿½ï¿½ï¿½ï¿½Í”jï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½êŠï¿½ÉŠmï¿½Û‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 */
 void CGoluahObject::PushTag(const char* tag)
 {
@@ -925,11 +924,11 @@ void CGoluahObject::PushTag(const char* tag)
 }
 
 /*!
-*	@brief ƒ^ƒO‚Ìœ‹
+*	@brief ï¿½^ï¿½Oï¿½Ìï¿½ï¿½ï¿½
 *	@sa CGoluahObject::PushTag
 *	@sa DI_FUNCTIONS_S::poptag
 *
-*	ÅŒã‚ÉPush‚³‚ê‚½ƒ^ƒO‚ğíœ‚µ‚Ü‚·
+*	ï¿½ÅŒï¿½ï¿½ï¿½Pushï¿½ï¿½ï¿½ê‚½ï¿½^ï¿½Oï¿½ï¿½ï¿½íœï¿½ï¿½ï¿½Ü‚ï¿½
 */
 void CGoluahObject::PopTag()
 {
@@ -937,7 +936,7 @@ void CGoluahObject::PopTag()
 }
 
 /*!
-*	@brief ƒƒOo—Í([error]) + ‘®
+*	@brief ï¿½ï¿½ï¿½Oï¿½oï¿½ï¿½([error]) + ï¿½ï¿½ï¿½ï¿½
 */
 void CGoluahObject::LogError(const char* fmt,...)
 {
@@ -950,7 +949,7 @@ void CGoluahObject::LogError(const char* fmt,...)
 }
 
 /*!
-*	@brief ƒƒOo—Í([warning]) + ‘®
+*	@brief ï¿½ï¿½ï¿½Oï¿½oï¿½ï¿½([warning]) + ï¿½ï¿½ï¿½ï¿½
 */
 void CGoluahObject::LogWarning(const char* fmt,...)
 {
@@ -963,7 +962,7 @@ void CGoluahObject::LogWarning(const char* fmt,...)
 }
 
 /*!
-*	@brief ƒƒOo—Í([debug]) + ‘®
+*	@brief ï¿½ï¿½ï¿½Oï¿½oï¿½ï¿½([debug]) + ï¿½ï¿½ï¿½ï¿½
 */
 void CGoluahObject::LogDebug(const char* fmt,...)
 {
@@ -976,7 +975,7 @@ void CGoluahObject::LogDebug(const char* fmt,...)
 }
 
 /*!
-*	@brief ƒƒOo—Í([info]) + ‘®
+*	@brief ï¿½ï¿½ï¿½Oï¿½oï¿½ï¿½([info]) + ï¿½ï¿½ï¿½ï¿½
 */
 void CGoluahObject::LogInfo(const char* fmt,...)
 {
@@ -990,18 +989,18 @@ void CGoluahObject::LogInfo(const char* fmt,...)
 
 
 /*-----------------------------------------------------------------------------
-	ƒIƒuƒWƒFƒNƒgŠÖ˜A‚ÌŠÖ”
+	ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Ö˜Aï¿½ÌŠÖï¿½
 -------------------------------------------------------------------------------*/
 /*!
-	@brief “Š‚°‚Æ‚©‚Å‘Šè‚ğ‚Â‚©‚Ş
-	@param eid ‚Â‚©‚İ‚½‚¢ƒIƒuƒWƒFƒNƒgID
-	@param msg_nage “Š‚°‚ª¬Œ÷‚µ‚½‚Æ‚«A‘Šè‘¤‚Ìs“®‚ğ§Œä‚·‚é‚½‚ß‚Ég—p‚·‚éƒƒbƒZ[ƒWID
-	@return TRUE:¬Œ÷
+	@brief ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Å‘ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½
+	@param eid ï¿½Â‚ï¿½ï¿½İ‚ï¿½ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gID
+	@param msg_nage ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Aï¿½ï¿½ï¿½è‘¤ï¿½Ìsï¿½ï¿½ï¿½ğ§Œä‚·ï¿½é‚½ï¿½ß‚Égï¿½pï¿½ï¿½ï¿½éƒï¿½bï¿½Zï¿½[ï¿½WID
+	@return TRUE:ï¿½ï¿½ï¿½ï¿½
 	@sa DI_FUNCTIONS_O::objcatch
 	@sa CATCHYOU
 
-	¬Œ÷‚µ‚½ê‡‚Í‘Šè‚ª“Š‚°‚ç‚êó‘Ô‚É‚È‚é‚Ì‚ÅA“Š‚°‚ç‚ês“®‚ğ“KØ‚Éˆ—‚µ‚È‚¢‚Æ
-	‡is‚ÉˆÙí‚ğ‚«‚½‚·‚Ì‚Å’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢B
+	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½Í‘ï¿½ï¿½è‚ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚É‚È‚ï¿½ï¿½Ì‚ÅAï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½Kï¿½Ø‚Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½
+	ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½sï¿½ÉˆÙï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Å’ï¿½ï¿½Ó‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 */
 BOOL   CGoluahObject::ObjCatch(DWORD eid,DWORD msg_nage) {
 	CATCHYOU cy;
@@ -1011,96 +1010,96 @@ BOOL   CGoluahObject::ObjCatch(DWORD eid,DWORD msg_nage) {
 	return funco->objcatch(eid, &cy);
 }
 /*!
-	@brief ƒIƒuƒWƒFƒNƒgî•ñ(GOBJECT)æ“¾
-	@param oid æ“¾‚·‚éƒIƒuƒWƒFƒNƒg‚ÌƒIƒuƒWƒFƒNƒgID
-	@return w’èƒIƒuƒWƒFƒNƒg‚ÌGOBJECT\‘¢‘Ì
+	@brief ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½(GOBJECT)ï¿½æ“¾
+	@param oid ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gID
+	@return ï¿½wï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½GOBJECTï¿½\ï¿½ï¿½ï¿½ï¿½
 	@sa DI_FUNCTIONS_O::getinfo
 
-	w’èID‚ÌƒIƒuƒWƒFƒNƒg‚ÌƒIƒuƒWƒFƒNƒgî•ñ‚ğæ“¾‚µ‚Ü‚·B
+	ï¿½wï¿½ï¿½IDï¿½ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 GOBJECT* CGoluahObject::GetInfo(DWORD oid) {
 	return (GOBJECT*)funco->getinfo(oid);
 }
 
 /*!
-	@brief ‹­§“I‚Éƒ_ƒ[ƒW‚ğ—^‚¦‚é
-	@param eid ƒ_ƒ[ƒW‚ğó‚¯‚éƒIƒuƒWƒFƒNƒg‚ÌID
-	@param x UŒ‚‚ªƒqƒbƒg‚µ‚½‚±‚Æ‚É‚·‚éxÀ•W
-	@param y UŒ‚‚ªƒqƒbƒg‚µ‚½‚±‚Æ‚É‚·‚éyÀ•W
+	@brief ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½Éƒ_ï¿½ï¿½ï¿½[ï¿½Wï¿½ï¿½ï¿½^ï¿½ï¿½ï¿½ï¿½
+	@param eid ï¿½_ï¿½ï¿½ï¿½[ï¿½Wï¿½ï¿½ï¿½ó‚¯‚ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ID
+	@param x ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½qï¿½bï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚É‚ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½W
+	@param y ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½qï¿½bï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚É‚ï¿½ï¿½ï¿½yï¿½ï¿½ï¿½W
 	@sa DI_FUNCTIONS_O::adddamage
 
-	å‚É“Š‚°‚Ì‚Æ‚«A“Š‚°ó‘Ô‚ÌƒIƒuƒWƒFƒNƒg‚É‚Í‚ ‚½‚è”»’è‚ªs‚í‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅA
-	‚±‚ÌŠÖ”‚Å‘Šè‚Éƒ_ƒ[ƒW‚ğ—^‚¦‚Ü‚·BUŒ‚î•ñ‚Í©ƒIƒuƒWƒFƒNƒg‚Éİ’è‚³‚ê‚½‚à‚Ì‚ªg—p‚³‚ê‚é‚Ì‚ÅA
-	•’Ê‚ÉUŒ‚‚ğ‚·‚é‚Æ‚«“¯—lAStartAttack‚ğg—p‚µ‚ÄUŒ‚—Íî•ñ‚ğİ’è‚µ‚Ü‚·B
+	ï¿½ï¿½ï¿½É“ï¿½ï¿½ï¿½ï¿½Ì‚Æ‚ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½É‚Í‚ï¿½ï¿½ï¿½ï¿½è”»ï¿½è‚ªï¿½sï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½Ì‚ÅA
+	ï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½Å‘ï¿½ï¿½ï¿½ï¿½Éƒ_ï¿½ï¿½ï¿½[ï¿½Wï¿½ï¿½ï¿½^ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½Bï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Íï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Éİ’è‚³ï¿½ê‚½ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ÅA
+	ï¿½ï¿½ï¿½Ê‚ÉUï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½lï¿½AStartAttackï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½ÄUï¿½ï¿½ï¿½Íï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ’è‚µï¿½Ü‚ï¿½ï¿½B
 */
 void   CGoluahObject::AddDamage(DWORD eid,int x,int y) {
 	funco->adddamage(pdat->id, eid, x, y);
 }
 /*!
-	@brief s“®ID‚ª•Ï‰»‚µ‚½‚Æ‚«‚Ìˆ—‚ğ–¾¦“I‚És‚¤
+	@brief ï¿½sï¿½ï¿½IDï¿½ï¿½ï¿½Ï‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ğ–¾ï¿½ï¿½Iï¿½Ésï¿½ï¿½
 	@sa DI_FUNCTIONS_O::actidchanged
 	@sa ChangeAction
 
-	GOBJMSG_ACTION ‚Æ GOBJMSG_COMMAND ƒƒbƒZ[ƒWˆ—’†‚És“®ID(GOBJECT.aid)‚ğ•ÏX‚µ‚½ê‡‚ÍA
-	ƒVƒXƒeƒ€‘¤‚Å•ÏX‚ğŒŸ’m‚µAƒpƒ‰ƒ[ƒ^‚ÌƒŠƒZƒbƒg‚ğs‚Á‚Ä GOBJMSG_CNGAIDƒƒbƒZ[ƒW ‚ª‘—M‚³‚ê‚Ü‚·B
-	‚»‚êˆÈŠO‚ÌêŠ‚Ås“®ID‚ğ•ÏX‚µ‚½ê‡Aƒpƒ‰ƒ[ƒ^‚ÌƒŠƒZƒbƒg‚Í–¾¦“I‚És‚í‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB
+	GOBJMSG_ACTION ï¿½ï¿½ GOBJMSG_COMMAND ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ésï¿½ï¿½ID(GOBJECT.aid)ï¿½ï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ÍA
+	ï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½ï¿½ï¿½Å•ÏXï¿½ï¿½ï¿½ï¿½ï¿½mï¿½ï¿½ï¿½Aï¿½pï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^ï¿½Ìƒï¿½ï¿½Zï¿½bï¿½gï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ GOBJMSG_CNGAIDï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½W ï¿½ï¿½ï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½ï¿½ï¿½ï¿½ï¿½ÈŠOï¿½ÌêŠï¿½Åsï¿½ï¿½IDï¿½ï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½Aï¿½pï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^ï¿½Ìƒï¿½ï¿½Zï¿½bï¿½gï¿½Í–ï¿½ï¿½ï¿½ï¿½Iï¿½Ésï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½Î‚È‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B
 
-	s“®ID‚ğ•ÏX‚µ‚½Œã‚Å‚±‚ÌŠÖ”‚ğŒÄ‚Ño‚·‚±‚Æ‚É‚æ‚èAã‹L‚Ì‚æ‚¤‚Èˆ—‚ğs‚¢‚Ü‚·B
-	ˆê‰’P‘Ì‚Å‚à’è‹`A•’Ê‚Ég‚¤‚È‚çChangeAction‚Ìg—p‚ğ‚¨‚·‚·‚ß‚µ‚Ü‚·B
+	ï¿½sï¿½ï¿½IDï¿½ï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ÌŠÖï¿½ï¿½ï¿½ï¿½Ä‚Ñoï¿½ï¿½ï¿½ï¿½ï¿½Æ‚É‚ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½Lï¿½Ì‚æ‚¤ï¿½Èï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½ê‰ï¿½Pï¿½Ì‚Å‚ï¿½ï¿½ï¿½ï¿½`ï¿½Aï¿½ï¿½ï¿½Ê‚Égï¿½ï¿½ï¿½È‚ï¿½ChangeActionï¿½Ìgï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß‚ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 void   CGoluahObject::ActIDChanged() {
 	funco->actidchanged(pdat->id);
 }
 /*!
-	@brief Œ»İƒAƒNƒeƒBƒu‚ÈƒLƒƒƒ‰ƒNƒ^[‚Ìî•ñ‚ğæ“¾
-	@param tid ƒ`[ƒ€
-	@return w’èƒ`[ƒ€‚ÌŒ»İƒLƒƒƒ‰ƒNƒ^[‚ÌƒIƒuƒWƒFƒNƒgî•ñ
+	@brief ï¿½ï¿½ï¿½İƒAï¿½Nï¿½eï¿½Bï¿½uï¿½ÈƒLï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾
+	@param tid ï¿½`ï¿½[ï¿½ï¿½
+	@return ï¿½wï¿½ï¿½ï¿½`ï¿½[ï¿½ï¿½ï¿½ÌŒï¿½ï¿½İƒLï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½
 	@sa DI_FUNCTIONS_O::getactivechar
 
-	"ƒAƒNƒeƒBƒu‚ÈƒLƒƒƒ‰ƒNƒ^["‚ÍA‘ÎíŒ`®‚É‚à‚æ‚è‚Ü‚·‚ªA
-	Šî–{“I‚É‰æ–Ê‚Éo‚Äí‚Á‚Ä‚éƒLƒƒƒ‰ƒNƒ^[‚ª•Ô‚éA‚Á‚Û‚¢H‚ ‚¢‚Ü‚¢‚È’è‹`‚Å‚·B
+	"ï¿½Aï¿½Nï¿½eï¿½Bï¿½uï¿½ÈƒLï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½["ï¿½ÍAï¿½Îï¿½ï¿½`ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½A
+	ï¿½ï¿½ï¿½{ï¿½Iï¿½É‰ï¿½ï¿½Ê‚Éoï¿½Äï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½Aï¿½ï¿½ï¿½Û‚ï¿½ï¿½Hï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½È’ï¿½ï¿½`ï¿½Å‚ï¿½ï¿½B
 */
 GOBJECT*  CGoluahObject::GetActiveCharacter(DWORD tid) {
 	return (GOBJECT*)funco->getactivechar(tid);
 }
 /*!
-	@brief Œ»İƒAƒNƒeƒBƒu‚È“GƒLƒƒƒ‰ƒNƒ^[‚Ìî•ñ
-	@return “Gƒ`[ƒ€‚ÌŒ»İƒLƒƒƒ‰ƒNƒ^[‚ÌƒIƒuƒWƒFƒNƒgî•ñ
+	@brief ï¿½ï¿½ï¿½İƒAï¿½Nï¿½eï¿½Bï¿½uï¿½È“Gï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Ìï¿½ï¿½ï¿½
+	@return ï¿½Gï¿½`ï¿½[ï¿½ï¿½ï¿½ÌŒï¿½ï¿½İƒLï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½
 
-	CGoluahObject::GetActiveCharacter QÆ
+	CGoluahObject::GetActiveCharacter ï¿½Qï¿½ï¿½
 */
 GOBJECT*  CGoluahObject::GetActiveEnemy() {
 	return GetActiveCharacter( EnemyTID() );
 }
 /*!
-	@brief ƒIƒuƒWƒFƒNƒgÁ–Å
+	@brief ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½
 	@sa DI_FUNCTIONS_O::suicide
 
-	ƒIƒuƒWƒFƒNƒg‚ğ”jŠü‚µ‚Ü‚·B
-	’ˆÓFuƒGƒtƒFƒNƒgˆµ‚¢v‚Å‚Í‚È‚¢ƒIƒuƒWƒFƒNƒg‚ğ‚±‚ÌŠÖ”‚Å”jŠü‚·‚é‚Ì‚Í”ñ„§‚Å‚·B
+	ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½jï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½ï¿½ï¿½ÓFï¿½uï¿½Gï¿½tï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½vï¿½Å‚Í‚È‚ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½Å”jï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Í”ñ„ï¿½ï¿½Å‚ï¿½ï¿½B
 */
 void   CGoluahObject::Suicide() {
 	funco->suicide(pdat->id);
 }
 
 /*!
-	@brief ŠÔ‡‚¢‚ğget(…•½)
-	@param oid ƒIƒuƒWƒFƒNƒg‚»‚Ì1
-	@param eoid ƒIƒuƒWƒFƒNƒg‚»‚Ì2
-	@return w’è2ƒIƒuƒWƒFƒNƒgŠÔ‚ÌŠÔ‡‚¢
+	@brief ï¿½Ôï¿½ï¿½ï¿½ï¿½ï¿½get(ï¿½ï¿½ï¿½ï¿½)
+	@param oid ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½1
+	@param eoid ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½2
+	@return ï¿½wï¿½ï¿½2ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Ô‚ÌŠÔï¿½ï¿½ï¿½
 	@sa DI_FUNCTIONS_O::getmaai_h
 
-	ŠÔ‡‚¢‚Íd‚È‚è”»’è‚Ì‹——£‚ÅŒvZ‚³‚ê‚Ü‚·B
-	ƒIƒuƒWƒFƒNƒg‚ª‰ñ“]‚ğŠÜ‚Şê‡A³‚µ‚¢’l‚Í“¾‚ç‚ê‚Ü‚¹‚ñB
+	ï¿½Ôï¿½ï¿½ï¿½ï¿½Ídï¿½È‚è”»ï¿½ï¿½ï¿½Ì‹ï¿½ï¿½ï¿½ï¿½ÅŒvï¿½Zï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½]ï¿½ï¿½ï¿½Ü‚Şê‡ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½lï¿½Í“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B
 */
 DWORD  CGoluahObject::GetMaai_H(DWORD oid, DWORD eoid) {
 	return funco->getmaai_h(oid, eoid);
 }
 /*!
-	@brief ŠÔ‡‚¢‚ğget(‚’¼)
-	@param oid ƒIƒuƒWƒFƒNƒg‚»‚Ì1
-	@param eoid ƒIƒuƒWƒFƒNƒg‚»‚Ì2
-	@return w’è2ƒIƒuƒWƒFƒNƒgŠÔ‚ÌŠÔ‡‚¢
+	@brief ï¿½Ôï¿½ï¿½ï¿½ï¿½ï¿½get(ï¿½ï¿½ï¿½ï¿½)
+	@param oid ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½1
+	@param eoid ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½2
+	@return ï¿½wï¿½ï¿½2ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Ô‚ÌŠÔï¿½ï¿½ï¿½
 	@sa DI_FUNCTIONS_O::getmaai_v
 */
 DWORD  CGoluahObject::GetMaai_V(DWORD oid, DWORD eoid) {
@@ -1108,72 +1107,72 @@ DWORD  CGoluahObject::GetMaai_V(DWORD oid, DWORD eoid) {
 }
 
 /*!
-	@brief ƒLƒƒƒ‰ƒNƒ^[‚ÌƒIƒuƒWƒFƒNƒgID
-	@param tid ƒ`[ƒ€ID
-	@param index ƒ`[ƒ€“à‚Å‚ÌƒCƒ“ƒfƒbƒNƒX(0`)
-	@return ƒLƒƒƒ‰ƒNƒ^[‚ÌƒIƒuƒWƒFƒNƒgID
+	@brief ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gID
+	@param tid ï¿½`ï¿½[ï¿½ï¿½ID
+	@param index ï¿½`ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Å‚ÌƒCï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½X(0ï¿½`)
+	@return ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gID
 	@sa DI_FUNCTIONS_O::getcharid
 */
 DWORD  CGoluahObject::GetCharacterID(DWORD tid,DWORD index) {
 	return funco->getcharid(tid, index);
 }
 /*!
-	@brief COMƒŒƒxƒ‹æ“¾
-	@return COM§Œä‚Ìê‡‚ÌƒŒƒxƒ‹(“ïˆÕ“x)
+	@brief COMï¿½ï¿½ï¿½xï¿½ï¿½ï¿½æ“¾
+	@return COMï¿½ï¿½ï¿½ï¿½ï¿½Ìê‡ï¿½Ìƒï¿½ï¿½xï¿½ï¿½(ï¿½ï¿½ï¿½Õ“x)
 	@sa DI_FUNCTIONS_O::getcomlevel
 
-	COM‚ÌƒŒƒxƒ‹‚Í0`7‚Ü‚Å‚Ì8’iŠK‚Å‚·B
-	ƒVƒXƒeƒ€‚É‚æ‚é§Œä‚É‰Á‚¦‚ÄADLL‘¤‚ÅƒRƒ“ƒsƒ…[ƒ^‚É˜A‘±‹Z‚ğ‚â‚ç‚¹‚éê‡‚É
-	Ql‚É‚µ‚Ä‚­‚¾‚³‚¢B
-	‚Ü‚½A˜A‘±‹Z‚ğ‚â‚ç‚¹‚éê‡‚É‚Í CGoluahObject::SetComAct ‚ğ„§‚µ‚Ü‚·
+	COMï¿½Ìƒï¿½ï¿½xï¿½ï¿½ï¿½ï¿½0ï¿½`7ï¿½Ü‚Å‚ï¿½8ï¿½iï¿½Kï¿½Å‚ï¿½ï¿½B
+	ï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½É‚ï¿½ï¿½é§ï¿½ï¿½ï¿½É‰ï¿½ï¿½ï¿½ï¿½ÄADLLï¿½ï¿½ï¿½ÅƒRï¿½ï¿½ï¿½sï¿½ï¿½ï¿½[ï¿½^ï¿½É˜Aï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½ï¿½ï¿½ç‚¹ï¿½ï¿½ï¿½ê‡ï¿½ï¿½
+	ï¿½Qï¿½lï¿½É‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
+	ï¿½Ü‚ï¿½ï¿½Aï¿½Aï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½ï¿½ï¿½ç‚¹ï¿½ï¿½ï¿½ê‡ï¿½É‚ï¿½ CGoluahObject::SetComAct ï¿½ğ„ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½
 */
 DWORD  CGoluahObject::GetComLevel(){
 	return funco->getcomlevel(oid);
 }
 /*!
-	@brief COMƒŠ[ƒ`İ’è
-	@param idx COMIDX_NEAR:’Z,COMIDX_MIDDLE:’†,COMIDX_LONG:’·
-	@param length İ’è‚·‚éƒŠ[ƒ`’·
+	@brief COMï¿½ï¿½ï¿½[ï¿½`ï¿½İ’ï¿½
+	@param idx COMIDX_NEAR:ï¿½Z,COMIDX_MIDDLE:ï¿½ï¿½,COMIDX_LONG:ï¿½ï¿½
+	@param length ï¿½İ’è‚·ï¿½éƒŠï¿½[ï¿½`ï¿½ï¿½
 	@sa DI_FUNCTIONS_O::setcomreach
 
-	COM”»’è‚ÌƒŠ[ƒ`’·‚ğİ’è‚µ‚Ü‚·B
-	ƒVƒXƒeƒ€‘¤‚Å‹Zî•ñ\‘¢‘Ì‚Éİ’è‚³‚ê‚½‹Z‚Ì‚¤‚¿A‚Ç‚ê‚ğ‘I‘ğ‚·‚é‚©‚Ì”»’f‚É‰e‹¿‚µ‚Ü‚·B
-	İ’è‚ğs‚í‚È‚¢ê‡‚Íver0.8ˆÈ‘O‚Åg—p‚³‚ê‚Ä‚¢‚½ŒÅ’è’l‚ªg—p‚³‚ê‚Ü‚·B
+	COMï¿½ï¿½ï¿½ï¿½ï¿½Ìƒï¿½ï¿½[ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½İ’è‚µï¿½Ü‚ï¿½ï¿½B
+	ï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½ï¿½ï¿½Å‹Zï¿½ï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½Ì‚Éİ’è‚³ï¿½ê‚½ï¿½Zï¿½Ì‚ï¿½ï¿½ï¿½ï¿½Aï¿½Ç‚ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½é‚©ï¿½Ì”ï¿½ï¿½fï¿½É‰eï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½İ’ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½È‚ï¿½ï¿½ê‡ï¿½ï¿½ver0.8ï¿½È‘Oï¿½Ågï¿½pï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½Å’ï¿½ï¿½lï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 void   CGoluahObject::SetComReach(DWORD idx,int length){
 	funco->setcomreach(oid,idx,length);
 }
 /*!
-	@brief COMs“®İ’è
-	@param aid Ÿ‚É‹N‚±‚·‚×‚«s“®‚Ìs“®ID(0‚Ìê‡s“®‚ğ—}§‚·‚é)
-	@param delay ”­“®’x‰„ŠÔ
+	@brief COMï¿½sï¿½ï¿½ï¿½İ’ï¿½
+	@param aid ï¿½ï¿½ï¿½É‹Nï¿½ï¿½ï¿½ï¿½ï¿½×‚ï¿½ï¿½sï¿½ï¿½ï¿½Ìsï¿½ï¿½ID(0ï¿½Ìê‡ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½}ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+	@param delay ï¿½ï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@sa DI_FUNCTIONS_O::setcomact
 
-	COM‚ªŸ‚É‹N‚±‚·s“®‚ğw’è‚µ‚Ü‚·B˜A‘±‹Z‚ğ‚â‚ç‚¹‚é‚Æ‚«‚È‚Ç‚Ég—p‚µ‚Ü‚·B
-	‚±‚ÌŠÖ”‚Åw’è‚µ‚½”­“®’x‰„ŠÔ‚ÌŠÔ‚Í•Ê‚Ìs“®‚ÉˆÚs‚µ‚Ü‚¹‚ñiƒK[ƒhE‹ò‚ç‚¢“™‚ğœ‚­j
-	‚½‚¾‚µAƒK[ƒh‚­‚ç‚¢“™‚ÌUŒ‚•s”\‚Ès“®‚É‘JˆÚ‚µ‚½ê‡‚Í‚±‚Ìİ’è‚ÍƒNƒŠƒA‚³‚ê‚Ü‚·B
+	COMï¿½ï¿½ï¿½ï¿½ï¿½É‹Nï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½wï¿½è‚µï¿½Ü‚ï¿½ï¿½Bï¿½Aï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½ï¿½ï¿½ç‚¹ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½È‚Ç‚Égï¿½pï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½Åwï¿½è‚µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ÌŠÔ‚Í•Ê‚Ìsï¿½ï¿½ï¿½ÉˆÚsï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½iï¿½Kï¿½[ï¿½hï¿½Eï¿½ï¿½ï¿½ç‚¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½j
+	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½Kï¿½[ï¿½hï¿½ï¿½ï¿½ç‚¢ï¿½ï¿½ï¿½ÌUï¿½ï¿½ï¿½sï¿½\ï¿½Èsï¿½ï¿½ï¿½É‘Jï¿½Ú‚ï¿½ï¿½ï¿½ï¿½ê‡ï¿½Í‚ï¿½ï¿½Ìİ’ï¿½ï¿½ÍƒNï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 void   CGoluahObject::SetComAct(DWORD aid,int delay){
 	funco->setcomact(oid,aid,delay);
 }
 /*!
-	@brief COM©“®s“®—}§
-	@param delay —}§‚·‚éŠÔ
+	@brief COMï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½}ï¿½ï¿½
+	@param delay ï¿½}ï¿½ï¿½ï¿½ï¿½ï¿½éï¿½ï¿½
 	@sa SetComAct
 
-	COM‚Ìs“®‘JˆÚ‚ğw’è‚µ‚½ŠÔ‚ÌŠÔ—}§‚µ‚Ü‚·B
-	s“®‘JˆÚ‚ª‹N‚±‚Á‚Ä‚©‚çUŒ‚—Í‚ª”­¶‚·‚é‚Ü‚Å‚ÉŠÔ‚Ì‚©‚©‚é‹Z‚Ìê‡A
-	‚»‚ÌŠÔ‚É•Ê‚Ì‹Z‚ğƒLƒƒƒ“ƒZƒ‹‚µ‚Äo‚³‚È‚¢‚æ‚¤‚ÉƒfƒBƒŒƒC‚ğ‚½‚¹‚é‚½‚ß‚Ég—p‚µ‚Ü‚·B
+	COMï¿½Ìsï¿½ï¿½ï¿½Jï¿½Ú‚ï¿½ï¿½wï¿½è‚µï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ÌŠÔ—}ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½sï¿½ï¿½ï¿½Jï¿½Ú‚ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½Í‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚Å‚Éï¿½ï¿½Ô‚Ì‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½Ìê‡ï¿½A
+	ï¿½ï¿½ï¿½ÌŠÔ‚É•Ê‚Ì‹Zï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½ï¿½ï¿½Äoï¿½ï¿½ï¿½È‚ï¿½ï¿½æ‚¤ï¿½Éƒfï¿½Bï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é‚½ï¿½ß‚Égï¿½pï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 void   CGoluahObject::ComDelay(int delay){
 	SetComAct(0,delay);
 }
 /*!
-	@brief ƒIƒuƒWƒFƒNƒg‚ªƒ[ƒJƒ‹‚Å‚ ‚é‚©‚Ç‚¤‚©
-	@return Œ»İ‚Íí‚ÉTRUE
+	@brief ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½Jï¿½ï¿½ï¿½Å‚ï¿½ï¿½é‚©ï¿½Ç‚ï¿½ï¿½ï¿½
+	@return ï¿½ï¿½ï¿½İ‚Íï¿½ï¿½ï¿½TRUE
 
-	‚à‚µ‰¼‚Éƒlƒbƒgƒ[ƒN‘Îí‚Ì‹@”\‚ªÀ‘•‚³‚ê‚½ê‡AƒIƒuƒWƒFƒNƒg‚Ì‚ ‚½‚è”»’è“™‚ÍA
-	‚»‚ÌƒIƒuƒWƒFƒNƒg‚ªƒ[ƒJƒ‹‚ÈƒVƒXƒeƒ€‚ÌŠÇ—‚Ì‚à‚Ì‚Å‚ ‚é‚©‚Ç‚¤‚©‚ğ”»’f‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
+	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éƒlï¿½bï¿½gï¿½ï¿½ï¿½[ï¿½Nï¿½Îï¿½ï¿½Ì‹@ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½ê‡ï¿½Aï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Ì‚ï¿½ï¿½ï¿½ï¿½è”»ï¿½è“™ï¿½ÍA
+	ï¿½ï¿½ï¿½ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½Jï¿½ï¿½ï¿½ÈƒVï¿½Xï¿½eï¿½ï¿½ï¿½ÌŠÇ—ï¿½ï¿½Ì‚ï¿½ï¿½Ì‚Å‚ï¿½ï¿½é‚©ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½ğ”»’fï¿½ï¿½ï¿½ï¿½ï¿½Kï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 BOOL CGoluahObject::IsLocal(){
 	return funco->obj_is_local(oid);
@@ -1214,12 +1213,12 @@ void CGoluahObject::dact_tatakituke2a(GOBJECT *p)	{funco->dact_tatakituke1a(p);}
 void CGoluahObject::dact_tatakituke2b(GOBJECT *p)	{funco->dact_tatakituke2b(p);}
 
 /*!
-	@brief COMƒŒƒ“ƒWİ’è
-	@param idx COMIDX_NEAR:’Z,COMIDX_MIDDLE:’†,COMIDX_LONG:’·
+	@brief COMï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½İ’ï¿½
+	@param idx COMIDX_NEAR:ï¿½Z,COMIDX_MIDDLE:ï¿½ï¿½,COMIDX_LONG:ï¿½ï¿½
 	@sa DI_FUNCTIONS_O::setcomrange
 
-	COM”»’è‚ÅŠî–{‚Æ‚È‚éŠÔ‡‚¢‚ğİ’è‚µ‚Ü‚·B
-	‚Ü‚¾Œ±’†‚Å‚·Ag‚í‚È‚¢•û‚ª—Ç‚³‚°B
+	COMï¿½ï¿½ï¿½ï¿½ï¿½ÅŠï¿½ï¿½{ï¿½Æ‚È‚ï¿½ï¿½Ôï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ’è‚µï¿½Ü‚ï¿½ï¿½B
+	ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½Aï¿½gï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½B
 */
 void   CGoluahObject::SetComRange(DWORD idx){
 	funco->setcomrange(oid,idx);
@@ -1227,93 +1226,93 @@ void   CGoluahObject::SetComRange(DWORD idx){
 
 
 /*-----------------------------------------------------------------------------
-	•`‰æŠÖ˜A‚ÌŠÖ”
+	ï¿½`ï¿½ï¿½ï¿½Ö˜Aï¿½ÌŠÖï¿½
 -------------------------------------------------------------------------------*/
 
 /*!
-	@brief IDirect3D* ‚Ìæ“¾
+	@brief IDirect3D* ï¿½Ìæ“¾
 	@sa DI_FUNCTIONS_D::getd3d
 
-	IDirect3D*‚ğæ“¾‚µ‚Ü‚·Bæ“¾‚µ‚Ä‚àg‚¢“¹‚È‚¢‚©‚à‚µ‚ê‚È‚¢‚¯‚Ç...
+	IDirect3D*ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½Bï¿½æ“¾ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½...
 */
 LPDIRECT3D8 CGoluahObject::GetD3D() {
 	return (LPDIRECT3D8)funcd->getd3d();
 }
 /*!
-	@brief IDirect3DDevice* ‚Ìæ“¾
+	@brief IDirect3DDevice* ï¿½Ìæ“¾
 	@sa DI_FUNCTIONS_D::getd3dd
 
-	IDirect3DDevice* ‚ğæ“¾‚µ‚Ü‚·B
-	IDirect3DDevice*‚É‚æ‚Á‚Ä‰Â”\‚È‘€ì‚ÍDirectX‚ÌSDK‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+	IDirect3DDevice* ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	IDirect3DDevice*ï¿½É‚ï¿½ï¿½ï¿½ï¿½Ä‰Â”\ï¿½È‘ï¿½ï¿½ï¿½ï¿½ï¿½DirectXï¿½ï¿½SDKï¿½ï¿½ï¿½Qï¿½Æ‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 */
 LPDIRECT3DDEVICE8 CGoluahObject::GetD3DDevice() {
 	return (LPDIRECT3DDEVICE8)funcd->getd3dd();
 }
 /*!
-	@brief ver0.70Œ`®ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İ(”ñ„§)
+	@brief ver0.70ï¿½`ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½Ç‚İï¿½ï¿½ï¿½(ï¿½ñ„ï¿½)
 	@sa CGoluahObject::CreateCellData
 	@sa DI_FUNCTIONS_D::loadcelldat
-	@param pathname [in] “Ç‚İ‚Şƒtƒ@ƒCƒ‹–¼
-	@param pCells [out] Œ‹‰Ê‚ğŠi”[‚·‚éCELLƒf[ƒ^\‘¢‘Ì”z—ñ
-	@param pRects [out] Œ‹‰Ê‚ğŠi”[‚·‚é‹éŒ`ƒf[ƒ^\‘¢‘Ì”z—ñ
-	@param pHanteis [out] Œ‹‰Ê‚ğŠi”[‚·‚é‚ ‚½‚è”»’èƒf[ƒ^\‘¢‘Ì”z—ñ
+	@param pathname [in] ï¿½Ç‚İï¿½ï¿½Şƒtï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½
+	@param pCells [out] ï¿½ï¿½ï¿½Ê‚ï¿½ï¿½iï¿½[ï¿½ï¿½ï¿½ï¿½CELLï¿½fï¿½[ï¿½^ï¿½\ï¿½ï¿½ï¿½Ì”zï¿½ï¿½
+	@param pRects [out] ï¿½ï¿½ï¿½Ê‚ï¿½ï¿½iï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½fï¿½[ï¿½^ï¿½\ï¿½ï¿½ï¿½Ì”zï¿½ï¿½
+	@param pHanteis [out] ï¿½ï¿½ï¿½Ê‚ï¿½ï¿½iï¿½[ï¿½ï¿½ï¿½é‚ ï¿½ï¿½ï¿½è”»ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½\ï¿½ï¿½ï¿½Ì”zï¿½ï¿½
 
-	ver0.70Œ`®ƒZƒ‹ƒf[ƒ^‚ğƒ[ƒh‚µ‚Ü‚·B‚±‚ÌŠÖ”‚ÍDLL‘¤‚ªŠ‚·‚éŒÅ’è’·‚Ìƒƒ‚ƒŠ—Ìˆæ‚Ö
-	ƒ[ƒh‚µ‚½ƒf[ƒ^‚ğ‘‚«‚Ş‚½‚ßA«—ˆGCDƒf[ƒ^‚Ìƒf[ƒ^’·‚ª•Ï‰»‚µ‚½ê‡‚É‚Í‘Î‰‚·‚é‚±‚Æ‚ª
-	‚Å‚«‚Ü‚¹‚ñB‚±‚Ì–â‘è‚Ío—ˆã‚ª‚Á‚½ƒLƒƒƒ‰ƒNƒ^[‚ÌGCDƒf[ƒ^‚ª«—ˆ‚ÌV‚µ‚¢GCDƒGƒfƒBƒ^‚Å
-	•ÒW‚³‚ê‚½ê‡‚É‹N‚±‚è‚Ü‚·‚ªAŠ·‘•ƒLƒƒƒ‰ƒNƒ^[‚ğ‹–‚³‚È‚¢‚Ì‚Å‚ ‚ê‚Î“Á‚É–â‘è‚Å‚Í‚È‚¢‚©‚à‚µ‚ê‚Ü‚¹‚ñB
+	ver0.70ï¿½`ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½Ü‚ï¿½ï¿½Bï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½ï¿½DLLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å’è’·ï¿½Ìƒï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìˆï¿½ï¿½ï¿½
+	ï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ş‚ï¿½ï¿½ßAï¿½ï¿½ï¿½ï¿½GCDï¿½fï¿½[ï¿½^ï¿½Ìƒfï¿½[ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½Ï‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½É‚Í‘Î‰ï¿½ï¿½ï¿½ï¿½é‚±ï¿½Æ‚ï¿½
+	ï¿½Å‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½Bï¿½ï¿½ï¿½Ì–ï¿½ï¿½ï¿½ï¿½Íoï¿½ï¿½ï¿½ã‚ªï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½GCDï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÌVï¿½ï¿½ï¿½ï¿½GCDï¿½Gï¿½fï¿½Bï¿½^ï¿½ï¿½
+	ï¿½ÒWï¿½ï¿½ï¿½ê‚½ï¿½ê‡ï¿½É‹Nï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½Ì‚Å‚ï¿½ï¿½ï¿½ï¿½Î“ï¿½ï¿½É–ï¿½ï¿½ï¿½ï¿½Å‚Í‚È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B
 
-	‚±‚ÌŠÖ”‚Å‚Íver0.9Œ`®‚ÌGCDƒf[ƒ^‚ğ“Ç‚İ‚Ş‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñB
-	‚©‚í‚è‚ÉCGoluahObject::CreateCellData‚ğg—p‚µ‚Ä‚­‚¾‚³‚¢B
+	ï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½Å‚ï¿½ver0.9ï¿½`ï¿½ï¿½ï¿½ï¿½GCDï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½Ç‚İï¿½ï¿½Ş‚ï¿½ï¿½Æ‚Í‚Å‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B
+	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½CGoluahObject::CreateCellDataï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 */
 void   CGoluahObject::LoadCellData(char* pathname,GCD_CELL2_070* pCells,GCD_RECT* pRects,GCD_HANTEI* pHanteis) {
 	funcd->loadcelldat(pathname, pCells, pRects, pHanteis);
 }
 /*!
-	@brief ƒrƒbƒgƒ}ƒbƒv“Ç‚İ‚İ
+	@brief ï¿½rï¿½bï¿½gï¿½}ï¿½bï¿½vï¿½Ç‚İï¿½ï¿½ï¿½
 	@sa DI_FUNCTIONS_D::loadbmp
-	@param PathName	‰æ‘œƒf[ƒ^‚ğ“Ç‚İ‚Şƒtƒ@ƒCƒ‹–¼
-	@param PalletFileName ƒpƒŒƒbƒgƒf[ƒ^‚ğ“Ç‚İ‚Şƒtƒ@ƒCƒ‹–¼
-	@return “Ç‚İ‚ñ‚¾‰æ‘œ.NULL‚Í¸”s
+	@param PathName	ï¿½æ‘œï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½Ç‚İï¿½ï¿½Şƒtï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½
+	@param PalletFileName ï¿½pï¿½ï¿½ï¿½bï¿½gï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½Ç‚İï¿½ï¿½Şƒtï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½
+	@return ï¿½Ç‚İï¿½ï¿½ñ‚¾‰æ‘œ.NULLï¿½Íï¿½ï¿½s
 
-	8ƒrƒbƒgƒCƒ“ƒfƒbƒNƒXƒJƒ‰[‚Ì–³ˆ³kƒrƒbƒgƒ}ƒbƒv‚ğƒ[ƒh‚µ‚Ü‚·B
-	PathName‚Ìƒtƒ@ƒCƒ‹‚ª‚ÂƒpƒŒƒbƒg‚Í’Êí–³‹‚³‚ê‚Ü‚·B
-	ƒ[ƒh‚µ‚½ƒCƒ[ƒW‚Í•K‚¸CGoluahObject::UnloadBitMap‚Å”jŠü‚µ‚Ä‚­‚¾‚³‚¢B
+	8ï¿½rï¿½bï¿½gï¿½Cï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½Jï¿½ï¿½ï¿½[ï¿½Ì–ï¿½ï¿½ï¿½ï¿½kï¿½rï¿½bï¿½gï¿½}ï¿½bï¿½vï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	PathNameï¿½Ìƒtï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âƒpï¿½ï¿½ï¿½bï¿½gï¿½Í’Êí–³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Wï¿½Í•Kï¿½ï¿½CGoluahObject::UnloadBitMapï¿½Å”jï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 */
 MYSURFACE* CGoluahObject::LoadBitmap(char* PathName,char* PalletFileName) {
 	return (MYSURFACE*)funcd->loadbmp(PathName, PalletFileName);
 }
 /*!
-	@brief ƒrƒbƒgƒ}ƒbƒvŒãn––
+	@brief ï¿½rï¿½bï¿½gï¿½}ï¿½bï¿½vï¿½ï¿½ï¿½nï¿½ï¿½
 	@sa DI_FUNCTIONS_D::unloadbmp
 	@sa CGoluahObject::LoadBitmap
-	@param Bitmap CGoluahObject::LoadBitmap‚Å“Ç‚İ‚ñ‚¾ƒrƒbƒgƒ}ƒbƒv
+	@param Bitmap CGoluahObject::LoadBitmapï¿½Å“Ç‚İï¿½ï¿½ñ‚¾ƒrï¿½bï¿½gï¿½}ï¿½bï¿½v
 
-	“Ç‚İ‚ñ‚¾ƒrƒbƒgƒ}ƒbƒv‚ğƒAƒ“ƒ[ƒh‚µ‚Ü‚·
+	ï¿½Ç‚İï¿½ï¿½ñ‚¾ƒrï¿½bï¿½gï¿½}ï¿½bï¿½vï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½Ü‚ï¿½
 */
 void   CGoluahObject::UnloadBitMap(MYSURFACE* Bitmap) {
 	funcd->unloadbmp(Bitmap);
 }
 /*!
-	@brief ƒZƒ‹•`‰æ
-	@param pBmps g—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—ñ
-	@param cdat g—p‚·‚éƒZƒ‹ƒf[ƒ^”z—ñ
-	@param rdat g—p‚·‚é‹éŒ`ƒf[ƒ^”z—ñ
-	@param cnum •`‰æ‚·‚éƒZƒ‹”Ô†
-	@param x •`‰ææxÀ•W
-	@param y •`‰ææyÀ•W
-	@param z •`‰ææzÀ•W
-	@param Rotate ‰ñ“]Šp(degree)
-	@param ReverseX x”½“]
-	@param ReverseY y”½“]
-	@param Color •`‰æ‚Ì’¸“_DiffuseF
-	@param magx xŠg‘å—¦
-	@param magy yŠg‘å—¦
+	@brief ï¿½Zï¿½ï¿½ï¿½`ï¿½ï¿½
+	@param pBmps ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½ï¿½rï¿½bï¿½gï¿½}ï¿½bï¿½vï¿½zï¿½ï¿½
+	@param cdat ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½zï¿½ï¿½
+	@param rdat ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½fï¿½[ï¿½^ï¿½zï¿½ï¿½
+	@param cnum ï¿½`ï¿½æ‚·ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½Ôï¿½
+	@param x ï¿½`ï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½W
+	@param y ï¿½`ï¿½ï¿½ï¿½ï¿½yï¿½ï¿½ï¿½W
+	@param z ï¿½`ï¿½ï¿½ï¿½ï¿½zï¿½ï¿½ï¿½W
+	@param Rotate ï¿½ï¿½ï¿½]ï¿½p(degree)
+	@param ReverseX xï¿½ï¿½ï¿½]
+	@param ReverseY yï¿½ï¿½ï¿½]
+	@param Color ï¿½`ï¿½ï¿½ï¿½Ì’ï¿½ï¿½_Diffuseï¿½F
+	@param magx xï¿½gï¿½å—¦
+	@param magy yï¿½gï¿½å—¦
 
-	ƒZƒ‹•`‰æ‚ğs‚¢‚Ü‚·B
-	’Êí‚ÍƒIƒuƒWƒFƒNƒgƒƒbƒZ[ƒWGOBJMSG_DRAW‚ÅFALSE‚ğ•Ô‚·‚±‚Æ‚É‚æ‚èA
-	ƒIƒuƒWƒFƒNƒgƒf[ƒ^(GOBJECT)‚©‚ç‚»‚ê‚¼‚ê“K“–‚Èƒpƒ‰ƒ[ƒ^‚ªE‚í‚ê‚Ä•`‰æ‚³‚ê‚Ü‚·‚ªA
-	1ƒIƒuƒWƒFƒNƒg‚Åˆê“x‚É‚Q‚ÂˆÈã‚ÌƒZƒ‹‚ğ•`‰æ‚µ‚½‚¢ê‡‚È‚Ç‚É‚±‚ÌŠÖ”‚ğ—˜—p‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
+	ï¿½Zï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½Êï¿½ï¿½ÍƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½WGOBJMSG_DRAWï¿½ï¿½FALSEï¿½ï¿½ï¿½Ô‚ï¿½ï¿½ï¿½ï¿½Æ‚É‚ï¿½ï¿½ï¿½ï¿½A
+	ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½fï¿½[ï¿½^(GOBJECT)ï¿½ï¿½ï¿½ç‚»ï¿½ê‚¼ï¿½ï¿½ï¿½Kï¿½ï¿½ï¿½Èƒpï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½ï¿½ï¿½Ä•`ï¿½æ‚³ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½A
+	1ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Åˆï¿½ï¿½xï¿½É‚Qï¿½ÂˆÈï¿½ï¿½ÌƒZï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½æ‚µï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½È‚Ç‚É‚ï¿½ï¿½ÌŠÖï¿½ï¿½ğ—˜—pï¿½ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½Å‚ï¿½ï¿½Ü‚ï¿½ï¿½B
 
 	@sa DI_FUNCTIONS_D::celldraw
 	@sa CGoluahObject::SetTransform
@@ -1326,12 +1325,12 @@ void   CGoluahObject::CellDraw(MYSURFACE** pBmps,GCD_CELL2* cdat,GCD_RECT* rdat,
 	 cnum, x, y, z, Rotate, ReverseX, ReverseY, Color, magx, magy);
 }
 /*!
-	@brief ƒZƒ‹•`‰æ
+	@brief ï¿½Zï¿½ï¿½ï¿½`ï¿½ï¿½
 	@sa CGoluahObject::SetTransform
 	@sa CGoluahObject::SetParentMatrix
 	
-	’Êí‚ÍƒIƒuƒWƒFƒNƒgƒƒbƒZ[ƒWGOBJMSG_DRAW‚ÅFALSE‚ğ•Ô‚·‚±‚Æ‚É‚æ‚è“¯—l‚Ì•`‰æ‚ªs‚í‚ê‚Ü‚·‚ªA
-	1ƒIƒuƒWƒFƒNƒg‚Åˆê“x‚É‚Q‚ÂˆÈã‚ÌƒZƒ‹‚ğ•`‰æ‚µ‚½‚¢ê‡‚È‚Ç‚É‚±‚ÌŠÖ”‚ğ—˜—p‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
+	ï¿½Êï¿½ï¿½ÍƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½WGOBJMSG_DRAWï¿½ï¿½FALSEï¿½ï¿½ï¿½Ô‚ï¿½ï¿½ï¿½ï¿½Æ‚É‚ï¿½ï¿½è“¯ï¿½lï¿½Ì•`ï¿½æ‚ªï¿½sï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½A
+	1ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Åˆï¿½ï¿½xï¿½É‚Qï¿½ÂˆÈï¿½ï¿½ÌƒZï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½æ‚µï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½È‚Ç‚É‚ï¿½ï¿½ÌŠÖï¿½ï¿½ğ—˜—pï¿½ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½Å‚ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 void   CGoluahObject::CellDraw(GOBJECT *objdat)
 {
@@ -1352,20 +1351,20 @@ void   CGoluahObject::CellDraw(GOBJECT *objdat)
 		);
 }
 /*!
-	@brief ƒrƒbƒgƒ}ƒbƒv•`‰æ
-	@param pBmp “]‘—Œ³ƒrƒbƒgƒ}ƒbƒv
-	@param x1 “]‘—æ‚Ì¶ã‚ÌxÀ•W’l
-	@param y1 “]‘—æ‚Ì¶ã‚ÌyÀ•W’l
-	@param bltrect “]‘—Œ³‹éŒ`
-	@param magx xŠg‘å—¦
-	@param magy yŠg‘å—¦
-	@param revx x”½“]
-	@param revy y”½“]
-	@param z “]‘—æzÀ•W’l
-	@param color •`‰æ‚Ì’¸“_DiffuseF
+	@brief ï¿½rï¿½bï¿½gï¿½}ï¿½bï¿½vï¿½`ï¿½ï¿½
+	@param pBmp ï¿½]ï¿½ï¿½ï¿½ï¿½ï¿½rï¿½bï¿½gï¿½}ï¿½bï¿½v
+	@param x1 ï¿½]ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½Wï¿½l
+	@param y1 ï¿½]ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½yï¿½ï¿½ï¿½Wï¿½l
+	@param bltrect ï¿½]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`
+	@param magx xï¿½gï¿½å—¦
+	@param magy yï¿½gï¿½å—¦
+	@param revx xï¿½ï¿½ï¿½]
+	@param revy yï¿½ï¿½ï¿½]
+	@param z ï¿½]ï¿½ï¿½ï¿½ï¿½zï¿½ï¿½ï¿½Wï¿½l
+	@param color ï¿½`ï¿½ï¿½ï¿½Ì’ï¿½ï¿½_Diffuseï¿½F
 
-	CGoluahObject::LoadBitmap‚Åƒ[ƒh‚µ‚½ƒrƒbƒgƒ}ƒbƒv‚ğ•`‰æ‚µ‚Ü‚·B
-	•`‰æ‚Íz²‚É‘Î‚µ‚Ä‚’¼‚È•½–Ê‚É‚È‚è‚Ü‚·B
+	CGoluahObject::LoadBitmapï¿½Åƒï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½rï¿½bï¿½gï¿½}ï¿½bï¿½vï¿½ï¿½ï¿½`ï¿½æ‚µï¿½Ü‚ï¿½ï¿½B
+	ï¿½`ï¿½ï¿½ï¿½ï¿½zï¿½ï¿½ï¿½É‘Î‚ï¿½ï¿½Äï¿½ï¿½ï¿½ï¿½È•ï¿½ï¿½Ê‚É‚È‚ï¿½ï¿½Ü‚ï¿½ï¿½B
 
 	@sa DI_FUNCTIONS_D::ckblt
 	@sa CGoluahObject::SetTransform
@@ -1379,146 +1378,146 @@ void   CGoluahObject::CkBlt(MYSURFACE* pBmp,int x1,int y1,RECT bltrect,
 	 magx,  magy, revx, revy, z, color);
 }
 /*!
-	@brief ƒrƒbƒgƒ}ƒbƒv•`‰æ(2)
+	@brief ï¿½rï¿½bï¿½gï¿½}ï¿½bï¿½vï¿½`ï¿½ï¿½(2)
 
-	@param pBmp “]‘—Œ³ƒrƒbƒgƒ}ƒbƒv
-	@param bltrect “]‘—Œ³‹éŒ`
-	@param rect “]‘—æ‹éŒ`
-	@param color •`‰æ‚Ì’¸“_DiffuseF
+	@param pBmp ï¿½]ï¿½ï¿½ï¿½ï¿½ï¿½rï¿½bï¿½gï¿½}ï¿½bï¿½v
+	@param bltrect ï¿½]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`
+	@param rect ï¿½]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`
+	@param color ï¿½`ï¿½ï¿½ï¿½Ì’ï¿½ï¿½_Diffuseï¿½F
 
 	@sa DI_FUNCTIONS_D::blt3d
 	@sa CGoluahObject::SetTransform
 	@sa CGoluahObject::SetBlend
 	@sa CGoluahObject::SetParentMatrix
 
-	CGoluahObject::LoadBitmap‚Åƒ[ƒh‚µ‚½ƒrƒbƒgƒ}ƒbƒv‚ğ•`‰æ‚µ‚Ü‚·B
+	CGoluahObject::LoadBitmapï¿½Åƒï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½rï¿½bï¿½gï¿½}ï¿½bï¿½vï¿½ï¿½ï¿½`ï¿½æ‚µï¿½Ü‚ï¿½ï¿½B
 */
 void   CGoluahObject::Blt3D(MYSURFACE* pBmp,RECT bltrect,MYRECT3D rect,DWORD color)
 {
 	funcd->blt3d( pBmp, bltrect, rect, color);
 }
 /*!
-	@brief •`‰æÀ•W•ÏŠ·İ’è
+	@brief ï¿½`ï¿½æï¿½ï¿½ï¿½Wï¿½ÏŠï¿½ï¿½İ’ï¿½
 	@sa DI_FUNCTIONS_D::settrans
-	@param BonVoyage TRUE:’Êí,FALSE:ƒXƒNƒŠ[ƒ“À•WŒnB‰½‚±‚Ì•Ï”–¼H
+	@param BonVoyage TRUE:ï¿½Êï¿½,FALSE:ï¿½Xï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½nï¿½Bï¿½ï¿½ï¿½ï¿½ï¿½Ì•Ïï¿½ï¿½ï¿½ï¿½H
 
-	’ÊíAƒXƒe[ƒW‚Ì‚¤‚¿•`‰æ‚³‚ê‚é”ÍˆÍ‚ÍƒLƒƒƒ‰ƒNƒ^[‚ÌˆÚ“®‚É‚æ‚Á‚Ä•Ï‰»‚µ‚Ü‚·‚ªA
-	‚±‚ÌŠÖ”‚ÅFALSE‚ğw’è‚·‚é‚ÆƒEƒBƒ“ƒhƒE‚Ì¶ã‚ğ(0,0)‚Æ‚µ‚½À•WŒn‚Å•`‰æ‚³‚ê‚é‚æ‚¤‚É‚È‚è‚Ü‚·B
-	•ÏX‚µ‚½ê‡‚ÍA•`‰æŒã‚ÉTRUE‚É–ß‚µ‚Ä‚¨‚­‚±‚ÆB
+	ï¿½Êï¿½ï¿½Aï¿½Xï¿½eï¿½[ï¿½Wï¿½Ì‚ï¿½ï¿½ï¿½ï¿½`ï¿½æ‚³ï¿½ï¿½ï¿½ï¿½ï¿½ÍˆÍ‚ÍƒLï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ÌˆÚ“ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½Ä•Ï‰ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½A
+	ï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½ï¿½FALSEï¿½ï¿½ï¿½wï¿½è‚·ï¿½ï¿½ï¿½ÆƒEï¿½Bï¿½ï¿½ï¿½hï¿½Eï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½(0,0)ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½nï¿½Å•`ï¿½æ‚³ï¿½ï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½É‚È‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ÍAï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½TRUEï¿½É–ß‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÆB
 */
 void   CGoluahObject::SetTransform(BOOL BonVoyage) {
 	funcd->settrans(BonVoyage);
 }
 /*!
-	@brief ƒ¿ƒuƒŒƒ“ƒh‚Ìd•û‚ğ•ÏX
+	@brief ï¿½ï¿½ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½hï¿½Ìdï¿½ï¿½ï¿½ï¿½ï¿½ÏX
 	@sa DI_FUNCTIONS_D::setblend
 	@sa GBLENDMODES
 
-	ƒ¿‡¬‚Ì•û–@‚ğw’è‚Å‚«‚Ü‚·Bƒrƒbƒgƒ}ƒbƒv•`‰æ‚É‰e‹¿‚µ‚Ü‚·B
-	•ÏX‚µ‚½ê‡‚ÍA•`‰æŒã‚ÉGBLEND_HANTOUMEI‚É–ß‚µ‚Ä‚¨‚­‚±‚ÆB
+	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì•ï¿½ï¿½@ï¿½ï¿½ï¿½wï¿½ï¿½ï¿½Å‚ï¿½ï¿½Ü‚ï¿½ï¿½Bï¿½rï¿½bï¿½gï¿½}ï¿½bï¿½vï¿½`ï¿½ï¿½ï¿½É‰eï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ÍAï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½GBLEND_HANTOUMEIï¿½É–ß‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÆB
 */
 void   CGoluahObject::SetBlend(DWORD type) {
 	funcd->setblend(type);
 }
 /*!
-	@brief •`‰æÀ•W•ÏŠ·s—ñİ’è
+	@brief ï¿½`ï¿½æï¿½ï¿½ï¿½Wï¿½ÏŠï¿½ï¿½sï¿½ï¿½ï¿½İ’ï¿½
 	@sa DI_FUNCTIONS_D::setparentmat
 
-	@param pMatrix [in]İ’è‚·‚é•ÏŠ·s—ñ
-	@param erase [in]FALSE‚Ìê‡AV‹K‚Éİ’è‚³‚ê‚és—ñ‚ÍŒ³‚Ìs—ñ‚ÆpMatrix‚ÌÏ
-	@param OldMatrix [out]ŠÖ”‚ÌÀs‘O‚Éİ’è‚³‚ê‚Ä‚¢‚½•ÏŠ·s—ñ‚ª•Ô‚³‚ê‚Ü‚·
+	@param pMatrix [in]ï¿½İ’è‚·ï¿½ï¿½ï¿½ÏŠï¿½ï¿½sï¿½ï¿½
+	@param erase [in]FALSEï¿½Ìê‡ï¿½Aï¿½Vï¿½Kï¿½Éİ’è‚³ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ÍŒï¿½ï¿½Ìsï¿½ï¿½ï¿½ï¿½pMatrixï¿½Ìï¿½
+	@param OldMatrix [out]ï¿½Öï¿½ï¿½Ìï¿½ï¿½sï¿½Oï¿½Éİ’è‚³ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ÏŠï¿½ï¿½sï¿½ñ‚ª•Ô‚ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½
 
-	À•W•ÏŠ·ƒ}ƒgƒŠƒNƒX‚ğw’è‚µ‚Ü‚·B
-	ƒrƒbƒgƒ}ƒbƒv•`‰æEƒZƒ‹•`‰æ‚ÌÛ‚É‚±‚ê‚ç‚ÌÀ•W•ÏŠ·‚ª“K—p‚³‚ê‚é‚Ì‚ÅA
-	‚¤‚Ü‚­g‚¦‚Î’´‘½‹@”\‚È•`‰æ‚ª‚Å‚«‚é‚Í‚¸BŠ‘F‚Í•½–Ê‚Å‚·‚¯‚Ç‚ËB
-	•ÏX‚µ‚½ê‡‚ÍOldMatrix‚Å•Ô‚³‚ê‚éŒ³‚Ì•ÏŠ·s—ñ‚É–ß‚µ‚Ü‚·B
-	’Êí‚Í’PˆÊs—ñ‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚·B
+	ï¿½ï¿½ï¿½Wï¿½ÏŠï¿½ï¿½}ï¿½gï¿½ï¿½ï¿½Nï¿½Xï¿½ï¿½ï¿½wï¿½è‚µï¿½Ü‚ï¿½ï¿½B
+	ï¿½rï¿½bï¿½gï¿½}ï¿½bï¿½vï¿½`ï¿½ï¿½ï¿½Eï¿½Zï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½ÌÛ‚É‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½Wï¿½ÏŠï¿½ï¿½ï¿½ï¿½Kï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ÅA
+	ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½gï¿½ï¿½ï¿½Î’ï¿½ï¿½ï¿½ï¿½@ï¿½\ï¿½È•`ï¿½æ‚ªï¿½Å‚ï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½Bï¿½ï¿½ï¿½Fï¿½Í•ï¿½ï¿½Ê‚Å‚ï¿½ï¿½ï¿½ï¿½Ç‚ËB
+	ï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ï¿½OldMatrixï¿½Å•Ô‚ï¿½ï¿½ï¿½ï¿½éŒ³ï¿½Ì•ÏŠï¿½ï¿½sï¿½ï¿½ï¿½É–ß‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½Êï¿½ï¿½Í’Pï¿½Êsï¿½ñ‚ªİ’è‚³ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 void   CGoluahObject::SetParentMatrix(LPD3DXMATRIX pMatrix,BOOL erase,LPD3DXMATRIX OldMatrix) {
 	funcd->setparentmat( pMatrix, erase, OldMatrix);
 }
 /*!
-	@brief GCDƒf[ƒ^ƒ[ƒh
+	@brief GCDï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½[ï¿½h
 	@sa CGoluahObject::DestroyCellData
 	@sa DI_FUNCTIONS_D::create_celldat
 
-	«—ˆGCDƒf[ƒ^‚Ì\‘¢‘Ì‚ª•ÏX‚³‚ê‚é‰Â”\«‚É‘Î‰‚·‚é‚½‚ßA
-	ƒVƒXƒeƒ€‘¤‚Å”z—ñƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚»‚±‚Éƒf[ƒ^‚ğƒ[ƒh‚µ‚Ü‚·B
-	‚»‚Ì‚½‚ßA‚±‚ÌŠÖ”‚Åƒ[ƒh‚µ‚½ƒf[ƒ^‚ğ“®“I‚É•ÏX‚·‚é‚±‚Æ‚Í”ñ„§‚Æ‚È‚è‚Ü‚·B
-	•ÏX‚ğs‚¤ê‡A«—ˆGCD‚ÌƒtƒH[ƒ}ƒbƒg‚ª•ÏX‚³‚êA
-	ƒ†[ƒU[‚ªGCD‚ğ‚¢‚¶‚Á‚½‚Æ‚«‚ÉŒë“®ì‚ğ‹N‚±‚·‰Â”\«‚ª‚ ‚è‚Ü‚·Bi•Ê‚É‚©‚Ü‚í‚È‚¢‚©‚à?j
+	ï¿½ï¿½ï¿½ï¿½GCDï¿½fï¿½[ï¿½^ï¿½Ì\ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â”\ï¿½ï¿½ï¿½É‘Î‰ï¿½ï¿½ï¿½ï¿½é‚½ï¿½ßA
+	ï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½ï¿½ï¿½Å”zï¿½ñƒƒï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mï¿½Û‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½Éƒfï¿½[ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½ßAï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½Åƒï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½ğ“®“Iï¿½É•ÏXï¿½ï¿½ï¿½é‚±ï¿½Æ‚Í”ñ„ï¿½ï¿½Æ‚È‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½ÏXï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ê‡ï¿½Aï¿½ï¿½ï¿½ï¿½GCDï¿½Ìƒtï¿½Hï¿½[ï¿½}ï¿½bï¿½gï¿½ï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½ï¿½A
+	ï¿½ï¿½ï¿½[ï¿½Uï¿½[ï¿½ï¿½GCDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ÉŒë“®ï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½Â”\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½Bï¿½iï¿½Ê‚É‚ï¿½ï¿½Ü‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½j
 */
-DWORD  CGoluahObject::CreateCellData(char* filename,GCD_CELL2 **cdat,GCD_RECT **rdat,GCD_HANTEI **hdat) {//ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İBver0.90ˆÈ~‚Å‚ÍLoadCellDat‚©‚ç‚±‚¿‚ç‚É•ÏX‚·‚é‚×‚«
+DWORD  CGoluahObject::CreateCellData(char* filename,GCD_CELL2 **cdat,GCD_RECT **rdat,GCD_HANTEI **hdat) {//ï¿½Zï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½Ç‚İï¿½ï¿½İBver0.90ï¿½È~ï¿½Å‚ï¿½LoadCellDatï¿½ï¿½ï¿½ç‚±ï¿½ï¿½ï¿½ï¿½ï¿½É•ÏXï¿½ï¿½ï¿½ï¿½ï¿½×‚ï¿½
 	return funcd->create_celldat(filename, (void**)cdat, (void**)rdat, (void**)hdat);
 }
 /*!
-	@brief GCDƒf[ƒ^”jŠü
+	@brief GCDï¿½fï¿½[ï¿½^ï¿½jï¿½ï¿½
 	@sa CGoluahObject::CreateCellData
 	@sa DI_FUNCTIONS_D::destroy_celldat
 
-	CGoluahObject::CreateCellData‚Åƒ[ƒh‚µ‚½GCDƒf[ƒ^‚ğ”jŠü‚µ‚Ü‚·B
+	CGoluahObject::CreateCellDataï¿½Åƒï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½GCDï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½jï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
-void   CGoluahObject::DestroyCellData(GCD_CELL2 **cdat,GCD_RECT **rdat,GCD_HANTEI **hdat) {//CreateCellDat‚Å¶¬‚³‚ê‚½ƒoƒbƒtƒ@‚ğƒNƒŠƒA
+void   CGoluahObject::DestroyCellData(GCD_CELL2 **cdat,GCD_RECT **rdat,GCD_HANTEI **hdat) {//CreateCellDatï¿½Åï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½oï¿½bï¿½tï¿½@ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½A
 	funcd->destroy_celldat( (void**)cdat, (void**)rdat, (void**)hdat);
 }
 /*!
-	@brief PNG/BMPŒ`®‰æ‘œ“Ç‚İ‚İ
+	@brief PNG/BMPï¿½`ï¿½ï¿½ï¿½æ‘œï¿½Ç‚İï¿½ï¿½ï¿½
 	@sa DI_FUNCTIONS_D::loadimage
 	@sa LoadBitmap
-	@param PathName	‰æ‘œƒf[ƒ^‚ğ“Ç‚İ‚Şƒtƒ@ƒCƒ‹‚ÌAŠg’£q‚ğœ‚¢‚½ƒtƒ@ƒCƒ‹–¼
-	@param PalletFileName ƒpƒŒƒbƒgƒf[ƒ^‚ğ“Ç‚İ‚Şƒtƒ@ƒCƒ‹‚ÌAŠg’£q‚ğœ‚¢‚½ƒtƒ@ƒCƒ‹–¼
-	@return “Ç‚İ‚ñ‚¾‰æ‘œ.NULL‚Í¸”s
+	@param PathName	ï¿½æ‘œï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½Ç‚İï¿½ï¿½Şƒtï¿½@ï¿½Cï¿½ï¿½ï¿½ÌAï¿½gï¿½ï¿½ï¿½qï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½
+	@param PalletFileName ï¿½pï¿½ï¿½ï¿½bï¿½gï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½Ç‚İï¿½ï¿½Şƒtï¿½@ï¿½Cï¿½ï¿½ï¿½ÌAï¿½gï¿½ï¿½ï¿½qï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½
+	@return ï¿½Ç‚İï¿½ï¿½ñ‚¾‰æ‘œ.NULLï¿½Íï¿½ï¿½s
 
-	PNG‘Î‰‚É”º‚¢A“Ç‚İ‚İˆ—‚É_“î«‚ğ‹‚ß‚é‚½‚ß‚Éì‚è‚Ü‚µ‚½B
-	Šg’£q‚ğœ‚¢‚½ƒtƒ@ƒCƒ‹–¼‚©‚çA.png‚Æ.bmp‚Ì‚Qí—Ş‚Ìƒ^ƒCƒv‚©‚ç©“®‘I‘ğ‚µ‚Ä“Ç‚İ‚İ‚Ü‚·(PNG—DæjB
-	‚ ‚Æ‚ÍA‚Ù‚Æ‚ñ‚ÇLoadBitmap‚Æ•Ï‚í‚è‚Ü‚¹‚ñB
+	PNGï¿½Î‰ï¿½ï¿½É”ï¿½ï¿½ï¿½ï¿½Aï¿½Ç‚İï¿½ï¿½İï¿½ï¿½ï¿½ï¿½É_ï¿½î«ï¿½ï¿½ï¿½ï¿½ï¿½ß‚é‚½ï¿½ß‚Éï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B
+	ï¿½gï¿½ï¿½ï¿½qï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½A.pngï¿½ï¿½.bmpï¿½Ì‚Qï¿½ï¿½ï¿½Ş‚Ìƒ^ï¿½Cï¿½vï¿½ï¿½ï¿½ç©ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½Ä“Ç‚İï¿½ï¿½İ‚Ü‚ï¿½(PNGï¿½Dï¿½ï¿½ï¿½jï¿½B
+	ï¿½ï¿½ï¿½Æ‚ÍAï¿½Ù‚Æ‚ï¿½ï¿½ï¿½LoadBitmapï¿½Æ•Ï‚ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B
 */
 MYSURFACE* CGoluahObject::LoadImage(char* PathName, char* PalletFileName) {
 	return (MYSURFACE*)funcd->loadimage(PathName, PalletFileName);
 }
 /*!
-	@brief GCDƒf[ƒ^ƒ[ƒhi‚Qj
+	@brief GCDï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½[ï¿½hï¿½iï¿½Qï¿½j
 	@sa CGoluahObject::DestroyCellData
 	@sa DI_FUNCTIONS_D::create_celldat2
 	@sa CreateCellData
 
-	GCD‚Ì‚ªˆ³k‚É‘Î‰‚µAŠg’£q‚ª‘‚¦‚½‚±‚Æ‚©‚ç’Ç‰Á‚³‚ê‚½ŠÖ”‚Å‚·B
-	Šg’£q‚ğœ‚¢‚½ƒtƒ@ƒCƒ‹–¼‚©‚çA.gcmiˆ³kj‚Æ.gcdi”ñˆ³kj‚Ì‚Qí—Ş‚Ìƒ^ƒCƒv‚©‚ç©“®‘I‘ğ‚µ‚Ä“Ç‚İ‚İ‚Ü‚·(ˆ³k‘¤—DæjB
-	‚»‚êˆÈŠO‚ÍACreateCellData‚Æ•Ï‚í‚è‚Ü‚¹‚ñB
+	GCDï¿½Ì‚ï¿½ï¿½ï¿½ï¿½kï¿½É‘Î‰ï¿½ï¿½ï¿½ï¿½Aï¿½gï¿½ï¿½ï¿½qï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½Öï¿½ï¿½Å‚ï¿½ï¿½B
+	ï¿½gï¿½ï¿½ï¿½qï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½A.gcmï¿½iï¿½ï¿½ï¿½kï¿½jï¿½ï¿½.gcdï¿½iï¿½ñˆ³kï¿½jï¿½Ì‚Qï¿½ï¿½ï¿½Ş‚Ìƒ^ï¿½Cï¿½vï¿½ï¿½ï¿½ç©ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½Ä“Ç‚İï¿½ï¿½İ‚Ü‚ï¿½(ï¿½ï¿½ï¿½kï¿½ï¿½ï¿½Dï¿½ï¿½ï¿½jï¿½B
+	ï¿½ï¿½ï¿½ï¿½ï¿½ÈŠOï¿½ÍACreateCellDataï¿½Æ•Ï‚ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B
 */
-DWORD  CGoluahObject::CreateCellData2(char* filename,GCD_CELL2 **cdat,GCD_RECT **rdat,GCD_HANTEI **hdat) {//ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İBver0.90ˆÈ~‚Å‚ÍLoadCellDat‚©‚ç‚±‚¿‚ç‚É•ÏX‚·‚é‚×‚«
+DWORD  CGoluahObject::CreateCellData2(char* filename,GCD_CELL2 **cdat,GCD_RECT **rdat,GCD_HANTEI **hdat) {//ï¿½Zï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½Ç‚İï¿½ï¿½İBver0.90ï¿½È~ï¿½Å‚ï¿½LoadCellDatï¿½ï¿½ï¿½ç‚±ï¿½ï¿½ï¿½ï¿½ï¿½É•ÏXï¿½ï¿½ï¿½ï¿½ï¿½×‚ï¿½
 	return funcd->create_celldat2(filename, (void**)cdat, (void**)rdat, (void**)hdat);
 }
 
 
 /*!
 	@class CCharacterBase
-	@brief ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX
+	@brief ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½{ï¿½Nï¿½ï¿½ï¿½X
 	@ingroup GObjectBase
 
-	DLL‚ÌƒƒCƒ“ƒLƒƒƒ‰ƒNƒ^[‚ğì¬‚·‚é‚½‚ß‚ÌƒNƒ‰ƒX‚Å‚·B
-	GObjectBase‚ÉAƒLƒƒƒ‰ƒNƒ^[‚ªg—p‚·‚é‚Å‚ ‚ë‚¤(‚Æv‚í‚ê‚é)‚à‚ë‚à‚ë‚Ì‹@”\‚ğ’Ç‰ÁB
+	DLLï¿½Ìƒï¿½ï¿½Cï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½ì¬ï¿½ï¿½ï¿½é‚½ï¿½ß‚ÌƒNï¿½ï¿½ï¿½Xï¿½Å‚ï¿½ï¿½B
+	GObjectBaseï¿½ÉAï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ë‚¤(ï¿½Ævï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‹@ï¿½\ï¿½ï¿½ï¿½Ç‰ï¿½ï¿½B
 
-	Init`() Œn‚Ìˆ—‚Í InitializeCharacterŠÖ”‚©‚çƒR[ƒ‹‚³‚ê‚Ü‚·B
-	ƒƒCƒ“ƒLƒƒƒ‰ƒNƒ^[ˆÈŠO‚ğ¶¬‚·‚éê‡‚ÍAnew‚µ‚½‚ ‚Æ‚ÉInitializeCharacter
-	‚ğƒR[ƒ‹‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
+	Initï¿½`() ï¿½nï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ InitializeCharacterï¿½Öï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Rï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ÈŠOï¿½ğ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ÍAnewï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½InitializeCharacter
+	ï¿½ï¿½ï¿½Rï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Kï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 
-	CBulletBase‚Ì¶¬‚É"e"ƒNƒ‰ƒX‚Æ‚µ‚Ä‚±‚ÌƒNƒ‰ƒX‚ğw’è‚·‚é‚ÆACBulletBase‚Í
-	•`‰æ‚É‚±‚ÌƒNƒ‰ƒX(ƒIƒuƒWƒFƒNƒg)‚ªƒ[ƒh‚µ‚½ƒrƒbƒgƒ}ƒbƒv , GCDƒf[ƒ^, ƒTƒEƒ“ƒh“™‚ğ
-	—˜—p‚µ‚Ü‚·B
+	CBulletBaseï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"ï¿½e"ï¿½Nï¿½ï¿½ï¿½Xï¿½Æ‚ï¿½ï¿½Ä‚ï¿½ï¿½ÌƒNï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½wï¿½è‚·ï¿½ï¿½ï¿½ÆACBulletBaseï¿½ï¿½
+	ï¿½`ï¿½æï¿½É‚ï¿½ï¿½ÌƒNï¿½ï¿½ï¿½X(ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½g)ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½rï¿½bï¿½gï¿½}ï¿½bï¿½v , GCDï¿½fï¿½[ï¿½^, ï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½
+	ï¿½ï¿½ï¿½pï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 
 /*!
-	@brief \’z(1)
-	@param info CreateCharacter‚Ìˆø”‚ÅƒVƒXƒeƒ€‚©‚çó‚¯æ‚Á‚½\‘¢‘Ì
+	@brief ï¿½\ï¿½z(1)
+	@param info CreateCharacterï¿½Ìˆï¿½ï¿½ï¿½ï¿½ÅƒVï¿½Xï¿½eï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ó‚¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½
 */
 CCharacterBase::CCharacterBase(CDI_CHARACTERINFO2 *info) : CGoluahObject(FALSE)
 {
 	parent_char = NULL;
 
-	GetGObject()->tid	= info->tid;//ƒ`[ƒ€ID
-	keyinput			= info->keyinput;//‰½”Ô‚©‚çƒL[“ü—Í‚ğó‚¯æ‚é‚©
-	pal_number			= info->color;//ƒpƒŒƒbƒg”Ô†
+	GetGObject()->tid	= info->tid;//ï¿½`ï¿½[ï¿½ï¿½ID
+	keyinput			= info->keyinput;//ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½ï¿½ï¿½Lï¿½[ï¿½ï¿½ï¿½Í‚ï¿½ï¿½ó‚¯ï¿½ï¿½é‚©
+	pal_number			= info->color;//ï¿½pï¿½ï¿½ï¿½bï¿½gï¿½Ôï¿½
 	g_chardir			= info->dir;
 	option_flags		= info->options_flag;
 
@@ -1526,32 +1525,32 @@ CCharacterBase::CCharacterBase(CDI_CHARACTERINFO2 *info) : CGoluahObject(FALSE)
 }
 
 /*!
-	@brief \’z(2)
-	@param parent ƒƒCƒ“ƒLƒƒƒ‰ƒNƒ^[ƒNƒ‰ƒX
+	@brief ï¿½\ï¿½z(2)
+	@param parent ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Nï¿½ï¿½ï¿½X
 
-	”ò‚Ñ“¹‹ï“™‚ÌƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚é‚½‚ß‚Ég‚¢‚Ü‚·
+	ï¿½ï¿½ï¿½Ñ“ï¿½ï¿½ï“™ï¿½ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ğ¶ï¿½ï¿½ï¿½ï¿½é‚½ï¿½ß‚Égï¿½ï¿½ï¿½Ü‚ï¿½
 */
 CCharacterBase::CCharacterBase(CCharacterBase *parent/* = NULL */) : CGoluahObject(FALSE)
 {
 	parent_char = parent;
 
 	if(parent!=NULL){
-		keyinput = parent->keyinput;//‰½”Ô‚©‚çƒL[“ü—Í‚ğó‚¯æ‚é‚©
-		pal_number = parent->pal_number;//ƒpƒŒƒbƒg”Ô†
-		GetGObject()->tid		= parent->GetGObject()->tid;//ƒ`[ƒ€ID
+		keyinput = parent->keyinput;//ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½ï¿½ï¿½Lï¿½[ï¿½ï¿½ï¿½Í‚ï¿½ï¿½ó‚¯ï¿½ï¿½é‚©
+		pal_number = parent->pal_number;//ï¿½pï¿½ï¿½ï¿½bï¿½gï¿½Ôï¿½
+		GetGObject()->tid		= parent->GetGObject()->tid;//ï¿½`ï¿½[ï¿½ï¿½ID
 		g_chardir = parent->g_chardir;
 	}
 	else {
-		keyinput = 0;//‰½”Ô‚©‚çƒL[“ü—Í‚ğó‚¯æ‚é‚©
-		pal_number = 0;//ƒpƒŒƒbƒg”Ô†
-		GetGObject()->tid		= 0;//ƒ`[ƒ€ID
+		keyinput = 0;//ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½ï¿½ï¿½Lï¿½[ï¿½ï¿½ï¿½Í‚ï¿½ï¿½ó‚¯ï¿½ï¿½é‚©
+		pal_number = 0;//ï¿½pï¿½ï¿½ï¿½bï¿½gï¿½Ôï¿½
+		GetGObject()->tid		= 0;//ï¿½`ï¿½[ï¿½ï¿½ID
 	}
 
 	CCharacterBaseCreate();
 }
 
 /*!
-	@brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Ì‹¤’Êˆ—
+	@brief ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^ï¿½Ì‹ï¿½ï¿½Êï¿½ï¿½ï¿½
 */
 void CCharacterBase::CCharacterBaseCreate()
 {
@@ -1566,7 +1565,7 @@ void CCharacterBase::CCharacterBaseCreate()
 	rects=NULL;
 	mysounds = NULL;
 
-	pdat->objtype	= GOBJTYPE_CHARACTER;//ƒIƒuƒWƒFƒNƒgƒ^ƒCƒv
+	pdat->objtype	= GOBJTYPE_CHARACTER;//ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½^ï¿½Cï¿½v
 	pdat->winfo		= &(this->waz);
 	ZeroMemory(pdat->winfo,sizeof(WAZAINFO));
 
@@ -1574,9 +1573,9 @@ void CCharacterBase::CCharacterBaseCreate()
 	front_z	=ZZAHYO_CHARACTER_F;
 	back_z	=ZZAHYO_CHARACTER_B;
 
-	chainComboEnabled = TRUE;	//ƒ`ƒF[ƒ“ƒRƒ“ƒ{—LŒø
-	isSuperArmer = FALSE;		//ƒX[ƒp[ƒA[ƒ}[–³Œø
-	isAutoGuard = FALSE;		//ƒI[ƒgƒK[ƒh–³Œø
+	chainComboEnabled = TRUE;	//ï¿½`ï¿½Fï¿½[ï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½{ï¿½Lï¿½ï¿½
+	isSuperArmer = FALSE;		//ï¿½Xï¿½[ï¿½pï¿½[ï¿½Aï¿½[ï¿½}ï¿½[ï¿½ï¿½ï¿½ï¿½
+	isAutoGuard = FALSE;		//ï¿½Iï¿½[ï¿½gï¿½Kï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½
 
 	base_voice_damage1 = 1;
 	base_voice_damage2 = 2;
@@ -1585,10 +1584,10 @@ void CCharacterBase::CCharacterBaseCreate()
 }
 
 /*!
-	@brief ‰Šú‰»
+	@brief ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	CreateCharacter‚Éƒ}ƒNƒ‚©‚ç©“®Às‚³‚ê‚éè”¤‚É‚È‚Á‚Ä‚¢‚Ü‚·B
-	‡”Ô‚ª‹ï‡ˆ«‚¢ê‡‚ÍƒI[ƒo[ƒ‰ƒCƒh‚µ‚Ä‚­‚¾‚³‚¢
+	CreateCharacterï¿½ï¿½ï¿½Éƒ}ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ç©ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è”¤ï¿½É‚È‚ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½ï‡ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ÍƒIï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½Cï¿½hï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 */
 void CCharacterBase::InitializeCharacter()
 {
@@ -1601,7 +1600,7 @@ void CCharacterBase::InitializeCharacter()
 }
 
 /*!
-	@brief ”jŠü
+	@brief ï¿½jï¿½ï¿½
 */
 CCharacterBase::~CCharacterBase()
 {
@@ -1611,20 +1610,20 @@ CCharacterBase::~CCharacterBase()
 }
 
 /*!
-	@brief ƒƒbƒZ[ƒWˆ—ŠÖ”
+	@brief ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½
 
-	ƒƒbƒZ[ƒWˆ—‚ğA“KØ‚È‰¼‘zŠÖ”‚ÉU‚è•ª‚¯‚Ü‚·
+	ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½Kï¿½Ø‚È‰ï¿½ï¿½zï¿½Öï¿½ï¿½ÉUï¿½è•ªï¿½ï¿½ï¿½Ü‚ï¿½
 */
 DWORD CCharacterBase::Message(DWORD msg,LPVOID pd,DWORD prm)
 {
 	switch(msg){
-	case GOBJMSG_DOTOJYO://“oê
+	case GOBJMSG_DOTOJYO://ï¿½oï¿½ï¿½
 		ChangeAction( ACTID_TOJYO );return(TRUE);
-	case GOBJMSG_DOYOUWIN://Ÿ—˜
+	case GOBJMSG_DOYOUWIN://ï¿½ï¿½ï¿½ï¿½
 		ChangeAction( ACTID_SYORI );return(TRUE);
 	case GOBJMSG_DOTIMEOVERLOSE:
 		ChangeAction( ACTID_TIMEOVERLOSE );return(TRUE);
-	case GOBJMSG_TAIKI://‘Ò‹@‚µ‚Æ‚¯ƒƒbƒZ[ƒW
+	case GOBJMSG_TAIKI://ï¿½Ò‹@ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½W
 		ChangeAction( ACTID_TAIKI );
 		break;
 	case GOBJMSG_ACTION:
@@ -1636,20 +1635,20 @@ DWORD CCharacterBase::Message(DWORD msg,LPVOID pd,DWORD prm)
 			PostAction();
 			return result;
 		}
-	case GOBJMSG_KOUTAI://Œğ‘ã‚µ‚ëƒƒbƒZ[ƒW
+	case GOBJMSG_KOUTAI://ï¿½ï¿½ï¿½ã‚µï¿½ëƒï¿½bï¿½Zï¿½[ï¿½W
 		if(GetGObject()->aid == ACTID_TAIKICYU){
 			ChangeAction( ACTID_KOUTAIIN );
 			return(TRUE);
 		}
 		return(0);
-	case GOBJMSG_KOUTAI2://Œğ‘ã‚µ‚ëƒƒbƒZ[ƒW2i‚Ì‚ñ‚Ñ‚è‚Æ“oêƒ|[ƒY‚ğŒˆ‚ß‚Ä‚Ä—Ç‚µj
+	case GOBJMSG_KOUTAI2://ï¿½ï¿½ï¿½ã‚µï¿½ëƒï¿½bï¿½Zï¿½[ï¿½W2ï¿½iï¿½Ì‚ï¿½ï¿½Ñ‚ï¿½ï¿½Æ“oï¿½ï¿½ï¿½|ï¿½[ï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½ß‚Ä‚Ä—Ç‚ï¿½ï¿½j
 		ChangeAction( ACTID_KOUTAI );
 		break;
 	case GOBJMSG_CLIPX:
-		if(GetGObject()->aid == ACTID_KOUTAI)return(TRUE);//Œğ‘ã‚ÍƒNƒŠƒbƒvˆ—‚ğ‚µ‚È‚¢
+		if(GetGObject()->aid == ACTID_KOUTAI)return(TRUE);//ï¿½ï¿½ï¿½ãï¿½ÍƒNï¿½ï¿½ï¿½bï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½
 		else return(0);
 	default:
-		//‚ ‚Æ‚ÌƒƒbƒZ[ƒW‚ÍƒIƒuƒWƒFƒNƒgŠî–{ƒNƒ‰ƒX‚É”C‚¹‚é
+		//ï¿½ï¿½ï¿½Æ‚Ìƒï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ÍƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½{ï¿½Nï¿½ï¿½ï¿½Xï¿½É”Cï¿½ï¿½ï¿½ï¿½
 		return(CGoluahObject::Message(msg,pd,prm));
 	}
 	return(0);
@@ -1657,9 +1656,9 @@ DWORD CCharacterBase::Message(DWORD msg,LPVOID pd,DWORD prm)
 
 
 /*!
-	@brief GOBJMSG_ACTION ƒƒbƒZ[ƒWˆ—
+	@brief GOBJMSG_ACTION ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½
 
-	CCharacterBase‚Å’è‹`‚³‚ê‚Ä‚¢‚éŠî–{s“®‚Öˆ—‚ğU‚è•ª‚¯‚Ü‚·
+	CCharacterBaseï¿½Å’ï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½{ï¿½sï¿½ï¿½ï¿½Öï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Uï¿½è•ªï¿½ï¿½ï¿½Ü‚ï¿½
 */
 DWORD CCharacterBase::Action()
 {
@@ -1702,18 +1701,18 @@ DWORD CCharacterBase::Action()
 
 
 /*!
-	@brief GOBJMSG_ACTION ƒƒbƒZ[ƒW ‘Oˆ—
+	@brief GOBJMSG_ACTION ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½W ï¿½Oï¿½ï¿½ï¿½ï¿½
 
-	’èŠú“I‚És‚í‚È‚¯‚ê‚Î‚È‚ç‚È‚¢‰½‚ç‚©‚Ìˆ—‚ğs‚¢‚Ü‚·
+	ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½Ésï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½Î‚È‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ç‚©ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½
 */
 void CCharacterBase::PreAction()
 {
-	//ƒ`ƒF[ƒ“ƒRƒ“ƒ{ƒŠƒXƒgƒNƒŠƒA
+	//ï¿½`ï¿½Fï¿½[ï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½{ï¿½ï¿½ï¿½Xï¿½gï¿½Nï¿½ï¿½ï¿½A
 	if(!(GetGObject()->aid & 0xFFFD0000)){
 		if(GetGObject()->counter > 2)chainlist=0;
 	}
 
-	//U‚èŒü‚«ˆ—‚ğs‚¢‚Ü‚·B‚±‚êˆÈŠO‚Ì“®ì‚Å‚à‚â‚è‚½‚¢ê‡‚ÍƒI[ƒo[ƒ‰ƒCƒh‚µ‚Ä’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢
+	//ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½Bï¿½ï¿½ï¿½ï¿½ï¿½ÈŠOï¿½Ì“ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½è‚½ï¿½ï¿½ï¿½ê‡ï¿½ÍƒIï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½Cï¿½hï¿½ï¿½ï¿½Ä’Ç‰ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if(pdat->aid==ACTID_NEUTRAL ||
 	   pdat->aid==ACTID_CROUCH  ||
 	   pdat->aid==ACTID_TOJYO   ||
@@ -1723,13 +1722,13 @@ void CCharacterBase::PreAction()
 		Furimuki();
 	}
 
-	//ƒ_ƒ[ƒWºÄ¶
+	//ï¿½_ï¿½ï¿½ï¿½[ï¿½Wï¿½ï¿½ï¿½Äï¿½
 	if(pdat->hp > 0)final_voice_flag = FALSE;
 	if(pdat->counter==0 && !final_voice_flag)
 	{
 		switch(pdat->aid)
 		{
-		//¬‹ò‚ç‚¢
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ç‚¢
 		case ACTID_DAMAGE1	:
 		case ACTID_DAMAGEC1	:
 		case ACTID_DAMAGE1A	:
@@ -1737,7 +1736,7 @@ void CCharacterBase::PreAction()
 		case ACTID_DAMAGEJ1	:
 			if(GetRandNum(5)==0)PlayMySound(base_voice_damage1);
 			break;
-		//’†‹ò‚ç‚¢
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ç‚¢
 		case ACTID_DAMAGE2	:
 		case ACTID_DAMAGEC2	:
 		case ACTID_DAMAGE2A	:
@@ -1745,7 +1744,7 @@ void CCharacterBase::PreAction()
 		case ACTID_DAMAGEJ2	:
 			if(GetRandNum(4)==0)PlayMySound(base_voice_damage2);
 			break;
-		//‹­‹ò‚ç‚¢
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ç‚¢
 		case ACTID_DAMAGE3	:
 		case ACTID_DAMAGEC3	:
 		case ACTID_DAMAGE3A	:
@@ -1754,7 +1753,7 @@ void CCharacterBase::PreAction()
 			if(GetRandNum(3)==0)PlayMySound(base_voice_damage3);
 			break;
 
-		//‚»‚Ì‘¼‹ò‚ç‚¢
+		//ï¿½ï¿½ï¿½Ì‘ï¿½ï¿½ï¿½ï¿½ç‚¢
 		case ACTID_DOWN			:
 		case ACTID_FUTTOBI		:
 		case ACTID_FUTTOBI2		:
@@ -1766,8 +1765,8 @@ void CCharacterBase::PreAction()
 			break;
 
 		//KO
-		case ACTID_FINALDOWN	://€
-		case ACTID_FINALDOWN2	://
+		case ACTID_FINALDOWN	://ï¿½ï¿½
+		case ACTID_FINALDOWN2	://ï¿½ï¿½
 		case ACTID_KAITENFINISH	:
 			final_voice_flag = TRUE;
 			PlayMySound(base_voice_ko);
@@ -1776,18 +1775,18 @@ void CCharacterBase::PreAction()
 	}
 }
 /*!
-	@brief GOBJMSG_ACTION ƒƒbƒZ[ƒW Œãˆ—
+	@brief GOBJMSG_ACTION ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½W ï¿½ãˆï¿½ï¿½
 
-	’èŠú“I‚És‚í‚È‚¯‚ê‚Î‚È‚ç‚È‚¢‰½‚ç‚©‚Ìˆ—‚ğs‚¢‚Ü‚·
+	ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½Ésï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½Î‚È‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ç‚©ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½
 */
 void CCharacterBase::PostAction()
 {
-	//ƒ`ƒF[ƒ“ƒRƒ“ƒ{ƒŠƒXƒgƒNƒŠƒA
+	//ï¿½`ï¿½Fï¿½[ï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½{ï¿½ï¿½ï¿½Xï¿½gï¿½Nï¿½ï¿½ï¿½A
 	if(!(GetGObject()->aid & 0xFFFD0000)){
 		if(GetGObject()->counter > 2)chainlist=0;
 	}
 
-	//U‚èŒü‚«ˆ—‚ğs‚¢‚Ü‚·B‚±‚êˆÈŠO‚Ì“®ì‚Å‚à‚â‚è‚½‚¢ê‡‚ÍƒI[ƒo[ƒ‰ƒCƒh‚µ‚Ä’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢
+	//ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½Bï¿½ï¿½ï¿½ï¿½ï¿½ÈŠOï¿½Ì“ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½è‚½ï¿½ï¿½ï¿½ê‡ï¿½ÍƒIï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½Cï¿½hï¿½ï¿½ï¿½Ä’Ç‰ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if(pdat->aid==ACTID_NEUTRAL ||
 	   pdat->aid==ACTID_CROUCH
 	   )
@@ -1798,9 +1797,9 @@ void CCharacterBase::PostAction()
 
 
 /*!
-	@brief GOBJMSG_COMMAND ƒƒbƒZ[ƒWˆ—
+	@brief GOBJMSG_COMMAND ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½
 
-	s“®ID‚É‚æ‚èACommandŒn‚Ì‰¼‘zŠÖ”‚Éˆ—‚ğU‚è•ª‚¯‚Ü‚·
+	ï¿½sï¿½ï¿½IDï¿½É‚ï¿½ï¿½ï¿½ï¿½ACommandï¿½nï¿½Ì‰ï¿½ï¿½zï¿½Öï¿½ï¿½Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Uï¿½è•ªï¿½ï¿½ï¿½Ü‚ï¿½
 */
 void CCharacterBase::Command()
 {
@@ -1808,7 +1807,7 @@ void CCharacterBase::Command()
 	BOOL callstriker=FALSE;
 	GOBJECT* pdat = GetGObject();
 
-	if(pdat->aid & ACTID_SYSTEM){//ƒVƒXƒeƒ€’è‹`“®ì’†‚È‚Ì‚ÅAŠî–{“I‚É‚Í‚¢‚¶‚ç‚È‚¢
+	if(pdat->aid & ACTID_SYSTEM){//ï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½ì’†ï¿½È‚Ì‚ÅAï¿½ï¿½ï¿½{ï¿½Iï¿½É‚Í‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½
 		Command_OnSystem(key_now);
 		return;
 	}
@@ -1817,7 +1816,7 @@ void CCharacterBase::Command()
 	if(pdat->aid & ACTID_NAGE)return;
 	if(pdat->aid & ACTID_INOUT)return;
 
-	//ƒXƒgƒ‰ƒCƒJ[‚ğŒÄ‚Ô
+	//ï¿½Xï¿½gï¿½ï¿½ï¿½Cï¿½Jï¿½[ï¿½ï¿½ï¿½Ä‚ï¿½
 	if( (key_now&KEYSTA_FOWORD) && (key_now&KEYSTA_DOWN) && (key_now&KEYSTA_BD2) ){
 		if(Message2System(MSGOBJ2SYS_STRIKER1,0)){
 			ADDEFFECT(EFCTID_COMEON,(int)pdat->x,(int)pdat->y-100,pdat->muki);
@@ -1831,30 +1830,30 @@ void CCharacterBase::Command()
 		}
 	}
 
-	if(pdat->aid & ACTID_HISSATU){//•KE‹Z’†iŠî–{“I‚É‚¢‚¶‚é‚×‚©‚ç‚¸j
+	if(pdat->aid & ACTID_HISSATU){//ï¿½Kï¿½Eï¿½Zï¿½ï¿½ï¿½iï¿½ï¿½ï¿½{ï¿½Iï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×‚ï¿½ï¿½ç‚¸ï¿½j
 		Command_OnHissatuAttacking(key_now);
 		return;
 	}
 
-	//•KE‹ZƒRƒ}ƒ“ƒh”»’è
+	//ï¿½Kï¿½Eï¿½Zï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½
 	if (Command_Hissatu(key_now))
 		return;
 
-	if(pdat->aid & ACTID_ATTACK){//UŒ‚“®ì’†iŠî–{“I‚É‚¢‚¶‚ç‚È‚¢Bƒ`ƒF[ƒ“ƒRƒ“ƒ{o‚·‚È‚ç‚±‚±‚Å‚¢‚¶‚éj
+	if(pdat->aid & ACTID_ATTACK){//ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ì’†ï¿½iï¿½ï¿½ï¿½{ï¿½Iï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½Bï¿½`ï¿½Fï¿½[ï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½{ï¿½oï¿½ï¿½ï¿½È‚ç‚±ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½j
 		Command_OnAttacking(key_now);
 		return;
 	}
 
-	//Šî–{“®ì’†
+	//ï¿½ï¿½ï¿½{ï¿½ï¿½ï¿½ì’†
 	if (Command_OnNormal(key_now) || pdat->aid & ACTID_KUCYU)
 		return;
 
-	//ƒXƒgƒ‰ƒCƒJ[
+	//ï¿½Xï¿½gï¿½ï¿½ï¿½Cï¿½Jï¿½[
 	if(callstriker){
 		pdat->aid = ACTID_STRIKERCOMEON;
 		return;
 	}
-	//‚±[‚½‚¢
+	//ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½
 	else if( (key_now&KEYSTA_FOWORD) && (key_now&KEYSTA_BD2) && !(key_now&KEYSTA_DOWN) ){
 		if(Message2System(MSGOBJ2SYS_KOUTAI1,0)){
 			pdat->aid = ACTID_KOUTAIOUT;
@@ -1868,7 +1867,7 @@ void CCharacterBase::Command()
 		}
 	}
 
-	if(pdat->aid==ACTID_STRIKERCOMEON){//“ü—Í‚ª‚È‚¯‚ê‚Îƒ|[ƒYƒLƒ
+	if(pdat->aid==ACTID_STRIKERCOMEON){//ï¿½ï¿½ï¿½Í‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½Îƒ|ï¿½[ï¿½Yï¿½Lï¿½ï¿½
 		if(!(key_now & (KEYSTA_UP2|KEYSTA_DOWN2|KEYSTA_FOWORD2|KEYSTA_BACK2))){
 			return;
 		}
@@ -1879,7 +1878,7 @@ void CCharacterBase::Command()
 
 
 /*!
-	@brief GOBJMSG_COMMAND ƒƒbƒZ[ƒW •”•ªˆ—i•KE‹Z’†j
+	@brief GOBJMSG_COMMAND ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½W ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½Kï¿½Eï¿½Zï¿½ï¿½ï¿½j
 */
 BOOL CCharacterBase::Command_Hissatu(DWORD keyinfo)
 {
@@ -1888,7 +1887,7 @@ BOOL CCharacterBase::Command_Hissatu(DWORD keyinfo)
 
 
 /*!
-	@brief GOBJMSG_COMMAND ƒƒbƒZ[ƒW •”•ªˆ—i’Êí“®ì’†j
+	@brief GOBJMSG_COMMAND ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½W ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½Êí“®ï¿½ì’†ï¿½j
 */
 BOOL CCharacterBase::Command_Normal(DWORD keyinfo)
 {
@@ -1897,16 +1896,16 @@ BOOL CCharacterBase::Command_Normal(DWORD keyinfo)
 	if(keyinfo & KEYSTA_UP){
 		pdat->aid = ACTID_JAMPS;
 	}
-	else if(keyinfo & KEYSTA_DOWN){//‚µ‚á‚ª‚İ
+	else if(keyinfo & KEYSTA_DOWN){//ï¿½ï¿½ï¿½á‚ªï¿½ï¿½
 		pdat->aid = ACTID_CROUCH;
 	}
-	else if(keyinfo & KEYSTA_FOWORD){//‘O•à‚«
+	else if(keyinfo & KEYSTA_FOWORD){//ï¿½Oï¿½ï¿½ï¿½ï¿½
 		pdat->aid = ACTID_WALKF;
 	}
-	else if(keyinfo & KEYSTA_BACK){//Œã‚ë•à‚«
+	else if(keyinfo & KEYSTA_BACK){//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		pdat->aid = ACTID_WALKB;
 	}
-	else{//ƒjƒ…[ƒgƒ‰ƒ‹ƒ|[ƒY
+	else{//ï¿½jï¿½ï¿½ï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½|ï¿½[ï¿½Y
 		pdat->aid = ACTID_NEUTRAL;
 	}
 
@@ -1914,7 +1913,7 @@ BOOL CCharacterBase::Command_Normal(DWORD keyinfo)
 }
 
 /*!
-	@brief GOBJMSG_COMMAND ƒƒbƒZ[ƒW •”•ªˆ—iƒVƒXƒeƒ€“®ì’†j
+	@brief GOBJMSG_COMMAND ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½W ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½Vï¿½Xï¿½eï¿½ï¿½ï¿½ï¿½ï¿½ì’†ï¿½j
 */
 BOOL CCharacterBase::Command_OnSystem(DWORD keyinfo)
 {
@@ -1922,7 +1921,7 @@ BOOL CCharacterBase::Command_OnSystem(DWORD keyinfo)
 }
 
 /*!
-	@brief GOBJMSG_COMMAND ƒƒbƒZ[ƒW •”•ªˆ—i•KEUŒ‚“®ì’†j
+	@brief GOBJMSG_COMMAND ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½W ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½Kï¿½Eï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ì’†ï¿½j
 */
 BOOL CCharacterBase::Command_OnHissatuAttacking(DWORD keyinfo)
 {
@@ -1930,13 +1929,13 @@ BOOL CCharacterBase::Command_OnHissatuAttacking(DWORD keyinfo)
 }
 
 /*!
-	@brief GOBJMSG_COMMAND ƒƒbƒZ[ƒW •”•ªˆ—i’ÊíUŒ‚“®ì’†j
+	@brief GOBJMSG_COMMAND ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½W ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½Êï¿½ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ì’†ï¿½j
 */
 BOOL CCharacterBase::Command_OnAttacking(DWORD keyinfo)
 {
 	GOBJECT* pdat = GetGObject();
 
-	if(pdat->aid & ACTID_KUCYU){////ƒWƒƒƒ“ƒv“®ì’†
+	if(pdat->aid & ACTID_KUCYU){////ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ì’†
 		return FALSE;
 	}
 	else{
@@ -1958,13 +1957,13 @@ BOOL CCharacterBase::Command_OnAttacking(DWORD keyinfo)
 }
 
 /*!
-	@brief GOBJMSG_COMMAND ƒƒbƒZ[ƒW •”•ªˆ—i’Êí“®ìj
+	@brief GOBJMSG_COMMAND ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½W ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½Êí“®ï¿½ï¿½ï¿½j
 */
 BOOL CCharacterBase::Command_OnNormal(DWORD keyinfo)
 {
 	GOBJECT* pdat = GetGObject();
 
-	if(pdat->aid & ACTID_KUCYU){//ƒWƒƒƒ“ƒv“®ì’†
+	if(pdat->aid & ACTID_KUCYU){//ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ì’†
 		if(keyinfo & 0x22220000){
 			if(keyinfo & KEYSTA_BC2){pdat->aid = ACTID_ATT_JC;return TRUE;}
 			else if(keyinfo & KEYSTA_BB2){pdat->aid = ACTID_ATT_JB;return TRUE;}
@@ -1973,7 +1972,7 @@ BOOL CCharacterBase::Command_OnNormal(DWORD keyinfo)
 		return FALSE;
 	}
 
-	//’nã“®ì’†
+	//ï¿½nï¿½ã“®ï¿½ì’†
 	if(keyinfo & 0x22220000){
 		if(keyinfo & KEYSTA_DOWN){
 			if(keyinfo & KEYSTA_BC2){pdat->aid = ACTID_ATT_CC;return TRUE;}
@@ -1994,11 +1993,11 @@ BOOL CCharacterBase::Command_OnNormal(DWORD keyinfo)
 	}
 
 	if(pdat->aid == ACTID_JAMPS){
-		if(keyinfo & KEYSTA_FOWORD){//‘OƒWƒƒƒ“ƒv
+		if(keyinfo & KEYSTA_FOWORD){//ï¿½Oï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½v
 			pdat->aid = ACTID_JAMPF;
 			return TRUE;
 		}
-		else if(keyinfo & KEYSTA_BACK){//ŒãƒWƒƒƒ“ƒv
+		else if(keyinfo & KEYSTA_BACK){//ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½v
 			pdat->aid = ACTID_JAMPB;
 			return TRUE;
 		}
@@ -2009,18 +2008,18 @@ BOOL CCharacterBase::Command_OnNormal(DWORD keyinfo)
 
 
 /*!
-	@brief GOBJMSG_TOUCHA ƒƒbƒZ[ƒW ˆ—
+	@brief GOBJMSG_TOUCHA ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½W ï¿½ï¿½ï¿½ï¿½
 */
 DWORD CCharacterBase::TouchA(ATTACKINFO *info,DWORD ta_eid)
 {
 	GOBJECT* pdat = GetGObject();
 
-	// ‘Ò‹@/‘Ş”ğ’†‚Í–³‹‚µ‚¿‚á‚¤
+	// ï¿½Ò‹@/ï¿½Ş”ğ’†‚Í–ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á‚¤
 	if(pdat->aid & ACTID_INOUT)return(TOUCHA_AVOID);
-	//“Š‚°’†‚Í–³‹‚µ‚¿‚á‚¤
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í–ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á‚¤
 	if(pdat->aid & ACTID_NAGE)return(TOUCHA_AVOID);
 
-	//ƒX[ƒp[ƒA[ƒ}[ˆ—BUŒ‚‚ğ–³‹
+	//ï¿½Xï¿½[ï¿½pï¿½[ï¿½Aï¿½[ï¿½}ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Bï¿½Uï¿½ï¿½ï¿½ğ–³ï¿½
 	if(isSuperArmer){
 		if(pdat->hp>0){
 			AddEffect(EFCTID_SUPERARMER,(int)pdat->x,(int)(pdat->y-50.0f),pdat->muki);
@@ -2028,7 +2027,7 @@ DWORD CCharacterBase::TouchA(ATTACKINFO *info,DWORD ta_eid)
 		}
 	}
 
-	//ƒI[ƒgƒK[ƒhˆ—BUŒ‚E‹ò‚ç‚¢’†ˆÈŠO‚Í–³ğŒƒK[ƒh
+	//ï¿½Iï¿½[ï¿½gï¿½Kï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½Bï¿½Uï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½ç‚¢ï¿½ï¿½ï¿½ÈŠOï¿½Í–ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Kï¿½[ï¿½h
 	BOOL auto_guard = FALSE;
 	if(isAutoGuard)
 	{
@@ -2049,28 +2048,28 @@ DWORD CCharacterBase::TouchA(ATTACKINFO *info,DWORD ta_eid)
 
 	if(auto_guard)
 	{
-		if(CANNOT_GUARD(info->guard) && (pdat->aid!=ACTID_RAKKA))return 0;//‚Ç‚ÌƒK[ƒh‚à‚Å‚«‚È‚¢ê‡‚ÍƒK[ƒh‚Å‚«‚È‚¢
+		if(CANNOT_GUARD(info->guard) && (pdat->aid!=ACTID_RAKKA))return 0;//ï¿½Ç‚ÌƒKï¿½[ï¿½hï¿½ï¿½ï¿½Å‚ï¿½ï¿½È‚ï¿½ï¿½ê‡ï¿½ÍƒKï¿½[ï¿½hï¿½Å‚ï¿½ï¿½È‚ï¿½
 		if(pdat->aid & ACTID_ATTACK)return 0;
 		if(pdat->aid & ACTID_KURAI)return 0;
 		if(pdat->aid & ACTID_KUCYU)
 		{
-			//‹ó’†ƒK[ƒh
+			//ï¿½ó’†ƒKï¿½[ï¿½h
 			return (info->guard & GUARDINFO_XJAMP) ? 0 : TOUCHA_GUARDJ;
 		}
 		if((info->guard & GUARDINFO_XCROUCH) && (info->guard & GUARDINFO_XSTAND))
 		{
-			//’nãƒK[ƒh•s‰Â
+			//ï¿½nï¿½ï¿½ï¿½Kï¿½[ï¿½hï¿½sï¿½ï¿½
 			return 0;
 		}
 		if(pdat->aid & ACTID_SYAGAMI)
 		{
-			//‹üƒK[ƒh
+			//ï¿½ï¿½ï¿½Kï¿½[ï¿½h
 			if(info->guard & GUARDINFO_XCROUCH)return TOUCHA_GUARDS;
 			return TOUCHA_GUARDC;
 		}
 		else
 		{
-			//—§‚¿ƒK[ƒh
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Kï¿½[ï¿½h
 			if(info->guard & GUARDINFO_XSTAND)return TOUCHA_GUARDC;
 			return TOUCHA_GUARDS;
 		}
@@ -2080,7 +2079,7 @@ DWORD CCharacterBase::TouchA(ATTACKINFO *info,DWORD ta_eid)
 }
 
 /*!
-	@brief GGOBJMSG_COMMANDCOM ƒƒbƒZ[ƒW ˆ—
+	@brief GGOBJMSG_COMMANDCOM ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½W ï¿½ï¿½ï¿½ï¿½
 */
 DWORD CCharacterBase::CommandCOM(DWORD wid)
 {
@@ -2091,7 +2090,7 @@ DWORD CCharacterBase::CommandCOM(DWORD wid)
 	if(pdat->aid & ACTID_NAGE)return(FALSE);
 	if(pdat->aid & ACTID_INOUT)return(FALSE);
 	
-	if(pdat->aid & ACTID_HISSATU){//•KE‹Z’†iŠî–{“I‚É‚¢‚¶‚é‚×‚©‚ç‚¸j
+	if(pdat->aid & ACTID_HISSATU){//ï¿½Kï¿½Eï¿½Zï¿½ï¿½ï¿½iï¿½ï¿½ï¿½{ï¿½Iï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×‚ï¿½ï¿½ç‚¸ï¿½j
 		return(CmdCom_OnHissatuAttacking(wid));
 	}
 
@@ -2104,7 +2103,7 @@ DWORD CCharacterBase::CommandCOM(DWORD wid)
 }
 
 /*!
-	@brief GGOBJMSG_COMMANDCOMƒƒbƒZ[ƒW •”•ªˆ—
+	@brief GGOBJMSG_COMMANDCOMï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½W ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 */
 DWORD CCharacterBase::CmdCom_OnSystem(DWORD wid)
 {
@@ -2112,7 +2111,7 @@ DWORD CCharacterBase::CmdCom_OnSystem(DWORD wid)
 }
 
 /*!
-	@brief GGOBJMSG_COMMANDCOMƒƒbƒZ[ƒW •”•ªˆ—
+	@brief GGOBJMSG_COMMANDCOMï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½W ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 */
 DWORD CCharacterBase::CmdCom_OnHissatuAttacking(DWORD wid)
 {
@@ -2120,34 +2119,34 @@ DWORD CCharacterBase::CmdCom_OnHissatuAttacking(DWORD wid)
 }
 
 /*!
-	@brief GGOBJMSG_COMMANDCOMƒƒbƒZ[ƒW •”•ªˆ—
+	@brief GGOBJMSG_COMMANDCOMï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½W ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 */
 DWORD CCharacterBase::CmdCom_OnKucyu(DWORD wid)
 {
-	//“Š‚°‚ÍŒp³‘¤‚Åˆ—‚µ‚È‚¢‚Æ‚¢‚¯‚È‚¢‚Ì‚ÅAƒ_ƒ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ÍŒpï¿½ï¿½ï¿½ï¿½ï¿½Åï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½Ì‚ÅAï¿½_ï¿½ï¿½
 	if(wid&ACTID_NAGE)return(FALSE);
 
-	if(GetGObject()->aid & ACTID_ATTACK){//‹ó’†UŒ‚’†
-		if(wid&ACTID_HISSATU && wid&ACTID_KUCYU)return(TRUE);//‹ó’†•KE‹Z‚È‚çOK
-		return(FALSE);//‚»‚êˆÈŠO‚Í‚¾‚ß
+	if(GetGObject()->aid & ACTID_ATTACK){//ï¿½ó’†Uï¿½ï¿½ï¿½ï¿½
+		if(wid&ACTID_HISSATU && wid&ACTID_KUCYU)return(TRUE);//ï¿½ó’†•Kï¿½Eï¿½Zï¿½È‚ï¿½OK
+		return(FALSE);//ï¿½ï¿½ï¿½ï¿½ï¿½ÈŠOï¿½Í‚ï¿½ï¿½ï¿½
 	}
-	else{//‹ó’†’Êí“®ì’†
-		if(wid&ACTID_ATTACK && wid&ACTID_KUCYU)return(TRUE);//‹ó’†’Êí‹Z‚È‚çOK
-		return(FALSE);//‚»‚êˆÈŠO‚Í‚¾‚ß
+	else{//ï¿½ó’†’Êí“®ï¿½ì’†
+		if(wid&ACTID_ATTACK && wid&ACTID_KUCYU)return(TRUE);//ï¿½ó’†’Êï¿½ï¿½Zï¿½È‚ï¿½OK
+		return(FALSE);//ï¿½ï¿½ï¿½ï¿½ï¿½ÈŠOï¿½Í‚ï¿½ï¿½ï¿½
 	}
 }
 
 /*!
-	@brief GGOBJMSG_COMMANDCOMƒƒbƒZ[ƒW •”•ªˆ—
+	@brief GGOBJMSG_COMMANDCOMï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½W ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 */
 DWORD CCharacterBase::CmdCom_OnNormal(DWORD wid)
 {
-	//“Š‚°‚ÍŒp³‘¤‚Åˆ—‚µ‚È‚¢‚Æ‚¢‚¯‚È‚¢‚Ì‚ÅAƒ_ƒ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ÍŒpï¿½ï¿½ï¿½ï¿½ï¿½Åï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½Ì‚ÅAï¿½_ï¿½ï¿½
 	if(wid&ACTID_NAGE)return(FALSE);
 
-	if(GetGObject()->aid & ACTID_ATTACK){//’nãUŒ‚’†
-		if(wid&ACTID_NAGE)return(FALSE);// “Š‚°‹Z‚Å‚ÌƒLƒƒƒ“ƒZƒ‹‚Í•s‰Â
-		if(wid&ACTID_HISSATU && !(wid&ACTID_KUCYU))return(TRUE);//’nã•KE‹Z‚È‚çOK
+	if(GetGObject()->aid & ACTID_ATTACK){//ï¿½nï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½ï¿½
+		if(wid&ACTID_NAGE)return(FALSE);// ï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½Å‚ÌƒLï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½Í•sï¿½ï¿½
+		if(wid&ACTID_HISSATU && !(wid&ACTID_KUCYU))return(TRUE);//ï¿½nï¿½ï¿½ï¿½Kï¿½Eï¿½Zï¿½È‚ï¿½OK
 		if(chainComboEnabled)
 		{
 			switch(wid)
@@ -2160,19 +2159,19 @@ DWORD CCharacterBase::CmdCom_OnNormal(DWORD wid)
 			case ACTID_ATT_CC:return( ChainCombo(CHAIN_CC) );
 			}
 		}
-		return(FALSE);//‚¾‚ß
+		return(FALSE);//ï¿½ï¿½ï¿½ï¿½
 	}
-	else{//’nã’Êí“®ì
-		if(wid&ACTID_KUCYU && wid&ACTID_ATTACK)return(FALSE);//‹ó’†UŒ‚‚Í‚¾‚ß
-		return(TRUE);//‚»‚êˆÈŠO‚È‚çOK
+	else{//ï¿½nï¿½ï¿½ï¿½Êí“®ï¿½ï¿½
+		if(wid&ACTID_KUCYU && wid&ACTID_ATTACK)return(FALSE);//ï¿½ó’†Uï¿½ï¿½ï¿½Í‚ï¿½ï¿½ï¿½
+		return(TRUE);//ï¿½ï¿½ï¿½ï¿½ï¿½ÈŠOï¿½È‚ï¿½OK
 	}
 }
 
 /*!
-	@brief UŒ‚—Íî•ñ‰Šú‰»
+	@brief ï¿½Uï¿½ï¿½ï¿½Íï¿½ï¿½ñ‰Šï¿½ï¿½ï¿½
 
-	ÀÛ‚ÌƒLƒƒƒ‰ƒNƒ^[ƒNƒ‰ƒX‚Å‚Í‚±‚ÌŠÖ”‚ğƒI[ƒo[ƒ‰ƒCƒh‚µ‚Ä
-	UŒ‚—Íî•ñ‚ğ‰Šú‰»‚·‚éˆ—‚ğ‹Lq‚µ‚Ä‚­‚¾‚³‚¢
+	ï¿½ï¿½ï¿½Û‚ÌƒLï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Nï¿½ï¿½ï¿½Xï¿½Å‚Í‚ï¿½ï¿½ÌŠÖï¿½ï¿½ï¿½ï¿½Iï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½Cï¿½hï¿½ï¿½ï¿½ï¿½
+	ï¿½Uï¿½ï¿½ï¿½Íï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½éˆï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½qï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 */
 void CCharacterBase::InitAttackInfo()
 {
@@ -2180,10 +2179,10 @@ void CCharacterBase::InitAttackInfo()
 
 
 /*!
-	@brief GCD/BMP ƒ[ƒh
+	@brief GCD/BMP ï¿½ï¿½ï¿½[ï¿½h
 
-	ƒLƒƒƒ‰ƒNƒ^[ƒtƒHƒ‹ƒ_‚Ì cell.gcd ‚Æ image1`12.bmp ‚ğƒ[ƒh‚µ‚Ü‚·B
-	•Ê‚Ìƒtƒ@ƒCƒ‹–¼‚Ìƒtƒ@ƒCƒ‹‚ğg—p‚µ‚½‚¢ê‡‚ÍƒI[ƒo[ƒ‰ƒCƒh‚µ‚Äˆ—‚ğ•ÏX‚µ‚Ü‚·B
+	ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½tï¿½Hï¿½ï¿½ï¿½_ï¿½ï¿½ cell.gcd ï¿½ï¿½ image1ï¿½`12.bmp ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½Ê‚Ìƒtï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Ìƒtï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ÍƒIï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½Cï¿½hï¿½ï¿½ï¿½Äï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏXï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 void CCharacterBase::InitGCDandBMP()
 {
@@ -2194,21 +2193,21 @@ void CCharacterBase::InitGCDandBMP()
 
 #ifdef _DEBUG
 	if(pal_number==0)
-		OutputDebugString("ƒLƒƒƒ‰DLL [warning] : ƒpƒŒƒbƒg”Ô†‚ª0‚Å‚·B");
+		OutputDebugString("ï¿½Lï¿½ï¿½ï¿½ï¿½DLL [warning] : ï¿½pï¿½ï¿½ï¿½bï¿½gï¿½Ôï¿½ï¿½ï¿½0ï¿½Å‚ï¿½ï¿½B");
 #endif
 
-	//"image?.bmp" ‚ğ“Ç‚İ‚Ş
+	//"image?.bmp" ï¿½ï¿½ï¿½Ç‚İï¿½ï¿½ï¿½
 	sprintf(palname,"%s\\pal%d",g_chardir,pal_number);
 	for(i=0;i<GCDMAX_IMAGES;i++){
 		sprintf(filename,"%s\\image%d",g_chardir,i+1);
 		bitmaps[i] = (MYSURFACE*) ( (*funcd->loadimage)(filename,palname) );
 	}
 
-	//"cell.gcd"‚ğ“Ç‚İ‚İ
+	//"cell.gcd"ï¿½ï¿½ï¿½Ç‚İï¿½ï¿½ï¿½
 	sprintf(filename,"%s\\cell",g_chardir);
 	funcd->create_celldat2(filename, (void**)&cells, (void**)&rects, (void**)&hantei);
 
-	//pdat‚É“ü‚ê‚Ä‚¨‚­
+	//pdatï¿½É“ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
 	pdat->phdat			= hantei;
 	pdat->pmsarr		= bitmaps;
 	pdat->pcdat			= cells;
@@ -2216,7 +2215,7 @@ void CCharacterBase::InitGCDandBMP()
 }
 
 /*!
-	@brief GCD/BMP ƒAƒ“ƒ[ƒh
+	@brief GCD/BMP ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½h
 	@sa InitGCDandBMP
 */
 void CCharacterBase::ReleaseGCDandBMP()
@@ -2236,10 +2235,10 @@ void CCharacterBase::ReleaseGCDandBMP()
 }
 
 /* !
-	@brief MYSOUND\‘¢‘Ì‚ğ”äŠr‚·‚é
+	@brief MYSOUNDï¿½\ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½ï¿½ï¿½rï¿½ï¿½ï¿½ï¿½
 
 	@sa CCharacterBase::InitMySound
-	ƒ\[ƒg—pAInitMySoundŠÖ”“à•”‚Åg—p‚µ‚Ä‚Ü‚·B
+	ï¿½\ï¿½[ï¿½gï¿½pï¿½AInitMySoundï¿½Öï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ågï¿½pï¿½ï¿½ï¿½Ä‚Ü‚ï¿½ï¿½B
 */
 /*bool mscomp(const MYSOUND& val1, const MYSOUND& val2)
 {
@@ -2247,10 +2246,10 @@ void CCharacterBase::ReleaseGCDandBMP()
 }*/
 
 /*!
-	@brief wavƒTƒEƒ“ƒhŠÖŒW
+	@brief wavï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½ÖŒW
 
-	@param path_name ƒTƒEƒ“ƒh‚Ì“Ç‚İ‚İ‚ğs‚¤Šî€ƒpƒX(NULL‚Ìê‡A"sound")
-	@param list_name ƒTƒEƒ“ƒh”Ô†‚Æwavƒtƒ@ƒCƒ‹–¼‚Ì‘Î‰‚ğ‹Lq‚µ‚½’è‹`ƒtƒ@ƒCƒ‹–¼(NULL‚Ìê‡"list.txt")
+	@param path_name ï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½Ì“Ç‚İï¿½ï¿½İ‚ï¿½ï¿½sï¿½ï¿½ï¿½î€ï¿½pï¿½X(NULLï¿½Ìê‡ï¿½A"sound")
+	@param list_name ï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½Ôï¿½ï¿½ï¿½wavï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Ì‘Î‰ï¿½ï¿½ï¿½ï¿½Lï¿½qï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½(NULLï¿½Ìê‡"list.txt")
 */
 void CCharacterBase::InitMySound(char* path_name,char* list_name)
 {
@@ -2269,18 +2268,18 @@ void CCharacterBase::InitMySound(char* path_name,char* list_name)
 
 	do
 	{
-		//ƒeƒLƒXƒg‚©‚çƒtƒ@ƒCƒ‹–¼‚ÌƒŠƒXƒg‚ğæ“¾
+		//ï¿½eï¿½Lï¿½Xï¿½gï¿½ï¿½ï¿½ï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Ìƒï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½æ“¾
 		UINT bufflen;
 		sprintf(filename, "%s\\%s\\%s",GetCharDir(),path_name,list_name);
 		File2Mem(filename, &buff, &bufflen);
 		if(!buff)break;
 
-		//‚Ä‚ñ‚Û‚ç‚è`‚È•Ï”
+		//ï¿½Ä‚ï¿½ï¿½Û‚ï¿½ï¿½ï¿½ï¿½`ï¿½È•Ïï¿½
 		char* s = buff;
 		char* tmpstr = NULL;
 		int tmpno = 0;
 
-		//ƒtƒ@ƒCƒ‹–¼‚ÌƒŠƒXƒg‚ğæ“¾
+		//ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Ìƒï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½æ“¾
 		while((UINT)(s-buff)<bufflen-1)
 		{
 			if(*s=='#')
@@ -2311,7 +2310,7 @@ void CCharacterBase::InitMySound(char* path_name,char* list_name)
 		}
 		if(name_list.size()==0)break;
 
-		//ƒTƒEƒ“ƒh‚ğƒ[ƒh
+		//ï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½h
 		int success_num = 0;
 		for(i=0;i<name_list.size();i++)
 		{
@@ -2327,15 +2326,15 @@ void CCharacterBase::InitMySound(char* path_name,char* list_name)
 		}
 		if(success_num==0)break;
 
-		// ƒf[ƒ^‚ğƒ\[ƒg
+		// ï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½\ï¿½[ï¿½g
 //		std::stable_sort< std::vector< MYSOUND >::iterator >(sound_list.begin(), sound_list.end(), mscomp);
 
-		//”z—ñ‚ğ—pˆÓ‚µ‚ÄA¬Œ÷‚µ‚½‚â‚Â‚¾‚¯•Û‚µ‚Ä‚¨‚­
+		//ï¿½zï¿½ï¿½ï¿½ï¿½ï¿½pï¿½Ó‚ï¿½ï¿½ÄAï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½ï¿½Ûï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
 		mysounds = new LPVOID [success_num+1];
 		mysound_numbers = new int [success_num];
 		/*mysounds = (LPMYSOUND)malloc( sizeof(MYSOUND) * success_num);
 		mysound_numbers = success_num;*/
-		success_num = 0;//g‚¢‚Ü‚í‚µ
+		success_num = 0;//ï¿½gï¿½ï¿½ï¿½Ü‚í‚µ
 		for(i=0;i<name_list.size();i++)
 		{
 			if(sound_list[i])
@@ -2345,15 +2344,15 @@ void CCharacterBase::InitMySound(char* path_name,char* list_name)
 				success_num++;
 			}
 
-/*			// ƒTƒEƒ“ƒh‚ªNULL‚Ìê‡‚ÍƒpƒXB
+/*			// ï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½ï¿½NULLï¿½Ìê‡ï¿½Íƒpï¿½Xï¿½B
 			if ( (i < sound_list.size()) && sound_list[i].sound )
 			{
 				if ( ( (i > 0) && (sound_list[i - 1].number == sound_list[i].number) ) )
 				{
-					// “¯‚¶”Ô†‚ª‚ ‚é‚Ì‚Å¸”sA”z—ñ‚ğ‚PŒ¸‚ç‚·B
+					// ï¿½ï¿½ï¿½ï¿½ï¿½Ôï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Åï¿½ï¿½sï¿½Aï¿½zï¿½ï¿½ï¿½ï¿½ï¿½Pï¿½ï¿½ï¿½ç‚·ï¿½B
 					mysound_numbers--;
 					mysounds = (LPMYSOUND)realloc(mysounds, sizeof(MYSOUND) * mysound_numbers);
-					KillMySound(sound_list[i].sound);	// g‚í‚È‚¢‚Ì‚Å‚ ‚Ú‚ñ‚Ê
+					KillMySound(sound_list[i].sound);	// ï¿½gï¿½ï¿½ï¿½È‚ï¿½ï¿½Ì‚Å‚ï¿½ï¿½Ú‚ï¿½ï¿½ï¿½
 				}
 				else
 				{
@@ -2362,7 +2361,7 @@ void CCharacterBase::InitMySound(char* path_name,char* list_name)
 				}
 			}*/
 		}
-		//I’[ŒŸ’m—p
+		//ï¿½Iï¿½[ï¿½ï¿½ï¿½mï¿½p
 		mysounds[success_num] = NULL;
 	}
 	while(0);
@@ -2372,11 +2371,11 @@ void CCharacterBase::InitMySound(char* path_name,char* list_name)
 }
 
 /*!
-	@brief wavƒTƒEƒ“ƒhÄ¶
-	@param number ƒTƒEƒ“ƒh”Ô†
+	@brief wavï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½Äï¿½
+	@param number ï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½Ôï¿½
 	@sa InitMySound
 
-	number‚Åw’è‚³‚ê‚½”Ô†‚ÌƒTƒEƒ“ƒh‚ğÄ¶‚µ‚Ü‚·B
+	numberï¿½Åwï¿½è‚³ï¿½ê‚½ï¿½Ôï¿½ï¿½ÌƒTï¿½Eï¿½ï¿½ï¿½hï¿½ï¿½ï¿½Äï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 void CCharacterBase::PlayMySound(DWORD number)
 {
@@ -2393,7 +2392,7 @@ void CCharacterBase::PlayMySound(DWORD number)
 		i++;
 	}
 
-	// “ñ•ª’Tõ‚ğg‚Á‚ÄŒŸõ
+	// ï¿½ñ•ª’Tï¿½ï¿½ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ÄŒï¿½ï¿½ï¿½
 /*	UINT i=0, j=mysound_numbers-1;
 	while(i <= j)
 	{
@@ -2405,7 +2404,7 @@ void CCharacterBase::PlayMySound(DWORD number)
 			j = cent - 1;
 		else
 		{
-			// ”­Œ©
+			// ï¿½ï¿½ï¿½ï¿½
 			funcs->playmysound(mysounds[cent].sound);
 			return;
 		}
@@ -2413,7 +2412,7 @@ void CCharacterBase::PlayMySound(DWORD number)
 }
 
 /*!
-	@brief ƒTƒEƒ“ƒh”jŠü
+	@brief ï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½jï¿½ï¿½
 	@sa InitMySound
 */
 void CCharacterBase::ReleaseMySound()
@@ -2439,11 +2438,11 @@ void CCharacterBase::ReleaseMySound()
 }
 
 /*!
-	@brief —‰ºˆ—
+	@brief ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	@param acc_g d—Í‰Á‘¬“x(1.0‚ª•W€)
-	@param cyakuchi yÀ•W‚ª0ˆÈã‚É’B‚µ‚½Û‚ÉAs“®‘JˆÚ‚ğs‚¤‚©‚Ç‚¤‚©
-	@param toaid yÀ•W‚ª0ˆÈã‚É’B‚µ‚½Û‚É‘JˆÚ‚·‚és“®ID
+	@param acc_g ï¿½dï¿½Í‰ï¿½ï¿½ï¿½ï¿½x(1.0ï¿½ï¿½ï¿½Wï¿½ï¿½)
+	@param cyakuchi yï¿½ï¿½ï¿½Wï¿½ï¿½0ï¿½Èï¿½ï¿½É’Bï¿½ï¿½ï¿½ï¿½ï¿½Û‚ÉAï¿½sï¿½ï¿½ï¿½Jï¿½Ú‚ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½
+	@param toaid yï¿½ï¿½ï¿½Wï¿½ï¿½0ï¿½Èï¿½ï¿½É’Bï¿½ï¿½ï¿½ï¿½ï¿½Û‚É‘Jï¿½Ú‚ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ID
 */
 void CCharacterBase::JiyuuRakka(double acc_g,BOOL cyakuchi,DWORD toaid)
 {
@@ -2458,10 +2457,10 @@ void CCharacterBase::JiyuuRakka(double acc_g,BOOL cyakuchi,DWORD toaid)
 }
 
 /*!
-	@brief ’…’n”»’èˆ—
-	@param toaid ’…’n‚µ‚Ä‚¢‚é‚Æ”»’è‚³‚ê‚½ê‡‚É‘JˆÚ‚·‚és“®ID
+	@brief ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½èˆï¿½ï¿½
+	@param toaid ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½Æ”ï¿½ï¿½è‚³ï¿½ê‚½ï¿½ê‡ï¿½É‘Jï¿½Ú‚ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ID
 
-	yÀ•W‚ª0ˆÈã‚Ì‚Æ‚«A’…’n‚µ‚Ä‚¢‚é‚Æ”»’è‚³‚ê‚Ü‚·
+	yï¿½ï¿½ï¿½Wï¿½ï¿½0ï¿½Èï¿½ï¿½Ì‚Æ‚ï¿½ï¿½Aï¿½ï¿½ï¿½nï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½Æ”ï¿½ï¿½è‚³ï¿½ï¿½ï¿½Ü‚ï¿½
 */
 void CCharacterBase::CyakuchiHantei(DWORD toaid)
 {
@@ -2475,16 +2474,16 @@ void CCharacterBase::CyakuchiHantei(DWORD toaid)
 }
 
 /*-----------------------------------------------------------------------------
-	ZˆÊ’u‘€ì
+	Zï¿½Ê’uï¿½ï¿½ï¿½ï¿½
 -------------------------------------------------------------------------------*/
 void CCharacterBase::ZBack(){GetGObject()->z=back_z;}
 void CCharacterBase::ZFront(){GetGObject()->z=front_z;}
 
 /*!
-	@brief U‚èŒü‚« ˆ—
-	@return TRUE:U‚èŒü‚«ˆ—‚ğs‚¢AŒü‚«‚ª•ÏX‚³‚ê‚½
+	@brief ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	@return TRUE:ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏXï¿½ï¿½ï¿½ê‚½
 
-	ƒ^[ƒQƒbƒgƒIƒuƒWƒFƒNƒg‚ğŠî€‚É‚µ‚ÄxÀ•W‚ğ”»’è‚µ‚ÄƒIƒuƒWƒFƒNƒg‚ÌŒü‚«‚ğ•ÏX‚µ‚Ü‚·B
+	ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½î€ï¿½É‚ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½Wï¿½ğ”»’è‚µï¿½ÄƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ÌŒï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏXï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 BOOL CCharacterBase::Furimuki()
 {
@@ -2505,16 +2504,16 @@ BOOL CCharacterBase::Furimuki()
 }
 
 /*-----------------------------------------------------------------------------
-	ƒ`ƒF[ƒ“ƒRƒ“ƒ{”»’è
+	ï¿½`ï¿½Fï¿½[ï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½{ï¿½ï¿½ï¿½ï¿½
 -------------------------------------------------------------------------------*/
 
 /*!
-	@brief ƒ`ƒF[ƒ“ƒRƒ“ƒ{”»’è
+	@brief ï¿½`ï¿½Fï¿½[ï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½{ï¿½ï¿½ï¿½ï¿½
 
-	w’èƒtƒ‰ƒO‚ª‚Ü‚¾—§‚Á‚Ä‚¢‚È‚¯‚ê‚ÎA‚»‚Ìƒtƒ‰ƒO‚ğ’Ç‰Á‚µ‚ÄTRUE‚ğ•Ô‚·B
-	ƒ`ƒF[ƒ“ƒRƒ“ƒ{‚ÅƒLƒƒƒ“ƒZƒ‹‚Å‚«‚È‚¢ê‡‚ÍFALSE‚ğ•Ô‚·
+	ï¿½wï¿½ï¿½ï¿½tï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ÎAï¿½ï¿½ï¿½Ìƒtï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½TRUEï¿½ï¿½ï¿½Ô‚ï¿½ï¿½B
+	ï¿½`ï¿½Fï¿½[ï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½{ï¿½ÅƒLï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½Å‚ï¿½ï¿½È‚ï¿½ï¿½ê‡ï¿½ï¿½FALSEï¿½ï¿½ï¿½Ô‚ï¿½
 
-	@return TRUE:‚»‚Ì‹Z‚ğo‚µ‚Ä‚à‚æ‚µ, FALSE:‚¾‚ß
+	@return TRUE:ï¿½ï¿½ï¿½Ì‹Zï¿½ï¿½ï¿½oï¿½ï¿½ï¿½Ä‚ï¿½ï¿½æ‚µ, FALSE:ï¿½ï¿½ï¿½ï¿½
 */
 BOOL CCharacterBase::ChainCombo(DWORD chainid)
 {
@@ -2526,11 +2525,11 @@ BOOL CCharacterBase::ChainCombo(DWORD chainid)
 }
 
 /*!
-	@brief ƒ`ƒF[ƒ“ƒRƒ“ƒ{”»’è
+	@brief ï¿½`ï¿½Fï¿½[ï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½{ï¿½ï¿½ï¿½ï¿½
 	@sa ChainCombo
 
-	ChainCombo‚Æ‚Ìˆá‚¢‚ÍAw’èƒtƒ‰ƒO‚ğ ‚·‚Å‚Éo‚µ‚½ƒŠƒXƒg‚É‰Á‚¦‚é‚©‚Ç‚¤‚©B
-	‚±‚ÌŠÖ”‚Å‚Íw’èƒ`ƒF[ƒ“ƒRƒ“ƒ{ID‚ğƒŠƒXƒg‚É‰Á‚¦‚¸Aƒ`ƒFƒbƒN‚Ì‚İ‚ğs‚¤B
+	ChainComboï¿½Æ‚Ìˆá‚¢ï¿½ÍAï¿½wï¿½ï¿½ï¿½tï¿½ï¿½ï¿½Oï¿½ï¿½ ï¿½ï¿½ï¿½Å‚Éoï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½gï¿½É‰ï¿½ï¿½ï¿½ï¿½é‚©ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½B
+	ï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½Å‚Íwï¿½ï¿½ï¿½`ï¿½Fï¿½[ï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½{IDï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½gï¿½É‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½`ï¿½Fï¿½bï¿½Nï¿½Ì‚İ‚ï¿½ï¿½sï¿½ï¿½ï¿½B
 */
 BOOL CCharacterBase::ChainCheck(DWORD chainid)
 {
@@ -2542,11 +2541,11 @@ BOOL CCharacterBase::ChainCheck(DWORD chainid)
 
 
 /*!
-	@brief ‹Zî•ñ‰Šú‰»
+	@brief ï¿½Zï¿½ï¿½ï¿½ñ‰Šï¿½ï¿½ï¿½
 
-	’ÊíA‚±‚ÌŠÖ”‚ğƒI[ƒo[ƒ‰ƒCƒh‚µ‚Ä‹Zî•ñ‚ğ‰Šú‰»‚µ‚Ü‚·B
-	CCharacterBase::InitWazInfo ‚ğŒÄ‚Ño‚·‚ÆA•à‚«‚âƒWƒƒƒ“ƒv“™‚ÌŠî–{“I‚È
-	s“®‚Ìİ’è‚ğs‚¢‚Ü‚·B
+	ï¿½Êï¿½ï¿½Aï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½ï¿½ï¿½Iï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½Cï¿½hï¿½ï¿½ï¿½Ä‹Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	CCharacterBase::InitWazInfo ï¿½ï¿½ï¿½Ä‚Ñoï¿½ï¿½ï¿½ÆAï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ÌŠï¿½ï¿½{ï¿½Iï¿½ï¿½
+	ï¿½sï¿½ï¿½ï¿½Ìİ’ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 void CCharacterBase::InitWazInfo()
 {
@@ -2555,14 +2554,14 @@ void CCharacterBase::InitWazInfo()
 	waz.jampf = ACTID_JAMPF;
 	waz.jampb = ACTID_JAMPB;
 
-	waz.att_jamp[0] = ACTID_ATT_JC;//ƒWƒƒƒ“ƒvUŒ‚
+	waz.att_jamp[0] = ACTID_ATT_JC;//ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½Uï¿½ï¿½
 	waz.att_jamp[1] = ACTID_ATT_JB;
 	waz.att_jamp[2] = ACTID_ATT_JA;
 }
 
 /*!
-	@brief ƒpƒ[ƒQ[ƒW‘‰Á
-	@param dp ‘‰Á—Ê(ƒ}ƒCƒiƒX‚à‰Â)
+	@brief ï¿½pï¿½ï¿½ï¿½[ï¿½Qï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½
+	@param dp ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½}ï¿½Cï¿½iï¿½Xï¿½ï¿½ï¿½ï¿½)
 */
 void CCharacterBase::AddPowerGauge(double dp)
 {
@@ -2574,15 +2573,15 @@ void CCharacterBase::AddPowerGauge(double dp)
 }
 
 /*-----------------------------------------------------------------------------
-	ƒRƒ}ƒ“ƒh”»’èŠÖ”
+	ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½
 -------------------------------------------------------------------------------*/
 
 /*!
-	@brief ƒRƒ}ƒ“ƒh”»’è(«_¨)
-	@param dt ƒRƒ}ƒ“ƒhó•tŠÔ
-	@return TRUE:ƒRƒ}ƒ“ƒh¬—§
+	@brief ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½_ï¿½ï¿½)
+	@param dt ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½
+	@return TRUE:ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½
 */
-BOOL CCharacterBase::com236(int dt)//—t“¯Œ ƒRƒ}ƒ“ƒh
+BOOL CCharacterBase::com236(int dt)//ï¿½tï¿½ï¿½ï¿½ï¿½ï¿½Rï¿½}ï¿½ï¿½ï¿½h
 {
 	int ofst=0;
 
@@ -2597,11 +2596,11 @@ BOOL CCharacterBase::com236(int dt)//—t“¯Œ ƒRƒ}ƒ“ƒh
 }
 
 /*!
-	@brief ƒRƒ}ƒ“ƒh”»’è(«_¨«_¨)
-	@param dt ƒRƒ}ƒ“ƒhó•tŠÔ
-	@return TRUE:ƒRƒ}ƒ“ƒh¬—§
+	@brief ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½)
+	@param dt ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½
+	@return TRUE:ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½
 */
-BOOL CCharacterBase::com236236(int dt)//—t“¯Œ ƒRƒ}ƒ“ƒhx2
+BOOL CCharacterBase::com236236(int dt)//ï¿½tï¿½ï¿½ï¿½ï¿½ï¿½Rï¿½}ï¿½ï¿½ï¿½hx2
 {
 	int ofst=0;
 
@@ -2622,11 +2621,11 @@ BOOL CCharacterBase::com236236(int dt)//—t“¯Œ ƒRƒ}ƒ“ƒhx2
 }
 
 /*!
-	@brief ƒRƒ}ƒ“ƒh”»’è(¨«_)
-	@param dt ƒRƒ}ƒ“ƒhó•tŠÔ
-	@return TRUE:ƒRƒ}ƒ“ƒh¬—§
+	@brief ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½_)
+	@param dt ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½
+	@return TRUE:ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½
 */
-BOOL CCharacterBase::com623(int dt)//‚µ‚å[‚è‚ã[‚±‚Ü‚ñ‚Ç
+BOOL CCharacterBase::com623(int dt)//ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½
 {
 	int ofst=0;
 
@@ -2641,11 +2640,11 @@ BOOL CCharacterBase::com623(int dt)//‚µ‚å[‚è‚ã[‚±‚Ü‚ñ‚Ç
 }
 
 /*!
-	@brief ƒRƒ}ƒ“ƒh”»’è(«^©)
-	@param dt ƒRƒ}ƒ“ƒhó•tŠÔ
-	@return TRUE:ƒRƒ}ƒ“ƒh¬—§
+	@brief ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½^ï¿½ï¿½)
+	@param dt ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½
+	@return TRUE:ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½
 */
-BOOL CCharacterBase::com214(int dt)//‹t‚Í‚Ç[
+BOOL CCharacterBase::com214(int dt)//ï¿½tï¿½Í‚Ç[
 {
 	int ofst=0;
 
@@ -2660,9 +2659,9 @@ BOOL CCharacterBase::com214(int dt)//‹t‚Í‚Ç[
 }
 
 /*!
-	@brief ƒRƒ}ƒ“ƒh”»’è(©«^)
-	@param dt ƒRƒ}ƒ“ƒhó•tŠÔ
-	@return TRUE:ƒRƒ}ƒ“ƒh¬—§
+	@brief ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½^)
+	@param dt ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½
+	@return TRUE:ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½
 */
 BOOL CCharacterBase::com421(int dt)
 {
@@ -2679,11 +2678,11 @@ BOOL CCharacterBase::com421(int dt)
 }
 
 /*!
-	@brief ƒRƒ}ƒ“ƒh”»’è(©^«_¨)
-	@param dt ƒRƒ}ƒ“ƒhó•tŠÔ
-	@return TRUE:ƒRƒ}ƒ“ƒh¬—§
+	@brief ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½^ï¿½ï¿½ï¿½_ï¿½ï¿½)
+	@param dt ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½
+	@return TRUE:ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½
 */
-BOOL CCharacterBase::com426(int dt)//‚æ‚ª
+BOOL CCharacterBase::com426(int dt)//ï¿½æ‚ª
 {
 	int ofst=0;
 
@@ -2700,11 +2699,11 @@ BOOL CCharacterBase::com426(int dt)//‚æ‚ª
 }
 
 /*!
-	@brief ƒRƒ}ƒ“ƒh”»’è(¨¨)
-	@param dt ƒRƒ}ƒ“ƒhó•tŠÔ
-	@return TRUE:ƒRƒ}ƒ“ƒh¬—§
+	@brief ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
+	@param dt ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½
+	@return TRUE:ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½
 */
-BOOL CCharacterBase::com66(int dt)//ƒ_ƒbƒVƒ…ƒRƒ}ƒ“ƒh
+BOOL CCharacterBase::com66(int dt)//ï¿½_ï¿½bï¿½Vï¿½ï¿½ï¿½Rï¿½}ï¿½ï¿½ï¿½h
 {
 	int ofst=0;
 
@@ -2717,18 +2716,18 @@ BOOL CCharacterBase::com66(int dt)//ƒ_ƒbƒVƒ…ƒRƒ}ƒ“ƒh
 	return(TRUE);
 }
 
-BOOL CCharacterBase::com66i(int dt)//ƒoƒbƒNƒ_ƒbƒVƒ…ƒRƒ}ƒ“ƒh
+BOOL CCharacterBase::com66i(int dt)//ï¿½oï¿½bï¿½Nï¿½_ï¿½bï¿½Vï¿½ï¿½ï¿½Rï¿½}ï¿½ï¿½ï¿½h
 {
 	if(!(GetKey(0)&KEYSTA_FOWORD2))return FALSE;
 	return com66(dt);
 }
 
 /*!
-	@brief ƒRƒ}ƒ“ƒh”»’è(©©)
-	@param dt ƒRƒ}ƒ“ƒhó•tŠÔ
-	@return TRUE:ƒRƒ}ƒ“ƒh¬—§
+	@brief ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
+	@param dt ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½
+	@return TRUE:ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½
 */
-BOOL CCharacterBase::com44(int dt)//ƒoƒbƒNƒ_ƒbƒVƒ…ƒRƒ}ƒ“ƒh
+BOOL CCharacterBase::com44(int dt)//ï¿½oï¿½bï¿½Nï¿½_ï¿½bï¿½Vï¿½ï¿½ï¿½Rï¿½}ï¿½ï¿½ï¿½h
 {
 	int ofst=0;
 
@@ -2741,7 +2740,7 @@ BOOL CCharacterBase::com44(int dt)//ƒoƒbƒNƒ_ƒbƒVƒ…ƒRƒ}ƒ“ƒh
 	return(TRUE);
 }
 
-BOOL CCharacterBase::com44i(int dt)//ƒoƒbƒNƒ_ƒbƒVƒ…ƒRƒ}ƒ“ƒh
+BOOL CCharacterBase::com44i(int dt)//ï¿½oï¿½bï¿½Nï¿½_ï¿½bï¿½Vï¿½ï¿½ï¿½Rï¿½}ï¿½ï¿½ï¿½h
 {
 	if(!(GetKey(0)&KEYSTA_BACK2))return FALSE;
 	return com44(dt);
@@ -2749,9 +2748,9 @@ BOOL CCharacterBase::com44i(int dt)//ƒoƒbƒNƒ_ƒbƒVƒ…ƒRƒ}ƒ“ƒh
 
 
 /*!
-	@brief ƒRƒ}ƒ“ƒh”»’è(««)
-	@param dt ƒRƒ}ƒ“ƒhó•tŠÔ
-	@return TRUE:ƒRƒ}ƒ“ƒh¬—§
+	@brief ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
+	@param dt ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½
+	@return TRUE:ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½
 */
 BOOL CCharacterBase::com22(int dt)
 {
@@ -2773,17 +2772,17 @@ BOOL CCharacterBase::com22i(int dt)
 }
 
 /*!
-	@brief ’nã“Š‚°”»’è
-	@param maai ŒÀŠEŠÔ‡‚¢
-	@return TRUE:ƒIƒbƒP[
+	@brief ï¿½nï¿½ã“Šï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	@param maai ï¿½ï¿½ï¿½Eï¿½Ôï¿½ï¿½ï¿½
+	@return TRUE:ï¿½Iï¿½bï¿½Pï¿½[
 */
-BOOL CCharacterBase::NageHantei(DWORD maai)//“Š‚°‚Ì”»’è
+BOOL CCharacterBase::NageHantei(DWORD maai)//ï¿½ï¿½ï¿½ï¿½ï¿½Ì”ï¿½ï¿½ï¿½
 {
 	DWORD hm;
 	GOBJECT *pedat= (GOBJECT*)(*funco->getinfo)(GetGObject()->eid);
 	if(pedat==NULL)return(FALSE);
 
-	if(pedat->aid & ACTID_KUCYU)//‘Šè‚ª‹ó’†”»’è
+	if(pedat->aid & ACTID_KUCYU)//ï¿½ï¿½ï¿½è‚ªï¿½ó’†”ï¿½ï¿½ï¿½
 		return(FALSE);
 
 	hm = (*funco->getmaai_h)(GetGObject()->id,pedat->id);
@@ -2795,9 +2794,9 @@ BOOL CCharacterBase::NageHantei(DWORD maai)//“Š‚°‚Ì”»’è
 
 
 /*!
-	@brief ƒRƒ}ƒ“ƒh”»’è( «_¨_«^©)
-	@param dt ƒRƒ}ƒ“ƒhó•tŠÔ
-	@return TRUE:ƒRƒ}ƒ“ƒh¬—§
+	@brief ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½( ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½^ï¿½ï¿½)
+	@param dt ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½
+	@return TRUE:ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½
 */
 BOOL CCharacterBase::com2363214(int dt)
 {
@@ -2818,9 +2817,9 @@ BOOL CCharacterBase::com2363214(int dt)
 }
 
 /*!
-	@brief ƒRƒ}ƒ“ƒh”»’è(¨_«^©^«_¨)
-	@param dt ƒRƒ}ƒ“ƒhó•tŠÔ
-	@return TRUE:ƒRƒ}ƒ“ƒh¬—§
+	@brief ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½^ï¿½ï¿½ï¿½^ï¿½ï¿½ï¿½_ï¿½ï¿½)
+	@param dt ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½
+	@return TRUE:ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½
 */
 BOOL CCharacterBase::com62426(int dt)
 {
@@ -2845,9 +2844,9 @@ BOOL CCharacterBase::com62426(int dt)
 }
 
 /*!
-	@brief ƒRƒ}ƒ“ƒh”»’è(¨©^«_¨)
-	@param dt ƒRƒ}ƒ“ƒhó•tŠÔ
-	@return TRUE:ƒRƒ}ƒ“ƒh¬—§
+	@brief ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½^ï¿½ï¿½ï¿½_ï¿½ï¿½)
+	@param dt ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½
+	@return TRUE:ï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½
 */
 BOOL CCharacterBase::com6426(int dt)
 {
@@ -2868,12 +2867,12 @@ BOOL CCharacterBase::com6426(int dt)
 }
 
 /*!--------------------------------------------------------------------------------------
-	@brief COMƒŒƒxƒ‹”»’è
-	@param level Šî€‚Æ‚È‚éƒŒƒxƒ‹(“ïˆÕ“x)
-	@return ”»’è‚É¬Œ÷‚µ‚½ê‡‚ÍTRUE
+	@brief COMï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	@param level ï¿½î€ï¿½Æ‚È‚éƒŒï¿½xï¿½ï¿½(ï¿½ï¿½ï¿½Õ“x)
+	@return ï¿½ï¿½ï¿½ï¿½ï¿½Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ï¿½TRUE
 	@sa GetComLevel
 
-	“Á’è‚ÌƒŒƒxƒ‹‚ğŠî€‚Æ‚µA˜A‘±‹Z‚ğo‚³‚¹‚é‚©‚Ç‚¤‚©Œˆ‚ß‚é‚Æ‚«‚Ég‚¢‚Ü‚·B
+	ï¿½ï¿½ï¿½ï¿½ï¿½Ìƒï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½î€ï¿½Æ‚ï¿½ï¿½Aï¿½Aï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½oï¿½ï¿½ï¿½ï¿½ï¿½é‚©ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß‚ï¿½ï¿½Æ‚ï¿½ï¿½Égï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 ----------------------------------------------------------------------------------------*/
 BOOL CCharacterBase::ComLevelCk(UINT level)
 {
@@ -2900,22 +2899,22 @@ BOOL CCharacterBase::ComLevelCk(UINT level)
 
 
 /*-----------------------------------------------------------------------------
-	Šî–{“I‚Ès“®ŠÖ”
-	g‚¢‚Ü‚í‚µ‚Ä‚­‚¾‚³‚¢
+	ï¿½ï¿½ï¿½{ï¿½Iï¿½Èsï¿½ï¿½ï¿½Öï¿½
+	ï¿½gï¿½ï¿½ï¿½Ü‚í‚µï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 -------------------------------------------------------------------------------*/
 
 /*!
-	@brief Œğ‘ãs“®(in)
+	@brief ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½(in)
 
-	Œğ‘ã‚µ‚Ä‰æ–Ê“à‚É‚Í‚¢‚Á‚Ä‚­‚é(1)
-	“oêƒ|[ƒY‚Í‚µ‚È‚¢B
+	ï¿½ï¿½ï¿½ã‚µï¿½Ä‰ï¿½ï¿½Ê“ï¿½ï¿½É‚Í‚ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½(1)
+	ï¿½oï¿½ï¿½ï¿½|ï¿½[ï¿½Yï¿½Í‚ï¿½ï¿½È‚ï¿½ï¿½B
 */
 void CCharacterBase::act_koutai_in()
 {
 	GOBJECT* pdat = GetGObject();
 
 	if(pdat->counter==0){
-		pdat->objtype |= GOBJTYPE_DISPLAY;//‰æ–Ê“à‚É‚¢‚é
+		pdat->objtype |= GOBJTYPE_DISPLAY;//ï¿½ï¿½ï¿½Ê“ï¿½ï¿½É‚ï¿½ï¿½ï¿½
 	}
 
 	GOBJECT *pedat;
@@ -2948,26 +2947,26 @@ void CCharacterBase::act_koutai_in()
 	pdat->vy++;
 
 	if(pdat->y > 0){
-		pdat->objtype &= ~GOBJFLG_TAIKI;//‘Ò‹@ƒtƒ‰ƒO‚ğÁ‚·
-		AddProperty( GOBJFLG_TOBETARGET );//ƒ^[ƒQƒbƒg‚É‚È‚é
+		pdat->objtype &= ~GOBJFLG_TAIKI;//ï¿½Ò‹@ï¿½tï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		AddProperty( GOBJFLG_TOBETARGET );//ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½É‚È‚ï¿½
 		pdat->y=0;
 		pdat->aid = ACTID_NEUTRAL;
 	}
 }
 
 /*!
-	@brief Œğ‘ãs“®(out)
+	@brief ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½(out)
 
-	‰æ–ÊŠO‚É‚Ò‚å[‚ñ‚Á‚Ä‚Å‚Ä‚Á‚Ä‘Ò‹@‚·‚é
+	ï¿½ï¿½ï¿½ÊŠOï¿½É‚Ò‚ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚Å‚Ä‚ï¿½ï¿½Ä‘Ò‹@ï¿½ï¿½ï¿½ï¿½
 */
 void CCharacterBase::act_koutai_out()
 {
 	GOBJECT* pdat = GetGObject();
 
 	if(pdat->counter==0){
-		pdat->objtype &= GOBJTYPE_NODISPLAY;//‰æ–ÊŠO‚Ö‚¢‚¯‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­
-		pdat->objtype |= GOBJFLG_TAIKI;//‘Ò‹@ƒtƒ‰ƒO‚ğ—§‚Ä‚é
-		RemoveProperty( GOBJFLG_TOBETARGET );//ƒ^[ƒQƒbƒg‚É‚Í‚È‚ç‚È‚¢
+		pdat->objtype &= GOBJTYPE_NODISPLAY;//ï¿½ï¿½ï¿½ÊŠOï¿½Ö‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
+		pdat->objtype |= GOBJFLG_TAIKI;//ï¿½Ò‹@ï¿½tï¿½ï¿½ï¿½Oï¿½ğ—§‚Ä‚ï¿½
+		RemoveProperty( GOBJFLG_TOBETARGET );//ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½É‚Í‚È‚ï¿½ï¿½È‚ï¿½
 	}
 
 	if(pdat->counter < 2){
@@ -2984,17 +2983,17 @@ void CCharacterBase::act_koutai_out()
 }
 
 /*!
-	@brief Œğ‘ãs“®(out)
-	‰æ–ÊŠO‚É”ò‚ñ‚Å‚Á‚Ä‘Ò‹@‚·‚é
+	@brief ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½(out)
+	ï¿½ï¿½ï¿½ÊŠOï¿½É”ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½Ä‘Ò‹@ï¿½ï¿½ï¿½ï¿½
 */
 void CCharacterBase::act_taiki()
 {
 	GOBJECT* pdat = GetGObject();
 
 	if(pdat->counter==0){
-		pdat->objtype &= GOBJTYPE_NODISPLAY;//‰æ–ÊŠO‚Ö‚¢‚¯‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­
-		AddProperty( GOBJFLG_TAIKI );//‘Ò‹@ƒtƒ‰ƒO‚ğ—§‚Ä‚é
-		RemoveProperty( GOBJFLG_TOBETARGET );//ƒ^[ƒQƒbƒg‚É‚Í‚È‚ç‚È‚¢
+		pdat->objtype &= GOBJTYPE_NODISPLAY;//ï¿½ï¿½ï¿½ÊŠOï¿½Ö‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
+		AddProperty( GOBJFLG_TAIKI );//ï¿½Ò‹@ï¿½tï¿½ï¿½ï¿½Oï¿½ğ—§‚Ä‚ï¿½
+		RemoveProperty( GOBJFLG_TOBETARGET );//ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½É‚Í‚È‚ï¿½ï¿½È‚ï¿½
 	}
 
 	if(pdat->counter < 2){
@@ -3012,7 +3011,7 @@ void CCharacterBase::act_taiki()
 
 
 /*!
-	@brief Œğ‘ãs“®(in) “oêƒ|[ƒY‚ ‚èE“oêƒ|[ƒY
+	@brief ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½(in) ï¿½oï¿½ï¿½ï¿½|ï¿½[ï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½oï¿½ï¿½ï¿½|ï¿½[ï¿½Y
 */
 void CCharacterBase::act_koutai2()
 {
@@ -3025,13 +3024,13 @@ void CCharacterBase::act_koutai2()
 }
 
 /*!
-	@brief Œğ‘ãs“®(in) “oêƒ|[ƒY‚ ‚èE”­“®
+	@brief ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½(in) ï¿½oï¿½ï¿½ï¿½|ï¿½[ï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½ï¿½
 */
 void CCharacterBase::act_koutai()
 {
 	GOBJECT* pdat = GetGObject();
 
-	pdat->objtype |= GOBJTYPE_DISPLAY;//‰æ–Ê“à‚É‚¢‚é
+	pdat->objtype |= GOBJTYPE_DISPLAY;//ï¿½ï¿½ï¿½Ê“ï¿½ï¿½É‚ï¿½ï¿½ï¿½
 
 	GOBJECT *pedat;
 	if(pdat->counter==0){
@@ -3063,20 +3062,20 @@ void CCharacterBase::act_koutai()
 	pdat->vy++;
 
 	if(pdat->y > 0){
-		pdat->objtype &= ~GOBJFLG_TAIKI;//‘Ò‹@ƒtƒ‰ƒO‚ğÁ‚·
-		AddProperty( GOBJFLG_TOBETARGET );//ƒ^[ƒQƒbƒg‚É‚È‚é
+		pdat->objtype &= ~GOBJFLG_TAIKI;//ï¿½Ò‹@ï¿½tï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		AddProperty( GOBJFLG_TOBETARGET );//ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½É‚È‚ï¿½
 		pdat->y=0;
-		pdat->aid = ACTID_KOUTAI2;//“oêƒ|[ƒY
+		pdat->aid = ACTID_KOUTAI2;//ï¿½oï¿½ï¿½ï¿½|ï¿½[ï¿½Y
 	}
 }
 
 /*!
-	@brief ‘Ò‹@’†s“®
+	@brief ï¿½Ò‹@ï¿½ï¿½ï¿½sï¿½ï¿½
 */
 void CCharacterBase::act_taikicyu(){}
 
 /*!
-	@brief x‰‡UŒ‚ŒÄ‚Ño‚µs“®
+	@brief ï¿½xï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½Ä‚Ñoï¿½ï¿½ï¿½sï¿½ï¿½
 */
 void CCharacterBase::act_strikercomeon()
 {
@@ -3084,7 +3083,7 @@ void CCharacterBase::act_strikercomeon()
 }
 
 /*!
-	@brief ƒ^ƒCƒ€ƒI[ƒo[•‰‚¯s“®
+	@brief ï¿½^ï¿½Cï¿½ï¿½ï¿½Iï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½
 */
 void CCharacterBase::act_timeoverlose()
 {
@@ -3092,13 +3091,13 @@ void CCharacterBase::act_timeoverlose()
 }
 
 /*!
-	@brief ’‡ŠÔŸ—˜s“®
+	@brief ï¿½ï¿½ï¿½Ôï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½
 */
 /*void CCharacterBase::act_win2_in()
 {
 	GOBJECT* pdat = GetGObject();
 
-	pdat->objtype |= GOBJTYPE_DISPLAY;//‰æ–Ê“à‚É‚¢‚é
+	pdat->objtype |= GOBJTYPE_DISPLAY;//ï¿½ï¿½ï¿½Ê“ï¿½ï¿½É‚ï¿½ï¿½ï¿½
 
 	GOBJECT *padat;
 	if(pdat->counter==0){
@@ -3128,30 +3127,30 @@ void CCharacterBase::act_timeoverlose()
 	pdat->vy++;
 
 	if(pdat->y > 0){
-		pdat->objtype &= ~GOBJFLG_TAIKI;//‘Ò‹@ƒtƒ‰ƒO‚ğÁ‚·
-		AddProperty( GOBJFLG_TOBETARGET );//ƒ^[ƒQƒbƒg‚É‚È‚é
+		pdat->objtype &= ~GOBJFLG_TAIKI;//ï¿½Ò‹@ï¿½tï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		AddProperty( GOBJFLG_TOBETARGET );//ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½É‚È‚ï¿½
 		pdat->y=0;
-		pdat->aid = ACTID_KOUTAI2;//“oêƒ|[ƒY
+		pdat->aid = ACTID_KOUTAI2;//ï¿½oï¿½ï¿½ï¿½|ï¿½[ï¿½Y
 	}
 }*/
 
 /*!
-	@brief ‹ó’†ƒ_ƒ[ƒW•œ‹AŒã—‰º
+	@brief ï¿½ó’†ƒ_ï¿½ï¿½ï¿½[ï¿½Wï¿½ï¿½ï¿½Aï¿½ã—ï¿½ï¿½
 */
 void CCharacterBase::act_rakka2(){act_rakka();}
 
 
 /*-----------------------------------------------------------------------------
-	Ÿ—˜‘äŒ æ“¾/İ’è ˆ—
+	ï¿½ï¿½ï¿½ï¿½ï¿½äŒ ï¿½æ“¾/ï¿½İ’ï¿½ ï¿½ï¿½ï¿½ï¿½
 -------------------------------------------------------------------------------*/
 /*!
-	@brief Ÿ—˜‘äŒ‚Ìİ’è
+	@brief ï¿½ï¿½ï¿½ï¿½ï¿½äŒï¿½Ìİ’ï¿½
 
-	İ’èƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚ğƒ[ƒh‚µA“G‚Ì–¼‘O‚ÆƒtƒFƒCƒX•ÏX’l‚ğ”»’f‚µ‚Ä
-	“KØ‚È‘äŒ‚ğ‘I‘ğ‚µ‚ÄƒVƒXƒeƒ€‚É’Ê’m‚µ‚Ü‚·B
-	’ÊíŸ‚¿ƒ|[ƒYs“®‚Ås‚¢‚Ü‚·B
+	ï¿½İ’ï¿½ï¿½eï¿½Lï¿½Xï¿½gï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½Aï¿½Gï¿½Ì–ï¿½ï¿½Oï¿½Æƒtï¿½Fï¿½Cï¿½Xï¿½ÏXï¿½lï¿½ğ”»’fï¿½ï¿½ï¿½ï¿½
+	ï¿½Kï¿½Ø‚È‘äŒï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ÄƒVï¿½Xï¿½eï¿½ï¿½ï¿½É’Ê’mï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½ÊíŸï¿½ï¿½ï¿½|ï¿½[ï¿½Yï¿½sï¿½ï¿½ï¿½Åsï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 
-	@param filename Ÿ—˜‘äŒİ’èƒeƒLƒXƒgƒtƒ@ƒCƒ‹–¼(NULL‚Ìê‡"serifu.txt")
+	@param filename ï¿½ï¿½ï¿½ï¿½ï¿½äŒï¿½İ’ï¿½ï¿½eï¿½Lï¿½Xï¿½gï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½(NULLï¿½Ìê‡"serifu.txt")
 */
 void CCharacterBase::LoadAndSetKatiSerif(char* filename)
 {
@@ -3166,7 +3165,7 @@ void CCharacterBase::LoadAndSetKatiSerif(char* filename)
 	std::vector<char*>	str_points_r;
 	do
 	{
-		//ƒtƒ@ƒCƒ‹‚ğƒƒ‚ƒŠã‚Éƒ[ƒh
+		//ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éƒï¿½ï¿½[ï¿½h
 		sprintf(filepath,"%s\\%s",g_chardir,filename);
 		File2Mem(filepath,&buff,&bufflen);
 		if(!buff)break;
@@ -3174,7 +3173,7 @@ void CCharacterBase::LoadAndSetKatiSerif(char* filename)
 		char* enemyname = GetEnemyName(pdat->tid);
 		int   enemyface = GetEnemyFace(pdat->tid);
 
-		//İ’è‚ğŒŸo‚µAİ’èŠJnˆÊ’u‚ğ‹L‰¯‚·‚é
+		//ï¿½İ’ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½ï¿½ï¿½Aï¿½İ’ï¿½ï¿½Jï¿½nï¿½Ê’uï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		char* s = buff;
 		char* s_point;
 		int tmpface;
@@ -3191,11 +3190,11 @@ void CCharacterBase::LoadAndSetKatiSerif(char* filename)
 				}
 				if(scaret>0)
 				{
-					//ƒ‰ƒ“ƒ_ƒ€—p
+					//ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½p
 					if( strcmp(tmpname,"random")==0 ){
 						str_points_r.push_back(s_point);
 					}
-					//w’è‘äŒ
+					//ï¿½wï¿½ï¿½ï¿½äŒ
 					else if( tmpface==enemyface && enemyname && strcmp(tmpname,enemyname)==0){
 						str_points.push_back(s_point);
 					}
@@ -3209,7 +3208,7 @@ void CCharacterBase::LoadAndSetKatiSerif(char* filename)
 		}
 
 
-		//g—p‚·‚é‘äŒ‚ğ‘I‘ğ
+		//ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½ï¿½äŒï¿½ï¿½ï¿½Iï¿½ï¿½
 		if(str_points.size()>0)
 		{
 			s_point = str_points[ GetRandNum((int)str_points.size()) ];
@@ -3220,12 +3219,12 @@ void CCharacterBase::LoadAndSetKatiSerif(char* filename)
 		}
 		else break;
 
-		//‘äŒ‚ğ“Ç‚İ‚İ
+		//ï¿½äŒï¿½ï¿½ï¿½Ç‚İï¿½ï¿½ï¿½
 		s = s_point;
 		ZeroMemory(katiserifu,256);
 		while(TRUE)
 		{
-			//‰üs‚·‚é‚Ü‚Åi‚Ş
+			//ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½Ü‚Åiï¿½ï¿½
 			if(*s=='\n')
 			{
 				s++;
@@ -3239,7 +3238,7 @@ void CCharacterBase::LoadAndSetKatiSerif(char* filename)
 
 			s++;
 
-			//Œ©‚Â‚©‚ç‚È‚©‚Á‚½H
+			//ï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½H
 			if((UINT)(s-buff)>=bufflen-2)
 			{
 				s=NULL;
@@ -3251,20 +3250,20 @@ void CCharacterBase::LoadAndSetKatiSerif(char* filename)
 		UINT strcount=0;
 		while(TRUE)
 		{
-			//ƒRƒs[
+			//ï¿½Rï¿½sï¿½[
 			katiserifu[strcount] = *s;
 			strcount++;
 			if(strcount>254)break;
 
 			s++;
 
-			//Ÿ‚Ì#‚ªŒ©‚Â‚©‚Á‚Ä‚µ‚Ü‚Á‚½‚çI—¹
+			//ï¿½ï¿½ï¿½ï¿½#ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½
 			if(*s=='#')
 			{
 				break;
 			}
 
-			//I’[‚É“’B
+			//ï¿½Iï¿½[ï¿½É“ï¿½ï¿½B
 			if((UINT)(s-buff)>=bufflen)
 			{
 				break;
@@ -3282,24 +3281,24 @@ void CCharacterBase::LoadAndSetKatiSerif(char* filename)
 
 /*!
 	@class CBulletBase
-	@brief ”ò“¹‹ïŠî–{ƒNƒ‰ƒX
+	@brief ï¿½ò“¹‹ï¿½ï¿½ï¿½ï¿½{ï¿½Nï¿½ï¿½ï¿½X
 	@ingroup GObjectBase
 
-	CGoluahObject‚ğ”ò‚Ñ“¹‹ïŒü‚¯‚ÉŠg’£‚µ‚½ƒNƒ‰ƒX‚Å‚·B
-	act_run() : ”ò‚ñ‚Å‚¢‚é‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“@A@
-	act_bomb() : ƒqƒbƒgŒãAÁ–Å‚·‚é‚Ü‚Å‚ÌƒAƒNƒVƒ‡ƒ“@A@
-	act_run2() : ƒqƒbƒgŒã‚àÁ–Å‚¹‚¸‚É(UŒ‚—Í‚ğ¸‚Á‚Ä)”ò‚ñ‚Å‚¢‚­ƒAƒNƒVƒ‡ƒ“@A@
-	‚ğÀ‘•‚·‚é‚±‚Æ‚É‚æ‚èŠÈ’P‚É”ò‚Ñ“¹‹ïƒNƒ‰ƒX‚ªì‚ê‚Ü‚·B
+	CGoluahObjectï¿½ï¿½ï¿½ï¿½ï¿½Ñ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÉŠgï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½Xï¿½Å‚ï¿½ï¿½B
+	act_run() : ï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ÌƒAï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½@ï¿½Aï¿½@
+	act_bomb() : ï¿½qï¿½bï¿½gï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½Ü‚Å‚ÌƒAï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½@ï¿½Aï¿½@
+	act_run2() : ï¿½qï¿½bï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½Uï¿½ï¿½ï¿½Í‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½Aï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½@ï¿½Aï¿½@
+	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é‚±ï¿½Æ‚É‚ï¿½ï¿½ï¿½ï¿½È’Pï¿½É”ï¿½ï¿½Ñ“ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 
-	UŒ‚—Í‚Í’ÊíAatkinfoƒƒ“ƒo•Ï”‚ªg—p‚³‚ê‚Ü‚·B
+	ï¿½Uï¿½ï¿½ï¿½Í‚Í’Êï¿½ï¿½Aatkinfoï¿½ï¿½ï¿½ï¿½ï¿½oï¿½Ïï¿½ï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 
-	ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ÅCCharacterBase‚ğeƒNƒ‰ƒX‚Æ‚µ‚Äw’è‚·‚é‚ÆA
-	•`‰æ‚É•W€‚Ìƒrƒbƒgƒ}ƒbƒv‚ÆGCDAƒTƒEƒ“ƒh“™‚ª—˜—p‚Å‚«‚Ü‚·B
+	ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^ï¿½ï¿½CCharacterBaseï¿½ï¿½ï¿½eï¿½Nï¿½ï¿½ï¿½Xï¿½Æ‚ï¿½ï¿½Äwï¿½è‚·ï¿½ï¿½ï¿½ÆA
+	ï¿½`ï¿½æï¿½É•Wï¿½ï¿½ï¿½Ìƒrï¿½bï¿½gï¿½}ï¿½bï¿½vï¿½ï¿½GCDï¿½Aï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½pï¿½Å‚ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 
 
 /*!
-	@brief \’z(”ñ„§)
+	@brief ï¿½\ï¿½z(ï¿½ñ„ï¿½)
 */
 CBulletBase::CBulletBase(GOBJECT *parent/* = NULL */) : CGoluahObject(FALSE)
 {
@@ -3310,7 +3309,7 @@ CBulletBase::CBulletBase(GOBJECT *parent/* = NULL */) : CGoluahObject(FALSE)
 }
 
 /*!
-	@brief \’z(„§)
+	@brief ï¿½\ï¿½z(ï¿½ï¿½ï¿½ï¿½)
 */
 CBulletBase::CBulletBase(CCharacterBase *parent) : CGoluahObject(FALSE)
 {
@@ -3328,15 +3327,15 @@ CBulletBase::CBulletBase(CCharacterBase *parent) : CGoluahObject(FALSE)
 
 
 /*!
-	@brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^‹¤’Êˆ—
+	@brief ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^ï¿½ï¿½ï¿½Êï¿½ï¿½ï¿½
 */
 void CBulletBase::CBulletBaseCreate()
 {
 	GOBJECT* pdat = GetGObject();
 
 	if(parent_obj!=NULL){
-		pdat->tid = parent_obj->tid;//ƒ`[ƒ€ID
-		pdat->pmsarr = parent_obj->pmsarr;//gcd‚Íe‚Æ“¯‚¶‚à‚Ì‚ğg‚¦‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­
+		pdat->tid = parent_obj->tid;//ï¿½`ï¿½[ï¿½ï¿½ID
+		pdat->pmsarr = parent_obj->pmsarr;//gcdï¿½Íeï¿½Æ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
 		pdat->pcdat = parent_obj->pcdat;
 		pdat->prdat = parent_obj->prdat;
 		pdat->phdat = parent_obj->phdat;
@@ -3348,7 +3347,7 @@ void CBulletBase::CBulletBaseCreate()
 	}
 
 	pdat->aid = CBB_STATE_IDLE;
-	pdat->objtype	= GOBJTYPE_BULLET;//ƒIƒuƒWƒFƒNƒgƒ^ƒCƒv
+	pdat->objtype	= GOBJTYPE_BULLET;//ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½^ï¿½Cï¿½v
 	base_z=ZZAHYO_BULLET1;
 
 	ZeroMemory(&atkinfo,sizeof(ATTACKINFO));
@@ -3360,22 +3359,22 @@ void CBulletBase::CBulletBaseCreate()
 
 
 /*-----------------------------------------------------------------------------
-	ƒƒbƒZ[ƒWˆ—ŠÖ”
+	ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½
 -------------------------------------------------------------------------------*/
 DWORD CBulletBase::Message(DWORD msg,LPVOID pd,DWORD prm)
 {
 	switch(msg){
 	case GOBJMSG_SOUSAI:return( Sousai(prm) );
 	default:
-		//‚ ‚Æ‚ÌƒƒbƒZ[ƒW‚ÍƒIƒuƒWƒFƒNƒgŠî–{ƒNƒ‰ƒX‚É”C‚¹‚é
+		//ï¿½ï¿½ï¿½Æ‚Ìƒï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ÍƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½{ï¿½Nï¿½ï¿½ï¿½Xï¿½É”Cï¿½ï¿½ï¿½ï¿½
 		return(CGoluahObject::Message(msg,pd,prm));
 	}
 	return(0);
 }
 
 /*!
-	@brief GOBJMSG_DRAW ƒƒbƒZ[ƒWˆ—
-	idle‚Í•`‰æ‚µ‚È‚¢BidleˆÈŠO‚ÍƒfƒtƒHƒ‹ƒg‚Ì•`‰æˆ—B
+	@brief GOBJMSG_DRAW ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½
+	idleï¿½ï¿½ï¿½Í•`ï¿½æ‚µï¿½È‚ï¿½ï¿½Bidleï¿½ÈŠOï¿½Íƒfï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½Ì•`ï¿½æˆï¿½ï¿½ï¿½B
 */
 DWORD CBulletBase::Draw()
 {
@@ -3384,7 +3383,7 @@ DWORD CBulletBase::Draw()
 }
 
 /*!
-	@brief GOBJMSG_TOUCHB ƒƒbƒZ[ƒWˆ—i‘¼ƒIƒuƒWƒFƒNƒg‚Ö‚ÌÕ“Ëj
+	@brief GOBJMSG_TOUCHB ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Ö‚ÌÕ“Ëj
 */
 DWORD CBulletBase::TouchB(ATTACKINFO *info,BOOL hit)
 {
@@ -3407,51 +3406,51 @@ void CBulletBase::Hit()
 }
 
 /*!
-	@brief GOBJMSG_SOUSAI ƒƒbƒZ[ƒWˆ—i‘¼”ò“¹‹ï‚Ö‚ÌÕ“Ëj
+	@brief GOBJMSG_SOUSAI ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ò“¹‹ï¿½ï¿½Ö‚ÌÕ“Ëj
 */
 DWORD CBulletBase::Sousai(DWORD prm)
 {
-	GetGObject()->kougeki=FALSE;//UŒ‚—Í–³Œø‰»
+	GetGObject()->kougeki=FALSE;//ï¿½Uï¿½ï¿½ï¿½Í–ï¿½ï¿½ï¿½ï¿½ï¿½
 	GetGObject()->aid = CBB_STATE_BOMB;
 	return(TRUE);
 }
 
 
 /*!
-	@brief GOBJMSG_CNGROUND ƒƒbƒZ[ƒWˆ—
+	@brief GOBJMSG_CNGROUND ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½
 
-	ƒ‰ƒEƒ“ƒh•Ï‰»BFALSE‚ğ•Ô‚·‚ÆÁ‚³‚ê‚¿‚á‚¤B
-	CBulletBase‚ÍTRUE‚ğ•Ô‚µAHide()‚µ‚Ü‚·B
+	ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½hï¿½Ï‰ï¿½ï¿½BFALSEï¿½ï¿½ï¿½Ô‚ï¿½ï¿½Æï¿½ï¿½ï¿½ï¿½ê‚¿ï¿½á‚¤ï¿½B
+	CBulletBaseï¿½ï¿½TRUEï¿½ï¿½ï¿½Ô‚ï¿½ï¿½AHide()ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 BOOL CBulletBase::OnChangeRound()
 {
 	Hide();
-	return TRUE;//’ÊíAÁ‚¦‚È‚¢
+	return TRUE;//ï¿½Êï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½
 }
 
 /*-----------------------------------------------------------------------------
-	ó‘Ô‘€ì
+	ï¿½ï¿½ï¿½Ô‘ï¿½ï¿½ï¿½
 -------------------------------------------------------------------------------*/
 
-//!ƒIƒuƒWƒFƒNƒg”jŠü
+//!ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½jï¿½ï¿½
 void CBulletBase::Suicide()
 {
 	Hide();
 }
 
-//!Á–ÅƒAƒjƒ[ƒVƒ‡ƒ“‚ÖˆÚs
+//!ï¿½ï¿½ï¿½ÅƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ÖˆÚs
 void CBulletBase::Bomb()
 {
 	ChangeAction(CBB_STATE_BOMB);
 }
 
-//!‰B‚·
+//!ï¿½Bï¿½ï¿½
 void CBulletBase::Hide()
 {
 	ChangeAction(CBB_STATE_IDLE);
 }
 
-//!”ò‚Î‚·
+//!ï¿½ï¿½ï¿½Î‚ï¿½
 BOOL CBulletBase::Go(BOOL muki,double x,double y,double vx,double vy)
 {
 	GOBJECT* pdat = GetGObject();
@@ -3470,8 +3469,8 @@ BOOL CBulletBase::Go(BOOL muki,double x,double y,double vx,double vy)
 }
 
 /*!
-	@brief ƒTƒEƒ“ƒhÄ¶
-	‚à‚µeƒNƒ‰ƒX‚ª‚ ‚ê‚ÎA‚»‚¿‚ç‚Ì‚Ù‚¤‚Éˆ—‚ğŠÛ“Š‚°
+	@brief ï¿½Tï¿½Eï¿½ï¿½ï¿½hï¿½Äï¿½
+	ï¿½ï¿½ï¿½ï¿½ï¿½eï¿½Nï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎAï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Ù‚ï¿½ï¿½Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û“ï¿½ï¿½ï¿½
 */
 void CBulletBase::PlayMySound(DWORD number)
 {
@@ -3479,7 +3478,7 @@ void CBulletBase::PlayMySound(DWORD number)
 }
 
 /*!
-	@brief GOBJMSG_ACTION ƒƒbƒZ[ƒWˆ—
+	@brief GOBJMSG_ACTION ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½
 */
 DWORD CBulletBase::Action()
 {
@@ -3492,7 +3491,7 @@ DWORD CBulletBase::Action()
 	return(TRUE);
 }
 
-//!ƒAƒCƒhƒ‹ˆ—
+//!ï¿½Aï¿½Cï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void CBulletBase::act_idle()
 {
 	GOBJECT* pdat = GetGObject();
@@ -3506,19 +3505,19 @@ void CBulletBase::act_idle()
 
 /*!
 	@class CClassicalBullet
-	@brief ©“®”ò“¹‹ïƒNƒ‰ƒX
+	@brief ï¿½ï¿½ï¿½ï¿½ï¿½ò“¹‹ï¿½ï¿½Nï¿½ï¿½ï¿½X
 	@ingroup GObjectBase
 
-	‹Œ”ò“¹‹ï\‘¢‘Ì BULLETINFO_A ‚ğ‚»‚Ì‚Ü‚Üg—p‚Å‚«‚Ü‚·B‚½‚Ô‚ñB
-	Šî–{“I‚É‚Í‹Œƒ\[ƒX‚©‚ç‚ÌˆÚA—p‚ÌƒNƒ‰ƒX‚ÅACBulletBase‚ğ
-	Œp³‚µ‚½”ò‚Ñ“¹‹ïƒNƒ‰ƒX‚ğV‹K‚Éì‚Á‚½‚Ù‚¤‚ªèŠÔ‚ª‚©‚©‚ç‚È‚¢‚Æv‚¢‚Ü‚·B
+	ï¿½ï¿½ï¿½ò“¹‹ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ BULLETINFO_A ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Ü‚Ügï¿½pï¿½Å‚ï¿½ï¿½Ü‚ï¿½ï¿½Bï¿½ï¿½ï¿½Ô‚ï¿½ï¿½B
+	ï¿½ï¿½ï¿½{ï¿½Iï¿½É‚Í‹ï¿½ï¿½\ï¿½[ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ÌˆÚAï¿½pï¿½ÌƒNï¿½ï¿½ï¿½Xï¿½ÅACBulletBaseï¿½ï¿½
+	ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ“ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½Vï¿½Kï¿½Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½Ævï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 
-	g—p‚·‚éBULLETINFO_A\‘¢‘Ì‚ÍAƒƒ“ƒo‚Å‚È‚­ƒ[ƒJƒ‹•Ï”‚É‚µ‚¿‚á‚Á‚ÄOK‚Å‚·B
-	\‘¢‘Ì‚»‚Ì‚à‚Ì‚ğ‚¢‚¶‚ç‚È‚­‚È‚Á‚½‚Ì‚ÅA‚»‚Ì•Ó‚ÌH•v‚ª•K—v‚©‚àB
+	ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½BULLETINFO_Aï¿½\ï¿½ï¿½ï¿½Ì‚ÍAï¿½ï¿½ï¿½ï¿½ï¿½oï¿½Å‚È‚ï¿½ï¿½ï¿½ï¿½[ï¿½Jï¿½ï¿½ï¿½Ïï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½OKï¿½Å‚ï¿½ï¿½B
+	ï¿½\ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½Ì‚ï¿½ï¿½Ì‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½Ì‚ÅAï¿½ï¿½ï¿½Ì•Ó‚ÌHï¿½vï¿½ï¿½ï¿½Kï¿½vï¿½ï¿½ï¿½ï¿½ï¿½B
 */
 
 /*!
-	@brief \’z
+	@brief ï¿½\ï¿½z
 */
 CClassicalBullet::CClassicalBullet( CCharacterBase *parent,CDI_CHARACTERINFO2 *info,BULLETINFO_A *bulinfo,
 								   BYTE userID,BYTE userNo) : CBulletBase(parent)
@@ -3526,11 +3525,11 @@ CClassicalBullet::CClassicalBullet( CCharacterBase *parent,CDI_CHARACTERINFO2 *i
 	array_len_r = 0;
 	array_len_d = 0;
 
-	//”z—ñ‚Ì’·‚³‚ğæ“¾‚·‚é
+	//ï¿½zï¿½ï¿½ï¿½Ì’ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
 	while(bulinfo->cell_run[array_len_r]>0)array_len_r++;
 	while(bulinfo->cell_dis[array_len_d]>0)array_len_d++;
 
-	//ƒƒ‚‚èŠm•Û&”z—ñ‚ğƒRƒs[‚·‚é
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mï¿½ï¿½&ï¿½zï¿½ï¿½ï¿½ï¿½ï¿½Rï¿½sï¿½[ï¿½ï¿½ï¿½ï¿½
 	DWORD i;
 	if(array_len_r==0)pcr=NULL;
 	else{
@@ -3547,14 +3546,14 @@ CClassicalBullet::CClassicalBullet( CCharacterBase *parent,CDI_CHARACTERINFO2 *i
 		}
 	}
 
-	//‹ŒUŒ‚î•ñ”z—ñ‚©‚çVUŒ‚î•ñ”z—ñ‚É•ÏŠ·‚·‚é
+	//ï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½zï¿½ñ‚©‚ï¿½ï¿½Vï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½zï¿½ï¿½ï¿½É•ÏŠï¿½ï¿½ï¿½ï¿½ï¿½
 	atkinfo.damage = bulinfo->atk.damage;
 	atkinfo.kezuri = bulinfo->atk.kezuri;
 	atkinfo.guard = bulinfo->atk.guard;
 	atkinfo.hit = bulinfo->atk.hit;
-	atkinfo.muki = FALSE;//‹Œ\‘¢‘Ì‚Æ‚Í‚¿‚å‚Á‚ÆˆÓ–¡‚ªˆá‚¤
+	atkinfo.muki = FALSE;//ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½Ì‚Æ‚Í‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÆˆÓ–ï¿½ï¿½ï¿½ï¿½á‚¤
 
-	//ƒpƒ‰ƒ[ƒ^ƒRƒs[
+	//ï¿½pï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½^ï¿½Rï¿½sï¿½[
 	ax = bulinfo->ax;
 	ay = bulinfo->ay;
 	vx = bulinfo->vx;
@@ -3564,7 +3563,7 @@ CClassicalBullet::CClassicalBullet( CCharacterBase *parent,CDI_CHARACTERINFO2 *i
 	lifedur = bulinfo->dur;
 	flags = bulinfo->type;
 
-	//ƒtƒ‰ƒOˆ— 
+	//ï¿½tï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ 
 	if( !(flags&BULLETA_VSHUMAN) )RemoveProperty(GOBJFLG_ATTACK);
 	if( !(flags&BULLETA_VSBULLET) )RemoveProperty(GOBJFLG_ZBULLET);
 	if( flags&BULLETA_DRAWBACK )base_z=ZZAHYO_BULLET3;
@@ -3574,7 +3573,7 @@ CClassicalBullet::CClassicalBullet( CCharacterBase *parent,CDI_CHARACTERINFO2 *i
 }
 
 /*!
-	@brief ”jŠü
+	@brief ï¿½jï¿½ï¿½
 */
 CClassicalBullet::~CClassicalBullet()
 {
@@ -3584,21 +3583,21 @@ CClassicalBullet::~CClassicalBullet()
 
 
 /*!
-	@brief ‚»‚Ì‘¼
+	@brief ï¿½ï¿½ï¿½Ì‘ï¿½
 */
 BOOL CClassicalBullet::Go(BOOL muki,double x,double y)
 {	
 	return CBulletBase::Go(muki,x,y,vx,vy);
 }
 
-//!ƒqƒbƒgˆ—
+//!ï¿½qï¿½bï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void CClassicalBullet::Hit()
 {
 	if(flags&BULLETA_DONOTDIE)ChangeAction(CBB_STATE_RUN2);
 	else ChangeAction(CBB_STATE_BOMB);
 }
 
-//!”òãÄˆ—
+//!ï¿½ï¿½ï¿½Äï¿½ï¿½ï¿½ï¿½ï¿½
 void CClassicalBullet::act_run()
 {
 	if(spd_r==0 || array_len_r==0 || pcr==NULL)return;
@@ -3625,14 +3624,14 @@ void CClassicalBullet::act_run()
 	}
 }
 
-//!”òãÄˆ—(ƒqƒbƒgŒã)
+//!ï¿½ï¿½ï¿½Äï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½qï¿½bï¿½gï¿½ï¿½)
 void CClassicalBullet::act_run2()
 {
 	act_run();
 	GetGObject()->kougeki=FALSE;
 }
 
-//!ƒqƒbƒgŒãˆ—
+//!ï¿½qï¿½bï¿½gï¿½ãˆï¿½ï¿½
 void CClassicalBullet::act_bomb()
 {
 	GetGObject()->kougeki = FALSE;
@@ -3651,24 +3650,24 @@ void CClassicalBullet::act_bomb()
 
 /*!
 	@class CBulletList
-	@brief ”ò‚Ñ“¹‹ïƒŠƒXƒgƒNƒ‰ƒX
+	@brief ï¿½ï¿½ï¿½Ñ“ï¿½ï¿½ïƒŠï¿½Xï¿½gï¿½Nï¿½ï¿½ï¿½X
 	@ingroup GObjectBase
 
-@”ò‚Ñ“¹‹ïƒIƒuƒWƒFƒNƒg‚ğƒŠƒXƒgŠÇ—‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
-@ˆê“x‚É‘å—Ê”­Ë‚·‚é”ò‚Ñ“¹‹ï‚âA˜AË‚µ‚½‚¢‚Æ‚«‚Ég—p‚µ‚Ä‚­‚¾‚³‚¢B
-@‚Ó‚Â‚¤‚Ì”ò‚Ñ“¹‹ï‚Å‚àA“®‚«‚ÉáŠQ‚ªo‚éê‡‚Ég—p‚·‚é‚Æ•Ö—˜‚Å‚·B
-@CGoluahObject‚Ì”h¶ƒNƒ‰ƒX‚Å‚Í‚È‚¢‚Ì‚ÅA“®“I¶¬‚·‚é•K—v‚Í‚ ‚è‚Ü‚¹‚ñB
-@i“r’†‚ÅƒŠƒXƒg‚ğƒNƒŠƒA‚·‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñ‚Ì‚Å‚²’ˆÓ‚­‚¾‚³‚¢Bj
+ï¿½@ï¿½ï¿½ï¿½Ñ“ï¿½ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½gï¿½Ç—ï¿½ï¿½ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½Å‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+ï¿½@ï¿½ï¿½ï¿½xï¿½É‘ï¿½ï¿½Ê”ï¿½ï¿½Ë‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½Aï¿½Ë‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Égï¿½pï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
+ï¿½@ï¿½Ó‚Â‚ï¿½ï¿½Ì”ï¿½ï¿½Ñ“ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½Éï¿½ï¿½Qï¿½ï¿½ï¿½oï¿½ï¿½ï¿½ê‡ï¿½Égï¿½pï¿½ï¿½ï¿½ï¿½ï¿½Æ•Ö—ï¿½ï¿½Å‚ï¿½ï¿½B
+ï¿½@CGoluahObjectï¿½Ì”hï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½Xï¿½Å‚Í‚È‚ï¿½ï¿½Ì‚ÅAï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Kï¿½vï¿½Í‚ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B
+ï¿½@ï¿½iï¿½rï¿½ï¿½ï¿½Åƒï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½é‚±ï¿½Æ‚Í‚Å‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½Ì‚Å‚ï¿½ï¿½ï¿½ï¿½Ó‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Bï¿½j
 
 */
 
 //////////////////////////////////////////////////////////////////////
-// \’z/Á–Å
+// ï¿½\ï¿½z/ï¿½ï¿½ï¿½ï¿½
 //////////////////////////////////////////////////////////////////////
 /*!
-	@brief \’z
+	@brief ï¿½\ï¿½z
 
-	’Êí‚Í‚±‚¿‚ç‚ğg‚Á‚Ä‚­‚¾‚³‚¢B
+	ï¿½Êï¿½ï¿½Í‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 */
 CBulletList::CBulletList()
 {
@@ -3682,10 +3681,10 @@ CBulletList::CBulletList()
 }
 
 /*!
-	@brief ƒŠƒXƒg‚É”ò‚Ñ“¹‹ï‚ğ‚P‚Â‰Á‚¦‚Ä\’z
-	@param pBullet ƒŠƒXƒg‚É’Ç‰Á‚·‚éCBulletBase‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	@brief ï¿½ï¿½ï¿½Xï¿½gï¿½É”ï¿½ï¿½Ñ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Pï¿½Â‰ï¿½ï¿½ï¿½ï¿½Ä\ï¿½z
+	@param pBullet ï¿½ï¿½ï¿½Xï¿½gï¿½É’Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½CBulletBaseï¿½Ö‚Ìƒ|ï¿½Cï¿½ï¿½ï¿½^
 
-	g‚¤‹@‰ï‚Í‚ ‚ñ‚Ü‚è–³‚¢‚Æv‚¤B
+	ï¿½gï¿½ï¿½ï¿½@ï¿½ï¿½ï¿½Í‚ï¿½ï¿½ï¿½ï¿½Ü‚è–³ï¿½ï¿½ï¿½Ævï¿½ï¿½ï¿½B
 */
 CBulletList::CBulletList(CBulletBase *pBullet)
 {
@@ -3706,9 +3705,9 @@ CBulletList::CBulletList(CBulletBase *pBullet)
 }
 
 /*!
-	@brief ‚ ‚Ú‚ñ‚Ê
+	@brief ï¿½ï¿½ï¿½Ú‚ï¿½ï¿½ï¿½
 
-	ƒŠƒXƒg“à‚Ì”ò‚Ñ“¹‹ï‚Éè‚Í‰Á‚¦‚Ü‚¹‚ñB
+	ï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Ì”ï¿½ï¿½Ñ“ï¿½ï¿½ï¿½ï¿½Éï¿½ï¿½Í‰ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B
 */
 CBulletList::~CBulletList()
 {
@@ -3717,12 +3716,12 @@ CBulletList::~CBulletList()
 }
 
 /*!
-	@brief ƒŠƒXƒg‚É”ò‚Ñ“¹‹ï‚ğ’Ç‰Á
-	@param pBullet ’Ç‰Á‚·‚éCBulletBase‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	@brief ï¿½ï¿½ï¿½Xï¿½gï¿½É”ï¿½ï¿½Ñ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç‰ï¿½
+	@param pBullet ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½CBulletBaseï¿½Ö‚Ìƒ|ï¿½Cï¿½ï¿½ï¿½^
 
-	ƒŠƒXƒg‚ÉpBullet‚ª¦‚·”ò‚Ñ“¹‹ï‚ğ‚P‚Â’Ç‰Á‚µ‚Ü‚·B
-	CCharacterBase::InitBullets“à‚Å‘S•”‚Ü‚Æ‚ß‚Ä‚â‚Á‚¿‚á‚¤‚±‚Æ‚ğ‚¨Š©‚ß‚µ‚Ü‚·B
-	‚È‚¨ˆê“x’Ç‰Á‚·‚é‚ÆŒ³‚É–ß‚¹‚Ü‚¹‚ñA‚²’ˆÓ‚­‚¾‚³‚¢B
+	ï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½pBulletï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Pï¿½Â’Ç‰ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+	CCharacterBase::InitBulletsï¿½ï¿½ï¿½Å‘Sï¿½ï¿½ï¿½Ü‚Æ‚ß‚Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á‚¤ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½È‚ï¿½ï¿½ï¿½ï¿½xï¿½Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÆŒï¿½ï¿½É–ß‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½Ó‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 */
 void CBulletList::Add(CBulletBase *pBullet)
 {
@@ -3746,12 +3745,12 @@ void CBulletList::Add(CBulletBase *pBullet)
 }
 
 /*!
-	@brief ƒŠƒXƒg“à‚Ì”ò‚Ñ“¹‹ï‚ğ‚P‚Â”­Ë(1)
+	@brief ï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Ì”ï¿½ï¿½Ñ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Pï¿½Â”ï¿½ï¿½ï¿½(1)
 	@sa CBulletBase::Go
-	@return ”­Ë‚É¬Œ÷‚µ‚½ê‡‚ÍTRUEA¸”s‚µ‚½ê‡‚ÍFALSE
+	@return ï¿½ï¿½ï¿½Ë‚Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ï¿½TRUEï¿½Aï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ï¿½FALSE
 
-	ƒŠƒXƒg“à‚©‚ç”­Ë‰Â”\‚È”ò‚Ñ“¹‹ï‚ğ’T‚µA”­Ë‚µ‚Ü‚·B
-	•¡”‚ª”­Ë‰Â”\‚Èê‡‚ÍAæ‚É“o˜^‚³‚ê‚½‚à‚Ì‚ª—Dæ‚³‚ê‚Ü‚·B
+	ï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ç”­ï¿½Ë‰Â”\ï¿½È”ï¿½ï¿½Ñ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Tï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½Ë‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë‰Â”\ï¿½Èê‡ï¿½ÍAï¿½ï¿½ï¿½É“oï¿½^ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½Dï¿½æ‚³ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 BOOL CBulletList::Go(BOOL muki, double x, double y, double vx, double vy)
 {
@@ -3767,12 +3766,12 @@ BOOL CBulletList::Go(BOOL muki, double x, double y, double vx, double vy)
 }
 
 /*!
-	@brief ƒŠƒXƒg“à‚Ì”ò‚Ñ“¹‹ï‚ğ‚P‚Â”­Ë(2)
+	@brief ï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Ì”ï¿½ï¿½Ñ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Pï¿½Â”ï¿½ï¿½ï¿½(2)
 	@sa CBulletBase::Go
-	@return ”­Ë‚É¬Œ÷‚µ‚½ê‡‚ÍTRUEA¸”s‚µ‚½ê‡‚ÍFALSE
+	@return ï¿½ï¿½ï¿½Ë‚Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ï¿½TRUEï¿½Aï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ï¿½FALSE
 
-	Ú‚µ‚­‚Í(1)‚ğQÆB
-	È—ª‚³‚ê‚½vx‚Ævy‚É‚ÍASetSpeed‚Åİ’è‚³‚ê‚½‘¬“x‚ªg—p‚³‚ê‚Ü‚·B
+	ï¿½Ú‚ï¿½ï¿½ï¿½ï¿½ï¿½(1)ï¿½ï¿½ï¿½Qï¿½ÆB
+	ï¿½È—ï¿½ï¿½ï¿½ï¿½ê‚½vxï¿½ï¿½vyï¿½É‚ÍASetSpeedï¿½Åİ’è‚³ï¿½ê‚½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 BOOL CBulletList::Go(BOOL muki, double x, double y)
 {
@@ -3788,13 +3787,13 @@ BOOL CBulletList::Go(BOOL muki, double x, double y)
 }
 
 /*!
-	@brief ƒŠƒXƒg“à‚Ì”ò‚Ñ“¹‹ï‚ğ‚P‚Â”­Ë(3)
+	@brief ï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Ì”ï¿½ï¿½Ñ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Pï¿½Â”ï¿½ï¿½ï¿½(3)
 	@sa CBulletBase::Go
-	@return ”­Ë‚É¬Œ÷‚µ‚½ê‡‚ÍTRUEA¸”s‚µ‚½ê‡‚ÍFALSE
+	@return ï¿½ï¿½ï¿½Ë‚Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ï¿½TRUEï¿½Aï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ï¿½FALSE
 
-	Ú‚µ‚­‚Í(1)‚ğQÆB
-	È—ª‚³‚ê‚½x‚Æy‚É‚ÍASetPos‚Åİ’è‚³‚ê‚½À•W‚ªA
-	È—ª‚³‚ê‚½vx‚Ævy‚É‚ÍASetSpeed‚Åİ’è‚³‚ê‚½‘¬“x‚ª‚»‚ê‚¼‚êg—p‚³‚ê‚Ü‚·B
+	ï¿½Ú‚ï¿½ï¿½ï¿½ï¿½ï¿½(1)ï¿½ï¿½ï¿½Qï¿½ÆB
+	ï¿½È—ï¿½ï¿½ï¿½ï¿½ê‚½xï¿½ï¿½yï¿½É‚ÍASetPosï¿½Åİ’è‚³ï¿½ê‚½ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½A
+	ï¿½È—ï¿½ï¿½ï¿½ï¿½ê‚½vxï¿½ï¿½vyï¿½É‚ÍASetSpeedï¿½Åİ’è‚³ï¿½ê‚½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½ê‚¼ï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 BOOL CBulletList::Go(BOOL muki)
 {
@@ -3810,11 +3809,11 @@ BOOL CBulletList::Go(BOOL muki)
 }
 
 /*!
-	@brief ƒŠƒXƒg“à‚Ì”ò‚Ñ“¹‹ï‚ğ‘S‚Ä”­Ë(1)
+	@brief ï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Ì”ï¿½ï¿½Ñ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Sï¿½Ä”ï¿½ï¿½ï¿½(1)
 	@sa CBulletBase::Go
 
-	ƒŠƒXƒg‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚éA‘S‚Ä‚Ì”ò‚Ñ“¹‹ï‚ğ”­Ë‚µ‚Ü‚·B
-	È—ª‚³‚ê‚½vx‚Ævy‚É‚ÍAŠeX‚ÌSetSpeed‚Åİ’è‚³‚ê‚½‘¬“x‚ªg—p‚³‚ê‚Ü‚·B
+	ï¿½ï¿½ï¿½Xï¿½gï¿½ÉŠÜ‚Ü‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½Aï¿½Sï¿½Ä‚Ì”ï¿½ï¿½Ñ“ï¿½ï¿½ï¿½ï¿½ğ”­Ë‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+	ï¿½È—ï¿½ï¿½ï¿½ï¿½ê‚½vxï¿½ï¿½vyï¿½É‚ÍAï¿½eï¿½Xï¿½ï¿½SetSpeedï¿½Åİ’è‚³ï¿½ê‚½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 void CBulletList::Go_All(BOOL muki, double x, double y)
 {
@@ -3826,12 +3825,12 @@ void CBulletList::Go_All(BOOL muki, double x, double y)
 }
 
 /*!
-	@brief ƒŠƒXƒg“à‚Ì”ò‚Ñ“¹‹ï‚ğ‘S‚Ä”­Ë(2)
+	@brief ï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Ì”ï¿½ï¿½Ñ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Sï¿½Ä”ï¿½ï¿½ï¿½(2)
 	@sa CBulletBase::Go
 
-	Ú‚µ‚­‚Í(1)‚ğQÆB
-	È—ª‚³‚ê‚½x‚Æy‚É‚ÍAŠeX‚ÌSetPos‚Åİ’è‚³‚ê‚½À•W‚ªA
-	È—ª‚³‚ê‚½vx‚Ævy‚É‚ÍAŠeX‚ÌSetSpeed‚Åİ’è‚³‚ê‚½‘¬“x‚ª‚»‚ê‚¼‚êg—p‚³‚ê‚Ü‚·B
+	ï¿½Ú‚ï¿½ï¿½ï¿½ï¿½ï¿½(1)ï¿½ï¿½ï¿½Qï¿½ÆB
+	ï¿½È—ï¿½ï¿½ï¿½ï¿½ê‚½xï¿½ï¿½yï¿½É‚ÍAï¿½eï¿½Xï¿½ï¿½SetPosï¿½Åİ’è‚³ï¿½ê‚½ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½A
+	ï¿½È—ï¿½ï¿½ï¿½ï¿½ê‚½vxï¿½ï¿½vyï¿½É‚ÍAï¿½eï¿½Xï¿½ï¿½SetSpeedï¿½Åİ’è‚³ï¿½ê‚½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½ê‚¼ï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 void CBulletList::Go_All(BOOL muki)
 {
@@ -3843,14 +3842,14 @@ void CBulletList::Go_All(BOOL muki)
 }
 
 /*
-	@brief ƒŠƒXƒg‚Ìnum”Ô–Ú‚Ì—v‘f‚ğŠ“¾
-	@param num —v‘f‚Ì”Ô†
-	@return num”Ô–Ú‚Ì—v‘f‚ğ¦‚·CBulletList‚Ö‚Ìƒ|ƒCƒ“ƒ^A–³‚¢ê‡‚ÍNULL
+	@brief ï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½numï¿½Ô–Ú‚Ì—vï¿½fï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	@param num ï¿½vï¿½fï¿½Ì”Ôï¿½
+	@return numï¿½Ô–Ú‚Ì—vï¿½fï¿½ï¿½ï¿½ï¿½ï¿½ï¿½CBulletListï¿½Ö‚Ìƒ|ï¿½Cï¿½ï¿½ï¿½^ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ï¿½NULL
 	@sa GetNext
 
-	”z—ñ‚Æ“¯‚¶‚æ‚¤‚ÈŠ´Šoilist[3]‚Ì—l‚ÈŒ`j‚ÅA“Á’è‚Ì—v‘f‚ğŠ“¾‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B
+	ï¿½zï¿½ï¿½ï¿½Æ“ï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½ÈŠï¿½ï¿½oï¿½ilist[3]ï¿½Ì—lï¿½ÈŒ`ï¿½jï¿½ÅAï¿½ï¿½ï¿½ï¿½ï¿½Ì—vï¿½fï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½oï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 
-	‚½‚¾‚µÀs‘¬“x‚ª’x‚¢‚½‚ßAg—p‚Í”ñ„§‚Å‚·BƒŠƒXƒg“à‚Ì‘–¸‚Ío—ˆ‚é‚¾‚¯GetNext‚ğg—p‚µ‚Ä‚­‚¾‚³‚¢B
+	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½xï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½ßAï¿½gï¿½pï¿½Í”ñ„ï¿½ï¿½Å‚ï¿½ï¿½Bï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Ì‘ï¿½ï¿½ï¿½ï¿½Íoï¿½ï¿½ï¿½é‚¾ï¿½ï¿½GetNextï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 */
 /*CBulletList* CBulletList::operator [](int num)
 {
@@ -3869,7 +3868,7 @@ void CBulletList::Go_All(BOOL muki)
 */
 /****************************************************************************
 
-  CEffectBaseƒNƒ‰ƒX
+  CEffectBaseï¿½Nï¿½ï¿½ï¿½X
 
 *****************************************************************************/
 
@@ -3905,7 +3904,7 @@ void CEffectBase::SetDuration(UINT dur)
 
 /* **************************************************************************
 
-  CStageBaseƒNƒ‰ƒX
+  CStageBaseï¿½Nï¿½ï¿½ï¿½X
 
  ************************************************************************** */
 
@@ -3921,7 +3920,7 @@ BOOL CStageBase::CheckSTB(DWORD Version/* = STB_VERSION */)
 	if(Version > STB_VERSION || Version < STB_LEASTVER){ 
 #		ifdef _DEBUG
 			char *dbgmsg = new char[256];
-			sprintf(dbgmsg,"CCharacterInfo:STBƒo[ƒWƒ‡ƒ“ˆá‚¢(%d!=%d)\n",Version,STB_VERSION);
+			sprintf(dbgmsg,"CCharacterInfo:STBï¿½oï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½á‚¢(%d!=%d)\n",Version,STB_VERSION);
 			OutputDebugString(dbgmsg);
 			delete [] dbgmsg;
 #		endif
@@ -3932,7 +3931,7 @@ BOOL CStageBase::CheckSTB(DWORD Version/* = STB_VERSION */)
 }
 
 CStageBase::CStageBase(SDI_STAGEINFO2 *info)
-				: CGoluahObject(TRUE)//‚ ‚½‚è”»’è‚Ís‚í‚È‚¢B
+				: CGoluahObject(TRUE)//ï¿½ï¿½ï¿½ï¿½ï¿½è”»ï¿½ï¿½ï¿½Ísï¿½ï¿½ï¿½È‚ï¿½ï¿½B
 {
 	g_chardir = info->dir;
 	pdat->tid = info->tid;
@@ -3944,7 +3943,7 @@ CStageBase::~CStageBase()
 }
 /* **************************************************************************
 
-  c‘œƒGƒtƒFƒNƒg
+  ï¿½cï¿½ï¿½ï¿½Gï¿½tï¿½Fï¿½Nï¿½g
 
  ************************************************************************** */
 
@@ -3986,7 +3985,7 @@ CShadowEffect::CShadowEffect(CCharacterBase* pParent,
 	pdat->magx = ppdat->magx;
 	pdat->magy = ppdat->magy;
 
-	// ƒƒ“ƒo‰Šú‰»
+	// ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	m_color = color;
 	m_BlendType = BlendType;
 	SetDuration(Duration);
@@ -3998,7 +3997,7 @@ CShadowEffect::~CShadowEffect(void)
 
 void CShadowEffect::Update(float time)
 {
-	// ƒRƒŠƒ“ƒY‚Ìƒ\[ƒX‚æ‚è‚¨Ø‚è‚µ‚Ü‚µ‚½A21ƒXƒŒ‚Ì335‚³‚ñƒTƒ“ƒNƒXƒRB
+	// ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½Yï¿½Ìƒ\ï¿½[ï¿½Xï¿½ï¿½ï¿½è‚¨ï¿½Ø‚è‚µï¿½Ü‚ï¿½ï¿½ï¿½ï¿½A21ï¿½Xï¿½ï¿½ï¿½ï¿½335ï¿½ï¿½ï¿½ï¿½ï¿½Tï¿½ï¿½ï¿½Nï¿½Xï¿½Rï¿½B
 	pdat->color = (m_color & 0x00FFFFFF) | ( (DWORD)(255.0 - time * 20.0 * 25.0) << 24 );
 }
 
@@ -4014,14 +4013,14 @@ DWORD CShadowEffect::Draw(void)
 
 /* **************************************************************************
 
-  ƒOƒ[ƒoƒ‹ŠÖ”@‚Æ‚©
+  ï¿½Oï¿½ï¿½ï¿½[ï¿½oï¿½ï¿½ï¿½Öï¿½ï¿½@ï¿½Æ‚ï¿½
 
  ************************************************************************** */
 
 /*!
-	@brief DLL‚ÌƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒgH
+	@brief DLLï¿½ÌƒGï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½|ï¿½Cï¿½ï¿½ï¿½gï¿½H
 
-	ƒ‰ƒ“ƒ_ƒ€í‚Û
+	ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 */
 BOOL APIENTRY DllMain(HANDLE hModule, DWORD dwReason, LPVOID lpReserved)
 {
@@ -4038,7 +4037,7 @@ BOOL APIENTRY DllMain(HANDLE hModule, DWORD dwReason, LPVOID lpReserved)
 #		ifdef _DEBUG
 			if (num_allocs > 0)
 			{
-				DebugPrintf("DLL:‚¨‚Ü‚¢‚çAƒƒ‚ƒŠƒŠ[ƒN‚ª”­¶‚µ‚Ä‚Ü‚·B\n‘”F%dƒoƒCƒg", (int)num_allocs);
+				DebugPrintf("DLL:ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚Ü‚ï¿½ï¿½B\nï¿½ï¿½ï¿½ï¿½ï¿½F%dï¿½oï¿½Cï¿½g", (int)num_allocs);
 			}
 #		endif
 		break;
@@ -4047,39 +4046,39 @@ BOOL APIENTRY DllMain(HANDLE hModule, DWORD dwReason, LPVOID lpReserved)
 	return TRUE;
 }
 
-//!ƒ‰ƒ“ƒ_ƒ€ƒiƒ“ƒo[”­¶
+//!ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½oï¿½[ï¿½ï¿½ï¿½ï¿½
 inline int GetRandNum(int num)
 {
 	return(rand()%num);
 }
 
 /*!
-	@brief ƒtƒ@ƒCƒ‹“Ç‚İ‚İ
+	@brief ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ç‚İï¿½ï¿½ï¿½
 
-	ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ñ‚Åƒƒ‚ƒŠã‚ÉÚ‚¹‚Ü‚·B
-	buff ‚É‚Í new[] ‚Å¶¬‚µ‚½—Ìˆæ‚Ìƒ|ƒCƒ“ƒ^‚ª‹A‚é‚Ì‚ÅA
-	ŠÖ”‚ª¬Œ÷‚µ‚½ê‡‚ÍŒÄ‚Ño‚µŒ³‚Åd elete[] ‚µ‚Ü‚·B
+	ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Ç‚İï¿½ï¿½ï¿½ï¿½Åƒï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÉÚ‚ï¿½ï¿½Ü‚ï¿½ï¿½B
+	buff ï¿½É‚ï¿½ new[] ï¿½Åï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìˆï¿½ï¿½Ìƒ|ï¿½Cï¿½ï¿½ï¿½^ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½Ì‚ÅA
+	ï¿½Öï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ÍŒÄ‚Ñoï¿½ï¿½ï¿½ï¿½ï¿½ï¿½d elete[] ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 
-	@param filepath	[in] “Ç‚İ‚Şƒtƒ@ƒCƒ‹–¼
-	@param buff		[out] “Ç‚İ‚İŒã‚Ìƒoƒbƒtƒ@
-	@param len		[out] “Ç‚İ‚ñ‚¾ƒoƒCƒg”
-	@return	TRUE:¬Œ÷ , FALSE:c”O
+	@param filepath	[in] ï¿½Ç‚İï¿½ï¿½Şƒtï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½
+	@param buff		[out] ï¿½Ç‚İï¿½ï¿½İŒï¿½ï¿½Ìƒoï¿½bï¿½tï¿½@
+	@param len		[out] ï¿½Ç‚İï¿½ï¿½ñ‚¾ƒoï¿½Cï¿½gï¿½ï¿½
+	@return	TRUE:ï¿½ï¿½ï¿½ï¿½ , FALSE:ï¿½cï¿½O
 */
 BOOL File2Mem(char* filepath,char** buff,UINT *len)
 {
 	*buff = NULL;
 	*len = 0;
 
-	//ƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“
+	//ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ÌƒIï¿½[ï¿½vï¿½ï¿½
 	HANDLE hFile = CreateFile(filepath,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
 	if(hFile==INVALID_HANDLE_VALUE)return(FALSE);
 
-	//—ÌˆæŠm•Û
+	//ï¿½Ìˆï¿½ï¿½mï¿½ï¿½
 	*len = GetFileSize(hFile,NULL);
 	*buff = new char [(*len)+1];
 	ZeroMemory(*buff,sizeof(char)*((*len)+1));
 
-	//ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ
+	//ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ì“Ç‚İï¿½ï¿½ï¿½
 	DWORD br;
 	ReadFile(hFile,*buff,*len,&br,NULL);
 	CloseHandle(hFile);
@@ -4088,10 +4087,10 @@ BOOL File2Mem(char* filepath,char** buff,UINT *len)
 }
 
 /*!
-	@brief ƒfƒoƒbƒOo—Í
+	@brief ï¿½fï¿½oï¿½bï¿½Oï¿½oï¿½ï¿½
 
-	ƒtƒH[ƒ}ƒbƒg‚Â‚«(printf‚Æ‚©‚Æ‚¢‚Á‚µ‚å)‚Å
-	OutputDebugString‚ğs‚¢‚Ü‚·B
+	ï¿½tï¿½Hï¿½[ï¿½}ï¿½bï¿½gï¿½Â‚ï¿½(printfï¿½Æ‚ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½
+	OutputDebugStringï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
 */
 void DebugPrintf(char* fmt,...)
 {

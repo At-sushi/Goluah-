@@ -1,28 +1,27 @@
-
 /*==============================================================
 
-	s“®ŠÖ”(’Êí“®ì)
+	ï¿½sï¿½ï¿½ï¿½Öï¿½(ï¿½Êí“®ï¿½ï¿½)
 
 ================================================================*/
 #include "character.h"
 
 //*********************************************************
-//@@’Êí“®ì
+//ï¿½@ï¿½@ï¿½Êí“®ï¿½ï¿½
 //*********************************************************
 
-//! ƒjƒ…[ƒgƒ‰
+//! ï¿½jï¿½ï¿½ï¿½[ï¿½gï¿½ï¿½
 void CCharacter::act_neutral()
 {
 	pdat->cnow = CELL_NEUTRAL;
 }
 
-//! ‚µ‚á‚ª‚İ
+//! ï¿½ï¿½ï¿½á‚ªï¿½ï¿½
 void CCharacter::act_crouch()
 {
 	pdat->cnow = CELL_CROUCH;
 }
 
-//! —‰º
+//! ï¿½ï¿½ï¿½ï¿½
 void CCharacter::act_rakka()
 {
 	pdat->cnow = CELL_JAMP1;
@@ -37,7 +36,7 @@ void CCharacter::act_rakka()
 	}
 }
 
-//! “oê
+//! ï¿½oï¿½ï¿½
 void CCharacter::act_tojyo()
 {
 	if(pdat->counter == 0){
@@ -60,7 +59,7 @@ void CCharacter::act_tojyo()
 	}
 }
 
-//! Ÿ—˜
+//! ï¿½ï¿½ï¿½ï¿½
 void CCharacter::act_win()
 {
 	if(pdat->counter==0){
@@ -80,28 +79,28 @@ void CCharacter::act_win()
 		Message2System(MSGOBJ2SYS_WINPOSEEND,0);
 }
 
-//! ‘Oi
+//! ï¿½Oï¿½i
 void CCharacter::act_walkf()
 {
 	pdat->cnow = CELL_WALK1+(pdat->counter/4)%4;
 	movex(6);
 }
 
-//! Œã‘Ş
+//! ï¿½ï¿½ï¿½
 void CCharacter::act_walkb()
 {
 	pdat->cnow = CELL_WALKB1+(pdat->counter/4)%4;
 	movex(-6);
 }
 
-//! ƒWƒƒƒ“ƒv—\”õ“®ì
+//! ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½\ï¿½ï¿½ï¿½
 void CCharacter::act_jamps()
 {
 	if(pdat->counter >2)pdat->aid = ACTID_JAMPC;
 	pdat->cnow = CELL_JAMP;
 }
 
-//!‚’¼ƒWƒƒƒ“ƒv
+//!ï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½v
 void CCharacter::act_jampc()
 {
 	if(pdat->counter == 0){pdat->vy=-20;pdat->vx=0;}
@@ -117,7 +116,7 @@ void CCharacter::act_jampc()
 	}
 }
 
-//!‘OƒWƒƒƒ“ƒv
+//!ï¿½Oï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½v
 void CCharacter::act_jampf()
 {
 	if(pdat->counter == 0){pdat->vy=-20;pdat->vx=6;}
@@ -134,7 +133,7 @@ void CCharacter::act_jampf()
 	}
 }
 
-//!ŒãƒWƒƒƒ“ƒv
+//!ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½v
 void CCharacter::act_jampb()
 {
 	if(pdat->counter == 0){pdat->vy=-20;pdat->vx=-6;}
@@ -153,32 +152,32 @@ void CCharacter::act_jampb()
 
 
 //*********************************************************
-//@‚»‚Ì‘¼
+//ï¿½@ï¿½ï¿½ï¿½Ì‘ï¿½
 //*********************************************************
 void CCharacter::act_taiki()
 {
 	pdat->cnow= CELL_JAMP1;
-	CCharacterBase::act_taiki();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
+	CCharacterBase::act_taiki();//ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½{ï¿½Nï¿½ï¿½ï¿½Xï¿½Ì“ï¿½ï¿½ï¿½ğ—¬—p
 }
 
 void CCharacter::act_koutai_out()
 {
 	pdat->cnow= CELL_JAMP1;
-	CCharacterBase::act_koutai_out();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
+	CCharacterBase::act_koutai_out();//ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½{ï¿½Nï¿½ï¿½ï¿½Xï¿½Ì“ï¿½ï¿½ï¿½ğ—¬—p
 }
 
 void CCharacter::act_koutai_in()
 {
 	pdat->cnow= CELL_JAMP1;
-	CCharacterBase::act_koutai_in();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
+	CCharacterBase::act_koutai_in();//ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½{ï¿½Nï¿½ï¿½ï¿½Xï¿½Ì“ï¿½ï¿½ï¿½ğ—¬—p
 }
 
 void CCharacter::act_koutai()
 {
 	//pdat->cnow= CELL_JAMP1;
-	//CCharacterBase::act_koutai();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
+	//CCharacterBase::act_koutai();//ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½{ï¿½Nï¿½ï¿½ï¿½Xï¿½Ì“ï¿½ï¿½ï¿½ğ—¬—p
 
-	pdat->objtype |= GOBJTYPE_DISPLAY;//‰æ–Ê“à‚É‚¢‚é
+	pdat->objtype |= GOBJTYPE_DISPLAY;//ï¿½ï¿½Ê“ï¿½É‚ï¿½ï¿½ï¿½
 
 	GOBJECT *pedat;
 	if(pdat->counter==0){
@@ -206,19 +205,33 @@ void CCharacter::act_koutai()
 		//pdat->vy= 0;
 	}
 
-	pdat->objtype &= ~GOBJFLG_TAIKI;//‘Ò‹@ƒtƒ‰ƒO‚ğÁ‚·
-	AddProperty( GOBJFLG_TOBETARGET );//ƒ^[ƒQƒbƒg‚É‚È‚é
-	pdat->aid = ACTID_KOUTAI2;//“oêƒ|[ƒY
+	pdat->objtype &= ~GOBJFLG_TAIKI;//ï¿½Ò‹@ï¿½tï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½
+	AddProperty( GOBJFLG_TOBETARGET );//ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½É‚È‚ï¿½
+	pdat->aid = ACTID_KOUTAI2;//ï¿½oï¿½ï¿½|ï¿½[ï¿½Y
 }
 
 void CCharacter::act_koutai2()
 {
-	CCharacterBase::act_koutai2();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
+//	CCharacterBase::act_koutai2();//ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½{ï¿½Nï¿½ï¿½ï¿½Xï¿½Ì“ï¿½ï¿½ï¿½ğ—¬—p
+	if(pdat->counter == 0){
+		pdat->vy = 5;
+		PlayMySound(wave_tojyo);
+	}
+	if(pdat->y < 0){
+		pdat->cnow = CELL_JAMP1;
+		pdat->y += pdat->vy;
+		pdat->vy ++;
+	}
+	else pdat->cnow = CELL_NAKAMA16;
 
+	if(pdat->counter > 100){
+		pdat->aid = ACTID_NEUTRAL;
+		Message2System(MSGOBJ2SYS_KOUTAIEND,0);
+	}
 }
 
 //*********************************************************
-//@’Ç‰Á“®ì
+//ï¿½@ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½
 //*********************************************************
 
 void CCharacter::act_strikercomeon()
