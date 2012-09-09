@@ -497,12 +497,12 @@ void CCharacter::PreAction()
 	if( IsLocalCom() && ((pdat->aid&ACTID_MOYAMOYA) && pdat->counter>5))
 	{
 		UINT maai = GetMaai_H(pdat->id,pdat->eid);
-		int t = rand()%100;
-		if(t< ((maai<60) ? 3 : 1) )
+		int t = rand()%50;
+		if(t< ((maai<60) ? 6 : 1) )
 		{
 			ArekoreCancel();
 		}
-		else if(t<((maai<60) ? 6 : 2))
+		else if(t<((maai<60) ? 12: 2))
 		{
 			ArekoreRelease();
 		}
@@ -766,6 +766,8 @@ void CCharacter::InitWazInfo()//コンピュータ用技情報の設定
 	waz.att_bullet[0] = ACTID_MOYAMOYA1;//飛び道具
 	waz.att_bullet[1] = ACTID_MOYAMOYA2;//飛び道具
 	waz.att_bullet[2] = ACTID_MOYAMOYA3;//飛び道具
+
+	waz.att_tai[0]	  = ACTID_STAFF; //対空
 
 	//リーチ設定
 	SetComReach( 0,MAAI_SHORT	);
