@@ -22,7 +22,9 @@ typedef std::vector<CDemoScriptElement*> DScriptElementList;
 *	デモスクリプトを作り直そうとしてたみたい。
 *	中身なし
 */
-class CGoluahDemoScript
+#include "task_demo.h"
+
+class CGoluahDemoScript : public CTDemo
 {
 public:
 	/*!

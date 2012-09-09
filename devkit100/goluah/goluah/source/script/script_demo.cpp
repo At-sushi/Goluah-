@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include <lua.hpp>
+#include "global.h"
 #include "script_story.h"
 #include "srcipt_demo.h"
 
@@ -12,6 +13,16 @@ BOOL CGoluahDemoScript::CreateScriptElementList(SScriptElementList& list,char *f
 
 	if (L)
 	{
+		// ‘g‚İ‚İ•Ï”
+		lua_setglobal(L, "scene");
+		lua_setfield(L, 1, "bmp");
+		lua_setfield(L, 1, "bgm");
+		lua_setfield(L, 1, "text");
+		lua_setfield(L, 1, "speed");
+		lua_setfield(L, 1, "dur");
+		lua_setfield(L, 1, "bgmpos");
+		lua_setfield(L, 1, "select");
+
 		// ‘g‚İ‚İŠÖ”‚Ì“o˜^
 		lua_register(L, "vs", &l_vs);
 
