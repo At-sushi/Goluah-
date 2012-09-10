@@ -388,6 +388,25 @@ DWORD CCharacter::TouchB(ATTACKINFO *info,BOOL hit)
 	if(!hit)dp*=0.2;
 	AddPowerGauge(dp);
 
+	if(IsLocalCom())
+	{
+		switch(pdat->aid)
+		{
+		case ACTID_ATT_SC:
+		case ACTID_ATT_CC:
+			{
+				if(ComLevelCk(5) && pdat->gauge>=1.0f)
+				{
+					SetComAct(ACTID_DAKKO,10);
+				}
+				else if(ComLevelCk(3)){
+					SetComAct(ACTID_STAFF,5);
+				}
+			}
+			break;
+		}
+	}
+
 	return CCharacterBase::TouchB(info,hit);
 }
 

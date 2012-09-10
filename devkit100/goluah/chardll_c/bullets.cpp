@@ -852,10 +852,10 @@ void CRifle::act_run()
 	if(key_idx>=0)
 	{
 		DWORD key = CGoluahObject::GetKey(key_idx,0);
-		if(key&KEYSTA_UP)			pdat->vy-=0.25f;
-		else if(key&KEYSTA_DOWN)	pdat->vy+=0.25f;
-		if(key&KEYSTA_ALEFT)		pdat->vx-=0.25f;
-		else if(key&KEYSTA_ARIGHT)	pdat->vx+=0.25f;
+		if(key&KEYSTA_UP)			pdat->vy-=0.325f;
+		else if(key&KEYSTA_DOWN)	pdat->vy+=0.325f;
+		if(key&KEYSTA_ALEFT)		pdat->vx-=0.325f;
+		else if(key&KEYSTA_ARIGHT)	pdat->vx+=0.325f;
 	}
 	else
 	{
@@ -863,10 +863,10 @@ void CRifle::act_run()
 		if(pdat->eid==0)obj=NULL;
 		if(obj)
 		{
-			if(obj->y-50 - pdat->y < -50)		pdat->vy-=0.1f;
-			else if(obj->y-50 - pdat->y > 50)	pdat->vy+=0.1f;
-			if(obj->x - pdat->x < -50)			pdat->vx-=0.1f;
-			else if(obj->x - pdat->x > 50)		pdat->vx+=0.1f;
+			if(obj->y-50 - pdat->y < -75)		pdat->vy-=0.15f;
+			else if(obj->y-50 - pdat->y > 75)	pdat->vy+=0.15f;
+			if(obj->x - pdat->x < -75)			pdat->vx-=0.15f;
+			else if(obj->x - pdat->x > 75)		pdat->vx+=0.15f;
 		}
 	}
 
