@@ -730,8 +730,8 @@ void CCharacter::InitAttackInfo()
 	aif[i].hit		=HITINFO_REACT3 | HITINFO_MARK3 | HITINFO_SNDHIT3 | HITINFO_STOP;//ヒット情報
 	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XSTAND;//ガード情報
 	aif[i].id		=ATTACK_DAKKO;//ゲージ増加時に使用するID
-	aif[i].damage	=350;//ダメージ
-	aif[i].kezuri	=35;//削り
+	aif[i].damage	=450;//ダメージ
+	aif[i].kezuri	=45;//削り
 
 	//・リバーサル
 
