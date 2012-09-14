@@ -122,6 +122,8 @@ extern "C" DWORD CreateCharacter(PVOID info) {\
 ----------------------------------------------------------------*/
 class RUNTIME_EXPORT CGoluahObject
 {
+	friend class CBulletBase;		// Žb’è‘[’u
+
 public:
 	CGoluahObject(BOOL is_effect = FALSE);
 	virtual ~CGoluahObject();

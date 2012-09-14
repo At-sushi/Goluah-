@@ -3389,12 +3389,17 @@ DWORD CBulletBase::TouchB(ATTACKINFO *info,BOOL hit)
 {
 	Hit();
 	if(parent_class){
-		if(hit && hitmsg!=0){
-			parent_class->Message(hitmsg,parent_obj,hitprm);
+		if(hit){
+			if (hitmsg!=0)
+				parent_class->Message(hitmsg,parent_obj,hitprm);
+			else
+				parent_class->TouchB(info, hit);
 		}
 		else if(grdmsg!=0){
 			parent_class->Message(grdmsg,parent_obj,grdprm);
 		}
+		else
+			parent_class->TouchB(info, hit);
 	}
 	return(TRUE);
 }

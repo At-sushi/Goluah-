@@ -266,7 +266,7 @@ void CMoukoneeyo::act_run()
 DWORD CMoukoneeyo::TouchB(ATTACKINFO *info,BOOL hit)
 {
 	atk_enabled[ current_index ] = FALSE;
-	return 0;
+	return CBulletBase::TouchB(info, hit);
 }
 
 DWORD CMoukoneeyo::Draw()
