@@ -490,7 +490,7 @@ void CGObject::dact_damages3(GOBJECT* pdat)//—§‚¿‹ò‚ç‚¢(‹­)
 	}
 	DmgMovex(pdat,pdat->vx);
 	pdat->vx+=((pdat->counter%3)/2);
-	if(pdat->vx >0){
+	if(pdat->vx >1){
 		pdat->vx=0;
 		pdat->aid = ACTID_NEUTRAL;
 	}
@@ -553,11 +553,11 @@ void CGObject::dact_damagec2(GOBJECT* pdat)//‚µ‚á‚ª‚Ý‹ò‚ç‚¢(’†)
 void CGObject::dact_damagec3(GOBJECT* pdat)//‚µ‚á‚ª‚Ý‹ò‚ç‚¢(‹­)
 {
 	if(pdat->counter==0){
-		pdat->vx=-9;
+		pdat->vx=/*-9*/-8;
 	}
 	DmgMovex(pdat,pdat->vx);
 	pdat->vx+=((pdat->counter%3)/2);
-	if(pdat->vx >0){
+	if(pdat->vx >1){
 		pdat->vx=0;
 		pdat->aid = ACTID_CROUCH;
 	}
