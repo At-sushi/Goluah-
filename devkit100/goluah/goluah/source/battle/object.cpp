@@ -368,11 +368,14 @@ void CGObject::ActionIDChanged(BOOL ck,BOOL force)//s“®ID‚ª•Ï‚í‚Á‚½‚Æ‚«‚Ìˆ—
 //======================================================================================
 void CGObject::DmgMovex(GOBJECT *pdat,double mx)
 {
-	if(pdat->atk2.flags & ATKINFO2_RIGHTBACK){
-		pdat->x -= mx;
-	}
-	else{
-		pdat->x += mx;
+	if (mx < 0)
+	{
+		if(pdat->atk2.flags & ATKINFO2_RIGHTBACK){
+			pdat->x -= mx;
+		}
+		else{
+			pdat->x += mx;
+		}
 	}
 }
 
@@ -468,7 +471,7 @@ void CGObject::dact_damages2(GOBJECT* pdat)//—§‚¿‹ò‚ç‚¢(’†)
 	}
 	DmgMovex(pdat,pdat->vx);
 	pdat->vx+=((pdat->counter%3)/2);
-	if(pdat->vx >0){
+	if(pdat->vx >1){
 		pdat->vx=0;
 		pdat->aid = ACTID_NEUTRAL;
 	}
@@ -486,11 +489,11 @@ void CGObject::dact_damages2(GOBJECT* pdat)//—§‚¿‹ò‚ç‚¢(’†)
 void CGObject::dact_damages3(GOBJECT* pdat)//—§‚¿‹ò‚ç‚¢(‹­)
 {
 	if(pdat->counter==0){
-		pdat->vx=/*-9*/-8;
+		pdat->vx=/*-9*/-7;
 	}
 	DmgMovex(pdat,pdat->vx);
 	pdat->vx+=((pdat->counter%3)/2);
-	if(pdat->vx >1){
+	if(pdat->vx >2){
 		pdat->vx=0;
 		pdat->aid = ACTID_NEUTRAL;
 	}
@@ -530,11 +533,11 @@ void CGObject::dact_damagec1(GOBJECT* pdat)//‚µ‚á‚ª‚Ý‹ò‚ç‚¢(Žã)
 void CGObject::dact_damagec2(GOBJECT* pdat)//‚µ‚á‚ª‚Ý‹ò‚ç‚¢(’†)
 {
 	if(pdat->counter==0){
-		pdat->vx=/*-5*/-7;
+		pdat->vx=/*-5*/-6;
 	}
 	DmgMovex(pdat,pdat->vx);
 	pdat->vx+=((pdat->counter%3)/2);
-	if(pdat->vx >0){
+	if(pdat->vx >1){
 		pdat->vx=0;
 		pdat->aid = ACTID_CROUCH;
 	}
@@ -553,11 +556,11 @@ void CGObject::dact_damagec2(GOBJECT* pdat)//‚µ‚á‚ª‚Ý‹ò‚ç‚¢(’†)
 void CGObject::dact_damagec3(GOBJECT* pdat)//‚µ‚á‚ª‚Ý‹ò‚ç‚¢(‹­)
 {
 	if(pdat->counter==0){
-		pdat->vx=/*-9*/-8;
+		pdat->vx=/*-9*/-7;
 	}
 	DmgMovex(pdat,pdat->vx);
 	pdat->vx+=((pdat->counter%3)/2);
-	if(pdat->vx >1){
+	if(pdat->vx >2){
 		pdat->vx=0;
 		pdat->aid = ACTID_CROUCH;
 	}
