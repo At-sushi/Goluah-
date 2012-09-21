@@ -923,6 +923,7 @@ void CGObject::dact_finalbound(GOBJECT* pdat)//ƒoƒEƒ“ƒh
 
 void CGObject::dact_finaldown2(GOBJECT* pdat)
 {
+	pdat->muteki=TRUE;
 	pdat->vy=0;
 	pdat->cnow=DCELL_DOWN;
 
