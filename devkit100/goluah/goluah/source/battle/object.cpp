@@ -445,11 +445,11 @@ void CGObject::Defmsg_Action()
 void CGObject::dact_damages1(GOBJECT* pdat)//—§‚¿‹ò‚ç‚¢(Žã)
 {
 	if(pdat->counter==0){
-		pdat->vx=/*-3*/-5;
+		pdat->vx=-3;
 	}
 	DmgMovex(pdat,pdat->vx / 2);
 	pdat->vx+=((pdat->counter%3)/2);
-	if(pdat->vx >0){
+	if(pdat->vx >2){
 		pdat->vx=0;
 		pdat->aid = ACTID_NEUTRAL;
 	}
@@ -467,11 +467,11 @@ void CGObject::dact_damages1(GOBJECT* pdat)//—§‚¿‹ò‚ç‚¢(Žã)
 void CGObject::dact_damages2(GOBJECT* pdat)//—§‚¿‹ò‚ç‚¢(’†)
 {
 	if(pdat->counter==0){
-		pdat->vx=/*-5*/-6;
+		pdat->vx=-5;
 	}
 	DmgMovex(pdat,pdat->vx);
 	pdat->vx+=((pdat->counter%3)/2);
-	if(pdat->vx >1){
+	if(pdat->vx >2){
 		pdat->vx=0;
 		pdat->aid = ACTID_NEUTRAL;
 	}
@@ -489,7 +489,7 @@ void CGObject::dact_damages2(GOBJECT* pdat)//—§‚¿‹ò‚ç‚¢(’†)
 void CGObject::dact_damages3(GOBJECT* pdat)//—§‚¿‹ò‚ç‚¢(‹­)
 {
 	if(pdat->counter==0){
-		pdat->vx=/*-9*/-7;
+		pdat->vx=-7;
 	}
 	DmgMovex(pdat,pdat->vx);
 	pdat->vx+=((pdat->counter%3)/2);
@@ -511,11 +511,11 @@ void CGObject::dact_damages3(GOBJECT* pdat)//—§‚¿‹ò‚ç‚¢(‹­)
 void CGObject::dact_damagec1(GOBJECT* pdat)//‚µ‚á‚ª‚Ý‹ò‚ç‚¢(Žã)
 {
 	if(pdat->counter==0){
-		pdat->vx=/*-3*/-5;
+		pdat->vx=-3;
 	}
 	DmgMovex(pdat,pdat->vx / 2);
 	pdat->vx+=((pdat->counter%3)/2);
-	if(pdat->vx >0){
+	if(pdat->vx >2){
 		pdat->vx=0;
 		pdat->aid = ACTID_CROUCH;
 	}
@@ -533,11 +533,11 @@ void CGObject::dact_damagec1(GOBJECT* pdat)//‚µ‚á‚ª‚Ý‹ò‚ç‚¢(Žã)
 void CGObject::dact_damagec2(GOBJECT* pdat)//‚µ‚á‚ª‚Ý‹ò‚ç‚¢(’†)
 {
 	if(pdat->counter==0){
-		pdat->vx=/*-5*/-6;
+		pdat->vx=-5;
 	}
 	DmgMovex(pdat,pdat->vx);
 	pdat->vx+=((pdat->counter%3)/2);
-	if(pdat->vx >1){
+	if(pdat->vx >2){
 		pdat->vx=0;
 		pdat->aid = ACTID_CROUCH;
 	}
@@ -556,7 +556,7 @@ void CGObject::dact_damagec2(GOBJECT* pdat)//‚µ‚á‚ª‚Ý‹ò‚ç‚¢(’†)
 void CGObject::dact_damagec3(GOBJECT* pdat)//‚µ‚á‚ª‚Ý‹ò‚ç‚¢(‹­)
 {
 	if(pdat->counter==0){
-		pdat->vx=/*-9*/-7;
+		pdat->vx=-7;
 	}
 	DmgMovex(pdat,pdat->vx);
 	pdat->vx+=((pdat->counter%3)/2);
@@ -845,7 +845,7 @@ void CGObject::dact_futtobi(GOBJECT* pdat)//‚Ó‚Á‚Æ‚Ñ
 void CGObject::dact_futtobi2(GOBJECT* pdat)//‚Ó‚Á‚Æ‚Ñ(ƒGƒŠƒAƒ‹•—–¡)
 {
 	if(pdat->counter==0){
-		pdat->vx=-3;
+		pdat->vx=-4;
 		pdat->vy=-25;
 	}
 	DmgMovex(pdat,pdat->vx);
