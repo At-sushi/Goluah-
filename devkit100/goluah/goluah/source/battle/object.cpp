@@ -845,7 +845,8 @@ void CGObject::dact_futtobi(GOBJECT* pdat)//‚Ó‚Á‚Æ‚Ñ
 void CGObject::dact_futtobi2(GOBJECT* pdat)//‚Ó‚Á‚Æ‚Ñ(ƒGƒŠƒAƒ‹•—–¡)
 {
 	if(pdat->counter==0){
-		pdat->vx=-4.5;
+		DmgMovex(pdat, -30);
+		pdat->vx=-3;
 		pdat->vy=-25;
 	}
 	DmgMovex(pdat,pdat->vx);
