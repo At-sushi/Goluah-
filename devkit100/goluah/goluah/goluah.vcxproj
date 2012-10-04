@@ -146,7 +146,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="source\script\script_story_new.cpp" />
     <ClCompile Include="source\system\Name.cpp" />
     <ClCompile Include="source\system\NameC.cpp" />
     <ClCompile Include="source\system\NetState.cpp" />

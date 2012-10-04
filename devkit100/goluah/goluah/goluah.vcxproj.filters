@@ -236,9 +236,6 @@
     <ClCompile Include="source\debug\debug_menu.cpp">
       <Filter>source\debug</Filter>
     </ClCompile>
-    <ClCompile Include="source\script\script_story_new.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\app\define_const.h">
