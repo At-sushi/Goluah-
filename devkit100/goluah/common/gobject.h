@@ -634,6 +634,7 @@ typedef void	(*PFUNCS_LOGERROR)(const char*);		//!< エラーログを記録する
 typedef void	(*PFUNCS_LOGWARNING)(const char*);		//!< 警告ログを記録する
 typedef void	(*PFUNCS_LOGDEBUG)(const char*);		//!< デバッグログを記録する
 typedef void	(*PFUNCS_LOGINFO)(const char*);			//!< 情報ログを記録する
+typedef PFUNCS_POPDLLEXECTAG PFUNCS_BGM;				//!< 実行個所のタグをひとつ削除する
 
 /*!
 *	@brief システム関数ポインタセット
@@ -670,6 +671,8 @@ struct DI_FUNCTIONS_S
 	PFUNCS_LOGWARNING		logwarning;					//!< 警告ログを記録する @sa CGoluahObject::LogWarning
 	PFUNCS_LOGDEBUG			logdebug;					//!< デバッグログを記録する @sa CGoluahObject::LogDebug
 	PFUNCS_LOGINFO			loginfo;					//!< 情報ログを記録する @sa CGoluahObject::LogInfo
+	PFUNCS_BGM				bgm_pause;					//!< BGMの一時停止
+	PFUNCS_BGM				bgm_resume;					//!< 停止したBGMを再開
 };
 
 //キー入力定義===========================================================================
@@ -1007,7 +1010,7 @@ struct DI_FUNCTIONS_D
 //**************************************************************************
 //  キャラクタDLLのバージョン
 //**************************************************************************
-#define CDI_VERSION 1100
+#define CDI_VERSION 1120
 
 //********************************************************************************
 //　キャラクターオプション情報定義
@@ -1091,7 +1094,7 @@ struct CDI_CHARACTERINFO2
 // ステージDLLのバージョン
 //**************************************************************************
 
-#define SDI_VERSION 1100//無視してるかも・・・
+#define SDI_VERSION 1120//無視してるかも・・・
 
 
 //**************************************************************************

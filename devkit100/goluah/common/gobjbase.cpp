@@ -987,6 +987,31 @@ void CGoluahObject::LogInfo(const char* fmt,...)
 	va_end(args);
 }
 
+/*!
+*	@brief BGMの一時停止
+*	@sa CGoluahObject::BGMResume
+*	@sa DI_FUNCTIONS_S::bgm_pause
+*
+*	BGMの再生を一時停止します。BGMResumeで再開します。
+*	独自BGMなどの演出に。
+*/
+void CGoluahObject::BGMPause()
+{
+	funcs->bgm_pause();
+}
+
+/*!
+*	@brief タグの除去
+*	@sa CGoluahObject::BGMPause
+*	@sa DI_FUNCTIONS_S::bgm_resume
+*
+*	BGMPauseで停止したBGMの再生を再開します。
+*/
+void CGoluahObject::BGMResume()
+{
+	funcs->bgm_resume();
+}
+
 
 /*-----------------------------------------------------------------------------
 	オブジェクト関連の関数

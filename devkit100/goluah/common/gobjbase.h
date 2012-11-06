@@ -192,6 +192,8 @@ protected:
 	static void LogWarning(const char* fmt,...);
 	static void LogDebug(const char* fmt,...);
 	static void LogInfo(const char* fmt,...);
+	static void BGMPause();
+	static void BGMResume();
 
 	// オブジェクト関連の関数
 	BOOL   ObjCatch(DWORD eid,DWORD msg_nage);				//投げとかで相手をつかむ
