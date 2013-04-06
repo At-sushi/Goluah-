@@ -176,8 +176,8 @@ void CCharacterSelect::OnConditionDecided(CTConditionSelecter *pcsel)
 		//■キャラクターリングクラス登録
 		m_ring[i] = new CTCharacterRing();
 		m_ring[i]->SetPriority( m_pri_cselecter );
-		m_ring[i]->SetPos(320,i==0?160:320);
-		m_ring[i]->SetHeight(25);
+		m_ring[i]->SetPos(320.0,i==0?160.0:320.0);
+		m_ring[i]->SetHeight(i==0?40.0f:22.0f);
 		g_system.AddTask(m_ring[i]);
 		//■キャラクターリング下・オビ
 		m_belt[i] = new CTCharacterSelectBelt;
@@ -332,11 +332,13 @@ void CCharacterSelect::OnSelect(CTCharacterRing *pring,int cindex)
 		int optnum = m_selecter[team]->SetAndShow(cindex, pring->GetKeyInputIndex() );
 		//オプションセレクターの高さ計算・位置指定
 		if(optnum<1)optnum=1;
-		float optheight = m_selecter[team]->GetHeight() + 10.0f;//10:まーじん
+		float optheight = m_selecter[team]->GetHeight() + 15.0f;//10:まーじん
 		float base_y = team==0 ? 160.0f : 320.0f;
-		float top_y = base_y - optheight*( team==0 ? 0.65f : 0.35f );
-		float btm_y = base_y + optheight*( team==0 ? 0.35f : 0.65f );
-		m_selecter[team]->SetPos( team==0 ? 50.0f : 250.0f , top_y+5.0f );
+		float top_y = base_y - optheight*( team==0 ? 0.65f : 0.25f );
+		float btm_y = base_y + optheight*( team==0 ? 0.25f : 0.65f );
+		if(top_y < 0.0f)top_y = 5.0f;
+		if(btm_y > 480.0f)btm_y = 475.0f;
+		m_selecter[team]->SetPos( team==0 ? 50.0f : 235.0f , top_y+5.0f );
 		m_belt[team]->Extend( top_y , btm_y );
 		return;
 	}
@@ -1164,8 +1166,8 @@ void CTCharacterSelectBelt::Initialize()
 	UpdateText();
 
 	m_txtTop	= m_pos==0 ? TRUE : FALSE;		//テキストを上に配置するか、下に配置するか
-	m_txtLeft	= m_pos==0 ? 50.0f : 590.0f;	//テキストの左位置
-	m_txtR2L	= m_pos==0 ? FALSE : TRUE;		//テキスト右→左描画
+	m_txtLeft	= m_pos==0 ? 50.0f : 300.0f;	//テキストの左位置
+	m_txtR2L	= FALSE;		//テキスト右→左描画
 
 	m_alpha1	= 230;
 	m_alpha2	= 20;									//α、濃いとこ・薄いとこ

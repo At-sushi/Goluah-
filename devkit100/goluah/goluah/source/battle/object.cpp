@@ -262,7 +262,8 @@ DWORD CGObject::Defmsg_TouchA()//相手の攻撃に当たったときの処理
 	//喰らった攻撃情報→ data.atk2
 	ATTACKINFO *info = data.atk2.info1;
 
-	DWORD key_now = g_input.GetKeyEx(data.tid,0);
+	DWORD keyinput = CExport::GetKeyInput(data.id);//オブジェクトidをgetkeyinputに代入して指定キャラのキー入力インデックス値を取得
+	DWORD key_now = g_input.GetKeyEx(keyinput,0);	//直った・・・？
 
 	// 待機/退避中は無視しちゃう
 	if(data.aid & ACTID_INOUT)return(TOUCHA_AVOID);
@@ -920,6 +921,7 @@ void CGObject::dact_finalbound(GOBJECT* pdat)//バウンド
 
 void CGObject::dact_finaldown2(GOBJECT* pdat)
 {
+	pdat->muteki=TRUE;
 	pdat->vy=0;
 	pdat->cnow=DCELL_DOWN;
 

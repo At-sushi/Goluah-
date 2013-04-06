@@ -463,6 +463,7 @@ void CDirectSound::BGMStop()
 	}
 	if(pVidWin){
 		pVidWin->put_Visible(OAFALSE);
+		Sleep(0);
 	}
 
 	RELEASE(pAudio);

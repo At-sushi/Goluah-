@@ -92,7 +92,7 @@ void CCharacter::InitParameters()
 //DWORD オプション指定を BOOLメンバ変数に分割する
 void CCharacter::InitAnalyzeOptions()
 {
-	chainComboEnabled	 = (option_flags&OPTIONS_CHAIN_COMBO) ? TRUE : FALSE ;
+	chainComboEnabled	 = TRUE ;
 	isAutoGuard			 = (option_flags&OPTIONS_AUTO_GUARD) ? TRUE : FALSE ;
 	m_opt_ExtraAttack	 = (option_flags&OPTIONS_EXTRA_ATTACK) ? TRUE : FALSE ;
 	m_opt_GuardCancel	 = (option_flags&OPTIONS_GUARD_CANCEL) ? TRUE : FALSE ;
@@ -181,7 +181,7 @@ DWORD CCharacter::TouchB(ATTACKINFO *info,BOOL hit)
 			{
 				if(ComLevelCk(5) && pdat->gauge>=1.0f)
 				{
-					SetComAct(ACTID_MINIGUN,10);
+					SetComAct(ACTID_MINIGUN,5);
 				}
 				else if(ComLevelCk(3)){
 					if(ChainCheck(CHAIN_SC3)){
@@ -213,7 +213,7 @@ DWORD CCharacter::TouchB(ATTACKINFO *info,BOOL hit)
 		case ACTID_ATT_SC3:
 			{
 				if(ComLevelCk(5) && pdat->gauge>=1.0f){
-					SetComAct(ACTID_MINIGUN,10);
+					SetComAct(ACTID_MINIGUN,5);
 				}
 				else if(ComLevelCk(5) && ChainCheck(CHAIN_CB)){
 					SetComAct(ACTID_ATT_CB,8);

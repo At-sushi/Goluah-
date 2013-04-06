@@ -57,6 +57,8 @@ void CExport::Initialize()
 	fpack_s.logwarning		= CExport::LogWarning;
 	fpack_s.logdebug		= CExport::LogDebug;
 	fpack_s.loginfo			= CExport::LogInfo;
+	fpack_s.bgm_pause		= CExport::BGMPause;
+	fpack_s.bgm_resume		= CExport::BGMResume;
 
 	//object
 	fpack_o.objcreate		= CExport::CreateObject;
@@ -782,5 +784,14 @@ DWORD  CExport::CreateCellDat2(char* filename,LPVOID *cdat,LPVOID *rdat,LPVOID *
 	FUNC_OUT;
 	return ret;
 }
+void CExport::BGMPause(void)
+{
+g_sound.BGMPause();
+}
+void CExport::BGMResume(void)
+{
+g_sound.BGMResume();
+}
+
 
 

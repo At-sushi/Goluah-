@@ -5,6 +5,7 @@
 
 ================================================================*/
 #include "character.h"
+#include <math.h>
 
 //*********************************************************
 //@@’Êí“®ì
@@ -35,7 +36,18 @@ void CCharacter::act_tojyo()//“oê
 
 	if(pdat->counter < 50){
 		movex(5);
-		pdat->cnow = CELL_KORORIN1 + (pdat->counter/4)%11;
+		pdat->cnow = CELL_KORORIN1;
+		pdat->rot = pdat->counter * 360 / 49;
+
+		if(pdat->counter < 13)
+			pdat->y = -sin(3.1415 / 180.0 * (double)pdat->rot) * 39.0;
+		else if(pdat->counter < 25)
+			pdat->y = -44 + sin(3.1415 / 180.0 * (double)pdat->rot) * 5.0;
+		else if(pdat->counter < 37)
+			pdat->y = -44 - sin(3.1415 / 180.0 * (double)pdat->rot) * 5.0;
+		else
+			pdat->y = sin(3.1415 / 180.0 * (double)pdat->rot) * 39.0;
+
 	}
 	else{
 		if(pdat->counter == 50)pdat->vy=-10;
@@ -294,10 +306,21 @@ void CCharacter::act_okiagari_foword()
 
 	if(pdat->counter < 25){
 		movex(10);
-		pdat->cnow = CELL_KORORIN1 + (pdat->counter/2)%11;
+		pdat->cnow = CELL_KORORIN1;
+		pdat->rot = pdat->counter * 15;
+
+		if(pdat->counter < 7)
+			pdat->y = -sin(3.1415 / 180.0 * (double)pdat->rot) * 39.0;
+		else if(pdat->counter < 13)
+			pdat->y = -44 + sin(3.1415 / 180.0 * (double)pdat->rot) * 5.0;
+		else if(pdat->counter < 19)
+			pdat->y = -44 - sin(3.1415 / 180.0 * (double)pdat->rot) * 5.0;
+		else
+			pdat->y = sin(3.1415 / 180.0 * (double)pdat->rot) * 39.0;
+
 	}
 	else{
-		if(pdat->counter == 50){
+		if(pdat->counter == 25){
 			pdat->vy=-10;
 			Furimuki();
 			AddPowerGauge(-1.0f*NEEDGAUGE_REV);
@@ -320,10 +343,21 @@ void CCharacter::act_okiagari_back()
 	if(pdat->counter < 25){
 		movex(-10);
 		pdat->revx = TRUE;
-		pdat->cnow = CELL_KORORIN1 + (pdat->counter/2)%11;
+		pdat->cnow = CELL_KORORIN1;
+		pdat->rot = pdat->counter * 15;
+
+		if(pdat->counter < 7)
+			pdat->y = -sin(3.1415 / 180.0 * (double)pdat->rot) * 39.0;
+		else if(pdat->counter < 13)
+			pdat->y = -44 + sin(3.1415 / 180.0 * (double)pdat->rot) * 5.0;
+		else if(pdat->counter < 19)
+			pdat->y = -44 - sin(3.1415 / 180.0 * (double)pdat->rot) * 5.0;
+		else
+			pdat->y = sin(3.1415 / 180.0 * (double)pdat->rot) * 39.0;
+
 	}
 	else{
-		if(pdat->counter == 50){
+		if(pdat->counter == 25){
 			pdat->vy=-10;
 			Furimuki();
 			AddPowerGauge(-1.0f*NEEDGAUGE_REV);

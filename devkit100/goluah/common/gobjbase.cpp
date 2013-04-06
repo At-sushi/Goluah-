@@ -16,7 +16,6 @@
 #include <stdio.h>
 
 #ifdef USE_DIRECT3D_DIRECT
-#include <d3d8.h>
 #include "d3dx8.h"
 #endif
 
@@ -988,6 +987,31 @@ void CGoluahObject::LogInfo(const char* fmt,...)
 	va_end(args);
 }
 
+/*!
+* @brief BGMの一時停止
+* @sa CGoluahObject::BGMResume
+* @sa DI_FUNCTIONS_S::bgm_pause
+*
+* BGMの再生を一時停止します。BGMResumeで再開します。
+* 独自BGMなどの演出に。
+*/
+void CGoluahObject::BGMPause()
+{
+funcs->bgm_pause();
+}
+
+/*!
+* @brief BGMの再開
+* @sa CGoluahObject::BGMPause
+* @sa DI_FUNCTIONS_S::bgm_resume
+*
+* BGMPauseで停止したBGMの再生を再開します。
+*/
+void CGoluahObject::BGMResume()
+{
+funcs->bgm_resume();
+}
+
 
 /*-----------------------------------------------------------------------------
 	オブジェクト関連の関数
@@ -1942,14 +1966,14 @@ BOOL CCharacterBase::Command_OnAttacking(DWORD keyinfo)
 	else{
 		if(chainComboEnabled && keyinfo & 0x22220000){
 			if(keyinfo & KEYSTA_DOWN){
-				if(keyinfo & KEYSTA_BC2){/*if(ChainCombo(CHAIN_CC))*/{ChangeAction(ACTID_ATT_CC);return TRUE;}}
-				else if(keyinfo & KEYSTA_BB2){/*if(ChainCombo(CHAIN_CC)))*/{ChangeAction(ACTID_ATT_CB);return TRUE;}}
-				else if(keyinfo & KEYSTA_BA2){/*if(ChainCombo(CHAIN_CC)))*/{ChangeAction(ACTID_ATT_CA);return TRUE;}}
+				if(keyinfo & KEYSTA_BC2){if(ChainCombo(CHAIN_CC)){ChangeAction(ACTID_ATT_CC);return TRUE;}}
+				else if(keyinfo & KEYSTA_BB2){if(ChainCombo(CHAIN_CB)){ChangeAction(ACTID_ATT_CB);return TRUE;}}
+				else if(keyinfo & KEYSTA_BA2){if(ChainCombo(CHAIN_CA)){ChangeAction(ACTID_ATT_CA);return TRUE;}}
 			}
 			else{
-				if(keyinfo & KEYSTA_BC2){/*if(ChainCombo(CHAIN_CC))*/{ChangeAction(ACTID_ATT_SC);return TRUE;}}
-				else if(keyinfo & KEYSTA_BB2){/*if(ChainCombo(CHAIN_CC))*/{ChangeAction(ACTID_ATT_SB);return TRUE;}}
-				else if(keyinfo & KEYSTA_BA2){/*if(ChainCombo(CHAIN_CC))*/{ChangeAction(ACTID_ATT_SA);return TRUE;}}
+				if(keyinfo & KEYSTA_BC2){if(ChainCombo(CHAIN_SC)){ChangeAction(ACTID_ATT_SC);return TRUE;}}
+				else if(keyinfo & KEYSTA_BB2){if(ChainCombo(CHAIN_SB)){ChangeAction(ACTID_ATT_SB);return TRUE;}}
+				else if(keyinfo & KEYSTA_BA2){if(ChainCombo(CHAIN_SA)){ChangeAction(ACTID_ATT_SA);return TRUE;}}
 			}
 		}
 	}
@@ -2034,7 +2058,7 @@ DWORD CCharacterBase::TouchA(ATTACKINFO *info,DWORD ta_eid)
 	{
 		if(IsCom())
 		{
-			auto_guard = (rand()%4) ? TRUE : FALSE;
+			auto_guard = (rand()%2) ? TRUE : FALSE;
 		}
 		else
 		{
@@ -3390,12 +3414,17 @@ DWORD CBulletBase::TouchB(ATTACKINFO *info,BOOL hit)
 {
 	Hit();
 	if(parent_class){
-		if(hit && hitmsg!=0){
-			parent_class->Message(hitmsg,parent_obj,hitprm);
+		if(hit){
+			if (hitmsg!=0)
+				parent_class->Message(hitmsg,parent_obj,hitprm);
+			else
+				parent_class->TouchB(info, hit);
 		}
 		else if(grdmsg!=0){
 			parent_class->Message(grdmsg,parent_obj,grdprm);
 		}
+		else
+			parent_class->TouchB(info, hit);
 	}
 	return(TRUE);
 }

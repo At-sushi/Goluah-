@@ -1714,6 +1714,12 @@ void CBattleTask::AddEffect(DWORD efctid,int prm1,int prm2,int prm3)
 	case EFCTID_SINDO:
 		efct_sindo = prm2;
 		efct_sindom= prm1;
+
+/*		// 振動エフェクトに残像をつけた
+		// コマ落ちすることがある（Part37の>>705）ので戻しておきます
+		RELEASE(tex_fb);
+		tex_fb = g_draw.GetFrontBufferCopy();
+		efct_fadein = min(prm2, 8);*/
 		break;
 	case EFCTID_NOBG:
 		efct_nobg = prm1;
@@ -1994,6 +2000,7 @@ void CBattleTask::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 			if(aif->hit & HITINFO_EFCTBURN )AddEffect(EFCTID_BURN,0,0,k_id);
 			if(aif->hit & HITINFO_EFCTBURN_B )AddEffect(EFCTID_BURN_B,0,0,k_id);
 			if(aif->hit & HITINFO_EFCTBURN_G )AddEffect(EFCTID_BURN_G,0,0,k_id);
+			AddEffect(EFCTID_SINDO,2,20);
 		}
 
 		//エフェクト
@@ -2383,12 +2390,12 @@ void CBattleTask::T_UpdateStatus_RoundCall()
 		case 6:AddEffect(EFCTID_ROUND6,0,-1000);break;
 		}
 	}
-	if(bf_counter==70)//「ラウンド～」が終了する時間（大体）
+	if(bf_counter==70 * 1.5)//「ラウンド～」が終了する時間（大体）
 	{
 		if(dsb_fight!=NULL)dsb_fight->Play(0,0,0);//「ファイト」
 		AddEffect(EFCTID_FIGHT,0,0);
 	}
-	if(bf_counter>130)//「ファイト」が終了する時間（大体）
+	if(bf_counter>130 * 1.5)//「ファイト」が終了する時間（大体）
 	{
 		bf_state=BFSTATE_FIGHTING;
 		gbl.ods("BFSTATE_ROUNDCALL → BFSTATE_FIGHTING");

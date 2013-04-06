@@ -54,7 +54,7 @@ protected:
 	CBattleTaskBase* battleTask;
 
 	DWORD oid;					//!< ゲージの、戦闘オブジェクトとしてのオブジェクトID
-//	DWORD num_teammember;		1チーム何人か 未使用っぽいので削除予定
+	DWORD num_teammember;		//!< 1チーム何人か
 	DWORD activegauge[2];		//!< どのプレイヤーが現在対戦しているのか？0,1,2
 	DWORD flip_counter;
 	MYSURFACE *dds_face[2][MAXNUM_TEAM];	//!< ちっこい顔

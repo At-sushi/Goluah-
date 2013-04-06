@@ -248,7 +248,6 @@ BOOL CDirectDraw::InitDirectDraw(HWND hwnd,BOOL win)
 
 	// Direct3D èâä˙âªÉpÉâÉÅÅ[É^ÇÃê›íË
     ZeroMemory(&d3dpp, sizeof(D3DPRESENT_PARAMETERS));
-	d3dpp.BackBufferCount = 1;
 	d3dpp.EnableAutoDepthStencil = TRUE;
     d3dpp.AutoDepthStencilFormat = D3DFMT_D16;
 
@@ -272,6 +271,7 @@ BOOL CDirectDraw::InitDirectDraw(HWND hwnd,BOOL win)
 		d3dpp.Windowed = TRUE;
         d3dpp.BackBufferWidth = 0;
         d3dpp.BackBufferHeight = 0;
+		d3dpp.BackBufferCount = 1;
 		
 		m_desktop_width = d3ddm.Width;
 		m_desktop_height = d3ddm.Height;
@@ -300,6 +300,7 @@ BOOL CDirectDraw::InitDirectDraw(HWND hwnd,BOOL win)
         d3dpp.Windowed = FALSE;
         d3dpp.BackBufferWidth = g_DISPLAYWIDTH;
         d3dpp.BackBufferHeight = g_DISPLAYHEIGHT;
+		d3dpp.BackBufferCount = 1;
 
 		m_desktop_width = g_DISPLAYWIDTH;
 		m_desktop_height = g_DISPLAYHEIGHT;

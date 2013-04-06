@@ -388,6 +388,26 @@ DWORD CCharacter::TouchB(ATTACKINFO *info,BOOL hit)
 	if(!hit)dp*=0.2;
 	AddPowerGauge(dp);
 
+	if(IsLocalCom())
+	{
+		switch(pdat->aid)
+		{
+			case ACTID_ATT_SC:
+			case ACTID_ATT_CC:
+			{
+				if(ComLevelCk(5) && pdat->gauge>=1.0f)
+				{
+					SetComAct(ACTID_DAKKO,10);
+				}
+				else if(ComLevelCk(3))
+				{
+					SetComAct(ACTID_STAFF,5);
+				}
+			}
+			break;
+		}
+	}
+
 	return CCharacterBase::TouchB(info,hit);
 }
 
@@ -497,12 +517,12 @@ void CCharacter::PreAction()
 	if( IsLocalCom() && ((pdat->aid&ACTID_MOYAMOYA) && pdat->counter>5))
 	{
 		UINT maai = GetMaai_H(pdat->id,pdat->eid);
-		int t = rand()%100;
-		if(t< ((maai<60) ? 3 : 1) )
+		int t = rand()%50;
+		if(t< ((maai<60) ? 6 : 1) )
 		{
 			ArekoreCancel();
 		}
-		else if(t<((maai<60) ? 6 : 2))
+		else if(t<((maai<60) ? 12 : 2))
 		{
 			ArekoreRelease();
 		}
@@ -711,8 +731,8 @@ void CCharacter::InitAttackInfo()
 	aif[i].hit		=HITINFO_REACT3 | HITINFO_MARK3 | HITINFO_SNDHIT3 | HITINFO_STOP;//ヒット情報
 	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XSTAND;//ガード情報
 	aif[i].id		=ATTACK_DAKKO;//ゲージ増加時に使用するID
-	aif[i].damage	=350;//ダメージ
-	aif[i].kezuri	=35;//削り
+	aif[i].damage	=450;//ダメージ
+	aif[i].kezuri	=45;//削り
 
 	//・リバーサル
 
@@ -766,6 +786,8 @@ void CCharacter::InitWazInfo()//コンピュータ用技情報の設定
 	waz.att_bullet[0] = ACTID_MOYAMOYA1;//飛び道具
 	waz.att_bullet[1] = ACTID_MOYAMOYA2;//飛び道具
 	waz.att_bullet[2] = ACTID_MOYAMOYA3;//飛び道具
+
+	waz.att_tai[0]    = ACTID_STAFF; //対空
 
 	//リーチ設定
 	SetComReach( 0,MAAI_SHORT	);

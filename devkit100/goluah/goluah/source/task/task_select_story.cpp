@@ -419,7 +419,7 @@ void CTStorySelecterRing::Hide()
 void CTStorySelecterRing::CTStorySelectBelt::Initialize()
 {
 	CTCharacterSelectBelt::Initialize();
-	m_txtLeft = 2;
+	m_txtLeft = 20;
 	m_txtTop = FALSE;
 	m_txtR2L = FALSE;
 }
@@ -439,7 +439,11 @@ void CTStorySelecterRing::CTStorySelectBelt::UpdateText()
 {
 	//m_ringIndexは、ストーリーリング番号ではなく全体の通し番号として使用
 	sprintf(m_disp_str,"%s",g_storylist.GetStoryDir(m_ringIndex));
-}
+	for(UINT i=0;i<strlen(m_disp_str);i++){
+		if(m_disp_str[i]=='\\'){
+			m_disp_str[i]='/';//こっちのほうがかっこよさげ
+		}
+	}}
 
 
 

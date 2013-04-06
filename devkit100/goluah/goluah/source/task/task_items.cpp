@@ -411,6 +411,7 @@ BOOL CTWindowBase::Execute(DWORD time)
 			if(m_ratio<0.0f)m_ratio=0.0f;
 		}break;
 	}
+	m_ratio = m_ratio * m_ratio; // 2æ
 	m_counter++;
 
 	return TRUE;
@@ -516,8 +517,8 @@ CTBeltBase::CTBeltBase()
 //m_top , m_bottomŽZo
 void CTBeltBase::CalcTopBottom()
 {
-	m_top    = m_base_y - m_height_base * m_ratio *0.5f;
-	m_bottom = m_base_y + m_height_base * m_ratio *0.5f;
+	m_top    = m_base_y - m_height_base * m_ratio*m_ratio *0.5f;
+	m_bottom = m_base_y + m_height_base * m_ratio*m_ratio *0.5f;
 }
 
 //•`‰æ

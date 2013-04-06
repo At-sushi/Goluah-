@@ -313,7 +313,7 @@ void CCharacter::act_poi_rifle()
 	else if(ccounter<12+kamae+6+suki+8)cell(CELL_RIFLE1);
 	else ChangeAction( ACTID_NEUTRAL );
 
-	if(ccounter==8){
+	if(ccounter==0){
 		pbul_rifle->SetKeyIndex( (pdat->objtype&GOBJFLG_COMPUTER) ? -1 : keyinput );
 		pbul_rifle->Go(pdat->muki,pdat->x+zurex(160), -80,0);
 	}

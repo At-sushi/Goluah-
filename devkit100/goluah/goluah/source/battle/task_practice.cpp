@@ -70,6 +70,9 @@ void CBattlePractice::T_UpdateStatus_Fighting()
 		if(eobj->data.aid==ACTID_KAITENFINISH || eobj->data.aid==ACTID_FINALDOWN){
 			eobj->data.aid = ACTID_FUTTOBI;
 		}
+		if(pobj->data.aid==ACTID_KAITENFINISH || pobj->data.aid==ACTID_FINALDOWN){
+			pobj->data.aid = ACTID_FUTTOBI;
+		}
 	}
 
 	CBattleTask::T_UpdateStatus_Fighting();
