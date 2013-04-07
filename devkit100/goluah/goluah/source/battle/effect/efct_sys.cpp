@@ -15,7 +15,7 @@
 
 void CFxRoundBase::Update()
 {
-	if(pdat->counter > 40 + 12 -1)End();
+	if(pdat->counter > (40 + 12)*1.5 -1)End();
 }
 
 BOOL CFxRoundBase::DrawF()
@@ -23,14 +23,14 @@ BOOL CFxRoundBase::DrawF()
 	g_draw.SetTransform(FALSE);
 
 	float t2;
-	if(pdat->counter < 20){
-		t2 = 10.0f - pdat->counter/2.0f;
+	if(pdat->counter < 20 * 1.5){
+		t2 = 10.0f - pdat->counter/(2.0f * 1.5);
 	}
-	else if(pdat->counter < 40){
+	else if(pdat->counter < 40 * 1.5){
 		t2 = 1.0f;
 	}
 	else{
-		t2 = 1.0f - (pdat->counter-40)/12.0f ;
+		t2 = 1.0f - (pdat->counter-40 * 1.5)/(12.0f * 1.5);
 	}
 
 	char str[] = "ROUND";
@@ -894,9 +894,9 @@ void CFxFight::CreateTri2(VertList& vlist,LineList& llist,TriList& tlist,Tri2Lis
 ------------------------------------------------------------------*/
 void CFxFight::Update()
 {
-	const float dur1 = 5;
-	const float dur3 = 20;
-	const float dur2 = 25;
+	const float dur1 = 5 * 1.5;
+	const float dur3 = 20 * 1.5;
+	const float dur2 = 25 * 1.5;
 	float t;
 	m_sca = 0.05f;
 

@@ -1,4 +1,6 @@
-
+/*
+2011/10/29	別キャラ対戦出来るよう、「net1」「net2」を読み込むように
+*/
 /*============================================================================
 
 	戦闘タスククラス
@@ -59,13 +61,13 @@ void CBattleTaskNet::Initialize()
 	g_battleinfo.SetBattleType( TAISENKEISIKI_GOCYAMAZE );
 	g_battleinfo.SetLimitTime(-1);
 	g_battleinfo.AddCharacter(TEAM_PLAYER1,
-			g_charlist.FindCharacter("おにぎり"),
+			g_charlist.FindCharacter("net1"),
 			1,
 			g_play.IsHost() ? 0 : CASSIGN_NONE,
 			/*g_charlist.GetRandomOption( g_charlist.FindCharacter("おにぎり") )*/0
 			);
 	g_battleinfo.AddCharacter(TEAM_PLAYER2,
-			g_charlist.FindCharacter("おにぎり"),
+			g_charlist.FindCharacter("net2"),
 			2,
 			g_play.IsHost() ? 1 : 0,
 			/*g_charlist.GetRandomOption( g_charlist.FindCharacter("おにぎり") )*/0

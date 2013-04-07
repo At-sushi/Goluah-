@@ -140,7 +140,7 @@ void CCharacter::act_ikari()
 		pdat->y+=pdat->vy;
 		pdat->vy++;
 	}
-	else if(pdat->counter < 180){pdat->cnow=CELL_IKARI4;pdat->y=0;pdat->vy=0;}
+	else if(pdat->counter < 150){pdat->cnow=CELL_IKARI4;pdat->y=0;pdat->vy=0;}
 	else {
 		pdat->aid = ACTID_NEUTRAL;
 	}

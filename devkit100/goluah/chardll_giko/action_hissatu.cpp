@@ -118,7 +118,7 @@ void CCharacter::act_atemi3()
 {
 	if(ccounter==0)PlayMySound(wave_atemi);
 	cell( CELL_ATEMI_A );
-	if(ccounter>12)ChangeAction(ACTID_NEUTRAL);
+	if(ccounter>15)ChangeAction(ACTID_NEUTRAL);
 }
 
 //Œ„

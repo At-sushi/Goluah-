@@ -262,7 +262,8 @@ DWORD CGObject::Defmsg_TouchA()//相手の攻撃に当たったときの処理
 	//喰らった攻撃情報→ data.atk2
 	ATTACKINFO *info = data.atk2.info1;
 
-	DWORD key_now = g_input.GetKeyEx(data.tid,0);
+	DWORD keyinput = CExport::GetKeyInput(data.id);//オブジェクトidをgetkeyinputに代入して指定キャラのキー入力インデックス値を取得
+	DWORD key_now = g_input.GetKeyEx(keyinput,0);	//直った・・・？
 
 	// 待機/退避中は無視しちゃう
 	if(data.aid & ACTID_INOUT)return(TOUCHA_AVOID);
@@ -368,14 +369,11 @@ void CGObject::ActionIDChanged(BOOL ck,BOOL force)//行動IDが変わったときの処理
 //======================================================================================
 void CGObject::DmgMovex(GOBJECT *pdat,double mx)
 {
-	if (mx < 0)
-	{
-		if(pdat->atk2.flags & ATKINFO2_RIGHTBACK){
-			pdat->x -= mx;
-		}
-		else{
-			pdat->x += mx;
-		}
+	if(pdat->atk2.flags & ATKINFO2_RIGHTBACK){
+		pdat->x -= mx;
+	}
+	else{
+		pdat->x += mx;
 	}
 }
 
@@ -445,11 +443,11 @@ void CGObject::Defmsg_Action()
 void CGObject::dact_damages1(GOBJECT* pdat)//立ち喰らい(弱)
 {
 	if(pdat->counter==0){
-		pdat->vx=-3;
+		pdat->vx=/*-3*/-5;
 	}
 	DmgMovex(pdat,pdat->vx / 2);
 	pdat->vx+=((pdat->counter%3)/2);
-	if(pdat->vx >2){
+	if(pdat->vx >0){
 		pdat->vx=0;
 		pdat->aid = ACTID_NEUTRAL;
 	}
@@ -467,11 +465,11 @@ void CGObject::dact_damages1(GOBJECT* pdat)//立ち喰らい(弱)
 void CGObject::dact_damages2(GOBJECT* pdat)//立ち喰らい(中)
 {
 	if(pdat->counter==0){
-		pdat->vx=-5;
+		pdat->vx=/*-5*/-6;
 	}
 	DmgMovex(pdat,pdat->vx);
 	pdat->vx+=((pdat->counter%3)/2);
-	if(pdat->vx >2){
+	if(pdat->vx >0){
 		pdat->vx=0;
 		pdat->aid = ACTID_NEUTRAL;
 	}
@@ -489,11 +487,11 @@ void CGObject::dact_damages2(GOBJECT* pdat)//立ち喰らい(中)
 void CGObject::dact_damages3(GOBJECT* pdat)//立ち喰らい(強)
 {
 	if(pdat->counter==0){
-		pdat->vx=-7;
+		pdat->vx=/*-9*/-8;
 	}
 	DmgMovex(pdat,pdat->vx);
 	pdat->vx+=((pdat->counter%3)/2);
-	if(pdat->vx >2){
+	if(pdat->vx >0){
 		pdat->vx=0;
 		pdat->aid = ACTID_NEUTRAL;
 	}
@@ -511,11 +509,11 @@ void CGObject::dact_damages3(GOBJECT* pdat)//立ち喰らい(強)
 void CGObject::dact_damagec1(GOBJECT* pdat)//しゃがみ喰らい(弱)
 {
 	if(pdat->counter==0){
-		pdat->vx=-3;
+		pdat->vx=/*-3*/-5;
 	}
 	DmgMovex(pdat,pdat->vx / 2);
 	pdat->vx+=((pdat->counter%3)/2);
-	if(pdat->vx >2){
+	if(pdat->vx >0){
 		pdat->vx=0;
 		pdat->aid = ACTID_CROUCH;
 	}
@@ -533,11 +531,11 @@ void CGObject::dact_damagec1(GOBJECT* pdat)//しゃがみ喰らい(弱)
 void CGObject::dact_damagec2(GOBJECT* pdat)//しゃがみ喰らい(中)
 {
 	if(pdat->counter==0){
-		pdat->vx=-5;
+		pdat->vx=/*-5*/-7;
 	}
 	DmgMovex(pdat,pdat->vx);
 	pdat->vx+=((pdat->counter%3)/2);
-	if(pdat->vx >2){
+	if(pdat->vx >0){
 		pdat->vx=0;
 		pdat->aid = ACTID_CROUCH;
 	}
@@ -556,11 +554,11 @@ void CGObject::dact_damagec2(GOBJECT* pdat)//しゃがみ喰らい(中)
 void CGObject::dact_damagec3(GOBJECT* pdat)//しゃがみ喰らい(強)
 {
 	if(pdat->counter==0){
-		pdat->vx=-7;
+		pdat->vx=-9;
 	}
 	DmgMovex(pdat,pdat->vx);
 	pdat->vx+=((pdat->counter%3)/2);
-	if(pdat->vx >2){
+	if(pdat->vx >0){
 		pdat->vx=0;
 		pdat->aid = ACTID_CROUCH;
 	}
@@ -845,7 +843,6 @@ void CGObject::dact_futtobi(GOBJECT* pdat)//ふっとび
 void CGObject::dact_futtobi2(GOBJECT* pdat)//ふっとび(エリアル風味)
 {
 	if(pdat->counter==0){
-		DmgMovex(pdat, -30);
 		pdat->vx=-3;
 		pdat->vy=-25;
 	}

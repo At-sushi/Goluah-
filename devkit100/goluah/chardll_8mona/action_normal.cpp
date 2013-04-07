@@ -213,8 +213,22 @@ void CCharacter::act_koutai()
 
 void CCharacter::act_koutai2()
 {
-	CCharacterBase::act_koutai2();//キャラクター基本クラスの動作を流用
+//	CCharacterBase::act_koutai2();//キャラクター基本クラスの動作を流用
+	if(pdat->counter == 0){
+		pdat->vy = 5;
+		PlayMySound(wave_tojyo);
+	}
+	if(pdat->y < 0){
+		pdat->cnow = CELL_JAMP1;
+		pdat->y += pdat->vy;
+		pdat->vy ++;
+	}
+	else pdat->cnow = CELL_NAKAMA16;
 
+	if(pdat->counter > 100){
+		pdat->aid = ACTID_NEUTRAL;
+		Message2System(MSGOBJ2SYS_KOUTAIEND,0);
+	}
 }
 
 //*********************************************************

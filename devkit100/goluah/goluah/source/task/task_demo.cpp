@@ -243,7 +243,7 @@ BOOL CTDemo::Execute(DWORD time)
 		}
 	}
 
-	if(counter > 1 && g_input.GetKey(m_keyindex,0) & 0x22220000){//強制的に終了
+	if(counter > 1 && g_input.GetKey(m_keyindex,0) & KEYSTA_BUTTONS){//強制的に終了
 //		return FALSE;
 		// 単に一文飛ばすだけに変えてみた
 		if(txtlen < strlen(demodat[playingdemodat].msg))
@@ -251,6 +251,14 @@ BOOL CTDemo::Execute(DWORD time)
 		else
 			demodat[playingdemodat].dur = 0;
 	}
+
+	if(counter > 1 && g_input.GetKey(m_keyindex,0) & KEYSTA_BD && demodat[playingdemodat].num_select <= 0){//選択肢でなければDで早送り
+		if(txtlen < strlen(demodat[playingdemodat].msg))
+			{ txtlen=strlen(demodat[playingdemodat].msg); }
+		else
+			demodat[playingdemodat].dur = 0;
+	}
+
 	return TRUE;
 }
 

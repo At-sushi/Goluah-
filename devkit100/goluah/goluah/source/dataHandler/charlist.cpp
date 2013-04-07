@@ -768,7 +768,7 @@ void CCOptionSelecter::Draw()
 		//•`‰æ
 		g_system.DrawBMPText(offset_x+off_x2,y,z,ite->name,color);
 		if(not_available)
-			g_system.DrawBMPText(offset_x+320,y,z,"NA",color);
+			g_system.DrawBMPText(offset_x+320,y,z,"N/A",color);
 		else if(enabled[k])
 			g_system.DrawBMPText(offset_x+320,y,z,"ON",color);
 		else

@@ -195,7 +195,6 @@ void CCharacter::act_jampc()
 {
 	if(pdat->counter == 0){pdat->vy=-17;pdat->vx=0;}//‰Šú‘¬“x
 
-	pdat->muteki = TRUE;
 	cell( (pdat->counter<2) ? CELL_JAMP3 : CELL_JAMP4 );
 	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
 }

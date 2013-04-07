@@ -163,7 +163,7 @@ void CTOptionSelecterBase::Draw()
 	y+=text_spacing*1.2f;
 
 	//Ý’è–¼•\Ž¦
-	sprintf(tmp_str,"setting : %s",m_selecter->GetCurrentSetName());
+	sprintf(tmp_str,"PRESET: %s",m_selecter->GetCurrentSetName());
 	g_system.DrawBMPTextEx(offset_x,y,z,tmp_str,color_option|alpha,1.0f,text_yscale,SYSBMPTXT_PROP);
 
 	y+=text_spacing;
@@ -204,9 +204,9 @@ void CTOptionSelecterBase::Draw()
 		//•`‰æ
 		text_flag = SYSBMPTXT_PROP;
 		if(k==m_selecter->current_selected)text_flag |= SYSBMPTXT_SHADE_B;
-		g_system.DrawBMPTextEx(offset_x,y,z,ite->name,color,text_xscale,text_yscale,text_flag);
+			g_system.DrawBMPTextEx(offset_x,y,z,ite->name,color,text_xscale,text_yscale,text_flag);
 		if(not_available)
-			g_system.DrawBMPTextEx(offset_x+320,y,z,"NA",color,text_xscale,text_yscale,text_flag);
+			g_system.DrawBMPTextEx(offset_x+320,y,z,"N/A",color,text_xscale,text_yscale,text_flag);
 		else if(m_selecter->enabled[k])
 			g_system.DrawBMPTextEx(offset_x+320,y,z,"ON",color,text_xscale,text_yscale,text_flag);
 		else
