@@ -1,27 +1,28 @@
+
 /*==============================================================
 
-	�s���֐�(�ʏ퓮��)
+	行動関数(通常動作)
 
 ================================================================*/
 #include "character.h"
 
 //*********************************************************
-//�@�@�ʏ퓮��
+//　　通常動作
 //*********************************************************
 
-//! �j���[�g��
+//! ニュートラ
 void CCharacter::act_neutral()
 {
 	pdat->cnow = CELL_NEUTRAL;
 }
 
-//! ���Ⴊ��
+//! しゃがみ
 void CCharacter::act_crouch()
 {
 	pdat->cnow = CELL_CROUCH;
 }
 
-//! ����
+//! 落下
 void CCharacter::act_rakka()
 {
 	pdat->cnow = CELL_JAMP1;
@@ -36,7 +37,7 @@ void CCharacter::act_rakka()
 	}
 }
 
-//! �o��
+//! 登場
 void CCharacter::act_tojyo()
 {
 	if(pdat->counter == 0){
@@ -59,7 +60,7 @@ void CCharacter::act_tojyo()
 	}
 }
 
-//! ����
+//! 勝利
 void CCharacter::act_win()
 {
 	if(pdat->counter==0){
@@ -79,28 +80,28 @@ void CCharacter::act_win()
 		Message2System(MSGOBJ2SYS_WINPOSEEND,0);
 }
 
-//! �O�i
+//! 前進
 void CCharacter::act_walkf()
 {
 	pdat->cnow = CELL_WALK1+(pdat->counter/4)%4;
 	movex(6);
 }
 
-//! ���
+//! 後退
 void CCharacter::act_walkb()
 {
 	pdat->cnow = CELL_WALKB1+(pdat->counter/4)%4;
 	movex(-6);
 }
 
-//! �W�����v�\������
+//! ジャンプ予備動作
 void CCharacter::act_jamps()
 {
 	if(pdat->counter >2)pdat->aid = ACTID_JAMPC;
 	pdat->cnow = CELL_JAMP;
 }
 
-//!�����W�����v
+//!垂直ジャンプ
 void CCharacter::act_jampc()
 {
 	if(pdat->counter == 0){pdat->vy=-20;pdat->vx=0;}
@@ -116,7 +117,7 @@ void CCharacter::act_jampc()
 	}
 }
 
-//!�O�W�����v
+//!前ジャンプ
 void CCharacter::act_jampf()
 {
 	if(pdat->counter == 0){pdat->vy=-20;pdat->vx=6;}
@@ -133,7 +134,7 @@ void CCharacter::act_jampf()
 	}
 }
 
-//!��W�����v
+//!後ジャンプ
 void CCharacter::act_jampb()
 {
 	if(pdat->counter == 0){pdat->vy=-20;pdat->vx=-6;}
@@ -152,32 +153,32 @@ void CCharacter::act_jampb()
 
 
 //*********************************************************
-//�@���̑�
+//　その他
 //*********************************************************
 void CCharacter::act_taiki()
 {
 	pdat->cnow= CELL_JAMP1;
-	CCharacterBase::act_taiki();//�L�����N�^�[��{�N���X�̓���𗬗p
+	CCharacterBase::act_taiki();//キャラクター基本クラスの動作を流用
 }
 
 void CCharacter::act_koutai_out()
 {
 	pdat->cnow= CELL_JAMP1;
-	CCharacterBase::act_koutai_out();//�L�����N�^�[��{�N���X�̓���𗬗p
+	CCharacterBase::act_koutai_out();//キャラクター基本クラスの動作を流用
 }
 
 void CCharacter::act_koutai_in()
 {
 	pdat->cnow= CELL_JAMP1;
-	CCharacterBase::act_koutai_in();//�L�����N�^�[��{�N���X�̓���𗬗p
+	CCharacterBase::act_koutai_in();//キャラクター基本クラスの動作を流用
 }
 
 void CCharacter::act_koutai()
 {
 	//pdat->cnow= CELL_JAMP1;
-	//CCharacterBase::act_koutai();//�L�����N�^�[��{�N���X�̓���𗬗p
+	//CCharacterBase::act_koutai();//キャラクター基本クラスの動作を流用
 
-	pdat->objtype |= GOBJTYPE_DISPLAY;//��ʓ��ɂ���
+	pdat->objtype |= GOBJTYPE_DISPLAY;//画面内にいる
 
 	GOBJECT *pedat;
 	if(pdat->counter==0){
@@ -205,33 +206,33 @@ void CCharacter::act_koutai()
 		//pdat->vy= 0;
 	}
 
-	pdat->objtype &= ~GOBJFLG_TAIKI;//�ҋ@�t���O������
-	AddProperty( GOBJFLG_TOBETARGET );//�^�[�Q�b�g�ɂȂ�
-	pdat->aid = ACTID_KOUTAI2;//�o��|�[�Y
+	pdat->objtype &= ~GOBJFLG_TAIKI;//待機フラグを消す
+	AddProperty( GOBJFLG_TOBETARGET );//ターゲットになる
+	pdat->aid = ACTID_KOUTAI2;//登場ポーズ
 }
 
 void CCharacter::act_koutai2()
 {
-//	CCharacterBase::act_koutai2();//�L�����N�^�[��{�N���X�̓���𗬗p
-        if(pdat->counter == 0){
-                pdat->vy = 5;
-                PlayMySound(wave_tojyo);
-        }
-        if(pdat->y < 0){
-                pdat->cnow = CELL_JAMP1;
-                pdat->y += pdat->vy;
-                pdat->vy ++;
-        }
-        else pdat->cnow = CELL_NAKAMA16;
+//	CCharacterBase::act_koutai2();//キャラクター基本クラスの動作を流用
+	if(pdat->counter == 0){
+		pdat->vy = 5;
+		PlayMySound(wave_tojyo);
+	}
+	if(pdat->y < 0){
+		pdat->cnow = CELL_JAMP1;
+		pdat->y += pdat->vy;
+		pdat->vy ++;
+	}
+	else pdat->cnow = CELL_NAKAMA16;
 
-        if(pdat->counter > 100){
-                pdat->aid = ACTID_NEUTRAL;
-                Message2System(MSGOBJ2SYS_KOUTAIEND,0);
-        }
+	if(pdat->counter > 100){
+		pdat->aid = ACTID_NEUTRAL;
+		Message2System(MSGOBJ2SYS_KOUTAIEND,0);
+	}
 }
 
 //*********************************************************
-//�@�ǉ�����
+//　追加動作
 //*********************************************************
 
 void CCharacter::act_strikercomeon()
