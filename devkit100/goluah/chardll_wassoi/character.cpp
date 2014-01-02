@@ -655,22 +655,22 @@ void CCharacter::InitAttackInfo()
 	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI | HITINFO_SNDHIT3 | HITINFO_SIV3;
 	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 ;
 	aif[i].id		=ATTACK_STRONG;//ゲージ増加時に使用するID
-	aif[i].damage	=60;//ダメージ
-	aif[i].kezuri	=6;//削り
+	aif[i].damage	=70;//ダメージ
+	aif[i].kezuri	=7;//削り
 
 	i= ATTACKINFO_DIVE2; //ワショーイダイヴ（中）
 	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI | HITINFO_SNDHIT3 | HITINFO_SIV3;
 	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 ;
 	aif[i].id		=ATTACK_STRONG;//ゲージ増加時に使用するID
-	aif[i].damage	=65;//ダメージ
-	aif[i].kezuri	=6;//削り
+	aif[i].damage	=75;//ダメージ
+	aif[i].kezuri	=7;//削り
 
 	i= ATTACKINFO_DIVE3; //ワショーイダイヴ（強）
 	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI | HITINFO_SNDHIT3 | HITINFO_SIV3;
 	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 ;
 	aif[i].id		=ATTACK_STRONG;//ゲージ増加時に使用するID
-	aif[i].damage	=70;//ダメージ
-	aif[i].kezuri	=7;//削り
+	aif[i].damage	=80;//ダメージ
+	aif[i].kezuri	=8;//削り
 
 	i= ATTACKINFO_SYARA1; //しゃら～（弱）
 	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI | HITINFO_SNDHIT3 | HITINFO_SIV3;
@@ -683,15 +683,15 @@ void CCharacter::InitAttackInfo()
 	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI | HITINFO_SNDHIT3 | HITINFO_SIV3;
 	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP;
 	aif[i].id		=ATTACK_STRONG;//ゲージ増加時に使用するID
-	aif[i].damage	=75;//ダメージ
-	aif[i].kezuri	=7;//削り
+	aif[i].damage	=80;//ダメージ
+	aif[i].kezuri	=8;//削り
 
 	i= ATTACKINFO_SYARA3; //しゃら～（強）
 	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI | HITINFO_SNDHIT3 | HITINFO_SIV3;
 	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP;
 	aif[i].id		=ATTACK_STRONG;//ゲージ増加時に使用するID
-	aif[i].damage	=80;//ダメージ
-	aif[i].kezuri	=8;//削り
+	aif[i].damage	=90;//ダメージ
+	aif[i].kezuri	=9;//削り
 
 	i= ATTACKINFO_FESTA_D	; //フェスティバル（ダッシュヒット時）
 	aif[i].hit		=HITINFO_MARK4 | HITINFO_REACT2A | HITINFO_SNDHIT3 | HITINFO_SIV3;
@@ -711,14 +711,14 @@ void CCharacter::InitAttackInfo()
 	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI | HITINFO_SNDHIT3 | HITINFO_SIV3;
 	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 ;
 	aif[i].id		=ATTACK_CYOHI;//ゲージ増加時に使用するID
-	aif[i].damage	=300;//ダメージ
+	aif[i].damage	=500;//ダメージ
 	aif[i].kezuri	=10;//削り
 
 	i=ATTACKINFO_NAGE;//投げ
 	aif[i].hit		=HITINFO_MARK3 | HITINFO_REACT3 | HITINFO_SNDHIT3 | HITINFO_SIV3;
 	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP;
 	aif[i].id		=ATTACK_STRONG;//ゲージ増加時に使用するID
-	aif[i].damage	=50;//ダメージ
+	aif[i].damage	=60;//ダメージ
 	aif[i].kezuri	=0;//削り
 	aif[i].muki		=TRUE;
 
