@@ -1,14 +1,14 @@
 /*==============================================================
 
-	s“®ŠÖ”(•KE)
+	ï¿½sï¿½ï¿½ï¿½Öï¿½(ï¿½Kï¿½E)
 
 ================================================================*/
 #include "character.h"
 
 
-//•KE==========================================================
+//ï¿½Kï¿½E==========================================================
 
-//‚³‚ŸI1‚³‚ñ
+//ï¿½ï¿½ï¿½ï¿½ï¿½I1ï¿½ï¿½ï¿½ï¿½
 void CCharacter::act_sah1()
 {
 	if(pdat->counter == 0){
@@ -97,7 +97,7 @@ void CCharacter::act_sah_landing()
 	else ChangeAction(ACTID_NEUTRAL);
 }
 
-//ƒRƒŒƒK@ƒAƒC@ƒm@ƒJƒ^ƒ`
+//ï¿½Rï¿½ï¿½ï¿½Kï¿½@ï¿½Aï¿½Cï¿½@ï¿½mï¿½@ï¿½Jï¿½^ï¿½`
 void CCharacter::act_fig1()
 {
 	if(pdat->counter < 3)pdat->cnow = CELL_FIG1;
@@ -118,10 +118,10 @@ void CCharacter::act_fig1()
 	}
 }
 
-void CCharacter::act_fig2(){act_fig1();}//’†E«”\‚¨‚ñ‚È‚¶
-void CCharacter::act_fig3(){act_fig1();}//‹­E«”\‚¨‚ñ‚È‚¶
+void CCharacter::act_fig2(){act_fig1();}//ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½È‚ï¿½
+void CCharacter::act_fig3(){act_fig1();}//ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½È‚ï¿½
 
-//“{‚è‚ğ‚Ô‚Â‚¯‚é“Š‚°
+//ï¿½{ï¿½ï¿½ï¿½ï¿½Ô‚Â‚ï¿½ï¿½é“Šï¿½ï¿½
 void CCharacter::act_ikari()
 {
 	DrawFront();
@@ -134,13 +134,13 @@ void CCharacter::act_ikari()
 	else if(pdat->counter < 24){pdat->cnow=CELL_IKARI1;}
 	else if(pdat->counter < 40){pdat->cnow=CELL_IKARI2;}
 	else if(pdat->counter < 42){pdat->cnow=CELL_JAMP;}
-	else if(pdat->counter < 55){pdat->cnow=CELL_JAMP1;movex(2);pdat->y-=12;pdat->vy=-12;}//ƒWƒƒƒ“ƒv‚µ‚Ä’Ç‚¢‚©‚¯
-	else if(pdat->counter < 90){//’Í‚ñ‚Å—‰º
+	else if(pdat->counter < 55){pdat->cnow=CELL_JAMP1;movex(2);pdat->y-=12;pdat->vy=-12;}//ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Ä’Ç‚ï¿½ï¿½ï¿½ï¿½ï¿½
+	else if(pdat->counter < 90){//ï¿½Í‚ï¿½Å—ï¿½ï¿½ï¿½
 		pdat->cnow=CELL_IKARI3;
 		pdat->y+=pdat->vy;
 		pdat->vy++;
 	}
-	else if(pdat->counter < 180){pdat->cnow=CELL_IKARI4;pdat->y=0;pdat->vy=0;}
+	else if(pdat->counter < 150){pdat->cnow=CELL_IKARI4;pdat->y=0;pdat->vy=0;}
 	else {
 		pdat->aid = ACTID_NEUTRAL;
 	}
@@ -191,11 +191,11 @@ DWORD CCharacter::act_ikarie(GOBJECT *pedat)
 		return(ACTID_FUTTOBI);
 	}
 
-	//‚È‚ÉH
+	//ï¿½È‚ÉH
 	return(0);
 }
 
-//u1‚³‚ñ‚ª‚ ‚Á‚¿‚É“¦‚°‚½‚¼Iv-----------------------------------------------------------------
+//ï¿½u1ï¿½ï¿½ï¿½ñ‚ª‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½v-----------------------------------------------------------------
 
 void CCharacter::act_escape()
 {
