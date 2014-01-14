@@ -62,11 +62,11 @@ BOOL CDlgPage2::OnInitDialog()
 void CDlgPage2::Reset()
 {
 #ifndef _DEBUG
-	if(!g_config.limiter_cut_enable)
+/*	if(!g_config.limiter_cut_enable)
 	{
 		CWnd *lc_item = GetDlgItem(IDC_CHECK_POINTLIMITCUT);
 		lc_item->ShowWindow(FALSE);
-	}
+	}*/
 #endif
 
 	ck_debugmode	=g_config.IsDebugMode();

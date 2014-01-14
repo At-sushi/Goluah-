@@ -87,13 +87,13 @@ void CBattleTask::Initialize()
 						GetGObject( charobjid[j][i] )->data.objtype |= GOBJFLG_COMPUTER;
 						//体力の最大値 = DLLが設定した値 x 難易度設定による補正値
 						switch(GetGObject( charobjid[j][i] )->com_level){
-						case DIFF_VERYEASY	:hp_ratio=0.5;	break;
-						case DIFF_EASY		:hp_ratio=0.75;	break;
-						case DIFF_HARD		:hp_ratio=1.2;	break;
-						case DIFF_VERYHARD	:hp_ratio=1.4;	break;
-						case DIFF_SUPERHARD	:hp_ratio=1.6;	break;
-						case DIFF_ULTRAHARD	:hp_ratio=1.8;	break;
-						case DIFF_LIMITERCUT:hp_ratio=2.0;	break;
+						case DIFF_VERYEASY	:hp_ratio=0.75;	break;
+						case DIFF_EASY		:hp_ratio=0.875;break;
+						case DIFF_HARD		:hp_ratio=1.1;	break;
+						case DIFF_VERYHARD	:hp_ratio=1.2;	break;
+						case DIFF_SUPERHARD	:hp_ratio=1.3;	break;
+						case DIFF_ULTRAHARD	:hp_ratio=1.4;	break;
+						case DIFF_LIMITERCUT:hp_ratio=1.5;	break;
 						default:hp_ratio=1.0;break;
 						}
 						GetGObject( charobjid[j][i] )->data.hpmax = (DWORD)( GetGObject( charobjid[j][i] )->data.hpmax * hp_ratio );
@@ -205,7 +205,7 @@ void CBattleTask::InitializeParameters()
 	for(i=0;i<MAXNUM_TEAM;i++){
 		for(j=0;j<2;j++){
 			charobjid[i][j]=0;
-			hprecratio[j][i]=5;
+			hprecratio[j][i]=6;
 		}
 	}
 }
@@ -1573,7 +1573,7 @@ DWORD CBattleTask::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
 			//交代メッセージ送信
 			if(pdat->Message(GOBJMSG_KOUTAI,charobjid[team][cidx]))
 			{
-				hprecratio[team][cidx]*=2;		//HP回復インターバル増
+				hprecratio[team][cidx]*=1.8;		//HP回復インターバル増
 				active_character[team]=next_act;//"アクティブ" キャラクター更新
 				g_system.PopSysTag();
 				return(TRUE);					//成功
@@ -2241,7 +2241,7 @@ void CBattleTask::DrawCharacterState2()
 				//カウンタ
 				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n counter=%d",pdat->counter);
 				//体力・ゲージ
-				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n 体力:%d/%d  ゲージ:%4.2f/%4.2f",pdat->hp,pdat->hpmax,pdat->gauge,pdat->gaugemax);
+				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n 体力:%d/%d  ゲージ:%1.4f/%lu.0000",pdat->hp,pdat->hpmax,pdat->gauge,pdat->gaugemax);
 				//各スイッチ
 				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n 重なり判定");
 				if(pdat->kasanari)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"ON");
@@ -2593,7 +2593,7 @@ void CBattleTask::T_UpdateStatus_Fighting()
 									//本来はシステムメッセージを発行すべきかもしれないが･･･
 									if(pobj3->Message(GOBJMSG_KOUTAI,charobjid[j][active_character[j]]))
 									{
-										hprecratio[j][active_character[j]]*=2;		//HP回復インターバル増
+										hprecratio[j][active_character[j]]*=1.8;		//HP回復インターバル増
 										active_character[j]=k;
 										pobj->Message(GOBJMSG_TAIKI,0);
 									}
@@ -2963,9 +2963,9 @@ void CBattleTask::Update_DeadFlag()
 					if(g_battleinfo.GetBattleType()==TAISENKEISIKI_KOUTAI)
 					{
 						if(i!=(int)active_character[j]){//アクティブでなければ
-							if((bf_counter%hprecratio[j][i])==0){
+							if ((bf_counter%hprecratio[j][i]) == 0){
 								pobj->data.hp++;
-								if(pobj->data.hp > (int)pobj->data.hpmax){
+								if (pobj->data.hp > (int)pobj->data.hpmax){
 									pobj->data.hp = pobj->data.hpmax;
 								}
 							}

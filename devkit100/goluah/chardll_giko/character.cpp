@@ -292,7 +292,7 @@ DWORD CCharacter::TouchB(ATTACKINFO *info,BOOL hit)
 		case ACTID_ATT_CC:
 			{
 				DWORD maai = GetMaai_H(pdat->id, pdat->eid);
-				if(ComLevelCk(3)){this->
+				if(maai > 230 && ComLevelCk(3)){this->
 					SetComAct(ACTID_TOATE2,1);
 				}
 			}

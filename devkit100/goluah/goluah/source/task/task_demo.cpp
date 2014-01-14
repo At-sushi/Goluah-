@@ -98,7 +98,8 @@ void CTDemo::Initialize()
 
 void CTDemo::Terminate()
 {
-	story_selectflag = select_base + select;		// 選択フラグを更新
+	if(select>=0)
+	story_selectflag += select_base + select;		// 選択フラグを更新
 
 	CleanUp();
 	g_sound.BGMStop();
@@ -303,7 +304,7 @@ void CTDemo::Draw()
 
 		for (int i = 0; i < select; i++)
 			strncat(tmp, "\n", 8 - 1);
-		strncat(tmp, "ﾆｱ", 8 - 1);
+		strncat(tmp, "＞", 8 - 1);
 		g_draw.DrawRedText(r_serif, tmp, lstrlen(tmp), DT_LEFT, 3);
 	}
 
@@ -312,7 +313,8 @@ void CTDemo::Draw()
 		//パラメータ表示
 		char *outs = new char[256];
 		sprintf(outs,"scene=%d\n txtlen=%d , dur=%d / spd=%d\n",playingdemodat,txtlen,demodat[playingdemodat].dur,demodat[playingdemodat].spdmsg);
-		sprintf(&outs[strlen(outs)]," bmp w/h = %d/%d",bmpw,bmph);
+		sprintf(&outs[strlen(outs)]," bmp w/h = %d/%d\n",bmpw,bmph);
+		sprintf(&outs[strlen(outs)]," select = %d , base = %d , selectflag = %d\n",select,demodat[playingdemodat].select_base,story_selectflag);
 		r_serif.top=20;
 		g_draw.DrawBlueText(r_serif,outs,-1,DT_LEFT,1);
 		delete [] outs;
@@ -456,6 +458,9 @@ int CTDemo::InitDemoDat(char *filepath)
 				case 21://select_base
 					demodat[numevents].select_base = atoi(rstr);
 					break;
+				case 22://selectf
+					story_selectflag = atoi(rstr);
+					break;
 				}
 				strpos+=susumu;
 			}
@@ -545,7 +550,7 @@ DWORD CTDemo::GetGyoDemo(char *strin,char *strout,DWORD *susumu)
 			}
 		}
 		break;
-	case 's'://sound /3 -- spd /7  select /20 select_base /21
+	case 's'://sound /3 -- spd /7  select /20 select_base /21 selectf /22
 		if(strin[1]=='o' && strin[2]=='u' && strin[3]=='n' && strin[4]=='d'){
 			rval=3;i=5;}
 		else if(strin[1]=='p' && strin[2]=='d'){
@@ -553,6 +558,8 @@ DWORD CTDemo::GetGyoDemo(char *strin,char *strout,DWORD *susumu)
 		else if(strin[1]=='e' && strin[2]=='l' && strin[3]=='e' && strin[4]=='c' && strin[5]=='t'){
 			if (strncmp(strin + 6, "_base", 5) == 0){
 				rval=21;i=11;}
+			else if(strin[6]=='f'){
+				rval=22; i=7;}
 			else{
 				rval=20;i=6;}
 		}

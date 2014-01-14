@@ -948,7 +948,7 @@ void CGauge::DrawPowerGaugeType2(BOOL player,int pindex,int x,int y,BOOL pow)
 			else {
 				g_draw.CellDraw(g_system.GetSystemGraphicSurface(),g_system.GetSystemGraphicCell(),g_system.GetSystemGraphicRect(),CELL_PG1_BLANK,x+45,y+455,0.0f,0,FALSE,FALSE,gcolor);//ワク
 				rpg.right = rpg.left+(int)((pgauge_prv[j][pindex])*132);//*横幅
-				g_draw.CheckBlt(g_system.GetSystemGraphicSurface()[1],x+48,y+452,rpg,FALSE,FALSE,0,0.0f,gcolor);//棒
+				g_draw.CheckBlt(g_system.GetSystemGraphicSurface()[1],x+48,y+448,rpg,FALSE,FALSE,0,0.0f,gcolor);//棒
 				battleTask->DrawNumber4(pgauge_prv[j][pindex],x+97,y+454,0.0f);//パーセンテージ
 			}
 		}
@@ -984,7 +984,7 @@ void CGauge::DrawPowerGaugeType2(BOOL player,int pindex,int x,int y,BOOL pow)
 			else {
 				g_draw.CellDraw(g_system.GetSystemGraphicSurface(),g_system.GetSystemGraphicCell(),g_system.GetSystemGraphicRect(),CELL_PG1_BLANK_R,x+452,y+455,0.0f,0,FALSE,FALSE,gcolor);//ワク
 				rpg_R.left = rpg_R.right-(int)((pgauge_prv[j][pindex])*132);
-				g_draw.CheckBlt(g_system.GetSystemGraphicSurface()[1],x+588-(rpg_R.right-rpg_R.left),y+452,rpg_R,FALSE,FALSE,0,0.0f,gcolor);//棒
+				g_draw.CheckBlt(g_system.GetSystemGraphicSurface()[1],x+588-(rpg_R.right-rpg_R.left),y+448,rpg_R,FALSE,FALSE,0,0.0f,gcolor);//棒
 				battleTask->DrawNumber4(pgauge_prv[j][pindex],x+505,y+454,0.0f);//パーセンテージ
 			}
 		}

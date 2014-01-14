@@ -419,7 +419,7 @@ void CTStorySelecterRing::Hide()
 void CTStorySelecterRing::CTStorySelectBelt::Initialize()
 {
 	CTCharacterSelectBelt::Initialize();
-	m_txtLeft = 20;
+	m_txtLeft = 640 - 20;
 	m_txtTop = FALSE;
 	m_txtR2L = FALSE;
 }
