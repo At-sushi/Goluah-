@@ -72,7 +72,8 @@ void CConfig::SetTimeLimit(UINT tl)
 void CConfig::SetLimiterCut(BOOL b)
 {
 #ifndef _DEBUG
-	if(limiter_cut_enable)
+//	if(limiter_cut_enable)
+	if(TRUE)
 	{
 #endif
 		limiter_cut = b ? 1 : 0;
@@ -153,7 +154,7 @@ void CConfig::SetDefaultConfig2()
 {
 	//Å†ï`âÊä÷åW
 	SetHalfMode( FALSE );
-	SetFullScreen( TRUE );
+	SetFullScreen( FALSE );
 	SetTexFormat( D3DFMT_A1R5G5B5 );
 	SetDeviceType(D3DDEVTYPE_HAL);
 	SetHardwereVP( FALSE );
@@ -182,7 +183,7 @@ void CConfig::SetDefaultConfig2()
 	SetUseLog_Info( FALSE );
 	SetUseLog_Warning( FALSE );
 	SetUseLog_Debug( FALSE );
-	SetSShotImageFormat( SSHOT_JPG );
+	SetSShotImageFormat( SSHOT_PNG );
 }
 
 //*****************************************************************

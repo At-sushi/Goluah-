@@ -1,4 +1,6 @@
-
+/*
+2011/10/29	gauge.cppの変更に伴い変更
+*/
 /*===================================================================
 
 	体力ゲージ
@@ -36,12 +38,16 @@ public:
 	void Draw();
 
 protected:
-	void DrawHPGauge1();		//!< ごちゃ混ぜの場合
-	void DrawHPGauge2();		//!< それ以外
+//	void DrawHPGauge1();		ごちゃ混ぜの場合
+//	void DrawHPGauge2();		それ以外
 	void DrawPowerGauge1();		//!< ごちゃ混ぜの場合
 	void DrawPowerGauge2();		//!< それ以外
 	void DrawPowerGaugeType1(BOOL player,int pindex,int x,int y);			//!< パワーゲージ描画(ストック)
 	void DrawPowerGaugeType2(BOOL player,int pindex,int x,int y,BOOL pow);	//!< パワーゲージ描画(0-100%)
+	void DrawHPwaku1();	//　HP枠coop
+	void DrawHPwaku2();	//	HP枠marvel kof
+	void DrawHPG1();	//	DrawHPGauge1()の代替品
+	void DrawHPG2();	//	DrawHPGauge2()の代替品
 
 //*変数*
 protected:
@@ -64,5 +70,3 @@ protected:
 	BOOL pg_draw[2][MAXNUM_TEAM];			//!< パワーゲージを描画するかどうか
 	int pg_dx[2][MAXNUM_TEAM];			//!< パワーゲージのずらし幅。ゲージの交換時に使用
 };
-
-

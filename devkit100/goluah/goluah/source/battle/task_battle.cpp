@@ -1,4 +1,8 @@
-
+/*
+2011/10/29	timeoverのボイスに対応
+			数字の独立
+			交代・ストライカーで呼ぶ方向を左右逆に
+*/
 /*============================================================================
 
 	戦闘タスククラス
@@ -83,13 +87,13 @@ void CBattleTask::Initialize()
 						GetGObject( charobjid[j][i] )->data.objtype |= GOBJFLG_COMPUTER;
 						//体力の最大値 = DLLが設定した値 x 難易度設定による補正値
 						switch(GetGObject( charobjid[j][i] )->com_level){
-						case DIFF_VERYEASY	:hp_ratio=0.5;	break;
-						case DIFF_EASY		:hp_ratio=0.75;	break;
-						case DIFF_HARD		:hp_ratio=1.2;	break;
-						case DIFF_VERYHARD	:hp_ratio=1.4;	break;
-						case DIFF_SUPERHARD	:hp_ratio=1.6;	break;
-						case DIFF_ULTRAHARD	:hp_ratio=1.8;	break;
-						case DIFF_LIMITERCUT:hp_ratio=2.0;	break;
+						case DIFF_VERYEASY	:hp_ratio=0.75;	break;
+						case DIFF_EASY		:hp_ratio=0.875;break;
+						case DIFF_HARD		:hp_ratio=1.1;	break;
+						case DIFF_VERYHARD	:hp_ratio=1.2;	break;
+						case DIFF_SUPERHARD	:hp_ratio=1.3;	break;
+						case DIFF_ULTRAHARD	:hp_ratio=1.4;	break;
+						case DIFF_LIMITERCUT:hp_ratio=1.5;	break;
 						default:hp_ratio=1.0;break;
 						}
 						GetGObject( charobjid[j][i] )->data.hpmax = (DWORD)( GetGObject( charobjid[j][i] )->data.hpmax * hp_ratio );
@@ -201,7 +205,7 @@ void CBattleTask::InitializeParameters()
 	for(i=0;i<MAXNUM_TEAM;i++){
 		for(j=0;j<2;j++){
 			charobjid[i][j]=0;
-			hprecratio[j][i]=5;
+			hprecratio[j][i]=6;
 		}
 	}
 }
@@ -1234,8 +1238,8 @@ void CBattleTask::Draw()
 					float scale = (float)(30 - (int)bf_hitdisp[1]) / 15.0f;
 
 					if (scale < 1.0f) scale = 1.0f;
-					DrawNumber(pobj->hitcount,hitdispx,120,TRUE,0.0f,scale,scale);
-					DrawNumber2(pobj->sexydamage_anim,hitdispx+25,145,0.0f);
+					DrawNumber5(pobj->hitcount,hitdispx,120,TRUE,0.0f,scale,scale);
+					DrawNumber6(pobj->sexydamage_anim,hitdispx+25,145,0.0f);
 
 					// 表示用の数字アニメ
 					if (pobj->sexydamage > pobj->sexydamage_anim)
@@ -1546,10 +1550,10 @@ DWORD CBattleTask::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
 
 			//「次の」キャラクター取得
 			DWORD next_act;
-			switch(cidx){
-				case 0:next_act= striker_front ? 1 : 2 ;break;
-				case 1:next_act= striker_front ? 2 : 0 ;break;
-				case 2:next_act= striker_front ? 0 : 1 ;break;
+			switch(cidx){	//HPとface1の配置変更に伴い、左右を逆に
+				case 0:next_act= striker_front ? 2 : 1 ;break;
+				case 1:next_act= striker_front ? 0 : 2 ;break;
+				case 2:next_act= striker_front ? 1 : 0 ;break;
 				default:
 					g_system.LogWarning("%s msg=%08X ,失敗(cidx=%d)",__FUNCTION__,msg,cidx);
 					g_system.PopSysTag();
@@ -1569,7 +1573,7 @@ DWORD CBattleTask::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
 			//交代メッセージ送信
 			if(pdat->Message(GOBJMSG_KOUTAI,charobjid[team][cidx]))
 			{
-				hprecratio[team][cidx]*=2;		//HP回復インターバル増
+				hprecratio[team][cidx]*=1.8;		//HP回復インターバル増
 				active_character[team]=next_act;//"アクティブ" キャラクター更新
 				g_system.PopSysTag();
 				return(TRUE);					//成功
@@ -1601,10 +1605,10 @@ DWORD CBattleTask::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
 			
 			//「次の」キャラクター取得
 			DWORD next_act;
-			switch(cidx){
-				case 0:next_act= striker_front ? 1 : 2 ;break;
-				case 1:next_act= striker_front ? 2 : 0 ;break;
-				case 2:next_act= striker_front ? 0 : 1 ;break;
+			switch(cidx){	//HPとface1の配置変更に伴い、左右を逆に
+				case 0:next_act= striker_front ? 2 : 1 ;break;
+				case 1:next_act= striker_front ? 0 : 2 ;break;
+				case 2:next_act= striker_front ? 1 : 0 ;break;
 				default:
 					g_system.PopSysTag();
 					return(FALSE);
@@ -1711,10 +1715,11 @@ void CBattleTask::AddEffect(DWORD efctid,int prm1,int prm2,int prm3)
 		efct_sindo = prm2;
 		efct_sindom= prm1;
 
-		// フェードアウト開始
+/*		// 振動エフェクトに残像をつけた
+		// コマ落ちすることがある（Part37の>>705）ので戻しておきます
 		RELEASE(tex_fb);
 		tex_fb = g_draw.GetFrontBufferCopy();
-		efct_fadein = min(prm2, 8);
+		efct_fadein = min(prm2, 8);*/
 		break;
 	case EFCTID_NOBG:
 		efct_nobg = prm1;
@@ -2236,7 +2241,7 @@ void CBattleTask::DrawCharacterState2()
 				//カウンタ
 				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n counter=%d",pdat->counter);
 				//体力・ゲージ
-				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n 体力:%d/%d  ゲージ:%4.2f/%4.2f",pdat->hp,pdat->hpmax,pdat->gauge,pdat->gaugemax);
+				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n 体力:%d/%d  ゲージ:%1.4f/%lu.0000",pdat->hp,pdat->hpmax,pdat->gauge,pdat->gaugemax);
 				//各スイッチ
 				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n 重なり判定");
 				if(pdat->kasanari)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"ON");
@@ -2385,12 +2390,12 @@ void CBattleTask::T_UpdateStatus_RoundCall()
 		case 6:AddEffect(EFCTID_ROUND6,0,-1000);break;
 		}
 	}
-	if(bf_counter==70)//「ラウンド～」が終了する時間（大体）
+	if(bf_counter==70 * 1.5)//「ラウンド～」が終了する時間（大体）
 	{
 		if(dsb_fight!=NULL)dsb_fight->Play(0,0,0);//「ファイト」
 		AddEffect(EFCTID_FIGHT,0,0);
 	}
-	if(bf_counter>130)//「ファイト」が終了する時間（大体）
+	if(bf_counter>130 * 1.5)//「ファイト」が終了する時間（大体）
 	{
 		bf_state=BFSTATE_FIGHTING;
 		gbl.ods("BFSTATE_ROUNDCALL → BFSTATE_FIGHTING");
@@ -2413,6 +2418,9 @@ void CBattleTask::T_UpdateStatus_Fighting()
 	{
 		if(bf_counter%70==0)limittime--;
 		if(limittime==0){
+
+			if(dsb_timeover!=NULL)dsb_timeover->Play(0,0,0);
+
 			AddEffect(EFCTID_TIMEOVER,0,0,0);
 			bf_state = BFSTATE_TIMEOVER;
 			bf_counter = 0;
@@ -2585,7 +2593,7 @@ void CBattleTask::T_UpdateStatus_Fighting()
 									//本来はシステムメッセージを発行すべきかもしれないが･･･
 									if(pobj3->Message(GOBJMSG_KOUTAI,charobjid[j][active_character[j]]))
 									{
-										hprecratio[j][active_character[j]]*=2;		//HP回復インターバル増
+										hprecratio[j][active_character[j]]*=1.8;		//HP回復インターバル増
 										active_character[j]=k;
 										pobj->Message(GOBJMSG_TAIKI,0);
 									}
@@ -2955,9 +2963,9 @@ void CBattleTask::Update_DeadFlag()
 					if(g_battleinfo.GetBattleType()==TAISENKEISIKI_KOUTAI)
 					{
 						if(i!=(int)active_character[j]){//アクティブでなければ
-							if((bf_counter%hprecratio[j][i])==0){
+							if ((bf_counter%hprecratio[j][i]) == 0){
 								pobj->data.hp++;
-								if(pobj->data.hp > (int)pobj->data.hpmax){
+								if (pobj->data.hp > (int)pobj->data.hpmax){
 									pobj->data.hp = pobj->data.hpmax;
 								}
 							}

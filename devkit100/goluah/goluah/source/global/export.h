@@ -58,8 +58,8 @@ public:
 	static void   LogWarning(const char* str);			//!< ログ
 	static void   LogDebug(const char* str);			//!< ログ
 	static void   LogInfo(const char* str);				//!< ログ
-	static void	  BGMPause(void);
-	static void	  BGMResume(void);
+	static void   BGMPause(void);
+	static void   BGMResume(void);
 
 	//■　オブジェクト関連
 	static DWORD CreateObject();						//!< オブジェクト生成

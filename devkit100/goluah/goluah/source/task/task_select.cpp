@@ -176,8 +176,8 @@ void CCharacterSelect::OnConditionDecided(CTConditionSelecter *pcsel)
 		//■キャラクターリングクラス登録
 		m_ring[i] = new CTCharacterRing();
 		m_ring[i]->SetPriority( m_pri_cselecter );
-		m_ring[i]->SetPos(320,i==0?160:320);
-		m_ring[i]->SetHeight(25);
+		m_ring[i]->SetPos(320.0,i==0?160.0:320.0);
+		m_ring[i]->SetHeight(i==0?40.0f:22.0f);
 		g_system.AddTask(m_ring[i]);
 		//■キャラクターリング下・オビ
 		m_belt[i] = new CTCharacterSelectBelt;
@@ -332,11 +332,13 @@ void CCharacterSelect::OnSelect(CTCharacterRing *pring,int cindex)
 		int optnum = m_selecter[team]->SetAndShow(cindex, pring->GetKeyInputIndex() );
 		//オプションセレクターの高さ計算・位置指定
 		if(optnum<1)optnum=1;
-		float optheight = m_selecter[team]->GetHeight() + 10.0f;//10:まーじん
+		float optheight = m_selecter[team]->GetHeight() + 15.0f;//10:まーじん
 		float base_y = team==0 ? 160.0f : 320.0f;
-		float top_y = base_y - optheight*( team==0 ? 0.65f : 0.35f );
-		float btm_y = base_y + optheight*( team==0 ? 0.35f : 0.65f );
-		m_selecter[team]->SetPos( team==0 ? 50.0f : 250.0f , top_y+5.0f );
+		float top_y = base_y - optheight*( team==0 ? 0.65f : 0.25f );
+		float btm_y = base_y + optheight*( team==0 ? 0.25f : 0.65f );
+		if(top_y < 0.0f)top_y = 5.0f;
+		if(btm_y > 480.0f)btm_y = 475.0f;
+		m_selecter[team]->SetPos( team==0 ? 50.0f : 235.0f , top_y+5.0f );
 		m_belt[team]->Extend( top_y , btm_y );
 		return;
 	}
@@ -902,7 +904,7 @@ void CTCharacterBigFace::Draw()
 					TRUE,
 					FALSE,
 					0,
-					0.02f + + l*0.008f,
+					0.02f + l*0.008f,
 					face2_col);
 			}
 		}
@@ -1159,22 +1161,22 @@ void CTCharacterSelectBelt::Initialize()
 {
 	m_state = CTCSBS_NotReady;
 	m_ratio = 0;
-	m_height_base = 110.0f;
+	m_height_base = 116.0f;
 
 	UpdateText();
 
 	m_txtTop	= m_pos==0 ? TRUE : FALSE;		//テキストを上に配置するか、下に配置するか
-	m_txtLeft	= m_pos==0 ? 50.0f : 590.0f;	//テキストの左位置
+	m_txtLeft	= 20.0f;	//テキストの左位置
 	m_txtR2L	= m_pos==0 ? FALSE : TRUE;		//テキスト右→左描画
 
 	m_alpha1	= 230;
 	m_alpha2	= 20;									//α、濃いとこ・薄いとこ
 	m_lineCol	= m_pos==0 ? 0x002200FF : 0x00FF0022;	//ラインのカラー（α以外）
 	m_bodyCol	= 0x00FFFFFF;							//本体のカラー（α以外）
-	m_txtCol1	= m_pos==0 ? 0x77220099 : 0x77990022;
-	m_txtCol2	= m_pos==0 ? 0xFF8888FF : 0xFFFF8888;	//テキストカラー（α含）
+	m_txtCol1	= m_pos==0 ? 0x55220099 : 0x55990022;
+	m_txtCol2	= m_pos==0 ? 0xDD5237FF : 0xDDFF3752;	//テキストカラー（α含）
 
-	m_lineWidth = 2.0f;			//色つきライン太さ
+	m_lineWidth = 3.0f;			//色つきライン太さ
 }
 
 
@@ -1309,17 +1311,17 @@ void CTCharacterSelectBelt::UpdateText()
 {
 	if(m_com){
 		if(m_current_key>=0){
-			sprintf(m_disp_str,"COM / Player%d",m_current_key+1);
+			sprintf(m_disp_str,"COM/Player%d",m_current_key+1);
 		}
 		else{
-			sprintf(m_disp_str,"COM / Wait",m_current_key+1);
+			sprintf(m_disp_str,"COM/Wait",m_current_key+1);
 		}
 	}
 	else{
 		sprintf(m_disp_str,"Player%d",m_current_key+1);
 	}
 
-	sprintf(&m_disp_str[strlen(m_disp_str)],": %s",g_charlist.GetRingName(m_ringIndex));
+	sprintf(m_disp_str2,"/%s",g_charlist.GetRingName(m_ringIndex));
 }
 
 /*-----------------------------------------------------------
@@ -1726,7 +1728,7 @@ void CTConditionSelecter::Initialize()
 
 	m_state = CTCoS_Start;
 	m_counter = 0;
-	m_selected = MAXNUM_TEAM*2;
+	m_selected = MAXNUM_TEAM*2 + 2;
 	m_ratio = 0.0f;
 
 	//オビパラメータ初期化
@@ -1788,27 +1790,51 @@ BOOL CTConditionSelecter::Execute(DWORD time)
 			m_ratio = 1.0f;
 
 			DWORD key = g_input.GetAllKey();
-			if(m_selected==select_max-1 && (key&KEYSTA_ALEFT2 || key&KEYSTA_BA2) && m_ok){//ケテーイ
+			if(m_selected==select_max-1 && key&KEYSTA_BUTTONS && m_ok){//ケテーイ
 				CCharacterSelect* ccselect = dynamic_cast<CCharacterSelect*>(g_system.GetCurrentMainTask());
 				ccselect->OnConditionDecided(this);
 				m_state = CTCoS_Hide;
 			}
-			else if( (m_selected==select_max && (key&KEYSTA_ALEFT2 || key&KEYSTA_BA2)) ||
-					  key&KEYSTA_BD2 ){//タイトルに戻る
+			else if(key&KEYSTA_BC2){//OKに移動
+				m_selected=select_max-1;
+			}
+			else if( m_selected==select_max && key&KEYSTA_BUTTONS ){//タイトルに戻る
 				g_system.ReturnTitle();
 				return FALSE;
 			}
-			else if(key&KEYSTA_ALEFT2 || key&KEYSTA_BA2){//変更
+			else if(key&KEYSTA_BA2){//変更
 				Change(FALSE);
 			}
-			else if(key&KEYSTA_ARIGHT2 || key&KEYSTA_BB2){//変更
+			else if(key&KEYSTA_BB2){//変更
 				Change(TRUE);
 			}
-			else if(key&KEYSTA_DOWN2){//移動
-				m_selected++;
+			else if(key&KEYSTA_ALEFT2){//左移動
+				if(1+MAXNUM_TEAM < m_selected && m_selected < select_max-1)
+					m_selected-=MAXNUM_TEAM;
+				else if(m_selected==1)
+					m_selected--;
 			}
-			else if(key&KEYSTA_UP2){//移動
-				m_selected--;
+			else if(key&KEYSTA_ARIGHT2){//右移動
+				if(1 < m_selected && m_selected < 2+MAXNUM_TEAM)
+					m_selected+=MAXNUM_TEAM;
+				else if(m_selected==0)
+					m_selected++;
+			}
+			else if(key&KEYSTA_DOWN2){//下移動
+				if(m_selected == 1 || m_selected == 1+MAXNUM_TEAM)
+					m_selected+=MAXNUM_TEAM+1;
+				else if(m_selected==0)
+					m_selected+=2;
+				else
+					m_selected++;
+			}
+			else if(key&KEYSTA_UP2){//上移動
+				if(m_selected == 1 || m_selected == 2)
+					m_selected-=2;
+				else if(m_selected == 2+MAXNUM_TEAM)
+					m_selected-=MAXNUM_TEAM+1;
+				else
+					m_selected--;
 			}
 			m_selected = (m_selected+select_max+1) % (select_max+1);
 		}break;
@@ -1894,11 +1920,12 @@ void CTConditionSelecter::Draw()
 	CTBeltBase::CalcTopBottom();
 	CTBeltBase::Draw();//オビ・タイトル描画
 
-	const float x=100;					//表示左位置
-	const float txt_xr=0.65f;			//テキスト・y拡大率
-	const float txt_yr=0.65f*m_ratio;	//テキスト・x拡大率
+	const float x=40.0f;					//表示左位置
+	const float txt_xr=1.00f;			//テキスト・y拡大率
+	const float txt_yr=1.00f*m_ratio;	//テキスト・x拡大率
 	float y = 100.0f;
-	const float ystep = 24.0f;
+	const float ystep = 35.0f;
+	float shiftX=0.0f;	//TEAM2改行用
 
 	int i,j;
 
@@ -1912,31 +1939,37 @@ void CTConditionSelecter::Draw()
 		"Marvel Like",
 		"K.O.F. Like"
 	};
-	sprintf(tstr,"Battle Type : %s",typenames[m_type-1]);
+	sprintf(tstr,"Mode : %s",typenames[m_type-1]);
 	g_system.DrawBMPTextEx(x,y,0.0f,
 				tstr,
 				TxtCol(0),txt_xr,txt_yr,SYSBMPTXT_PROP);
-	y += ystep;
+
 	//制限時間
 	if(m_type==TAISENKEISIKI_GOCYAMAZE){
 		if(m_limit_time[m_limit_time_index]>0)
-			sprintf(tstr,"Limit Time : %d",m_limit_time[m_limit_time_index]);
+			sprintf(tstr,"Time : %d",m_limit_time[m_limit_time_index]);
 		else
-			sprintf(tstr,"Limit Time : -infinity-");
+			sprintf(tstr,"Time : -infinity-");
 	}
 	else
-		sprintf(tstr,"Limit Time : -no use-");
-	g_system.DrawBMPTextEx(x,y,0.0f,
+		sprintf(tstr,"Time : -no use-");
+	g_system.DrawBMPTextEx(x+300.0f,y,0.0f,
 				tstr,
 				TxtCol(1),txt_xr,txt_yr,SYSBMPTXT_PROP);
 	y += ystep;
+	y += ystep;
+
+	sprintf(tstr,"TEAM1");
+	g_system.DrawBMPTextEx(x,y,0.0f,tstr,0xFF5237FF,txt_xr,txt_yr,SYSBMPTXT_PROP);
+	sprintf(tstr,"TEAM2");
+	g_system.DrawBMPTextEx(x+300.0f,y,0.0f,tstr,0xFFFF3752,txt_xr,txt_yr,SYSBMPTXT_PROP);
 	y += ystep;
 
 	//TEAM*-x : ～
 	for(j=0;j<2;j++){
 		for(i=0;i<MAXNUM_TEAM;i++)
 		{
-			sprintf(tstr,"TEAM%d-%d : ",j+1,i+1);
+			sprintf(tstr,"%d : ",i+1);
 			if(m_assign[j][i]&CASSIGN_SPECIFIC)//特別
 			{
 				switch(m_assign[j][i]){
@@ -1948,7 +1981,14 @@ void CTConditionSelecter::Draw()
 			else{
 				sprintf(&tstr[strlen(tstr)],"Player%d",m_assign[j][i]+1);
 			}
-			g_system.DrawBMPTextEx(x,y,0.0f,
+			if(j==0)	//TEAM1
+				shiftX=40.0f;
+			else	//TEAM2
+			{
+				y=100.0f + (i+3)*ystep;
+				shiftX=340.0f;
+			}
+			g_system.DrawBMPTextEx(x+shiftX,y,0.0f,
 				tstr,TxtCol(j*MAXNUM_TEAM+i+2),txt_xr,txt_yr,SYSBMPTXT_PROP);
 			y += ystep;
 		}

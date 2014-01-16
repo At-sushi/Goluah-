@@ -412,14 +412,8 @@ BOOL CCharacter::Command_OnAttacking(DWORD key)
 	if(m_opt_ExtraAttack)
 	{
 		if(pdat->aid == ACTID_ATT_SB){
-			if(key & KEYSTA_BB2){
+			if((key & KEYSTA_BB2) && !(key & KEYSTA_DOWN)){
 				ChangeAction(  ACTID_ATT_SB2 );return TRUE;
-			}
-		}
-
-		if(pdat->aid == ACTID_ATT_SC){
-			if(key & KEYSTA_BC2){
-				ChangeAction(  ACTID_ATT_SC2 );return TRUE;
 			}
 		}
 		
@@ -429,6 +423,12 @@ BOOL CCharacter::Command_OnAttacking(DWORD key)
 				if(ChainCombo(CHAIN_SC3)){
 					ChangeAction(  ACTID_ATT_SC3 );return TRUE;
 				}
+			}
+		}
+
+		if(pdat->aid == ACTID_ATT_SC){
+			if((key & KEYSTA_BC2) && !(key & KEYSTA_DOWN)){
+				ChangeAction(  ACTID_ATT_SC2 );return TRUE;
 			}
 		}
 	}

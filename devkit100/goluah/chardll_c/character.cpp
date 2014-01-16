@@ -392,14 +392,15 @@ DWORD CCharacter::TouchB(ATTACKINFO *info,BOOL hit)
 	{
 		switch(pdat->aid)
 		{
-		case ACTID_ATT_SC:
-		case ACTID_ATT_CC:
+			case ACTID_ATT_SC:
+			case ACTID_ATT_CC:
 			{
 				if(ComLevelCk(5) && pdat->gauge>=1.0f)
 				{
 					SetComAct(ACTID_DAKKO,10);
 				}
-				else if(ComLevelCk(3)){
+				else if(ComLevelCk(3))
+				{
 					SetComAct(ACTID_STAFF,5);
 				}
 			}
@@ -521,7 +522,7 @@ void CCharacter::PreAction()
 		{
 			ArekoreCancel();
 		}
-		else if(t<((maai<60) ? 12: 2))
+		else if(t<((maai<60) ? 12 : 2))
 		{
 			ArekoreRelease();
 		}
@@ -786,7 +787,7 @@ void CCharacter::InitWazInfo()//コンピュータ用技情報の設定
 	waz.att_bullet[1] = ACTID_MOYAMOYA2;//飛び道具
 	waz.att_bullet[2] = ACTID_MOYAMOYA3;//飛び道具
 
-	waz.att_tai[0]	  = ACTID_STAFF; //対空
+	waz.att_tai[0]    = ACTID_STAFF; //対空
 
 	//リーチ設定
 	SetComReach( 0,MAAI_SHORT	);

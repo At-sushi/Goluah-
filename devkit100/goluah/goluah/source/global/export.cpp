@@ -786,11 +786,12 @@ DWORD  CExport::CreateCellDat2(char* filename,LPVOID *cdat,LPVOID *rdat,LPVOID *
 }
 void CExport::BGMPause(void)
 {
-	g_sound.BGMPause();
+g_sound.BGMPause();
 }
 void CExport::BGMResume(void)
 {
-	g_sound.BGMResume();
+g_sound.BGMResume();
 }
+
 
 

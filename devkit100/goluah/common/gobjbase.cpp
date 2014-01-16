@@ -988,28 +988,28 @@ void CGoluahObject::LogInfo(const char* fmt,...)
 }
 
 /*!
-*	@brief BGMの一時停止
-*	@sa CGoluahObject::BGMResume
-*	@sa DI_FUNCTIONS_S::bgm_pause
+* @brief BGMの一時停止
+* @sa CGoluahObject::BGMResume
+* @sa DI_FUNCTIONS_S::bgm_pause
 *
-*	BGMの再生を一時停止します。BGMResumeで再開します。
-*	独自BGMなどの演出に。
+* BGMの再生を一時停止します。BGMResumeで再開します。
+* 独自BGMなどの演出に。
 */
 void CGoluahObject::BGMPause()
 {
-	funcs->bgm_pause();
+funcs->bgm_pause();
 }
 
 /*!
-*	@brief タグの除去
-*	@sa CGoluahObject::BGMPause
-*	@sa DI_FUNCTIONS_S::bgm_resume
+* @brief BGMの再開
+* @sa CGoluahObject::BGMPause
+* @sa DI_FUNCTIONS_S::bgm_resume
 *
-*	BGMPauseで停止したBGMの再生を再開します。
+* BGMPauseで停止したBGMの再生を再開します。
 */
 void CGoluahObject::BGMResume()
 {
-	funcs->bgm_resume();
+funcs->bgm_resume();
 }
 
 
@@ -1966,14 +1966,14 @@ BOOL CCharacterBase::Command_OnAttacking(DWORD keyinfo)
 	else{
 		if(chainComboEnabled && keyinfo & 0x22220000){
 			if(keyinfo & KEYSTA_DOWN){
-				if(keyinfo & KEYSTA_BC2){/*if(ChainCombo(CHAIN_CC))*/{ChangeAction(ACTID_ATT_CC);return TRUE;}}
-				else if(keyinfo & KEYSTA_BB2){/*if(ChainCombo(CHAIN_CC)))*/{ChangeAction(ACTID_ATT_CB);return TRUE;}}
-				else if(keyinfo & KEYSTA_BA2){/*if(ChainCombo(CHAIN_CC)))*/{ChangeAction(ACTID_ATT_CA);return TRUE;}}
+				if(keyinfo & KEYSTA_BC2){if(ChainCombo(CHAIN_CC)){ChangeAction(ACTID_ATT_CC);return TRUE;}}
+				else if(keyinfo & KEYSTA_BB2){if(ChainCombo(CHAIN_CB)){ChangeAction(ACTID_ATT_CB);return TRUE;}}
+				else if(keyinfo & KEYSTA_BA2){if(ChainCombo(CHAIN_CA)){ChangeAction(ACTID_ATT_CA);return TRUE;}}
 			}
 			else{
-				if(keyinfo & KEYSTA_BC2){/*if(ChainCombo(CHAIN_CC))*/{ChangeAction(ACTID_ATT_SC);return TRUE;}}
-				else if(keyinfo & KEYSTA_BB2){/*if(ChainCombo(CHAIN_CC))*/{ChangeAction(ACTID_ATT_SB);return TRUE;}}
-				else if(keyinfo & KEYSTA_BA2){/*if(ChainCombo(CHAIN_CC))*/{ChangeAction(ACTID_ATT_SA);return TRUE;}}
+				if(keyinfo & KEYSTA_BC2){if(ChainCombo(CHAIN_SC)){ChangeAction(ACTID_ATT_SC);return TRUE;}}
+				else if(keyinfo & KEYSTA_BB2){if(ChainCombo(CHAIN_SB)){ChangeAction(ACTID_ATT_SB);return TRUE;}}
+				else if(keyinfo & KEYSTA_BA2){if(ChainCombo(CHAIN_SA)){ChangeAction(ACTID_ATT_SA);return TRUE;}}
 			}
 		}
 	}

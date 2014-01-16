@@ -108,10 +108,10 @@ void CCharacter::act_att_ja()//”òŽã
 		StartAttack(ATTACKINFO_JAMP_A);
 	}
 
-	pdat->cnow = CELL_JA;
-	if(pdat->counter > 20)pdat->aid = ACTID_RAKKA2;
+	if(pdat->counter < 21)pdat->cnow = CELL_JA;
+	else pdat->aid = ACTID_RAKKA2;
 
-	JiyuuRakka(ACTID_NEUTRAL,TRUE);
+	JiyuuRakka(1.5,TRUE);
 }
 
 void CCharacter::act_att_jb()//”ò’†
@@ -120,10 +120,11 @@ void CCharacter::act_att_jb()//”ò’†
 		StartAttack(ATTACKINFO_JAMP_B);
 	}
 
-	pdat->cnow = CELL_JB;
-	if(pdat->counter > 10)pdat->aid = ACTID_RAKKA2;
+	if(pdat->counter < 11)pdat->cnow = CELL_JB;
+	else if(pdat->counter <25)pdat->cnow = CELL_JAMP1;
+	else pdat->aid = ACTID_RAKKA2;
 
-	JiyuuRakka(ACTID_NEUTRAL,TRUE);
+	JiyuuRakka(1.5,TRUE);
 }
 
 void CCharacter::act_att_jc()//”ò‹­
@@ -137,7 +138,7 @@ void CCharacter::act_att_jc()//”ò‹­
 	else if(pdat->counter <35)pdat->cnow = CELL_JAMP1;
 	else pdat->aid = ACTID_RAKKA2;
 
-	JiyuuRakka(ACTID_NEUTRAL,TRUE);
+	JiyuuRakka(1.5,TRUE);
 }
 
 //*********************************************************

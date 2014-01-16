@@ -1,3 +1,7 @@
+/*
+2011/10/29	timeoverのボイスに対応
+			数字の描写に使うcellを時間制限・Hit・Damage等で分けた
+*/
 /*=========================================================================
 	
 	戦闘タスク基礎
@@ -48,6 +52,7 @@ void CBattleTaskBase::Initialize()
 	//[ FIGHT / KO ]のサウンドをロード
 	dsb_fight = g_sound.CreateDSB(".\\system\\sound\\fight.wav");
 	dsb_ko = g_sound.CreateDSB(".\\system\\sound\\ko.wav");
+	dsb_timeover = g_sound.CreateDSB(".\\system\\sound\\timeover.wav");
 
 	InitializeParameters();
 	InitializeObjectList();
@@ -606,97 +611,97 @@ DWORD CBattleTaskBase::GetActiveCharacterID(DWORD team)
 void CBattleTaskBase::DrawNumber(DWORD num,int x,int y,BOOL hits,float z, float magx, float magy)
 {
 	switch((num/10)%10){
-	case 1:OLDCELLDRAW_NISE(x,y,CELL_NUMBER1,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
-	case 2:OLDCELLDRAW_NISE(x,y,CELL_NUMBER2,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
-	case 3:OLDCELLDRAW_NISE(x,y,CELL_NUMBER3,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
-	case 4:OLDCELLDRAW_NISE(x,y,CELL_NUMBER4,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
-	case 5:OLDCELLDRAW_NISE(x,y,CELL_NUMBER5,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
-	case 6:OLDCELLDRAW_NISE(x,y,CELL_NUMBER6,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
-	case 7:OLDCELLDRAW_NISE(x,y,CELL_NUMBER7,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
-	case 8:OLDCELLDRAW_NISE(x,y,CELL_NUMBER8,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
-	case 9:OLDCELLDRAW_NISE(x,y,CELL_NUMBER9,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 1:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HR1,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 2:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HR2,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 3:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HR3,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 4:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HR4,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 5:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HR5,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 6:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HR6,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 7:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HR7,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 8:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HR8,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 9:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HR9,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
 	case 0:
 		if(!hits)
-			OLDCELLDRAW_NISE(x,y,CELL_NUMBER0,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+			OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HR0,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
 	}
 	switch(num%10){
-	case 1:OLDCELLDRAW_NISE(x,y,CELL_NUMBER1,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
-	case 2:OLDCELLDRAW_NISE(x,y,CELL_NUMBER2,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
-	case 3:OLDCELLDRAW_NISE(x,y,CELL_NUMBER3,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
-	case 4:OLDCELLDRAW_NISE(x,y,CELL_NUMBER4,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
-	case 5:OLDCELLDRAW_NISE(x,y,CELL_NUMBER5,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
-	case 6:OLDCELLDRAW_NISE(x,y,CELL_NUMBER6,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
-	case 7:OLDCELLDRAW_NISE(x,y,CELL_NUMBER7,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
-	case 8:OLDCELLDRAW_NISE(x,y,CELL_NUMBER8,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
-	case 9:OLDCELLDRAW_NISE(x,y,CELL_NUMBER9,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
-	case 0:OLDCELLDRAW_NISE(x,y,CELL_NUMBER0,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 1:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HR1,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 2:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HR2,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 3:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HR3,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 4:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HR4,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 5:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HR5,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 6:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HR6,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 7:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HR7,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 8:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HR8,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 9:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HR9,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 0:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HR0,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
 	}
 	if(hits){
 		x+=(int)(20 * magx);
-		OLDCELLDRAW_NISE(x,y,CELL_HITS,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);
+		OLDCELLDRAW_NISE(x,y,CELL_HITS_R,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);
 	}
 
 }
 
 void CBattleTaskBase::DrawNumber2(DWORD num,int x,int y,float z)
 {
-	OLDCELLDRAW(x,y+5,CELL_DAMAGE,sdds,srdat,scdat,FALSE,FALSE,z);
+	OLDCELLDRAW(x,y+5,CELL_DAMAGE_R,sdds,srdat,scdat,FALSE,FALSE,z);
 
 	int zure1=20;
 	BOOL uketa = FALSE;
 	x+=40;
 
 	switch((num/1000)%10){
-	case 1:OLDCELLDRAW(x,y,CELL_NUMBER1,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
-	case 2:OLDCELLDRAW(x,y,CELL_NUMBER2,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
-	case 3:OLDCELLDRAW(x,y,CELL_NUMBER3,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
-	case 4:OLDCELLDRAW(x,y,CELL_NUMBER4,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
-	case 5:OLDCELLDRAW(x,y,CELL_NUMBER5,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
-	case 6:OLDCELLDRAW(x,y,CELL_NUMBER6,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
-	case 7:OLDCELLDRAW(x,y,CELL_NUMBER7,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
-	case 8:OLDCELLDRAW(x,y,CELL_NUMBER8,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
-	case 9:OLDCELLDRAW(x,y,CELL_NUMBER9,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 1:OLDCELLDRAW(x,y,CELL_NUMBER_R1,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 2:OLDCELLDRAW(x,y,CELL_NUMBER_R2,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 3:OLDCELLDRAW(x,y,CELL_NUMBER_R3,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 4:OLDCELLDRAW(x,y,CELL_NUMBER_R4,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 5:OLDCELLDRAW(x,y,CELL_NUMBER_R5,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 6:OLDCELLDRAW(x,y,CELL_NUMBER_R6,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 7:OLDCELLDRAW(x,y,CELL_NUMBER_R7,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 8:OLDCELLDRAW(x,y,CELL_NUMBER_R8,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 9:OLDCELLDRAW(x,y,CELL_NUMBER_R9,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
 	}
 	switch((num/100)%10){
-	case 1:OLDCELLDRAW(x,y,CELL_NUMBER1,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
-	case 2:OLDCELLDRAW(x,y,CELL_NUMBER2,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
-	case 3:OLDCELLDRAW(x,y,CELL_NUMBER3,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
-	case 4:OLDCELLDRAW(x,y,CELL_NUMBER4,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
-	case 5:OLDCELLDRAW(x,y,CELL_NUMBER5,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
-	case 6:OLDCELLDRAW(x,y,CELL_NUMBER6,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
-	case 7:OLDCELLDRAW(x,y,CELL_NUMBER7,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
-	case 8:OLDCELLDRAW(x,y,CELL_NUMBER8,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
-	case 9:OLDCELLDRAW(x,y,CELL_NUMBER9,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 1:OLDCELLDRAW(x,y,CELL_NUMBER_R1,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 2:OLDCELLDRAW(x,y,CELL_NUMBER_R2,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 3:OLDCELLDRAW(x,y,CELL_NUMBER_R3,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 4:OLDCELLDRAW(x,y,CELL_NUMBER_R4,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 5:OLDCELLDRAW(x,y,CELL_NUMBER_R5,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 6:OLDCELLDRAW(x,y,CELL_NUMBER_R6,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 7:OLDCELLDRAW(x,y,CELL_NUMBER_R7,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 8:OLDCELLDRAW(x,y,CELL_NUMBER_R8,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 9:OLDCELLDRAW(x,y,CELL_NUMBER_R9,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
 	default:
-		if(uketa)OLDCELLDRAW(x,y,CELL_NUMBER0,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;
+		if(uketa)OLDCELLDRAW(x,y,CELL_NUMBER_R0,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;
 	}
 	switch((num/10)%10){
-	case 1:OLDCELLDRAW(x,y,CELL_NUMBER1,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
-	case 2:OLDCELLDRAW(x,y,CELL_NUMBER2,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
-	case 3:OLDCELLDRAW(x,y,CELL_NUMBER3,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
-	case 4:OLDCELLDRAW(x,y,CELL_NUMBER4,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
-	case 5:OLDCELLDRAW(x,y,CELL_NUMBER5,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
-	case 6:OLDCELLDRAW(x,y,CELL_NUMBER6,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
-	case 7:OLDCELLDRAW(x,y,CELL_NUMBER7,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
-	case 8:OLDCELLDRAW(x,y,CELL_NUMBER8,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
-	case 9:OLDCELLDRAW(x,y,CELL_NUMBER9,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
+	case 1:OLDCELLDRAW(x,y,CELL_NUMBER_R1,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
+	case 2:OLDCELLDRAW(x,y,CELL_NUMBER_R2,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
+	case 3:OLDCELLDRAW(x,y,CELL_NUMBER_R3,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
+	case 4:OLDCELLDRAW(x,y,CELL_NUMBER_R4,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
+	case 5:OLDCELLDRAW(x,y,CELL_NUMBER_R5,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
+	case 6:OLDCELLDRAW(x,y,CELL_NUMBER_R6,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
+	case 7:OLDCELLDRAW(x,y,CELL_NUMBER_R7,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
+	case 8:OLDCELLDRAW(x,y,CELL_NUMBER_R8,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
+	case 9:OLDCELLDRAW(x,y,CELL_NUMBER_R9,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
 	default:
-		if(uketa)OLDCELLDRAW(x,y,CELL_NUMBER0,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;
+		if(uketa)OLDCELLDRAW(x,y,CELL_NUMBER_R0,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;
 	}
 	switch(num%10){
-	case 1:OLDCELLDRAW(x,y,CELL_NUMBER1,sdds,srdat,scdat,FALSE,FALSE,z);break;
-	case 2:OLDCELLDRAW(x,y,CELL_NUMBER2,sdds,srdat,scdat,FALSE,FALSE,z);break;
-	case 3:OLDCELLDRAW(x,y,CELL_NUMBER3,sdds,srdat,scdat,FALSE,FALSE,z);break;
-	case 4:OLDCELLDRAW(x,y,CELL_NUMBER4,sdds,srdat,scdat,FALSE,FALSE,z);break;
-	case 5:OLDCELLDRAW(x,y,CELL_NUMBER5,sdds,srdat,scdat,FALSE,FALSE,z);break;
-	case 6:OLDCELLDRAW(x,y,CELL_NUMBER6,sdds,srdat,scdat,FALSE,FALSE,z);break;
-	case 7:OLDCELLDRAW(x,y,CELL_NUMBER7,sdds,srdat,scdat,FALSE,FALSE,z);break;
-	case 8:OLDCELLDRAW(x,y,CELL_NUMBER8,sdds,srdat,scdat,FALSE,FALSE,z);break;
-	case 9:OLDCELLDRAW(x,y,CELL_NUMBER9,sdds,srdat,scdat,FALSE,FALSE,z);break;
-	case 0:OLDCELLDRAW(x,y,CELL_NUMBER0,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 1:OLDCELLDRAW(x,y,CELL_NUMBER_R1,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 2:OLDCELLDRAW(x,y,CELL_NUMBER_R2,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 3:OLDCELLDRAW(x,y,CELL_NUMBER_R3,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 4:OLDCELLDRAW(x,y,CELL_NUMBER_R4,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 5:OLDCELLDRAW(x,y,CELL_NUMBER_R5,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 6:OLDCELLDRAW(x,y,CELL_NUMBER_R6,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 7:OLDCELLDRAW(x,y,CELL_NUMBER_R7,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 8:OLDCELLDRAW(x,y,CELL_NUMBER_R8,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 9:OLDCELLDRAW(x,y,CELL_NUMBER_R9,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 0:OLDCELLDRAW(x,y,CELL_NUMBER_R0,sdds,srdat,scdat,FALSE,FALSE,z);break;
 	}
 	x+=zure1;
-	OLDCELLDRAW(x,y,CELL_PTS,sdds,srdat,scdat,FALSE,FALSE,z);
+	OLDCELLDRAW(x,y,CELL_PTS_R,sdds,srdat,scdat,FALSE,FALSE,z);
 }
 
 void CBattleTaskBase::DrawNumber3(double numd,int x,int y,float z)//ゲージ1用
@@ -750,6 +755,190 @@ void CBattleTaskBase::DrawNumber4(double numd,int x,int y,float z)//ゲージ2用
 	}
 
 	OLDCELLDRAW(x+12,y,CELL_PG1_PER,sdds,srdat,scdat,FALSE,FALSE,z);
+}
+
+void CBattleTaskBase::DrawNumber5(DWORD num,int x,int y,BOOL hits,float z, float magx, float magy)
+{
+	switch((num/10)%10){
+	case 1:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HL1,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 2:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HL2,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 3:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HL3,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 4:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HL4,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 5:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HL5,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 6:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HL6,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 7:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HL7,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 8:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HL8,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 9:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HL9,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 0:
+		if(!hits)
+			OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HL0,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	}
+	switch(num%10){
+	case 1:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HL1,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 2:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HL2,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 3:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HL3,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 4:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HL4,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 5:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HL5,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 6:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HL6,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 7:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HL7,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 8:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HL8,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 9:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HL9,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 0:OLDCELLDRAW_NISE(x,y,CELL_NUMBER_HL0,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	}
+	if(hits){
+		x+=(int)(20 * magx);
+		OLDCELLDRAW_NISE(x,y,CELL_HITS,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);
+	}
+
+}
+
+void CBattleTaskBase::DrawNumber6(DWORD num,int x,int y,float z)
+{
+	OLDCELLDRAW(x,y+5,CELL_DAMAGE,sdds,srdat,scdat,FALSE,FALSE,z);
+
+	int zure1=20;
+	BOOL uketa = FALSE;
+	x+=40;
+
+	switch((num/1000)%10){
+	case 1:OLDCELLDRAW(x,y,CELL_NUMBER_L1,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 2:OLDCELLDRAW(x,y,CELL_NUMBER_L2,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 3:OLDCELLDRAW(x,y,CELL_NUMBER_L3,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 4:OLDCELLDRAW(x,y,CELL_NUMBER_L4,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 5:OLDCELLDRAW(x,y,CELL_NUMBER_L5,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 6:OLDCELLDRAW(x,y,CELL_NUMBER_L6,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 7:OLDCELLDRAW(x,y,CELL_NUMBER_L7,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 8:OLDCELLDRAW(x,y,CELL_NUMBER_L8,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 9:OLDCELLDRAW(x,y,CELL_NUMBER_L9,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	}
+	switch((num/100)%10){
+	case 1:OLDCELLDRAW(x,y,CELL_NUMBER_L1,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 2:OLDCELLDRAW(x,y,CELL_NUMBER_L2,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 3:OLDCELLDRAW(x,y,CELL_NUMBER_L3,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 4:OLDCELLDRAW(x,y,CELL_NUMBER_L4,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 5:OLDCELLDRAW(x,y,CELL_NUMBER_L5,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 6:OLDCELLDRAW(x,y,CELL_NUMBER_L6,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 7:OLDCELLDRAW(x,y,CELL_NUMBER_L7,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 8:OLDCELLDRAW(x,y,CELL_NUMBER_L8,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	case 9:OLDCELLDRAW(x,y,CELL_NUMBER_L9,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;uketa=TRUE;break;
+	default:
+		if(uketa)OLDCELLDRAW(x,y,CELL_NUMBER_L0,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;
+	}
+	switch((num/10)%10){
+	case 1:OLDCELLDRAW(x,y,CELL_NUMBER_L1,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
+	case 2:OLDCELLDRAW(x,y,CELL_NUMBER_L2,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
+	case 3:OLDCELLDRAW(x,y,CELL_NUMBER_L3,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
+	case 4:OLDCELLDRAW(x,y,CELL_NUMBER_L4,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
+	case 5:OLDCELLDRAW(x,y,CELL_NUMBER_L5,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
+	case 6:OLDCELLDRAW(x,y,CELL_NUMBER_L6,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
+	case 7:OLDCELLDRAW(x,y,CELL_NUMBER_L7,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
+	case 8:OLDCELLDRAW(x,y,CELL_NUMBER_L8,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
+	case 9:OLDCELLDRAW(x,y,CELL_NUMBER_L9,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;break;
+	default:
+		if(uketa)OLDCELLDRAW(x,y,CELL_NUMBER_L0,sdds,srdat,scdat,FALSE,FALSE,z);x+=zure1;
+	}
+	switch(num%10){
+	case 1:OLDCELLDRAW(x,y,CELL_NUMBER_L1,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 2:OLDCELLDRAW(x,y,CELL_NUMBER_L2,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 3:OLDCELLDRAW(x,y,CELL_NUMBER_L3,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 4:OLDCELLDRAW(x,y,CELL_NUMBER_L4,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 5:OLDCELLDRAW(x,y,CELL_NUMBER_L5,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 6:OLDCELLDRAW(x,y,CELL_NUMBER_L6,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 7:OLDCELLDRAW(x,y,CELL_NUMBER_L7,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 8:OLDCELLDRAW(x,y,CELL_NUMBER_L8,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 9:OLDCELLDRAW(x,y,CELL_NUMBER_L9,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 0:OLDCELLDRAW(x,y,CELL_NUMBER_L0,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	}
+	x+=zure1;
+	OLDCELLDRAW(x,y,CELL_PTS,sdds,srdat,scdat,FALSE,FALSE,z);
+}
+
+void CBattleTaskBase::DrawNumber7(double numd,int x,int y,float z)//ゲージ1用 TEAM2
+{
+	int num=(int)numd;
+
+	switch(num%10){
+	case 1:OLDCELLDRAW(x,y,CELL_PG2_NUM_R1,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 2:OLDCELLDRAW(x,y,CELL_PG2_NUM_R2,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 3:OLDCELLDRAW(x,y,CELL_PG2_NUM_R3,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 4:OLDCELLDRAW(x,y,CELL_PG2_NUM_R4,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 5:OLDCELLDRAW(x,y,CELL_PG2_NUM_R5,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 6:OLDCELLDRAW(x,y,CELL_PG2_NUM_R6,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 7:OLDCELLDRAW(x,y,CELL_PG2_NUM_R7,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 8:OLDCELLDRAW(x,y,CELL_PG2_NUM_R8,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 9:OLDCELLDRAW(x,y,CELL_PG2_NUM_R9,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 0:OLDCELLDRAW(x,y,CELL_PG2_NUM_R0,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	}
+}
+
+void CBattleTaskBase::DrawNumber8(double numd,int x,int y,float z)//ゲージ2用 TEAM2
+{
+	int num = (int)(numd*100.0);
+
+	switch((num/10)%10){
+	case 1:OLDCELLDRAW(x,y,CELL_PG1_NUM_R1,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 2:OLDCELLDRAW(x,y,CELL_PG1_NUM_R2,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 3:OLDCELLDRAW(x,y,CELL_PG1_NUM_R3,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 4:OLDCELLDRAW(x,y,CELL_PG1_NUM_R4,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 5:OLDCELLDRAW(x,y,CELL_PG1_NUM_R5,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 6:OLDCELLDRAW(x,y,CELL_PG1_NUM_R6,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 7:OLDCELLDRAW(x,y,CELL_PG1_NUM_R7,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 8:OLDCELLDRAW(x,y,CELL_PG1_NUM_R8,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 9:OLDCELLDRAW(x,y,CELL_PG1_NUM_R9,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 0:OLDCELLDRAW(x,y,CELL_PG1_NUM_R0,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	}
+
+	x+=12;
+
+	switch(num%10){
+	case 1:OLDCELLDRAW(x,y,CELL_PG1_NUM_R1,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 2:OLDCELLDRAW(x,y,CELL_PG1_NUM_R2,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 3:OLDCELLDRAW(x,y,CELL_PG1_NUM_R3,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 4:OLDCELLDRAW(x,y,CELL_PG1_NUM_R4,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 5:OLDCELLDRAW(x,y,CELL_PG1_NUM_R5,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 6:OLDCELLDRAW(x,y,CELL_PG1_NUM_R6,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 7:OLDCELLDRAW(x,y,CELL_PG1_NUM_R7,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 8:OLDCELLDRAW(x,y,CELL_PG1_NUM_R8,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 9:OLDCELLDRAW(x,y,CELL_PG1_NUM_R9,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	case 0:OLDCELLDRAW(x,y,CELL_PG1_NUM_R0,sdds,srdat,scdat,FALSE,FALSE,z);break;
+	}
+
+	OLDCELLDRAW(x+12,y,CELL_PG1_PER_R,sdds,srdat,scdat,FALSE,FALSE,z);
+}
+
+void CBattleTaskBase::DrawNumber9(DWORD num,int x,int y,BOOL hits,float z, float magx, float magy)
+{
+	switch((num/10)%10){
+	case 1:OLDCELLDRAW_NISE(x,y,CELL_NUMBER1,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 2:OLDCELLDRAW_NISE(x,y,CELL_NUMBER2,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 3:OLDCELLDRAW_NISE(x,y,CELL_NUMBER3,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 4:OLDCELLDRAW_NISE(x,y,CELL_NUMBER4,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 5:OLDCELLDRAW_NISE(x,y,CELL_NUMBER5,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 6:OLDCELLDRAW_NISE(x,y,CELL_NUMBER6,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 7:OLDCELLDRAW_NISE(x,y,CELL_NUMBER7,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 8:OLDCELLDRAW_NISE(x,y,CELL_NUMBER8,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 9:OLDCELLDRAW_NISE(x,y,CELL_NUMBER9,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	case 0:
+		if(!hits)
+			OLDCELLDRAW_NISE(x,y,CELL_NUMBER0,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);x+=(int)(20 * magx);break;
+	}
+	switch(num%10){
+	case 1:OLDCELLDRAW_NISE(x,y,CELL_NUMBER1,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 2:OLDCELLDRAW_NISE(x,y,CELL_NUMBER2,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 3:OLDCELLDRAW_NISE(x,y,CELL_NUMBER3,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 4:OLDCELLDRAW_NISE(x,y,CELL_NUMBER4,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 5:OLDCELLDRAW_NISE(x,y,CELL_NUMBER5,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 6:OLDCELLDRAW_NISE(x,y,CELL_NUMBER6,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 7:OLDCELLDRAW_NISE(x,y,CELL_NUMBER7,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 8:OLDCELLDRAW_NISE(x,y,CELL_NUMBER8,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 9:OLDCELLDRAW_NISE(x,y,CELL_NUMBER9,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	case 0:OLDCELLDRAW_NISE(x,y,CELL_NUMBER0,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);break;
+	}
+	if(hits){
+		x+=(int)(20 * magx);
+		OLDCELLDRAW_NISE(x,y,CELL_HITS,sdds,srdat,scdat,FALSE,FALSE,z,magx,magy);
+	}
+
 }
 
 void CBattleTaskBase::DrawGObject(GOBJECT* pdat)

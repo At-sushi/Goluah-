@@ -19,7 +19,7 @@ void CCharacter::act_wassoi1()
 	if(pdat->counter==0){
 		PlayMySound(wave_dive);
 		pdat->vx=2;
-		pdat->vy=-14;
+		pdat->vy=-15;
 	}
 
 	pdat->cnow = CELL_WASSYO1;

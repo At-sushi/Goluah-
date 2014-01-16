@@ -1,3 +1,6 @@
+/*
+2011/10/29	Marvel‚Å‹ó’†‚Å‚ÌŒð‘ã‚ð•s‰Â‚É
+*/
 #include "StdAfx.h"
 
 #define LPDIRECT3DTEXTURE8 LPVOID
@@ -360,13 +363,13 @@ void CCharAdaptor::Command()
 		return;
 	}
 	//‚±[‚½‚¢
-	else if( (key_now&KEYSTA_FOWORD) && (key_now&KEYSTA_BD2) && !(key_now&KEYSTA_DOWN) ){
+	else if( (key_now&KEYSTA_FOWORD) && (key_now&KEYSTA_BD2) && !(key_now&KEYSTA_DOWN) && pdat->y == 0 ){
 		if((*funcs->msg2system)(pdat->id,MSGOBJ2SYS_KOUTAI1,0)){
 			pdat->aid = ACTID_KOUTAIOUT;
 			return;
 		}
 	}
-	else if( (key_now&KEYSTA_BACK) && (key_now&KEYSTA_BD2) && !(key_now&KEYSTA_DOWN) ){
+	else if( (key_now&KEYSTA_BACK) && (key_now&KEYSTA_BD2) && !(key_now&KEYSTA_DOWN)  && pdat->y == 0 ){
 		if((*funcs->msg2system)(pdat->id,MSGOBJ2SYS_KOUTAI2,0)){
 			pdat->aid = ACTID_KOUTAIOUT;
 			return;

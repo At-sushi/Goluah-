@@ -165,7 +165,7 @@ BOOL CTaskStoryMode::Execute(DWORD time)
 
 			if (ele_vs->nogameover)	// nogameover‚È‚çˆ—‚ðƒpƒX
 			{
-				story_selectflag = ele_vs->sel_shift + g_battleresult.GetWinner();
+				story_selectflag += ele_vs->sel_shift + g_battleresult.GetWinner();
 			} else {
 				//•‰‚¯‚¿‚á‚Á‚Ä‚é
 				if(g_battleresult.GetWinner()){
