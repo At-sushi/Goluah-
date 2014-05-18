@@ -246,7 +246,7 @@ void CSystem::MainLoop()
 	taskManager.Execute(eat_time);
 
 	static DWORD DrawCnt = 0; // b’è
-	if(xtask==taskManager.GetTopExclusiveTask() && !m_render_disabled &&
+	if(xtask==taskManager.GetTopExclusiveTask() && !m_render_disabled && !IsIconic(this->hwnd) &&
 		(m_loopTime > 1 || timepass % (1000 / 60) <= 1) && // ƒm[ƒEƒFƒCƒgŒy—Ê‰»
 		(g_config.GetGameSpeed() != GSPEED_30x2 || DrawCnt % 2 == 0)) // ƒRƒ}”ò‚Î‚µˆ—
 	{
