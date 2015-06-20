@@ -3,8 +3,18 @@
 
 	キャラクター定義
 
+	Goluah!! Copyright (C) 2001-2004 aki, 2014-2015 logger, 2004-2015 At-sushi
+
+	This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+	This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
 =======================================================================================*/
 #include "character.h"
+#define _USE_MATH_DEFINES
+#include <cmath>
 
 //**************************************************************************************
 //  Option Settings
@@ -790,30 +800,35 @@ DWORD CCharacter::ComThink()
 	if(pedat==NULL)return 0;
 
 	// 行動指数
-	int val_walkf = 0;
-	int val_walkb = 0;
-	int val_jumpf = 0;
-	int val_jumpb = 0;
-	int val_dashf = 0;
-	int val_dashb = 0;
-	int val_att_sa = 0;
-	int val_att_sb = 0;
-	int val_att_sc = 0;
-	int val_att_smc = 0;
-	int val_att_ca = 0;
-	int val_att_cb = 0;
-	int val_att_cc = 0;
-	int val_att_ja = 0;
-	int val_att_jb = 0;
-	int val_att_jc = 0;
-	int val_nage = 0;
-	int val_nori = 0;
-	int val_dive = 0;
-	int val_syara = 0;
-	int val_festival = 0;
+	double val_walkf = 0;
+	double val_walkb = 0;
+	double val_jumpf = 0;
+	double val_jumpb = 0;
+	double val_dashf = 0;
+	double val_dashb = 0;
+	double val_att_sa = 0;
+	double val_att_sb = 0;
+	double val_att_sc = 0;
+	double val_att_smc = 0;
+	double val_att_ca = 0;
+	double val_att_cb = 0;
+	double val_att_cc = 0;
+	double val_att_ja = 0;
+	double val_att_jb = 0;
+	double val_att_jc = 0;
+	double val_nage = 0;
+	double val_nori = 0;
+	double val_dive = 0;
+	double val_syara = 0;
+	double val_festival = 0;
 
 	// 位置関係
-	int maai = (int)abs(pedat->x - pdat->x);
+	double maai = abs(pedat->x - pdat->x);
+	auto gauss = [](double x,double m,double delta)
+	{
+		double xm = x - m;
+		return (1.0 / (sqrt(2.0 * M_PI) * delta)) * exp( -(xm*xm) / (2.0*delta*delta));
+	};
 
 	if (pdat->aid & ACTID_KUCYU)
 	{
@@ -849,62 +864,62 @@ DWORD CCharacter::ComThink()
 		else
 		{
 			// 地上戦
-			if (maai < MAAI_SHORT)
 			{
 				// 近距離
-				val_walkb += 1;
-				val_dashb += 3;
-				val_jumpb += 2;
-				val_att_sa += 5;
-				val_att_ca += 5;
-				val_att_cb += 4;
-				val_nage += 5;
-				val_dive += 6;
+				double bias = gauss(maai, MAAI_SHORT/2, 25) * 2.0;
+				val_walkb += 1 * bias;
+				val_dashb += 3 * bias;
+				val_jumpb += 2 * bias;
+				val_att_sa += 5 * bias;
+				val_att_ca += 5 * bias;
+				val_att_cb += 4 * bias;
+				val_nage += 5 * bias;
+				val_dive += 6 * bias;
 				if (pedat->aid & ACTID_SYAGAMI)
-					val_att_smc += 2;
+					val_att_smc += 2 * bias;
 				if (pedat->aid & ACTID_ATTACK){
-					val_walkb += 2;
-					val_dashb += 2;
+					val_walkb += 2 * bias;
+					val_dashb += 2 * bias;
 				}
 			}
-			else if (maai < MAAI_MIDDLE)
 			{
 				// 中距離
-				val_walkf += 4;
-				val_dashf += 3;
-				val_walkb += 4;
-				val_dashb += 3;
-				val_jumpf += 2;
-				val_jumpb += 3;
-				val_att_sb += 5;
-				val_att_cc += 4;
-				val_syara += 6;
+				double bias = gauss(maai, MAAI_MIDDLE-35, 35) * 2.0;
+				val_walkf += 4 * bias;
+				val_dashf += 3 * bias;
+				val_walkb += 4 * bias;
+				val_dashb += 3 * bias;
+				val_jumpf += 2 * bias;
+				val_jumpb += 3 * bias;
+				val_att_sb += 5 * bias;
+				val_att_cc += 4 * bias;
+				val_syara += 6 * bias;
 				if (pedat->aid & ACTID_SYAGAMI)
-					val_att_smc += 3;
+					val_att_smc += 3 * bias;
 			}
-			else if (maai < MAAI_LONG)
 			{
 				// 長距離
-				val_walkf += 4;
-				val_dashf += 5;
-				val_walkb += 4;
-				val_dashb += 3;
-				val_jumpf += 5;
-				val_jumpb += 3;
-				val_att_sc += 5;
-				val_syara += 7;
-				val_festival += 4;
-				val_nori += 4;
+				double bias = gauss(maai, MAAI_LONG-50, 50)*2.0;
+				val_walkf += 4 * bias;
+				val_dashf += 5 * bias;
+				val_walkb += 4 * bias;
+				val_dashb += 3 * bias;
+				val_jumpf += 5 * bias;
+				val_jumpb += 3 * bias;
+				val_att_sc += 5 * bias;
+				val_syara += 7 * bias;
+				val_festival += 4 * bias;
+				val_nori += 4 * bias;
 			}
-			else
 			{
 				// 超長距離
-				val_walkf += 4;
-				val_dashf += 6;
-				val_walkb += 2;
-				val_jumpf += 5;
-				val_nori += 7;
-				val_festival += 7;
+				double bias = 1 / (1 - exp(-(maai - MAAI_LONG-100) / 100));		// シグモイド関数
+				val_walkf += 4 * bias;
+				val_dashf += 7 * bias;
+				val_walkb += 2 * bias;
+				val_jumpf += 5 * bias;
+				val_nori += 7 * bias;
+				val_festival += 7 * bias;
 			}
 		}
 	}
@@ -934,7 +949,7 @@ DWORD CCharacter::ComThink()
 	val_festival += rand() % diff;
 
 	// 無理矢理行動決定
-	int highest = 0;
+	double highest = 0;
 	DWORD now_aid = 0;
 
 	if (val_walkf > highest)	{highest = val_walkf; now_aid = ACTID_WALKF;}

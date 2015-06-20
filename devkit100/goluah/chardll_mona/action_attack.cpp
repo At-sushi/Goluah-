@@ -162,9 +162,9 @@ void CCharacter::act_att_cc()
 	else if(ccounter<8)cell(CELL_CC4);
 	else if(ccounter<10)cell(CELL_CC5);
 	else if(ccounter<12)cell(CELL_CC6);
-	else if(ccounter<20)cell(CELL_CC7);
-	else if(ccounter<25)cell(CELL_CC8);
-	else if(ccounter<30)cell(CELL_CC9);
+	else if(ccounter<54)cell(CELL_CC7);
+	else if(ccounter<59)cell(CELL_CC8);
+	else if(ccounter<64)cell(CELL_CC9);
 	else ChangeAction(ACTID_CROUCH);
 }
 
