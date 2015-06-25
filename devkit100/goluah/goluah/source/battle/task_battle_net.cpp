@@ -1643,7 +1643,7 @@ void CBattleTaskNet::AddEffect(DWORD efctid,int prm1,int prm2,int prm3)
 //  Atari - 矩形衝突時の処理
 //****************************************************************
 
-void CBattleTaskNet::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
+BOOL CBattleTaskNet::Atari(DWORD a_id, DWORD k_id, MY2DVECTOR &kas_point)
 {
 	g_system.PushSysTag(__FUNCTION__);
 
@@ -1652,14 +1652,14 @@ void CBattleTaskNet::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 
 	if(attacker==NULL || higaisya==NULL){
 		g_system.PopSysTag();
-		return;
+		return FALSE;
 	}
 	
 	//とりあえず当たったことを通知
 	if(attacker->Message(GOBJMSG_TOUCHC,k_id)==TOUCHC_CANCEL)
 	{
 		g_system.PopSysTag();
-		return;
+		return FALSE;
 	}
 
 	//元の攻撃情報を保存(atk2)
@@ -2039,6 +2039,7 @@ void CBattleTaskNet::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 	}
 	
 	g_system.PopSysTag();
+	return FALSE;			// ネット対戦の相打ち対応はとりあえず保留
 }
 
 //**********************************************************************

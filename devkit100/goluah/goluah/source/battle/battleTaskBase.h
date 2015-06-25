@@ -135,7 +135,7 @@ protected:
 
 	virtual void StartRound()=0;										//!< ラウンド開始時パラメータリセット処理
 
-	virtual void Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)=0;	//!< 攻撃ヒット時処理
+	virtual BOOL Atari(DWORD a_id, DWORD k_id, MY2DVECTOR &kas_point) = 0;	//!< 攻撃ヒット時処理
 	virtual void HitStop(DWORD len,DWORD oid)=0;						//!< ヒットストップエフェクト処理
 
 	//for debug text out

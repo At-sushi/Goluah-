@@ -53,7 +53,7 @@ public:
 	virtual DWORD MessageFromObject(DWORD oid,DWORD msg,DWORD prm);
 	virtual BOOL CatchObject(DWORD eoid,LPVOID cy);
 	virtual void AddEffect(DWORD efctid,int prm1,int prm2,int prm3=0);
-	virtual void Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point);
+	virtual BOOL Atari(DWORD a_id, DWORD k_id, MY2DVECTOR &kas_point);
 	virtual void HitStop(DWORD len,DWORD oid);
 
 	virtual void SetTransform(BOOL b);
