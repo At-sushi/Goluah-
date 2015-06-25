@@ -824,12 +824,12 @@ DWORD CCOptionSelecter::GetSettings()
 
 void CCOptionSelecter::SetRandom()
 {
-	m_current_favorite = rand()%(m_ref_cinfo->fav_opts.size()+1);
-	if(m_current_favorite!=0)
+	if (m_ref_cinfo->fav_opts.size()!= 0)
 	{
 		//favoriteÝ’è‚Å‚Ìƒ‰ƒ“ƒ_ƒ€
+		m_current_favorite = (rand()%m_ref_cinfo->fav_opts.size());
 		DWORD current_favorite = m_current_favorite;
-		Initialize( m_ref_cinfo->fav_opts[m_current_favorite-1].opt );
+		Initialize( m_ref_cinfo->fav_opts[m_current_favorite].opt );
 		m_current_favorite = current_favorite;
 		return;
 	}
