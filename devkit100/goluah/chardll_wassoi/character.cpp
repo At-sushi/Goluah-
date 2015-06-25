@@ -294,6 +294,12 @@ DWORD CCharacter::CommandCOM(DWORD wid)
 		}
 	}
 
+	// ãÛíÜÇ…îÚÇ—è„Ç™ÇÈïKéEãZ
+	if ((wid == ACTID_WASSYORYUKEN1 || wid == ACTID_WASSYORYUKEN2 || wid == ACTID_WASSYORYUKEN3 ||
+		wid == ACTID_SYARA1 || wid == ACTID_SYARA2 || wid == ACTID_SYARA3) &&
+		wid & ACTID_KUCYU)
+		return FALSE;
+
 	return CCharacterBase::CommandCOM(wid);
 }
 

@@ -2584,9 +2584,6 @@ void CBattleTask::T_UpdateStatus_Fighting()
                               )
                             {
                                 pobj3 = NULL;
-                                // ˆê‰ñŽÀs‚³‚¹‚é
-                                pobj->ActionIDChanged(TRUE, TRUE);
-                                pobj->Message(GOBJMSG_ACTION);
                                 for (i = 0; i<(int)g_battleinfo.GetNumTeam(j); i++)
                                 {
                                     if(i!=active_character[j])

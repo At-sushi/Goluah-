@@ -208,18 +208,6 @@ DWORD CGObject::Message(DWORD type,DWORD prm)
 	case GOBJMSG_ACTION:
 		data.counter++;
 		ActionIDChanged(FALSE);
-		if (actid_prv != data.aid)
-		{
-			if (actloop_count < 100)
-			{
-				actloop_count++;
-				Message(GOBJMSG_ACTION);
-			}
-#ifdef _DEBUG
-			else OutputDebugString("WARNING: ACTIDが変化し続け、無限ループを起こしています。\n");
-#endif
-			actloop_count = 0;
-		}
 		break;
 	case GOBJMSG_DRAW:
 		data.x += siverdx;
