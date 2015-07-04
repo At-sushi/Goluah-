@@ -347,6 +347,7 @@ void CCharacterSelect::OnSelect(CTCharacterRing *pring,int cindex)
 		}//while
 		selected_color[team][num_selected[team]] = rand() % MAXNUM_CHARACTERCOLOR + 1;
 		ResolveColor(team, num_selected[team]);//カラーの重複をチェック
+		m_bface[team]->Set(cindex, selected_color[team][num_selected[team]], 0);//デカface更新
 	}
 
 	selected_char[team][num_selected[team]] = cindex;
@@ -373,7 +374,6 @@ void CCharacterSelect::OnSelect(CTCharacterRing *pring,int cindex)
 	}
 
 	//以下ランダムキャラ処理
-	m_bface[team]->Set(cindex,selected_color[team][num_selected[team]],0);//デカface更新
 	num_selected[team]++;
 
 	if(num_selected[team]==wanted_char_num[team])//チームメンバーがそろった
