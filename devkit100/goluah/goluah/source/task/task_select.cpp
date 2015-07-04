@@ -320,9 +320,38 @@ void CCharacterSelect::OnSelect(CTCharacterRing *pring,int cindex)
 	if(pring==m_ring[1])	team = 1;
 	if(team>1)return;
 
+	// ランダム選択処理
+	if (cindex < 0){
+		BOOL jyufuku;	//別チームの重複
+		BOOL jyufuku2;	//自チームの重複
+		int count;
+
+		jyufuku = TRUE;
+		count = 100;
+		while ((jyufuku && count>0) || jyufuku2)
+		{
+			cindex = rand() % g_charlist.GetCharacterCount();
+			jyufuku = FALSE;
+			jyufuku2 = FALSE;
+			for (int k = 0; k<2; k++){//重複チェック
+				for (int l = 0; l<wanted_char_num[team]; l++){
+					if (!(k == team && l == num_selected[team])){
+						if (cindex == selected_char[k][l]){
+							jyufuku = TRUE;
+							if (team == k)jyufuku2 = TRUE;
+						}
+					}
+				}
+			}
+			count--;//countが0になったら重複しててもそのままいっちゃう
+		}//while
+		selected_color[team][num_selected[team]] = rand() % MAXNUM_CHARACTERCOLOR + 1;
+		ResolveColor(team, num_selected[team]);//カラーの重複をチェック
+	}
+
 	selected_char[team][num_selected[team]] = cindex;
 
-	if(cindex>=0){
+	if (cindex >= 0){
 		m_ring[team]->Hide();
 		/* 同じチーム内での同キャラ選択に対応しようとして保留中。カラーが問題になる。
 		if (g_charlist.GetCharacterVer(cindex) < 1000 &&
