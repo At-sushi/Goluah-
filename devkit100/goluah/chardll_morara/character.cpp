@@ -6,51 +6,6 @@
 =======================================================================================*/
 #include "character.h"
 
-#if 0
-
-//**************************************************************************************
-//  Option Settings
-//　ここに、キャラクターに設定できるオプションを指定します
-//**************************************************************************************
-
-CHARACTER_LOAD_OPTION option[] = {
-	// キャラクターのオプションをここに書いてください。（最大32個）
-	// なお、オプションとオプションの間はコンマ(,)で区切ってください。
-
-	// 記入内容：
-	// 　{ フラグ, 競合するｵﾌﾟｼｮﾝ,依存するｵﾌﾟｼｮﾝ, オプション名, 消費ポイント }
-	{ OPTIONS_CHAIN_COMBO		,0, 0, "Chain Combo"	, 5}, //記入例（消してもOK）
-	{ OPTIONS_EXTRA_ATTACK		,0, 0, "Extra Attack"	, 3},
-	{ OPTIONS_AUTO_GUARD		,0, 0, "Auto Guard"		, 5},
-	{ OPTIONS_GUARD_CANCEL		,0, OPTIONS_AUTO_GUARD, "Guard Cancel"	, 6},
-	{ OPTIONS_G_CUTTER_PLUS		,0, 0, "G.Cutter +"		, 4},
-	{ OPTIONS_CHIBASIRI_PLUS	,0, 0, "Chibasiri +"	, 3},
-	{ OPTIONS_2ND_STEP			,0, 0, "2nd-Step"		, 3},
-	{ OPTIONS_STOCKABLE_GAUGE	,0, 0, "Stockable Gauge", 4},
-	{ OPTIONS_MINIGUN_RELOADED	,0,OPTIONS_STOCKABLE_GAUGE,"Minigun -Reloaded-",3},
-	{ OPTIONS_MORARAEL_MODE		,0,0,"TEST",0},
-};
-
-
-//**************************************************************************************
-//  Character Information
-//　ここにキャラクターの名前を記述します
-//**************************************************************************************
-
-CCharacterInfo CharInfo("モララー",		// キャラクターの名前（最大31バイト）
-						CDI_VERSION,		// キャラクターDLLインターフェイスのバージョン
-						option,				// オプション構造体へのポインタ
-						sizeof(option) / sizeof(CHARACTER_LOAD_OPTION), // オプションの数
-						18,					// オプション最大ポイント数
-						FALSE);				// ネット対戦対応かどうか 将来の拡張のために用意されている。現在は0を渡さなければならない（笑）
-
-char* CharDirectory = NULL;
-
-//設定マクロ。CCharacterInfo変数名↑と、キャラクタークラス名を指定します
-SET_CHARACTERINFO(CharInfo, CCharacter)
-
-#endif //0
-
 
 /*--------------------------------------------------------------------------------------
 	キャラクター生成処

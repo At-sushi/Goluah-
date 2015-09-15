@@ -81,8 +81,8 @@ void CTaskManager::AddTask(CTaskBase *newTask)
 void CTaskManager::Execute(DWORD time)
 {
 	TaskList::iterator i,ied;
-	std::list<TaskList::iterator> deleteList;
-	std::list<TaskList::iterator>::iterator idl,idl_ed;
+	std::deque<TaskList::iterator> deleteList;
+	std::deque<TaskList::iterator>::iterator idl,idl_ed;
 	CTaskBase *delTgt;
 
 	#ifdef ARRAYBOUNDARY_DEBUG
