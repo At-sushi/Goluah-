@@ -18,7 +18,6 @@ CHARACTER_LOAD_OPTION option[] = {
 	// 記入内容：
 	// 　{ フラグ, 競合するｵﾌﾟｼｮﾝ,依存するｵﾌﾟｼｮﾝ, オプション名, 消費ポイント }
 	{ OPTIONS_REVERSAL			,0						,0, "Reversal Attack"	, 5 },
-	{ OPTIONS_GCANCEL			,0						,0, "Guard Cancel"		, 5 },
 	{ OPTIONS_QUICK_CHARGE		,OPTIONS_STOCKABLE_GAUGE,0, "Quick Charge"		, 7 },
 	{ OPTIONS_STOCKABLE_GAUGE	,OPTIONS_QUICK_CHARGE	,0, "Stockable Gauge"	, 7 },
 	{ OPTIONS_HEAVY_HIT			,0						,0, "Heavy Hit"			, 7 },
@@ -35,7 +34,7 @@ CCharacterInfo CharInfo("ギコ",		// キャラクターの名前（最大31バイト）
 						CDI_VERSION,		// キャラクターDLLインターフェイスのバージョン
 						option,				// オプション構造体へのポインタ
 						sizeof(option) / sizeof(CHARACTER_LOAD_OPTION), // オプションの数
-						20,					// オプション最大ポイント数
+						15,					// オプション最大ポイント数
 						FALSE);				// ネット対戦対応かどうか 将来の拡張のために用意されている。現在は0を渡さなければならない（笑）
 
 char* CharDirectory = NULL;
@@ -76,7 +75,7 @@ void CCharacter::InitParameters()
 {
 	//オプション値解釈
 	m_opt_reversal	= (option_flags&OPTIONS_REVERSAL		) ? TRUE : FALSE;
-	m_opt_gcancel	= (option_flags&OPTIONS_GCANCEL			) ? TRUE : FALSE;
+	m_opt_gcancel	= TRUE;
 	m_opt_quick_ch	= (option_flags&OPTIONS_QUICK_CHARGE	) ? TRUE : FALSE;
 	m_opt_hevy_hit	= (option_flags&OPTIONS_HEAVY_HIT		) ? TRUE : FALSE;
 	

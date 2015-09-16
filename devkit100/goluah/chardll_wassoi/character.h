@@ -143,8 +143,8 @@ private:
 
 	//options
 	DWORD option_flag;
-	BOOL OptHeavyHit()		{return FALSE;}
-	BOOL OptGuardCancel()	{return (option_flag&OPTIONS_GUARD_CANCEL)	? TRUE : FALSE;}
+	BOOL OptHeavyHit()		{ return (option_flag&OPTIONS_HEAVY_HIT) ? TRUE : FALSE; }
+	BOOL OptGuardCancel()	{ return TRUE; }
 	BOOL OptKoroKoro()		{return (option_flag&OPTIONS_KOROKORO)		? TRUE : FALSE;}
 	BOOL OptRegenerator()	{return (option_flag&OPTIONS_REGENERATOR)	? TRUE : FALSE;}
 

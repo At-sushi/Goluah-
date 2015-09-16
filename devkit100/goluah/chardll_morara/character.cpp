@@ -50,7 +50,7 @@ void CCharacter::InitAnalyzeOptions()
 	chainComboEnabled	 = TRUE ;
 	isAutoGuard			 = (option_flags&OPTIONS_AUTO_GUARD) ? TRUE : FALSE ;
 	m_opt_ExtraAttack	 = (option_flags&OPTIONS_EXTRA_ATTACK) ? TRUE : FALSE ;
-	m_opt_GuardCancel	 = (option_flags&OPTIONS_GUARD_CANCEL) ? TRUE : FALSE ;
+	m_opt_GuardCancel	 = TRUE ;
 	m_opt_GCutterPlus	 = (option_flags&OPTIONS_G_CUTTER_PLUS) ? TRUE : FALSE ;
 	m_opt_ChibasiriPlus	 = (option_flags&OPTIONS_CHIBASIRI_PLUS) ? TRUE : FALSE ;
 	m_opt_2ndStep		 = (option_flags&OPTIONS_2ND_STEP) ? TRUE : FALSE ;

@@ -14,12 +14,10 @@
 CHARACTER_LOAD_OPTION option[] = {
 	// 記入内容：
 	// 　{ フラグ, 競合するｵﾌﾟｼｮﾝ,依存するｵﾌﾟｼｮﾝ, オプション名, 消費ポイント }
-	{ OPTIONS_CHAIN_COMBO	, 0, 0,						"Chain Combo"	, /*10*/5 },//チェイン・コンボ
 	{ OPTIONS_EXTRA_ATTACK	, 0, 0,						"Extra Attack"	, 5 },//追加入力技
 	{ OPTIONS_AERIAL_ATTACK	, 0, 0,						"Aerial Attack"	, 5 },//エリアル・アタック
 	{ OPTIONS_AERIAL_STEP	, 0, OPTIONS_AERIAL_ATTACK,	"Aerial Step"	, 5 },//2段ジャンプ
 	{ OPTIONS_AUTO_GUARD	, 0, 0,						"Auto Guard"	, /*10*/5 },//オートガード
-	{ OPTIONS_GUARD_CANCEL	, 0, OPTIONS_AUTO_GUARD,	"Guard Cancel"	, 5 },//ガードキャンセル
 };
 
 
@@ -32,7 +30,7 @@ CCharacterInfo CharInfo("モナー",		// キャラクターの名前（最大31バイト）
 						CDI_VERSION,		// キャラクターDLLインターフェイスのバージョン
 						option,				// オプション構造体へのポインタ
 						sizeof(option) / sizeof(CHARACTER_LOAD_OPTION), // オプションの数
-						15,					// オプション最大ポイント数
+						5,					// オプション最大ポイント数
 						FALSE);				// ネット対戦対応かどうか 将来の拡張のために用意されている。
 
 char* CharDirectory = NULL;
@@ -76,8 +74,7 @@ void CCharacter::InitParameters()
 void CCharacter::InitAnalyzeOptions()
 {
 	//チェーンコンボ・ON/OFF
-	if(option_flags&OPTIONS_CHAIN_COMBO)	chainComboEnabled = TRUE;
-	else									chainComboEnabled = FALSE;
+	chainComboEnabled = TRUE;
 
 	m_opt_exAttack	= (option_flags&OPTIONS_EXTRA_ATTACK) ? TRUE : FALSE;
 	m_opt_hadou		= TRUE;
@@ -86,7 +83,7 @@ void CCharacter::InitAnalyzeOptions()
 	m_opt_AAttack	= (option_flags&OPTIONS_AERIAL_ATTACK) ? TRUE : FALSE;
 	m_opt_AStep		= (option_flags&OPTIONS_AERIAL_STEP) ? TRUE : FALSE;
 	isAutoGuard		= (option_flags&OPTIONS_AUTO_GUARD) ? TRUE : FALSE;
-	m_opt_gcancel	= (option_flags&OPTIONS_GUARD_CANCEL) ? TRUE : FALSE;
+	m_opt_gcancel	= TRUE;
 }
 
 /*--------------------------------------------------------------------------------------
