@@ -16,7 +16,6 @@ CHARACTER_LOAD_OPTION option[] = {
 	// 　{ フラグ, 競合するｵﾌﾟｼｮﾝ,依存するｵﾌﾟｼｮﾝ, オプション名, 消費ポイント }
 	{ OPTIONS_EXTRA_ATTACK	, 0, 0,						"Extra Attack"	, 5 },//追加入力技
 	{ OPTIONS_AERIAL_ATTACK	, 0, 0,						"Aerial Attack"	, 5 },//エリアル・アタック
-	{ OPTIONS_AERIAL_STEP	, 0, OPTIONS_AERIAL_ATTACK,	"Aerial Step"	, 5 },//2段ジャンプ
 	{ OPTIONS_AUTO_GUARD	, 0, 0,						"Auto Guard"	, /*10*/5 },//オートガード
 };
 
@@ -81,7 +80,7 @@ void CCharacter::InitAnalyzeOptions()
 	m_opt_hpp30		= FALSE;
 
 	m_opt_AAttack	= (option_flags&OPTIONS_AERIAL_ATTACK) ? TRUE : FALSE;
-	m_opt_AStep		= (option_flags&OPTIONS_AERIAL_STEP) ? TRUE : FALSE;
+	m_opt_AStep		= FALSE;
 	isAutoGuard		= (option_flags&OPTIONS_AUTO_GUARD) ? TRUE : FALSE;
 	m_opt_gcancel	= TRUE;
 }

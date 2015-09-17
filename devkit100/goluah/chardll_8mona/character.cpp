@@ -15,7 +15,6 @@ CHARACTER_LOAD_OPTION option[] = {
 
 	// 　{ フラグ, 競合するｵﾌﾟｼｮﾝ,依存するｵﾌﾟｼｮﾝ, オプション名, 消費ポイント }
 	{ OPTIONS_EXTRA_ATTACK,		0, 0,	"Extra Attacks"	, 6 } ,
-	{ OPTIONS_SUPER_ARMER,		0, 0,	"Super Armer"	, 10} ,
 	{ OPTIONS_EXTRA_FRIENDS,	0, 0,	"Extra Friends"	, 6 } ,
 };
 
@@ -65,7 +64,7 @@ void CCharacter::InitParameters()
 	opt_gcancel		= TRUE;
 	opt_exattack	= (option_flags&OPTIONS_EXTRA_ATTACK) ? TRUE : FALSE;
 	opt_ikari		= TRUE;
-	opt_super_armer	= (option_flags&OPTIONS_SUPER_ARMER ) ? TRUE : FALSE;
+	opt_super_armer	= FALSE;
 	opt_exfriend	= (option_flags&OPTIONS_EXTRA_FRIENDS) ? TRUE : FALSE;
 
 	pdat->hpmax			= 850;					//最大体力値

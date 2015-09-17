@@ -466,9 +466,9 @@ BOOL CBattleTask::Execute(DWORD time)
     g_input.KeyLock(FALSE);
 
     //オブジェクトリスト処理。消滅したがっているオブジェクトを消滅させる
-    for(i=0;i<(int)suicide_list.size();i++){
-        if(suicide_list[i]!=0){
-            DeleteGObject(suicide_list[i]);
+    for(auto i : suicide_list){
+        if(i!=0){
+            DeleteGObject(i);
         }
     }
     suicide_list.resize(0);

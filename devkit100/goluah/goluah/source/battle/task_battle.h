@@ -16,7 +16,7 @@
 
 #define MAXEFCT_SIVER 16
 #define DEBUGMSGBUFFERSIZE	(1024*4)
-#define OBJECTS_MEMINCRATE	32//!< オブジェクト配列、メモリ増分値
+#define OBJECTS_MEMINCRATE	128//!< オブジェクト配列、メモリ増分値
 
 
 /*!
@@ -161,7 +161,7 @@ protected:
 	std::vector< CGObject* > p_objects;				//!< オブジェクト操作クラスのポインタ
 	DWORD object_regindex;							//!< 次に生成するオブジェクトのインデックス
 	std::vector< WORD > object_regno;				//!< そのインデックスでいくつのオブジェクトが生成されてきたか
-	std::vector< DWORD > suicide_list;				//!< 消滅オブジェクトリスト
+	std::deque< DWORD > suicide_list;				//!< 消滅オブジェクトリスト
 };
 
 #define BATTLETASK_FXOBJFLAG		0x80000000

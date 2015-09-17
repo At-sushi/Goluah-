@@ -18,7 +18,7 @@ CHARACTER_LOAD_OPTION option[] = {
 	// 記入内容：
 	// 　{ フラグ, 競合するｵﾌﾟｼｮﾝ,依存するｵﾌﾟｼｮﾝ, オプション名, 消費ポイント }
 	{ OPTIONS_CHAIN_COMBO	,0					, 0, "Chain Combo"	, 8 } ,
-	{ OPTIONS_SUPER_ARMER	,0					, 0, "Super Armer"	, 10} ,
+	{ OPTIONS_SUPER_ARMER	,0					, 0, "Super Armor"	, 10} ,
 	{ OPTIONS_HP_UP			,0					, 0, "HP+20%"		, 8 } ,
 };
 
