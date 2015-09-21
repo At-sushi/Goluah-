@@ -1965,8 +1965,8 @@ void CTConditionSelecter::Draw()
 	//‘ÎíŒ`®
 	char *typenames[]={
 		"Cooperation",
-		"Marvel Like",
-		"K.O.F. Like"
+		"Changeable",
+		"Unchangeable"
 	};
 	sprintf(tstr,"Mode : %s",typenames[m_type-1]);
 	g_system.DrawBMPTextEx(x,y,0.0f,

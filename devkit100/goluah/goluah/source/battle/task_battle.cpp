@@ -1659,7 +1659,7 @@ DWORD CBattleTask::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
 
 BOOL CBattleTask::CatchObject(DWORD eoid,LPVOID cy)
 {
-    if(cy==NULL)return(FALSE);
+    if(eoid == 0 || cy==NULL)return(FALSE);
 
     CGObject *peobj = (CGObject*)GetGObject(eoid);
     if(peobj==NULL)return(FALSE);
