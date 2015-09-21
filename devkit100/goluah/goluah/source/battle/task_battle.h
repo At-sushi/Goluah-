@@ -5,6 +5,14 @@
 
 	（ネットワーク非対応版）
 
+	Goluah!! Copyright (C) 2001-2004 aki, 2014-2015 logger, 2004-2015 At-sushi
+
+	This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+	This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
 ==============================================================================*/
 #pragma once
 
@@ -16,7 +24,6 @@
 
 #define MAXEFCT_SIVER 16
 #define DEBUGMSGBUFFERSIZE	(1024*4)
-#define OBJECTS_MEMINCRATE	128//!< オブジェクト配列、メモリ増分値
 
 
 /*!
@@ -158,9 +165,9 @@ public:
 	void SuicideGObject(DWORD oid);					//!< オブジェクト破棄予約
 	CGObject* GetCharacterObject(DWORD j,DWORD i);	//!< キャラクターのオブジェクト取得（ゲージ等で必要）
 protected:
-	std::vector< CGObject* > p_objects;				//!< オブジェクト操作クラスのポインタ
+	std::unordered_map< int, CGObject* > p_objects;	//!< オブジェクト操作クラスのポインタ
 	DWORD object_regindex;							//!< 次に生成するオブジェクトのインデックス
-	std::vector< WORD > object_regno;				//!< そのインデックスでいくつのオブジェクトが生成されてきたか
+	std::unordered_map< int, WORD > object_regno;	//!< そのインデックスでいくつのオブジェクトが生成されてきたか
 	std::deque< DWORD > suicide_list;				//!< 消滅オブジェクトリスト
 };
 
