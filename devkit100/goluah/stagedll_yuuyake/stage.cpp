@@ -286,8 +286,8 @@ void CStage::InitVrtx()//頂点座標初期化
 
 	for(i=0;i<10;i++){
 		if ( SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, 0, FVF_3DVERTEX,
-						D3DPOOL_MANAGED, &vb_buil1d[i])) &&
-			SUCCEEDED(vb_buil1d[i]->Lock(0, 0, (BYTE**)&vtx_tmp, 0)) )
+			D3DPOOL_MANAGED, &vb_buil1d[i], NULL)) &&
+			SUCCEEDED(vb_buil1d[i]->Lock(0, 0, (void**)&vtx_tmp, 0)) )
 		{
 			memcpy(vtx_tmp, vb_buil1d_tmp[i], sizeof(vb_buil1d_tmp[i]));
 			vb_buil1d[i]->Unlock();
@@ -472,8 +472,8 @@ DWORD CStage::DrawBack()
 	if(d3ddev==NULL)return FALSE;
 
 	//テクスチャアドレッシングモード-繰り返し
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSU,D3DTADDRESS_WRAP);
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSV,D3DTADDRESS_WRAP);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_WRAP);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_WRAP);
 
 	DrawJimen();//地面？
 	DrawBuilding1();//ビル(右)
@@ -481,8 +481,8 @@ DWORD CStage::DrawBack()
 	DrawBackGround();//超背景
 
 	//テクスチャアドレシングモード-そのまま
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSU,D3DTADDRESS_CLAMP);
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSV,D3DTADDRESS_CLAMP);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);
 
 	return FALSE;//通常、デフォルト描画は行わない
 }
@@ -543,7 +543,7 @@ void CStage::DrawBuilding1()
 		vb_buil1c,sizeof(MYVERTEX3D));
 	d3ddev->SetTexture(0,NULL);
 	for(i=0;i<10;i++){
-		d3ddev->SetStreamSource(0, vb_buil1d[i], sizeof(MYVERTEX3D));
+		d3ddev->SetStreamSource(0, vb_buil1d[i], 0, sizeof(MYVERTEX3D));
 		d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);//看板ささえ
 	}
 }

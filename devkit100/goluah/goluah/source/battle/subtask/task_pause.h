@@ -24,8 +24,8 @@ public:
 	void ChangeInst(UINT i);
 
 protected:
-	LPDIRECT3DTEXTURE8 tex_fb;				//!< フロントバッファをコピーしたテクスチャ
-	LPDIRECT3DTEXTURE8 tex_pause;			//!< "Pause Press F7 Key" 表示用テクスチャ
+	LPDIRECT3DTEXTURE9 tex_fb;				//!< フロントバッファをコピーしたテクスチャ
+	LPDIRECT3DTEXTURE9 tex_pause;			//!< "Pause Press F7 Key" 表示用テクスチャ
 	MYSURFACE* ms_inst[2];					//!< 1P/2P インストbmp
 
 	UINT m_counter;

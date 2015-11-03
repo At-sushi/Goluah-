@@ -1,7 +1,9 @@
-
+/*
+2011/10/29	空中でストライカーを呼んだ時に浮遊しないようにしたが、落下速度に影響アリ
+*/
 #include "StdAfx.h"
 
-#define LPDIRECT3DTEXTURE8 LPVOID
+#define LPDIRECT3DTEXTURE9 LPVOID
 
 #include "define_gcd.h"
 #include "gobject.h"
@@ -173,7 +175,7 @@ void CCharAdaptor::act_koutai_in()//チーム戦、交代して画面内に入っていく(2)
 void CCharAdaptor::act_strikercomeon()
 {
 	/*ここにストライカーを呼んだときの動作を記述してください*/
-	pdat->aid = ACTID_NEUTRAL;
+	pdat->aid = ACTID_KUCYU;
 }
 
 //通常動作===========================================================

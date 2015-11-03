@@ -114,7 +114,7 @@ public:
 protected:
 	float m_t;
 	void DrawOne(float cx,float cy,float t,
-					LPDIRECT3DTEXTURE8 tex);
+					LPDIRECT3DTEXTURE9 tex);
 };
 
 /*!

@@ -10,7 +10,7 @@
 #define _aki3d_h_
 
 #include <vector>
-#include "d3dx8.h"
+#include "d3dx9.h"
 
 #define FAR_CLIP	(50.0f)
 #define NEAR_CLIP	( 0.1f)
@@ -128,7 +128,7 @@ public:
 
 	//!初期化。全ての操作の前に行うこと
 	void Initialize(
-		LPDIRECT3DDEVICE8 d3d_device,		//!< D3Dデバイスオブジェクト
+		LPDIRECT3DDEVICE9 d3d_device,		//!< D3Dデバイスオブジェクト
 		const char*	tex_path,				//!< テクスチャロード用のベースディレクトリ
 		WarningReportFunctionPtr pwf=NULL	//!< エラーリポート用の関数ポインタ
 		);
@@ -169,17 +169,17 @@ public:
 	void SetBlend_Nega();
 
 	//テクスチャー
-	LPDIRECT3DTEXTURE8 LoadTexture(const char *filename);
-	void UnloadTexture(LPDIRECT3DTEXTURE8 ptex);
+	LPDIRECT3DTEXTURE9 LoadTexture(const char *filename);
+	void UnloadTexture(LPDIRECT3DTEXTURE9 ptex);
 
-	LPDIRECT3DDEVICE8 GetD3DDev(){ return d3ddev; }
+	LPDIRECT3DDEVICE9 GetD3DDev(){ return d3ddev; }
 
 	void LogWarning(const char* fmt,...);
 
 protected:
 	void Destroy();
 
-	LPDIRECT3DDEVICE8 d3ddev;		//D3Dデバイス
+	LPDIRECT3DDEVICE9 d3ddev;		//D3Dデバイス
 	WarningReportFunctionPtr warning_report;
 };
 

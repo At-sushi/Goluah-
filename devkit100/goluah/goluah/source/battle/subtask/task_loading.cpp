@@ -96,7 +96,7 @@ void CTNowLoading::Progress(NowLoading_IconItem item, float value)
 	vb[2].tu = value;
 	vb[3].tu = value;
 
-	LPDIRECT3DTEXTURE8 tex = NULL;
+	LPDIRECT3DTEXTURE9 tex = NULL;
 	switch(item)
 	{
 	case NowLoading_DLL:
@@ -144,7 +144,7 @@ void CTNowLoading::DrawIcon()
 {
 	g_draw.EnableZ(FALSE,FALSE);
 	g_draw.SetTransform(FALSE);
-	g_draw.d3ddev->SetVertexShader(FVF_3DVERTEX);
+	g_draw.d3ddev->SetFVF(FVF_3DVERTEX);
 
 	float ar = 320.0f/240.0f;
 
@@ -240,7 +240,7 @@ void CTNowLoading::DrawIcon()
 		vb[2].y = y-h;
 		vb[3].y = y+h;
 
-		LPDIRECT3DTEXTURE8 tex = NULL;
+		LPDIRECT3DTEXTURE9 tex = NULL;
 		switch(m_iconlist[i])
 		{
 		case NowLoading_DLL:

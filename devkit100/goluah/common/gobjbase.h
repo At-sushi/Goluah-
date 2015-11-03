@@ -122,7 +122,7 @@ extern "C" DWORD CreateCharacter(PVOID info) {\
 ----------------------------------------------------------------*/
 class RUNTIME_EXPORT CGoluahObject
 {
-	friend class CBulletBase;		// 暫定措置
+	friend class CBulletBase;
 
 public:
 	CGoluahObject(BOOL is_effect = FALSE);
@@ -194,6 +194,8 @@ protected:
 	static void LogInfo(const char* fmt,...);
 	static void BGMPause();
 	static void BGMResume();
+	static int GetGameSpeed();
+	static DWORD GetMaxWin();
 
 	// オブジェクト関連の関数
 	BOOL   ObjCatch(DWORD eid,DWORD msg_nage);				//投げとかで相手をつかむ
@@ -252,16 +254,19 @@ protected:
 
 	       void   SetComRange(DWORD idx);					//COMレンジ設定
 	static DWORD  GetKeyInput(DWORD oid);					//オブジェクトからキーID所得
+	static DWORD GetHitCount(DWORD oid);				//!< 連続技ヒット数（被コンボ数）取得
+	static DWORD GetSexyDamage(DWORD oid);				//!< 連続技蓄積ダメージ（被コンボダメージ）取得
+
 
 	//　描画関連の関数の定義
-	static LPDIRECT3D8 GetD3D();							//IDirect3D* の取得
-	static LPDIRECT3DDEVICE8 GetD3DDevice();				//IDirect3DDevice* の取得
+	static LPDIRECT3D9 GetD3D();							//IDirect3D* の取得
+	static LPDIRECT3DDEVICE9 GetD3DDevice();				//IDirect3DDevice* の取得
 	static void   LoadCellData(char* pathname,GCD_CELL2_070* pCells,GCD_RECT* pRects,GCD_HANTEI* pHanteis);//セルデータ読み込み関数。ver0.90以降では非推奨
 	static MYSURFACE* LoadBitmap(char* PathName,char* PalletFileName = NULL);			//ビットマップ読み込み関数
 	static void   UnloadBitMap(MYSURFACE* Bitmap);			//ビットマップ後始末関数
 	static void   CellDraw(MYSURFACE** pBmps,GCD_CELL2* cdat,GCD_RECT* rdat,		//セル描画関数
-		DWORD cnum,int x,int y,float z,int Rotate,BOOL ReverseX,BOOL ReverseY,DWORD Color,float magx,float magy);
-	static void	  CellDraw(GOBJECT *objdat);
+		DWORD cnum,int x,int y,float z,int Rotate,BOOL ReverseX,BOOL ReverseY,DWORD Color,float magx,float magy,BOOL shadowed = 1);
+	static void	  CellDraw(GOBJECT *objdat,BOOL shadowed = 1);
 	static void   CkBlt(MYSURFACE* pBmp,int x1,int y1,RECT bltrect,
 		double magx,double magy,BOOL revx,BOOL revy,float z,DWORD color);			//Blt2
 	static void   Blt3D(MYSURFACE* pBmp,RECT bltrect,MYRECT3D rect,DWORD color);	//Blt3
@@ -436,10 +441,18 @@ protected:
 	BOOL com22i(int dt);
 	BOOL com426(int dt);
 	BOOL com236236(int dt);
+	BOOL com214214(int dt);
 	BOOL com2363214(int dt);
 	BOOL com62426(int dt);
 	BOOL com6426(int dt);
-
+	BOOL com4268(int dt);
+	BOOL com2684(int dt);
+	BOOL com6842(int dt);
+	BOOL com8426(int dt);
+	BOOL com4862(int dt);
+	BOOL com2486(int dt);
+	BOOL com6248(int dt);
+	BOOL com8624(int dt);
 	//COMレベル判定
 	BOOL ComLevelCk(UINT level);
 

@@ -3,6 +3,14 @@
 
 	キャラクター定義
 
+	Goluah!! Copyright (C) 2001-2004 aki, 2014-2015 logger, 2004-2015 At-sushi
+
+	This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+	This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
 =======================================================================================*/
 #include "character.h"
 
@@ -95,7 +103,7 @@ void CCharacter::InitAnalyzeOptions()
 	chainComboEnabled	 = TRUE ;
 	isAutoGuard			 = (option_flags&OPTIONS_AUTO_GUARD) ? TRUE : FALSE ;
 	m_opt_ExtraAttack	 = (option_flags&OPTIONS_EXTRA_ATTACK) ? TRUE : FALSE ;
-	m_opt_GuardCancel	 = (option_flags&OPTIONS_GUARD_CANCEL) ? TRUE : FALSE ;
+	m_opt_GuardCancel	 = TRUE ;
 	m_opt_GCutterPlus	 = (option_flags&OPTIONS_G_CUTTER_PLUS) ? TRUE : FALSE ;
 	m_opt_ChibasiriPlus	 = (option_flags&OPTIONS_CHIBASIRI_PLUS) ? TRUE : FALSE ;
 	m_opt_2ndStep		 = (option_flags&OPTIONS_2ND_STEP) ? TRUE : FALSE ;
@@ -388,6 +396,10 @@ BOOL CCharacter::Command_OnNormal(DWORD key)
 				return TRUE;
 			}
 		}
+		if (pdat->aid == ACTID_DASHB)
+		{
+			key &= ~KEYSTA_ANYKEY;
+		}
 	}
 	else{//地上動作中
 		//投げ
@@ -412,14 +424,8 @@ BOOL CCharacter::Command_OnAttacking(DWORD key)
 	if(m_opt_ExtraAttack)
 	{
 		if(pdat->aid == ACTID_ATT_SB){
-			if(key & KEYSTA_BB2){
+			if((key & KEYSTA_BB2) && !(key & KEYSTA_DOWN)){
 				ChangeAction(  ACTID_ATT_SB2 );return TRUE;
-			}
-		}
-
-		if(pdat->aid == ACTID_ATT_SC){
-			if(key & KEYSTA_BC2){
-				ChangeAction(  ACTID_ATT_SC2 );return TRUE;
 			}
 		}
 		
@@ -429,6 +435,12 @@ BOOL CCharacter::Command_OnAttacking(DWORD key)
 				if(ChainCombo(CHAIN_SC3)){
 					ChangeAction(  ACTID_ATT_SC3 );return TRUE;
 				}
+			}
+		}
+
+		if(pdat->aid == ACTID_ATT_SC){
+			if((key & KEYSTA_BC2) && !(key & KEYSTA_DOWN)){
+				ChangeAction(  ACTID_ATT_SC2 );return TRUE;
 			}
 		}
 	}

@@ -10,7 +10,7 @@ struct MYSURFACE
 	DWORD ysufindx[MYSUF_MAXNUMTEX];//MYSURFACE中でのtop座標
 	DWORD xsufnum;
 	DWORD ysufnum;
-	LPDIRECT3DTEXTURE8 *pTex;		//テクスチャ配列。d3d8.hを組み込まない場合はLPVOID型に。
+	LPDIRECT3DTEXTURE9 *pTex;		//テクスチャ配列。d3d8.hを組み込まない場合はLPVOID型に。
 	float w;						//ビットマップの幅
 	float h;						//ビットマップの高さ
 	float w2;						//ビットマップの幅（320x240モードでも変化無し）

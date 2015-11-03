@@ -1,28 +1,28 @@
 
 /*==============================================================
 
-	è¡Œå‹•é–¢æ•°(é€šå¸¸å‹•ä½œ)
+	s“®ŠÖ”(’Êí“®ì)
 
 ================================================================*/
 #include "character.h"
 
 //*********************************************************
-//ã€€ã€€é€šå¸¸å‹•ä½œ
+//@@’Êí“®ì
 //*********************************************************
 
-//! ãƒ‹ãƒ¥ãƒ¼ãƒˆãƒ©
+//! ƒjƒ…[ƒgƒ‰
 void CCharacter::act_neutral()
 {
 	pdat->cnow = CELL_NEUTRAL;
 }
 
-//! ã—ã‚ƒãŒã¿
+//! ‚µ‚á‚ª‚İ
 void CCharacter::act_crouch()
 {
 	pdat->cnow = CELL_CROUCH;
 }
 
-//! è½ä¸‹
+//! —‰º
 void CCharacter::act_rakka()
 {
 	pdat->cnow = CELL_JAMP1;
@@ -37,7 +37,7 @@ void CCharacter::act_rakka()
 	}
 }
 
-//! ç™»å ´
+//! “oê
 void CCharacter::act_tojyo()
 {
 	if(pdat->counter == 0){
@@ -60,7 +60,7 @@ void CCharacter::act_tojyo()
 	}
 }
 
-//! å‹åˆ©
+//! Ÿ—˜
 void CCharacter::act_win()
 {
 	if(pdat->counter==0){
@@ -80,28 +80,28 @@ void CCharacter::act_win()
 		Message2System(MSGOBJ2SYS_WINPOSEEND,0);
 }
 
-//! å‰é€²
+//! ‘Oi
 void CCharacter::act_walkf()
 {
-	pdat->cnow = CELL_WALK1+(pdat->counter/4)%4;
+	pdat->cnow = CELL_WALK1+(pdat->counter/6)%4;
 	movex(6);
 }
 
-//! å¾Œé€€
+//! Œã‘Ş
 void CCharacter::act_walkb()
 {
-	pdat->cnow = CELL_WALKB1+(pdat->counter/4)%4;
+	pdat->cnow = CELL_WALKB1+(pdat->counter/6)%4;
 	movex(-6);
 }
 
-//! ã‚¸ãƒ£ãƒ³ãƒ—äºˆå‚™å‹•ä½œ
+//! ƒWƒƒƒ“ƒv—\”õ“®ì
 void CCharacter::act_jamps()
 {
 	if(pdat->counter >2)pdat->aid = ACTID_JAMPC;
 	pdat->cnow = CELL_JAMP;
 }
 
-//!å‚ç›´ã‚¸ãƒ£ãƒ³ãƒ—
+//!‚’¼ƒWƒƒƒ“ƒv
 void CCharacter::act_jampc()
 {
 	if(pdat->counter == 0){pdat->vy=-20;pdat->vx=0;}
@@ -117,7 +117,7 @@ void CCharacter::act_jampc()
 	}
 }
 
-//!å‰ã‚¸ãƒ£ãƒ³ãƒ—
+//!‘OƒWƒƒƒ“ƒv
 void CCharacter::act_jampf()
 {
 	if(pdat->counter == 0){pdat->vy=-20;pdat->vx=6;}
@@ -134,7 +134,7 @@ void CCharacter::act_jampf()
 	}
 }
 
-//!å¾Œã‚¸ãƒ£ãƒ³ãƒ—
+//!ŒãƒWƒƒƒ“ƒv
 void CCharacter::act_jampb()
 {
 	if(pdat->counter == 0){pdat->vy=-20;pdat->vx=-6;}
@@ -153,32 +153,32 @@ void CCharacter::act_jampb()
 
 
 //*********************************************************
-//ã€€ãã®ä»–
+//@‚»‚Ì‘¼
 //*********************************************************
 void CCharacter::act_taiki()
 {
 	pdat->cnow= CELL_JAMP1;
-	CCharacterBase::act_taiki();//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åŸºæœ¬ã‚¯ãƒ©ã‚¹ã®å‹•ä½œã‚’æµç”¨
+	CCharacterBase::act_taiki();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
 }
 
 void CCharacter::act_koutai_out()
 {
 	pdat->cnow= CELL_JAMP1;
-	CCharacterBase::act_koutai_out();//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åŸºæœ¬ã‚¯ãƒ©ã‚¹ã®å‹•ä½œã‚’æµç”¨
+	CCharacterBase::act_koutai_out();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
 }
 
 void CCharacter::act_koutai_in()
 {
 	pdat->cnow= CELL_JAMP1;
-	CCharacterBase::act_koutai_in();//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åŸºæœ¬ã‚¯ãƒ©ã‚¹ã®å‹•ä½œã‚’æµç”¨
+	CCharacterBase::act_koutai_in();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
 }
 
 void CCharacter::act_koutai()
 {
 	//pdat->cnow= CELL_JAMP1;
-	//CCharacterBase::act_koutai();//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åŸºæœ¬ã‚¯ãƒ©ã‚¹ã®å‹•ä½œã‚’æµç”¨
+	//CCharacterBase::act_koutai();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
 
-	pdat->objtype |= GOBJTYPE_DISPLAY;//ç”»é¢å†…ã«ã„ã‚‹
+	pdat->objtype |= GOBJTYPE_DISPLAY;//‰æ–Ê“à‚É‚¢‚é
 
 	GOBJECT *pedat;
 	if(pdat->counter==0){
@@ -206,14 +206,14 @@ void CCharacter::act_koutai()
 		//pdat->vy= 0;
 	}
 
-	pdat->objtype &= ~GOBJFLG_TAIKI;//å¾…æ©Ÿãƒ•ãƒ©ã‚°ã‚’æ¶ˆã™
-	AddProperty( GOBJFLG_TOBETARGET );//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ãªã‚‹
-	pdat->aid = ACTID_KOUTAI2;//ç™»å ´ãƒãƒ¼ã‚º
+	pdat->objtype &= ~GOBJFLG_TAIKI;//‘Ò‹@ƒtƒ‰ƒO‚ğÁ‚·
+	AddProperty( GOBJFLG_TOBETARGET );//ƒ^[ƒQƒbƒg‚É‚È‚é
+	pdat->aid = ACTID_KOUTAI2;//“oêƒ|[ƒY
 }
 
 void CCharacter::act_koutai2()
 {
-//	CCharacterBase::act_koutai2();//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åŸºæœ¬ã‚¯ãƒ©ã‚¹ã®å‹•ä½œã‚’æµç”¨
+//	CCharacterBase::act_koutai2();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
 	if(pdat->counter == 0){
 		pdat->vy = 5;
 		PlayMySound(wave_tojyo);
@@ -232,7 +232,7 @@ void CCharacter::act_koutai2()
 }
 
 //*********************************************************
-//ã€€è¿½åŠ å‹•ä½œ
+//@’Ç‰Á“®ì
 //*********************************************************
 
 void CCharacter::act_strikercomeon()

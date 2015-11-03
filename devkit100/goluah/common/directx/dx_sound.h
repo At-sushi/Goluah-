@@ -38,6 +38,7 @@ public:
 	void BGMStop();
 	void BGMPause();
 	void BGMResume();
+	BOOL BGMSearch(const char *filename);
 
 	void OnWmgraphnotify();
 public:

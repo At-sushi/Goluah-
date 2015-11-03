@@ -103,9 +103,14 @@ DWORD CGObject::Message(DWORD type,DWORD prm)
 		break;
 	case GOBJMSG_ACTION:
 		ActionIDChanged(TRUE);
-		if(data.aid==ACTID_OKIAGARI)nage_muteki_cnt = 25;
-		else if(data.aid&ACTID_GUARD)nage_muteki_cnt = 25;
-		else if(nage_muteki_cnt)nage_muteki_cnt--;
+		if (!(data.aid & ACTID_KURAI) && data.counter == 0){//一応0に戻すようにしておきます
+			sexydamage = 0;
+			hitcount = 0;
+		}
+		if (data.aid == ACTID_OKIAGARI)nage_muteki_cnt = 10;
+		else if(data.aid&ACTID_GUARD)nage_muteki_cnt = 10;
+		else if (data.aid&ACTID_KURAI)nage_muteki_cnt = 0;
+		else if (nage_muteki_cnt)nage_muteki_cnt--;
 		break;
 	case GOBJMSG_DRAW:
 		if(siver>0){
@@ -181,11 +186,21 @@ DWORD CGObject::Message(DWORD type,DWORD prm)
 		case GOBJMSG_CLIPX:
 			if(data.objtype & GOBJFLG_CLIPX2){
 				data.x += *((int*)prm);
-				if((data.aid&ACTID_KURAI || data.aid&ACTID_GUARD) && !(data.aid&ACTID_KUCYU)){//敵を押し戻す
-					if(data.atk2.flags&ATKINFO2_ATTACKERBACK){
-						pobj = battleTask->GetGObject( data.atk2.oid );
-						if(pobj!=NULL){
-							pobj->Message(GOBJMSG_KNOCKBACK,prm);
+				if(data.aid&ACTID_KURAI || data.aid&ACTID_GUARD){//敵を押し戻す
+					if (!(data.aid&ACTID_KUCYU)){
+						if (data.atk2.flags&ATKINFO2_ATTACKERBACK){
+							pobj = battleTask->GetGObject(data.atk2.oid);
+							if (pobj != NULL){
+								pobj->Message(GOBJMSG_KNOCKBACK, prm);
+							}
+						}
+					}
+					else if (data.aid != ACTID_DOWN && data.aid != ACTID_BOUND && data.counter < 6){//空中だけどDOWNとかBOUNDではないときは少しだけ戻す
+						if (data.atk2.flags&ATKINFO2_ATTACKERBACK){
+							pobj = battleTask->GetGObject(data.atk2.oid);
+							if (pobj != NULL){
+								pobj->Message(GOBJMSG_KNOCKBACK, prm);
+							}
 						}
 					}
 				}
@@ -262,76 +277,99 @@ DWORD CGObject::Defmsg_TouchA()//相手の攻撃に当たったときの処理
 	//喰らった攻撃情報→ data.atk2
 	ATTACKINFO *info = data.atk2.info1;
 
-	DWORD key_now = g_input.GetKeyEx(data.tid,0);
+	DWORD key_now = g_input.GetKeyEx(CExport::GetKeyInput(data.id), 0);
 
 	// 待機/退避中は無視しちゃう
-	if(data.aid & ACTID_INOUT)return(TOUCHA_AVOID);
+	if (data.aid & ACTID_INOUT)return(TOUCHA_AVOID);
 	//投げ中は無視しちゃう
-	if(data.aid & ACTID_NAGE)return(TOUCHA_AVOID);
+	if (data.aid & ACTID_NAGE)return(TOUCHA_AVOID);
 
 	//AQ防止?
-	if(data.aid==ACTID_DOWN2)return(TOUCHA_AVOID);
+	if (data.aid == ACTID_DOWN2)return(TOUCHA_AVOID);
 	//喰らい、またはガード中
-	if(data.aid & ACTID_KURAI || data.aid & ACTID_GUARD){
-		if(data.aid & ACTID_KUCYU){////ジャンプ動作中
-			if(data.aid & ACTID_GUARD)return(TOUCHA_GUARDJ);
+	if (data.aid & ACTID_KURAI || data.aid & ACTID_GUARD){
+		if (data.aid & ACTID_KUCYU){////ジャンプ動作中
+			if (data.aid & ACTID_GUARD){
+				if (!(info->hit & 0x00000FFF))return(TOUCHA_MUSI2);
+				else return(TOUCHA_GUARDJ);
+			}
+			if (!(info->hit & 0x00000FFF))return(TOUCHA_MUSI);
 			else return(TOUCHA_KURAIJ);
 		}
-		else if(data.aid & ACTID_SYAGAMI){//しゃがみ中
-			if(!(info->guard & GUARDINFO_XCROUCH)){
-				if(data.aid & ACTID_GUARD)return(TOUCHA_GUARDC);
+		else if (data.aid & ACTID_SYAGAMI){//しゃがみ中
+			if (!(info->guard & GUARDINFO_XCROUCH)){
+				if (data.aid & ACTID_GUARD){
+					if (!(info->hit & 0x00000FFF))return(TOUCHA_MUSI2);
+					else return(TOUCHA_GUARDC);
+				}
+				if (!(info->hit & 0x00000FFF))return(TOUCHA_MUSI);
 				else return(TOUCHA_KURAIC);
 			}
 		}
 		else{//立ち
-			if(!(info->guard & GUARDINFO_XSTAND)){
-				if(data.aid & ACTID_GUARD)return(TOUCHA_GUARDS);
+			if (!(info->guard & GUARDINFO_XSTAND)){
+				if (data.aid & ACTID_GUARD){
+					if (!(info->hit & 0x00000FFF))return(TOUCHA_MUSI2);
+					else return(TOUCHA_GUARDS);
+				}
+				if (!(info->hit & 0x00000FFF))return(TOUCHA_MUSI);
 				else return(TOUCHA_KURAIS);
 			}
 		}
 	}
 
 	//攻撃動作中（無条件に喰らう）
-	if((data.aid & ACTID_ATTACK) || (data.aid & ACTID_KURAI)){
-		if(data.aid & ACTID_KUCYU){//ジャンプ動作中
+	if ((data.aid & ACTID_ATTACK) || (data.aid & ACTID_KURAI)){
+		if (!(info->hit & 0x00000FFF))
+			return(TOUCHA_MUSI);
+		if (data.aid & ACTID_KUCYU){//ジャンプ動作中
 			return(TOUCHA_KURAIJ);
 		}
-		else if(data.aid & ACTID_SYAGAMI){//しゃがみ中
+		else if (data.aid & ACTID_SYAGAMI){//しゃがみ中
 			return(TOUCHA_KURAIC);
 		}
 		else return(TOUCHA_KURAIS);
 	}
 
 	//基本動作中（レバー（裏）が入ってればガード）
-	if(data.aid & ACTID_KUCYU){//ジャンプ動作中
-		if((data.aid==ACTID_RAKKA) && (key_now & KEYSTA_BACK)){
+	if (data.aid & ACTID_KUCYU){//ジャンプ動作中
+		if ((data.aid == ACTID_RAKKA) && (key_now & KEYSTA_BACK)){
+			if (!(info->hit & 0x00000FFF))return(TOUCHA_MUSI2);
 			return(TOUCHA_GUARDJ);
 		}
-		if((key_now & KEYSTA_BACK) && !(info->guard & GUARDINFO_XJAMP)){
+		if ((key_now & KEYSTA_BACK) && !(info->guard & GUARDINFO_XJAMP)){
+			if (!(info->hit & 0x00000FFF))return(TOUCHA_MUSI2);
 			return(TOUCHA_GUARDJ);
 		}
+		if (!(info->hit & 0x00000FFF))return(TOUCHA_MUSI); 
 		else return(TOUCHA_KURAIJ);
 	}
-	if(key_now & KEYSTA_BACK){
-		if(key_now & KEYSTA_DOWN){
-			if(info->guard & GUARDINFO_XCROUCH){
+	if (key_now & KEYSTA_BACK){
+		if (key_now & KEYSTA_DOWN){
+			if (info->guard & GUARDINFO_XCROUCH){
 				return(TOUCHA_KURAIC);
 			}
+			if (!(info->hit & 0x00000FFF))
+				return(TOUCHA_MUSI2);
 			else {
 				return(TOUCHA_GUARDC);
 			}
 		}
 		else{
-			if(info->guard & GUARDINFO_XSTAND){
+			if (info->guard & GUARDINFO_XSTAND){
 				return(TOUCHA_KURAIS);
 			}
+			if (!(info->hit & 0x00000FFF))
+				return(TOUCHA_MUSI2);
 			else {
 				return(TOUCHA_GUARDS);
 			}
 		}
 	}
 	else{
-		if(data.aid & ACTID_SYAGAMI)return(TOUCHA_KURAIC);
+		if (data.aid & ACTID_SYAGAMI)return(TOUCHA_KURAIC);
+		if (!(info->hit & 0x00000FFF))
+			return(TOUCHA_MUSI);
 		else return(TOUCHA_KURAIS);
 	}
 
@@ -368,14 +406,11 @@ void CGObject::ActionIDChanged(BOOL ck,BOOL force)//行動IDが変わったときの処理
 //======================================================================================
 void CGObject::DmgMovex(GOBJECT *pdat,double mx)
 {
-	if (mx < 0)
-	{
-		if(pdat->atk2.flags & ATKINFO2_RIGHTBACK){
-			pdat->x -= mx;
-		}
-		else{
-			pdat->x += mx;
-		}
+	if(pdat->atk2.flags & ATKINFO2_RIGHTBACK){
+		pdat->x -= mx;
+	}
+	else{
+		pdat->x += mx;
 	}
 }
 
@@ -445,11 +480,11 @@ void CGObject::Defmsg_Action()
 void CGObject::dact_damages1(GOBJECT* pdat)//立ち喰らい(弱)
 {
 	if(pdat->counter==0){
-		pdat->vx=-3;
+		pdat->vx=/*-3*/-5;
 	}
 	DmgMovex(pdat,pdat->vx / 2);
 	pdat->vx+=((pdat->counter%3)/2);
-	if(pdat->vx >2){
+	if(pdat->vx >0){
 		pdat->vx=0;
 		pdat->aid = ACTID_NEUTRAL;
 	}
@@ -467,11 +502,11 @@ void CGObject::dact_damages1(GOBJECT* pdat)//立ち喰らい(弱)
 void CGObject::dact_damages2(GOBJECT* pdat)//立ち喰らい(中)
 {
 	if(pdat->counter==0){
-		pdat->vx=-5;
+		pdat->vx=/*-5*/-6;
 	}
 	DmgMovex(pdat,pdat->vx);
 	pdat->vx+=((pdat->counter%3)/2);
-	if(pdat->vx >2){
+	if(pdat->vx >0){
 		pdat->vx=0;
 		pdat->aid = ACTID_NEUTRAL;
 	}
@@ -489,11 +524,11 @@ void CGObject::dact_damages2(GOBJECT* pdat)//立ち喰らい(中)
 void CGObject::dact_damages3(GOBJECT* pdat)//立ち喰らい(強)
 {
 	if(pdat->counter==0){
-		pdat->vx=-7;
+		pdat->vx=/*-9*/-8;
 	}
 	DmgMovex(pdat,pdat->vx);
 	pdat->vx+=((pdat->counter%3)/2);
-	if(pdat->vx >2){
+	if(pdat->vx >0){
 		pdat->vx=0;
 		pdat->aid = ACTID_NEUTRAL;
 	}
@@ -511,11 +546,11 @@ void CGObject::dact_damages3(GOBJECT* pdat)//立ち喰らい(強)
 void CGObject::dact_damagec1(GOBJECT* pdat)//しゃがみ喰らい(弱)
 {
 	if(pdat->counter==0){
-		pdat->vx=-3;
+		pdat->vx=/*-3*/-5;
 	}
 	DmgMovex(pdat,pdat->vx / 2);
 	pdat->vx+=((pdat->counter%3)/2);
-	if(pdat->vx >2){
+	if(pdat->vx >0){
 		pdat->vx=0;
 		pdat->aid = ACTID_CROUCH;
 	}
@@ -533,11 +568,11 @@ void CGObject::dact_damagec1(GOBJECT* pdat)//しゃがみ喰らい(弱)
 void CGObject::dact_damagec2(GOBJECT* pdat)//しゃがみ喰らい(中)
 {
 	if(pdat->counter==0){
-		pdat->vx=-5;
+		pdat->vx=/*-5*/-7;
 	}
 	DmgMovex(pdat,pdat->vx);
 	pdat->vx+=((pdat->counter%3)/2);
-	if(pdat->vx >2){
+	if(pdat->vx >0){
 		pdat->vx=0;
 		pdat->aid = ACTID_CROUCH;
 	}
@@ -556,11 +591,11 @@ void CGObject::dact_damagec2(GOBJECT* pdat)//しゃがみ喰らい(中)
 void CGObject::dact_damagec3(GOBJECT* pdat)//しゃがみ喰らい(強)
 {
 	if(pdat->counter==0){
-		pdat->vx=-7;
+		pdat->vx=-9;
 	}
 	DmgMovex(pdat,pdat->vx);
 	pdat->vx+=((pdat->counter%3)/2);
-	if(pdat->vx >2){
+	if(pdat->vx >0){
 		pdat->vx=0;
 		pdat->aid = ACTID_CROUCH;
 	}
@@ -712,7 +747,7 @@ void CGObject::dact_damagej1(GOBJECT* pdat)//空中喰らい(弱)
 {
 	if(pdat->counter==0){
 		pdat->vx=-4;
-		pdat->vy=-9;
+		pdat->vy=-7;
 	}
 	DmgMovex(pdat,pdat->vx);
 	pdat->y+=pdat->vy;
@@ -729,7 +764,7 @@ void CGObject::dact_damagej2(GOBJECT* pdat)//空中喰らい(中)
 {
 	if(pdat->counter==0){
 		pdat->vx=-6;
-		pdat->vy=-9;
+		pdat->vy=-7;
 	}
 	DmgMovex(pdat,pdat->vx);
 	pdat->y+=pdat->vy;
@@ -748,7 +783,7 @@ void CGObject::dact_damagej3(GOBJECT* pdat)//空中喰らい(強)
 {
 	if(pdat->counter==0){
 		pdat->vx=-7;
-		pdat->vy=-9;
+		pdat->vy=-7;
 	}
 	DmgMovex(pdat,pdat->vx);
 	pdat->y+=pdat->vy;
@@ -845,7 +880,6 @@ void CGObject::dact_futtobi(GOBJECT* pdat)//ふっとび
 void CGObject::dact_futtobi2(GOBJECT* pdat)//ふっとび(エリアル風味)
 {
 	if(pdat->counter==0){
-		DmgMovex(pdat, -30);
 		pdat->vx=-3;
 		pdat->vy=-25;
 	}

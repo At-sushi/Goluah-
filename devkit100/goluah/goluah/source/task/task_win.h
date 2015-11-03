@@ -42,7 +42,7 @@ protected:
 	DWORD wt;					//!< 勝った方のチーム
 	MYSURFACE *dds_face[3];		//!< 表示顔
 
-	LPDIRECT3DTEXTURE8 tex_fb;	//!< 試合終了時のフロントバッファのコピー
+	LPDIRECT3DTEXTURE9 tex_fb;	//!< 試合終了時のフロントバッファのコピー
 
 	int f_x[3];					//!< face2の表示位置
 	float f_z[3];				//!< face2の表示位置

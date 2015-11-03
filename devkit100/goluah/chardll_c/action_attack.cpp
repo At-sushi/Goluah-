@@ -151,7 +151,7 @@ void CCharacter::act_staff()
 	if(ccounter==0)PlayMySound(wave_staff);
 	if(ccounter==0)
 	{
-		pdat->vx = 0;
+		pdat->vx = 1;
 		pdat->vy = -8;
 	}
 	if(ccounter==16)

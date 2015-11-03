@@ -58,8 +58,10 @@ public:
 	static void   LogWarning(const char* str);			//!< ログ
 	static void   LogDebug(const char* str);			//!< ログ
 	static void   LogInfo(const char* str);				//!< ログ
-	static void	  BGMPause(void);
-	static void	  BGMResume(void);
+	static void   BGMPause(void);
+	static void   BGMResume(void);
+	static int    GetGameSpeed();						//!< fps取得
+	static DWORD  GetMaxWin();							//!< 先取ポイント数取得
 
 	//■　オブジェクト関連
 	static DWORD CreateObject();						//!< オブジェクト生成
@@ -79,6 +81,8 @@ public:
 	static DWORD CreateObjectFx();									//!< エフェクトオブジェクト生成
 	static BOOL  ObjIsLocal(DWORD oid);								//!< ローカルかどうか
 	static void  SetComRange(DWORD oid,DWORD idx);					//!< com基本レンジ指定
+	static DWORD GetHitCount(DWORD oid);				//!< 連続技ヒット数（被コンボ数）取得
+	static DWORD GetSexyDamage(DWORD oid);				//!< 連続技蓄積ダメージ（被コンボダメージ）取得
 
 	//■　描画関連の関数の定義
 	static LPVOID GetD3D();								//!< IDirect3D* の取得
@@ -86,7 +90,7 @@ public:
 	static void   LoadCellDat(char* filename,LPVOID cdat,LPVOID rdat,LPVOID hdat);	//!< セルデータ読み込み関数
 	static LPVOID LoadBmp(char* filename,char* palname);//!< ビットマップ読み込み関数
 	static void   UnloadBmp(LPVOID psuf);				//!< ビットマップ後始末関数
-	static void   CellDraw(LPVOID* ddsa,LPVOID cdat,LPVOID rdat,DWORD cn,int x,int y,float z,int rot,BOOL revx,BOOL revy,DWORD color,float magx,float magy);//!< セル描画関数
+	static void   CellDraw(LPVOID* ddsa,LPVOID cdat,LPVOID rdat,DWORD cn,int x,int y,float z,int rot,BOOL revx,BOOL revy,DWORD color,float magx,float magy,BOOL shadowed = 1);//!< セル描画関数
 	static void   Blt(void* dds,int x,int y,RECT r,double magx,double magy,BOOL revx,BOOL revy,float z,DWORD color);//!< Blt2
 	static void   Blt3D(void* dds,RECT src,MYRECT3D dst,DWORD color);//!< Blt3
 	static void   SetTransform(BOOL b);					//!< 座標変換行列を再設定

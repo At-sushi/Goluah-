@@ -18,9 +18,8 @@ CHARACTER_LOAD_OPTION option[] = {
 	// 記入内容：
 	// 　{ フラグ, 競合するｵﾌﾟｼｮﾝ,依存するｵﾌﾟｼｮﾝ, オプション名, 消費ポイント }
 	{ OPTIONS_CHAIN_COMBO	,0					, 0, "Chain Combo"	, 8 } ,
-	{ OPTIONS_SUPER_ARMER	,0					, 0, "Super Armer"	, 10} ,
+	{ OPTIONS_SUPER_ARMER	,0					, 0, "Super Armor"	, 10} ,
 	{ OPTIONS_HP_UP			,0					, 0, "HP+20%"		, 8 } ,
-	{ OPTIONS_HP_UP2		,0	, OPTIONS_HP_UP	, "HP+20%"			, 8 } ,
 };
 
 
@@ -72,7 +71,6 @@ void CCharacter::InitParameters()
 
 	//最大体力値
 	pdat->hpmax			= (option_flags&OPTIONS_HP_UP ) ? 1080 : 900 ;
-	pdat->hpmax			= (option_flags&OPTIONS_HP_UP2) ? 1260 : pdat->hpmax;
 
 	pdat->gaugemax		= 1;//最大ゲージ
 	pdat->gaugetype		= GOBJFLGA_POWGAUGE2;//ゲージタイプ

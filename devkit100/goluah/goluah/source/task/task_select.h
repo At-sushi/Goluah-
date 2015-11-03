@@ -96,6 +96,7 @@ protected:
 	BOOL charsel_ok[2];					//!< 必要人数選び出されたか？
 	BOOL stgsel_ok;						//!< ステージは既に選択されたか？
 	int num_selected[2];				//!< 何人選んだか？
+	BOOL optsel_ok[2];					//!< オプションセレクトは終わったか？(ランセレ時のSetTemporary制御用フラグ)
 
 	//sub tasks
 	CTCharacterSelectBG *m_bg;			//!< 背景
@@ -243,7 +244,7 @@ protected:
 	BOOL  m_state;			//!<TRUE:キャラセレ色 / FALSE:ステージセレクト色
 	DWORD m_counter;		//!<カウンタ
 	MYVERTEX3D vbg[4];		//!<頂点
-	LPDIRECT3DTEXTURE8 ptex_cs1;//!<背景用テクスチャ
+	LPDIRECT3DTEXTURE9 ptex_cs1;//!<背景用テクスチャ
 };
 
 /*---------------------------------------------------
@@ -397,7 +398,14 @@ public:
 	int GetDrawPriority(){return m_state==CTCoS_HideComplete ? -1 : m_draw_priority;}
 
 protected:
-	virtual DWORD TxtCol(int idx){return idx==m_selected ? 0xFF000000 : 0xFF999999;}
+	virtual DWORD TxtCol(int idx){
+		if(1< idx && idx <= 1+MAXNUM_TEAM)
+			return idx==m_selected ? 0xFF220099 : 0xFF5237FF;
+		else if(1+MAXNUM_TEAM < idx && idx <= 1+MAXNUM_TEAM*2)
+			return idx==m_selected ? 0xFF990022 : 0xFFFF3752;
+		else
+			return idx==m_selected ? 0xFF000000 : 0xFF777777;
+	}
 	virtual void  Change(BOOL key);
 
 	CTConditionSelecter_State m_state;

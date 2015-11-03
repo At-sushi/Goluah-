@@ -109,7 +109,7 @@ void CCharacter::act_jampc()
 {
 	if(pdat->counter == 0){pdat->vy=-18;pdat->vx=0;}//‰Šú‘¬“x
 
-	pdat->cnow = (pdat->y<-170) ? CELL_JAMP2 : CELL_JAMP1;
+	pdat->cnow = (pdat->vy>0) ? CELL_JAMP2 : CELL_JAMP1;
 	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
 }
 
@@ -120,7 +120,7 @@ void CCharacter::act_jampf()
 {
 	if(pdat->counter == 0){pdat->vy=-18;pdat->vx=6;}//‰Šú‘¬“x
 
-	pdat->cnow = (pdat->y<-170) ? CELL_JAMP2 : CELL_JAMP1;
+	pdat->cnow = (pdat->vy>0) ? CELL_JAMP2 : CELL_JAMP1;
 	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
 }
 
@@ -131,7 +131,7 @@ void CCharacter::act_jampb()
 {
 	if(pdat->counter == 0){pdat->vy=-18;pdat->vx=-6;}//‰Šú‘¬“x
 
-	pdat->cnow = (pdat->y<-170) ? CELL_JAMP2 : CELL_JAMP1;
+	pdat->cnow = (pdat->vy>0) ? CELL_JAMP2 : CELL_JAMP1;
 	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
 }
 

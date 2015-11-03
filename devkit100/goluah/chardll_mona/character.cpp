@@ -3,6 +3,14 @@
 
 	キャラクター定義
 
+	Goluah!! Copyright (C) 2001-2004 aki, 2014-2015 logger, 2004-2015 At-sushi
+
+	This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+	This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
 =======================================================================================*/
 #include "character.h"
 
@@ -14,12 +22,9 @@
 CHARACTER_LOAD_OPTION option[] = {
 	// 記入内容：
 	// 　{ フラグ, 競合するｵﾌﾟｼｮﾝ,依存するｵﾌﾟｼｮﾝ, オプション名, 消費ポイント }
-	{ OPTIONS_CHAIN_COMBO	, 0, 0,						"Chain Combo"	, /*10*/5 },//チェイン・コンボ
 	{ OPTIONS_EXTRA_ATTACK	, 0, 0,						"Extra Attack"	, 5 },//追加入力技
-	{ OPTIONS_AERIAL_ATTACK	, 0, 0,						"Aerial Attack"	, 5 },//エリアル・アタック
-	{ OPTIONS_AERIAL_STEP	, 0, OPTIONS_AERIAL_ATTACK,	"Aerial Step"	, 5 },//2段ジャンプ
+	{ OPTIONS_AERIAL_ATTACK	, 0, OPTIONS_CHAIN_COMBO,	"Aerial Attack", 5 },//エリアル・アタック
 	{ OPTIONS_AUTO_GUARD	, 0, 0,						"Auto Guard"	, /*10*/5 },//オートガード
-	{ OPTIONS_GUARD_CANCEL	, 0, OPTIONS_AUTO_GUARD,	"Guard Cancel"	, 5 },//ガードキャンセル
 };
 
 
@@ -32,7 +37,7 @@ CCharacterInfo CharInfo("モナー",		// キャラクターの名前（最大31バイト）
 						CDI_VERSION,		// キャラクターDLLインターフェイスのバージョン
 						option,				// オプション構造体へのポインタ
 						sizeof(option) / sizeof(CHARACTER_LOAD_OPTION), // オプションの数
-						15,					// オプション最大ポイント数
+						5,					// オプション最大ポイント数
 						FALSE);				// ネット対戦対応かどうか 将来の拡張のために用意されている。
 
 char* CharDirectory = NULL;
@@ -76,17 +81,16 @@ void CCharacter::InitParameters()
 void CCharacter::InitAnalyzeOptions()
 {
 	//チェーンコンボ・ON/OFF
-	if(option_flags&OPTIONS_CHAIN_COMBO)	chainComboEnabled = TRUE;
-	else									chainComboEnabled = FALSE;
+	chainComboEnabled = TRUE;
 
 	m_opt_exAttack	= (option_flags&OPTIONS_EXTRA_ATTACK) ? TRUE : FALSE;
 	m_opt_hadou		= TRUE;
 	m_opt_hpp30		= FALSE;
 
 	m_opt_AAttack	= (option_flags&OPTIONS_AERIAL_ATTACK) ? TRUE : FALSE;
-	m_opt_AStep		= (option_flags&OPTIONS_AERIAL_STEP) ? TRUE : FALSE;
+	m_opt_AStep		= FALSE;
 	isAutoGuard		= (option_flags&OPTIONS_AUTO_GUARD) ? TRUE : FALSE;
-	m_opt_gcancel	= (option_flags&OPTIONS_GUARD_CANCEL) ? TRUE : FALSE;
+	m_opt_gcancel	= TRUE;
 }
 
 /*--------------------------------------------------------------------------------------
@@ -429,19 +433,6 @@ DWORD CCharacter::CmdCom_OnSystem(DWORD wid)
 
 DWORD CCharacter::CmdCom_OnNormal(DWORD wid)
 {
-	//投げ
-	if(!(pdat->aid&ACTID_KUCYU) && !(pdat->aid&ACTID_ATTACK))
-	{
-		if (wid==ACTID_NAGE1)
-		{
-			if(NageHantei(MAAI_NAGE) && ObjCatch(pdat->eid, GOBJMSG_NAGE)) {
-				pdat->aid = ACTID_NAGE1;
-				return TRUE;
-			}
-			else return FALSE;
-		}
-	}
-
 	// エリアルジャンプ
 	if (wid == ACTID_AJAMP)
 	{
@@ -451,17 +442,37 @@ DWORD CCharacter::CmdCom_OnNormal(DWORD wid)
 			return FALSE;
 	}
 
-	if(!(pdat->aid&ACTID_KUCYU) && (m_opt_exAttack))
+	if (!(pdat->aid&ACTID_KUCYU))
 	{
-		//チェーンコンボ判定(追加)
-		if(GetGObject()->aid & ACTID_ATTACK)
+		if (m_opt_exAttack)
 		{
-			switch(wid)
+			//チェーンコンボ判定(追加)
+			if (GetGObject()->aid & ACTID_ATTACK)
 			{
-			case ACTID_ATT_SE	:return ChainCombo(CHAIN_SE);break;
-			case ACTID_ATT_SD	:return ChainCombo(CHAIN_SD);break;
+				switch (wid)
+				{
+				case ACTID_ATT_SE:return ChainCombo(CHAIN_SE); break;
+				case ACTID_ATT_SD:return ChainCombo(CHAIN_SD); break;
+				}
 			}
 		}
+
+		if (wid == ACTID_TATUMAKI1 || wid == ACTID_TATUMAKI2 || wid == ACTID_TATUMAKI3)
+			return TRUE;
+
+		//投げ
+		if (!(pdat->aid&ACTID_ATTACK))
+		{
+			if (wid == ACTID_NAGE1 && rand() % 3 == 0)
+			{
+				if (NageHantei(MAAI_NAGE) && ObjCatch(pdat->eid, GOBJMSG_NAGE)) {
+					pdat->aid = ACTID_NAGE1;
+					return TRUE;
+				}
+				else return FALSE;
+			}
+		}
+
 	}
 
 	return CCharacterBase::CmdCom_OnNormal(wid);
@@ -534,7 +545,7 @@ DWORD CCharacter::TouchB(ATTACKINFO *info,BOOL hit)
 			}
 			break;
 		case ACTID_ATT_SB:{
-				if(ComLevelCk(5) && rand()%2){
+				if(ComLevelCk(5)){
 					if(ChainCheck(CHAIN_SD))SetComAct(ACTID_ATT_SD,5);
 					else if(ChainCheck(CHAIN_SE))SetComAct(ACTID_ATT_SE,5);
 					else SetComAct(ACTID_REIKU1C,5);
@@ -563,6 +574,7 @@ DWORD CCharacter::TouchB(ATTACKINFO *info,BOOL hit)
 				}
 				else if(ComLevelCk(3)){
 					if(ChainCheck(CHAIN_SE))SetComAct(ACTID_ATT_SE,8);
+					else if (m_opt_AAttack)SetComAct(ACTID_ATT_CC, 3);
 					else SetComAct(ACTID_REIKU1C,8);
 				}
 			}
@@ -575,7 +587,8 @@ DWORD CCharacter::TouchB(ATTACKINFO *info,BOOL hit)
 				}
 				else if(ComLevelCk(3)){
 					if(ChainCheck(CHAIN_SD))SetComAct(ACTID_ATT_SD,8);
-					else SetComAct(ACTID_REIKU1C,8);
+					else if (m_opt_AAttack)SetComAct(ACTID_ATT_CC, 3);
+					else SetComAct(ACTID_REIKU1C, 8);
 				}
 			}
 			break;
@@ -598,13 +611,25 @@ DWORD CCharacter::TouchB(ATTACKINFO *info,BOOL hit)
 			break;
 		case ACTID_ATT_CC:
 			{
-				if (m_opt_AAttack && ComLevelCk(3))
-					SetComAct(ACTID_AJAMP, 3);
-				else if (ComLevelCk(3))
-					SetComAct(ACTID_REIKU1C,5);
+				if (ComLevelCk(3)){
+					if (m_opt_AAttack && rand()%GetComLevel() != 0)
+						SetComAct(ACTID_AJAMP, 0);
+				}
 			}
 			break;
-		//レイク
+		case ACTID_ATT_JA:
+			{
+				if (m_aerial)	//SetComActだとダメなんだけど、なんで？
+					ChangeAction(ACTID_ATT_JB);
+			}
+			break;
+		case ACTID_ATT_JB:
+			{
+				if (m_aerial)
+					ChangeAction(ACTID_ATT_JC);
+			}
+			break;
+			//レイク
 		case ACTID_REIKU1A:
 			{
 				if(ComLevelCk(1)){
@@ -746,6 +771,11 @@ void CCharacter::PreAction()
 		m_2nd_step_flag = m_opt_AStep;//2段ジャンプフラグクリア
 		m_aerial = FALSE;			//エリアルフラグクリア
 	}
+
+	//無理やりエリアルさせる
+	if (IsLocalCom() && pdat->aid == ACTID_AJAMP)
+		if (pdat->counter == rand()%10)
+			ChangeAction(ACTID_ATT_JA);
 
 	CCharacterBase::PreAction();
 }
@@ -1080,7 +1110,7 @@ void CCharacter::InitWazInfo()//コンピュータ用技情報の設定
 	waz.att_middle[2] = ACTID_ATT_SD;
 	waz.att_middle[3] = ACTID_ATT_SE;
 	waz.att_middle[4] = ACTID_REIKU1A;
-	waz.att_long[0]   = ACTID_ATT_SD;//長リーチ攻撃 
+	waz.att_long[0] = ACTID_ATT_SD;//長リーチ攻撃 
 	waz.att_long[1]   = ACTID_ATT_SE;
 	waz.att_long[2]   = ACTID_REIKU2A;
 	waz.att_long[3]   = ACTID_REIKU3A;
@@ -1089,6 +1119,10 @@ void CCharacter::InitWazInfo()//コンピュータ用技情報の設定
 	waz.att_tai[0] = ACTID_TATUMAKI1;
 	waz.att_tai[1] = ACTID_TATUMAKI2;
 	waz.att_tai[2] = ACTID_TATUMAKI3;
+
+	waz.att_bullet[0] = ACTID_HADOU1B;
+	waz.att_bullet[0] = ACTID_HADOU2B;
+	waz.att_bullet[0] = ACTID_HADOU3B;
 
 	waz.nageid[0] = ACTID_NAGE1;
 

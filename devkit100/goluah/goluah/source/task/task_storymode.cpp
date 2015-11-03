@@ -165,7 +165,7 @@ BOOL CTaskStoryMode::Execute(DWORD time)
 
 			if (ele_vs->nogameover)	// nogameover‚È‚çˆ—‚ðƒpƒX
 			{
-				story_selectflag = ele_vs->sel_shift + g_battleresult.GetWinner();
+				story_selectflag += ele_vs->sel_shift + g_battleresult.GetWinner();
 			} else {
 				//•‰‚¯‚¿‚á‚Á‚Ä‚é
 				if(g_battleresult.GetWinner()){
@@ -746,7 +746,7 @@ void CTStoryContinue::DrawFBC(float t)
 
 	MYVERTEX3D* vb;
 
-	if ( !g_draw.pMyVertex || FAILED(g_draw.pMyVertex->Lock(0, 0, (BYTE**)&vb, D3DLOCK_DISCARD)) )
+	if ( !g_draw.pMyVertex || FAILED(g_draw.pMyVertex->Lock(0, 0, (void**)&vb, D3DLOCK_DISCARD)) )
 		return;
 
 	vb[0].z = 0.0f;
@@ -785,8 +785,8 @@ void CTStoryContinue::DrawFBC(float t)
 	D3DXMatrixIdentity(&mati);
 	g_draw.EnableZ(FALSE,FALSE);
 	g_draw.SetTransform(FALSE);
-	g_draw.d3ddev->SetStreamSource(0, g_draw.pMyVertex, sizeof(MYVERTEX3D));
-	g_draw.d3ddev->SetVertexShader(FVF_3DVERTEX);
+	g_draw.d3ddev->SetStreamSource(0, g_draw.pMyVertex, 0, sizeof(MYVERTEX3D));
+	g_draw.d3ddev->SetFVF(FVF_3DVERTEX);
 	g_draw.d3ddev->SetTexture(0,m_texfb);
 	g_draw.d3ddev->SetTransform(D3DTS_WORLD,&mati);
 	g_draw.d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);

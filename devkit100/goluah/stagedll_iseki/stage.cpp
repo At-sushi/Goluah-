@@ -70,7 +70,7 @@ void CStage::InitVrtx()//頂点座標初期化
 {
 	int i,j;
 	MYVERTEX3D* vtx_tmp = NULL;
-	LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
+	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 
 	//水面
 	vb_water[0].color=
@@ -157,8 +157,8 @@ void CStage::InitVrtx()//頂点座標初期化
 		}
 
 		if ( SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * ((NUM_JIMEN_X+1)*2), 0, FVF_3DVERTEX,
-						D3DPOOL_MANAGED, &vb_jimen[i])) &&
-			SUCCEEDED(vb_jimen[i]->Lock(0, 0, (BYTE**)&vtx_tmp, 0)) )
+			D3DPOOL_MANAGED, &vb_jimen[i], NULL)) &&
+			SUCCEEDED(vb_jimen[i]->Lock(0, 0, (void**)&vtx_tmp, 0)) )
 		{
 			memcpy(vtx_tmp, hogehoge[i], sizeof(hogehoge[i]));
 			vb_jimen[i]->Unlock();
@@ -246,7 +246,7 @@ void CStage::InitVrtx()//頂点座標初期化
 
 void CStage::LoadTextures()//テクスチャ読込み
 {
-	LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
+	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 
 	char *filename=(char*)malloc(256);
 	if(filename==NULL)return;
@@ -310,12 +310,12 @@ void CStage::LoadTextures()//テクスチャ読込み
 */
 DWORD CStage::DrawBack()
 {
-	LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
+	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 	if(d3ddev==NULL)return FALSE;
 
 	//テクスチャアドレッシングモード-繰り返し
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSU,D3DTADDRESS_MIRROR);
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSV,D3DTADDRESS_MIRROR);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_MIRROR);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_MIRROR);
 
 	d3ddev->Clear(0,NULL,D3DCLEAR_TARGET,D3DCOLOR_XRGB(5,0,20),1.0f,0);
 
@@ -331,8 +331,8 @@ DWORD CStage::DrawBack()
 	DrawSky();
 
 	//テクスチャアドレシングモード - 元に戻す
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSU,D3DTADDRESS_CLAMP);
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSV,D3DTADDRESS_CLAMP);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);
 
 	return FALSE;//通常、デフォルト描画は行わない
 }
@@ -340,7 +340,7 @@ DWORD CStage::DrawBack()
 
 void CStage::DrawWater()
 {
-	LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
+	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 
 	//水面
 	d3ddev->SetTexture(0,ptex_water);
@@ -350,7 +350,7 @@ void CStage::DrawWater()
 
 void CStage::DrawSky()
 {
-	LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
+	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 
 	//そら
 	d3ddev->SetTexture(0,ptex_sky);
@@ -360,12 +360,12 @@ void CStage::DrawSky()
 
 void CStage::DrawJimen()
 {
-	LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
+	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 
 	//地面
 	d3ddev->SetTexture(0,ptex_jimen);
 	for(int i=0;i<NUM_JIMEN_Z;i++){
-		d3ddev->SetStreamSource(0, vb_jimen[i], sizeof(MYVERTEX3D));
+		d3ddev->SetStreamSource(0, vb_jimen[i], 0, sizeof(MYVERTEX3D));
 		d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,
 			0,
 			NUM_JIMEN_X*2);
@@ -374,7 +374,7 @@ void CStage::DrawJimen()
 
 void CStage::DrawJisaku1()
 {
-	LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
+	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 
 	//自作自演の遺跡（？）
 	d3ddev->SetTexture(0,ptex_jisaku1);
@@ -392,7 +392,7 @@ void CStage::DrawJisaku1()
 //*******************************************************
 DWORD CStage::Draw()
 {
-	LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
+	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 	if(!d3ddev)return FALSE;
 
 	//座標変換-なし
@@ -400,8 +400,8 @@ DWORD CStage::Draw()
 	D3DXMatrixIdentity(&mati);
 	d3ddev->SetTransform(D3DTS_WORLD,&mati);
 
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSU,D3DTADDRESS_MIRROR);
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSV,D3DTADDRESS_MIRROR);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_MIRROR);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_MIRROR);
 
 	d3ddev->SetRenderState(D3DRS_ZWRITEENABLE	,FALSE);
 	
@@ -412,8 +412,8 @@ DWORD CStage::Draw()
 
 	d3ddev->SetRenderState(D3DRS_ZWRITEENABLE	,TRUE);
 
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSU,D3DTADDRESS_CLAMP);
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSV,D3DTADDRESS_CLAMP);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);
 
 	return FALSE;
 }

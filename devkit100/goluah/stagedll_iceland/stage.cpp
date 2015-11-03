@@ -72,7 +72,7 @@ void CStage::InitVrtx()//頂点座標初期化
 {
 	int i,j;
 	MYVERTEX3D* vtx_tmp = NULL;
-	LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
+	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 
 	//水面
 	vb_water[0].color=
@@ -142,8 +142,8 @@ void CStage::InitVrtx()//頂点座標初期化
 			}
 
 			if ( SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * ((NUM_JIMEN_X+1)*2), 0, FVF_3DVERTEX,
-							D3DPOOL_MANAGED, &vb_jimen[i])) &&
-				SUCCEEDED(vb_jimen[i]->Lock(0, 0, (BYTE**)&vtx_tmp, 0)) )
+				D3DPOOL_MANAGED, &vb_jimen[i], NULL)) &&
+				SUCCEEDED(vb_jimen[i]->Lock(0, 0, (void**)&vtx_tmp, 0)) )
 			{
 				memcpy(vtx_tmp, hogehoge[i], sizeof(hogehoge[i]));
 				vb_jimen[i]->Unlock();
@@ -151,8 +151,8 @@ void CStage::InitVrtx()//頂点座標初期化
 		}
 
 	//空
-	if ( SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_sky)) &&
-		 SUCCEEDED(vb_sky->Lock(0, 0, (BYTE**)&vtx_tmp, 0)) )
+		if (SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_sky, NULL)) &&
+		 SUCCEEDED(vb_sky->Lock(0, 0, (void**)&vtx_tmp, 0)) )
 	{
 		vtx_tmp[0].color=
 			vtx_tmp[1].color=
@@ -185,7 +185,7 @@ void CStage::InitVrtx()//頂点座標初期化
 
 void CStage::LoadTextures()//テクスチャ読込み
 {
-	LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
+	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 
 	char *filename=(char*)malloc(256);
 	if(filename==NULL)return;
@@ -216,12 +216,12 @@ void CStage::LoadTextures()//テクスチャ読込み
 */
 DWORD CStage::DrawBack()
 {
-	LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
+	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 	if(d3ddev)
 	{
 		//テクスチャアドレッシングモード-繰り返し
-		d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSU,D3DTADDRESS_WRAP);
-		d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSV,D3DTADDRESS_WRAP);
+		d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_WRAP);
+		d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_WRAP);
 
 		d3ddev->Clear(0,NULL,D3DCLEAR_TARGET,D3DCOLOR_XRGB(5,0,20),1.0f,0);
 
@@ -231,8 +231,8 @@ DWORD CStage::DrawBack()
 		DrawSky();
 
 		//テクスチャアドレシングモード - 元に戻す
-		d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSU,D3DTADDRESS_CLAMP);
-		d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSV,D3DTADDRESS_CLAMP);
+		d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP);
+		d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);
 	}
 
 	return FALSE;//通常、デフォルト描画は行わない
@@ -241,49 +241,49 @@ DWORD CStage::DrawBack()
 
 void CStage::DrawWater()
 {
-	LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
+	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 
 	//座標変換-なし
 	D3DXMATRIX mati;
 	D3DXMatrixIdentity(&mati);
 	d3ddev->SetTransform(D3DTS_WORLD,&mati);
 
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSU,D3DTADDRESS_MIRROR);
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSV,D3DTADDRESS_MIRROR);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_MIRROR);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_MIRROR);
 	
 	//水面
 	d3ddev->SetTexture(0,ptex_water);
 	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,
 		vb_water,sizeof(MYVERTEX3D));
 
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSU,D3DTADDRESS_WRAP);
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSV,D3DTADDRESS_WRAP);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_WRAP);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_WRAP);
 }
 
 void CStage::DrawSky()
 {
-	LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
+	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 
 	//座標変換-なし
 	D3DXMATRIX mati;
 	D3DXMatrixIdentity(&mati);
 	d3ddev->SetTransform(D3DTS_WORLD,&mati);
 
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSU,D3DTADDRESS_MIRROR);
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSV,D3DTADDRESS_MIRROR);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_MIRROR);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_MIRROR);
 	
 	//水面
 	d3ddev->SetTexture(0,ptex_sky);
-	d3ddev->SetStreamSource(0, vb_sky,sizeof(MYVERTEX3D));
+	d3ddev->SetStreamSource(0, vb_sky,0,sizeof(MYVERTEX3D));
 	d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);
 
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSU,D3DTADDRESS_WRAP);
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSV,D3DTADDRESS_WRAP);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_WRAP);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_WRAP);
 }
 
 void CStage::DrawJimen()
 {
-	LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
+	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 
 	//座標変換-なし
 	D3DXMATRIX mati;
@@ -293,7 +293,7 @@ void CStage::DrawJimen()
 	//地面
 	d3ddev->SetTexture(0,NULL);
 	for(int i=0;i<NUM_JIMEN_Z;i++){
-		d3ddev->SetStreamSource(0, vb_jimen[i],sizeof(MYVERTEX3D));
+		d3ddev->SetStreamSource(0, vb_jimen[i],0,sizeof(MYVERTEX3D));
 		d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,NUM_JIMEN_X*2);
 	}
 }

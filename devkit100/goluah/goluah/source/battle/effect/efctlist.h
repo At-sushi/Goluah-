@@ -40,14 +40,14 @@ public:
 
 	void AddEffect(DWORD type,int prm1,int prm2,int prm3=0);			//!< 指定IDのエフェクト描画オブジェクトを生成
 	static DWORD EfctObjectMessage(DWORD msg,LPVOID dat,DWORD prm1);	//!< エフェクト描画オブジェクト共通メッセ処理関数
-	LPDIRECT3DTEXTURE8 GetTexture(UINT no){return textures[no];}		//!< エフェクト共通テクスチャー取得
+	LPDIRECT3DTEXTURE9 GetTexture(UINT no){return textures[no];}		//!< エフェクト共通テクスチャー取得
 
 protected:
 	CBattleTaskBase *battleTask;
 	static CEffectList *pinst;
 	
 	//!エフェクト用共通テクスチャー
-	typedef std::vector<LPDIRECT3DTEXTURE8> TextureList;
+	typedef std::vector<LPDIRECT3DTEXTURE9> TextureList;
 	TextureList textures;
 	void LoadTextures();
 	void UnloadTextures();
@@ -78,7 +78,7 @@ public:
 protected:
 	void AddEffect(DWORD type,int prm1,int prm2,int prm3);
 	void End();
-	LPDIRECT3DTEXTURE8 GetTexture(UINT no){return pefctlist->GetTexture(no);}
+	LPDIRECT3DTEXTURE9 GetTexture(UINT no){return pefctlist->GetTexture(no);}
 
 	CBattleTaskBase *battleTask;
 	CEffectList *pefctlist;

@@ -7,8 +7,8 @@
 #include <windows.h>
 #include <stdio.h>
 #include <math.h>
-#include <d3d8.h>
-#include <d3dx8.h>
+#include <d3d9.h>
+#include <d3dx9.h>
 #include <vector>
 
 #include "define_gcd.h"

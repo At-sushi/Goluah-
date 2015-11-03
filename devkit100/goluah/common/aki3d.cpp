@@ -26,7 +26,7 @@ Aki3d aki3d;
 	構築
 -----------------------------------------------------------*/
 void Aki3d::Initialize(
-			 LPDIRECT3DDEVICE8 d3d_device,
+			 LPDIRECT3DDEVICE9 d3d_device,
 			 const char* tex_path,
 			 WarningReportFunctionPtr pwf
 			 )
@@ -304,13 +304,13 @@ void Aki3d::Destroy()
 /*---------------------------------------------------------
 	テクスチャー
 -----------------------------------------------------------*/
-LPDIRECT3DTEXTURE8 Aki3d::LoadTexture(const char *filename)
+LPDIRECT3DTEXTURE9 Aki3d::LoadTexture(const char *filename)
 {
 	if(!tex_man)return NULL;
 	return tex_man->LoadTexture(filename);
 }
 
-void Aki3d::UnloadTexture(LPDIRECT3DTEXTURE8 ptex)
+void Aki3d::UnloadTexture(LPDIRECT3DTEXTURE9 ptex)
 {
 	if(!tex_man)return;
 	tex_man->UnloadTexture(ptex);

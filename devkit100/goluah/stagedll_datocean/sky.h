@@ -12,7 +12,7 @@ public:
 	void Draw();
 	void Release();
 
-	LPDIRECT3DTEXTURE8 tex;
+	LPDIRECT3DTEXTURE9 tex;
 	MYVERTEX3D sky_vb[8];
 
 	UINT time;

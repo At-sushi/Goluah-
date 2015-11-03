@@ -359,7 +359,7 @@ BOOL CFxBurn::Create(int prm1,int prm2,int prm3)
 		vb[i][3].tv = 1;
 		lifemax[i] = 10 + rand()%20;
 		life[i] = rand()%lifemax[i];
-		maxsize[i] = 0.025f + 0.001f*(rand()%10);
+		maxsize[i] = (0.025f + 0.001f*(rand()%10))/1.2f;
 	}
 
 	return(TRUE);
@@ -413,7 +413,7 @@ void CFxBurn::Update()
 			vy[i] = sokudo*(float)sin(D3DXToRadian(kakudo))-sokudo/3;
 			lifemax[i] = 10 + rand()%20;
 			life[i] = 0;
-			maxsize[i] = 0.05f + 0.002f*(rand()%10);
+			maxsize[i] = (0.05f + 0.002f*(rand()%10))/1.2f;
 		}
 		vb[i][0].x = cx[i] - (maxsize[i]/lifemax[i]*2.0f)*(lifemax[i]*2+life[i]);
 		vb[i][1].x = cx[i] - (maxsize[i]/lifemax[i]*2.0f)*(lifemax[i]*2+life[i]);

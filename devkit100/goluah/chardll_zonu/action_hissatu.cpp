@@ -118,6 +118,7 @@ void CCharacter::act_tetu1()
 		pdat->vx -=2;
 		if(pdat->vx<0){
 			pdat->vx=0;
+			GetGObject()->kougeki = FALSE;
 		}
 		movex(pdat->vx);
 		pdat->cnow = CELL_TETU3;
@@ -147,6 +148,7 @@ void CCharacter::act_tetu2()
 		pdat->vx -=2;
 		if(pdat->vx<0){
 			pdat->vx=0;
+			GetGObject()->kougeki = FALSE;
 		}
 		movex(pdat->vx);
 		pdat->cnow = CELL_TETU3;
@@ -176,6 +178,7 @@ void CCharacter::act_tetu3()
 		pdat->vx -=2;
 		if(pdat->vx<0){
 			pdat->vx=0;
+			GetGObject()->kougeki = FALSE;
 		}
 		movex(pdat->vx);
 		pdat->cnow = CELL_TETU3;

@@ -3,6 +3,14 @@
 
 	キャラクター定義
 
+	Goluah!! Copyright (C) 2001-2004 aki, 2014-2015 logger, 2004-2015 At-sushi
+
+	This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+	This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+	
 =======================================================================================*/
 #include "character.h"
 
@@ -14,9 +22,7 @@
 CHARACTER_LOAD_OPTION option[] = {
 
 	// 　{ フラグ, 競合するｵﾌﾟｼｮﾝ,依存するｵﾌﾟｼｮﾝ, オプション名, 消費ポイント }
-	{ OPTIONS_GUARD_CANCEL,		0, 0,	"Guard Cancel"	, 6 } ,
 	{ OPTIONS_EXTRA_ATTACK,		0, 0,	"Extra Attacks"	, 6 } ,
-	{ OPTIONS_SUPER_ARMER,		0, 0,	"Super Armer"	, 10} ,
 	{ OPTIONS_EXTRA_FRIENDS,	0, 0,	"Extra Friends"	, 6 } ,
 };
 
@@ -30,7 +36,7 @@ CCharacterInfo CharInfo("8頭身モナー",		// キャラクターの名前（最大31バイト）
 						CDI_VERSION,		// キャラクターDLLインターフェイスのバージョン
 						option,				// オプション構造体へのポインタ
 						sizeof(option) / sizeof(CHARACTER_LOAD_OPTION), // オプションの数
-						14,					// オプション最大ポイント数
+						6,					// オプション最大ポイント数
 						FALSE);				// ネット対戦対応かどうか 将来の拡張のために用意されている。現在は0を渡さなければならない（笑）
 
 char* CharDirectory = NULL;
@@ -63,10 +69,10 @@ CCharacter::~CCharacter()
 ----------------------------------------------------------------------------------------*/
 void CCharacter::InitParameters()
 {
-	opt_gcancel		= (option_flags&OPTIONS_GUARD_CANCEL) ? TRUE : FALSE;
+	opt_gcancel		= TRUE;
 	opt_exattack	= (option_flags&OPTIONS_EXTRA_ATTACK) ? TRUE : FALSE;
 	opt_ikari		= TRUE;
-	opt_super_armer	= (option_flags&OPTIONS_SUPER_ARMER ) ? TRUE : FALSE;
+	opt_super_armer	= FALSE;
 	opt_exfriend	= (option_flags&OPTIONS_EXTRA_FRIENDS) ? TRUE : FALSE;
 
 	pdat->hpmax			= 850;					//最大体力値

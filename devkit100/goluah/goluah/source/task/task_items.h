@@ -49,7 +49,8 @@ public:
 protected:
 	BYTE  m_pos;				//!< x位置 0:右 1:左 2:中央 （テキスト・α抜き に影響）
 	
-	char  m_disp_str[128];		//!< 表示テキスト
+	char  m_disp_str[128];		//!< 表示テキスト　（誰）
+	char  m_disp_str2[128];		//!< 表示テキスト　（フォルダ）
 	BOOL  m_show_text;			//!< テキスト on/off
 	BOOL  m_txtTop;				//!< テキストを上に配置するか、下に配置するか
 	float m_txtLeft;			//!< テキストの左位置

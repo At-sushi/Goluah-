@@ -33,8 +33,8 @@ void CCharacter::act_att_sb()//—§’†
 
 void CCharacter::act_att_sc()//—§‹­
 {
-	if(pdat->counter < 3)pdat->cnow = CELL_SC1;
-	else if(pdat->counter < 25){pdat->cnow = CELL_SC2;movex(5);}
+	if(pdat->counter < 5)pdat->cnow = CELL_SC1;
+	else if(pdat->counter < 25){pdat->cnow = CELL_SC2;movex(4);}
 	else if(pdat->counter < 35){pdat->cnow = CELL_SC2;movex(2);}
 	else{
 		pdat->aid = ACTID_NEUTRAL;

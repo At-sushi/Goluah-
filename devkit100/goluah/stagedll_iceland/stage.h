@@ -2,8 +2,8 @@
 
 #include <windows.h>
 #include <stdio.h>
-#include <d3d8.h>
-#include <d3dx8.h>
+#include <d3d9.h>
+#include <d3dx9.h>
 #include "gobjbase.h"
 
 #define NUM_JIMEN_Z 15
@@ -30,15 +30,15 @@ protected:
 	void DrawSky();
 
 	//êÖñ 
-	LPDIRECT3DTEXTURE8 ptex_water;
+	LPDIRECT3DTEXTURE9 ptex_water;
 	MYVERTEX3D vb_water[4];
 
 	//ínñ 
-	LPDIRECT3DVERTEXBUFFER8 vb_jimen[NUM_JIMEN_Z];
+	LPDIRECT3DVERTEXBUFFER9 vb_jimen[NUM_JIMEN_Z];
 
 	//ãÛ
-	LPDIRECT3DTEXTURE8 ptex_sky;
-	LPDIRECT3DVERTEXBUFFER8 vb_sky;
+	LPDIRECT3DTEXTURE9 ptex_sky;
+	LPDIRECT3DVERTEXBUFFER9 vb_sky;
 };
 
 #ifndef RELEASE

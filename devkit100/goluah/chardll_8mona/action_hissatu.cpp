@@ -1,14 +1,14 @@
 /*==============================================================
 
-	ï¿½sï¿½ï¿½ï¿½Öï¿½(ï¿½Kï¿½E)
+	s“®ŠÖ”(•KE)
 
 ================================================================*/
 #include "character.h"
 
 
-//ï¿½Kï¿½E==========================================================
+//•KE==========================================================
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½I1ï¿½ï¿½ï¿½ï¿½
+//‚³‚ŸI1‚³‚ñ
 void CCharacter::act_sah1()
 {
 	if(pdat->counter == 0){
@@ -21,7 +21,7 @@ void CCharacter::act_sah1()
 	pdat->y += pdat->vy;
 	pdat->vy++;
 	movex(pdat->vx);
-
+	if (pdat->counter > 7)pdat->muteki = FALSE;
 	if(pdat->vy > 0)pdat->aid=ACTID_SAHS;
 
 	pdat->cnow = CELL_SAH;
@@ -44,7 +44,8 @@ void CCharacter::act_sah2()
 	pdat->vy++;
 	movex(pdat->vx);
 
-	if(pdat->vy > 0)pdat->aid=ACTID_SAHS;
+	if (pdat->counter > 6)pdat->muteki = FALSE;
+	if (pdat->vy > 0)pdat->aid = ACTID_SAHS;
 
 	pdat->cnow = CELL_SAH;
 
@@ -66,7 +67,8 @@ void CCharacter::act_sah3()
 	pdat->vy++;
 	movex(pdat->vx);
 
-	if(pdat->vy > 0)pdat->aid=ACTID_SAHS;
+	if (pdat->counter > 5)pdat->muteki = FALSE;
+	if (pdat->vy > 0)pdat->aid = ACTID_SAHS;
 
 	pdat->cnow = CELL_SAH;
 
@@ -97,7 +99,7 @@ void CCharacter::act_sah_landing()
 	else ChangeAction(ACTID_NEUTRAL);
 }
 
-//ï¿½Rï¿½ï¿½ï¿½Kï¿½@ï¿½Aï¿½Cï¿½@ï¿½mï¿½@ï¿½Jï¿½^ï¿½`
+//ƒRƒŒƒK@ƒAƒC@ƒm@ƒJƒ^ƒ`
 void CCharacter::act_fig1()
 {
 	if(pdat->counter < 3)pdat->cnow = CELL_FIG1;
@@ -118,10 +120,10 @@ void CCharacter::act_fig1()
 	}
 }
 
-void CCharacter::act_fig2(){act_fig1();}//ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½È‚ï¿½
-void CCharacter::act_fig3(){act_fig1();}//ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½È‚ï¿½
+void CCharacter::act_fig2(){act_fig1();}//’†E«”\‚¨‚ñ‚È‚¶
+void CCharacter::act_fig3(){act_fig1();}//‹­E«”\‚¨‚ñ‚È‚¶
 
-//ï¿½{ï¿½ï¿½ï¿½ï¿½Ô‚Â‚ï¿½ï¿½é“Šï¿½ï¿½
+//“{‚è‚ğ‚Ô‚Â‚¯‚é“Š‚°
 void CCharacter::act_ikari()
 {
 	DrawFront();
@@ -134,8 +136,8 @@ void CCharacter::act_ikari()
 	else if(pdat->counter < 24){pdat->cnow=CELL_IKARI1;}
 	else if(pdat->counter < 40){pdat->cnow=CELL_IKARI2;}
 	else if(pdat->counter < 42){pdat->cnow=CELL_JAMP;}
-	else if(pdat->counter < 55){pdat->cnow=CELL_JAMP1;movex(2);pdat->y-=12;pdat->vy=-12;}//ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Ä’Ç‚ï¿½ï¿½ï¿½ï¿½ï¿½
-	else if(pdat->counter < 90){//ï¿½Í‚ï¿½Å—ï¿½ï¿½ï¿½
+	else if(pdat->counter < 55){pdat->cnow=CELL_JAMP1;movex(2);pdat->y-=12;pdat->vy=-12;}//ƒWƒƒƒ“ƒv‚µ‚Ä’Ç‚¢‚©‚¯
+	else if(pdat->counter < 90){//’Í‚ñ‚Å—‰º
 		pdat->cnow=CELL_IKARI3;
 		pdat->y+=pdat->vy;
 		pdat->vy++;
@@ -191,11 +193,11 @@ DWORD CCharacter::act_ikarie(GOBJECT *pedat)
 		return(ACTID_FUTTOBI);
 	}
 
-	//ï¿½È‚ÉH
+	//‚È‚ÉH
 	return(0);
 }
 
-//ï¿½u1ï¿½ï¿½ï¿½ñ‚ª‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½v-----------------------------------------------------------------
+//u1‚³‚ñ‚ª‚ ‚Á‚¿‚É“¦‚°‚½‚¼Iv-----------------------------------------------------------------
 
 void CCharacter::act_escape()
 {

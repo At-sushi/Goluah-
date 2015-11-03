@@ -14,14 +14,14 @@
 #pragma once
 
 //DirectX SDK がない環境への対応
-#ifndef _D3D8_H_
-typedef struct DIRECT3D8 {} *LPDIRECT3D8;
-typedef struct DIRECT3DDEVICE8 {} *LPDIRECT3DDEVICE8;
-typedef struct DIRECT3DTEXTURE8 {} *LPDIRECT3DTEXTURE8;
-#endif // _D3D8_H_
-#ifndef __D3DX8MATH_H__
+#ifndef _D3D9_H_
+typedef struct DIRECT3D9 {} *LPDIRECT3D9;
+typedef struct DIRECT3DDEVICE9 {} *LPDIRECT3DDEVICE9;
+typedef struct DIRECT3DTEXTURE9 {} *LPDIRECT3DTEXTURE9;
+#endif // _D3D9_H_
+#ifndef __D3DX9MATH_H__
 typedef struct D3DXMATRIX {} *LPD3DXMATRIX;
-#endif // __D3DX8MATH_H__
+#endif // __D3DX9MATH_H__
 
 #define GCD_VERSION			(900)
 #define GCDMAX_RECTANGLES	(1024)
@@ -175,7 +175,7 @@ struct MYSURFACE
 	DWORD ysufindx[MYSUF_MAXNUMTEX];//!< MYSURFACE中でのtop座標
 	DWORD xsufnum;					//!< X方向テクスチャ分割数
 	DWORD ysufnum;					//!< Y方向テクスチャ分割数
-	LPDIRECT3DTEXTURE8 *pTex;		//!< テクスチャ配列
+	LPDIRECT3DTEXTURE9 *pTex;		//!< テクスチャ配列
 	float wg;						//!< ビットマップの幅
 	float hg;						//!< ビットマップの高さ
 };

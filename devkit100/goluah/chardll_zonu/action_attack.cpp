@@ -163,6 +163,8 @@ void CCharacter::act_att_jc()//”ò‹­
 
 	if(pdat->counter < 8)pdat->cnow = CELL_JC1;
 	else pdat->cnow = CELL_JC2;
+	if (pdat->counter >15)
+		GetGObject()->kougeki = FALSE;
 
 	movex(pdat->vx);
 	pdat->y += pdat->vy;

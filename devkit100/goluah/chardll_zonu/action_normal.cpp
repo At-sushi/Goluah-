@@ -100,13 +100,13 @@ void CCharacter::act_timeoverlose()//タイムオーバー
 
 void CCharacter::act_walkf()//前進
 {
-	pdat->cnow = CELL_WALKF1+(pdat->counter/4)%3;
+	pdat->cnow = CELL_WALKF1+(pdat->counter/6)%3;
 	movex(3);
 }
 
 void CCharacter::act_walkb()//後退
 {
-	pdat->cnow = CELL_WALKB1+(pdat->counter/4)%3;
+	pdat->cnow = CELL_WALKB1+(pdat->counter/6)%3;
 	movex(-3);
 }
 
@@ -207,13 +207,13 @@ void CCharacter::act_koutai2()
 
 void CCharacter::act_dashf()
 {
-	pdat->cnow = CELL_DASHF1+(pdat->counter/3)%3;
+	pdat->cnow = CELL_DASHF1+(pdat->counter/5)%3;
 	movex(5);
 }
 
 void CCharacter::act_dashb()
 {
-	pdat->cnow = CELL_DASHB1+(pdat->counter/3)%3;
+	pdat->cnow = CELL_DASHB1+(pdat->counter/5)%3;
 	movex(-5);
 }
 

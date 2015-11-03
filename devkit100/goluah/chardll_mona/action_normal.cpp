@@ -114,7 +114,7 @@ void CCharacter::act_timeoverlose()
 ----------------------------------------------------------------*/
 void CCharacter::act_walkf()
 {
-	pdat->cnow = CELL_WALKF1+(pdat->counter/3)%2;
+	pdat->cnow = CELL_WALKF1+(pdat->counter/5)%2;
 	movex(3);
 }
 
@@ -124,7 +124,7 @@ void CCharacter::act_walkf()
 
 void CCharacter::act_walkb()
 {
-	pdat->cnow = CELL_WALKB1+(pdat->counter/3)%2;
+	pdat->cnow = CELL_WALKB1+(pdat->counter/5)%2;
 	movex(-3);
 }
 
@@ -137,7 +137,7 @@ void CCharacter::act_dashf()
 		pefe_dash->Go( pdat->muki,pdat->x,pdat->y,2);
 	}
 
-	pdat->cnow = CELL_DASH1+(pdat->counter/2)%2;
+	pdat->cnow = CELL_DASH1+(pdat->counter/4)%2;
 	movex(9);
 	// CREATE_GOBJ_FX( CShadowEffect(this) )
 }
@@ -151,7 +151,7 @@ void CCharacter::act_dashb()
 		pefe_dash->Go( !pdat->muki,pdat->x,pdat->y,2);
 	}
 
-	pdat->cnow = CELL_DASH1+(pdat->counter/2)%2;
+	pdat->cnow = CELL_DASH1+(pdat->counter/4)%2;
 	pdat->revx = TRUE;
 	movex(-9);
 	// CREATE_GOBJ_FX( CShadowEffect(this) )

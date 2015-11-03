@@ -1,6 +1,6 @@
 
 
-#include <d3d8.h>
+#include <d3d9.h>
 
 #include "config.h"
 extern DWORD GetLimcutKey();
@@ -55,6 +55,18 @@ char* CConfig::GetSShotFileTypeStr()
 	case SSHOT_PNG	:return "png";
 	case SSHOT_BMP	:
 	default:return "bmp";
+	}
+}
+
+int CConfig::GetGameSpeed2()
+{
+	switch (g_config.GetGameSpeed()){
+	case GSPEED_SLOW:return 40;
+	case GSPEED_OLD:return 50;
+	case GSPEED_NEW:return 60;
+	case GSPEED_30x2:return 60;
+		//case GSPEED_25x2	:return 50;
+	default:return 50;
 	}
 }
 
@@ -153,7 +165,7 @@ void CConfig::SetDefaultConfig2()
 {
 	//Å†ï`âÊä÷åW
 	SetHalfMode( FALSE );
-	SetFullScreen( TRUE );
+	SetFullScreen( FALSE );
 	SetTexFormat( D3DFMT_A1R5G5B5 );
 	SetDeviceType(D3DDEVTYPE_HAL);
 	SetHardwereVP( FALSE );
@@ -169,6 +181,7 @@ void CConfig::SetDefaultConfig2()
 	SetStrikerCount( 4 );
 	SetLimiterCut( FALSE );
 	SetGameSpeed( GSPEED_NEW );
+	SetGaugeMode( GAUGE_1220 );
 
 	//Å†ÉVÉXÉeÉÄê›íË
 	SetUseDInput( TRUE );
@@ -182,7 +195,7 @@ void CConfig::SetDefaultConfig2()
 	SetUseLog_Info( FALSE );
 	SetUseLog_Warning( FALSE );
 	SetUseLog_Debug( FALSE );
-	SetSShotImageFormat( SSHOT_JPG );
+	SetSShotImageFormat( SSHOT_PNG );
 }
 
 //*****************************************************************

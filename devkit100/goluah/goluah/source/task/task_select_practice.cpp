@@ -13,6 +13,7 @@ void CCharacterSelectPractice::Initialize()
 {
 	//パラメータリセット
 	charsel_ok[0]=charsel_ok[1]=FALSE;
+	optsel_ok[0] = optsel_ok[1] = TRUE;
 	stgsel_ok = FALSE;
 	num_selected[0]=num_selected[1]=0;
 	m_condition_sel_ok = FALSE;
@@ -101,11 +102,12 @@ void CTConditionSelecterPractice::Draw()
 	CTBeltBase::CalcTopBottom();
 	CTBeltBase::Draw();//オビ・タイトル描画
 
-	const float x=100;					//表示左位置
-	const float txt_xr=0.65f;			//テキスト・y拡大率
-	const float txt_yr=0.65f*m_ratio;	//テキスト・x拡大率
+	const float x=40.0f;					//表示左位置
+	const float txt_xr=1.00f;			//テキスト・y拡大率
+	const float txt_yr=1.00f*m_ratio;	//テキスト・x拡大率
 	float y = 100.0f;
-	const float ystep = 24.0f;
+	const float ystep = 35.0f;
+	float shiftX=0.0f;	//TEAM2改行用
 
 	int i,j;
 
@@ -119,24 +121,30 @@ void CTConditionSelecterPractice::Draw()
 		"Marvel Like",
 		"K.O.F. Like"
 	};
-	sprintf(tstr,"Battle Type : %s",typenames[m_type-1]);
+	sprintf(tstr,"Mode : %s",typenames[m_type-1]);
 	g_system.DrawBMPTextEx(x,y,0.0f,
 				tstr,
 				TxtCol(0),txt_xr,txt_yr,SYSBMPTXT_PROP);
-	y += ystep;
+
 	//HP割合
-	sprintf(tstr,"HP Ratio : %d%%",m_hp_ratio[m_limit_time_index]);
-	g_system.DrawBMPTextEx(x,y,0.0f,
+	sprintf(tstr,"HP : %d%%",m_hp_ratio[m_limit_time_index]);
+	g_system.DrawBMPTextEx(x+300,y,0.0f,
 				tstr,
 				TxtCol(1),txt_xr,txt_yr,SYSBMPTXT_PROP);
 	y += ystep;
+	y += ystep;
+
+	sprintf(tstr,"TEAM1");
+	g_system.DrawBMPTextEx(x,y,0.0f,tstr,0xFF5237FF,txt_xr,txt_yr,SYSBMPTXT_PROP);
+	sprintf(tstr,"TEAM2");
+	g_system.DrawBMPTextEx(x+300.0f,y,0.0f,tstr,0xFFFF3752,txt_xr,txt_yr,SYSBMPTXT_PROP);
 	y += ystep;
 
 	//TEAM*-x : ～
 	for(j=0;j<2;j++){
 		for(i=0;i<MAXNUM_TEAM;i++)
 		{
-			sprintf(tstr,"TEAM%d-%d : ",j+1,i+1);
+			sprintf(tstr,"%d : ",i+1);
 			if(m_assign[j][i]&CASSIGN_SPECIFIC)//特別
 			{
 				switch(m_assign[j][i]){
@@ -149,7 +157,14 @@ void CTConditionSelecterPractice::Draw()
 			else{
 				sprintf(&tstr[strlen(tstr)],"Player%d",m_assign[j][i]+1);
 			}
-			g_system.DrawBMPTextEx(x,y,0.0f,
+			if(j==0)	//TEAM1
+				shiftX=40.0f;
+			else	//TEAM2
+			{
+				y=100.0f + (i+3)*ystep;
+				shiftX=340.0f;
+			}
+			g_system.DrawBMPTextEx(x+shiftX,y,0.0f,
 				tstr,TxtCol(j*MAXNUM_TEAM+i+2),txt_xr,txt_yr,SYSBMPTXT_PROP);
 			y += ystep;
 		}

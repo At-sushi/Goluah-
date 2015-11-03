@@ -67,7 +67,7 @@ void CFloor::Init()
 		uf[i].alpha = 255;
 	}
 
-	LPDIRECT3DDEVICE8 d3ddev = aki3d.GetD3DDev();
+	LPDIRECT3DDEVICE9 d3ddev = aki3d.GetD3DDev();
 
 	/*
 	0 1 2
@@ -81,8 +81,8 @@ void CFloor::Init()
 	const float x_arr[3] = {-1024.0f/240.0f , 0.0f , 1024.0f/240.0f};
 	const float z_arr[3] = {OFFSET_Z-10.0f,OFFSET_Z,OFFSET_Z+10.0f};
 	
-	if ( SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 9, 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &pvb)) &&
-		 SUCCEEDED(pvb->Lock(0, 0, (BYTE**)&vb, 0)) )
+	if ( SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 9, 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &pvb, NULL)) &&
+		 SUCCEEDED(pvb->Lock(0, 0, (void**)&vb, 0)) )
 	{
 		for(UINT i=0;i<9;i++)
 		{
@@ -112,9 +112,9 @@ void CFloor::Init()
 		4,7,5,
 		7,5,8,
 	};
-	BYTE* hoge = NULL;
+	void* hoge = NULL;
 
-	if ( SUCCEEDED(d3ddev->CreateIndexBuffer(sizeof(index_arr), 0, D3DFMT_INDEX16, D3DPOOL_MANAGED, &pindex)) &&
+	if ( SUCCEEDED(d3ddev->CreateIndexBuffer(sizeof(index_arr), 0, D3DFMT_INDEX16, D3DPOOL_MANAGED, &pindex, NULL)) &&
 		 SUCCEEDED(pindex->Lock(0, 0, &hoge, 0)) )
 	{
 		memcpy(hoge, index_arr, sizeof(index_arr));
@@ -178,18 +178,19 @@ void CFloor::Draw()
 	D3DXMatrixIdentity(&mati);
 
 	aki3d.SetBlend_Normal();
-	LPDIRECT3DDEVICE8 d3ddev = aki3d.GetD3DDev();
+	LPDIRECT3DDEVICE9 d3ddev = aki3d.GetD3DDev();
 
 	d3ddev->SetTransform(D3DTS_WORLD,	&mati);		//座標変換マトリクス指定
-	d3ddev->SetStreamSource(0, pvb, sizeof(MYVERTEX3D));
-	d3ddev->SetVertexShader( FVF_3DVERTEX );		//頂点のフォーマットを指定
-	d3ddev->SetIndices(pindex, 0);
+	d3ddev->SetStreamSource(0, pvb, 0, sizeof(MYVERTEX3D));
+	d3ddev->SetFVF( FVF_3DVERTEX );		//頂点のフォーマットを指定
+	d3ddev->SetIndices(pindex);
 
 	aki3d.EnableZ();
 	//描画
 	d3ddev->SetTexture(0,tex);						//テクスチャー設定
 	d3ddev->DrawIndexedPrimitive(
 									D3DPT_TRIANGLELIST,	//D3DPRIMITIVETYPE PrimitiveType,
+									0,
 									0,					//UINT MinVertexIndex,
 									9,					//UINT NumVertexIndices,
 									0,

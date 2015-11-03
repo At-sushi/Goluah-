@@ -43,7 +43,7 @@ void CSky::Update()
 
 void CSky::Draw()
 {
-	LPDIRECT3DDEVICE8 d3ddev = aki3d.GetD3DDev();
+	LPDIRECT3DDEVICE9 d3ddev = aki3d.GetD3DDev();
 
 	const WORD sky_idx[] = 
 	{
@@ -57,7 +57,7 @@ void CSky::Draw()
 	D3DXMATRIX mati;
 	D3DXMatrixIdentity(&mati);
 	d3ddev->SetTransform(D3DTS_WORLD,	&mati);		//座標変換マトリクス指定
-	d3ddev->SetVertexShader( FVF_3DVERTEX );		//頂点のフォーマットを指定
+	d3ddev->SetFVF( FVF_3DVERTEX );		//頂点のフォーマットを指定
 
 	//テクスチャアドレッシングモード-繰り返し
 	

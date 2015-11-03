@@ -59,6 +59,8 @@ void CExport::Initialize()
 	fpack_s.loginfo			= CExport::LogInfo;
 	fpack_s.bgm_pause		= CExport::BGMPause;
 	fpack_s.bgm_resume		= CExport::BGMResume;
+	fpack_s.getgamespeed	= CExport::GetGameSpeed;
+	fpack_s.getmaxwin		= CExport::GetMaxWin;
 
 	//object
 	fpack_o.objcreate		= CExport::CreateObject;
@@ -116,6 +118,10 @@ void CExport::Initialize()
 	fpack_o.setcomrange		= CExport::SetComRange;
 	fpack_o.getcharname		= CExport::GetCharacterName;
 	fpack_o.getkeyinput		= CExport::GetKeyInput;
+
+	fpack_o.gethitcount = CExport::GetHitCount;
+	fpack_o.getsexydamage = CExport::GetSexyDamage;
+
 
 	//draw
 	fpack_d.getd3d			= CExport::GetD3D;
@@ -540,6 +546,30 @@ void CExport::SetComRange(DWORD oid,DWORD idx)
 	}
 	FUNC_OUT;
 }
+DWORD CExport::GetHitCount(DWORD oid)
+{
+	FUNC_IN;
+	CGObject *pg = GetCurrentBattleTask()->GetGObject(oid);
+	DWORD ret;
+	if (pg != NULL){
+		ret = pg->hitcount;
+	}
+	else ret = 0;
+	FUNC_OUT;
+	return ret;
+}
+DWORD CExport::GetSexyDamage(DWORD oid)
+{
+	FUNC_IN;
+	CGObject *pg = GetCurrentBattleTask()->GetGObject(oid);
+	DWORD ret;
+	if (pg != NULL){
+		ret = pg->sexydamage;
+	}
+	else ret = 0;
+	FUNC_OUT;
+	return ret;
+}
 
 //*********************************************************************************
 //Å@ï`âÊä÷òAÇÃä÷êîÇÃíËã`
@@ -594,7 +624,7 @@ void   CExport::UnloadBmp(LPVOID psuf)
 	g_draw.RelSurface((MYSURFACE*)psuf);
 	FUNC_OUT;
 }
-void   CExport::CellDraw(LPVOID* ddsa,LPVOID cdat,LPVOID rdat,DWORD cn,int x,int y,float z,int rot,BOOL revx,BOOL revy,DWORD color,float magx,float magy)
+void   CExport::CellDraw(LPVOID* ddsa,LPVOID cdat,LPVOID rdat,DWORD cn,int x,int y,float z,int rot,BOOL revx,BOOL revy,DWORD color,float magx,float magy,BOOL shadowed)
 {
 	FUNC_IN;
 
@@ -614,7 +644,7 @@ void   CExport::CellDraw(LPVOID* ddsa,LPVOID cdat,LPVOID rdat,DWORD cn,int x,int
 		}
 	}
 
-	g_draw.CellDraw((MYSURFACE**)ddsa,cdat,rdat,cn,x,y,z,rot,revx,revy,color,magx,magy,TRUE);
+	g_draw.CellDraw((MYSURFACE**)ddsa,cdat,rdat,cn,x,y,z,rot,revx,revy,color,magx,magy,shadowed);
 
 	FUNC_OUT;
 }
@@ -786,11 +816,30 @@ DWORD  CExport::CreateCellDat2(char* filename,LPVOID *cdat,LPVOID *rdat,LPVOID *
 }
 void CExport::BGMPause(void)
 {
+	FUNC_IN;
 	g_sound.BGMPause();
+	FUNC_OUT;
 }
 void CExport::BGMResume(void)
 {
+	FUNC_IN;
 	g_sound.BGMResume();
+	FUNC_OUT;
 }
 
+int CExport::GetGameSpeed()
+{
+	FUNC_IN;
+	int ret = g_config.GetGameSpeed2();
+	FUNC_OUT;
+	return ret;
+}
+
+DWORD CExport::GetMaxWin()
+{
+	FUNC_IN;
+	int ret = g_config.GetMaxPoint();
+	FUNC_OUT;
+	return ret;
+}
 

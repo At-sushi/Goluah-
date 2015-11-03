@@ -88,7 +88,7 @@ BOOL CTBattlePause::Execute(DWORD time)
 			}
 		}
 
-		if((key & KEYSTA_BA2) || (key & KEYSTA_BB2) || (key & KEYSTA_BC2))
+		if((key & KEYSTA_BA2) || (key & KEYSTA_BB2) || (key & KEYSTA_BC2)/* || (key & KEYSTA_BD2)*/)
 		{
 			m_inst_on[i] = !m_inst_on[i];
 			if(!m_inst_on[i])
@@ -111,7 +111,7 @@ void CTBattlePause::Draw()
 {
 	g_draw.EnableZ(FALSE,FALSE);
 	g_draw.SetTransform(FALSE);
-	g_draw.d3ddev->SetVertexShader(FVF_3DVERTEX);
+	g_draw.d3ddev->SetFVF(FVF_3DVERTEX);
 
 	float ar = 320.0f/240.0f;
 
@@ -190,11 +190,56 @@ void CTBattlePause::Draw()
 	MYSURFACE *dds_face;
 	RECT r_face;
 	int x,y;
-
-	for(t=1;t>=0;t--)
+	for (t = 1; t >= 0; t--)
 	{
 		if(!m_inst_on[t])continue;
+/*
+オプション状況を表示しようとしていた残骸。
+イテレータが分からず＝オプション名が拾ってこれず凍結中。
+0と1だけでいいのであればすぐ表示できるはず。
+		DWORD setting_now = g_battleinfo.GetCharacterOption(t,m_face_idx[t]);//これは簡単に拾えるが・・・
+		2進数に変換→各桁forで回して1のとこはリストから名前引っ張ってくるという力技するならこれも使える
+		int nisin[28],i;	//face用の部分は計算しないから28でおｋ
+		DWORD jyu = setting_now;
+		double xxx = 300.0;
+		double yyy = 20.0;
+		CharOptionList::iterator ite;
+		CCOptionSelecter::GetSettings;
+		DWORD k=0;
 
+		for (ite = list->begin(); ite != m_selecter->list->end(); ite++)
+		{
+		g_system.DrawBMPTextEx(xxx, yyy, 0.0f, ite->name, 0xFFFFFFFF, 0.8f, 0.8f, 0);
+		yyy += 10.0;
+		}
+
+		イテレータ資料（global.cppより）
+		//ファイル名リスト
+		std::vector<char*> filelist;
+		std::vector<char*>::iterator ite;
+		std::vector<char*>::iterator itee;
+		//再生を試みる
+		ite = filelist.begin();
+		itee= filelist.end();
+		for(;ite!=itee;ite++)
+		{
+		sprintf( filepath, "%s\\%s",dir,*ite);
+		if(g_sound.BGMPlay( filepath ))
+		{
+		break;//再生に成功したら終了
+		}
+		gbl.ods2("AkiGlobal::PlayRandomBGM : %s ...failed",filepath);
+		}
+		//	delete [] filepath;
+
+		//ファイル名のリストを破棄
+		ite = filelist.begin();
+		itee= filelist.end();
+		for(;ite!=itee;ite++)
+		{
+		delete [] (*ite);
+		}
+*/
 		//デカ顔
 
 		alt = OPT2ALT(g_battleinfo.GetCharacterOption(t,m_face_idx[t]));
@@ -235,12 +280,27 @@ void CTBattlePause::Draw()
 			r_face.bottom = (int)ms_inst[t]->hg;
 
 			DWORD alpha ;
+			static int shiftY=0;
 			x = t==0 ? 20 : 620-(int)ms_inst[t]->wg;
-			y = 450-(DWORD)ms_inst[t]->hg;
+			y = 450-(DWORD)ms_inst[t]->hg+shiftY;
 			if(y >320 ) y = 320;
 
+			DWORD key = 0;
+				for(UINT j=0;j<MAXNUM_TEAM;j++){
+					UINT ki = g_battleinfo.GetKeyAssign(t,j);
+					if(!(ki&CASSIGN_SPECIFIC)){
+					key |= g_input.GetKey(ki,0);
+					}
+				if(key & KEYSTA_UP)
+					shiftY+=1;
+				else if (key & KEYSTA_DOWN)
+					shiftY-=1;
+				else if(key & KEYSTA_BD2)
+					shiftY=0;
+			}
+
 			//下地
-			int mgn = 5;
+			int mgn = 0;
 			vb[0].x =  (x-mgn)/240.0f;
 			vb[1].x =  (x-mgn)/240.0f;
 			vb[2].x =  (x+mgn+ms_inst[t]->wg)/240.0f;

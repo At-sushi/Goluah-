@@ -285,19 +285,19 @@ void CDlgKeyConfig::UpdateNames()
 	sstr_1_4.Format("Å´ : %s", keycode.GetStr( m_cfg.key_down[0] ));
 	sstr_1_1.Format("Å© : %s", keycode.GetStr( m_cfg.key_left[0] ));
 	sstr_1_2.Format("Å® : %s", keycode.GetStr( m_cfg.key_right[0] ));
-	sstr_1_5.Format(" A : %s", keycode.GetStr( m_cfg.key_button[0][0] ));
-	sstr_1_6.Format(" B : %s", keycode.GetStr( m_cfg.key_button[1][0] ));
-	sstr_1_7.Format(" C : %s", keycode.GetStr( m_cfg.key_button[2][0] ));
-	sstr_1_8.Format(" D : %s", keycode.GetStr( m_cfg.key_button[3][0] ));
+	sstr_1_5.Format("A(é„) : %s", keycode.GetStr( m_cfg.key_button[0][0] ));
+	sstr_1_6.Format("B(íÜ) : %s", keycode.GetStr( m_cfg.key_button[1][0] ));
+	sstr_1_7.Format("C(ã≠) : %s", keycode.GetStr( m_cfg.key_button[2][0] ));
+	sstr_1_8.Format("D(ì¡) : %s", keycode.GetStr( m_cfg.key_button[3][0] ));
 	
 	sstr_2_3.Format("Å™ : %s", keycode.GetStr( m_cfg.key_up[1] ));
 	sstr_2_4.Format("Å´ : %s", keycode.GetStr( m_cfg.key_down[1] ));
 	sstr_2_1.Format("Å© : %s", keycode.GetStr( m_cfg.key_left[1] ));
 	sstr_2_2.Format("Å® : %s", keycode.GetStr( m_cfg.key_right[1] ));
-	sstr_2_5.Format(" A : %s", keycode.GetStr( m_cfg.key_button[0][1] ));
-	sstr_2_6.Format(" B : %s", keycode.GetStr( m_cfg.key_button[1][1] ));
-	sstr_2_7.Format(" C : %s", keycode.GetStr( m_cfg.key_button[2][1] ));
-	sstr_2_8.Format(" D : %s", keycode.GetStr( m_cfg.key_button[3][1] ));
+	sstr_2_5.Format("A(é„) : %s", keycode.GetStr( m_cfg.key_button[0][1] ));
+	sstr_2_6.Format("B(íÜ) : %s", keycode.GetStr( m_cfg.key_button[1][1] ));
+	sstr_2_7.Format("C(ã≠) : %s", keycode.GetStr( m_cfg.key_button[2][1] ));
+	sstr_2_8.Format("D(ì¡) : %s", keycode.GetStr( m_cfg.key_button[3][1] ));
 
 	UpdateData(FALSE);
 }

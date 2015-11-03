@@ -44,13 +44,13 @@ public:
 protected:
 	void DrawIcon();						//!ロード済みのアイコンを表示
 
-	LPDIRECT3DTEXTURE8 tex_fb;				//!< フロントバッファをコピーしたテクスチャ
-	LPDIRECT3DTEXTURE8 tex_nowload;			//!< "Now Loading"表示用テクスチャ
-	LPDIRECT3DTEXTURE8 tex_dll;				//!< DLLアイコン表示用テクスチャ
-	LPDIRECT3DTEXTURE8 tex_img;				//!< IMGアイコン表示用テクスチャ
-	LPDIRECT3DTEXTURE8 tex_gcd;				//!< GCDアイコン表示用テクスチャ
+	LPDIRECT3DTEXTURE9 tex_fb;				//!< フロントバッファをコピーしたテクスチャ
+	LPDIRECT3DTEXTURE9 tex_nowload;			//!< "Now Loading"表示用テクスチャ
+	LPDIRECT3DTEXTURE9 tex_dll;				//!< DLLアイコン表示用テクスチャ
+	LPDIRECT3DTEXTURE9 tex_img;				//!< IMGアイコン表示用テクスチャ
+	LPDIRECT3DTEXTURE9 tex_gcd;				//!< GCDアイコン表示用テクスチャ
 	MYVERTEX3D vb[4];						//!< テクスチャ描画用の頂点リスト
-	LPDIRECT3DTEXTURE8 tex_AA;				//!< ＡＡ表示用テクスチャ
+	LPDIRECT3DTEXTURE9 tex_AA;				//!< ＡＡ表示用テクスチャ
 	
 
 	std::vector<NowLoading_IconItem> m_iconlist;

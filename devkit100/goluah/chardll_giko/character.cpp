@@ -3,6 +3,14 @@
 
 	キャラクター定義
 
+	Goluah!! Copyright (C) 2001-2004 aki, 2014-2015 logger, 2004-2015 At-sushi
+
+	This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+	This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
 =======================================================================================*/
 #include "character.h"
 
@@ -18,11 +26,9 @@ CHARACTER_LOAD_OPTION option[] = {
 	// 記入内容：
 	// 　{ フラグ, 競合するｵﾌﾟｼｮﾝ,依存するｵﾌﾟｼｮﾝ, オプション名, 消費ポイント }
 	{ OPTIONS_REVERSAL			,0						,0, "Reversal Attack"	, 5 },
-	{ OPTIONS_GCANCEL			,0						,0, "Guard Cancel"		, 5 },
 	{ OPTIONS_QUICK_CHARGE		,OPTIONS_STOCKABLE_GAUGE,0, "Quick Charge"		, 7 },
 	{ OPTIONS_STOCKABLE_GAUGE	,OPTIONS_QUICK_CHARGE	,0, "Stockable Gauge"	, 7 },
 	{ OPTIONS_HEAVY_HIT			,0						,0, "Heavy Hit"			, 7 },
-	{ OPTIONS_NO_CHAIN_COMBO	,0						,0, "No Chain Comb"		,-5 }
 };
 
 
@@ -76,12 +82,12 @@ void CCharacter::InitParameters()
 {
 	//オプション値解釈
 	m_opt_reversal	= (option_flags&OPTIONS_REVERSAL		) ? TRUE : FALSE;
-	m_opt_gcancel	= (option_flags&OPTIONS_GCANCEL			) ? TRUE : FALSE;
+	m_opt_gcancel	= TRUE;
 	m_opt_quick_ch	= (option_flags&OPTIONS_QUICK_CHARGE	) ? TRUE : FALSE;
 	m_opt_hevy_hit	= (option_flags&OPTIONS_HEAVY_HIT		) ? TRUE : FALSE;
 	
 	BOOL st_gauge	= (option_flags&OPTIONS_STOCKABLE_GAUGE	) ? TRUE : FALSE;
-	chainComboEnabled=(option_flags&OPTIONS_NO_CHAIN_COMBO	) ? FALSE : TRUE;
+	chainComboEnabled=TRUE;
 	BOOL iron		= FALSE;
 
 	pdat->hpmax			= iron ? 1200 : 1000;	//最大体力値
@@ -382,6 +388,10 @@ BOOL CCharacter::Command_Normal(DWORD key)
 BOOL CCharacter::Command_OnNormal(DWORD key)
 {
 	if(pdat->aid & ACTID_KUCYU){////ジャンプ動作中
+		if (pdat->aid == ACTID_DASHB)
+		{
+			key &= ~KEYSTA_ANYKEY;
+		}
 	}
 	else{//地上動作中
 		//投げ

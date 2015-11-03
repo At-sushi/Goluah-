@@ -57,7 +57,7 @@ void CStoryList::Initialize()
 	CStoryRingInfoList::iterator ie= rlist.end();
 	for(;i!=ie;i++)
 	{
-		sprintf(filename,".\\story\\%s\\*.*",i->dir);
+		sprintf(filename,"story\\%s\\*.*",i->dir);
 		hFind = FindFirstFile(filename, &fd);
 		if(hFind != INVALID_HANDLE_VALUE) {//ディレクトリが存在する場合
 			do {
@@ -66,7 +66,7 @@ void CStoryList::Initialize()
 				{
 					//ディレクトリﾊｹｰﾝ
 					sitem.SetDir(i->dir,fd.cFileName);
-					sprintf(filename,".\\story\\%s\\%s\\",i->dir,fd.cFileName);
+					sprintf(filename,"story\\%s\\%s\\",i->dir,fd.cFileName);
 					if(CGoluahStoryScript::CreateScriptElementList(scr_list,filename))//読み込みOK
 					{
 						sitem.Setup( GetSettingsFromScriptList(scr_list), i->dir,fd.cFileName);
@@ -277,7 +277,7 @@ void CStoryList::CStoryInfo::SetDir(char *s,char *s2)
 		return;
 	}
 
-	sprintf(dir,".\\story\\%s\\%s",s,s2);
+	sprintf(dir,"story\\%s\\%s",s,s2);
 }
 
 void CStoryList::CStoryInfo::SetName(char *s)

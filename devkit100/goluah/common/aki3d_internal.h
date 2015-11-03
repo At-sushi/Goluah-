@@ -17,14 +17,14 @@ public:
 	~CTexManager(){Destroy();}
 	void SetBasePath(const char *path);
 
-	LPDIRECT3DTEXTURE8 LoadTexture(const char *filename);
-	void UnloadTexture(LPDIRECT3DTEXTURE8 ptex);
+	LPDIRECT3DTEXTURE9 LoadTexture(const char *filename);
+	void UnloadTexture(LPDIRECT3DTEXTURE9 ptex);
 
 protected:
 	void Destroy();
 
 	char*							m_texPath;
-	std::vector<LPDIRECT3DTEXTURE8>	m_texList;
+	std::vector<LPDIRECT3DTEXTURE9>	m_texList;
 	std::vector<char*>				m_texNameList;
 	std::vector<UINT>				m_texRefcntList;
 };
@@ -63,7 +63,7 @@ protected:
 	V2d					*norms;		//各ノードの法線みたいなもの
 	MYVERTEX3D			*vb;		//描画用頂点バッファ
 
-	LPDIRECT3DTEXTURE8	tex;		//テクスチャ
+	LPDIRECT3DTEXTURE9	tex;		//テクスチャ
 
 	BOOL				zenka;		//前科
 };
@@ -100,7 +100,7 @@ protected:
 	MYVERTEX3D			*vb;		//描画用頂点バッファ
 	WORD				*index_arr;	//頂点インデックスリスト
 
-	LPDIRECT3DTEXTURE8	tex;		//テクスチャ
+	LPDIRECT3DTEXTURE9	tex;		//テクスチャ
 	
 	#ifdef CParticleBody_3D
 	D3DXVECTOR4			*tpos;		//座標変換済み頂点
@@ -138,7 +138,7 @@ protected:
 	ARGB		*col;		//色
 	MYVERTEX3D	*vb;		//描画用頂点バッファ
 	WORD		*index_arr;	//頂点インデックスリスト
-	LPDIRECT3DTEXTURE8 tex;	//テクスチャ
+	LPDIRECT3DTEXTURE9 tex;	//テクスチャ
 	
 	BOOL		zenka;		//前科
 };
@@ -181,8 +181,8 @@ protected:
 	D3DCOLOR			amb;		//環境光
 	BOOL				isspecular;	//反射光を使うかどうか
 
-	D3DMATERIAL8		*mat;		//マテリアル（配列）
-	LPDIRECT3DTEXTURE8	*tex;		//テクスチャ（配列）
+	D3DMATERIAL9		*mat;		//マテリアル（配列）
+	LPDIRECT3DTEXTURE9	*tex;		//テクスチャ（配列）
 
 	BOOL				zenka;		//前科
 };

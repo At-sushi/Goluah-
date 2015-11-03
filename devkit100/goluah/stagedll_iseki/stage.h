@@ -2,8 +2,8 @@
 
 #include <windows.h>
 #include <stdio.h>
-#include <d3d8.h>
-#include <d3dx8.h>
+#include <d3d9.h>
+#include <d3dx9.h>
 #include "gobjbase.h"
 
 #define NUM_JIMEN_Z 15
@@ -32,24 +32,24 @@ protected:
 	void DrawJisaku1();
 
 	//êÖñ 
-	LPDIRECT3DTEXTURE8 ptex_water;
+	LPDIRECT3DTEXTURE9 ptex_water;
 	MYVERTEX3D vb_water[4];
 	MYVERTEX3D vb_maewater[4];
 
 	//ínñ 
-	LPDIRECT3DTEXTURE8 ptex_jimen;
-	LPDIRECT3DVERTEXBUFFER8 vb_jimen[NUM_JIMEN_Z];
+	LPDIRECT3DTEXTURE9 ptex_jimen;
+	LPDIRECT3DVERTEXBUFFER9 vb_jimen[NUM_JIMEN_Z];
 
 	//ãÛ
-	LPDIRECT3DTEXTURE8 ptex_sky;
+	LPDIRECT3DTEXTURE9 ptex_sky;
 	MYVERTEX3D vb_sky[4];
 
 	//é©çÏé©ââÇÃà‚ê’
-	LPDIRECT3DTEXTURE8 ptex_jisaku1;
+	LPDIRECT3DTEXTURE9 ptex_jisaku1;
 	MYVERTEX3D vb_jisaku1[4];
 
 	//êX
-	LPDIRECT3DTEXTURE8 ptex_forest;
+	LPDIRECT3DTEXTURE9 ptex_forest;
 	MYVERTEX3D vb_forest[4];
 };
 

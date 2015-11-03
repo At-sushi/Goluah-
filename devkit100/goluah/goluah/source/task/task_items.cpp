@@ -421,7 +421,7 @@ void CTWindowBase::Draw()
 {
 	MYVERTEX3D* vb;
 
-	if ( !g_draw.pMyVertex || FAILED(g_draw.pMyVertex->Lock(0, 0, (BYTE**)&vb, D3DLOCK_DISCARD)) )
+	if ( !g_draw.pMyVertex || FAILED(g_draw.pMyVertex->Lock(0, 0, (void**)&vb, D3DLOCK_DISCARD)) )
 		return;
 
 	vb[0].color = m_wincolor;
@@ -449,8 +449,8 @@ void CTWindowBase::Draw()
 	g_draw.EnableZ(FALSE,FALSE);
 	g_draw.SetTransform(FALSE);
 	g_draw.d3ddev->SetTexture(0,NULL);
-	g_draw.d3ddev->SetStreamSource(0, g_draw.pMyVertex, sizeof(MYVERTEX3D));
-	g_draw.d3ddev->SetVertexShader(FVF_3DVERTEX);
+	g_draw.d3ddev->SetStreamSource(0, g_draw.pMyVertex, 0, sizeof(MYVERTEX3D));
+	g_draw.d3ddev->SetFVF(FVF_3DVERTEX);
 	g_draw.d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);
 }
 
@@ -508,6 +508,7 @@ void CTWindowBase::DrawText(float x,float y,float z,
 CTBeltBase::CTBeltBase()
 {
 	strcpy(m_disp_str,"");
+	strcpy(m_disp_str2,"");
 	m_pos = 2;//center
 	m_base_y = 240.0f;
 	m_height_base = 50.0f;
@@ -529,7 +530,7 @@ void CTBeltBase::Draw()
 	g_draw.EnableZ(FALSE,FALSE);
 	g_draw.SetTransform(FALSE);
 	g_draw.d3ddev->SetTexture(0,NULL);
-	g_draw.d3ddev->SetVertexShader(FVF_3DVERTEX);
+	g_draw.d3ddev->SetFVF(FVF_3DVERTEX);
 
 	MYVERTEX3D vb[6];
 
@@ -622,17 +623,21 @@ void CTBeltBase::Draw()
 	//•¶Žš•`‰æ
 	if(m_show_text){
 		DWORD txtflg = SYSBMPTXT_PROP;
-		if(m_txtR2L)txtflg = SYSBMPTXT_R2L;
+		if(m_txtR2L)txtflg += SYSBMPTXT_R2L;
 		int txtZure = 3;//‰e‚Â‚¯‚¸‚ç‚µ—Ê
 		if(m_txtTop){
-			g_system.DrawBMPTextEx( m_txtLeft+txtZure,m_top +txtZure,0,m_disp_str,m_txtCol1 ,1.0f,m_ratio,txtflg);
+			g_system.DrawBMPTextEx(m_txtLeft+txtZure,m_top+txtZure,0,m_disp_str,m_txtCol1,1.0f,m_ratio,txtflg);
+			g_system.DrawBMPTextEx(m_txtLeft+txtZure,m_top+33+txtZure,0,m_disp_str2,m_txtCol1,1.0f,m_ratio,txtflg);
 			if(m_txtCol2 & 0xFF000000)
-			g_system.DrawBMPTextEx( m_txtLeft,		  m_top		    ,0,m_disp_str,m_txtCol2 ,1.0f,m_ratio,txtflg);
+			g_system.DrawBMPTextEx(m_txtLeft,m_top,0,m_disp_str,m_txtCol2,1.0f,m_ratio,txtflg);
+			g_system.DrawBMPTextEx(m_txtLeft,m_top+33,0,m_disp_str2,m_txtCol2,1.0f,m_ratio,txtflg);
 		}
 		else{
-			g_system.DrawBMPTextEx(m_txtLeft+txtZure,	m_bottom-30 +txtZure, 0 ,m_disp_str,m_txtCol1,1.0f,m_ratio,txtflg);
+			g_system.DrawBMPTextEx(640.0f-m_txtLeft+txtZure,m_bottom-33+txtZure,0,m_disp_str,m_txtCol1,1.0f,m_ratio,txtflg);
+			g_system.DrawBMPTextEx(640.0f-m_txtLeft+txtZure,m_bottom-66+txtZure,0,m_disp_str2,m_txtCol1,1.0f,m_ratio,txtflg);
 			if(m_txtCol2 & 0xFF000000)
-			g_system.DrawBMPTextEx(m_txtLeft,			m_bottom-30			, 0 ,m_disp_str,m_txtCol2,1.0f,m_ratio,txtflg);
+			g_system.DrawBMPTextEx(640.0f-m_txtLeft,m_bottom-33,0,m_disp_str,m_txtCol2,1.0f,m_ratio,txtflg);
+			g_system.DrawBMPTextEx(640.0f-m_txtLeft,m_bottom-66,0,m_disp_str2,m_txtCol2,1.0f,m_ratio,txtflg);
 		}
 	}
 	g_draw.EnableZ();

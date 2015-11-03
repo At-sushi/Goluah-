@@ -5,6 +5,7 @@
 
 ================================================================*/
 #include "character.h"
+#include <math.h>
 
 //*********************************************************
 //　　通常動作
@@ -35,7 +36,18 @@ void CCharacter::act_tojyo()//登場
 
 	if(pdat->counter < 50){
 		movex(5);
-		pdat->cnow = CELL_KORORIN1 + (pdat->counter/4)%11;
+		pdat->cnow = CELL_KORORIN1;
+		pdat->rot = pdat->counter * 360 / 49;
+
+		if(pdat->counter < 13)
+			pdat->y = -sin(3.1415 / 180.0 * (double)pdat->rot) * 39.0;
+		else if(pdat->counter < 25)
+			pdat->y = -44 + sin(3.1415 / 180.0 * (double)pdat->rot) * 5.0;
+		else if(pdat->counter < 37)
+			pdat->y = -44 - sin(3.1415 / 180.0 * (double)pdat->rot) * 5.0;
+		else
+			pdat->y = sin(3.1415 / 180.0 * (double)pdat->rot) * 39.0;
+
 	}
 	else{
 		if(pdat->counter == 50)pdat->vy=-10;
@@ -175,13 +187,13 @@ void CCharacter::act_timeoverlose()//タイムオーバー
 
 void CCharacter::act_walkf()//前進
 {
-	pdat->cnow = CELL_WALK1+(pdat->counter/4)%3;
+	pdat->cnow = CELL_WALK1+(pdat->counter/6)%3;
 	movex(3);
 }
 
 void CCharacter::act_walkb()//後退
 {
-	pdat->cnow = CELL_WALKB1+(pdat->counter/4)%3;
+	pdat->cnow = CELL_WALKB1+(pdat->counter/6)%3;
 	movex(-3);
 }
 
@@ -202,7 +214,7 @@ void CCharacter::act_jampf()//前ジャンプ
 {
 	if(pdat->counter == 0){pdat->vy=-23;pdat->vx=6;}
 	pdat->cnow = CELL_JAMP1;
-	JiyuuRakka(1.5, TRUE);;
+	JiyuuRakka(1.5, TRUE);
 }
 
 void CCharacter::act_jampb()//後ジャンプ
@@ -268,7 +280,7 @@ void CCharacter::act_koutai2()
 
 void CCharacter::act_dashf()
 {
-	pdat->cnow = CELL_DASHF1+(pdat->counter/4)%4;
+	pdat->cnow = CELL_DASHF1+(pdat->counter/5)%4;
 	movex(10);
 }
 
@@ -294,10 +306,21 @@ void CCharacter::act_okiagari_foword()
 
 	if(pdat->counter < 25){
 		movex(10);
-		pdat->cnow = CELL_KORORIN1 + (pdat->counter/2)%11;
+		pdat->cnow = CELL_KORORIN1;
+		pdat->rot = pdat->counter * 15;
+
+		if(pdat->counter < 7)
+			pdat->y = -sin(3.1415 / 180.0 * (double)pdat->rot) * 39.0;
+		else if(pdat->counter < 13)
+			pdat->y = -44 + sin(3.1415 / 180.0 * (double)pdat->rot) * 5.0;
+		else if(pdat->counter < 19)
+			pdat->y = -44 - sin(3.1415 / 180.0 * (double)pdat->rot) * 5.0;
+		else
+			pdat->y = sin(3.1415 / 180.0 * (double)pdat->rot) * 39.0;
+
 	}
 	else{
-		if(pdat->counter == 50){
+		if(pdat->counter == 25){
 			pdat->vy=-10;
 			Furimuki();
 			AddPowerGauge(-1.0f*NEEDGAUGE_REV);
@@ -320,10 +343,21 @@ void CCharacter::act_okiagari_back()
 	if(pdat->counter < 25){
 		movex(-10);
 		pdat->revx = TRUE;
-		pdat->cnow = CELL_KORORIN1 + (pdat->counter/2)%11;
+		pdat->cnow = CELL_KORORIN1;
+		pdat->rot = pdat->counter * 15;
+
+		if(pdat->counter < 7)
+			pdat->y = -sin(3.1415 / 180.0 * (double)pdat->rot) * 39.0;
+		else if(pdat->counter < 13)
+			pdat->y = -44 + sin(3.1415 / 180.0 * (double)pdat->rot) * 5.0;
+		else if(pdat->counter < 19)
+			pdat->y = -44 - sin(3.1415 / 180.0 * (double)pdat->rot) * 5.0;
+		else
+			pdat->y = sin(3.1415 / 180.0 * (double)pdat->rot) * 39.0;
+
 	}
 	else{
-		if(pdat->counter == 50){
+		if(pdat->counter == 25){
 			pdat->vy=-10;
 			Furimuki();
 			AddPowerGauge(-1.0f*NEEDGAUGE_REV);

@@ -8,7 +8,7 @@
 #pragma once
 
 #define NUM_PAD			(6)
-#define CONFIG_VERSION	(1100)
+#define CONFIG_VERSION	(1200)
 
 /*!
 *	@ingroup global
@@ -118,6 +118,27 @@ enum Config2_GameSpeed
 };
 
 /*!
+*	@ingroup global
+*	@brief カメラ上下するかしないか
+*/
+enum Config2_CameraMode
+{
+	CAMERA_OLD = 0,
+	CAMERA_UPPER = 1,
+	CAMERA_NEW = 2,
+};
+
+/*!
+*	@ingroup global
+*	@brief HPゲージのモード
+*/
+enum Config2_GaugeMode
+{
+	GAUGE_1000 = 0,
+	GAUGE_1220 = 1,
+};
+
+/*!
 *	@brief config.dat , config2.dat のデータ管理クラス
 *	@ingroup global
 *
@@ -160,6 +181,9 @@ public:
 	DWORD		GetStrikerCount()		{return striker;}
 	BOOL		IsLimiterCut()			{return limiter_cut ? TRUE : FALSE;}
 	Config2_GameSpeed GetGameSpeed()	{return (Config2_GameSpeed)game_speed;}
+	Config2_CameraMode GetCameraMode()	{ return (Config2_CameraMode)camera_mode; }
+	int GetGameSpeed2();	//fpsを返します
+	Config2_GaugeMode GetGaugeMode()	{ return (Config2_GaugeMode)gauge_mode; }
 
 	//□システム設定
 	BOOL		UseDInput()				{return no_dinput ? FALSE : TRUE;}
@@ -201,6 +225,8 @@ public:
 	void SetLimiterCut(BOOL b);
 	void EnableLimiterCut()				{limiter_cut_enable=1;}
 	void SetGameSpeed(Config2_GameSpeed spd) { game_speed = spd; }
+	void SetCameraMode(Config2_CameraMode mode) { camera_mode = mode; }
+	void SetGaugeMode(Config2_GaugeMode b)		{ gauge_mode = b ? 1 : 0; }
 
 	//□システム設定
 	void SetUseDInput(BOOL b)			{no_dinput = b ? 0:1;}
@@ -252,6 +278,8 @@ public:
 			unsigned int limiter_cut		: 1;
 			unsigned int limiter_cut_enable : 1;
 			unsigned int game_speed			: 2;//→enum
+			unsigned int camera_mode		: 2;
+			unsigned int gauge_mode			: 1;
 
 			//システム設定
 			unsigned int no_dinput			: 1;
@@ -264,7 +292,7 @@ public:
 			unsigned int log_debug			: 1;
 			unsigned int log_warning		: 1;
 		};
-		DWORD rawData[5];
+		DWORD rawData[7];	//＝オプションの数？
 	};
 	BOOL  limcut_pass;
 };

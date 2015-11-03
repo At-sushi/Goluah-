@@ -14,9 +14,6 @@
     <Filter Include="source\global">
       <UniqueIdentifier>{e0149c11-c8d8-4a2b-83e0-bda5164d9ca4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="source\datahandler">
-      <UniqueIdentifier>{763ec32d-54a8-4982-b8ee-1eb37ddc40c7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="source\task">
       <UniqueIdentifier>{6b8fd002-cfcc-45ae-b401-260b01ef25dd}</UniqueIdentifier>
     </Filter>
@@ -35,9 +32,6 @@
     <Filter Include="source\script">
       <UniqueIdentifier>{43399721-a1d9-44a7-a0f0-7aac29488609}</UniqueIdentifier>
     </Filter>
-    <Filter Include="source\common">
-      <UniqueIdentifier>{a167bf85-82a4-4161-a640-3391b76a4ac9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="source\common_dx">
       <UniqueIdentifier>{34dc04bc-0a17-4abb-aa06-681bcfbf8838}</UniqueIdentifier>
     </Filter>
@@ -47,6 +41,12 @@
     <Filter Include="リソース ファイル">
       <UniqueIdentifier>{8527d171-a476-49ff-88c1-d1a6e187ef83}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;jpg;jpeg;jpe;manifest</Extensions>
+    </Filter>
+    <Filter Include="source\script\datahandler">
+      <UniqueIdentifier>{763ec32d-54a8-4982-b8ee-1eb37ddc40c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\task\common">
+      <UniqueIdentifier>{a167bf85-82a4-4161-a640-3391b76a4ac9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -93,13 +93,13 @@
       <Filter>source\global</Filter>
     </ClCompile>
     <ClCompile Include="source\dataHandler\charlist.cpp">
-      <Filter>source\datahandler</Filter>
+      <Filter>source\script\datahandler</Filter>
     </ClCompile>
     <ClCompile Include="source\dataHandler\stagelist.cpp">
-      <Filter>source\datahandler</Filter>
+      <Filter>source\script\datahandler</Filter>
     </ClCompile>
     <ClCompile Include="source\dataHandler\storylist.cpp">
-      <Filter>source\datahandler</Filter>
+      <Filter>source\script\datahandler</Filter>
     </ClCompile>
     <ClCompile Include="source\task\task_demo.cpp">
       <Filter>source\task</Filter>
@@ -204,19 +204,19 @@
       <Filter>source\script</Filter>
     </ClCompile>
     <ClCompile Include="..\common\aki3d.cpp">
-      <Filter>source\common</Filter>
+      <Filter>source\task\common</Filter>
     </ClCompile>
     <ClCompile Include="..\common\aki3d_internal.cpp">
-      <Filter>source\common</Filter>
+      <Filter>source\task\common</Filter>
     </ClCompile>
     <ClCompile Include="..\common\config.cpp">
-      <Filter>source\common</Filter>
+      <Filter>source\task\common</Filter>
     </ClCompile>
     <ClCompile Include="..\common\gcdhandler.cpp">
-      <Filter>source\common</Filter>
+      <Filter>source\task\common</Filter>
     </ClCompile>
     <ClCompile Include="..\common\limcut.cpp">
-      <Filter>source\common</Filter>
+      <Filter>source\task\common</Filter>
     </ClCompile>
     <ClCompile Include="..\common\directx\dx_draw.cpp">
       <Filter>source\common_dx</Filter>
@@ -275,13 +275,13 @@
       <Filter>source\global</Filter>
     </ClInclude>
     <ClInclude Include="source\dataHandler\charlist.h">
-      <Filter>source\datahandler</Filter>
+      <Filter>source\script\datahandler</Filter>
     </ClInclude>
     <ClInclude Include="source\dataHandler\stagelist.h">
-      <Filter>source\datahandler</Filter>
+      <Filter>source\script\datahandler</Filter>
     </ClInclude>
     <ClInclude Include="source\dataHandler\storylist.h">
-      <Filter>source\datahandler</Filter>
+      <Filter>source\script\datahandler</Filter>
     </ClInclude>
     <ClInclude Include="source\task\task_demo.h">
       <Filter>source\task</Filter>
@@ -371,25 +371,25 @@
       <Filter>source\script</Filter>
     </ClInclude>
     <ClInclude Include="..\common\aki3d.h">
-      <Filter>source\common</Filter>
+      <Filter>source\task\common</Filter>
     </ClInclude>
     <ClInclude Include="..\common\aki3d_internal.h">
-      <Filter>source\common</Filter>
+      <Filter>source\task\common</Filter>
     </ClInclude>
     <ClInclude Include="..\common\config.h">
-      <Filter>source\common</Filter>
+      <Filter>source\task\common</Filter>
     </ClInclude>
     <ClInclude Include="..\common\define_gcd.h">
-      <Filter>source\common</Filter>
+      <Filter>source\task\common</Filter>
     </ClInclude>
     <ClInclude Include="..\common\gcdhandler.h">
-      <Filter>source\common</Filter>
+      <Filter>source\task\common</Filter>
     </ClInclude>
     <ClInclude Include="..\common\gobject.h">
-      <Filter>source\common</Filter>
+      <Filter>source\task\common</Filter>
     </ClInclude>
     <ClInclude Include="..\common\goluah_dll.h">
-      <Filter>source\common</Filter>
+      <Filter>source\task\common</Filter>
     </ClInclude>
     <ClInclude Include="..\common\directx\dx_draw.h">
       <Filter>source\common_dx</Filter>
@@ -418,7 +418,6 @@
     <ClInclude Include="source\system\NetState.h" />
     <ClInclude Include="source\battle\task_Bonus.h" />
     <ClInclude Include="source\battle\task_demobattle.h" />
-    <ClInclude Include="source\script\script_story_new.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\goluah.ico">
@@ -434,7 +433,6 @@
     <None Include="goluah.rgs">
       <Filter>リソース ファイル</Filter>
     </None>
-    <None Include="..\docs\ネット対戦感想.txt" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="goluah.rc">

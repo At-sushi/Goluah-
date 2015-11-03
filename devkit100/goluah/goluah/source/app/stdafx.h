@@ -2,6 +2,16 @@
 // 参照回数が多く、かつあまり変更されない、プロジェクト専用のインクルード ファイル
 // を記述します。
 
+/*
+Goluah!!Copyright(C) 2001-2004 aki, 2014-2015 logger, 2004-2015 At-sushi
+
+This program is free software; you can redistribute it and / or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or(at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110 - 1301 USA.
+*/
+
 #pragma once
 
 #ifndef VC_EXTRALEAN
@@ -66,8 +76,8 @@
 #pragma warning( disable : 4005 )
 #define DIRECTINPUT_VERSION 0x0800//warning消し
 
-#include <d3d8.h>
-#include <d3dx8.h>
+#include <d3d9.h>
+#include <d3dx9.h>
 #include <dsound.h>
 #include <dshow.h>
 #include <dinput.h>
@@ -87,6 +97,7 @@
 #include <list>
 #include <stack>
 #include <vector>
+#include <unordered_map>
 
 // 元に戻しとく
 #ifdef DOBASHI

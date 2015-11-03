@@ -354,7 +354,8 @@ void CTStorySelecterRing::OnButtonDown(DWORD key)
 		csselect->OnSelect(this);
 	}
 	if(key==KEYSTA_BB2){
-		csselect->OnCancel();
+//		csselect->OnCancel();
+		g_system.ReturnTitle();
 	}
 }
 
@@ -419,7 +420,7 @@ void CTStorySelecterRing::Hide()
 void CTStorySelecterRing::CTStorySelectBelt::Initialize()
 {
 	CTCharacterSelectBelt::Initialize();
-	m_txtLeft = 2;
+	m_txtLeft = 640 - 20;
 	m_txtTop = FALSE;
 	m_txtR2L = FALSE;
 }
@@ -439,7 +440,11 @@ void CTStorySelecterRing::CTStorySelectBelt::UpdateText()
 {
 	//m_ringIndexは、ストーリーリング番号ではなく全体の通し番号として使用
 	sprintf(m_disp_str,"%s",g_storylist.GetStoryDir(m_ringIndex));
-}
+	for(UINT i=0;i<strlen(m_disp_str);i++){
+		if(m_disp_str[i]=='\\'){
+			m_disp_str[i]='/';//こっちのほうがかっこよさげ
+		}
+	}}
 
 
 
@@ -1007,6 +1012,9 @@ void CTStoryParamWindow::Exec_Exec()
 		return;
 	}
 
+	else if(keysta & KEYSTA_BC2)
+		m_crnt_param=3;
+
 	if(keysta & KEYSTA_ALEFT2){			//←
 		if(m_crnt_cindex==0)m_crnt_cindex=m_num-1;
 		else m_crnt_cindex--;
@@ -1086,7 +1094,7 @@ void CTStoryParamWindow::Draw()
 	//Char1-3
 	DrawText(x+xstep*1,ymgn,0.0f,"Char1"	,txtcol,0.75f,0.5f,SYSBMPTXT_PROP);
 	DrawText(x+xstep*2,ymgn,0.0f,"Char2"	,txtcol,0.75f,0.5f,SYSBMPTXT_PROP);
-	DrawText(x+xstep*3,ymgn,0.0f,"char3"	,txtcol,0.75f,0.5f,SYSBMPTXT_PROP);
+	DrawText(x+xstep*3,ymgn,0.0f,"Char3"	,txtcol,0.75f,0.5f,SYSBMPTXT_PROP);
 	//param name
 	DrawText(x+xstep-20.0f,y[0],0.0f,"Character"	,txtcol,0.75f,0.5f,SYSBMPTXT_PROP|SYSBMPTXT_R2L);
 	DrawText(x+xstep-20.0f,y[1],0.0f,"Color"		,txtcol,0.75f,0.5f,SYSBMPTXT_PROP|SYSBMPTXT_R2L);
@@ -1221,6 +1229,14 @@ void CTStoryParamWindow::CCharSelecter::OnButtonDown(DWORD key)
 		if(!IsSelected(GetSelected())){
 			Hide();
 		}
+	}
+	else if(key & KEYSTA_BD2){//ランダム決定
+		CTStorySelect* csselect = dynamic_cast<CTStorySelect*>(g_system.GetCurrentMainTask());
+		if(!csselect){
+			return;
+		}
+		csselect->SelectChangeCharacter(cidx,-1);
+		Hide();
 	}
 }
 
@@ -1414,7 +1430,7 @@ void CTStoryParamWindow::COptionSelecter::Draw()
 
 	MYVERTEX3D* vb;
 
-	if ( !g_draw.pMyVertex || FAILED(g_draw.pMyVertex->Lock(0, 0, (BYTE**)&vb, D3DLOCK_DISCARD)) )
+	if ( !g_draw.pMyVertex || FAILED(g_draw.pMyVertex->Lock(0, 0, (void**)&vb, D3DLOCK_DISCARD)) )
 		return;
 
 	vb[0].color = color;
@@ -1443,8 +1459,8 @@ void CTStoryParamWindow::COptionSelecter::Draw()
 	g_draw.EnableZ(FALSE,FALSE);
 	g_draw.SetTransform(FALSE);
 	g_draw.d3ddev->SetTexture(0,NULL);
-	g_draw.d3ddev->SetStreamSource(0, g_draw.pMyVertex, sizeof(MYVERTEX3D));
-	g_draw.d3ddev->SetVertexShader(FVF_3DVERTEX);
+	g_draw.d3ddev->SetStreamSource(0, g_draw.pMyVertex, 0, sizeof(MYVERTEX3D));
+	g_draw.d3ddev->SetFVF(FVF_3DVERTEX);
 	g_draw.d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);
 	g_draw.EnableZ();
 

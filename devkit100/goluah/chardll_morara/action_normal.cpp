@@ -115,7 +115,7 @@ void CCharacter::act_timeoverlose()
 ----------------------------------------------------------------*/
 void CCharacter::act_walkf()
 {
-	cell(CELL_WALKF1 + (ccounter/3)%3);
+	cell(CELL_WALKF1 + (ccounter/5)%3);
 	movex(+3);
 }
 
@@ -135,7 +135,7 @@ void CCharacter::act_walkf()
 
 void CCharacter::act_walkb()
 {
-	cell(CELL_WALKB1 + (ccounter/3)%3 );
+	cell(CELL_WALKB1 + (ccounter/5)%3 );
 	pdat->revx = TRUE;//š
 	movex(-3);
 }
@@ -145,7 +145,7 @@ void CCharacter::act_walkb()
 ----------------------------------------------------------------*/
 void CCharacter::act_dashf()
 {
-	cell(CELL_FDASH1 + (ccounter/3)%6);
+	cell(CELL_FDASH1 + (ccounter/4)%6);
 	movex(+12);
 }
 
@@ -195,7 +195,6 @@ void CCharacter::act_jampc()
 {
 	if(pdat->counter == 0){pdat->vy=-17;pdat->vx=0;}//‰Šú‘¬“x
 
-	pdat->muteki = TRUE;
 	cell( (pdat->counter<2) ? CELL_JAMP3 : CELL_JAMP4 );
 	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
 }

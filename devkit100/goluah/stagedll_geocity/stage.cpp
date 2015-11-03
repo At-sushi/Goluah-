@@ -23,7 +23,7 @@ void CStage::InitVrtx()//頂点座標初期化
 	float x0,y0;
 	BYTE alpha;
 	MYVERTEX3D* vtx_tmp = NULL;
-	LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
+	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 	if(!d3ddev)return;
 
 	vb_moon = NULL;
@@ -39,8 +39,8 @@ void CStage::InitVrtx()//頂点座標初期化
 	vb_gurdpoll = NULL;
 
 	//月
-	if ( SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_moon)) &&
-		 SUCCEEDED(vb_moon->Lock(0, 0, (BYTE**)&vtx_tmp, 0)) )
+	if ( SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_moon, NULL)) &&
+		 SUCCEEDED(vb_moon->Lock(0, 0, (void**)&vtx_tmp, 0)) )
 	{
 		vtx_tmp[0].color=vtx_tmp[1].color=
 			vtx_tmp[2].color=vtx_tmp[3].color=0xFFFFFFFF;
@@ -67,8 +67,8 @@ void CStage::InitVrtx()//頂点座標初期化
 	}
 	
 	//街
-	if ( SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_city)) &&
-		 SUCCEEDED(vb_city->Lock(0, 0, (BYTE**)&vtx_tmp, 0)) )
+	if ( SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_city, NULL)) &&
+		 SUCCEEDED(vb_city->Lock(0, 0, (void**)&vtx_tmp, 0)) )
 	{
 		vtx_tmp[0].color=vtx_tmp[1].color=
 			vtx_tmp[2].color=vtx_tmp[3].color=0xFFFFFFFF;
@@ -95,8 +95,8 @@ void CStage::InitVrtx()//頂点座標初期化
 	}
 
 	//地面
-	if ( SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_ground)) &&
-		SUCCEEDED(vb_ground->Lock(0, 0, (BYTE**)&vtx_tmp, 0)) )
+	if (SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_ground, NULL)) &&
+		SUCCEEDED(vb_ground->Lock(0, 0, (void**)&vtx_tmp, 0)) )
 	{
 		vtx_tmp[0].color=vtx_tmp[1].color=
 			vtx_tmp[2].color=vtx_tmp[3].color=0xFF000000;
@@ -172,8 +172,8 @@ void CStage::InitVrtx()//頂点座標初期化
 		}
 	}*/
 	for(i=0;i<NUMDIV_ROADY;i++){
-		if ( SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * ((NUMDIV_ROADX+1)*2), 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_road[i])) &&
-			SUCCEEDED(vb_road[i]->Lock(0, 0, (BYTE**)&vtx_tmp, 0)) )
+		if (SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * ((NUMDIV_ROADX + 1) * 2), 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_road[i], NULL)) &&
+			SUCCEEDED(vb_road[i]->Lock(0, 0, (void**)&vtx_tmp, 0)) )
 		{
 			for(j=0;j<=NUMDIV_ROADX;j++){
 				vtx_tmp[j*2].color=
@@ -227,8 +227,8 @@ void CStage::InitVrtx()//頂点座標初期化
 	vb_jct[3]=vb_jct[4];
 	vb_jct[4]=vtx_tmp;*/
 	for(i=0;i<NUMDIV_JCTY;i++){
-		if ( SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * ((NUMDIV_JCTX+1)*2), 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_jct[i])) &&
-			SUCCEEDED(vb_jct[i]->Lock(0, 0, (BYTE**)&vtx_tmp, 0)) )
+		if (SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * ((NUMDIV_JCTX + 1) * 2), 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_jct[i], NULL)) &&
+			SUCCEEDED(vb_jct[i]->Lock(0, 0, (void**)&vtx_tmp, 0)) )
 		{
 			for(j=0;j<=NUMDIV_JCTX;j++){
 				vtx_tmp[j*2].color=
@@ -253,8 +253,8 @@ void CStage::InitVrtx()//頂点座標初期化
 	}
 
 	//ガードレール
-	if ( SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * ((NUM_GURD+1)*2), 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_gurd)) &&
-		SUCCEEDED(vb_gurd->Lock(0, 0, (BYTE**)&vtx_tmp, 0)) )
+	if (SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * ((NUM_GURD + 1) * 2), 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_gurd, NULL)) &&
+		SUCCEEDED(vb_gurd->Lock(0, 0, (void**)&vtx_tmp, 0)) )
 	{
 		for(i=0;i<(NUM_GURD+1)*2;i++){
 			vtx_tmp[i].color=0xFFFFFFFF;
@@ -294,8 +294,8 @@ void CStage::InitVrtx()//頂点座標初期化
 	}
 
 	//看板支柱
-	if ( SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_brd1a)) &&
-		SUCCEEDED(vb_brd1a->Lock(0, 0, (BYTE**)&vtx_tmp, 0)) )
+	if (SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_brd1a, NULL)) &&
+		SUCCEEDED(vb_brd1a->Lock(0, 0, (void**)&vtx_tmp, 0)) )
 	{
 		vtx_tmp[0].color=0xFFFFFFFF;
 		vtx_tmp[1].color=vtx_tmp[2].color=vtx_tmp[3].color=0xFF777777;
@@ -321,8 +321,8 @@ void CStage::InitVrtx()//頂点座標初期化
 		vb_brd1a->Unlock();
 	}
 	//看板表
-	if ( SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_brd1b)) &&
-		SUCCEEDED(vb_brd1b->Lock(0, 0, (BYTE**)&vtx_tmp, 0)) )
+	if (SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_brd1b, NULL)) &&
+		SUCCEEDED(vb_brd1b->Lock(0, 0, (void**)&vtx_tmp, 0)) )
 	{
 		vtx_tmp[0].color=vtx_tmp[1].color=
 			vtx_tmp[2].color=vtx_tmp[3].color=0xFF666666;
@@ -349,8 +349,8 @@ void CStage::InitVrtx()//頂点座標初期化
 	}
 	
 	//ガードレールの柱
-	if ( SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * (6*NUM_GURDPOLL), 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_gurdpoll)) &&
-		SUCCEEDED(vb_gurdpoll->Lock(0, 0, (BYTE**)&vtx_tmp, 0)) )
+	if (SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * (6 * NUM_GURDPOLL), 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_gurdpoll, NULL)) &&
+		SUCCEEDED(vb_gurdpoll->Lock(0, 0, (void**)&vtx_tmp, 0)) )
 	{
 		for(i=0;i<NUM_GURDPOLL;i++){
 			alpha= (BYTE)( (255/(NUM_GURDPOLL*1.5))*(NUM_GURDPOLL-i) );
@@ -565,7 +565,7 @@ void CStage::InitVrtx()//頂点座標初期化
 
 void CStage::LoadTextures()//テクスチャ読込み
 {
-	LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
+	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 	if(!d3ddev)return;
 
 	ptex_moon=NULL;
@@ -718,13 +718,13 @@ void CStage::UnloadTextures()
 
 void CStage::DrawStage()
 {
-	LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
+	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 	if(!d3ddev)return;
 
 	//テクスチャアドレッシングモード-繰り返し
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSU,D3DTADDRESS_WRAP);
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSV,D3DTADDRESS_WRAP);
-	d3ddev->SetVertexShader( FVF_3DVERTEX );
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_WRAP);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_WRAP);
+	d3ddev->SetFVF( FVF_3DVERTEX );
 
 	d3ddev->Clear(0,NULL,D3DCLEAR_TARGET,D3DCOLOR_XRGB(5,0,20),1.0f,0);
 
@@ -734,13 +734,13 @@ void CStage::DrawStage()
 	DrawBacks();
 
 	//テクスチャアドレシングモード - 元に戻す
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSU,D3DTADDRESS_CLAMP);
-	d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSV,D3DTADDRESS_CLAMP);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP);
+	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);
 }
 
 void CStage::DrawBacks()
 {
-	LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
+	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 	if(!d3ddev)return;
 
 	//座標変換-なし
@@ -750,15 +750,15 @@ void CStage::DrawBacks()
 
 	//街
 	d3ddev->SetTexture(0,ptex_city);
-	d3ddev->SetStreamSource(0, vb_city, sizeof(MYVERTEX3D));
+	d3ddev->SetStreamSource(0, vb_city, 0, sizeof(MYVERTEX3D));
 	d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);
 	//月
 	d3ddev->SetTexture(0,ptex_moon);
-	d3ddev->SetStreamSource(0, vb_moon, sizeof(MYVERTEX3D));
+	d3ddev->SetStreamSource(0, vb_moon, 0, sizeof(MYVERTEX3D));
 	d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);
 	//地面
 	d3ddev->SetTexture(0,NULL);
-	d3ddev->SetStreamSource(0, vb_ground, sizeof(MYVERTEX3D));
+	d3ddev->SetStreamSource(0, vb_ground, 0, sizeof(MYVERTEX3D));
 	d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);
 	//空
 	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,
@@ -771,7 +771,7 @@ void CStage::DrawBacks()
 
 void CStage::DrawJct()
 {
-	LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
+	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 	if(!d3ddev)return;
 
 	//座標変換・反転
@@ -809,16 +809,16 @@ void CStage::DrawJct()
 	d3ddev->SetTexture(0,ptex_jct);
 	for(int i=0;i<NUMDIV_JCTY;i++)
 	{
-		d3ddev->SetStreamSource(0, vb_jct[i], sizeof(MYVERTEX3D));
+		d3ddev->SetStreamSource(0, vb_jct[i], 0, sizeof(MYVERTEX3D));
 		d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,NUMDIV_JCTX*2);
 	}
 
 	//看板１
 	d3ddev->SetTexture(0,ptex_brd1a);
-	d3ddev->SetStreamSource(0, vb_brd1a, sizeof(MYVERTEX3D));
+	d3ddev->SetStreamSource(0, vb_brd1a, 0, sizeof(MYVERTEX3D));
 	d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);
 	d3ddev->SetTexture(0,ptex_brd1b);
-	d3ddev->SetStreamSource(0, vb_brd1b, sizeof(MYVERTEX3D));
+	d3ddev->SetStreamSource(0, vb_brd1b, 0, sizeof(MYVERTEX3D));
 	d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);
 
 	//看板2
@@ -837,7 +837,7 @@ void CStage::DrawJct()
 
 void CStage::DrawRoad()
 {
-	LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
+	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 	if(!d3ddev)return;
 
 	//座標変換-なし
@@ -849,16 +849,16 @@ void CStage::DrawRoad()
 	d3ddev->SetTexture(0,ptex_road);
 	for(int i=0;i<NUMDIV_ROADY;i++)
 	{
-		d3ddev->SetStreamSource(0, vb_road[i], sizeof(MYVERTEX3D));
+		d3ddev->SetStreamSource(0, vb_road[i], 0, sizeof(MYVERTEX3D));
 		d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,NUMDIV_ROADX*2);
 	}
 	
 	//ガードレール
 	d3ddev->SetTexture(0,ptex_gurd);
-	d3ddev->SetStreamSource(0, vb_gurd, sizeof(MYVERTEX3D));
+	d3ddev->SetStreamSource(0, vb_gurd, 0, sizeof(MYVERTEX3D));
 	d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,NUM_GURD*2);
 	d3ddev->SetTexture(0,NULL);
-	d3ddev->SetStreamSource(0, vb_gurdpoll, sizeof(MYVERTEX3D));
+	d3ddev->SetStreamSource(0, vb_gurdpoll, 0, sizeof(MYVERTEX3D));
 	d3ddev->DrawPrimitive(D3DPT_TRIANGLELIST,0,NUM_GURDPOLL*2);
 	//街灯
 	d3ddev->SetTexture(0,ptex_light);
@@ -877,10 +877,10 @@ void CStage::DrawRoad()
 
 	//ガードレール
 	d3ddev->SetTexture(0,ptex_gurd);
-	d3ddev->SetStreamSource(0, vb_gurd, sizeof(MYVERTEX3D));
+	d3ddev->SetStreamSource(0, vb_gurd, 0, sizeof(MYVERTEX3D));
 	d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,NUM_GURD*2);
 	d3ddev->SetTexture(0,NULL);
-	d3ddev->SetStreamSource(0, vb_gurdpoll, sizeof(MYVERTEX3D));
+	d3ddev->SetStreamSource(0, vb_gurdpoll, 0, sizeof(MYVERTEX3D));
 	d3ddev->DrawPrimitive(D3DPT_TRIANGLELIST,0,NUM_GURDPOLL*2);
 	//街灯
 	d3ddev->SetTexture(0,ptex_light);

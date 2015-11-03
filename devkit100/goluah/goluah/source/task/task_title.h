@@ -62,5 +62,7 @@ private:
 //#define SETTINGS_2V2_TYPE		4
 //#define SETTINGS_3V3_TYPE		5
 #define SETTINGS_GAMESPEED		3
-#define SETTINGS_EXIT			4//!< ‚±‚ê‚ð€–Ú‚ÌÅŒã‚Æ‚Ý‚È‚µ‚Ä‚¢‚é
+#define SETTINGS_CAMERAMODE		4
+#define SETTINGS_GAUGEMODE		5
+#define SETTINGS_EXIT			6//!< ‚±‚ê‚ð€–Ú‚ÌÅŒã‚Æ‚Ý‚È‚µ‚Ä‚¢‚é
 

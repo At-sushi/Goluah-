@@ -634,7 +634,9 @@ typedef void	(*PFUNCS_LOGERROR)(const char*);		//!< エラーログを記録する
 typedef void	(*PFUNCS_LOGWARNING)(const char*);		//!< 警告ログを記録する
 typedef void	(*PFUNCS_LOGDEBUG)(const char*);		//!< デバッグログを記録する
 typedef void	(*PFUNCS_LOGINFO)(const char*);			//!< 情報ログを記録する
-typedef PFUNCS_POPDLLEXECTAG PFUNCS_BGM;				//!< 実行個所のタグをひとつ削除する
+typedef PFUNCS_POPDLLEXECTAG PFUNCS_BGM;				//!< 
+typedef int		(*PFUNCS_GETGAMESPEED)();				//!< fpsを取得します
+typedef DWORD	(*PFUNCS_GETMAXWIN)();					//!<  先取ポイント数を取得します
 
 /*!
 *	@brief システム関数ポインタセット
@@ -673,6 +675,8 @@ struct DI_FUNCTIONS_S
 	PFUNCS_LOGINFO			loginfo;					//!< 情報ログを記録する @sa CGoluahObject::LogInfo
 	PFUNCS_BGM				bgm_pause;					//!< BGMの一時停止
 	PFUNCS_BGM				bgm_resume;					//!< 停止したBGMを再開
+	PFUNCS_GETGAMESPEED		getgamespeed;				//!< fpsを取得します @sa CGoluahObject::GetGameSpeed
+	PFUNCS_GETMAXWIN		getmaxwin;					//!<  先取ポイント数を取得します @sa CGoluahObject::GetMaxWin
 };
 
 //キー入力定義===========================================================================
@@ -847,6 +851,8 @@ typedef void   (*PFUNCO_SETCOMRANGE)(DWORD oid,DWORD idx);				//!< COM判定のリー
 typedef char*	(*PFUNCO_GETCHARNAME)(DWORD);							//!< 指定キャラの名前を取得する
 typedef DWORD	(*PFUNCO_GETKEYINPUT)(DWORD);							//!< 指定キャラのキーIDを取得する
 
+typedef DWORD	(*PFUNCO_GETHITCOUNT)(DWORD);							//!< 指定キャラの連続技ヒット数（被コンボ数）取得
+typedef DWORD	(*PFUNCO_GETSEXYDAMAGE)(DWORD);							//!< 指定キャラの連続技蓄積ダメージ（被コンボダメージ）取得
 
 //※アクティブ : 対戦形式にもよりますが、基本的に画面に出て戦ってるキャラクターを返すよう努力します
 //				あいまいな定義です
@@ -920,6 +926,9 @@ struct DI_FUNCTIONS_O
 	PFUNCO_SETCOMRANGE		setcomrange;	//!< comが主体とするレンジ設定 @sa CGoluahObject::SetComRange
 	PFUNCO_GETCHARNAME		getcharname;	//!< 指定キャラの名前を取得
 	PFUNCO_GETKEYINPUT		getkeyinput;	//!< 指定キャラのキーIDを取得
+
+	PFUNCO_GETHITCOUNT		gethitcount;	//!< 指定キャラの連続技ヒット数（被コンボ数）を取得
+	PFUNCO_GETSEXYDAMAGE	getsexydamage;	//!< 指定キャラの連続技蓄積ダメージ（被コンボダメージ）を取得
 };
 
 /*!
@@ -952,7 +961,7 @@ typedef LPVOID (*PFUNCD_GETD3DD)();							//!< IDirect3DDevice* の取得
 typedef void   (*PFUNCD_LOADCELLDAT)(char*,LPVOID,LPVOID,LPVOID);//!< GCDデータ読み込み関数
 typedef LPVOID (*PFUNCD_LOADBMP)(char*,char*);				//!< ビットマップ読み込み関数
 typedef void   (*PFUNCD_UNLOADBMP)(LPVOID);					//!< ビットマップ後始末関数
-typedef void   (*PFUNCD_CELLDRAW)(LPVOID*,LPVOID,LPVOID,DWORD,int,int,float,int,BOOL,BOOL,DWORD,float,float);//!< セル描画関数
+typedef void   (*PFUNCD_CELLDRAW)(LPVOID*,LPVOID,LPVOID,DWORD,int,int,float,int,BOOL,BOOL,DWORD,float,float,BOOL);//!< セル描画関数
 typedef void   (*PFUNCD_CKBLT)(void*,int,int,RECT,double,double,BOOL,BOOL,float,DWORD);//!< Blt2
 typedef void   (*PFUNCD_BLT3D)(void*,RECT,MYRECT3D,DWORD);	//!< Blt3
 typedef void   (*PFUNCD_SETTRANSFORM)(BOOL);				//!< 変換行列設定
@@ -1010,7 +1019,7 @@ struct DI_FUNCTIONS_D
 //**************************************************************************
 //  キャラクタDLLのバージョン
 //**************************************************************************
-#define CDI_VERSION 1220
+#define CDI_VERSION 1230
 
 //********************************************************************************
 //　キャラクターオプション情報定義
@@ -1094,7 +1103,7 @@ struct CDI_CHARACTERINFO2
 // ステージDLLのバージョン
 //**************************************************************************
 
-#define SDI_VERSION 1220//無視してるかも・・・
+#define SDI_VERSION 1230//無視してるかも・・・
 
 
 //**************************************************************************

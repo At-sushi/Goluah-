@@ -266,7 +266,7 @@ void CMoukoneeyo::act_run()
 DWORD CMoukoneeyo::TouchB(ATTACKINFO *info,BOOL hit)
 {
 	atk_enabled[ current_index ] = FALSE;
-	return CBulletBase::TouchB(info, hit);
+	return 0;
 }
 
 DWORD CMoukoneeyo::Draw()
@@ -916,7 +916,7 @@ void CRifle::act_run()
 
 	pdat->x += pdat->vx;
 	pdat->y += pdat->vy;
-	cell( CELL_RIFLE );
+//	cell( CELL_RIFLE );	//不要っぽい
 
 	if(ccounter==RIFLE_TIMEOUT)
 	{
@@ -927,12 +927,12 @@ void CRifle::act_run()
 		Bomb();
 	}
 
-	cell( CELL_RIFLE );
+//	cell( CELL_RIFLE );
 }
 
 void CRifle::act_bomb()
 {
-	cell( CELL_RIFLE );
+//	cell( CELL_RIFLE );
 
 	float t = (float)ccounter/15.0f;
 	DWORD alpha = (DWORD)( 255.0f * (1.0f-t) );
@@ -948,7 +948,8 @@ void CRifle::ForceStop()
 {
 	if(pdat->aid==CBB_STATE_RUN)
 	{
-		Bomb();
+//		Bomb();	//二重にBombしてしまうので応急処置
+		Hide();
 	}
 }
 
@@ -1034,7 +1035,7 @@ void CFireThrower::act_run()
 		part->SetColor(i,info[i].col);
 	}
 
-	if(ccounter%3==0)pdat->kougeki = TRUE;
+	if(ccounter%5==0)pdat->kougeki = TRUE;
 
 	if(ccounter>DUR_FIRETHROW)
 	{
@@ -2094,7 +2095,7 @@ DWORD CBlood::DrawBack()
 {
 	if(pdat->aid==CBB_STATE_RUN)
 	{
-		LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
+		LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 		if(d3ddev)
 		{
 			MYVERTEX3D vb[4];

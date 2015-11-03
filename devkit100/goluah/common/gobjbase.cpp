@@ -16,7 +16,7 @@
 #include <stdio.h>
 
 #ifdef USE_DIRECT3D_DIRECT
-#include "d3dx8.h"
+#include "d3dx9.h"
 #endif
 
 #include "gobjbase.h"
@@ -811,7 +811,7 @@ double CGoluahObject::GetDisplayCenter_X() {
 	@sa DI_FUNCTIONS_S::etdispcentery
 
 	ステージの表示位置はキャラクターの移動によって変化します。
-	この関数はステージの現在の表示中心位置のX座標を取得します。
+	この関数はステージの現在の表示中心位置のY座標を取得します。
 */
 double CGoluahObject::GetDisplayCenter_Y() {
 	return funcs->getdispcentery();
@@ -988,12 +988,12 @@ void CGoluahObject::LogInfo(const char* fmt,...)
 }
 
 /*!
-*	@brief BGMの一時停止
-*	@sa CGoluahObject::BGMResume
-*	@sa DI_FUNCTIONS_S::bgm_pause
+* @brief BGMの一時停止
+* @sa CGoluahObject::BGMResume
+* @sa DI_FUNCTIONS_S::bgm_pause
 *
-*	BGMの再生を一時停止します。BGMResumeで再開します。
-*	独自BGMなどの演出に。
+* BGMの再生を一時停止します。BGMResumeで再開します。
+* 独自BGMなどの演出に。
 */
 void CGoluahObject::BGMPause()
 {
@@ -1001,17 +1001,41 @@ void CGoluahObject::BGMPause()
 }
 
 /*!
-*	@brief タグの除去
-*	@sa CGoluahObject::BGMPause
-*	@sa DI_FUNCTIONS_S::bgm_resume
+* @brief BGMの再開
+* @sa CGoluahObject::BGMPause
+* @sa DI_FUNCTIONS_S::bgm_resume
 *
-*	BGMPauseで停止したBGMの再生を再開します。
+* BGMPauseで停止したBGMの再生を再開します。
 */
 void CGoluahObject::BGMResume()
 {
 	funcs->bgm_resume();
 }
 
+/*!
+* @brief fpsの取得
+* @sa CGoluahObject::GetGameSpeed
+* @sa DI_FUNCTIONS_S::getgamespeed
+*
+* fpsをint型で取得します。
+* 正確な実時間が必要なときに。
+*/
+int CGoluahObject::GetGameSpeed()
+{
+	return funcs->getgamespeed();
+}
+
+/*!
+* @brief  先取ポイント数の取得
+* @sa CGoluahObject::GetMaxWin
+* @sa DI_FUNCTIONS_S::getmaxwin
+*
+* 何本先取制なのか取得します。
+*/
+DWORD CGoluahObject::GetMaxWin()
+{
+	return funcs->getmaxwin();
+}
 
 /*-----------------------------------------------------------------------------
 	オブジェクト関連の関数
@@ -1249,6 +1273,30 @@ void   CGoluahObject::SetComRange(DWORD idx){
 	funco->setcomrange(oid,idx);
 }
 
+/*!
+	@brief 連続技ヒット数（被コンボ数）取得
+	@param oid オブジェクトID
+	@return 指定オブジェクトのhitcount
+	@sa DI_FUNCTIONS_O::gethitcount
+
+	指定IDのオブジェクトの連続技ヒット数（被コンボ数）を取得します。
+	コンボ数は加害者ではなくて被害者が持っています。
+*/
+DWORD CGoluahObject::GetHitCount(DWORD oid) {
+	return funco->gethitcount(oid);
+}
+/*!
+	@brief 連続技蓄積ダメージ（被コンボダメージ）取得
+	@param oid オブジェクトID
+	@return 指定オブジェクトのsexydamage
+	@sa DI_FUNCTIONS_O::getsexydamage
+
+	指定IDのオブジェクトの連続技蓄積ダメージ（被コンボダメージ）を取得します。
+	これも被害者側。
+*/
+DWORD CGoluahObject::GetSexyDamage(DWORD oid) {
+	return funco->getsexydamage(oid);
+}
 
 /*-----------------------------------------------------------------------------
 	描画関連の関数
@@ -1260,8 +1308,8 @@ void   CGoluahObject::SetComRange(DWORD idx){
 
 	IDirect3D*を取得します。取得しても使い道ないかもしれないけど...
 */
-LPDIRECT3D8 CGoluahObject::GetD3D() {
-	return (LPDIRECT3D8)funcd->getd3d();
+LPDIRECT3D9 CGoluahObject::GetD3D() {
+	return (LPDIRECT3D9)funcd->getd3d();
 }
 /*!
 	@brief IDirect3DDevice* の取得
@@ -1270,8 +1318,8 @@ LPDIRECT3D8 CGoluahObject::GetD3D() {
 	IDirect3DDevice* を取得します。
 	IDirect3DDevice*によって可能な操作はDirectXのSDKを参照してください。
 */
-LPDIRECT3DDEVICE8 CGoluahObject::GetD3DDevice() {
-	return (LPDIRECT3DDEVICE8)funcd->getd3dd();
+LPDIRECT3DDEVICE9 CGoluahObject::GetD3DDevice() {
+	return (LPDIRECT3DDEVICE9)funcd->getd3dd();
 }
 /*!
 	@brief ver0.70形式セルデータ読み込み(非推奨)
@@ -1333,6 +1381,7 @@ void   CGoluahObject::UnloadBitMap(MYSURFACE* Bitmap) {
 	@param Color 描画の頂点Diffuse色
 	@param magx x拡大率
 	@param magy y拡大率
+	@param shadowed 影(省略可)
 
 	セル描画を行います。
 	通常はオブジェクトメッセージGOBJMSG_DRAWでFALSEを返すことにより、
@@ -1344,10 +1393,10 @@ void   CGoluahObject::UnloadBitMap(MYSURFACE* Bitmap) {
 	@sa CGoluahObject::SetParentMatrix
 */
 void   CGoluahObject::CellDraw(MYSURFACE** pBmps,GCD_CELL2* cdat,GCD_RECT* rdat,
-	DWORD cnum,int x,int y,float z,int Rotate,BOOL ReverseX,BOOL ReverseY,DWORD Color,float magx,float magy) 
+	DWORD cnum,int x,int y,float z,int Rotate,BOOL ReverseX,BOOL ReverseY,DWORD Color,float magx,float magy,BOOL shadowed) 
 {
 	funcd->celldraw((void**)pBmps, cdat, rdat,
-	 cnum, x, y, z, Rotate, ReverseX, ReverseY, Color, magx, magy);
+	 cnum, x, y, z, Rotate, ReverseX, ReverseY, Color, magx, magy, shadowed);
 }
 /*!
 	@brief セル描画
@@ -1357,7 +1406,7 @@ void   CGoluahObject::CellDraw(MYSURFACE** pBmps,GCD_CELL2* cdat,GCD_RECT* rdat,
 	通常はオブジェクトメッセージGOBJMSG_DRAWでFALSEを返すことにより同様の描画が行われますが、
 	1オブジェクトで一度に２つ以上のセルを描画したい場合などにこの関数を利用することができます。
 */
-void   CGoluahObject::CellDraw(GOBJECT *objdat)
+void   CGoluahObject::CellDraw(GOBJECT *objdat,BOOL shadowed)
 {
 	funcd->celldraw(
 		(void**)objdat->pmsarr,
@@ -1372,7 +1421,8 @@ void   CGoluahObject::CellDraw(GOBJECT *objdat)
 		objdat->revy,
 		objdat->color,
 		objdat->magx,
-		objdat->magy
+		objdat->magy,
+		shadowed
 		);
 }
 /*!
@@ -1966,14 +2016,14 @@ BOOL CCharacterBase::Command_OnAttacking(DWORD keyinfo)
 	else{
 		if(chainComboEnabled && keyinfo & 0x22220000){
 			if(keyinfo & KEYSTA_DOWN){
-				if(keyinfo & KEYSTA_BC2){/*if(ChainCombo(CHAIN_CC))*/{ChangeAction(ACTID_ATT_CC);return TRUE;}}
-				else if(keyinfo & KEYSTA_BB2){/*if(ChainCombo(CHAIN_CC)))*/{ChangeAction(ACTID_ATT_CB);return TRUE;}}
-				else if(keyinfo & KEYSTA_BA2){/*if(ChainCombo(CHAIN_CC)))*/{ChangeAction(ACTID_ATT_CA);return TRUE;}}
+				if(keyinfo & KEYSTA_BC2){if(ChainCombo(CHAIN_CC)){ChangeAction(ACTID_ATT_CC);return TRUE;}}
+				else if(keyinfo & KEYSTA_BB2){if(ChainCombo(CHAIN_CB)){ChangeAction(ACTID_ATT_CB);return TRUE;}}
+				else if(keyinfo & KEYSTA_BA2){if(ChainCombo(CHAIN_CA)){ChangeAction(ACTID_ATT_CA);return TRUE;}}
 			}
 			else{
-				if(keyinfo & KEYSTA_BC2){/*if(ChainCombo(CHAIN_CC))*/{ChangeAction(ACTID_ATT_SC);return TRUE;}}
-				else if(keyinfo & KEYSTA_BB2){/*if(ChainCombo(CHAIN_CC))*/{ChangeAction(ACTID_ATT_SB);return TRUE;}}
-				else if(keyinfo & KEYSTA_BA2){/*if(ChainCombo(CHAIN_CC))*/{ChangeAction(ACTID_ATT_SA);return TRUE;}}
+				if(keyinfo & KEYSTA_BC2){if(ChainCombo(CHAIN_SC)){ChangeAction(ACTID_ATT_SC);return TRUE;}}
+				else if(keyinfo & KEYSTA_BB2){if(ChainCombo(CHAIN_SB)){ChangeAction(ACTID_ATT_SB);return TRUE;}}
+				else if(keyinfo & KEYSTA_BA2){if(ChainCombo(CHAIN_SA)){ChangeAction(ACTID_ATT_SA);return TRUE;}}
 			}
 		}
 	}
@@ -2684,6 +2734,30 @@ BOOL CCharacterBase::com214(int dt)//逆はどー
 }
 
 /*!
+@brief コマンド判定(↓／←↓／←)
+@param dt コマンド受付時間
+@return TRUE:コマンド成立
+*/
+BOOL CCharacterBase::com214214(int dt)//逆はどーx2
+{
+	int ofst = 0;
+
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_BACK);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN | KEYSTA_BACK);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_BACK);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN | KEYSTA_BACK);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN);
+	if (ofst<0)return(FALSE);
+
+	return(TRUE);
+}
+/*!
 	@brief コマンド判定(←↓／)
 	@param dt コマンド受付時間
 	@return TRUE:コマンド成立
@@ -2741,7 +2815,7 @@ BOOL CCharacterBase::com66(int dt)//ダッシュコマンド
 	return(TRUE);
 }
 
-BOOL CCharacterBase::com66i(int dt)//バックダッシュコマンド
+BOOL CCharacterBase::com66i(int dt)//ダッシュコマンド
 {
 	if(!(GetKey(0)&KEYSTA_FOWORD2))return FALSE;
 	return com66(dt);
@@ -2891,6 +2965,197 @@ BOOL CCharacterBase::com6426(int dt)
 	return(TRUE);
 }
 
+/*!
+	@brief コマンド判定(←↓→↑)
+	@param dt コマンド受付時間
+	@return TRUE:コマンド成立
+	com4268～com8624はぁゃなみのソースからお借りしました。感謝。
+*/
+BOOL CCharacterBase::com4268(int dt)
+{
+	int ofst = 0;
+
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_UP);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD | KEYSTA_DOWN);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN | KEYSTA_BACK);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_BACK);
+	if (ofst<0)return(FALSE);
+
+	return(TRUE);
+}
+
+/*!
+	@brief コマンド判定(↓→↑←)
+	@param dt コマンド受付時間
+	@return TRUE:コマンド成立
+*/
+BOOL CCharacterBase::com2684(int dt)
+{
+	int ofst = 0;
+
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_BACK);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_UP);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD | KEYSTA_DOWN);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN);
+	if (ofst<0)return(FALSE);
+
+	return(TRUE);
+}
+
+/*!
+	@brief コマンド判定(→↑←↓)
+	@param dt コマンド受付時間
+	@return TRUE:コマンド成立
+*/
+BOOL CCharacterBase::com6842(int dt)
+{
+	int ofst = 0;
+
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN | KEYSTA_BACK);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_BACK);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_UP);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD);
+	if (ofst<0)return(FALSE);
+
+	return(TRUE);
+}
+
+
+/*!
+	@brief コマンド判定(↑←↓→)
+	@param dt コマンド受付時間
+	@return TRUE:コマンド成立
+*/
+BOOL CCharacterBase::com8426(int dt)
+{
+	int ofst = 0;
+
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD | KEYSTA_DOWN);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN | KEYSTA_BACK);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_BACK);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_UP);
+	if (ofst<0)return(FALSE);
+
+	return(TRUE);
+}
+/*!
+	@brief コマンド判定(←↑→↓)
+	@param dt コマンド受付時間
+	@return TRUE:コマンド成立
+*/
+BOOL CCharacterBase::com4862(int dt)
+{
+	int ofst = 0;
+
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD | KEYSTA_DOWN);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_UP);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_BACK);
+	if (ofst<0)return(FALSE);
+
+	return(TRUE);
+}
+
+/*!
+	@brief コマンド判定(↓←↑→)
+	@param dt コマンド受付時間
+	@return TRUE:コマンド成立
+*/
+BOOL CCharacterBase::com2486(int dt)
+{
+	int ofst = 0;
+
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_UP);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_BACK);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN | KEYSTA_BACK);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN);
+	if (ofst<0)return(FALSE);
+
+	return(TRUE);
+}
+
+/*!
+	@brief コマンド判定(→↓←↑)
+	@param dt コマンド受付時間
+	@return TRUE:コマンド成立
+*/
+BOOL CCharacterBase::com6248(int dt)
+{
+	int ofst = 0;
+
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_UP);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_BACK);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN | KEYSTA_BACK);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD | KEYSTA_DOWN);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD);
+	if (ofst<0)return(FALSE);
+
+	return(TRUE);
+}
+/*!
+	@brief コマンド判定(↑→↓←)
+	@param dt コマンド受付時間
+	@return TRUE:コマンド成立
+*/
+BOOL CCharacterBase::com8624(int dt)
+{
+	int ofst = 0;
+
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_BACK);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN | KEYSTA_BACK);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD | KEYSTA_DOWN);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD);
+	if (ofst<0)return(FALSE);
+	ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_UP);
+	if (ofst<0)return(FALSE);
+
+	return(TRUE);
+}
 /*!--------------------------------------------------------------------------------------
 	@brief COMレベル判定
 	@param level 基準となるレベル(難易度)

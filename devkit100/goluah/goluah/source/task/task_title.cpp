@@ -233,7 +233,32 @@ void CTitle::Draw()
 		else
 			g_draw.DrawBlueText(r,msg,-1,DT_CENTER,1);
 
-		r.top+=30;
+		r.top += 20;
+		strcpy(msg, "カメラ上下：");
+		switch (g_config.GetCameraMode()){
+		case CAMERA_OLD:strcpy(&msg[strlen(msg)], "しない"); break;
+		case CAMERA_UPPER:strcpy(&msg[strlen(msg)], "上優先"); break;
+		case CAMERA_NEW:strcpy(&msg[strlen(msg)], "二人とも画面外のとき"); break;
+		default:strcpy(&msg[strlen(msg)], "どうしてこうなった");
+		}
+		if (selected_item == SETTINGS_CAMERAMODE)
+			g_draw.DrawRedText(r, msg, -1, DT_CENTER, 1);
+		else
+			g_draw.DrawBlueText(r, msg, -1, DT_CENTER, 1);
+
+		r.top += 20;
+		strcpy(msg, "HPゲージ：");
+		switch (g_config.GetGaugeMode()){
+		case GAUGE_1000:strcpy(&msg[strlen(msg)], "1.21"); break;
+		case GAUGE_1220:strcpy(&msg[strlen(msg)], "1.22"); break;
+		default:strcpy(&msg[strlen(msg)], "イミフ");
+		}
+		if (selected_item == SETTINGS_GAUGEMODE)
+			g_draw.DrawRedText(r, msg, -1, DT_CENTER, 1);
+		else
+			g_draw.DrawBlueText(r, msg, -1, DT_CENTER, 1);
+
+		r.top += 30;
 
 		r.top+=40;
 		if(selected_item==SETTINGS_EXIT)
@@ -333,6 +358,8 @@ void CTitle::Settings()
 	DWORD point_max=g_config.GetMaxPoint();
 	int num_striker = g_config.GetStrikerCount();
 	DWORD game_speed = g_config.GetGameSpeed();
+	DWORD camera_mode = g_config.GetCameraMode();
+	DWORD gauge_mode = g_config.GetGaugeMode();
 
 	if(g_input.GetKey(0,0) & KEYSTA_DOWN2 || g_input.GetKey(1,0) & KEYSTA_DOWN2){//移動
 		selected_item++;
@@ -390,6 +417,28 @@ void CTitle::Settings()
 		}
 		g_config.SetGameSpeed((Config2_GameSpeed)game_speed);
 		g_system.UpdateFrameRate();
+		break;
+	case SETTINGS_CAMERAMODE://カメラモード
+		if (g_input.GetKey(0, 0) & KEYSTA_ARIGHT2 || g_input.GetKey(1, 0) & KEYSTA_ARIGHT2){//移動
+			camera_mode++;
+			if (camera_mode == 3)camera_mode = 0;
+		}
+		if (g_input.GetKey(0, 0) & KEYSTA_ALEFT2 || g_input.GetKey(1, 0) & KEYSTA_ALEFT2){//移動
+			camera_mode--;
+			if (camera_mode > 2)camera_mode = 2;
+		}
+		g_config.SetCameraMode((Config2_CameraMode)camera_mode);
+		break;
+	case SETTINGS_GAUGEMODE://HPゲージモード
+		if (g_input.GetKey(0, 0) & KEYSTA_ARIGHT2 || g_input.GetKey(1, 0) & KEYSTA_ARIGHT2){//移動
+			gauge_mode++;
+			if (gauge_mode == 2)gauge_mode = 0;
+		}
+		if (g_input.GetKey(0, 0) & KEYSTA_ALEFT2 || g_input.GetKey(1, 0) & KEYSTA_ALEFT2){//移動
+			gauge_mode--;
+			if (gauge_mode > 1)gauge_mode = 1;
+		}
+		g_config.SetGaugeMode((Config2_GaugeMode)gauge_mode);
 		break;
 	case SETTINGS_EXIT:
 		if((g_input.GetKey(0,0)|g_input.GetKey(1,0)) & (KEYSTA_RIGHT2|KEYSTA_LEFT2|KEYSTA_ANYKEY )){

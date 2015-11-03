@@ -39,7 +39,6 @@ void Cgoluah_configDlg::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 }
 
-#ifndef ON_WM_PAINT
 #define ON_WM_PAINT() \
 	{ WM_PAINT, 0, 0, 0, AfxSig_vv, \
 		(AFX_PMSG)(AFX_PMSGW) \
@@ -59,7 +58,6 @@ void Cgoluah_configDlg::DoDataExchange(CDataExchange* pDX)
 	{ WM_KEYDOWN, 0, 0, 0, AfxSig_vwww, \
 		(AFX_PMSG)(AFX_PMSGW) \
 		(static_cast< void (AFX_MSG_CALL CWnd::*)(UINT, UINT, UINT) > (&Cgoluah_configDlg::OnKeyDown)) },
-#endif
 
 BEGIN_MESSAGE_MAP(Cgoluah_configDlg, CDialog)
 	ON_WM_PAINT()

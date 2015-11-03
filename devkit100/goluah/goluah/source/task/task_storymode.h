@@ -122,7 +122,7 @@ protected:
 	void DrawFBC(float t);
 
 	float m_time;
-	LPDIRECT3DTEXTURE8	m_texfb;
+	LPDIRECT3DTEXTURE9	m_texfb;
 
 	BOOL m_yes_selected;
 };

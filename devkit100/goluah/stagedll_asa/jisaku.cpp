@@ -2,8 +2,8 @@
 #include <windows.h>
 #include <stdio.h>
 #include <math.h>
-#include <d3d8.h>
-#include <d3dx8.h>
+#include <d3d9.h>
+#include <d3dx9.h>
 
 #define EXPORT extern "C" __declspec(dllexport) 
 
@@ -16,7 +16,7 @@
 extern DI_FUNCTIONS_S	*funcs;
 extern DI_FUNCTIONS_O	*funco;
 extern DI_FUNCTIONS_D	*funcd;
-extern LPDIRECT3DDEVICE8 d3ddev;
+extern LPDIRECT3DDEVICE9 d3ddev;
 extern char *g_stgdir;
 
 //***************************************************************
@@ -239,8 +239,8 @@ DWORD gMsgJien(DWORD msg,LPVOID pd,DWORD prm)
 			0,
 			0xFFFFFFFF,
 			1.0f,
-			1.0f
-			);
+			1.0f,
+			1);
 		return(TRUE);
 	case GOBJMSG_DELETE:
 		CleanupJien();

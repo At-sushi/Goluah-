@@ -41,5 +41,5 @@ public:
 	virtual void UpdateSettings() = 0;
 };
 
-#include "d3d8.h"
+#include "d3d9.h"
 #include "config.h"

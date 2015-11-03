@@ -8,7 +8,7 @@
 DI_FUNCTIONS_S	*funcs=NULL;
 DI_FUNCTIONS_O	*funco=NULL;
 DI_FUNCTIONS_D	*funcd=NULL;
-LPDIRECT3DDEVICE8 d3ddev=NULL;
+LPDIRECT3DDEVICE9 d3ddev=NULL;
 char *g_stgdir=NULL;
 
 //メッセージ処理関数・グローバル
@@ -36,7 +36,7 @@ CStage::CStage(SDI_STAGEINFO2 *info)
 	funco = info->funco;
 	funcd = info->funcd;
 	//変数
-	d3ddev = (LPDIRECT3DDEVICE8)funcd->getd3dd();
+	d3ddev = (LPDIRECT3DDEVICE9)funcd->getd3dd();
 	g_stgdir = info->dir;
 
 	//aki3d

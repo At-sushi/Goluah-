@@ -732,7 +732,7 @@ DWORD CJudge::Draw()
 		//•`‰æ‚Ì•K—v‚È‚µ
 		return TRUE;
 	}
-	LPDIRECT3DDEVICE8 d3ddev = aki3d.GetD3DDev();
+	LPDIRECT3DDEVICE9 d3ddev = aki3d.GetD3DDev();
 	if(!d3ddev)return TRUE;//•`‰æ‚Å‚«‚È‚¢
 
 	aki3d.EnableZ(TRUE,FALSE);

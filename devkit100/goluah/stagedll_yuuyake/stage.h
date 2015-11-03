@@ -2,8 +2,8 @@
 
 #include <windows.h>
 #include <stdio.h>
-#include <d3d8.h>
-#include <d3dx8.h>
+#include <d3d9.h>
+#include <d3dx9.h>
 #include "gobjbase.h"
 
 //sphere
@@ -36,30 +36,30 @@ protected:
 	void DrawBuilding2();//ÉrÉãÇQ
 	void DrawBackGround();//îwåi
 
-	LPDIRECT3DDEVICE8 d3ddev;
+	LPDIRECT3DDEVICE9 d3ddev;
 
-	LPDIRECT3DTEXTURE8 ptex_jimen;
-	LPDIRECT3DTEXTURE8 ptex_fens;
+	LPDIRECT3DTEXTURE9 ptex_jimen;
+	LPDIRECT3DTEXTURE9 ptex_fens;
 	MYVERTEX3D vb_jimen[4];
 	MYVERTEX3D vb_fens[4];
 	MYVERTEX3D vb_fens2[2][4];
 
-	LPDIRECT3DTEXTURE8 ptex_buil1a;
+	LPDIRECT3DTEXTURE9 ptex_buil1a;
 	MYVERTEX3D vb_buil1a[2][4];
 	MYVERTEX3D vb_buil1b[4];//âÆç™ïîï™
-	LPDIRECT3DTEXTURE8 ptex_brdura;
+	LPDIRECT3DTEXTURE9 ptex_brdura;
 	MYVERTEX3D vb_buil1c[4];//ä≈î¬
-	LPDIRECT3DVERTEXBUFFER8 vb_buil1d[10];//ä≈î¬éxÇ¶
+	LPDIRECT3DVERTEXBUFFER9 vb_buil1d[10];//ä≈î¬éxÇ¶
 
-	LPDIRECT3DTEXTURE8 ptex_buil2a;
+	LPDIRECT3DTEXTURE9 ptex_buil2a;
 	MYVERTEX3D vb_buil2a[4];
 	MYVERTEX3D vb_buil2b[4];
 
-	LPDIRECT3DTEXTURE8 ptex_sky;
+	LPDIRECT3DTEXTURE9 ptex_sky;
 	MYVERTEX3D vb_sky[4];
-	LPDIRECT3DTEXTURE8 ptex_bg1;
+	LPDIRECT3DTEXTURE9 ptex_bg1;
 	MYVERTEX3D vb_bg1[4];
-	LPDIRECT3DTEXTURE8 ptex_bg2;
+	LPDIRECT3DTEXTURE9 ptex_bg2;
 	MYVERTEX3D vb_bg2[4];
 };
 

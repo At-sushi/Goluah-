@@ -151,9 +151,7 @@ BOOL CCharacter::Command_OnHissatuAttacking(DWORD key)
 	//ライフル、強制発射
 	if(pdat->aid==ACTID_POI_RIFLE)
 	{
-		if( (pdat->counter>30) && 
-			( pdat->counter<12+RIFLE_TIMEOUT ) || (IsLocalCom() && ( pdat->counter<12+200 ))
-		)
+		if( (pdat->counter>30) && ( pdat->counter<12+RIFLE_TIMEOUT ) )
 		{
 			if(key&KEYSTA_BUTTONS)
 			{
@@ -267,6 +265,10 @@ BOOL CCharacter::Command_OnNormal(DWORD key)
 				key &= ~KEYSTA_ANYKEY;
 			}
 		}
+		if (pdat->aid == ACTID_DASHB)
+		{
+			key &= ~KEYSTA_ANYKEY;
+		}
 	}
 	else//地上動作中
 	{
@@ -355,6 +357,33 @@ DWORD CCharacter::CmdCom_OnNormal(DWORD wid)
 	return CCharacterBase::CmdCom_OnNormal(wid);
 }
 
+DWORD CCharacter::CmdCom_OnHissatuAttacking(DWORD wid){
+	//ライフル、強制発射
+	if (pdat->aid == ACTID_POI_RIFLE)
+	{
+		GOBJECT *pedat = GetInfo(pdat->eid);
+		if (pdat->eid == 0)pedat = NULL;
+		if (pedat)
+		{
+			if (pdat->counter<12 + RIFLE_TIMEOUT)
+			{
+				//当たりそうなら撃つ
+				if (abs(pedat->x - pbul_rifle->GetGObject()->x) < 40 && abs(pedat->y - 50 - pbul_rifle->GetGObject()->y) < 75){
+					pdat->counter = 12 + RIFLE_TIMEOUT;
+					pbul_rifle->GetGObject()->counter = RIFLE_TIMEOUT - 1;
+				}
+				//近づかれたら諦める
+				if (ComLevelCk(4) && GetMaai_H(pdat->id, pdat->eid) < 60){
+					pdat->counter = 12 + RIFLE_TIMEOUT;
+					pbul_rifle->GetGObject()->counter = RIFLE_TIMEOUT - 1;
+				}
+			}
+		}
+
+	}
+	return CCharacterBase::CmdCom_OnHissatuAttacking(wid);
+}
+
 /*--------------------------------------------------------------------------------------
 	GOBJMSG_TOUCHB(攻撃あたり)
 ----------------------------------------------------------------------------------------*/
@@ -392,14 +421,15 @@ DWORD CCharacter::TouchB(ATTACKINFO *info,BOOL hit)
 	{
 		switch(pdat->aid)
 		{
-		case ACTID_ATT_SC:
-		case ACTID_ATT_CC:
+			case ACTID_ATT_SC:
+			case ACTID_ATT_CC:
 			{
 				if(ComLevelCk(5) && pdat->gauge>=1.0f)
 				{
 					SetComAct(ACTID_DAKKO,10);
 				}
-				else if(ComLevelCk(3)){
+				else if(ComLevelCk(3))
+				{
 					SetComAct(ACTID_STAFF,5);
 				}
 			}
@@ -521,7 +551,7 @@ void CCharacter::PreAction()
 		{
 			ArekoreCancel();
 		}
-		else if(t<((maai<60) ? 12: 2))
+		else if(t<((maai<60) ? 12 : 2))
 		{
 			ArekoreRelease();
 		}
@@ -630,14 +660,14 @@ void CCharacter::InitAttackInfo()
 	aif[i].hit		=HITINFO_REACT3 | HITINFO_SIV3 | HITINFO_MARK2 | HITINFO_SNDHIT2 ;//ヒット情報
 	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 ;//ガード情報
 	aif[i].id		=ATTACK_STRONG;//ゲージ増加時に使用するID
-	aif[i].damage	=40;//ダメージ
+	aif[i].damage	=50;//ダメージ
 	aif[i].kezuri	=2;//削り
 	
 	i=ATTACKINFO_JIEN;//ジエン
 	aif[i].hit		=HITINFO_REACT3 | HITINFO_SIV3 | HITINFO_MARK4 | HITINFO_SNDHIT3 ;//ヒット情報
 	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 ;//ガード情報
 	aif[i].id		=ATTACK_STRONG;//ゲージ増加時に使用するID
-	aif[i].damage	=60;//ダメージ
+	aif[i].damage	=70;//ダメージ
 	aif[i].kezuri	=3;//削り
 	
 	i=ATTACKINFO_AROE;//アロエ
@@ -665,14 +695,14 @@ void CCharacter::InitAttackInfo()
 	aif[i].hit		=HITINFO_REACT3 | HITINFO_SIV3 | HITINFO_MARK4 | HITINFO_SNDHIT3 | HITINFO_EFCTBURN;//ヒット情報
 	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP ;//ガード情報
 	aif[i].id		=ATTACK_HISSATU;//ゲージ増加時に使用するID
-	aif[i].damage	=60;//ダメージ
+	aif[i].damage	=70;//ダメージ
 	aif[i].kezuri	=6;//削り
 
 	i=ATTACKINFO_CRAYMORE;//クレイモア
 	aif[i].hit		=HITINFO_REACT2 | HITINFO_MARK2 | HITINFO_SNDHIT2 ;//ヒット情報
 	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_XJAMP ;//ガード情報
 	aif[i].id		=ATTACK_MIDDLE;//ゲージ増加時に使用するID
-	aif[i].damage	=20;//ダメージ
+	aif[i].damage	=30;//ダメージ
 	aif[i].kezuri	=1;//削り
 
 	i=ATTACKINFO_RIFLE;//ライフル
@@ -687,7 +717,7 @@ void CCharacter::InitAttackInfo()
 	aif[i].guard	=GUARDINFO_REACT2 | GUARDINFO_XJAMP ;//ガード情報
 	aif[i].id		=ATTACK_MIDDLE;//ゲージ増加時に使用するID
 	aif[i].damage	=20;//ダメージ
-	aif[i].kezuri	=5;//削り
+	aif[i].kezuri	=1;//削り
 
 	i=ATTACKINFO_ROCKET;//ロケット
 	aif[i].hit		=HITINFO_EFCTSINDO | HITINFO_EFCTBURN | HITINFO_SIV3 | HITINFO_FUTTOBI | HITINFO_MARK4 | HITINFO_SNDHIT3 ;//ヒット情報
@@ -700,14 +730,14 @@ void CCharacter::InitAttackInfo()
 	aif[i].hit		=HITINFO_REACT2 | HITINFO_MARK2 | HITINFO_SNDHIT2 ;//ヒット情報
 	aif[i].guard	=GUARDINFO_REACT2;//ガード情報
 	aif[i].id		=ATTACK_MIDDLE;//ゲージ増加時に使用するID
-	aif[i].damage	=20;//ダメージ
+	aif[i].damage	=30;//ダメージ
 	aif[i].kezuri	=1;//削り
 
 	i=ATTACKINFO_AGI;//アギ
 	aif[i].hit		=HITINFO_SIV3 | HITINFO_REACT3 | HITINFO_MARK4 | HITINFO_SNDHIT3 | HITINFO_EFCTBURN ;//ヒット情報
 	aif[i].guard	=GUARDINFO_SIV3 | GUARDINFO_REACT3;//ガード情報
 	aif[i].id		=ATTACK_MIDDLE;//ゲージ増加時に使用するID
-	aif[i].damage	=50;//ダメージ
+	aif[i].damage	=60;//ダメージ
 	aif[i].kezuri	=3;//削り
 
 	i=ATTACKINFO_HTTPLASER;//レーザー
@@ -786,7 +816,7 @@ void CCharacter::InitWazInfo()//コンピュータ用技情報の設定
 	waz.att_bullet[1] = ACTID_MOYAMOYA2;//飛び道具
 	waz.att_bullet[2] = ACTID_MOYAMOYA3;//飛び道具
 
-	waz.att_tai[0]	  = ACTID_STAFF; //対空
+	waz.att_tai[0]    = ACTID_STAFF; //対空
 
 	//リーチ設定
 	SetComReach( 0,MAAI_SHORT	);

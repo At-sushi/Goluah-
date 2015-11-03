@@ -2,8 +2,8 @@
 
 #include <windows.h>
 #include <stdio.h>
-#include <d3d8.h>
-#include <d3dx8.h>
+#include <d3d9.h>
+#include <d3dx9.h>
 #include "gobjbase.h"
 
 #include "aki3d.h"
@@ -26,11 +26,11 @@ protected:
 	void InitVrtx();
 	void LoadTextures();
 
-	LPDIRECT3DDEVICE8 d3ddev;
+	LPDIRECT3DDEVICE9 d3ddev;
 
 	MYSURFACE *pms_back;
-	LPDIRECT3DTEXTURE8 ptex_jimen;
-	LPDIRECT3DVERTEXBUFFER8 vb_gnd;
+	LPDIRECT3DTEXTURE9 ptex_jimen;
+	LPDIRECT3DVERTEXBUFFER9 vb_gnd;
 
 	RECT src;
 	MYRECT3D dst;

@@ -15,7 +15,7 @@
 
 void CFxRoundBase::Update()
 {
-	if(pdat->counter > 40 + 12 -1)End();
+	if (pdat->counter > (40 + 12)*g_config.GetGameSpeed2() / 50 - 1)End();
 }
 
 BOOL CFxRoundBase::DrawF()
@@ -23,14 +23,14 @@ BOOL CFxRoundBase::DrawF()
 	g_draw.SetTransform(FALSE);
 
 	float t2;
-	if(pdat->counter < 20){
-		t2 = 10.0f - pdat->counter/2.0f;
+	if (pdat->counter < 20 * g_config.GetGameSpeed2() / 50){
+		t2 = 10.0f - pdat->counter / (2.0f * g_config.GetGameSpeed2() / 50);
 	}
-	else if(pdat->counter < 40){
+	else if (pdat->counter < 40 * g_config.GetGameSpeed2() / 50){
 		t2 = 1.0f;
 	}
 	else{
-		t2 = 1.0f - (pdat->counter-40)/12.0f ;
+		t2 = 1.0f - (pdat->counter - (40 * g_config.GetGameSpeed2() / 50)) / (12.0f * g_config.GetGameSpeed2() / 50);
 	}
 
 	char str[] = "ROUND";
@@ -102,16 +102,16 @@ void CFxRoundBase::DrawOneCharacter(float x,float y,char c,float t,float t2)
 ******************************************************************/
 void CFxKO::Update()
 {
-	if(pdat->counter > 120)End();
+	if (pdat->counter > 120 * g_config.GetGameSpeed2() / 50)End();
 
-	if(pdat->counter < 30){
-		m_t = pdat->counter /30.0f;
+	if (pdat->counter < 30 * g_config.GetGameSpeed2() / 50){
+		m_t = pdat->counter / (30.0f*g_config.GetGameSpeed2() / 50);
 	}
-	else if(pdat->counter < 90){
+	else if (pdat->counter < 90 * g_config.GetGameSpeed2() / 50){
 		m_t = 1.0f;
 	}
 	else{
-		m_t = 1.0f - (pdat->counter-90) /30.0f;
+		m_t = 1.0f - (pdat->counter - (90 * g_config.GetGameSpeed2() / 50)) / (30.0f*g_config.GetGameSpeed2() / 50);
 	}
 }
 
@@ -894,9 +894,9 @@ void CFxFight::CreateTri2(VertList& vlist,LineList& llist,TriList& tlist,Tri2Lis
 ------------------------------------------------------------------*/
 void CFxFight::Update()
 {
-	const float dur1 = 5;
-	const float dur3 = 20;
-	const float dur2 = 25;
+	const float dur1 = 5 * g_config.GetGameSpeed2() / 50;
+	const float dur3 = 20 * g_config.GetGameSpeed2() / 50;
+	const float dur2 = 25 * g_config.GetGameSpeed2() / 50;
 	float t;
 	m_sca = 0.05f;
 
@@ -950,7 +950,7 @@ BOOL CFxFight::DrawF()
 {
 	g_draw.SetTransform(FALSE);
 	g_draw.d3ddev->SetTexture(0,NULL);				//テクスチャ無し
-	g_draw.d3ddev->SetVertexShader( FVF_3DVERTEX );	//頂点のフォーマットを指定
+	g_draw.d3ddev->SetFVF(FVF_3DVERTEX);	//頂点のフォーマットを指定
 
 	DWORD color = 0;
 	color |= m_alpha << 24;
@@ -1018,7 +1018,7 @@ void CFxFight::Destroy()
 
 void CFxTimeOver::Update()
 {
-	if(pdat->counter > 150 + 24 -1)End();
+	if (pdat->counter > (150 + 24)*g_config.GetGameSpeed2() / 50 - 1)End();
 }
 
 BOOL CFxTimeOver::DrawF()
@@ -1026,11 +1026,11 @@ BOOL CFxTimeOver::DrawF()
 	g_draw.SetTransform(FALSE);
 
 	float t2;
-	if(pdat->counter < 150){
+	if (pdat->counter < 150 * g_config.GetGameSpeed2() / 50){
 		t2 = 1.0f;
 	}
 	else{
-		t2 = 1.0f - (pdat->counter-150)/24.0f ;
+		t2 = 1.0f - (pdat->counter - (150 * g_config.GetGameSpeed2() / 50)) / (24.0f * g_config.GetGameSpeed2() / 50);
 	}
 
 	char str[] = "TIME OVER";

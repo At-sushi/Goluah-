@@ -6,8 +6,8 @@
 ================================================================*/
 #pragma once
 
-#include <d3d8.h>
-#include "d3dx8.h"
+#include <d3d9.h>
+#include "d3dx9.h"
 
 #include <windows.h>
 #include <stdio.h>
@@ -72,6 +72,7 @@ protected:
 	BOOL Command_OnHissatuAttacking(DWORD key);
 	DWORD CommandCOM(DWORD wid);
 	DWORD CmdCom_OnNormal(DWORD wid);
+	DWORD CmdCom_OnHissatuAttacking(DWORD wid);
 	void InitAttackInfo();
 	void InitWazInfo();
 	void InitBullets();

@@ -514,3 +514,30 @@ BOOL CDirectSound::BGMSeekAndPlay(const char* filename, BOOL loop, double startt
 	return TRUE;
 }
 
+/*!
+*	@brief BGMを探す
+*
+*	BGMPlayはファイルが見つからなかった場合でもその前まで流れていたBGMがstopしてしまう
+*	これでファイルを捜索してからBGMPlayに投げることで継続再生が可能
+*	BGMPlayに統合できそう
+*/
+BOOL CDirectSound::BGMSearch(const char *filename)
+{
+	char *bgmfilename = new char[256];
+
+	//使用頻度高そうな順にしときました
+	sprintf(bgmfilename, "%s.mp3", filename);
+	if (gbl.FileExist(bgmfilename))
+		return TRUE;
+	sprintf(bgmfilename, "%s.mid", filename);
+	if (gbl.FileExist(bgmfilename))
+		return TRUE;
+	sprintf(bgmfilename, "%s.wma", filename);
+	if (gbl.FileExist(bgmfilename))
+		return TRUE;
+	sprintf(bgmfilename, "%s.wav", filename);
+	if (gbl.FileExist(bgmfilename))
+		return TRUE;
+
+	return FALSE;
+}

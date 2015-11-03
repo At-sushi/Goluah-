@@ -75,9 +75,9 @@ void CStage::InitVrtx()//’¸“_À•W‚Ì‰Šú‰»
 	MYVERTEX3D* pv = NULL;
 
 	if (d3ddev)
-		d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_gnd);
+		d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_gnd, NULL);
 
-	if ( vb_gnd && SUCCEEDED(vb_gnd->Lock(0, 0, (BYTE**)&pv, 0)) )
+	if ( vb_gnd && SUCCEEDED(vb_gnd->Lock(0, 0, (void**)&pv, 0)) )
 	{
 		pv[0].y=pv[1].y=0.0f;
 		pv[2].y=pv[3].y=0.0f;
@@ -152,14 +152,14 @@ DWORD CStage::DrawBack()
 	if(ptex_jimen!=NULL){
 		D3DXMatrixIdentity(&mat);
 		d3ddev->SetTransform(D3DTS_WORLD,&mat);
-		d3ddev->SetStreamSource(0, vb_gnd, sizeof(MYVERTEX3D));
-		d3ddev->SetVertexShader(FVF_3DVERTEX);
+		d3ddev->SetStreamSource(0, vb_gnd, 0, sizeof(MYVERTEX3D));
+		d3ddev->SetFVF(FVF_3DVERTEX);
 		d3ddev->SetTexture(0,ptex_jimen);
-		d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSU,D3DTADDRESS_MIRROR);
-		d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSV,D3DTADDRESS_MIRROR);
+		d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_MIRROR);
+		d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_MIRROR);
 		d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);
-		d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSU,D3DTADDRESS_CLAMP);//Œ³‚É–ß‚µ‚Æ‚­
-		d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSV,D3DTADDRESS_CLAMP);//Œ³‚É–ß‚µ‚Æ‚­
+		d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP);//Œ³‚É–ß‚µ‚Æ‚­
+		d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);//Œ³‚É–ß‚µ‚Æ‚­
 	}
 
 	//‚à‚â---------------------------------------------------------

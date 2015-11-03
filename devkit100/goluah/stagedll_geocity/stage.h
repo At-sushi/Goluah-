@@ -2,8 +2,8 @@
 #pragma once
 #include <windows.h>
 #include <stdio.h>
-#include <d3d8.h>
-#include <d3dx8.h>
+#include <d3d9.h>
+#include <d3dx9.h>
 #include "gobjbase.h"
 
 
@@ -42,37 +42,37 @@ private:
 private:
 
 	//月、そして街
-	LPDIRECT3DTEXTURE8 ptex_moon;
-	LPDIRECT3DVERTEXBUFFER8 vb_moon;
-	LPDIRECT3DTEXTURE8 ptex_city;
-	LPDIRECT3DVERTEXBUFFER8 vb_city;
+	LPDIRECT3DTEXTURE9 ptex_moon;
+	LPDIRECT3DVERTEXBUFFER9 vb_moon;
+	LPDIRECT3DTEXTURE9 ptex_city;
+	LPDIRECT3DVERTEXBUFFER9 vb_city;
 
 	//道路
-	LPDIRECT3DTEXTURE8 ptex_road;
-	LPDIRECT3DVERTEXBUFFER8 vb_road[NUMDIV_ROADY];
-	LPDIRECT3DTEXTURE8 ptex_gurd;
+	LPDIRECT3DTEXTURE9 ptex_road;
+	LPDIRECT3DVERTEXBUFFER9 vb_road[NUMDIV_ROADY];
+	LPDIRECT3DTEXTURE9 ptex_gurd;
 	//ガードレール
-	LPDIRECT3DVERTEXBUFFER8 vb_gurd;
-	LPDIRECT3DVERTEXBUFFER8 vb_gurdpoll;//柱
+	LPDIRECT3DVERTEXBUFFER9 vb_gurd;
+	LPDIRECT3DVERTEXBUFFER9 vb_gurdpoll;//柱
 	
 	//交差点地面
-	LPDIRECT3DTEXTURE8 ptex_jct;
-	LPDIRECT3DVERTEXBUFFER8 vb_jct[NUMDIV_JCTY];
+	LPDIRECT3DTEXTURE9 ptex_jct;
+	LPDIRECT3DVERTEXBUFFER9 vb_jct[NUMDIV_JCTY];
 
-	LPDIRECT3DVERTEXBUFFER8 vb_ground;//地面黒く塗りつぶし
+	LPDIRECT3DVERTEXBUFFER9 vb_ground;//地面黒く塗りつぶし
 
 	//看板
-	LPDIRECT3DTEXTURE8 ptex_brd1a,ptex_brd1b;
-	LPDIRECT3DVERTEXBUFFER8 vb_brd1a,vb_brd1b;
-	LPDIRECT3DTEXTURE8 ptex_tlight;
+	LPDIRECT3DTEXTURE9 ptex_brd1a,ptex_brd1b;
+	LPDIRECT3DVERTEXBUFFER9 vb_brd1a,vb_brd1b;
+	LPDIRECT3DTEXTURE9 ptex_tlight;
 	MYVERTEX3D vb_tlight[4];
 
 	//看板（裏向き）
-	LPDIRECT3DTEXTURE8 ptex_brd2;
+	LPDIRECT3DTEXTURE9 ptex_brd2;
 	MYVERTEX3D vb_brd2a[4],vb_brd2b[4];
 
 	//街灯
-	LPDIRECT3DTEXTURE8 ptex_light;
+	LPDIRECT3DTEXTURE9 ptex_light;
 	MYVERTEX3D vb_light[NUM_LIGHT][4];
 
 	//ガードレール（手前側）

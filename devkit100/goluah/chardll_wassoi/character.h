@@ -9,8 +9,8 @@
 #include <windows.h>
 #include <stdio.h>
 
-#include <d3d8.h>
-#include <d3dx8.h>
+#include <d3d9.h>
+#include <d3dx9.h>
 
 #include "gobjbase.h"
 #include "cell.h"// 通常、are_editerで生成したヘッダーファイルをここにincludeします
@@ -143,8 +143,8 @@ private:
 
 	//options
 	DWORD option_flag;
-	BOOL OptHeavyHit()		{return FALSE;}
-	BOOL OptGuardCancel()	{return (option_flag&OPTIONS_GUARD_CANCEL)	? TRUE : FALSE;}
+	BOOL OptHeavyHit()		{return (option_flag&OPTIONS_HEAVY_HIT)		? TRUE : FALSE;}
+	BOOL OptGuardCancel()	{return TRUE;}
 	BOOL OptKoroKoro()		{return (option_flag&OPTIONS_KOROKORO)		? TRUE : FALSE;}
 	BOOL OptRegenerator()	{return (option_flag&OPTIONS_REGENERATOR)	? TRUE : FALSE;}
 
@@ -275,7 +275,7 @@ protected:
 
 		void Start(float tgt_x,float tgt_y);
 		void Update();
-		void Draw(LPDIRECT3DDEVICE8 dev);
+		void Draw(LPDIRECT3DDEVICE9 dev);
 	};
 
 	CWassoiLightInfo info[WLIGHT_NUM];
