@@ -36,10 +36,10 @@ void CBattleLoadInfo::Initialize()
 		}
 	}
 	m_stage = BLI_NOT_SELECTED;					//選択されたステージ : 未選択
-	strcpy(m_storybgm,"");						//ストーリーから指定されたBGM : なし
+	strcpy(m_storybgm,_T(""));						//ストーリーから指定されたBGM : なし
 
-	g_battleresult.SetKatiSerif(0,"(台詞が設定されていません)");
-	g_battleresult.SetKatiSerif(1,"(台詞が設定されていません)");
+	g_battleresult.SetKatiSerif(0,_T("(台詞が設定されていません)"));
+	g_battleresult.SetKatiSerif(1,_T("(台詞が設定されていません)"));
 }
 
 //指定無し項目をランダム指定とみなし、有効な値を割り当てる
@@ -279,8 +279,8 @@ DWORD CBattleLoadInfo::GetAllKey()
 
 CBattleResultInfo::CBattleResultInfo()
 {
-	sprintf(m_serif[0],"(台詞が設定されていません)");
-	sprintf(m_serif[1],"(台詞が設定されていません)");
+	sprintf(m_serif[0],_T("(台詞が設定されていません)"));
+	sprintf(m_serif[1],_T("(台詞が設定されていません)"));
 }
 
 void CBattleResultInfo::Initialize(BYTE wteam)

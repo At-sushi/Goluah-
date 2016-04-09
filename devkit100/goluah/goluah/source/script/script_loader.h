@@ -93,7 +93,7 @@ typedef std::vector<OneStringLine> strlinelist;
 
 
 #define STRINGHANDLER_MAXNESTCOUNT	10		//include最大ネスト数
-#define STRINGHANDLER_COMMENTSTART	"//"	//コメント識別文字列
+#define STRINGHANDLER_COMMENTSTART	_T("//")	//コメント識別文字列
 
 /*!
 *	@brief CScriptLoaderクラス本体

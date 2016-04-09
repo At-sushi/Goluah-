@@ -30,7 +30,7 @@ CEffectList::CEffectList()
 	if(pinst)throw;
 	pinst = this;
 
-	aki3dtexture_circle = aki3d.LoadTexture("circle.png");
+	aki3dtexture_circle = aki3d.LoadTexture(_T("circle.png"));
 }
 
 
@@ -67,11 +67,11 @@ void CEffectList::LoadTextures()
 	char *filename = new char [128];
 
 	for(int i=0;i<MAXNUM_SYSFXTEXTURES;i++){
-		sprintf(filename,".\\system\\texture\\tex%d.png",i);
+		sprintf(filename,_T(".\\system\\texture\\tex%d.png"),i);
 		if(D3D_OK!=D3DXCreateTextureFromFileA(g_draw.d3ddev,filename,&p))p=NULL;
 		textures.push_back(p);
 		if(!p){
-			gbl.ods("CEffectList::LoadTextures - %s 読み込み失敗",filename);
+			gbl.ods(_T("CEffectList::LoadTextures - %s 読み込み失敗"),filename);
 		}
 	}
 
@@ -159,7 +159,7 @@ void CEffectList::AddEffect(DWORD type,int prm1,int prm2,int prm3)
 	case EFCTID_TIMEOVER:	fx=new CFxTimeOver;		break;
 	case EFCTID_DOUBLEKO:
 	default:
-		gbl.ods("CEffectList::AddEffect / エフェクト未実装");
+		gbl.ods(_T("CEffectList::AddEffect / エフェクト未実装"));
 		return;
 	}
 

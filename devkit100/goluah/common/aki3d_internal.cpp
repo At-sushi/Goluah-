@@ -30,13 +30,13 @@ LPDIRECT3DTEXTURE9 CTexManager::LoadTexture(const char* filename)
 	//ファイル名準備
 	char *path = new char[MAX_PATH];
 	if(m_texPath)
-		sprintf(path,"%s\\%s",m_texPath,filename);
+		sprintf(path,_T("%s\\%s"),m_texPath,filename);
 	else
 		strcpy(path,filename);
 
-	OutputDebugString("aki3d , load texture  ");
+	OutputDebugString(_T("aki3d , load texture  "));
 	OutputDebugString( path );
-	OutputDebugString("\n");
+	OutputDebugString(_T("\n"));
 
 	//新規に読み込み
 	HRESULT loadret = D3DXCreateTextureFromFileEx(d3ddev, path,
@@ -245,13 +245,13 @@ void CTristripBody::Render(D3DMATRIX *l2w)
 								sizeof(MYVERTEX3D)		//頂点ストライド
 						))
 		{
-			aki3d.LogWarning("%s failed to render",__FUNCTION__);
+			aki3d.LogWarning(_T("%s failed to render"),__FUNCTION__);
 		}
 	}
 	catch(...)
 	{
 		zenka=TRUE;
-		aki3d.LogWarning("%s catch exception while rendering",__FUNCTION__);
+		aki3d.LogWarning(_T("%s catch exception while rendering"),__FUNCTION__);
 	}
 }
 
@@ -545,12 +545,12 @@ void CParticleBody::Render(D3DMATRIX *l2w)
 									sizeof(MYVERTEX3D)	//UINT VertexStreamZeroStride
 								))
 		{
-			aki3d.LogWarning("%s failed to render",__FUNCTION__);
+			aki3d.LogWarning(_T("%s failed to render"),__FUNCTION__);
 		}
 		}catch(...)
 		{
 			zenka=TRUE;
-			aki3d.LogWarning("%s catch exception while rendering",__FUNCTION__);
+			aki3d.LogWarning(_T("%s catch exception while rendering"),__FUNCTION__);
 		}
 
 		//マトリクス設定のレストア
@@ -735,13 +735,13 @@ void CFlatBoardsBody::Render(D3DMATRIX *l2w)
 								sizeof(MYVERTEX3D)	//UINT VertexStreamZeroStride
 							))
 		{
-			aki3d.LogWarning("%s failed to render",__FUNCTION__);
+			aki3d.LogWarning(_T("%s failed to render"),__FUNCTION__);
 		}
 	}
 	catch(...)
 	{
 		zenka=TRUE;
-		aki3d.LogWarning("%s catch exception while rendering",__FUNCTION__);
+		aki3d.LogWarning(_T("%s catch exception while rendering"),__FUNCTION__);
 	}
 }
 
@@ -882,7 +882,7 @@ void CMeshBody::Render(D3DMATRIX *l2w)
 			d3ddev->SetTexture(0,tex[i]);						//テクスチャー設定
 			if(D3D_OK != x_mesh->DrawSubset(i))
 			{
-				aki3d.LogWarning("%s failed to render",__FUNCTION__);
+				aki3d.LogWarning(_T("%s failed to render"),__FUNCTION__);
 			}
 		}
  
@@ -896,7 +896,7 @@ void CMeshBody::Render(D3DMATRIX *l2w)
 	catch(...)
 	{
 		zenka=TRUE;
-		aki3d.LogWarning("%s catch exception while rendering",__FUNCTION__);
+		aki3d.LogWarning(_T("%s catch exception while rendering"),__FUNCTION__);
 	}
 }
 

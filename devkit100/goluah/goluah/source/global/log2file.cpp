@@ -12,8 +12,8 @@
 
 //バッファサイズ
 #define LOG2FILE_BUFFERSIZE (1024*16)		//16KB buffer
-#define LOG2FILE_DIR		"system\\log"	//保存ディレクトリ
-#define LOG2FILE_PREFIX		""				//ファイルの接頭子
+#define LOG2FILE_DIR		_T("system\\log")	//保存ディレクトリ
+#define LOG2FILE_PREFIX		_T("")				//ファイルの接頭子
 
 
 /*!
@@ -31,18 +31,18 @@ CLog2File::CLog2File()
 	time_t crnt_time;
 	time(&crnt_time);
 	struct tm* crnt_time_l = localtime(&crnt_time);
-	sprintf(filename,"%s\\%s%d%s%d%s%d%s%d%s%d%s%d.txt",
+	sprintf(filename,_T("%s\\%s%d%s%d%s%d%s%d%s%d%s%d.txt"),
 		LOG2FILE_DIR,LOG2FILE_PREFIX,				//プレフィックス
 		crnt_time_l->tm_year + 1900,				//年
-		(crnt_time_l->tm_mon + 1)<10 ? "0" : "",
+		(crnt_time_l->tm_mon + 1)<10 ? _T("0") : _T(""),
 		crnt_time_l->tm_mon + 1,					//月
-		crnt_time_l->tm_mday<10 ? "0" : "",
+		crnt_time_l->tm_mday<10 ? _T("0") : _T(""),
 		crnt_time_l->tm_mday,						//日
-		crnt_time_l->tm_hour<10 ? "0" : "",
+		crnt_time_l->tm_hour<10 ? _T("0") : _T(""),
 		crnt_time_l->tm_hour,						//時
-		crnt_time_l->tm_min<10 ? "0" : "",
+		crnt_time_l->tm_min<10 ? _T("0") : _T(""),
 		crnt_time_l->tm_min,						//分
-		crnt_time_l->tm_sec<10 ? "0" : "",
+		crnt_time_l->tm_sec<10 ? _T("0") : _T(""),
 		crnt_time_l->tm_sec							//秒
 	);
 }

@@ -49,12 +49,12 @@ void CTStaffRoll::Initialize()
 	countersr=0;
 
 	HANDLE hFile = CreateFile(
-		txtpath ? txtpath : ".\\system\\staff.txt",//"story\\std\\test\\staff.txt",//
+		txtpath ? txtpath : _T(".\\system\\staff.txt"),//"story\\std\\test\\staff.txt",//
 		GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
 	if(hFile==INVALID_HANDLE_VALUE){
 		fsize = 256;
 		credits = new char [fsize];
-		sprintf(credits,"\n\n\n\n\n\n\n\nファイルのオープンに失敗しました");
+		sprintf(credits,_T("\n\n\n\n\n\n\n\nファイルのオープンに失敗しました"));
 	}
 	else{
 		fsize=GetFileSize(hFile,NULL);
@@ -66,8 +66,8 @@ void CTStaffRoll::Initialize()
 		CloseHandle(hFile);
 	}
 
-	ms = g_draw.CreateSurfaceFrom256Image(".\\system\\ending");
-	g_sound.BGMPlay(".\\system\\bgm\\ending",FALSE);
+	ms = g_draw.CreateSurfaceFrom256Image(_T(".\\system\\ending"));
+	g_sound.BGMPlay(_T(".\\system\\bgm\\ending"),FALSE);
 }
 
 
@@ -153,7 +153,7 @@ void CTStaffRoll::Setup(char *basedir,CStoryElement_Staff* ele_staff)
 	//テキストファイル名取り込み
 	if(ele_staff->m_filename){
 		txtpath = new char [ baselen + strlen(ele_staff->m_filename) +3 ];
-		sprintf(txtpath,"%s\\%s",basedir,ele_staff->m_filename);
+		sprintf(txtpath,_T("%s\\%s"),basedir,ele_staff->m_filename);
 	}
 }
 

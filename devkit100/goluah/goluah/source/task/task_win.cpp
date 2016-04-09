@@ -50,8 +50,8 @@ void CYouWin::Initialize()
 		char altstr[3]={'\0','\0'};
 		if(alt!=0)altstr[0]='a'+(char)alt-1;
 		dir = g_charlist.GetCharacterDir(g_battleresult.GetCharacter(j));
-		sprintf(filename,"%s\\face3%s",dir,altstr);
-		sprintf(palname,"%s\\pal%d",dir,g_battleresult.GetColor(j));
+		sprintf(filename,_T("%s\\face3%s"),dir,altstr);
+		sprintf(palname,_T("%s\\pal%d"),dir,g_battleresult.GetColor(j));
 		dds_face[j] = g_draw.CreateSurfaceFrom256Image(filename,palname);
 	}
 
@@ -80,7 +80,7 @@ void CYouWin::Initialize()
 	counter=0;
 	show_text = FALSE;
 
-	g_sound.BGMPlay(".\\system\\bgm\\win",FALSE);
+	g_sound.BGMPlay(_T(".\\system\\bgm\\win"),FALSE);
 }
 
 /*------------------------------------------------------------

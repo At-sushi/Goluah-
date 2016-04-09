@@ -13,7 +13,7 @@ BOOL CGoluahDemoScript::CreateScriptElementList(SScriptElementList& list,char *f
 	if (L)
 	{
 		// 組み込み関数の登録
-		lua_register(L, "vs", &l_vs);
+		lua_register(L, _T("vs"), &l_vs);
 
 		lua_close(L);
 		return TRUE;
@@ -27,15 +27,15 @@ BOOL CGoluahDemoScript::CreateScriptElementList(SScriptElementList& list,char *f
 static int l_vs(lua_State *L)
 {
 	// フィールド所得
-	lua_getfield(L, 1, "type");
-	lua_getfield(L, 1, "friend");
-	lua_getfield(L, 1, "enemy");
-	lua_getfield(L, 1, "stage");
-	lua_getfield(L, 1, "timelimit");
-	lua_getfield(L, 1, "nowin");
-	lua_getfield(L, 1, "wintext");
-	lua_getfield(L, 1, "losetext");
-	lua_getfield(L, 1, "bgm");
-	lua_getfield(L, 1, "nogameover");
+	lua_getfield(L, 1, _T("type"));
+	lua_getfield(L, 1, _T("friend"));
+	lua_getfield(L, 1, _T("enemy"));
+	lua_getfield(L, 1, _T("stage"));
+	lua_getfield(L, 1, _T("timelimit"));
+	lua_getfield(L, 1, _T("nowin"));
+	lua_getfield(L, 1, _T("wintext"));
+	lua_getfield(L, 1, _T("losetext"));
+	lua_getfield(L, 1, _T("bgm"));
+	lua_getfield(L, 1, _T("nogameover"));
 	return 0;
 }

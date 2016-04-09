@@ -37,7 +37,7 @@ BOOL CScriptLoaderInstance::LoadFile(char *base_dir,char *filename,UINT include_
 	//ファイル全体を読み込む
 	UINT fsize;
 	CString *file_path = new CString;
-	file_path->Format("%s\\%s",base_dir,filename);
+	file_path->Format(_T("%s\\%s"),base_dir,filename);
 	BYTE* str_org = LoadWholeFile(file_path,&fsize);
 	if(!str_org){
 		delete file_path;
@@ -214,8 +214,8 @@ BOOL CScriptLoaderInstance::IncludeCheck(UINT include_count)
 	CScriptLoaderInstance subtext;
 
 	for(;il!=iled;il++){
-		if(il->str.Find("include")==0){
-			sscanf(il->str,"include %s",tmpstr);
+		if(il->str.Find(_T("include"))==0){
+			sscanf(il->str,_T("include %s"),tmpstr);
 			if(subtext.LoadFile(m_base_dir.GetBuffer(),tmpstr,include_count)){
 				int line_no = il->line_no;
 				list.erase(il);
@@ -267,7 +267,7 @@ void CScriptLoaderInstance::Marge(int index,CScriptLoaderInstance& sh)
 #include<algorithm>
 void CScriptLoaderInstance::DebugOutput(char *filename)
 {
-	OutputDebugString("\n■CScriptLoaderInstance::DebugOutput - start\n");
+	OutputDebugString(_T("\n■CScriptLoaderInstance::DebugOutput - start\n"));
 
 	strlinelist::iterator il;
 	strlinelist::iterator iled;
@@ -280,11 +280,11 @@ void CScriptLoaderInstance::DebugOutput(char *filename)
 	il	=list.begin();
 	iled=list.end();
 	for(;il!=iled;il++){
-		tmp.Format("line%d : %s\n",il->line_no,il->str.GetBuffer());
+		tmp.Format(_T("line%d : %s\n"),il->line_no,il->str.GetBuffer());
 		OutputDebugString(tmp);
 	}
 
-	OutputDebugString("\n■CScriptLoaderInstance::DebugOutput - end\n");
+	OutputDebugString(_T("\n■CScriptLoaderInstance::DebugOutput - end\n"));
 }
 #endif
 

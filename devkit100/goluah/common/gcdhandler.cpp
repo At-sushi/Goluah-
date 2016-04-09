@@ -25,7 +25,7 @@ extern HWND ghwnd;
 
 
 // シグネイチャ
-const BYTE cmp_sig[] = "GCDC";
+const BYTE cmp_sig[] = _T("GCDC");
 
 //**********************************************************************************
 //  load
@@ -38,26 +38,26 @@ const BYTE cmp_sig[] = "GCDC";
 */
 BOOL CGCDHandler::GCDLoadDlg(GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames)
 {
-	char filepath[256]="";
+	char filepath[256]=_T("");
 	char filename[64];
 	OPENFILENAME ofn;
 	ZeroMemory(&ofn,sizeof(OPENFILENAME));
 	ofn.lStructSize = sizeof(OPENFILENAME);
 	ofn.hwndOwner = ghwnd;
-	ofn.lpstrFilter = "データ(*.gcd)\0*.gcd\0すべて(*.*)\0*.*\0\0";
+	ofn.lpstrFilter = _T("データ(*.gcd)\0*.gcd\0すべて(*.*)\0*.*\0\0");
 	ofn.lpstrFile = filepath;
 	ofn.nMaxFile =256;
 	ofn.lpstrFileTitle = filename;
 	ofn.nMaxFileTitle = 64;
 	ofn.Flags = OFN_FILEMUSTEXIST;
-	ofn.lpstrTitle = "開く";
+	ofn.lpstrTitle = _T("開く");
 
 	if(!GetOpenFileName(&ofn))return(FALSE);
 
 	switch(GCDLoad(filepath,pcdat,prdat,phdat,pfhnames,GCD_VERSION)){
 	case 0://成功
 		return(TRUE);
-	default:MessageBox(ghwnd,"読込に失敗しました","",MB_OK);
+	default:MessageBox(ghwnd,_T("読込に失敗しました"),_T(""),MB_OK);
 	}
 	
 	return(FALSE);
@@ -186,7 +186,7 @@ int CGCDHandler::GCDLoad090(HANDLE hFile,LPVOID pcdat,LPVOID prdat,LPVOID phdat,
 		}
 	}
 	catch(...){
-		ODS("□GCDHandler : ver0.90 GCD load failed");
+		ODS(_T("□GCDHandler : ver0.90 GCD load failed"));
 	}
 
 	if(ret==0){
@@ -198,7 +198,7 @@ int CGCDHandler::GCDLoad090(HANDLE hFile,LPVOID pcdat,LPVOID prdat,LPVOID phdat,
 		if(pcdat!=NULL)memcpy(pcdat,dm_cdat,sizeof(GCD_CELL2_090)*GCDMAX_CELLS);
 		if(phdat!=NULL)memcpy(phdat,dm_hdat,sizeof(GCD_HANTEI_090)*GCDMAX_CELLS);
 
-		ODS("□GCDHandler : ver0.90 GCD load comlete\n");
+		ODS(_T("□GCDHandler : ver0.90 GCD load comlete\n"));
 	}
 	delete [] dm_rdat;
 	delete [] dm_cdat;
@@ -263,7 +263,7 @@ int CGCDHandler::GCDLoad070(HANDLE hFile,LPVOID pcdat,LPVOID prdat,LPVOID phdat,
 		}
 	}
 	catch(...){
-		ODS("□GCDHandler : ver0.70 GCD load failed\n");
+		ODS(_T("□GCDHandler : ver0.70 GCD load failed\n"));
 	}
 
 	if(ret==0){//成功・渡されたバッファへデータをコピー
@@ -281,7 +281,7 @@ int CGCDHandler::GCDLoad070(HANDLE hFile,LPVOID pcdat,LPVOID prdat,LPVOID phdat,
 						}
 					}
 					if(phdat!=NULL)memcpy(phdat,dm_hdat,sizeof(GCD_HANTEI_090)*GCDMAX_CELLS);
-					ODS("□GCDHandler : ver0.70→ver0.90 GCD load comlete");
+					ODS(_T("□GCDHandler : ver0.70→ver0.90 GCD load comlete"));
 
 					//バージョン情報埋め込み
 					if(pcdat != NULL) ((GCD_CELL2_090*)pcdat)[0].cell[0].flag = 900;
@@ -294,7 +294,7 @@ int CGCDHandler::GCDLoad070(HANDLE hFile,LPVOID pcdat,LPVOID prdat,LPVOID phdat,
 					if(prdat!=NULL)memcpy(prdat,dm_rdat,sizeof(GCD_RECT_070)*GCDMAX_RECTANGLES);
 					if(pcdat!=NULL)memcpy(pcdat,dm_cdat,sizeof(GCD_CELL2_070)*GCDMAX_CELLS);
 					if(phdat!=NULL)memcpy(phdat,dm_hdat,sizeof(GCD_HANTEI_070)*GCDMAX_CELLS);
-					ODS("□GCDHandler : ver0.70 GCD load comlete\n");
+					ODS(_T("□GCDHandler : ver0.70 GCD load comlete\n"));
 
 					//バージョン情報埋め込み
 					if(pcdat != NULL) ((GCD_CELL2_070*)pcdat)[0].cell[0].flag = 700;
@@ -385,8 +385,8 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 
 			if (CRCSum != dhead.CRCCheckSum)
 			{
-				if ( MessageBox(NULL, "CRCエラー（セル定義名）：\nこのデータは破損している可能性があります。\n\n処理を続行しますか？",
-							"夜霧よ今夜もありがとう", MB_YESNO | MB_ICONWARNING) == IDNO )
+				if ( MessageBox(NULL, _T("CRCエラー（セル定義名）：\nこのデータは破損している可能性があります。\n\n処理を続行しますか？"),
+							_T("夜霧よ今夜もありがとう"), MB_YESNO | MB_ICONWARNING) == IDNO )
 				{
 					CloseHandle(hFile);
 					return 4;
@@ -439,8 +439,8 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 			CRCSum = crc32( crc32(0L, Z_NULL, 0), (BYTE*)prdat, sizeof(GCD_RECT_090) * GCDMAX_RECTANGLES );
 			if (CRCSum != dhead.CRCCheckSum)
 			{
-				if ( MessageBox(NULL, "CRCエラー（矩形データ）：\nこのデータは破損している可能性があります。\n\n処理を続行しますか？",
-							"夜霧よ今夜もありがとう", MB_YESNO | MB_ICONWARNING) == IDNO )
+				if ( MessageBox(NULL, _T("CRCエラー（矩形データ）：\nこのデータは破損している可能性があります。\n\n処理を続行しますか？"),
+							_T("夜霧よ今夜もありがとう"), MB_YESNO | MB_ICONWARNING) == IDNO )
 				{
 					CloseHandle(hFile);
 					return 5;
@@ -501,8 +501,8 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 			CRCSum = crc32( crc32(0L, Z_NULL, 0), (BYTE*)pcdat, sizeof(GCD_CELL2_090) * GCDMAX_CELLS );
 			if (CRCSum != dhead.CRCCheckSum)
 			{
-				if ( MessageBox(NULL, "CRCエラー（セルデータ）：\nこのデータは破損している可能性があります。\n\n処理を続行しますか？",
-							"夜霧よ今夜もありがとう", MB_YESNO | MB_ICONWARNING) == IDNO )
+				if ( MessageBox(NULL, _T("CRCエラー（セルデータ）：\nこのデータは破損している可能性があります。\n\n処理を続行しますか？"),
+							_T("夜霧よ今夜もありがとう"), MB_YESNO | MB_ICONWARNING) == IDNO )
 				{
 					CloseHandle(hFile);
 					return 6;
@@ -543,8 +543,8 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 			CRCSum = crc32( crc32(0L, Z_NULL, 0), (BYTE*)phdat, sizeof(GCD_HANTEI_090) * GCDMAX_CELLS );
 			if (CRCSum != dhead.CRCCheckSum)
 			{
-				if ( MessageBox(NULL, "CRCエラー（当たり判定データ）：\nこのデータは破損している可能性があります。\n\n処理を続行しますか？",
-							"夜霧よ今夜もありがとう", MB_YESNO | MB_ICONWARNING) == IDNO )
+				if ( MessageBox(NULL, _T("CRCエラー（当たり判定データ）：\nこのデータは破損している可能性があります。\n\n処理を続行しますか？"),
+							_T("夜霧よ今夜もありがとう"), MB_YESNO | MB_ICONWARNING) == IDNO )
 				{
 					CloseHandle(hFile);
 					return 7;
@@ -576,20 +576,20 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 -------------------------------------------------------------------------*/
 BOOL CGCDHandler::GCDSaveDlg(GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames)
 {
-	char filepath[256]="";
+	char filepath[256]=_T("");
 	char filename[64];
 	OPENFILENAME ofn;
 	ZeroMemory(&ofn,sizeof(OPENFILENAME));
 	ofn.lStructSize = sizeof(OPENFILENAME);
 	ofn.hwndOwner = ghwnd;
-	ofn.lpstrFilter = "GCD0.90形式(*.gcd)\0*.gcd\0圧縮GCD0.90形式(*.gcm)\0*.gcm\0GCD0.70形式(*.gcd)\0*.gcd\0すべてのファイル(*.*)\0*.*\0\0";
-	ofn.lpstrDefExt = "gcd";
+	ofn.lpstrFilter = _T("GCD0.90形式(*.gcd)\0*.gcd\0圧縮GCD0.90形式(*.gcm)\0*.gcm\0GCD0.70形式(*.gcd)\0*.gcd\0すべてのファイル(*.*)\0*.*\0\0");
+	ofn.lpstrDefExt = _T("gcd");
 	ofn.lpstrFile = filepath;
 	ofn.nMaxFile =256;
 	ofn.lpstrFileTitle = filename;
 	ofn.nMaxFileTitle = 64;
 	ofn.Flags = OFN_OVERWRITEPROMPT;
-	ofn.lpstrTitle = "保存";
+	ofn.lpstrTitle = _T("保存");
 
 	if(!GetSaveFileName(&ofn))return(FALSE);
 
@@ -599,7 +599,7 @@ BOOL CGCDHandler::GCDSaveDlg(GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,
 	case 3://0.70フォーマットで保存
 		ret = GCDSave070(filepath,pcdat,prdat,phdat,pfhnames);break;
 	case 2://圧縮して保存
-		if (strcmp(filepath + strlen(filepath) - 4, ".gcm") == 0)
+		if (strcmp(filepath + strlen(filepath) - 4, _T(".gcm")) == 0)
 		{
 			ret = GCDSaveCompressed(filepath,pcdat,prdat,phdat,pfhnames);break;
 		}
@@ -610,12 +610,12 @@ BOOL CGCDHandler::GCDSaveDlg(GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,
 	//エラーメッセージ表示
 	switch(ret){
 	case 0:return(TRUE);
-	case 1:MessageBox(ghwnd,"ファイルオープンに失敗","保存に失敗",MB_OK);break;
-	case 2:MessageBox(ghwnd,"書き込み失敗(2)","保存に失敗",MB_OK);break;
-	case 3:MessageBox(ghwnd,"書き込み失敗(3)","保存に失敗",MB_OK);break;
-	case 4:MessageBox(ghwnd,"書き込み失敗(4)","保存に失敗",MB_OK);break;
-	case 5:MessageBox(ghwnd,"書き込み失敗(5)","保存に失敗",MB_OK);break;
-	case 6:MessageBox(ghwnd,"書き込み失敗(6)","保存に失敗",MB_OK);break;
+	case 1:MessageBox(ghwnd,_T("ファイルオープンに失敗"),_T("保存に失敗"),MB_OK);break;
+	case 2:MessageBox(ghwnd,_T("書き込み失敗(2)"),_T("保存に失敗"),MB_OK);break;
+	case 3:MessageBox(ghwnd,_T("書き込み失敗(3)"),_T("保存に失敗"),MB_OK);break;
+	case 4:MessageBox(ghwnd,_T("書き込み失敗(4)"),_T("保存に失敗"),MB_OK);break;
+	case 5:MessageBox(ghwnd,_T("書き込み失敗(5)"),_T("保存に失敗"),MB_OK);break;
+	case 6:MessageBox(ghwnd,_T("書き込み失敗(6)"),_T("保存に失敗"),MB_OK);break;
 	}
 	return(FALSE);
 }
@@ -764,19 +764,19 @@ int CGCDHandler::GCDSave070(char *filename,GCD_CELL2 *pcdat090,GCD_RECT *prdat,G
 BOOL CGCDHandler::GCDSaveHeader(GCD_CELLNAMES *pfhnames)
 {
 	//保存するファイルを選択させる
-	char filepath[256]="";
+	char filepath[256]=_T("");
 	char filename[64];
 	OPENFILENAME ofn;
 	ZeroMemory(&ofn,sizeof(OPENFILENAME));
 	ofn.lStructSize = sizeof(OPENFILENAME);
 	ofn.hwndOwner = ghwnd;
-	ofn.lpstrFilter = "C/C++ヘッダファイル(*.h)\0*.h\0すべて(*.*)\0*.*\0\0";
+	ofn.lpstrFilter = _T("C/C++ヘッダファイル(*.h)\0*.h\0すべて(*.*)\0*.*\0\0");
 	ofn.lpstrFile = filepath;
 	ofn.nMaxFile =256;
 	ofn.lpstrFileTitle = filename;
 	ofn.nMaxFileTitle = 64;
 	ofn.Flags = 0;
-	ofn.lpstrTitle = "保存";
+	ofn.lpstrTitle = _T("保存");
 
 	if(!GetOpenFileName(&ofn))return(FALSE);
 
@@ -795,7 +795,7 @@ BOOL CGCDHandler::GCDSaveHeader(GCD_CELLNAMES *pfhnames)
 	HANDLE hFile = CreateFile(filepath,
 		GENERIC_WRITE,0,NULL,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);
 	if(hFile==INVALID_HANDLE_VALUE){
-		MessageBox(ghwnd,"ﾌｧｲﾙが開けなかった","SaveFile()",MB_OK);
+		MessageBox(ghwnd,_T("ﾌｧｲﾙが開けなかった"),_T("SaveFile()"),MB_OK);
 		return(FALSE);
 	}
 
@@ -804,7 +804,7 @@ BOOL CGCDHandler::GCDSaveHeader(GCD_CELLNAMES *pfhnames)
 	DWORD ret;
 	for(DWORD i=0;i<GCDMAX_CELLS;i++){
 		if(strlen(pfhnames->name[i]) != 0){
-			sprintf(write,"#define CELL_%s %d\n",pfhnames->name[i],i);
+			sprintf(write,_T("#define CELL_%s %d\n"),pfhnames->name[i],i);
 			ret=WriteFile(hFile,write,(DWORD)sizeof(char)*strlen(write),&br,NULL);
 		}
 	}
@@ -1340,7 +1340,7 @@ void CGCDHandler::Diet()
 BOOL CGCDHandler::Save()
 {
 	if(!valid()){
-		MessageBox(ghwnd,"データが読み込まれてないよ","",MB_OK);
+		MessageBox(ghwnd,_T("データが読み込まれてないよ"),_T(""),MB_OK);
 		return FALSE;
 	}
 

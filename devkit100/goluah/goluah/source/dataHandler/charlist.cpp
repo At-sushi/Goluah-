@@ -86,12 +86,12 @@ void CCharacterList::InitializeRingList()
 	HANDLE hFind;
 	WIN32_FIND_DATA fd;
 
-	hFind = FindFirstFile(".\\char\\*.*", &fd);
+	hFind = FindFirstFile(_T(".\\char\\*.*"), &fd);
 	CCL_RINGINFO ringitem;
 
 	if(hFind != INVALID_HANDLE_VALUE) {//ディレクトリが存在する場合
 		do {
-			if(strcmp(fd.cFileName,".")==0 || strcmp(fd.cFileName,"..")==0);//アレ
+			if(strcmp(fd.cFileName,_T("."))==0 || strcmp(fd.cFileName,_T(".."))==0);//アレ
 			else if(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) //ディレクトリﾊｹｰﾝ
 			{
 				strcpy(ringitem.name,fd.cFileName);
@@ -110,16 +110,16 @@ void CCharacterList::InitializeRing(DWORD index)
 	char ringdir[32];
 	char chardir[64];
 
-	sprintf(ringdir,"char\\%s\\*.*",ringlist.at(index).name);
+	sprintf(ringdir,_T("char\\%s\\*.*"),ringlist.at(index).name);
 	hFind = FindFirstFile(ringdir, &fd);
-	sprintf(ringdir,"char\\%s\\",ringlist.at(index).name);
+	sprintf(ringdir,_T("char\\%s\\"),ringlist.at(index).name);
 
 	if(hFind != INVALID_HANDLE_VALUE) {//ディレクトリが存在する場合
 		do {
-			if(strcmp(fd.cFileName,".")==0 || strcmp(fd.cFileName,"..")==0);//アレ
+			if(strcmp(fd.cFileName,_T("."))==0 || strcmp(fd.cFileName,_T(".."))==0);//アレ
 			else if(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) //ディレクトリﾊｹｰﾝ
 			{
-				sprintf(chardir,"%s%s",ringdir,fd.cFileName);
+				sprintf(chardir,_T("%s%s"),ringdir,fd.cFileName);
 				VerifyCharacterDir(chardir,index);//検証
 			}
 		} while(FindNextFile(hFind, &fd));
@@ -131,14 +131,14 @@ void CCharacterList::InitializeRing(DWORD index)
 BOOL CCharacterList::VerifyCharacterDir(char *dir,DWORD ringindex)
 {
 	char path[256];
-	sprintf(path,"%s\\action.dll",dir);
+	sprintf(path,_T("%s\\action.dll"),dir);
 	CDI_CHARACTERINFO info;
 	ZeroMemory(&info,sizeof(CDI_CHARACTERINFO));
 	info.system_version = GOLUAH_SYSTEM_VERSION;
 
 	CCL_DAMEINFO dameinfo;
 
-	sprintf(dameinfo.name,"");
+	sprintf(dameinfo.name,_T(""));
 
 	HINSTANCE hLib = LoadLibrary(path);
 	if(hLib == NULL){		//DLL読み込み失敗
@@ -148,7 +148,7 @@ BOOL CCharacterList::VerifyCharacterDir(char *dir,DWORD ringindex)
 		return(FALSE);
 	}
 	PFUNC_CHARACTERINFO pfunc;
-	pfunc = (PFUNC_CHARACTERINFO)GetProcAddress(hLib, "CharacterInfo");
+	pfunc = (PFUNC_CHARACTERINFO)GetProcAddress(hLib, _T("CharacterInfo"));
 	if(pfunc==NULL){		//関数ポインタ取得失敗
 		FreeLibrary(hLib);
 		strcpy(dameinfo.dir,dir);
@@ -223,7 +223,7 @@ int CCharacterList::GetCharacterCount()
 int CCharacterList::GetCharacterCountRing(UINT ring)
 {
 	if(ringlist.size()-1 < ring){
-		g_system.LogWarning("%s index不正(%d/%d)",__FUNCTION__,ring,ringlist.size());
+		g_system.LogWarning(_T("%s index不正(%d/%d)"),__FUNCTION__,ring,ringlist.size());
 		return 0;
 	}
 
@@ -232,9 +232,9 @@ int CCharacterList::GetCharacterCountRing(UINT ring)
 
 char* CCharacterList::GetCharacterDir(UINT index)
 {
-	static char *error_return = "error";
+	static char *error_return = _T("error");
 	if(index>=infolist.size()){
-		g_system.LogWarning("%s index不正(%d/%d)",__FUNCTION__,index,infolist.size());
+		g_system.LogWarning(_T("%s index不正(%d/%d)"),__FUNCTION__,index,infolist.size());
 		return error_return;
 	}
 
@@ -250,9 +250,9 @@ char* CCharacterList::GetCharacterDir(UINT index,int ring)
 
 char* CCharacterList::GetCharacterName(UINT index)
 {
-	static char *error_return = "error";
+	static char *error_return = _T("error");
 	if(index>=infolist.size()){
-		g_system.LogWarning("%s index不正(%d/%d)",__FUNCTION__,index,infolist.size());
+		g_system.LogWarning(_T("%s index不正(%d/%d)"),__FUNCTION__,index,infolist.size());
 		return error_return;
 	}
 
@@ -262,7 +262,7 @@ char* CCharacterList::GetCharacterName(UINT index)
 DWORD CCharacterList::GetCharacterVer(UINT index)
 {
 	if(index>=infolist.size()){
-		g_system.LogWarning("%s index不正(%d/%d)",__FUNCTION__,index,infolist.size());
+		g_system.LogWarning(_T("%s index不正(%d/%d)"),__FUNCTION__,index,infolist.size());
 		return 0;
 	}
 	return  infolist.at(index).ver;
@@ -292,11 +292,11 @@ DWORD CCharacterList::GetDameCharVer(UINT index)
 DWORD CCharacterList::RingIndex2SerialIndex(UINT ring,UINT index)
 {
 	if(ring > ringlist.size()-1){
-		g_system.LogWarning("%s ring不正(%d/%d)",__FUNCTION__,ring,ringlist.size());
+		g_system.LogWarning(_T("%s ring不正(%d/%d)"),__FUNCTION__,ring,ringlist.size());
 		return 0;
 	}
 	if(ringlist.at(ring).ring2serialIndex.size()<=index){
-		g_system.LogWarning("%s index不正(%d/%d)",__FUNCTION__,index,infolist.size());
+		g_system.LogWarning(_T("%s index不正(%d/%d)"),__FUNCTION__,index,infolist.size());
 		return 0;
 	}
 
@@ -466,7 +466,7 @@ void CCharacterList::CorrectOption(UINT cindex,DWORD *opt_org)
 void CCharacterList::LoadFavoriteOptions(char* dir,FavoriteOptionList& list)
 {
 	char *path = new char[MAX_PATH];
-	sprintf( path, "%s\\optset.txt",dir);
+	sprintf( path, _T("%s\\optset.txt"),dir);
 
 	AkiFile file;
 	if(! file.Load( path ) ){
@@ -484,7 +484,7 @@ void CCharacterList::LoadFavoriteOptions(char* dir,FavoriteOptionList& list)
 	{
 		if(file.m_buffer[i] == '#')
 		{
-			ssret = sscanf((const char*)(&file.m_buffer[i+1]),"%s %s",opt.name,optstr);
+			ssret = sscanf((const char*)(&file.m_buffer[i+1]),_T("%s %s"),opt.name,optstr);
 			if(ssret==EOF)break;
 			else if(ssret==2 && strlen(optstr)==32)
 			{
@@ -494,7 +494,7 @@ void CCharacterList::LoadFavoriteOptions(char* dir,FavoriteOptionList& list)
 						opt.opt |= 0x00000001;
 					}
 					else if(optstr[b]!='0'){
-						gbl.ods("2進数オプション指定読み込みエラー(%s)",optstr);
+						gbl.ods(_T("2進数オプション指定読み込みエラー(%s)"),optstr);
 						break;
 					}
 					if(b!=31)opt.opt <<= 1;
@@ -559,7 +559,7 @@ void CCOptionSelecter::Initialize(DWORD ini_opt)
 			enabled[k] = TRUE;
 			current_point -= ite->point;
 
-			//gbl.ods("... %s %d %d %X",ite->name,ite->point,current_point,ite->flag & ini_opt);
+			//gbl.ods(_T("... %s %d %d %X"),ite->name,ite->point,current_point,ite->flag & ini_opt);
 		}
 	}
 	m_current_favorite = 0;//free
@@ -729,7 +729,7 @@ void CCOptionSelecter::Draw()
 		k++;
 	}
 
-	sprintf(tmp_str,"=--OPTIONS-- POINT:%d",current_point);
+	sprintf(tmp_str,_T("=--OPTIONS-- POINT:%d"),current_point);
 	g_system.DrawBMPText(offset_x,y,z,tmp_str,0xFFBBBBBB);
 
 	y+=32;
@@ -768,11 +768,11 @@ void CCOptionSelecter::Draw()
 		//描画
 		g_system.DrawBMPText(offset_x+off_x2,y,z,ite->name,color);
 		if(not_available)
-			g_system.DrawBMPText(offset_x+320,y,z,"N/A",color);
+			g_system.DrawBMPText(offset_x+320,y,z,_T("N/A"),color);
 		else if(enabled[k])
-			g_system.DrawBMPText(offset_x+320,y,z,"ON",color);
+			g_system.DrawBMPText(offset_x+320,y,z,_T("ON"),color);
 		else
-			g_system.DrawBMPText(offset_x+320,y,z,"OFF",color);
+			g_system.DrawBMPText(offset_x+320,y,z,_T("OFF"),color);
 		y+=32;
 		k++;
 	}
@@ -780,15 +780,15 @@ void CCOptionSelecter::Draw()
 	//--OK--
 	if(commit_enabled){
 		if(current_selected!=list->size())
-			g_system.DrawBMPText(offset_x+150,y,z,"--OK--",0xFFBBBBBB);
+			g_system.DrawBMPText(offset_x+150,y,z,_T("--OK--"),0xFFBBBBBB);
 		else
-			g_system.DrawBMPText(offset_x+150,y,z,"--OK--",0xFFFFFFFF);
+			g_system.DrawBMPText(offset_x+150,y,z,_T("--OK--"),0xFFFFFFFF);
 	}
 	else{
 		if(current_selected!=list->size())
-			g_system.DrawBMPText(offset_x+150,y,z,"--OVER--",0xFFBB0000);
+			g_system.DrawBMPText(offset_x+150,y,z,_T("--OVER--"),0xFFBB0000);
 		else
-			g_system.DrawBMPText(offset_x+150,y,z,"--OVER--",0xFFFF0000);
+			g_system.DrawBMPText(offset_x+150,y,z,_T("--OVER--"),0xFFFF0000);
 	}
 
 	delete [] tmp_str;
@@ -871,7 +871,7 @@ void CCOptionSelecter::SetRandom()
 					//フラグ加算
 					current_point -= i->point;
 					ret |= i->flag;
-					//gbl.ods("%s %d %d %X",i->name,i->point,current_point,i->flag);
+					//gbl.ods(_T("%s %d %d %X"),i->name,i->point,current_point,i->flag);
 					dlist.erase(i);
 
 
@@ -885,7 +885,7 @@ void CCOptionSelecter::SetRandom()
 			}
 		}
 		if(breaker++>1000){
-			gbl.ods("CCOptionSelecter::SetRandom 強制ブレーク\n");
+			gbl.ods(_T("CCOptionSelecter::SetRandom 強制ブレーク\n"));
 			break;
 		}
 	}
@@ -906,7 +906,7 @@ void CCOptionSelecter::SetRandom()
 				//フラグ加算
 				current_point -= i->point;
 				ret |= i->flag;
-				//gbl.ods("%s %d %d %X",i->name,i->point,current_point,i->flag);
+				//gbl.ods(_T("%s %d %d %X"),i->name,i->point,current_point,i->flag);
 			}
 		}
 	}
@@ -918,7 +918,7 @@ void CCOptionSelecter::SetRandom()
 //0:"Free" , 0～:favorite設定名
 char* CCOptionSelecter::GetCurrentSetName()
 {
-	if(m_current_favorite==0)return "Free";
+	if(m_current_favorite==0)return _T("Free");
 
 	return m_ref_cinfo->fav_opts[ m_current_favorite-1 ].name;
 }

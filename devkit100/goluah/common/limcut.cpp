@@ -181,7 +181,7 @@ typedef struct _ASTAT_ {
 
 
 	//  LANA番号の列挙
-/*	sprintf(tekito, "The NCBENUM return code is: 0x%x \n",
+/*	sprintf(tekito, _T("The NCBENUM return code is: 0x%x \n"),
 			NetbiosAgent
 				.Clear()
 				.SetBuffer(&lenum)
@@ -199,7 +199,7 @@ typedef struct _ASTAT_ {
 	int i=0;
 	{
 		//  LANアダプタのリセット
-	/*	sprintf(tekito, "The NCBRESET on LANA %d return code is: 0x%x \n",
+	/*	sprintf(tekito, _T("The NCBRESET on LANA %d return code is: 0x%x \n"),
 				lenum.lana[i],
 				NetbiosAgent
 					.Clear()
@@ -212,19 +212,19 @@ typedef struct _ASTAT_ {
 					.Execute(NCBRESET);
 
 		//  LANアダプタのステータスを取得
-	/*	sprintf(tekito, "The NCBASTAT on LANA %d return code is: 0x%x \n",
+	/*	sprintf(tekito, _T("The NCBASTAT on LANA %d return code is: 0x%x \n"),
 				lenum.lana[i],
 				NetbiosAgent
 					.Clear()
 					.SetLanaNumber(lenum.lana[i])
-					.SetCallName("*")
+					.SetCallName(_T("*"))
 					.SetBuffer(&Adapter, sizeof(Adapter))
 					.Execute(NCBASTAT).ExecuteResult);
 		OutputDebugString(tekito);*/
 		NetbiosAgent
 					.Clear()
 					.SetLanaNumber(lenum.lana[i])
-					.SetCallName("*")
+					.SetCallName(_T("*"))
 					.SetBuffer(&Adapter, sizeof(Adapter))
 					.Execute(NCBASTAT);
 
@@ -233,8 +233,8 @@ typedef struct _ASTAT_ {
 		}
 		//  ステータスを取得に成功...
 			//  MACアドレスの表示
-		/*	sprintf(tekito, "The Ethernet Number on LANA %d is:"
-						"%02x%02x%02x%02x%02x%02x\n",
+		/*	sprintf(tekito, _T("The Ethernet Number on LANA %d is:")
+						_T("%02x%02x%02x%02x%02x%02x\n"),
 					lenum.lana[i],
 					Adapter.adapt.adapter_address[0],
 					Adapter.adapt.adapter_address[1],
@@ -244,7 +244,7 @@ typedef struct _ASTAT_ {
 					Adapter.adapt.adapter_address[5]);
 			OutputDebugString(tekito);
 		}
-		else OutputDebugString("The Ethernet Number on LANA %d is ...failed\n");*/
+		else OutputDebugString(_T("The Ethernet Number on LANA %d is ...failed\n"));*/
 	}
 
 	DWORD ret1 = Adapter.adapt.adapter_address[0]<<8 | Adapter.adapt.adapter_address[1];

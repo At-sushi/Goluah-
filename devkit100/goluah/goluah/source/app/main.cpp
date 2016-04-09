@@ -38,12 +38,12 @@ INT gOldEntryPoint(HINSTANCE hInst)
 	#if TRUE
 	if( CoInitializeEx(NULL, COINIT_MULTITHREADED) != S_OK ){
 		if( CoInitializeEx(NULL, NULL) != S_OK ){
-			MessageBox(NULL,"CoInitializeÇ…é∏îs","ÅH",MB_OK);
+			MessageBox(NULL,_T("CoInitializeÇ…é∏îs"),"ÅH",MB_OK);
 		}
 	}
 	#else
 	if( CoInitialize(NULL) != S_OK ){
-		MessageBox(NULL,"CoInitializeÇ…é∏îs","ÅH",MB_OK);
+		MessageBox(NULL,_T("CoInitializeÇ…é∏îs"),_T("ÅH"),MB_OK);
 	}
 	#endif
 

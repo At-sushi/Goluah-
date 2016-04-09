@@ -66,16 +66,16 @@ void CBattleTaskNet::Initialize()
 	g_battleinfo.SetBattleType( TAISENKEISIKI_GOCYAMAZE );
 	g_battleinfo.SetLimitTime(-1);
 	g_battleinfo.AddCharacter(TEAM_PLAYER1,
-			g_charlist.FindCharacter("net1"),
+			g_charlist.FindCharacter(_T("net1")),
 			1,
 			g_play.IsHost() ? 0 : CASSIGN_NONE,
-			/*g_charlist.GetRandomOption( g_charlist.FindCharacter("おにぎり") )*/0
+			/*g_charlist.GetRandomOption( g_charlist.FindCharacter(_T("おにぎり")) )*/0
 			);
 	g_battleinfo.AddCharacter(TEAM_PLAYER2,
-			g_charlist.FindCharacter("net2"),
+			g_charlist.FindCharacter(_T("net2")),
 			2,
 			g_play.IsHost() ? 1 : 0,
-			/*g_charlist.GetRandomOption( g_charlist.FindCharacter("おにぎり") )*/0
+			/*g_charlist.GetRandomOption( g_charlist.FindCharacter(_T("おにぎり")) )*/0
 			);
 	g_battleinfo.SetStage(0);
 
@@ -260,7 +260,7 @@ void CBattleTaskNet::TerminateDestroySubTasks()
 BOOL CBattleTaskNet::Execute(DWORD time)
 {
 	static char execute_tag[256];
-	sprintf(execute_tag,"%s (%s)",__FUNCTION__,GetBattleStateString());
+	sprintf(execute_tag,_T("%s (%s)"),__FUNCTION__,GetBattleStateString());
 	g_system.PushSysTag(execute_tag);
 
 /*	if(m_pause_task){
@@ -1447,7 +1447,7 @@ DWORD CBattleTaskNet::CreateGObject()
 		}
 	}
 
-	g_system.Log("オブジェクトが最大数を超えています\n",SYSLOG_WARNING);
+	g_system.Log(_T("オブジェクトが最大数を超えています\n"),SYSLOG_WARNING);
 	g_system.PopSysTag();
 	return(0);
 }
@@ -1467,7 +1467,7 @@ DWORD CBattleTaskNet::CreateGObjectFx()
 		}
 	}
 
-	g_system.Log("オブジェクトが最大数を超えています\n",SYSLOG_WARNING);
+	g_system.Log(_T("オブジェクトが最大数を超えています\n"),SYSLOG_WARNING);
 	g_system.PopSysTag();
 	return( 0 );
 }
@@ -1478,7 +1478,7 @@ void CBattleTaskNet::DeleteGObject(DWORD oid)
 
 	//ゼロ・オブジェクト
 	if(oid==0){
-		g_system.LogWarning("%s ゼロ・オブジェクト削除未遂");
+		g_system.LogWarning(_T("%s ゼロ・オブジェクト削除未遂"));
 		g_system.PopSysTag();
 		return;
 	}
@@ -1494,14 +1494,14 @@ void CBattleTaskNet::DeleteGObject(DWORD oid)
 		for(int i=0;i<3;i++)
 		{
 			if(charobjid[j][i]==oid){
-				g_system.LogWarning("%s キャラクターオブジェクト削除未遂(%d,%d)",__FUNCTION__,j,i);
+				g_system.LogWarning(_T("%s キャラクターオブジェクト削除未遂(%d,%d)"),__FUNCTION__,j,i);
 				g_system.PopSysTag();
 				return;
 			}
 		}
 	}
 	if(stgobjid==oid){
-		g_system.LogWarning("%s ステージオブジェクト削除未遂",__FUNCTION__);
+		g_system.LogWarning(_T("%s ステージオブジェクト削除未遂"),__FUNCTION__);
 		g_system.PopSysTag();
 		return;
 	}
@@ -1581,7 +1581,7 @@ CGObject* CBattleTaskNet::GetGObject(DWORD oid)
 CGObject* CBattleTaskNet::GetCharacterObject(DWORD j,DWORD i)
 {
 	if(j>=2 || i>=MAXNUM_TEAM){
-		g_system.LogWarning("%s 範囲チェックエラー(team=%d,index=%d)",__FUNCTION__,j,i);
+		g_system.LogWarning(_T("%s 範囲チェックエラー(team=%d,index=%d)"),__FUNCTION__,j,i);
 		return 0;
 	}
 

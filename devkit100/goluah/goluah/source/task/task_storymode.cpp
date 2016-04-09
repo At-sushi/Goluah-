@@ -65,7 +65,7 @@ void CTaskStoryMode::Initialize()
 {
 	//スクリプトの読み込み(entry.txtは自動でくっつくらしい)
 //	char *filename = new char[MAX_PATH];
-//	sprintf(filename,"%s\\entry.txt",g_storylist.GetStoryDir(m_story_index));
+//	sprintf(filename,_T("%s\\entry.txt"),g_storylist.GetStoryDir(m_story_index));
 	BOOL ret = CGoluahStoryScript::CreateScriptElementList(
 											scr_list,
 											g_storylist.GetStoryDir(m_story_index));//filename);
@@ -393,7 +393,7 @@ void CTaskStoryMode::StartVSTask()
 	}
 
 	char *tmpbgmname = new char[256];
-	sprintf(tmpbgmname,"%s\\%s",g_storylist.GetStoryDir(m_story_index),ele_vs->bgm_filename);
+	sprintf(tmpbgmname,_T("%s\\%s"),g_storylist.GetStoryDir(m_story_index),ele_vs->bgm_filename);
 	g_battleinfo.SetStoryBGM( tmpbgmname );				//BGM設定
 	delete [] tmpbgmname;
 
@@ -468,7 +468,7 @@ void CTaskStoryMode::CRandomCharacterGetter::Initialize(SScriptElementList& scr_
 
 	int t,j;
 
-	gbl.ods("★★★ ランダムキャラクターall(%d) ★★★",all_list.size());
+	gbl.ods(_T("★★★ ランダムキャラクターall(%d) ★★★"),all_list.size());
 
 	//ストーリースクリプトで明示的に指定されているキャラクターはリストから除く
 	CStoryElement_VS *ele_vs;
@@ -496,7 +496,7 @@ void CTaskStoryMode::CRandomCharacterGetter::Initialize(SScriptElementList& scr_
 			}
 		}
 	}
-	gbl.ods("★★★ ランダムキャラクターall(%d) ★★★",all_list.size());
+	gbl.ods(_T("★★★ ランダムキャラクターall(%d) ★★★"),all_list.size());
 
 	//現在リストを生成（サイズが0なので必ず取り込み発生）
 	Req(1);
@@ -514,7 +514,7 @@ void CTaskStoryMode::CRandomCharacterGetter::Req(UINT num)
 	{
 		//全体リストを食っても足りない
 		//仕方がないのでとりあえず全キャラクターを取り込み
-		gbl.ods("★★★ ランダムキャラクター不足しすぎ(%d/%d) ★★★",all_list.size(),num);
+		gbl.ods(_T("★★★ ランダムキャラクター不足しすぎ(%d/%d) ★★★"),all_list.size(),num);
 		UINT n = g_charlist.GetCharacterCount();
 		while(n!=0){
 			n--;
@@ -546,14 +546,14 @@ void CTaskStoryMode::CRandomCharacterGetter::Req(UINT num)
 		crnt_list[tempra2] = tempra;
 	}
 
-	gbl.ods("★★★ ランダムキャラクターリストリセット(%d) ★★★",crnt_list.size());
+	gbl.ods(_T("★★★ ランダムキャラクターリストリセット(%d) ★★★"),crnt_list.size());
 }
 
 //次のランダムキャラクターを取得する
 UINT CTaskStoryMode::CRandomCharacterGetter::GetNext()
 {
 	if(crnt_list.size()==0){
-		g_system.Log("CTaskStoryMode::CRandomCharacterGetter::GetNext() , list size zero\n",SYSLOG_WARNING);
+		g_system.Log(_T("CTaskStoryMode::CRandomCharacterGetter::GetNext() , list size zero\n"),SYSLOG_WARNING);
 		Req(1);
 	}
 
@@ -561,7 +561,7 @@ UINT CTaskStoryMode::CRandomCharacterGetter::GetNext()
 	UINT ret = *nxt;
 	crnt_list.erase(nxt);
 
-	gbl.ods("CTaskStoryMode::CRandomCharacterGetter::GetNext() - %d",ret);
+	gbl.ods(_T("CTaskStoryMode::CRandomCharacterGetter::GetNext() - %d"),ret);
 
 	return ret;
 }
@@ -636,7 +636,7 @@ void CTaskStoryMode::CRandomStageGetter::Restore()
 		crnt_list[tempra2] = tempra;
 	}
 	
-	gbl.ods("★★★ ランダムステージリストリセット(%d) ★★★",crnt_list.size());
+	gbl.ods(_T("★★★ ランダムステージリストリセット(%d) ★★★"),crnt_list.size());
 }
 
 //次のランダムステージを取得する
@@ -723,21 +723,21 @@ void CTStoryContinue::Draw()
 	DWORD col = 0xFF000000 | (c<<16) | (c<<8) | c;
 
 	char *tmpstr = new char[256];
-	sprintf(tmpstr,"continue? (%d)",remain_cont);
+	sprintf(tmpstr,_T("continue? (%d)"),remain_cont);
 	g_system.DrawBMPText(50,230,0.0f,tmpstr,col);
 	delete [] tmpstr;
 
 	c/=2;
 	col = 0xFF000000 | (c<<16) | (c<<8) | c;
-	g_system.DrawBMPText(350,280,0.0f,"Yes",col);
-	g_system.DrawBMPText(350,310,0.0f,"No",col);
+	g_system.DrawBMPText(350,280,0.0f,_T("Yes"),col);
+	g_system.DrawBMPText(350,310,0.0f,_T("No"),col);
 	
 	c*=2;
 	col = 0xFF000000 | (c<<16) | (c<<8) | c;
 	if(m_yes_selected)
-		g_system.DrawBMPText(348,278,0.0f,"Yes",col);
+		g_system.DrawBMPText(348,278,0.0f,_T("Yes"),col);
 	else
-		g_system.DrawBMPText(348,308,0.0f,"No",col);
+		g_system.DrawBMPText(348,308,0.0f,_T("No"),col);
 }
 
 void CTStoryContinue::DrawFBC(float t)
@@ -822,7 +822,7 @@ void CTStoryGameOver::Draw()
 		if(t>1.0f)t=1.0f;
 		DWORD c = (DWORD)(t*255.0f);
 		DWORD col = 0xFF000000 | (c<<16) | (c<<8) | c;
-		g_system.DrawBMPText(50,230,0.0f,"game over!",col);
+		g_system.DrawBMPText(50,230,0.0f,_T("game over!"),col);
 	}
 }
 

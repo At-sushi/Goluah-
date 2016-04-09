@@ -132,7 +132,7 @@ void Aki3d::SetBlend_Nega()
 -----------------------------------------------------------*/
 CTristrip* Aki3d::CreateTristripObject()
 {
-	OutputDebugString("Aki3d::CreateTristripObject\n");
+	OutputDebugString(_T("Aki3d::CreateTristripObject\n"));
 
 	if(!tex_man)return NULL;
 
@@ -158,7 +158,7 @@ CFlatBoards* Aki3d::CreateFlatBoardsObject()
 
 CMesh* Aki3d::CreateMeshObject()
 {
-	OutputDebugString("Aki3d::CreateMeshObject\n");
+	OutputDebugString(_T("Aki3d::CreateMeshObject\n"));
 
 	if(!tex_man)return NULL;
 
@@ -184,7 +184,7 @@ void Aki3d::DestroyTristripObject(CTristrip* obj)
 		}
 	}
 
-	OutputDebugString("[ヤバイ] Aki3d::DestroyTristripObject , 見つからず\n");
+	OutputDebugString(_T("[ヤバイ] Aki3d::DestroyTristripObject , 見つからず\n"));
 }
 
 void Aki3d::DestroyParticleObject(CParticle* obj)
@@ -202,7 +202,7 @@ void Aki3d::DestroyParticleObject(CParticle* obj)
 		}
 	}
 
-	OutputDebugString("[ヤバイ] Aki3d::DestroyParticleObject , 見つからず\n");
+	OutputDebugString(_T("[ヤバイ] Aki3d::DestroyParticleObject , 見つからず\n"));
 }
 
 void Aki3d::DestroyFlatBoardsObject(CFlatBoards* obj)
@@ -220,7 +220,7 @@ void Aki3d::DestroyFlatBoardsObject(CFlatBoards* obj)
 		}
 	}
 
-	OutputDebugString("[ヤバイ] Aki3d::DestroyFlatBoardsObject , 見つからず\n");
+	OutputDebugString(_T("[ヤバイ] Aki3d::DestroyFlatBoardsObject , 見つからず\n"));
 }
 
 void Aki3d::DestroyMeshObject(CMesh* obj)
@@ -238,7 +238,7 @@ void Aki3d::DestroyMeshObject(CMesh* obj)
 		}
 	}
 
-	OutputDebugString("[ヤバイ] Aki3d::DestroyMeshObject , 見つからず\n");
+	OutputDebugString(_T("[ヤバイ] Aki3d::DestroyMeshObject , 見つからず\n"));
 }
 
 /*---------------------------------------------------------

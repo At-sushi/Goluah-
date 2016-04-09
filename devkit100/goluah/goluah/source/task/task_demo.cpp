@@ -49,7 +49,7 @@ void CTDemo::Initialize()
 {
 	demodat = (DEMODAT*)malloc(sizeof(DEMODAT)*DEMO050MAX_DEMOSCENE);
 	if(demodat==NULL){
-		sprintf(errc,"異常：メモリ確保に失敗？");
+		sprintf(errc,_T("異常：メモリ確保に失敗？"));
 		demoready=FALSE;
 		return;
 	}
@@ -58,7 +58,7 @@ void CTDemo::Initialize()
 	counter2=0;
 
 	char *filename = new char [MAX_PATH];
-	sprintf(filename,"%s\\%s",m_current_dir,m_script_filename);
+	sprintf(filename,_T("%s\\%s"),m_current_dir,m_script_filename);
 	num_demoscenes = InitDemoDat(filename);
 	delete [] filename;
 	if(num_demoscenes==0){
@@ -73,7 +73,7 @@ void CTDemo::Initialize()
 
 	g_sound.BGMStop();
 	//デモデータの仕様に基づいてビットマップなどをロード
-	sprintf(fpath,"%s\\",m_current_dir);
+	sprintf(fpath,_T("%s\\"),m_current_dir);
 	sprintf(&fpath[strlen(fpath)],demodat[playingdemodat].bitmap[0]);
 	RELSURFACE(ms);
 	ms = g_draw.CreateSurfaceFrom256BMP(fpath);
@@ -83,13 +83,13 @@ void CTDemo::Initialize()
 		if(g_config.IsHalfMode()){bmpw*=2;bmph*=2;}
 	}
 	if(strlen(demodat[playingdemodat].bgm) != 0){
-		sprintf(fpath,"%s\\",m_current_dir);
+		sprintf(fpath,_T("%s\\"),m_current_dir);
 		sprintf(&fpath[strlen(fpath)],demodat[playingdemodat].bgm);
 		g_sound.BGMSeekAndPlay(fpath,FALSE,demodat[playingdemodat].bgmpos);
 	}
 	for (int i = 1; i < 4; i++)
 	{
-		sprintf(fpath,"%s\\",m_current_dir);
+		sprintf(fpath,_T("%s\\"),m_current_dir);
 		sprintf(&fpath[strlen(fpath)],demodat[playingdemodat].bitmap[i]);
 		RELSURFACE(chr[i - 1]);
 		chr[i - 1] = g_draw.CreateSurfaceFrom256BMP(fpath);
@@ -203,7 +203,7 @@ BOOL CTDemo::Execute(DWORD time)
 			}
 			//ビットマップの変更
 			if(strlen(demodat[playingdemodat].bitmap[0]) > 0){
-				sprintf(fpath,"%s\\",m_current_dir);
+				sprintf(fpath,_T("%s\\"),m_current_dir);
 				sprintf(&fpath[strlen(fpath)],demodat[playingdemodat].bitmap[0]);
 				RELSURFACE(ms);
 				ms = g_draw.CreateSurfaceFrom256BMP(fpath);
@@ -214,7 +214,7 @@ BOOL CTDemo::Execute(DWORD time)
 			}
 			//ＢＧＭの変更
 			if(strlen(demodat[playingdemodat].bgm) != 0){
-				sprintf(fpath,"%s\\",m_current_dir);
+				sprintf(fpath,_T("%s\\"),m_current_dir);
 				sprintf(&fpath[strlen(fpath)],demodat[playingdemodat].bgm);
 				g_sound.BGMSeekAndPlay(fpath,FALSE,demodat[playingdemodat].bgmpos);
 			}
@@ -303,8 +303,8 @@ void CTDemo::Draw()
 		tmp[0] = '\0';
 
 		for (int i = 0; i < select; i++)
-			strncat(tmp, "\n", 8 - 1);
-		strncat(tmp, "＞", 8 - 1);
+			strncat(tmp, _T("\n"), 8 - 1);
+		strncat(tmp, _T("＞"), 8 - 1);
 		g_draw.DrawRedText(r_serif, tmp, lstrlen(tmp), DT_LEFT, 3);
 	}
 
@@ -312,9 +312,9 @@ void CTDemo::Draw()
 	{
 		//パラメータ表示
 		char *outs = new char[256];
-		sprintf(outs,"scene=%d\n txtlen=%d , dur=%d / spd=%d\n",playingdemodat,txtlen,demodat[playingdemodat].dur,demodat[playingdemodat].spdmsg);
-		sprintf(&outs[strlen(outs)]," bmp w/h = %d/%d\n",bmpw,bmph);
-		sprintf(&outs[strlen(outs)]," select = %d , base = %d , selectflag = %d\n",select,demodat[playingdemodat].select_base,story_selectflag);
+		sprintf(outs,_T("scene=%d\n txtlen=%d , dur=%d / spd=%d\n"),playingdemodat,txtlen,demodat[playingdemodat].dur,demodat[playingdemodat].spdmsg);
+		sprintf(&outs[strlen(outs)],_T(" bmp w/h = %d/%d\n"),bmpw,bmph);
+		sprintf(&outs[strlen(outs)],_T(" select = %d , base = %d , selectflag = %d\n"),select,demodat[playingdemodat].select_base,story_selectflag);
 		r_serif.top=20;
 		g_draw.DrawBlueText(r_serif,outs,-1,DT_LEFT,1);
 		delete [] outs;
@@ -330,7 +330,7 @@ int CTDemo::InitDemoDat(char *filepath)
 	HANDLE hFile = CreateFile(filepath,
 		GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
 	if(hFile==INVALID_HANDLE_VALUE){
-		sprintf(errc,"ファイルのオープンに失敗\n%s",filepath);
+		sprintf(errc,_T("ファイルのオープンに失敗\n%s"),filepath);
 		return(0);
 	}
 
@@ -338,14 +338,14 @@ int CTDemo::InitDemoDat(char *filepath)
 	DWORD fsize = GetFileSize(hFile,NULL);
 	if(fsize==0){
 		CloseHandle(hFile);
-		sprintf(errc,"ファイルサイズ0\n%s",filepath);
+		sprintf(errc,_T("ファイルサイズ0\n%s"),filepath);
 		return(0);
 	}
 	gotfile = (char*)malloc(fsize+2);
 	ZeroMemory(gotfile,fsize+2);
 
 
-	gbl.ods("☆デモ[%s/%dbyte]ロード開始",filepath,fsize);
+	gbl.ods(_T("☆デモ[%s/%dbyte]ロード開始"),filepath,fsize);
 
 	DWORD br;
 	DWORD ret=ReadFile(hFile,gotfile,fsize,&br,NULL);
@@ -374,7 +374,7 @@ int CTDemo::InitDemoDat(char *filepath)
 		if(rval == 1)find = TRUE;
 	}
 	if(!find){
-		sprintf(errc,"内容無し\n%s",filepath);
+		sprintf(errc,_T("内容無し\n%s"),filepath);
 		free(gotfile);
 		free(rstr);
 		return(0);
@@ -410,7 +410,7 @@ int CTDemo::InitDemoDat(char *filepath)
 					break;
 				case 5://text
 					strncat(demodat[numevents].msg , rstr, 1024 - 1);
-					strncat(demodat[numevents].msg, "\n", 1024 - 1);
+					strncat(demodat[numevents].msg, _T("\n"), 1024 - 1);
 					break;
 				case 6://dur
 					demodat[numevents].dur = atoi(rstr);
@@ -556,7 +556,7 @@ DWORD CTDemo::GetGyoDemo(char *strin,char *strout,DWORD *susumu)
 		else if(strin[1]=='p' && strin[2]=='d'){
 			rval=7;i=3;}
 		else if(strin[1]=='e' && strin[2]=='l' && strin[3]=='e' && strin[4]=='c' && strin[5]=='t'){
-			if (strncmp(strin + 6, "_base", 5) == 0){
+			if (strncmp(strin + 6, _T("_base"), 5) == 0){
 				rval=21;i=11;}
 			else if(strin[6]=='f'){
 				rval=22; i=7;}

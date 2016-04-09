@@ -16,7 +16,7 @@
 // Initialize
 //*********************************************************************************
 
-char* CExport::last_funcname = "none";
+char* CExport::last_funcname = _T("none");
 BOOL  CExport::func_in = FALSE;
 
 #define FUNC_IN		last_funcname=__FUNCTION__;func_in=TRUE
@@ -604,10 +604,10 @@ LPVOID CExport::LoadBmp(char* filename,char* palname)
 {
 	FUNC_IN;
 	LPVOID ret = g_draw.CreateSurfaceFrom256BMP(filename,palname);
-	gbl.ods("CExport::LoadBmp : %s - %s , %s",
-			ret ? "success" : "failed",
-			filename ? filename : "NULL",
-			palname ? palname : "NULL"
+	gbl.ods(_T("CExport::LoadBmp : %s - %s , %s"),
+			ret ? _T("success") : _T("failed"),
+			filename ? filename : _T("NULL"),
+			palname ? palname : _T("NULL")
 			);
 	if(ret)
 	{
@@ -753,10 +753,10 @@ LPVOID  CExport::LoadImage(char* filename, char* palname)
 
 	FUNC_IN;
 	ret = g_draw.CreateSurfaceFrom256Image(filename, palname);
-	gbl.ods("CExport::LoadImage : %s - %s , %s",
-			ret ? "success" : "failed",
-			filename ? filename : "NULL",
-			palname ? palname : "NULL"
+	gbl.ods(_T("CExport::LoadImage : %s - %s , %s"),
+			ret ? _T("success") : _T("failed"),
+			filename ? filename : _T("NULL"),
+			palname ? palname : _T("NULL")
 			);
 	if(ret)
 	{
@@ -780,10 +780,10 @@ DWORD  CExport::CreateCellDat2(char* filename,LPVOID *cdat,LPVOID *rdat,LPVOID *
 	*cdat = new GCD_CELL2[GCDMAX_CELLS];
 	*rdat = new GCD_RECT[GCDMAX_RECTANGLES];
 	*hdat = new GCD_HANTEI[GCDMAX_CELLS];
-	sprintf(Buffer, "%s%s", filename, ".gcm");
+	sprintf(Buffer, _T("%s%s"), filename, _T(".gcm"));
 	if(0 != CGCDHandler::GCDLoadCompressed(Buffer,(GCD_CELL2*)(*cdat),(GCD_RECT*)(*rdat),(GCD_HANTEI*)(*hdat),NULL) &&
 		0 != CGCDHandler::GCDLoad(Buffer,(GCD_CELL2*)(*cdat),(GCD_RECT*)(*rdat),(GCD_HANTEI*)(*hdat),NULL)){
-		sprintf(Buffer, "%s%s", filename, ".gcd");
+		sprintf(Buffer, _T("%s%s"), filename, _T(".gcd"));
 
 		if(0 != CGCDHandler::GCDLoadCompressed(Buffer,(GCD_CELL2*)(*cdat),(GCD_RECT*)(*rdat),(GCD_HANTEI*)(*hdat),NULL) &&
 			0 != CGCDHandler::GCDLoad(Buffer,(GCD_CELL2*)(*cdat),(GCD_RECT*)(*rdat),(GCD_HANTEI*)(*hdat),NULL)){

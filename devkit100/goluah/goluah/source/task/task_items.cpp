@@ -507,8 +507,8 @@ void CTWindowBase::DrawText(float x,float y,float z,
 //パラメータリセット
 CTBeltBase::CTBeltBase()
 {
-	strcpy(m_disp_str,"");
-	strcpy(m_disp_str2,"");
+	strcpy(m_disp_str,_T(""));
+	strcpy(m_disp_str2,_T(""));
 	m_pos = 2;//center
 	m_base_y = 240.0f;
 	m_height_base = 50.0f;

@@ -70,13 +70,13 @@ void CStageList::InitializeRingList()
 	HANDLE hFind;
 	WIN32_FIND_DATA fd;
 
-	hFind = FindFirstFile(".\\stage\\*.*", &fd);
+	hFind = FindFirstFile(_T(".\\stage\\*.*"), &fd);
 	if(hFind == INVALID_HANDLE_VALUE)return;
 
 	CSL_RINGINFO newitem;
 
 	do {
-		if(strcmp(fd.cFileName,".")==0 || strcmp(fd.cFileName,"..")==0 || strcmp(fd.cFileName,"bgm")==0);
+		if(strcmp(fd.cFileName,_T("."))==0 || strcmp(fd.cFileName,_T(".."))==0 || strcmp(fd.cFileName,_T("bgm"))==0);
 		else if(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 		{
 			strcpy(newitem.name,fd.cFileName);
@@ -95,7 +95,7 @@ void CStageList::InitializeRing(DWORD index)
 	WIN32_FIND_DATA fd;
 
 	char ringBaseDir[64];
-	sprintf(ringBaseDir,"stage\\%s\\*.*",ringlist[index].name);
+	sprintf(ringBaseDir,_T("stage\\%s\\*.*"),ringlist[index].name);
 	hFind = FindFirstFile(ringBaseDir, &fd);
 
 	if(hFind == INVALID_HANDLE_VALUE)return;
@@ -103,10 +103,10 @@ void CStageList::InitializeRing(DWORD index)
 	char founddir[64];
 
 	do {
-		if(strcmp(fd.cFileName,".")==0 || strcmp(fd.cFileName,"..")==0);
+		if(strcmp(fd.cFileName,_T("."))==0 || strcmp(fd.cFileName,_T(".."))==0);
 		else if(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 		{
-			sprintf(founddir , "stage\\%s\\%s" , ringlist[index].name , fd.cFileName);
+			sprintf(founddir , _T("stage\\%s\\%s") , ringlist[index].name , fd.cFileName);
 			VerifyStageDir(founddir , index);
 		}
 	} while(FindNextFile(hFind, &fd));
@@ -119,7 +119,7 @@ void CStageList::InitializeRing(DWORD index)
 BOOL CStageList::VerifyStageDir(char *dir,DWORD ring)
 {
 	char path[256];
-	sprintf(path,"%s\\back1.bmp",dir);
+	sprintf(path,_T("%s\\back1.bmp"),dir);
 
 	CSL_DAMEINFO dame;
 	ZeroMemory(&dame,sizeof(dame));
@@ -127,7 +127,7 @@ BOOL CStageList::VerifyStageDir(char *dir,DWORD ring)
 	//名前をヌク
 	char sname[256];
 	ZeroMemory(sname,sizeof(sname));
-	sprintf(path,"%s\\name.txt",dir);
+	sprintf(path,_T("%s\\name.txt"),dir);
 	HANDLE hFile = CreateFile(path,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
 	if(hFile==INVALID_HANDLE_VALUE){
 		//失敗
@@ -140,17 +140,17 @@ BOOL CStageList::VerifyStageDir(char *dir,DWORD ring)
 	ReadFile(hFile,&sname,sizeof(sname),&br,NULL);
 	CloseHandle(hFile);
 	if(strlen(sname)==0){
-		sprintf(sname,"STAGE%d",infolist.size()+1);
+		sprintf(sname,_T("STAGE%d"),infolist.size()+1);
 	}
 	
 	//DLLがあったらバージョンチェック
-	sprintf(path,"%s\\stage.dll",dir);
+	sprintf(path,_T("%s\\stage.dll"),dir);
 	HINSTANCE hLib = LoadLibrary(path);
 	PFUNC_STAGEINFO pfsinfo=NULL;
 	SDI_STAGEINFO sinfo;
 	ZeroMemory(&sinfo,sizeof(SDI_STAGEINFO));
 	if(hLib!=NULL){
-		pfsinfo=(PFUNC_STAGEINFO)GetProcAddress(hLib, "StageInfo");
+		pfsinfo=(PFUNC_STAGEINFO)GetProcAddress(hLib, _T("StageInfo"));
 		if(pfsinfo!=NULL){
 			if(pfsinfo(&sinfo)){
 				if(sinfo.ver < 680){//DLLが古い

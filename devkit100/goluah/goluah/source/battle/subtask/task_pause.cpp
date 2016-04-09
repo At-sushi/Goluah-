@@ -14,7 +14,7 @@ void CTBattlePause::Initialize()
 	tex_pause = NULL;
 
 	tex_fb = g_draw.GetFrontBufferCopy();
-	D3DXCreateTextureFromFileA(g_draw.d3ddev,"system\\texture\\pause.png",&tex_pause);
+	D3DXCreateTextureFromFileA(g_draw.d3ddev,_T("system\\texture\\pause.png"),&tex_pause);
 
 	m_counter = 0;
 	m_face_counter[0] = 0;
@@ -358,14 +358,14 @@ void CTBattlePause::ChangeInst(UINT t)
 	}
 	UINT char_index = g_battleinfo.GetCharacter(t,m_face_idx[t]);
 	
-	sprintf(filepath,"%s\\inst%s",
+	sprintf(filepath,_T("%s\\inst%s"),
 		g_charlist.GetCharacterDir(char_index),
 		altstr);
 
 	ms_inst[t] = g_draw.CreateSurfaceFrom256Image(filepath);
 	if(!ms_inst[t])
 	{
-		ms_inst[t] = g_draw.CreateSurfaceFrom256Image("system\\inst");
+		ms_inst[t] = g_draw.CreateSurfaceFrom256Image(_T("system\\inst"));
 	}
 
 	DELETE_ARRAY(filepath);

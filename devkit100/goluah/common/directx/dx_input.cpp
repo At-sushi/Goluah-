@@ -434,7 +434,7 @@ DWORD CDirectInput::GetAllKey()
 BOOL CDirectInput::InitializePad()
 {
 	if(!g_config.UseDInput()){
-		CSystem::Log("DirectInput(パッド) 非使用",SYSLOG_INFO);
+		CSystem::Log(_T("DirectInput(パッド) 非使用"),SYSLOG_INFO);
 		return TRUE;
 	}
 
@@ -455,15 +455,15 @@ BOOL CDirectInput::InitializePad()
 	//DirectInput8オブジェクトの作成
 	if(DI_OK != DirectInput8Create(GetModuleHandle(NULL),
 		DIRECTINPUT_VERSION,IID_IDirectInput8,(void**)&pdi,NULL)){
-		if(IDYES == MessageBox(hwnd,"ゲームパッドが使用できません。\n続行しますか？",
-			"DirectInput8Create 失敗",MB_YESNO))
+		if(IDYES == MessageBox(hwnd,_T("ゲームパッドが使用できません。\n続行しますか？"),
+			_T("DirectInput8Create 失敗"),MB_YESNO))
 			return(TRUE);
 		return(FALSE);
 	}
 	//デバイスの列挙・作成
 	res = pdi->EnumDevices(DI8DEVCLASS_GAMECTRL,EnumGamePad,(LPVOID)&jsnum_detected,DIEDFL_ATTACHEDONLY);
 	if(res!=DI_OK){
-		g_system.Log("▲InitDirectInput:EnumDeviceに失敗\n",SYSLOG_ERROR);
+		g_system.Log(_T("▲InitDirectInput:EnumDeviceに失敗\n"),SYSLOG_ERROR);
 		isOK=FALSE;
 	}
 
@@ -472,20 +472,20 @@ BOOL CDirectInput::InitializePad()
 		isOK = TRUE;
 
 		if(DI_OK!=pdidev[i]->SetDataFormat(&c_dfDIJoystick)){//データフォーマット
-			g_system.Log("▲InitDirectInput:データフォーマット設定に失敗\n",SYSLOG_ERROR);
+			g_system.Log(_T("▲InitDirectInput:データフォーマット設定に失敗\n"),SYSLOG_ERROR);
 			isOK=FALSE;
 		}
 		if(DI_OK!=pdidev[i]->SetCooperativeLevel(hwnd,DISCL_EXCLUSIVE | DISCL_FOREGROUND)){//協調
-			g_system.Log("▲InitDirectInput:協調レベル設定に失敗\n",SYSLOG_ERROR);
+			g_system.Log(_T("▲InitDirectInput:協調レベル設定に失敗\n"),SYSLOG_ERROR);
 			isOK=FALSE;
 		}
 		if(DI_OK!=pdidev[i]->SetProperty(DIPROP_AXISMODE,&dip.diph)){//軸モードの設定
-			g_system.Log("▲InitDirectInput:軸モード設定に失敗\n",SYSLOG_ERROR);
+			g_system.Log(_T("▲InitDirectInput:軸モード設定に失敗\n"),SYSLOG_ERROR);
 			isOK=FALSE;
 		}
 		//軸を列挙して値の範囲を設定する
 		if(DI_OK!=pdidev[i]->EnumObjects(EnumAxis,pdidev[i],DIDFT_AXIS)){
-			g_system.Log("▲InitDirectInput:軸値範囲設定に失敗\n",SYSLOG_ERROR);
+			g_system.Log(_T("▲InitDirectInput:軸値範囲設定に失敗\n"),SYSLOG_ERROR);
 			isOK=FALSE;
 		}
 		if(!isOK){
@@ -509,13 +509,13 @@ BOOL CDirectInput::InitializePad()
 
 		if ( FAILED(pdidev_kb->SetDataFormat(&c_dfDIKeyboard)) )
 		{
-			g_system.Log("▲InitDirectInput:データフォーマット設定に失敗\n",SYSLOG_ERROR);
+			g_system.Log(_T("▲InitDirectInput:データフォーマット設定に失敗\n"),SYSLOG_ERROR);
 			isOK=FALSE;
 		}
 
 		if ( FAILED(pdidev_kb->SetCooperativeLevel(hwnd, DISCL_NONEXCLUSIVE | DISCL_FOREGROUND)) )
 		{
-			g_system.Log("▲InitDirectInput:協調レベル設定に失敗\n",SYSLOG_ERROR);
+			g_system.Log(_T("▲InitDirectInput:協調レベル設定に失敗\n"),SYSLOG_ERROR);
 			isOK=FALSE;
 		}
 
@@ -561,7 +561,7 @@ BOOL FAR CALLBACK CDirectInput::EnumGamePad(LPCDIDEVICEINSTANCE lpddi,LPVOID pvr
 	}
 	guid_list.push_back(lpddi->guidInstance);
 
-	gbl.ods("Pad %s / %s , %X-%X-%X-(%X-%X-%X-%X-%X-%X-%X-%X) , %X-%X-%X-(%X-%X-%X-%X-%X-%X-%X-%X)",
+	gbl.ods(_T("Pad %s / %s , %X-%X-%X-(%X-%X-%X-%X-%X-%X-%X-%X) , %X-%X-%X-(%X-%X-%X-%X-%X-%X-%X-%X)"),
 		lpddi->tszProductName,lpddi->tszInstanceName,
 		lpddi->guidInstance.Data1 , lpddi->guidInstance.Data2 , lpddi->guidInstance.Data3 , 
 		lpddi->guidInstance.Data4[0] , lpddi->guidInstance.Data4[1] , lpddi->guidInstance.Data4[2] , lpddi->guidInstance.Data4[3],

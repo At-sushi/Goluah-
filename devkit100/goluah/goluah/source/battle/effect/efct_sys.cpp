@@ -33,7 +33,7 @@ BOOL CFxRoundBase::DrawF()
 		t2 = 1.0f - (pdat->counter - (40 * g_config.GetGameSpeed2() / 50)) / (12.0f * g_config.GetGameSpeed2() / 50);
 	}
 
-	char str[] = "ROUND";
+	char str[] = _T("ROUND");
 	const float interval = 5;
 	const float duration = 6;
 	const float y		 = 200;
@@ -684,7 +684,7 @@ void CFxFight::Divide(VertList& vlist,LineList& llist,TriList& tlist)
 		}
 	}
 	if(!t_old){
-		gbl.ods("CFxFight::Divide t_old not found");
+		gbl.ods(_T("CFxFight::Divide t_old not found"));
 		return;
 	}
 
@@ -715,7 +715,7 @@ void CFxFight::Divide(VertList& vlist,LineList& llist,TriList& tlist)
 			break;
 	}
 	if(l0_index==3){
-		gbl.ods("CFxFight::Divide line0 not found");
+		gbl.ods(_T("CFxFight::Divide line0 not found"));
 		return;
 	}
 	Line *l0 = t_old->l[l0_index];
@@ -727,7 +727,7 @@ void CFxFight::Divide(VertList& vlist,LineList& llist,TriList& tlist)
 	else if(l1->v[1]==l2->v[0])v0=l2->v[0];
 	else if(l1->v[1]==l2->v[1])v0=l2->v[1];
 	else{
-		gbl.ods2("CFxFight::Divide v0 not found\n");
+		gbl.ods2(_T("CFxFight::Divide v0 not found\n"));
 		return;
 	}
 
@@ -736,14 +736,14 @@ void CFxFight::Divide(VertList& vlist,LineList& llist,TriList& tlist)
 	if(l1->v[0]==v0)		v31 = l1->v[1];
 	else if(l1->v[1]==v0)	v31 = l1->v[0];
 	else{
-		gbl.ods2("CFxFight::Divide v31 not found\n");
+		gbl.ods2(_T("CFxFight::Divide v31 not found\n"));
 		return;
 	}
 	Vert *v32;
 	if(l2->v[0]==v0)		v32 = l2->v[1];
 	else if(l2->v[1]==v0)	v32 = l2->v[0];
 	else{
-		gbl.ods2("CFxFight::Divide v32 not found\n");
+		gbl.ods2(_T("CFxFight::Divide v32 not found\n"));
 		return;
 	}
 
@@ -799,7 +799,7 @@ void CFxFight::Divide(VertList& vlist,LineList& llist,TriList& tlist)
 	else if(t_old->l[1]==l0)t_old->l[1] = l51;
 	else if(t_old->l[2]==l0)t_old->l[2] = l51;
 	else{
-		gbl.ods2("CFxFight::Divide line0 not found(2)\n");
+		gbl.ods2(_T("CFxFight::Divide line0 not found(2)\n"));
 		return;
 	}
 
@@ -1033,7 +1033,7 @@ BOOL CFxTimeOver::DrawF()
 		t2 = 1.0f - (pdat->counter - (150 * g_config.GetGameSpeed2() / 50)) / (24.0f * g_config.GetGameSpeed2() / 50);
 	}
 
-	char str[] = "TIME OVER";
+	char str[] = _T("TIME OVER");
 	const float interval = 3;
 	const float duration = 6;
 	const float y		 = 200;

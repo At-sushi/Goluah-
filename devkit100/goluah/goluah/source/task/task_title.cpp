@@ -45,10 +45,10 @@ void CTitle::Activate(DWORD taskId)
 	setting_now=FALSE;
 
 	//読み込みとかなんかそういうもの
-	dds_back = g_draw.CreateSurfaceFrom256Image(".\\system\\logo");
+	dds_back = g_draw.CreateSurfaceFrom256Image(_T(".\\system\\logo"));
 
 	//BGM再生
-	g_sound.BGMPlay(".\\system\\bgm\\title");
+	g_sound.BGMPlay(_T(".\\system\\bgm\\title"));
 }
 
 BOOL CTitle::Inactivate(DWORD taskId)
@@ -134,68 +134,68 @@ void CTitle::Draw()
 		if (g_system.IsErrorTitle())
 		{
 			r.top=20;
-			g_draw.DrawRedText(r, "エラー発生ゲーム中止、ｽﾏｿ。", -1, DT_CENTER, 2);
+			g_draw.DrawRedText(r, _T("エラー発生ゲーム中止、ｽﾏｿ。"), -1, DT_CENTER, 2);
 		}
 
 		//storymode
 		if(selectedgamemode==TITLE_STORY)text_color = text1_color;
 		else text_color = text2_color;
-		g_system.DrawBMPText(320,top_y,0,"STORY MODE",text_color);
+		g_system.DrawBMPText(320,top_y,0,_T("STORY MODE"),text_color);
 
 		top_y += step_y;
 
 		//player1 vs computer
 		if(selectedgamemode==TITLE_VS)text_color = text1_color;
 		else text_color = text2_color;
-		g_system.DrawBMPText(320,top_y,0,"VS MODE",text_color);
+		g_system.DrawBMPText(320,top_y,0,_T("VS MODE"),text_color);
 
 		top_y += step_y;
 
 		//practice
 		if(selectedgamemode==TITLE_PRACTICE)text_color = text1_color;
 		else text_color = text2_color;
-		g_system.DrawBMPText(320,top_y,0,"PRACTICE",text_color);
+		g_system.DrawBMPText(320,top_y,0,_T("PRACTICE"),text_color);
 
 		top_y += step_y;
 
 		//settings
 		if(selectedgamemode==TITLE_SETTINGS)text_color = text1_color;
 		else text_color = text2_color;
-		g_system.DrawBMPText(320,top_y,0,"SETTINGS",text_color);
+		g_system.DrawBMPText(320,top_y,0,_T("SETTINGS"),text_color);
 
 		top_y += step_y;
 
 		//op movie
 		if (selectedgamemode==TITLE_OPMOVIE)text_color = text1_color;
 		else text_color = text2_color;
-		g_system.DrawBMPText(320,top_y,0,"OPENING MOVIE",text_color);
+		g_system.DrawBMPText(320,top_y,0,_T("OPENING MOVIE"),text_color);
 
 		top_y += step_y;
 
 		//network
 		/*if (selectedgamemode==TITLE_NETWORK)text_color = text1_color;
 		else text_color = text2_color;
-		g_system.DrawBMPText(320,top_y,0,"NETWORK MODE",text_color);*/
+		g_system.DrawBMPText(320,top_y,0,_T("NETWORK MODE"),text_color);*/
 	}
 	else{
 		g_draw.CheckBlt(dds_back,0,0,r,FALSE,FALSE,0,0,0xFF333333);//logo
 
 		r.top=10;
-		g_draw.DrawBlueText(r,"SETTINGS",-1,DT_CENTER,1);
+		g_draw.DrawBlueText(r,_T("SETTINGS"),-1,DT_CENTER,1);
 		
 		r.top+=30;
 
-		strcpy(msg,"難易度：");
+		strcpy(msg,_T("難易度："));
 		switch(g_config.GetDifficulty()){
-		case DIFF_VERYEASY	:strcpy(&msg[strlen(msg)],"牛鮭定食");break;
-		case DIFF_EASY		:strcpy(&msg[strlen(msg)],"150円引き");break;
-		case DIFF_NORMAL	:strcpy(&msg[strlen(msg)],"標準");break;
-		case DIFF_HARD		:strcpy(&msg[strlen(msg)],"パパ特盛り");break;
-		case DIFF_VERYHARD	:strcpy(&msg[strlen(msg)],"素人にはお勧めできない");break;
-		case DIFF_SUPERHARD	:strcpy(&msg[strlen(msg)],"殺伐");break;
-		case DIFF_ULTRAHARD	:strcpy(&msg[strlen(msg)],"刺すか刺されるか");break;
-		case DIFF_LIMITERCUT:strcpy(&msg[strlen(msg)],"ぶち切れ");break;
-		default:strcpy(&msg[strlen(msg)],"未知の難易度？");
+		case DIFF_VERYEASY	:strcpy(&msg[strlen(msg)],_T("牛鮭定食"));break;
+		case DIFF_EASY		:strcpy(&msg[strlen(msg)],_T("150円引き"));break;
+		case DIFF_NORMAL	:strcpy(&msg[strlen(msg)],_T("標準"));break;
+		case DIFF_HARD		:strcpy(&msg[strlen(msg)],_T("パパ特盛り"));break;
+		case DIFF_VERYHARD	:strcpy(&msg[strlen(msg)],_T("素人にはお勧めできない"));break;
+		case DIFF_SUPERHARD	:strcpy(&msg[strlen(msg)],_T("殺伐"));break;
+		case DIFF_ULTRAHARD	:strcpy(&msg[strlen(msg)],_T("刺すか刺されるか"));break;
+		case DIFF_LIMITERCUT:strcpy(&msg[strlen(msg)],_T("ぶち切れ"));break;
+		default:strcpy(&msg[strlen(msg)],_T("未知の難易度？"));
 		}
 		if(selected_item==SETTINGS_DIFFICULTY)
 			g_draw.DrawRedText(r,msg,-1,DT_CENTER,1);
@@ -203,30 +203,30 @@ void CTitle::Draw()
 			g_draw.DrawBlueText(r,msg,-1,DT_CENTER,1);
 
 		r.top+=20;
-		strcpy(msg,"先取ポイント数：");
-		sprintf(&msg[strlen(msg)],"%d",g_config.GetMaxPoint());
+		strcpy(msg,_T("先取ポイント数："));
+		sprintf(&msg[strlen(msg)],_T("%d"),g_config.GetMaxPoint());
 		if(selected_item==SETTINGS_1V1_NUMPOINT)
 			g_draw.DrawRedText(r,msg,-1,DT_CENTER,1);
 		else
 			g_draw.DrawBlueText(r,msg,-1,DT_CENTER,1);
 
 		r.top+=20;
-		strcpy(msg,"支援攻撃数：");
-		sprintf(&msg[strlen(msg)],"%d",g_config.GetStrikerCount());
+		strcpy(msg,_T("支援攻撃数："));
+		sprintf(&msg[strlen(msg)],_T("%d"),g_config.GetStrikerCount());
 		if(selected_item==SETTINGS_NUMSTRIKER)
 			g_draw.DrawRedText(r,msg,-1,DT_CENTER,1);
 		else
 			g_draw.DrawBlueText(r,msg,-1,DT_CENTER,1);
 
 		r.top+=20;
-		strcpy(msg,"ゲーム速度：");
+		strcpy(msg,_T("ゲーム速度："));
 		switch(g_config.GetGameSpeed()){
-		case GSPEED_SLOW	:strcpy(&msg[strlen(msg)],"遅い(40fps)");break;
-		case GSPEED_OLD		:strcpy(&msg[strlen(msg)],"標準(50fps)");break;
-		case GSPEED_NEW		:strcpy(&msg[strlen(msg)],"ちょっと速い(60fps)");break;
-		case GSPEED_30x2	:strcpy(&msg[strlen(msg)],"コマ飛ばし(30fps、2倍)");break;
-//		case GSPEED_25x2	:strcpy(&msg[strlen(msg)],"コマ飛ばし－標準(25fps、2倍)");break;
-		default:strcpy(&msg[strlen(msg)],"ﾜｶﾝﾈ（とりあえず50fpsで動作します）");
+		case GSPEED_SLOW	:strcpy(&msg[strlen(msg)],_T("遅い(40fps)"));break;
+		case GSPEED_OLD		:strcpy(&msg[strlen(msg)],_T("標準(50fps)"));break;
+		case GSPEED_NEW		:strcpy(&msg[strlen(msg)],_T("ちょっと速い(60fps)"));break;
+		case GSPEED_30x2	:strcpy(&msg[strlen(msg)],_T("コマ飛ばし(30fps、2倍)"));break;
+//		case GSPEED_25x2	:strcpy(&msg[strlen(msg)],_T("コマ飛ばし－標準(25fps、2倍)"));break;
+		default:strcpy(&msg[strlen(msg)],_T("ﾜｶﾝﾈ（とりあえず50fpsで動作します）"));
 		}
 		if(selected_item==SETTINGS_GAMESPEED)
 			g_draw.DrawRedText(r,msg,-1,DT_CENTER,1);
@@ -234,12 +234,12 @@ void CTitle::Draw()
 			g_draw.DrawBlueText(r,msg,-1,DT_CENTER,1);
 
 		r.top += 20;
-		strcpy(msg, "カメラ上下：");
+		strcpy(msg, _T("カメラ上下："));
 		switch (g_config.GetCameraMode()){
-		case CAMERA_OLD:strcpy(&msg[strlen(msg)], "しない"); break;
-		case CAMERA_UPPER:strcpy(&msg[strlen(msg)], "上優先"); break;
-		case CAMERA_NEW:strcpy(&msg[strlen(msg)], "二人とも画面外のとき"); break;
-		default:strcpy(&msg[strlen(msg)], "どうしてこうなった");
+		case CAMERA_OLD:strcpy(&msg[strlen(msg)], _T("しない")); break;
+		case CAMERA_UPPER:strcpy(&msg[strlen(msg)], _T("上優先")); break;
+		case CAMERA_NEW:strcpy(&msg[strlen(msg)], _T("二人とも画面外のとき")); break;
+		default:strcpy(&msg[strlen(msg)], _T("どうしてこうなった"));
 		}
 		if (selected_item == SETTINGS_CAMERAMODE)
 			g_draw.DrawRedText(r, msg, -1, DT_CENTER, 1);
@@ -247,11 +247,11 @@ void CTitle::Draw()
 			g_draw.DrawBlueText(r, msg, -1, DT_CENTER, 1);
 
 		r.top += 20;
-		strcpy(msg, "HPゲージ：");
+		strcpy(msg, _T("HPゲージ："));
 		switch (g_config.GetGaugeMode()){
-		case GAUGE_1000:strcpy(&msg[strlen(msg)], "1.21"); break;
-		case GAUGE_1220:strcpy(&msg[strlen(msg)], "1.22"); break;
-		default:strcpy(&msg[strlen(msg)], "イミフ");
+		case GAUGE_1000:strcpy(&msg[strlen(msg)], _T("1.21")); break;
+		case GAUGE_1220:strcpy(&msg[strlen(msg)], _T("1.22")); break;
+		default:strcpy(&msg[strlen(msg)], _T("イミフ"));
 		}
 		if (selected_item == SETTINGS_GAUGEMODE)
 			g_draw.DrawRedText(r, msg, -1, DT_CENTER, 1);
@@ -262,9 +262,9 @@ void CTitle::Draw()
 
 		r.top+=40;
 		if(selected_item==SETTINGS_EXIT)
-			g_draw.DrawRedText(r,"exit",-1,DT_CENTER,1);
+			g_draw.DrawRedText(r,_T("exit"),-1,DT_CENTER,1);
 		else
-			g_draw.DrawBlueText(r,"exit",-1,DT_CENTER,1);
+			g_draw.DrawBlueText(r,_T("exit"),-1,DT_CENTER,1);
 	}
 }
 

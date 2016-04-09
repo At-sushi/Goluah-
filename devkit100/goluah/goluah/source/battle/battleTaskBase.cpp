@@ -50,9 +50,9 @@ void CBattleTaskBase::Initialize()
 	g_system.PushSysTag(__FUNCTION__);
 
 	//[ FIGHT / KO ]のサウンドをロード
-	dsb_fight = g_sound.CreateDSB(".\\system\\sound\\fight.wav");
-	dsb_ko = g_sound.CreateDSB(".\\system\\sound\\ko.wav");
-	dsb_timeover = g_sound.CreateDSB(".\\system\\sound\\timeover.wav");
+	dsb_fight = g_sound.CreateDSB(_T(".\\system\\sound\\fight.wav"));
+	dsb_ko = g_sound.CreateDSB(_T(".\\system\\sound\\ko.wav"));
+	dsb_timeover = g_sound.CreateDSB(_T(".\\system\\sound\\timeover.wav"));
 
 	InitializeParameters();
 	InitializeObjectList();
@@ -126,12 +126,12 @@ void CBattleTaskBase::InitializeLoadDLLs()
 			}
 			else
 			{
-				sprintf(filename,"%s\\action.dll",
+				sprintf(filename,_T("%s\\action.dll"),
 					g_charlist.GetCharacterDir(g_battleinfo.GetCharacter(j,i)));
 				hlib_c[j][i] = LoadLibrary(filename);
 
 				if(hlib_c[j][i] != NULL){
-					pf_create = (PFUNC_CREATECHARACTER)GetProcAddress(hlib_c[j][i],"CreateCharacter");
+					pf_create = (PFUNC_CREATECHARACTER)GetProcAddress(hlib_c[j][i],_T("CreateCharacter"));
 					if(pf_create!=NULL){
 						charobjid[j][i] = (*pf_create)(&m_cinfo[j][i]);
 					}
@@ -159,12 +159,12 @@ void CBattleTaskBase::InitializeLoadDLLs()
 			}
 			else
 			{
-				sprintf(filename,"%s\\action.dll",
+				sprintf(filename,_T("%s\\action.dll"),
 					g_charlist.GetCharacterDir(g_battleinfo.GetCharacter(j,i)));
 				hlib_c[j][i] = LoadLibrary(filename);
 
 				if(hlib_c[j][i] != NULL){
-					pf_create = (PFUNC_CREATECHARACTER)GetProcAddress(hlib_c[j][i],"CreateCharacter");
+					pf_create = (PFUNC_CREATECHARACTER)GetProcAddress(hlib_c[j][i],_T("CreateCharacter"));
 					if(pf_create!=NULL){
 						charobjid[j][i] = (*pf_create)(&m_cinfo[j][i]);
 					}
@@ -192,12 +192,12 @@ void CBattleTaskBase::InitializeLoadDLLs()
 			}
 			else
 			{
-				sprintf(filename,"%s\\action.dll",
+				sprintf(filename,_T("%s\\action.dll"),
 					g_charlist.GetCharacterDir(g_battleinfo.GetCharacter(j,i)));
 				hlib_c[j][i] = LoadLibrary(filename);
 
 				if(hlib_c[j][i] != NULL){
-					pf_create = (PFUNC_CREATECHARACTER)GetProcAddress(hlib_c[j][i],"CreateCharacter");
+					pf_create = (PFUNC_CREATECHARACTER)GetProcAddress(hlib_c[j][i],_T("CreateCharacter"));
 					if(pf_create!=NULL){
 						charobjid[j][i] = (*pf_create)(&m_cinfo[j][i]);
 					}
@@ -212,29 +212,29 @@ void CBattleTaskBase::InitializeLoadDLLs()
 
 	//ステージDLLのロード
 	m_crnt_dllid = 2*MAXNUM_TEAM+1;
-	sprintf(filename,"%s\\stage.dll",
+	sprintf(filename,_T("%s\\stage.dll"),
 		g_stagelist.GetStageDir(g_battleinfo.GetStage()));
 	hlib_s = LoadLibrary(filename);
 	if(hlib_s == NULL){
-		hlib_s = LoadLibrary(".\\system\\defstg.dll");
+		hlib_s = LoadLibrary(_T(".\\system\\defstg.dll"));
 		if(!hlib_s){
-			g_system.Log("failed to load default stage DLL",SYSLOG_WARNING);
+			g_system.Log(_T("failed to load default stage DLL"),SYSLOG_WARNING);
 		}
 		if(now_loading)now_loading->Proceed(NowLoading_DLL);
 	}
 	PFUNC_CREATESTAGE pf_create_s=NULL;
-	pf_create_s = (PFUNC_CREATESTAGE)GetProcAddress(hlib_s,"CreateStage");
+	pf_create_s = (PFUNC_CREATESTAGE)GetProcAddress(hlib_s,_T("CreateStage"));
 	if(pf_create_s!=NULL){
 		stgobjid = (*pf_create_s)(&m_sinfo);
 	}
 	else{
-		g_system.Log("failed to get stage DLL create function pointer",SYSLOG_WARNING);
+		g_system.Log(_T("failed to get stage DLL create function pointer"),SYSLOG_WARNING);
 		g_system.Log(g_stagelist.GetStageDir(g_battleinfo.GetStage()),SYSLOG_WARNING);
 	}
 
 	m_crnt_dllid = 0;
 
-	gbl.ods("CBattleTaskBase::InitializeLoadDLLs , DLL Load Complete");
+	gbl.ods(_T("CBattleTaskBase::InitializeLoadDLLs , DLL Load Complete"));
 }
 
 
@@ -412,7 +412,7 @@ void CBattleTaskBase::AddDamage(DWORD oid,DWORD eoid,int x,int y)
 		case HITINFO_SNDHIT3:g_system.PlaySystemSound(SYSTEMSOUND_HIT3);break;
 		case HITINFO_SNDSHK1:g_system.PlaySystemSound(SYSTEMSOUND_SHOCK1);break;
 		case HITINFO_SNDSHK2:g_system.PlaySystemSound(SYSTEMSOUND_SHOCK2);break;
-		default:CSystem::Log("実装されていないヒット効果音が指定された",SYSLOG_WARNING);
+		default:CSystem::Log(_T("実装されていないヒット効果音が指定された"),SYSLOG_WARNING);
 		}
 		switch(aif->hit & 0x0F000000){//ヒットストップ
 		case 0:break;
@@ -420,7 +420,7 @@ void CBattleTaskBase::AddDamage(DWORD oid,DWORD eoid,int x,int y)
 		case HITINFO_SIV2:HitStop( 5,k_id);break;
 		case HITINFO_SIV3:HitStop(10,k_id);break;
 		case HITINFO_STOP:HitStop(40,k_id);break;
-		default:CSystem::Log("実装されていないヒットストップID",SYSLOG_WARNING);
+		default:CSystem::Log(_T("実装されていないヒットストップID"),SYSLOG_WARNING);
 		}
 		if(pdat->aid != ACTID_NAGERARE && pdat->hp<=0){//死亡
 			if(g_battleinfo.GetBattleType()==TAISENKEISIKI_GOCYAMAZE)
@@ -571,7 +571,7 @@ GOBJECT* CBattleTaskBase::GetActiveCharacter(DWORD tid)
 {
 	if(!(tid==TEAM_PLAYER1 || tid==TEAM_PLAYER2))return(NULL);
 	if(active_character[tid]>=MAXNUM_TEAM){
-		g_system.Log("CBattleTaskBase::GetActiveCharacter , active_characterにヘンな値がはいっています",SYSLOG_WARNING);
+		g_system.Log(_T("CBattleTaskBase::GetActiveCharacter , active_characterにヘンな値がはいっています"),SYSLOG_WARNING);
 		return(NULL);
 	}
 
@@ -581,11 +581,11 @@ GOBJECT* CBattleTaskBase::GetActiveCharacter(DWORD tid)
 DWORD CBattleTaskBase::GetActiveCharacterID(DWORD team)
 {
 	if(team>=2){
-		g_system.Log("CBattleTaskBase::GetActiveCharacterID, 引数teamにヘンな値が指定されました",SYSLOG_WARNING);
+		g_system.Log(_T("CBattleTaskBase::GetActiveCharacterID, 引数teamにヘンな値が指定されました"),SYSLOG_WARNING);
 		return 0;
 	}
 	if(active_character[team]>=MAXNUM_TEAM){
-		g_system.Log("CBattleTaskBase::GetActiveCharacterID , active_characterにヘンな値がはいっています",SYSLOG_WARNING);
+		g_system.Log(_T("CBattleTaskBase::GetActiveCharacterID , active_characterにヘンな値がはいっています"),SYSLOG_WARNING);
 		return 0;
 	}
 	return active_character[team];
@@ -965,41 +965,41 @@ const char* CBattleTaskBase::MessageID2String(DWORD id)
 {
 	switch(id)
 	{
-	case GOBJMSG_DELETE			: return "GOBJMSG_DELETE";
-	case GOBJMSG_ACTION			: return "GOBJMSG_ACTION";
-	case GOBJMSG_COMMAND		: return "GOBJMSG_COMMAND";
-	case GOBJMSG_COMMANDCOM		: return "GOBJMSG_COMMANDCOM";
-	case GOBJMSG_TOUCHA			: return "GOBJMSG_TOUCHA";
-	case GOBJMSG_TOUCHB			: return "GOBJMSG_TOUCHB";
-	case GOBJMSG_TOUCHC			: return "GOBJMSG_TOUCHC";
-	case GOBJMSG_CNGAID			: return "GOBJMSG_CNGAID";
+	case GOBJMSG_DELETE			: return _T("GOBJMSG_DELETE");
+	case GOBJMSG_ACTION			: return _T("GOBJMSG_ACTION");
+	case GOBJMSG_COMMAND		: return _T("GOBJMSG_COMMAND");
+	case GOBJMSG_COMMANDCOM		: return _T("GOBJMSG_COMMANDCOM");
+	case GOBJMSG_TOUCHA			: return _T("GOBJMSG_TOUCHA");
+	case GOBJMSG_TOUCHB			: return _T("GOBJMSG_TOUCHB");
+	case GOBJMSG_TOUCHC			: return _T("GOBJMSG_TOUCHC");
+	case GOBJMSG_CNGAID			: return _T("GOBJMSG_CNGAID");
 	//描画系メッセージ
-	case GOBJMSG_DRAW			: return "GOBJMSG_DRAW";
-	case GOBJMSG_DRAWBACK		: return "GOBJMSG_DRAWBACK";
-	case GOBJMSG_DRAWFRONT		: return "GOBJMSG_DRAWFRONT";
+	case GOBJMSG_DRAW			: return _T("GOBJMSG_DRAW");
+	case GOBJMSG_DRAWBACK		: return _T("GOBJMSG_DRAWBACK");
+	case GOBJMSG_DRAWFRONT		: return _T("GOBJMSG_DRAWFRONT");
 	//登場・交代などメッセージ
-	case GOBJMSG_DOTOJYO		: return "GOBJMSG_DOTOJYO";
-	case GOBJMSG_DOTIMEOVERLOSE	: return "GOBJMSG_DOTIMEOVER";
-	case GOBJMSG_DOYOUWIN		: return "GOBJMSG_DOYOUWIN";
-	case GOBJMSG_TAIKI			: return "GOBJMSG_TAIKI";
-	case GOBJMSG_KOUTAI			: return "GOBJMSG_KOUTAI";
-	case GOBJMSG_KOUTAI2		: return "GOBJMSG_KOUTAI2";
-	case GOBJMSG_STRIKER		: return "GOBJMSG_STRIKER";
-	case GOBJMSG_DOYOUWIN2		: return "GOBJMSG_DOYOUWIN2";
-	case GOBJMSG_STRIKERREADY	: return "GOBJMSG_STRIKERREADY";
+	case GOBJMSG_DOTOJYO		: return _T("GOBJMSG_DOTOJYO");
+	case GOBJMSG_DOTIMEOVERLOSE	: return _T("GOBJMSG_DOTIMEOVER");
+	case GOBJMSG_DOYOUWIN		: return _T("GOBJMSG_DOYOUWIN");
+	case GOBJMSG_TAIKI			: return _T("GOBJMSG_TAIKI");
+	case GOBJMSG_KOUTAI			: return _T("GOBJMSG_KOUTAI");
+	case GOBJMSG_KOUTAI2		: return _T("GOBJMSG_KOUTAI2");
+	case GOBJMSG_STRIKER		: return _T("GOBJMSG_STRIKER");
+	case GOBJMSG_DOYOUWIN2		: return _T("GOBJMSG_DOYOUWIN2");
+	case GOBJMSG_STRIKERREADY	: return _T("GOBJMSG_STRIKERREADY");
 	//座標操作系メッセージ
-	case GOBJMSG_KNOCKBACK		: return "GOBJMSG_KNOCKBACK";
-	case GOBJMSG_CLIPX			: return "GOBJMSG_CLIPX";
+	case GOBJMSG_KNOCKBACK		: return _T("GOBJMSG_KNOCKBACK");
+	case GOBJMSG_CLIPX			: return _T("GOBJMSG_CLIPX");
 	//オブジェクト間相互作用・その他
-	case GOBJMSG_CNGTARGET		: return "GOBJMSG_CNGTARGET";
-	case GOBJMSG_SOUSAI			: return "GOBJMSG_SOUSAI";
+	case GOBJMSG_CNGTARGET		: return _T("GOBJMSG_CNGTARGET");
+	case GOBJMSG_SOUSAI			: return _T("GOBJMSG_SOUSAI");
 	//ゲーム進行
-	case GOBJMSG_CNGROUND		: return "GOBJMSG_CNGGROUND";
+	case GOBJMSG_CNGROUND		: return _T("GOBJMSG_CNGGROUND");
 	//ネットワーク
-	case GOBJMSG_SYNC			: return "GOBJMSG_SYNC";
+	case GOBJMSG_SYNC			: return _T("GOBJMSG_SYNC");
 	}
 	static char errret[64];
-	sprintf(errret,"unknown-ID(0x%08X)",id);
+	sprintf(errret,_T("unknown-ID(0x%08X)"),id);
 	return errret;
 }
 
@@ -1045,43 +1045,43 @@ void CBattleTaskBase::Notify_Exception(CGObject *obj,DWORD msgid,DWORD prm)
 
 	if(team==3)
 	{
-		g_system.LogErr("system/unknown object , msg:%s prm:0x%08X act:0x%08X cnt:%d last_func:%s(%s)",
+		g_system.LogErr(_T("system/unknown object , msg:%s prm:0x%08X act:0x%08X cnt:%d last_func:%s(%s)"),
 			MessageID2String(msgid),
 			prm,
 			obj->data.aid,
 			obj->data.counter,
 			CExport::last_funcname,
-			CExport::func_in ? "in" : "out"
+			CExport::func_in ? _T("in") : _T("out")
 			);
 	}
 	else if(team==2)
 	{
 		UINT sindex = g_battleinfo.GetStage();
 
-		g_system.LogErr("stage object %s(%s) , msg:%s prm:%08X act:0x%08X cnt:%d last_func:%s(%s)",
+		g_system.LogErr(_T("stage object %s(%s) , msg:%s prm:%08X act:0x%08X cnt:%d last_func:%s(%s)"),
 			g_stagelist.GetStageName(sindex),
-			(stgobjid==obj->data.id) ? "main":"sub",
+			(stgobjid==obj->data.id) ? _T("main"):_T("sub"),
 			MessageID2String(msgid),
 			prm,
 			obj->data.aid,
 			obj->data.counter,
 			CExport::last_funcname,
-			CExport::func_in ? "in" : "out"
+			CExport::func_in ? _T("in") : _T("out")
 			);
 	}
 	else
 	{
 		UINT cindex = g_battleinfo.GetCharacter(team,index);
 
-		g_system.LogErr("character object %s(%s) , msg:%s prm:0x%08X act:0x%08X cnt:%d last_func:%s(%s)",
+		g_system.LogErr(_T("character object %s(%s) , msg:%s prm:0x%08X act:0x%08X cnt:%d last_func:%s(%s)"),
 			g_charlist.GetCharacterName(cindex),
-			(charobjid[team][index]==obj->data.id) ? "main":"sub",
+			(charobjid[team][index]==obj->data.id) ? _T("main"):_T("sub"),
 			MessageID2String(msgid),
 			prm,
 			obj->data.aid,
 			obj->data.counter,
 			CExport::last_funcname,
-			CExport::func_in ? "in" : "out"
+			CExport::func_in ? _T("in") : _T("out")
 			);
 	}
 }
@@ -1091,15 +1091,15 @@ const char* CBattleTaskBase::GetBattleStateString()
 {
 	switch(bf_state)
 	{
-	case BFSTATE_WAITFORENDPOSE	:return "BFSTATE_WAITFORENDPOSE";
-	case BFSTATE_ROUNDCALL		:return "BFSTATE_ROUNDCALL";
-	case BFSTATE_FIGHTING		:return "BFSTATE_FIGHTING";
-	case BFSTATE_FINISHED		:return "BFSTATE_FINISHED";
-	case BFSTATE_WAITFORENDWIN	:return "BFSTATE_WAITFORENDWIN";
-	case BFSTATE_DOUBLEKO		:return "BFSTATE_DOUBLEKO";
-	case BFSTATE_TIMEOVER		:return "BFSTATE_TIMEOVER";
+	case BFSTATE_WAITFORENDPOSE	:return _T("BFSTATE_WAITFORENDPOSE");
+	case BFSTATE_ROUNDCALL		:return _T("BFSTATE_ROUNDCALL");
+	case BFSTATE_FIGHTING		:return _T("BFSTATE_FIGHTING");
+	case BFSTATE_FINISHED		:return _T("BFSTATE_FINISHED");
+	case BFSTATE_WAITFORENDWIN	:return _T("BFSTATE_WAITFORENDWIN");
+	case BFSTATE_DOUBLEKO		:return _T("BFSTATE_DOUBLEKO");
+	case BFSTATE_TIMEOVER		:return _T("BFSTATE_TIMEOVER");
 	}
-	return "BFSTATE_UNKNOWN";
+	return _T("BFSTATE_UNKNOWN");
 }
 
 

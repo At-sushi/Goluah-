@@ -90,7 +90,7 @@ BOOL DoCatchEnemy(DWORD id, LPVOID ufocatcher) {
 }
 void Enemyname(DWORD id, char* buff) {
 	lstrcpy(buff, funco->getcharname(GETOBJ(id)->eid));
-	if (lstrcmp(buff, "8“ªg") == 0) wsprintf(buff, "‚W“ªg");
+	if (lstrcmp(buff, _T("8“ªg")) == 0) wsprintf(buff, _T("‚W“ªg"));
 }
 void GetEnemyDat(DWORD id, LPVOID pdat) {
 	CHARACTERINFO2& old = *(CHARACTERINFO2*)pdat;
@@ -210,7 +210,7 @@ DWORD CCharAdaptor::CreateCharacter(PVOID info)
 
 	if (!hAction2)
 	{
-		wsprintf(buffer, "%s\\action", info2->dir);
+		wsprintf(buffer, _T("%s\\action"), info2->dir);
 		hAction2 = LoadLibrary(buffer);
 		if(hAction2 == NULL) // Ž¸”s
 			return 0;

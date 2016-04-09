@@ -155,11 +155,11 @@ BOOL CFxPSprite::Create(int prm1,int prm2,int prm3)
 	{
 		if(num>16)
 		{
-			g_system.Log("CFxPSprite::Create num‚ª16‚ð’´‚¦‚Ä‚¢‚Ü‚·",SYSLOG_WARNING);
+			g_system.Log(_T("CFxPSprite::Create num‚ª16‚ð’´‚¦‚Ä‚¢‚Ü‚·"),SYSLOG_WARNING);
 			num = 16;
 		}
 
-		m_part->Create(num,"circle.png");
+		m_part->Create(num,_T("circle.png"));
 		return TRUE;
 	}
 	else
@@ -503,7 +503,7 @@ CFxGuardCancel::~CFxGuardCancel()
 
 BOOL CFxGuardCancel::Create(int prm1,int prm2,int prm3)
 {
-	m_part->Create(GCANCEL_PARTICLE_NUM,"gcancel.png");
+	m_part->Create(GCANCEL_PARTICLE_NUM,_T("gcancel.png"));
 
 	pdat->x = prm1;
 	pdat->y = prm2;

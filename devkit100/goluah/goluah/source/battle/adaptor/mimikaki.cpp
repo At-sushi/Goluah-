@@ -111,7 +111,7 @@ void CCharAdaptor::InitializeMySound()
 	char filename[256];
 	for(i=0;i<MAXMYSOUND;i++){
 		if(m_mysounds[i]==NULL){
-			sprintf(filename,"%s\\sound%d.wav",g_chardir,i);
+			sprintf(filename,_T("%s\\sound%d.wav"),g_chardir,i);
 			m_mysounds[i] = (*funcs->loadmysound)(filename);
 		}
 	}
@@ -155,15 +155,15 @@ void CCharAdaptor::InitializeGCDandBMP(GOBJECT *pdat,DWORD color)
 	j = pdat->tid;
 
 	char filename[256],palname[256];
-	sprintf(palname,"%s\\pal%d.bmp",m_chardir,color);
+	sprintf(palname,_T("%s\\pal%d.bmp"),m_chardir,color);
 	for(i=0;i<12;i++){
-		sprintf(filename,"%s\\image%d.bmp",m_chardir,i+1);
+		sprintf(filename,_T("%s\\image%d.bmp"),m_chardir,i+1);
 		m_mysurface[j][i] = (MYSURFACE*) ( (*funcd->loadbmp)(filename,palname) );//image1-12.bmp
 	}
 	// pdat‚É“ü‚ê‚é
 	pdat->pmsarr		= m_mysurface[j];
 
-	sprintf(filename,"%s\\cell.gcd",m_chardir);
+	sprintf(filename,_T("%s\\cell.gcd"),m_chardir);
 	hFile = CreateFile(filename,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
 	if(hFile==INVALID_HANDLE_VALUE) return;
 	if(!ReadFile(hFile,&cfh,sizeof(cfh),&br,NULL)){CloseHandle(hFile);return;}
@@ -282,7 +282,7 @@ int GetRandNum(int num)//ƒ‰ƒ“ƒ_ƒ€ƒiƒ“ƒo[”­¶
 BOOL GetWinSerif(char *getmsg,char *enename,char *filepath)
 {
 //	BY_HANDLE_FILE_INFORMATION FileInformation;
-	sprintf(getmsg,"(‘äŒ‚Ìİ’è‚ªŒŸõ‚³‚ê‚Ü‚¹‚ñ‚Å‚µ‚½)");
+	sprintf(getmsg,_T("(‘äŒ‚Ìİ’è‚ªŒŸõ‚³‚ê‚Ü‚¹‚ñ‚Å‚µ‚½)"));
 
 	//ƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“
 	HANDLE hFile = CreateFile(filepath,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
@@ -342,7 +342,7 @@ BOOL GetWinSerif(char *getmsg,char *enename,char *filepath)
 				else pnow++;//ƒtƒ@ƒCƒ‹‚ÌI‚í‚è‚Ì‚Ù‚¤‚È‚Ì‚Å‰üs”»’è‚ª‚Å‚«‚È‚¢
 			}
 			//–¼‘O‚ğ”äŠr
-			if(strcmp(tmpname,"random")==0 && numserr<16){//ƒ‰ƒ“ƒ_ƒ€‘äŒ
+			if(strcmp(tmpname,_T("random"))==0 && numserr<16){//ƒ‰ƒ“ƒ_ƒ€‘äŒ
 				sstartposr[numserr]=pnow;
 				numserr++;
 			}
@@ -408,12 +408,12 @@ void LoadAndSetKatiSerif(DWORD tid)//ƒeƒLƒXƒg‚©‚çŸ—˜‚ÌƒZƒŠƒt‚ğ“Ç‚İ‚ñ‚Åİ’è‚
 
 	ZeroMemory(katiserifu,sizeof(katiserifu));
 	enemyname = funcs->getenemyname(tid);
-	sprintf(filepath,"%s\\serifu.txt",g_chardir);
+	sprintf(filepath,_T("%s\\serifu.txt"),g_chardir);
 
 	if(GetWinSerif(katiserifu,enemyname,filepath)){
 		funcs->setkatiserif(tid,katiserifu);
 	}
-//	else funcs->setkatiserif(tid,"ƒZƒŠƒt‚Ìæ“¾‚É¸”s");
+//	else funcs->setkatiserif(tid,_T("ƒZƒŠƒt‚Ìæ“¾‚É¸”s"));
 }
 
 void DrawFront(GOBJECT *pdat,BOOL fr)

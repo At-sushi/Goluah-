@@ -89,8 +89,8 @@ void CTSimpleOptionSelecter::Draw()
 
 	//OPTIONS •`‰æ
 	DWORD okcolor;
-	double tmpx = g_system.DrawBMPTextEx(offset_x,y,z,"--PRESETS--",color_option|alpha,1.0f,text_yscale*1.2f,SYSBMPTXT_PROP);
-	sprintf(tmp_str,"POINT:%d",m_selecter->current_point);
+	double tmpx = g_system.DrawBMPTextEx(offset_x,y,z,_T("--PRESETS--"),color_option|alpha,1.0f,text_yscale*1.2f,SYSBMPTXT_PROP);
+	sprintf(tmp_str,_T("POINT:%d"),m_selecter->current_point);
 	if(m_selecter->current_point > 0)okcolor = color_ok;
 	else okcolor = color_ng;
 	g_system.DrawBMPTextEx(tmpx+20,y,z,tmp_str,okcolor|alpha,1.0f,text_yscale*1.2f,SYSBMPTXT_PROP);
@@ -113,7 +113,7 @@ void CTSimpleOptionSelecter::Draw()
 	if (m_selecter->m_current_favorite == 0)
 		color = color_ok_sel|alpha;
 	else color = color_ok|alpha;
-	g_system.DrawBMPTextEx(offset_x,y,z,"CUSTOM",color,1.0f,text_yscale,SYSBMPTXT_PROP);
+	g_system.DrawBMPTextEx(offset_x,y,z,_T("CUSTOM"),color,1.0f,text_yscale,SYSBMPTXT_PROP);
 
 	delete [] tmp_str;
 

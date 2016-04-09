@@ -76,7 +76,7 @@ BOOL CSystem::Initialize(HWND hwnd)
 	// CDirectPlay生成
 	/*if (!g_play.Initialize(hwnd))
 	{
-		MessageBox(hwnd,"通信系の初期化に失敗","初期化エラー(2)",MB_OK | MB_ICONERROR);
+		MessageBox(hwnd,_T("通信系の初期化に失敗"),_T("初期化エラー(2)"),MB_OK | MB_ICONERROR);
 		Destroy();
 		return FALSE;
 	}*/
@@ -84,7 +84,7 @@ BOOL CSystem::Initialize(HWND hwnd)
 	//CDirectSound生成
 	if(g_config.UseDSound()){
 		if(!g_sound.Initialize(hwnd)){
-			MessageBox(hwnd,"音系の初期化に失敗","初期化エラー(1)",MB_OK | MB_ICONERROR);
+			MessageBox(hwnd,_T("音系の初期化に失敗"),_T("初期化エラー(1)"),MB_OK | MB_ICONERROR);
 			Destroy();
 			return FALSE;
 		}
@@ -95,13 +95,13 @@ BOOL CSystem::Initialize(HWND hwnd)
 
 	//CDirectInput生成
 	if(!g_input.Initialize(hwnd)){
-		MessageBox(hwnd,"入力系の初期化に失敗","初期化エラー(2)",MB_OK | MB_ICONERROR);
+		MessageBox(hwnd,_T("入力系の初期化に失敗"),_T("初期化エラー(2)"),MB_OK | MB_ICONERROR);
 		Destroy();
 		return FALSE;
 	}
 	if(g_config.UseDInput()){//パッドを使用する
 		if(!g_input.InitializePad()){
-			MessageBox(hwnd,"ゲームパッドの初期化に失敗","初期化エラー(2)",MB_OK | MB_ICONERROR);
+			MessageBox(hwnd,_T("ゲームパッドの初期化に失敗"),_T("初期化エラー(2)"),MB_OK | MB_ICONERROR);
 			Destroy();
 			return FALSE;
 		}
@@ -116,13 +116,13 @@ BOOL CSystem::Initialize(HWND hwnd)
 
 	//CDirectDraw生成
 	if(!g_draw.Initialize(hwnd,!g_config.IsFullScreen())){
-		MessageBox(hwnd,"描画系の初期化に失敗","初期化エラー(2)",MB_OK);
+		MessageBox(hwnd,_T("描画系の初期化に失敗"),_T("初期化エラー(2)"),MB_OK);
 		Destroy();
 		return(FALSE);
 	}
 
 	//aki3d初期化
-	aki3d.Initialize(g_draw.d3ddev,"system\\texture");
+	aki3d.Initialize(g_draw.d3ddev,_T("system\\texture"));
 
 	InitSystemGraphics();		//システムグラフィック読み込み
 
@@ -133,12 +133,12 @@ BOOL CSystem::Initialize(HWND hwnd)
 	}
 
 	if(g_charlist.GetCharacterCount()==0){//キャラクターが一個もいない
-		MessageBox(hwnd,"キャラクターが一体もいません。ゲームを開始できません。","初期化エラー(2)",MB_OK);
+		MessageBox(hwnd,_T("キャラクターが一体もいません。ゲームを開始できません。"),_T("初期化エラー(2)"),MB_OK);
 		Destroy();
 		return(FALSE);
 	}
 	if(g_stagelist.GetStageCount()==0){//ステージが一個もない
-		MessageBox(hwnd,"ステージが一つもありません。ゲームを開始できません。","初期化エラー(2)",MB_OK);
+		MessageBox(hwnd,_T("ステージが一つもありません。ゲームを開始できません。"),_T("初期化エラー(2)"),MB_OK);
 		Destroy();
 		return(FALSE);
 	}
@@ -234,7 +234,7 @@ void CSystem::MainLoop()
 
 	//ログを見やすくするために、挿入
 	//if(g_config.CfgFullDebugLog()){
-	//	g_log2file.AddLog("-----------------------------main loop start");
+	//	g_log2file.AddLog(_T("-----------------------------main loop start"));
 	//}
 
 	//実行タグのクリア
@@ -336,8 +336,8 @@ void CSystem::NotifyExcption()
 	g_system.DumpTags();
 
 	if(g_config.IgnoreExceptions())return;
-	/*MessageBox(hwnd, "　 ∧＿∧\n　（　´∀｀） ＜ ぬるぽが発生しますた",
-				"ウホッ！いいエラー…　　直　　さ　　な　　い　　か", MB_OK | MB_ICONERROR);*/
+	/*MessageBox(hwnd, _T("　 ∧＿∧\n　（　´∀｀） ＜ ぬるぽが発生しますた"),
+				_T("ウホッ！いいエラー…　　直　　さ　　な　　い　　か"), MB_OK | MB_ICONERROR);*/
 	ReturnTitle();
 	m_error_title = TRUE;
 }
@@ -420,20 +420,20 @@ void CSystem::InitSystemSound()
 		b_efctlst[i]=FALSE;
 	}
 
-	dsb_efct[0][ 0] = g_sound.CreateDSB(".\\system\\sound\\hit1.wav");
-	dsb_efct[0][ 1] = g_sound.CreateDSB(".\\system\\sound\\hit2.wav");
-	dsb_efct[0][ 2] = g_sound.CreateDSB(".\\system\\sound\\hit3.wav");
-	dsb_efct[0][ 3] = g_sound.CreateDSB(".\\system\\sound\\shock1.wav");
-	dsb_efct[0][ 4] = g_sound.CreateDSB(".\\system\\sound\\shock2.wav");
-	dsb_efct[0][ 5] = g_sound.CreateDSB(".\\system\\sound\\guard.wav");
-	dsb_efct[0][ 6] = g_sound.CreateDSB(".\\system\\sound\\catch.wav");
-	dsb_efct[0][ 7] = g_sound.CreateDSB(".\\system\\sound\\cyohi.wav");
-	dsb_efct[0][ 8] = g_sound.CreateDSB(".\\system\\sound\\charge.wav");
-	//	dsb_efct[0][ 9] = g_sound.CreateDSB(".\\system\\sound\\ko.wav");
-	//	dsb_efct[0][10] = g_sound.CreateDSB(".\\system\\sound\\fight.wav");
-	dsb_efct[0][ 9] = g_sound.CreateDSB(".\\system\\sound\\select.wav");
-	dsb_efct[0][11] = g_sound.CreateDSB(".\\system\\sound\\change.wav");
-	dsb_efct[0][12] = g_sound.CreateDSB(".\\system\\sound\\ok.wav");
+	dsb_efct[0][ 0] = g_sound.CreateDSB(_T(".\\system\\sound\\hit1.wav"));
+	dsb_efct[0][ 1] = g_sound.CreateDSB(_T(".\\system\\sound\\hit2.wav"));
+	dsb_efct[0][ 2] = g_sound.CreateDSB(_T(".\\system\\sound\\hit3.wav"));
+	dsb_efct[0][ 3] = g_sound.CreateDSB(_T(".\\system\\sound\\shock1.wav"));
+	dsb_efct[0][ 4] = g_sound.CreateDSB(_T(".\\system\\sound\\shock2.wav"));
+	dsb_efct[0][ 5] = g_sound.CreateDSB(_T(".\\system\\sound\\guard.wav"));
+	dsb_efct[0][ 6] = g_sound.CreateDSB(_T(".\\system\\sound\\catch.wav"));
+	dsb_efct[0][ 7] = g_sound.CreateDSB(_T(".\\system\\sound\\cyohi.wav"));
+	dsb_efct[0][ 8] = g_sound.CreateDSB(_T(".\\system\\sound\\charge.wav"));
+	//	dsb_efct[0][ 9] = g_sound.CreateDSB(_T(".\\system\\sound\\ko.wav"));
+	//	dsb_efct[0][10] = g_sound.CreateDSB(_T(".\\system\\sound\\fight.wav"));
+	dsb_efct[0][ 9] = g_sound.CreateDSB(_T(".\\system\\sound\\select.wav"));
+	dsb_efct[0][11] = g_sound.CreateDSB(_T(".\\system\\sound\\change.wav"));
+	dsb_efct[0][12] = g_sound.CreateDSB(_T(".\\system\\sound\\ok.wav"));
 
 	for(int i=0;i<NUM_SYSTEMSOUND;i++){
 		// DirectSoundの関数を使ってコピー
@@ -450,12 +450,12 @@ void CSystem::InitSystemGraphics()
 {
 	char filename[256];
 	for(int i=0;i<GCDMAX_IMAGES;i++){
-		sprintf(filename,".\\system\\image%d",i+1);
+		sprintf(filename,_T(".\\system\\image%d"),i+1);
 		sdds[i] = g_draw.CreateSurfaceFrom256Image(filename);
 	}
-	sprintf(filename,".\\system\\cell2.gcm");
+	sprintf(filename,_T(".\\system\\cell2.gcm"));
 	sdds[3] = g_draw.CreateSurfaceFrom256BMP(filename);
-	sprintf(filename,".\\system\\cell.gcm");
+	sprintf(filename,_T(".\\system\\cell.gcm"));
 
 	CGCDHandler::GCDLoadCompressed(filename,scdat,srdat,shdat);
 }
@@ -487,155 +487,155 @@ BOOL CALLBACK DialogProc(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 		gbl.SetWinCenter(hwndDlg);
 		str = new char[1024*64];
 		//config 読み込み結果
-		sprintf(str,"■設定ファイル読み込み");
+		sprintf(str,_T("■設定ファイル読み込み"));
 		ADDLIST(str);
 		if(!g_config.readok1){
-			sprintf(str,"config.dat(キー設定)読込み失敗 デフォルトを適用");
+			sprintf(str,_T("config.dat(キー設定)読込み失敗 デフォルトを適用"));
 			ADDLIST(str);
 		}
 		else{
-			sprintf(str,"config.dat 読み込みOK");
+			sprintf(str,_T("config.dat 読み込みOK"));
 			ADDLIST(str);
 		}
 		if(!g_config.readok2){
-			sprintf(str,"config2.datの読込み失敗 デフォルトを適用");
+			sprintf(str,_T("config2.datの読込み失敗 デフォルトを適用"));
 			ADDLIST(str);
 		}
 		else{
-			sprintf(str,"config2.dat 読み込みOK");
+			sprintf(str,_T("config2.dat 読み込みOK"));
 			ADDLIST(str);
 		}
-		ADDLIST(" ");
+		ADDLIST(_T(" "));
 		//パッドの検索結果
-		sprintf(str,"■ゲームパッド検索結果");
+		sprintf(str,_T("■ゲームパッド検索結果"));
 		ADDLIST(str);
-		sprintf(str,"%d個のゲームパッドが見つかりました",g_input.jsnum);
+		sprintf(str,_T("%d個のゲームパッドが見つかりました"),g_input.jsnum);
 		ADDLIST(str);
 		if(g_input.jsnum!=0){
 			for(int i=0;i<g_input.jsnum;i++){
-				sprintf(str,"%d : %s",i+1,g_input.gamepadname[i]);
+				sprintf(str,_T("%d : %s"),i+1,g_input.gamepadname[i]);
 				ADDLIST(str);
 			}
 		}
-		ADDLIST(" ");
+		ADDLIST(_T(" "));
 		//キャラクターの検索結果
-		ADDLIST("■キャラクター検索結果");
+		ADDLIST(_T("■キャラクター検索結果"));
 		for(i=0;i<g_charlist.GetRingNum();i++){
-			sprintf(str,"%s\\ : %d",g_charlist.GetRingName(i),g_charlist.GetCharacterCountRing(i));
+			sprintf(str,_T("%s\\ : %d"),g_charlist.GetRingName(i),g_charlist.GetCharacterCountRing(i));
 			ADDLIST(str);
 		}
-		sprintf(str,"計 : %d",g_charlist.GetCharacterCount());
+		sprintf(str,_T("計 : %d"),g_charlist.GetCharacterCount());
 		ADDLIST(str);
 
-		ADDLIST(" ");
-		ADDLIST("(･∀･)読み込みに成功したキャラクター(･∀･)");
-		sprintf(str,"全:%d体",g_charlist.GetCharacterCount());
+		ADDLIST(_T(" "));
+		ADDLIST(_T("(･∀･)読み込みに成功したキャラクター(･∀･)"));
+		sprintf(str,_T("全:%d体"),g_charlist.GetCharacterCount());
 		ADDLIST(str);
 		for(i=0;i<g_charlist.GetCharacterCount();i++){
-			sprintf(str,"%s : %s - ver%4.3f",
+			sprintf(str,_T("%s : %s - ver%4.3f"),
 				g_charlist.GetCharacterDir(i),g_charlist.GetCharacterName(i),
 				g_charlist.GetCharacterVer(i)/1000.0);
 			ADDLIST(str);
 		}
-		ADDLIST(" ");
-		ADDLIST("(･Ａ･)読み込みに失敗したキャラクター(･Ａ･)");
-		sprintf(str,"全:%d体",g_charlist.GetDameCharCount());
+		ADDLIST(_T(" "));
+		ADDLIST(_T("(･Ａ･)読み込みに失敗したキャラクター(･Ａ･)"));
+		sprintf(str,_T("全:%d体"),g_charlist.GetDameCharCount());
 		ADDLIST(str);
 		for(i=0;i<g_charlist.GetDameCharCount();i++){
-			sprintf(str,"%s : ",g_charlist.GetDameCharDir(i));
+			sprintf(str,_T("%s : "),g_charlist.GetDameCharDir(i));
 			switch(g_charlist.GetDameCharReas(i)){
 			case CCL_DAME_NODLL://action.dllの読み込みに失敗
-				sprintf(&str[strlen(str)],"dllの読み込みに失敗しました");
+				sprintf(&str[strlen(str)],_T("dllの読み込みに失敗しました"));
 				break;
 			case CCL_DAME_CANTGETFP://関数ポインタ取得に失敗
-				sprintf(&str[strlen(str)],"関数ポインタの取得に失敗しました");
+				sprintf(&str[strlen(str)],_T("関数ポインタの取得に失敗しました"));
 				break;
 			case CCL_DAME_FFAIL://関数がFALSEを返してきた
-				sprintf(&str[strlen(str)],"CharacterInfo関数がFALSEを返しました");
+				sprintf(&str[strlen(str)],_T("CharacterInfo関数がFALSEを返しました"));
 				break;
 			case CCL_DAME_OLDDLL://バージョンチェックに失敗
-				sprintf(&str[strlen(str)],"ver.%4.3f(古) - %s",
+				sprintf(&str[strlen(str)],_T("ver.%4.3f(古) - %s"),
 					(double)g_charlist.GetDameCharVer(i)/1000.0,
 					g_charlist.GetDameCharName(i));
 				break;
 			case CCL_DAME_NEWDLL://バージョンチェックに失敗(2)
-				sprintf(&str[strlen(str)],"ver.%4.3f(新) - %s",
+				sprintf(&str[strlen(str)],_T("ver.%4.3f(新) - %s"),
 					(double)g_charlist.GetDameCharVer(i)/1000.0,
 					g_charlist.GetDameCharName(i));
 				break;
 			default:
-				sprintf(&str[strlen(str)],"エラーを特定できません");
+				sprintf(&str[strlen(str)],_T("エラーを特定できません"));
 				break;
 			}
 			ADDLIST(str);
 		}
-		ADDLIST(" ");
+		ADDLIST(_T(" "));
 		//ステージの検索結果
-		ADDLIST("■ステージ検索結果");
-		sprintf(str,"全%dステージ",g_stagelist.GetStageCount());
+		ADDLIST(_T("■ステージ検索結果"));
+		sprintf(str,_T("全%dステージ"),g_stagelist.GetStageCount());
 		ADDLIST(str);
-		ADDLIST(" ");
-		ADDLIST("(`･ω･´)読み込みに成功したステージ(`･ω･´)");
+		ADDLIST(_T(" "));
+		ADDLIST(_T("(`･ω･´)読み込みに成功したステージ(`･ω･´)"));
 		for(i=0;i<g_stagelist.GetStageCount();i++){
-			sprintf(str,"%s - %s",g_stagelist.GetStageDir(i),g_stagelist.GetStageName(i));
+			sprintf(str,_T("%s - %s"),g_stagelist.GetStageDir(i),g_stagelist.GetStageName(i));
 			if(g_stagelist.GetStageVer(i)!=0){
-				sprintf(&str[strlen(str)],"(ver%4.3f)",g_stagelist.GetStageVer(i)/1000.0);
+				sprintf(&str[strlen(str)],_T("(ver%4.3f)"),g_stagelist.GetStageVer(i)/1000.0);
 			}
 			else{
-				sprintf(&str[strlen(str)],"(DLLなし)");
+				sprintf(&str[strlen(str)],_T("(DLLなし)"));
 			}
 			ADDLIST(str);
 		}
-		ADDLIST(" ");
-		ADDLIST("(´･ω･`)読み込みに失敗したステージ(´･ω･`)");
-		sprintf(str,"全%dステージ",g_stagelist.GetDameStageCount());
+		ADDLIST(_T(" "));
+		ADDLIST(_T("(´･ω･`)読み込みに失敗したステージ(´･ω･`)"));
+		sprintf(str,_T("全%dステージ"),g_stagelist.GetDameStageCount());
 		ADDLIST(str);
 		for(i=0;i<g_stagelist.GetDameStageCount();i++){
-			sprintf(str,"%s",g_stagelist.GetDameStageDir(i));
+			sprintf(str,_T("%s"),g_stagelist.GetDameStageDir(i));
 			switch(g_stagelist.GetDameStageReason(i)){
 			case CSL_DAME_NONAME:
-				sprintf(&str[strlen(str)],"(名前取得に失敗)");
+				sprintf(&str[strlen(str)],_T("(名前取得に失敗)"));
 				break;
 			case CSL_DAME_PROC:
-				sprintf(&str[strlen(str)],"(関数ポインタ取得に失敗)");
+				sprintf(&str[strlen(str)],_T("(関数ポインタ取得に失敗)"));
 				break;
 			case CSL_DAME_PROC2:
-				sprintf(&str[strlen(str)],"(StageInfoに失敗)");
+				sprintf(&str[strlen(str)],_T("(StageInfoに失敗)"));
 				break;
 			case CSL_DAME_OLDDLL:
-				sprintf(&str[strlen(str)],"(DLLが古い-%4.3f)",g_stagelist.GetDameStageVer(i)/1000.0);
+				sprintf(&str[strlen(str)],_T("(DLLが古い-%4.3f)"),g_stagelist.GetDameStageVer(i)/1000.0);
 				break;
 			case CSL_DAME_NEWDLL:
-				sprintf(&str[strlen(str)],"(DLLが新しすぎ-%4.3f)",g_stagelist.GetDameStageVer(i)/1000.0);
+				sprintf(&str[strlen(str)],_T("(DLLが新しすぎ-%4.3f)"),g_stagelist.GetDameStageVer(i)/1000.0);
 				break;
 			}
 			ADDLIST(str);
 		}
-		ADDLIST(" ");
+		ADDLIST(_T(" "));
 		//ストーリー
-		ADDLIST("■ストーリー検証結果");
-		ADDLIST("○読み込み成功○");
+		ADDLIST(_T("■ストーリー検証結果"));
+		ADDLIST(_T("○読み込み成功○"));
 		for(i=0;i<(int)g_storylist.GetAllStoryNum();i++){
-			sprintf(str,"%s : %s",g_storylist.GetStoryDir(i),g_storylist.GetStoryName(i));
+			sprintf(str,_T("%s : %s"),g_storylist.GetStoryDir(i),g_storylist.GetStoryName(i));
 			ADDLIST(str);
 		}
-		ADDLIST("×読み込み失敗×");
+		ADDLIST(_T("×読み込み失敗×"));
 		for(i=0;i<g_storylist.GetErrorCount();i++){
-			sprintf(str,"%s : %s",g_storylist.GetErrorDir(i),g_storylist.GetErrorStr(i));
+			sprintf(str,_T("%s : %s"),g_storylist.GetErrorDir(i),g_storylist.GetErrorStr(i));
 			ADDLIST(str);
 		}
-		ADDLIST(" ");
+		ADDLIST(_T(" "));
 
 		if(g_charlist.GetCharacterCount()==0){//キャラクターが一個もいない
-			ADDLIST(" ");
-			ADDLIST("キャラクターが一体もいません。ゲームを開始できません。");
-			ADDLIST(" ");
+			ADDLIST(_T(" "));
+			ADDLIST(_T("キャラクターが一体もいません。ゲームを開始できません。"));
+			ADDLIST(_T(" "));
 			cannot_start = TRUE;
 		}
 		if(g_stagelist.GetStageCount()==0){//ステージが一個もいない
-			ADDLIST(" ");
-			ADDLIST("ステージが一つもありません。ゲームを開始できません。");
-			ADDLIST(" ");
+			ADDLIST(_T(" "));
+			ADDLIST(_T("ステージが一つもありません。ゲームを開始できません。"));
+			ADDLIST(_T(" "));
 			cannot_start = TRUE;
 		}
 
@@ -858,7 +858,7 @@ void CSystem::Log(const char *log,DWORD flag)
 	#ifdef _DBG_MESSAGES_TO_CONSOLE
 	if(flag!=SYSLOG_DEBUG){
 		OutputDebugString(log);
-		OutputDebugString("\n");
+		OutputDebugString(_T("\n"));
 	}
 	#endif
 
@@ -870,26 +870,26 @@ void CSystem::Log(const char *log,DWORD flag)
 	switch(flag){
 	case SYSLOG_INFO	:
 		{
-			sprintf(logBuffer,"[info]:%s",log);
+			sprintf(logBuffer,_T("[info]:%s"),log);
 			log2file = g_config.UseLog_Info();
 		}
 		break;
 	case SYSLOG_ERROR	:
 		{
-			sprintf(logBuffer,"[error]:%s",log);
+			sprintf(logBuffer,_T("[error]:%s"),log);
 			log2file = TRUE;
 		}
 		break;
 	case SYSLOG_ALERT	:
 	case SYSLOG_WARNING	:
 		{
-			sprintf(logBuffer,"[warning]:%s",log);
+			sprintf(logBuffer,_T("[warning]:%s"),log);
 			log2file = g_config.UseLog_Warning();
 		}
 		break;
 	case SYSLOG_DEBUG	:
 		{
-			sprintf(logBuffer,"[debug]:%s",log);
+			sprintf(logBuffer,_T("[debug]:%s"),log);
 			log2file = g_config.UseLog_Debug();
 		}
 		break;
@@ -903,7 +903,7 @@ void CSystem::Log(const char *log,DWORD flag)
 
 void CSystem::LogWarning(const char *format, ...)
 {
-	strcpy(logBuffer,"[warning]:");
+	strcpy(logBuffer,_T("[warning]:"));
 
 	va_list args;
 	va_start(args, format);
@@ -911,7 +911,7 @@ void CSystem::LogWarning(const char *format, ...)
 	va_end(args);
 
 	OutputDebugString(logBuffer);
-	OutputDebugString("\n");
+	OutputDebugString(_T("\n"));
 
 	if(g_config.UseLog_Warning())g_log2file.AddLog(logBuffer);
 }
@@ -919,7 +919,7 @@ void CSystem::LogWarning(const char *format, ...)
 
 void CSystem::LogErr(const char *format,...)
 {
-	strcpy(logBuffer,"[error]:");
+	strcpy(logBuffer,_T("[error]:"));
 
 	va_list args;
 	va_start(args, format);
@@ -927,7 +927,7 @@ void CSystem::LogErr(const char *format,...)
 	va_end(args);
 
 	OutputDebugString(logBuffer);
-	OutputDebugString("\n");
+	OutputDebugString(_T("\n"));
 
 	g_log2file.AddLog(logBuffer);
 }
@@ -940,7 +940,7 @@ void CSystem::SaveScreenShot()
 	UINT width , height;
 	DWORD *bits = g_draw.GetFrontBufferCopyRaw(&width,&height);
 	if(!bits){
-		Log("スクリーンショットの作成に失敗(フロントバッファーコピー)",SYSLOG_WARNING);
+		Log(_T("スクリーンショットの作成に失敗(フロントバッファーコピー)"),SYSLOG_WARNING);
 		return;
 	}
 
@@ -949,18 +949,18 @@ void CSystem::SaveScreenShot()
 	time_t crnt_time;
 	time(&crnt_time);
 	struct tm* crnt_time_l = localtime(&crnt_time);
-	sprintf(filename,"%s\\%d%s%d%s%d%s%d%s%d%s%d.%s",
-		"system\\sshot\\",
+	sprintf(filename,_T("%s\\%d%s%d%s%d%s%d%s%d%s%d.%s"),
+		_T("system\\sshot\\"),
 		crnt_time_l->tm_year + 1900,				//年
-		(crnt_time_l->tm_mon + 1)<10 ? "0" : "",
+		(crnt_time_l->tm_mon + 1)<10 ? _T("0") : _T(""),
 		crnt_time_l->tm_mon + 1,					//月
-		crnt_time_l->tm_mday<10 ? "0" : "",
+		crnt_time_l->tm_mday<10 ? _T("0") : _T(""),
 		crnt_time_l->tm_mday,						//日
-		crnt_time_l->tm_hour<10 ? "0" : "",
+		crnt_time_l->tm_hour<10 ? _T("0") : _T(""),
 		crnt_time_l->tm_hour,						//時
-		crnt_time_l->tm_min<10 ? "0" : "",
+		crnt_time_l->tm_min<10 ? _T("0") : _T(""),
 		crnt_time_l->tm_min,						//分
-		crnt_time_l->tm_sec<10 ? "0" : "",
+		crnt_time_l->tm_sec<10 ? _T("0") : _T(""),
 		crnt_time_l->tm_sec,						//秒
 		g_config.GetSShotFileTypeStr()				//拡張子
 	);
@@ -1031,7 +1031,7 @@ void CSystem::SaveScreenShot()
 
 				if (!cbuf)
 				{
-					gbl.ods2("CSystem::SaveScreenShot : 変換用バッファがないぽ\n");
+					gbl.ods2(_T("CSystem::SaveScreenShot : 変換用バッファがないぽ\n"));
 					file.Close();
 					CFile::Remove(filename);
 					goto SSHOT_FAILED;
@@ -1071,7 +1071,7 @@ void CSystem::SaveScreenShot()
 		}
 		else
 		{
-			Log("スクリーンショットの作成に失敗(ファイルオープン)",SYSLOG_WARNING);
+			Log(_T("スクリーンショットの作成に失敗(ファイルオープン)"),SYSLOG_WARNING);
 		}
 	}
 	else if (g_config.GetSShotImageFormat() == SSHOT_PNG)	// PNG保存
@@ -1079,10 +1079,10 @@ void CSystem::SaveScreenShot()
 		FILE* fp;
 
 		// PNG構造体
-		png_structp strPNG = png_create_write_struct(PNG_LIBPNG_VER_STRING, "ケホパホの夜", PngErrHandler, NULL);
+		png_structp strPNG = png_create_write_struct(PNG_LIBPNG_VER_STRING, _T("ケホパホの夜"), PngErrHandler, NULL);
 		if (!strPNG)
 		{
-			gbl.ods2("CDirectDraw::Load256PNGbits : PNG構造体ﾃﾞｷﾃﾈｴﾖ!!ヽ(`Д´)ﾉｳﾜｧｧﾝ!!\n");
+			gbl.ods2(_T("CDirectDraw::Load256PNGbits : PNG構造体ﾃﾞｷﾃﾈｴﾖ!!ヽ(`Д´)ﾉｳﾜｧｧﾝ!!\n"));
 			goto SSHOT_FAILED;
 		}
 
@@ -1090,13 +1090,13 @@ void CSystem::SaveScreenShot()
 		png_infop infoPNG = png_create_info_struct(strPNG);
 		if (!infoPNG)
 		{
-			gbl.ods2("CDirectDraw::Load256PNGbits : PNG情報構造体ﾃﾞｷﾃﾈｴﾖ!!ヽ(`Д´)ﾉｳﾜｧｧﾝ!!\n");
+			gbl.ods2(_T("CDirectDraw::Load256PNGbits : PNG情報構造体ﾃﾞｷﾃﾈｴﾖ!!ヽ(`Д´)ﾉｳﾜｧｧﾝ!!\n"));
 			png_destroy_write_struct(&strPNG, NULL);
 			goto SSHOT_FAILED;
 		}
 
 		// 書き込み準備
-		fp = fopen(filename, "wb");
+		fp = fopen(filename, _T("wb"));
 		if (!fp)
 		{
 			png_destroy_write_struct(&strPNG, &infoPNG);
@@ -1128,7 +1128,7 @@ void CSystem::SaveScreenShot()
 
 			if (!cbuf)
 			{
-				gbl.ods2("CSystem::SaveScreenShot : 変換用バッファがないぽ\n");
+				gbl.ods2(_T("CSystem::SaveScreenShot : 変換用バッファがないぽ\n"));
 				fclose(fp);
 				png_destroy_write_struct(&strPNG, &infoPNG);
 				goto SSHOT_FAILED;
@@ -1177,7 +1177,7 @@ void CSystem::SaveScreenShot()
 		jpeg_create_compress(&cinfo);
 
 		// 書き込み準備
-		fp = fopen(filename, "wb");
+		fp = fopen(filename, _T("wb"));
 		if (!fp)
 		{
 			jpeg_destroy_compress(&cinfo);
@@ -1209,7 +1209,7 @@ void CSystem::SaveScreenShot()
 
 			if (!cbuf)
 			{
-				gbl.ods2("CSystem::SaveScreenShot : 変換用バッファがないぽ\n");
+				gbl.ods2(_T("CSystem::SaveScreenShot : 変換用バッファがないぽ\n"));
 				fclose(fp);
 				jpeg_destroy_compress(&cinfo);
 				goto SSHOT_FAILED;
@@ -1311,18 +1311,18 @@ void CSystem::DumpTags()
 {
 	while( m_dlltag.size()!=0 )
 	{
-		LogErr("\t<dll(%d)> %s",
+		LogErr(_T("\t<dll(%d)> %s"),
 				m_dlltag.size(),
-				(m_dlltag.top()) ? (m_dlltag.top()) : "(null)"
+				(m_dlltag.top()) ? (m_dlltag.top()) : _T("(null)")
 				);
 		m_dlltag.pop();
 	}
 
 	while( m_systag.size()!=0 )
 	{
-		LogErr("\t<sys(%d)> %s",
+		LogErr(_T("\t<sys(%d)> %s"),
 				m_systag.size(),
-				m_systag.top() ? m_systag.top() : "(null)"
+				m_systag.top() ? m_systag.top() : _T("(null)")
 				);
 		m_systag.pop();
 	}

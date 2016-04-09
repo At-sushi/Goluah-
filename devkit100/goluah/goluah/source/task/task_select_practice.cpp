@@ -25,7 +25,7 @@ void CCharacterSelectPractice::Initialize()
 	}
 
 	//BGM再生
-	g_sound.BGMPlay(".\\system\\bgm\\choice");
+	g_sound.BGMPlay(_T(".\\system\\bgm\\choice"));
 
 	//■コンディションセレクター登録
 	CTConditionSelecter *csel = new CTConditionSelecterPractice;
@@ -117,26 +117,26 @@ void CTConditionSelecterPractice::Draw()
 
 	//対戦形式
 	char *typenames[]={
-		"Cooperation",
-		"Marvel Like",
-		"K.O.F. Like"
+		_T("Cooperation"),
+		_T("Marvel Like"),
+		_T("K.O.F. Like")
 	};
-	sprintf(tstr,"Mode : %s",typenames[m_type-1]);
+	sprintf(tstr,_T("Mode : %s"),typenames[m_type-1]);
 	g_system.DrawBMPTextEx(x,y,0.0f,
 				tstr,
 				TxtCol(0),txt_xr,txt_yr,SYSBMPTXT_PROP);
 
 	//HP割合
-	sprintf(tstr,"HP : %d%%",m_hp_ratio[m_limit_time_index]);
+	sprintf(tstr,_T("HP : %d%%"),m_hp_ratio[m_limit_time_index]);
 	g_system.DrawBMPTextEx(x+300,y,0.0f,
 				tstr,
 				TxtCol(1),txt_xr,txt_yr,SYSBMPTXT_PROP);
 	y += ystep;
 	y += ystep;
 
-	sprintf(tstr,"TEAM1");
+	sprintf(tstr,_T("TEAM1"));
 	g_system.DrawBMPTextEx(x,y,0.0f,tstr,0xFF5237FF,txt_xr,txt_yr,SYSBMPTXT_PROP);
-	sprintf(tstr,"TEAM2");
+	sprintf(tstr,_T("TEAM2"));
 	g_system.DrawBMPTextEx(x+300.0f,y,0.0f,tstr,0xFFFF3752,txt_xr,txt_yr,SYSBMPTXT_PROP);
 	y += ystep;
 
@@ -144,18 +144,18 @@ void CTConditionSelecterPractice::Draw()
 	for(j=0;j<2;j++){
 		for(i=0;i<MAXNUM_TEAM;i++)
 		{
-			sprintf(tstr,"%d : ",i+1);
+			sprintf(tstr,_T("%d : "),i+1);
 			if(m_assign[j][i]&CASSIGN_SPECIFIC)//特別
 			{
 				switch(m_assign[j][i]){
-				case CASSIGN_COM:	sprintf(&tstr[strlen(tstr)],"Computer");break;
-				case CASSIGN_NONE:	sprintf(&tstr[strlen(tstr)],"--None--");break;
-				case CASSIGN_STABLE:	sprintf(&tstr[strlen(tstr)],"Stop");break;
-				default:			sprintf(&tstr[strlen(tstr)],"Error?");
+				case CASSIGN_COM:	sprintf(&tstr[strlen(tstr)],_T("Computer"));break;
+				case CASSIGN_NONE:	sprintf(&tstr[strlen(tstr)],_T("--None--"));break;
+				case CASSIGN_STABLE:	sprintf(&tstr[strlen(tstr)],_T("Stop"));break;
+				default:			sprintf(&tstr[strlen(tstr)],_T("Error?"));
 				}
 			}
 			else{
-				sprintf(&tstr[strlen(tstr)],"Player%d",m_assign[j][i]+1);
+				sprintf(&tstr[strlen(tstr)],_T("Player%d"),m_assign[j][i]+1);
 			}
 			if(j==0)	//TEAM1
 				shiftX=40.0f;
@@ -173,12 +173,12 @@ void CTConditionSelecterPractice::Draw()
 
 	//"OK"描画
 	g_system.DrawBMPTextEx(640.0f-x,y,0.0f,
-				m_ok ? "OK" : m_str_error,
+				m_ok ? _T("OK") : m_str_error,
 				TxtCol(2*MAXNUM_TEAM+2),txt_xr,txt_yr,SYSBMPTXT_PROP|SYSBMPTXT_R2L);
 	y += ystep;
 	//"return title"
 	g_system.DrawBMPTextEx(640.0f-x,y,0.0f,
-				"Return Title",
+				_T("Return Title"),
 				TxtCol(2*MAXNUM_TEAM+3),txt_xr,txt_yr,SYSBMPTXT_PROP|SYSBMPTXT_R2L);
 
 	delete [] tstr;

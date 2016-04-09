@@ -27,29 +27,29 @@ void CDebugMenu::Activate(DWORD pid)
 
 	g_sound.BGMStop();
 
-	str = "タイトル画面へ";
+	str = _T("タイトル画面へ");
 	namelist.push_back(str);
 
-	str = "キャラセレ";
+	str = _T("キャラセレ");
 	namelist.push_back(str);
 
-	str = "勝利画面";
+	str = _T("勝利画面");
 	namelist.push_back(str);
 	
-	str = "スタッフロール";
+	str = _T("スタッフロール");
 	namelist.push_back(str);
 
-	str = "耐久テスト";
+	str = _T("耐久テスト");
 	namelist.push_back(str);
 
-	str = "耐久テスト2";
+	str = _T("耐久テスト2");
 	namelist.push_back(str);
 
 	if (!g_config.IsFullScreen())
 	{
-		str = "ネット対戦モ－ド（ホスト）";
+		str = _T("ネット対戦モ－ド（ホスト）");
 		namelist.push_back(str);
-		str = "ネット対戦モ－ド（クライアント）";
+		str = _T("ネット対戦モ－ド（クライアント）");
 		namelist.push_back(str);
 	}
 
@@ -119,7 +119,7 @@ BOOL CDebugMenu::Execute(DWORD time)
 			case 3:
 				{
 					CStoryElement_Staff *ele_staff = new CStoryElement_Staff;
-					ele_staff->FeedLine("file staff.txt");
+					ele_staff->FeedLine(_T("file staff.txt"));
 					CTStaffRoll *psr = new CTStaffRoll;
 					psr->SetKeyIndex(0);
 					psr->Setup( g_storylist.GetStoryDir(1) , ele_staff );
@@ -192,16 +192,16 @@ void CDebugMenu::Draw()
 	for(i=0;i<MAXNUM_KEYI;i++)
 	{
 		DWORD ipt = g_input.GetKey(i,0);
-		sprintf(str_ipt,"%d : %s %s %s %s %s %s %s %s",
+		sprintf(str_ipt,_T("%d : %s %s %s %s %s %s %s %s"),
 			i,
-			(ipt&KEYSTA_UP)		? "↑" : "　",
-			(ipt&KEYSTA_DOWN)	? "↓" : "　",
-			(ipt&KEYSTA_ALEFT)	? "←" : "　",
-			(ipt&KEYSTA_ARIGHT)	? "→" : "　",
-			(ipt&KEYSTA_BA)		? "Ａ" : "　",
-			(ipt&KEYSTA_BB)		? "Ｂ" : "　",
-			(ipt&KEYSTA_BC)		? "Ｃ" : "　",
-			(ipt&KEYSTA_BD)		? "Ｄ" : "　"
+			(ipt&KEYSTA_UP)		? _T("↑") : _T("　"),
+			(ipt&KEYSTA_DOWN)	? _T("↓") : _T("　"),
+			(ipt&KEYSTA_ALEFT)	? _T("←") : _T("　"),
+			(ipt&KEYSTA_ARIGHT)	? _T("→") : _T("　"),
+			(ipt&KEYSTA_BA)		? _T("Ａ") : _T("　"),
+			(ipt&KEYSTA_BB)		? _T("Ｂ") : _T("　"),
+			(ipt&KEYSTA_BC)		? _T("Ｃ") : _T("　"),
+			(ipt&KEYSTA_BD)		? _T("Ｄ") : _T("　")
 			);
 		g_draw.DrawBlueText(r,str_ipt,strlen(str_ipt),DT_LEFT,1);
 		r.top += 24;

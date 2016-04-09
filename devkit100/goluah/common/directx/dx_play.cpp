@@ -58,7 +58,7 @@ HRESULT CDirectPlay::Initialize(const char* Name, const char* Port)
 	// 今回は簡略化
 	if (!pDPlay || !pThreadPool)
 	{
-		MessageBox(NULL, "なんか無理っぽい", "CDirectPlay エラー", MB_OK | MB_ICONERROR);
+		MessageBox(NULL, _T("なんか無理っぽい"), _T("CDirectPlay エラー"), MB_OK | MB_ICONERROR);
 		return DD_FALSE;
 	}
 
@@ -201,7 +201,7 @@ HRESULT CDirectPlay::OnMessage(PVOID UserCont, DWORD mtype, PVOID pmes)
 				// 名前と本文を組み立てて送信
 				GetName(pMsg->dpnidSender, name);
 				data = name;
-				data += " ＞ ";
+				data += _T(" ＞ ");
 				data += ((char*)pMsg->pReceiveData + 1);	// 最初に識別番号が入ってるので、抜く。
 				m_pStateDlg->WriteLog(data);
 			}

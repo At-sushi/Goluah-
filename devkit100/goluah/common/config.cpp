@@ -3,6 +3,14 @@
 #include <d3d9.h>
 
 #include "config.h"
+
+#if defined(UNICODE) || defined(_UNICODE)
+#define __T(x) L ## x
+#else
+#define __T(x) x
+#endif
+#define _T(x) __T(x)
+
 extern DWORD GetLimcutKey();
 
 CConfig	g_config;
@@ -51,10 +59,10 @@ char* CConfig::GetSShotFileTypeStr()
 {
 	switch(sshot_format)
 	{
-	case SSHOT_JPG	:return "jpg";
-	case SSHOT_PNG	:return "png";
+	case SSHOT_JPG	:return _T("jpg");
+	case SSHOT_PNG	:return _T("png");
 	case SSHOT_BMP	:
-	default:return "bmp";
+	default:return _T("bmp");
 	}
 }
 
@@ -221,7 +229,7 @@ BOOL CConfig::LoadConfig()
 	if(filepath1!=NULL){
 		strcpy(filepath,filepath1);
 	}
-	else strcpy(filepath,".\\system\\config.dat");
+	else strcpy(filepath,_T(".\\system\\config.dat"));
 
 	HANDLE hFile = CreateFile(filepath,
 		GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
@@ -261,7 +269,7 @@ BOOL CConfig::LoadConfig2()
 	if(filepath2!=NULL){
 		strcpy(filepath,filepath2);
 	}
-	else strcpy(filepath,".\\system\\config2.dat");
+	else strcpy(filepath,_T(".\\system\\config2.dat"));
 
 	HANDLE hFile = CreateFile(filepath,
 		GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
@@ -304,19 +312,19 @@ BOOL CConfig::LoadConfig2()
 	DWORD lc_key2 = GetLimcutKey();
 	if( (lc_key^('aki')) == lc_key2 )
 	{
-		OutputDebugString("ÉLÅ[àÍívÅAå¿äEìÀîjãñâ¬\n");
+		OutputDebugString(_T("ÉLÅ[àÍívÅAå¿äEìÀîjãñâ¬\n"));
 		limcut_pass = TRUE;
 		limiter_cut_enable = 1;
 	}
 	else if( lc_key==lc_key2 )
 	{
-		OutputDebugString("ÉLÅ[àÍív\n");
+		OutputDebugString(_T("ÉLÅ[àÍív\n"));
 		limcut_pass = TRUE;
 		limiter_cut_enable = 0;
 	}
 	else
 	{
-		OutputDebugString("ÉLÅ[ïsàÍív\n");
+		OutputDebugString(_T("ÉLÅ[ïsàÍív\n"));
 		limiter_cut = 0;
 		limiter_cut_enable = 0;
 		limcut_pass = FALSE;
@@ -335,7 +343,7 @@ BOOL CConfig::SaveConfig()
 	if(filepath1!=NULL){
 		strcpy(filepath,filepath1);
 	}
-	else strcpy(filepath,".\\system\\config.dat");
+	else strcpy(filepath,_T(".\\system\\config.dat"));
 
 	HANDLE hFile = CreateFile(filepath,
 		GENERIC_WRITE,0,NULL,OPEN_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);
@@ -375,7 +383,7 @@ BOOL CConfig::SaveConfig2()
 	if(filepath2!=NULL){
 		strcpy(filepath,filepath2);
 	}
-	else strcpy(filepath,".\\system\\config2.dat");
+	else strcpy(filepath,_T(".\\system\\config2.dat"));
 
 	HANDLE hFile = CreateFile(filepath,
 		GENERIC_WRITE,0,NULL,OPEN_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);

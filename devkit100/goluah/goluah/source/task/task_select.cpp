@@ -54,7 +54,7 @@ void CCharacterSelect::Initialize()
 	}
 
 	//BGM再生
-	g_sound.BGMPlay(".\\system\\bgm\\choice");
+	g_sound.BGMPlay(_T(".\\system\\bgm\\choice"));
 
 	//■コンディションセレクター登録
 	CTConditionSelecter *csel = new CTConditionSelecter;
@@ -670,7 +670,7 @@ void CTCharacterRing::InitializeIcons()
 		m_dds_miniface = new MYSURFACE* [g_charlist.GetCharacterCount()];
 		for(int i=0;i<g_charlist.GetCharacterCount();i++){
 			m_dds_miniface[i]=NULL;
-			sprintf(filepath,"%s\\face1",g_charlist.GetCharacterDir(i));
+			sprintf(filepath,_T("%s\\face1"),g_charlist.GetCharacterDir(i));
 			m_dds_miniface[i] = g_draw.CreateSurfaceFrom256Image(filepath);
 		}
 	}
@@ -987,8 +987,8 @@ void CTCharacterBigFace::Set(int cid,DWORD color,int alt)
 		palpath = new char[MAX_PATH];
 		char altstr[3]={'\0','\0'};
 		if(alt!=0)altstr[0]='a'+alt-1;
-		sprintf(filepath,"%s\\face2%s.bmp",g_charlist.GetCharacterDir(cid) ,altstr);
-		sprintf(palpath,"%s\\pal%d.bmp",g_charlist.GetCharacterDir(cid),color);
+		sprintf(filepath,_T("%s\\face2%s.bmp"),g_charlist.GetCharacterDir(cid) ,altstr);
+		sprintf(palpath,_T("%s\\pal%d.bmp"),g_charlist.GetCharacterDir(cid),color);
 		*tgt = g_draw.CreateSurfaceFrom256BMP(filepath,palpath);
 		delete [] filepath;
 		delete [] palpath;
@@ -1039,8 +1039,8 @@ void CTCharacterBigFace::SetTemporary(int cid,DWORD color,int alt)
 	palpath = new char[MAX_PATH];
 	char altstr[3]={'\0','\0'};
 	if(alt!=0)altstr[0]='a'+alt-1;
-	sprintf(filepath,"%s\\face2%s.bmp",g_charlist.GetCharacterDir(cid),altstr );
-	sprintf(palpath,"%s\\pal%d.bmp",g_charlist.GetCharacterDir(cid),color);
+	sprintf(filepath,_T("%s\\face2%s.bmp"),g_charlist.GetCharacterDir(cid),altstr );
+	sprintf(palpath,_T("%s\\pal%d.bmp"),g_charlist.GetCharacterDir(cid),color);
 	*tgt = g_draw.CreateSurfaceFrom256BMP(filepath,palpath);
 	delete [] filepath;
 	delete [] palpath;
@@ -1066,7 +1066,7 @@ void CTCharacterSelectBG::Initialize()
 {
 	//テクスチャロード
 	D3DXCreateTextureFromFileEx(g_draw.d3ddev,
-		"system\\texture\\tex_cs1.png",
+		_T("system\\texture\\tex_cs1.png"),
 		0,0,
 		1,0,
 		g_draw.texformat,
@@ -1346,18 +1346,18 @@ void CTCharacterSelectBelt::UpdateText()
 {
 	if(m_com){
 		if(m_current_key>=0){
-			sprintf(m_disp_str,"COM/Player%d",m_current_key+1);
+			sprintf(m_disp_str,_T("COM/Player%d"),m_current_key+1);
 		}
 		else{
-			sprintf(m_disp_str,"COM/Wait",m_current_key+1);
+			sprintf(m_disp_str,_T("COM/Wait"),m_current_key+1);
 		}
 	}
 	else{
-		sprintf(m_disp_str,"Player%d",m_current_key+1);
+		sprintf(m_disp_str,_T("Player%d"),m_current_key+1);
 	}
 //	char *p = g_charlist.GetCharacterDir(0, m_ringIndex);
 
-	sprintf(m_disp_str2, "%s", g_charlist.GetRingName(m_ringIndex));
+	sprintf(m_disp_str2, _T("%s"), g_charlist.GetRingName(m_ringIndex));
 }
 
 /*-----------------------------------------------------------
@@ -1634,21 +1634,21 @@ void CTStageSelecter::Draw()
 		if (tick < 0.0f){
 			if (tick > -0.705f){
 //			if (tick > -0.598f){
-				g_system.DrawBMPTextEx(-51.0 - tick*450.0, 197.0, 0.0f, "V", 0xFF5237FF, 3.0f, 3.0f, SYSBMPTXT_PROP);
-				g_system.DrawBMPTextEx(640.0 + tick*450.0, 197.0, 0.0f, "S", 0xFFFF3752, 3.0f, 3.0f, SYSBMPTXT_PROP);
-//				g_system.DrawBMPTextEx(282.0, -58.0 - tick*450.0, 0.0f, "V", 0xFF5237FF, 2.0f, 2.0f, SYSBMPTXT_PROP);
-//				g_system.DrawBMPTextEx(320.0, 480.0 + tick*450.0, 0.0f, "S", 0xFFFF3752, 2.0f, 2.0f, SYSBMPTXT_PROP);
+				g_system.DrawBMPTextEx(-51.0 - tick*450.0, 197.0, 0.0f, _T("V"), 0xFF5237FF, 3.0f, 3.0f, SYSBMPTXT_PROP);
+				g_system.DrawBMPTextEx(640.0 + tick*450.0, 197.0, 0.0f, _T("S"), 0xFFFF3752, 3.0f, 3.0f, SYSBMPTXT_PROP);
+//				g_system.DrawBMPTextEx(282.0, -58.0 - tick*450.0, 0.0f, _T("V"), 0xFF5237FF, 2.0f, 2.0f, SYSBMPTXT_PROP);
+//				g_system.DrawBMPTextEx(320.0, 480.0 + tick*450.0, 0.0f, _T("S"), 0xFFFF3752, 2.0f, 2.0f, SYSBMPTXT_PROP);
 			}
 			else{
-				g_system.DrawBMPTextEx(267.0, 197.0, 0.0f, "V", 0xFF5237FF, 3.0f, 3.0f, SYSBMPTXT_PROP);
-				g_system.DrawBMPTextEx(323.0, 197.0, 0.0f, "S", 0xFFFF3752, 3.0f, 3.0f, SYSBMPTXT_PROP);
-//				g_system.DrawBMPTextEx(282.0, 211.0, 0.0f, "V", 0xFF5237FF, 2.0f, 2.0f, SYSBMPTXT_PROP);
-//				g_system.DrawBMPTextEx(320.0, 211.0, 0.0f, "S", 0xFFFF3752, 2.0f, 2.0f, SYSBMPTXT_PROP);
+				g_system.DrawBMPTextEx(267.0, 197.0, 0.0f, _T("V"), 0xFF5237FF, 3.0f, 3.0f, SYSBMPTXT_PROP);
+				g_system.DrawBMPTextEx(323.0, 197.0, 0.0f, _T("S"), 0xFFFF3752, 3.0f, 3.0f, SYSBMPTXT_PROP);
+//				g_system.DrawBMPTextEx(282.0, 211.0, 0.0f, _T("V"), 0xFF5237FF, 2.0f, 2.0f, SYSBMPTXT_PROP);
+//				g_system.DrawBMPTextEx(320.0, 211.0, 0.0f, _T("S"), 0xFFFF3752, 2.0f, 2.0f, SYSBMPTXT_PROP);
 				if (tick > -1.795f)
-					g_system.DrawBMPTextEx(267.0, 197.0, -0.0f, "VS", color, 3.0f, 3.0f, SYSBMPTXT_PROP);
+					g_system.DrawBMPTextEx(267.0, 197.0, -0.0f, _T("VS"), color, 3.0f, 3.0f, SYSBMPTXT_PROP);
 				else if (tick > -4.295f){
-					g_system.DrawBMPTextEx(267.0 + (tick + 1.795f)*370.0f, 197.0f + (tick + 1.795f)*290.0f, -0.0f, "VS", color, 3.0f - (tick + 1.795f)*20.0f, 3.0f - (tick + 1.795f)*20.0f, SYSBMPTXT_PROP);
-//					g_system.DrawBMPTextEx(282.0 + (tick + 0.598f)*370.0f, 211.0f + (tick + 0.598f)*290.0f, -0.0f, "VS", color, 2.0f - (tick + 0.598f)*20.0f, 2.0f - (tick + 0.598f)*20.0f, SYSBMPTXT_PROP);
+					g_system.DrawBMPTextEx(267.0 + (tick + 1.795f)*370.0f, 197.0f + (tick + 1.795f)*290.0f, -0.0f, _T("VS"), color, 3.0f - (tick + 1.795f)*20.0f, 3.0f - (tick + 1.795f)*20.0f, SYSBMPTXT_PROP);
+//					g_system.DrawBMPTextEx(282.0 + (tick + 0.598f)*370.0f, 211.0f + (tick + 0.598f)*290.0f, -0.0f, _T("VS"), color, 2.0f - (tick + 0.598f)*20.0f, 2.0f - (tick + 0.598f)*20.0f, SYSBMPTXT_PROP);
 				}
 			}
 		}
@@ -1667,7 +1667,7 @@ void CTStageSelecter::LoadBMP()
 	}
 
 	char *filepath = new char[MAX_PATH];
-	sprintf(filepath,"%s\\preview",g_stagelist.GetStageDir( GetSelection() ) );
+	sprintf(filepath,_T("%s\\preview"),g_stagelist.GetStageDir( GetSelection() ) );
 	m_dds = g_draw.CreateSurfaceFrom256Image(filepath);
 	delete [] filepath;
 }
@@ -1678,7 +1678,7 @@ void CTStageSelecter::LoadBMP()
 -------------------------------------------------------------*/
 void CTStageSelecter::UpdateText()
 {
-	sprintf(m_disp_str,"%s",
+	sprintf(m_disp_str,_T("%s"),
 		g_stagelist.GetStageDir( GetSelection() )
 		);
 
@@ -1817,7 +1817,7 @@ void CTConditionSelecter::Initialize()
 	m_lineWidth = 2.0f;				//色つきライン太さ
 	m_base_y = 240.0f;
 	m_height_base = 380.0f;
-	sprintf(m_disp_str,"SETTINGS");
+	sprintf(m_disp_str,_T("SETTINGS"));
 
 	for(int j=0;j<2;j++){
 		for(int i=0;i<MAXNUM_TEAM;i++)
@@ -2008,11 +2008,11 @@ void CTConditionSelecter::Draw()
 
 	//対戦形式
 	char *typenames[]={
-		"Cooperation",
-		"Changeable",
-		"Unchangeable"
+		_T("Cooperation"),
+		_T("Changeable"),
+		_T("Unchangeable")
 	};
-	sprintf(tstr,"Mode : %s",typenames[m_type-1]);
+	sprintf(tstr,_T("Mode : %s"),typenames[m_type-1]);
 	g_system.DrawBMPTextEx(x,y,0.0f,
 				tstr,
 				TxtCol(0),txt_xr,txt_yr,SYSBMPTXT_PROP);
@@ -2020,21 +2020,21 @@ void CTConditionSelecter::Draw()
 	//制限時間
 	if(m_type==TAISENKEISIKI_GOCYAMAZE){
 		if(m_limit_time[m_limit_time_index]>0)
-			sprintf(tstr,"Time : %d",m_limit_time[m_limit_time_index]);
+			sprintf(tstr,_T("Time : %d"),m_limit_time[m_limit_time_index]);
 		else
-			sprintf(tstr,"Time : -infinity-");
+			sprintf(tstr,_T("Time : -infinity-"));
 	}
 	else
-		sprintf(tstr,"Time : -no use-");
+		sprintf(tstr,_T("Time : -no use-"));
 	g_system.DrawBMPTextEx(x+300.0f,y,0.0f,
 				tstr,
 				TxtCol(1),txt_xr,txt_yr,SYSBMPTXT_PROP);
 	y += ystep;
 	y += ystep;
 
-	sprintf(tstr,"TEAM1");
+	sprintf(tstr,_T("TEAM1"));
 	g_system.DrawBMPTextEx(x,y,0.0f,tstr,0xFF5237FF,txt_xr,txt_yr,SYSBMPTXT_PROP);
-	sprintf(tstr,"TEAM2");
+	sprintf(tstr,_T("TEAM2"));
 	g_system.DrawBMPTextEx(x+300.0f,y,0.0f,tstr,0xFFFF3752,txt_xr,txt_yr,SYSBMPTXT_PROP);
 	y += ystep;
 
@@ -2042,17 +2042,17 @@ void CTConditionSelecter::Draw()
 	for(j=0;j<2;j++){
 		for(i=0;i<MAXNUM_TEAM;i++)
 		{
-			sprintf(tstr,"%d : ",i+1);
+			sprintf(tstr,_T("%d : "),i+1);
 			if(m_assign[j][i]&CASSIGN_SPECIFIC)//特別
 			{
 				switch(m_assign[j][i]){
-				case CASSIGN_COM:	sprintf(&tstr[strlen(tstr)],"Computer");break;
-				case CASSIGN_NONE:	sprintf(&tstr[strlen(tstr)],"--None--");break;
-				default:			sprintf(&tstr[strlen(tstr)],"Error?");
+				case CASSIGN_COM:	sprintf(&tstr[strlen(tstr)],_T("Computer"));break;
+				case CASSIGN_NONE:	sprintf(&tstr[strlen(tstr)],_T("--None--"));break;
+				default:			sprintf(&tstr[strlen(tstr)],_T("Error?"));
 				}
 			}
 			else{
-				sprintf(&tstr[strlen(tstr)],"Player%d",m_assign[j][i]+1);
+				sprintf(&tstr[strlen(tstr)],_T("Player%d"),m_assign[j][i]+1);
 			}
 			if(j==0)	//TEAM1
 				shiftX=40.0f;
@@ -2070,12 +2070,12 @@ void CTConditionSelecter::Draw()
 
 	//"OK"描画
 	g_system.DrawBMPTextEx(640.0f-x,y,0.0f,
-				m_ok ? "OK" : m_str_error,
+				m_ok ? _T("OK") : m_str_error,
 				TxtCol(2*MAXNUM_TEAM+2),txt_xr,txt_yr,SYSBMPTXT_PROP|SYSBMPTXT_R2L);
 	y += ystep;
 	//"return title"
 	g_system.DrawBMPTextEx(640.0f-x,y,0.0f,
-				"Return Title",
+				_T("Return Title"),
 				TxtCol(2*MAXNUM_TEAM+3),txt_xr,txt_yr,SYSBMPTXT_PROP|SYSBMPTXT_R2L);
 
 	delete [] tstr;
@@ -2100,7 +2100,7 @@ void CTConditionSelecter::Check()
 			}
 		}
 		if(!ok){
-			sprintf(m_str_error,"Error , All None");
+			sprintf(m_str_error,_T("Error , All None"));
 			m_ok=FALSE;
 			return;
 		}
@@ -2118,7 +2118,7 @@ void CTConditionSelecter::Check()
 				}
 			}
 			if(cnt>1){
-				sprintf(m_str_error,"Error , Player%d Duplication",k+1);
+				sprintf(m_str_error,_T("Error , Player%d Duplication"),k+1);
 				m_ok=FALSE;
 				return;
 			}
@@ -2136,7 +2136,7 @@ void CTConditionSelecter::Check()
 				}
 			}
 			if(belong[0] && belong[1]){
-				sprintf(m_str_error,"Error , Player%d is Betrayer",k+1);//裏切り者ハケーン
+				sprintf(m_str_error,_T("Error , Player%d is Betrayer"),k+1);//裏切り者ハケーン
 				m_ok=FALSE;
 				return;
 			}

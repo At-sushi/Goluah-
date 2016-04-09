@@ -15,6 +15,12 @@
 #define FAR_CLIP	(50.0f)
 #define NEAR_CLIP	( 0.1f)
 
+#if defined(UNICODE) || defined(_UNICODE)
+#define __T(x) L ## x
+#else
+#define __T(x) x
+#endif
+#define _T(x) __T(x)
 
 /*----------------------------------------------------------
 	使用するDirect3D頂点フォーマット　定義

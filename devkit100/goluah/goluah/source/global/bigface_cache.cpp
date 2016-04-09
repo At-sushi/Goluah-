@@ -44,7 +44,7 @@ MYSURFACE* CTBigFaceCache::Get(int cindex,int col,int alt)
 		}
 	}
 
-	gbl.ods("CTBigFaceCache::Get , miss hit %d,%d,%d",cindex,col,alt);
+	gbl.ods(_T("CTBigFaceCache::Get , miss hit %d,%d,%d"),cindex,col,alt);
 
 	//ない場合はしょうがないのでファイルからロードする
 	MYSURFACE *dds=NULL;
@@ -55,15 +55,15 @@ MYSURFACE* CTBigFaceCache::Get(int cindex,int col,int alt)
 		if(alt!=0){
 			altstr[0]='a'+alt-1;
 		}
-		sprintf(filepath,"%s\\face2%s",g_charlist.GetCharacterDir(cindex),altstr );
-		sprintf(palpath,"%s\\pal%d",g_charlist.GetCharacterDir(cindex),col);
+		sprintf(filepath,_T("%s\\face2%s"),g_charlist.GetCharacterDir(cindex),altstr );
+		sprintf(palpath,_T("%s\\pal%d"),g_charlist.GetCharacterDir(cindex),col);
 		dds = g_draw.CreateSurfaceFrom256Image(filepath,palpath);
-		gbl.ods("CTBigFaceCache : load %s",filepath);
+		gbl.ods(_T("CTBigFaceCache : load %s"),filepath);
 		delete [] filepath;
 		delete [] palpath;
 	}
 	else{//ランダム用
-		dds = g_draw.CreateSurfaceFrom256Image(".\\system\\rand_face");
+		dds = g_draw.CreateSurfaceFrom256Image(_T(".\\system\\rand_face"));
 	}
 
 	//リストの末尾に追加する

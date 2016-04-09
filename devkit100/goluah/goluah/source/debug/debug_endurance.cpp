@@ -70,7 +70,7 @@ void CTEnduranceTest::Setting_Other()
 
 void CTEnduranceTest::Setting_CreateBattleTask()
 {
-	g_system.Log("start battle",SYSLOG_INFO);
+	g_system.Log(_T("start battle"),SYSLOG_INFO);
 	g_system.AddTask( new CBattleTask );
 }
 
@@ -168,10 +168,10 @@ void CTTaimanTest::Draw()
 	{
 		char *str = new char[64];
 
-		sprintf(str,"%d/%d",char1,g_charlist.GetCharacterCount());
+		sprintf(str,_T("%d/%d"),char1,g_charlist.GetCharacterCount());
 		g_system.DrawBMPText(10,50,0,str,select_flag ? 0xFFFFFFFF : 0x99999999);
 		
-		sprintf(str,"%d/%d",char2,g_charlist.GetCharacterCount());
+		sprintf(str,_T("%d/%d"),char2,g_charlist.GetCharacterCount());
 		g_system.DrawBMPText(10,100,0,str,select_flag ? 0x99999999 : 0xFFFFFFFF);
 
 		delete [] str;
@@ -192,7 +192,7 @@ void CTTaimanTest::Setting_Characters()
 		UINT winner = g_battleresult.GetWinner() ? char2 : char1;
 		UINT loser	= g_battleresult.GetWinner() ? char1 : char2;
 
-		sprintf(str,"\t%s(%d)\t\t%s(%d)",
+		sprintf(str,_T("\t%s(%d)\t\t%s(%d)"),
 			g_charlist.GetCharacterName(winner),
 			winner,
 			g_charlist.GetCharacterName(loser),

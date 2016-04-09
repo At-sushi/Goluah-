@@ -108,20 +108,20 @@ void CBattleTask::Initialize()
 	/*time_t crnt_time;
 	time(&crnt_time);
 	struct tm* crnt_time_l = localtime(&crnt_time);
-	sprintf(filename,"%s\\%d%s%d%s%d%s%d%s%d%s%d.%s",
-		"system\\replay\\",
+	sprintf(filename,_T("%s\\%d%s%d%s%d%s%d%s%d%s%d.%s"),
+		_T("system\\replay\\"),
 		crnt_time_l->tm_year + 1900,				//年
-		(crnt_time_l->tm_mon + 1)<10 ? "0" : "",
+		(crnt_time_l->tm_mon + 1)<10 ? _T("0") : _T(""),
 		crnt_time_l->tm_mon + 1,					//月
-		crnt_time_l->tm_mday<10 ? "0" : "",
+		crnt_time_l->tm_mday<10 ? _T("0") : _T(""),
 		crnt_time_l->tm_mday,						//日
-		crnt_time_l->tm_hour<10 ? "0" : "",
+		crnt_time_l->tm_hour<10 ? _T("0") : _T(""),
 		crnt_time_l->tm_hour,						//時
-		crnt_time_l->tm_min<10 ? "0" : "",
+		crnt_time_l->tm_min<10 ? _T("0") : _T(""),
 		crnt_time_l->tm_min,						//分
-		crnt_time_l->tm_sec<10 ? "0" : "",
+		crnt_time_l->tm_sec<10 ? _T("0") : _T(""),
 		crnt_time_l->tm_sec,						//秒
-		"grd"										//拡張子
+		_T("grd")										//拡張子
 	);
 	RepFile.Open(filename,CFile::modeWrite | CFile::modeCreate);*/
 
@@ -137,7 +137,7 @@ void CBattleTask::Initialize()
 			int yen_pos = tmpcstr.ReverseFind('\\');
 			if(yen_pos>0){
 				tmpcstr = tmpcstr.Right( tmpcstr.GetLength()-yen_pos-1 );
-				tmpcstr = "stage/bgm/" + tmpcstr;
+				tmpcstr = _T("stage/bgm/") + tmpcstr;
 				gbl.ods((LPCTSTR)tmpcstr);
 				story_bgm_on = g_sound.BGMPlay((LPCTSTR)tmpcstr);
 			}
@@ -153,7 +153,7 @@ void CBattleTask::Initialize()
 		{
 			for (j = 0; j < (int)g_battleinfo.GetNumTeam(i); j++)
 			{
-				sprintf(filename, "%s\\sound\\bgm",
+				sprintf(filename, _T("%s\\sound\\bgm"),
 					g_charlist.GetCharacterDir(g_battleinfo.GetCharacter(i, j)));
 				if (g_sound.BGMSearch(filename) && playflag == FALSE)
 				{
@@ -165,14 +165,14 @@ void CBattleTask::Initialize()
 		if (playflag == FALSE)
 		{
 			//ステージディレクトリのbgmの再生を試みる
-			sprintf(filename, "%s\\bgm",
+			sprintf(filename, _T("%s\\bgm"),
 				g_stagelist.GetStageDir(g_battleinfo.GetStage()));
 			if (!g_sound.BGMPlay(filename))
 			{
 				//ステージ名と同一のbgm再生を試みる
-				sprintf(filename, "stage\\bgm\\%s", g_stagelist.GetStageDir(g_battleinfo.GetStage()));
+				sprintf(filename, _T("stage\\bgm\\%s"), g_stagelist.GetStageDir(g_battleinfo.GetStage()));
 				if (!g_sound.BGMPlay(filename)){
-					gbl.PlayRandomBGM("stage\\bgm");
+					gbl.PlayRandomBGM(_T("stage\\bgm"));
 				}
 			}
 		}
@@ -302,7 +302,7 @@ void CBattleTask::StartRound()
 		if (m_round_winner == 0)
 		{
 			for (i = 0; i < (int)g_battleinfo.GetNumTeam(1); i++){
-				sprintf(filename, "%s\\sound\\bgm",
+				sprintf(filename, _T("%s\\sound\\bgm"),
 					g_charlist.GetCharacterDir(g_battleinfo.GetCharacter(1, i)));
 				if (g_sound.BGMSearch(filename) && playflag == FALSE)
 				{
@@ -314,7 +314,7 @@ void CBattleTask::StartRound()
 		else if (m_round_winner == 1)
 		{
 			for (i = 0; i < (int)g_battleinfo.GetNumTeam(0); i++){
-				sprintf(filename, "%s\\sound\\bgm",
+				sprintf(filename, _T("%s\\sound\\bgm"),
 					g_charlist.GetCharacterDir(g_battleinfo.GetCharacter(0, i)));
 				if (g_sound.BGMSearch(filename) && playflag == FALSE)
 				{
@@ -327,7 +327,7 @@ void CBattleTask::StartRound()
 
 	//「ラウンドX」サウンドロード
 	if(call_round){
-		sprintf(filename,".\\system\\sound\\round%d.wav",round);
+		sprintf(filename,_T(".\\system\\sound\\round%d.wav"),round);
 		dsb_round = g_sound.CreateDSB(filename);
 	}
 
@@ -460,7 +460,7 @@ void CBattleTask::TerminateDestroySubTasks()
 BOOL CBattleTask::Execute(DWORD time)
 {
 	static char execute_tag[256];
-	sprintf(execute_tag,"%s (%s)",__FUNCTION__,GetBattleStateString());
+	sprintf(execute_tag,_T("%s (%s)"),__FUNCTION__,GetBattleStateString());
 	g_system.PushSysTag(execute_tag);
 
 	if(m_pause_task){
@@ -1463,7 +1463,7 @@ DWORD CBattleTask::CreateGObject()
 		}
 	}
 
-	g_system.Log("オブジェクトが最大数を超えています\n",SYSLOG_WARNING);
+	g_system.Log(_T("オブジェクトが最大数を超えています\n"),SYSLOG_WARNING);
 	g_system.PopSysTag();
 	return(0);
 }
@@ -1491,7 +1491,7 @@ void CBattleTask::DeleteGObject(DWORD oid)
 
 	//ゼロ・オブジェクト
 	if(oid==0){
-		g_system.LogWarning("%s ゼロ・オブジェクト削除未遂");
+		g_system.LogWarning(_T("%s ゼロ・オブジェクト削除未遂"));
 		g_system.PopSysTag();
 		return;
 	}
@@ -1507,14 +1507,14 @@ void CBattleTask::DeleteGObject(DWORD oid)
 		for(int i=0;i<3;i++)
 		{
 			if(charobjid[j][i]==oid){
-				g_system.LogWarning("%s キャラクターオブジェクト削除未遂(%d,%d)",__FUNCTION__,j,i);
+				g_system.LogWarning(_T("%s キャラクターオブジェクト削除未遂(%d,%d)"),__FUNCTION__,j,i);
 				g_system.PopSysTag();
 				return;
 			}
 		}
 	}
 	if(stgobjid==oid){
-		g_system.LogWarning("%s ステージオブジェクト削除未遂",__FUNCTION__);
+		g_system.LogWarning(_T("%s ステージオブジェクト削除未遂"),__FUNCTION__);
 		g_system.PopSysTag();
 		return;
 	}
@@ -1540,7 +1540,7 @@ DWORD CBattleTask::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
 	//変数準備
 	CGObject *pdat = GetGObject(oid);
 	if(pdat==NULL){
-		g_system.LogWarning("%s msg=%08X ,オブジェクトNULL",__FUNCTION__,msg);
+		g_system.LogWarning(_T("%s msg=%08X ,オブジェクトNULL"),__FUNCTION__,msg);
 		g_system.PopSysTag();
 		return(0);
 	}
@@ -1605,7 +1605,7 @@ DWORD CBattleTask::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
 				case 1:next_act= striker_front ? 0 : 2 ;break;
 				case 2:next_act= striker_front ? 1 : 0 ;break;
 				default:
-					g_system.LogWarning("%s msg=%08X ,失敗(cidx=%d)",__FUNCTION__,msg,cidx);
+					g_system.LogWarning(_T("%s msg=%08X ,失敗(cidx=%d)"),__FUNCTION__,msg,cidx);
 					g_system.PopSysTag();
 					return(FALSE);
 			}
@@ -1615,7 +1615,7 @@ DWORD CBattleTask::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
 			}
 			pdat=(CGObject*)GetGObject( charobjid[team][next_act] );
 			if(!pdat){
-				g_system.LogWarning("%s msg=%08X ,失敗(オブジェクトNULL)",__FUNCTION__,msg,cidx);
+				g_system.LogWarning(_T("%s msg=%08X ,失敗(オブジェクトNULL)"),__FUNCTION__,msg,cidx);
 				g_system.PopSysTag();
 				return(FALSE);
 			}
@@ -1628,7 +1628,7 @@ DWORD CBattleTask::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
 				g_system.PopSysTag();
 				return(TRUE);					//成功
 			}
-			else g_system.Log("◆交代要請拒否。交代失敗。\n",SYSLOG_DEBUG);
+			else g_system.Log(_T("◆交代要請拒否。交代失敗。\n"),SYSLOG_DEBUG);
 			g_system.PopSysTag();
 			return(FALSE);
 		}
@@ -1681,12 +1681,12 @@ DWORD CBattleTask::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
 				g_system.PopSysTag();
 				return(TRUE);
 			}
-			else gbl.ods("★ストライカー却下");
+			else gbl.ods(_T("★ストライカー却下"));
 		}
 		break;
 
 	default:
-		g_system.LogWarning("%s msg=%08X ,実装されてないメッセージ",__FUNCTION__,msg);
+		g_system.LogWarning(_T("%s msg=%08X ,実装されてないメッセージ"),__FUNCTION__,msg);
 	}
 
 	g_system.PopSysTag();
@@ -1741,7 +1741,7 @@ CGObject* CBattleTask::GetGObject(DWORD oid)
 CGObject* CBattleTask::GetCharacterObject(DWORD j,DWORD i)
 {
 	if(j>=2 || i>=MAXNUM_TEAM){
-		g_system.LogWarning("%s 範囲チェックエラー(team=%d,index=%d)",__FUNCTION__,j,i);
+		g_system.LogWarning(_T("%s 範囲チェックエラー(team=%d,index=%d)"),__FUNCTION__,j,i);
 		return 0;
 	}
 
@@ -2157,29 +2157,29 @@ void CBattleTask::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 
 void CBattleTask::DrawState()
 {
-	sprintf(debugmsgbuff,"objectid:\n");
-	sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"team1 - %d, %d, %d\n",charobjid[0][0],charobjid[0][1],charobjid[0][2]);
-	sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"team2 - %d, %d, %d\n",charobjid[1][0],charobjid[1][1],charobjid[1][2]);
-	sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"bfstate:");
+	sprintf(debugmsgbuff,_T("objectid:\n"));
+	sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("team1 - %d, %d, %d\n"),charobjid[0][0],charobjid[0][1],charobjid[0][2]);
+	sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("team2 - %d, %d, %d\n"),charobjid[1][0],charobjid[1][1],charobjid[1][2]);
+	sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("bfstate:"));
 	switch(bf_state){
-	case BFSTATE_WAITFORENDPOSE:sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"BFSTATE_WAITFORENDPOSE,%d",bf_counter);break;
-	case BFSTATE_ROUNDCALL:		sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"BFSTATE_ROUNDCALL,%d",bf_counter);break;
-	case BFSTATE_FIGHTING:		sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"BFSTATE_FIGHTING,%d",bf_counter);break;
-	case BFSTATE_FINISHED:		sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"BFSTATE_FINISHED,%d",bf_counter);break;
-	case BFSTATE_WAITFORENDWIN:	sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"BFSTATE_WAITFORENDWIN,%d",bf_counter);break;
-	case BFSTATE_DOUBLEKO:		sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"BFSTATE_DOUBLEKO,%d",bf_counter);break;
-	default:sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"不明？,%d",bf_counter);break;
+	case BFSTATE_WAITFORENDPOSE:sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("BFSTATE_WAITFORENDPOSE,%d"),bf_counter);break;
+	case BFSTATE_ROUNDCALL:		sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("BFSTATE_ROUNDCALL,%d"),bf_counter);break;
+	case BFSTATE_FIGHTING:		sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("BFSTATE_FIGHTING,%d"),bf_counter);break;
+	case BFSTATE_FINISHED:		sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("BFSTATE_FINISHED,%d"),bf_counter);break;
+	case BFSTATE_WAITFORENDWIN:	sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("BFSTATE_WAITFORENDWIN,%d"),bf_counter);break;
+	case BFSTATE_DOUBLEKO:		sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("BFSTATE_DOUBLEKO,%d"),bf_counter);break;
+	default:sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("不明？,%d"),bf_counter);break;
 	}
-	sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n");
-//	sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"num_char=%d , ",g_battleinfo.GetNumTeam());
+	sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n"));
+//	sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("num_char=%d , "),g_battleinfo.GetNumTeam());
 //	switch(g_battleinfo.GetBattleType()){
-//	case TAISENKEISIKI_GOCYAMAZE	:sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"TAISENKEISIKI_GOCYAMAZE , tl=%d\n",g_battleinfo.GetLimitTime());break;
-//	case TAISENKEISIKI_KOUTAI		:sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"TAISENKEISIKI_KOUTAI , tl=%d\n",g_battleinfo.GetLimitTime());break;
-//	case TAISENKEISIKI_JYUNBAN	:sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"TAISENKEISIKI_JYUNBAN , tl=%d\n",g_battleinfo.GetLimitTime());break;
-//	case KEISIKI_END		:sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"KEISIKI_END , tl=%d\n",g_battleinfo.GetLimitTime());break;
-//	default					:sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"不明？ , tl=%d\n",g_battleinfo.GetLimitTime());break;
+//	case TAISENKEISIKI_GOCYAMAZE	:sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("TAISENKEISIKI_GOCYAMAZE , tl=%d\n"),g_battleinfo.GetLimitTime());break;
+//	case TAISENKEISIKI_KOUTAI		:sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("TAISENKEISIKI_KOUTAI , tl=%d\n"),g_battleinfo.GetLimitTime());break;
+//	case TAISENKEISIKI_JYUNBAN	:sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("TAISENKEISIKI_JYUNBAN , tl=%d\n"),g_battleinfo.GetLimitTime());break;
+//	case KEISIKI_END		:sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("KEISIKI_END , tl=%d\n"),g_battleinfo.GetLimitTime());break;
+//	default					:sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("不明？ , tl=%d\n"),g_battleinfo.GetLimitTime());break;
 //	}
-//	sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\ndisplay_(x, y)=%d ,%d",disp_center_x, disp_center_y);
+//	sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\ndisplay_(x, y)=%d ,%d"),disp_center_x, disp_center_y);
 
 	RECT r;
 	r.top=0;
@@ -2191,12 +2191,12 @@ void CBattleTask::DrawState()
 
 void CBattleTask::DrawObjectList()
 {
-	sprintf(debugmsgbuff,"");
+	sprintf(debugmsgbuff,_T(""));
 	for(int i=0;i<(int)p_objects.size();i++){
-		if(i%10==0)sprintf(&debugmsgbuff[strlen(debugmsgbuff)]," ");
-		if(i%40==0)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n");
-		if(p_objects[i]!=NULL)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"●");
-		else sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"○");
+		if(i%10==0)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T(" "));
+		if(i%40==0)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n"));
+		if(p_objects[i]!=NULL)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("●"));
+		else sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("○"));
 	}
 
 	RECT r;
@@ -2219,37 +2219,37 @@ void CBattleTask::DrawCharacterState()
 		//名前
 		sprintf(debugmsgbuff,g_charlist.GetCharacterName(g_battleinfo.GetCharacter(j,active_character[j])));
 		if(GetGObject( charobjid[j][active_character[j]] ) ==NULL){
-			sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n\n 異常：オブジェクトがNULLです");
+			sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n\n 異常：オブジェクトがNULLです"));
 		}
 		else{
 			pdat = &(GetGObject( charobjid[j][active_character[j]] )->data);
-			sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n ID:%d , チーム:%d , 敵:%d , ユーザーID:%d",pdat->id,pdat->tid,pdat->eid,pdat->uid);
-			sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n cell#:%d",pdat->cnow);
-			if(pdat->muki)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n 向き:<- ");
-			else sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n 向き:-> ");
-			if(pdat->revx)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"X反転 ");
-			if(pdat->revy)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"Y反転 ");
-			sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"拡大率(%5.2f,%5.2f) 回転:%d",
+			sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n ID:%d , チーム:%d , 敵:%d , ユーザーID:%d"),pdat->id,pdat->tid,pdat->eid,pdat->uid);
+			sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n cell#:%d"),pdat->cnow);
+			if(pdat->muki)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n 向き:<- "));
+			else sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n 向き:-> "));
+			if(pdat->revx)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("X反転 "));
+			if(pdat->revy)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("Y反転 "));
+			sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("拡大率(%5.2f,%5.2f) 回転:%d"),
 				pdat->magx,pdat->magy,pdat->rot);
-			sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n 座標(%5.2f,%5.2f)",pdat->x,pdat->y);
+			sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n 座標(%5.2f,%5.2f)"),pdat->x,pdat->y);
 			if(FALSE){
-				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n\n 異常：オブジェクト- pobjdat_a がNULLです");
+				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n\n 異常：オブジェクト- pobjdat_a がNULLです"));
 			}
 			else{
 				//座標
-				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n 速度(%5.3f,%5.3f) - 加速度(%5.3f,%5.3f)",
+				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n 速度(%5.3f,%5.3f) - 加速度(%5.3f,%5.3f)"),
 					pdat->vx,pdat->vy,pdat->ax,pdat->ay);
 				//行動ID
-				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n 行動ID:%d (",pdat->aid);
-				if(pdat->aid & ACTID_KUCYU)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"空中 ");
-				if(pdat->aid & ACTID_SYAGAMI)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"屈 ");
-				if(pdat->aid & ACTID_ATTACK)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"攻撃 ");
-				if(pdat->aid & ACTID_HISSATU)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"必殺 ");
-				if(pdat->aid & ACTID_SYSTEM)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"システム ");
-				if(pdat->aid & ACTID_KURAI)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"喰らい ");
-				if(pdat->aid & ACTID_GUARD)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"ガード ");
-				if(pdat->aid & ACTID_NAGE)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"投げ ");
-				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"- %d )",pdat->aid&0x00000FFFF);
+				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n 行動ID:%d ("),pdat->aid);
+				if(pdat->aid & ACTID_KUCYU)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("空中 "));
+				if(pdat->aid & ACTID_SYAGAMI)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("屈 "));
+				if(pdat->aid & ACTID_ATTACK)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("攻撃 "));
+				if(pdat->aid & ACTID_HISSATU)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("必殺 "));
+				if(pdat->aid & ACTID_SYSTEM)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("システム "));
+				if(pdat->aid & ACTID_KURAI)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("喰らい "));
+				if(pdat->aid & ACTID_GUARD)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("ガード "));
+				if(pdat->aid & ACTID_NAGE)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("投げ "));
+				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("- %d )"),pdat->aid&0x00000FFFF);
 			}
 		}
 		//テキスト描画
@@ -2281,42 +2281,42 @@ void CBattleTask::DrawCharacterState2()
 		//名前
 		sprintf(debugmsgbuff,g_charlist.GetCharacterName(g_battleinfo.GetCharacter(j,active_character[j])));
 		if(GetGObject( charobjid[j][active_character[j]] ) ==NULL){
-			sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n\n 異常：オブジェクトがNULLです");
+			sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n\n 異常：オブジェクトがNULLです"));
 		}
 		else{
 			pdat = &(GetGObject( charobjid[j][active_character[j]] )->data);
 			if(FALSE){
-				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n\n 異常：オブジェクト- pobjdat_a がNULLです");
+				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n\n 異常：オブジェクト- pobjdat_a がNULLです"));
 			}
 			else{
 				//カウンタ
-				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n counter=%d",pdat->counter);
+				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n counter=%d"),pdat->counter);
 				//体力・ゲージ
-				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n 体力:%d/%d  ゲージ:%1.4f/%lu.0000",pdat->hp,pdat->hpmax,pdat->gauge,pdat->gaugemax);
+				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n 体力:%d/%d  ゲージ:%1.4f/%lu.0000"),pdat->hp,pdat->hpmax,pdat->gauge,pdat->gaugemax);
 				//各スイッチ
-				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n 重なり判定");
-				if(pdat->kasanari)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"ON");
-				else sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"OFF");
-				sprintf(&debugmsgbuff[strlen(debugmsgbuff)]," 無敵");
-				if(pdat->muteki)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"ON");
-				else sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"OFF");
-				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n 攻撃力");
-				if(pdat->kougeki)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"ON");
-				else sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"OFF");
-				sprintf(&debugmsgbuff[strlen(debugmsgbuff)]," 投げられ");
-				if(pdat->nagerare)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"ON");
-				else sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"OFF");
+				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n 重なり判定"));
+				if(pdat->kasanari)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("ON"));
+				else sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("OFF"));
+				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T(" 無敵"));
+				if(pdat->muteki)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("ON"));
+				else sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("OFF"));
+				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n 攻撃力"));
+				if(pdat->kougeki)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("ON"));
+				else sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("OFF"));
+				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T(" 投げられ"));
+				if(pdat->nagerare)sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("ON"));
+				else sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("OFF"));
 			}
 			if(FALSE){
-				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n\n 異常：オブジェクト- pobjdat_d がNULLです");
+				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n\n 異常：オブジェクト- pobjdat_d がNULLです"));
 			}
 			else{
-				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n 色:(%d / %d,%d,%d)",
+				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n 色:(%d / %d,%d,%d)"),
 					(pdat->color&0xFF000000)/(256*256*256),
 					(pdat->color&0x00FF0000)/(256*256),
 					(pdat->color&0x0000FF00)/(256),
 					(pdat->color&0x000000FF));
-				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],"\n z座標:%5.2f",pdat->z);
+				sprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n z座標:%5.2f"),pdat->z);
 			}
 		}
 		//テキスト描画
@@ -2453,7 +2453,7 @@ void CBattleTask::T_UpdateStatus_WaitForEndPose()
 
 	if(next){
 		bf_state=BFSTATE_ROUNDCALL;
-		gbl.ods("WAITFORENDPOSE → BFSTATE_ROUNDCALL");
+		gbl.ods(_T("WAITFORENDPOSE → BFSTATE_ROUNDCALL"));
 	}
 
 	g_system.PopSysTag();
@@ -2483,7 +2483,7 @@ void CBattleTask::T_UpdateStatus_RoundCall()
 	if (bf_counter>130 * g_config.GetGameSpeed2() / 50)//「ファイト」が終了する時間（大体）
 	{
 		bf_state=BFSTATE_FIGHTING;
-		gbl.ods("BFSTATE_ROUNDCALL → BFSTATE_FIGHTING");
+		gbl.ods(_T("BFSTATE_ROUNDCALL → BFSTATE_FIGHTING"));
 	}
 
 	g_system.PopSysTag();
@@ -2509,7 +2509,7 @@ void CBattleTask::T_UpdateStatus_Fighting()
 			AddEffect(EFCTID_TIMEOVER,0,0,0);
 			bf_state = BFSTATE_TIMEOVER;
 			bf_counter = 0;
-			gbl.ods("BFSTATE_FIGHTING → BFSTATE_TIMEOVER");
+			gbl.ods(_T("BFSTATE_FIGHTING → BFSTATE_TIMEOVER"));
 			g_system.PopSysTag();
 			return;
 		}
@@ -2626,7 +2626,7 @@ void CBattleTask::T_UpdateStatus_Fighting()
 									}
 								}
 							}
-							if(i==3)g_system.Log("◆キャラクターの交代に失敗\n",SYSLOG_WARNING);
+							if(i==3)g_system.Log(_T("◆キャラクターの交代に失敗\n"),SYSLOG_WARNING);
 						}
 					}
 
@@ -2743,7 +2743,7 @@ void CBattleTask::T_UpdateStatus_Fighting()
 
 		//状態変更
 		bf_state = BFSTATE_FINISHED;
-		gbl.ods("BFSTATE_FIGHTING → BFSTATE_FINISHED");
+		gbl.ods(_T("BFSTATE_FIGHTING → BFSTATE_FINISHED"));
 	}
 	
 	g_system.PopSysTag();
@@ -2767,7 +2767,7 @@ void CBattleTask::T_UpdateStatus_Finished()
 		if(m_round_winner==2)//ダブル慶応
 		{
 			bf_state=BFSTATE_DOUBLEKO;
-			gbl.ods("BFSTATE_FINISHED → BFSTATE_DOUBLEKO");
+			gbl.ods(_T("BFSTATE_FINISHED → BFSTATE_DOUBLEKO"));
 		}
 		else {
 			if(m_round_winner==0){j=0;j2=1;}//jは勝った方
@@ -2795,7 +2795,7 @@ void CBattleTask::T_UpdateStatus_Finished()
 							}
 						}
 						else {
-							g_system.Log("CBattleTask::T_UpdateStatus_Finished KOF形式 勝者なし?",SYSLOG_ERROR);
+							g_system.Log(_T("CBattleTask::T_UpdateStatus_Finished KOF形式 勝者なし?"),SYSLOG_ERROR);
 							g_system.ReturnTitle();
 						}
 					}//↓と同じ処理を続行
@@ -2818,7 +2818,7 @@ void CBattleTask::T_UpdateStatus_Finished()
 			}
 			bf_state=BFSTATE_WAITFORENDWIN;
 			m_winpose_end = FALSE;
-			gbl.ods("BFSTATE_FINISHED → WAITFORENDWIN");
+			gbl.ods(_T("BFSTATE_FINISHED → WAITFORENDWIN"));
 		}
 	}
 
@@ -2846,7 +2846,7 @@ void CBattleTask::T_UpdateStatus_WaitForEndWin()
 		//同時対戦の場合
 		if(g_battleinfo.GetBattleType()==TAISENKEISIKI_GOCYAMAZE)
 		{
-			gbl.ods("WAITFORENDWIN → StartRound");
+			gbl.ods(_T("WAITFORENDWIN → StartRound"));
 			StartRound();
 			g_system.PopSysTag();
 			return;
@@ -2870,7 +2870,7 @@ void CBattleTask::T_UpdateStatus_WaitForEndWin()
 		}
 		
 		if(g_battleinfo.GetBattleType()==TAISENKEISIKI_KOUTAI){
-			g_system.Log("★CBattleTask::T_UpdateStatus_WaitForEndWin - おかしい",SYSLOG_ERROR);
+			g_system.Log(_T("★CBattleTask::T_UpdateStatus_WaitForEndWin - おかしい"),SYSLOG_ERROR);
 			g_system.ReturnTitle();
 		}
 
@@ -2879,20 +2879,20 @@ void CBattleTask::T_UpdateStatus_WaitForEndWin()
 		CGObject *pobj = GetGObject( charobjid[lteam][active_character[lteam]] );
 		if(pobj){
 			pobj->Message(GOBJMSG_KOUTAI2,0);
-			sprintf(filename, "%s\\sound\\bgm",
+			sprintf(filename, _T("%s\\sound\\bgm"),
 				g_charlist.GetCharacterDir(g_battleinfo.GetCharacter(lteam, active_character[lteam])));
 			if (g_sound.BGMSearch(filename))
 				g_sound.BGMPlay(filename);
 		}
 		else{
-			g_system.LogErr("CBattleTask::T_UpdateStatus_WaitForEndWin object not found, lteam=%d , active=%d",
+			g_system.LogErr(_T("CBattleTask::T_UpdateStatus_WaitForEndWin object not found, lteam=%d , active=%d"),
 				lteam,active_character[lteam]);
 		}
 		m_tojyo_end[lteam][active_character[lteam]]=FALSE;
 		round++;
 		{//ラウンド開始wav更新
 			char *filename = new char[MAX_PATH];
-			sprintf(filename,".\\system\\sound\\round%d.wav",round);
+			sprintf(filename,_T(".\\system\\sound\\round%d.wav"),round);
 			RELEASE(dsb_round);
 			dsb_round = g_sound.CreateDSB(filename);
 			delete []filename;
@@ -2907,7 +2907,7 @@ void CBattleTask::T_UpdateStatus_DoubleKO()
 {
 /*	if(++bf_counter>200 || (g_input.GetKey(0,0)&0xFFFF0000 || g_input.GetKey(1,0)&0xFFFF0000))
 	{
-		gbl.ods("DOUBLEKO → StartRound\n");
+		gbl.ods(_T("DOUBLEKO → StartRound\n"));
 		if(!m_all_dead[0]){
 			wincount[0]++;
 		}
@@ -2916,8 +2916,8 @@ void CBattleTask::T_UpdateStatus_DoubleKO()
 		}
 		StartRound();
 	}*/
-	gbl.ods("★ダブルKO処理未実装");
-	g_system.Log("ダブルKO処理未実装",SYSLOG_WARNING);
+	gbl.ods(_T("★ダブルKO処理未実装"));
+	g_system.Log(_T("ダブルKO処理未実装"),SYSLOG_WARNING);
 	g_system.ReturnTitle();
 }
 
@@ -3014,14 +3014,14 @@ void CBattleTask::T_UpdateStatus_TimeOver()
 		}
 		else
 		{
-			g_system.Log("battle 2417",SYSLOG_ERROR);
+			g_system.Log(_T("battle 2417"),SYSLOG_ERROR);
 			g_system.ReturnTitle();
 			g_system.PopSysTag();
 			return;
 		}
 		bf_state=BFSTATE_WAITFORENDWIN;
 		m_winpose_end = FALSE;
-		gbl.ods("BFSTATE_TIMEOVER → WAITFORENDWIN");
+		gbl.ods(_T("BFSTATE_TIMEOVER → WAITFORENDWIN"));
 		bf_counter=0;
 	}
 

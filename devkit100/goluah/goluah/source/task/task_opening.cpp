@@ -28,7 +28,7 @@ void CTOpening::Initialize()
 	g_draw.d3dpp.SwapEffect = D3DSWAPEFFECT_COPY;
 	g_draw.UpdateD3DPP();
 
-	opok = g_sound.PlayVideo(".\\system\\op.avi");
+	opok = g_sound.PlayVideo(_T(".\\system\\op.avi"));
 
 	counter = 0;
 }

@@ -59,7 +59,7 @@ CGObject::~CGObject()
 {
 	MessageDirect(GOBJMSG_DELETE,0);
 	if((data.id&0x7FFFFFFF) != (object_id_original&0x7FFFFFFF)){
-		g_system.LogErr( "object id changed %08X > %08X , dll_id = %d",
+		g_system.LogErr( _T("object id changed %08X > %08X , dll_id = %d"),
 			object_id_original , data.id , dll_id );
 	}
 }
@@ -68,7 +68,7 @@ DWORD CGObject::MessageDirect(DWORD type,DWORD prm)
 {
 	try
 	{
-		CExport::last_funcname = "none";
+		CExport::last_funcname = _T("none");
 
 		if(data.msghandler!=NULL)
 		{
@@ -141,7 +141,7 @@ DWORD CGObject::Message(DWORD type,DWORD prm)
 		pobj = (CGObject*)battleTask->GetGObject(cy.oid);
 		if(pobj==NULL)//異常
 		{
-			g_system.Log("CGObject::Message 投げられ中に投げ側オブジェクト取得失敗",SYSLOG_WARNING);
+			g_system.Log(_T("CGObject::Message 投げられ中に投げ側オブジェクト取得失敗"),SYSLOG_WARNING);
 			data.aid=ACTID_FUTTOBI;
 			ActionIDChanged(TRUE,TRUE);
 			return(0);
@@ -231,7 +231,7 @@ DWORD CGObject::Message(DWORD type,DWORD prm)
 				Message(GOBJMSG_ACTION);
 			}
 #ifdef _DEBUG
-			else OutputDebugString("WARNING: ACTIDが変化し続け、無限ループを起こしています。\n");
+			else OutputDebugString(_T("WARNING: ACTIDが変化し続け、無限ループを起こしています。\n"));
 #endif
 			actloop_count = 0;
 		}
@@ -1354,7 +1354,7 @@ void CGObject::ComCommand()
 	else{//地上
 		if(maai > comreach[2]){//case "E"
 			#ifdef _DBG_COMCOMMAND
-			gbl.ods("ComCommand : 超遠距離");
+			gbl.ods(_T("ComCommand : 超遠距離"));
 			#endif
 			switch(rand()%4){
 			case 0://飛び道具を放つ
@@ -1404,7 +1404,7 @@ void CGObject::ComCommand()
 		}
 		else if(maai > comreach[1]){//case "D"
 			#ifdef _DBG_COMCOMMAND
-			gbl.ods("ComCommand : 遠距離");
+			gbl.ods(_T("ComCommand : 遠距離"));
 			#endif
 			switch(rand()%8){
 			case 0://前進
@@ -1493,7 +1493,7 @@ void CGObject::ComCommand()
 		}
 		else if(pedat!=NULL && pedat->y < -50){//case "C"
 			#ifdef _DBG_COMCOMMAND
-			gbl.ods("ComCommand : 敵空中");
+			gbl.ods(_T("ComCommand : 敵空中"));
 			#endif
 			switch(rand()%5){
 			case 0://前進
@@ -1544,7 +1544,7 @@ void CGObject::ComCommand()
 		}
 		else if(maai>comreach[0]){//case "B"
 			#ifdef _DBG_COMCOMMAND
-			gbl.ods("ComCommand : 中距離");
+			gbl.ods(_T("ComCommand : 中距離"));
 			#endif
 			switch(rand()%6){
 			case 0://前進
@@ -1645,7 +1645,7 @@ void CGObject::ComCommand()
 		}
 		else{//case "A"
 			#ifdef _DBG_COMCOMMAND
-			gbl.ods("ComCommand : 近距離");
+			gbl.ods(_T("ComCommand : 近距離"));
 			#endif
 			switch(rand()%7){
 			case 0://前進

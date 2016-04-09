@@ -93,8 +93,8 @@ void CGauge::Initialize()
 	char filename[256],palname[256];
 	for(i=0;i<2;i++){
 		for(j=0;j<g_battleinfo.GetNumTeam(i);j++){
-			sprintf(filename,"%s\\face1",g_charlist.GetCharacterDir(g_battleinfo.GetCharacter(i,j)));
-			sprintf(palname,"%s\\pal%d",g_charlist.GetCharacterDir(g_battleinfo.GetCharacter(i,j)),g_battleinfo.GetColor(i,j));
+			sprintf(filename,_T("%s\\face1"),g_charlist.GetCharacterDir(g_battleinfo.GetCharacter(i,j)));
+			sprintf(palname,_T("%s\\pal%d"),g_charlist.GetCharacterDir(g_battleinfo.GetCharacter(i,j)),g_battleinfo.GetColor(i,j));
 			dds_face[i][j]=g_draw.CreateSurfaceFrom256Image(filename,palname);
 		}
 	}

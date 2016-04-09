@@ -71,7 +71,7 @@ void CTaskManager::AddTask(CTaskBase *newTask)
 	//排他タスクとしてAdd
 	//Execute中かもしれないので、ポインタ保存のみ
 	if(exNext){
-		gbl.ods("■ALERT■ 排他タスクが2つ以上Addされた : %s / %s",
+		gbl.ods(_T("■ALERT■ 排他タスクが2つ以上Addされた : %s / %s"),
 			typeid(*exNext).name() , typeid(*newTask).name());
 	}
 	exNext = pext;
@@ -87,7 +87,7 @@ void CTaskManager::Execute(DWORD time)
 
 	#ifdef ARRAYBOUNDARY_DEBUG
 	if(!AfxCheckMemory()){
-		g_system.LogErr("AfxCheckMemory() failed");
+		g_system.LogErr(_T("AfxCheckMemory() failed"));
 		g_system.NotifyExcption();
 		return;
 	}
@@ -106,8 +106,8 @@ void CTaskManager::Execute(DWORD time)
 			}
 		#ifdef _CATCH_WHILE_EXEC
 		}catch(...){
-			if(*i==NULL)g_system.Log("catch while execute1 : NULL",SYSLOG_ERROR);
-			else g_system.LogErr("catch while execute1 : %X , %s",*i,typeid(**i).name());
+			if(*i==NULL)g_system.Log(_T("catch while execute1 : NULL"),SYSLOG_ERROR);
+			else g_system.LogErr(_T("catch while execute1 : %X , %s"),*i,typeid(**i).name());
 			g_system.NotifyExcption();
 			break;
 		}
@@ -140,8 +140,8 @@ void CTaskManager::Execute(DWORD time)
 		}
 		#ifdef _CATCH_WHILE_EXEC
 		}catch(...){
-			if(*i==NULL)g_system.Log("catch while execute2 : NULL",SYSLOG_ERROR);
-			else g_system.LogErr("catch while execute2 : %X %s",*i,typeid(**i).name());
+			if(*i==NULL)g_system.Log(_T("catch while execute2 : NULL"),SYSLOG_ERROR);
+			else g_system.LogErr(_T("catch while execute2 : %X %s"),*i,typeid(**i).name());
 			g_system.NotifyExcption();
 		}
 		#endif
@@ -174,8 +174,8 @@ void CTaskManager::Execute(DWORD time)
 		ex_ret = exTsk->Execute(time);
 		#ifdef _CATCH_WHILE_EXEC
 		}catch(...){
-			if(ex_stack.top()==NULL)g_system.Log("catch while execute3 : NULL",SYSLOG_ERROR);
-			else g_system.LogErr("catch while execute3 : %X %s",ex_stack.top(),typeid(*ex_stack.top()).name());
+			if(ex_stack.top()==NULL)g_system.Log(_T("catch while execute3 : NULL"),SYSLOG_ERROR);
+			else g_system.LogErr(_T("catch while execute3 : %X %s"),ex_stack.top(),typeid(*ex_stack.top()).name());
 			g_system.NotifyExcption();
 		}
 		#endif
@@ -205,8 +205,8 @@ void CTaskManager::Execute(DWORD time)
 
 				#ifdef _CATCH_WHILE_EXEC
 				}catch(...){
-					if( (*i) ==NULL)g_system.Log("catch while terminate1 : NULL",SYSLOG_ERROR);
-					else g_system.LogErr("catch while terminate1 : %X %s",(*i),typeid(*(*i)).name());
+					if( (*i) ==NULL)g_system.Log(_T("catch while terminate1 : NULL"),SYSLOG_ERROR);
+					else g_system.LogErr(_T("catch while terminate1 : %X %s"),(*i),typeid(*(*i)).name());
 					g_system.NotifyExcption();
 				}
 				#endif
@@ -226,8 +226,8 @@ void CTaskManager::Execute(DWORD time)
 
 				#ifdef _CATCH_WHILE_EXEC
 				}catch(...){
-					if(exTsk==NULL)g_system.Log("catch while terminate2 : NULL",SYSLOG_ERROR);
-					else g_system.LogErr("catch while terminate : %X %s",exTsk,typeid(*exTsk).name());
+					if(exTsk==NULL)g_system.Log(_T("catch while terminate2 : NULL"),SYSLOG_ERROR);
+					else g_system.LogErr(_T("catch while terminate : %X %s"),exTsk,typeid(*exTsk).name());
 					g_system.NotifyExcption();
 				}
 				#endif
@@ -244,8 +244,8 @@ void CTaskManager::Execute(DWORD time)
 
 				#ifdef _CATCH_WHILE_EXEC
 				}catch(...){
-					if(exTsk==NULL)g_system.Log("catch while activate : NULL",SYSLOG_ERROR);
-					else g_system.LogErr("catch while activate : %X %s",exTsk,typeid(*exTsk).name());
+					if(exTsk==NULL)g_system.Log(_T("catch while activate : NULL"),SYSLOG_ERROR);
+					else g_system.LogErr(_T("catch while activate : %X %s"),exTsk,typeid(*exTsk).name());
 					g_system.NotifyExcption();
 				}
 				#endif
@@ -325,7 +325,7 @@ void CTaskManager::Draw()
 		(*iv)->Draw() ;
 		#ifdef _CATCH_WHILE_RENDER
 		}catch(...){
-			g_system.LogErr("catch while draw : %X %s",*iv,typeid(**iv).name());
+			g_system.LogErr(_T("catch while draw : %X %s"),*iv,typeid(**iv).name());
 			g_system.NotifyExcption();
 		}
 		#endif
@@ -444,11 +444,11 @@ void CTaskManager::CleanupAllSubTasks()
 //デバッグ・タスク一覧表示
 void CTaskManager::DebugOutputTaskList()
 {
-	gbl.ods("\n\n■CTaskManager::DebugOutputTaskList() - start");
+	gbl.ods(_T("\n\n■CTaskManager::DebugOutputTaskList() - start"));
 
 	TaskList::iterator i,ied;
 
-	gbl.ods("□通常タスク一覧□");
+	gbl.ods(_T("□通常タスク一覧□"));
 	//通常タスク
 	i = tasks.begin();
 	ied = tasks.end();
@@ -456,7 +456,7 @@ void CTaskManager::DebugOutputTaskList()
 		gbl.ods(typeid(**i).name());
 	}
 
-	gbl.ods("□常駐タスク一覧□");
+	gbl.ods(_T("□常駐タスク一覧□"));
 	//バックグラウンドタスク
 	i = bg_tasks.begin();
 	ied = bg_tasks.end();
@@ -465,15 +465,15 @@ void CTaskManager::DebugOutputTaskList()
 	}
 
 	//排他タスク	
-	gbl.ods("\n");
-	gbl.ods("□現在のタスク：");
+	gbl.ods(_T("\n"));
+	gbl.ods(_T("□現在のタスク："));
 	if(ex_stack.empty())
-		gbl.ods("なし");
+		gbl.ods(_T("なし"));
 	else
 		gbl.ods(typeid(*ex_stack.top()).name());
 
 
-	gbl.ods("\n\n■CTaskManager::DebugOutputTaskList() - end\n\n");
+	gbl.ods(_T("\n\n■CTaskManager::DebugOutputTaskList() - end\n\n"));
 }
 
 

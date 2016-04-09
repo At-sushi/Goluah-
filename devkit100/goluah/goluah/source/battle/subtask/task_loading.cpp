@@ -12,7 +12,7 @@
 void CTNowLoading::Initialize()
 {
 	tex_fb = g_draw.GetFrontBufferCopy();
-	if(!tex_fb){OutputDebugString("CTNowLoading: フロントバッファコピー失敗\n");}
+	if(!tex_fb){OutputDebugString(_T("CTNowLoading: フロントバッファコピー失敗\n"));}
 
 	tex_nowload = NULL;
 	tex_dll = NULL;
@@ -20,11 +20,11 @@ void CTNowLoading::Initialize()
 	tex_gcd = NULL;
 	tex_AA = NULL;
 
-	D3DXCreateTextureFromFileA(g_draw.d3ddev,"system\\texture\\nowload.png",&tex_nowload);
-	D3DXCreateTextureFromFileA(g_draw.d3ddev,"system\\texture\\load_dll.png",&tex_dll);
-	D3DXCreateTextureFromFileA(g_draw.d3ddev,"system\\texture\\load_img.png",&tex_img);
-	D3DXCreateTextureFromFileA(g_draw.d3ddev,"system\\texture\\load_gcd.png",&tex_gcd);
-	D3DXCreateTextureFromFileA(g_draw.d3ddev,"system\\texture\\Loading1.png",&tex_AA);
+	D3DXCreateTextureFromFileA(g_draw.d3ddev,_T("system\\texture\\nowload.png"),&tex_nowload);
+	D3DXCreateTextureFromFileA(g_draw.d3ddev,_T("system\\texture\\load_dll.png"),&tex_dll);
+	D3DXCreateTextureFromFileA(g_draw.d3ddev,_T("system\\texture\\load_img.png"),&tex_img);
+	D3DXCreateTextureFromFileA(g_draw.d3ddev,_T("system\\texture\\load_gcd.png"),&tex_gcd);
+	D3DXCreateTextureFromFileA(g_draw.d3ddev,_T("system\\texture\\Loading1.png"),&tex_AA);
 
 	vb[0].z = 0.0f;
 	vb[1].z = 0.0f;

@@ -72,18 +72,18 @@ BOOL CDirectSound::Initialize(HWND hwnd)
 
 	if(g_config.UseDSound()){
 		if(DirectSoundCreate(NULL,&lpds,NULL) != DS_OK){
-			CSystem::Log("DirectSoundCreateに失敗",SYSLOG_ERROR);
+			CSystem::Log(_T("DirectSoundCreateに失敗"),SYSLOG_ERROR);
 			lpds=NULL;
 		}
 		if(lpds){
 			if(lpds->SetCooperativeLevel(hwnd,DSSCL_PRIORITY) != DS_OK){
-				CSystem::Log("DSound-SetCooperativeLevelに失敗",SYSLOG_ERROR);
+				CSystem::Log(_T("DSound-SetCooperativeLevelに失敗"),SYSLOG_ERROR);
 				lpds->Release();
 				lpds=NULL;
 			}
 		}
 	}
-	else CSystem::Log("DirectSound (wav再生) 非使用",SYSLOG_INFO);
+	else CSystem::Log(_T("DirectSound (wav再生) 非使用"),SYSLOG_INFO);
 
 	//CoInitialize(NULL);
 	g_system.AddTask(new CBGMLoopMessageListener());//BGMループメッセージの取得タスク
@@ -228,25 +228,25 @@ LPDIRECTSOUNDBUFFER CDirectSound::CreateDSB(char *filename)
 char* GetDSErrCode(HRESULT ret)
 {
 	switch(ret){
-	case S_OK :							return "成功";
-	case VFW_S_AUDIO_NOT_RENDERED :		return "オーディオ ストリームを再生できない。適切なレンダラが見つからなかった。 ";
-	case VFW_S_DUPLICATE_NAME :			return "名前が重複しているフィルタの追加が、変更後の名前で成功した。 ";
-	case VFW_S_PARTIAL_RENDER :			return "このムービーにサポートされないフォーマットのストリームが含まれている。 ";
-	case VFW_S_VIDEO_NOT_RENDERED :		return "ビデオ ストリームを再生できない。適切なレンダラが見つからなかった。 ";
-	case E_ABORT :						return "操作が中止された。";
-	case E_FAIL :						return "失敗。 ";
-	case E_INVALIDARG :					return "引数が無効。 ";
-	case E_OUTOFMEMORY :				return "メモリ不足。 ";
-	case E_POINTER :					return "NULL ポインタ引数。 ";
-	case VFW_E_CANNOT_CONNECT :			return "接続を確立する中間フィルタの組み合わせが見つからなかった。 ";
-	case VFW_E_CANNOT_LOAD_SOURCE_FILTER :return "このファイルのソース フィルタをロードできない。 ";
-	case VFW_E_CANNOT_RENDER :			return "ストリームをレンダリングするフィルタの組み合わせが見つからなかった。 ";
-	case VFW_E_INVALID_FILE_FORMAT :	return "ファイル フォーマットが無効。 ";
-	case VFW_E_NOT_FOUND :				return "オブジェクトまたは名前が見つからなかった。 ";
-	case VFW_E_NOT_IN_GRAPH :			return "フィルタ グラフに存在しないオブジェクトに要求された関数を実行できない。";
-	case VFW_E_UNKNOWN_FILE_TYPE :		return "このファイルのメディア タイプが認識されない。 ";
-	case VFW_E_UNSUPPORTED_STREAM :		return "ファイルを再生できない。フォーマットがサポートされていない。";
-	default:return "不明";
+	case S_OK :							return _T("成功");
+	case VFW_S_AUDIO_NOT_RENDERED :		return _T("オーディオ ストリームを再生できない。適切なレンダラが見つからなかった。 ");
+	case VFW_S_DUPLICATE_NAME :			return _T("名前が重複しているフィルタの追加が、変更後の名前で成功した。 ");
+	case VFW_S_PARTIAL_RENDER :			return _T("このムービーにサポートされないフォーマットのストリームが含まれている。 ");
+	case VFW_S_VIDEO_NOT_RENDERED :		return _T("ビデオ ストリームを再生できない。適切なレンダラが見つからなかった。 ");
+	case E_ABORT :						return _T("操作が中止された。");
+	case E_FAIL :						return _T("失敗。 ");
+	case E_INVALIDARG :					return _T("引数が無効。 ");
+	case E_OUTOFMEMORY :				return _T("メモリ不足。 ");
+	case E_POINTER :					return _T("NULL ポインタ引数。 ");
+	case VFW_E_CANNOT_CONNECT :			return _T("接続を確立する中間フィルタの組み合わせが見つからなかった。 ");
+	case VFW_E_CANNOT_LOAD_SOURCE_FILTER :return _T("このファイルのソース フィルタをロードできない。 ");
+	case VFW_E_CANNOT_RENDER :			return _T("ストリームをレンダリングするフィルタの組み合わせが見つからなかった。 ");
+	case VFW_E_INVALID_FILE_FORMAT :	return _T("ファイル フォーマットが無効。 ");
+	case VFW_E_NOT_FOUND :				return _T("オブジェクトまたは名前が見つからなかった。 ");
+	case VFW_E_NOT_IN_GRAPH :			return _T("フィルタ グラフに存在しないオブジェクトに要求された関数を実行できない。");
+	case VFW_E_UNKNOWN_FILE_TYPE :		return _T("このファイルのメディア タイプが認識されない。 ");
+	case VFW_E_UNSUPPORTED_STREAM :		return _T("ファイルを再生できない。フォーマットがサポートされていない。");
+	default:return _T("不明");
 	}
 }
 
@@ -272,16 +272,16 @@ BOOL CDirectSound::PlayVideo(const char *filename)
 	bgmloop=FALSE;
 	
 	//言語設定をシステム(?)のものに設定. mbstowcsに影響
-	setlocale(LC_ALL,"");
+	setlocale(LC_ALL,_T(""));
 
 	//文字列変換
 	char bgmfilename[256];
 	wchar_t ubgmfilename[256];
-	sprintf(bgmfilename,"%s",filename);
+	sprintf(bgmfilename,_T("%s"),filename);
 	mbstowcs( ubgmfilename, bgmfilename, strlen(bgmfilename)+1 );
     // グラフを構築する。
 	if(pGraph->RenderFile(ubgmfilename, NULL) != S_OK){
-		gbl.ods("CDSound::PlayVideo / RenderFile二失敗\n");
+		gbl.ods(_T("CDSound::PlayVideo / RenderFile二失敗\n"));
 		BGMStop();
 		return(FALSE);
 	}
@@ -320,14 +320,14 @@ BOOL CDirectSound::BGMPlay(const char *filename,BOOL loop)
 	bgmloop=loop;
 
 	//言語設定をシステム(?)のものに設定. mbstowcsに影響
-	setlocale(LC_ALL,"");
+	setlocale(LC_ALL,_T(""));
 
 	char *bgmfilename = new char[256];
 	wchar_t *ubgmfilename= new wchar_t [256];
 
 
 	// wma -------------------------------------------------------------
-	sprintf(bgmfilename,"%s.wma",filename);
+	sprintf(bgmfilename,_T("%s.wma"),filename);
 	mbstowcs( ubgmfilename, bgmfilename, strlen(bgmfilename)+1 );
 	if(S_OK == pGraph->RenderFile(ubgmfilename, NULL)){
 		pMediaControl->Run();
@@ -339,7 +339,7 @@ BOOL CDirectSound::BGMPlay(const char *filename,BOOL loop)
 	}
 
 	// mp3 -------------------------------------------------------------
-	sprintf(bgmfilename,"%s.mp3",filename);
+	sprintf(bgmfilename,_T("%s.mp3"),filename);
 	mbstowcs( ubgmfilename, bgmfilename, strlen(bgmfilename)+1 );
 	if(S_OK == pGraph->RenderFile(ubgmfilename, NULL)){
 		pMediaControl->Run();
@@ -351,7 +351,7 @@ BOOL CDirectSound::BGMPlay(const char *filename,BOOL loop)
 	}
 
 	// wave ------------------------------------------------------------
-	sprintf(bgmfilename,"%s.wav",filename);
+	sprintf(bgmfilename,_T("%s.wav"),filename);
 	mbstowcs( ubgmfilename, bgmfilename, strlen(bgmfilename)+1 );
 	if(S_OK == pGraph->RenderFile(ubgmfilename, NULL)){
 		pMediaControl->Run();
@@ -363,7 +363,7 @@ BOOL CDirectSound::BGMPlay(const char *filename,BOOL loop)
 	}
 	
 	// midi ------------------------------------------------------------
-	sprintf(bgmfilename,"%s.mid",filename);
+	sprintf(bgmfilename,_T("%s.mid"),filename);
 	mbstowcs( ubgmfilename, bgmfilename, strlen(bgmfilename)+1 );
 	if(S_OK == pGraph->RenderFile(ubgmfilename, NULL)){
 		pMediaControl->Run();
@@ -374,7 +374,7 @@ BOOL CDirectSound::BGMPlay(const char *filename,BOOL loop)
 		return(TRUE);
 	}
 
-	gbl.ods("CDirectSound::BGMPlay : %s 再生失敗",filename);
+	gbl.ods(_T("CDirectSound::BGMPlay : %s 再生失敗"),filename);
 
 	BGMStop();
 	delete [] bgmfilename;
@@ -404,9 +404,9 @@ void CDirectSound::OnWmgraphnotify()
 		hr = pEvent->FreeEventParams(evCode, param1, param2);
 		switch(evCode){
 		case EC_COMPLETE:
-			gbl.ods("...EC_COMPLETE");
+			gbl.ods(_T("...EC_COMPLETE"));
 			if(bgmon && bgmloop){
-				gbl.ods("case bgm loop");
+				gbl.ods(_T("case bgm loop"));
 				pSeek->SetPositions(&zerotime,
 					AM_SEEKING_AbsolutePositioning,NULL,AM_SEEKING_NoPositioning);
 				pMediaControl->Run();
@@ -414,11 +414,11 @@ void CDirectSound::OnWmgraphnotify()
 			else if(videoon){
 				destroooooy=TRUE;
 				pVidWin->put_Visible(OAFALSE);
-				gbl.ods("video stop");
+				gbl.ods(_T("video stop"));
 			}
 			else {
 				destroooooy=TRUE;
-				gbl.ods("other case");
+				gbl.ods(_T("other case"));
 			}
 			break;
 		}
@@ -526,16 +526,16 @@ BOOL CDirectSound::BGMSearch(const char *filename)
 	char *bgmfilename = new char[256];
 
 	//使用頻度高そうな順にしときました
-	sprintf(bgmfilename, "%s.mp3", filename);
+	sprintf(bgmfilename, _T("%s.mp3"), filename);
 	if (gbl.FileExist(bgmfilename))
 		return TRUE;
-	sprintf(bgmfilename, "%s.mid", filename);
+	sprintf(bgmfilename, _T("%s.mid"), filename);
 	if (gbl.FileExist(bgmfilename))
 		return TRUE;
-	sprintf(bgmfilename, "%s.wma", filename);
+	sprintf(bgmfilename, _T("%s.wma"), filename);
 	if (gbl.FileExist(bgmfilename))
 		return TRUE;
-	sprintf(bgmfilename, "%s.wav", filename);
+	sprintf(bgmfilename, _T("%s.wav"), filename);
 	if (gbl.FileExist(bgmfilename))
 		return TRUE;
 

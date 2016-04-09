@@ -33,7 +33,7 @@ CBattleResultInfo		g_battleresult;	//試合結果情報クラス
 /*------------------------------------------------------------------------------
 	グローバル変数
 --------------------------------------------------------------------------------*/
-char AppName[]="Goluah!! (ﾟДﾟ)";		//アプリケーション名
+char AppName[]=_T("Goluah!! (ﾟДﾟ)");		//アプリケーション名
 BOOL g_programexit=FALSE;				//メインループ終了フラグ
 RECT g_rcClient;						//window modeのときに必要(?)
 int g_DISPLAYWIDTH=640;					//生成ウインドウサイズ（幅）
@@ -684,9 +684,9 @@ char* AkiGlobal::MergeString(char* str1,const char* str2)
 	if(!ret)return NULL;
 
 	if(str1){
-		sprintf(ret,"%s%s",str1,str2);
+		sprintf(ret,_T("%s%s"),str1,str2);
 	}
-	else sprintf(ret,"%s",str2);
+	else sprintf(ret,_T("%s"),str2);
 
 	DELETEARRAY(str1);
 
@@ -713,11 +713,11 @@ void AkiGlobal::PlayRandomBGM(char *dir)
 	//指定ディレクトリ下のファイル名をリストに収集（拡張子ぬき）
 	HANDLE hFind;
 	WIN32_FIND_DATA fd;
-	sprintf(filepath,"%s\\*.*",dir);
+	sprintf(filepath,_T("%s\\*.*"),dir);
 	hFind = FindFirstFile( filepath , &fd);
 	if(hFind == INVALID_HANDLE_VALUE)return;//失敗
 	do {
-		if(strcmp(fd.cFileName,".")==0 || strcmp(fd.cFileName,"..")==0 );
+		if(strcmp(fd.cFileName,_T("."))==0 || strcmp(fd.cFileName,_T(".."))==0 );
 		else if(!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
 		{
 			numstr = strlen( fd.cFileName );
@@ -750,7 +750,7 @@ void AkiGlobal::PlayRandomBGM(char *dir)
 
 	//ファイルがひとつもない
 	if(filelist.size()==0){
-		gbl.ods("AkiGlobal::PlayRandomBGM : no files\n");
+		gbl.ods(_T("AkiGlobal::PlayRandomBGM : no files\n"));
 		return;
 	}
 
@@ -764,12 +764,12 @@ void AkiGlobal::PlayRandomBGM(char *dir)
 	itee= filelist.end();
 	for(;ite!=itee;ite++)
 	{
-		sprintf( filepath, "%s\\%s",dir,*ite);
+		sprintf( filepath, _T("%s\\%s"),dir,*ite);
 		if(g_sound.BGMPlay( filepath ))
 		{
 			break;//再生に成功したら終了
 		}
-		gbl.ods2("AkiGlobal::PlayRandomBGM : %s ...failed",filepath);
+		gbl.ods2(_T("AkiGlobal::PlayRandomBGM : %s ...failed"),filepath);
 	}
 //	delete [] filepath;
 
@@ -902,7 +902,7 @@ MYSURFACE* AkiGlobal::GetBlankIcon()
 	}
 
 	if(!m_blankIcon){
-		m_blankIcon = g_draw.CreateSurfaceFrom256Image(".\\system\\blank_icon");
+		m_blankIcon = g_draw.CreateSurfaceFrom256Image(_T(".\\system\\blank_icon"));
 		if(m_blankIcon==NULL){
 			m_blankIcon=(MYSURFACE*)0xFFFFFFFF;
 			return NULL;
@@ -1020,7 +1020,7 @@ void AkiGlobal::ods(const char *format, ...)
 
 	vsprintf(m_ods_buffer, format, args);
 	OutputDebugString(m_ods_buffer);
-	OutputDebugString("\n");
+	OutputDebugString(_T("\n"));
 
 	g_system.Log(m_ods_buffer,SYSLOG_DEBUG);
 
