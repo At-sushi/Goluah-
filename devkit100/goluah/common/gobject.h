@@ -609,14 +609,14 @@ enum GOBJMSG_STRIKERREADY_RETURNS
 //**************************************************************************
 typedef DWORD	(*PFUNCS_GETKEY)(DWORD,DWORD);			//!< ƒL[“ü—Íget
 typedef int		(*PFUNCS_SEEKKEY)(DWORD,int,int,DWORD);	//!< ƒL[“ü—ÍŒŸõ
-typedef void	(*PFUNCS_SETKATISERIF)(DWORD,char*);	//!< Ÿ‚¿‘äŽŒÝ’è
+typedef void	(*PFUNCS_SETKATISERIF)(DWORD,TCHAR*);	//!< Ÿ‚¿‘äŽŒÝ’è
 typedef void	(*PFUNCS_ADDEFFECT)(DWORD,int,int,DWORD);//!< ƒGƒtƒFƒNƒg”­¶
 typedef void	(*PFUNCS_PLAYSYSSOUND)(DWORD);			//!< ƒVƒXƒeƒ€wavÄ¶
-typedef LPVOID	(*PFUNCS_LOADMYSOUND)(char*);			//!< wav“Ç‚Ýž‚Ý
+typedef LPVOID	(*PFUNCS_LOADMYSOUND)(TCHAR*);			//!< wav“Ç‚Ýž‚Ý
 typedef void	(*PFUNCS_PLAYMYSOUND)(LPVOID);			//!< wavÄ¶
 typedef void	(*PFUNCS_KILLMYSOUND)(LPVOID);			//!< wavÁ‹Ž
 typedef DWORD	(*PFUNCS_MESSAGE2SYSTEM)(DWORD,DWORD,DWORD);	//!< ƒƒbƒZ[ƒW
-typedef char*	(*PFUNCS_GETENEMYNAME)(DWORD);			//!< "“G"‚Ì–¼‘O‚ðŽæ“¾‚·‚é
+typedef TCHAR*	(*PFUNCS_GETENEMYNAME)(DWORD);			//!< "“G"‚Ì–¼‘O‚ðŽæ“¾‚·‚é
 typedef double	(*PFUNCS_GETDISPCENTERX)();				//!< Œ»Ý‚Ì‰æ–Ê’†S(X)‚ð“¾‚é
 typedef double	(*PFUNCS_GETDISPCENTERY)();				//!< Œ»Ý‚Ì‰æ–Ê’†S(Y)‚ð“¾‚é
 
@@ -628,12 +628,12 @@ typedef BYTE	(*PFUNCS_GETENEMYFACE)(DWORD tid);		//!< ƒtƒFƒCƒX•ÏX’l(’Êí0)‚ðŽæ“
 typedef DWORD	(*PFUNCS_GETTEAMNUM2)(DWORD tid);		//!< ƒ`[ƒ€l”‚ðŽæ“¾‚µ‚Ü‚·
 typedef DWORD	(*PFUNCS_TID2ETID)(DWORD tid);			//!< ƒ`[ƒ€ID•ÏŠ·
 typedef BOOL	(*PFUNCS_IS_NETWORK)();					//!< ƒlƒbƒg‘Îí‚©‚Ç‚¤‚©‚ðŽæ“¾‚µ‚Ü‚·
-typedef void	(*PFUNCS_PUSHDLLEXECTAG)(const char*);	//!< ŽÀsŒÂŠ‚Ìƒ^ƒO•t‚¯‚ðs‚¤(ƒGƒ‰[ƒƒOŽž‚Éo—Í)
+typedef void	(*PFUNCS_PUSHDLLEXECTAG)(const TCHAR*);	//!< ŽÀsŒÂŠ‚Ìƒ^ƒO•t‚¯‚ðs‚¤(ƒGƒ‰[ƒƒOŽž‚Éo—Í)
 typedef void	(*PFUNCS_POPDLLEXECTAG)();				//!< ŽÀsŒÂŠ‚Ìƒ^ƒO‚ð‚Ð‚Æ‚Âíœ‚·‚é
-typedef void	(*PFUNCS_LOGERROR)(const char*);		//!< ƒGƒ‰[ƒƒO‚ð‹L˜^‚·‚é
-typedef void	(*PFUNCS_LOGWARNING)(const char*);		//!< ŒxƒƒO‚ð‹L˜^‚·‚é
-typedef void	(*PFUNCS_LOGDEBUG)(const char*);		//!< ƒfƒoƒbƒOƒƒO‚ð‹L˜^‚·‚é
-typedef void	(*PFUNCS_LOGINFO)(const char*);			//!< î•ñƒƒO‚ð‹L˜^‚·‚é
+typedef void	(*PFUNCS_LOGERROR)(const TCHAR*);		//!< ƒGƒ‰[ƒƒO‚ð‹L˜^‚·‚é
+typedef void	(*PFUNCS_LOGWARNING)(const TCHAR*);		//!< ŒxƒƒO‚ð‹L˜^‚·‚é
+typedef void	(*PFUNCS_LOGDEBUG)(const TCHAR*);		//!< ƒfƒoƒbƒOƒƒO‚ð‹L˜^‚·‚é
+typedef void	(*PFUNCS_LOGINFO)(const TCHAR*);			//!< î•ñƒƒO‚ð‹L˜^‚·‚é
 typedef PFUNCS_POPDLLEXECTAG PFUNCS_BGM;				//!< 
 typedef int		(*PFUNCS_GETGAMESPEED)();				//!< fps‚ðŽæ“¾‚µ‚Ü‚·
 typedef DWORD	(*PFUNCS_GETMAXWIN)();					//!<  æŽæƒ|ƒCƒ“ƒg”‚ðŽæ“¾‚µ‚Ü‚·
@@ -848,7 +848,7 @@ typedef BOOL   (*PFUNCO_IS_LOCAL)(DWORD oid);							//!< ƒ[ƒJƒ‹‚©‚Ç‚¤‚©
 
 typedef void   (*PFUNCO_DACTION)(GOBJECT* pdat);						//!< Žw’èƒIƒuƒWƒFƒNƒg‚ÉƒfƒtƒHƒ‹ƒg“®ì‚ð‚³‚¹‚é
 typedef void   (*PFUNCO_SETCOMRANGE)(DWORD oid,DWORD idx);				//!< COM”»’è‚ÌƒŠ[ƒ`’·‚ðÝ’è idx=0:’Z , 1:’† , 2:’·
-typedef char*	(*PFUNCO_GETCHARNAME)(DWORD);							//!< Žw’èƒLƒƒƒ‰‚Ì–¼‘O‚ðŽæ“¾‚·‚é
+typedef TCHAR*	(*PFUNCO_GETCHARNAME)(DWORD);							//!< Žw’èƒLƒƒƒ‰‚Ì–¼‘O‚ðŽæ“¾‚·‚é
 typedef DWORD	(*PFUNCO_GETKEYINPUT)(DWORD);							//!< Žw’èƒLƒƒƒ‰‚ÌƒL[ID‚ðŽæ“¾‚·‚é
 
 typedef DWORD	(*PFUNCO_GETHITCOUNT)(DWORD);							//!< Žw’èƒLƒƒƒ‰‚Ì˜A‘±‹Zƒqƒbƒg”i”íƒRƒ“ƒ{”jŽæ“¾
@@ -958,8 +958,8 @@ struct CATCHYOU
 //*•`‰æŒnŠÖ”*
 typedef LPVOID (*PFUNCD_GETD3D)();							//!< IDirect3D* ‚ÌŽæ“¾
 typedef LPVOID (*PFUNCD_GETD3DD)();							//!< IDirect3DDevice* ‚ÌŽæ“¾
-typedef void   (*PFUNCD_LOADCELLDAT)(char*,LPVOID,LPVOID,LPVOID);//!< GCDƒf[ƒ^“Ç‚Ýž‚ÝŠÖ”
-typedef LPVOID (*PFUNCD_LOADBMP)(char*,char*);				//!< ƒrƒbƒgƒ}ƒbƒv“Ç‚Ýž‚ÝŠÖ”
+typedef void   (*PFUNCD_LOADCELLDAT)(TCHAR*,LPVOID,LPVOID,LPVOID);//!< GCDƒf[ƒ^“Ç‚Ýž‚ÝŠÖ”
+typedef LPVOID (*PFUNCD_LOADBMP)(TCHAR*,TCHAR*);				//!< ƒrƒbƒgƒ}ƒbƒv“Ç‚Ýž‚ÝŠÖ”
 typedef void   (*PFUNCD_UNLOADBMP)(LPVOID);					//!< ƒrƒbƒgƒ}ƒbƒvŒãŽn––ŠÖ”
 typedef void   (*PFUNCD_CELLDRAW)(LPVOID*,LPVOID,LPVOID,DWORD,int,int,float,int,BOOL,BOOL,DWORD,float,float,BOOL);//!< ƒZƒ‹•`‰æŠÖ”
 typedef void   (*PFUNCD_CKBLT)(void*,int,int,RECT,double,double,BOOL,BOOL,float,DWORD);//!< Blt2
@@ -967,10 +967,10 @@ typedef void   (*PFUNCD_BLT3D)(void*,RECT,MYRECT3D,DWORD);	//!< Blt3
 typedef void   (*PFUNCD_SETTRANSFORM)(BOOL);				//!< •ÏŠ·s—ñÝ’è
 typedef void   (*PFUNCD_SETBLEND)(DWORD);					//!< ƒuƒŒƒ“ƒh‚ÌŽd•û‚ð•ÏX
 typedef void   (*PFUNCD_SETPARENTMATRIX)(LPVOID,BOOL,LPVOID);//!< uev‚Ì•ÏŠ·s—ñÝ’è
-typedef DWORD  (*PFUNCD_CREATEGCDDAT)(char* filename,LPVOID *cdat,LPVOID *rdat,LPVOID *hdat);//!< ƒZƒ‹ƒf[ƒ^“Ç‚Ýž‚ÝBver0.90ˆÈ~‚Å‚ÍLoadCellDat‚©‚ç‚±‚¿‚ç‚É•ÏX‚·‚é‚×‚«
+typedef DWORD  (*PFUNCD_CREATEGCDDAT)(TCHAR* filename,LPVOID *cdat,LPVOID *rdat,LPVOID *hdat);//!< ƒZƒ‹ƒf[ƒ^“Ç‚Ýž‚ÝBver0.90ˆÈ~‚Å‚ÍLoadCellDat‚©‚ç‚±‚¿‚ç‚É•ÏX‚·‚é‚×‚«
 typedef void   (*PFUNCD_DESTROYGCDDAT)(LPVOID *cdat,LPVOID *rdat,LPVOID *hdat);//!< CreateCellDat‚Å¶¬‚³‚ê‚½ƒoƒbƒtƒ@‚ðƒNƒŠƒA
-typedef LPVOID (*PFUNCD_LOADIMAGE)(char*,char*);			//!< ‰æ‘œ“Ç‚Ýž‚ÝŠÖ”APNG‘Î‰ž‚É”º‚¢’Ç‰ÁB
-typedef DWORD  (*PFUNCD_CREATEGCDDAT2)(char* filename,LPVOID *cdat,LPVOID *rdat,LPVOID *hdat);//!< ƒZƒ‹ƒf[ƒ^“Ç‚Ýž‚ÝBver0.90ˆÈ~‚Å‚ÍLoadCellDat‚©‚ç‚±‚¿‚ç‚É•ÏX‚·‚é‚×‚«
+typedef LPVOID (*PFUNCD_LOADIMAGE)(TCHAR*,TCHAR*);			//!< ‰æ‘œ“Ç‚Ýž‚ÝŠÖ”APNG‘Î‰ž‚É”º‚¢’Ç‰ÁB
+typedef DWORD  (*PFUNCD_CREATEGCDDAT2)(TCHAR* filename,LPVOID *cdat,LPVOID *rdat,LPVOID *hdat);//!< ƒZƒ‹ƒf[ƒ^“Ç‚Ýž‚ÝBver0.90ˆÈ~‚Å‚ÍLoadCellDat‚©‚ç‚±‚¿‚ç‚É•ÏX‚·‚é‚×‚«
 
 /*!
 *	@brief •`‰æŒnŠÖ”ƒ|ƒCƒ“ƒ^ƒZƒbƒg
@@ -1033,8 +1033,8 @@ struct CHARACTER_LOAD_OPTION
 	DWORD flag;			//!< ƒIƒvƒVƒ‡ƒ“‚ªON‚Ìê‡‚É—§‚Âƒtƒ‰ƒO
 	DWORD exclusive;	//!< “¯Žž‚ÉŽw’è‚Å‚«‚È‚¢‚Ù‚©‚ÌƒIƒvƒVƒ‡ƒ“
 	DWORD depends;		//!< “¯Žž‚ÉŽw’è‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î‚È‚ç‚È‚¢‚Ù‚©‚ÌƒIƒvƒVƒ‡ƒ“
-	char name[64];		//!< ƒIƒvƒVƒ‡ƒ“–¼
-	char point;			//!< ƒIƒvƒVƒ‡ƒ“Á”ïƒ|ƒCƒ“ƒg
+	TCHAR name[64];		//!< ƒIƒvƒVƒ‡ƒ“–¼
+	TCHAR point;			//!< ƒIƒvƒVƒ‡ƒ“Á”ïƒ|ƒCƒ“ƒg
 };
 
 #define CHARACTER_LOAD_OPTION_FACENUMBERMASK (0xF0000000)//!< ‚±‚±‚Ìƒrƒbƒg‚ðface•ÏX‚Ì‚½‚ß‚ÉŽg—p‚·‚é
@@ -1059,8 +1059,8 @@ typedef DWORD (*PFUNC_CHARACTERINFO)(LPVOID);
 struct CDI_CHARACTERINFO
 {
 	DWORD system_version;				//!< ƒVƒXƒeƒ€‚Ìƒo[ƒWƒ‡ƒ“Biver0.9ˆÈ‘O‚Í0‚ª‚Í‚¢‚Á‚Ä‚é‚Æ‚¨‚à‚Ü‚·j
-	char dummy[28];						//!< –¢Žg—p
-	char name[32];						//!< ƒRƒR‚É–¼‘O‚ðƒRƒs[‚·‚é‚±‚Æ
+	TCHAR dummy[28];						//!< –¢Žg—p
+	TCHAR name[32];						//!< ƒRƒR‚É–¼‘O‚ðƒRƒs[‚·‚é‚±‚Æ
 	DWORD caps;							//!< ‚±‚±‚Éî•ñ‚ðÝ’èiver0.9ˆÈ~j
 	LPVOID dummy2[3];					//!< –¢Žg—p
 	DWORD ver;							//!< ƒRƒR‚Éƒo[ƒWƒ‡ƒ“‚ðƒRƒs[‚·‚é‚±‚Æ
@@ -1087,7 +1087,7 @@ typedef DWORD (*PFUNC_CREATECHARACTER)(LPVOID);
 */
 struct CDI_CHARACTERINFO2
 {
-	char dir[64];					//!< dll‚ª‚ ‚éƒfƒBƒŒƒNƒgƒŠ
+	TCHAR dir[64];					//!< dll‚ª‚ ‚éƒfƒBƒŒƒNƒgƒŠ
 	DWORD tid;						//!< ƒ`[ƒ€ID(0:1P‘¤A1:2P‘¤)
 	DWORD color;					//!< ‚Ç‚ÌF‚É‚·‚é‚©ipal?.bmpj
 	DWORD keyinput;					//!< ‚Ç‚±‚©‚ç“ü—Í‚ðŽó‚¯Žæ‚é‚©
@@ -1123,7 +1123,7 @@ typedef DWORD (*PFUNC_STAGEINFO)(LPVOID);
 */
 struct SDI_STAGEINFO
 {
-	char name[32];	//!< ƒXƒe[ƒW–¼
+	TCHAR name[32];	//!< ƒXƒe[ƒW–¼
 	DWORD ver;		//!< ƒo[ƒWƒ‡ƒ“
 };
 
@@ -1143,7 +1143,7 @@ typedef DWORD (*PFUNC_CREATESTAGE)(LPVOID);
 */
 struct SDI_STAGEINFO2
 {
-	char dir[64];	//dll‚ª‚ ‚éƒfƒBƒŒƒNƒgƒŠ
+	TCHAR dir[64];	//dll‚ª‚ ‚éƒfƒBƒŒƒNƒgƒŠ
 	DWORD tid;		//ƒ`[ƒ€ID(í‚É2(ƒXƒe[ƒW))
 	DI_FUNCTIONS_S *funcs;
 	DI_FUNCTIONS_O *funco;

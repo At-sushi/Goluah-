@@ -73,7 +73,7 @@ void CNetState::OnEnUpdateEditChat()
 
 	if (m_chat.Find('\n') >= 0)
 	{
-		m_chat.Insert(0, (char)GNETMSG_CHAT);	// 頭にメッセージ識別子を付ける
+		m_chat.Insert(0, (TCHAR)GNETMSG_CHAT);	// 頭にメッセージ識別子を付ける
 		m_chat.TrimRight('\n');			// 改行を外す
 		if (!m_chat.IsEmpty())
 		{
@@ -88,7 +88,7 @@ void CNetState::OnEnUpdateEditChat()
 }
 
 // ログに書き込む
-void CNetState::WriteLog(const char* pStr)
+void CNetState::WriteLog(const TCHAR* pStr)
 {
 	m_log.InsertString(0, pStr);
 	PostMessage(WM_UPDATELOG);

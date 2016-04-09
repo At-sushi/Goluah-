@@ -514,7 +514,7 @@ LPD3DXFONT CDirectDraw::CreateMyFont(DWORD h)
 問題点：文字が上下反転する　そもそも何やってるのか分からない
 目標：DrawBlueTextを抹殺できるくらい便利にする
 */
-/*int CDirectDraw::CreateMyFont2(DWORD h, char *text)
+/*int CDirectDraw::CreateMyFont2(DWORD h, TCHAR *text)
 {
 	// フォントの生成
 	int fontSize = 260;
@@ -531,7 +531,7 @@ LPD3DXFONT CDirectDraw::CreateMyFont(DWORD h)
 	HFONT oldFont = (HFONT)SelectObject(hdc, hFont);
 
 	// フォントビットマップ取得
-	const char*   d = text;
+	const TCHAR*   d = text;
 	size_t     length = strlen(d);
 	wchar_t*   wc = new wchar_t[length + 1];
 	length = mbstowcs(wc, d, length + 1); // wc にワイド文字列が入る
@@ -789,38 +789,38 @@ void CDirectDraw::EnableZ(BOOL test,BOOL write)
 */
 void CDirectDraw::TraceCreateDeviceError(HRESULT ret,HWND hwnd)
 {
-	char *msg;
-	msg=(char*)malloc(1024);
-	sprintf(msg,_T(""));
+	TCHAR *msg;
+	msg=(TCHAR*)malloc(1024);
+	_stprintf(msg,_T(""));
 
 	switch(ret){
 	case D3DERR_INVALIDCALL:
-		sprintf(&msg[strlen(msg)],_T("D3DERR_INVALIDCALL:"));
-		sprintf(&msg[strlen(msg)],_T("メソッドの呼び出しが無効である。\n"));
-		sprintf(&msg[strlen(msg)],_T("　　たとえば、メソッドのパラメータに無効な値が設定されている場合など。"));
-		sprintf(&msg[strlen(msg)],_T("\n\n･･･だそうです。"));
-		sprintf(&msg[strlen(msg)],_T("\n・ディスプレイの表示色数を変更してください"));
-		sprintf(&msg[strlen(msg)],_T("\n・ディスプレイのプロパティ/詳細/でハードウェアアクセラレータ最大にしてください"));
-		sprintf(&msg[strlen(msg)],_T("\n・「ファイル名を指定して実行」からdxdiag.exeを実行し、"));
-		sprintf(&msg[strlen(msg)],_T("\n\n　　「ディスプレイ」タブでDirect3Dアクセラレータが「使用可能」であることを確かめてください。"));
-		sprintf(&msg[strlen(msg)],_T("\n・g_config.exeで「デバイスタイプ」を変更してください"));
+		_stprintf(&msg[strlen(msg)],_T("D3DERR_INVALIDCALL:"));
+		_stprintf(&msg[strlen(msg)],_T("メソッドの呼び出しが無効である。\n"));
+		_stprintf(&msg[strlen(msg)],_T("　　たとえば、メソッドのパラメータに無効な値が設定されている場合など。"));
+		_stprintf(&msg[strlen(msg)],_T("\n\n･･･だそうです。"));
+		_stprintf(&msg[strlen(msg)],_T("\n・ディスプレイの表示色数を変更してください"));
+		_stprintf(&msg[strlen(msg)],_T("\n・ディスプレイのプロパティ/詳細/でハードウェアアクセラレータ最大にしてください"));
+		_stprintf(&msg[strlen(msg)],_T("\n・「ファイル名を指定して実行」からdxdiag.exeを実行し、"));
+		_stprintf(&msg[strlen(msg)],_T("\n\n　　「ディスプレイ」タブでDirect3Dアクセラレータが「使用可能」であることを確かめてください。"));
+		_stprintf(&msg[strlen(msg)],_T("\n・g_config.exeで「デバイスタイプ」を変更してください"));
 		break;
 	case D3DERR_NOTAVAILABLE:
-		sprintf(&msg[strlen(msg)],_T("D3DERR_NOTAVAILABLE:"));
-		sprintf(&msg[strlen(msg)],_T("このデバイスは、照会されたテクニックをサポートしていない。"));
-		sprintf(&msg[strlen(msg)],_T("\n\n･･･だそうです。"));
-		sprintf(&msg[strlen(msg)],_T("\nグラフィックカードが向いてないみたいなんで、買い換えませう。"));
+		_stprintf(&msg[strlen(msg)],_T("D3DERR_NOTAVAILABLE:"));
+		_stprintf(&msg[strlen(msg)],_T("このデバイスは、照会されたテクニックをサポートしていない。"));
+		_stprintf(&msg[strlen(msg)],_T("\n\n･･･だそうです。"));
+		_stprintf(&msg[strlen(msg)],_T("\nグラフィックカードが向いてないみたいなんで、買い換えませう。"));
 		break;
 	case D3DERR_OUTOFVIDEOMEMORY:
-		sprintf(&msg[strlen(msg)],_T("D3DERR_OUTOFVIDEOMEMORY"));
-		sprintf(&msg[strlen(msg)],_T("Direct3D が処理を行うのに十分なディスプレイ メモリがない。"));
-		sprintf(&msg[strlen(msg)],_T("\n\n･･･だそうです。"));
-		sprintf(&msg[strlen(msg)],_T("\n・ディスプレイの解像度と色数をできるだけ減らしてください。"));
-		sprintf(&msg[strlen(msg)],_T("\n・g_config.exeで320x240モードにしてみてください"));
-		sprintf(&msg[strlen(msg)],_T("\n・PCを買い換えてください"));
+		_stprintf(&msg[strlen(msg)],_T("D3DERR_OUTOFVIDEOMEMORY"));
+		_stprintf(&msg[strlen(msg)],_T("Direct3D が処理を行うのに十分なディスプレイ メモリがない。"));
+		_stprintf(&msg[strlen(msg)],_T("\n\n･･･だそうです。"));
+		_stprintf(&msg[strlen(msg)],_T("\n・ディスプレイの解像度と色数をできるだけ減らしてください。"));
+		_stprintf(&msg[strlen(msg)],_T("\n・g_config.exeで320x240モードにしてみてください"));
+		_stprintf(&msg[strlen(msg)],_T("\n・PCを買い換えてください"));
 		break;
 	default:
-		sprintf(&msg[strlen(msg)],_T("エラーが特定できませんでした。"));
+		_stprintf(&msg[strlen(msg)],_T("エラーが特定できませんでした。"));
 	}
 
 	MessageBox(hwnd,msg,_T("起動に失敗"),MB_OK);
@@ -863,7 +863,7 @@ void CDirectDraw::TraceCreateDeviceError(HRESULT ret,HWND hwnd)
 *
 *	@return 独自形式インチキサーフェイスのポインタ。失敗した場合はNULL
 */
-MYSURFACE* CDirectDraw::CreateSurfaceFrom256BMP(char *filename,char *palname,BOOL dmy)
+MYSURFACE* CDirectDraw::CreateSurfaceFrom256BMP(TCHAR *filename,TCHAR *palname,BOOL dmy)
 {
 	BOOL bret;
 	DWORD i,j;
@@ -977,23 +977,23 @@ MYSURFACE* CDirectDraw::CreateSurfaceFrom256BMP(char *filename,char *palname,BOO
 *
 *	@sa CreateSurfaceFrom256BMP
 */
-MYSURFACE* CDirectDraw::CreateSurfaceFrom256Image(char *filename,char *pallet/*=NULL*/,BOOL dmy/*=TRUE*/)
+MYSURFACE* CDirectDraw::CreateSurfaceFrom256Image(TCHAR *filename,TCHAR *pallet/*=NULL*/,BOOL dmy/*=TRUE*/)
 {
 	if (filename)
 	{
-		char* Buffer = (char*)malloc( strlen(filename) + (4 + 1));
+		TCHAR* Buffer = (TCHAR*)malloc( strlen(filename) + (4 + 1));
 
 		if (Buffer)
 		{
-			char* Buffer_pal = NULL;
+			TCHAR* Buffer_pal = NULL;
 			MYSURFACE* result;
 
 			if (pallet)
-				Buffer_pal = (char*)malloc( strlen(pallet) + (4 + 1));
+				Buffer_pal = (TCHAR*)malloc( strlen(pallet) + (4 + 1));
 
 			// まずはPNG形式で。
-			sprintf(Buffer, _T("%s%s"), filename, _T(".png"));
-			if (Buffer_pal) sprintf(Buffer_pal, _T("%s%s"), pallet, _T(".png"));
+			_stprintf(Buffer, _T("%s%s"), filename, _T(".png"));
+			if (Buffer_pal) _stprintf(Buffer_pal, _T("%s%s"), pallet, _T(".png"));
 
 			if ( result = CreateSurfaceFrom256BMP(Buffer, Buffer_pal, dmy) )
 			{
@@ -1007,7 +1007,7 @@ MYSURFACE* CDirectDraw::CreateSurfaceFrom256Image(char *filename,char *pallet/*=
 				// パレットをBMPに。
 				if (Buffer_pal)
 				{
-					sprintf(Buffer_pal, _T("%s%s"), pallet, _T(".bmp"));
+					_stprintf(Buffer_pal, _T("%s%s"), pallet, _T(".bmp"));
 
 					if ( result = CreateSurfaceFrom256BMP(Buffer, Buffer_pal, dmy) )
 					{
@@ -1019,7 +1019,7 @@ MYSURFACE* CDirectDraw::CreateSurfaceFrom256Image(char *filename,char *pallet/*=
 				}
 
 				// JPEG形式でやってみる。
-				sprintf(Buffer, _T("%s%s"), filename, _T(".jpg"));
+				_stprintf(Buffer, _T("%s%s"), filename, _T(".jpg"));
 
 				if ( result = CreateSurfaceFrom256BMP(Buffer, NULL, dmy) )
 				{
@@ -1030,8 +1030,8 @@ MYSURFACE* CDirectDraw::CreateSurfaceFrom256Image(char *filename,char *pallet/*=
 				}
 
 				// 失敗したらビットマップ形式で。
-				sprintf(Buffer, _T("%s%s"), filename, _T(".bmp"));
-				if (Buffer_pal) sprintf(Buffer_pal, _T("%s%s"), pallet, _T(".png"));
+				_stprintf(Buffer, _T("%s%s"), filename, _T(".bmp"));
+				if (Buffer_pal) _stprintf(Buffer_pal, _T("%s%s"), pallet, _T(".png"));
 
 				if ( result = CreateSurfaceFrom256BMP(Buffer, Buffer_pal, dmy) )
 				{
@@ -1045,7 +1045,7 @@ MYSURFACE* CDirectDraw::CreateSurfaceFrom256Image(char *filename,char *pallet/*=
 					// パレットをBMPに。
 					if (Buffer_pal)
 					{
-						sprintf(Buffer_pal, _T("%s%s"), pallet, _T(".bmp"));
+						_stprintf(Buffer_pal, _T("%s%s"), pallet, _T(".bmp"));
 
 						result = CreateSurfaceFrom256BMP(Buffer, Buffer_pal, dmy);
 					}
@@ -1421,7 +1421,7 @@ static BOOL GoluahReadFile(HANDLE hFile, LPBYTE bits, DWORD sizeimage, NowLoadin
 *	@param palfilename [in] 適用するパレットのファイル名
 *	@return TRUE:成功, FALSE:残念
 */
-BOOL CDirectDraw::Load256Bitmapbits(MYPALLET **pbits,DWORD *width,DWORD *height,char *bmpfilename,char *palfilename)
+BOOL CDirectDraw::Load256Bitmapbits(MYPALLET **pbits,DWORD *width,DWORD *height,TCHAR *bmpfilename,TCHAR *palfilename)
 {
 	BOOL ret2;
 
@@ -1633,7 +1633,7 @@ static void png_read_row_callback_adam7(png_structp strPNG, png_uint_32 row, int
 *	@return TRUE:成功, FALSE:残念
 *	@sa Load256Bitmapbits
 */
-BOOL CDirectDraw::Load256PNGbits(MYPALLET **pbits,DWORD *width,DWORD *height,char *pngfilename,char *palfilename)
+BOOL CDirectDraw::Load256PNGbits(MYPALLET **pbits,DWORD *width,DWORD *height,TCHAR *pngfilename,TCHAR *palfilename)
 {
 	BOOL ret2;
 
@@ -1867,7 +1867,7 @@ BOOL CDirectDraw::Load256PNGbits(MYPALLET **pbits,DWORD *width,DWORD *height,cha
 *	@sa Load256PNGbits
 */
 #ifndef GCD_EDITER
-BOOL CDirectDraw::LoadJPEGbits(MYPALLET **pbits,DWORD *width,DWORD *height,char *jpegfilename)
+BOOL CDirectDraw::LoadJPEGbits(MYPALLET **pbits,DWORD *width,DWORD *height,TCHAR *jpegfilename)
 {
 	struct jpeg_decompress_struct cinfo;
 	struct jpeg_error_mgr jerr;
@@ -1993,7 +1993,7 @@ BOOL CDirectDraw::LoadJPEGbits(MYPALLET **pbits,DWORD *width,DWORD *height,char 
 *	@param pal [out] 読み込み結果を保存するためのパレット配列（256個必要）
 *	@return TRUE:成功, FALSE:残念
 */
-BOOL CDirectDraw::GetPallet(char *filename,MYPALLET *pal)
+BOOL CDirectDraw::GetPallet(TCHAR *filename,MYPALLET *pal)
 {
 	HANDLE hFile;
 	DWORD ret,br,err=FALSE;
@@ -2093,7 +2093,7 @@ BOOL CDirectDraw::GetPallet(char *filename,MYPALLET *pal)
 *	@return TRUE:成功, FALSE:残念
 *	@sa GetPallet 
 */
-BOOL CDirectDraw::GetPalletPNG(char *filename,MYPALLET *pal)
+BOOL CDirectDraw::GetPalletPNG(TCHAR *filename,MYPALLET *pal)
 {
 	FILE* fp;
 
@@ -2767,8 +2767,8 @@ void CDirectDraw::CellDraw(MYSURFACE **pbuf,//!< GCDで利用するビットマップ配列
 		#ifdef AKIDX_DEBUG
 		default:
 			{
-				char tmp[64];
-				sprintf(tmp,_T("DX_Draw : warning , unknown GCD version %X\n"),pc->cell[0].flag);
+				TCHAR tmp[64];
+				_stprintf(tmp,_T("DX_Draw : warning , unknown GCD version %X\n"),pc->cell[0].flag);
 				ODS(tmp);
 			}
 		#endif
@@ -3948,7 +3948,7 @@ void CDirectDraw::DrawCircle(int x,			//!< 円の中心位置x
 */
 void CDirectDraw::DrawBlueText(
 							RECT& r,		//!< 描画する矩形領域
-							char *text,		//!< テキスト文字列
+							TCHAR *text,		//!< テキスト文字列
 							int len,		//!< テキスト文字数
 							DWORD method,	//!< Win32APIのDrawText参照。DT_LEFTとかそういうの
 							DWORD size)		//!< 描画サイズ。1～(AKIDX_FONTNUM-1)
@@ -3971,7 +3971,7 @@ void CDirectDraw::DrawBlueText(
 }
 
 //! sa DrawBlueText
-void CDirectDraw::DrawRedText(RECT& r,char *text,int len,DWORD method,DWORD size)
+void CDirectDraw::DrawRedText(RECT& r,TCHAR *text,int len,DWORD method,DWORD size)
 {
 	if(size<1)return;
 	if(size>AKIDX_FONTNUM-1)return;
@@ -4093,8 +4093,8 @@ LPDIRECT3DTEXTURE9 CDirectDraw::GetFrontBufferCopy()
 
 	D3DSURFACE_DESC suf_desc;
 	surface->GetDesc(&suf_desc);
-	char tekito[256];
-	sprintf(tekito,_T("surface %d,%d\n"),suf_desc.Width,suf_desc.Height);
+	TCHAR tekito[256];
+	_stprintf(tekito,_T("surface %d,%d\n"),suf_desc.Width,suf_desc.Height);
 	OutputDebugString(tekito);
 
 	//コピー
@@ -4262,8 +4262,8 @@ DWORD* CDirectDraw::GetFrontBufferCopyRaw(UINT *wdt,UINT *hgt)
 
 	D3DSURFACE_DESC suf_desc;
 	surface->GetDesc(&suf_desc);
-	char tekito[256];
-	sprintf(tekito,_T("surface %d,%d\n"),suf_desc.Width,suf_desc.Height);
+	TCHAR tekito[256];
+	_stprintf(tekito,_T("surface %d,%d\n"),suf_desc.Width,suf_desc.Height);
 	OutputDebugString(tekito);
 
 	//コピー

@@ -22,7 +22,7 @@ typedef std::vector<CHARACTER_LOAD_OPTION> CharOptionList;	//!< キャラクターオプ
 */
 struct FAVORITE_OPTION
 {
-	char name[32];	//!< オプション名
+	TCHAR name[32];	//!< オプション名
 	DWORD opt;		//!< オプション値
 };
 typedef std::vector<FAVORITE_OPTION> FavoriteOptionList;	//!< キャラクターオプションセット配列(STL)
@@ -30,8 +30,8 @@ typedef std::vector<FAVORITE_OPTION> FavoriteOptionList;	//!< キャラクターオプシ
 /*! @brief キャラクターの情報 */
 struct CCL_CHARACTERINFO
 {
-	char dir[64];				//!< どのディレクトリにあるか
-	char name[32];				//!< 名前はなんというのか
+	TCHAR dir[64];				//!< どのディレクトリにあるか
+	TCHAR name[32];				//!< 名前はなんというのか
 	DWORD ver;					//!< dllのバージョン
 
 	DWORD caps;					//!< キャラクターの能力（ストーリー可/不可、ネットワーク対応/非対応等）
@@ -63,8 +63,8 @@ typedef std::vector<CCL_CHARACTERINFO> CCLCharacterInfoList;	//!< キャラクター情
 /*!	@brief 認識失敗キャラクターの情報 */
 struct CCL_DAMEINFO
 {
-	char dir[64];				//!< どのディレクトリにあるか
-	char name[32];				//!< 名前はなんというのか
+	TCHAR dir[64];				//!< どのディレクトリにあるか
+	TCHAR name[32];				//!< 名前はなんというのか
 	DWORD dame;					//!< 駄目な理由
 	DWORD ver;					//!< dllのバージョン
 };
@@ -81,7 +81,7 @@ typedef std::vector<CCL_DAMEINFO> CCLDameInfoList;	//!< 認識失敗キャラクター配列
 /*! @brief リング（キャラクターディレクトリ）情報 */
 struct CCL_RINGINFO
 {
-	char name[64];							//!< 名前=ディレクトリ名
+	TCHAR name[64];							//!< 名前=ディレクトリ名
 	std::vector<DWORD> ring2serialIndex;	//!< 直列に並んだ順番でのインデックスに変換
 };
 typedef std::vector<CCL_RINGINFO> CCLRingInfoList;	//!< キャラクターリングリスト(STL)
@@ -103,23 +103,23 @@ public:
 
 	//キャラクタの情報取得系
 	int GetCharacterCount();				//!< 検索された全キャラクター数を返す。
-	char* GetCharacterDir(UINT index);		//!< キャラクターのディレクトリパスを返す
-	char* GetCharacterDir(UINT index,int ring);
-	char* GetCharacterName(UINT index);		//!< キャラクターの名前を返す
+	TCHAR* GetCharacterDir(UINT index);		//!< キャラクターのディレクトリパスを返す
+	TCHAR* GetCharacterDir(UINT index,int ring);
+	TCHAR* GetCharacterName(UINT index);		//!< キャラクターの名前を返す
 	DWORD GetCharacterVer(UINT index);		//!< キャラクターのバージョンを返す
-	int   FindCharacter(char *name);		//!< 名前で検索（なかった場合-1）
+	int   FindCharacter(TCHAR *name);		//!< 名前で検索（なかった場合-1）
 	DWORD GetCaps(UINT index);				//!< キャラクターのcapsフィールドを取得する
 
 	//リング情報取得系
 	int GetRingNum();						//!< リングの数を返す
-	char* GetRingName(UINT index);			//!< リングの名前（ディレクトリ名）を返す
+	TCHAR* GetRingName(UINT index);			//!< リングの名前（ディレクトリ名）を返す
 	int GetCharacterCountRing(UINT index);	//!< 指定インデックスのリングで検索されたキャラクター数を返す
 	DWORD RingIndex2SerialIndex(UINT ring,UINT index);//!< リング内でのインデックスを、全体でのインデックスに変換する
 
 	//認識失敗キャラクターの情報
 	int GetDameCharCount();					//!< 認識失敗キャラクターの数を返す
-	char* GetDameCharDir(UINT index);		//!< 認識失敗キャラクターのディレクトリを返す
-	char* GetDameCharName(UINT index);		//!< 認識失敗キャラクターの名前を返す
+	TCHAR* GetDameCharDir(UINT index);		//!< 認識失敗キャラクターのディレクトリを返す
+	TCHAR* GetDameCharName(UINT index);		//!< 認識失敗キャラクターの名前を返す
 	DWORD GetDameCharReas(UINT index);		//!< 認識失敗キャラクターの認識失敗理由を返す
 	DWORD GetDameCharVer(UINT index);		//!< 認識失敗キャラクターのバージョンを返す
 
@@ -138,14 +138,14 @@ public:
 	void SetPreviousOption(DWORD index,DWORD opt){infolist[index].previous_option=opt;}
 	DWORD GetRandomOption(DWORD index);
 	void  CorrectOption(UINT cindex,DWORD *opt);
-	void LoadFavoriteOptions(char* dir,FavoriteOptionList& list);
+	void LoadFavoriteOptions(TCHAR* dir,FavoriteOptionList& list);
 	CCSimpleOptionSelecter* GetSimpleOptionSelecter(DWORD cindex);
 
 private:
 	//Initializeから使用される
 	void InitializeRingList();				//!< ディレクトリを検索し、リングのディレクトリ名リストを構築する
 	void InitializeRing(DWORD ringindex);	//!< ディレクトリを検索する）
-	BOOL VerifyCharacterDir(char *dir,DWORD ringindex);//!< キャラクタディレクトリの正当性を検証する
+	BOOL VerifyCharacterDir(TCHAR *dir,DWORD ringindex);//!< キャラクタディレクトリの正当性を検証する
 
 private:
 	CCLCharacterInfoList infolist;	//!< キャラクタリスト
@@ -181,7 +181,7 @@ public:
 	void SetOffset(int val){offset_x=val;}
 	void SetZ(float val){z=val;}
 
-	char* GetCurrentSetName();						//!< 0:"Free" , 0～:favorite設定名
+	TCHAR* GetCurrentSetName();						//!< 0:"Free" , 0～:favorite設定名
 	void ApplyToPreviousSelect();					//!< 前回選択フラグに設定する
 
 protected:

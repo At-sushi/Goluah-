@@ -22,7 +22,7 @@ typedef std::vector<CStoryScriptElement*> SScriptElementList;
 class CGoluahStoryScript
 {
 public:
-	static BOOL CreateScriptElementList(SScriptElementList& list,char *filename);
+	static BOOL CreateScriptElementList(SScriptElementList& list,TCHAR *filename);
 	static void DestroyScriptElementList(SScriptElementList& list);
 };
 
@@ -48,15 +48,15 @@ public:
 	};
 
 	virtual CStoryElement_Types GetType()=0;	//!<dynamic_castすればいいだけかもネ
-	virtual void FeedLine(char *str)=0;			//!<次の定義が見つかったらFALSE
+	virtual void FeedLine(TCHAR *str)=0;			//!<次の定義が見つかったらFALSE
 	virtual BOOL Close(){return TRUE;}			//!<次の#が見つかったらコール
-	virtual char* GetError(){return m_error;}	//!<エラー取得
+	virtual TCHAR* GetError(){return m_error;}	//!<エラー取得
 
 protected:
-	char *m_error;
-	void Error(char *str);
-	void ErrorF(char *str,char *name);	//!<副文字列指定
-	void ErrorF(char *str,int i);		//!<整数指定
+	TCHAR *m_error;
+	void Error(TCHAR *str);
+	void ErrorF(TCHAR *str,TCHAR *name);	//!<副文字列指定
+	void ErrorF(TCHAR *str,int i);		//!<整数指定
 };
 
 
@@ -67,10 +67,10 @@ protected:
 class CStoryElement_Error : public CStoryScriptElement
 {
 public:
-	CStoryElement_Error(char *err);
+	CStoryElement_Error(TCHAR *err);
 	
 	CStoryElement_Types GetType(){return GSE_ST_ERROR;}
-	void FeedLine(char *str){}
+	void FeedLine(TCHAR *str){}
 	BOOL Close(){return TRUE;}
 };
 
@@ -86,29 +86,29 @@ public:
 	~CStoryElement_Settings();
 
 	CStoryElement_Types GetType(){return GSE_ST_SETTINGS;}
-	void FeedLine(char *str);
+	void FeedLine(TCHAR *str);
 	BOOL Close();
 
 public:
 	//全般
 	float ver;						//!<スクリプトのバージョン（-1:未設定）
-	char* title;					//!<ストーリータイトル
-	char* brief;					//!<ストーリー概要
-	char* icon;						//!<アイコンファイル名
-	char* preview;					//!<プレビューファイル名
+	TCHAR* title;					//!<ストーリータイトル
+	TCHAR* brief;					//!<ストーリー概要
+	TCHAR* icon;						//!<アイコンファイル名
+	TCHAR* preview;					//!<プレビューファイル名
 	int continue_num;				//!<コンティニュー可能回数(マイナスで∞)
 	int result_send;				//!<試合結果送信対象(マイナスで対象無し)
 	int result_key;					//!<試合結果送信時に付属させるキー番号
 
 	//キャラクタ定義
-	int cnum;						//!<char指定数
-	int characters[MAXNUM_TEAM];	//!<char指定　(-1:userselect -2:指定なし)
+	int cnum;						//!<TCHAR指定数
+	int characters[MAXNUM_TEAM];	//!<TCHAR指定　(-1:userselect -2:指定なし)
 	int color[MAXNUM_TEAM];			//!<色指定
 	DWORD option[MAXNUM_TEAM];		//!<オプション直接指定(userselect以外で有効)
 	StoryOptType opttype[MAXNUM_TEAM];	//!<オプション指定の種類(userselect以外で有効)
 
 protected:
-	void Read_char(char *str);
+	void Read_char(TCHAR *str);
 	BOOL multiline_flag;
 };
 
@@ -124,10 +124,10 @@ public:
 	~CStoryElement_Staff();
 
 	CStoryElement_Types GetType(){return GSE_ST_STAFF;}
-	void FeedLine(char *str);
+	void FeedLine(TCHAR *str);
 
 public:
-	char *m_filename;				//!<NULLの場合 system/staff.txt
+	TCHAR *m_filename;				//!<NULLの場合 system/staff.txt
 };
 
 
@@ -142,7 +142,7 @@ public:
 	~CStoryElement_VS();
 
 	CStoryElement_Types GetType(){return GSE_ST_VS;}
-	void FeedLine(char *str);
+	void FeedLine(TCHAR *str);
 	BOOL Close();
 
 //	void  SetupBattleInfo();
@@ -163,20 +163,20 @@ public:
 	int type;						//!<試合形式
 	int stage;						//!<ステージ -1:ランダム
 	int limit_time;					//!<制限時間(マイナスでSETINGS値継承)
-	char *bgm_filename;				//!<BGM指定(NULLで指定無し)
+	TCHAR *bgm_filename;				//!<BGM指定(NULLで指定無し)
 	int bgm_startpos;				//!<BGM再生開始位置(0で通常再生)
 
 	//試合後設定
-	char *text_win;					//!<勝利台詞指定
-	char *text_lose;				//!<負けたときの、敵の勝利台詞指定
+	TCHAR *text_win;					//!<勝利台詞指定
+	TCHAR *text_lose;				//!<負けたときの、敵の勝利台詞指定
 	BOOL show_win;					//!<勝利画面に移行するか？
 	BOOL nogameover;				//!<負けてもゲームオーバーしない
 	int sel_shift;					//!<nogameover時、選択変数のシフト量
 
 protected:
-	void Read_friend(char *str,int team=0);
-	void Read_enemy(char *str);
-	void Read_stage(char *str);
+	void Read_friend(TCHAR *str,int team=0);
+	void Read_enemy(TCHAR *str);
+	void Read_stage(TCHAR *str);
 
 	//スクリプト解釈中に使用
 	CStoryElement_Settings* m_sets;	//!<#settings項目 %char1-3使用時に定義がされているかどうかチェックするため
@@ -195,15 +195,15 @@ public:
 	~CStoryElement_Demo();
 
 	CStoryElement_Types GetType(){return GSE_ST_DEMO;}
-	void FeedLine(char *str);
+	void FeedLine(TCHAR *str);
 	BOOL Close();
 
 public:
-	char *m_filename;		//!<NULL→未設定→エラー
+	TCHAR *m_filename;		//!<NULL→未設定→エラー
 
 	/*
 	//引数リスト保管・取得
-	struct STRING_PEAR{char *str,*alias;};
+	struct STRING_PEAR{TCHAR *str,*alias;};
 	typedef std::list<STRING_PEAR> aliaslist;
 	aliaslist args;
 	CAliasList* CreateAliasClass();
@@ -222,7 +222,7 @@ public:
 	~CStoryElement_Select(){}
 
 	CStoryElement_Types GetType(){return GSE_ST_SELECT;}
-	void FeedLine(char *str){}
+	void FeedLine(TCHAR *str){}
 	int GetNum()	{ return m_selectnum; }
 
 public:
@@ -230,7 +230,7 @@ public:
 
 	/*
 	//引数リスト保管・取得
-	struct STRING_PEAR{char *str,*alias;};
+	struct STRING_PEAR{TCHAR *str,*alias;};
 	typedef std::list<STRING_PEAR> aliaslist;
 	aliaslist args;
 	CAliasList* CreateAliasClass();

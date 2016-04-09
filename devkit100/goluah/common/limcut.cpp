@@ -129,9 +129,9 @@ TNetbios &		SetLanaNumber(const UCHAR &LanaNumber) {
 					ncb_lana_num = LanaNumber;
 					return *this;
 				}
-TNetbios &		SetCallName(const char *CallName) {
+TNetbios &		SetCallName(const TCHAR *CallName) {
 					assert(strlen(CallName) < NCBNAMSZ);
-					strcpy((char *)ncb_callname, (const char *)CallName);
+					_tcscpy((TCHAR *)ncb_callname, (const TCHAR *)CallName);
 					return *this;
 				}
 
@@ -181,7 +181,7 @@ typedef struct _ASTAT_ {
 
 
 	//  LANA番号の列挙
-/*	sprintf(tekito, _T("The NCBENUM return code is: 0x%x \n"),
+/*	_stprintf(tekito, _T("The NCBENUM return code is: 0x%x \n"),
 			NetbiosAgent
 				.Clear()
 				.SetBuffer(&lenum)
@@ -199,7 +199,7 @@ typedef struct _ASTAT_ {
 	int i=0;
 	{
 		//  LANアダプタのリセット
-	/*	sprintf(tekito, _T("The NCBRESET on LANA %d return code is: 0x%x \n"),
+	/*	_stprintf(tekito, _T("The NCBRESET on LANA %d return code is: 0x%x \n"),
 				lenum.lana[i],
 				NetbiosAgent
 					.Clear()
@@ -212,7 +212,7 @@ typedef struct _ASTAT_ {
 					.Execute(NCBRESET);
 
 		//  LANアダプタのステータスを取得
-	/*	sprintf(tekito, _T("The NCBASTAT on LANA %d return code is: 0x%x \n"),
+	/*	_stprintf(tekito, _T("The NCBASTAT on LANA %d return code is: 0x%x \n"),
 				lenum.lana[i],
 				NetbiosAgent
 					.Clear()
@@ -233,7 +233,7 @@ typedef struct _ASTAT_ {
 		}
 		//  ステータスを取得に成功...
 			//  MACアドレスの表示
-		/*	sprintf(tekito, _T("The Ethernet Number on LANA %d is:")
+		/*	_stprintf(tekito, _T("The Ethernet Number on LANA %d is:")
 						_T("%02x%02x%02x%02x%02x%02x\n"),
 					lenum.lana[i],
 					Adapter.adapt.adapter_address[0],

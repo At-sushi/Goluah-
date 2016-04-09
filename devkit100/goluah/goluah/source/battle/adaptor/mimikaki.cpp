@@ -13,7 +13,7 @@
 #include "mimikaki.h"
 #include "adaptor.h"
 
-extern char *g_chardir;
+extern TCHAR *g_chardir;
 extern DI_FUNCTIONS_S *funcs;
 extern DI_FUNCTIONS_O *funco;
 extern DI_FUNCTIONS_D *funcd;
@@ -108,10 +108,10 @@ void CCharAdaptor::InitializeMySound()
 //	}
 //	isfirst=FALSE;
 
-	char filename[256];
+	TCHAR filename[256];
 	for(i=0;i<MAXMYSOUND;i++){
 		if(m_mysounds[i]==NULL){
-			sprintf(filename,_T("%s\\sound%d.wav"),g_chardir,i);
+			_stprintf(filename,_T("%s\\sound%d.wav"),g_chardir,i);
 			m_mysounds[i] = (*funcs->loadmysound)(filename);
 		}
 	}
@@ -154,16 +154,16 @@ void CCharAdaptor::InitializeGCDandBMP(GOBJECT *pdat,DWORD color)
 	if(pdat==NULL)return;
 	j = pdat->tid;
 
-	char filename[256],palname[256];
-	sprintf(palname,_T("%s\\pal%d.bmp"),m_chardir,color);
+	TCHAR filename[256],palname[256];
+	_stprintf(palname,_T("%s\\pal%d.bmp"),m_chardir,color);
 	for(i=0;i<12;i++){
-		sprintf(filename,_T("%s\\image%d.bmp"),m_chardir,i+1);
+		_stprintf(filename,_T("%s\\image%d.bmp"),m_chardir,i+1);
 		m_mysurface[j][i] = (MYSURFACE*) ( (*funcd->loadbmp)(filename,palname) );//image1-12.bmp
 	}
 	// pdatに入れる
 	pdat->pmsarr		= m_mysurface[j];
 
-	sprintf(filename,_T("%s\\cell.gcd"),m_chardir);
+	_stprintf(filename,_T("%s\\cell.gcd"),m_chardir);
 	hFile = CreateFile(filename,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
 	if(hFile==INVALID_HANDLE_VALUE) return;
 	if(!ReadFile(hFile,&cfh,sizeof(cfh),&br,NULL)){CloseHandle(hFile);return;}
@@ -279,10 +279,10 @@ int GetRandNum(int num)//ランダムナンバー発生
 	return(rand()%num);
 }
 
-BOOL GetWinSerif(char *getmsg,char *enename,char *filepath)
+BOOL GetWinSerif(TCHAR *getmsg,TCHAR *enename,TCHAR *filepath)
 {
 //	BY_HANDLE_FILE_INFORMATION FileInformation;
-	sprintf(getmsg,_T("(台詞の設定が検索されませんでした)"));
+	_stprintf(getmsg,_T("(台詞の設定が検索されませんでした)"));
 
 	//ファイルのオープン
 	HANDLE hFile = CreateFile(filepath,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
@@ -291,7 +291,7 @@ BOOL GetWinSerif(char *getmsg,char *enename,char *filepath)
 //		(FileInformation.ftLastAccessTime.dwLowDateTime > timeGetTime()))
 	//領域確保
 	DWORD fsiz = GetFileSize(hFile,NULL);
-	char *buf = (char*)malloc(fsiz);
+	TCHAR *buf = (TCHAR*)malloc(fsiz);
 	ZeroMemory(buf,sizeof(buf));
 
 	//ファイルの読み込み
@@ -302,7 +302,7 @@ BOOL GetWinSerif(char *getmsg,char *enename,char *filepath)
 	//そのキャラクターに割り振られた台詞がいくつあるかを検索
 	DWORD numser=0,numserr=0,pnow=0;
 	BOOL loop=TRUE,loop2;
-	char tmpname[64];
+	TCHAR tmpname[64];
 	DWORD tmpnamelen;
 	DWORD sstartpos[16],sstartposr[16];
 	while(pnow < fsiz && loop){
@@ -402,13 +402,13 @@ BOOL GetWinSerif(char *getmsg,char *enename,char *filepath)
 
 void LoadAndSetKatiSerif(DWORD tid)//テキストから勝利時のセリフを読み込んで設定する
 {
-	char katiserifu[256];
-	char *enemyname;
-	char filepath[256];
+	TCHAR katiserifu[256];
+	TCHAR *enemyname;
+	TCHAR filepath[256];
 
 	ZeroMemory(katiserifu,sizeof(katiserifu));
 	enemyname = funcs->getenemyname(tid);
-	sprintf(filepath,_T("%s\\serifu.txt"),g_chardir);
+	_stprintf(filepath,_T("%s\\serifu.txt"),g_chardir);
 
 	if(GetWinSerif(katiserifu,enemyname,filepath)){
 		funcs->setkatiserif(tid,katiserifu);

@@ -26,12 +26,12 @@ public:
 	void Draw();
 
 	void SetKeyIndex(UINT ki){m_keyindex=ki;}
-	void Setup(char *basedir,CStoryElement_Staff* ele_staff);
+	void Setup(TCHAR *basedir,CStoryElement_Staff* ele_staff);
 
 private:
 	void CleanUp();
-	int Get1Gyo(char *str);
-	void SetTextPath(char *path);
+	int Get1Gyo(TCHAR *str);
+	void SetTextPath(TCHAR *path);
 
 //ïœêî
 public:
@@ -39,8 +39,8 @@ private:
 	DWORD counter;
 	DWORD fsize;
 	MYSURFACE *ms;//!<îwåi
-	char *credits;//!<ó¨ÇÍÇÈï∂éöóÒ
-	char *txtpath;
+	TCHAR *credits;//!<ó¨ÇÍÇÈï∂éöóÒ
+	TCHAR *txtpath;
 	UINT m_keyindex;
 
 	RECT r;

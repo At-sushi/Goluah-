@@ -94,7 +94,7 @@ public:
 	HMODULE hAction2;
 	GOBJECT *m_pchar[2];	// グローバル変数の方に送るための、写し。
 	DWORD m_pnagerare[2];
-	char *m_chardir;		// 要対応
+	TCHAR *m_chardir;		// 要対応
 	LPVOID m_mysounds[MAXMYSOUND];		// 要対応
 	MYSURFACE* m_mysurface[2][12];
 	GCD_CELL2 m_cdat[2][GCDMAX_CELLS];

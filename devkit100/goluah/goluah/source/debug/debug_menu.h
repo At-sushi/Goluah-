@@ -34,7 +34,7 @@ public:
 
 protected:
 	UINT m_cnt;
-	std::vector<char*> namelist;
+	std::vector<TCHAR*> namelist;
 	UINT m_selected;
 
 	UINT m_last_selected;

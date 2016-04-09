@@ -76,11 +76,11 @@ public:
 
 	//■ファイルロード・アンロード関連
 	//256色のビットマップから独自形式サーフェイスを作成
-	MYSURFACE* CreateSurfaceFrom256BMP(char *filename,char *pallet=NULL,BOOL dmy=TRUE);
+	MYSURFACE* CreateSurfaceFrom256BMP(TCHAR *filename,TCHAR *pallet=NULL,BOOL dmy=TRUE);
 	void RelSurface(MYSURFACE *s);//テクスチャ開放
 
 	//!各種形式の画像を読み込む。PNGと合わせるために追加。
-	MYSURFACE* CreateSurfaceFrom256Image(char *filename,char *pallet=NULL,BOOL dmy=TRUE);
+	MYSURFACE* CreateSurfaceFrom256Image(TCHAR *filename,TCHAR *pallet=NULL,BOOL dmy=TRUE);
 
 	//■2D基本描画
 	//独自形式サーフェイス転送。転送位置を3D空間上で指定できる
@@ -141,8 +141,8 @@ public:
 	//なにこれ？
 	void Draw3DText();
 	//テキスト描画
-	void DrawBlueText(RECT& r,char *text,int len,DWORD method,DWORD size);
-	void DrawRedText(RECT& r,char *text,int len,DWORD method,DWORD size);
+	void DrawBlueText(RECT& r,TCHAR *text,int len,DWORD method,DWORD size);
+	void DrawRedText(RECT& r,TCHAR *text,int len,DWORD method,DWORD size);
 	// 独自描画軽量化版
 //	void MyBlt3DLite(MYSURFACE* dds, RECT& r, int x, int y, BOOL noAlpha);
 	// サーフェスに直接書き込み
@@ -186,12 +186,12 @@ private:
 	//ビットマップロード時に分割テクスチャ数を計算
 	BOOL AssignTextureDiv(MYSURFACE *pmsf,DWORD width,DWORD height);
 	//256色ビットマップのイメージ部分をロードする
-	BOOL Load256Bitmapbits(MYPALLET **bits,DWORD *width,DWORD *height,char *bmpfilename,char *palfilename=NULL);
-	BOOL Load256PNGbits(MYPALLET **pbits,DWORD *width,DWORD *height,char *pngfilename,char *palfilename);//PNG版
-	BOOL LoadJPEGbits(MYPALLET **pbits,DWORD *width,DWORD *height,char *jpegfilename);//JPEG版（フルカラー）
+	BOOL Load256Bitmapbits(MYPALLET **bits,DWORD *width,DWORD *height,TCHAR *bmpfilename,TCHAR *palfilename=NULL);
+	BOOL Load256PNGbits(MYPALLET **pbits,DWORD *width,DWORD *height,TCHAR *pngfilename,TCHAR *palfilename);//PNG版
+	BOOL LoadJPEGbits(MYPALLET **pbits,DWORD *width,DWORD *height,TCHAR *jpegfilename);//JPEG版（フルカラー）
 	//256ビットマップのパレット部分をロードする
-	BOOL GetPallet(char *filename,MYPALLET *pal);//256ｂｍｐファイルから、パレットだけを取出
-	BOOL GetPalletPNG(char *filename,MYPALLET *pal);//256PNGファイルから、パレットだけを取出
+	BOOL GetPallet(TCHAR *filename,MYPALLET *pal);//256ｂｍｐファイルから、パレットだけを取出
+	BOOL GetPalletPNG(TCHAR *filename,MYPALLET *pal);//256PNGファイルから、パレットだけを取出
 
 	//■便利関数？
 	//バックバッファからテクスチャへの転送
@@ -205,7 +205,7 @@ private:
 	//テキスト描画用のフォントを生成する
 	LPD3DXFONT CreateMyFont(DWORD h);
 	//高速軽量文字作成・・・したかった
-//	int CreateMyFont2(DWORD h, char *text); // color,x,y,z,…
+//	int CreateMyFont2(DWORD h, TCHAR *text); // color,x,y,z,…
 	//Direct3D後始末関数
 	void CleanDirectDraw();
 	//レンダリングステート設定

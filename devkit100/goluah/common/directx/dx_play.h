@@ -22,7 +22,7 @@ public:
 	CDirectPlay();
 	virtual ~CDirectPlay();
 
-	HRESULT Initialize(const char* Name, const char* Port);//!<‰Šú‰»
+	HRESULT Initialize(const TCHAR* Name, const TCHAR* Port);//!<‰Šú‰»
 	HRESULT Destroy();//!<‚ ‚Ú‚ñ‚Ê
 	BOOL IsReady()	{ return pDPlay != 0; }
 	HRESULT Do(DWORD time)	{ return pThreadPool ? pThreadPool->DoWork(time, 0) : S_FALSE; }
@@ -48,7 +48,7 @@ public:
 	//! Š±‚·
 	HRESULT Host(void);
 	//! ‚Â‚È‚®
-	HRESULT Connect(const char* IP, DWORD Port);
+	HRESULT Connect(const TCHAR* IP, DWORD Port);
 };
 
 

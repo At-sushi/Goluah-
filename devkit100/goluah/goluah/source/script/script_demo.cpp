@@ -6,7 +6,7 @@
 
 static int l_vs(lua_State *L);
 
-BOOL CGoluahDemoScript::CreateScriptElementList(SScriptElementList& list,char *filename,CAliasList *args)
+BOOL CGoluahDemoScript::CreateScriptElementList(SScriptElementList& list,TCHAR *filename,CAliasList *args)
 {
 	lua_State* L = luaL_newstate();
 

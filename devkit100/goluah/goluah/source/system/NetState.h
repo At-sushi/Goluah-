@@ -35,5 +35,5 @@ protected:
 public:
 	afx_msg void OnEnUpdateEditChat();
 	// ƒƒO‚É‘‚«‚Ş
-	void WriteLog(const char* pStr);
+	void WriteLog(const TCHAR* pStr);
 };

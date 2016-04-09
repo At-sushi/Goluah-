@@ -20,7 +20,7 @@ extern DWORD pnagerare[2];
 
 DWORD gMessage(DWORD msg,LPVOID dat,DWORD);
 
-extern char *g_chardir;
+extern TCHAR *g_chardir;
 extern DI_FUNCTIONS_S *funcs;
 extern DI_FUNCTIONS_O *funco;
 extern DI_FUNCTIONS_D *funcd;

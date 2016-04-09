@@ -36,9 +36,9 @@ public:
 	BOOL DrawF();
 
 protected:
-	char round_number;
+	TCHAR round_number;
 	//t : 0Å`1
-	void DrawOneCharacter(float x,float y,char c,float t,float t2);
+	void DrawOneCharacter(float x,float y,TCHAR c,float t,float t2);
 };
 
 /*!
@@ -184,5 +184,5 @@ public:
 	BOOL DrawF();
 
 protected:
-	void DrawOneCharacter(float x,float y,char c,float t,float t2);
+	void DrawOneCharacter(float x,float y,TCHAR c,float t,float t2);
 };

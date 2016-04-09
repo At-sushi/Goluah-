@@ -292,7 +292,7 @@ public:
 	//操作・設定
 	virtual void SetRing(DWORD ringIndex);
 	virtual void SetCom(BOOL com);
-	virtual void SetKey(char idx);
+	virtual void SetKey(TCHAR idx);
 
 	virtual void Show(BOOL b);
 	virtual void Extend(float top,float bottom);	//!<領域拡大
@@ -304,7 +304,7 @@ protected:
 	CTCharacterSelectBeltState m_state;
 	DWORD m_ringIndex;						//!<リング名表示用
 	BOOL  m_com;							//!<コンピュータかどうか
-	char  m_current_key;					//!<現在有効なキー入力番号
+	TCHAR  m_current_key;					//!<現在有効なキー入力番号
 	
 	float m_given_top , m_given_bottom;
 };
@@ -418,7 +418,7 @@ protected:
 	static int m_limit_time[5];				//45,60,99,120,∞  ,  const
 
 	BOOL m_ok;
-	char m_str_error[128];
+	TCHAR m_str_error[128];
 
 	void Check();//!< 割り当ての正当性をチェックする
 };

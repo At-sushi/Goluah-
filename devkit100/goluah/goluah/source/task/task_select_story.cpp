@@ -296,7 +296,7 @@ void CTStorySelecterRing::InitializeIcons()
 	UINT num = g_storylist.GetAllStoryNum();
 	if(num==0)return;
 
-	char *filepath = new char [MAX_PATH];
+	TCHAR *filepath = new TCHAR [MAX_PATH];
 
 	m_icons = new MYSURFACE* [num];
 	for(UINT i=0;i<num;i++){
@@ -439,7 +439,7 @@ void CTStorySelecterRing::CTStorySelectBelt::SetRing( UINT idx ,BOOL real_change
 void CTStorySelecterRing::CTStorySelectBelt::UpdateText()
 {
 	//m_ringIndexは、ストーリーリング番号ではなく全体の通し番号として使用
-	sprintf(m_disp_str,_T("%s"),g_storylist.GetStoryDir(m_ringIndex));
+	_stprintf(m_disp_str,_T("%s"),g_storylist.GetStoryDir(m_ringIndex));
 	for(UINT i=0;i<strlen(m_disp_str);i++){
 		if(m_disp_str[i]=='\\'){
 			m_disp_str[i]='/';//こっちのほうがかっこよさげ
@@ -699,7 +699,7 @@ void CTStorySelectPreview::Change(UINT sindex)
 	m_crnt_sindex = sindex;
 
 	m_pv_prev = m_pv;
-	char *filename = new char[MAX_PATH];
+	TCHAR *filename = new TCHAR[MAX_PATH];
 	g_storylist.GetStoryPreviewPath(m_crnt_sindex,filename);
 	m_pv = g_draw.CreateSurfaceFrom256BMP(filename);
 	delete [] filename;
@@ -743,7 +743,7 @@ BOOL CTStorySelectPreview::CTStoryBrief::Execute(DWORD time)
 {
 	if(m_sindex<0)return TRUE;
 
-	char *str = g_storylist.GetStoryBrief(m_sindex);
+	TCHAR *str = g_storylist.GetStoryBrief(m_sindex);
 
 	//1文字増やす
 	if(disp_len < (int)strlen(str))
@@ -769,10 +769,10 @@ void CTStorySelectPreview::CTStoryBrief::Set(UINT sindex)
 {
 	m_sindex = sindex;
 
-	char *str = g_storylist.GetStoryBrief(m_sindex);
+	TCHAR *str = g_storylist.GetStoryBrief(m_sindex);
 	DELETEARRAY(disp_txt);
 	if(str){
-		disp_txt = new char[strlen(str)+1];
+		disp_txt = new TCHAR[strlen(str)+1];
 		disp_txt[0] = '\0';
 	}
 	disp_len=0;
@@ -821,7 +821,7 @@ void CTStorySelectPreview::CTStoryBrief::Draw()
 	}
 
 	//テキスト
-	char* title = g_storylist.GetStoryName(m_sindex);
+	TCHAR* title = g_storylist.GetStoryName(m_sindex);
 	if(title){
 		g_system.DrawBMPTextEx( 
 							620+m_hideMove,
@@ -863,11 +863,11 @@ void CTStoryParamWindow::Initialize()
 	m_wincolor		= 0xBBFFFFFF;
 
 	//ミニ顔の読み込み(キャラ選択用)
-	char *filepath = new char [MAX_PATH];
+	TCHAR *filepath = new TCHAR [MAX_PATH];
 	m_miniface = new MYSURFACE* [g_charlist.GetCharacterCount()];
 	for(i=0;i<g_charlist.GetCharacterCount();i++){
 		m_miniface[i]=NULL;
-		sprintf(filepath,_T("%s\\face1"),g_charlist.GetCharacterDir(i));
+		_stprintf(filepath,_T("%s\\face1"),g_charlist.GetCharacterDir(i));
 		m_miniface[i] = g_draw.CreateSurfaceFrom256Image(filepath);
 	}
 	delete [] filepath;
@@ -1101,7 +1101,7 @@ void CTStoryParamWindow::Draw()
 	DrawText(x+xstep-20.0f,y[2],0.0f,_T("Option")		,txtcol,0.75f,0.5f,SYSBMPTXT_PROP|SYSBMPTXT_R2L);
 	x+=xstep;
 
-	char *tmp = new char[16];
+	TCHAR *tmp = new TCHAR[16];
 	int j;
 	for(UINT i=0;i<m_num;i++)
 	{
@@ -1111,7 +1111,7 @@ void CTStoryParamWindow::Draw()
 			DrawText(x,y[j],0.0f,_T("Not Selected"),GetDrawColor(i,j),0.6f,1.0f,SYSBMPTXT_PROP);
 		}
 		else{
-			sprintf(tmp,_T("<%d>"),(*m_sinfo)->characters[i]);
+			_stprintf(tmp,_T("<%d>"),(*m_sinfo)->characters[i]);
 			DrawText(x,y[j],0.0f,tmp,GetDrawColor(i,j),1.0f,1.0f,SYSBMPTXT_PROP);
 		}
 		//キャラクタカラー
@@ -1120,7 +1120,7 @@ void CTStoryParamWindow::Draw()
 			DrawText(x,y[j],0.0f,_T("Not Selected"),GetDrawColor(i,j),0.6f,1.0f,SYSBMPTXT_PROP);
 		}
 		else{
-			sprintf(tmp,_T("<%d>"),(*m_sinfo)->color[i]);
+			_stprintf(tmp,_T("<%d>"),(*m_sinfo)->color[i]);
 			DrawText(x,y[j],0.0f,tmp,GetDrawColor(i,j),1.0f,1.0f,SYSBMPTXT_PROP);
 		}
 		//キャラクタオプション
@@ -1132,12 +1132,12 @@ void CTStoryParamWindow::Draw()
 			}break;
 		case Opt_UserSelect:
 			{
-				sprintf(tmp,_T("<%8X>"),(*m_sinfo)->option[i]);
+				_stprintf(tmp,_T("<%8X>"),(*m_sinfo)->option[i]);
 				DrawText(x,y[j],0.0f,tmp,GetDrawColor(i,j),0.6f,1.0f,SYSBMPTXT_PROP);
 			}break;
 		case Opt_Fix:
 			{
-				sprintf(tmp,_T("<%8X,fix>"),(*m_sinfo)->option[i]);
+				_stprintf(tmp,_T("<%8X,fix>"),(*m_sinfo)->option[i]);
 				DrawText(x,y[j],0.0f,tmp,GetDrawColor(i,j),0.75f,1.0f,SYSBMPTXT_PROP);
 			}break;
 		}
@@ -1356,11 +1356,11 @@ void CTStoryParamWindow::CColorSelecter::Draw()
 	float x = 10;
 	float y = 10;
 
-	char *tmp = new char[16];
+	TCHAR *tmp = new TCHAR[16];
 	DWORD col;
 	for(int i=1;i<=MAXNUM_CHARACTERCOLOR;i++){
 		col = (i==color) ? 0xFF000000 : 0xFF888888;
-		sprintf(tmp,_T("Color%d"),i);
+		_stprintf(tmp,_T("Color%d"),i);
 		DrawText(x,y,0.0f,tmp,col,1.0f,0.7f);
 		y+=ystep;
 	}

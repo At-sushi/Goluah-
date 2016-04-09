@@ -10,7 +10,7 @@
 #include "storylist.h"
 #include "global.h"
 
-static char afo[] = _T("afo");
+static TCHAR afo[] = _T("afo");
 
 /*************************************************************************
 
@@ -42,7 +42,7 @@ void CStoryList::Initialize()
 			if(strcmp(fd.cFileName,_T("."))==0 || strcmp(fd.cFileName,_T(".."))==0);//アレ
 			else if(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) //ディレクトリﾊｹｰﾝ
 			{
-				sprintf(ringitem.dir,fd.cFileName);
+				_stprintf(ringitem.dir,fd.cFileName);
 				rlist.push_back(ringitem);
 			}
 		} while(FindNextFile(hFind, &fd));
@@ -52,12 +52,12 @@ void CStoryList::Initialize()
 	//各ディレクトリの中のストーリーを検索
 	CStoryInfo sitem;
 	SScriptElementList scr_list;
-	char *filename= new char [MAX_PATH];
+	TCHAR *filename= new TCHAR [MAX_PATH];
 	CStoryRingInfoList::iterator i = rlist.begin();
 	CStoryRingInfoList::iterator ie= rlist.end();
 	for(;i!=ie;i++)
 	{
-		sprintf(filename,_T("story\\%s\\*.*"),i->dir);
+		_stprintf(filename,_T("story\\%s\\*.*"),i->dir);
 		hFind = FindFirstFile(filename, &fd);
 		if(hFind != INVALID_HANDLE_VALUE) {//ディレクトリが存在する場合
 			do {
@@ -66,7 +66,7 @@ void CStoryList::Initialize()
 				{
 					//ディレクトリﾊｹｰﾝ
 					sitem.SetDir(i->dir,fd.cFileName);
-					sprintf(filename,_T("story\\%s\\%s\\"),i->dir,fd.cFileName);
+					_stprintf(filename,_T("story\\%s\\%s\\"),i->dir,fd.cFileName);
 					if(CGoluahStoryScript::CreateScriptElementList(scr_list,filename))//読み込みOK
 					{
 						sitem.Setup( GetSettingsFromScriptList(scr_list), i->dir,fd.cFileName);
@@ -104,21 +104,21 @@ void CStoryList::StartStory(UINT index)
 }
 
 //指定インデックスのストーリー名を取得する
-char* CStoryList::GetStoryName(UINT index)
+TCHAR* CStoryList::GetStoryName(UINT index)
 {
 	if(index>=list.size())return afo;
 	return list[index].name;
 }
 
 //指定インデックスのストーリー名を取得する
-char* CStoryList::GetStoryDir(UINT index)
+TCHAR* CStoryList::GetStoryDir(UINT index)
 {
 	if(index>=list.size())return afo;
 	return list[index].dir;
 }
 
 //指定インデックスのストーリー概要を取得する
-char* CStoryList::GetStoryBrief(UINT index)
+TCHAR* CStoryList::GetStoryBrief(UINT index)
 {
 	if(index>=list.size())return afo;
 	return list[index].brief;
@@ -160,14 +160,14 @@ int   CStoryList::GetErrorCount()
 }
 
 //読み込み失敗理由取得
-char* CStoryList::GetErrorStr(UINT idx)
+TCHAR* CStoryList::GetErrorStr(UINT idx)
 {
 	if(idx>=dlist.size())return afo;
 	return dlist[idx].brief;
 }
 
 //読み込み失敗ディレクトリ
-char* CStoryList::GetErrorDir(UINT idx)
+TCHAR* CStoryList::GetErrorDir(UINT idx)
 {
 	if(idx>=dlist.size())return afo;
 	return dlist[idx].dir;
@@ -177,14 +177,14 @@ char* CStoryList::GetErrorDir(UINT idx)
 	スクリプト要素リストから、各種情報取得
 --------------------------------------------------------------------------*/
 //名前取得
-char* CStoryList::GetName(SScriptElementList& scr)
+TCHAR* CStoryList::GetName(SScriptElementList& scr)
 {
 	CStoryElement_Settings* set = GetSettingsFromScriptList(scr);
 	return set->title;
 }
 
 //概要取得
-char* CStoryList::GetBrief(SScriptElementList& scr)
+TCHAR* CStoryList::GetBrief(SScriptElementList& scr)
 {
 	CStoryElement_Settings* set = GetSettingsFromScriptList(scr);
 	return set->brief;
@@ -198,7 +198,7 @@ int* CStoryList::GetCharacters(SScriptElementList& scr)
 }
 
 //エラー文字列取得
-char* CStoryList::GetFirstError(SScriptElementList& scr)
+TCHAR* CStoryList::GetFirstError(SScriptElementList& scr)
 {
 	SScriptElementList::iterator i =scr.begin();
 	SScriptElementList::iterator ie=scr.end();
@@ -232,29 +232,29 @@ CStoryElement_Settings* CStoryList::GetSettingsFromScriptList(SScriptElementList
 /*!
 *	指定インデックスのアイコンファイル名を取得する
 */
-void CStoryList::GetStoryIconPath(UINT index,char* dst)
+void CStoryList::GetStoryIconPath(UINT index,TCHAR* dst)
 {
 	if(!dst)return;
 	if(index>=list.size()){
-		sprintf(dst,_T("aho"));
+		_stprintf(dst,_T("aho"));
 		return;
 	}
 
-	sprintf(dst,_T("%s\\%s"),list[index].dir,list[index].icon);
+	_stprintf(dst,_T("%s\\%s"),list[index].dir,list[index].icon);
 }
 
 /*!
 *	指定インデックスのプレビューファイル名を取得する
 */
-void CStoryList::GetStoryPreviewPath(UINT index,char* dst)
+void CStoryList::GetStoryPreviewPath(UINT index,TCHAR* dst)
 {
 	if(!dst)return;
 	if(index>=list.size()){
-		sprintf(dst,_T("aho"));
+		_stprintf(dst,_T("aho"));
 		return;
 	}
 
-	sprintf(dst,_T("%s\\%s"),list[index].dir,list[index].preview);
+	_stprintf(dst,_T("%s\\%s"),list[index].dir,list[index].preview);
 }
 
 
@@ -270,30 +270,30 @@ void CStoryList::CStoryInfo::Clear()
 	SetPreview(NULL);
 }
 
-void CStoryList::CStoryInfo::SetDir(char *s,char *s2)
+void CStoryList::CStoryInfo::SetDir(TCHAR *s,TCHAR *s2)
 {
 	if(!s){
-		strcpy(dir,_T(""));
+		_tcscpy(dir,_T(""));
 		return;
 	}
 
-	sprintf(dir,_T("story\\%s\\%s"),s,s2);
+	_stprintf(dir,_T("story\\%s\\%s"),s,s2);
 }
 
-void CStoryList::CStoryInfo::SetName(char *s)
+void CStoryList::CStoryInfo::SetName(TCHAR *s)
 {
 	if(!s){
-		strcpy(name,_T("untitled"));
+		_tcscpy(name,_T("untitled"));
 		return;
 	}
 
-	strcpy(name,s);
+	_tcscpy(name,s);
 }
 
-void CStoryList::CStoryInfo::SetBrief(char *s)
+void CStoryList::CStoryInfo::SetBrief(TCHAR *s)
 {
 	if(!s){
-		strcpy(brief,_T("- no information -"));
+		_tcscpy(brief,_T("- no information -"));
 		return;
 	}
 
@@ -308,28 +308,28 @@ void CStoryList::CStoryInfo::SetBrief(char *s)
 		pos++;
 		brief[pos] = '\0';
 	}
-	else strcpy(brief,s);
+	else _tcscpy(brief,s);
 }
 
-void CStoryList::CStoryInfo::SetIcon(char *s)
+void CStoryList::CStoryInfo::SetIcon(TCHAR *s)
 {
 	if(!s){
-		strcpy(icon,_T(""));
+		_tcscpy(icon,_T(""));
 		return;
 	}
-	strcpy(icon,s);
+	_tcscpy(icon,s);
 }
 
-void CStoryList::CStoryInfo::SetPreview(char *s)
+void CStoryList::CStoryInfo::SetPreview(TCHAR *s)
 {
 	if(!s){
-		strcpy(preview,_T(""));
+		_tcscpy(preview,_T(""));
 		return;
 	}
-	strcpy(preview,s);
+	_tcscpy(preview,s);
 }
 
-void CStoryList::CStoryInfo::Setup(CStoryElement_Settings *settings,char *dir1,char* dir2)
+void CStoryList::CStoryInfo::Setup(CStoryElement_Settings *settings,TCHAR *dir1,TCHAR* dir2)
 {
 	SetDir(dir1,dir2);
 	SetName(settings->title);

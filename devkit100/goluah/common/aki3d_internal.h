@@ -15,17 +15,17 @@ class CTexManager
 public:
 	CTexManager(){ m_texPath=NULL; }
 	~CTexManager(){Destroy();}
-	void SetBasePath(const char *path);
+	void SetBasePath(const TCHAR *path);
 
-	LPDIRECT3DTEXTURE9 LoadTexture(const char *filename);
+	LPDIRECT3DTEXTURE9 LoadTexture(const TCHAR *filename);
 	void UnloadTexture(LPDIRECT3DTEXTURE9 ptex);
 
 protected:
 	void Destroy();
 
-	char*							m_texPath;
+	TCHAR*							m_texPath;
 	std::vector<LPDIRECT3DTEXTURE9>	m_texList;
-	std::vector<char*>				m_texNameList;
+	std::vector<TCHAR*>				m_texNameList;
 	std::vector<UINT>				m_texRefcntList;
 };
 
@@ -41,7 +41,7 @@ public:
 	CTristripBody();
 	~CTristripBody(){Destroy();}
 
-	void Create(UINT num_node , const char* tex_filename);
+	void Create(UINT num_node , const TCHAR* tex_filename);
 	void Destroy();
 	void Render(D3DMATRIX *ltm = NULL);
 
@@ -78,7 +78,7 @@ public:
 	CParticleBody();
 	~CParticleBody(){Destroy();}
 
-	void Create(UINT num_node , const char* tex_filename);
+	void Create(UINT num_node , const TCHAR* tex_filename);
 	void Destroy();
 	void Render(D3DMATRIX *ltm = NULL);
 
@@ -120,7 +120,7 @@ public:
 	CFlatBoardsBody();
 	~CFlatBoardsBody(){Destroy();}
 	
-	void Create(UINT num_node , const char* tex_filename);
+	void Create(UINT num_node , const TCHAR* tex_filename);
 	void Destroy();
 	void Render(D3DMATRIX *ltm = NULL);
 
@@ -153,7 +153,7 @@ public:
 	CMeshBody();
 	~CMeshBody(){Destroy();}
 
-	void Create(const char* x_filename);
+	void Create(const TCHAR* x_filename);
 	void Destroy();
 	void Render(D3DMATRIX *ltm = NULL);
 

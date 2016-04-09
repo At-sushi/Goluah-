@@ -10,7 +10,7 @@
 CTexManager *tex_man = NULL;
 
 //テクスチャ読み込み
-LPDIRECT3DTEXTURE9 CTexManager::LoadTexture(const char* filename)
+LPDIRECT3DTEXTURE9 CTexManager::LoadTexture(const TCHAR* filename)
 {
 	if(!filename)return NULL;
 	LPDIRECT3DDEVICE9 d3ddev = aki3d.GetD3DDev();
@@ -28,11 +28,11 @@ LPDIRECT3DTEXTURE9 CTexManager::LoadTexture(const char* filename)
 	}
 
 	//ファイル名準備
-	char *path = new char[MAX_PATH];
+	TCHAR *path = new TCHAR[MAX_PATH];
 	if(m_texPath)
-		sprintf(path,_T("%s\\%s"),m_texPath,filename);
+		_stprintf(path,_T("%s\\%s"),m_texPath,filename);
 	else
-		strcpy(path,filename);
+		_tcscpy(path,filename);
 
 	OutputDebugString(_T("aki3d , load texture  "));
 	OutputDebugString( path );
@@ -48,8 +48,8 @@ LPDIRECT3DTEXTURE9 CTexManager::LoadTexture(const char* filename)
 
 	//リストに追加
 	m_texList.push_back(ret);
-	char* newTexName = new char [strlen(filename)+1];
-	strcpy(newTexName,filename);
+	TCHAR* newTexName = new TCHAR [strlen(filename)+1];
+	_tcscpy(newTexName,filename);
 	m_texNameList.push_back(newTexName);
 	m_texRefcntList.push_back(1);
 
@@ -89,7 +89,7 @@ void CTexManager::Destroy()
 		m_texList.erase(itex);
 	}
 	while(m_texNameList.size()!=0){
-		std::vector<char*>::iterator iname = m_texNameList.begin();
+		std::vector<TCHAR*>::iterator iname = m_texNameList.begin();
 		DELETEARRAY( (*iname) );
 		m_texNameList.erase(iname);
 	}
@@ -99,14 +99,14 @@ void CTexManager::Destroy()
 }
 
 //ベースパス設定
-void CTexManager::SetBasePath(const char *path)
+void CTexManager::SetBasePath(const TCHAR *path)
 {
 	if(!path)return;
 	if(!m_texPath){
-		m_texPath = new char [MAX_PATH];
+		m_texPath = new TCHAR [MAX_PATH];
 	}
 
-	strcpy(m_texPath,path);
+	_tcscpy(m_texPath,path);
 }
 
 
@@ -136,7 +136,7 @@ CTristripBody::CTristripBody()
 /*------------------------------------------------------------------
 	生成
 --------------------------------------------------------------------*/
-void CTristripBody::Create(UINT num_node , const char* tex_filename)
+void CTristripBody::Create(UINT num_node , const TCHAR* tex_filename)
 {
 	Destroy();
 	if(num_node<2)return;
@@ -309,7 +309,7 @@ CParticleBody::CParticleBody()
 /*------------------------------------------------------------------
 	生成
 --------------------------------------------------------------------*/
-void CParticleBody::Create(UINT num_tubu , const char *tex_filename)
+void CParticleBody::Create(UINT num_tubu , const TCHAR *tex_filename)
 {
 	Destroy();
 	tex = tex_man->LoadTexture(tex_filename);
@@ -601,7 +601,7 @@ CFlatBoardsBody::CFlatBoardsBody()
 	zenka = FALSE;
 }
 
-void CFlatBoardsBody::Create(UINT num_node , const char* tex_filename)
+void CFlatBoardsBody::Create(UINT num_node , const TCHAR* tex_filename)
 {
 	Destroy();
 
@@ -779,7 +779,7 @@ CMeshBody::CMeshBody()
 /*------------------------------------------------------------------
 	生成
 --------------------------------------------------------------------*/
-void CMeshBody::Create(const char* x_filename)
+void CMeshBody::Create(const TCHAR* x_filename)
 {
 	if(!x_filename)return;
 	LPDIRECT3DDEVICE9 d3ddev = aki3d.GetD3DDev();

@@ -38,8 +38,8 @@ const BYTE cmp_sig[] = _T("GCDC");
 */
 BOOL CGCDHandler::GCDLoadDlg(GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames)
 {
-	char filepath[256]=_T("");
-	char filename[64];
+	TCHAR filepath[256]=_T("");
+	TCHAR filename[64];
 	OPENFILENAME ofn;
 	ZeroMemory(&ofn,sizeof(OPENFILENAME));
 	ofn.lStructSize = sizeof(OPENFILENAME);
@@ -74,7 +74,7 @@ BOOL CGCDHandler::GCDLoadDlg(GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,
 	戻0で正常終了
 -------------------------------------------------------------------------*/
 
-int CGCDHandler::GCDLoad(char *filename,LPVOID pcdat,LPVOID prdat,LPVOID phdat,LPVOID pfhnames,DWORD version)
+int CGCDHandler::GCDLoad(TCHAR *filename,LPVOID pcdat,LPVOID prdat,LPVOID phdat,LPVOID pfhnames,DWORD version)
 {
 	//ファイルオープン
 	HANDLE hFile = CreateFile(filename,
@@ -315,7 +315,7 @@ int CGCDHandler::GCDLoad070(HANDLE hFile,LPVOID pcdat,LPVOID prdat,LPVOID phdat,
 
 	戻0で正常終了
 -------------------------------------------------------------------------*/
-int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVOID phdat,LPVOID pfhnames,DWORD version)
+int CGCDHandler::GCDLoadCompressed(TCHAR *filename,LPVOID pcdat,LPVOID prdat,LPVOID phdat,LPVOID pfhnames,DWORD version)
 {
 	BYTE* Buffer = NULL;
 	DWORD size = 0;
@@ -576,8 +576,8 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 -------------------------------------------------------------------------*/
 BOOL CGCDHandler::GCDSaveDlg(GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames)
 {
-	char filepath[256]=_T("");
-	char filename[64];
+	TCHAR filepath[256]=_T("");
+	TCHAR filename[64];
 	OPENFILENAME ofn;
 	ZeroMemory(&ofn,sizeof(OPENFILENAME));
 	ofn.lStructSize = sizeof(OPENFILENAME);
@@ -625,7 +625,7 @@ BOOL CGCDHandler::GCDSaveDlg(GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,
 	指定ファイルへ指定バッファのデータを保存
 	戻0が正常終了
 -------------------------------------------------------------------------*/
-int CGCDHandler::GCDSave(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames)
+int CGCDHandler::GCDSave(TCHAR *filename,GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames)
 {
 	GCD_FILEHEADER	fhed;
 	GCD_CELLNAMES	fh_names;
@@ -686,7 +686,7 @@ int CGCDHandler::GCDSave(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HAN
 	指定ファイルへ指定バッファのデータをver0.70形式に変換して保存
 	戻0が正常終了
 -------------------------------------------------------------------------*/
-int CGCDHandler::GCDSave070(char *filename,GCD_CELL2 *pcdat090,GCD_RECT *prdat,GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames)
+int CGCDHandler::GCDSave070(TCHAR *filename,GCD_CELL2 *pcdat090,GCD_RECT *prdat,GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames)
 {
 	//形式変換（CELL）
 	GCD_CELL2_070 *pcdat070 = new GCD_CELL2_070[GCDMAX_CELLS];
@@ -764,8 +764,8 @@ int CGCDHandler::GCDSave070(char *filename,GCD_CELL2 *pcdat090,GCD_RECT *prdat,G
 BOOL CGCDHandler::GCDSaveHeader(GCD_CELLNAMES *pfhnames)
 {
 	//保存するファイルを選択させる
-	char filepath[256]=_T("");
-	char filename[64];
+	TCHAR filepath[256]=_T("");
+	TCHAR filename[64];
 	OPENFILENAME ofn;
 	ZeroMemory(&ofn,sizeof(OPENFILENAME));
 	ofn.lStructSize = sizeof(OPENFILENAME);
@@ -799,13 +799,13 @@ BOOL CGCDHandler::GCDSaveHeader(GCD_CELLNAMES *pfhnames)
 		return(FALSE);
 	}
 
-	char write[256];
+	TCHAR write[256];
 	DWORD br;
 	DWORD ret;
 	for(DWORD i=0;i<GCDMAX_CELLS;i++){
 		if(strlen(pfhnames->name[i]) != 0){
-			sprintf(write,_T("#define CELL_%s %d\n"),pfhnames->name[i],i);
-			ret=WriteFile(hFile,write,(DWORD)sizeof(char)*strlen(write),&br,NULL);
+			_stprintf(write,_T("#define CELL_%s %d\n"),pfhnames->name[i],i);
+			ret=WriteFile(hFile,write,(DWORD)sizeof(TCHAR)*strlen(write),&br,NULL);
 		}
 	}
 
@@ -817,7 +817,7 @@ BOOL CGCDHandler::GCDSaveHeader(GCD_CELLNAMES *pfhnames)
 	指定ファイルへ指定バッファのデータを圧縮して保存
 	戻0が正常終了
 -------------------------------------------------------------------------*/
-int CGCDHandler::GCDSaveCompressed(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames)
+int CGCDHandler::GCDSaveCompressed(TCHAR *filename,GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames)
 {
 	GCD_COMP_FILEHEADER	fhed;
 	GCD_COMP_DATAHEADER dhed;
@@ -1290,7 +1290,7 @@ CGCDHandler::CGCDHandler()
 	読み込み
 	0が正常終了
 -------------------------------------------------------------------------*/
-int CGCDHandler::Load(char *filename,BOOL hload,BOOL nload)
+int CGCDHandler::Load(TCHAR *filename,BOOL hload,BOOL nload)
 {
 	Destroy();
 

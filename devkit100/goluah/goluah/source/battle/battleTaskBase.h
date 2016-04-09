@@ -82,8 +82,8 @@ public:
 	//パラメータ設定・取得系
 	DWORD GetWinCount(DWORD tid);								//!< 勝利カウント数を取得
 	DWORD GetStrikerCount(DWORD tid);							//!< 残りストライカー数を取得
-	char* GetKatiSerif();										//!< 勝利台詞を取得
-	void SetKatiSerif(DWORD tid,char *serif);					//!< 勝利台詞を設定
+	TCHAR* GetKatiSerif();										//!< 勝利台詞を取得
+	void SetKatiSerif(DWORD tid,TCHAR *serif);					//!< 勝利台詞を設定
 	void* GetActiveCharacterInfo(DWORD tid);					//!< 「アクティブ」なキャラクタの取得
 	CDI_CHARACTERINFO2* GetCDICharacterInfo(DWORD tid,DWORD index){return &m_cinfo[tid][index];}
 	SDI_STAGEINFO2* GetSDIStageInfo(){return &m_sinfo;}			
@@ -115,8 +115,8 @@ public:
 
 	//DLLエラー処理
 	virtual void Notify_Exception(CGObject *obj,DWORD msgid,DWORD prm);	//!< DLLが例外を起こしたときの処理
-	static const char* MessageID2String(DWORD id);						//!< オブジェクトメッセージのIDを、文字列に変換
-	const char* GetBattleStateString();									//!< 試合状態IDを、文字列に変換して返す
+	static const TCHAR* MessageID2String(DWORD id);						//!< オブジェクトメッセージのIDを、文字列に変換
+	const TCHAR* GetBattleStateString();									//!< 試合状態IDを、文字列に変換して返す
 	virtual void SetCurrentDLLID(BYTE dllID)	{m_crnt_dllid=dllID;}	//!< CGObjectの生成時に呼ばれ、DLLのIDを返す
 	virtual void SetCurrentDLLIDSystem()		{m_crnt_dllid=0;}		//!< CGObjectがDLLの関数を呼び出す前後に呼ばれ、現在のDLLIDを設定する
 

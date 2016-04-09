@@ -56,7 +56,7 @@ public:
 	virtual BOOL   IsNetwork(){return FALSE;}
 	virtual BOOL   IsLocal(BYTE dllid){return TRUE;}
 
-	//void SetKatiSerif(DWORD tid,char *serif);
+	//void SetKatiSerif(DWORD tid,TCHAR *serif);
 	virtual DWORD MessageFromObject(DWORD oid,DWORD msg,DWORD prm);
 	virtual BOOL CatchObject(DWORD eoid,LPVOID cy);
 	virtual void AddEffect(DWORD efctid,int prm1,int prm2,int prm3=0);
@@ -109,7 +109,7 @@ protected:
 //	DWORD striker_lastcall[2];	//ストライカーを最後に呼んだのはいつか
 
 	//!デバッグテキスト表示用バッファ
-	char *debugmsgbuff;
+	TCHAR *debugmsgbuff;
 
 	//!表示中心
 	double disp_center_x,disp_center_y;

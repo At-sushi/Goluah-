@@ -659,7 +659,7 @@ void CTCharacterRing::InitializeSub()
 
 void CTCharacterRing::InitializeIcons()
 {
-	char *filepath = new char [MAX_PATH];
+	TCHAR *filepath = new TCHAR [MAX_PATH];
 
 	//staticから選択されていた値復帰
 	m_selected_ring = (m_instanceCount==0) ? sm_selected_ring1p : sm_selected_ring2p;
@@ -670,7 +670,7 @@ void CTCharacterRing::InitializeIcons()
 		m_dds_miniface = new MYSURFACE* [g_charlist.GetCharacterCount()];
 		for(int i=0;i<g_charlist.GetCharacterCount();i++){
 			m_dds_miniface[i]=NULL;
-			sprintf(filepath,_T("%s\\face1"),g_charlist.GetCharacterDir(i));
+			_stprintf(filepath,_T("%s\\face1"),g_charlist.GetCharacterDir(i));
 			m_dds_miniface[i] = g_draw.CreateSurfaceFrom256Image(filepath);
 		}
 	}
@@ -964,7 +964,7 @@ void CTCharacterBigFace::Set(int cid,DWORD color,int alt)
 	/*
 	MYSURFACE **tgt = &m_dds[m_selected_num];
 	BOOL needReload = TRUE;
-	char *filepath,*palpath;
+	TCHAR *filepath,*palpath;
 
 	if(*tgt!=NULL){
 		if(m_cindex[m_selected_num]==cid && m_color[m_selected_num]==color && m_alt[m_selected_num]==alt){
@@ -983,12 +983,12 @@ void CTCharacterBigFace::Set(int cid,DWORD color,int alt)
 		if(*tgt){
 			RELSURFACE(*tgt);
 		}
-		filepath = new char[MAX_PATH];
-		palpath = new char[MAX_PATH];
-		char altstr[3]={'\0','\0'};
+		filepath = new TCHAR[MAX_PATH];
+		palpath = new TCHAR[MAX_PATH];
+		TCHAR altstr[3]={'\0','\0'};
 		if(alt!=0)altstr[0]='a'+alt-1;
-		sprintf(filepath,_T("%s\\face2%s.bmp"),g_charlist.GetCharacterDir(cid) ,altstr);
-		sprintf(palpath,_T("%s\\pal%d.bmp"),g_charlist.GetCharacterDir(cid),color);
+		_stprintf(filepath,_T("%s\\face2%s.bmp"),g_charlist.GetCharacterDir(cid) ,altstr);
+		_stprintf(palpath,_T("%s\\pal%d.bmp"),g_charlist.GetCharacterDir(cid),color);
 		*tgt = g_draw.CreateSurfaceFrom256BMP(filepath,palpath);
 		delete [] filepath;
 		delete [] palpath;
@@ -1021,7 +1021,7 @@ void CTCharacterBigFace::SetTemporary(int cid,DWORD color,int alt)
 	}
 /*
 	MYSURFACE **tgt = &m_dds[m_selected_num];
-	char *filepath,*palpath;
+	TCHAR *filepath,*palpath;
 
 	if(m_cindex[m_selected_num]==cid && m_color[m_selected_num]==color && m_alt[m_selected_num]==alt){
 		//同じモノが既にロードされている・・・ハズ
@@ -1035,12 +1035,12 @@ void CTCharacterBigFace::SetTemporary(int cid,DWORD color,int alt)
 		m_color[m_selected_num] = color;
 		return;
 	}
-	filepath = new char[MAX_PATH];
-	palpath = new char[MAX_PATH];
-	char altstr[3]={'\0','\0'};
+	filepath = new TCHAR[MAX_PATH];
+	palpath = new TCHAR[MAX_PATH];
+	TCHAR altstr[3]={'\0','\0'};
 	if(alt!=0)altstr[0]='a'+alt-1;
-	sprintf(filepath,_T("%s\\face2%s.bmp"),g_charlist.GetCharacterDir(cid),altstr );
-	sprintf(palpath,_T("%s\\pal%d.bmp"),g_charlist.GetCharacterDir(cid),color);
+	_stprintf(filepath,_T("%s\\face2%s.bmp"),g_charlist.GetCharacterDir(cid),altstr );
+	_stprintf(palpath,_T("%s\\pal%d.bmp"),g_charlist.GetCharacterDir(cid),color);
 	*tgt = g_draw.CreateSurfaceFrom256BMP(filepath,palpath);
 	delete [] filepath;
 	delete [] palpath;
@@ -1346,18 +1346,18 @@ void CTCharacterSelectBelt::UpdateText()
 {
 	if(m_com){
 		if(m_current_key>=0){
-			sprintf(m_disp_str,_T("COM/Player%d"),m_current_key+1);
+			_stprintf(m_disp_str,_T("COM/Player%d"),m_current_key+1);
 		}
 		else{
-			sprintf(m_disp_str,_T("COM/Wait"),m_current_key+1);
+			_stprintf(m_disp_str,_T("COM/Wait"),m_current_key+1);
 		}
 	}
 	else{
-		sprintf(m_disp_str,_T("Player%d"),m_current_key+1);
+		_stprintf(m_disp_str,_T("Player%d"),m_current_key+1);
 	}
-//	char *p = g_charlist.GetCharacterDir(0, m_ringIndex);
+//	TCHAR *p = g_charlist.GetCharacterDir(0, m_ringIndex);
 
-	sprintf(m_disp_str2, _T("%s"), g_charlist.GetRingName(m_ringIndex));
+	_stprintf(m_disp_str2, _T("%s"), g_charlist.GetRingName(m_ringIndex));
 }
 
 /*-----------------------------------------------------------
@@ -1376,9 +1376,9 @@ void CTCharacterSelectBelt::SetCom(BOOL com)
 	m_com = com;
 }
 
-void CTCharacterSelectBelt::SetKey(char idx)
+void CTCharacterSelectBelt::SetKey(TCHAR idx)
 {
-	char prev_key = m_current_key;
+	TCHAR prev_key = m_current_key;
 	m_current_key = idx;
 
 	if(prev_key != m_current_key){
@@ -1666,8 +1666,8 @@ void CTStageSelecter::LoadBMP()
 		RELSURFACE(m_dds);
 	}
 
-	char *filepath = new char[MAX_PATH];
-	sprintf(filepath,_T("%s\\preview"),g_stagelist.GetStageDir( GetSelection() ) );
+	TCHAR *filepath = new TCHAR[MAX_PATH];
+	_stprintf(filepath,_T("%s\\preview"),g_stagelist.GetStageDir( GetSelection() ) );
 	m_dds = g_draw.CreateSurfaceFrom256Image(filepath);
 	delete [] filepath;
 }
@@ -1678,7 +1678,7 @@ void CTStageSelecter::LoadBMP()
 -------------------------------------------------------------*/
 void CTStageSelecter::UpdateText()
 {
-	sprintf(m_disp_str,_T("%s"),
+	_stprintf(m_disp_str,_T("%s"),
 		g_stagelist.GetStageDir( GetSelection() )
 		);
 
@@ -1817,7 +1817,7 @@ void CTConditionSelecter::Initialize()
 	m_lineWidth = 2.0f;				//色つきライン太さ
 	m_base_y = 240.0f;
 	m_height_base = 380.0f;
-	sprintf(m_disp_str,_T("SETTINGS"));
+	_stprintf(m_disp_str,_T("SETTINGS"));
 
 	for(int j=0;j<2;j++){
 		for(int i=0;i<MAXNUM_TEAM;i++)
@@ -2004,15 +2004,15 @@ void CTConditionSelecter::Draw()
 
 	if(m_ratio<0.01f)return;
 
-	char *tstr = new char[64];
+	TCHAR *tstr = new TCHAR[64];
 
 	//対戦形式
-	char *typenames[]={
+	TCHAR *typenames[]={
 		_T("Cooperation"),
 		_T("Changeable"),
 		_T("Unchangeable")
 	};
-	sprintf(tstr,_T("Mode : %s"),typenames[m_type-1]);
+	_stprintf(tstr,_T("Mode : %s"),typenames[m_type-1]);
 	g_system.DrawBMPTextEx(x,y,0.0f,
 				tstr,
 				TxtCol(0),txt_xr,txt_yr,SYSBMPTXT_PROP);
@@ -2020,21 +2020,21 @@ void CTConditionSelecter::Draw()
 	//制限時間
 	if(m_type==TAISENKEISIKI_GOCYAMAZE){
 		if(m_limit_time[m_limit_time_index]>0)
-			sprintf(tstr,_T("Time : %d"),m_limit_time[m_limit_time_index]);
+			_stprintf(tstr,_T("Time : %d"),m_limit_time[m_limit_time_index]);
 		else
-			sprintf(tstr,_T("Time : -infinity-"));
+			_stprintf(tstr,_T("Time : -infinity-"));
 	}
 	else
-		sprintf(tstr,_T("Time : -no use-"));
+		_stprintf(tstr,_T("Time : -no use-"));
 	g_system.DrawBMPTextEx(x+300.0f,y,0.0f,
 				tstr,
 				TxtCol(1),txt_xr,txt_yr,SYSBMPTXT_PROP);
 	y += ystep;
 	y += ystep;
 
-	sprintf(tstr,_T("TEAM1"));
+	_stprintf(tstr,_T("TEAM1"));
 	g_system.DrawBMPTextEx(x,y,0.0f,tstr,0xFF5237FF,txt_xr,txt_yr,SYSBMPTXT_PROP);
-	sprintf(tstr,_T("TEAM2"));
+	_stprintf(tstr,_T("TEAM2"));
 	g_system.DrawBMPTextEx(x+300.0f,y,0.0f,tstr,0xFFFF3752,txt_xr,txt_yr,SYSBMPTXT_PROP);
 	y += ystep;
 
@@ -2042,17 +2042,17 @@ void CTConditionSelecter::Draw()
 	for(j=0;j<2;j++){
 		for(i=0;i<MAXNUM_TEAM;i++)
 		{
-			sprintf(tstr,_T("%d : "),i+1);
+			_stprintf(tstr,_T("%d : "),i+1);
 			if(m_assign[j][i]&CASSIGN_SPECIFIC)//特別
 			{
 				switch(m_assign[j][i]){
-				case CASSIGN_COM:	sprintf(&tstr[strlen(tstr)],_T("Computer"));break;
-				case CASSIGN_NONE:	sprintf(&tstr[strlen(tstr)],_T("--None--"));break;
-				default:			sprintf(&tstr[strlen(tstr)],_T("Error?"));
+				case CASSIGN_COM:	_stprintf(&tstr[strlen(tstr)],_T("Computer"));break;
+				case CASSIGN_NONE:	_stprintf(&tstr[strlen(tstr)],_T("--None--"));break;
+				default:			_stprintf(&tstr[strlen(tstr)],_T("Error?"));
 				}
 			}
 			else{
-				sprintf(&tstr[strlen(tstr)],_T("Player%d"),m_assign[j][i]+1);
+				_stprintf(&tstr[strlen(tstr)],_T("Player%d"),m_assign[j][i]+1);
 			}
 			if(j==0)	//TEAM1
 				shiftX=40.0f;
@@ -2100,7 +2100,7 @@ void CTConditionSelecter::Check()
 			}
 		}
 		if(!ok){
-			sprintf(m_str_error,_T("Error , All None"));
+			_stprintf(m_str_error,_T("Error , All None"));
 			m_ok=FALSE;
 			return;
 		}
@@ -2118,7 +2118,7 @@ void CTConditionSelecter::Check()
 				}
 			}
 			if(cnt>1){
-				sprintf(m_str_error,_T("Error , Player%d Duplication"),k+1);
+				_stprintf(m_str_error,_T("Error , Player%d Duplication"),k+1);
 				m_ok=FALSE;
 				return;
 			}
@@ -2136,7 +2136,7 @@ void CTConditionSelecter::Check()
 				}
 			}
 			if(belong[0] && belong[1]){
-				sprintf(m_str_error,_T("Error , Player%d is Betrayer"),k+1);//裏切り者ハケーン
+				_stprintf(m_str_error,_T("Error , Player%d is Betrayer"),k+1);//裏切り者ハケーン
 				m_ok=FALSE;
 				return;
 			}

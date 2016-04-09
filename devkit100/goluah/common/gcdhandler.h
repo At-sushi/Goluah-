@@ -35,7 +35,7 @@ static BOOL GCDLoadDlg(GCD_CELL2 *pcdat,GCD_RECT *prdat,
 #endif//GCD_EDITER
 
 //!GCDファイルを読み込み
-static int GCDLoad(char *filename,				//!< [in] 読み込むファイル名
+static int GCDLoad(TCHAR *filename,				//!< [in] 読み込むファイル名
 				   LPVOID pcdat,				//!< [out] セルデータ読込先バッファ
 				   LPVOID prdat,				//!< [out] 切り取り矩形データ読込先バッファ 
 				   LPVOID phdat,				//!< [out] あたり判定矩形読込先バッファ
@@ -59,7 +59,7 @@ static int GCDLoad090(HANDLE hFile,
 				  DWORD version=GCD_VERSION		//!< [in] 指定された読込先バッファがどのバージョンの構造体で用意されているか
 				  );
 //!圧縮済みファイルを読み込み
-static int GCDLoadCompressed(char *filename,		//!< [in] 読み込むファイル名
+static int GCDLoadCompressed(TCHAR *filename,		//!< [in] 読み込むファイル名
 				   LPVOID pcdat,				//!< [out] セルデータ読込先バッファ
 				   LPVOID prdat,				//!< [out] 切り取り矩形データ読込先バッファ 
 				   LPVOID phdat,				//!< [out] あたり判定矩形読込先バッファ
@@ -72,12 +72,12 @@ public:
 #ifdef GCD_EDITER
 static BOOL GCDSaveDlg(GCD_CELL2 *pcdat,GCD_RECT *prdat,
 				GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames=NULL);
-static int GCDSave(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prdat,
+static int GCDSave(TCHAR *filename,GCD_CELL2 *pcdat,GCD_RECT *prdat,
 			 GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames=NULL);
-static int GCDSave070(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prdat,
+static int GCDSave070(TCHAR *filename,GCD_CELL2 *pcdat,GCD_RECT *prdat,
 			 GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames=NULL);
 static BOOL GCDSaveHeader(GCD_CELLNAMES *pfhnames);
-static int GCDSaveCompressed(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prdat,
+static int GCDSaveCompressed(TCHAR *filename,GCD_CELL2 *pcdat,GCD_RECT *prdat,
 			 GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames=NULL);
 #endif//GCD_EDITER
 
@@ -99,7 +99,7 @@ public:
 	CGCDHandler();
 	~CGCDHandler(){Destroy();}
 
-	int  Load(char *filename,BOOL hload,BOOL nload=FALSE);
+	int  Load(TCHAR *filename,BOOL hload,BOOL nload=FALSE);
 	void Destroy();
 	void Diet();
 	
@@ -109,7 +109,7 @@ public:
 	GCD_RECT*  GetRect(DWORD index){return &m_rdat[index];}
 	GCD_CELL2* GetCell(DWORD index){return &m_cdat[index];}
 	GCD_HANTEI* GetHantei(DWORD index){return &m_hdat[index];}
-	char* GetName(DWORD index){return m_names->name[index];}
+	TCHAR* GetName(DWORD index){return m_names->name[index];}
 
 	#ifdef GCD_EDITER
 	BOOL Save();

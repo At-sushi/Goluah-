@@ -19,8 +19,8 @@
 */
 struct CSL_STAGEINFO
 {
-	char dir[64];				//!< どのディレクトリにあるか
-	char name[32];				//!< 名前はなんというのか
+	TCHAR dir[64];				//!< どのディレクトリにあるか
+	TCHAR name[32];				//!< 名前はなんというのか
 	DWORD ver;					//!< DLLが返したバージョン
 };
 typedef std::vector<CSL_STAGEINFO> CSL_STAGEINFOLIST;	//!< ステージ情報配列(STL)
@@ -32,7 +32,7 @@ typedef std::vector<CSL_STAGEINFO> CSL_STAGEINFOLIST;	//!< ステージ情報配列(STL)
 */
 struct CSL_DAMEINFO
 {
-	char dir[64];				//!< どのディレクトリにあるか
+	TCHAR dir[64];				//!< どのディレクトリにあるか
 	DWORD damereas;				//!< 駄目な理由
 	DWORD ver;					//!< DLLが返したバージョン
 };
@@ -51,7 +51,7 @@ typedef std::vector<CSL_DAMEINFO> CSL_DAMEINFOLIST;	//!< 認証失敗ステージ配列(ST
 */
 struct CSL_RINGINFO
 {
-	char name[32];						//!< リング名(=表示名)
+	TCHAR name[32];						//!< リング名(=表示名)
 	std::vector<DWORD> ring2serial;		//!< リング内インデックス→全体インデックス
 };
 typedef std::vector<CSL_RINGINFO> CSL_STAGERINGLIST;	//!< ステージリング配列(STL)
@@ -75,13 +75,13 @@ public:
 	void Destroy();					//!< リストを破棄
 
 	int GetStageCount();			//!< 検索されたステージ数を返す
-	char* GetStageDir(int index);	//!< ステージのディレクトリを返す
-	char* GetStageName(int index);	//!< ステージの名前を返す
+	TCHAR* GetStageDir(int index);	//!< ステージのディレクトリを返す
+	TCHAR* GetStageName(int index);	//!< ステージの名前を返す
 	DWORD GetStageVer(int index);	//!< ステージのバージョンを返す
-	int FindStage(char *name);		//!< 名前で検索（なかった場合-1）
+	int FindStage(TCHAR *name);		//!< 名前で検索（なかった場合-1）
 
 	int GetDameStageCount();						//!< 検索に失敗したステージ数を返す
-	char* GetDameStageDir(int index);				//!< 失敗理由を文字列で返す
+	TCHAR* GetDameStageDir(int index);				//!< 失敗理由を文字列で返す
 	DWORD GetDameStageReason(int index);			//!< 検索失敗理由を理由ID値で返す
 	DWORD GetDameStageVer(int index);				//!< 検索失敗ステージ・バージョンを返す
 
@@ -92,7 +92,7 @@ public:
 private:
 	void InitializeRingList();						//!< Initializeから呼ばれる
 	void InitializeRing(DWORD index);				//!< Initializeから呼ばれる
-	BOOL VerifyStageDir(char *dir,DWORD ring);		//!< Initializeから呼ばれる
+	BOOL VerifyStageDir(TCHAR *dir,DWORD ring);		//!< Initializeから呼ばれる
 
 private:
 	CSL_STAGEINFOLIST infolist;		//!< ステージ情報リスト

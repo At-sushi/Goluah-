@@ -51,9 +51,9 @@ public:
 	static CScriptLoader* Create();
 	virtual ~CScriptLoader(){}
 
-	virtual BOOL LoadFile(char *base_dir,char *filename,UINT include_count=0) = 0;
+	virtual BOOL LoadFile(TCHAR *base_dir,TCHAR *filename,UINT include_count=0) = 0;
 	virtual void ReplaceAlias(CAliasList *alist) = 0;
-	virtual char*   GetLine(int index) = 0;
+	virtual TCHAR*   GetLine(int index) = 0;
 	virtual UINT	GetLineNum() = 0;
 };
 
@@ -70,8 +70,8 @@ public:
 	static CAliasList* Create();
 	virtual ~CAliasList(){}
 
-	virtual BOOL LoadFile(char* filename) = 0;
-	virtual void AddAlias(char* str,char* stralias) = 0;
+	virtual BOOL LoadFile(TCHAR* filename) = 0;
+	virtual void AddAlias(TCHAR* str,TCHAR* stralias) = 0;
 };
 
 
@@ -111,13 +111,13 @@ public:
 	 3.コメント除去
 	 4.include処理
 	*/
-	BOOL LoadFile(char *base_dir,char *filename,UINT include_count=0);
+	BOOL LoadFile(TCHAR *base_dir,TCHAR *filename,UINT include_count=0);
 
 	//!別名置換処理
 	void ReplaceAlias(CAliasList *alist);
 
 	//!指定行取得
-	char*   GetLine(int index);
+	TCHAR*   GetLine(int index);
 	CString GetLineC(int index);
 	UINT	GetLineNum(){return (UINT)list.size();}
 
@@ -125,7 +125,7 @@ public:
 	/*!
 		@brief デバッグ用。
 		保持しているリストをファイルに出力する*/
-	void DebugOutput(char *filename);
+	void DebugOutput(TCHAR *filename);
 
 	//!ソート用比較関数
 	static bool compline(OneStringLine line1,OneStringLine line2)
@@ -166,7 +166,7 @@ typedef std::list<StringPear> aliaslist;
 class CAliasListInstance : public CAliasList
 {
 public:
-	void Load(char *filename);
+	void Load(TCHAR *filename);
 	aliaslist list;
 };
 

@@ -11,16 +11,10 @@
 
 #include <vector>
 #include "d3dx9.h"
+#include <tchar.h>
 
 #define FAR_CLIP	(50.0f)
 #define NEAR_CLIP	( 0.1f)
-
-#if defined(UNICODE) || defined(_UNICODE)
-#define __T(x) L ## x
-#else
-#define __T(x) x
-#endif
-#define _T(x) __T(x)
 
 /*----------------------------------------------------------
 	使用するDirect3D頂点フォーマット　定義
@@ -113,7 +107,7 @@ class CParticle;
 class CFlatBoards;
 class CMesh;
 
-typedef void (*WarningReportFunctionPtr)(const char* war_str);
+typedef void (*WarningReportFunctionPtr)(const TCHAR* war_str);
 
 /*!
 *	@brief 3D描画サービスクラス
@@ -135,7 +129,7 @@ public:
 	//!初期化。全ての操作の前に行うこと
 	void Initialize(
 		LPDIRECT3DDEVICE9 d3d_device,		//!< D3Dデバイスオブジェクト
-		const char*	tex_path,				//!< テクスチャロード用のベースディレクトリ
+		const TCHAR*	tex_path,				//!< テクスチャロード用のベースディレクトリ
 		WarningReportFunctionPtr pwf=NULL	//!< エラーリポート用の関数ポインタ
 		);
 	~Aki3d(){Destroy();}
@@ -175,12 +169,12 @@ public:
 	void SetBlend_Nega();
 
 	//テクスチャー
-	LPDIRECT3DTEXTURE9 LoadTexture(const char *filename);
+	LPDIRECT3DTEXTURE9 LoadTexture(const TCHAR *filename);
 	void UnloadTexture(LPDIRECT3DTEXTURE9 ptex);
 
 	LPDIRECT3DDEVICE9 GetD3DDev(){ return d3ddev; }
 
-	void LogWarning(const char* fmt,...);
+	void LogWarning(const TCHAR* fmt,...);
 
 protected:
 	void Destroy();
@@ -207,7 +201,7 @@ extern Aki3d aki3d;
 class CTristrip
 {
 public:
-	virtual void Create(UINT num_node , const char* tex_filename) = 0;
+	virtual void Create(UINT num_node , const TCHAR* tex_filename) = 0;
 	virtual void Destroy() = 0;
 	virtual void Render(D3DMATRIX *ltm = NULL) = 0;
 
@@ -234,7 +228,7 @@ public:
 class CParticle
 {
 public:
-	virtual void Create(UINT num_node , const char* tex_filename) = 0;
+	virtual void Create(UINT num_node , const TCHAR* tex_filename) = 0;
 	virtual void Destroy() = 0;
 	virtual void Render(D3DMATRIX *ltm = NULL) = 0;
 
@@ -259,7 +253,7 @@ public:
 class CMesh
 {
 public:
-	virtual void Create(const char* x_filename) = 0;
+	virtual void Create(const TCHAR* x_filename) = 0;
 	virtual void Destroy() = 0;
 	virtual void Render(D3DMATRIX *ltm = NULL) = 0;
 
@@ -290,7 +284,7 @@ public:
 class CFlatBoards
 {
 public:
-	virtual void Create(UINT num_node , const char* tex_filename) = 0;
+	virtual void Create(UINT num_node , const TCHAR* tex_filename) = 0;
 	virtual void Destroy() = 0;
 	virtual void Render(D3DMATRIX *ltm = NULL) = 0;
 

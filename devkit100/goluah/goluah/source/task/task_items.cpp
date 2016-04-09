@@ -482,7 +482,7 @@ void CTWindowBase::Close()
 	引数はCSystemのDrawBMPTextと一緒だけど、位置はウインドウ内での位置
 --------------------------------------------------------------------*/
 void CTWindowBase::DrawText(float x,float y,float z,
-		char *str,DWORD col,float scaX,float scaY,DWORD flags)
+		TCHAR *str,DWORD col,float scaX,float scaY,DWORD flags)
 {
 	//スケールする
 	x *= m_ratio;
@@ -507,8 +507,8 @@ void CTWindowBase::DrawText(float x,float y,float z,
 //パラメータリセット
 CTBeltBase::CTBeltBase()
 {
-	strcpy(m_disp_str,_T(""));
-	strcpy(m_disp_str2,_T(""));
+	_tcscpy(m_disp_str,_T(""));
+	_tcscpy(m_disp_str2,_T(""));
 	m_pos = 2;//center
 	m_base_y = 240.0f;
 	m_height_base = 50.0f;

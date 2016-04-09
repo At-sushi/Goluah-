@@ -69,8 +69,8 @@ public:
 
 	//サービス
 	void PlaySystemSound(DWORD sid);									//!< サウンド再生
-	double DrawBMPText(double x,double y,float z,char *str,DWORD col);	//!< ビットマップテキストを描画
-	double DrawBMPTextEx(double x,double y,float z,char *str,			//!< ビットマップテキストを描画(拡縮・プロポーショナルオプションつき)
+	double DrawBMPText(double x,double y,float z,TCHAR *str,DWORD col);	//!< ビットマップテキストを描画
+	double DrawBMPTextEx(double x,double y,float z,TCHAR *str,			//!< ビットマップテキストを描画(拡縮・プロポーショナルオプションつき)
 		DWORD col,float scaX,float scaY,DWORD flags);
 	void ReturnTitle();													//!< タイトル画面へ戻る
 	void DisableRendering()	{m_render_disabled=TRUE;}					//!< タスク管理で描画をしない（動画再生用）
@@ -98,13 +98,13 @@ public:
 	//デバッグ
 	void NotifyExcption();												//!< 例外発生を通知。次回メインループでタイトル戻り（設定に依る）
 	BOOL IsErrorTitle()		{return m_error_title;}						//!< エラー発生でタイトルに戻ったのかフラグ取得
-	static void Log(const char *msg,DWORD category);					//!< 分類つきでファイルへログを出す
-	static void LogErr(const char *fmt,...);							//!< ファイルへログを出す(エラー扱、直後ファイルFLUSH)
-	static void LogWarning(const char *fmt,...);						//!< 分類:警告 でログを出す。フォーマットつき
-	void PushSysTag(const char* tag_str);								//!< タグを設定
+	static void Log(const TCHAR *msg,DWORD category);					//!< 分類つきでファイルへログを出す
+	static void LogErr(const TCHAR *fmt,...);							//!< ファイルへログを出す(エラー扱、直後ファイルFLUSH)
+	static void LogWarning(const TCHAR *fmt,...);						//!< 分類:警告 でログを出す。フォーマットつき
+	void PushSysTag(const TCHAR* tag_str);								//!< タグを設定
 	void PopSysTag();													//!< タグをひとつPop、DLLタグのクリア
 	void ClearSysTag();													//!< システムタグのクリア、DLLタグもクリア
-	void PushDLLTag(const char* tag_str);								//!< タグを設定
+	void PushDLLTag(const TCHAR* tag_str);								//!< タグを設定
 	void PopDLLTag();													//!< タグをひとつPop
 	void ClearDLLTag();													//!< DLLタグのクリア
 	void DumpTags();													//!< タグをエラーログとして出力
@@ -148,9 +148,9 @@ protected:
 	BOOL m_first_update_flag;							//!< 起動後初回フラグ
 	BOOL m_debug_menu_enabled;							//!< デバッグメニューが有効
 
-	static char *logBuffer;								//!< デバッグログ文字列フォーマット用バッファ
-	std::stack<const char*> m_systag;					//!< 例外発生時に吐き出すシステムタグ
-	std::stack<const char*> m_dlltag;					//!< 例外発生時に吐き出すDLLタグ
+	static TCHAR *logBuffer;								//!< デバッグログ文字列フォーマット用バッファ
+	std::stack<const TCHAR*> m_systag;					//!< 例外発生時に吐き出すシステムタグ
+	std::stack<const TCHAR*> m_dlltag;					//!< 例外発生時に吐き出すDLLタグ
 };
 
 

@@ -90,11 +90,11 @@ void CGauge::Initialize()
 	}
 
 	//ÉJÉIÇÃì«Ç›çûÇ›
-	char filename[256],palname[256];
+	TCHAR filename[256],palname[256];
 	for(i=0;i<2;i++){
 		for(j=0;j<g_battleinfo.GetNumTeam(i);j++){
-			sprintf(filename,_T("%s\\face1"),g_charlist.GetCharacterDir(g_battleinfo.GetCharacter(i,j)));
-			sprintf(palname,_T("%s\\pal%d"),g_charlist.GetCharacterDir(g_battleinfo.GetCharacter(i,j)),g_battleinfo.GetColor(i,j));
+			_stprintf(filename,_T("%s\\face1"),g_charlist.GetCharacterDir(g_battleinfo.GetCharacter(i,j)));
+			_stprintf(palname,_T("%s\\pal%d"),g_charlist.GetCharacterDir(g_battleinfo.GetCharacter(i,j)),g_battleinfo.GetColor(i,j));
 			dds_face[i][j]=g_draw.CreateSurfaceFrom256Image(filename,palname);
 		}
 	}

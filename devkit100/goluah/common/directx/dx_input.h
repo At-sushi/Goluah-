@@ -100,7 +100,7 @@ public:
 
 	//パッド(DirectInput)関連
 	int jsnum;											//!< 認識したパッドの数
-	char gamepadname[DINPUT_MAX_GAMEPAD][256];			//!< パッドの名前
+	TCHAR gamepadname[DINPUT_MAX_GAMEPAD][256];			//!< パッドの名前
 	LPDIRECTINPUT8 pdi;									//!< DirectInputオブジェクト
 	LPDIRECTINPUTDEVICE8 pdidev[DINPUT_MAX_GAMEPAD];	//!< デバイスオブジェクト
 	LPDIRECTINPUTDEVICE8 pdidev_kb;						//!< キーボードデバイスを所得してみるテスト

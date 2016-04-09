@@ -31,7 +31,7 @@ public:
 	*	デモスクリプトを作り直そうとしてたみたい。
 	*	中身なし
 	*/
-	static BOOL CreateScriptElementList(SScriptElementList& list,char *filename,CAliasList *args);
+	static BOOL CreateScriptElementList(SScriptElementList& list,TCHAR *filename,CAliasList *args);
 };
 
 /*@}*/

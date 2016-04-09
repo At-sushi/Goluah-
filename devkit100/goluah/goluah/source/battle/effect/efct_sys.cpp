@@ -33,7 +33,7 @@ BOOL CFxRoundBase::DrawF()
 		t2 = 1.0f - (pdat->counter - (40 * g_config.GetGameSpeed2() / 50)) / (12.0f * g_config.GetGameSpeed2() / 50);
 	}
 
-	char str[] = _T("ROUND");
+	TCHAR str[] = _T("ROUND");
 	const float interval = 5;
 	const float duration = 6;
 	const float y		 = 200;
@@ -56,13 +56,13 @@ BOOL CFxRoundBase::DrawF()
 	return FALSE;
 }
 
-void CFxRoundBase::DrawOneCharacter(float x,float y,char c,float t,float t2)
+void CFxRoundBase::DrawOneCharacter(float x,float y,TCHAR c,float t,float t2)
 {
 	if(t<0.0f)return;
 	if(t>1.0f)t=1.0f;
 
 	DWORD col;
-	char str[2] = {c,'\0'};
+	TCHAR str[2] = {c,'\0'};
 	float tx,ty,scaX,scaY;
 
 	//‘å‘Ì
@@ -1033,7 +1033,7 @@ BOOL CFxTimeOver::DrawF()
 		t2 = 1.0f - (pdat->counter - (150 * g_config.GetGameSpeed2() / 50)) / (24.0f * g_config.GetGameSpeed2() / 50);
 	}
 
-	char str[] = _T("TIME OVER");
+	TCHAR str[] = _T("TIME OVER");
 	const float interval = 3;
 	const float duration = 6;
 	const float y		 = 200;
@@ -1052,13 +1052,13 @@ BOOL CFxTimeOver::DrawF()
 	return FALSE;
 }
 
-void CFxTimeOver::DrawOneCharacter(float x,float y,char c,float t,float t2)
+void CFxTimeOver::DrawOneCharacter(float x,float y,TCHAR c,float t,float t2)
 {
 	if(t<0.0f)return;
 	if(t>1.0f)t=1.0f;
 
 	DWORD col;
-	char str[2] = {c,'\0'};
+	TCHAR str[2] = {c,'\0'};
 	float tx,ty,scaX,scaY;
 
 	//‘å‘Ì

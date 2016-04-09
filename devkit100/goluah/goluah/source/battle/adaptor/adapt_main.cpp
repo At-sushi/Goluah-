@@ -16,7 +16,7 @@
 // #include "CharacterList.h"
 
 
-char *g_chardir=NULL;		// 要対応
+TCHAR *g_chardir=NULL;		// 要対応
 DI_FUNCTIONS_O *funco=NULL;
 DI_FUNCTIONS_S *funcs=NULL;
 DI_FUNCTIONS_D *funcd=NULL;
@@ -29,7 +29,7 @@ extern WAZAINFO waz;		// 要対応
 extern DWORD ObjID[];
 
 //===========================================================
-// char charactername[32] = "(ｱﾀﾞﾌﾟﾀｰ使用)";
+// TCHAR charactername[32] = "(ｱﾀﾞﾌﾟﾀｰ使用)";
 
 //===========================================================
 // キャラアダプターでのIDの扱い：
@@ -51,7 +51,7 @@ void DoStartAttack(DWORD id, LPVOID atk) {
 int SeekKey(DWORD id,int nanka,int hen, DWORD dane) {
 	if (HIWORD(id)) return -1;
 	return funcs->seekkey(GETCLASS(id)->keynumber, nanka, hen, dane);}
-void SetKatiSerif(DWORD id, char* serif) {
+void SetKatiSerif(DWORD id, TCHAR* serif) {
 	funcs->setkatiserif(GETOBJ(id)->tid, serif); }
 void PlayMy(DWORD id, DWORD num) {
 	if (!HIWORD(id))
@@ -88,7 +88,7 @@ BOOL DoCatchEnemy(DWORD id, LPVOID ufocatcher) {
 	GETCLASS(id)->pfNagerare = ((OLDCATCHYOU*)ufocatcher)->pf_nagerare;
 	return funco->objcatch(GETOBJ(id)->eid, &cy);
 }
-void Enemyname(DWORD id, char* buff) {
+void Enemyname(DWORD id, TCHAR* buff) {
 	lstrcpy(buff, funco->getcharname(GETOBJ(id)->eid));
 	if (lstrcmp(buff, _T("8頭身")) == 0) wsprintf(buff, _T("８頭身"));
 }
@@ -136,7 +136,7 @@ void DestroyBul(LPVOID pbul) {
 	if (HIWORD(((BULLETINFO_A*)pbul)->state) < 256)
 		funco->suicide(ObjID[HIWORD(((BULLETINFO_A*)pbul)->state)]);
 }
-char* GetDirectory(DWORD id) {
+TCHAR* GetDirectory(DWORD id) {
 	if (HIWORD(id)) return NULL;
 	return GETCLASS(id)->m_chardir;}
 
@@ -175,7 +175,7 @@ DWORD CCharAdaptor::CreateCharacter(PVOID info)
 {
 	CDI_CHARACTERINFO2 *info2 = (CDI_CHARACTERINFO2*)info;
 //	BOOL (*pCharInfo)(LPVOID);
-	char buffer[256];
+	TCHAR buffer[256];
 //	CHARACTERINFO cinfo;
 
 	//必要な情報をグローバルに格納

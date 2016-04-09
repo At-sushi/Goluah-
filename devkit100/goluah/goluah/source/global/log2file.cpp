@@ -22,16 +22,16 @@
 CLog2File::CLog2File()
 {
 	//バッファ生成
-	buf = new char[LOG2FILE_BUFFERSIZE];
+	buf = new TCHAR[LOG2FILE_BUFFERSIZE];
 	ZeroMemory(buf,LOG2FILE_BUFFERSIZE);
 	p = buf;
-	filename = new char[256];
+	filename = new TCHAR[256];
 
 	//保存ファイル名を決定
 	time_t crnt_time;
 	time(&crnt_time);
 	struct tm* crnt_time_l = localtime(&crnt_time);
-	sprintf(filename,_T("%s\\%s%d%s%d%s%d%s%d%s%d%s%d.txt"),
+	_stprintf(filename,_T("%s\\%s%d%s%d%s%d%s%d%s%d%s%d.txt"),
 		LOG2FILE_DIR,LOG2FILE_PREFIX,				//プレフィックス
 		crnt_time_l->tm_year + 1900,				//年
 		(crnt_time_l->tm_mon + 1)<10 ? _T("0") : _T(""),
@@ -110,7 +110,7 @@ void CLog2File::Flush()
 *
 *	@param str 吐き出す文字列。末尾に改行を自動付加するので注意。
 */
-void CLog2File::AddLog(char *str)
+void CLog2File::AddLog(TCHAR *str)
 {
 	if(!g_config.UseLog2File())return;
 

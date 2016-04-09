@@ -30,10 +30,10 @@ int story_selectflag = 0;		// 暫定設置、置き場所模索中。
 /*---------------------------------------------------------------
 	ストーリースクリプトの読み込み
 -----------------------------------------------------------------*/
-BOOL CGoluahStoryScript::CreateScriptElementList(SScriptElementList& list,char *location)
+BOOL CGoluahStoryScript::CreateScriptElementList(SScriptElementList& list,TCHAR *location)
 {
 	CScriptLoader *loader = CScriptLoader::Create();
-	char *tmpstr = new char[128];
+	TCHAR *tmpstr = new TCHAR[128];
 
 	DestroyScriptElementList(list);
 
@@ -50,11 +50,11 @@ BOOL CGoluahStoryScript::CreateScriptElementList(SScriptElementList& list,char *
 		int line_max = loader->GetLineNum();
 		while(line_index < line_max)
 		{
-			char *linestr = loader->GetLine(line_index);
+			TCHAR *linestr = loader->GetLine(line_index);
 			if(*linestr=='#')//ブロック定義開始
 			{
 				linestr++;
-				sscanf(linestr,_T("%s"),tmpstr);
+				_tscanf(linestr,_T("%s"),tmpstr);
 				if(list.size()==0){
 					if(strcmp(tmpstr,_T("settings"))!=0){
 						list.push_back(new CStoryElement_Error(_T("settingsブロックの前に他ブロックを定義することはできません")));
@@ -87,7 +87,7 @@ BOOL CGoluahStoryScript::CreateScriptElementList(SScriptElementList& list,char *
 							list.push_back(new CStoryElement_Error(_T("バージョン設定が古いです")));
 							throw CStoryScriptException();
 						}
-						sscanf(linestr, _T("select %d"), &num);
+						_tscanf(linestr, _T("select %d"), &num);
 						list.push_back( new CStoryElement_Select(num) );
 					}
 					else if(strcmp(tmpstr,_T("end_select"))==0){
@@ -99,8 +99,8 @@ BOOL CGoluahStoryScript::CreateScriptElementList(SScriptElementList& list,char *
 						list.push_back( new CStoryElement_Select(-1) );
 					}
 					else{//#それ以外？
-						char *errstr = new char[256];
-						sprintf(errstr,_T("未知のブロック名 : %s"),tmpstr);
+						TCHAR *errstr = new TCHAR[256];
+						_stprintf(errstr,_T("未知のブロック名 : %s"),tmpstr);
 						list.push_back(new CStoryElement_Error(errstr));
 						delete [] errstr;
 						throw CStoryScriptException();
@@ -153,43 +153,43 @@ CStoryScriptElement::~CStoryScriptElement()
 	DELETEARRAY(m_error);
 }
 
-void CStoryScriptElement::Error(char *str)
+void CStoryScriptElement::Error(TCHAR *str)
 {
 	if(!m_error){
-		m_error = new char[128];
+		m_error = new TCHAR[128];
 	}
-	sprintf(m_error,str);
+	_stprintf(m_error,str);
 }
 
-void CStoryScriptElement::ErrorF(char *str,char *sub_str)
+void CStoryScriptElement::ErrorF(TCHAR *str,TCHAR *sub_str)
 {
 	if(!m_error){
-		m_error = new char[128];
+		m_error = new TCHAR[128];
 	}
 	if(sub_str)
-		sprintf(m_error,str,sub_str);
+		_stprintf(m_error,str,sub_str);
 	else
-		sprintf(m_error,str,_T(""));
+		_stprintf(m_error,str,_T(""));
 }
 
-void CStoryScriptElement::ErrorF(char *str,int val)
+void CStoryScriptElement::ErrorF(TCHAR *str,int val)
 {
 	if(!m_error){
-		m_error = new char[128];
+		m_error = new TCHAR[128];
 	}
-	sprintf(m_error,str,val);
+	_stprintf(m_error,str,val);
 }
 
 // #if用、仮置き。
 // 四則演算と条件判定はスタック、括弧と論理和などは再帰処理を使うと思われ。
-void ParseIf(char *str)
+void ParseIf(TCHAR *str)
 {
 }
 
 /*---------------------------------------------------------------
 	ストーリー ブロック外エラー要素
 -----------------------------------------------------------------*/
-CStoryElement_Error::CStoryElement_Error(char *err)
+CStoryElement_Error::CStoryElement_Error(TCHAR *err)
 {
 	Error(err);
 }
@@ -209,10 +209,10 @@ CStoryElement_Settings::CStoryElement_Settings()
 	result_send=-1;					//試合結果送信対象
 
 	//キャラクタ定義
-	cnum=0;							//char指定数
+	cnum=0;							//TCHAR指定数
 	for(int i=0;i<MAXNUM_TEAM;i++)
 	{
-		characters[i]=-2;			//char指定(-1:userselect -2:指定なし)
+		characters[i]=-2;			//TCHAR指定(-1:userselect -2:指定なし)
 		color[i]=-1;				//色指定
 		option[i]=0;				//オプション直接指定(userselect以外で有効)
 		opttype[i]=Opt_UserSelect;	//ランダム指定フラグ(userselect以外で有効)
@@ -230,7 +230,7 @@ CStoryElement_Settings::~CStoryElement_Settings()
 	DELETEARRAY(preview);
 }
 
-void CStoryElement_Settings::FeedLine(char *str)
+void CStoryElement_Settings::FeedLine(TCHAR *str)
 {
 	//複数ラインにわたる定義
 	if(multiline_flag){
@@ -241,16 +241,16 @@ void CStoryElement_Settings::FeedLine(char *str)
 
 	//各種定義読み込み
 	if(gbl.strcheck(str,_T("ver"))){
-		sscanf(str,_T("%s %f"),DMY_STR,&ver);
+		_tscanf(str,_T("%s %f"),DMY_STR,&ver);
 	}
 	else if(gbl.strcheck(str,_T("title"))){
 		DELETEARRAY(title);
-		title=new char[64];
-		sscanf(str,_T("%s %s"),DMY_STR,title);
+		title=new TCHAR[64];
+		_tscanf(str,_T("%s %s"),DMY_STR,title);
 	}
 	else if(gbl.strcheck(str,_T("result"))){
-		char *tmp = new char [64];
-		sscanf(str,_T("%s %s %d"),DMY_STR,tmp,result_key);
+		TCHAR *tmp = new TCHAR [64];
+		_tscanf(str,_T("%s %s %d"),DMY_STR,tmp,result_key);
 		result_send = g_charlist.FindCharacter(tmp);
 		if(result_send<0){
 			ErrorF(_T("キャラクタ「%s」がいません"),tmp);	
@@ -259,27 +259,27 @@ void CStoryElement_Settings::FeedLine(char *str)
 		if(m_error)throw CStoryScriptException();
 	}
 	else if(gbl.strcheck(str,_T("continue"))){
-		sscanf(str,_T("%s %d"),DMY_STR,&continue_num);
+		_tscanf(str,_T("%s %d"),DMY_STR,&continue_num);
 	}
 	else if(gbl.strcheck(str,_T("brief_begin"))){
 		multiline_flag=TRUE;
 	}
-	else if(gbl.strcheck(str,_T("char"))){
+	else if(gbl.strcheck(str,_T("TCHAR"))){
 		Read_char(str);
 	}
 	else if(gbl.strcheck(str,_T("icon"))){
 		DELETEARRAY(icon);
-		icon=new char[64];
-		sscanf(str,_T("%s %s"),DMY_STR,icon);
+		icon=new TCHAR[64];
+		_tscanf(str,_T("%s %s"),DMY_STR,icon);
 	}
 	else if(gbl.strcheck(str,_T("preview"))){
 		DELETEARRAY(preview);
-		preview=new char[64];
-		sscanf(str,_T("%s %s"),DMY_STR,preview);
+		preview=new TCHAR[64];
+		_tscanf(str,_T("%s %s"),DMY_STR,preview);
 	}
 /*	else{//空行かも
-		char *tmp = new char [256];
-		sscanf(str,_T("%s %s"),DMY_STR,tmp);
+		TCHAR *tmp = new TCHAR [256];
+		_tscanf(str,_T("%s %s"),DMY_STR,tmp);
 		ErrorF(_T("(settings) unknown option %s"),tmp);
 		delete [] tmp;
 	}*/
@@ -296,12 +296,12 @@ BOOL CStoryElement_Settings::Close()
 
 	//デフォ値設定
 	if(!title){
-		title=new char[32];
-		sprintf(title,_T("untitled"));
+		title=new TCHAR[32];
+		_stprintf(title,_T("untitled"));
 	}
 	if(!brief){
-		brief=new char[32];
-		sprintf(brief,_T("- no information -"));
+		brief=new TCHAR[32];
+		_stprintf(brief,_T("- no information -"));
 	}
 
 	//タイトルの'_'をスペースで置換
@@ -315,12 +315,12 @@ BOOL CStoryElement_Settings::Close()
 }
 
 
-//char オプション介錯
-void CStoryElement_Settings::Read_char(char *str)
+//TCHAR オプション介錯
+void CStoryElement_Settings::Read_char(TCHAR *str)
 {
 	//scan
-	char** tmp_str = gbl.CreateTemporaryStrBuff(3);
-	sscanf(str,_T("%s %s %s %s"),
+	TCHAR** tmp_str = gbl.CreateTemporaryStrBuff(3);
+	_tscanf(str,_T("%s %s %s %s"),
 		DMY_STR,
 		tmp_str[0],//キャラクタ
 		tmp_str[1],//色
@@ -329,7 +329,7 @@ void CStoryElement_Settings::Read_char(char *str)
 
 	try{
 		if(cnum==3){
-			Error(_T("char指定が多すぎます"));
+			Error(_T("TCHAR指定が多すぎます"));
 			throw CStoryScriptException();
 		}
 
@@ -348,7 +348,7 @@ void CStoryElement_Settings::Read_char(char *str)
 		if(characters[cnum] != -1)
 		{
 			//色指定
-			sscanf(tmp_str[1],_T("%d"),&color[cnum]);
+			_tscanf(tmp_str[1],_T("%d"),&color[cnum]);
 			if(color[cnum]<1 || color[cnum]>3){
 				ErrorF(_T("キャラクタのカラーに1-3以外が指定されました(%s)"),tmp_str[1]);
 				throw CStoryScriptException();
@@ -433,7 +433,7 @@ CStoryElement_VS::~CStoryElement_VS()
 }
 
 //■スクリプト介錯
-void CStoryElement_VS::FeedLine(char *str)
+void CStoryElement_VS::FeedLine(TCHAR *str)
 {
 	//複数ラインにわたる定義
 	if(multiline_flag){
@@ -450,7 +450,7 @@ void CStoryElement_VS::FeedLine(char *str)
 
 	//その他の識別子
 	if(gbl.strcheck(str,_T("type"))){
-		sscanf(str,_T("%s %d"),DMY_STR,&type);
+		_tscanf(str,_T("%s %d"),DMY_STR,&type);
 		return;
 	}
 	else if(gbl.strcheck(str,_T("friend"))){
@@ -466,7 +466,7 @@ void CStoryElement_VS::FeedLine(char *str)
 		return;
 	}
 	else if(gbl.strcheck(str,_T("timelimit"))){
-		sscanf(str,_T("%s %d"),DMY_STR,&limit_time);
+		_tscanf(str,_T("%s %d"),DMY_STR,&limit_time);
 		return;
 	}
 	else if(gbl.strcheck(str,_T("nowin"))){
@@ -483,11 +483,11 @@ void CStoryElement_VS::FeedLine(char *str)
 	}
 	else if(gbl.strcheck(str,_T("bgm"))){
 		DELETEARRAY( bgm_filename );
-		bgm_filename = new char [128];
+		bgm_filename = new TCHAR [128];
 		if (m_sets->ver >= 1.1)
-			sscanf(str,_T("%s %s %d"),DMY_STR,bgm_filename,bgm_startpos);
+			_tscanf(str,_T("%s %s %d"),DMY_STR,bgm_filename,bgm_startpos);
 		else
-			sscanf(str,_T("%s %s"),DMY_STR,bgm_filename);
+			_tscanf(str,_T("%s %s"),DMY_STR,bgm_filename);
 		return;
 	}
 	else if(gbl.strcheck(str,_T("nogameover"))){
@@ -495,7 +495,7 @@ void CStoryElement_VS::FeedLine(char *str)
 		return;
 	}
 	else if(gbl.strcheck(str,_T("sbase"))){
-		sscanf(str,_T("%s %d"),DMY_STR,&sel_shift);
+		_tscanf(str,_T("%s %d"),DMY_STR,&sel_shift);
 		return;
 	}
 /*	else{//空行かも
@@ -504,11 +504,11 @@ void CStoryElement_VS::FeedLine(char *str)
 }
 
 //■friend オプション介錯
-void CStoryElement_VS::Read_friend(char *str,int team)
+void CStoryElement_VS::Read_friend(TCHAR *str,int team)
 {
 	//scan
-	char** tmp_str = gbl.CreateTemporaryStrBuff(4);
-	sscanf(str,_T("%s %s %s %s %s"),
+	TCHAR** tmp_str = gbl.CreateTemporaryStrBuff(4);
+	_tscanf(str,_T("%s %s %s %s %s"),
 		DMY_STR,
 		tmp_str[0],//キャラクタ
 		tmp_str[1],//色
@@ -529,21 +529,21 @@ void CStoryElement_VS::Read_friend(char *str,int team)
 		}
 		else if(strcmp(tmp_str[0],_T("%char1"))==0){
 			if(m_sets->cnum<1){
-				Error(_T("charの定義が不足しています(1)"));
+				Error(_T("TCHARの定義が不足しています(1)"));
 				throw CStoryScriptException();
 			}
 			characters[team][num[team]] = -2;
 		}
 		else if(strcmp(tmp_str[0],_T("%char2"))==0){
 			if(m_sets->cnum<2){
-				Error(_T("charの定義が不足しています(2)"));
+				Error(_T("TCHARの定義が不足しています(2)"));
 				throw CStoryScriptException();
 			}
 			characters[team][num[team]] = -3;
 		}
 		else if(strcmp(tmp_str[0],_T("%char3"))==0){
 			if(m_sets->cnum<3){
-				Error(_T("charの定義が不足しています(3)"));
+				Error(_T("TCHARの定義が不足しています(3)"));
 				throw CStoryScriptException();
 			}
 			characters[team][num[team]] = -4;
@@ -563,7 +563,7 @@ void CStoryElement_VS::Read_friend(char *str,int team)
 				color[team][num[team]] = -1;
 			}
 			else{
-				sscanf(tmp_str[1],_T("%d"),&color[team][num[team]]);
+				_tscanf(tmp_str[1],_T("%d"),&color[team][num[team]]);
 				if(color[team][num[team]]<1 || color[team][num[team]]>3)
 				{
 					ErrorF(_T("(vs) invalid color (%s)"),tmp_str[1]);
@@ -599,7 +599,7 @@ void CStoryElement_VS::Read_friend(char *str,int team)
 		if(tmp_str[3][0] == '+' || tmp_str[3][0] == '-'){
 			is_related_level[team][num[team]] = TRUE;
 		}
-		sscanf(tmp_str[3],_T("%d"),&level[team][num[team]]);
+		_tscanf(tmp_str[3],_T("%d"),&level[team][num[team]]);
 
 		//OK
 		ret = TRUE;
@@ -615,18 +615,18 @@ void CStoryElement_VS::Read_friend(char *str,int team)
 }
 
 //■enemy定義読み込み
-void CStoryElement_VS::Read_enemy(char *str)
+void CStoryElement_VS::Read_enemy(TCHAR *str)
 {
 	//ほとんどおんなじ
 	Read_friend(str,1);
 }
 
 //■stage定義読み込み
-void CStoryElement_VS::Read_stage(char *str)
+void CStoryElement_VS::Read_stage(TCHAR *str)
 {
-	char** tmp_str = gbl.CreateTemporaryStrBuff(1);
+	TCHAR** tmp_str = gbl.CreateTemporaryStrBuff(1);
 
-	sscanf(str,_T("%s %s"),
+	_tscanf(str,_T("%s %s"),
 		DMY_STR,
 		tmp_str[0]
 		);
@@ -649,18 +649,18 @@ void CStoryElement_VS::Read_stage(char *str)
 BOOL CStoryElement_VS::Close()
 {
 	if(m_error)return FALSE;
-	char temp[128];
+	TCHAR temp[128];
 
 	//friend指定が一つもない場合
 	if(num[0]==0){
 		if(m_sets->cnum==0){
-			Error(_T("friend指定がありません。settingsでchar指定が必要です"));
+			Error(_T("friend指定がありません。settingsでTCHAR指定が必要です"));
 			return FALSE;
 		}
 		else{
 			FeedLine(_T("friend %char1 - - +0"));//char1-3の場合、カラー・オプション師弟が無視される
 			for(int j=1;j<m_sets->cnum;j++){
-				sprintf(temp,_T("friend %%char%d - - +0"),j+1);
+				_stprintf(temp,_T("friend %%TCHAR%d - - +0"),j+1);
 				FeedLine(temp);
 			}
 		}
@@ -691,18 +691,18 @@ CStoryElement_Demo::~CStoryElement_Demo()
 	DELETEARRAY(m_filename);
 }
 
-void CStoryElement_Demo::FeedLine(char *str)
+void CStoryElement_Demo::FeedLine(TCHAR *str)
 {
-	char **tmp = gbl.CreateTemporaryStrBuff(2);
-	sscanf(str,_T("%s %s"),
+	TCHAR **tmp = gbl.CreateTemporaryStrBuff(2);
+	_tscanf(str,_T("%s %s"),
 		tmp[0],
 		tmp[1]
 		);
 
 	if(strcmp(tmp[0],_T("file"))==0){
 		DELETEARRAY(m_filename);
-		m_filename = new char [strlen(tmp[1])+1];
-		strcpy(m_filename,tmp[1]);
+		m_filename = new TCHAR [strlen(tmp[1])+1];
+		_tcscpy(m_filename,tmp[1]);
 	}
 
 	gbl.DeleteTemporaryStrBuff(tmp);
@@ -734,18 +734,18 @@ CStoryElement_Staff::~CStoryElement_Staff()
 	DELETEARRAY(m_filename);
 }
 
-void CStoryElement_Staff::FeedLine(char *str)
+void CStoryElement_Staff::FeedLine(TCHAR *str)
 {
-	char **tmp = gbl.CreateTemporaryStrBuff(2);
-	sscanf(str,_T("%s %s"),
+	TCHAR **tmp = gbl.CreateTemporaryStrBuff(2);
+	_tscanf(str,_T("%s %s"),
 		tmp[0],
 		tmp[1]
 		);
 
 	if(strcmp(tmp[0],_T("file"))==0){
 		DELETEARRAY(m_filename);
-		m_filename = new char [strlen(tmp[1])+1];
-		strcpy(m_filename,tmp[1]);
+		m_filename = new TCHAR [strlen(tmp[1])+1];
+		_tcscpy(m_filename,tmp[1]);
 	}
 
 	gbl.DeleteTemporaryStrBuff(tmp);

@@ -97,7 +97,7 @@ struct GCD_FILEHEADER
 //! GCD定義名構造体
 struct GCD_CELLNAMES
 {
-	char name[GCDMAX_CELLS][GCD_MAXDEFINELENGTH];
+	TCHAR name[GCDMAX_CELLS][GCD_MAXDEFINELENGTH];
 };
 
 //! 圧縮形式ファイルヘッダ

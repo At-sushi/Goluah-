@@ -199,7 +199,7 @@ public:
 
 	Config2_SShotFormat GetSShotImageFormat()
 										{return (Config2_SShotFormat)sshot_format;}
-	char* GetSShotFileTypeStr();
+	TCHAR* GetSShotFileTypeStr();
 
 	//Å†çÌèúÇ≥ÇÍÇΩçÄñ⁄
 	BOOL		UsePointSprite()		{return TRUE;}
@@ -251,8 +251,8 @@ public:
 	KEYCONFIG keycfg;
 	PADCONFIG padcfg;
 	INPUT2PLAYER inputAssign;
-	char *filepath1;
-	char *filepath2;
+	TCHAR *filepath1;
+	TCHAR *filepath2;
 
 	//ÉfÅ[É^
 	union

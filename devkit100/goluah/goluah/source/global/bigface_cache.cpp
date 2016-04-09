@@ -49,14 +49,14 @@ MYSURFACE* CTBigFaceCache::Get(int cindex,int col,int alt)
 	//ない場合はしょうがないのでファイルからロードする
 	MYSURFACE *dds=NULL;
 	if(cindex>=0){
-		char *filepath = new char[MAX_PATH];
-		char *palpath = new char[MAX_PATH];
-		char altstr[2]={'\0','\0'};
+		TCHAR *filepath = new TCHAR[MAX_PATH];
+		TCHAR *palpath = new TCHAR[MAX_PATH];
+		TCHAR altstr[2]={'\0','\0'};
 		if(alt!=0){
 			altstr[0]='a'+alt-1;
 		}
-		sprintf(filepath,_T("%s\\face2%s"),g_charlist.GetCharacterDir(cindex),altstr );
-		sprintf(palpath,_T("%s\\pal%d"),g_charlist.GetCharacterDir(cindex),col);
+		_stprintf(filepath,_T("%s\\face2%s"),g_charlist.GetCharacterDir(cindex),altstr );
+		_stprintf(palpath,_T("%s\\pal%d"),g_charlist.GetCharacterDir(cindex),col);
 		dds = g_draw.CreateSurfaceFrom256Image(filepath,palpath);
 		gbl.ods(_T("CTBigFaceCache : load %s"),filepath);
 		delete [] filepath;

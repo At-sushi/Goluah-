@@ -41,16 +41,16 @@ public:
 	void SetRight(){m_pos=1;}
 	void SetCenter(){m_pos=2;}
 	void SetBaseY(float y){m_base_y=y;}
-	void SetText(char *str){strcpy(m_disp_str,str);}
-	void FormatText(char *str_format,char *str){sprintf(m_disp_str,str_format,str);}
+	void SetText(TCHAR *str){_tcscpy(m_disp_str,str);}
+	void FormatText(TCHAR *str_format,TCHAR *str){_stprintf(m_disp_str,str_format,str);}
 	void SetAlpha1(BYTE a){m_alpha1=a;}
 	void SetAlpha2(BYTE a){m_alpha2=a;}
 	
 protected:
 	BYTE  m_pos;				//!< x位置 0:右 1:左 2:中央 （テキスト・α抜き に影響）
 	
-	char  m_disp_str[128];		//!< 表示テキスト　（誰）
-	char  m_disp_str2[128];		//!< 表示テキスト　（フォルダ）
+	TCHAR  m_disp_str[128];		//!< 表示テキスト　（誰）
+	TCHAR  m_disp_str2[128];		//!< 表示テキスト　（フォルダ）
 	BOOL  m_show_text;			//!< テキスト on/off
 	BOOL  m_txtTop;				//!< テキストを上に配置するか、下に配置するか
 	float m_txtLeft;			//!< テキストの左位置
@@ -110,7 +110,7 @@ protected:
 	//テキスト描画。ウインドウのサイズに合わせて描画してくださる。
 	//引数はCSystemのDrawBMPTextと一緒だけど、位置はウインドウ内での位置
 	void DrawText(float x,float y,float z,
-					char *str,DWORD col,
+					TCHAR *str,DWORD col,
 					float scaX=1.0f,float scaY=1.0f,DWORD flags=SYSBMPTXT_PROP);
 
 	//描画時に実際に使う値。サブクラスではCalcDrawParametersをコールしてからDrawすること。

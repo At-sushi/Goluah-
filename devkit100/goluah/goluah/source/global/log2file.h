@@ -28,7 +28,7 @@ public:
 	/*!
 		@brief ログを追加する。
 	一定量ログがたまると自動的にバッファからファイルへ書き出す */
-	void AddLog(char *str);
+	void AddLog(TCHAR *str);
 
 	/*!
 		@brief バッファに保持しているログをファイルへ書き出す。
@@ -37,7 +37,7 @@ public:
 	void Flush();
 
 private:
-	char *buf;
-	char *p;
-	char *filename;
+	TCHAR *buf;
+	TCHAR *p;
+	TCHAR *filename;
 };

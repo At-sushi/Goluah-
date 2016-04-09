@@ -36,7 +36,7 @@ void CTDemo::CleanUp()
 	RELSURFACE(ms);
 }
 
-void CTDemo::Setup(UINT storyindex,char *demofilename)
+void CTDemo::Setup(UINT storyindex,TCHAR *demofilename)
 {
 	m_current_story_index = storyindex;
 	m_script_filename = demofilename;
@@ -49,7 +49,7 @@ void CTDemo::Initialize()
 {
 	demodat = (DEMODAT*)malloc(sizeof(DEMODAT)*DEMO050MAX_DEMOSCENE);
 	if(demodat==NULL){
-		sprintf(errc,_T("異常：メモリ確保に失敗？"));
+		_stprintf(errc,_T("異常：メモリ確保に失敗？"));
 		demoready=FALSE;
 		return;
 	}
@@ -57,8 +57,8 @@ void CTDemo::Initialize()
 	counter=0;
 	counter2=0;
 
-	char *filename = new char [MAX_PATH];
-	sprintf(filename,_T("%s\\%s"),m_current_dir,m_script_filename);
+	TCHAR *filename = new TCHAR [MAX_PATH];
+	_stprintf(filename,_T("%s\\%s"),m_current_dir,m_script_filename);
 	num_demoscenes = InitDemoDat(filename);
 	delete [] filename;
 	if(num_demoscenes==0){
@@ -73,8 +73,8 @@ void CTDemo::Initialize()
 
 	g_sound.BGMStop();
 	//デモデータの仕様に基づいてビットマップなどをロード
-	sprintf(fpath,_T("%s\\"),m_current_dir);
-	sprintf(&fpath[strlen(fpath)],demodat[playingdemodat].bitmap[0]);
+	_stprintf(fpath,_T("%s\\"),m_current_dir);
+	_stprintf(&fpath[strlen(fpath)],demodat[playingdemodat].bitmap[0]);
 	RELSURFACE(ms);
 	ms = g_draw.CreateSurfaceFrom256BMP(fpath);
 	if(ms != NULL){//サーフェイスの幅／高さ
@@ -83,14 +83,14 @@ void CTDemo::Initialize()
 		if(g_config.IsHalfMode()){bmpw*=2;bmph*=2;}
 	}
 	if(strlen(demodat[playingdemodat].bgm) != 0){
-		sprintf(fpath,_T("%s\\"),m_current_dir);
-		sprintf(&fpath[strlen(fpath)],demodat[playingdemodat].bgm);
+		_stprintf(fpath,_T("%s\\"),m_current_dir);
+		_stprintf(&fpath[strlen(fpath)],demodat[playingdemodat].bgm);
 		g_sound.BGMSeekAndPlay(fpath,FALSE,demodat[playingdemodat].bgmpos);
 	}
 	for (int i = 1; i < 4; i++)
 	{
-		sprintf(fpath,_T("%s\\"),m_current_dir);
-		sprintf(&fpath[strlen(fpath)],demodat[playingdemodat].bitmap[i]);
+		_stprintf(fpath,_T("%s\\"),m_current_dir);
+		_stprintf(&fpath[strlen(fpath)],demodat[playingdemodat].bitmap[i]);
 		RELSURFACE(chr[i - 1]);
 		chr[i - 1] = g_draw.CreateSurfaceFrom256BMP(fpath);
 	}
@@ -203,8 +203,8 @@ BOOL CTDemo::Execute(DWORD time)
 			}
 			//ビットマップの変更
 			if(strlen(demodat[playingdemodat].bitmap[0]) > 0){
-				sprintf(fpath,_T("%s\\"),m_current_dir);
-				sprintf(&fpath[strlen(fpath)],demodat[playingdemodat].bitmap[0]);
+				_stprintf(fpath,_T("%s\\"),m_current_dir);
+				_stprintf(&fpath[strlen(fpath)],demodat[playingdemodat].bitmap[0]);
 				RELSURFACE(ms);
 				ms = g_draw.CreateSurfaceFrom256BMP(fpath);
 				if(ms != NULL){//サーフェイスの幅／高さ
@@ -214,8 +214,8 @@ BOOL CTDemo::Execute(DWORD time)
 			}
 			//ＢＧＭの変更
 			if(strlen(demodat[playingdemodat].bgm) != 0){
-				sprintf(fpath,_T("%s\\"),m_current_dir);
-				sprintf(&fpath[strlen(fpath)],demodat[playingdemodat].bgm);
+				_stprintf(fpath,_T("%s\\"),m_current_dir);
+				_stprintf(&fpath[strlen(fpath)],demodat[playingdemodat].bgm);
 				g_sound.BGMSeekAndPlay(fpath,FALSE,demodat[playingdemodat].bgmpos);
 			}
 			// 選択肢リセット
@@ -297,7 +297,7 @@ void CTDemo::Draw()
 
 	if (demodat[playingdemodat].num_select > 0)	// 選択肢有り
 	{
-		char tmp[8];
+		TCHAR tmp[8];
 
 		r_serif.left = 0;
 		tmp[0] = '\0';
@@ -311,10 +311,10 @@ void CTDemo::Draw()
 	if(g_config.IsDebugMode())
 	{
 		//パラメータ表示
-		char *outs = new char[256];
-		sprintf(outs,_T("scene=%d\n txtlen=%d , dur=%d / spd=%d\n"),playingdemodat,txtlen,demodat[playingdemodat].dur,demodat[playingdemodat].spdmsg);
-		sprintf(&outs[strlen(outs)],_T(" bmp w/h = %d/%d\n"),bmpw,bmph);
-		sprintf(&outs[strlen(outs)],_T(" select = %d , base = %d , selectflag = %d\n"),select,demodat[playingdemodat].select_base,story_selectflag);
+		TCHAR *outs = new TCHAR[256];
+		_stprintf(outs,_T("scene=%d\n txtlen=%d , dur=%d / spd=%d\n"),playingdemodat,txtlen,demodat[playingdemodat].dur,demodat[playingdemodat].spdmsg);
+		_stprintf(&outs[strlen(outs)],_T(" bmp w/h = %d/%d\n"),bmpw,bmph);
+		_stprintf(&outs[strlen(outs)],_T(" select = %d , base = %d , selectflag = %d\n"),select,demodat[playingdemodat].select_base,story_selectflag);
 		r_serif.top=20;
 		g_draw.DrawBlueText(r_serif,outs,-1,DT_LEFT,1);
 		delete [] outs;
@@ -325,23 +325,23 @@ void CTDemo::Draw()
 
 //正常終了：シーン数
 //エラー：0
-int CTDemo::InitDemoDat(char *filepath)
+int CTDemo::InitDemoDat(TCHAR *filepath)
 {
 	HANDLE hFile = CreateFile(filepath,
 		GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
 	if(hFile==INVALID_HANDLE_VALUE){
-		sprintf(errc,_T("ファイルのオープンに失敗\n%s"),filepath);
+		_stprintf(errc,_T("ファイルのオープンに失敗\n%s"),filepath);
 		return(0);
 	}
 
-	char *gotfile;
+	TCHAR *gotfile;
 	DWORD fsize = GetFileSize(hFile,NULL);
 	if(fsize==0){
 		CloseHandle(hFile);
-		sprintf(errc,_T("ファイルサイズ0\n%s"),filepath);
+		_stprintf(errc,_T("ファイルサイズ0\n%s"),filepath);
 		return(0);
 	}
-	gotfile = (char*)malloc(fsize+2);
+	gotfile = (TCHAR*)malloc(fsize+2);
 	ZeroMemory(gotfile,fsize+2);
 
 
@@ -361,7 +361,7 @@ int CTDemo::InitDemoDat(char *filepath)
 	DWORD strpos=0;
 	DWORD susumu;
 	int rval;
-	char *rstr = (char*)malloc(RSTRBUFFERSIZE);
+	TCHAR *rstr = (TCHAR*)malloc(RSTRBUFFERSIZE);
 	BOOL ext=FALSE,ext2=FALSE;
 	BOOL find;
 	int numevents=0;
@@ -374,13 +374,13 @@ int CTDemo::InitDemoDat(char *filepath)
 		if(rval == 1)find = TRUE;
 	}
 	if(!find){
-		sprintf(errc,_T("内容無し\n%s"),filepath);
+		_stprintf(errc,_T("内容無し\n%s"),filepath);
 		free(gotfile);
 		free(rstr);
 		return(0);
 	}
 
-	char spdtmp[5];
+	TCHAR spdtmp[5];
 	ZeroMemory(spdtmp,sizeof(spdtmp));
 
 	while(find){
@@ -400,13 +400,13 @@ int CTDemo::InitDemoDat(char *filepath)
 					find=TRUE;
 					break;
 				case 2://bgm
-					sprintf(demodat[numevents].bgm , rstr);
+					_stprintf(demodat[numevents].bgm , rstr);
 					break;
 				case 3://sound
-					sprintf(demodat[numevents].wavsnd , rstr);
+					_stprintf(demodat[numevents].wavsnd , rstr);
 					break;
 				case 4://bitmap
-					sprintf(demodat[numevents].bitmap[0] , rstr);
+					_stprintf(demodat[numevents].bitmap[0] , rstr);
 					break;
 				case 5://text
 					strncat(demodat[numevents].msg , rstr, 1024 - 1);
@@ -446,10 +446,10 @@ int CTDemo::InitDemoDat(char *filepath)
 				case 16://bgmpos
 					demodat[numevents].bgmpos = atof(rstr);
 					break;
-				case 17://bmp-char
+				case 17://bmp-TCHAR
 				case 18:
 				case 19:
-					sprintf(demodat[numevents].bitmap[rval - 17 + 1] , rstr);
+					_stprintf(demodat[numevents].bitmap[rval - 17 + 1] , rstr);
 					break;
 				case 20://select
 					select = 0;
@@ -479,7 +479,7 @@ int CTDemo::InitDemoDat(char *filepath)
 	return(numevents);
 }
 
-DWORD CTDemo::GetGyoDemo(char *strin,char *strout,DWORD *susumu)
+DWORD CTDemo::GetGyoDemo(TCHAR *strin,TCHAR *strout,DWORD *susumu)
 {
 	DWORD rval=0;
 	DWORD i=0;
@@ -541,7 +541,7 @@ DWORD CTDemo::GetGyoDemo(char *strin,char *strout,DWORD *susumu)
 					UINT n = strin[8] - '1';
 
 					if (n < 3){
-						rval = 17 + n; i = 9;	// bmp-char(1-3)
+						rval = 17 + n; i = 9;	// bmp-TCHAR(1-3)
 					}
 					else {
 						rval=0; i=8;

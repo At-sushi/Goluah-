@@ -72,7 +72,7 @@ void CBattleTaskBase::InitializeDLLLoadInfo()
 	for(j=0;j<2;j++)
 	{
 		for(i=0;i<g_battleinfo.GetNumTeam(j);i++){
-			strcpy(m_cinfo[j][i].dir,g_charlist.GetCharacterDir(g_battleinfo.GetCharacter(j,i)));
+			_tcscpy(m_cinfo[j][i].dir,g_charlist.GetCharacterDir(g_battleinfo.GetCharacter(j,i)));
 			m_cinfo[j][i].tid = j;
 			m_cinfo[j][i].funcs = &g_exp.fpack_s;
 			m_cinfo[j][i].funco = &g_exp.fpack_o;
@@ -87,14 +87,14 @@ void CBattleTaskBase::InitializeDLLLoadInfo()
 	m_sinfo.funco = &g_exp.fpack_o;
 	m_sinfo.funcd = &g_exp.fpack_d;
 	m_sinfo.tid = TEAM_STAGE;
-	strcpy(m_sinfo.dir,g_stagelist.GetStageDir(g_battleinfo.GetStage()));
+	_tcscpy(m_sinfo.dir,g_stagelist.GetStageDir(g_battleinfo.GetStage()));
 }
 
 
 void CBattleTaskBase::InitializeLoadDLLs()
 {
 	int i,j;
-	char filename [MAX_PATH];
+	TCHAR filename [MAX_PATH];
 
 	CTNowLoading* now_loading = dynamic_cast<CTNowLoading*>(g_system.FindTask('LOAD'));
 
@@ -126,7 +126,7 @@ void CBattleTaskBase::InitializeLoadDLLs()
 			}
 			else
 			{
-				sprintf(filename,_T("%s\\action.dll"),
+				_stprintf(filename,_T("%s\\action.dll"),
 					g_charlist.GetCharacterDir(g_battleinfo.GetCharacter(j,i)));
 				hlib_c[j][i] = LoadLibrary(filename);
 
@@ -159,7 +159,7 @@ void CBattleTaskBase::InitializeLoadDLLs()
 			}
 			else
 			{
-				sprintf(filename,_T("%s\\action.dll"),
+				_stprintf(filename,_T("%s\\action.dll"),
 					g_charlist.GetCharacterDir(g_battleinfo.GetCharacter(j,i)));
 				hlib_c[j][i] = LoadLibrary(filename);
 
@@ -192,7 +192,7 @@ void CBattleTaskBase::InitializeLoadDLLs()
 			}
 			else
 			{
-				sprintf(filename,_T("%s\\action.dll"),
+				_stprintf(filename,_T("%s\\action.dll"),
 					g_charlist.GetCharacterDir(g_battleinfo.GetCharacter(j,i)));
 				hlib_c[j][i] = LoadLibrary(filename);
 
@@ -212,7 +212,7 @@ void CBattleTaskBase::InitializeLoadDLLs()
 
 	//ステージDLLのロード
 	m_crnt_dllid = 2*MAXNUM_TEAM+1;
-	sprintf(filename,_T("%s\\stage.dll"),
+	_stprintf(filename,_T("%s\\stage.dll"),
 		g_stagelist.GetStageDir(g_battleinfo.GetStage()));
 	hlib_s = LoadLibrary(filename);
 	if(hlib_s == NULL){
@@ -562,7 +562,7 @@ DWORD CBattleTaskBase::GetStrikerCount(DWORD tid)
 }
 
 //勝利台詞を設定
-void CBattleTaskBase::SetKatiSerif(DWORD tid,char *serif)
+void CBattleTaskBase::SetKatiSerif(DWORD tid,TCHAR *serif)
 {
 	g_battleresult.SetKatiSerif(tid,serif);
 }
@@ -961,7 +961,7 @@ void CBattleTaskBase::DrawGObject(GOBJECT* pdat)
 }
 
 
-const char* CBattleTaskBase::MessageID2String(DWORD id)
+const TCHAR* CBattleTaskBase::MessageID2String(DWORD id)
 {
 	switch(id)
 	{
@@ -998,8 +998,8 @@ const char* CBattleTaskBase::MessageID2String(DWORD id)
 	//ネットワーク
 	case GOBJMSG_SYNC			: return _T("GOBJMSG_SYNC");
 	}
-	static char errret[64];
-	sprintf(errret,_T("unknown-ID(0x%08X)"),id);
+	static TCHAR errret[64];
+	_stprintf(errret,_T("unknown-ID(0x%08X)"),id);
 	return errret;
 }
 
@@ -1087,7 +1087,7 @@ void CBattleTaskBase::Notify_Exception(CGObject *obj,DWORD msgid,DWORD prm)
 }
 
 
-const char* CBattleTaskBase::GetBattleStateString()
+const TCHAR* CBattleTaskBase::GetBattleStateString()
 {
 	switch(bf_state)
 	{

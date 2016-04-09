@@ -551,7 +551,7 @@ BOOL FAR CALLBACK CDirectInput::EnumGamePad(LPCDIDEVICEINSTANCE lpddi,LPVOID pvr
     unsigned long  Data1;
     unsigned short Data2;
     unsigned short Data3;
-    unsigned char  Data4[8];
+    unsigned TCHAR  Data4[8];
 	} GUID;*/
 
 	static std::vector<GUID> guid_list;
@@ -574,7 +574,7 @@ BOOL FAR CALLBACK CDirectInput::EnumGamePad(LPCDIDEVICEINSTANCE lpddi,LPVOID pvr
 	if( DI_OK != g_input.pdi->CreateDevice(lpddi->guidInstance,&(g_input.pdidev[num]),NULL) )
 		return(DIENUM_CONTINUE);
 	else{
-		strcpy(g_input.gamepadname[num],lpddi->tszInstanceName);//–¼‘O‚ð•Û‘¶‚µ‚Ä‚¨‚­
+		_tcscpy(g_input.gamepadname[num],lpddi->tszInstanceName);//–¼‘O‚ð•Û‘¶‚µ‚Ä‚¨‚­
 		(*(DWORD*)pvref)++;
 	}
 

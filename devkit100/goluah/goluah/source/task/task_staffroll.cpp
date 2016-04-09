@@ -53,12 +53,12 @@ void CTStaffRoll::Initialize()
 		GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
 	if(hFile==INVALID_HANDLE_VALUE){
 		fsize = 256;
-		credits = new char [fsize];
-		sprintf(credits,_T("\n\n\n\n\n\n\n\nファイルのオープンに失敗しました"));
+		credits = new TCHAR [fsize];
+		_stprintf(credits,_T("\n\n\n\n\n\n\n\nファイルのオープンに失敗しました"));
 	}
 	else{
 		fsize=GetFileSize(hFile,NULL);
-		credits = new char [fsize+2];
+		credits = new TCHAR [fsize+2];
 		ZeroMemory(credits,fsize+2);
 
 		DWORD br;
@@ -125,7 +125,7 @@ void CTStaffRoll::Draw()
 	g_draw.DrawBlueText(r,&credits[staffindex],-1,DT_CENTER,2);
 }
 
-int CTStaffRoll::Get1Gyo(char *str)
+int CTStaffRoll::Get1Gyo(TCHAR *str)
 {
 	DWORD i;
 
@@ -142,7 +142,7 @@ int CTStaffRoll::Get1Gyo(char *str)
 /*----------------------------------------------------------------------
 	スクリプトの設定を取り込み
 ------------------------------------------------------------------------*/
-void CTStaffRoll::Setup(char *basedir,CStoryElement_Staff* ele_staff)
+void CTStaffRoll::Setup(TCHAR *basedir,CStoryElement_Staff* ele_staff)
 {
 	if(credits)return;//すでに再生中なので無視
 	if(!basedir)return;//設定できないので無視
@@ -152,8 +152,8 @@ void CTStaffRoll::Setup(char *basedir,CStoryElement_Staff* ele_staff)
 
 	//テキストファイル名取り込み
 	if(ele_staff->m_filename){
-		txtpath = new char [ baselen + strlen(ele_staff->m_filename) +3 ];
-		sprintf(txtpath,_T("%s\\%s"),basedir,ele_staff->m_filename);
+		txtpath = new TCHAR [ baselen + strlen(ele_staff->m_filename) +3 ];
+		_stprintf(txtpath,_T("%s\\%s"),basedir,ele_staff->m_filename);
 	}
 }
 

@@ -166,12 +166,12 @@ void CTTaimanTest::Draw()
 {
 	if(first_exec)
 	{
-		char *str = new char[64];
+		TCHAR *str = new TCHAR[64];
 
-		sprintf(str,_T("%d/%d"),char1,g_charlist.GetCharacterCount());
+		_stprintf(str,_T("%d/%d"),char1,g_charlist.GetCharacterCount());
 		g_system.DrawBMPText(10,50,0,str,select_flag ? 0xFFFFFFFF : 0x99999999);
 		
-		sprintf(str,_T("%d/%d"),char2,g_charlist.GetCharacterCount());
+		_stprintf(str,_T("%d/%d"),char2,g_charlist.GetCharacterCount());
 		g_system.DrawBMPText(10,100,0,str,select_flag ? 0x99999999 : 0xFFFFFFFF);
 
 		delete [] str;
@@ -187,12 +187,12 @@ void CTTaimanTest::Setting_Characters()
 {
 	if(!first_exec)
 	{
-		char *str = new char [256];
+		TCHAR *str = new TCHAR [256];
 
 		UINT winner = g_battleresult.GetWinner() ? char2 : char1;
 		UINT loser	= g_battleresult.GetWinner() ? char1 : char2;
 
-		sprintf(str,_T("\t%s(%d)\t\t%s(%d)"),
+		_stprintf(str,_T("\t%s(%d)\t\t%s(%d)"),
 			g_charlist.GetCharacterName(winner),
 			winner,
 			g_charlist.GetCharacterName(loser),

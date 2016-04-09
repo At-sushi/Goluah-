@@ -71,7 +71,7 @@ BOOL CSystem::Initialize(HWND hwnd)
 {
 	srand(timeGetTime());
 	this->hwnd = hwnd;
-	logBuffer = new char [512];
+	logBuffer = new TCHAR [512];
 
 	// CDirectPlay生成
 	/*if (!g_play.Initialize(hwnd))
@@ -448,14 +448,14 @@ void CSystem::InitSystemSound()
 --------------------------------------------------------------------------------*/
 void CSystem::InitSystemGraphics()
 {
-	char filename[256];
+	TCHAR filename[256];
 	for(int i=0;i<GCDMAX_IMAGES;i++){
-		sprintf(filename,_T(".\\system\\image%d"),i+1);
+		_stprintf(filename,_T(".\\system\\image%d"),i+1);
 		sdds[i] = g_draw.CreateSurfaceFrom256Image(filename);
 	}
-	sprintf(filename,_T(".\\system\\cell2.gcm"));
+	_stprintf(filename,_T(".\\system\\cell2.gcm"));
 	sdds[3] = g_draw.CreateSurfaceFrom256BMP(filename);
-	sprintf(filename,_T(".\\system\\cell.gcm"));
+	_stprintf(filename,_T(".\\system\\cell.gcm"));
 
 	CGCDHandler::GCDLoadCompressed(filename,scdat,srdat,shdat);
 }
@@ -480,40 +480,40 @@ BOOL CSystem::ShowInformation()
 //! ゲーム開始直後のインフォメーションダイアログボックスのメッセージプロシージャ
 BOOL CALLBACK DialogProc(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 {
-	char *str;
+	TCHAR *str;
 	int i;
 	BOOL cannot_start=FALSE;
 	if(uMsg == WM_INITDIALOG){
 		gbl.SetWinCenter(hwndDlg);
-		str = new char[1024*64];
+		str = new TCHAR[1024*64];
 		//config 読み込み結果
-		sprintf(str,_T("■設定ファイル読み込み"));
+		_stprintf(str,_T("■設定ファイル読み込み"));
 		ADDLIST(str);
 		if(!g_config.readok1){
-			sprintf(str,_T("config.dat(キー設定)読込み失敗 デフォルトを適用"));
+			_stprintf(str,_T("config.dat(キー設定)読込み失敗 デフォルトを適用"));
 			ADDLIST(str);
 		}
 		else{
-			sprintf(str,_T("config.dat 読み込みOK"));
+			_stprintf(str,_T("config.dat 読み込みOK"));
 			ADDLIST(str);
 		}
 		if(!g_config.readok2){
-			sprintf(str,_T("config2.datの読込み失敗 デフォルトを適用"));
+			_stprintf(str,_T("config2.datの読込み失敗 デフォルトを適用"));
 			ADDLIST(str);
 		}
 		else{
-			sprintf(str,_T("config2.dat 読み込みOK"));
+			_stprintf(str,_T("config2.dat 読み込みOK"));
 			ADDLIST(str);
 		}
 		ADDLIST(_T(" "));
 		//パッドの検索結果
-		sprintf(str,_T("■ゲームパッド検索結果"));
+		_stprintf(str,_T("■ゲームパッド検索結果"));
 		ADDLIST(str);
-		sprintf(str,_T("%d個のゲームパッドが見つかりました"),g_input.jsnum);
+		_stprintf(str,_T("%d個のゲームパッドが見つかりました"),g_input.jsnum);
 		ADDLIST(str);
 		if(g_input.jsnum!=0){
 			for(int i=0;i<g_input.jsnum;i++){
-				sprintf(str,_T("%d : %s"),i+1,g_input.gamepadname[i]);
+				_stprintf(str,_T("%d : %s"),i+1,g_input.gamepadname[i]);
 				ADDLIST(str);
 			}
 		}
@@ -521,50 +521,50 @@ BOOL CALLBACK DialogProc(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 		//キャラクターの検索結果
 		ADDLIST(_T("■キャラクター検索結果"));
 		for(i=0;i<g_charlist.GetRingNum();i++){
-			sprintf(str,_T("%s\\ : %d"),g_charlist.GetRingName(i),g_charlist.GetCharacterCountRing(i));
+			_stprintf(str,_T("%s\\ : %d"),g_charlist.GetRingName(i),g_charlist.GetCharacterCountRing(i));
 			ADDLIST(str);
 		}
-		sprintf(str,_T("計 : %d"),g_charlist.GetCharacterCount());
+		_stprintf(str,_T("計 : %d"),g_charlist.GetCharacterCount());
 		ADDLIST(str);
 
 		ADDLIST(_T(" "));
 		ADDLIST(_T("(･∀･)読み込みに成功したキャラクター(･∀･)"));
-		sprintf(str,_T("全:%d体"),g_charlist.GetCharacterCount());
+		_stprintf(str,_T("全:%d体"),g_charlist.GetCharacterCount());
 		ADDLIST(str);
 		for(i=0;i<g_charlist.GetCharacterCount();i++){
-			sprintf(str,_T("%s : %s - ver%4.3f"),
+			_stprintf(str,_T("%s : %s - ver%4.3f"),
 				g_charlist.GetCharacterDir(i),g_charlist.GetCharacterName(i),
 				g_charlist.GetCharacterVer(i)/1000.0);
 			ADDLIST(str);
 		}
 		ADDLIST(_T(" "));
 		ADDLIST(_T("(･Ａ･)読み込みに失敗したキャラクター(･Ａ･)"));
-		sprintf(str,_T("全:%d体"),g_charlist.GetDameCharCount());
+		_stprintf(str,_T("全:%d体"),g_charlist.GetDameCharCount());
 		ADDLIST(str);
 		for(i=0;i<g_charlist.GetDameCharCount();i++){
-			sprintf(str,_T("%s : "),g_charlist.GetDameCharDir(i));
+			_stprintf(str,_T("%s : "),g_charlist.GetDameCharDir(i));
 			switch(g_charlist.GetDameCharReas(i)){
 			case CCL_DAME_NODLL://action.dllの読み込みに失敗
-				sprintf(&str[strlen(str)],_T("dllの読み込みに失敗しました"));
+				_stprintf(&str[strlen(str)],_T("dllの読み込みに失敗しました"));
 				break;
 			case CCL_DAME_CANTGETFP://関数ポインタ取得に失敗
-				sprintf(&str[strlen(str)],_T("関数ポインタの取得に失敗しました"));
+				_stprintf(&str[strlen(str)],_T("関数ポインタの取得に失敗しました"));
 				break;
 			case CCL_DAME_FFAIL://関数がFALSEを返してきた
-				sprintf(&str[strlen(str)],_T("CharacterInfo関数がFALSEを返しました"));
+				_stprintf(&str[strlen(str)],_T("CharacterInfo関数がFALSEを返しました"));
 				break;
 			case CCL_DAME_OLDDLL://バージョンチェックに失敗
-				sprintf(&str[strlen(str)],_T("ver.%4.3f(古) - %s"),
+				_stprintf(&str[strlen(str)],_T("ver.%4.3f(古) - %s"),
 					(double)g_charlist.GetDameCharVer(i)/1000.0,
 					g_charlist.GetDameCharName(i));
 				break;
 			case CCL_DAME_NEWDLL://バージョンチェックに失敗(2)
-				sprintf(&str[strlen(str)],_T("ver.%4.3f(新) - %s"),
+				_stprintf(&str[strlen(str)],_T("ver.%4.3f(新) - %s"),
 					(double)g_charlist.GetDameCharVer(i)/1000.0,
 					g_charlist.GetDameCharName(i));
 				break;
 			default:
-				sprintf(&str[strlen(str)],_T("エラーを特定できません"));
+				_stprintf(&str[strlen(str)],_T("エラーを特定できません"));
 				break;
 			}
 			ADDLIST(str);
@@ -572,41 +572,41 @@ BOOL CALLBACK DialogProc(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 		ADDLIST(_T(" "));
 		//ステージの検索結果
 		ADDLIST(_T("■ステージ検索結果"));
-		sprintf(str,_T("全%dステージ"),g_stagelist.GetStageCount());
+		_stprintf(str,_T("全%dステージ"),g_stagelist.GetStageCount());
 		ADDLIST(str);
 		ADDLIST(_T(" "));
 		ADDLIST(_T("(`･ω･´)読み込みに成功したステージ(`･ω･´)"));
 		for(i=0;i<g_stagelist.GetStageCount();i++){
-			sprintf(str,_T("%s - %s"),g_stagelist.GetStageDir(i),g_stagelist.GetStageName(i));
+			_stprintf(str,_T("%s - %s"),g_stagelist.GetStageDir(i),g_stagelist.GetStageName(i));
 			if(g_stagelist.GetStageVer(i)!=0){
-				sprintf(&str[strlen(str)],_T("(ver%4.3f)"),g_stagelist.GetStageVer(i)/1000.0);
+				_stprintf(&str[strlen(str)],_T("(ver%4.3f)"),g_stagelist.GetStageVer(i)/1000.0);
 			}
 			else{
-				sprintf(&str[strlen(str)],_T("(DLLなし)"));
+				_stprintf(&str[strlen(str)],_T("(DLLなし)"));
 			}
 			ADDLIST(str);
 		}
 		ADDLIST(_T(" "));
 		ADDLIST(_T("(´･ω･`)読み込みに失敗したステージ(´･ω･`)"));
-		sprintf(str,_T("全%dステージ"),g_stagelist.GetDameStageCount());
+		_stprintf(str,_T("全%dステージ"),g_stagelist.GetDameStageCount());
 		ADDLIST(str);
 		for(i=0;i<g_stagelist.GetDameStageCount();i++){
-			sprintf(str,_T("%s"),g_stagelist.GetDameStageDir(i));
+			_stprintf(str,_T("%s"),g_stagelist.GetDameStageDir(i));
 			switch(g_stagelist.GetDameStageReason(i)){
 			case CSL_DAME_NONAME:
-				sprintf(&str[strlen(str)],_T("(名前取得に失敗)"));
+				_stprintf(&str[strlen(str)],_T("(名前取得に失敗)"));
 				break;
 			case CSL_DAME_PROC:
-				sprintf(&str[strlen(str)],_T("(関数ポインタ取得に失敗)"));
+				_stprintf(&str[strlen(str)],_T("(関数ポインタ取得に失敗)"));
 				break;
 			case CSL_DAME_PROC2:
-				sprintf(&str[strlen(str)],_T("(StageInfoに失敗)"));
+				_stprintf(&str[strlen(str)],_T("(StageInfoに失敗)"));
 				break;
 			case CSL_DAME_OLDDLL:
-				sprintf(&str[strlen(str)],_T("(DLLが古い-%4.3f)"),g_stagelist.GetDameStageVer(i)/1000.0);
+				_stprintf(&str[strlen(str)],_T("(DLLが古い-%4.3f)"),g_stagelist.GetDameStageVer(i)/1000.0);
 				break;
 			case CSL_DAME_NEWDLL:
-				sprintf(&str[strlen(str)],_T("(DLLが新しすぎ-%4.3f)"),g_stagelist.GetDameStageVer(i)/1000.0);
+				_stprintf(&str[strlen(str)],_T("(DLLが新しすぎ-%4.3f)"),g_stagelist.GetDameStageVer(i)/1000.0);
 				break;
 			}
 			ADDLIST(str);
@@ -616,12 +616,12 @@ BOOL CALLBACK DialogProc(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 		ADDLIST(_T("■ストーリー検証結果"));
 		ADDLIST(_T("○読み込み成功○"));
 		for(i=0;i<(int)g_storylist.GetAllStoryNum();i++){
-			sprintf(str,_T("%s : %s"),g_storylist.GetStoryDir(i),g_storylist.GetStoryName(i));
+			_stprintf(str,_T("%s : %s"),g_storylist.GetStoryDir(i),g_storylist.GetStoryName(i));
 			ADDLIST(str);
 		}
 		ADDLIST(_T("×読み込み失敗×"));
 		for(i=0;i<g_storylist.GetErrorCount();i++){
-			sprintf(str,_T("%s : %s"),g_storylist.GetErrorDir(i),g_storylist.GetErrorStr(i));
+			_stprintf(str,_T("%s : %s"),g_storylist.GetErrorDir(i),g_storylist.GetErrorStr(i));
 			ADDLIST(str);
 		}
 		ADDLIST(_T(" "));
@@ -702,7 +702,7 @@ BOOL CSystem::IsWindowActive()
 *	サポートする記号  +-%:/
 */
 //CSystem::DrawBMPText で使用。文字コードを対応するセル番号に変換
-int char2cell(char c)
+int char2cell(TCHAR c)
 {
 	if(c<0x20)return -1;//表示できない文字
 	if(c==0x20)return 0;//全角スペース
@@ -716,7 +716,7 @@ int char2cell(char c)
 /*! ビットマップテキスト描画。
 *	アルファベット（大文字）、数字、+-%のみ
 */
-double CSystem::DrawBMPText(double x,double y,float z,char *str,DWORD col)
+double CSystem::DrawBMPText(double x,double y,float z,TCHAR *str,DWORD col)
 {
 	return DrawBMPTextEx(x,y,z,str,col,1.0f,1.0f,SYSBMPTXT_DEFAULT);
 }
@@ -724,7 +724,7 @@ double CSystem::DrawBMPText(double x,double y,float z,char *str,DWORD col)
 /*!ビットマップテキスト描画Ex
 *	拡大縮小・インチキプロポーショナル・右左テキストが選択できる
 */
-double CSystem::DrawBMPTextEx(double x,double y,float z,char *str,DWORD col,float scaX,float scaY,DWORD flags)
+double CSystem::DrawBMPTextEx(double x,double y,float z,TCHAR *str,DWORD col,float scaX,float scaY,DWORD flags)
 {
 	if(scaX<0.01f)return x;
 	BOOL dr = (scaY<0.01f) ? FALSE : TRUE;
@@ -764,7 +764,7 @@ double CSystem::DrawBMPTextEx(double x,double y,float z,char *str,DWORD col,floa
 	//逆向き
 	if(flags & SYSBMPTXT_R2L){
 		int len = strlen(str);
-		char *tmp = new char [len+1];
+		TCHAR *tmp = new TCHAR [len+1];
 		for(int t=0;t<len;t++){
 			tmp[len-t-1] = str[t];
 		}
@@ -851,9 +851,9 @@ CTaskBase* CSystem::FindTask(DWORD id)
 	ログ
 --------------------------------------------------------------------*/
 
-char* CSystem::logBuffer = NULL;
+TCHAR* CSystem::logBuffer = NULL;
 
-void CSystem::Log(const char *log,DWORD flag)
+void CSystem::Log(const TCHAR *log,DWORD flag)
 {
 	#ifdef _DBG_MESSAGES_TO_CONSOLE
 	if(flag!=SYSLOG_DEBUG){
@@ -870,26 +870,26 @@ void CSystem::Log(const char *log,DWORD flag)
 	switch(flag){
 	case SYSLOG_INFO	:
 		{
-			sprintf(logBuffer,_T("[info]:%s"),log);
+			_stprintf(logBuffer,_T("[info]:%s"),log);
 			log2file = g_config.UseLog_Info();
 		}
 		break;
 	case SYSLOG_ERROR	:
 		{
-			sprintf(logBuffer,_T("[error]:%s"),log);
+			_stprintf(logBuffer,_T("[error]:%s"),log);
 			log2file = TRUE;
 		}
 		break;
 	case SYSLOG_ALERT	:
 	case SYSLOG_WARNING	:
 		{
-			sprintf(logBuffer,_T("[warning]:%s"),log);
+			_stprintf(logBuffer,_T("[warning]:%s"),log);
 			log2file = g_config.UseLog_Warning();
 		}
 		break;
 	case SYSLOG_DEBUG	:
 		{
-			sprintf(logBuffer,_T("[debug]:%s"),log);
+			_stprintf(logBuffer,_T("[debug]:%s"),log);
 			log2file = g_config.UseLog_Debug();
 		}
 		break;
@@ -901,9 +901,9 @@ void CSystem::Log(const char *log,DWORD flag)
 	}
 }
 
-void CSystem::LogWarning(const char *format, ...)
+void CSystem::LogWarning(const TCHAR *format, ...)
 {
-	strcpy(logBuffer,_T("[warning]:"));
+	_tcscpy(logBuffer,_T("[warning]:"));
 
 	va_list args;
 	va_start(args, format);
@@ -917,9 +917,9 @@ void CSystem::LogWarning(const char *format, ...)
 }
 
 
-void CSystem::LogErr(const char *format,...)
+void CSystem::LogErr(const TCHAR *format,...)
 {
-	strcpy(logBuffer,_T("[error]:"));
+	_tcscpy(logBuffer,_T("[error]:"));
 
 	va_list args;
 	va_start(args, format);
@@ -945,11 +945,11 @@ void CSystem::SaveScreenShot()
 	}
 
 	//保存ファイル名をひねり出す
-	char* filename = new char[256];
+	TCHAR* filename = new TCHAR[256];
 	time_t crnt_time;
 	time(&crnt_time);
 	struct tm* crnt_time_l = localtime(&crnt_time);
-	sprintf(filename,_T("%s\\%d%s%d%s%d%s%d%s%d%s%d.%s"),
+	_stprintf(filename,_T("%s\\%d%s%d%s%d%s%d%s%d%s%d.%s"),
 		_T("system\\sshot\\"),
 		crnt_time_l->tm_year + 1900,				//年
 		(crnt_time_l->tm_mon + 1)<10 ? _T("0") : _T(""),
@@ -1268,7 +1268,7 @@ void CSystem::UpdateFrameRate()
 }
 
 
-void CSystem::PushSysTag(const char* tag_str)
+void CSystem::PushSysTag(const TCHAR* tag_str)
 {
 	m_systag.push(tag_str);
 }
@@ -1288,7 +1288,7 @@ void CSystem::ClearSysTag()
 	ClearDLLTag();
 }
 
-void CSystem::PushDLLTag(const char* tag_str)
+void CSystem::PushDLLTag(const TCHAR* tag_str)
 {
 	m_dlltag.push(tag_str);
 }

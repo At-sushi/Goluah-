@@ -221,7 +221,7 @@ public:
 
 	protected:
 		int   disp_len;	//!<文字列表示長さ
-		char* disp_txt;	//!<表示文字列
+		TCHAR* disp_txt;	//!<表示文字列
 		int   m_sindex;	//!<ストーリー番号。マイナスは無効
 		BOOL  m_hideFlag;
 		float m_hideMove;

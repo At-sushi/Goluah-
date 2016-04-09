@@ -16,7 +16,7 @@
 // Initialize
 //*********************************************************************************
 
-char* CExport::last_funcname = _T("none");
+TCHAR* CExport::last_funcname = _T("none");
 BOOL  CExport::func_in = FALSE;
 
 #define FUNC_IN		last_funcname=__FUNCTION__;func_in=TRUE
@@ -169,7 +169,7 @@ int   CExport::SeekKey(DWORD tid,int index,int numseek,DWORD key)
 	FUNC_OUT;
 	return(ret);
 }
-void  CExport::SetKatiSerif(DWORD tid,char* serif)
+void  CExport::SetKatiSerif(DWORD tid,TCHAR* serif)
 {
 	FUNC_IN;
 	GetCurrentBattleTask()->SetKatiSerif(tid,serif);
@@ -192,7 +192,7 @@ typedef struct _TWIN_SOUNDS
 	LPDIRECTSOUNDBUFFER pSound[2];
 	int num;
 } TWIN_SOUNDS;
-LPVOID CExport::LoadMySound(char* filename)
+LPVOID CExport::LoadMySound(TCHAR* filename)
 {
 	FUNC_IN;
 	LPVOID ret = NULL;
@@ -259,20 +259,20 @@ DWORD CExport::Message2System(DWORD oid,DWORD msg,DWORD prm)
 	FUNC_OUT;
 	return ret;
 }
-char* CExport::GetEnemyName(DWORD tid)
+TCHAR* CExport::GetEnemyName(DWORD tid)
 {
 	FUNC_IN;
 	DWORD eid=TEAM_PLAYER1;
 	if(tid==TEAM_PLAYER1)eid=TEAM_PLAYER2;
-	char* ret = g_charlist.GetCharacterName(g_battleinfo.GetCharacter(eid,GetCurrentBattleTask()->GetActiveCharacterID(eid)));
+	TCHAR* ret = g_charlist.GetCharacterName(g_battleinfo.GetCharacter(eid,GetCurrentBattleTask()->GetActiveCharacterID(eid)));
 	FUNC_OUT;
 	return ret;
 }
-char* CExport::GetCharacterName(DWORD oid)
+TCHAR* CExport::GetCharacterName(DWORD oid)
 {
 	FUNC_IN;
 	CGObject* pobj = GetCurrentBattleTask()->GetGObject(oid);
-	char* ret = NULL;
+	TCHAR* ret = NULL;
 	if (pobj) ret = g_charlist.GetCharacterName(g_battleinfo.GetCharacter( (pobj->dll_id - 1) / MAXNUM_TEAM, (pobj->dll_id - 1) % MAXNUM_TEAM ));
 	FUNC_OUT;
 	return ret;
@@ -355,7 +355,7 @@ BOOL CExport::IsNetwork()
 	FUNC_OUT;
 	return ret;
 }
-void CExport::PushTag(const char* tag)
+void CExport::PushTag(const TCHAR* tag)
 {
 	FUNC_IN;
 	g_system.PushDLLTag( tag );
@@ -367,25 +367,25 @@ void CExport::PopTag()
 	g_system.PopDLLTag();
 	FUNC_OUT;
 }
-void CExport::LogError(const char* str)
+void CExport::LogError(const TCHAR* str)
 {
 	FUNC_IN;
 	g_system.Log( str,SYSLOG_ERROR );
 	FUNC_OUT;
 }
-void CExport::LogWarning(const char* str)
+void CExport::LogWarning(const TCHAR* str)
 {
 	FUNC_IN;
 	g_system.Log( str,SYSLOG_WARNING );
 	FUNC_OUT;
 }
-void CExport::LogDebug(const char* str)
+void CExport::LogDebug(const TCHAR* str)
 {
 	FUNC_IN;
 	g_system.Log( str,SYSLOG_DEBUG );
 	FUNC_OUT;
 }
-void CExport::LogInfo(const char* str)
+void CExport::LogInfo(const TCHAR* str)
 {
 	FUNC_IN;
 	g_system.Log( str,SYSLOG_INFO );
@@ -589,7 +589,7 @@ LPVOID CExport::GetD3DD()
 	FUNC_OUT;
 	return ret;
 }
-void   CExport::LoadCellDat(char* filename,LPVOID cdat,LPVOID rdat,LPVOID hdat)
+void   CExport::LoadCellDat(TCHAR* filename,LPVOID cdat,LPVOID rdat,LPVOID hdat)
 {
 	FUNC_IN;
 	CGCDHandler::GCDLoad(filename,(GCD_CELL2*)cdat,(GCD_RECT*)rdat,(GCD_HANTEI*)hdat,NULL,700);
@@ -600,7 +600,7 @@ void   CExport::LoadCellDat(char* filename,LPVOID cdat,LPVOID rdat,LPVOID hdat)
 
 	FUNC_OUT;
 }
-LPVOID CExport::LoadBmp(char* filename,char* palname)
+LPVOID CExport::LoadBmp(TCHAR* filename,TCHAR* palname)
 {
 	FUNC_IN;
 	LPVOID ret = g_draw.CreateSurfaceFrom256BMP(filename,palname);
@@ -706,7 +706,7 @@ void   CExport::SetParentMatrix(LPVOID mat,BOOL root,LPVOID matprv)//ÅuêeÅvïœä∑ç
 	g_draw.SetParentMatrix2((D3DXMATRIX*)mat,root,(D3DXMATRIX*)matprv);
 	FUNC_OUT;
 }
-DWORD  CExport::CreateCellDat(char* filename,LPVOID *cdat,LPVOID *rdat,LPVOID *hdat)
+DWORD  CExport::CreateCellDat(TCHAR* filename,LPVOID *cdat,LPVOID *rdat,LPVOID *hdat)
 {
 	FUNC_IN;
 	DWORD ret = GCD_VERSION;
@@ -747,7 +747,7 @@ void  CExport::DestroyCellDat(LPVOID *cdat,LPVOID *rdat,LPVOID *hdat)
 	DELETE_ARRAY( *hdat );
 	FUNC_OUT;
 }
-LPVOID  CExport::LoadImage(char* filename, char* palname)
+LPVOID  CExport::LoadImage(TCHAR* filename, TCHAR* palname)
 {
 	LPVOID ret;
 
@@ -768,22 +768,22 @@ LPVOID  CExport::LoadImage(char* filename, char* palname)
 
 	return ret;
 }
-DWORD  CExport::CreateCellDat2(char* filename,LPVOID *cdat,LPVOID *rdat,LPVOID *hdat)
+DWORD  CExport::CreateCellDat2(TCHAR* filename,LPVOID *cdat,LPVOID *rdat,LPVOID *hdat)
 {
 	FUNC_IN;
 	DWORD ret = GCD_VERSION;
 	if (!filename) return 0;
-	char* Buffer = (char*)malloc( strlen(filename) + (4 + 1) );
+	TCHAR* Buffer = (TCHAR*)malloc( strlen(filename) + (4 + 1) );
 
 	if (!Buffer) return 0;
 
 	*cdat = new GCD_CELL2[GCDMAX_CELLS];
 	*rdat = new GCD_RECT[GCDMAX_RECTANGLES];
 	*hdat = new GCD_HANTEI[GCDMAX_CELLS];
-	sprintf(Buffer, _T("%s%s"), filename, _T(".gcm"));
+	_stprintf(Buffer, _T("%s%s"), filename, _T(".gcm"));
 	if(0 != CGCDHandler::GCDLoadCompressed(Buffer,(GCD_CELL2*)(*cdat),(GCD_RECT*)(*rdat),(GCD_HANTEI*)(*hdat),NULL) &&
 		0 != CGCDHandler::GCDLoad(Buffer,(GCD_CELL2*)(*cdat),(GCD_RECT*)(*rdat),(GCD_HANTEI*)(*hdat),NULL)){
-		sprintf(Buffer, _T("%s%s"), filename, _T(".gcd"));
+		_stprintf(Buffer, _T("%s%s"), filename, _T(".gcd"));
 
 		if(0 != CGCDHandler::GCDLoadCompressed(Buffer,(GCD_CELL2*)(*cdat),(GCD_RECT*)(*rdat),(GCD_HANTEI*)(*hdat),NULL) &&
 			0 != CGCDHandler::GCDLoad(Buffer,(GCD_CELL2*)(*cdat),(GCD_RECT*)(*rdat),(GCD_HANTEI*)(*hdat),NULL)){

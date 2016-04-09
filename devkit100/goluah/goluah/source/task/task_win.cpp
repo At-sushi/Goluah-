@@ -35,7 +35,7 @@ CYouWin::~CYouWin()
 --------------------------------------------------------------*/
 void CYouWin::Initialize()
 {
-	char filename[256],palname[256],*dir;
+	TCHAR filename[256],palname[256],*dir;
 	wt = 0;
 	if(g_battleresult.GetWinner()){
 		wt=1;
@@ -47,11 +47,11 @@ void CYouWin::Initialize()
 	for(UINT j=0;j<g_battleresult.GetWinnerCount();j++)
 	{
 		DWORD alt = OPT2ALT( g_battleinfo.GetCharacterOption(wt,j) );
-		char altstr[3]={'\0','\0'};
-		if(alt!=0)altstr[0]='a'+(char)alt-1;
+		TCHAR altstr[3]={'\0','\0'};
+		if(alt!=0)altstr[0]='a'+(TCHAR)alt-1;
 		dir = g_charlist.GetCharacterDir(g_battleresult.GetCharacter(j));
-		sprintf(filename,_T("%s\\face3%s"),dir,altstr);
-		sprintf(palname,_T("%s\\pal%d"),dir,g_battleresult.GetColor(j));
+		_stprintf(filename,_T("%s\\face3%s"),dir,altstr);
+		_stprintf(palname,_T("%s\\pal%d"),dir,g_battleresult.GetColor(j));
 		dds_face[j] = g_draw.CreateSurfaceFrom256Image(filename,palname);
 	}
 
@@ -239,7 +239,7 @@ void CYouWin::Draw()
 		r.top=360;
 		r.right=640;
 		r.bottom=480;
-		char *disptxt = new char[m_textlen+1];
+		TCHAR *disptxt = new TCHAR[m_textlen+1];
 		memcpy(disptxt,m_text,m_textlen);
 		disptxt[m_textlen]='\0';
 		
@@ -253,13 +253,13 @@ void CYouWin::Draw()
 /*------------------------------------------------------------
 	ストーリーから、テキストの設定
 --------------------------------------------------------------*/
-void CYouWin::SetStoryText(char *txt)
+void CYouWin::SetStoryText(TCHAR *txt)
 {
 	DELETEARRAY(m_text_from_story);
 
 	if(!txt)return;
 
-	m_text_from_story = new char [ strlen(txt)+1 ];
-	strcpy(m_text_from_story,txt);
+	m_text_from_story = new TCHAR [ strlen(txt)+1 ];
+	_tcscpy(m_text_from_story,txt);
 }
 

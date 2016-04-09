@@ -168,7 +168,7 @@ void CBattleTaskNet::StartRound()
 {
 	int i,j;
 	round++;
-	char filename[256];
+	TCHAR filename[256];
 	BOOL call_round=TRUE;
 
 	//キャラクターの状態を設定する
@@ -259,8 +259,8 @@ void CBattleTaskNet::TerminateDestroySubTasks()
 =============================================================================*/
 BOOL CBattleTaskNet::Execute(DWORD time)
 {
-	static char execute_tag[256];
-	sprintf(execute_tag,_T("%s (%s)"),__FUNCTION__,GetBattleStateString());
+	static TCHAR execute_tag[256];
+	_stprintf(execute_tag,_T("%s (%s)"),__FUNCTION__,GetBattleStateString());
 	g_system.PushSysTag(execute_tag);
 
 /*	if(m_pause_task){

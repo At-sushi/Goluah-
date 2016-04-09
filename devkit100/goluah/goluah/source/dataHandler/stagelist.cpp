@@ -79,7 +79,7 @@ void CStageList::InitializeRingList()
 		if(strcmp(fd.cFileName,_T("."))==0 || strcmp(fd.cFileName,_T(".."))==0 || strcmp(fd.cFileName,_T("bgm"))==0);
 		else if(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 		{
-			strcpy(newitem.name,fd.cFileName);
+			_tcscpy(newitem.name,fd.cFileName);
 			ringlist.push_back(newitem);
 		}
 	} while(FindNextFile(hFind, &fd));
@@ -94,19 +94,19 @@ void CStageList::InitializeRing(DWORD index)
 	HANDLE hFind;
 	WIN32_FIND_DATA fd;
 
-	char ringBaseDir[64];
-	sprintf(ringBaseDir,_T("stage\\%s\\*.*"),ringlist[index].name);
+	TCHAR ringBaseDir[64];
+	_stprintf(ringBaseDir,_T("stage\\%s\\*.*"),ringlist[index].name);
 	hFind = FindFirstFile(ringBaseDir, &fd);
 
 	if(hFind == INVALID_HANDLE_VALUE)return;
 
-	char founddir[64];
+	TCHAR founddir[64];
 
 	do {
 		if(strcmp(fd.cFileName,_T("."))==0 || strcmp(fd.cFileName,_T(".."))==0);
 		else if(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 		{
-			sprintf(founddir , _T("stage\\%s\\%s") , ringlist[index].name , fd.cFileName);
+			_stprintf(founddir , _T("stage\\%s\\%s") , ringlist[index].name , fd.cFileName);
 			VerifyStageDir(founddir , index);
 		}
 	} while(FindNextFile(hFind, &fd));
@@ -116,22 +116,22 @@ void CStageList::InitializeRing(DWORD index)
 
 
 //ステージ一つ分の正当性チェック
-BOOL CStageList::VerifyStageDir(char *dir,DWORD ring)
+BOOL CStageList::VerifyStageDir(TCHAR *dir,DWORD ring)
 {
-	char path[256];
-	sprintf(path,_T("%s\\back1.bmp"),dir);
+	TCHAR path[256];
+	_stprintf(path,_T("%s\\back1.bmp"),dir);
 
 	CSL_DAMEINFO dame;
 	ZeroMemory(&dame,sizeof(dame));
 
 	//名前をヌク
-	char sname[256];
+	TCHAR sname[256];
 	ZeroMemory(sname,sizeof(sname));
-	sprintf(path,_T("%s\\name.txt"),dir);
+	_stprintf(path,_T("%s\\name.txt"),dir);
 	HANDLE hFile = CreateFile(path,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
 	if(hFile==INVALID_HANDLE_VALUE){
 		//失敗
-		strcpy(dame.dir,dir);
+		_tcscpy(dame.dir,dir);
 		dame.damereas=CSL_DAME_NONAME;
 		damelist.push_back(dame);
 		return(FALSE);
@@ -140,11 +140,11 @@ BOOL CStageList::VerifyStageDir(char *dir,DWORD ring)
 	ReadFile(hFile,&sname,sizeof(sname),&br,NULL);
 	CloseHandle(hFile);
 	if(strlen(sname)==0){
-		sprintf(sname,_T("STAGE%d"),infolist.size()+1);
+		_stprintf(sname,_T("STAGE%d"),infolist.size()+1);
 	}
 	
 	//DLLがあったらバージョンチェック
-	sprintf(path,_T("%s\\stage.dll"),dir);
+	_stprintf(path,_T("%s\\stage.dll"),dir);
 	HINSTANCE hLib = LoadLibrary(path);
 	PFUNC_STAGEINFO pfsinfo=NULL;
 	SDI_STAGEINFO sinfo;
@@ -154,14 +154,14 @@ BOOL CStageList::VerifyStageDir(char *dir,DWORD ring)
 		if(pfsinfo!=NULL){
 			if(pfsinfo(&sinfo)){
 				if(sinfo.ver < 680){//DLLが古い
-					strcpy(dame.dir,dir);
+					_tcscpy(dame.dir,dir);
 					dame.damereas=CSL_DAME_OLDDLL;
 					dame.ver=sinfo.ver;
 					damelist.push_back(dame);
 					return(FALSE);
 				}
 				if(sinfo.ver > SDI_VERSION){//DLLが新しい
-					strcpy(dame.dir,dir);
+					_tcscpy(dame.dir,dir);
 					dame.damereas=CSL_DAME_NEWDLL;
 					dame.ver=sinfo.ver;
 					damelist.push_back(dame);
@@ -169,14 +169,14 @@ BOOL CStageList::VerifyStageDir(char *dir,DWORD ring)
 				}
 			}
 			else{//関数実行に失敗
-				strcpy(dame.dir,dir);
+				_tcscpy(dame.dir,dir);
 				dame.damereas=CSL_DAME_PROC2;
 				damelist.push_back(dame);
 				return(FALSE);
 			}
 		}
 		else{//関数ポインタ取得失敗
-				strcpy(dame.dir,dir);
+				_tcscpy(dame.dir,dir);
 				dame.damereas=CSL_DAME_PROC;
 				damelist.push_back(dame);
 				return FALSE;
@@ -189,8 +189,8 @@ BOOL CStageList::VerifyStageDir(char *dir,DWORD ring)
 	//情報複写
 	CSL_STAGEINFO newitem;
 	ZeroMemory(&newitem,sizeof(CSL_STAGEINFO));
-	strcpy(newitem.dir,dir);
-	strcpy(newitem.name,sname);
+	_tcscpy(newitem.dir,dir);
+	_tcscpy(newitem.name,sname);
 	newitem.ver=sinfo.ver;
 	//リスト追加
 	ringlist[ring].ring2serial.push_back( (DWORD)infolist.size() );
@@ -207,11 +207,11 @@ int CStageList::GetStageCount()
 {
 	return(infolist.size());
 }
-char* CStageList::GetStageDir(int index)
+TCHAR* CStageList::GetStageDir(int index)
 {
 	return(infolist[index].dir);
 }
-char* CStageList::GetStageName(int index)
+TCHAR* CStageList::GetStageName(int index)
 {
 	return(infolist[index].name);
 }
@@ -219,11 +219,11 @@ int CStageList::GetDameStageCount()
 {
 	return( damelist.size() );
 }
-char* CStageList::GetDameStageDir(int index)
+TCHAR* CStageList::GetDameStageDir(int index)
 {
 	return(damelist[index].dir);
 }
-int CStageList::FindStage(char *name)
+int CStageList::FindStage(TCHAR *name)
 {
 	if(name==NULL)return(-1);
 

@@ -23,7 +23,7 @@
 --------------------------------------------------------------*/
 void CDebugMenu::Activate(DWORD pid)
 {
-	char* str;
+	TCHAR* str;
 
 	g_sound.BGMStop();
 
@@ -188,11 +188,11 @@ void CDebugMenu::Draw()
 	}
 
 	r.top += 24;
-	char *str_ipt = new char [256];
+	TCHAR *str_ipt = new TCHAR [256];
 	for(i=0;i<MAXNUM_KEYI;i++)
 	{
 		DWORD ipt = g_input.GetKey(i,0);
-		sprintf(str_ipt,_T("%d : %s %s %s %s %s %s %s %s"),
+		_stprintf(str_ipt,_T("%d : %s %s %s %s %s %s %s %s"),
 			i,
 			(ipt&KEYSTA_UP)		? _T("ª") : _T("@"),
 			(ipt&KEYSTA_DOWN)	? _T("«") : _T("@"),

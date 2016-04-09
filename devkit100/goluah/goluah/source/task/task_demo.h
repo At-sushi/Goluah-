@@ -14,11 +14,11 @@
 //! ストーリー中間デモ・１ブロック分情報
 struct DEMODAT
 {
-	char bitmap[4][64];	//!< 表示ビットマップ（デフォルト：なし）
+	TCHAR bitmap[4][64];	//!< 表示ビットマップ（デフォルト：なし）
 	BOOL bgmmid;		//!< 未使用
-	char bgm[64];		//!< 再生BGM（デフォルト：変更無し）
-	char wavsnd[64];	//!< 再生サウンド（デフォルト：なし）//未実装
-	char msg[1024];		//!< 表示メッセージ（デフォルト：なし）
+	TCHAR bgm[64];		//!< 再生BGM（デフォルト：変更無し）
+	TCHAR wavsnd[64];	//!< 再生サウンド（デフォルト：なし）//未実装
+	TCHAR msg[1024];		//!< 表示メッセージ（デフォルト：なし）
 	int spdmsg;			//!< メッセージ表示スピード（デフォルト：適当）
 	int dur;			//!< 表示時間（デフォルト：文字列表示に合わせて自動的に設定）
 	DWORD bmpdisp;		//!< ↓フラグ
@@ -49,23 +49,23 @@ public:
 	int  GetDrawPriority(){return 1000;}
 	DWORD GetID(){return 'Demo';}
 
-	void Setup(UINT si,char *fn);
+	void Setup(UINT si,TCHAR *fn);
 	void SetKeyIndex(UINT ki){m_keyindex=ki;}
 
 private:
 	BOOL Execute2();
 	void CleanUp();
-	int InitDemoDat(char *filepath);
-	DWORD GetGyoDemo(char *strin,char *strout,DWORD *susumu);
+	int InitDemoDat(TCHAR *filepath);
+	DWORD GetGyoDemo(TCHAR *strin,TCHAR *strout,DWORD *susumu);
 
 //変数
 public:
 private:
 	DEMODAT *demodat;
-	char errc[256];
+	TCHAR errc[256];
 	DWORD counter;
 	DWORD counter2;	//テキスト長さインクリメント用
-	char fpath[256];
+	TCHAR fpath[256];
 	MYSURFACE *ms;
 	MYSURFACE* chr[3];
 	DWORD num_demoscenes;
@@ -73,8 +73,8 @@ private:
 
 	UINT  m_keyindex;
 	UINT  m_current_story_index;
-	char* m_script_filename;
-	char* m_current_dir;
+	TCHAR* m_script_filename;
+	TCHAR* m_current_dir;
 
 	//もともとがstatic
 	int bmpw,bmph;

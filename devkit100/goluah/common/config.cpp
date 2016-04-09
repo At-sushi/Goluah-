@@ -4,12 +4,7 @@
 
 #include "config.h"
 
-#if defined(UNICODE) || defined(_UNICODE)
-#define __T(x) L ## x
-#else
-#define __T(x) x
-#endif
-#define _T(x) __T(x)
+#include <tchar.h>
 
 extern DWORD GetLimcutKey();
 
@@ -55,7 +50,7 @@ D3DDEVTYPE CConfig::DeviceType()
 	return(D3DDEVTYPE_HAL);
 }
 
-char* CConfig::GetSShotFileTypeStr()
+TCHAR* CConfig::GetSShotFileTypeStr()
 {
 	switch(sshot_format)
 	{
@@ -225,11 +220,11 @@ void CConfig::ReInitialize()
 
 BOOL CConfig::LoadConfig()
 {
-	char filepath[256];
+	TCHAR filepath[256];
 	if(filepath1!=NULL){
-		strcpy(filepath,filepath1);
+		_tcscpy(filepath,filepath1);
 	}
-	else strcpy(filepath,_T(".\\system\\config.dat"));
+	else _tcscpy(filepath,_T(".\\system\\config.dat"));
 
 	HANDLE hFile = CreateFile(filepath,
 		GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
@@ -265,11 +260,11 @@ BOOL CConfig::LoadConfig()
 
 BOOL CConfig::LoadConfig2()
 {	
-	char filepath[256];
+	TCHAR filepath[256];
 	if(filepath2!=NULL){
-		strcpy(filepath,filepath2);
+		_tcscpy(filepath,filepath2);
 	}
-	else strcpy(filepath,_T(".\\system\\config2.dat"));
+	else _tcscpy(filepath,_T(".\\system\\config2.dat"));
 
 	HANDLE hFile = CreateFile(filepath,
 		GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
@@ -339,11 +334,11 @@ BOOL CConfig::LoadConfig2()
 
 BOOL CConfig::SaveConfig()
 {
-	char filepath[256];
+	TCHAR filepath[256];
 	if(filepath1!=NULL){
-		strcpy(filepath,filepath1);
+		_tcscpy(filepath,filepath1);
 	}
-	else strcpy(filepath,_T(".\\system\\config.dat"));
+	else _tcscpy(filepath,_T(".\\system\\config.dat"));
 
 	HANDLE hFile = CreateFile(filepath,
 		GENERIC_WRITE,0,NULL,OPEN_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);
@@ -379,11 +374,11 @@ BOOL CConfig::SaveConfig()
 
 BOOL CConfig::SaveConfig2()
 {
-	char filepath[256];
+	TCHAR filepath[256];
 	if(filepath2!=NULL){
-		strcpy(filepath,filepath2);
+		_tcscpy(filepath,filepath2);
 	}
-	else strcpy(filepath,_T(".\\system\\config2.dat"));
+	else _tcscpy(filepath,_T(".\\system\\config2.dat"));
 
 	HANDLE hFile = CreateFile(filepath,
 		GENERIC_WRITE,0,NULL,OPEN_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);

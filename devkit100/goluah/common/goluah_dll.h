@@ -6,8 +6,8 @@
 class ISystem
 {
 	//サービス
-	IF(double DrawBMPText(double x,double y,float z,char *str,DWORD col));	//!< ビットマップテキストを描画
-	IF(double DrawBMPTextEx(double x,double y,float z,char *str,			//!< ビットマップテキストを描画(拡縮・プロポーショナルオプションつき)
+	IF(double DrawBMPText(double x,double y,float z,TCHAR *str,DWORD col));	//!< ビットマップテキストを描画
+	IF(double DrawBMPTextEx(double x,double y,float z,TCHAR *str,			//!< ビットマップテキストを描画(拡縮・プロポーショナルオプションつき)
 		DWORD col,float scaX,float scaY,DWORD flags));
 
 	//fps
@@ -38,8 +38,8 @@ class IDraw
 	//なにこれ？
 	IF(void Draw3DText());
 	//テキスト描画
-	IF(void DrawBlueText(RECT& r,char *text,int len,DWORD method,DWORD size));
-	IF(void DrawRedText(RECT& r,char *text,int len,DWORD method,DWORD size));
+	IF(void DrawBlueText(RECT& r,TCHAR *text,int len,DWORD method,DWORD size));
+	IF(void DrawRedText(RECT& r,TCHAR *text,int len,DWORD method,DWORD size));
 
 	//■便利関数？
 	IF(void SetAlphaMode(DWORD alphamode));//αブレンドのモードを設定

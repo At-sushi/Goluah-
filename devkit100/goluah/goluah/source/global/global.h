@@ -56,7 +56,7 @@ extern CBattleResultInfo	g_battleresult;	//!< 試合結果情報クラス
 /*------------------------------------------------------------------------------
 	グローバル変数 extern宣言
 --------------------------------------------------------------------------------*/
-extern char AppName[];			//!< アプリケーション名
+extern TCHAR AppName[];			//!< アプリケーション名
 extern BOOL g_programexit;		//!< メインループ終了フラグ
 extern RECT g_rcClient;			//!< window modeのときに必要(?)
 extern int g_DISPLAYWIDTH;		//!< 生成ウインドウサイズ（幅）
@@ -90,7 +90,7 @@ public:
 	static int SetWinCenter(HWND hWnd);
 
 	//!ファイルがあるかどうかを調べる
-	static BOOL FileExist(char *path);
+	static BOOL FileExist(TCHAR *path);
 
 	/*!
 		@brief 矩形の衝突判定
@@ -106,19 +106,19 @@ public:
 		@brief 2文字列を結合して新しいバッファを返す
 		戻り値はnew[]で確保したバッファ。str1はdelete[]されます。
 	*/
-	static char* MergeString(char* str1,const char* str2);
+	static TCHAR* MergeString(TCHAR* str1,const TCHAR* str2);
 
 	/*!
-		@brief ダミー用charバッファを取得。
+		@brief ダミー用TCHARバッファを取得。
 		主にスクリプトテキストのロード時に使われています。怪しい機能。
 	*/
-	char*  GetDummyString();
+	TCHAR*  GetDummyString();
 
-	char** CreateTemporaryStrBuff(UINT num,UINT max_len=128);	//!< テンポラリ文字列配列の破棄
-	void   DeleteTemporaryStrBuff(char** buf);					//!< テンポラリ文字列配列の破棄
+	TCHAR** CreateTemporaryStrBuff(UINT num,UINT max_len=128);	//!< テンポラリ文字列配列の破棄
+	void   DeleteTemporaryStrBuff(TCHAR** buf);					//!< テンポラリ文字列配列の破棄
 
 	//!指定バッファの先頭に、指定文字列が入っているかどうかチェック
-	BOOL strcheck(const char* buf,const char* str);
+	BOOL strcheck(const TCHAR* buf,const TCHAR* str);
 
 	//!デカ顔イメージ(face2.bmp)取得
 	MYSURFACE* GetBigFace(int cindex,int col,int alt);
@@ -130,23 +130,23 @@ public:
 	float RandomOne();
 
 	//!指定ディレクトリ下からランダムなBGM再生
-	void PlayRandomBGM(char *dir);
+	void PlayRandomBGM(TCHAR *dir);
 
 	
-	void ods(const char *format, ...);	//!OpuputDebugStringする。改行を付加
-	void ods2(const char *format, ...);	//!OpuputDebugStringする。改行を付加しない
+	void ods(const TCHAR *format, ...);	//!OpuputDebugStringする。改行を付加
+	void ods2(const TCHAR *format, ...);	//!OpuputDebugStringする。改行を付加しない
 
 protected:
 	//文字列関係
-	char** m_dummybuf;
+	TCHAR** m_dummybuf;
 	UINT m_dummy_next;
 
-	std::list<char**> m_tempstrlist;
+	std::list<TCHAR**> m_tempstrlist;
 
-	char** CreateStringArray(UINT num,UINT max_len);
-	void   DeleteStringArray(char** pstrarr);
+	TCHAR** CreateStringArray(UINT num,UINT max_len);
+	void   DeleteStringArray(TCHAR** pstrarr);
 
-	char *m_ods_buffer;
+	TCHAR *m_ods_buffer;
 
 	//!ブランクアイコン
 	MYSURFACE* m_blankIcon;
@@ -168,8 +168,8 @@ class AkiFile
 public:
 	AkiFile();
 	~AkiFile(){Destroy();}
-	BOOL Load(char *filename);
-	BOOL Save(char *filename);
+	BOOL Load(TCHAR *filename);
+	BOOL Save(TCHAR *filename);
 
 	void	Set(DWORD size,BYTE* ptr=NULL);
 

@@ -3,8 +3,8 @@
 
 struct CHARACTERINFO
 {
-	char dir[32];
-	char name[32];
+	TCHAR dir[32];
+	TCHAR name[32];
 	LPDIRECTDRAWSURFACE dds_face;
 	LPDIRECTDRAWSURFACE dds_face2;
 	int storyindex,storynum;
@@ -18,14 +18,14 @@ typedef DWORD (*PFUNC_GETKEY)(DWORD,DWORD);			//ƒL[“ü—Íget
 typedef void  (*PFUNC_FURIMUKI)(DWORD);				//U‚èŒü‚«ˆ—
 typedef void  (*PFUNC_STARTATTACK)(DWORD,LPVOID);	//UŒ‚ŠJŽn
 typedef int   (*PFUNC_SEEKKEY)(DWORD,int,int,DWORD);//ƒL[“ü—Íget
-typedef void  (*PFUNC_SETKATISERIF)(DWORD,char*);	//Ÿ‚¿‘äŽŒÝ’è
+typedef void  (*PFUNC_SETKATISERIF)(DWORD,TCHAR*);	//Ÿ‚¿‘äŽŒÝ’è
 typedef void  (*PFUNC_PLAYMYSOUND)(DWORD,DWORD);	//wavÄ¶
 typedef void  (*PFUNC_GOBULLETA)(LPVOID);			//”ò‚Ñ“¹‹ï”­ŽË
 typedef void  (*PFUNC_ADDEFFECT)(DWORD,int,int,DWORD);//ƒGƒtƒFƒNƒg”­¶
 typedef void  (*PFUNC_SETWAZAINFO)(DWORD,LPVOID);	//ƒRƒ“ƒsƒ…[ƒ^‚ÉŽg‚¦‚é‹Z‚ð‹³‚¦‚é
 typedef void  (*PFUNC_DRAWFRONT)(DWORD,BOOL);		//Ž©•ª‚Ì•û‚ðŽè‘O(Œã)‚É•\Ž¦
 typedef BOOL  (*PFUNC_CATCHENEMY)(DWORD,LPVOID);	//“Š‚°‚Æ‚©‚Å‘ŠŽè‚ð‚Â‚©‚Þ
-typedef void  (*PFUNC_ENEMYNAME)(DWORD,char*);		//‘ŠŽè‚Ì–¼‘Oget
+typedef void  (*PFUNC_ENEMYNAME)(DWORD,TCHAR*);		//‘ŠŽè‚Ì–¼‘Oget
 typedef void  (*PFUNC_GETENEMYDAT)(DWORD,LPVOID);	//‘ŠŽè‚Ìî•ñget
 typedef void  (*PFUNC_GETMAAI)(DWORD,DWORD*,DWORD*,DWORD*);//ŠÔ‡‚¢‚ðgeticid,…•½,‚’¼,“Gó‘Ôj
 typedef void  (*PFUNC_PLAYSYSSOUND)(DWORD);			//wavÄ¶
@@ -35,7 +35,7 @@ typedef void  (*PFUNC_ADDDAMAGE)(DWORD,LPVOID,int x,int y);		//(Žå‚É“Š‚°‚Ì‚Æ‚«)‹
 typedef void  (*PFUNC_EXTWINDURATION)(DWORD);		//Ÿ—˜ƒ|[ƒY‚Ì•\Ž¦ŽžŠÔ‚ð‰„’·‚·‚é
 typedef BOOL  (*PFUNC_ADDPOWERGAUGE)(DWORD,double); //ƒpƒ[ƒQ[ƒW‚ð‘‚â‚·A‚Ü‚½‚ÍŒ¸‚ç‚·BƒQ[ƒW‚ª‘«‚è‚È‚¢ê‡FALSE‚ª•Ô‚é
 typedef void  (*PFUNC_DESTROYBULLET)(LPVOID);		//”ò‚Ñ“¹‹ï‚ðÁ‹Ž‚·‚é
-typedef char* (*PFUNC_GETDIRECTORY)(DWORD);		//ƒfƒBƒŒƒNƒgƒŠ[ƒQƒbƒg
+typedef TCHAR* (*PFUNC_GETDIRECTORY)(DWORD);		//ƒfƒBƒŒƒNƒgƒŠ[ƒQƒbƒg
 
 struct FUNCTIONPACK
 {

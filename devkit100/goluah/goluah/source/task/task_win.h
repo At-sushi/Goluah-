@@ -29,7 +29,7 @@ public:
 	DWORD GetID(){return 'Win';}
 	int GetDrawPriority(){return 1000;}
 
-	void SetStoryText(char *txt);
+	void SetStoryText(TCHAR *txt);
 
 protected:
 	void CleanUp();
@@ -49,7 +49,7 @@ protected:
 	BOOL show_text;				//!< テキスト表示するかどうか
 	DWORD jun[3];				//!< 表示の順番
 
-	char *m_text_from_story;	//!< ストーリー側から指定されたテキスト
-	char *m_text;				//!< m_text_from_storyまたはg_battleresultから取得したテキストのうち、実際に表示するほう。
+	TCHAR *m_text_from_story;	//!< ストーリー側から指定されたテキスト
+	TCHAR *m_text;				//!< m_text_from_storyまたはg_battleresultから取得したテキストのうち、実際に表示するほう。
 };
 

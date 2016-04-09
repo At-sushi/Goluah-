@@ -113,30 +113,30 @@ void CTConditionSelecterPractice::Draw()
 
 	if(m_ratio<0.01f)return;
 
-	char *tstr = new char[64];
+	TCHAR *tstr = new TCHAR[64];
 
 	//‘ÎíŒ`Ž®
-	char *typenames[]={
+	TCHAR *typenames[]={
 		_T("Cooperation"),
-		_T("Marvel Like"),
-		_T("K.O.F. Like")
+		_T("Changeable"),
+		_T("Unchangeable")
 	};
-	sprintf(tstr,_T("Mode : %s"),typenames[m_type-1]);
+	_stprintf(tstr,_T("Mode : %s"),typenames[m_type-1]);
 	g_system.DrawBMPTextEx(x,y,0.0f,
 				tstr,
 				TxtCol(0),txt_xr,txt_yr,SYSBMPTXT_PROP);
 
 	//HPŠ„‡
-	sprintf(tstr,_T("HP : %d%%"),m_hp_ratio[m_limit_time_index]);
+	_stprintf(tstr,_T("HP : %d%%"),m_hp_ratio[m_limit_time_index]);
 	g_system.DrawBMPTextEx(x+300,y,0.0f,
 				tstr,
 				TxtCol(1),txt_xr,txt_yr,SYSBMPTXT_PROP);
 	y += ystep;
 	y += ystep;
 
-	sprintf(tstr,_T("TEAM1"));
+	_stprintf(tstr,_T("TEAM1"));
 	g_system.DrawBMPTextEx(x,y,0.0f,tstr,0xFF5237FF,txt_xr,txt_yr,SYSBMPTXT_PROP);
-	sprintf(tstr,_T("TEAM2"));
+	_stprintf(tstr,_T("TEAM2"));
 	g_system.DrawBMPTextEx(x+300.0f,y,0.0f,tstr,0xFFFF3752,txt_xr,txt_yr,SYSBMPTXT_PROP);
 	y += ystep;
 
@@ -144,18 +144,18 @@ void CTConditionSelecterPractice::Draw()
 	for(j=0;j<2;j++){
 		for(i=0;i<MAXNUM_TEAM;i++)
 		{
-			sprintf(tstr,_T("%d : "),i+1);
+			_stprintf(tstr,_T("%d : "),i+1);
 			if(m_assign[j][i]&CASSIGN_SPECIFIC)//“Á•Ê
 			{
 				switch(m_assign[j][i]){
-				case CASSIGN_COM:	sprintf(&tstr[strlen(tstr)],_T("Computer"));break;
-				case CASSIGN_NONE:	sprintf(&tstr[strlen(tstr)],_T("--None--"));break;
-				case CASSIGN_STABLE:	sprintf(&tstr[strlen(tstr)],_T("Stop"));break;
-				default:			sprintf(&tstr[strlen(tstr)],_T("Error?"));
+				case CASSIGN_COM:	_stprintf(&tstr[strlen(tstr)],_T("Computer"));break;
+				case CASSIGN_NONE:	_stprintf(&tstr[strlen(tstr)],_T("--None--"));break;
+				case CASSIGN_STABLE:	_stprintf(&tstr[strlen(tstr)],_T("Stop"));break;
+				default:			_stprintf(&tstr[strlen(tstr)],_T("Error?"));
 				}
 			}
 			else{
-				sprintf(&tstr[strlen(tstr)],_T("Player%d"),m_assign[j][i]+1);
+				_stprintf(&tstr[strlen(tstr)],_T("Player%d"),m_assign[j][i]+1);
 			}
 			if(j==0)	//TEAM1
 				shiftX=40.0f;

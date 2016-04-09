@@ -64,10 +64,10 @@ void CEffectList::Initialize()
 void CEffectList::LoadTextures()
 {
 	LPDIRECT3DTEXTURE9 p;
-	char *filename = new char [128];
+	TCHAR *filename = new TCHAR [128];
 
 	for(int i=0;i<MAXNUM_SYSFXTEXTURES;i++){
-		sprintf(filename,_T(".\\system\\texture\\tex%d.png"),i);
+		_stprintf(filename,_T(".\\system\\texture\\tex%d.png"),i);
 		if(D3D_OK!=D3DXCreateTextureFromFileA(g_draw.d3ddev,filename,&p))p=NULL;
 		textures.push_back(p);
 		if(!p){

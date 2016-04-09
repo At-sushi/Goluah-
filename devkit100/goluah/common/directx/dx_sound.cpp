@@ -114,7 +114,7 @@ void CDirectSound::Destroy()
 *	@param filename wavのファイル名
 *	@return 失敗はNULL
 */
-LPDIRECTSOUNDBUFFER CDirectSound::CreateDSB(char *filename)
+LPDIRECTSOUNDBUFFER CDirectSound::CreateDSB(TCHAR *filename)
 {
 	if(!g_config.UseDSound())return NULL;
 	if(lpds==NULL)return NULL;
@@ -150,7 +150,7 @@ LPDIRECTSOUNDBUFFER CDirectSound::CreateDSB(char *filename)
 	}
 
 	//ＷＡＶフォーマット情報を読み込む
-	if(mmioRead(hmfr,(char*)&wfmtx,sizeof(wfmtx)) != sizeof(wfmtx)){
+	if(mmioRead(hmfr,(TCHAR*)&wfmtx,sizeof(wfmtx)) != sizeof(wfmtx)){
 		mmioClose(hmfr,0);
 		return false;
 	}
@@ -175,7 +175,7 @@ LPDIRECTSOUNDBUFFER CDirectSound::CreateDSB(char *filename)
 
 	//メモリ割り当て　データを読み込む
 	BYTE *pBuffer = new BYTE[child.cksize];
-	if((DWORD)mmioRead(hmfr,(char*)pBuffer,child.cksize) != child.cksize){
+	if((DWORD)mmioRead(hmfr,(TCHAR*)pBuffer,child.cksize) != child.cksize){
 		mmioClose(hmfr,0);
 		delete [] pBuffer;
 		return(FALSE);
@@ -225,7 +225,7 @@ LPDIRECTSOUNDBUFFER CDirectSound::CreateDSB(char *filename)
 	return(lpDSBuffer);
 }
 
-char* GetDSErrCode(HRESULT ret)
+TCHAR* GetDSErrCode(HRESULT ret)
 {
 	switch(ret){
 	case S_OK :							return _T("成功");
@@ -260,7 +260,7 @@ char* GetDSErrCode(HRESULT ret)
 *	@param filename 再生ファイル名
 *	@return FALSEは残念な結果に終わった
 */
-BOOL CDirectSound::PlayVideo(const char *filename)
+BOOL CDirectSound::PlayVideo(const TCHAR *filename)
 {
 	if(!g_config.UseDShow())return(FALSE);
 
@@ -275,9 +275,9 @@ BOOL CDirectSound::PlayVideo(const char *filename)
 	setlocale(LC_ALL,_T(""));
 
 	//文字列変換
-	char bgmfilename[256];
+	TCHAR bgmfilename[256];
 	wchar_t ubgmfilename[256];
-	sprintf(bgmfilename,_T("%s"),filename);
+	_stprintf(bgmfilename,_T("%s"),filename);
 	mbstowcs( ubgmfilename, bgmfilename, strlen(bgmfilename)+1 );
     // グラフを構築する。
 	if(pGraph->RenderFile(ubgmfilename, NULL) != S_OK){
@@ -308,7 +308,7 @@ BOOL CDirectSound::PlayVideo(const char *filename)
 *	@param loop TRUEならば、再生終了後にループする
 *	@return FALSEは残念な結果に終わった
 */
-BOOL CDirectSound::BGMPlay(const char *filename,BOOL loop)
+BOOL CDirectSound::BGMPlay(const TCHAR *filename,BOOL loop)
 {
 	if(!g_config.UseDShow())return FALSE;
 
@@ -322,12 +322,12 @@ BOOL CDirectSound::BGMPlay(const char *filename,BOOL loop)
 	//言語設定をシステム(?)のものに設定. mbstowcsに影響
 	setlocale(LC_ALL,_T(""));
 
-	char *bgmfilename = new char[256];
+	TCHAR *bgmfilename = new TCHAR[256];
 	wchar_t *ubgmfilename= new wchar_t [256];
 
 
 	// wma -------------------------------------------------------------
-	sprintf(bgmfilename,_T("%s.wma"),filename);
+	_stprintf(bgmfilename,_T("%s.wma"),filename);
 	mbstowcs( ubgmfilename, bgmfilename, strlen(bgmfilename)+1 );
 	if(S_OK == pGraph->RenderFile(ubgmfilename, NULL)){
 		pMediaControl->Run();
@@ -339,7 +339,7 @@ BOOL CDirectSound::BGMPlay(const char *filename,BOOL loop)
 	}
 
 	// mp3 -------------------------------------------------------------
-	sprintf(bgmfilename,_T("%s.mp3"),filename);
+	_stprintf(bgmfilename,_T("%s.mp3"),filename);
 	mbstowcs( ubgmfilename, bgmfilename, strlen(bgmfilename)+1 );
 	if(S_OK == pGraph->RenderFile(ubgmfilename, NULL)){
 		pMediaControl->Run();
@@ -351,7 +351,7 @@ BOOL CDirectSound::BGMPlay(const char *filename,BOOL loop)
 	}
 
 	// wave ------------------------------------------------------------
-	sprintf(bgmfilename,_T("%s.wav"),filename);
+	_stprintf(bgmfilename,_T("%s.wav"),filename);
 	mbstowcs( ubgmfilename, bgmfilename, strlen(bgmfilename)+1 );
 	if(S_OK == pGraph->RenderFile(ubgmfilename, NULL)){
 		pMediaControl->Run();
@@ -363,7 +363,7 @@ BOOL CDirectSound::BGMPlay(const char *filename,BOOL loop)
 	}
 	
 	// midi ------------------------------------------------------------
-	sprintf(bgmfilename,_T("%s.mid"),filename);
+	_stprintf(bgmfilename,_T("%s.mid"),filename);
 	mbstowcs( ubgmfilename, bgmfilename, strlen(bgmfilename)+1 );
 	if(S_OK == pGraph->RenderFile(ubgmfilename, NULL)){
 		pMediaControl->Run();
@@ -503,7 +503,7 @@ void CDirectSound::BGMResume()
 *
 *	そのうちBGMPlayに統合するかも
 */
-BOOL CDirectSound::BGMSeekAndPlay(const char* filename, BOOL loop, double starttime)
+BOOL CDirectSound::BGMSeekAndPlay(const TCHAR* filename, BOOL loop, double starttime)
 {
 	if (!BGMPlay(filename, loop))
 		return FALSE;
@@ -521,21 +521,21 @@ BOOL CDirectSound::BGMSeekAndPlay(const char* filename, BOOL loop, double startt
 *	これでファイルを捜索してからBGMPlayに投げることで継続再生が可能
 *	BGMPlayに統合できそう
 */
-BOOL CDirectSound::BGMSearch(const char *filename)
+BOOL CDirectSound::BGMSearch(const TCHAR *filename)
 {
-	char *bgmfilename = new char[256];
+	TCHAR *bgmfilename = new TCHAR[256];
 
 	//使用頻度高そうな順にしときました
-	sprintf(bgmfilename, _T("%s.mp3"), filename);
+	_stprintf(bgmfilename, _T("%s.mp3"), filename);
 	if (gbl.FileExist(bgmfilename))
 		return TRUE;
-	sprintf(bgmfilename, _T("%s.mid"), filename);
+	_stprintf(bgmfilename, _T("%s.mid"), filename);
 	if (gbl.FileExist(bgmfilename))
 		return TRUE;
-	sprintf(bgmfilename, _T("%s.wma"), filename);
+	_stprintf(bgmfilename, _T("%s.wma"), filename);
 	if (gbl.FileExist(bgmfilename))
 		return TRUE;
-	sprintf(bgmfilename, _T("%s.wav"), filename);
+	_stprintf(bgmfilename, _T("%s.wav"), filename);
 	if (gbl.FileExist(bgmfilename))
 		return TRUE;
 

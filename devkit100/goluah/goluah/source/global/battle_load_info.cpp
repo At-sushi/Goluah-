@@ -36,7 +36,7 @@ void CBattleLoadInfo::Initialize()
 		}
 	}
 	m_stage = BLI_NOT_SELECTED;					//選択されたステージ : 未選択
-	strcpy(m_storybgm,_T(""));						//ストーリーから指定されたBGM : なし
+	_tcscpy(m_storybgm,_T(""));						//ストーリーから指定されたBGM : なし
 
 	g_battleresult.SetKatiSerif(0,_T("(台詞が設定されていません)"));
 	g_battleresult.SetKatiSerif(1,_T("(台詞が設定されていません)"));
@@ -136,10 +136,10 @@ void CBattleLoadInfo::SetStage(DWORD stage_index)
 }
 
 //!ストーリーから指定されたBGM
-void CBattleLoadInfo::SetStoryBGM(char *filepath)
+void CBattleLoadInfo::SetStoryBGM(TCHAR *filepath)
 {
 	if(filepath==NULL)return;
-	strcpy(m_storybgm,filepath);
+	_tcscpy(m_storybgm,filepath);
 }
 
 /*!
@@ -238,7 +238,7 @@ DWORD CBattleLoadInfo::GetStage()
 }
 
 //ストーリーで指定されたBGM取得（設定されていない場合NULL）
-char* CBattleLoadInfo::GetStoryBGM()
+TCHAR* CBattleLoadInfo::GetStoryBGM()
 {
 	if(strlen(m_storybgm)==0)return NULL;
 	else return m_storybgm;
@@ -279,8 +279,8 @@ DWORD CBattleLoadInfo::GetAllKey()
 
 CBattleResultInfo::CBattleResultInfo()
 {
-	sprintf(m_serif[0],_T("(台詞が設定されていません)"));
-	sprintf(m_serif[1],_T("(台詞が設定されていません)"));
+	_stprintf(m_serif[0],_T("(台詞が設定されていません)"));
+	_stprintf(m_serif[1],_T("(台詞が設定されていません)"));
 }
 
 void CBattleResultInfo::Initialize(BYTE wteam)
@@ -300,9 +300,9 @@ void CBattleResultInfo::Initialize(BYTE wteam)
 //	Set～
 //*******************************************************************
 
-void  CBattleResultInfo::SetKatiSerif(DWORD team,char *str)
+void  CBattleResultInfo::SetKatiSerif(DWORD team,TCHAR *str)
 {
-	sprintf( m_serif[team] , str );
+	_stprintf( m_serif[team] , str );
 }
 
 
@@ -314,7 +314,7 @@ BOOL  CBattleResultInfo::GetWinner()
 	return m_winner == 0 ? FALSE : TRUE;
 }
 
-char* CBattleResultInfo::GetKatiSerif(DWORD team)
+TCHAR* CBattleResultInfo::GetKatiSerif(DWORD team)
 {
 	return m_serif[m_winner];
 }

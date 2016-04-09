@@ -32,7 +32,7 @@ public:
 						BYTE  key,
 						DWORD option);
 	void SetStage(DWORD stage_index);							//!<ステージを設定
-	void SetStoryBGM(char *filepath);							//!<ストーリーから指定されたBGM
+	void SetStoryBGM(TCHAR *filepath);							//!<ストーリーから指定されたBGM
 	void SetComLevel(DWORD team,DWORD cindex,					//!<COMのレベル
 					int level,BOOL is_related);
 
@@ -46,7 +46,7 @@ public:
 	DWORD GetColor(DWORD team,DWORD member_index);				//!<カラーを取得
 	DWORD GetCharacterOption(DWORD team,DWORD member_index);	//!<オプションを取得
 	DWORD GetStage();											//!<ステージを取得
-	char* GetStoryBGM();										//!<ストーリーで指定されたBGM取得（設定されていない場合NULL）
+	TCHAR* GetStoryBGM();										//!<ストーリーで指定されたBGM取得（設定されていない場合NULL）
 	Config2_Difficulty GetComLevel(DWORD team,DWORD member_idx);//!<COMレベル取得
 
 	DWORD GetAllKey();//!<試合に関わってる全プレイヤーキー入力の和をゲット
@@ -60,7 +60,7 @@ protected:
 	DWORD m_color[2][MAXNUM_TEAM];		//!<選択されたキャラクター色
 	BYTE  m_key_assign[2][MAXNUM_TEAM];	//!<コンピュータかどうか
 	DWORD m_stage;						//!<選択されたステージ
-	char  m_storybgm[256];				//!<ストーリーから指定されたBGM
+	TCHAR  m_storybgm[256];				//!<ストーリーから指定されたBGM
 	Config2_Difficulty m_com_level[2][MAXNUM_TEAM];//!<コンピュータ難易度。g_configから取得した値+ストーリーモードでの指定値
 };
 
@@ -77,17 +77,17 @@ public:
 	CBattleResultInfo();
 
 	void Initialize(BYTE wteam);						//!<CBattleLoadInfoから情報をコピーして準備する
-	void SetKatiSerif(DWORD team,char *str);			//!<勝利台詞設定
+	void SetKatiSerif(DWORD team,TCHAR *str);			//!<勝利台詞設定
 
 	BOOL  GetWinner();									//!<勝利チームゲト
 	UINT  GetWinnerCount(){return m_winner_count;}		//!<勝利側チーム人数
-	char* GetKatiSerif(DWORD team=3);					//!<台詞ゲト
+	TCHAR* GetKatiSerif(DWORD team=3);					//!<台詞ゲト
 	DWORD GetCharacter(DWORD index);					//!<キャラクタゲト
 	DWORD GetColor(UINT index);							//!<勝った方のカラー
 
 protected:
 	BYTE  m_winner;					//!<勝利チーム(0or1)
-	char  m_serif[2][256];			//!<台詞
+	TCHAR  m_serif[2][256];			//!<台詞
 
 	DWORD m_character[MAXNUM_TEAM];	//!<キャラクタ
 	UINT  m_color[MAXNUM_TEAM];		//!<カラー

@@ -96,9 +96,9 @@ struct CHARDAT_FILEHEADER2//ファイル先頭
 
 struct CHARDAT_FILEHEADER//二番目(ないこともあり)
 {
-//	char path[256];
-//	char filename[64];
-	char name[MAXNUM_CELLS][64];//セルにつけた名前
+//	TCHAR path[256];
+//	TCHAR filename[64];
+	TCHAR name[MAXNUM_CELLS][64];//セルにつけた名前
 };
 
 #define MAX_IMAGES	12
@@ -106,8 +106,8 @@ struct CHARDAT_FILEHEADER//二番目(ないこともあり)
 // 旧フォーマット ******************************************
 struct DATOLD_FILEHEADER
 {
-	char path[4][256];
-	char name[MAXNUM_CELLS][64];
+	TCHAR path[4][256];
+	TCHAR name[MAXNUM_CELLS][64];
 };
 
 struct DATOLD_CELL

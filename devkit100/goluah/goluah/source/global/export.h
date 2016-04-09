@@ -23,7 +23,7 @@ public:
 	CExport();
 	void Initialize();			//!< 関数ポインタを構造体に詰め込む
 	static CBattleTaskBase* GetCurrentBattleTask();//!< 現在の戦闘タスクを取得する
-	static char* last_funcname;
+	static TCHAR* last_funcname;
 	static BOOL  func_in;
 
 	DI_FUNCTIONS_S fpack_s;
@@ -33,15 +33,15 @@ public:
 	//■ システム関連
 	static DWORD  GetKey(DWORD tid,DWORD index);		//!< キー入力get
 	static int    SeekKey(DWORD tid,int index,int numseek,DWORD key);//!< キー入力get(2)
-	static void   SetKatiSerif(DWORD tid,char* serif);	//!< 勝ち台詞設定
+	static void   SetKatiSerif(DWORD tid,TCHAR* serif);	//!< 勝ち台詞設定
 	static void   AddEffect(DWORD eid,int prm1,int prm2,DWORD prm3);//!< エフェクト発生
 	static void   PlaySystemSound(DWORD sid);			//!< wav再生
-	static LPVOID LoadMySound(char* filename);			//!< wav読み込み
+	static LPVOID LoadMySound(TCHAR* filename);			//!< wav読み込み
 	static void   PlayMySound(LPVOID pdsb);				//!< wav再生
 	static void   KillMySound(LPVOID pdsb);				//!< wav消去
 	static DWORD  Message2System(DWORD oid,DWORD msg,DWORD prm);//!< メッセージ
-	static char*  GetEnemyName(DWORD tid);				//!< 敵の名前取得
-	static char*  GetCharacterName(DWORD oid);			//!< 指定キャラの名前取得
+	static TCHAR*  GetEnemyName(DWORD tid);				//!< 敵の名前取得
+	static TCHAR*  GetCharacterName(DWORD oid);			//!< 指定キャラの名前取得
 	static DWORD  GetKeyInput(DWORD oid);				//!< 指定キャラのキーID取得
 	static double GetDisplayCenterX();					//!< ディスプレイ中心get
 	static double GetDisplayCenterY();					//!< ディスプレイ中心get
@@ -52,12 +52,12 @@ public:
 	static DWORD  GetTeamNum2(DWORD tid);				//!< チーム人数を取得します
 	static DWORD  TeamID2EnemyTeamID(DWORD tid);		//!< 自チームIDを敵側のチームIDに変換します
 	static BOOL	  IsNetwork();							//!< ネットワーク対戦かどうか
-	static void   PushTag(const char* tag);				//!< タグ設定
+	static void   PushTag(const TCHAR* tag);				//!< タグ設定
 	static void   PopTag();								//!< タグ除去
-	static void   LogError(const char* str);			//!< ログ
-	static void   LogWarning(const char* str);			//!< ログ
-	static void   LogDebug(const char* str);			//!< ログ
-	static void   LogInfo(const char* str);				//!< ログ
+	static void   LogError(const TCHAR* str);			//!< ログ
+	static void   LogWarning(const TCHAR* str);			//!< ログ
+	static void   LogDebug(const TCHAR* str);			//!< ログ
+	static void   LogInfo(const TCHAR* str);				//!< ログ
 	static void   BGMPause(void);
 	static void   BGMResume(void);
 	static int    GetGameSpeed();						//!< fps取得
@@ -87,8 +87,8 @@ public:
 	//■　描画関連の関数の定義
 	static LPVOID GetD3D();								//!< IDirect3D* の取得
 	static LPVOID GetD3DD();							//!< IDirect3DDevice* の取得
-	static void   LoadCellDat(char* filename,LPVOID cdat,LPVOID rdat,LPVOID hdat);	//!< セルデータ読み込み関数
-	static LPVOID LoadBmp(char* filename,char* palname);//!< ビットマップ読み込み関数
+	static void   LoadCellDat(TCHAR* filename,LPVOID cdat,LPVOID rdat,LPVOID hdat);	//!< セルデータ読み込み関数
+	static LPVOID LoadBmp(TCHAR* filename,TCHAR* palname);//!< ビットマップ読み込み関数
 	static void   UnloadBmp(LPVOID psuf);				//!< ビットマップ後始末関数
 	static void   CellDraw(LPVOID* ddsa,LPVOID cdat,LPVOID rdat,DWORD cn,int x,int y,float z,int rot,BOOL revx,BOOL revy,DWORD color,float magx,float magy,BOOL shadowed = 1);//!< セル描画関数
 	static void   Blt(void* dds,int x,int y,RECT r,double magx,double magy,BOOL revx,BOOL revy,float z,DWORD color);//!< Blt2
@@ -96,10 +96,10 @@ public:
 	static void   SetTransform(BOOL b);					//!< 座標変換行列を再設定
 	static void   SetBlendMode(DWORD m);				//!< α合成の方法を変更
 	static void   SetParentMatrix(LPVOID mat,BOOL root,LPVOID matprv);//!< 「親」変換行列設定
-	static DWORD  CreateCellDat(char* filename,LPVOID *cdat,LPVOID *rdat,LPVOID *hdat);//!< セルデータ読み込み。ver0.90以降ではLoadCellDatからこちらに変更するべき
+	static DWORD  CreateCellDat(TCHAR* filename,LPVOID *cdat,LPVOID *rdat,LPVOID *hdat);//!< セルデータ読み込み。ver0.90以降ではLoadCellDatからこちらに変更するべき
 	static void   DestroyCellDat(LPVOID *cdat,LPVOID *rdat,LPVOID *hdat);//!< CreateCellDatで生成されたバッファをクリア
-	static LPVOID LoadImage(char* filename, char* palname);//!< 画像読み込み関数、PNG対応に伴い追加。
-	static DWORD  CreateCellDat2(char* filename,LPVOID *cdat,LPVOID *rdat,LPVOID *hdat);//!< セルデータ読み込み（２）、圧縮形式対応に伴い追加。
+	static LPVOID LoadImage(TCHAR* filename, TCHAR* palname);//!< 画像読み込み関数、PNG対応に伴い追加。
+	static DWORD  CreateCellDat2(TCHAR* filename,LPVOID *cdat,LPVOID *rdat,LPVOID *hdat);//!< セルデータ読み込み（２）、圧縮形式対応に伴い追加。
 };
 
 

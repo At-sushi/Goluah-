@@ -93,8 +93,8 @@ void CTOptionSelecterBase::Draw()
 
 	g_draw.EnableZ(FALSE,FALSE);
 
-	char *tmp_str;
-	tmp_str = new char[128];
+	TCHAR *tmp_str;
+	tmp_str = new TCHAR[128];
 
 	//”r‘¼‚³‚ê‚Ä‚¢‚éƒtƒ‰ƒO‚ðƒQƒbƒg
 	DWORD ex_flag =0;
@@ -155,7 +155,7 @@ void CTOptionSelecterBase::Draw()
 	//OPTIONS •`‰æ
 	DWORD okcolor;
 	double tmpx = g_system.DrawBMPTextEx(offset_x,y,z,_T("--OPTIONS--"),color_option|alpha,1.0f,text_yscale*1.2f,SYSBMPTXT_PROP);
-	sprintf(tmp_str,_T("POINT:%d"),m_selecter->current_point);
+	_stprintf(tmp_str,_T("POINT:%d"),m_selecter->current_point);
 	if(m_selecter->current_point > 0)okcolor = color_ok;
 	else okcolor = color_ng;
 	g_system.DrawBMPTextEx(tmpx+20,y,z,tmp_str,okcolor|alpha,1.0f,text_yscale*1.2f,SYSBMPTXT_PROP);
@@ -163,7 +163,7 @@ void CTOptionSelecterBase::Draw()
 	y+=text_spacing*1.2f;
 
 	//Ý’è–¼•\Ž¦
-	sprintf(tmp_str,_T("PRESET:%s"),m_selecter->GetCurrentSetName());
+	_stprintf(tmp_str,_T("PRESET:%s"),m_selecter->GetCurrentSetName());
 	g_system.DrawBMPTextEx(offset_x,y,z,tmp_str,color_option|alpha,1.0f,text_yscale,SYSBMPTXT_PROP);
 
 	y+=text_spacing;

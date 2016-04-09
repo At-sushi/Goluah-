@@ -31,14 +31,14 @@ public:
 	void CleanDirectSound();
 	BOOL CreateDirectShow();
 
-	LPDIRECTSOUNDBUFFER CreateDSB(char *filename);
+	LPDIRECTSOUNDBUFFER CreateDSB(TCHAR *filename);
 
-	BOOL PlayVideo(const char *filename);
-	BOOL BGMPlay(const char* filename,BOOL loop=TRUE);
+	BOOL PlayVideo(const TCHAR *filename);
+	BOOL BGMPlay(const TCHAR* filename,BOOL loop=TRUE);
 	void BGMStop();
 	void BGMPause();
 	void BGMResume();
-	BOOL BGMSearch(const char *filename);
+	BOOL BGMSearch(const TCHAR *filename);
 
 	void OnWmgraphnotify();
 public:
@@ -48,7 +48,7 @@ public:
 	LPDIRECTSOUND lpds;
 
 	BOOL bgmon,videoon,bgmloop;
-	char bgmfilename[256];
+	TCHAR bgmfilename[256];
 	LPDIRECTSOUNDBUFFER dsb_bgm;
 
 	//bgmån
@@ -58,7 +58,7 @@ public:
 	IMediaSeeking *pSeek;
 	IVideoWindow  *pVidWin;
 	IBasicAudio   *pAudio;
-	BOOL BGMSeekAndPlay(const char* filename, BOOL loop = 1, double starttime = 0.0);
+	BOOL BGMSeekAndPlay(const TCHAR* filename, BOOL loop = 1, double starttime = 0.0);
 };
 
 

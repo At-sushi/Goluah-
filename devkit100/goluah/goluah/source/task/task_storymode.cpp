@@ -64,8 +64,8 @@ void CTaskStoryMode::Setup(UINT storyIndex,UINT keyindex,CStoryList::CStoryInfo*
 void CTaskStoryMode::Initialize()
 {
 	//スクリプトの読み込み(entry.txtは自動でくっつくらしい)
-//	char *filename = new char[MAX_PATH];
-//	sprintf(filename,_T("%s\\entry.txt"),g_storylist.GetStoryDir(m_story_index));
+//	TCHAR *filename = new TCHAR[MAX_PATH];
+//	_stprintf(filename,_T("%s\\entry.txt"),g_storylist.GetStoryDir(m_story_index));
 	BOOL ret = CGoluahStoryScript::CreateScriptElementList(
 											scr_list,
 											g_storylist.GetStoryDir(m_story_index));//filename);
@@ -392,8 +392,8 @@ void CTaskStoryMode::StartVSTask()
 		}
 	}
 
-	char *tmpbgmname = new char[256];
-	sprintf(tmpbgmname,_T("%s\\%s"),g_storylist.GetStoryDir(m_story_index),ele_vs->bgm_filename);
+	TCHAR *tmpbgmname = new TCHAR[256];
+	_stprintf(tmpbgmname,_T("%s\\%s"),g_storylist.GetStoryDir(m_story_index),ele_vs->bgm_filename);
 	g_battleinfo.SetStoryBGM( tmpbgmname );				//BGM設定
 	delete [] tmpbgmname;
 
@@ -722,8 +722,8 @@ void CTStoryContinue::Draw()
 	DWORD c = (DWORD)(t*255.0f);
 	DWORD col = 0xFF000000 | (c<<16) | (c<<8) | c;
 
-	char *tmpstr = new char[256];
-	sprintf(tmpstr,_T("continue? (%d)"),remain_cont);
+	TCHAR *tmpstr = new TCHAR[256];
+	_stprintf(tmpstr,_T("continue? (%d)"),remain_cont);
 	g_system.DrawBMPText(50,230,0.0f,tmpstr,col);
 	delete [] tmpstr;
 

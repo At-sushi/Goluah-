@@ -33,7 +33,7 @@ CBattleResultInfo		g_battleresult;	//試合結果情報クラス
 /*------------------------------------------------------------------------------
 	グローバル変数
 --------------------------------------------------------------------------------*/
-char AppName[]=_T("Goluah!! (ﾟДﾟ)");		//アプリケーション名
+TCHAR AppName[]=_T("Goluah!! (ﾟДﾟ)");		//アプリケーション名
 BOOL g_programexit=FALSE;				//メインループ終了フラグ
 RECT g_rcClient;						//window modeのときに必要(?)
 int g_DISPLAYWIDTH=640;					//生成ウインドウサイズ（幅）
@@ -80,7 +80,7 @@ int AkiGlobal::SetWinCenter(HWND hWnd)
 	@param path 本体実行ファイルを基準とした相対パス。たぶん。
 	@return TRUE:あるよ , FALSE:ないよ
 */
-BOOL AkiGlobal::FileExist(char *path)
+BOOL AkiGlobal::FileExist(TCHAR *path)
 {
 	HANDLE hFile = CreateFile(path,
 		GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
@@ -667,7 +667,7 @@ DWORD GetKas_LINEvsRECT(MY2DVECTOR *kaspoint,
 
 //2文字列を足して新しいバッファを返す
 //戻り値はnew[]で確保したバッファ。str1はdelete[]されます。
-char* AkiGlobal::MergeString(char* str1,const char* str2)
+TCHAR* AkiGlobal::MergeString(TCHAR* str1,const TCHAR* str2)
 {
 	UINT len=0;
 	
@@ -680,13 +680,13 @@ char* AkiGlobal::MergeString(char* str1,const char* str2)
 	}
 	else return str1;
 
-	char* ret = new char [len+1];
+	TCHAR* ret = new TCHAR [len+1];
 	if(!ret)return NULL;
 
 	if(str1){
-		sprintf(ret,_T("%s%s"),str1,str2);
+		_stprintf(ret,_T("%s%s"),str1,str2);
 	}
-	else sprintf(ret,_T("%s"),str2);
+	else _stprintf(ret,_T("%s"),str2);
 
 	DELETEARRAY(str1);
 
@@ -698,22 +698,22 @@ char* AkiGlobal::MergeString(char* str1,const char* str2)
 	@brief 指定ディレクトリ下からランダムなBGMを選択して再生
 	@param dir 指定ディレクトリ。本体実行ファイル相対
 */
-void AkiGlobal::PlayRandomBGM(char *dir)
+void AkiGlobal::PlayRandomBGM(TCHAR *dir)
 {
 	if(!g_config.UseDShow())return;
 
 	//ファイル名リスト
-	std::vector<char*> filelist;
-	std::vector<char*>::iterator ite;
-	std::vector<char*>::iterator itee;
+	std::vector<TCHAR*> filelist;
+	std::vector<TCHAR*>::iterator ite;
+	std::vector<TCHAR*>::iterator itee;
 
 	int numstr;	//文字数
-	char filepath[MAX_PATH];//テンポラリパス
+	TCHAR filepath[MAX_PATH];//テンポラリパス
 
 	//指定ディレクトリ下のファイル名をリストに収集（拡張子ぬき）
 	HANDLE hFind;
 	WIN32_FIND_DATA fd;
-	sprintf(filepath,_T("%s\\*.*"),dir);
+	_stprintf(filepath,_T("%s\\*.*"),dir);
 	hFind = FindFirstFile( filepath , &fd);
 	if(hFind == INVALID_HANDLE_VALUE)return;//失敗
 	do {
@@ -721,7 +721,7 @@ void AkiGlobal::PlayRandomBGM(char *dir)
 		else if(!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
 		{
 			numstr = strlen( fd.cFileName );
-			char *str = new char [numstr+1];
+			TCHAR *str = new TCHAR [numstr+1];
 			str[numstr]='\0';
 
 			//ふぁいるめいこぴー
@@ -764,7 +764,7 @@ void AkiGlobal::PlayRandomBGM(char *dir)
 	itee= filelist.end();
 	for(;ite!=itee;ite++)
 	{
-		sprintf( filepath, _T("%s\\%s"),dir,*ite);
+		_stprintf( filepath, _T("%s\\%s"),dir,*ite);
 		if(g_sound.BGMPlay( filepath ))
 		{
 			break;//再生に成功したら終了
@@ -797,7 +797,7 @@ AkiGlobal::AkiGlobal()
 	g_system.AddTask(new CTBigFaceCache);
 	m_blankIcon = NULL;
 
-	m_ods_buffer = new char [1024*8];
+	m_ods_buffer = new TCHAR [1024*8];
 }
 
 //開放
@@ -815,8 +815,8 @@ AkiGlobal::~AkiGlobal()
 	文字列ユーティリティ
 ------------------------------------------------------------------*/
 
-//スクリプト読み込みsscanfで使うダミー用charバッファを取得。
-char*  AkiGlobal::GetDummyString()
+//スクリプト読み込み_tscanfで使うダミー用TCHARバッファを取得。
+TCHAR*  AkiGlobal::GetDummyString()
 {
 	m_dummy_next++;
 	return m_dummybuf[ m_dummy_next%MAX_DUMMY_STRING ];
@@ -824,19 +824,19 @@ char*  AkiGlobal::GetDummyString()
 
 
 //テンポラリ文字列配列の生成・破棄
-char** AkiGlobal::CreateTemporaryStrBuff(UINT num,UINT max_len)
+TCHAR** AkiGlobal::CreateTemporaryStrBuff(UINT num,UINT max_len)
 {
 	return CreateStringArray(num,max_len);
 }
 
-void   AkiGlobal::DeleteTemporaryStrBuff(char** buf)
+void   AkiGlobal::DeleteTemporaryStrBuff(TCHAR** buf)
 {
 	DeleteStringArray(buf);
 }
 
 
 //指定バッファの先頭に、指定文字列が入っているかどうかチェック
-BOOL AkiGlobal::strcheck(const char* buf,const char* str)
+BOOL AkiGlobal::strcheck(const TCHAR* buf,const TCHAR* str)
 {
 	int len = strlen(str);
 	while(len>0){
@@ -848,27 +848,27 @@ BOOL AkiGlobal::strcheck(const char* buf,const char* str)
 	return TRUE;
 }
 
-//2次元char配列確保
-char** AkiGlobal::CreateStringArray(UINT num,UINT max_len)
+//2次元TCHAR配列確保
+TCHAR** AkiGlobal::CreateStringArray(UINT num,UINT max_len)
 {
 	if(num==0 || max_len==0)return NULL;
 
-	char** ret = new char* [num+1];
+	TCHAR** ret = new TCHAR* [num+1];
 	ret[num]=NULL;
 
 	for(UINT i=0;i<num;i++){
-		ret[i] = new char[max_len];
+		ret[i] = new TCHAR[max_len];
 	}
 
 	return ret;
 }
 
-//2次元char配列破棄
-void   AkiGlobal::DeleteStringArray(char** pstrarr)
+//2次元TCHAR配列破棄
+void   AkiGlobal::DeleteStringArray(TCHAR** pstrarr)
 {
 	if(!pstrarr)return;
 
-	char** tmp = pstrarr;
+	TCHAR** tmp = pstrarr;
 	while(*tmp!=NULL){
 		delete [] *tmp;
 		tmp++;
@@ -938,7 +938,7 @@ void AkiFile::Destroy()
 	m_size = 0;
 }
 
-BOOL AkiFile::Load(char *filename)
+BOOL AkiFile::Load(TCHAR *filename)
 {
 	Destroy();
 	if(!filename)return FALSE;
@@ -972,7 +972,7 @@ BOOL AkiFile::Load(char *filename)
 }
 
 
-BOOL AkiFile::Save(char *filename)
+BOOL AkiFile::Save(TCHAR *filename)
 {
 	if(!filename)return FALSE;
 	if(!m_buffer)return FALSE;
@@ -1013,7 +1013,7 @@ void AkiFile::Set(DWORD size,BYTE* ptr)
 /*----------------------------------------------------------------
 	Output Debug String
 ------------------------------------------------------------------*/
-void AkiGlobal::ods(const char *format, ...)
+void AkiGlobal::ods(const TCHAR *format, ...)
 {
 	va_list args;
 	va_start(args, format);
@@ -1027,7 +1027,7 @@ void AkiGlobal::ods(const char *format, ...)
 	va_end(args);
 }
 
-void AkiGlobal::ods2(const char *format, ...)
+void AkiGlobal::ods2(const TCHAR *format, ...)
 {
 	va_list args;
 	va_start(args, format);

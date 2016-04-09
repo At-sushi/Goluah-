@@ -38,7 +38,7 @@ CDirectPlay::~CDirectPlay()
 
 // 初期化
 // 複数回作成消去が必要なので、コンストラクタとは別で。
-HRESULT CDirectPlay::Initialize(const char* Name, const char* Port)
+HRESULT CDirectPlay::Initialize(const TCHAR* Name, const TCHAR* Port)
 {
 	HRESULT hr;
 
@@ -117,7 +117,7 @@ HRESULT CDirectPlay::Host(void)
 }
 
 // クライアントとして接続
-HRESULT CDirectPlay::Connect(const char* IP, DWORD Port)
+HRESULT CDirectPlay::Connect(const TCHAR* IP, DWORD Port)
 {
 	HRESULT hr;
 	CWaitCursor wc;
@@ -202,7 +202,7 @@ HRESULT CDirectPlay::OnMessage(PVOID UserCont, DWORD mtype, PVOID pmes)
 				GetName(pMsg->dpnidSender, name);
 				data = name;
 				data += _T(" ＞ ");
-				data += ((char*)pMsg->pReceiveData + 1);	// 最初に識別番号が入ってるので、抜く。
+				data += ((TCHAR*)pMsg->pReceiveData + 1);	// 最初に識別番号が入ってるので、抜く。
 				m_pStateDlg->WriteLog(data);
 			}
 			break;

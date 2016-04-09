@@ -16,7 +16,7 @@ extern INT gOldEntryPoint(HINSTANCE hInst);
 
 CgoluahApp::CgoluahApp()
 {
-	//new char[774];
+	//new TCHAR[774];
 
 	_CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 }

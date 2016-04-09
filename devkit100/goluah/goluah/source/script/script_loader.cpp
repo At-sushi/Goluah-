@@ -27,7 +27,7 @@ CScriptLoader* CScriptLoader::Create()
 	UINT include_nest : includeの依存関係が無限ループしないよう、
 						最大ネスト数を超えたら処理を中止する。
 -----------------------------------------------------------------*/
-BOOL CScriptLoaderInstance::LoadFile(char *base_dir,char *filename,UINT include_count)
+BOOL CScriptLoaderInstance::LoadFile(TCHAR *base_dir,TCHAR *filename,UINT include_count)
 {
 	if(STRINGHANDLER_MAXNESTCOUNT < include_count)return FALSE;
 
@@ -90,7 +90,7 @@ void CScriptLoaderInstance::ReplaceAlias(CAliasList *palist)
 /*---------------------------------------------------------------
 	行取得（C文字列）
 -----------------------------------------------------------------*/
-char* CScriptLoaderInstance::GetLine(int index)
+TCHAR* CScriptLoaderInstance::GetLine(int index)
 {
 	strlinelist::iterator il	=list.begin();
 	strlinelist::iterator iled	=list.end();
@@ -210,12 +210,12 @@ BOOL CScriptLoaderInstance::IncludeCheck(UINT include_count)
 	strlinelist::iterator il	=list.begin();
 	strlinelist::iterator iled	=list.end();
 
-	char *tmpstr = new char[MAX_PATH];
+	TCHAR *tmpstr = new TCHAR[MAX_PATH];
 	CScriptLoaderInstance subtext;
 
 	for(;il!=iled;il++){
 		if(il->str.Find(_T("include"))==0){
-			sscanf(il->str,_T("include %s"),tmpstr);
+			_tscanf(il->str,_T("include %s"),tmpstr);
 			if(subtext.LoadFile(m_base_dir.GetBuffer(),tmpstr,include_count)){
 				int line_no = il->line_no;
 				list.erase(il);
@@ -265,7 +265,7 @@ void CScriptLoaderInstance::Marge(int index,CScriptLoaderInstance& sh)
 -----------------------------------------------------------------*/
 #ifdef _DEBUG
 #include<algorithm>
-void CScriptLoaderInstance::DebugOutput(char *filename)
+void CScriptLoaderInstance::DebugOutput(TCHAR *filename)
 {
 	OutputDebugString(_T("\n■CScriptLoaderInstance::DebugOutput - start\n"));
 

@@ -215,15 +215,15 @@ void CTBattlePause::Draw()
 
 		イテレータ資料（global.cppより）
 		//ファイル名リスト
-		std::vector<char*> filelist;
-		std::vector<char*>::iterator ite;
-		std::vector<char*>::iterator itee;
+		std::vector<TCHAR*> filelist;
+		std::vector<TCHAR*>::iterator ite;
+		std::vector<TCHAR*>::iterator itee;
 		//再生を試みる
 		ite = filelist.begin();
 		itee= filelist.end();
 		for(;ite!=itee;ite++)
 		{
-		sprintf( filepath, "%s\\%s",dir,*ite);
+		_stprintf( filepath, "%s\\%s",dir,*ite);
 		if(g_sound.BGMPlay( filepath ))
 		{
 		break;//再生に成功したら終了
@@ -349,8 +349,8 @@ void CTBattlePause::Draw()
 
 void CTBattlePause::ChangeInst(UINT t)
 {
-	char *filepath = new char[256];
-	char altstr[2] ={'\0','\0'};
+	TCHAR *filepath = new TCHAR[256];
+	TCHAR altstr[2] ={'\0','\0'};
 	int alt = OPT2ALT(g_battleinfo.GetCharacterOption(t,m_face_idx[t]));
 	if(alt!=0)
 	{
@@ -358,7 +358,7 @@ void CTBattlePause::ChangeInst(UINT t)
 	}
 	UINT char_index = g_battleinfo.GetCharacter(t,m_face_idx[t]);
 	
-	sprintf(filepath,_T("%s\\inst%s"),
+	_stprintf(filepath,_T("%s\\inst%s"),
 		g_charlist.GetCharacterDir(char_index),
 		altstr);
 

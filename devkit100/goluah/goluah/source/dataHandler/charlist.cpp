@@ -86,7 +86,7 @@ void CCharacterList::InitializeRingList()
 	HANDLE hFind;
 	WIN32_FIND_DATA fd;
 
-	hFind = FindFirstFile(_T(".\\char\\*.*"), &fd);
+	hFind = FindFirstFile(_T(".\\TCHAR\\*.*"), &fd);
 	CCL_RINGINFO ringitem;
 
 	if(hFind != INVALID_HANDLE_VALUE) {//ディレクトリが存在する場合
@@ -94,7 +94,7 @@ void CCharacterList::InitializeRingList()
 			if(strcmp(fd.cFileName,_T("."))==0 || strcmp(fd.cFileName,_T(".."))==0);//アレ
 			else if(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) //ディレクトリﾊｹｰﾝ
 			{
-				strcpy(ringitem.name,fd.cFileName);
+				_tcscpy(ringitem.name,fd.cFileName);
 				ringlist.push_back(ringitem);
 			}
 		} while(FindNextFile(hFind, &fd));
@@ -107,19 +107,19 @@ void CCharacterList::InitializeRing(DWORD index)
 {
 	HANDLE hFind;
 	WIN32_FIND_DATA fd;
-	char ringdir[32];
-	char chardir[64];
+	TCHAR ringdir[32];
+	TCHAR chardir[64];
 
-	sprintf(ringdir,_T("char\\%s\\*.*"),ringlist.at(index).name);
+	_stprintf(ringdir,_T("TCHAR\\%s\\*.*"),ringlist.at(index).name);
 	hFind = FindFirstFile(ringdir, &fd);
-	sprintf(ringdir,_T("char\\%s\\"),ringlist.at(index).name);
+	_stprintf(ringdir,_T("TCHAR\\%s\\"),ringlist.at(index).name);
 
 	if(hFind != INVALID_HANDLE_VALUE) {//ディレクトリが存在する場合
 		do {
 			if(strcmp(fd.cFileName,_T("."))==0 || strcmp(fd.cFileName,_T(".."))==0);//アレ
 			else if(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) //ディレクトリﾊｹｰﾝ
 			{
-				sprintf(chardir,_T("%s%s"),ringdir,fd.cFileName);
+				_stprintf(chardir,_T("%s%s"),ringdir,fd.cFileName);
 				VerifyCharacterDir(chardir,index);//検証
 			}
 		} while(FindNextFile(hFind, &fd));
@@ -128,21 +128,21 @@ void CCharacterList::InitializeRing(DWORD index)
 }
 
 //キャラクターディレクトリの検証
-BOOL CCharacterList::VerifyCharacterDir(char *dir,DWORD ringindex)
+BOOL CCharacterList::VerifyCharacterDir(TCHAR *dir,DWORD ringindex)
 {
-	char path[256];
-	sprintf(path,_T("%s\\action.dll"),dir);
+	TCHAR path[256];
+	_stprintf(path,_T("%s\\action.dll"),dir);
 	CDI_CHARACTERINFO info;
 	ZeroMemory(&info,sizeof(CDI_CHARACTERINFO));
 	info.system_version = GOLUAH_SYSTEM_VERSION;
 
 	CCL_DAMEINFO dameinfo;
 
-	sprintf(dameinfo.name,_T(""));
+	_stprintf(dameinfo.name,_T(""));
 
 	HINSTANCE hLib = LoadLibrary(path);
 	if(hLib == NULL){		//DLL読み込み失敗
-		strcpy(dameinfo.dir,dir);
+		_tcscpy(dameinfo.dir,dir);
 		dameinfo.dame = CCL_DAME_NODLL;
 		damelist.push_back(dameinfo);
 		return(FALSE);
@@ -151,22 +151,22 @@ BOOL CCharacterList::VerifyCharacterDir(char *dir,DWORD ringindex)
 	pfunc = (PFUNC_CHARACTERINFO)GetProcAddress(hLib, _T("CharacterInfo"));
 	if(pfunc==NULL){		//関数ポインタ取得失敗
 		FreeLibrary(hLib);
-		strcpy(dameinfo.dir,dir);
+		_tcscpy(dameinfo.dir,dir);
 		dameinfo.dame = CCL_DAME_CANTGETFP;
 		damelist.push_back(dameinfo);
 		return(FALSE);
 	}
 	if(!(*pfunc)(&info)){	//CharacterInfoがFALSEを返したらダメ
 		FreeLibrary(hLib);
-		strcpy(dameinfo.dir,dir);
+		_tcscpy(dameinfo.dir,dir);
 		dameinfo.dame = CCL_DAME_FFAIL;
 		damelist.push_back(dameinfo);
 		return(FALSE);
 	}
 	if((info.ver > 800 && info.ver<1000) ||
 	   info.ver < 400 /*680*/){		//バージョンのチェック（古いほう）
-		strcpy(dameinfo.dir,dir);
-		strcpy(dameinfo.name,info.name);
+		_tcscpy(dameinfo.dir,dir);
+		_tcscpy(dameinfo.name,info.name);
 		dameinfo.dame = CCL_DAME_OLDDLL;
 		dameinfo.ver = info.ver;
 		damelist.push_back(dameinfo);
@@ -174,8 +174,8 @@ BOOL CCharacterList::VerifyCharacterDir(char *dir,DWORD ringindex)
 		return(FALSE);
 	}
 	if(info.ver > CDI_VERSION){//バージョンのチェック（新しいほう）
-		strcpy(dameinfo.dir,dir);
-		strcpy(dameinfo.name,info.name);
+		_tcscpy(dameinfo.dir,dir);
+		_tcscpy(dameinfo.name,info.name);
 		dameinfo.dame = CCL_DAME_NEWDLL;
 		dameinfo.ver = info.ver;
 		FreeLibrary(hLib);
@@ -187,7 +187,7 @@ BOOL CCharacterList::VerifyCharacterDir(char *dir,DWORD ringindex)
 	CCL_CHARACTERINFO newitem;
 	ZeroMemory(&newitem,sizeof(CCL_CHARACTERINFO));
 	strcpy_s(newitem.dir  , dir);						// ここだけstrcpy_s対応、って…
-	strcpy(newitem.name , info.name);
+	_tcscpy(newitem.name , info.name);
 	newitem.ver = info.ver;
 	newitem.caps = info.caps;
 
@@ -230,9 +230,9 @@ int CCharacterList::GetCharacterCountRing(UINT ring)
 	return ringlist.at(ring).ring2serialIndex.size();
 }
 
-char* CCharacterList::GetCharacterDir(UINT index)
+TCHAR* CCharacterList::GetCharacterDir(UINT index)
 {
-	static char *error_return = _T("error");
+	static TCHAR *error_return = _T("error");
 	if(index>=infolist.size()){
 		g_system.LogWarning(_T("%s index不正(%d/%d)"),__FUNCTION__,index,infolist.size());
 		return error_return;
@@ -242,15 +242,15 @@ char* CCharacterList::GetCharacterDir(UINT index)
 }
 
 
-char* CCharacterList::GetCharacterDir(UINT index,int ring)
+TCHAR* CCharacterList::GetCharacterDir(UINT index,int ring)
 {
 	if(ring<0)return GetCharacterDir(index);
 	return  GetCharacterDir( RingIndex2SerialIndex(ring,index) );
 }
 
-char* CCharacterList::GetCharacterName(UINT index)
+TCHAR* CCharacterList::GetCharacterName(UINT index)
 {
-	static char *error_return = _T("error");
+	static TCHAR *error_return = _T("error");
 	if(index>=infolist.size()){
 		g_system.LogWarning(_T("%s index不正(%d/%d)"),__FUNCTION__,index,infolist.size());
 		return error_return;
@@ -273,11 +273,11 @@ int CCharacterList::GetDameCharCount()
 	return  damelist.size();
 }
 
-char* CCharacterList::GetDameCharDir(UINT index)
+TCHAR* CCharacterList::GetDameCharDir(UINT index)
 {
 	return damelist.at(index).dir;
 }
-char* CCharacterList::GetDameCharName(UINT index)
+TCHAR* CCharacterList::GetDameCharName(UINT index)
 {
 	return(damelist[index].name);
 }
@@ -303,7 +303,7 @@ DWORD CCharacterList::RingIndex2SerialIndex(UINT ring,UINT index)
 	return  ringlist.at(ring).ring2serialIndex.at(index)  ;
 }
 
-int CCharacterList::FindCharacter(char *name)
+int CCharacterList::FindCharacter(TCHAR *name)
 {
 	if(name==NULL)return(-1);
 
@@ -383,7 +383,7 @@ DWORD CCharacterList::GetRandomOption(DWORD index)
 }
 
 
-char* CCharacterList::GetRingName(UINT index)
+TCHAR* CCharacterList::GetRingName(UINT index)
 {
 	if( ringlist.size()-1 < index )return NULL;
 	return ringlist.at(index).name;
@@ -463,10 +463,10 @@ void CCharacterList::CorrectOption(UINT cindex,DWORD *opt_org)
 /*----------------------------------------------------------------
 	optset.txt の読み込み
 ------------------------------------------------------------------*/
-void CCharacterList::LoadFavoriteOptions(char* dir,FavoriteOptionList& list)
+void CCharacterList::LoadFavoriteOptions(TCHAR* dir,FavoriteOptionList& list)
 {
-	char *path = new char[MAX_PATH];
-	sprintf( path, _T("%s\\optset.txt"),dir);
+	TCHAR *path = new TCHAR[MAX_PATH];
+	_stprintf( path, _T("%s\\optset.txt"),dir);
 
 	AkiFile file;
 	if(! file.Load( path ) ){
@@ -474,7 +474,7 @@ void CCharacterList::LoadFavoriteOptions(char* dir,FavoriteOptionList& list)
 		return;
 	}
 
-	char *optstr= new char [128];
+	TCHAR *optstr= new TCHAR [128];
 
 	FAVORITE_OPTION opt;
 	DWORD i=0,j=0;
@@ -484,7 +484,7 @@ void CCharacterList::LoadFavoriteOptions(char* dir,FavoriteOptionList& list)
 	{
 		if(file.m_buffer[i] == '#')
 		{
-			ssret = sscanf((const char*)(&file.m_buffer[i+1]),_T("%s %s"),opt.name,optstr);
+			ssret = _tscanf((const TCHAR*)(&file.m_buffer[i+1]),_T("%s %s"),opt.name,optstr);
 			if(ssret==EOF)break;
 			else if(ssret==2 && strlen(optstr)==32)
 			{
@@ -716,8 +716,8 @@ void CCOptionSelecter::Draw()
 	int y = 240-list->size()*16;
 	int off_x2 = 20;
 
-	char *tmp_str;
-	tmp_str = new char[128];
+	TCHAR *tmp_str;
+	tmp_str = new TCHAR[128];
 
 	DWORD ex_flag =0;
 	DWORD k=0;
@@ -729,7 +729,7 @@ void CCOptionSelecter::Draw()
 		k++;
 	}
 
-	sprintf(tmp_str,_T("=--OPTIONS-- POINT:%d"),current_point);
+	_stprintf(tmp_str,_T("=--OPTIONS-- POINT:%d"),current_point);
 	g_system.DrawBMPText(offset_x,y,z,tmp_str,0xFFBBBBBB);
 
 	y+=32;
@@ -916,7 +916,7 @@ void CCOptionSelecter::SetRandom()
 }
 
 //0:"Free" , 0～:favorite設定名
-char* CCOptionSelecter::GetCurrentSetName()
+TCHAR* CCOptionSelecter::GetCurrentSetName()
 {
 	if(m_current_favorite==0)return _T("Free");
 
