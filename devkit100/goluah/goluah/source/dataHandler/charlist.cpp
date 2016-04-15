@@ -86,7 +86,7 @@ void CCharacterList::InitializeRingList()
 	HANDLE hFind;
 	WIN32_FIND_DATA fd;
 
-	hFind = FindFirstFile(_T(".\\TCHAR\\*.*"), &fd);
+	hFind = FindFirstFile(_T(".\\char\\*.*"), &fd);
 	CCL_RINGINFO ringitem;
 
 	if(hFind != INVALID_HANDLE_VALUE) {//ディレクトリが存在する場合
@@ -110,9 +110,9 @@ void CCharacterList::InitializeRing(DWORD index)
 	TCHAR ringdir[32];
 	TCHAR chardir[64];
 
-	_stprintf(ringdir,_T("TCHAR\\%s\\*.*"),ringlist.at(index).name);
+	_stprintf(ringdir,_T("char\\%s\\*.*"),ringlist.at(index).name);
 	hFind = FindFirstFile(ringdir, &fd);
-	_stprintf(ringdir,_T("TCHAR\\%s\\"),ringlist.at(index).name);
+	_stprintf(ringdir,_T("char\\%s\\"),ringlist.at(index).name);
 
 	if(hFind != INVALID_HANDLE_VALUE) {//ディレクトリが存在する場合
 		do {
