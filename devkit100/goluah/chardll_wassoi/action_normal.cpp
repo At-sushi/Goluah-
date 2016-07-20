@@ -23,7 +23,7 @@ void CCharacter::act_crouch()//しゃがみ
 
 void CCharacter::act_rakka()//落下
 {
-	JiyuuRakka(2,TRUE);
+	JiyuuRakka(3,TRUE);
 	pdat->cnow = CELL_JAMP1;
 }
 
@@ -207,21 +207,21 @@ void CCharacter::act_jampc()//垂直ジャンプ
 {
 	if(pdat->counter == 0){pdat->vy=-34;pdat->vx=0;}
 	pdat->cnow = CELL_JAMP1;
-	JiyuuRakka(2,TRUE);
+	JiyuuRakka(3,TRUE);
 }
 
 void CCharacter::act_jampf()//前ジャンプ
 {
 	if(pdat->counter == 0){pdat->vy=-34;pdat->vx=6;}
 	pdat->cnow = CELL_JAMP1;
-	JiyuuRakka(2, TRUE);;
+	JiyuuRakka(3, TRUE);;
 }
 
 void CCharacter::act_jampb()//後ジャンプ
 {
 	if(pdat->counter == 0){pdat->vy=-34;pdat->vx=-6;}
 	pdat->cnow = CELL_JAMP1;
-	JiyuuRakka(2,TRUE);
+	JiyuuRakka(3,TRUE);
 }
 
 //*********************************************************

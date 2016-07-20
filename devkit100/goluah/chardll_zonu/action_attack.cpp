@@ -123,14 +123,7 @@ void CCharacter::act_att_ja()//”òã
 		pdat->aid = ACTID_RAKKA2;
 	}
 
-	movex(pdat->vx);
-	pdat->y += pdat->vy;
-	pdat->vy += pdat->counter%2;
-	if(pdat->y > 0){
-		pdat->aid = ACTID_NEUTRAL;
-		pdat->y =0;
-		Furimuki();
-	}
+	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
 }
 
 void CCharacter::act_att_jb()//”ò’†
@@ -145,14 +138,7 @@ void CCharacter::act_att_jb()//”ò’†
 		pdat->aid = ACTID_RAKKA2;
 	}
 
-	movex(pdat->vx);
-	pdat->y += pdat->vy;
-	pdat->vy += pdat->counter%2;
-	if(pdat->y > 0){
-		pdat->aid = ACTID_NEUTRAL;
-		pdat->y =0;
-		Furimuki();
-	}
+	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
 }
 
 void CCharacter::act_att_jc()//”ò‹­
@@ -164,13 +150,7 @@ void CCharacter::act_att_jc()//”ò‹­
 	if(pdat->counter < 8)pdat->cnow = CELL_JC1;
 	else pdat->cnow = CELL_JC2;
 
-	movex(pdat->vx);
-	pdat->y += pdat->vy;
-	pdat->vy+=pdat->counter%2;
-	if(pdat->y > 0){
-		pdat->aid = ACTID_NEUTRAL;
-		pdat->y =0;
-	}
+	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
 }
 
 //x‰‡UŒ‚=========================================================

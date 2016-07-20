@@ -108,7 +108,7 @@ void CCharacter::act_att_ja()//”òŽã
 	else if(pdat->counter < 20)pdat->cnow = CELL_JA2;
 	else pdat->aid = ACTID_RAKKA2;
 
-	JiyuuRakka(ACTID_NEUTRAL,TRUE);
+	JiyuuRakka(2,TRUE);
 }
 
 void CCharacter::act_att_jb()//”ò’†
@@ -127,7 +127,7 @@ void CCharacter::act_att_jb()//”ò’†
 	else{
 		pdat->aid = ACTID_RAKKA2;
 	}
-	JiyuuRakka(ACTID_NEUTRAL,TRUE);
+	JiyuuRakka(2,TRUE);
 }
 
 void CCharacter::act_att_jc()//”ò‹­
@@ -137,7 +137,7 @@ void CCharacter::act_att_jc()//”ò‹­
 	if(pdat->counter < 9)pdat->cnow=CELL_DASHF1;
 	else if(pdat->counter < 18)pdat->cnow = CELL_JC1+pdat->counter%8;
 	else pdat->cnow = CELL_JAMP;
-	JiyuuRakka(ACTID_NEUTRAL,TRUE);
+	JiyuuRakka(2,TRUE);
 }
 
 

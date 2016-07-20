@@ -180,7 +180,7 @@ void CCharacterEL::act_att_ja()//”òã
 	else if(ccounter<15)cell( CELL_SA1 );
 	else ChangeAction( ACTID_RAKKA2 );
 
-	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
+	JiyuuRakka(2, TRUE, ACTID_NEUTRAL);
 }
 
 void CCharacterEL::act_att_jb()//”ò’†
@@ -198,7 +198,7 @@ void CCharacterEL::act_att_jb()//”ò’†
 	else if(ccounter<30)cell( CELL_SB1 );
 	else ChangeAction( ACTID_RAKKA2 );
 
-	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
+	JiyuuRakka(2, TRUE, ACTID_NEUTRAL);
 }
 
 void CCharacterEL::act_att_jc()//”ò‹­
@@ -218,7 +218,7 @@ void CCharacterEL::act_att_jc()//”ò‹­
 	else if(ccounter<35)cell( CELL_JC1 );
 	else ChangeAction( ACTID_RAKKA2 );
 
-	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
+	JiyuuRakka(2, TRUE, ACTID_NEUTRAL);
 }
 
 //**************************************************************

@@ -182,7 +182,7 @@ void CCharacter::act_att_ja()
 	else if(ccounter<20)cell(CELL_JA1);
 	else if(ccounter<24)ChangeAction(ACTID_RAKKA);
 
-	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
+	JiyuuRakka(2, TRUE, ACTID_NEUTRAL);
 }
 
 /*---------------------------------------------------------------
@@ -213,7 +213,7 @@ void CCharacter::act_att_jb()
 		else if(ccounter<32)ChangeAction(ACTID_RAKKA);
 	}
 
-	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
+	JiyuuRakka(2, TRUE, ACTID_NEUTRAL);
 }
 
 /*---------------------------------------------------------------
@@ -238,7 +238,7 @@ void CCharacter::act_att_jc()
 		else if(ccounter<20)cell(CELL_JC5);
 	}
 
-	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
+	JiyuuRakka(2, TRUE, ACTID_NEUTRAL);
 }
 
 /*---------------------------------------------------------------

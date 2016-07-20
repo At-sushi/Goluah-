@@ -140,7 +140,7 @@ void CCharacter::act_att_ja()
 	else if(ccounter<20)cell( CELL_JA1 );
 	else ChangeAction( ACTID_RAKKA2 );
 
-	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
+	JiyuuRakka(2, TRUE, ACTID_NEUTRAL);
 }
 
 /*---------------------------------------------------------
@@ -157,7 +157,7 @@ void CCharacter::act_att_jb()
 	else if(ccounter<26)cell( CELL_JB1 );
 	else ChangeAction( ACTID_RAKKA2 );
 
-	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
+	JiyuuRakka(2, TRUE, ACTID_NEUTRAL);
 }
 
 /*---------------------------------------------------------
@@ -179,7 +179,7 @@ void CCharacter::act_att_jc()
 	else if(ccounter<anmspd*17)cell( CELL_JC8 );
 	else ChangeAction( ACTID_RAKKA2 );
 
-	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
+	JiyuuRakka(2, TRUE, ACTID_NEUTRAL);
 }
 
 
@@ -283,6 +283,7 @@ void CCharacter::act_sagena()
 	if(ccounter==0)
 	{
 		StartAttack(ATTACKINFO_SAGENA);
+		pdat->counter = 3;	// Žb’è‘[’u
 	}
 
 	if(pdat->counter < 6)pdat->cnow = CELL_FUNBARI;
