@@ -193,10 +193,10 @@ void CCharacter::act_2nd_step()
 ----------------------------------------------------------------*/
 void CCharacter::act_jampc()
 {
-	if(pdat->counter == 0){pdat->vy=-17;pdat->vx=0;}//初期速度
+	if(pdat->counter == 0){pdat->vy=-25;pdat->vx=0;}//初期速度
 
 	cell( (pdat->counter<2) ? CELL_JAMP3 : CELL_JAMP4 );
-	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
+	JiyuuRakka(2, TRUE, ACTID_NEUTRAL);
 }
 
 /*--------------------------------------------------------------
@@ -204,10 +204,10 @@ void CCharacter::act_jampc()
 ----------------------------------------------------------------*/
 void CCharacter::act_jampf()
 {
-	if(pdat->counter == 0){pdat->vy=-17;pdat->vx=6;}//初期速度
+	if(pdat->counter == 0){pdat->vy=-25;pdat->vx=6;}//初期速度
 	
 	cell( (pdat->counter<2) ? CELL_JAMP3 : CELL_JAMP4 );
-	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
+	JiyuuRakka(2, TRUE, ACTID_NEUTRAL);
 }
 
 /*--------------------------------------------------------------
@@ -215,10 +215,10 @@ void CCharacter::act_jampf()
 ----------------------------------------------------------------*/
 void CCharacter::act_jampb()
 {
-	if(pdat->counter == 0){pdat->vy=-17;pdat->vx=-6;}//初期速度
+	if(pdat->counter == 0){pdat->vy=-25;pdat->vx=-6;}//初期速度
 
 	cell( (pdat->counter<2) ? CELL_JAMP3 : CELL_JAMP4 );
-	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
+	JiyuuRakka(2, TRUE, ACTID_NEUTRAL);
 }
 
 /*--------------------------------------------------------------

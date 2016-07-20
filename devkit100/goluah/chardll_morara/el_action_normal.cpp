@@ -101,26 +101,26 @@ void CCharacterEL::act_jamps()//ジャンプ予備動作
 
 void CCharacterEL::act_jampc()//垂直ジャンプ
 {
-	if(pdat->counter == 0){pdat->vy=-20;pdat->vx=0;}//初期速度
+	if(pdat->counter == 0){pdat->vy=-30;pdat->vx=0;}//初期速度
 
 	pdat->cnow = CELL_JAMPF;
-	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
+	JiyuuRakka(2, TRUE, ACTID_NEUTRAL);
 }
 
 void CCharacterEL::act_jampf()//前ジャンプ
 {
-	if(pdat->counter == 0){pdat->vy=-20;pdat->vx=6;}//初期速度
+	if(pdat->counter == 0){pdat->vy=-30;pdat->vx=6;}//初期速度
 
 	pdat->cnow = CELL_JAMPF;
-	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
+	JiyuuRakka(2, TRUE, ACTID_NEUTRAL);
 }
 
 void CCharacterEL::act_jampb()//後ジャンプ
 {
-	if(pdat->counter == 0){pdat->vy=-20;pdat->vx=-6;}//初期速度
+	if(pdat->counter == 0){pdat->vy=-30;pdat->vx=-6;}//初期速度
 
 	pdat->cnow = CELL_JAMPB;
-	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
+	JiyuuRakka(2, TRUE, ACTID_NEUTRAL);
 }
 
 void CCharacterEL::act_dashf()

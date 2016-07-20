@@ -184,15 +184,15 @@ void CCharacter::act_2nd_step()
 void CCharacter::act_jampc()
 {
 	if(pdat->counter == 0){
-		if(m_aerial && m_2nd_step_flag)pdat->vy= m_opt_AStep ? -18 : -10;
-		else pdat->vy= m_opt_AStep ? /*-22 : -23*/-17 : -18;
+		if(m_aerial && m_2nd_step_flag)pdat->vy= m_opt_AStep ? -27 : -15;
+		else pdat->vy= m_opt_AStep ? /*-22 : -23*/-25 : -27;
 		pdat->vx=0;
 	}
 
 	pdat->cnow = CELL_JAMP1;
 
 	pdat->y += pdat->vy;
-	pdat->vy+=/*1.5*/1;
+	pdat->vy+=2;
 	if(pdat->y > 0){
 		pdat->aid = ACTID_NEUTRAL;
 		pdat->y =0;
@@ -206,7 +206,7 @@ void CCharacter::act_jampc()
 void CCharacter::act_jampf()
 {
 	if(pdat->counter == 0){
-		pdat->vy= m_opt_AStep ? /*-23 : -23*/-17 : -18;
+		pdat->vy= m_opt_AStep ? /*-23 : -23*/-25 : -27;
 		pdat->vx=6;
 	}
 
@@ -214,7 +214,7 @@ void CCharacter::act_jampf()
 
 	movex(pdat->vx);
 	pdat->y += pdat->vy;
-	pdat->vy+=/*1.5*/1;
+	pdat->vy+=2;
 	if(pdat->y > 0){
 		pdat->aid = ACTID_NEUTRAL;
 		pdat->y =0;
@@ -228,7 +228,7 @@ void CCharacter::act_jampf()
 void CCharacter::act_jampb()
 {
 	if(pdat->counter == 0){
-		pdat->vy= m_opt_AStep ? /*-23 : -23*/-17 : -18;
+		pdat->vy= m_opt_AStep ? /*-23 : -23*/-25: -27;
 		pdat->vx=-6;
 	}
 
@@ -236,7 +236,7 @@ void CCharacter::act_jampb()
 
 	movex(pdat->vx);
 	pdat->y += pdat->vy;
-	pdat->vy+=/*1.5*/1;
+	pdat->vy+=2;
 	if(pdat->y > 0){
 		pdat->aid = ACTID_NEUTRAL;
 		pdat->y =0;
@@ -252,7 +252,7 @@ void CCharacter::act_ajamp()
 {
 	if(pdat->counter == 0)
 	{
-		pdat->vy= -22;
+		pdat->vy= -33;
 		pdat->vx=7;
 		m_aerial = TRUE;
 	}
@@ -261,7 +261,7 @@ void CCharacter::act_ajamp()
 
 	movex(pdat->vx);
 	pdat->y += pdat->vy;
-	pdat->vy += /*2*/1.5;
+	pdat->vy += 2;
 	if(pdat->y > 0){
 		pdat->aid = ACTID_NEUTRAL;
 		pdat->y =0;

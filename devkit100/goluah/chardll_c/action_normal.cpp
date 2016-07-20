@@ -95,26 +95,26 @@ void CCharacter::act_jamps()//ジャンプ予備動作
 
 void CCharacter::act_jampc()//垂直ジャンプ
 {
-	if(pdat->counter == 0){pdat->vy=-20;pdat->vx=0;}
+	if(pdat->counter == 0){pdat->vy=-30;pdat->vx=0;}
 
 	pdat->cnow = CELL_JAMP;
-	JiyuuRakka(ACTID_NEUTRAL,TRUE);
+	JiyuuRakka(2, TRUE);
 }
 
 void CCharacter::act_jampf()//前ジャンプ
 {
-	if(pdat->counter == 0){pdat->vy=-20;pdat->vx=6;}
+	if(pdat->counter == 0){pdat->vy=-30;pdat->vx=6;}
 
 	pdat->cnow = CELL_JAMP;
-	JiyuuRakka(ACTID_NEUTRAL,TRUE);
+	JiyuuRakka(2, TRUE);
 }
 
 void CCharacter::act_jampb()//後ジャンプ
 {
-	if(pdat->counter == 0){pdat->vy=-20;pdat->vx=-6;}
+	if(pdat->counter == 0){pdat->vy=-30;pdat->vx=-6;}
 
 	pdat->cnow = CELL_JAMP;
-	JiyuuRakka(ACTID_NEUTRAL,TRUE);
+	JiyuuRakka(2, TRUE);
 }
 
 
@@ -199,23 +199,23 @@ void CCharacter::act_2danjamps()
 
 void CCharacter::act_2danjampc()
 {
-	if(pdat->counter == 0){pdat->vy=-18;pdat->vx=0;}
+	if(pdat->counter == 0){pdat->vy=-27;pdat->vx=0;}
 	pdat->cnow = CELL_JAMP;
-	JiyuuRakka(1,TRUE);
+	JiyuuRakka(2,TRUE);
 }
 
 void CCharacter::act_2danjampf()
 {
-	if(pdat->counter == 0){pdat->vy=-18;pdat->vx=6;}
+	if(pdat->counter == 0){pdat->vy=-27;pdat->vx=6;}
 	pdat->cnow = CELL_JAMP;
-	JiyuuRakka(1,TRUE);
+	JiyuuRakka(2,TRUE);
 }
 
 void CCharacter::act_2danjampb()
 {
-	if(pdat->counter == 0){pdat->vy=-18;pdat->vx=-6;}
+	if(pdat->counter == 0){pdat->vy=-27;pdat->vx=-6;}
 	pdat->cnow = CELL_JAMP;
-	JiyuuRakka(1,TRUE);
+	JiyuuRakka(2,TRUE);
 }
 
 

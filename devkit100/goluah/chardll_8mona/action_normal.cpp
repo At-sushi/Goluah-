@@ -104,51 +104,31 @@ void CCharacter::act_jamps()
 //!垂直ジャンプ
 void CCharacter::act_jampc()
 {
-	if(pdat->counter == 0){pdat->vy=-20;pdat->vx=0;}
+	if(pdat->counter == 0){pdat->vy=-30;pdat->vx=0;}
 
 	pdat->cnow = CELL_JAMP1;
 
-	pdat->y += pdat->vy;
-	pdat->vy++;
-	if(pdat->y > 0){
-		pdat->aid = ACTID_NEUTRAL;
-		pdat->y =0;
-		Furimuki();
-	}
+	JiyuuRakka(2, TRUE);
 }
 
 //!前ジャンプ
 void CCharacter::act_jampf()
 {
-	if(pdat->counter == 0){pdat->vy=-20;pdat->vx=6;}
+	if(pdat->counter == 0){pdat->vy=-30;pdat->vx=6;}
 
 	pdat->cnow = CELL_JAMP1;
 
-	movex(pdat->vx);
-	pdat->y += pdat->vy;
-	pdat->vy++;
-	if(pdat->y > 0){
-		pdat->aid = ACTID_NEUTRAL;
-		pdat->y =0;
-		Furimuki();
-	}
+	JiyuuRakka(2, TRUE);
 }
 
 //!後ジャンプ
 void CCharacter::act_jampb()
 {
-	if(pdat->counter == 0){pdat->vy=-20;pdat->vx=-6;}
+	if(pdat->counter == 0){pdat->vy=-30;pdat->vx=-6;}
 
 	pdat->cnow = CELL_JAMP1;
 
-	movex(pdat->vx);
-	pdat->y += pdat->vy;
-	pdat->vy++;
-	if(pdat->y > 0){
-		pdat->aid = ACTID_NEUTRAL;
-		pdat->y =0;
-		Furimuki();
-	}
+	JiyuuRakka(2, TRUE);
 }
 
 

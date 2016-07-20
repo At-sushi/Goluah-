@@ -205,23 +205,23 @@ void CCharacter::act_jamps()//ジャンプ予備動作
 
 void CCharacter::act_jampc()//垂直ジャンプ
 {
-	if(pdat->counter == 0){pdat->vy=-23;pdat->vx=0;}
+	if(pdat->counter == 0){pdat->vy=-34;pdat->vx=0;}
 	pdat->cnow = CELL_JAMP1;
-	JiyuuRakka(1.5,TRUE);
+	JiyuuRakka(2,TRUE);
 }
 
 void CCharacter::act_jampf()//前ジャンプ
 {
-	if(pdat->counter == 0){pdat->vy=-23;pdat->vx=6;}
+	if(pdat->counter == 0){pdat->vy=-34;pdat->vx=6;}
 	pdat->cnow = CELL_JAMP1;
-	JiyuuRakka(1.5, TRUE);;
+	JiyuuRakka(2, TRUE);;
 }
 
 void CCharacter::act_jampb()//後ジャンプ
 {
-	if(pdat->counter == 0){pdat->vy=-23;pdat->vx=-6;}
+	if(pdat->counter == 0){pdat->vy=-34;pdat->vx=-6;}
 	pdat->cnow = CELL_JAMP1;
-	JiyuuRakka(1.5,TRUE);
+	JiyuuRakka(2,TRUE);
 }
 
 //*********************************************************
