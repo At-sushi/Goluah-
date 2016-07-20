@@ -819,7 +819,7 @@ void CGObject::dact_futtobi(GOBJECT* pdat)//‚Ó‚Á‚Æ‚Ñ
 	}
 	DmgMovex(pdat,pdat->vx);
 	pdat->y+=pdat->vy;
-	pdat->vy+=2+pdat->counter%4;
+	pdat->vy+=2+pdat->counter%3;
 
 	if(pdat->counter < 8){pdat->cnow = DCELL_DAMAGEJ;}
 	else if(pdat->counter < 12){pdat->cnow = DCELL_RAKKA1;}
@@ -840,7 +840,7 @@ void CGObject::dact_futtobi2(GOBJECT* pdat)//‚Ó‚Á‚Æ‚Ñ(ƒGƒŠƒAƒ‹•—–¡)
 	}
 	DmgMovex(pdat,pdat->vx);
 	pdat->y+=pdat->vy;
-	pdat->vy+=2+pdat->counter%4;
+	pdat->vy+=2+pdat->counter%3;
 
 	if(pdat->counter < 8){pdat->cnow = DCELL_DAMAGEJ;}
 	else if(pdat->counter < 12){pdat->cnow = DCELL_RAKKA1;}

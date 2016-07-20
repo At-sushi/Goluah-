@@ -24,14 +24,7 @@ void CCharacter::act_rakka()//落下
 {
 	pdat->cnow = CELL_JAMP1;
 
-	movex(pdat->vx);
-	pdat->y += pdat->vy;
-	pdat->vy++;
-	if(pdat->y > 0){
-		pdat->aid = ACTID_NEUTRAL;
-		pdat->y =0;
-		Furimuki();
-	}
+	JiyuuRakka(2, TRUE, ACTID_NEUTRAL);
 }
 
 void CCharacter::act_tojyo()//登場
@@ -119,13 +112,13 @@ void CCharacter::act_jamps()//ジャンプ予備動作
 
 void CCharacter::act_jampc()//垂直ジャンプ
 {
-	if(pdat->counter == 0){pdat->vy=-18;pdat->vx=0;}
+	if(pdat->counter == 0){pdat->vy=-27;pdat->vx=0;}
 
 	if(pdat->vy < 0)pdat->cnow = CELL_JAMP1;
 	else pdat->cnow = CELL_JAMP2;
 
 	pdat->y += pdat->vy;
-	pdat->vy += 1 + pdat->counter % 4;
+	pdat->vy += 1 + pdat->counter % 3;
 	if(pdat->y > 0){
 		pdat->aid = ACTID_NEUTRAL;
 		pdat->y =0;
@@ -135,14 +128,14 @@ void CCharacter::act_jampc()//垂直ジャンプ
 
 void CCharacter::act_jampf()//前ジャンプ
 {
-	if(pdat->counter == 0){pdat->vy=-18;pdat->vx=4;}
+	if(pdat->counter == 0){pdat->vy=-27;pdat->vx=4;}
 
 	if(pdat->vy < 0)pdat->cnow = CELL_JAMP1;
 	else pdat->cnow = CELL_JAMP2;
 
 	movex(pdat->vx);
 	pdat->y += pdat->vy;
-	pdat->vy += 1 + pdat->counter % 4;
+	pdat->vy += 1 + pdat->counter % 3;
 	if(pdat->y > 0){
 		pdat->aid = ACTID_NEUTRAL;
 		pdat->y =0;
@@ -152,14 +145,14 @@ void CCharacter::act_jampf()//前ジャンプ
 
 void CCharacter::act_jampb()//後ジャンプ
 {
-	if(pdat->counter == 0){pdat->vy=-18;pdat->vx=-4;}
+	if(pdat->counter == 0){pdat->vy=-27;pdat->vx=-4;}
 
 	if(pdat->vy < 0)pdat->cnow = CELL_JAMP1;
 	else pdat->cnow = CELL_JAMP2;
 
 	movex(pdat->vx);
 	pdat->y += pdat->vy;
-	pdat->vy += 1+pdat->counter%4;
+	pdat->vy += 1+pdat->counter%3;
 	if(pdat->y > 0){
 		pdat->aid = ACTID_NEUTRAL;
 		pdat->y =0;

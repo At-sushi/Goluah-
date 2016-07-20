@@ -31,7 +31,7 @@ void CCharacter::act_crouch()
 ----------------------------------------------------------------*/
 void CCharacter::act_rakka()
 {
-	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
+	JiyuuRakka(2, TRUE, ACTID_NEUTRAL);
 	cell(CELL_JAMP);
 }
 

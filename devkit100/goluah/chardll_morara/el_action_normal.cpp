@@ -22,7 +22,7 @@ void CCharacterEL::act_crouch()//‚µ‚á‚ª‚Ý
 
 void CCharacterEL::act_rakka()//—Ž‰º
 {
-	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
+	JiyuuRakka(2, TRUE, ACTID_NEUTRAL);
 
 	pdat->cnow = CELL_JAMPF;
 }
