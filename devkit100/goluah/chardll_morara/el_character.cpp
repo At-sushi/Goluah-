@@ -1003,7 +1003,7 @@ DWORD CCharacterEL::TouchB(ATTACKINFO *info,BOOL hit)
 					GOBJECT* pedat = GetInfo(pdat->eid);
 
 					if ( pedat->y >= -50 ){
-						SetComAct(ACTID_ATT_CC,1);
+						SetComAct(ACTID_ATT_CC,15);
 					}
 					else{
 						SetComAct(ACTID_SWORD3R,m_event_sw ? 10 : 5);
@@ -1048,7 +1048,7 @@ DWORD CCharacterEL::TouchB(ATTACKINFO *info,BOOL hit)
 		case ACTID_ATT_CC:
 			{
 				if(ComLevelCk(1)){
-					SetComAct(ACTID_SWORD3R,m_event_sw ? 20 : 10);
+					SetComAct(ACTID_SWORD3R,m_event_sw ? 10 : 5);
 				}
 			}
 			break;
