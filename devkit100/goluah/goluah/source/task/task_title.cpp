@@ -61,7 +61,7 @@ BOOL CTitle::Inactivate(DWORD taskId)
 BOOL CTitle::Execute(DWORD time)
 {
 	counter++;
-	if(counter < 10)return TRUE;//ƒCƒLƒiƒŠŒˆ’è‚³‚ê‚Ä‚µ‚Ü‚¤‚Ì‚ð–hŽ~
+	if(counter < 20)return TRUE;//ƒCƒLƒiƒŠŒˆ’è‚³‚ê‚Ä‚µ‚Ü‚¤‚Ì‚ð–hŽ~
 
 	if(setting_now){
 		Settings();

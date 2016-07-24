@@ -252,7 +252,7 @@ void CCharacter::act_ajamp()
 {
 	if(pdat->counter == 0)
 	{
-		pdat->vy= -33;
+		pdat->vy= -38;
 		pdat->vx=7;
 		m_aerial = TRUE;
 	}
@@ -261,7 +261,7 @@ void CCharacter::act_ajamp()
 
 	movex(pdat->vx);
 	pdat->y += pdat->vy;
-	pdat->vy += 2;
+	pdat->vy += 3;
 	if(pdat->y > 0){
 		pdat->aid = ACTID_NEUTRAL;
 		pdat->y =0;
