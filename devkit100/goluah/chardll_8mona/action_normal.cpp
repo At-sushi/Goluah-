@@ -27,14 +27,7 @@ void CCharacter::act_rakka()
 {
 	pdat->cnow = CELL_JAMP1;
 
-	movex(pdat->vx);
-	pdat->y += pdat->vy;
-	pdat->vy++;
-	if(pdat->y > 0){
-		pdat->aid = ACTID_NEUTRAL;
-		pdat->y =0;
-		Furimuki();
-	}
+	JiyuuRakka(1, TRUE);
 }
 
 //! 登場
@@ -108,13 +101,7 @@ void CCharacter::act_jampc()
 
 	pdat->cnow = CELL_JAMP1;
 
-	pdat->y += pdat->vy;
-	pdat->vy++;
-	if(pdat->y > 0){
-		pdat->aid = ACTID_NEUTRAL;
-		pdat->y =0;
-		Furimuki();
-	}
+	JiyuuRakka(1, TRUE);
 }
 
 //!前ジャンプ
@@ -124,14 +111,7 @@ void CCharacter::act_jampf()
 
 	pdat->cnow = CELL_JAMP1;
 
-	movex(pdat->vx);
-	pdat->y += pdat->vy;
-	pdat->vy++;
-	if(pdat->y > 0){
-		pdat->aid = ACTID_NEUTRAL;
-		pdat->y =0;
-		Furimuki();
-	}
+	JiyuuRakka(1, TRUE);
 }
 
 //!後ジャンプ
@@ -141,14 +121,7 @@ void CCharacter::act_jampb()
 
 	pdat->cnow = CELL_JAMP1;
 
-	movex(pdat->vx);
-	pdat->y += pdat->vy;
-	pdat->vy++;
-	if(pdat->y > 0){
-		pdat->aid = ACTID_NEUTRAL;
-		pdat->y =0;
-		Furimuki();
-	}
+	JiyuuRakka(1, TRUE);
 }
 
 

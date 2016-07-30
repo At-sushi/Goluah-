@@ -33,5 +33,6 @@ protected:
 	UINT m_face_idx[2];
 	BOOL m_kill_flag;
 	BOOL m_inst_on[2];
+	int m_shiftY;
 };
 

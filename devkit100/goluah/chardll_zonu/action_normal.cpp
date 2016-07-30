@@ -24,14 +24,7 @@ void CCharacter::act_rakka()//óéâ∫
 {
 	pdat->cnow = CELL_JAMP1;
 
-	movex(pdat->vx);
-	pdat->y += pdat->vy;
-	pdat->vy++;
-	if(pdat->y > 0){
-		pdat->aid = ACTID_NEUTRAL;
-		pdat->y =0;
-		Furimuki();
-	}
+	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
 }
 
 void CCharacter::act_tojyo()//ìoèÍ

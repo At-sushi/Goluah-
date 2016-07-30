@@ -36,6 +36,7 @@ void CTBattlePause::Initialize()
 	m_inst_on[0] = m_inst_on[1] = FALSE;
 
 	ms_inst[0] = ms_inst[1] = NULL;
+	m_shiftY = 0;
 }
 
 void CTBattlePause::Terminate()
@@ -280,10 +281,9 @@ void CTBattlePause::Draw()
 			r_face.bottom = (int)ms_inst[t]->hg;
 
 			DWORD alpha ;
-			static int shiftY=0;
+			
 			x = t==0 ? 20 : 620-(int)ms_inst[t]->wg;
-			y = 450-(DWORD)ms_inst[t]->hg+shiftY;
-			if(y >320 ) y = 320;
+			y = 450-(DWORD)ms_inst[t]->hg+m_shiftY;
 
 			DWORD key = 0;
 				for(UINT j=0;j<MAXNUM_TEAM;j++){
@@ -292,11 +292,11 @@ void CTBattlePause::Draw()
 					key |= g_input.GetKey(ki,0);
 					}
 				if(key & KEYSTA_UP)
-					shiftY+=1;
+					m_shiftY +=1;
 				else if (key & KEYSTA_DOWN)
-					shiftY-=1;
+					m_shiftY -=1;
 				else if(key & KEYSTA_BD2)
-					shiftY=0;
+					m_shiftY =0;
 			}
 
 			//‰º’n

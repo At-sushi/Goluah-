@@ -1875,11 +1875,9 @@ BOOL CTConditionSelecter::Execute(DWORD time)
 				g_system.ReturnTitle();
 				return FALSE;
 			}
-			else if(key&KEYSTA_BA2){//変更
-				Change(FALSE);
-			}
-			else if(key&KEYSTA_BB2){//変更
-				Change(TRUE);
+			else if (key&(KEYSTA_BA2 | KEYSTA_BB2))//項目選択
+			{
+				m_state = CTCoS_Selected;
 			}
 			else if(key&KEYSTA_ALEFT2){//左移動
 				if(1+MAXNUM_TEAM < m_selected && m_selected < select_max-1)
@@ -1910,6 +1908,19 @@ BOOL CTConditionSelecter::Execute(DWORD time)
 					m_selected--;
 			}
 			m_selected = (m_selected+select_max+1) % (select_max+1);
+		}break;
+	case CTCoS_Selected:	// 項目選択中
+		{
+			DWORD key = g_input.GetAllKey();
+			if (key&(KEYSTA_ALEFT2 | KEYSTA_UP2)){//変更
+				Change(FALSE);
+			}
+			else if (key&(KEYSTA_ARIGHT2 | KEYSTA_DOWN2)){//変更
+				Change(TRUE);
+			}
+			else if (key&(KEYSTA_BA2 | KEYSTA_BB2) && m_ok){//決定
+				m_state = CTCoS_Execute;
+			}
 		}break;
 	case CTCoS_Hide://消失中
 		{

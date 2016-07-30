@@ -61,7 +61,7 @@ BOOL CTitle::Inactivate(DWORD taskId)
 BOOL CTitle::Execute(DWORD time)
 {
 	counter++;
-	if(counter < 10)return TRUE;//イキナリ決定されてしまうのを防止
+	if(counter < 20)return TRUE;//イキナリ決定されてしまうのを防止
 
 	if(setting_now){
 		Settings();
@@ -181,7 +181,7 @@ void CTitle::Draw()
 		g_draw.CheckBlt(dds_back,0,0,r,FALSE,FALSE,0,0,0xFF333333);//logo
 
 		r.top=10;
-		g_draw.DrawBlueText(r,_T("SETTINGS"),-1,DT_CENTER,1);
+		g_draw.DrawBlueText(r,_T("SETTINGS"),-1,DT_CENTER,2);
 		
 		r.top+=30;
 
@@ -198,73 +198,73 @@ void CTitle::Draw()
 		default:_tcscpy(&msg[strlen(msg)],_T("未知の難易度？"));
 		}
 		if(selected_item==SETTINGS_DIFFICULTY)
-			g_draw.DrawRedText(r,msg,-1,DT_CENTER,1);
+			g_draw.DrawRedText(r,msg,-1,DT_CENTER,2);
 		else
-			g_draw.DrawBlueText(r,msg,-1,DT_CENTER,1);
+			g_draw.DrawBlueText(r,msg,-1,DT_CENTER,2);
 
 		r.top+=20;
 		_tcscpy(msg,_T("先取ポイント数："));
 		_stprintf(&msg[strlen(msg)],_T("%d"),g_config.GetMaxPoint());
 		if(selected_item==SETTINGS_1V1_NUMPOINT)
-			g_draw.DrawRedText(r,msg,-1,DT_CENTER,1);
+			g_draw.DrawRedText(r,msg,-1,DT_CENTER,2);
 		else
-			g_draw.DrawBlueText(r,msg,-1,DT_CENTER,1);
+			g_draw.DrawBlueText(r,msg,-1,DT_CENTER,2);
 
 		r.top+=20;
 		_tcscpy(msg,_T("支援攻撃数："));
 		_stprintf(&msg[strlen(msg)],_T("%d"),g_config.GetStrikerCount());
 		if(selected_item==SETTINGS_NUMSTRIKER)
-			g_draw.DrawRedText(r,msg,-1,DT_CENTER,1);
+			g_draw.DrawRedText(r,msg,-1,DT_CENTER,2);
 		else
-			g_draw.DrawBlueText(r,msg,-1,DT_CENTER,1);
+			g_draw.DrawBlueText(r,msg,-1,DT_CENTER,2);
 
 		r.top+=20;
 		_tcscpy(msg,_T("ゲーム速度："));
 		switch(g_config.GetGameSpeed()){
 		case GSPEED_SLOW	:_tcscpy(&msg[strlen(msg)],_T("遅い(40fps)"));break;
-		case GSPEED_OLD		:_tcscpy(&msg[strlen(msg)],_T("標準(50fps)"));break;
-		case GSPEED_NEW		:_tcscpy(&msg[strlen(msg)],_T("ちょっと速い(60fps)"));break;
-		case GSPEED_30x2	:_tcscpy(&msg[strlen(msg)],_T("コマ飛ばし(30fps、2倍)"));break;
+		case GSPEED_OLD		:_tcscpy(&msg[strlen(msg)],_T("旧標準(50fps)"));break;
+		case GSPEED_NEW		:_tcscpy(&msg[strlen(msg)],_T("標準(60fps)"));break;
+		case GSPEED_30x2	:_tcscpy(&msg[strlen(msg)],_T("コマ飛ばし(30fps、2倍速)"));break;
 //		case GSPEED_25x2	:_tcscpy(&msg[strlen(msg)],_T("コマ飛ばし－標準(25fps、2倍)"));break;
 		default:_tcscpy(&msg[strlen(msg)],_T("ﾜｶﾝﾈ（とりあえず50fpsで動作します）"));
 		}
 		if(selected_item==SETTINGS_GAMESPEED)
-			g_draw.DrawRedText(r,msg,-1,DT_CENTER,1);
+			g_draw.DrawRedText(r,msg,-1,DT_CENTER,2);
 		else
-			g_draw.DrawBlueText(r,msg,-1,DT_CENTER,1);
+			g_draw.DrawBlueText(r,msg,-1,DT_CENTER,2);
 
 		r.top += 20;
 		_tcscpy(msg, _T("カメラ上下："));
 		switch (g_config.GetCameraMode()){
 		case CAMERA_OLD:_tcscpy(&msg[strlen(msg)], _T("しない")); break;
 		case CAMERA_UPPER:_tcscpy(&msg[strlen(msg)], _T("上優先")); break;
-		case CAMERA_NEW:_tcscpy(&msg[strlen(msg)], _T("二人とも画面外のとき")); break;
-		default:_tcscpy(&msg[strlen(msg)], _T("どうしてこうなった"));
+		case CAMERA_NEW:_tcscpy(&msg[strlen(msg)], _T("下優先")); break;
+		default:_tcscpy(&msg[strlen(msg)], _T("ﾜｶﾝﾈ"));
 		}
 		if (selected_item == SETTINGS_CAMERAMODE)
-			g_draw.DrawRedText(r, msg, -1, DT_CENTER, 1);
+			g_draw.DrawRedText(r, msg, -1, DT_CENTER, 2);
 		else
-			g_draw.DrawBlueText(r, msg, -1, DT_CENTER, 1);
+			g_draw.DrawBlueText(r, msg, -1, DT_CENTER, 2);
 
 		r.top += 20;
 		_tcscpy(msg, _T("HPゲージ："));
 		switch (g_config.GetGaugeMode()){
 		case GAUGE_1000:_tcscpy(&msg[strlen(msg)], _T("1.21")); break;
 		case GAUGE_1220:_tcscpy(&msg[strlen(msg)], _T("1.22")); break;
-		default:_tcscpy(&msg[strlen(msg)], _T("イミフ"));
+		default:_tcscpy(&msg[strlen(msg)], _T("ﾜｶﾝﾈ"));
 		}
 		if (selected_item == SETTINGS_GAUGEMODE)
-			g_draw.DrawRedText(r, msg, -1, DT_CENTER, 1);
+			g_draw.DrawRedText(r, msg, -1, DT_CENTER, 2);
 		else
-			g_draw.DrawBlueText(r, msg, -1, DT_CENTER, 1);
+			g_draw.DrawBlueText(r, msg, -1, DT_CENTER, 2);
 
 		r.top += 30;
 
 		r.top+=40;
 		if(selected_item==SETTINGS_EXIT)
-			g_draw.DrawRedText(r,_T("exit"),-1,DT_CENTER,1);
+			g_draw.DrawRedText(r,_T("exit"),-1,DT_CENTER,2);
 		else
-			g_draw.DrawBlueText(r,_T("exit"),-1,DT_CENTER,1);
+			g_draw.DrawBlueText(r,_T("exit"),-1,DT_CENTER,2);
 	}
 }
 
