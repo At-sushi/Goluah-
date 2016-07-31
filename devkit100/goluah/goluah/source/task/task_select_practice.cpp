@@ -128,7 +128,7 @@ void CTConditionSelecterPractice::Draw()
 
 	//HPäÑçá
 	_stprintf(tstr,_T("HP : %d%%"),m_hp_ratio[m_limit_time_index]);
-	g_system.DrawBMPTextEx(x+300,y,0.0f,
+	g_system.DrawBMPTextEx(x+341.0f,y,0.0f,
 				tstr,
 				TxtCol(1),txt_xr,txt_yr,SYSBMPTXT_PROP);
 	y += ystep;

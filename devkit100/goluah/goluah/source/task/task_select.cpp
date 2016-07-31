@@ -1918,7 +1918,7 @@ BOOL CTConditionSelecter::Execute(DWORD time)
 			else if (key&(KEYSTA_ARIGHT2 | KEYSTA_DOWN2)){//ïœçX
 				Change(TRUE);
 			}
-			else if (key&(KEYSTA_BA2 | KEYSTA_BB2) && m_ok){//åàíË
+			else if (key&(KEYSTA_BA2 | KEYSTA_BB2)){//åàíË
 				m_state = CTCoS_Execute;
 			}
 		}break;
@@ -2037,7 +2037,7 @@ void CTConditionSelecter::Draw()
 	}
 	else
 		_stprintf(tstr,_T("Time : -no use-"));
-	g_system.DrawBMPTextEx(x+300.0f,y,0.0f,
+	g_system.DrawBMPTextEx(x+341.0f,y,0.0f,
 				tstr,
 				TxtCol(1),txt_xr,txt_yr,SYSBMPTXT_PROP);
 	y += ystep;

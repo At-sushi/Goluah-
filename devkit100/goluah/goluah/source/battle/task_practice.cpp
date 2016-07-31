@@ -36,46 +36,30 @@ void CBattlePractice::StartRound()
 
 void CBattlePractice::T_UpdateStatus_Fighting()
 {
-	CGObject* eobj;
 	CGObject* pobj;
+	BOOL reset_flag;
 
-	for (int i = 0; i < MAXNUM_TEAM; i++)
+	for (int j = 0; j < 2; j++)
 	{
-		eobj = GetGObject(charobjid[1][i]);
-		pobj = GetGObject(charobjid[0][i]);
-
-		BOOL reset_flag = FALSE;
-
-		if( !(eobj->data.aid & ACTID_KURAI) && !(eobj->data.aid & ACTID_GUARD) &&
-			!(pobj->data.aid & ACTID_ATTACK) && !(pobj->data.aid & ACTID_KUCYU)
-			)
+		for (int i = 0; i < MAXNUM_TEAM; i++)
 		{
-			m_reset_counter ++;
-			if(m_reset_counter>20){
-				reset_flag = TRUE;
+			pobj = GetGObject(charobjid[j][i]);
+			reset_flag = FALSE;
+
+			if (!(pobj->data.aid & ACTID_KURAI) && !(pobj->data.aid & ACTID_GUARD))
+			{
+				m_reset_counter = 0;
+				pobj->data.hp = (int)(pobj->data.hpmax * m_hpratio);
+				pobj->data.gauge = pobj->data.gaugemax;
 			}
-		}
 
-		if(reset_flag && (pobj->data.id != 0 || eobj->data.id != 0))
-		{
-			m_reset_counter = 0;
-			eobj->data.hp = eobj->data.hpmax;
-			pobj->data.hp = (int)(pobj->data.hpmax * m_hpratio);
-			eobj->data.gauge = eobj->data.gaugemax;
-			pobj->data.gauge = pobj->data.gaugemax;
-		}
-
-		if(eobj->data.hp<=0)eobj->data.hp=1;
-		if(pobj->data.hp<=0)pobj->data.hp=1;
-		if(eobj->data.aid==ACTID_KAITENFINISH || eobj->data.aid==ACTID_FINALDOWN){
-			eobj->data.aid = ACTID_FUTTOBI;
-		}
-		if(pobj->data.aid==ACTID_KAITENFINISH || pobj->data.aid==ACTID_FINALDOWN){
-			pobj->data.aid = ACTID_FUTTOBI;
+			if (pobj->data.hp <= 0)pobj->data.hp = 1;
+			if (pobj->data.aid == ACTID_KAITENFINISH || pobj->data.aid == ACTID_FINALDOWN)
+			{
+				pobj->data.aid = ACTID_FUTTOBI;
+			}
 		}
 	}
 
 	CBattleTask::T_UpdateStatus_Fighting();
 }
-
-

@@ -402,13 +402,13 @@ protected:
 	virtual DWORD TxtCol(int idx){
 		if(1< idx && idx <= 1+MAXNUM_TEAM)
 			return idx==m_selected ?
-			(m_state == CTCoS_Selected ? 0x99220066 : 0xFF220099) : 0xFF5237FF;
+			(m_state == CTCoS_Selected ? 0xFF009900 : 0xFF000099) : 0xFF5237FF;
 		else if(1+MAXNUM_TEAM < idx && idx <= 1+MAXNUM_TEAM*2)
 			return idx==m_selected ?
-			(m_state == CTCoS_Selected ? 0x99660022 : 0xFF990022) : 0xFFFF3752;
+			(m_state == CTCoS_Selected ? 0xFF009900 : 0xFF990000) : 0xFFFF3752;
 		else
 			return idx==m_selected ?
-			(m_state == CTCoS_Selected ? 0x99000066 : 0xFF000000) : 0xFF777777;
+			(m_state == CTCoS_Selected ? 0xFF009900 : 0xFF000000) : 0xFF777777;
 	}
 	virtual void  Change(BOOL key);
 

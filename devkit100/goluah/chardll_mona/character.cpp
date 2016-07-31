@@ -34,7 +34,7 @@ CHARACTER_LOAD_OPTION option[] = {
 	// 記入内容：
 	// 　{ フラグ, 競合するｵﾌﾟｼｮﾝ,依存するｵﾌﾟｼｮﾝ, オプション名, 消費ポイント }
 	{ OPTIONS_EXTRA_ATTACK	, 0, 0,						"Extra Attack"	, 5 },//追加入力技
-	{ OPTIONS_AERIAL_ATTACK	, 0, OPTIONS_CHAIN_COMBO,	"Aerial Attack", 5 },//エリアル・アタック
+	{ OPTIONS_AERIAL_ATTACK	, 0, 0,						"Aerial Attack", 5 },//エリアル・アタック
 	{ OPTIONS_AUTO_GUARD	, 0, 0,						"Auto Guard"	, /*10*/5 },//オートガード
 };
 
