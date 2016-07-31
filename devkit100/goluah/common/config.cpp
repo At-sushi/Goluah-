@@ -128,19 +128,19 @@ void CConfig::SetDefaultConfigKB()
 	keycfg.key_down[0]		= VK_DOWN;
 	keycfg.key_left[0]		= VK_LEFT;
 	keycfg.key_right[0]		= VK_RIGHT;
-	keycfg.key_button[0][0]	= '1';
-	keycfg.key_button[1][0]	= '2';
-	keycfg.key_button[2][0] = '3';
-	keycfg.key_button[3][0] = '4';
+	keycfg.key_button[0][0]	= 'Z';
+	keycfg.key_button[1][0]	= 'X';
+	keycfg.key_button[2][0] = 'C';
+	keycfg.key_button[3][0] = 'V';
 	//player2 key config
 	keycfg.key_up[1]		= 'W';
 	keycfg.key_down[1]		= 'S';
 	keycfg.key_left[1]		= 'A';
 	keycfg.key_right[1]		= 'D';
-	keycfg.key_button[0][1]	= 'Z';
-	keycfg.key_button[1][1]	= 'X';
-	keycfg.key_button[2][1] = 'C';
-	keycfg.key_button[3][1] = 'V';
+	keycfg.key_button[0][1]	= '1';
+	keycfg.key_button[1][1]	= '2';
+	keycfg.key_button[2][1] = '3';
+	keycfg.key_button[3][1] = '4';
 }
 
 void CConfig::SetDefaultConfigPad()
