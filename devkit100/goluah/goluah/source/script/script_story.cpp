@@ -54,7 +54,7 @@ BOOL CGoluahStoryScript::CreateScriptElementList(SScriptElementList& list,TCHAR 
 			if(*linestr=='#')//ブロック定義開始
 			{
 				linestr++;
-				_tscanf(linestr,_T("%s"),tmpstr);
+				_stscanf(linestr,_T("%s"),tmpstr);
 				if(list.size()==0){
 					if(strcmp(tmpstr,_T("settings"))!=0){
 						list.push_back(new CStoryElement_Error(_T("settingsブロックの前に他ブロックを定義することはできません")));
@@ -87,7 +87,7 @@ BOOL CGoluahStoryScript::CreateScriptElementList(SScriptElementList& list,TCHAR 
 							list.push_back(new CStoryElement_Error(_T("バージョン設定が古いです")));
 							throw CStoryScriptException();
 						}
-						_tscanf(linestr, _T("select %d"), &num);
+						_stscanf(linestr, _T("select %d"), &num);
 						list.push_back( new CStoryElement_Select(num) );
 					}
 					else if(strcmp(tmpstr,_T("end_select"))==0){
@@ -241,16 +241,16 @@ void CStoryElement_Settings::FeedLine(TCHAR *str)
 
 	//各種定義読み込み
 	if(gbl.strcheck(str,_T("ver"))){
-		_tscanf(str,_T("%s %f"),DMY_STR,&ver);
+		_stscanf(str,_T("%s %f"),DMY_STR,&ver);
 	}
 	else if(gbl.strcheck(str,_T("title"))){
 		DELETEARRAY(title);
 		title=new TCHAR[64];
-		_tscanf(str,_T("%s %s"),DMY_STR,title);
+		_stscanf(str,_T("%s %s"),DMY_STR,title);
 	}
 	else if(gbl.strcheck(str,_T("result"))){
 		TCHAR *tmp = new TCHAR [64];
-		_tscanf(str,_T("%s %s %d"),DMY_STR,tmp,result_key);
+		_stscanf(str,_T("%s %s %d"),DMY_STR,tmp,result_key);
 		result_send = g_charlist.FindCharacter(tmp);
 		if(result_send<0){
 			ErrorF(_T("キャラクタ「%s」がいません"),tmp);	
@@ -259,27 +259,27 @@ void CStoryElement_Settings::FeedLine(TCHAR *str)
 		if(m_error)throw CStoryScriptException();
 	}
 	else if(gbl.strcheck(str,_T("continue"))){
-		_tscanf(str,_T("%s %d"),DMY_STR,&continue_num);
+		_stscanf(str,_T("%s %d"),DMY_STR,&continue_num);
 	}
 	else if(gbl.strcheck(str,_T("brief_begin"))){
 		multiline_flag=TRUE;
 	}
-	else if(gbl.strcheck(str,_T("TCHAR"))){
+	else if(gbl.strcheck(str,_T("char"))){
 		Read_char(str);
 	}
 	else if(gbl.strcheck(str,_T("icon"))){
 		DELETEARRAY(icon);
 		icon=new TCHAR[64];
-		_tscanf(str,_T("%s %s"),DMY_STR,icon);
+		_stscanf(str,_T("%s %s"),DMY_STR,icon);
 	}
 	else if(gbl.strcheck(str,_T("preview"))){
 		DELETEARRAY(preview);
 		preview=new TCHAR[64];
-		_tscanf(str,_T("%s %s"),DMY_STR,preview);
+		_stscanf(str,_T("%s %s"),DMY_STR,preview);
 	}
 /*	else{//空行かも
 		TCHAR *tmp = new TCHAR [256];
-		_tscanf(str,_T("%s %s"),DMY_STR,tmp);
+		_stscanf(str,_T("%s %s"),DMY_STR,tmp);
 		ErrorF(_T("(settings) unknown option %s"),tmp);
 		delete [] tmp;
 	}*/
@@ -320,7 +320,7 @@ void CStoryElement_Settings::Read_char(TCHAR *str)
 {
 	//scan
 	TCHAR** tmp_str = gbl.CreateTemporaryStrBuff(3);
-	_tscanf(str,_T("%s %s %s %s"),
+	_stscanf(str,_T("%s %s %s %s"),
 		DMY_STR,
 		tmp_str[0],//キャラクタ
 		tmp_str[1],//色
@@ -329,7 +329,7 @@ void CStoryElement_Settings::Read_char(TCHAR *str)
 
 	try{
 		if(cnum==3){
-			Error(_T("TCHAR指定が多すぎます"));
+			Error(_T("char指定が多すぎます"));
 			throw CStoryScriptException();
 		}
 
@@ -348,7 +348,7 @@ void CStoryElement_Settings::Read_char(TCHAR *str)
 		if(characters[cnum] != -1)
 		{
 			//色指定
-			_tscanf(tmp_str[1],_T("%d"),&color[cnum]);
+			_stscanf(tmp_str[1],_T("%d"),&color[cnum]);
 			if(color[cnum]<1 || color[cnum]>3){
 				ErrorF(_T("キャラクタのカラーに1-3以外が指定されました(%s)"),tmp_str[1]);
 				throw CStoryScriptException();
@@ -450,7 +450,7 @@ void CStoryElement_VS::FeedLine(TCHAR *str)
 
 	//その他の識別子
 	if(gbl.strcheck(str,_T("type"))){
-		_tscanf(str,_T("%s %d"),DMY_STR,&type);
+		_stscanf(str,_T("%s %d"),DMY_STR,&type);
 		return;
 	}
 	else if(gbl.strcheck(str,_T("friend"))){
@@ -466,7 +466,7 @@ void CStoryElement_VS::FeedLine(TCHAR *str)
 		return;
 	}
 	else if(gbl.strcheck(str,_T("timelimit"))){
-		_tscanf(str,_T("%s %d"),DMY_STR,&limit_time);
+		_stscanf(str,_T("%s %d"),DMY_STR,&limit_time);
 		return;
 	}
 	else if(gbl.strcheck(str,_T("nowin"))){
@@ -485,9 +485,9 @@ void CStoryElement_VS::FeedLine(TCHAR *str)
 		DELETEARRAY( bgm_filename );
 		bgm_filename = new TCHAR [128];
 		if (m_sets->ver >= 1.1)
-			_tscanf(str,_T("%s %s %d"),DMY_STR,bgm_filename,bgm_startpos);
+			_stscanf(str,_T("%s %s %d"),DMY_STR,bgm_filename,bgm_startpos);
 		else
-			_tscanf(str,_T("%s %s"),DMY_STR,bgm_filename);
+			_stscanf(str,_T("%s %s"),DMY_STR,bgm_filename);
 		return;
 	}
 	else if(gbl.strcheck(str,_T("nogameover"))){
@@ -495,7 +495,7 @@ void CStoryElement_VS::FeedLine(TCHAR *str)
 		return;
 	}
 	else if(gbl.strcheck(str,_T("sbase"))){
-		_tscanf(str,_T("%s %d"),DMY_STR,&sel_shift);
+		_stscanf(str,_T("%s %d"),DMY_STR,&sel_shift);
 		return;
 	}
 /*	else{//空行かも
@@ -508,7 +508,7 @@ void CStoryElement_VS::Read_friend(TCHAR *str,int team)
 {
 	//scan
 	TCHAR** tmp_str = gbl.CreateTemporaryStrBuff(4);
-	_tscanf(str,_T("%s %s %s %s %s"),
+	_stscanf(str,_T("%s %s %s %s %s"),
 		DMY_STR,
 		tmp_str[0],//キャラクタ
 		tmp_str[1],//色
@@ -529,21 +529,21 @@ void CStoryElement_VS::Read_friend(TCHAR *str,int team)
 		}
 		else if(strcmp(tmp_str[0],_T("%char1"))==0){
 			if(m_sets->cnum<1){
-				Error(_T("TCHARの定義が不足しています(1)"));
+				Error(_T("charの定義が不足しています(1)"));
 				throw CStoryScriptException();
 			}
 			characters[team][num[team]] = -2;
 		}
 		else if(strcmp(tmp_str[0],_T("%char2"))==0){
 			if(m_sets->cnum<2){
-				Error(_T("TCHARの定義が不足しています(2)"));
+				Error(_T("charの定義が不足しています(2)"));
 				throw CStoryScriptException();
 			}
 			characters[team][num[team]] = -3;
 		}
 		else if(strcmp(tmp_str[0],_T("%char3"))==0){
 			if(m_sets->cnum<3){
-				Error(_T("TCHARの定義が不足しています(3)"));
+				Error(_T("charの定義が不足しています(3)"));
 				throw CStoryScriptException();
 			}
 			characters[team][num[team]] = -4;
@@ -563,7 +563,7 @@ void CStoryElement_VS::Read_friend(TCHAR *str,int team)
 				color[team][num[team]] = -1;
 			}
 			else{
-				_tscanf(tmp_str[1],_T("%d"),&color[team][num[team]]);
+				_stscanf(tmp_str[1],_T("%d"),&color[team][num[team]]);
 				if(color[team][num[team]]<1 || color[team][num[team]]>3)
 				{
 					ErrorF(_T("(vs) invalid color (%s)"),tmp_str[1]);
@@ -599,7 +599,7 @@ void CStoryElement_VS::Read_friend(TCHAR *str,int team)
 		if(tmp_str[3][0] == '+' || tmp_str[3][0] == '-'){
 			is_related_level[team][num[team]] = TRUE;
 		}
-		_tscanf(tmp_str[3],_T("%d"),&level[team][num[team]]);
+		_stscanf(tmp_str[3],_T("%d"),&level[team][num[team]]);
 
 		//OK
 		ret = TRUE;
@@ -626,7 +626,7 @@ void CStoryElement_VS::Read_stage(TCHAR *str)
 {
 	TCHAR** tmp_str = gbl.CreateTemporaryStrBuff(1);
 
-	_tscanf(str,_T("%s %s"),
+	_stscanf(str,_T("%s %s"),
 		DMY_STR,
 		tmp_str[0]
 		);
@@ -654,13 +654,13 @@ BOOL CStoryElement_VS::Close()
 	//friend指定が一つもない場合
 	if(num[0]==0){
 		if(m_sets->cnum==0){
-			Error(_T("friend指定がありません。settingsでTCHAR指定が必要です"));
+			Error(_T("friend指定がありません。settingsでchar指定が必要です"));
 			return FALSE;
 		}
 		else{
 			FeedLine(_T("friend %char1 - - +0"));//char1-3の場合、カラー・オプション師弟が無視される
 			for(int j=1;j<m_sets->cnum;j++){
-				_stprintf(temp,_T("friend %%TCHAR%d - - +0"),j+1);
+				_stprintf(temp,_T("friend %%char%d - - +0"),j+1);
 				FeedLine(temp);
 			}
 		}
@@ -694,7 +694,7 @@ CStoryElement_Demo::~CStoryElement_Demo()
 void CStoryElement_Demo::FeedLine(TCHAR *str)
 {
 	TCHAR **tmp = gbl.CreateTemporaryStrBuff(2);
-	_tscanf(str,_T("%s %s"),
+	_stscanf(str,_T("%s %s"),
 		tmp[0],
 		tmp[1]
 		);
@@ -737,7 +737,7 @@ CStoryElement_Staff::~CStoryElement_Staff()
 void CStoryElement_Staff::FeedLine(TCHAR *str)
 {
 	TCHAR **tmp = gbl.CreateTemporaryStrBuff(2);
-	_tscanf(str,_T("%s %s"),
+	_stscanf(str,_T("%s %s"),
 		tmp[0],
 		tmp[1]
 		);

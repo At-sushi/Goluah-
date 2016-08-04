@@ -815,7 +815,7 @@ AkiGlobal::~AkiGlobal()
 	文字列ユーティリティ
 ------------------------------------------------------------------*/
 
-//スクリプト読み込み_tscanfで使うダミー用TCHARバッファを取得。
+//スクリプト読み込み_stscanfで使うダミー用TCHARバッファを取得。
 TCHAR*  AkiGlobal::GetDummyString()
 {
 	m_dummy_next++;

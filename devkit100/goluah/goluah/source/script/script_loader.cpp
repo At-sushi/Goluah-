@@ -215,7 +215,7 @@ BOOL CScriptLoaderInstance::IncludeCheck(UINT include_count)
 
 	for(;il!=iled;il++){
 		if(il->str.Find(_T("include"))==0){
-			_tscanf(il->str,_T("include %s"),tmpstr);
+			_stscanf(il->str,_T("include %s"),tmpstr);
 			if(subtext.LoadFile(m_base_dir.GetBuffer(),tmpstr,include_count)){
 				int line_no = il->line_no;
 				list.erase(il);

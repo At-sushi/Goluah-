@@ -484,7 +484,7 @@ void CCharacterList::LoadFavoriteOptions(TCHAR* dir,FavoriteOptionList& list)
 	{
 		if(file.m_buffer[i] == '#')
 		{
-			ssret = _tscanf((const TCHAR*)(&file.m_buffer[i+1]),_T("%s %s"),opt.name,optstr);
+			ssret = _stscanf((const TCHAR*)(&file.m_buffer[i+1]),_T("%s %s"),opt.name,optstr);
 			if(ssret==EOF)break;
 			else if(ssret==2 && strlen(optstr)==32)
 			{
