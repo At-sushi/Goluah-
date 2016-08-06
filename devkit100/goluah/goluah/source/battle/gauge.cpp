@@ -6,7 +6,6 @@
 		・1人の時はもっとゲージが長くてもいいと思うので、人数に応じて横幅を拡縮したい
 	DrawHPG
 		・DrawHPGaugeの代替品。ただし赤ゲージは未完成
-		・特に問題がなければソース軽量化のためDrawHPGaugeは削除する予定
 		・Ver.0.55らへん同様にHPゲージをimage3から表示するようにした
 		・marvelとkofでアクティブなキャラのが一番上になるようにした
 		・face1のサイズと位置を変更、marvelとkofで控えが暗くなるの廃止
@@ -1047,19 +1046,13 @@ void CGauge::DrawHPG1(){	//coop
 	int y;
 	GOBJECT *pdat;
 	double hiritu;
+	RECT hpg;
 
 	for(j=0;j<g_battleinfo.GetNumTeam(0);j++){
 		pdat = (GOBJECT*)battleTask->GetCharacterInfo(0,j);
 		if(pdat!=NULL){
 			//体力
 			if(pdat->hpmax!=0){
-				gauge_prv2[0][j] -= (gauge_prv2[0][j] - pdat->hp) / 2.718282;
-				if(gauge_prv2[0][j] < pdat->hp)gauge_prv2[0][j] = pdat->hp;
-				hiritu = (double)gauge_prv2[0][j] / (double)pdat->hpmax;
-				if(hiritu<0)hiritu=0;
-				RECT hpg;
-				hpg.right=203;
-				hpg.left=hpg.right-200*hiritu;
 				switch(g_battleinfo.GetNumTeam(0)){
 					case 2:
 						y=30+16*j;
@@ -1076,7 +1069,36 @@ void CGauge::DrawHPG1(){	//coop
 						hpg.top=3;
 						hpg.bottom=hpg.top+19;
 				}
-				g_draw.CheckBlt(g_system.GetSystemGraphicSurface()[2],272-200*hiritu,y,hpg,FALSE,FALSE,0,-0.05f,0xFFFFFFFF);
+				//赤ゲージ
+				if (pdat->hp < (int)pdat->hpmax)
+				{
+					gauge_prv[0][j] -= 3;
+					if (pdat->hp<0)
+					{
+						if (gauge_prv[0][j] < 0)gauge_prv[0][j] = 0;
+					}
+					else
+					{
+						if (gauge_prv[0][j] < pdat->hp)gauge_prv[0][j] = pdat->hp;
+					}
+					hiritu = (double)gauge_prv[0][j] / (double)pdat->hpmax;
+					if (hiritu<0)hiritu = 0;
+					hpg.right = 608;
+					hpg.left = hpg.right - 200 *hiritu;
+					g_draw.CheckBlt(g_system.GetSystemGraphicSurface()[2], 272 - 200 * hiritu, y, hpg, FALSE, FALSE, 0, -0.05f, 0xFFFFFFFF);
+				}
+				else
+				{
+					gauge_prv[0][j] = pdat->hpmax;
+				}
+				//青ゲージ				
+				gauge_prv2[0][j] -= (gauge_prv2[0][j] - pdat->hp) / 2.718282;
+				if (gauge_prv2[0][j] < pdat->hp)gauge_prv2[0][j] = pdat->hp;
+				hiritu = (double)gauge_prv2[0][j] / (double)pdat->hpmax;
+				if (hiritu<0)hiritu = 0;
+				hpg.right = 203;
+				hpg.left = hpg.right - 200 * hiritu;
+				g_draw.CheckBlt(g_system.GetSystemGraphicSurface()[2], 272 - 200 * hiritu, y, hpg, FALSE, FALSE, 0, -0.05f, 0xFFFFFFFF);
 			}
 			else{
 				gauge_prv[0][j] = 0;
@@ -1090,29 +1112,52 @@ void CGauge::DrawHPG1(){	//coop
 		if(pdat!=NULL){
 			//体力
 			if(pdat->hpmax!=0){
-				gauge_prv2[1][j] -= (gauge_prv2[1][j] - pdat->hp) / 2.718282;
-				if(gauge_prv2[1][j] < pdat->hp)gauge_prv2[1][j] = pdat->hp;
-				hiritu = (double)gauge_prv2[1][j] / (double)pdat->hpmax;
-				if(hiritu<0)hiritu=0;
-				RECT hpg;
-				hpg.left=206;
-				hpg.right=hpg.left+200*hiritu;
-				switch(g_battleinfo.GetNumTeam(1)){
+				switch (g_battleinfo.GetNumTeam(1))
+				{
 					case 2:
-						y=30+16*j;
-						hpg.top=23+17*j;
-						hpg.bottom=hpg.top+16;
+						y = 30 + 16 * j;
+						hpg.top = 23 + 17 * j;
+						hpg.bottom = hpg.top + 16;
 						break;
 					case 3:
-						y=25+14*j;
-						hpg.top=57+15*j;
-						hpg.bottom=hpg.top+14;
+						y = 25 + 14 * j;
+						hpg.top = 57 + 15 * j;
+						hpg.bottom = hpg.top + 14;
 						break;
 					default:
-						y=36;
-						hpg.top=3;
-						hpg.bottom=hpg.top+19;
+						y = 36;
+						hpg.top = 3;
+						hpg.bottom = hpg.top + 19;
 				}
+				//赤ゲージ
+				if (pdat->hp < (int)pdat->hpmax)
+				{
+					gauge_prv[1][j] -= 3;
+					if (pdat->hp<0)
+					{
+						if (gauge_prv[1][j] < 0)gauge_prv[1][j] = 0;
+					}
+					else
+					{
+						if (gauge_prv[1][j] < pdat->hp)gauge_prv[1][j] = pdat->hp;
+					}
+					hiritu = (double)gauge_prv[1][j] / (double)pdat->hpmax;
+					if (hiritu<0)hiritu = 0;
+					hpg.left = 408;
+					hpg.right = hpg.left + 200 * hiritu;
+					g_draw.CheckBlt(g_system.GetSystemGraphicSurface()[2], 367, y, hpg, FALSE, FALSE, 0, -0.05f, 0xFFFFFFFF);
+				}
+				else
+				{
+					gauge_prv[1][j] = pdat->hpmax;
+				}
+				//青ゲージ
+				gauge_prv2[1][j] -= (gauge_prv2[1][j] - pdat->hp) / 2.718282;
+				if (gauge_prv2[1][j] < pdat->hp)gauge_prv2[1][j] = pdat->hp;
+				hiritu = (double)gauge_prv2[1][j] / (double)pdat->hpmax;
+				if (hiritu<0)hiritu = 0;
+				hpg.left = 206;
+				hpg.right = hpg.left + 200 * hiritu;
 				g_draw.CheckBlt(g_system.GetSystemGraphicSurface()[2],367,y,hpg,FALSE,FALSE,0,-0.05f,0xFFFFFFFF);
 			}
 			else{
@@ -1120,7 +1165,6 @@ void CGauge::DrawHPG1(){	//coop
 			}
 		}
 	}
-
 
 	MYRECT3D rdst;
 	RECT rsrc;
@@ -1230,19 +1274,13 @@ void CGauge::DrawHPG2(){	//marvel kof
 	int y;
 	GOBJECT *pdat;
 	double hiritu;
+	RECT hpg;
 
 	for(j=0;j<g_battleinfo.GetNumTeam(0);j++){
 		pdat = (GOBJECT*)battleTask->GetCharacterInfo(0,j);
 		if(pdat!=NULL){
 			//体力
 			if(pdat->hpmax!=0){
-				gauge_prv2[0][j] -= 20;
-				if(gauge_prv2[0][j] < pdat->hp)gauge_prv2[0][j] = pdat->hp;
-				hiritu = (double)gauge_prv2[0][j] / (double)pdat->hpmax;
-				if(hiritu<0)hiritu=0;
-				RECT hpg;
-				hpg.right=203;
-				hpg.left=hpg.right-200*hiritu;
 				switch(g_battleinfo.GetNumTeam(0)){
 					case 2:
 						if(j==battleTask->GetActiveCharacterID(0)){
@@ -1281,6 +1319,35 @@ void CGauge::DrawHPG2(){	//marvel kof
 						hpg.top=102;
 						hpg.bottom=hpg.top+19;
 				}
+				//赤ゲージ
+				if (pdat->hp < (int)pdat->hpmax)
+				{
+					gauge_prv[0][j] -= 3;
+					if (pdat->hp<0)
+					{
+						if (gauge_prv[0][j] < 0)gauge_prv[0][j] = 0;
+					}
+					else
+					{
+						if (gauge_prv[0][j] < pdat->hp)gauge_prv[0][j] = pdat->hp;
+					}
+					hiritu = (double)gauge_prv[0][j] / (double)pdat->hpmax;
+					if (hiritu<0)hiritu = 0;
+					hpg.right = 608;
+					hpg.left = hpg.right - 200 * hiritu;
+					g_draw.CheckBlt(g_system.GetSystemGraphicSurface()[2], 272 - 200 * hiritu, y, hpg, FALSE, FALSE, 0, -0.05f, 0xFFFFFFFF);
+				}
+				else
+				{
+					gauge_prv[0][j] = pdat->hpmax;
+				}
+				//青ゲージ
+				gauge_prv2[0][j] -= 20;
+				if (gauge_prv2[0][j] < pdat->hp)gauge_prv2[0][j] = pdat->hp;
+				hiritu = (double)gauge_prv2[0][j] / (double)pdat->hpmax;
+				if (hiritu<0)hiritu = 0;
+				hpg.right = 203;
+				hpg.left = hpg.right - 200 * hiritu;
 				g_draw.CheckBlt(g_system.GetSystemGraphicSurface()[2],272-200*hiritu,y,hpg,FALSE,FALSE,0,-0.05f,0xFFFFFFFF);
 			}
 			else{
@@ -1295,13 +1362,6 @@ void CGauge::DrawHPG2(){	//marvel kof
 		if(pdat!=NULL){
 			//体力
 			if(pdat->hpmax!=0){
-				gauge_prv2[1][j] -= 20;
-				if(gauge_prv2[1][j] < pdat->hp)gauge_prv2[1][j] = pdat->hp;
-				hiritu = (double)gauge_prv2[1][j] / (double)pdat->hpmax;
-				if(hiritu<0)hiritu=0;
-				RECT hpg;
-				hpg.left=206;
-				hpg.right=hpg.left+200*hiritu;
 				switch(g_battleinfo.GetNumTeam(1)){
 					case 2:
 						if(j==battleTask->GetActiveCharacterID(1)){
@@ -1340,6 +1400,35 @@ void CGauge::DrawHPG2(){	//marvel kof
 						hpg.top=102;
 						hpg.bottom=hpg.top+19;
 				}
+				//赤ゲージ
+				if (pdat->hp < (int)pdat->hpmax)
+				{
+					gauge_prv[1][j] -= 3;
+					if (pdat->hp<0)
+					{
+						if (gauge_prv[1][j] < 0)gauge_prv[1][j] = 0;
+					}
+					else
+					{
+						if (gauge_prv[1][j] < pdat->hp)gauge_prv[1][j] = pdat->hp;
+					}
+					hiritu = (double)gauge_prv[1][j] / (double)pdat->hpmax;
+					if (hiritu<0)hiritu = 0;
+					hpg.left = 408;
+					hpg.right = hpg.left + 200 * hiritu;
+					g_draw.CheckBlt(g_system.GetSystemGraphicSurface()[2], 367, y, hpg, FALSE, FALSE, 0, -0.05f, 0xFFFFFFFF);
+				}
+				else
+				{
+					gauge_prv[1][j] = pdat->hpmax;
+				}
+				//青ゲージ
+				gauge_prv2[1][j] -= 20;
+				if (gauge_prv2[1][j] < pdat->hp)gauge_prv2[1][j] = pdat->hp;
+				hiritu = (double)gauge_prv2[1][j] / (double)pdat->hpmax;
+				if (hiritu<0)hiritu = 0;
+				hpg.left = 206;
+				hpg.right = hpg.left + 200 * hiritu;
 				g_draw.CheckBlt(g_system.GetSystemGraphicSurface()[2],367,y,hpg,FALSE,FALSE,0,-0.05f,0xFFFFFFFF);
 			}
 			else{
