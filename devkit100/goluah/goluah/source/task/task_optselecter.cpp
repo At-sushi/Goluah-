@@ -128,21 +128,21 @@ void CTOptionSelecterBase::Draw()
 
 	//テキスト色（非選択時）
 	DWORD color_option		= 0x00444444;//--OPTIONS--表示
-    DWORD color_ok			= 0x00444444;//ポイント・OK表示(有効時)
-	DWORD color_ng			= 0x00AA3333;//ポイント・OK表示(無効時)
+    DWORD color_ok			= 0x005237FF;//ポイント・OK表示(有効時)
+	DWORD color_ng			= 0x00FF3752;//ポイント・OK表示(無効時)
 	DWORD color_collis		= 0x0033AA33;//競合フラグあり
 	DWORD color_na2			= 0x0033AA33;//depend不足
-	DWORD color_enable		= 0x00222222;//有効状態
-	DWORD color_disable		= 0x004444AA;//無効状態
+	DWORD color_enable		= 0x005237FF;//有効状態
+	DWORD color_disable		= 0x003333AA;//無効状態
 	DWORD color_pointb		= 0x00AA3333;//ポイント不足
 	//テキスト色（選択時）
-	DWORD color_ok_sel		= 0x00222222;//ポイント・OK表示(有効時)
-	DWORD color_ng_sel		= 0x00AA0000;//ポイント・OK表示(無効時)
-	DWORD color_collis_sel	= 0x0000AA00;//競合フラグあり
-	DWORD color_na2_sel		= 0x0000AA00;//depend不足
-	DWORD color_enable_sel	= 0x00222222;//有効状態
-	DWORD color_disable_sel	= 0x000000AA;//無効状態
-	DWORD color_pointb_sel	= 0x00AA0000;//ポイント不足
+	DWORD color_ok_sel		= 0x0000AAFF;//ポイント・OK表示(有効時)
+	DWORD color_ng_sel		= 0x00FFAA00;//ポイント・OK表示(無効時)
+	DWORD color_collis_sel	= 0x0000FF00;//競合フラグあり
+	DWORD color_na2_sel		= 0x0000FF00;//depend不足
+	DWORD color_enable_sel	= 0x0000AAFF;//有効状態
+	DWORD color_disable_sel	= 0x0000AAFF;//無効状態
+	DWORD color_pointb_sel	= 0x00FF8200;//ポイント不足
 
 	float y=m_top,z=0;
 	float text_xscale = 0.8f;
@@ -203,8 +203,10 @@ void CTOptionSelecterBase::Draw()
 		}
 		//描画
 		text_flag = SYSBMPTXT_PROP;
-		if(k==m_selecter->current_selected)text_flag |= SYSBMPTXT_SHADE_B;
-			g_system.DrawBMPTextEx(offset_x,y,z,ite->name,color,text_xscale,text_yscale,text_flag);
+		if(k==m_selecter->current_selected)text_flag;
+		g_system.DrawBMPTextEx(offset_x,y,z,ite->name,color,text_xscale,text_yscale,text_flag);
+		_stprintf(tmp_str, _T("%d"), ite->point);
+		g_system.DrawBMPTextEx(offset_x+300, y, z, tmp_str, color, text_xscale, text_yscale, text_flag | SYSBMPTXT_R2L);
 		if(not_available)
 			g_system.DrawBMPTextEx(offset_x+320,y,z,_T("N/A"),color,text_xscale,text_yscale,text_flag);
 		else if(m_selecter->enabled[k])
@@ -220,7 +222,7 @@ void CTOptionSelecterBase::Draw()
 		if(m_selecter->current_selected!=m_selecter->list->size())
 			g_system.DrawBMPTextEx(offset_x+150,y,z,_T("--OK--"),color_ok|alpha,text_xscale,text_yscale,SYSBMPTXT_PROP);
 		else
-			g_system.DrawBMPTextEx(offset_x+150,y,z,_T("--OK--"),color_ok_sel|alpha,text_xscale,text_yscale,SYSBMPTXT_PROP|SYSBMPTXT_SHADE_B);
+			g_system.DrawBMPTextEx(offset_x+150,y,z,_T("--OK--"),color_ok_sel|alpha,text_xscale,text_yscale,SYSBMPTXT_PROP);
 	}
 	else{
 		if(g_config.IsLimiterCut())
@@ -228,14 +230,14 @@ void CTOptionSelecterBase::Draw()
 			if(m_selecter->current_selected!=m_selecter->list->size())
 				g_system.DrawBMPTextEx(offset_x+150,y,z,_T("-LIMITER CUT-"),color_ng|alpha,text_xscale,text_yscale,SYSBMPTXT_PROP);
 			else
-				g_system.DrawBMPTextEx(offset_x+150,y,z,_T("-LIMITER CUT-"),color_ng_sel|alpha,text_xscale,text_yscale,SYSBMPTXT_PROP|SYSBMPTXT_SHADE_B);
+				g_system.DrawBMPTextEx(offset_x + 150, y, z, _T("-LIMITER CUT-"), color_ng_sel | alpha, text_xscale, text_yscale, SYSBMPTXT_PROP);
 		}
 		else
 		{
 			if(m_selecter->current_selected!=m_selecter->list->size())
 				g_system.DrawBMPTextEx(offset_x+150,y,z,_T("--OVER--"),color_ng|alpha,text_xscale,text_yscale,SYSBMPTXT_PROP);
 			else
-				g_system.DrawBMPTextEx(offset_x+150,y,z,_T("--OVER--"),color_ng_sel|alpha,text_xscale,text_yscale,SYSBMPTXT_PROP|SYSBMPTXT_SHADE_B);
+				g_system.DrawBMPTextEx(offset_x+150,y,z,_T("--OVER--"),color_ng_sel|alpha,text_xscale,text_yscale,SYSBMPTXT_PROP);
 		}
 	}
 

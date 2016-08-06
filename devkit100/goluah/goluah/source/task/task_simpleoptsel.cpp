@@ -63,15 +63,15 @@ void CTSimpleOptionSelecter::Draw()
 
 	//テキスト色（非選択時）
 	DWORD color_option		= 0x00444444;//--OPTIONS--表示
-    DWORD color_ok			= 0x00444444;//ポイント・OK表示(有効時)
-	DWORD color_ng			= 0x00AA3333;//ポイント・OK表示(無効時)
+    DWORD color_ok			= 0x005237FF;//ポイント・OK表示(有効時)
+	DWORD color_ng			= 0x00FF3752;//ポイント・OK表示(無効時)
 	DWORD color_collis		= 0x0033AA33;//競合フラグあり
 	DWORD color_na2			= 0x0033AA33;//depend不足
 	DWORD color_enable		= 0x00222222;//有効状態
 	DWORD color_disable		= 0x004444AA;//無効状態
 	DWORD color_pointb		= 0x00AA3333;//ポイント不足
 	//テキスト色（選択時）
-	DWORD color_ok_sel		= 0x00222222;//ポイント・OK表示(有効時)
+	DWORD color_ok_sel		= 0x0000AAFF;//ポイント・OK表示(有効時)
 	DWORD color_ng_sel		= 0x00AA0000;//ポイント・OK表示(無効時)
 	DWORD color_collis_sel	= 0x0000AA00;//競合フラグあり
 	DWORD color_na2_sel		= 0x0000AA00;//depend不足
