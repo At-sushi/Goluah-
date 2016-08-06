@@ -156,7 +156,7 @@ void CTOptionSelecterBase::Draw()
 	DWORD okcolor;
 	double tmpx = g_system.DrawBMPTextEx(offset_x,y,z,_T("--OPTIONS--"),color_option|alpha,1.0f,text_yscale*1.2f,SYSBMPTXT_PROP);
 	_stprintf(tmp_str,_T("POINT:%d"),m_selecter->current_point);
-	if(m_selecter->current_point > 0)okcolor = color_ok;
+	if(m_selecter->current_point >= 0)okcolor = color_ok;
 	else okcolor = color_ng;
 	g_system.DrawBMPTextEx(tmpx+20,y,z,tmp_str,okcolor|alpha,1.0f,text_yscale*1.2f,SYSBMPTXT_PROP);
 
