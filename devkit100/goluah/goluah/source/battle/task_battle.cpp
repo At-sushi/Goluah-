@@ -2361,19 +2361,23 @@ void CBattleTask::SetTransform(BOOL b)
 	case CAMERA_OLD:	//ŒÅ’è
 		dy_move = 0;
 		break;
-	case CAMERA_UPPER:	//‚Æ‚É‚©‚­ã‚É‚¢‚é“z‚ð‰f‚·
-		if (pdat1->y < -365 || pdat2->y < -365){
-			if (pdat1->y < pdat2->y)
-				dy_move = pdat1->y + 360;
-			else
-				dy_move = pdat2->y + 360;
+	case CAMERA_UPPER:	//ã‚É‚¢‚é“z‚ð‰f‚·
+		if (pdat1->aid != ACTID_KAITENFINISH && pdat2->aid != ACTID_KAITENFINISH)
+		{
+			if (pdat1->y < -365 || pdat2->y < -365)
+			{
+				if (pdat1->y < pdat2->y)
+					dy_move = pdat1->y + 360;
+				else
+					dy_move = pdat2->y + 360;
+			}
 		}
 		else
 			dy_move = 0;
 		break;
-	case CAMERA_NEW:	//“ñl‚Æ‚àã‚È‚ç“®‚©‚·
+	case CAMERA_NEW:	//‰º‚É‚¢‚é“z‚ð‰f‚·
 		if (pdat1->y < -365 && pdat2->y < -365){
-			if (pdat1->y < pdat2->y)
+			if (pdat1->y > pdat2->y)
 				dy_move = pdat1->y + 360;
 			else
 				dy_move = pdat2->y + 360;
