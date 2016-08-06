@@ -148,7 +148,7 @@ void CBattleTask::Initialize()
 	{
 
 
-		//TCHAR/ZZ/sound/bgm(.mp3‚È‚Ç) ‚ÌÄ¶‚ğ‚İ‚é
+		//char/ZZ/sound/bgm(.mp3‚È‚Ç) ‚ÌÄ¶‚ğ‚İ‚é
 		for (i = 0; i < 2; i++)
 		{
 			for (j = 0; j < (int)g_battleinfo.GetNumTeam(i); j++)

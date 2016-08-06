@@ -249,8 +249,8 @@ void CTitle::Draw()
 		r.top += 20;
 		_tcscpy(msg, _T("HPÉQÅ[ÉWÅF"));
 		switch (g_config.GetGaugeMode()){
-		case GAUGE_1000:_tcscpy(&msg[strlen(msg)], _T("1.21")); break;
-		case GAUGE_1220:_tcscpy(&msg[strlen(msg)], _T("1.22")); break;
+		case GAUGE_1000:_tcscpy(&msg[strlen(msg)], _T("ç◊Çﬂ(Å`1.21)")); break;
+		case GAUGE_1220:_tcscpy(&msg[strlen(msg)], _T("ëæÇﬂ(1.22Å`)")); break;
 		default:_tcscpy(&msg[strlen(msg)], _T("‹∂›»"));
 		}
 		if (selected_item == SETTINGS_GAUGEMODE)

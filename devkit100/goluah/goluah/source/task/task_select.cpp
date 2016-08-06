@@ -1875,7 +1875,7 @@ BOOL CTConditionSelecter::Execute(DWORD time)
 				g_system.ReturnTitle();
 				return FALSE;
 			}
-			else if (key&(KEYSTA_BA2 | KEYSTA_BB2))//項目選択
+			else if (key&(KEYSTA_BA2 | KEYSTA_BB2) && m_selected != select_max - 1)//項目選択
 			{
 				m_state = CTCoS_Selected;
 			}
@@ -2023,7 +2023,7 @@ void CTConditionSelecter::Draw()
 		_T("Changeable"),
 		_T("Unchangeable")
 	};
-	_stprintf(tstr,_T("Mode : %s"),typenames[m_type-1]);
+	_stprintf(tstr,_T("Mode: %s"),typenames[m_type-1]);
 	g_system.DrawBMPTextEx(x,y,0.0f,
 				tstr,
 				TxtCol(0),txt_xr,txt_yr,SYSBMPTXT_PROP);
@@ -2031,12 +2031,12 @@ void CTConditionSelecter::Draw()
 	//制限時間
 	if(m_type==TAISENKEISIKI_GOCYAMAZE){
 		if(m_limit_time[m_limit_time_index]>0)
-			_stprintf(tstr,_T("Time : %d"),m_limit_time[m_limit_time_index]);
+			_stprintf(tstr,_T("Time: %d"),m_limit_time[m_limit_time_index]);
 		else
-			_stprintf(tstr,_T("Time : -infinity-"));
+			_stprintf(tstr,_T("Time: -infinity-"));
 	}
 	else
-		_stprintf(tstr,_T("Time : -no use-"));
+		_stprintf(tstr,_T("Time: -no use-"));
 	g_system.DrawBMPTextEx(x+341.0f,y,0.0f,
 				tstr,
 				TxtCol(1),txt_xr,txt_yr,SYSBMPTXT_PROP);
@@ -2053,7 +2053,7 @@ void CTConditionSelecter::Draw()
 	for(j=0;j<2;j++){
 		for(i=0;i<MAXNUM_TEAM;i++)
 		{
-			_stprintf(tstr,_T("%d : "),i+1);
+			_stprintf(tstr,_T("%d: "),i+1);
 			if(m_assign[j][i]&CASSIGN_SPECIFIC)//特別
 			{
 				switch(m_assign[j][i]){
@@ -2111,7 +2111,7 @@ void CTConditionSelecter::Check()
 			}
 		}
 		if(!ok){
-			_stprintf(m_str_error,_T("Error , All None"));
+			_stprintf(m_str_error,_T("Error, All None"));
 			m_ok=FALSE;
 			return;
 		}
@@ -2129,7 +2129,7 @@ void CTConditionSelecter::Check()
 				}
 			}
 			if(cnt>1){
-				_stprintf(m_str_error,_T("Error , Player%d Duplication"),k+1);
+				_stprintf(m_str_error,_T("Error, Player%d Duplication"),k+1);
 				m_ok=FALSE;
 				return;
 			}
@@ -2147,7 +2147,7 @@ void CTConditionSelecter::Check()
 				}
 			}
 			if(belong[0] && belong[1]){
-				_stprintf(m_str_error,_T("Error , Player%d is Betrayer"),k+1);//裏切り者ハケーン
+				_stprintf(m_str_error,_T("Error, Player%d is Betrayer"),k+1);//裏切り者ハケーン
 				m_ok=FALSE;
 				return;
 			}
