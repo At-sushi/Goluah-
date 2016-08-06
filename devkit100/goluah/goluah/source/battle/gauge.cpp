@@ -289,9 +289,9 @@ void CGauge::DrawHPGauge1()//体力ゲージの描画（TAISENKEISIKI_GOCYAMAZE）
 				vb[0].y = (float)( 0.18 - top +turiage_y +0.05*j);
 				vb[1].x = (float)( 320.0/240.0 - 50.0/240.0 );
 				vb[1].y = (float)( 0.18 + bottom +turiage_y +0.05*j);
-				vb[2].x = (float)( 320.0/240.0  - 196.0/240.0*hiritu - 50.0/240.0 );
+				vb[2].x = (float)( 320.0/240.0  - 200.0/240.0*hiritu - 50.0/240.0 );
 				vb[2].y = (float)( 0.18 - top +turiage_y +0.05*j);
-				vb[3].x = (float)( 320.0/240.0  - 196.0/240.0*hiritu - 50.0/240.0 );
+				vb[3].x = (float)( 320.0/240.0  - 200.0/240.0*hiritu - 50.0/240.0 );
 				vb[3].y = (float)( 0.18 + bottom +turiage_y +0.05*j);
 				gauge_blue = (BYTE)(255*hiritu);
 				gauge_yellow = (BYTE)(255*(1-hiritu));
