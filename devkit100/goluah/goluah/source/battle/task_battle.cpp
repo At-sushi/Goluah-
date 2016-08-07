@@ -2362,7 +2362,7 @@ void CBattleTask::SetTransform(BOOL b)
 		dy_move = 0;
 		break;
 	case CAMERA_UPPER:	//ã‚É‚¢‚é“z‚ð‰f‚·
-		if (pdat1->aid != ACTID_KAITENFINISH && pdat2->aid != ACTID_KAITENFINISH)
+		if (pdat1->aid != ACTID_KAITENFINISH && pdat2->aid != ACTID_KAITENFINISH && pdat1->aid != ACTID_TOJYO && pdat2->aid != ACTID_TOJYO)
 		{
 			if (pdat1->y < -365 || pdat2->y < -365)
 			{
