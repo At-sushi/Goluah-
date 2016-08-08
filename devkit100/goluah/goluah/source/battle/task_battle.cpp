@@ -2371,6 +2371,8 @@ void CBattleTask::SetTransform(BOOL b)
 				else
 					dy_move = pdat2->y + 360;
 			}
+			else
+				dy_move = 0;
 		}
 		else
 			dy_move = 0;
