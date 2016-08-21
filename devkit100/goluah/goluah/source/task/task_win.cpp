@@ -1,7 +1,7 @@
-
+ï»¿
 /*===========================================================
 
-	Ÿ—˜‰æ–Êƒ^ƒXƒN
+	å‹åˆ©ç”»é¢ã‚¿ã‚¹ã‚¯
 
 =============================================================*/
 
@@ -12,7 +12,7 @@
 
 
 /*------------------------------------------------------------
-	\’z
+	æ§‹ç¯‰
 --------------------------------------------------------------*/
 CYouWin::CYouWin()
 {
@@ -24,14 +24,14 @@ CYouWin::CYouWin()
 	m_text_from_story=NULL;
 }
 
-//‚µ‚ã[‚è‚å[
+//ã—ã‚…ãƒ¼ã‚Šã‚‡ãƒ¼
 CYouWin::~CYouWin()
 {
 	DELETEARRAY(m_text_from_story);
 }
 
 /*------------------------------------------------------------
-	ƒ^ƒXƒN‰Šú‰»
+	ã‚¿ã‚¹ã‚¯åˆæœŸåŒ–
 --------------------------------------------------------------*/
 void CYouWin::Initialize()
 {
@@ -43,7 +43,7 @@ void CYouWin::Initialize()
 	m_text = m_text_from_story ? m_text_from_story : g_battleresult.GetKatiSerif();
 	m_textlen=FALSE;
 
-	//ƒJƒI‚Ì“Ç‚İ‚İ
+	//ã‚«ã‚ªã®èª­ã¿è¾¼ã¿
 	for(UINT j=0;j<g_battleresult.GetWinnerCount();j++)
 	{
 		DWORD alt = OPT2ALT( g_battleinfo.GetCharacterOption(wt,j) );
@@ -55,11 +55,11 @@ void CYouWin::Initialize()
 		dds_face[j] = g_draw.CreateSurfaceFrom256Image(filename,palname);
 	}
 
-	//ƒtƒƒ“ƒgƒoƒbƒtƒ@‚ÌƒRƒs[æ“¾
+	//ãƒ•ãƒ­ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ã®ã‚³ãƒ”ãƒ¼å–å¾—
 	tex_fb = g_draw.GetFrontBufferCopy();
 
-	//‡”Ô
-	jun[0] = 0;//sc_battlefield->active_character[ wt ];//ŒÅ’è
+	//é †ç•ª
+	jun[0] = 0;//sc_battlefield->active_character[ wt ];//å›ºå®š
 	if(jun[0]==0){
 		jun[1] = 1;
 		jun[2] = 2;
@@ -72,7 +72,7 @@ void CYouWin::Initialize()
 		jun[1] = 0;
 		jun[2] = 1;
 	}
-	//zƒI[ƒ_[
+	//zã‚ªãƒ¼ãƒ€ãƒ¼
 	f_z[jun[0]]=0;
 	f_z[jun[1]]=0.01f;
 	f_z[jun[2]]=0.02f;
@@ -84,7 +84,7 @@ void CYouWin::Initialize()
 }
 
 /*------------------------------------------------------------
-	ƒ^ƒXƒNI—¹
+	ã‚¿ã‚¹ã‚¯çµ‚äº†
 --------------------------------------------------------------*/
 void CYouWin::Terminate()
 {
@@ -92,7 +92,7 @@ void CYouWin::Terminate()
 }
 
 /*------------------------------------------------------------
-	ƒ^ƒXƒNˆêÀs
+	ã‚¿ã‚¹ã‚¯ä¸€å®Ÿè¡Œ
 --------------------------------------------------------------*/
 BOOL CYouWin::Execute(DWORD time)
 {
@@ -100,15 +100,15 @@ BOOL CYouWin::Execute(DWORD time)
 
 	switch(g_battleresult.GetWinnerCount()){
 	case 3:
-		f_x[jun[2]] = 1800 - counter*40;//ƒLƒƒƒ‰3‚Ì“®‚«
+		f_x[jun[2]] = 1800 - counter*40;//ã‚­ãƒ£ãƒ©3ã®å‹•ã
 		if(f_x[jun[2]] < 250){
 			f_x[jun[2]] = 250;
 		}
-		f_x[jun[1]] = -1800 + counter*40;//ƒLƒƒƒ‰2‚Ì“®‚«
+		f_x[jun[1]] = -1800 + counter*40;//ã‚­ãƒ£ãƒ©2ã®å‹•ã
 		if(f_x[jun[1]] > -200){
 			f_x[jun[1]] = -200;
 		}
-		f_x[jun[0]] = 700 - counter*40;//ƒLƒƒƒ‰1‚Ì“®‚«
+		f_x[jun[0]] = 700 - counter*40;//ã‚­ãƒ£ãƒ©1ã®å‹•ã
 		if(f_x[jun[0]] < 0){
 			f_x[jun[0]]=0;
 		}
@@ -116,11 +116,11 @@ BOOL CYouWin::Execute(DWORD time)
 			show_text=TRUE;
 		break;
 	case 2:
-		f_x[jun[1]] = -1800 + counter*40;//ƒLƒƒƒ‰2‚Ì“®‚«
+		f_x[jun[1]] = -1800 + counter*40;//ã‚­ãƒ£ãƒ©2ã®å‹•ã
 		if(f_x[jun[1]] > 200){
 			f_x[jun[1]] = 200;
 		}
-		f_x[jun[0]] = 700 - counter*40;//ƒLƒƒƒ‰1‚Ì“®‚«
+		f_x[jun[0]] = 700 - counter*40;//ã‚­ãƒ£ãƒ©1ã®å‹•ã
 		if(f_x[jun[0]] < -100){
 			f_x[jun[0]]=-100;
 		}
@@ -128,7 +128,7 @@ BOOL CYouWin::Execute(DWORD time)
 			show_text=TRUE;
 		break;
 	case 1:
-		f_x[0] = 700 - counter*40;//ƒLƒƒƒ‰1‚Ì“®‚«
+		f_x[0] = 700 - counter*40;//ã‚­ãƒ£ãƒ©1ã®å‹•ã
 		if(f_x[0] < 0){
 			f_x[0]=0;
 		}
@@ -145,7 +145,7 @@ BOOL CYouWin::Execute(DWORD time)
 	}
 
 	if(show_text && g_input.GetAllKey() ){
-		return FALSE;//I—¹
+		return FALSE;//çµ‚äº†
 	}
 
 	return TRUE;
@@ -153,7 +153,7 @@ BOOL CYouWin::Execute(DWORD time)
 
 
 /*------------------------------------------------------------
-	”jŠü
+	ç ´æ£„
 --------------------------------------------------------------*/
 void CYouWin::CleanUp()
 {
@@ -167,14 +167,14 @@ void CYouWin::CleanUp()
 
 
 /*------------------------------------------------------------
-	•`‰æ
+	æç”»
 --------------------------------------------------------------*/
 void CYouWin::Draw()
 {
 	g_draw.SetTransform(FALSE);
 	g_draw.ResetParentMatrix();
 
-	//ƒtƒƒ“ƒgƒoƒbƒtƒ@ƒRƒs[•`‰æ
+	//ãƒ•ãƒ­ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ã‚³ãƒ”ãƒ¼æç”»
 	{
 		MYVERTEX3D* vb;
 
@@ -251,7 +251,7 @@ void CYouWin::Draw()
 }
 
 /*------------------------------------------------------------
-	ƒXƒg[ƒŠ[‚©‚çAƒeƒLƒXƒg‚Ìİ’è
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã‹ã‚‰ã€ãƒ†ã‚­ã‚¹ãƒˆã®è¨­å®š
 --------------------------------------------------------------*/
 void CYouWin::SetStoryText(TCHAR *txt)
 {

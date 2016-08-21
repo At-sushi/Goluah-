@@ -1,21 +1,21 @@
-#pragma once
+ï»¿#pragma once
 
 
-// CDlgInputAssign ƒ_ƒCƒAƒƒO
+// CDlgInputAssign ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 class CDlgInputAssign : public CDialog
 {
 	DECLARE_DYNAMIC(CDlgInputAssign)
 
 public:
-	CDlgInputAssign(CWnd* pParent = NULL);   // •W€ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	CDlgInputAssign(CWnd* pParent = NULL);   // æ¨™æº–ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~CDlgInputAssign();
 
-// ƒ_ƒCƒAƒƒO ƒf[ƒ^
+// ãƒ€ã‚¤ã‚¢ãƒ­ã‚° ãƒ‡ãƒ¼ã‚¿
 	enum { IDD = IDD_DIALOG_INPUTASSIGN };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ƒTƒ|[ƒg
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ã‚µãƒãƒ¼ãƒˆ
 
 	void SetComboItem(int id,int left,int top);
 

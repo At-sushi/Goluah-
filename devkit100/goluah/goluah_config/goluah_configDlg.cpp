@@ -1,4 +1,4 @@
-// goluah_configDlg.cpp : �����t�@�C��
+﻿// goluah_configDlg.cpp : 実装ファイル
 //
 
 #include "stdafx.h"
@@ -20,7 +20,7 @@ CCfgDialogBase::CCfgDialogBase(UINT tn,CWnd* p) : CDialog(tn,p)
 {
 }
 
-// Cgoluah_configDlg �_�C�A���O
+// Cgoluah_configDlg ダイアログ
 
 
 
@@ -71,27 +71,27 @@ BEGIN_MESSAGE_MAP(Cgoluah_configDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// Cgoluah_configDlg ���b�Z�[�W �n���h��
+// Cgoluah_configDlg メッセージ ハンドラ
 
 BOOL Cgoluah_configDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// ���̃_�C�A���O�̃A�C�R����ݒ肵�܂��B�A�v���P�[�V�����̃��C�� �E�B���h�E���_�C�A���O�łȂ��ꍇ�A
-	//  Framework �́A���̐ݒ�������I�ɍs���܂��B
-	SetIcon(m_hIcon, TRUE);			// �傫���A�C�R���̐ݒ�
-	SetIcon(m_hIcon, FALSE);		// �������A�C�R���̐ݒ�
+	// このダイアログのアイコンを設定します。アプリケーションのメイン ウィンドウがダイアログでない場合、
+	//  Framework は、この設定を自動的に行います。
+	SetIcon(m_hIcon, TRUE);			// 大きいアイコンの設定
+	SetIcon(m_hIcon, FALSE);		// 小さいアイコンの設定
 
-	// TODO: �������������ɒǉ����܂��B
+	// TODO: 初期化をここに追加します。
 
-	//���^�u�R���g���[���̍��ڐ���
+	//■タブコントロールの項目生成
 	CTabCtrl* pTab = (CTabCtrl*)GetDlgItem(IDC_TAB1);
-	pTab->InsertItem(0,"�`��ݒ�");
-	pTab->InsertItem(1,"�Q�[���ݒ�");
-	pTab->InsertItem(2,"�V�X�e���ݒ�");
-	pTab->InsertItem(3,"�V�X�e���ݒ�(2)");
+	pTab->InsertItem(0,"描画設定");
+	pTab->InsertItem(1,"ゲーム設定");
+	pTab->InsertItem(2,"システム設定");
+	pTab->InsertItem(3,"システム設定(2)");
 
-	//���e�^�u�̃y�[�W�ɑ�������_�C�A���O�𐶐�
+	//■各タブのページに相当するダイアログを生成
 	m_tab_pages[0] = new CDlgPage1();
 	m_tab_pages[0]->Create(IDD_DIALOG_PAGE1,this);
 	m_tab_pages[1] = new CDlgPage2();
@@ -101,7 +101,7 @@ BOOL Cgoluah_configDlg::OnInitDialog()
 	m_tab_pages[3] = new CDlgOther();
 	m_tab_pages[3]->Create(IDD_DIALOG_PAGE4,this);
 
-	//���E�B���h�E���^�u�̈ʒu�ɍ����悤�Ɉړ�
+	//■ウィンドウをタブの位置に合うように移動
 	CRect r;
 	for(int i=0;i<MAX_TAB_PAGES;i++){
 		if(m_tab_pages[i]){
@@ -114,29 +114,29 @@ BOOL Cgoluah_configDlg::OnInitDialog()
 
 	if(!g_config.readok1)
 	{
-		MessageBox("system/config.dat �̓ǂݍ��݂Ɏ��s���܂���","�x��");
+		MessageBox("system/config.dat の読み込みに失敗しました","警告");
 	}
 	if(!g_config.readok2)
 	{
-		MessageBox("system/config2.dat �̓ǂݍ��݂Ɏ��s���܂���","�x��");
+		MessageBox("system/config2.dat の読み込みに失敗しました","警告");
 	}
 	
-	return TRUE;  // �t�H�[�J�X���R���g���[���ɐݒ肵���ꍇ�������ATRUE ��Ԃ��܂��B
+	return TRUE;  // フォーカスをコントロールに設定した場合を除き、TRUE を返します。
 }
 
-// �_�C�A���O�ɍŏ����{�^����ǉ�����ꍇ�A�A�C�R����`�悷�邽�߂�
-//  ���̃R�[�h���K�v�ł��B�h�L�������g/�r���[ ���f�����g�� MFC �A�v���P�[�V�����̏ꍇ�A
-//  ����́AFramework �ɂ���Ď����I�ɐݒ肳��܂��B
+// ダイアログに最小化ボタンを追加する場合、アイコンを描画するための
+//  下のコードが必要です。ドキュメント/ビュー モデルを使う MFC アプリケーションの場合、
+//  これは、Framework によって自動的に設定されます。
 
 void Cgoluah_configDlg::OnPaint() 
 {
 	if (IsIconic())
 	{
-		CPaintDC dc(this); // �`��̃f�o�C�X �R���e�L�X�g
+		CPaintDC dc(this); // 描画のデバイス コンテキスト
 
 		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
 
-		// �N���C�A���g�̎l�p�`�̈���̒���
+		// クライアントの四角形領域内の中央
 		int cxIcon = GetSystemMetrics(SM_CXICON);
 		int cyIcon = GetSystemMetrics(SM_CYICON);
 		CRect rect;
@@ -144,7 +144,7 @@ void Cgoluah_configDlg::OnPaint()
 		int x = (rect.Width() - cxIcon + 1) / 2;
 		int y = (rect.Height() - cyIcon + 1) / 2;
 
-		// �A�C�R���̕`��
+		// アイコンの描画
 		dc.DrawIcon(x, y, m_hIcon);
 	}
 	else
@@ -153,8 +153,8 @@ void Cgoluah_configDlg::OnPaint()
 	}
 }
 
-//���[�U�[���ŏ��������E�B���h�E���h���b�O���Ă���Ƃ��ɕ\������J�[�\�����擾���邽�߂ɁA
-//  �V�X�e�������̊֐����Ăяo���܂��B
+//ユーザーが最小化したウィンドウをドラッグしているときに表示するカーソルを取得するために、
+//  システムがこの関数を呼び出します。
 HCURSOR Cgoluah_configDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
@@ -162,7 +162,7 @@ HCURSOR Cgoluah_configDlg::OnQueryDragIcon()
 
 void Cgoluah_configDlg::OnTcnSelchangeTab1(NMHDR *pNMHDR, LRESULT *pResult)
 {
-	// TODO : �����ɃR���g���[���ʒm�n���h�� �R�[�h��ǉ����܂��B
+	// TODO : ここにコントロール通知ハンドラ コードを追加します。
 	if(pResult)
 		*pResult = 0;
 
@@ -182,13 +182,13 @@ void Cgoluah_configDlg::OnDestroy()
 {
 	CDialog::OnDestroy();
 
-	// TODO : �����Ƀ��b�Z�[�W �n���h�� �R�[�h��ǉ����܂��B
+	// TODO : ここにメッセージ ハンドラ コードを追加します。
 }
 
 BOOL Cgoluah_configDlg::DestroyWindow()
 {
-	// TODO : �����ɓ���ȃR�[�h��ǉ����邩�A�������͊�{�N���X���Ăяo���Ă��������B
-	//�^�u�y�[�W�p�_�C�A���O�̔j��
+	// TODO : ここに特定なコードを追加するか、もしくは基本クラスを呼び出してください。
+	//タブページ用ダイアログの破棄
 	for(int i=0;i<MAX_TAB_PAGES;i++)
 	{
 		if(m_tab_pages[i]){
@@ -202,21 +202,21 @@ BOOL Cgoluah_configDlg::DestroyWindow()
 
 void Cgoluah_configDlg::OnBnClickedOk()
 {
-	// TODO : �����ɃR���g���[���ʒm�n���h�� �R�[�h��ǉ����܂��B
+	// TODO : ここにコントロール通知ハンドラ コードを追加します。
 
-	//�p�~����
-	//Cancel�f���l�̑�����s��
+	//廃止した
+	//Cancelデ同様の操作を行う
 }
 
 void Cgoluah_configDlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	// TODO : �����Ƀ��b�Z�[�W �n���h�� �R�[�h��ǉ����邩�A����̏������Ăяo���܂��B
+	// TODO : ここにメッセージ ハンドラ コードを追加するか、既定の処理を呼び出します。
 	CDialog::OnKeyDown(nChar, nRepCnt, nFlags);
 }
 
 void Cgoluah_configDlg::OnBnClickedButtonRestoreAll()
 {
-	// TODO : �����ɃR���g���[���ʒm�n���h�� �R�[�h��ǉ����܂��B
+	// TODO : ここにコントロール通知ハンドラ コードを追加します。
 	g_config.SetDefaultConfig2();
 	g_config.SetDefaultConfigAss();
 	g_config.SetDefaultConfigKB();
@@ -229,7 +229,7 @@ void Cgoluah_configDlg::OnBnClickedButtonRestoreAll()
 
 void Cgoluah_configDlg::OnCancel()
 {
-	// TODO : �����ɓ���ȃR�[�h��ǉ����邩�A�������͊�{�N���X���Ăяo���Ă��������B
+	// TODO : ここに特定なコードを追加するか、もしくは基本クラスを呼び出してください。
 
 	for(int i=0;i<MAX_TAB_PAGES;i++)
 	{
@@ -240,11 +240,11 @@ void Cgoluah_configDlg::OnCancel()
 
 	BOOL fail=FALSE;
 	if(! g_config.SaveConfig() ){
-		MessageBox("�t�@�C���Asystem/config.dat �̕ۑ��Ɏ��s���܂���","����[");
+		MessageBox("ファイル、system/config.dat の保存に失敗しました","えらー");
 		fail = TRUE;
 	}
 	if(! g_config.SaveConfig2() ){
-		MessageBox("�t�@�C���Asystem/config2.dat �̕ۑ��Ɏ��s���܂���","����[");
+		MessageBox("ファイル、system/config2.dat の保存に失敗しました","えらー");
 		fail = FALSE;
 	}
 

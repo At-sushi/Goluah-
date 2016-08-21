@@ -1,4 +1,4 @@
-// DlgPage1.cpp : À‘•ƒtƒ@ƒCƒ‹
+ï»¿// DlgPage1.cpp : å®Ÿè£…ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include ".\dlgpage1.h"
 
 
-// CDlgPage1 ƒ_ƒCƒAƒƒO
+// CDlgPage1 ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 IMPLEMENT_DYNAMIC(CDlgPage1, CCfgDialogBase)
 CDlgPage1::CDlgPage1(CWnd* pParent /*=NULL*/)
@@ -31,17 +31,17 @@ BEGIN_MESSAGE_MAP(CDlgPage1, CCfgDialogBase)
 END_MESSAGE_MAP()
 
 /*------------------------------------------------------------------
-	İ’è¨ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€
+	è¨­å®šâ†’ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ 
 --------------------------------------------------------------------*/
 BOOL CDlgPage1::OnInitDialog()
 {
 	CCfgDialogBase::OnInitDialog();
 
-	// TODO :  ‚±‚±‚É‰Šú‰»‚ğ’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢
+	// TODO :  ã“ã“ã«åˆæœŸåŒ–ã‚’è¿½åŠ ã—ã¦ãã ã•ã„
 	Reset();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// —áŠO : OCX ƒvƒƒpƒeƒB ƒy[ƒW‚Í•K‚¸ FALSE ‚ğ•Ô‚µ‚Ü‚·B
+	// ä¾‹å¤– : OCX ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ ãƒšãƒ¼ã‚¸ã¯å¿…ãš FALSE ã‚’è¿”ã—ã¾ã™ã€‚
 }
 
 void CDlgPage1::Reset()
@@ -53,7 +53,7 @@ void CDlgPage1::Reset()
 }
 
 /*------------------------------------------------------------------
-	İ’è©ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€
+	è¨­å®šâ†ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ 
 --------------------------------------------------------------------*/
 void CDlgPage1::UpdateSettings()
 {
@@ -67,7 +67,7 @@ void CDlgPage1::UpdateSettings()
 
 //void CDlgPage1::OnClose()
 //{
-//	// TODO : ‚±‚±‚ÉƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚·‚é‚©AŠù’è‚Ìˆ—‚ğŒÄ‚Ño‚µ‚Ü‚·B
+//	// TODO : ã“ã“ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã‹ã€æ—¢å®šã®å‡¦ç†ã‚’å‘¼ã³å‡ºã—ã¾ã™ã€‚
 //
 //	CCfgDialogBase::OnClose();
 //}

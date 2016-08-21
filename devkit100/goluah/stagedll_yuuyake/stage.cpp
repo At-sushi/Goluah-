@@ -1,4 +1,4 @@
-
+ï»¿
 
 #include "stage.h"
 #include <math.h>
@@ -8,7 +8,7 @@ SET_STAGEINFO(CStage)
 
 
 /*!
-*	@brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+*	@brief ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 */
 CStage::CStage(SDI_STAGEINFO2 *info)
 			: CStageBase(info)
@@ -28,7 +28,7 @@ CStage::CStage(SDI_STAGEINFO2 *info)
 }
 
 /*!
-*	@brief ƒfƒXƒgƒ‰ƒNƒ^
+*	@brief ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 */
 CStage::~CStage()
 {
@@ -46,23 +46,23 @@ CStage::~CStage()
 }
 
 /*!
-*	@brief ‰Šú‰»
+*	@brief åˆæœŸåŒ–
 */
 void CStage::InitializeStage()
 {
 	d3ddev = GetD3DDevice();
 
-	InitVrtx();//’¸“_À•W‰Šú‰»
-	LoadTextures();//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
+	InitVrtx();//é ‚ç‚¹åº§æ¨™åˆæœŸåŒ–
+	LoadTextures();//ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­è¾¼ã¿
 }
 
 
-void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
+void CStage::InitVrtx()//é ‚ç‚¹åº§æ¨™åˆæœŸåŒ–
 {
 	int i,j;
 	MYVERTEX3D* vtx_tmp = NULL;
 
-	//’n–Ê
+	//åœ°é¢
 	vb_jimen[0].color=vb_jimen[2].color=0xFFFFFFFF;
 	vb_jimen[1].color=vb_jimen[3].color=0xFF333333;
 	vb_jimen[0].tu=-10;
@@ -80,7 +80,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 	vb_jimen[0].z=vb_jimen[2].z=0.3f;
 	vb_jimen[1].z=vb_jimen[3].z=-1.0f;
 
-	//ƒtƒFƒ“ƒX
+	//ãƒ•ã‚§ãƒ³ã‚¹
 	vb_fens[0].color=vb_fens[1].color=
 		vb_fens[2].color=vb_fens[3].color=0xFFFFFFFF;
 	vb_fens[0].tu=-20;
@@ -98,7 +98,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 	vb_fens[0].y=vb_fens[2].y=-0.6f;
 	vb_fens[1].y=vb_fens[3].y=0.0f;
 
-	//ƒtƒFƒ“ƒXè‚·‚è
+	//ãƒ•ã‚§ãƒ³ã‚¹æ‰‹ã™ã‚Š
 	vb_fens2[0][0].color=vb_fens2[0][1].color=
 		vb_fens2[0][2].color=vb_fens2[0][3].color=0xFF442277;
 	vb_fens2[0][0].tu=-20;
@@ -115,7 +115,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 		vb_fens2[0][2].z=vb_fens2[0][3].z=0.3f;
 	vb_fens2[0][0].y=vb_fens2[0][2].y=-0.63f;
 	vb_fens2[0][1].y=vb_fens2[0][3].y=-0.6f;
-	//ƒtƒFƒ“ƒXè‚·‚è(‰º)
+	//ãƒ•ã‚§ãƒ³ã‚¹æ‰‹ã™ã‚Š(ä¸‹)
 	vb_fens2[1][0].color=vb_fens2[1][1].color=
 		vb_fens2[1][2].color=vb_fens2[1][3].color=0xFF442277;
 	vb_fens2[1][0].tu=-20;
@@ -133,7 +133,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 	vb_fens2[1][0].y=vb_fens2[1][2].y=-0.1f;
 	vb_fens2[1][1].y=vb_fens2[1][3].y= 0.0f;
 
-	//ƒrƒ‹i‰EjA¶–Ê
+	//ãƒ“ãƒ«ï¼ˆå³ï¼‰ã€å·¦é¢
 	vb_buil1a[0][0].color=vb_buil1a[0][1].color=0xFFFFFFFF;
 	vb_buil1a[0][2].color=vb_buil1a[0][3].color=0xFFAAAAAA;
 	vb_buil1a[0][0].tu=0;
@@ -151,7 +151,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 	vb_buil1a[0][0].z=vb_buil1a[0][1].z=1.5f;
 	vb_buil1a[0][2].z=vb_buil1a[0][3].z=0.5f;
 
-	//ƒrƒ‹i‰EjA”w–Ê
+	//ãƒ“ãƒ«ï¼ˆå³ï¼‰ã€èƒŒé¢
 	vb_buil1a[1][0].color=vb_buil1a[1][1].color=0xFF9999AA;
 	vb_buil1a[1][2].color=vb_buil1a[1][3].color=0xFF9999AA;
 	vb_buil1a[1][0].tu=0;
@@ -169,7 +169,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 	vb_buil1a[1][0].x=vb_buil1a[1][1].x=-0.5f;
 	vb_buil1a[1][2].x=vb_buil1a[1][3].x=1.5f;
 
-	//ƒrƒ‹“Vˆä
+	//ãƒ“ãƒ«å¤©äº•
 	vb_buil1b[0].color=vb_buil1b[1].color=0xFF555599;
 	vb_buil1b[2].color=vb_buil1b[3].color=0xFF555599;
 	vb_buil1b[0].tu=0;
@@ -187,7 +187,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 	vb_buil1b[0].x=vb_buil1b[1].x=	vb_buil1a[1][0].x;
 	vb_buil1b[2].x=vb_buil1b[3].x=	vb_buil1a[1][2].x;
 
-	//ƒrƒ‹i‰EjAŠÅ”Â”w–Ê
+	//ãƒ“ãƒ«ï¼ˆå³ï¼‰ã€çœ‹æ¿èƒŒé¢
 	vb_buil1c[0].color=vb_buil1c[1].color=0xFFEEEEEE;
 	vb_buil1c[2].color=vb_buil1c[3].color=0xFFEEEEEE;
 	vb_buil1c[0].tu=0;
@@ -215,7 +215,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 	float futosa1=0.06f;
 	float futosa2=0.03f;
 
-	//ŠÅ”Â‚Ìx‚¦
+	//çœ‹æ¿ã®æ”¯ãˆ
 	MYVERTEX3D vb_buil1d_tmp[10][4];
 	for(i=0;i<10;i++){
 		for(j=0;j<4;j++){
@@ -223,61 +223,61 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 			vb_buil1d_tmp[i][j].z=z1;
 		}
 	}
-	//‡@
+	//â‘ 
 	vb_buil1d_tmp[0][0].x=vb_buil1d_tmp[0][1].x=x1;
 	vb_buil1d_tmp[0][2].x=vb_buil1d_tmp[0][3].x=x1+futosa1;
 	vb_buil1d_tmp[0][0].y=vb_buil1d_tmp[0][2].y=y1;
 	vb_buil1d_tmp[0][1].y=vb_buil1d_tmp[0][3].y=y3;
-	//‡A
+	//â‘¡
 	vb_buil1d_tmp[1][0].x=vb_buil1d_tmp[1][1].x=x2;
 	vb_buil1d_tmp[1][2].x=vb_buil1d_tmp[1][3].x=x2-futosa1;
 	vb_buil1d_tmp[1][0].y=vb_buil1d_tmp[1][2].y=y1;
 	vb_buil1d_tmp[1][1].y=vb_buil1d_tmp[1][3].y=y3;
-	//‡B
+	//â‘¢
 	vb_buil1d_tmp[2][0].x=vb_buil1d_tmp[2][1].x=x1;
 	vb_buil1d_tmp[2][1].x+=futosa2;
 	vb_buil1d_tmp[2][2].x=vb_buil1d_tmp[2][3].x=x2;
 	vb_buil1d_tmp[2][2].x-=futosa2;
 	vb_buil1d_tmp[2][0].y=vb_buil1d_tmp[2][1].y=y1;
 	vb_buil1d_tmp[2][2].y=vb_buil1d_tmp[2][3].y=y2;
-	//‡C
+	//â‘£
 	vb_buil1d_tmp[3][0].x=vb_buil1d_tmp[3][1].x=x2;
 	vb_buil1d_tmp[3][1].x-=futosa2;
 	vb_buil1d_tmp[3][2].x=vb_buil1d_tmp[3][3].x=x1;
 	vb_buil1d_tmp[3][2].x+=futosa2;
 	vb_buil1d_tmp[3][0].y=vb_buil1d_tmp[3][1].y=y1;
 	vb_buil1d_tmp[3][2].y=vb_buil1d_tmp[3][3].y=y2;
-	i=4;//‡D
+	i=4;//â‘¤
 	vb_buil1d_tmp[i][0].x=vb_buil1d_tmp[i][1].x=x2;
 	vb_buil1d_tmp[i][1].x-=futosa2;
 	vb_buil1d_tmp[i][2].x=vb_buil1d_tmp[i][3].x=x1;
 	vb_buil1d_tmp[i][2].x+=futosa2;
 	vb_buil1d_tmp[i][0].y=vb_buil1d_tmp[i][1].y=y1;
 	vb_buil1d_tmp[i][2].y=vb_buil1d_tmp[i][3].y=y3;
-	i=5;//‡E
+	i=5;//â‘¥
 	vb_buil1d_tmp[i][0].x=vb_buil1d_tmp[i][1].x=x1;
 	vb_buil1d_tmp[i][1].x+=futosa2;
 	vb_buil1d_tmp[i][2].x=vb_buil1d_tmp[i][3].x=x2;
 	vb_buil1d_tmp[i][2].x-=futosa2;
 	vb_buil1d_tmp[i][0].y=vb_buil1d_tmp[i][1].y=y1;
 	vb_buil1d_tmp[i][2].y=vb_buil1d_tmp[i][3].y=y3;
-	i=6;//‡F
+	i=6;//â‘¦
 	vb_buil1d_tmp[i][0].x=vb_buil1d_tmp[i][1].x=x1;
 	vb_buil1d_tmp[i][2].x=vb_buil1d_tmp[i][3].x=x2;
 	vb_buil1d_tmp[i][0].y=vb_buil1d_tmp[i][2].y=y1;
 	vb_buil1d_tmp[i][1].y=vb_buil1d_tmp[i][3].y=y1-futosa1;
-	i=7;//‡G
+	i=7;//â‘§
 	vb_buil1d_tmp[i][0].x=vb_buil1d_tmp[i][1].x=x1;
 	vb_buil1d_tmp[i][2].x=vb_buil1d_tmp[i][3].x=x2;
 	vb_buil1d_tmp[i][0].y=vb_buil1d_tmp[i][2].y=y2;
 	vb_buil1d_tmp[i][1].y=vb_buil1d_tmp[i][3].y=y2-futosa1;
-	i=8;//‡H
+	i=8;//â‘¨
 	vb_buil1d_tmp[i][0].x=vb_buil1d_tmp[i][1].x=x1;
 	vb_buil1d_tmp[i][2].x=vb_buil1d_tmp[i][3].x=x1+futosa1;
 	vb_buil1d_tmp[i][0].y=vb_buil1d_tmp[i][2].y=y1;
 	vb_buil1d_tmp[i][1].y=vb_buil1d_tmp[i][3].y=y3;
 	vb_buil1d_tmp[i][1].z=vb_buil1d_tmp[i][3].z=z2;
-	i=9;//‡I
+	i=9;//â‘©
 	vb_buil1d_tmp[i][0].x=vb_buil1d_tmp[i][1].x=x2;
 	vb_buil1d_tmp[i][2].x=vb_buil1d_tmp[i][3].x=x2-futosa1;
 	vb_buil1d_tmp[i][0].y=vb_buil1d_tmp[i][2].y=y1;
@@ -294,7 +294,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 		}
 	}
 
-	//ƒrƒ‹‚Q”w–Ê
+	//ãƒ“ãƒ«ï¼’èƒŒé¢
 	vb_buil2b[0].color=vb_buil2b[1].color=0xFF551199;
 	vb_buil2b[2].color=vb_buil2b[3].color=0xFF220033;
 	vb_buil2b[0].tu=0;
@@ -311,7 +311,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 	vb_buil2b[1].y=vb_buil2b[3].y= 1.2f;
 	vb_buil2b[0].x=vb_buil2b[1].x=-0.5f;
 	vb_buil2b[2].x=vb_buil2b[3].x=-2.5f;
-	//ƒrƒ‹‚Q‘¤–Ê
+	//ãƒ“ãƒ«ï¼’å´é¢
 	vb_buil2a[0].color=vb_buil2a[1].color=0xFFFFFFFF;
 	vb_buil2a[2].color=vb_buil2a[3].color=0xFFAAAAAA;
 	vb_buil2a[0].tu=0;
@@ -329,7 +329,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 	vb_buil2a[0].z=vb_buil2a[1].z=1.5f;
 	vb_buil2a[2].z=vb_buil2a[3].z=0.7f;
 
-	//‹ó
+	//ç©º
 	vb_sky[0].color=vb_sky[1].color=
 		vb_sky[2].color=vb_sky[3].color=0xFFFFFFFF;
 	vb_sky[0].tu=0;
@@ -347,7 +347,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 	vb_sky[0].y=vb_sky[2].y=-9.0f;
 	vb_sky[1].y=vb_sky[3].y= 9.0f;
 
-	//”wŒi‚P
+	//èƒŒæ™¯ï¼‘
 	vb_bg1[0].color=vb_bg1[1].color=
 		vb_bg1[2].color=vb_bg1[3].color=0xFFFFFFFF;
 	vb_bg1[0].tu=0;
@@ -365,7 +365,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 	vb_bg1[0].y=vb_bg1[2].y=-2.5f;
 	vb_bg1[1].y=vb_bg1[3].y= 3.5f;
 
-	//”wŒi‚Q
+	//èƒŒæ™¯ï¼’
 	vb_bg2[0].color=vb_bg2[1].color=
 		vb_bg2[2].color=vb_bg2[3].color=0xFFFFFFFF;
 	vb_bg2[0].tu=0;
@@ -384,14 +384,14 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 	vb_bg2[1].y=vb_bg2[3].y= 2.5f;
 }
 
-void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
+void CStage::LoadTextures()//ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­è¾¼ã¿
 {
 	if(d3ddev==NULL)return;
 
 	char* filename=(char*)malloc(256);
 	if(filename==NULL)return;
 
-	//’n–Ê
+	//åœ°é¢
 	sprintf(filename,"%s\\tex_jimen.bmp",GetDLLPath());
 	D3DXCreateTextureFromFileA(
 		d3ddev,
@@ -406,7 +406,7 @@ void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
 		0xFF000000,NULL,NULL,
 		&ptex_fens);
 	
-	//ƒrƒ‹1
+	//ãƒ“ãƒ«1
 	sprintf(filename,"%s\\tex_buil1a.bmp",GetDLLPath());
 	D3DXCreateTextureFromFileExA(
 		d3ddev,filename,
@@ -415,14 +415,14 @@ void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
 		D3DPOOL_MANAGED,D3DX_FILTER_POINT,D3DX_FILTER_POINT,
 		0,NULL,NULL,
 		&ptex_buil1a);
-	//ƒrƒ‹‚PŠÅ”Â— 
+	//ãƒ“ãƒ«ï¼‘çœ‹æ¿è£
 	sprintf(filename,"%s\\tex_brdura.bmp",GetDLLPath());
 	D3DXCreateTextureFromFileA(
 		d3ddev,
 		filename,
 		&ptex_brdura);
 	
-	//ƒrƒ‹2— 
+	//ãƒ“ãƒ«2è£
 	sprintf(filename,"%s\\tex_buil2a.bmp",GetDLLPath());
 	D3DXCreateTextureFromFileExA(
 		d3ddev,filename,
@@ -432,7 +432,7 @@ void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
 		0,NULL,NULL,
 		&ptex_buil2a);
 
-	//‹ó
+	//ç©º
 	sprintf(filename,"%s\\tex_sky.png",GetDLLPath());
 	D3DXCreateTextureFromFileExA(
 		d3ddev,filename,
@@ -441,7 +441,7 @@ void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
 		D3DPOOL_MANAGED,D3DX_FILTER_POINT,D3DX_FILTER_POINT,
 		0,NULL,NULL,
 		&ptex_sky);
-	//”wŒi‚P
+	//èƒŒæ™¯ï¼‘
 	sprintf(filename,"%s\\tex_bg1.png",GetDLLPath());
 	D3DXCreateTextureFromFileExA(
 		d3ddev,filename,
@@ -450,7 +450,7 @@ void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
 		D3DPOOL_MANAGED,D3DX_FILTER_POINT,D3DX_FILTER_POINT,
 		0xFF000000,NULL,NULL,
 		&ptex_bg1);
-	//”wŒi‚Q
+	//èƒŒæ™¯ï¼’
 	sprintf(filename,"%s\\tex_bg2.png",GetDLLPath());
 	D3DXCreateTextureFromFileExA(
 		d3ddev,filename,
@@ -465,46 +465,46 @@ void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
 
 
 /*!
-*	@brief •`‰æ
+*	@brief æç”»
 */
 DWORD CStage::DrawBack()
 {
 	if(d3ddev==NULL)return FALSE;
 
-	//ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒbƒVƒ“ƒOƒ‚[ƒh-ŒJ‚è•Ô‚µ
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ãƒƒã‚·ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰-ç¹°ã‚Šè¿”ã—
 	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_WRAP);
 	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_WRAP);
 
-	DrawJimen();//’n–ÊH
-	DrawBuilding1();//ƒrƒ‹(‰E)
-	DrawBuilding2();//ƒrƒ‹(¶)
-	DrawBackGround();//’´”wŒi
+	DrawJimen();//åœ°é¢ï¼Ÿ
+	DrawBuilding1();//ãƒ“ãƒ«(å³)
+	DrawBuilding2();//ãƒ“ãƒ«(å·¦)
+	DrawBackGround();//è¶…èƒŒæ™¯
 
-	//ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒVƒ“ƒOƒ‚[ƒh-‚»‚Ì‚Ü‚Ü
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚·ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰-ãã®ã¾ã¾
 	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP);
 	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);
 
-	return FALSE;//’ÊíAƒfƒtƒHƒ‹ƒg•`‰æ‚Ís‚í‚È‚¢
+	return FALSE;//é€šå¸¸ã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæç”»ã¯è¡Œã‚ãªã„
 }
 
 
 //*****************************************************
-//@’n–Ê
+//ã€€åœ°é¢
 //*****************************************************
 
 void CStage::DrawJimen()
 {
-	//À•W•ÏŠ·-‚È‚µ
+	//åº§æ¨™å¤‰æ›-ãªã—
 	D3DXMATRIX mati;
 	D3DXMatrixIdentity(&mati);
 	d3ddev->SetTransform(D3DTS_WORLD,&mati);
 
-	//’n–Ê
+	//åœ°é¢
 	d3ddev->SetTexture(0,ptex_jimen);
 	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,
 		vb_jimen,sizeof(MYVERTEX3D));
 
-	//ƒtƒFƒ“ƒX
+	//ãƒ•ã‚§ãƒ³ã‚¹
 	d3ddev->SetTexture(0,ptex_fens);
 	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,
 		vb_fens,sizeof(MYVERTEX3D));
@@ -516,7 +516,7 @@ void CStage::DrawJimen()
 }
 
 //*****************************************************
-//@ƒrƒ‹i‰Ej
+//ã€€ãƒ“ãƒ«ï¼ˆå³ï¼‰
 //*****************************************************
 
 void CStage::DrawBuilding1()
@@ -525,68 +525,68 @@ void CStage::DrawBuilding1()
 
 	d3ddev->SetTexture(0,ptex_buil1a);
 
-	//ƒrƒ‹‘S‘Ì‚Ì‚¸‚ç‚µ
+	//ãƒ“ãƒ«å…¨ä½“ã®ãšã‚‰ã—
 	D3DXMATRIX mat_buil1trans;
 	D3DXMatrixTranslation(&mat_buil1trans,1.5f ,0.0f ,0.0f );
 
 	d3ddev->SetTransform(D3DTS_WORLD,&mat_buil1trans);
 
-	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,//•Çi¶j
+	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,//å£ï¼ˆå·¦ï¼‰
 		vb_buil1a[0],sizeof(MYVERTEX3D));
-	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,//•Çi”w–Êj
+	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,//å£ï¼ˆèƒŒé¢ï¼‰
 		vb_buil1a[1],sizeof(MYVERTEX3D));
 	d3ddev->SetTexture(0,ptex_jimen);
-	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,//“Vˆä
+	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,//å¤©äº•
 		vb_buil1b,sizeof(MYVERTEX3D));
 	d3ddev->SetTexture(0,ptex_brdura);
-	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,//ŠÅ”Â
+	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,//çœ‹æ¿
 		vb_buil1c,sizeof(MYVERTEX3D));
 	d3ddev->SetTexture(0,NULL);
 	for(i=0;i<10;i++){
 		d3ddev->SetStreamSource(0, vb_buil1d[i], 0, sizeof(MYVERTEX3D));
-		d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);//ŠÅ”Â‚³‚³‚¦
+		d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);//çœ‹æ¿ã•ã•ãˆ
 	}
 }
 
 //*****************************************************
-//@ƒrƒ‹i¶j
+//ã€€ãƒ“ãƒ«ï¼ˆå·¦ï¼‰
 //*****************************************************
 
 void CStage::DrawBuilding2()
 {
-	//ƒrƒ‹‘S‘Ì‚Ì‚¸‚ç‚µ
+	//ãƒ“ãƒ«å…¨ä½“ã®ãšã‚‰ã—
 	D3DXMATRIX mat_buil2trans;
 	D3DXMatrixTranslation(&mat_buil2trans,-0.5f ,0.0f ,0.0f );
 	d3ddev->SetTransform(D3DTS_WORLD,&mat_buil2trans);
 
 	d3ddev->SetTexture(0,ptex_buil2a);
-	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,//•Ç
+	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,//å£
 		vb_buil2a,sizeof(MYVERTEX3D));
-	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,//”w–Ê
+	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,//èƒŒé¢
 		vb_buil2b,sizeof(MYVERTEX3D));
 }
 //*****************************************************
-//@”wŒi
+//ã€€èƒŒæ™¯
 //*****************************************************
 
 void CStage::DrawBackGround()
 {
-	//À•W•ÏŠ·-‚È‚µ
+	//åº§æ¨™å¤‰æ›-ãªã—
 	D3DXMATRIX mati;
 	D3DXMatrixIdentity(&mati);
 	d3ddev->SetTransform(D3DTS_WORLD,&mati);
 
-	//”wŒi‚Q
+	//èƒŒæ™¯ï¼’
 	d3ddev->SetTexture(0,ptex_bg2);
 	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,
 		vb_bg2,sizeof(MYVERTEX3D));
 
-	//”wŒi‚P
+	//èƒŒæ™¯ï¼‘
 	d3ddev->SetTexture(0,ptex_bg1);
 	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,
 		vb_bg1,sizeof(MYVERTEX3D));
 
-	//‚»‚ç
+	//ãã‚‰
 	d3ddev->SetTexture(0,ptex_sky);
 	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,
 		vb_sky,sizeof(MYVERTEX3D));

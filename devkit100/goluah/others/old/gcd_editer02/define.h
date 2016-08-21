@@ -1,1 +1,1 @@
-#define ___GCDEDITER
+﻿#define ___GCDEDITER

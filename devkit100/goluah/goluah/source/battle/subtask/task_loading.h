@@ -1,6 +1,6 @@
-/*----------------------------------------------------------------------
+﻿/*----------------------------------------------------------------------
 
-	���[�h���
+	ロード画面
 
 ------------------------------------------------------------------------*/
 
@@ -17,40 +17,40 @@ enum NowLoading_IconItem
 };
 
 /*!
-*	@brief �����ONowLoading�N���X
+*	@brief 試合前NowLoadingクラス
 *	@ingroup Battle
 *
-*	DLL���ɒ񋟂���Ă���, BMP,GCD�ǂݍ��݊֐����Ăяo���ꂽ�Ƃ���
-*	�퓬�^�X�N��DLL�����[�h�����Ƃ���Proceed���Ă΂�A�`�悪1�X�e�b�v�����s����B
-*	���̂Ƃ����C�����[�v�͉���Ă��Ȃ��̂ŁA�`��̊J�n�ƏI���̏��������O��Proceed�֐����ōs���Ă���B
+*	DLL側に提供されている, BMP,GCD読み込み関数が呼び出されたときと
+*	戦闘タスクがDLLをロードしたときにProceedが呼ばれ、描画が1ステップだけ行われる。
+*	このときメインループは廻っていないので、描画の開始と終了の処理を自前でProceed関数中で行っている。
 */
 class CTNowLoading : public CTaskBase
 {
 public:
-	void Initialize();						//Execute�܂���Draw���R�[�������O��1�x�����R�[�������
-	BOOL Execute(DWORD time){return(TRUE);}	//���t���[���R�[�������
-	void Terminate();						//�^�X�N�̃��X�g����O�����Ƃ��ɃR�[�������i���̒���Adelete�����j
-	void Draw(){}							//!<Proceed()���ŁA��W���̎葱���ŕ`�悷��̂ŁA�����ł͕`����s��Ȃ�
+	void Initialize();						//ExecuteまたはDrawがコールされる前に1度だけコールされる
+	BOOL Execute(DWORD time){return(TRUE);}	//毎フレームコールされる
+	void Terminate();						//タスクのリストから外されるときにコールされる（その直後、deleteされる）
+	void Draw(){}							//!<Proceed()内で、非標準の手続きで描画するので、ここでは描画を行わない
 
-	DWORD GetID(){return 'LOAD';}			//0�ȊO��Ԃ��悤�ɂ����ꍇ�A�}�l�[�W����Add�����Ƃ�����ID�����^�X�N��j�����܂��i��ɏ풓�^�X�N�p�j
-	int GetDrawPriority(){return -1;}		//!<Proceed()���ŁA��W���̎葱���ŕ`�悷��̂ŁA�`����s��Ȃ�
+	DWORD GetID(){return 'LOAD';}			//0以外を返すようにした場合、マネージャにAddしたとき同じIDを持つタスクを破棄します（主に常駐タスク用）
+	int GetDrawPriority(){return -1;}		//!<Proceed()内で、非標準の手続きで描画するので、描画を行わない
 	
-	//!�`���1�X�e�b�v�����i�߂�
+	//!描画を1ステップだけ進める
 	void Proceed(NowLoading_IconItem item);
 	
-	//!�v���O���X�o�[�\��
+	//!プログレスバー表示
 	void Progress(NowLoading_IconItem item, float value);
 
 protected:
-	void DrawIcon();						//!���[�h�ς݂̃A�C�R����\��
+	void DrawIcon();						//!ロード済みのアイコンを表示
 
-	LPDIRECT3DTEXTURE9 tex_fb;				//!< �t�����g�o�b�t�@���R�s�[�����e�N�X�`��
-	LPDIRECT3DTEXTURE9 tex_nowload;			//!< "Now Loading"�\���p�e�N�X�`��
-	LPDIRECT3DTEXTURE9 tex_dll;				//!< DLL�A�C�R���\���p�e�N�X�`��
-	LPDIRECT3DTEXTURE9 tex_img;				//!< IMG�A�C�R���\���p�e�N�X�`��
-	LPDIRECT3DTEXTURE9 tex_gcd;				//!< GCD�A�C�R���\���p�e�N�X�`��
-	MYVERTEX3D vb[4];						//!< �e�N�X�`���`��p�̒��_���X�g
-	LPDIRECT3DTEXTURE9 tex_AA;				//!< �`�`�\���p�e�N�X�`��
+	LPDIRECT3DTEXTURE9 tex_fb;				//!< フロントバッファをコピーしたテクスチャ
+	LPDIRECT3DTEXTURE9 tex_nowload;			//!< "Now Loading"表示用テクスチャ
+	LPDIRECT3DTEXTURE9 tex_dll;				//!< DLLアイコン表示用テクスチャ
+	LPDIRECT3DTEXTURE9 tex_img;				//!< IMGアイコン表示用テクスチャ
+	LPDIRECT3DTEXTURE9 tex_gcd;				//!< GCDアイコン表示用テクスチャ
+	MYVERTEX3D vb[4];						//!< テクスチャ描画用の頂点リスト
+	LPDIRECT3DTEXTURE9 tex_AA;				//!< ＡＡ表示用テクスチャ
 	
 
 	std::vector<NowLoading_IconItem> m_iconlist;

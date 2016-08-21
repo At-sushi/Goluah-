@@ -1,6 +1,6 @@
-/*===============================================================
+ï»¿/*===============================================================
 
-	‚»‚Ì‘¼ƒGƒtƒFƒNƒg
+	ãã®ä»–ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 
 =================================================================*/
 #include "stdafx.h"
@@ -11,7 +11,7 @@
 
 
 /****************************************************************
-	’´•K‚ÌŒõ
+	è¶…å¿…ã®å…‰
 *****************************************************************/
 
 BOOL CFxCyohiLight::static_initialized = FALSE;
@@ -38,11 +38,11 @@ void CFxCyohiLight::InitCyohiLightVertex()
 	float nagasa;
 	double rot;
 	double rot_prv;
-	double sita;//ƒÆ
+	double sita;//Î¸
 
-	double ng_s_min=0.2;//‚±‚Ì’·‚³ˆÈ‰º‚ÅƒÆˆê’è
-	double ng_s_max=1.0;//‚±‚Ì’·‚³ˆÈã‚ÅƒÆˆê’è
-	double sita_max=30;//ƒÆmax
+	double ng_s_min=0.2;//ã“ã®é•·ã•ä»¥ä¸‹ã§Î¸ä¸€å®š
+	double ng_s_max=1.0;//ã“ã®é•·ã•ä»¥ä¸Šã§Î¸ä¸€å®š
+	double sita_max=30;//Î¸max
 
 	MYVERTEX3D *pvb[3];
 
@@ -50,29 +50,29 @@ void CFxCyohiLight::InitCyohiLightVertex()
 
 	for(j=0;j<CYOHILIGHT_LINES;j++){
 		nagasa_wariai = (float)( 1.0 + (rand()%100)*0.004 );
-		rot_prv = (360.0/CYOHILIGHT_LINES)*j;//‰Šú‰ñ“]Šp
+		rot_prv = (360.0/CYOHILIGHT_LINES)*j;//åˆæœŸå›è»¢è§’
 		for(i=0;i<CYOHILIGHT_LIFETIME;i++){
 
 			pvb[0] = &p_vbcl[i][j*3];
 			pvb[1] = &p_vbcl[i][j*3+1];
 			pvb[2] = &p_vbcl[i][j*3+2];
 
-			//’·‚³
+			//é•·ã•
 			if(i<10)nagasa = 0.8f - 0.03f*i;
 			else nagasa = (0.8f - 0.03f*10) + 0.04f*(i-10);
 			nagasa *= nagasa_wariai;
 
-			//Šp“x
+			//è§’åº¦
 			if(nagasa > ng_s_max)sita=0;
 			else if(nagasa < ng_s_min)sita=sita_max;
 			else {
 				sita = (sita_max/(ng_s_max-ng_s_min))*nagasa - (ng_s_max*(sita_max/(ng_s_max-ng_s_min)));
 			}
 
-			//‰ñ“]Šp“xi’·‚³‚©‚çŒˆ‚ß‚éj
+			//å›è»¢è§’åº¦ï¼ˆé•·ã•ã‹ã‚‰æ±ºã‚ã‚‹ï¼‰
 			rot = rot_prv + (0.8-nagasa)*7;
 
-			//‚´‚Ğ‚å[
+			//ã–ã²ã‚‡ãƒ¼
 			pvb[0]->z = pvb[1]->z = pvb[2]->z = 0;
 			pvb[0]->x = pvb[0]->y = 0;
 			pvb[1]->x = nagasa*(float)sin( (rot+sita)/360*2*PI );
@@ -80,13 +80,13 @@ void CFxCyohiLight::InitCyohiLightVertex()
 			pvb[2]->x = nagasa*(float)sin( (rot-sita)/360*2*PI );
 			pvb[2]->y = nagasa*(float)cos( (rot-sita)/360*2*PI );
 
-			//F
+			//è‰²
 			pvb[0]->color = pvb[1]->color = pvb[2]->color = 0xFF0022FF;
 			pvb[0]->color = 0xAAFFFFFF;
 			pvb[1]->color &= 0x00FFFFFF;
 			pvb[2]->color &= 0x00FFFFFF;
 
-			//UVÀ•W
+			//UVåº§æ¨™
 			pvb[0]->tu = pvb[1]->tu = pvb[2]->tu = 0;
 			pvb[0]->tv = pvb[1]->tv = pvb[2]->tv = 0;
 
@@ -112,7 +112,7 @@ BOOL CFxCyohiLight::Draw()
 			g_draw.d3ddev->SetRenderState(D3DRS_ZENABLE,TRUE);
 	}
 	if(counter<20)
-	g_draw.DrawCircle((int)pdat->x,(int)pdat->y,//‚Ğ‚ë‚ª‚é
+	g_draw.DrawCircle((int)pdat->x,(int)pdat->y,//ã²ã‚ãŒã‚‹
 		counter*10,
 		(20-counter)*2,0.02f,0xFF0055FF,TRUE);
 	g_draw.SetAlphaMode(0);
@@ -120,7 +120,7 @@ BOOL CFxCyohiLight::Draw()
 }
 
 /****************************************************************
-	’Pƒ‚È›‚ÌL‚ª‚è
+	å˜ç´”ãªâ—‹ã®åºƒãŒã‚Š
 *****************************************************************/
 
 void CFxCircle::Update()
@@ -136,7 +136,7 @@ BOOL CFxCircle::Draw()
 }
 
 /*****************************************************************
-	—±Xiƒ|ƒCƒ“ƒgƒXƒvƒ‰ƒCƒgj
+	ç²’ã€…ï¼ˆãƒã‚¤ãƒ³ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆï¼‰
 ******************************************************************/
 
 CFxPSprite::CFxPSprite()
@@ -155,7 +155,7 @@ BOOL CFxPSprite::Create(int prm1,int prm2,int prm3)
 	{
 		if(num>16)
 		{
-			g_system.Log(_T("CFxPSprite::Create num‚ª16‚ğ’´‚¦‚Ä‚¢‚Ü‚·"),SYSLOG_WARNING);
+			g_system.Log(_T("CFxPSprite::Create numãŒ16ã‚’è¶…ãˆã¦ã„ã¾ã™"),SYSLOG_WARNING);
 			num = 16;
 		}
 
@@ -177,7 +177,7 @@ void CFxPSprite::Update()
 	for(tmp2=0;tmp2<16;tmp2++){
 		vb[tmp2].x += vx[tmp2];
 		vb[tmp2].y += vy[tmp2];
-		//ƒ¿’l‚ğİ’è
+		//Î±å€¤ã‚’è¨­å®š
 		tmp4 = (255 / (life[tmp2]+1) )* pdat->counter;
 		tmp4 = 255-tmp4;
 		vb[tmp2].color &= 0x00FFFFFF;
@@ -196,8 +196,8 @@ BOOL CFxPSprite::Draw()
 	
 	PointSetting();
 
-	g_draw.SetAlphaMode(GBLEND_KASAN);//‡¬‚Ìƒ‚[ƒh
-	g_draw.EnableZ(TRUE,FALSE);//Z‘‚«‚İOFF
+	g_draw.SetAlphaMode(GBLEND_KASAN);//åˆæˆã®ãƒ¢ãƒ¼ãƒ‰
+	g_draw.EnableZ(TRUE,FALSE);//Zæ›¸ãè¾¼ã¿OFF
 
 	for(UINT i=0;i<num;i++)
 	{
@@ -216,8 +216,8 @@ BOOL CFxPSprite::Draw()
 	D3DXMATRIX transm = aki3d.CreateMatrix( NULL, NULL, &vtrans);
 	m_part->Render(&matw);
 
-	g_draw.SetAlphaMode(0);//‡¬‚Ìƒ‚[ƒh
-	g_draw.EnableZ();//Z‘‚«‚İON(‹K’è’l)
+	g_draw.SetAlphaMode(0);//åˆæˆã®ãƒ¢ãƒ¼ãƒ‰
+	g_draw.EnableZ();//Zæ›¸ãè¾¼ã¿ON(è¦å®šå€¤)
 
 	return TRUE;
 }
@@ -238,20 +238,20 @@ BOOL CFxPSprite::SetParticleDat(int x,int y,DWORD prm)
 {
 	DWORD i, j;
 	DWORD prme[8];
-	for(i=0;i<8;i++){//ƒpƒ‰ƒ[ƒ^‚ğ8‚Â‚É•ª‰ğ
+	for(i=0;i<8;i++){//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’8ã¤ã«åˆ†è§£
 		prme[i] = prm;
 		for(j=(7-i);j>0;j--){
 			prme[i] /= 16;
 		}
 		prme[i] &= 0x0000000F;
 	}
-//a:—±‚Ì”(0`15)
-//b;—±‚Ì‘¬“x
-//c:—±‚Ì‘¬“x‚Ì‚Î‚ç‚Â‚«
-//d:Å’á‘¬“x
-//e:‰ŠúˆÊ’u‚Ì‚Î‚ç‚Â‚«
-//f:õ–½‚Ì‚Î‚ç‚Â‚«
-//g:—±‚ÌÅ’Zõ–½
+//a:ç²’ã®æ•°(0ï½15)
+//b;ç²’ã®é€Ÿåº¦
+//c:ç²’ã®é€Ÿåº¦ã®ã°ã‚‰ã¤ã
+//d:æœ€ä½é€Ÿåº¦
+//e:åˆæœŸä½ç½®ã®ã°ã‚‰ã¤ã
+//f:å¯¿å‘½ã®ã°ã‚‰ã¤ã
+//g:ç²’ã®æœ€çŸ­å¯¿å‘½
 
 	double kakudo;
 	double sokudo;
@@ -302,7 +302,7 @@ BOOL CFxPSprite::SetParticleDat(int x,int y,DWORD prm)
 }
 
 /*****************************************************************
-	—±Xiƒ|ƒCƒ“ƒgƒXƒvƒ‰ƒCƒgjE2
+	ç²’ã€…ï¼ˆãƒã‚¤ãƒ³ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆï¼‰ãƒ»2
 ******************************************************************/
 void CFxPSprite2::PointSetting()
 {
@@ -317,7 +317,7 @@ void CFxPSprite2::PointSetting()
 }
 
 /*****************************************************************
-	‚à‚¦[
+	ã‚‚ãˆãƒ¼
 ******************************************************************/
 
 BOOL CFxBurn::Create(int prm1,int prm2,int prm3)
@@ -390,7 +390,7 @@ void CFxBurn::Update()
 	BYTE alpha;
 	DWORD col;
 
-	if(pdat->aid==ACTID_EFCTBURN_ATOUCHED){//ƒLƒƒƒ‰ƒNƒ^[‚ğ•‚­‚·‚é
+	if(pdat->aid==ACTID_EFCTBURN_ATOUCHED){//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚’é»’ãã™ã‚‹
 		ptdat->color = 0xFF775555;
 	}
 
@@ -488,7 +488,7 @@ void CFxComeon::Update()
 
 
 /*****************************************************************
-	ƒK[ƒhƒLƒƒƒ“ƒZƒ‹
+	ã‚¬ãƒ¼ãƒ‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ******************************************************************/
 
 CFxGuardCancel::CFxGuardCancel()
@@ -541,7 +541,7 @@ BOOL CFxGuardCancel::Draw()
 	aki3d.SetBlend_Add();
 	aki3d.EnableZ(TRUE,FALSE);
 
-	if(pdat->counter < 15){//‰~
+	if(pdat->counter < 15){//å††
 		g_draw.DrawCircle((int)pdat->x,(int)pdat->y,(pdat->counter+4)*5,
 			10,0,GetColor() + (((255-pdat->counter*(255/15))*255*255*255)&0xFF000000),TRUE);
 	}
@@ -587,7 +587,7 @@ void CFxGuardCancel::CFxGuardCancel_PartInfo::Update()
 
 
 /*****************************************************************
-	ƒX[ƒp[ƒA[ƒ}[
+	ã‚¹ãƒ¼ãƒ‘ãƒ¼ã‚¢ãƒ¼ãƒãƒ¼
 ******************************************************************/
 void CFxSuperArmer::Update()
 {
@@ -610,7 +610,7 @@ void CFxSuperArmer::Update()
 
 
 /*****************************************************************
-	‰B‚µƒGƒtƒFƒNƒguHatten ar dinv
+	éš ã—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€ŒHatten ar dinã€
 ******************************************************************/
 void CFxHatten::Update()
 {

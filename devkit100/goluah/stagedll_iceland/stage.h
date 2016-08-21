@@ -1,4 +1,4 @@
-#pragma once
+Ôªø#pragma once
 
 #include <windows.h>
 #include <stdio.h>
@@ -10,7 +10,7 @@
 #define NUM_JIMEN_X 15
 
 /*!
-*	@brief ÉXÉeÅ[ÉWÉNÉâÉX
+*	@brief „Çπ„ÉÜ„Éº„Ç∏„ÇØ„É©„Çπ
 */
 class CStage : public CStageBase
 {
@@ -29,14 +29,14 @@ protected:
 	void DrawJimen();
 	void DrawSky();
 
-	//êÖñ 
+	//Ê∞¥Èù¢
 	LPDIRECT3DTEXTURE9 ptex_water;
 	MYVERTEX3D vb_water[4];
 
-	//ínñ 
+	//Âú∞Èù¢
 	LPDIRECT3DVERTEXBUFFER9 vb_jimen[NUM_JIMEN_Z];
 
-	//ãÛ
+	//Á©∫
 	LPDIRECT3DTEXTURE9 ptex_sky;
 	LPDIRECT3DVERTEXBUFFER9 vb_sky;
 };

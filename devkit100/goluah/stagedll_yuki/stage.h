@@ -1,4 +1,4 @@
-#pragma once
+Ôªø#pragma once
 
 #include <windows.h>
 #include <stdio.h>
@@ -13,7 +13,7 @@
 #define MAXNUM_SNOW_FRONT_DRAW	(256)
 
 /*!
-*	@brief ÉXÉeÅ[ÉWÉNÉâÉX
+*	@brief „Çπ„ÉÜ„Éº„Ç∏„ÇØ„É©„Çπ
 */
 class CStage : public CStageBase
 {

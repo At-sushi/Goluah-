@@ -1,10 +1,10 @@
-
+﻿
 /*!
 *	@file
-*	@brief aki3d.lib ��`
+*	@brief aki3d.lib 定義
 *
-*	aki3d.lib �̋@�\��`�B
-*	Goluah!!�{�́A�L�����N�^�[/�X�e�[�WDLL(aki���̂���)����Q�Ƃ����
+*	aki3d.lib の機能定義。
+*	Goluah!!本体、キャラクター/ステージDLL(aki製のもの)から参照される
 */
 #pragma once
 #define _aki3d_h_
@@ -17,43 +17,43 @@
 #define NEAR_CLIP	( 0.1f)
 
 /*----------------------------------------------------------
-	�g�p����Direct3D���_�t�H�[�}�b�g�@��`
+	使用するDirect3D頂点フォーマット　定義
 ------------------------------------------------------------*/
 #ifndef FVF_3DVERTEX
 #define FVF_3DVERTEX	(D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1 )
 /*!
-*	@brief �`��Ɏg�p���钸�_�\����
+*	@brief 描画に使用する頂点構造体
 *
-*	D3D8�̏_��Ȓ��_�t�H�[�}�b�g�Ƃ�������B
-*	�V�F�[�_�[�ݒ�ł� FVF_3DVERTEX ���g�p����
+*	D3D8の柔軟な頂点フォーマットとかいうやつ。
+*	シェーダー設定では FVF_3DVERTEX を使用する
 */
 struct MYVERTEX3D
 {
-	float x,y,z;	//!< ���W
-	DWORD color;	//!< ���_�J���[
-	float tu,tv;	//!< �e�N�X�`�����W
+	float x,y,z;	//!< 座標
+	DWORD color;	//!< 頂点カラー
+	float tu,tv;	//!< テクスチャ座標
 };
 #endif//FVF_3DVERTEX
 
 /*---------------------------------------------------------
-	�^��`
+	型定義
 -----------------------------------------------------------*/
 typedef D3DXVECTOR3 V3d;
 
 /*!
-*	@brief 2�����x�N�g���\����
+*	@brief 2次元ベクトル構造体
 *
-*	�`��p�Ƃ������́A�b�\���̕����v�Z���Ŏg�p�H
-*	�������֗��֐��A��
+*	描画用というよりは、秒構えの物理計算等で使用？
+*	いくつか便利関数アリ
 */
 struct V2d
 {
 	float x,y;
 
-	void Normalize();				//!< ���K��
-	void Verticalize();				//!< ������(������0�̏ꍇ�͓K���Ȍ����̐��K�x�N�g��)
-	float Length();					//!< �����擾
-	void SetLength(float len);		//!< �����ݒ�(�����͎c��)
+	void Normalize();				//!< 正規化
+	void Verticalize();				//!< 垂直化(長さが0の場合は適当な向きの正規ベクトル)
+	float Length();					//!< 長さ取得
+	void SetLength(float len);		//!< 長さ設定(向きは残る)
 
 	V2d& operator=(const V2d& v);
 	V2d  operator+(const V2d& v);
@@ -67,9 +67,9 @@ struct V2d
 
 #ifndef ARGB_STRUCT
 /*!
-*	@brief �F���\����
+*	@brief 色情報構造体
 *
-*	ARGB�ʌ`���ƁADWORD32�r�b�g�`���Ƃ̑��ݕϊ����\
+*	ARGB個別形式と、DWORD32ビット形式との相互変換が可能
 */
 struct ARGB
 {
@@ -91,7 +91,7 @@ struct ARGB
 #endif
 
 /*---------------------------------------------------------
-	��{�x�N�g��
+	基本ベクトル
 -----------------------------------------------------------*/
 extern V3d Xaxis;
 extern V3d Yaxis;
@@ -99,7 +99,7 @@ extern V3d Zaxis;
 extern V3d Zero;
 
 /*----------------------------------------------------------
-	�G�t�F�N�g�T�[�r�X�N���X
+	エフェクトサービスクラス
 ------------------------------------------------------------*/
 
 class CTristrip;
@@ -110,65 +110,65 @@ class CMesh;
 typedef void (*WarningReportFunctionPtr)(const TCHAR* war_str);
 
 /*!
-*	@brief 3D�`��T�[�r�X�N���X
+*	@brief 3D描画サービスクラス
 *
-*	���DLL������3D�`��@�\��񋟂���B�e�N�X�`���Ǘ������B
-*	���̃N���X�̓��C�u�������� aki3d �Ƃ����O���[�o���ȃC���X�^���X�����݂���̂ŁA
-*	������g�p���邱�ƁB
+*	主にDLL向けに3D描画機能を提供する。テクスチャ管理等も。
+*	このクラスはライブラリ中に aki3d というグローバルなインスタンスが存在するので、
+*	それを使用すること。
 *
-*	�擾�����e�N���X�̃C���X�^���X�͂��̃N���X�̔j�����Ɏ����I��delete�����̂ŁA
-*	�擾����delete���Ȃ����ƁB(���������C���X�^���X�����X�g�Ŏ����Ă�̂�)
-*	�C���X�^���X�̐����Ɣj�����p�ɂɍs����ꍇ(goluah�{��)�́ADestroy�`�n�̊֐��Ŕj�����s���B
-*	���̂Ƃ��e�N�X�`���[���Q�ƃJ�E���g�ɂ�����炸�S�Ĕj�������B
+*	取得した各クラスのインスタンスはこのクラスの破棄時に自動的にdeleteされるので、
+*	取得側でdeleteしないこと。(生成したインスタンスをリストで持ってるので)
+*	インスタンスの生成と破棄が頻繁に行われる場合(goluah本体)は、Destroy〜系の関数で破棄を行う。
+*	そのときテクスチャーも参照カウントにかかわらず全て破棄される。
 */
 class Aki3d
 {
 public:
 	Aki3d(){d3ddev=NULL;}
 
-	//!�������B�S�Ă̑���̑O�ɍs������
+	//!初期化。全ての操作の前に行うこと
 	void Initialize(
-		LPDIRECT3DDEVICE9 d3d_device,		//!< D3D�f�o�C�X�I�u�W�F�N�g
-		const TCHAR*	tex_path,				//!< �e�N�X�`�����[�h�p�̃x�[�X�f�B���N�g��
-		WarningReportFunctionPtr pwf=NULL	//!< �G���[���|�[�g�p�̊֐��|�C���^
+		LPDIRECT3DDEVICE9 d3d_device,		//!< D3Dデバイスオブジェクト
+		const TCHAR*	tex_path,				//!< テクスチャロード用のベースディレクトリ
+		WarningReportFunctionPtr pwf=NULL	//!< エラーリポート用の関数ポインタ
 		);
 	~Aki3d(){Destroy();}
 
-	CTristrip*		CreateTristripObject();		//!< CTristrip�N���X�C���X�^���X�擾�Bdelete���Ȃ�����
-	CParticle*		CreateParticleObject();		//!< CParticle�N���X�C���X�^���X�擾�Bdelete���Ȃ�����
-	CFlatBoards*	CreateFlatBoardsObject();	//!< CFlatBords�N���X�C���X�^���X�擾�Bdelete���Ȃ�����
-	CMesh*			CreateMeshObject();			//!< CMesh�N���X�C���X�^���X�擾�Bdelete���Ȃ�����
+	CTristrip*		CreateTristripObject();		//!< CTristripクラスインスタンス取得。deleteしないこと
+	CParticle*		CreateParticleObject();		//!< CParticleクラスインスタンス取得。deleteしないこと
+	CFlatBoards*	CreateFlatBoardsObject();	//!< CFlatBordsクラスインスタンス取得。deleteしないこと
+	CMesh*			CreateMeshObject();			//!< CMeshクラスインスタンス取得。deleteしないこと
 
-	void DestroyTristripObject(CTristrip*);		//!< CTristrip�N���X�C���X�^���X�����j���B
-	void DestroyParticleObject(CParticle*);		//!< CParticle�N���X�C���X�^���X�����j���B
-	void DestroyFlatBoardsObject(CFlatBoards*);	//!< CFlatBords�N���X�C���X�^���X�����j���B
-	void DestroyMeshObject(CMesh*);				//!< CMesh�N���X�C���X�^���X�����j���B
+	void DestroyTristripObject(CTristrip*);		//!< CTristripクラスインスタンス明示破棄。
+	void DestroyParticleObject(CParticle*);		//!< CParticleクラスインスタンス明示破棄。
+	void DestroyFlatBoardsObject(CFlatBoards*);	//!< CFlatBordsクラスインスタンス明示破棄。
+	void DestroyMeshObject(CMesh*);				//!< CMeshクラスインスタンス明示破棄。
 
 	/*!
-	*	@brief �}�g���b�N�X����
-	*	@param scale �X�P�[���B�}�C�i�X�l�Ŕ��]���s�����Ƃ��ł���
-	*	@param rotation �x�N�g���̌�������]���Ƃ��āA���������W�A���P�ʂ̉�]�p�Ƃ��ĉ���
-	*	@param trans ���s�ړ���
-	*	@return �w��x�N�g�����琶���������W�ϊ��}�g���N�X
+	*	@brief マトリックス生成
+	*	@param scale スケール。マイナス値で反転を行うことができる
+	*	@param rotation ベクトルの向きを回転軸として、長さをラジアン単位の回転角として解釈
+	*	@param trans 平行移動量
+	*	@return 指定ベクトルから生成した座標変換マトリクス
 	*	
-	*	���������ꂼ��NULL�̏ꍇ�ɊY�����鑀����s��Ȃ�.
-	*	�[���x�N�g��������Ȃ��ł͂Ȃ����Ƃɒ��ӂ��邱��
-	*	�i�Ⴆ�΃[���x�N�g���ɂ��X�P�[�����s���ƕ`�悳��Ȃ��Ȃ�j
+	*	引数がそれぞれNULLの場合に該当する操作を行わない.
+	*	ゼロベクトルが操作なしではないことに注意すること
+	*	（例えばゼロベクトルによるスケールを行うと描画されなくなる）
 	*/
 	D3DXMATRIX& CreateMatrix( V3d* scale, V3d* rotation, V3d* trans );
 
 public:
-	static float RandomOne();		//!< 0�`1���������_��
-	static float RandomOne2();		//!< -1�`1���������_��
+	static float RandomOne();		//!< 0〜1実数ランダム
+	static float RandomOne2();		//!< -1〜1実数ランダム
 	float zo_tri(float t,float mid=0.5f);
 
-	//�����_�[�X�e�[�g�ݒ�
+	//レンダーステート設定
 	void EnableZ(BOOL t=TRUE,BOOL w=TRUE);
 	void SetBlend_Add();
 	void SetBlend_Normal();
 	void SetBlend_Nega();
 
-	//�e�N�X�`���[
+	//テクスチャー
 	LPDIRECT3DTEXTURE9 LoadTexture(const TCHAR *filename);
 	void UnloadTexture(LPDIRECT3DTEXTURE9 ptex);
 
@@ -179,7 +179,7 @@ public:
 protected:
 	void Destroy();
 
-	LPDIRECT3DDEVICE9 d3ddev;		//D3D�f�o�C�X
+	LPDIRECT3DDEVICE9 d3ddev;		//D3Dデバイス
 	WarningReportFunctionPtr warning_report;
 };
 
@@ -187,14 +187,14 @@ extern Aki3d aki3d;
 
 
 /*!
-*	@brief ���X�g���b�v�`��N���X
+*	@brief △ストリップ描画クラス
 *
-*	�A���������炩�Ȑ���`�����Ƃ��ł���B
-*	Create�Ńm�[�h(��)�����w�肵�A�e�m�[�h�ɑ΂��Ĉʒu�Ƒ�����ݒ肷��ƁA
-*	�������Ȃ����g���C�A���O���X�g���b�v���v�Z���ĕ`�悷��B
+*	連続した滑らかな線を描くことができる。
+*	Createでノード(節)数を指定し、各ノードに対して位置と太さを設定すると、
+*	それらをつないだトライアングルストリップを計算して描画する。
 *
-*	�C���X�^���X��Aki3d::CreateTristripObject �Ŏ擾����B
-*	�j����Aki3d���s���̂ŁA�擾�����C���X�^���X��delete���Ȃ����ƁB
+*	インスタンスはAki3d::CreateTristripObject で取得する。
+*	破棄はAki3dが行うので、取得したインスタンスをdeleteしないこと。
 *
 *	@sa Aki3d
 */
@@ -215,13 +215,13 @@ public:
 
 
 /*!
-*	@brief �Ԃԕ`��N���X
+*	@brief つぶつぶ描画クラス
 *
-*	��{�I�ɁA�ʒu�Ƒ傫�����w�肵�Ċۂ�(�e�N�X�`���[�ɂ��)�_�X��`�悷��B
-*	Axis��ݒ肷��ƁA���̕����ɗ���L�΂��đȉ~��ɂ��邱�Ƃ��ł���B
+*	基本的に、位置と大きさを指定して丸い(テクスチャーによる)点々を描画する。
+*	Axisを設定すると、その方向に粒を伸ばして楕円状にすることができる。
 *
-*	�C���X�^���X��Aki3d::CreateParticleObject �Ŏ擾����B
-*	�j����Aki3d���s���̂ŁA�擾�����C���X�^���X��delete���Ȃ����ƁB
+*	インスタンスはAki3d::CreateParticleObject で取得する。
+*	破棄はAki3dが行うので、取得したインスタンスをdeleteしないこと。
 *
 *	@sa Aki3d
 */
@@ -243,10 +243,10 @@ public:
 
 
 /*!
-*	@brief ���b�V���`��N���X
+*	@brief メッシュ描画クラス
 *
-*	�C���X�^���X��Aki3d::CreateMeshObject �Ŏ擾����B
-*	�j����Aki3d���s���̂ŁA�擾�����C���X�^���X��delete���Ȃ����ƁB
+*	インスタンスはAki3d::CreateMeshObject で取得する。
+*	破棄はAki3dが行うので、取得したインスタンスをdeleteしないこと。
 *
 *	@sa Aki3d
 */
@@ -271,13 +271,13 @@ public:
 
 
 /*!
-*	@brief �t���b�g�{�[�h�`��N���X
+*	@brief フラットボード描画クラス
 *
-*	CParticle�Ǝ��Ă��邪�A������͑傫���̎w��͂Ȃ��B
-*	Axis1 �� Axis2 �Ŏw�肳�ꂽ�������l�p�`�v���~�e�B�u��`�悷��B
+*	CParticleと似ているが、こちらは大きさの指定はない。
+*	Axis1 と Axis2 で指定された平たい四角形プリミティブを描画する。
 *
-*	�C���X�^���X��Aki3d::CreateFlatBordObject �Ŏ擾����B
-*	�j����Aki3d���s���̂ŁA�擾�����C���X�^���X��delete���Ȃ����ƁB
+*	インスタンスはAki3d::CreateFlatBordObject で取得する。
+*	破棄はAki3dが行うので、取得したインスタンスをdeleteしないこと。
 *
 *	@sa Aki3d
 */
@@ -299,7 +299,7 @@ public:
 
 
 /*--------------------------------------------------------
-	�}�N��
+	マクロ
 ----------------------------------------------------------*/
 #ifndef RELEASE
 #define RELEASE(a)			if(a){a->Release();a=NULL;}

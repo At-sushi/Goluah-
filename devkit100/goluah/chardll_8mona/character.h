@@ -1,4 +1,4 @@
-/*=====================================================================================
+Ôªø/*=====================================================================================
 
 Goluah!! Copyright (C) 2001-2004 aki, 2004-2016 At-sushi, 2014-2016 logger
 
@@ -12,7 +12,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 /*==============================================================
 
-	ÉLÉÉÉâÉNÉ^Å[íËã`ÉwÉbÉ_
+	„Ç≠„É£„É©„ÇØ„Çø„ÉºÂÆöÁæ©„Éò„ÉÉ„ÉÄ
 
 ================================================================*/
 #pragma once
@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License along with thi
 #include <stdio.h>
 
 #include "gobjbase.h"
-#include "cell.h"// í èÌÅAare_editerÇ≈ê∂ê¨ÇµÇΩÉwÉbÉ_Å[ÉtÉ@ÉCÉãÇÇ±Ç±Ç…includeÇµÇ‹Ç∑
+#include "cell.h"// ÈÄöÂ∏∏„ÄÅare_editer„ÅßÁîüÊàê„Åó„Åü„Éò„ÉÉ„ÉÄ„Éº„Éï„Ç°„Ç§„É´„Çí„Åì„Åì„Å´include„Åó„Åæ„Åô
 
 class CHeart;
 class CDashWind;
@@ -32,7 +32,7 @@ class CDashWind;
 #define AIF_NUM			(32)
 
 /*--------------------------------------------------------------
-	ÉÅÉCÉìÉLÉÉÉâÉNÉ^Å[ÉNÉâÉX
+	„É°„Ç§„É≥„Ç≠„É£„É©„ÇØ„Çø„Éº„ÇØ„É©„Çπ
 ----------------------------------------------------------------*/
 class CCharacter : public CCharacterBase
 {
@@ -42,7 +42,7 @@ public:
 
 protected:
 	//*********************************************
-	//  ÉIÅ[ÉoÅ[ÉâÉCÉhÇ∑ÇÈä÷êî
+	//  „Ç™„Éº„Éê„Éº„É©„Ç§„Éâ„Åô„ÇãÈñ¢Êï∞
 	//*********************************************
 
 	DWORD Message(DWORD msg,LPVOID pd,DWORD prm);
@@ -59,35 +59,35 @@ protected:
 	DWORD CmdCom_OnSystem(DWORD wid);
 	DWORD CmdCom_OnHissatuAttacking(DWORD wid);
 	DWORD CmdCom_OnNormal(DWORD wid);
-	void InitAttackInfo();//çUåÇóÕèÓïÒÇÃèâä˙âª
-	void InitWazInfo();//ãZèÓïÒÇÃèâä˙âª
-	void InitBullets();//îÚÇ—ìπãÔÇÃèâä˙âª
+	void InitAttackInfo();//ÊîªÊíÉÂäõÊÉÖÂ†±„ÅÆÂàùÊúüÂåñ
+	void InitWazInfo();//ÊäÄÊÉÖÂ†±„ÅÆÂàùÊúüÂåñ
+	void InitBullets();//È£õ„Å≥ÈÅìÂÖ∑„ÅÆÂàùÊúüÂåñ
 
-	//í èÌìÆçÏ
-	void act_neutral();//ÉjÉÖÅ[ÉgÉâÉã
-	void act_crouch();//ÇµÇ·Ç™Ç›
-	void act_rakka();//óéâ∫
-	void act_tojyo();//ìoèÍ
-	void act_win();//èüóò
-	void act_walkf();//ëOêi
-	void act_walkb();//å„ëﬁ
-	void act_jamps();//ÉWÉÉÉìÉvó\îıìÆçÏ
-	void act_jampc();//êÇíºÉWÉÉÉìÉv
-	void act_jampf();//ëOÉWÉÉÉìÉv
-	void act_jampb();//å„ÉWÉÉÉìÉv
-	void act_strikercomeon();//Ç¢ÇÁÇ¡ÇµÇ·Å[Ç¢
-	void act_timeoverlose();//Ç™Ç¡Ç©ÇËÅI
-	//í èÌ.çUåÇ
-	void act_att_sa();//óßé„
-	void act_att_sb();//óßíÜ
-	void act_att_sc();//óßã≠
-	void act_att_ca();//ã¸é„
-	void act_att_cb();//ã¸íÜ
-	void act_att_cc();//ã¸ã≠
-	void act_att_ja();//îÚé„
-	void act_att_jb();//îÚíÜ
-	void act_att_jc();//îÚã≠
-	//ÇªÇÃëº
+	//ÈÄöÂ∏∏Âãï‰Ωú
+	void act_neutral();//„Éã„É•„Éº„Éà„É©„É´
+	void act_crouch();//„Åó„ÇÉ„Åå„Åø
+	void act_rakka();//ËêΩ‰∏ã
+	void act_tojyo();//ÁôªÂ†¥
+	void act_win();//ÂãùÂà©
+	void act_walkf();//ÂâçÈÄ≤
+	void act_walkb();//ÂæåÈÄÄ
+	void act_jamps();//„Ç∏„É£„É≥„Éó‰∫àÂÇôÂãï‰Ωú
+	void act_jampc();//ÂûÇÁõ¥„Ç∏„É£„É≥„Éó
+	void act_jampf();//Ââç„Ç∏„É£„É≥„Éó
+	void act_jampb();//Âæå„Ç∏„É£„É≥„Éó
+	void act_strikercomeon();//„ÅÑ„Çâ„Å£„Åó„ÇÉ„Éº„ÅÑ
+	void act_timeoverlose();//„Åå„Å£„Åã„ÇäÔºÅ
+	//ÈÄöÂ∏∏.ÊîªÊíÉ
+	void act_att_sa();//Á´ãÂº±
+	void act_att_sb();//Á´ã‰∏≠
+	void act_att_sc();//Á´ãÂº∑
+	void act_att_ca();//Â±àÂº±
+	void act_att_cb();//Â±à‰∏≠
+	void act_att_cc();//Â±àÂº∑
+	void act_att_ja();//È£õÂº±
+	void act_att_jb();//È£õ‰∏≠
+	void act_att_jc();//È£õÂº∑
+	//„Åù„ÅÆ‰ªñ
 	void act_taiki();
 	void act_koutai_out();
 	void act_koutai_in();
@@ -95,15 +95,15 @@ protected:
 	void act_koutai2();
 
 	//*********************************************
-	//Å@CCharacterÉNÉâÉXì∆é©ÇÃä÷êî
+	//„ÄÄCCharacter„ÇØ„É©„ÇπÁã¨Ëá™„ÅÆÈñ¢Êï∞
 	//*********************************************
 private:
-	void InitParameters();//ÉpÉâÉÅÅ[É^èâä˙âª
+	void InitParameters();//„Éë„É©„É°„Éº„ÇøÂàùÊúüÂåñ
 	void StartAttack(DWORD atk_info_id);
 	void EndAttack(){pdat->kougeki=FALSE;}
 	BOOL ComLevelCk(UINT level);
 
-	//í«â¡çsìÆä÷êî
+	//ËøΩÂä†Ë°åÂãïÈñ¢Êï∞
 	void act_nage();
 	DWORD act_nagee(GOBJECT *pedat);
 	void act_sah1();
@@ -133,10 +133,10 @@ private:
 	void act_hkick();
 	void act_sah_landing();
 
-	//çUåÇóÕèÓïÒ
+	//ÊîªÊíÉÂäõÊÉÖÂ†±
 	ATTACKINFO aif[AIF_NUM];
 	
-	//îÚÇ—ìπãÔóﬁ
+	//È£õ„Å≥ÈÅìÂÖ∑È°û
 	CClassicalBullet *clabul_nak1;
 	CClassicalBullet *clabul_nak2;
 //	CClassicalBullet *clabul_wind;
@@ -152,20 +152,20 @@ private:
 	BULLETINFO_A fola[3],folb[3],folc[3],fold[3],fole[3];
 	BOOL EscapeOK();
 
-	//ÉIÉvÉVÉáÉìóﬁ
+	//„Ç™„Éó„Ç∑„Éß„É≥È°û
 	BOOL opt_gcancel;
 	BOOL opt_exattack;
 	BOOL opt_ikari;
 	BOOL opt_super_armer;
 	BOOL opt_exfriend;
 
-	//Ç≥Çü
+	//„Åï„ÅÅ
 	BOOL sah_sw;
 };
 
 extern LPTSTR CharDirectory;
 
-//çsìÆIDÇÇ±Ç±Ç…í«â¡Ç∑ÇÈ
+//Ë°åÂãïID„Çí„Åì„Åì„Å´ËøΩÂä†„Åô„Çã
 
 #define ACTID_NAGE1				(ACTID_ATTACK | ACTID_NAGE    | 0x0001)
 #define ACTID_SAH1				(ACTID_ATTACK | ACTID_HISSATU | ACTID_KUCYU | 0x0002)
@@ -182,10 +182,10 @@ extern LPTSTR CharDirectory;
 #define ACTID_DASHB				(0x000D)
 #define ACTID_IKARI				(ACTID_ATTACK | ACTID_HISSATU | ACTID_NAGE  | 0x000E)
 #define ACTID_ESCAPE			(ACTID_ATTACK | ACTID_HISSATU | 0x000F)
-#define ACTID_STRIKER1			(ACTID_INOUT  | 0x0010)//ÉXÉgÉâÉCÉJÅ[çUåÇ
+#define ACTID_STRIKER1			(ACTID_INOUT  | 0x0010)//„Çπ„Éà„É©„Ç§„Ç´„ÉºÊîªÊíÉ
 #define ACTID_STRIKER2			(ACTID_INOUT  | 0x0011)
 #define ACTID_STRIKER3			(ACTID_INOUT  | 0x0012)
-#define ACTID_STRIKER4			(ACTID_INOUT  | 0x0013)//Ç∑Ç≤Ç∑Ç≤Ç∆ãAÇ¡ÇƒÇ¢Ç≠
+#define ACTID_STRIKER4			(ACTID_INOUT  | 0x0013)//„Åô„Åî„Åô„Åî„Å®Â∏∞„Å£„Å¶„ÅÑ„Åè
 #define ACTID_BAT				(ACTID_ATTACK | 0x0014)
 #define ACTID_UPPER_STEP		(ACTID_ATTACK | 0x0015)
 #define ACTID_UPPER_JAMP		(ACTID_ATTACK | ACTID_KUCYU   | 0x0016)
@@ -194,7 +194,7 @@ extern LPTSTR CharDirectory;
 #define ACTID_HKICK				(ACTID_ATTACK | 0x0019)
 #define ACTID_SAH_LANDING		(ACTID_ATTACK | ACTID_HISSATU | 0x0020)
 
-//çUåÇóÕî‘çÜÇÇ±Ç±Ç…íËã`Ç∑ÇÈ
+//ÊîªÊíÉÂäõÁï™Âè∑„Çí„Åì„Åì„Å´ÂÆöÁæ©„Åô„Çã
 #define ATTACKINFO_STAND_A		0
 #define ATTACKINFO_STAND_B		1
 #define ATTACKINFO_STAND_C		2
@@ -225,7 +225,7 @@ extern LPTSTR CharDirectory;
 #define ATTACKINFO_GCANCEL2		27
 #define ATTACKINFO_GCANCEL3		28
 
-//çUåÇIDÅiïKóvÇ™Ç†ÇÍÇŒïœçXÇ∑ÇÈÅj
+//ÊîªÊíÉIDÔºàÂøÖË¶Å„Åå„ÅÇ„Çå„Å∞Â§âÊõ¥„Åô„ÇãÔºâ
 #define ATTACK_WEAK				0x00000001
 #define ATTACK_MIDDLE			0x00000002
 #define ATTACK_STRONG			0x00000003
@@ -239,17 +239,17 @@ extern LPTSTR CharDirectory;
 #define ATTACK_SAH2				0x00050000
 #define ATTACK_BAT				0x00060000
 
-//í«â¡É`ÉFÅ[ÉìID
+//ËøΩÂä†„ÉÅ„Çß„Éº„É≥ID
 #define CHAIN_HAND				(0x00000001)
 #define CHAIN_UPPER				(0x00000002)
 #define CHAIN_BAT				(0x00000004)
 #define CHAIN_HKICK				(0x00000008)
 
-//ÉÜÅ[ÉUÅ[íËã`ÉÅÉbÉZÅ[ÉW
-#define GOBJMSG_NAGE			(GOBJMSG_USERDEFINE | 0x0001)	//ìäÇ∞óp
-#define GOBJMSG_IKARINAGE		(GOBJMSG_USERDEFINE | 0x0002)	//ìäÇ∞óp
+//„É¶„Éº„Ç∂„ÉºÂÆöÁæ©„É°„ÉÉ„Çª„Éº„Ç∏
+#define GOBJMSG_NAGE			(GOBJMSG_USERDEFINE | 0x0001)	//Êäï„ÅíÁî®
+#define GOBJMSG_IKARINAGE		(GOBJMSG_USERDEFINE | 0x0002)	//Êäï„ÅíÁî®
 
-//ÉIÉvÉVÉáÉìíËã`
+//„Ç™„Éó„Ç∑„Éß„É≥ÂÆöÁæ©
 #define OPTIONS_GUARD_CANCEL	0x00000001
 #define OPTIONS_EXTRA_ATTACK	0x00000002
 #define OPTIONS_IKARI			0x00000004
@@ -258,14 +258,14 @@ extern LPTSTR CharDirectory;
 
 #define YEAH					TRUE
 
-//ä‘çáÇ¢
+//ÈñìÂêà„ÅÑ
 #define MAAI_SHORT				(70)
 #define MAAI_MIDDLE				(140)
 #define MAAI_LONG				(200)
 #define MAAI_NAGE				(20)
 #define MAAI_HNAGE				(40)
 
-//waveî‘çÜ
+//waveÁï™Âè∑
 #define wave_tojyo				4
 #define wave_win				5
 #define wave_nage				6
@@ -278,7 +278,7 @@ extern LPTSTR CharDirectory;
 #define wave_break				13
 
 
-//É}ÉNÉçíËã`
+//„Éû„ÇØ„É≠ÂÆöÁæ©
 #define cell(a)					pdat->cnow=a
 #define ccounter				pdat->counter
 #define ALLGUARDFLAG			(GUARDINFO_XSTAND | GUARDINFO_XCROUCH | GUARDINFO_XJAMP)
@@ -286,10 +286,10 @@ extern LPTSTR CharDirectory;
 #define SetDWAlpha(d,a)			d=(d&0x00FFFFFF)|(a<<24)
 
 /*-------------------------------------------------------------------
-	îÚìπãÔìô
+	È£õÈÅìÂÖ∑Á≠â
 ---------------------------------------------------------------------*/
 
-//Å°É_ÉbÉVÉÖéûÇÃïó
+//‚ñ†„ÉÄ„ÉÉ„Ç∑„É•ÊôÇ„ÅÆÈ¢®
 class CDashWind : public CBulletBase
 {
 public:
@@ -298,7 +298,7 @@ public:
 	void act_bomb();
 };
 
-//Å°ÉnÅ[ÉgÉ}Å[ÉN
+//‚ñ†„Éè„Éº„Éà„Éû„Éº„ÇØ
 class CHeart : public CBulletBase
 {
 public:

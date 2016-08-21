@@ -1,23 +1,23 @@
-#pragma once
+ï»¿#pragma once
 
 
-// CDlgKBKeyGet ƒ_ƒCƒAƒƒO
+// CDlgKBKeyGet ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 class CDlgKBKeyGet : public CDialog
 {
 	DECLARE_DYNAMIC(CDlgKBKeyGet)
 
 public:
-	CDlgKBKeyGet(CWnd* pParent = NULL);   // •W€ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	CDlgKBKeyGet(CWnd* pParent = NULL);   // æ¨™æº–ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~CDlgKBKeyGet();
 
 	static CDlgKBKeyGet *m_instance;
 
-// ƒ_ƒCƒAƒƒO ƒf[ƒ^
+// ãƒ€ã‚¤ã‚¢ãƒ­ã‚° ãƒ‡ãƒ¼ã‚¿
 	enum { IDD = IDD_DIALOG_KEYGET };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ƒTƒ|[ƒg
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ã‚µãƒãƒ¼ãƒˆ
 
 	DECLARE_MESSAGE_MAP()
 public:

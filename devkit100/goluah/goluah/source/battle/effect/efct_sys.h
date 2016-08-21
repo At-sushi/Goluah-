@@ -1,7 +1,7 @@
-
+ï»¿
 /*===============================================================
 
-	ƒVƒXƒeƒ€ƒGƒtƒFƒNƒg
+	ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 
 =================================================================*/
 #pragma once
@@ -9,7 +9,7 @@
 #include "efctlist.h"
 
 /*!
-*	@brief •`‰æƒIƒuƒWƒFƒNƒgEƒgƒbƒvƒŒƒxƒ‹•`‰æ•¨ƒx[ƒX
+*	@brief æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»ãƒˆãƒƒãƒ—ãƒ¬ãƒ™ãƒ«æç”»ç‰©ãƒ™ãƒ¼ã‚¹
 *	@ingroup Battle
 */
 class CFxFrontDispBase : public CSystemFxBase
@@ -24,7 +24,7 @@ public:
 };
 
 /*!
-*	@brief •`‰æƒIƒuƒWƒFƒNƒgEƒ‰ƒEƒ“ƒh•\¦ƒx[ƒX
+*	@brief æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»ãƒ©ã‚¦ãƒ³ãƒ‰è¡¨ç¤ºãƒ™ãƒ¼ã‚¹
 *	@ingroup Battle
 */
 class CFxRoundBase : public CFxFrontDispBase
@@ -37,12 +37,12 @@ public:
 
 protected:
 	TCHAR round_number;
-	//t : 0`1
+	//t : 0ã€œ1
 	void DrawOneCharacter(float x,float y,TCHAR c,float t,float t2);
 };
 
 /*!
-*	@brief •`‰æƒIƒuƒWƒFƒNƒgEROUND 1
+*	@brief æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»ROUND 1
 *	@ingroup Battle
 */
 class CFxRound1 : public CFxRoundBase
@@ -52,7 +52,7 @@ public:
 };
 
 /*!
-*	@brief •`‰æƒIƒuƒWƒFƒNƒgEROUND 2
+*	@brief æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»ROUND 2
 *	@ingroup Battle
 */
 class  CFxRound2 : public CFxRoundBase
@@ -62,7 +62,7 @@ public:
 };
 
 /*!
-*	@brief •`‰æƒIƒuƒWƒFƒNƒgEROUND 3
+*	@brief æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»ROUND 3
 *	@ingroup Battle
 */
 class  CFxRound3 : public CFxRoundBase
@@ -72,7 +72,7 @@ public:
 };
 
 /*!
-*	@brief •`‰æƒIƒuƒWƒFƒNƒgEROUND 4
+*	@brief æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»ROUND 4
 *	@ingroup Battle
 */
 class  CFxRound4 : public CFxRoundBase
@@ -82,7 +82,7 @@ public:
 };
 
 /*!
-*	@brief •`‰æƒIƒuƒWƒFƒNƒgEROUND 5
+*	@brief æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»ROUND 5
 *	@ingroup Battle
 */
 class  CFxRound5 : public CFxRoundBase
@@ -92,7 +92,7 @@ public:
 };
 
 /*!
-*	@brief •`‰æƒIƒuƒWƒFƒNƒgEROUND 6
+*	@brief æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»ROUND 6
 *	@ingroup Battle
 */
 class  CFxRound6 : public CFxRoundBase
@@ -102,7 +102,7 @@ public:
 };
 
 /*!
-*	@brief •`‰æƒIƒuƒWƒFƒNƒgEK.O.
+*	@brief æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»K.O.
 *	@ingroup Battle
 */
 class  CFxKO : public CFxFrontDispBase
@@ -118,7 +118,7 @@ protected:
 };
 
 /*!
-*	@brief •`‰æƒIƒuƒWƒFƒNƒgEFIGHT
+*	@brief æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»FIGHT
 *	@ingroup Battle
 */
 class  CFxFight : public CFxFrontDispBase
@@ -139,23 +139,23 @@ protected:
 	float m_sca;
 
 	/*------------------------------------------------------------
-		’¸“_‚Ì¶¬‚Æ•ªŠ„
+		é ‚ç‚¹ã®ç”Ÿæˆã¨åˆ†å‰²
 	--------------------------------------------------------------*/
-	struct Vert{float x,y;/*Vert();~Vert();*/};		//!< ƒeƒ“ƒ|ƒ‰ƒŠ“_
-	struct Line{Vert *v[2];/*Line();~Line();*/};	//!< ƒeƒ“ƒ|ƒ‰ƒŠü	
-	struct Tri{Line *l[3];/*Tri();~Tri();*/};		//!< ƒeƒ“ƒ|ƒ‰ƒŠ¢
+	struct Vert{float x,y;/*Vert();~Vert();*/};		//!< ãƒ†ãƒ³ãƒãƒ©ãƒªç‚¹
+	struct Line{Vert *v[2];/*Line();~Line();*/};	//!< ãƒ†ãƒ³ãƒãƒ©ãƒªç·š	
+	struct Tri{Line *l[3];/*Tri();~Tri();*/};		//!< ãƒ†ãƒ³ãƒãƒ©ãƒªâ–³
 	typedef std::vector<Vert*> VertList;
 	typedef std::vector<Line*> LineList;
 	typedef std::vector<Tri*>  TriList;
 
-	//!•`‰æ—p¢
-	struct Tri2					//¢@‚»‚Ì2
+	//!æç”»ç”¨â–³
+	struct Tri2					//â–³ã€€ãã®2
 	{
-		MYVERTEX3D		pos[3];	//!< Še’¸“_‚ÌdS‚©‚ç‚Ì‘Š‘Î‹——£
-		D3DXVECTOR3		ctr;	//!< dS
-		D3DXVECTOR3		vel;	//!< dS‚ÌˆÚ“®‘¬“x
-		D3DXMATRIX		matr;	//!< 1ƒtƒŒ•ª‚Ì‰ñ“]‚ğ‚à‚Âƒ}ƒgƒŠƒNƒX
-		D3DXMATRIX		mat;	//!< Œ»İ‚Ì‰ñ“]ƒ}ƒgƒŠƒNƒX
+		MYVERTEX3D		pos[3];	//!< å„é ‚ç‚¹ã®é‡å¿ƒã‹ã‚‰ã®ç›¸å¯¾è·é›¢
+		D3DXVECTOR3		ctr;	//!< é‡å¿ƒ
+		D3DXVECTOR3		vel;	//!< é‡å¿ƒã®ç§»å‹•é€Ÿåº¦
+		D3DXMATRIX		matr;	//!< 1ãƒ•ãƒ¬åˆ†ã®å›è»¢ã‚’ã‚‚ã¤ãƒãƒˆãƒªã‚¯ã‚¹
+		D3DXMATRIX		mat;	//!< ç¾åœ¨ã®å›è»¢ãƒãƒˆãƒªã‚¯ã‚¹
 
 		//Tri2();~Tri2();
 	};
@@ -167,12 +167,12 @@ protected:
 	static void Create_G(VertList& vlist,LineList& llist,TriList& tlist,float offset);
 	static void Create_H(VertList& vlist,LineList& llist,TriList& tlist,float offset);
 	static void Create_T(VertList& vlist,LineList& llist,TriList& tlist,float offset);
-	static void Divide(VertList& vlist,LineList& llist,TriList& tlist);							//!< ‚Î‚ç‚Î‚ç–Œ
-	static void CreateTri2(VertList& vlist,LineList& llist,TriList& tlist,Tri2List& list_out);	//!< ƒeƒ“ƒ|ƒ‰ƒŠ‚Ìü¥“_E¢‚©‚çA–{”Ô—p¢¶¬
+	static void Divide(VertList& vlist,LineList& llist,TriList& tlist);							//!< ã°ã‚‰ã°ã‚‰äº‹ä»¶
+	static void CreateTri2(VertList& vlist,LineList& llist,TriList& tlist,Tri2List& list_out);	//!< ãƒ†ãƒ³ãƒãƒ©ãƒªã®ç·šãƒ»ç‚¹ãƒ»â–³ã‹ã‚‰ã€æœ¬ç•ªç”¨â–³ç”Ÿæˆ
 };
 
 /*!
-*	@brief •`‰æƒIƒuƒWƒFƒNƒgETIMEOVER
+*	@brief æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»TIMEOVER
 *	@ingroup Battle
 */
 class CFxTimeOver : public CFxFrontDispBase

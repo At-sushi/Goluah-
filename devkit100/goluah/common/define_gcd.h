@@ -1,4 +1,4 @@
-/*=====================================================================================
+﻿/*=====================================================================================
 
 Goluah!! Copyright (C) 2001-2004 aki, 2004-2016 At-sushi, 2014-2016 logger
 
@@ -12,19 +12,19 @@ You should have received a copy of the GNU General Public License along with thi
 
 /*!
 *	@file
-*	@brief GCD(Goluah Cell Data) �֌W �e��\����/�萔��`
+*	@brief GCD(Goluah Cell Data) 関係 各種構造体/定数定義
 *
-*	Goluah!!�{�̂ƁA�S�ẴL�����N�^�[�N���X����Q�Ƃ����B
+*	Goluah!!本体と、全てのキャラクタークラスから参照される。
 *
-*	ver0.90����ǂ̃o�[�W������GCD�t�@�C�����ǂݍ��܂ꂽ�o�b�t�@�����f���邽�߂ɁA
-*	���[�h���ɃZ����0�Ԃ�cell[0]->flag�Ƀo�[�W�����ԍ� (0.90��������900) �𖄂ߍ��ނ��Ƃɂ����B
+*	ver0.90からどのバージョンのGCDファイルが読み込まれたバッファか判断するために、
+*	ロード時にセルの0番のcell[0]->flagにバージョン番号 (0.90だったら900) を埋め込むことにした。
 *
-*	Direct3D�𒼐ڎg�p����ꍇ�͂��̃w�b�_�̑O�� d3d8.h , d3dx8.h ��include���Ȃ��ƁA
-*	typedef�������ăr���h���ʂ�Ȃ��Ȃ�̂Œ��ӂ��邱�ƁB
+*	Direct3Dを直接使用する場合はこのヘッダの前に d3d8.h , d3dx8.h をincludeしないと、
+*	typedefが働いてビルドが通らなくなるので注意すること。
 */
 #pragma once
 
-//DirectX SDK ���Ȃ����ւ̑Ή�
+//DirectX SDK がない環境への対応
 #ifndef _D3D9_H_
 typedef struct DIRECT3D9 {} *LPDIRECT3D9;
 typedef struct DIRECT3DDEVICE9 {} *LPDIRECT3DDEVICE9;
@@ -46,51 +46,51 @@ typedef struct D3DXMATRIX {} *LPD3DXMATRIX;
 */
 /*@{*/
 
-//! GCD�؂����`�\����
+//! GCD切り取り矩形構造体
 struct GCD_RECT
 {
-	DWORD bmpno;			//!< �r�b�g�}�b�v�ԍ�
-	RECT r;					//!< �؂����`�̈�
-	int center_x,center_y;	//!< ��`�d�S
+	DWORD bmpno;			//!< ビットマップ番号
+	RECT r;					//!< 切り取り矩形領域
+	int center_x,center_y;	//!< 矩形重心
 };
 
-//! GCD�Z��(1�v�f)
+//! GCDセル(1要素)
 struct GCD_CELL
 {
-	DWORD cdr;				//!< �؂����`�ԍ�
-	int dx;					//!< X�I�t�Z�b�g�l
-	int dy;					//!< Y�I�t�Z�b�g�l
-	DWORD flag;				//!< �t���O
-	float magx;				//!< X�g�嗦
-	float magy;				//!< Y�g�嗦
-	int rot;				//!< ��]�e
+	DWORD cdr;				//!< 切り取り矩形番号
+	int dx;					//!< Xオフセット値
+	int dy;					//!< Yオフセット値
+	DWORD flag;				//!< フラグ
+	float magx;				//!< X拡大率
+	float magy;				//!< Y拡大率
+	int rot;				//!< 回転各
 
-	float red_ratio;		//!< �ԕ`�旦(0�`1�A�ʏ�1)
-	float green_ratio;		//!< �Ε`�旦(0�`1�A�ʏ�1)
-	float blue_ratio;		//!< �`�旦(0�`1�A�ʏ�1)
-	float alpha_ratio;		//!< ���`�旦(0�`1�A�ʏ�1)
+	float red_ratio;		//!< 赤描画率(0〜1、通常1)
+	float green_ratio;		//!< 緑描画率(0〜1、通常1)
+	float blue_ratio;		//!< 青描画率(0〜1、通常1)
+	float alpha_ratio;		//!< α描画率(0〜1、通常1)
 };
 
-#define GCDCELL_REVERSE_X		0x00000001//!< GCD�`�掞��X���]���s��
-#define GCDCELL_REVERSE_Y		0x00000002//!< GCD�`�掞��Y���]���s��
-#define GCDCELL_BLEND_ADD		0x00000010//!< GCD�`�掞�ɉ��Z�������s��
+#define GCDCELL_REVERSE_X		0x00000001//!< GCD描画時にX反転を行う
+#define GCDCELL_REVERSE_Y		0x00000002//!< GCD描画時にY反転を行う
+#define GCDCELL_BLEND_ADD		0x00000010//!< GCD描画時に加算合成を行う
 
-//! GCD�Z�� (GCD_CELL�̃Z�b�g)
+//! GCDセル (GCD_CELLのセット)
 struct GCD_CELL2
 {
-	GCD_CELL cell[GCD_CELLGROUPNUM];	//!< �Z���v�f
-	int gcx;							//!< X�d�S�ʒu
-	int gcy;							//!< y�d�S�ʒu
-	DWORD flag;							//!< �t���O
+	GCD_CELL cell[GCD_CELLGROUPNUM];	//!< セル要素
+	int gcx;							//!< X重心位置
+	int gcy;							//!< y重心位置
+	DWORD flag;							//!< フラグ
 };
 
-#define GCDCELL2_LINK			0x00000001//!< �z�񒆂Ŏ��̃C���f�b�N�X�̃Z���̕`����s��
-#define GCDCELL2_DISABLE_ZW		0x00000002//!< z�o�b�t�@�ւ̏������݂��s��Ȃ�
-#define GCDCELL2_DISABLE_ZT		0x00000004//!< z�e�X�g���s��Ȃ�
-#define GCDCELL2_SCA_GCENTER	0x00000010//!< �X�P�[�����S���d�S�̃|�C���g�Ƃ���i�f�t�H���g�͑����j
-#define GCDCELL2_ROT_BASEPOINT	0x00000020//!< ��]���S�𑫌��̃|�C���g�Ƃ���i�f�t�H���g�͏d�S�j
+#define GCDCELL2_LINK			0x00000001//!< 配列中で次のインデックスのセルの描画も行う
+#define GCDCELL2_DISABLE_ZW		0x00000002//!< zバッファへの書き込みを行わない
+#define GCDCELL2_DISABLE_ZT		0x00000004//!< zテストを行わない
+#define GCDCELL2_SCA_GCENTER	0x00000010//!< スケール中心を重心のポイントとする（デフォルトは足元）
+#define GCDCELL2_ROT_BASEPOINT	0x00000020//!< 回転中心を足元のポイントとする（デフォルトは重心）
 
-//! GCD�����蔻���`
+//! GCDあたり判定矩形
 struct GCD_HANTEI
 {
 	RECT attack[3];
@@ -98,35 +98,35 @@ struct GCD_HANTEI
 	RECT kurai[3];
 };
 
-//! GCD�t�@�C���w�b�_
+//! GCDファイルヘッダ
 struct GCD_FILEHEADER
 {
-	DWORD size;			//!< �Œ�@���̍\���̂̃T�C�Y�炵��.�Œ�ł�8�Ƃ���
-	DWORD ver;			//!< �Œ�@�ǂ̃o�[�W�����̂��̂�
+	DWORD size;			//!< 固定　この構造体のサイズらしい.最低でも8とする
+	DWORD ver;			//!< 固定　どのバージョンのものか
 };
 
-//! GCD��`���\����
+//! GCD定義名構造体
 struct GCD_CELLNAMES
 {
 	TCHAR name[GCDMAX_CELLS][GCD_MAXDEFINELENGTH];
 };
 
-//! ���k�`���t�@�C���w�b�_
+//! 圧縮形式ファイルヘッダ
 struct GCD_COMP_FILEHEADER
 {
-	BYTE signature[4];	//!< �Œ�@�t�@�C�����ʗp�̃V�O�l�`��
-	DWORD ver;			//!< �Œ�@�ǂ̃o�[�W�����̂��̂�
-	DWORD flags;		//!< �t���O
+	BYTE signature[4];	//!< 固定　ファイル識別用のシグネチャ
+	DWORD ver;			//!< 固定　どのバージョンのものか
+	DWORD flags;		//!< フラグ
 };
 
-#define GCDFILE_COMP_HAVE_CELLNAMES	0x00000001 //!< �Z����`�����܂�
-#define GCDFILE_COMP_USING_FILTER	0x00000002 //!< �t�B���^�[���g�p�i�܂��������j
+#define GCDFILE_COMP_HAVE_CELLNAMES	0x00000001 //!< セル定義名を含む
+#define GCDFILE_COMP_USING_FILTER	0x00000002 //!< フィルターを使用（まだ未実装）
 
-//! ���k�`���f�[�^�w�b�_
+//! 圧縮形式データヘッダ
 struct GCD_COMP_DATAHEADER
 {
-	DWORD DataSize;		//!< �f�[�^�i���k��j�̃T�C�Y
-	DWORD CRCCheckSum;	//!< ���f�[�^��CRC�l
+	DWORD DataSize;		//!< データ（圧縮後）のサイズ
+	DWORD CRCCheckSum;	//!< 元データのCRC値
 };
 
 
@@ -146,7 +146,7 @@ typedef GCD_RECT			GCD_RECT_070;
 typedef GCD_HANTEI			GCD_HANTEI_070;
 typedef GCD_CELLNAMES		GCD_CELLNAMES_070;
 
-//!���o�[�W����CELL�\����(1�v�f)
+//!旧バージョンCELL構造体(1要素)
 struct GCD_CELL_070
 {
 	DWORD cdr;
@@ -158,7 +158,7 @@ struct GCD_CELL_070
 	int rot;
 };
 
-//!���o�[�W����CELL�\����
+//!旧バージョンCELL構造体
 struct GCD_CELL2_070
 {
 	GCD_CELL_070 cell[8];
@@ -168,30 +168,30 @@ struct GCD_CELL2_070
 };
 
 //*********************************************************************
-#define MYSUF_MAXNUMTEX	(16)		//!< MYSURFACE�e�N�X�`���������E�l
+#define MYSUF_MAXNUMTEX	(16)		//!< MYSURFACEテクスチャ分割限界値
 
 /*!
-*	@brief �Ǝ��`���C���`�L�T�[�t�F�C�X
+*	@brief 独自形式インチキサーフェイス
 *
-*	2^n �����������ĔC�ӂ̑傫���̃r�b�g�}�b�v�����[�h���邽�߂ɁA
-*	�K�؂ȃT�C�Y�ŉ摜�𕪊����ĕ����̃e�N�X�`���Ƃ��ĕێ�����B
-*	�`���CDirectDraw�̐�p�֐����g���čs���B
+*	2^n 縛りを回避して任意の大きさのビットマップをロードするために、
+*	適切なサイズで画像を分割して複数のテクスチャとして保持する。
+*	描画はCDirectDrawの専用関数を使って行う。
 */
 struct MYSURFACE
 {
 	BOOL valid;
-	DWORD xsufsize[MYSUF_MAXNUMTEX];//!< �e�N�X�`���̕��̔z��
-	DWORD ysufsize[MYSUF_MAXNUMTEX];//!< �e�N�X�`���̍����̔z��
-	DWORD xsufindx[MYSUF_MAXNUMTEX];//!< MYSURFACE���ł�left���W
-	DWORD ysufindx[MYSUF_MAXNUMTEX];//!< MYSURFACE���ł�top���W
-	DWORD xsufnum;					//!< X�����e�N�X�`��������
-	DWORD ysufnum;					//!< Y�����e�N�X�`��������
-	LPDIRECT3DTEXTURE9 *pTex;		//!< �e�N�X�`���z��
-	float wg;						//!< �r�b�g�}�b�v�̕�
-	float hg;						//!< �r�b�g�}�b�v�̍���
+	DWORD xsufsize[MYSUF_MAXNUMTEX];//!< テクスチャの幅の配列
+	DWORD ysufsize[MYSUF_MAXNUMTEX];//!< テクスチャの高さの配列
+	DWORD xsufindx[MYSUF_MAXNUMTEX];//!< MYSURFACE中でのleft座標
+	DWORD ysufindx[MYSUF_MAXNUMTEX];//!< MYSURFACE中でのtop座標
+	DWORD xsufnum;					//!< X方向テクスチャ分割数
+	DWORD ysufnum;					//!< Y方向テクスチャ分割数
+	LPDIRECT3DTEXTURE9 *pTex;		//!< テクスチャ配列
+	float wg;						//!< ビットマップの幅
+	float hg;						//!< ビットマップの高さ
 };
 
-//! 3�����I�`���`�w��p�\����
+//! 3次元的描画矩形指定用構造体
 struct MYRECT3D
 {
 	float top;
@@ -205,9 +205,9 @@ struct MYRECT3D
 #define FVF_3DVERTEX	(D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1 )
 struct MYVERTEX3D
 {
-	float x,y,z;//!< ���W
-	DWORD color;//!< ���_�F
-	float tu,tv;//!< �e�N�X�`�����W
+	float x,y,z;//!< 座標
+	DWORD color;//!< 頂点色
+	float tu,tv;//!< テクスチャ座標
 };
 #endif
 

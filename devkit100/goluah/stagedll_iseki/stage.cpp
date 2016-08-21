@@ -1,10 +1,10 @@
-
+ï»¿
 
 #include "stage.h"
 #include <math.h>
 
 #define WATERHEIGHT -0.025f
-const float g_jimenheightarr[15][16]=//’n–Ê‚Ì‚‚³
+const float g_jimenheightarr[15][16]=//åœ°é¢ã®é«˜ã•
 {
 	9,6,1,0,0,0,0,0,0,0,0,0,0,1,4,9,
 	9,6,1,0,0,0,0,1,0,0,0,0,0,0,6,9,
@@ -27,7 +27,7 @@ SET_STAGEINFO(CStage)
 
 
 /*!
-*	@brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+*	@brief ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 */
 CStage::CStage(SDI_STAGEINFO2 *info)
 			: CStageBase(info)
@@ -40,7 +40,7 @@ CStage::CStage(SDI_STAGEINFO2 *info)
 }
 
 /*!
-*	@brief ƒfƒXƒgƒ‰ƒNƒ^
+*	@brief ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 */
 CStage::~CStage()
 {
@@ -55,24 +55,24 @@ CStage::~CStage()
 }
 
 /*!
-*	@brief ‰Šú‰»
+*	@brief åˆæœŸåŒ–
 */
 void CStage::InitializeStage()
 {
-	InitVrtx();//’¸“_À•W‰Šú‰»
-	LoadTextures();//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
+	InitVrtx();//é ‚ç‚¹åº§æ¨™åˆæœŸåŒ–
+	LoadTextures();//ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­è¾¼ã¿
 
 	pdat->z = -2.0f;
 }
 
 
-void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
+void CStage::InitVrtx()//é ‚ç‚¹åº§æ¨™åˆæœŸåŒ–
 {
 	int i,j;
 	MYVERTEX3D* vtx_tmp = NULL;
 	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 
-	//…–Ê
+	//æ°´é¢
 	vb_water[0].color=
 		vb_water[1].color=
 		vb_water[2].color=
@@ -98,7 +98,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 	vb_water[3].tu=30;
 	vb_water[3].tv=30;
 	
-	//…–ÊEè‘O
+	//æ°´é¢ãƒ»æ‰‹å‰
 	vb_maewater[0].color=
 		vb_maewater[1].color=
 		vb_maewater[2].color=
@@ -126,7 +126,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 
 	srand(timeGetTime());
 
-	//’n–Ê
+	//åœ°é¢
 	MYVERTEX3D hogehoge[NUM_JIMEN_Z][(NUM_JIMEN_X+1)*2];
 	for(i=0;i<NUM_JIMEN_Z;i++){
 		for(j=0;j<NUM_JIMEN_X+1;j++){
@@ -165,7 +165,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 		}
 	}
 
-	//‹ó
+	//ç©º
 	vb_sky[0].color=
 		vb_sky[1].color=
 		vb_sky[2].color=
@@ -191,7 +191,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 	vb_sky[3].tu=1;
 	vb_sky[3].tv=1;
 	
-	//©ì©‰‰
+	//è‡ªä½œè‡ªæ¼”
 	vb_jisaku1[0].color=
 		vb_jisaku1[1].color=0xFFFFFFFF;
 	vb_jisaku1[2].color=
@@ -217,7 +217,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 	vb_jisaku1[3].tu=1;
 	vb_jisaku1[3].tv=1;
 
-	//X
+	//æ£®
 	vb_forest[0].color=
 		vb_forest[1].color=0xFFFFFFFF;
 	vb_forest[2].color=
@@ -244,21 +244,21 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 	vb_forest[3].tv=1;
 }
 
-void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
+void CStage::LoadTextures()//ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­è¾¼ã¿
 {
 	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 
 	char *filename=(char*)malloc(256);
 	if(filename==NULL)return;
 
-	//…–Ê
+	//æ°´é¢
 	ptex_water=NULL;
 	sprintf(filename,"%s\\tex_water.bmp",GetDLLPath());
 	D3DXCreateTextureFromFileA(
 		d3ddev,
 		filename,
 		&ptex_water);
-	//’n–Ê
+	//åœ°é¢
 	ptex_jimen=NULL;
 	sprintf(filename,"%s\\tex_gnd.bmp",GetDLLPath());
 	D3DXCreateTextureFromFileExA(
@@ -268,7 +268,7 @@ void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
 		D3DPOOL_MANAGED,D3DX_FILTER_POINT,D3DX_FILTER_POINT,
 		0,NULL,NULL,
 		&ptex_jimen);
-	//‹ó
+	//ç©º
 	ptex_sky=NULL;
 	sprintf(filename,"%s\\tex_sky.png",GetDLLPath());
 	D3DXCreateTextureFromFileExA(
@@ -279,7 +279,7 @@ void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
 		0,NULL,NULL,
 		&ptex_sky);
 
-	//©ì©‰‰‚ÌˆâÕiHj
+	//è‡ªä½œè‡ªæ¼”ã®éºè·¡ï¼ˆï¼Ÿï¼‰
 	ptex_jisaku1=NULL;
 	sprintf(filename,"%s\\jien.png",GetDLLPath());
 	D3DXCreateTextureFromFileExA(
@@ -290,7 +290,7 @@ void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
 		0xFFFFFFFF,NULL,NULL,
 		&ptex_jisaku1);
 
-	//Xi‚Ì‚Â‚à‚èj
+	//æ£®ï¼ˆã®ã¤ã‚‚ã‚Šï¼‰
 	ptex_forest=NULL;
 	sprintf(filename,"%s\\tex_forest.bmp",GetDLLPath());
 	D3DXCreateTextureFromFileExA(
@@ -306,35 +306,35 @@ void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
 
 
 /*!
-*	@brief •`‰æ
+*	@brief æç”»
 */
 DWORD CStage::DrawBack()
 {
 	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 	if(d3ddev==NULL)return FALSE;
 
-	//ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒbƒVƒ“ƒOƒ‚[ƒh-ŒJ‚è•Ô‚µ
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ãƒƒã‚·ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰-ç¹°ã‚Šè¿”ã—
 	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_MIRROR);
 	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_MIRROR);
 
 	d3ddev->Clear(0,NULL,D3DCLEAR_TARGET,D3DCOLOR_XRGB(5,0,20),1.0f,0);
 
-	//À•W•ÏŠ·-‚È‚µ
+	//åº§æ¨™å¤‰æ›-ãªã—
 	D3DXMATRIX mati;
 	D3DXMatrixIdentity(&mati);
 	d3ddev->SetTransform(D3DTS_WORLD,&mati);
 
-	//•`‰æ
+	//æç”»
 	DrawJisaku1();
 	DrawJimen();
 	DrawWater();
 	DrawSky();
 
-	//ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒVƒ“ƒOƒ‚[ƒh - Œ³‚É–ß‚·
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚·ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ - å…ƒã«æˆ»ã™
 	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP);
 	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);
 
-	return FALSE;//’ÊíAƒfƒtƒHƒ‹ƒg•`‰æ‚Ís‚í‚È‚¢
+	return FALSE;//é€šå¸¸ã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæç”»ã¯è¡Œã‚ãªã„
 }
 
 
@@ -342,7 +342,7 @@ void CStage::DrawWater()
 {
 	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 
-	//…–Ê
+	//æ°´é¢
 	d3ddev->SetTexture(0,ptex_water);
 	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,
 		vb_water,sizeof(MYVERTEX3D));
@@ -352,7 +352,7 @@ void CStage::DrawSky()
 {
 	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 
-	//‚»‚ç
+	//ãã‚‰
 	d3ddev->SetTexture(0,ptex_sky);
 	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,
 		vb_sky,sizeof(MYVERTEX3D));
@@ -362,7 +362,7 @@ void CStage::DrawJimen()
 {
 	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 
-	//’n–Ê
+	//åœ°é¢
 	d3ddev->SetTexture(0,ptex_jimen);
 	for(int i=0;i<NUM_JIMEN_Z;i++){
 		d3ddev->SetStreamSource(0, vb_jimen[i], 0, sizeof(MYVERTEX3D));
@@ -376,26 +376,26 @@ void CStage::DrawJisaku1()
 {
 	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 
-	//©ì©‰‰‚ÌˆâÕiHj
+	//è‡ªä½œè‡ªæ¼”ã®éºè·¡ï¼ˆï¼Ÿï¼‰
 	d3ddev->SetTexture(0,ptex_jisaku1);
 	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,
 		vb_jisaku1,sizeof(MYVERTEX3D));
 
-	//X
+	//æ£®
 	d3ddev->SetTexture(0,ptex_forest);
 	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,
 		vb_forest,sizeof(MYVERTEX3D));
 }
 
 //*******************************************************
-//@è‘O•`‰æ
+//ã€€æ‰‹å‰æç”»
 //*******************************************************
 DWORD CStage::Draw()
 {
 	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 	if(!d3ddev)return FALSE;
 
-	//À•W•ÏŠ·-‚È‚µ
+	//åº§æ¨™å¤‰æ›-ãªã—
 	D3DXMATRIX mati;
 	D3DXMatrixIdentity(&mati);
 	d3ddev->SetTransform(D3DTS_WORLD,&mati);
@@ -405,7 +405,7 @@ DWORD CStage::Draw()
 
 	d3ddev->SetRenderState(D3DRS_ZWRITEENABLE	,FALSE);
 	
-	//…–Ê
+	//æ°´é¢
 	d3ddev->SetTexture(0,ptex_water);
 	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,
 		vb_maewater,sizeof(MYVERTEX3D));
@@ -419,7 +419,7 @@ DWORD CStage::Draw()
 }
 
 //*******************************************************
-//@“®‚«
+//ã€€å‹•ã
 //*******************************************************
 DWORD CStage::Action()
 {

@@ -1,8 +1,8 @@
+ï»¿#include "..\goluah_config\dlgpage2.h"
 #include "..\goluah_config\dlgpage2.h"
 #include "..\goluah_config\dlgpage2.h"
 #include "..\goluah_config\dlgpage2.h"
-#include "..\goluah_config\dlgpage2.h"
-// DlgPage2.cpp : À‘•ƒtƒ@ƒCƒ‹
+// DlgPage2.cpp : å®Ÿè£…ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #include "stdafx.h"
@@ -11,7 +11,7 @@
 #include "DlgPage4.h"
 #include "ChildWnd.h"
 
-// CDlgPage2 ƒ_ƒCƒAƒƒO
+// CDlgPage2 ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 IMPLEMENT_DYNCREATE(CDlgPage2, CDialog)
 
@@ -75,37 +75,37 @@ END_DHTML_EVENT_MAP()
 
 
 /*--------------------------------------------------------------
-	ƒ_ƒCƒAƒƒOƒ{ƒbƒNƒX‰Šú‰»ˆ—
+	ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒœãƒƒã‚¯ã‚¹åˆæœŸåŒ–å‡¦ç†
 ----------------------------------------------------------------*/
 BOOL CDlgPage2::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	//ƒXƒsƒ“ƒRƒ“ƒgƒ[ƒ‹‚Ìİ’è
+	//ã‚¹ãƒ”ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®è¨­å®š
 	CSpinButtonCtrl* spin = (CSpinButtonCtrl*)GetDlgItem(IDC_SPIN1);
 	if(!spin){
-		OutputDebugString("CDlgRPage1::OnInitDialog spinæ“¾¸”sHH\n");
+		OutputDebugString("CDlgRPage1::OnInitDialog spinå–å¾—å¤±æ•—ï¼Ÿï¼Ÿ\n");
 		throw;
 	}
 	spin->SetRange32(1,1023);
 	spin->SetPos( m_current_index );
 
-	return TRUE;  // ƒtƒH[ƒJƒX‚ğƒRƒ“ƒgƒ[ƒ‹‚Éİ’è‚µ‚½ê‡‚ğœ‚«ATRUE ‚ğ•Ô‚µ‚Ü‚·B
+	return TRUE;  // ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã«è¨­å®šã—ãŸå ´åˆã‚’é™¤ãã€TRUE ã‚’è¿”ã—ã¾ã™ã€‚
 }
 
 
 /*--------------------------------------------------------------
-	CELL#’¼Ú(H)•ÏXˆ—
+	CELL#ç›´æ¥(ï¼Ÿ)å¤‰æ›´æ™‚å‡¦ç†
 ----------------------------------------------------------------*/
 void CDlgPage2::OnEnChangeEdit1()
 {
-	// TODO :  ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+	// TODO :  ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 	DWORD prv = m_current_index;
 	UpdateData(TRUE);
 
 	if(m_current_index<1 || m_current_index>1023){
 		m_current_index = prv;
-		theApp.SetStatus("ƒZƒ‹”Ô†‚É•s³‚È’l‚ª“ü—Í‚³‚ê‚½");
+		theApp.SetStatus("ã‚»ãƒ«ç•ªå·ã«ä¸æ­£ãªå€¤ãŒå…¥åŠ›ã•ã‚ŒãŸ");
 		return;
 	}
 	OnChangeIndex();
@@ -113,12 +113,12 @@ void CDlgPage2::OnEnChangeEdit1()
 
 
 /*--------------------------------------------------------------
-	CELL#ƒˆƒRAƒXƒsƒ“ƒRƒ“ƒgƒ[ƒ‹ˆ—
+	CELL#ãƒ¨ã‚³ã€ã‚¹ãƒ”ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«å‡¦ç†
 ----------------------------------------------------------------*/
 void CDlgPage2::OnDeltaposSpin1(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMUPDOWN pNMUpDown = reinterpret_cast<LPNMUPDOWN>(pNMHDR);
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	*pResult = 0;
 
 	UINT next = m_current_index + pNMUpDown->iDelta;
@@ -131,11 +131,11 @@ void CDlgPage2::OnDeltaposSpin1(NMHDR *pNMHDR, LRESULT *pResult)
 
 
 /*--------------------------------------------------------------
-	ƒZƒ‹”Ô†ˆÚ“®ƒ{ƒ^ƒ“ˆ—
+	ã‚»ãƒ«ç•ªå·ç§»å‹•ãƒœã‚¿ãƒ³å‡¦ç†
 ----------------------------------------------------------------*/
 void CDlgPage2::OnBnClickedButtonPrev10()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	if(m_current_index<11)m_current_index=1;
 	else m_current_index-=10;
 
@@ -144,7 +144,7 @@ void CDlgPage2::OnBnClickedButtonPrev10()
 
 void CDlgPage2::OnBnClickedButtonNext10()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	m_current_index+=10;
 	if(m_current_index>1023)m_current_index=1023;
 
@@ -153,9 +153,9 @@ void CDlgPage2::OnBnClickedButtonNext10()
 
 void CDlgPage2::OnBnClickedButtonPrevFind()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	if(m_current_index==1){
-		theApp.SetStatus("Find Previous : s‚«~‚Ü‚è");
+		theApp.SetStatus("Find Previous : è¡Œãæ­¢ã¾ã‚Š");
 		return;
 	}
 	CGCDHandler* pdat = theApp.GetGCD();
@@ -164,7 +164,7 @@ void CDlgPage2::OnBnClickedButtonPrevFind()
 	next--;
 	while(pdat->IsEmptyCell(next)){
 		if(next==1){
-			theApp.SetStatus("Find Previous : ‚ ‚è‚Ü‚¹‚ñ");
+			theApp.SetStatus("Find Previous : ã‚ã‚Šã¾ã›ã‚“");
 			return;
 		}
 		next--;
@@ -175,9 +175,9 @@ void CDlgPage2::OnBnClickedButtonPrevFind()
 
 void CDlgPage2::OnBnClickedButtonNextFind()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	if(m_current_index==1023){
-		theApp.SetStatus("Find Next : s‚«~‚Ü‚è‚¾‚º");
+		theApp.SetStatus("Find Next : è¡Œãæ­¢ã¾ã‚Šã ãœ");
 		return;
 	}
 	CGCDHandler* pdat = theApp.GetGCD();
@@ -186,7 +186,7 @@ void CDlgPage2::OnBnClickedButtonNextFind()
 	next++;
 	while(pdat->IsEmptyCell(next)){
 		if(next==1023){
-			theApp.SetStatus("Find Next : ‚ ‚è‚Ü‚¹‚ñ");
+			theApp.SetStatus("Find Next : ã‚ã‚Šã¾ã›ã‚“");
 			return;
 		}
 		next++;
@@ -197,9 +197,9 @@ void CDlgPage2::OnBnClickedButtonNextFind()
 
 void CDlgPage2::OnBnClickedButtonPrevBlank()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	if(m_current_index==1){
-		theApp.SetStatus("Blank Previous : s‚«~‚Ü‚è");
+		theApp.SetStatus("Blank Previous : è¡Œãæ­¢ã¾ã‚Š");
 		return;
 	}
 	CGCDHandler* pdat = theApp.GetGCD();
@@ -208,7 +208,7 @@ void CDlgPage2::OnBnClickedButtonPrevBlank()
 	next--;
 	while(!pdat->IsEmptyCell(next)){
 		if(next==1){
-			theApp.SetStatus("Blank Previous : ‚ ‚è‚Ü‚¹‚ñ");
+			theApp.SetStatus("Blank Previous : ã‚ã‚Šã¾ã›ã‚“");
 			return;
 		}
 		next--;
@@ -219,9 +219,9 @@ void CDlgPage2::OnBnClickedButtonPrevBlank()
 
 void CDlgPage2::OnBnClickedButtonNextBlank()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	if(m_current_index==1023){
-		theApp.SetStatus("Blank Next : s‚«~‚Ü‚è‚¾‚º");
+		theApp.SetStatus("Blank Next : è¡Œãæ­¢ã¾ã‚Šã ãœ");
 		return;
 	}
 	CGCDHandler* pdat = theApp.GetGCD();
@@ -230,7 +230,7 @@ void CDlgPage2::OnBnClickedButtonNextBlank()
 	next++;
 	while(!pdat->IsEmptyCell(next)){
 		if(next==1023){
-			theApp.SetStatus("Blank Next : ‚ ‚è‚Ü‚¹‚ñ");
+			theApp.SetStatus("Blank Next : ã‚ã‚Šã¾ã›ã‚“");
 			return;
 		}
 		next++;
@@ -240,42 +240,42 @@ void CDlgPage2::OnBnClickedButtonNextBlank()
 }
 
 /*--------------------------------------------------------------
-	ƒZƒ‹uƒRƒs[vˆ—
+	ã‚»ãƒ«ã€Œã‚³ãƒ”ãƒ¼ã€å‡¦ç†
 ----------------------------------------------------------------*/
 void CDlgPage2::OnBnClickedButtonCopy()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	m_CopiedCell = *theApp.GetCurrentCell();
 	m_CopiedHantei = *theApp.GetCurrentHantei();
-	theApp.SetStatus("ƒZƒ‹ƒf[ƒ^‚ğƒRƒs[‚µ‚Ü‚µ‚½");
+	theApp.SetStatus("ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã—ã¾ã—ãŸ");
 }
 
 /*--------------------------------------------------------------
-	ƒZƒ‹uƒy[ƒXƒgvˆ—
+	ã‚»ãƒ«ã€Œãƒšãƒ¼ã‚¹ãƒˆã€å‡¦ç†
 ----------------------------------------------------------------*/
 void CDlgPage2::OnBnClickedButtonPaste()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
-	if(IDYES!=MessageBox("‚¢‚¢‚ÌH","ƒZƒ‹ƒf[ƒ^“\‚è•t‚¯",MB_YESNO)){
-		theApp.SetStatus("ƒZƒ‹ƒf[ƒ^“\‚è•t‚¯ƒLƒƒƒ“ƒZƒ‹");
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
+	if(IDYES!=MessageBox("ã„ã„ã®ï¼Ÿ","ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿è²¼ã‚Šä»˜ã‘",MB_YESNO)){
+		theApp.SetStatus("ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿è²¼ã‚Šä»˜ã‘ã‚­ãƒ£ãƒ³ã‚»ãƒ«");
 		return;
 	}
 
 	*theApp.GetCurrentCell() = m_CopiedCell;
 	*theApp.GetCurrentHantei() = m_CopiedHantei;
-	theApp.SetStatus("ƒZƒ‹ƒf[ƒ^‚ğ“\‚è•t‚¯‚Ü‚µ‚½");
+	theApp.SetStatus("ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’è²¼ã‚Šä»˜ã‘ã¾ã—ãŸ");
 	
 	g_childwnd.Dirty();
 }
 
 /*--------------------------------------------------------------
-	ƒZƒ‹uÁ‹vˆ—
+	ã‚»ãƒ«ã€Œæ¶ˆå»ã€å‡¦ç†
 ----------------------------------------------------------------*/
 void CDlgPage2::OnBnClickedButtonErase()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
-	if(IDYES!=MessageBox("‚¢‚¢‚ÌH","ƒZƒ‹ƒf[ƒ^Á‹",MB_YESNO)){
-		theApp.SetStatus("ƒZƒ‹ƒf[ƒ^Á‹ˆ—ƒLƒƒƒ“ƒZƒ‹");
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
+	if(IDYES!=MessageBox("ã„ã„ã®ï¼Ÿ","ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿æ¶ˆå»",MB_YESNO)){
+		theApp.SetStatus("ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿æ¶ˆå»å‡¦ç†ã‚­ãƒ£ãƒ³ã‚»ãƒ«");
 		return;
 	}
 
@@ -284,11 +284,11 @@ void CDlgPage2::OnBnClickedButtonErase()
 }
 
 /*--------------------------------------------------------------
-	#define •¶š—ñ•ÏXˆ—
+	#define æ–‡å­—åˆ—å¤‰æ›´æ™‚å‡¦ç†
 ----------------------------------------------------------------*/
 void CDlgPage2::OnEnChangeEdit6()
 {
-	// TODO :  ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+	// TODO :  ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 	UpdateData(TRUE);
 	CGCDHandler *gcd = theApp.GetGCD();
 	strcpy(gcd->GetName(m_current_index),m_str_define.GetBuffer());
@@ -296,17 +296,17 @@ void CDlgPage2::OnEnChangeEdit6()
 
 
 /*--------------------------------------------------------------
-	Œ»İƒZƒ‹”Ô†•ÏXˆ—
+	ç¾åœ¨ã‚»ãƒ«ç•ªå·å¤‰æ›´æ™‚å‡¦ç†
 ----------------------------------------------------------------*/
 void CDlgPage2::OnChangeIndex()
 {
-	//#define‚Ì•¶š—ñ•ÏX
+	//#defineã®æ–‡å­—åˆ—å¤‰æ›´
 	CGCDHandler *gcd = theApp.GetGCD();
 	m_str_define.Format("%s",gcd->GetName(m_current_index));
 
 	GCD_CELL2 *pc = theApp.GetCurrentCell();
 	if(pc){
-		//ƒŠƒ“ƒNƒtƒ‰ƒOƒ`ƒFƒbƒNƒ{ƒbƒNƒXİ’è
+		//ãƒªãƒ³ã‚¯ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹è¨­å®š
 		m_sell_link = (pc->flag & GCDCELL2_LINK) ? TRUE : FALSE;
 		m_flag_zw = (pc->flag & GCDCELL2_DISABLE_ZW) ? TRUE : FALSE;
 		m_flag_zt = (pc->flag & GCDCELL2_DISABLE_ZT) ? TRUE : FALSE;
@@ -320,10 +320,10 @@ void CDlgPage2::OnChangeIndex()
 	g_childwnd.Dirty();
 	
 
-	//ƒXƒsƒ“ƒRƒ“ƒgƒ[ƒ‹ƒ|ƒWƒVƒ‡ƒ“•ÏX
+	//ã‚¹ãƒ”ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒã‚¸ã‚·ãƒ§ãƒ³å¤‰æ›´
 	CSpinButtonCtrl* spin = (CSpinButtonCtrl*)GetDlgItem(IDC_SPIN1);
 	if(!spin){
-		OutputDebugString("CDlgPage2::OnChangeIndex spinæ“¾¸”sHH\n");
+		OutputDebugString("CDlgPage2::OnChangeIndex spinå–å¾—å¤±æ•—ï¼Ÿï¼Ÿ\n");
 		throw;
 	}
 	spin->SetPos(m_current_index);
@@ -331,7 +331,7 @@ void CDlgPage2::OnChangeIndex()
 
 
 /*--------------------------------------------------------------
-	•\¦•¨XV
+	è¡¨ç¤ºç‰©æ›´æ–°
 ----------------------------------------------------------------*/
 void CDlgPage2::UpdateItems()
 {
@@ -339,29 +339,29 @@ void CDlgPage2::UpdateItems()
 }
 
 /*--------------------------------------------------------------
-	ƒtƒ‰ƒOON/OFFˆ—
+	ãƒ•ãƒ©ã‚°ON/OFFæ™‚å‡¦ç†
 ----------------------------------------------------------------*/
 
-//ƒZƒ‹ƒŠƒ“ƒN
+//ã‚»ãƒ«ãƒªãƒ³ã‚¯
 void CDlgPage2::OnBnClickedCheckLink()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	UpdateData(TRUE);
 	
 	GCD_CELL2 *pc = theApp.GetCurrentCell();
 	if(!pc){
-		theApp.SetStatus("ƒŠƒ“ƒNƒtƒ‰ƒO‘€ì¸”s");
+		theApp.SetStatus("ãƒªãƒ³ã‚¯ãƒ•ãƒ©ã‚°æ“ä½œå¤±æ•—");
 		return;
 	}
 
-	//ƒXƒyƒ‹ƒ~ƒX‚Á‚Ä‚é‚¯‚Ç¥¥¥
+	//ã‚¹ãƒšãƒ«ãƒŸã‚¹ã£ã¦ã‚‹ã‘ã©ï½¥ï½¥ï½¥
 	if(m_sell_link){
 		pc->flag |= GCDCELL2_LINK;
-		theApp.SetStatus("ƒŠƒ“ƒNƒtƒ‰ƒO ON");
+		theApp.SetStatus("ãƒªãƒ³ã‚¯ãƒ•ãƒ©ã‚° ON");
 	}
 	else{
 		pc->flag &= ~GCDCELL2_LINK;
-		theApp.SetStatus("ƒŠƒ“ƒNƒtƒ‰ƒO OFF");
+		theApp.SetStatus("ãƒªãƒ³ã‚¯ãƒ•ãƒ©ã‚° OFF");
 	}
 
 	g_childwnd.Dirty();
@@ -370,22 +370,22 @@ void CDlgPage2::OnBnClickedCheckLink()
 //Z-Write
 void CDlgPage2::OnBnClickedCheckNozw()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	UpdateData(TRUE);
 	
 	GCD_CELL2 *pc = theApp.GetCurrentCell();
 	if(!pc){
-		theApp.SetStatus("ZWƒtƒ‰ƒO‘€ì¸”s");
+		theApp.SetStatus("ZWãƒ•ãƒ©ã‚°æ“ä½œå¤±æ•—");
 		return;
 	}
 
 	if(m_flag_zw){
 		pc->flag |= GCDCELL2_DISABLE_ZW;
-		theApp.SetStatus("no-ZWƒtƒ‰ƒO ON");
+		theApp.SetStatus("no-ZWãƒ•ãƒ©ã‚° ON");
 	}
 	else{
 		pc->flag &= ~GCDCELL2_DISABLE_ZW;
-		theApp.SetStatus("no-ZWƒtƒ‰ƒO OFF");
+		theApp.SetStatus("no-ZWãƒ•ãƒ©ã‚° OFF");
 	}
 
 	g_childwnd.Dirty();
@@ -394,70 +394,70 @@ void CDlgPage2::OnBnClickedCheckNozw()
 //Z-Test
 void CDlgPage2::OnBnClickedCheckNozt()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	UpdateData(TRUE);
 	
 	GCD_CELL2 *pc = theApp.GetCurrentCell();
 	if(!pc){
-		theApp.SetStatus("ZTƒtƒ‰ƒO‘€ì¸”s");
+		theApp.SetStatus("ZTãƒ•ãƒ©ã‚°æ“ä½œå¤±æ•—");
 		return;
 	}
 
 	if(m_flag_zt){
 		pc->flag |= GCDCELL2_DISABLE_ZT;
-		theApp.SetStatus("no-ZTƒtƒ‰ƒO ON");
+		theApp.SetStatus("no-ZTãƒ•ãƒ©ã‚° ON");
 	}
 	else{
 		pc->flag &= ~GCDCELL2_DISABLE_ZT;
-		theApp.SetStatus("no-ZTƒtƒ‰ƒO OFF");
+		theApp.SetStatus("no-ZTãƒ•ãƒ©ã‚° OFF");
 	}
 
 	g_childwnd.Dirty();
 }
 
-//dS’†SƒXƒP[ƒ‹
+//é‡å¿ƒä¸­å¿ƒã‚¹ã‚±ãƒ¼ãƒ«
 void CDlgPage2::OnBnClickedCheckScaBasepoint()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	UpdateData(TRUE);
 	
 	GCD_CELL2 *pc = theApp.GetCurrentCell();
 	if(!pc){
-		theApp.SetStatus("dS’†SƒXƒP[ƒ‹ƒtƒ‰ƒO‘€ì¸”s");
+		theApp.SetStatus("é‡å¿ƒä¸­å¿ƒã‚¹ã‚±ãƒ¼ãƒ«ãƒ•ãƒ©ã‚°æ“ä½œå¤±æ•—");
 		return;
 	}
 
 	if(m_flag_scaBP){
 		pc->flag |= GCDCELL2_SCA_GCENTER;
-		theApp.SetStatus("dS’†SƒXƒP[ƒ‹ƒtƒ‰ƒO ON");
+		theApp.SetStatus("é‡å¿ƒä¸­å¿ƒã‚¹ã‚±ãƒ¼ãƒ«ãƒ•ãƒ©ã‚° ON");
 	}
 	else{
 		pc->flag &= ~GCDCELL2_SCA_GCENTER;
-		theApp.SetStatus("dS’†SƒXƒP[ƒ‹ƒtƒ‰ƒO OFF");
+		theApp.SetStatus("é‡å¿ƒä¸­å¿ƒã‚¹ã‚±ãƒ¼ãƒ«ãƒ•ãƒ©ã‚° OFF");
 	}
 
 	g_childwnd.Dirty();
 }
 
-//‘«Œ³’†S‰ñ“]
+//è¶³å…ƒä¸­å¿ƒå›è»¢
 void CDlgPage2::OnBnClickedCheckRotBasepoint()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	UpdateData(TRUE);
 	
 	GCD_CELL2 *pc = theApp.GetCurrentCell();
 	if(!pc){
-		theApp.SetStatus("‘«Œ³’†S‰ñ“]ƒtƒ‰ƒO‘€ì¸”s");
+		theApp.SetStatus("è¶³å…ƒä¸­å¿ƒå›è»¢ãƒ•ãƒ©ã‚°æ“ä½œå¤±æ•—");
 		return;
 	}
 
 	if(m_flag_rotBP){
 		pc->flag |= GCDCELL2_ROT_BASEPOINT;
-		theApp.SetStatus("‘«Œ³’†S‰ñ“]ƒtƒ‰ƒO ON");
+		theApp.SetStatus("è¶³å…ƒä¸­å¿ƒå›è»¢ãƒ•ãƒ©ã‚° ON");
 	}
 	else{
 		pc->flag &= ~GCDCELL2_ROT_BASEPOINT;
-		theApp.SetStatus("‘«Œ³’†S‰ñ“]ƒtƒ‰ƒO OFF");
+		theApp.SetStatus("è¶³å…ƒä¸­å¿ƒå›è»¢ãƒ•ãƒ©ã‚° OFF");
 	}
 	g_childwnd.Dirty();
 }

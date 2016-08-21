@@ -1,11 +1,11 @@
-#pragma once
+ï»¿#pragma once
 
 #include <windows.h>
 #include <stdio.h>
 #include "gobjbase.h"
 
 /*!
-*	@brief ƒXƒe[ƒWƒNƒ‰ƒX
+*	@brief ã‚¹ãƒ†ãƒ¼ã‚¸ã‚¯ãƒ©ã‚¹
 */
 
 class CStage : public CStageBase
@@ -17,5 +17,5 @@ public:
 protected:
 	DWORD DrawBack();
 
-	//‡‚ğ’Ê‚µ‚Ä•K—v‚Æ‚È‚é•Ï”‚Í‚±‚±‚ÉéŒ¾‚·‚é
+	//è©¦åˆã‚’é€šã—ã¦å¿…è¦ã¨ãªã‚‹å¤‰æ•°ã¯ã“ã“ã«å®£è¨€ã™ã‚‹
 };

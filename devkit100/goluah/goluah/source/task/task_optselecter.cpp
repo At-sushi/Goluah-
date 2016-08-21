@@ -1,7 +1,7 @@
-
+ï»¿
 /*=======================================================================================
 
-	ƒIƒvƒVƒ‡ƒ“‘I‘ğƒNƒ‰ƒX
+	ã‚ªãƒ—ã‚·ãƒ§ãƒ³é¸æŠã‚¯ãƒ©ã‚¹
 
 =========================================================================================*/
 
@@ -9,7 +9,7 @@
 #include "task_optselecter.h"
 
 /*-----------------------------------------------------------
-	\’z
+	æ§‹ç¯‰
 -------------------------------------------------------------*/
 CTOptionSelecterBase::CTOptionSelecterBase()
 {
@@ -19,7 +19,7 @@ CTOptionSelecterBase::CTOptionSelecterBase()
 
 
 /*-----------------------------------------------------------
-	‰Šú‰»
+	åˆæœŸåŒ–
 -------------------------------------------------------------*/
 void CTOptionSelecterBase::Initialize()
 {
@@ -27,7 +27,7 @@ void CTOptionSelecterBase::Initialize()
 
 
 /*-----------------------------------------------------------
-	”jŠü
+	ç ´æ£„
 -------------------------------------------------------------*/
 void CTOptionSelecterBase::Terminate()
 {
@@ -39,7 +39,7 @@ void CTOptionSelecterBase::Terminate()
 
 
 /*-----------------------------------------------------------
-	Às
+	å®Ÿè¡Œ
 -------------------------------------------------------------*/
 BOOL CTOptionSelecterBase::Execute(DWORD time)
 {
@@ -58,7 +58,7 @@ BOOL CTOptionSelecterBase::Execute(DWORD time)
 	case CTOPTSS_Ready:
 		{
 			if(m_keyIndex>=0){
-				if(m_selecter->HandlePad(m_keyIndex))//TRUE‚ª‹A‚é‚Æ‘I‘ğI—¹
+				if(m_selecter->HandlePad(m_keyIndex))//TRUEãŒå¸°ã‚‹ã¨é¸æŠçµ‚äº†
 				{
 					EndSelect();
 					m_state = CTOPTSS_Hide;
@@ -85,7 +85,7 @@ BOOL CTOptionSelecterBase::Execute(DWORD time)
 
 
 /*-----------------------------------------------------------
-	•`‰æ
+	æç”»
 -------------------------------------------------------------*/
 void CTOptionSelecterBase::Draw()
 {
@@ -96,7 +96,7 @@ void CTOptionSelecterBase::Draw()
 	TCHAR *tmp_str;
 	tmp_str = new TCHAR[128];
 
-	//”r‘¼‚³‚ê‚Ä‚¢‚éƒtƒ‰ƒO‚ğƒQƒbƒg
+	//æ’ä»–ã•ã‚Œã¦ã„ã‚‹ãƒ•ãƒ©ã‚°ã‚’ã‚²ãƒƒãƒˆ
 	DWORD ex_flag =0;
 	DWORD k=0;
 	CharOptionList::iterator ite;
@@ -108,41 +108,41 @@ void CTOptionSelecterBase::Draw()
 		k++;
 	}
 
-/*	//ƒeƒLƒXƒgFi”ñ‘I‘ğj
-	DWORD color_option		= 0x00222222;//--OPTIONS--•\¦
-	DWORD color_ok			= 0x00666666;//ƒ|ƒCƒ“ƒgEOK•\¦(—LŒø)
-	DWORD color_ng			= 0x00AA3333;//ƒ|ƒCƒ“ƒgEOK•\¦(–³Œø)
-	DWORD color_collis		= 0x00336633;//‹£‡ƒtƒ‰ƒO‚ ‚è
-	DWORD color_na2			= 0x00333366;//depend•s‘«
-	DWORD color_enable		= 0x00222222;//—LŒøó‘Ô
-	DWORD color_disable		= 0x00444444;//–³Œøó‘Ô
-	DWORD color_pointb		= 0x00663333;//ƒ|ƒCƒ“ƒg•s‘«
-	//ƒeƒLƒXƒgFi‘I‘ğj
-	DWORD color_ok_sel		= 0x00000000;//ƒ|ƒCƒ“ƒgEOK•\¦(—LŒø)
-	DWORD color_ng_sel		= 0x00AA0000;//ƒ|ƒCƒ“ƒgEOK•\¦(–³Œø)
-	DWORD color_collis_sel	= 0x00009900;//‹£‡ƒtƒ‰ƒO‚ ‚è
-	DWORD color_na2_sel		= 0x000000FF;//depend•s‘«
-	DWORD color_enable_sel	= 0x00222222;//—LŒøó‘Ô
-	DWORD color_disable_sel	= 0x00444444;//–³Œøó‘Ô
-	DWORD color_pointb_sel	= 0x00AA0000;//ƒ|ƒCƒ“ƒg•s‘«*/
+/*	//ãƒ†ã‚­ã‚¹ãƒˆè‰²ï¼ˆéé¸æŠæ™‚ï¼‰
+	DWORD color_option		= 0x00222222;//--OPTIONS--è¡¨ç¤º
+	DWORD color_ok			= 0x00666666;//ãƒã‚¤ãƒ³ãƒˆãƒ»OKè¡¨ç¤º(æœ‰åŠ¹æ™‚)
+	DWORD color_ng			= 0x00AA3333;//ãƒã‚¤ãƒ³ãƒˆãƒ»OKè¡¨ç¤º(ç„¡åŠ¹æ™‚)
+	DWORD color_collis		= 0x00336633;//ç«¶åˆãƒ•ãƒ©ã‚°ã‚ã‚Š
+	DWORD color_na2			= 0x00333366;//dependä¸è¶³
+	DWORD color_enable		= 0x00222222;//æœ‰åŠ¹çŠ¶æ…‹
+	DWORD color_disable		= 0x00444444;//ç„¡åŠ¹çŠ¶æ…‹
+	DWORD color_pointb		= 0x00663333;//ãƒã‚¤ãƒ³ãƒˆä¸è¶³
+	//ãƒ†ã‚­ã‚¹ãƒˆè‰²ï¼ˆé¸æŠæ™‚ï¼‰
+	DWORD color_ok_sel		= 0x00000000;//ãƒã‚¤ãƒ³ãƒˆãƒ»OKè¡¨ç¤º(æœ‰åŠ¹æ™‚)
+	DWORD color_ng_sel		= 0x00AA0000;//ãƒã‚¤ãƒ³ãƒˆãƒ»OKè¡¨ç¤º(ç„¡åŠ¹æ™‚)
+	DWORD color_collis_sel	= 0x00009900;//ç«¶åˆãƒ•ãƒ©ã‚°ã‚ã‚Š
+	DWORD color_na2_sel		= 0x000000FF;//dependä¸è¶³
+	DWORD color_enable_sel	= 0x00222222;//æœ‰åŠ¹çŠ¶æ…‹
+	DWORD color_disable_sel	= 0x00444444;//ç„¡åŠ¹çŠ¶æ…‹
+	DWORD color_pointb_sel	= 0x00AA0000;//ãƒã‚¤ãƒ³ãƒˆä¸è¶³*/
 
-	//ƒeƒLƒXƒgFi”ñ‘I‘ğj
-	DWORD color_option		= 0x00444444;//--OPTIONS--•\¦
-    DWORD color_ok			= 0x005237FF;//ƒ|ƒCƒ“ƒgEOK•\¦(—LŒø)
-	DWORD color_ng			= 0x00FF3752;//ƒ|ƒCƒ“ƒgEOK•\¦(–³Œø)
-	DWORD color_collis		= 0x0033AA33;//‹£‡ƒtƒ‰ƒO‚ ‚è
-	DWORD color_na2			= 0x0033AA33;//depend•s‘«
-	DWORD color_enable		= 0x005237FF;//—LŒøó‘Ô
-	DWORD color_disable		= 0x003333AA;//–³Œøó‘Ô
-	DWORD color_pointb		= 0x00AA3333;//ƒ|ƒCƒ“ƒg•s‘«
-	//ƒeƒLƒXƒgFi‘I‘ğj
-	DWORD color_ok_sel		= 0x0000AAFF;//ƒ|ƒCƒ“ƒgEOK•\¦(—LŒø)
-	DWORD color_ng_sel		= 0x00FFAA00;//ƒ|ƒCƒ“ƒgEOK•\¦(–³Œø)
-	DWORD color_collis_sel	= 0x0000FF00;//‹£‡ƒtƒ‰ƒO‚ ‚è
-	DWORD color_na2_sel		= 0x0000FF00;//depend•s‘«
-	DWORD color_enable_sel	= 0x0000AAFF;//—LŒøó‘Ô
-	DWORD color_disable_sel	= 0x0000AAFF;//–³Œøó‘Ô
-	DWORD color_pointb_sel	= 0x00FF8200;//ƒ|ƒCƒ“ƒg•s‘«
+	//ãƒ†ã‚­ã‚¹ãƒˆè‰²ï¼ˆéé¸æŠæ™‚ï¼‰
+	DWORD color_option		= 0x00444444;//--OPTIONS--è¡¨ç¤º
+    DWORD color_ok			= 0x005237FF;//ãƒã‚¤ãƒ³ãƒˆãƒ»OKè¡¨ç¤º(æœ‰åŠ¹æ™‚)
+	DWORD color_ng			= 0x00FF3752;//ãƒã‚¤ãƒ³ãƒˆãƒ»OKè¡¨ç¤º(ç„¡åŠ¹æ™‚)
+	DWORD color_collis		= 0x0033AA33;//ç«¶åˆãƒ•ãƒ©ã‚°ã‚ã‚Š
+	DWORD color_na2			= 0x0033AA33;//dependä¸è¶³
+	DWORD color_enable		= 0x005237FF;//æœ‰åŠ¹çŠ¶æ…‹
+	DWORD color_disable		= 0x003333AA;//ç„¡åŠ¹çŠ¶æ…‹
+	DWORD color_pointb		= 0x00AA3333;//ãƒã‚¤ãƒ³ãƒˆä¸è¶³
+	//ãƒ†ã‚­ã‚¹ãƒˆè‰²ï¼ˆé¸æŠæ™‚ï¼‰
+	DWORD color_ok_sel		= 0x0000AAFF;//ãƒã‚¤ãƒ³ãƒˆãƒ»OKè¡¨ç¤º(æœ‰åŠ¹æ™‚)
+	DWORD color_ng_sel		= 0x00FFAA00;//ãƒã‚¤ãƒ³ãƒˆãƒ»OKè¡¨ç¤º(ç„¡åŠ¹æ™‚)
+	DWORD color_collis_sel	= 0x0000FF00;//ç«¶åˆãƒ•ãƒ©ã‚°ã‚ã‚Š
+	DWORD color_na2_sel		= 0x0000FF00;//dependä¸è¶³
+	DWORD color_enable_sel	= 0x0000AAFF;//æœ‰åŠ¹çŠ¶æ…‹
+	DWORD color_disable_sel	= 0x0000AAFF;//ç„¡åŠ¹çŠ¶æ…‹
+	DWORD color_pointb_sel	= 0x00FF8200;//ãƒã‚¤ãƒ³ãƒˆä¸è¶³
 
 	float y=m_top,z=0;
 	float text_xscale = 0.8f;
@@ -152,7 +152,7 @@ void CTOptionSelecterBase::Draw()
 	BYTE  _alpha = (BYTE)(m_tick * 255);
 	DWORD alpha = _alpha << 24;
 
-	//OPTIONS •`‰æ
+	//OPTIONS æç”»
 	DWORD okcolor;
 	double tmpx = g_system.DrawBMPTextEx(offset_x,y,z,_T("--OPTIONS--"),color_option|alpha,1.0f,text_yscale*1.2f,SYSBMPTXT_PROP);
 	_stprintf(tmp_str,_T("POINT:%d"),m_selecter->current_point);
@@ -162,13 +162,13 @@ void CTOptionSelecterBase::Draw()
 
 	y+=text_spacing*1.2f;
 
-	//İ’è–¼•\¦
+	//è¨­å®šåè¡¨ç¤º
 	_stprintf(tmp_str,_T("PRESET:%s"),m_selecter->GetCurrentSetName());
 	g_system.DrawBMPTextEx(offset_x,y,z,tmp_str,color_option|alpha,1.0f,text_yscale,SYSBMPTXT_PROP);
 
 	y+=text_spacing;
 
-	//€–Ú‚Ì•`‰æ
+	//é …ç›®ã®æç”»
 	DWORD text_flag;
 	k=0;
 	DWORD color;
@@ -176,32 +176,32 @@ void CTOptionSelecterBase::Draw()
 	BOOL not_available;
 	for(ite=m_selecter->list->begin();ite!=m_selecter->list->end();ite++){
 		not_available = FALSE;
-		//F‚Í‰½FH
-		if(ite->flag & ex_flag){//‹£‡ƒtƒ‰ƒOƒAƒŠ
+		//è‰²ã¯ä½•è‰²ï¼Ÿ
+		if(ite->flag & ex_flag){//ç«¶åˆãƒ•ãƒ©ã‚°ã‚¢ãƒª
 			if(k!=m_selecter->current_selected)color=color_collis|alpha;
 			else color=color_collis_sel|alpha;
 			not_available = TRUE;
 		}
-		else if(m_selecter->enabled[k]){//—LŒøó‘Ô
+		else if(m_selecter->enabled[k]){//æœ‰åŠ¹çŠ¶æ…‹
 			if(k!=m_selecter->current_selected)color=color_enable|alpha;
 			else color=color_enable_sel|alpha;
 		}
-		else {//–³Œøó‘Ô
-			if((ite->depends&setting_now)!=ite->depends){//dependsƒtƒ‰ƒO‚ª‘«‚è‚È‚¢
+		else {//ç„¡åŠ¹çŠ¶æ…‹
+			if((ite->depends&setting_now)!=ite->depends){//dependsãƒ•ãƒ©ã‚°ãŒè¶³ã‚Šãªã„
 				if(k!=m_selecter->current_selected)color=color_na2|alpha;
 				else color=color_na2_sel|alpha;
 				not_available = TRUE;
 			}
-			else if(m_selecter->current_point<0 || m_selecter->current_point < ite->point){//ON‚É‚·‚é‚Æƒ|ƒCƒ“ƒg‘«‚è‚È‚¢
+			else if(m_selecter->current_point<0 || m_selecter->current_point < ite->point){//ONã«ã™ã‚‹ã¨ãƒã‚¤ãƒ³ãƒˆè¶³ã‚Šãªã„
 				if(k!=m_selecter->current_selected)color=color_pointb|alpha;
 				else color=color_pointb_sel|alpha;
 			}
-			else{//ON‚É‚µ‚Ä‚àƒ|ƒCƒ“ƒg‚Í‘«‚è‚é
+			else{//ONã«ã—ã¦ã‚‚ãƒã‚¤ãƒ³ãƒˆã¯è¶³ã‚Šã‚‹
 				if(k!=m_selecter->current_selected)color=color_disable|alpha;
 				else color=color_disable_sel|alpha;
 			}
 		}
-		//•`‰æ
+		//æç”»
 		text_flag = SYSBMPTXT_PROP;
 		if(k==m_selecter->current_selected)text_flag;
 		g_system.DrawBMPTextEx(offset_x,y,z,ite->name,color,text_xscale,text_yscale,text_flag);
@@ -248,7 +248,7 @@ void CTOptionSelecterBase::Draw()
 
 
 /*-----------------------------------------------------------
-	‘€ìEİ’è
+	æ“ä½œãƒ»è¨­å®š
 -------------------------------------------------------------*/
 
 int CTOptionSelecterBase::SetAndShow(DWORD cindex,DWORD keyindex)

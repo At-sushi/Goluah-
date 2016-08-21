@@ -1,4 +1,4 @@
-// DlgTPage2.cpp : �����t�@�C��
+﻿// DlgTPage2.cpp : 実装ファイル
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "DlgTPage2.h"
 
 
-// CDlgTPage2 �_�C�A���O
+// CDlgTPage2 ダイアログ
 
 IMPLEMENT_DYNAMIC(CDlgTPage2, CMyDialogTab)
 CDlgTPage2::CDlgTPage2(CWnd* pParent /*=NULL*/)
@@ -29,15 +29,15 @@ BEGIN_MESSAGE_MAP(CDlgTPage2, CDialog)
 	ON_BN_CLICKED(1001, OnBnClicked1001)
 END_MESSAGE_MAP()
 
-// CDlgTPage2 ���b�Z�[�W �n���h��
+// CDlgTPage2 メッセージ ハンドラ
 
 /*-----------------------------------------------------------
-	��̋�`����������
+	空の矩形を消去する
 -------------------------------------------------------------*/
 void CDlgTPage2::OnBnClickedButton1()
 {
 	if(IDYES!=MessageBox(
-			"��`���̃r�b�g�}�b�v�F���`�F�b�N���A���ׂĂ������F�̏ꍇ���̋�`���N���A���܂��B\n�r�b�g�}�b�v������ɓǂݍ��܂�Ă��Ȃ��ꍇ�A���̃r�b�g�}�b�v���Q�Ƃ����`�͂��ׂď�������܂�\n\n���s�O�Ƀo�b�N�A�b�v���Ƃ��Ă������Ƃ������߂��܂��B\n���s���܂����H",
+			"矩形内のビットマップ色をチェックし、すべてが透明色の場合その矩形をクリアします。\nビットマップが正常に読み込まれていない場合、そのビットマップを参照する矩形はすべて消去されます\n\n実行前にバックアップをとっておくことをお勧めします。\n実行しますか？",
 			"",MB_YESNO))
 	{return;}
 
@@ -45,12 +45,12 @@ void CDlgTPage2::OnBnClickedButton1()
 }
 
 /*-----------------------------------------------------------
-	��`�ԍ��𐮗�����
+	矩形番号を整理する
 -------------------------------------------------------------*/
 void CDlgTPage2::OnBnClicked1001()
 {
 	if(IDYES!=MessageBox(
-			"�ʐ�0�̋�`�f�[�^�����C���f�b�N�X���������A�ԍ����߂܂��B\n\n���s�O�Ƀo�b�N�A�b�v���Ƃ��Ă������Ƃ������߂��܂��B\n\n���s���܂����H",
+			"面積0の矩形データをもつインデックスを消去し、番号をつめます。\n\n実行前にバックアップをとっておくことをお勧めします。\n\n実行しますか？",
 			"",MB_YESNO))
 	{return;}
 

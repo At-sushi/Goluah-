@@ -1,4 +1,4 @@
-#include <windows.h>
+ï»¿#include <windows.h>
 #include <stdio.h>
 
 //#define LPDIRECT3DTEXTURE8 LPVOID
@@ -12,16 +12,16 @@ DI_FUNCTIONS_N *funcn = NULL;
 
 /* **************************************************************************
 
-  CCharacterInfo : ƒLƒƒƒ‰ƒNƒ^[î•ñİ’èƒNƒ‰ƒX
+  CCharacterInfo : ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æƒ…å ±è¨­å®šã‚¯ãƒ©ã‚¹
 
-@ƒ\ƒtƒg‚ªƒLƒƒƒ‰ƒNƒ^[‚ğ”F¯‚·‚é‚½‚ß‚É•K—v‚Èî•ñ‚ğİ’è‚·‚éƒNƒ‰ƒX‚Å‚·B
-@ƒLƒƒƒ‰ƒNƒ^[DLL“à‚ÅA‚±‚ÌƒNƒ‰ƒX‚ğƒOƒ[ƒoƒ‹éŒ¾‚µA
-@SET_CHARACTERINFOƒ}ƒNƒ‚ğg—p‚µ‚Ä‚­‚¾‚³‚¢B
+ã€€ã‚½ãƒ•ãƒˆãŒã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚’èªè­˜ã™ã‚‹ãŸã‚ã«å¿…è¦ãªæƒ…å ±ã‚’è¨­å®šã™ã‚‹ã‚¯ãƒ©ã‚¹ã§ã™ã€‚
+ã€€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼DLLå†…ã§ã€ã“ã®ã‚¯ãƒ©ã‚¹ã‚’ã‚°ãƒ­ãƒ¼ãƒãƒ«å®£è¨€ã—ã€
+ã€€SET_CHARACTERINFOãƒã‚¯ãƒ­ã‚’ä½¿ç”¨ã—ã¦ãã ã•ã„ã€‚
 
  ************************************************************************** */
 
 //////////////////////////////////////////////////////////////////////
-// \’z/Á–Å
+// æ§‹ç¯‰/æ¶ˆæ»…
 //////////////////////////////////////////////////////////////////////
 
 CCharacterInfo::CCharacterInfo(LPCTSTR CharName, DWORD CdiVersion, CHARACTER_LOAD_OPTION* Options/* = NULL */,
@@ -69,8 +69,8 @@ BOOL CCharacterInfo::DllCharacterInfo(LPVOID info)
 {
 	CDI_CHARACTERINFO *pif = (CDI_CHARACTERINFO*)info;
 	if (charactername)
-		lstrcpy(pif->name,charactername);//–¼‘O
-	pif->ver=version;//ƒo[ƒWƒ‡ƒ“
+		lstrcpy(pif->name,charactername);//åå‰
+	pif->ver=version;//ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 
 	if(pif->system_version!=0){
 		if (m_isNetworkable)
@@ -102,11 +102,11 @@ void CCharacterInfo::SetOptionItems(CDI_CHARACTERINFO* pif)
 
 /* **************************************************************************
 
-  CGoluahObject : ƒIƒuƒWƒFƒNƒgŠî–{ƒNƒ‰ƒX
+  CGoluahObject : ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåŸºæœ¬ã‚¯ãƒ©ã‚¹
 
-@å‚È–ğŠ„‚ÍƒIƒuƒWƒFƒNƒg‚Ìì¬‚ÆƒƒbƒZ[ƒWˆ—ŠÖ”‚Ìİ’èB
-@‚æ‚­g‚¤ƒƒbƒZ[ƒW‚ÉŠÖ‚µ‚Ä‚ÍŠÖ”‚ª‚·‚Å‚É’è‹`‚³‚ê‚Ä‚¢‚é‚Ì‚ÅA‚»‚ê‚ğƒI[ƒo[ƒ‰ƒCƒhB
-@‘«‚è‚È‚¢•ª‚ÍMessageŠÖ”‚ğƒI[ƒo[ƒ‰ƒCƒh‚µ‚ÄƒƒbƒZ[ƒWˆ—‚ğ’Ç‰Á‚·‚éB
+ã€€ä¸»ãªå½¹å‰²ã¯ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†é–¢æ•°ã®è¨­å®šã€‚
+ã€€ã‚ˆãä½¿ã†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«é–¢ã—ã¦ã¯é–¢æ•°ãŒã™ã§ã«å®šç¾©ã•ã‚Œã¦ã„ã‚‹ã®ã§ã€ãã‚Œã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã€‚
+ã€€è¶³ã‚Šãªã„åˆ†ã¯Messageé–¢æ•°ã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã—ã¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†ã‚’è¿½åŠ ã™ã‚‹ã€‚
 
  ************************************************************************** */
 
@@ -130,8 +130,8 @@ CGoluahObject::CGoluahObject(CDI_CHARACTERINFO2 *info,BYTE userID,BYTE userNo)
 	dllID = (BYTE)info->dllid;
 	g_chardir = info->dir;
 
-	//ƒIƒuƒWƒFƒNƒg‚ğ¶¬
-	if (userID == 0xFF && userNo == 0xFF) { // ƒfƒtƒHƒ‹ƒgˆ—
+	//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
+	if (userID == 0xFF && userNo == 0xFF) { // ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå‡¦ç†
 		oid = (*funcn->obj_regist)(dllID,gCreateCounter / 0x0100,gCreateCounter % 0x0100);
 		gCreateCounter--;
 		m_ObjCount++;
@@ -141,10 +141,10 @@ CGoluahObject::CGoluahObject(CDI_CHARACTERINFO2 *info,BYTE userID,BYTE userNo)
 		oid = (*funcn->obj_regist)(dllID,userID,userNo);
 		m_hasDefaultID = FALSE;
 	}
-	pdat = (GOBJECT*)(*funco->getinfo)(oid);//ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğget
+	pdat = (GOBJECT*)(*funco->getinfo)(oid);//ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’get
 	if(pdat!=NULL){
 		pdat->pobjdat_u = this;
-		pdat->msghandler	= gMessageToObject;//ƒƒbƒZ[ƒWˆ—ŠÖ”
+		pdat->msghandler	= gMessageToObject;//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†é–¢æ•°
 	}
 	base_z				= 0;
 
@@ -156,11 +156,11 @@ void CGoluahObject::CGoluahObjectCreate()
 {
 	dllID = 0xFF;
 
-	oid = (*funco->objcreate)();//ƒIƒuƒWƒFƒNƒg‚ğ¶¬
-	pdat = (GOBJECT*)(*funco->getinfo)(oid);//ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğget
+	oid = (*funco->objcreate)();//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
+	pdat = (GOBJECT*)(*funco->getinfo)(oid);//ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’get
 	if(pdat!=NULL){
 		pdat->pobjdat_u = this;
-		pdat->msghandler= gMessageToObject;//ƒƒbƒZ[ƒWˆ—ŠÖ”
+		pdat->msghandler= gMessageToObject;//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†é–¢æ•°
 	}
 	base_z				= 0;
 
@@ -187,7 +187,7 @@ CGoluahObject::~CGoluahObject()
 	}
 
 #ifdef _DEBUG
-	OutputDebugString("DLL CGoluahObject ƒfƒXƒgƒ‰ƒNƒ^—ˆ‚Ü‚µ‚½\n");
+	OutputDebugString("DLL CGoluahObject ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿æ¥ã¾ã—ãŸ\n");
 #endif
 }
 
@@ -205,7 +205,7 @@ DWORD CGoluahObject::Message(DWORD msg,LPVOID pd,DWORD prm)
 	case GOBJMSG_DRAWFRONT:	return(DrawFront());
 	case GOBJMSG_DRAWBACK:	return(DrawBack());
 	default:
-		//‚ ‚Æ‚ÌƒƒbƒZ[ƒW‚ÍƒfƒtƒHƒ‹ƒgˆ—‚É”C‚¹‚é
+		//ã‚ã¨ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå‡¦ç†ã«ä»»ã›ã‚‹
 		return(0);
 	}
 
@@ -221,15 +221,15 @@ DWORD CGoluahObject::gMessageToObject(DWORD msg,LPVOID pd,DWORD prm)
 	if(pc!=NULL){
 		DWORD result;
 
-		if (pObjDeleting == pc) {	// è“®‰ğ•úƒGƒ‰[–h~
+		if (pObjDeleting == pc) {	// æ‰‹å‹•è§£æ”¾æ™‚ã‚¨ãƒ©ãƒ¼é˜²æ­¢
 			if(msg==GOBJMSG_DELETE) pObjDeleting = NULL;
-			return 1;	// ƒfƒtƒHƒ‹ƒg“®ì‚Ís‚¢‚Ü‚¹‚ñ
+			return 1;	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå‹•ä½œã¯è¡Œã„ã¾ã›ã‚“
 		}
 
 		result = pc->Message(msg,pd,prm);
 		if(msg==GOBJMSG_DELETE){
 			#ifdef _DEBUG
-				OutputDebugString("DLL GOBJMSG_DELETEƒƒbƒZ[ƒW—ˆ‚Ü‚µ‚½\n");
+				OutputDebugString("DLL GOBJMSG_DELETEãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ¥ã¾ã—ãŸ\n");
 			#endif
 			pObjToDelete = pc;
 			delete(pc);
@@ -248,12 +248,12 @@ DWORD CGoluahObject::CommandCOM(DWORD wid){return(FALSE);}
 
 DWORD CGoluahObject::TouchA(ATTACKINFO *info,DWORD ta_eid)
 {
-	return(0);//ƒfƒtƒHƒ‹ƒg‚ÌƒK[ƒh”»’èˆ—
+	return(0);//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚¬ãƒ¼ãƒ‰åˆ¤å®šå‡¦ç†
 }
 
 DWORD CGoluahObject::TouchB(ATTACKINFO *info,BOOL hit)
 {
-	pdat->kougeki=FALSE;//UŒ‚—Í‚Ì–³Œø‰»
+	pdat->kougeki=FALSE;//æ”»æ’ƒåŠ›ã®ç„¡åŠ¹åŒ–
 	return(0);
 }
 
@@ -261,7 +261,7 @@ DWORD CGoluahObject::TouchC(ATTACKINFO *info,DWORD tc_eid){return(0);}
 
 void CGoluahObject::ActionIDChanged()
 {
-	pdat->z=base_z;//zÀ•W‚ğŠî€’l‚É–ß‚·
+	pdat->z=base_z;//zåº§æ¨™ã‚’åŸºæº–å€¤ã«æˆ»ã™
 }
 
 double CGoluahObject::zurex(double x)
@@ -276,7 +276,7 @@ int CGoluahObject::zurex(int x)
 	else return(x);
 }
 
-//ƒLƒƒƒ‰ƒNƒ^[‚ğˆÚ“®
+//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚’ç§»å‹•
 void CGoluahObject::movex(double dx)
 {
 	if(pdat->muki)dx*=-1;
@@ -317,7 +317,7 @@ void CGoluahObject::ChangeAction(DWORD actid)
 	}
 }
 
-// ƒVƒXƒeƒ€ŠÖ˜A‚ÌŠÖ”
+// ã‚·ã‚¹ãƒ†ãƒ é–¢é€£ã®é–¢æ•°
 DWORD CGoluahObject::GetKey(DWORD keyinput, DWORD interval) {
 	return funcs->getkey(keyinput, interval);
 }
@@ -364,54 +364,54 @@ DWORD CGoluahObject::GetTaisenKeisiki() {
 	return funcs->gettaisenkeisiki();
 }
 
-// ƒIƒuƒWƒFƒNƒgŠÖ˜A‚ÌŠÖ”
-BOOL   CGoluahObject::ObjCatch(DWORD eid,DWORD msg_nage) {		//“Š‚°‚Æ‚©‚Å‘Šè‚ğ‚Â‚©‚Ş
+// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆé–¢é€£ã®é–¢æ•°
+BOOL   CGoluahObject::ObjCatch(DWORD eid,DWORD msg_nage) {		//æŠ•ã’ã¨ã‹ã§ç›¸æ‰‹ã‚’ã¤ã‹ã‚€
 	CATCHYOU cy;
 
 	cy.oid = pdat->id;
 	cy.actmsg = msg_nage;
 	return funco->objcatch(eid, &cy);
 }
-GOBJECT* CGoluahObject::GetInfo(DWORD oid) {					//î•ñ
+GOBJECT* CGoluahObject::GetInfo(DWORD oid) {					//æƒ…å ±
 	return (GOBJECT*)funco->getinfo(oid);
 }
-void   CGoluahObject::AddDamage(DWORD eid,int x,int y) {//(å‚É“Š‚°‚Ì‚Æ‚«)‹­§“I‚Éƒ_ƒ[ƒW‚ğ—^‚¦‚é
+void   CGoluahObject::AddDamage(DWORD eid,int x,int y) {//(ä¸»ã«æŠ•ã’ã®ã¨ã)å¼·åˆ¶çš„ã«ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä¸ãˆã‚‹
 	funco->adddamage(pdat->id, eid, x, y);
 }
-GOBJECT*  CGoluahObject::GetActiveCharacter(DWORD tid) {		//Œ»İƒAƒNƒeƒBƒu‚ÈƒLƒƒƒ‰ƒNƒ^[‚Ìî•ñ
+GOBJECT*  CGoluahObject::GetActiveCharacter(DWORD tid) {		//ç¾åœ¨ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®æƒ…å ±
 	return (GOBJECT*)funco->getactivechar(tid);
 }
-void   CGoluahObject::Suicide() {								//ƒIƒuƒWƒFƒNƒgÁ–Å
+void   CGoluahObject::Suicide() {								//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ¶ˆæ»…
 	funco->suicide(pdat->id);
 }
-DWORD  CGoluahObject::GetMaai_H(DWORD oid, DWORD eoid) {//ŠÔ‡‚¢‚ğget(…•½)
+DWORD  CGoluahObject::GetMaai_H(DWORD oid, DWORD eoid) {//é–“åˆã„ã‚’get(æ°´å¹³)
 	return funco->getmaai_h(oid, eoid);
 }
-DWORD  CGoluahObject::GetMaai_V(DWORD oid, DWORD eoid) {//ŠÔ‡‚¢‚ğget(‚’¼)
+DWORD  CGoluahObject::GetMaai_V(DWORD oid, DWORD eoid) {//é–“åˆã„ã‚’get(å‚ç›´)
 	return funco->getmaai_v(oid, eoid);
 }
-DWORD  CGoluahObject::GetCharacterID(DWORD tid,DWORD index) {//ƒLƒƒƒ‰ƒNƒ^[‚ÌƒIƒuƒWƒFƒNƒgID
+DWORD  CGoluahObject::GetCharacterID(DWORD tid,DWORD index) {//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆID
 	return funco->getcharid(tid, index);
 }
 
-//@•`‰æŠÖ˜A‚ÌŠÖ”‚Ì’è‹`
-LPDIRECT3D8 CGoluahObject::GetD3D() {							//IDirect3D* ‚Ìæ“¾
+//ã€€æç”»é–¢é€£ã®é–¢æ•°ã®å®šç¾©
+LPDIRECT3D8 CGoluahObject::GetD3D() {							//IDirect3D* ã®å–å¾—
 	return (LPDIRECT3D8)funcd->getd3d();
 }
-LPDIRECT3DDEVICE8 CGoluahObject::GetD3DDevice() {				//IDirect3DDevice* ‚Ìæ“¾
+LPDIRECT3DDEVICE8 CGoluahObject::GetD3DDevice() {				//IDirect3DDevice* ã®å–å¾—
 	return (LPDIRECT3DDEVICE8)funcd->getd3dd();
 }
-void   CGoluahObject::LoadCellData(char* pathname,GCD_CELL2_070* pCells,GCD_RECT* pRects,GCD_HANTEI* pHanteis) {//ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İŠÖ”
+void   CGoluahObject::LoadCellData(char* pathname,GCD_CELL2_070* pCells,GCD_RECT* pRects,GCD_HANTEI* pHanteis) {//ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿é–¢æ•°
 	funcd->loadcelldat(pathname, pCells, pRects, pHanteis);
 }
-MYSURFACE* CGoluahObject::LoadBitmap(char* PathName,char* PalletFileName) {				//ƒrƒbƒgƒ}ƒbƒv“Ç‚İ‚İŠÖ”
+MYSURFACE* CGoluahObject::LoadBitmap(char* PathName,char* PalletFileName) {				//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—èª­ã¿è¾¼ã¿é–¢æ•°
 	return (MYSURFACE*)funcd->loadbmp(PathName, PalletFileName);
 }
-void   CGoluahObject::UnloadBitMap(MYSURFACE* Bitmap) {					//ƒrƒbƒgƒ}ƒbƒvŒãn––ŠÖ”
+void   CGoluahObject::UnloadBitMap(MYSURFACE* Bitmap) {					//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—å¾Œå§‹æœ«é–¢æ•°
 	funcd->unloadbmp(Bitmap);
 }
 void   CGoluahObject::CellDraw(MYSURFACE** pBmps,GCD_CELL2* cdat,GCD_RECT* rdat,
-	DWORD cnum,int x,int y,float z,int Rotate,BOOL ReverseX,BOOL ReverseY,DWORD Color,float magx,float magy) {//ƒZƒ‹•`‰æŠÖ”
+	DWORD cnum,int x,int y,float z,int Rotate,BOOL ReverseX,BOOL ReverseY,DWORD Color,float magx,float magy) {//ã‚»ãƒ«æç”»é–¢æ•°
 	funcd->celldraw((void**)pBmps, cdat, rdat,
 	 cnum, x, y, z, Rotate, ReverseX, ReverseY, Color, magx, magy);
 }
@@ -423,23 +423,23 @@ void   CGoluahObject::CkBlt(MYSURFACE* pBmp,int x1,int y1,RECT bltrect,
 void   CGoluahObject::Blt3D(MYSURFACE* pBmp,RECT bltrect,MYRECT3D rect,DWORD color) {	//Blt3
 	funcd->blt3d( pBmp, bltrect, rect, color);
 }
-void   CGoluahObject::SetTransform(BOOL BonVoyage) {				//•ÏŠ·s—ñİ’è
+void   CGoluahObject::SetTransform(BOOL BonVoyage) {				//å¤‰æ›è¡Œåˆ—è¨­å®š
 	funcd->settrans(BonVoyage);
 }
-void   CGoluahObject::SetBlend(DWORD type) {					//ƒuƒŒƒ“ƒh‚Ìd•û‚ğ•ÏX
+void   CGoluahObject::SetBlend(DWORD type) {					//ãƒ–ãƒ¬ãƒ³ãƒ‰ã®ä»•æ–¹ã‚’å¤‰æ›´
 	funcd->setblend(type);
 }
-void   CGoluahObject::SetParentMatrix(LPD3DXMATRIX pMatrix,BOOL erase,LPD3DXMATRIX OldMatrix) {//uev‚Ì•ÏŠ·s—ñİ’è
+void   CGoluahObject::SetParentMatrix(LPD3DXMATRIX pMatrix,BOOL erase,LPD3DXMATRIX OldMatrix) {//ã€Œè¦ªã€ã®å¤‰æ›è¡Œåˆ—è¨­å®š
 	funcd->setparentmat( pMatrix, erase, OldMatrix);
 }
-DWORD  CGoluahObject::CreateCellData(char* filename,GCD_CELL2 **cdat,GCD_RECT **rdat,GCD_HANTEI **hdat) {//ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İBver0.90ˆÈ~‚Å‚ÍLoadCellDat‚©‚ç‚±‚¿‚ç‚É•ÏX‚·‚é‚×‚«
+DWORD  CGoluahObject::CreateCellData(char* filename,GCD_CELL2 **cdat,GCD_RECT **rdat,GCD_HANTEI **hdat) {//ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ã€‚ver0.90ä»¥é™ã§ã¯LoadCellDatã‹ã‚‰ã“ã¡ã‚‰ã«å¤‰æ›´ã™ã‚‹ã¹ã
 	return funcd->create_celldat(filename, (void**)cdat, (void**)rdat, (void**)hdat);
 }
-void   CGoluahObject::DestroyCellData(GCD_CELL2 **cdat,GCD_RECT **rdat,GCD_HANTEI **hdat) {//CreateCellDat‚Å¶¬‚³‚ê‚½ƒoƒbƒtƒ@‚ğƒNƒŠƒA
+void   CGoluahObject::DestroyCellData(GCD_CELL2 **cdat,GCD_RECT **rdat,GCD_HANTEI **hdat) {//CreateCellDatã§ç”Ÿæˆã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ã‚’ã‚¯ãƒªã‚¢
 	funcd->destroy_celldat( (void**)cdat, (void**)rdat, (void**)hdat);
 }
 
-//@ƒlƒbƒgƒ[ƒNŠÖ˜A‚ÌŠÖ”‚Ì’è‹`
+//ã€€ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯é–¢é€£ã®é–¢æ•°ã®å®šç¾©
 void CGoluahObject::SendSynchronizedMessage(DWORD size,LPVOID dat) {
 	if (funcn) funcn->send_syncmsg( pdat->id, size, dat);
 }
@@ -449,27 +449,27 @@ void CGoluahObject::SetSynchronize(BOOL enabled) {
 
 /* **************************************************************************
 
- CCharacterBase: ƒLƒƒƒ‰ƒNƒ^[‚ÌŠî–{ƒNƒ‰ƒX
+ CCharacterBase: ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®åŸºæœ¬ã‚¯ãƒ©ã‚¹
 
-@ |@@@@@@ @ |@ |@@@@@@________________________________________________
-@ |@@@@@@ @ |@ |QQQQ_ƒ³ƒ³ƒ³ƒ³ƒ³ƒ³ƒ³ƒ³ƒ³ƒ³ƒ³||ƒ³ƒ³ƒ³
-@ |@@@@@@ @ |@ |PPP ^|@@@@@ @ @ @ @ @ @ @ ||
-@ |@@@@@@ @ |@ |@@@^ ^|TTTTTT@@ TTTTTTTTTT||TTTTT
-@ |@ @ @ @ ^_@|@ ^|^|^|^^^^^^ |OO| ^^^^^^^^^^^||^^^^^^^
-@ |@ @ @ ^@ ^@|^^ ^ ^|
-@ |@@@^@ ^ |Q|^|^|^|^|
-@ |@ ^@ ^@@|•¶|^ ^^ ^
-@ |^@ ^.@ Q.|P|^|^|^@@@@@@@@@@@@ÈQÈ
-^|_^ @^@^ @|^ ^@@@@@@@@@@ @@@iQQ_j
-^|@ @ ^@^@ ^R@@@@@@@@@@@@@@/k@Õ@ll‚Â
-@ |@@@|P|@ |@|R^l@@@@@@@@@@@@ M/“ñ“ñR
-@ |@@@|@ |^|@|__|^@@@ÈQÈ@@@@@ /@/iQj
-@ |@@@|^|@ |^@@@@ i@LÍMj@@@@@iQj@@ÈQÈ
-@ |@@@|@ |^@@@@@ ^/ /@ ^Pnß@@@@@@@@iM@@@j
-@ |@@@|^@@@@@@@ ß/PP_R@@@@@@@@@¼kk@Õ@l
-@ |@ ^@@@@@@@@@/QƒmiQj@@@@@@@@@ „¡|QQ_|
-@ |^@@@@@@@@@@iQ_j@@@@@@@@@@@ iQÉ R@R
-^@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@iQj
+ã€€ |ã€€ã€€ã€€ã€€ã€€ã€€ ã€€ |ã€€ |ã€€ã€€ã€€ã€€ã€€ã€€________________________________________________
+ã€€ |ã€€ã€€ã€€ã€€ã€€ã€€ ã€€ |ã€€ |ï¼¿ï¼¿ï¼¿ï¼¿_Î¦Î¦Î¦Î¦Î¦Î¦Î¦Î¦Î¦Î¦Î¦||Î¦Î¦Î¦
+ã€€ |ã€€ã€€ã€€ã€€ã€€ã€€ ã€€ |ã€€ |ï¿£ï¿£ï¿£ ï¼|ã€€ã€€ã€€ã€€ã€€ ã€€ ã€€ ã€€ ã€€ ã€€ ã€€ ã€€ ||
+ã€€ |ã€€ã€€ã€€ã€€ã€€ã€€ ã€€ |ã€€ |ã€€ã€€ã€€ï¼ ï¼|TTTTTTã€€ã€€ TTTTTTTTTT||TTTTT
+ã€€ |ã€€ ã€€ ã€€ ã€€ ï¼ï¼¼ã€€|ã€€ ï¼|ï¼|ï¼|^^^^^^ |ä¸‰ä¸‰| ^^^^^^^^^^^||^^^^^^^
+ã€€ |ã€€ ã€€ ã€€ ï¼ã€€ ï¼ã€€|ï¼ï¼ ï¼ ï¼|
+ã€€ |ã€€ã€€ã€€ï¼ã€€ ï¼ |ï¼¿|ï¼|ï¼|ï¼|ï¼|
+ã€€ |ã€€ ï¼ã€€ ï¼ã€€ã€€|æ–‡|ï¼ ï¼ï¼ ï¼
+ã€€ |ï¼ã€€ ï¼.ã€€ ï¼¿.|ï¿£|ï¼|ï¼|ï¼ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€âˆ§ï¼¿âˆ§
+ï¼|ï¼¼ï¼ ã€€ï¼ã€€ï¼ ã€€|ï¼ ï¼ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ ã€€ã€€ã€€ï¼ˆï¼¿ï¼¿_ï¼‰
+ï¼|ã€€ ã€€ ï¼ã€€ï¼ã€€ ï¼ãƒ½ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€/ã€”ã€€ç¥­ã€€ã€•ã€•ã¤
+ã€€ |ã€€ã€€ã€€|ï¿£|ã€€ |ã€€|ãƒ½ï¼lã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ ï½€/äºŒäºŒãƒ½
+ã€€ |ã€€ã€€ã€€|ã€€ |ï¼|ã€€|__|ï¼ã€€ã€€ã€€âˆ§ï¼¿âˆ§ã€€ã€€ã€€ã€€ã€€ /ã€€/ï¼ˆï¼¿ï¼‰
+ã€€ |ã€€ã€€ã€€|ï¼|ã€€ |ï¼ã€€ã€€ã€€ã€€ ï¼ˆã€€Â´âˆ€ï½€ï¼‰ã€€ã€€ã€€ã€€ã€€ï¼ˆï¼¿ï¼‰ã€€ã€€âˆ§ï¼¿âˆ§
+ã€€ |ã€€ã€€ã€€|ã€€ |ï¼ã€€ã€€ã€€ã€€ã€€ ï¼/ /ã€€ ^ï¿£ï¼½ï¾Ÿã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ï¼ˆï½€ã€€ã€€ã€€ï¼‰
+ã€€ |ã€€ã€€ã€€|ï¼ã€€ã€€ã€€ã€€ã€€ã€€ã€€ ï¾Ÿ/ï¿£ï¿£_ãƒ½ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€âŠ‚ã€”ã€”ã€€ç¥­ã€€ã€•
+ã€€ |ã€€ ï¼ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€/ï¼¿ãƒï¼ˆï¼¿ï¼‰ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ â”Œ|ï¼¿ï¼¿_|
+ã€€ |ï¼ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ï¼ˆï¼¿_ï¼‰ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ ï¼ˆï¼¿ï¾‰ ãƒ½ã€€ãƒ½
+ï¼ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ï¼ˆï¼¿ï¼‰
 
  ************************************************************************** */
 
@@ -478,15 +478,15 @@ CCharacterBase::CCharacterBase(CCharacterBase *parent/* = NULL */) : CGoluahObje
 	parent_char = parent;
 
 	if(parent!=NULL){
-		keyinput = parent->keyinput;//‰½”Ô‚©‚çƒL[“ü—Í‚ğó‚¯æ‚é‚©
-		pal_number = parent->pal_number;//ƒpƒŒƒbƒg”Ô†
-		GetGObject()->tid		= parent->GetGObject()->tid;//ƒ`[ƒ€ID
+		keyinput = parent->keyinput;//ä½•ç•ªã‹ã‚‰ã‚­ãƒ¼å…¥åŠ›ã‚’å—ã‘å–ã‚‹ã‹
+		pal_number = parent->pal_number;//ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		GetGObject()->tid		= parent->GetGObject()->tid;//ãƒãƒ¼ãƒ ID
 		g_chardir = parent->g_chardir;
 	}
 	else {
-		keyinput = 0;//‰½”Ô‚©‚çƒL[“ü—Í‚ğó‚¯æ‚é‚©
-		pal_number = 0;//ƒpƒŒƒbƒg”Ô†
-		GetGObject()->tid		= 0;//ƒ`[ƒ€ID
+		keyinput = 0;//ä½•ç•ªã‹ã‚‰ã‚­ãƒ¼å…¥åŠ›ã‚’å—ã‘å–ã‚‹ã‹
+		pal_number = 0;//ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		GetGObject()->tid		= 0;//ãƒãƒ¼ãƒ ID
 	}
 
 	this->CCharacterBaseCreate();
@@ -497,9 +497,9 @@ CCharacterBase::CCharacterBase(CDI_CHARACTERINFO2 *info, BYTE userID, BYTE userN
 {
 	parent_char = NULL;
 
-	GetGObject()->tid		= info->tid;//ƒ`[ƒ€ID
-	keyinput		= info->keyinput;//‰½”Ô‚©‚çƒL[“ü—Í‚ğó‚¯æ‚é‚©
-	pal_number		= info->color;//ƒpƒŒƒbƒg”Ô†
+	GetGObject()->tid		= info->tid;//ãƒãƒ¼ãƒ ID
+	keyinput		= info->keyinput;//ä½•ç•ªã‹ã‚‰ã‚­ãƒ¼å…¥åŠ›ã‚’å—ã‘å–ã‚‹ã‹
+	pal_number		= info->color;//ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 	g_chardir		= info->dir;
 
 	this->CCharacterBaseCreate();
@@ -515,7 +515,7 @@ void CCharacterBase::CCharacterBaseCreate()
 	rects=NULL;
 	for(i=0;i<CBASE_NUMMYSOUND;i++)mysounds[i]=NULL;
 
-	pdat->objtype	= GOBJTYPE_CHARACTER;//ƒIƒuƒWƒFƒNƒgƒ^ƒCƒv
+	pdat->objtype	= GOBJTYPE_CHARACTER;//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚¿ã‚¤ãƒ—
 	pdat->winfo		= &(this->waz);
 	ZeroMemory(pdat->winfo,sizeof(WAZAINFO));
 
@@ -523,9 +523,9 @@ void CCharacterBase::CCharacterBaseCreate()
 	front_z	=ZZAHYO_CHARACTER_F;
 	back_z	=ZZAHYO_CHARACTER_B;
 
-	chainComboEnabled = TRUE;	//ƒ`ƒF[ƒ“ƒRƒ“ƒ{—LŒø
-	isSuperArmer = FALSE;		//ƒX[ƒp[ƒA[ƒ}[–³Œø
-	isAutoGuard = FALSE;		//ƒI[ƒgƒK[ƒh–³Œø
+	chainComboEnabled = TRUE;	//ãƒã‚§ãƒ¼ãƒ³ã‚³ãƒ³ãƒœæœ‰åŠ¹
+	isSuperArmer = FALSE;		//ã‚¹ãƒ¼ãƒ‘ãƒ¼ã‚¢ãƒ¼ãƒãƒ¼ç„¡åŠ¹
+	isAutoGuard = FALSE;		//ã‚ªãƒ¼ãƒˆã‚¬ãƒ¼ãƒ‰ç„¡åŠ¹
 }
 
 void CCharacterBase::InitAll()
@@ -545,11 +545,11 @@ CCharacterBase::~CCharacterBase()
 DWORD CCharacterBase::Message(DWORD msg,LPVOID pd,DWORD prm)
 {
 	switch(msg){
-	case GOBJMSG_DOTOJYO://“oê
+	case GOBJMSG_DOTOJYO://ç™»å ´
 		ChangeAction( ACTID_TOJYO );return(TRUE);
-	case GOBJMSG_DOYOUWIN://Ÿ—˜
+	case GOBJMSG_DOYOUWIN://å‹åˆ©
 		ChangeAction( ACTID_SYORI );return(TRUE);
-	case GOBJMSG_TAIKI://‘Ò‹@‚µ‚Æ‚¯ƒƒbƒZ[ƒW
+	case GOBJMSG_TAIKI://å¾…æ©Ÿã—ã¨ã‘ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		ChangeAction( ACTID_TAIKI );
 		break;
 	case GOBJMSG_ACTION:
@@ -561,22 +561,22 @@ DWORD CCharacterBase::Message(DWORD msg,LPVOID pd,DWORD prm)
 			PostAction();
 			return result;
 		}
-	case GOBJMSG_KOUTAI://Œğ‘ã‚µ‚ëƒƒbƒZ[ƒW
+	case GOBJMSG_KOUTAI://äº¤ä»£ã—ã‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		if(GetGObject()->aid == ACTID_TAIKICYU){
 			ChangeAction( ACTID_KOUTAIIN );
 			return(TRUE);
 		}
 		return(0);
-	case GOBJMSG_KOUTAI2://Œğ‘ã‚µ‚ëƒƒbƒZ[ƒW2i‚Ì‚ñ‚Ñ‚è‚Æ“oêƒ|[ƒY‚ğŒˆ‚ß‚Ä‚Ä—Ç‚µj
+	case GOBJMSG_KOUTAI2://äº¤ä»£ã—ã‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸2ï¼ˆã®ã‚“ã³ã‚Šã¨ç™»å ´ãƒãƒ¼ã‚ºã‚’æ±ºã‚ã¦ã¦è‰¯ã—ï¼‰
 		ChangeAction( ACTID_KOUTAI );
 		break;
 	case GOBJMSG_CLIPX:
-		if(GetGObject()->aid == ACTID_KOUTAI)return(TRUE);//Œğ‘ã‚ÍƒNƒŠƒbƒvˆ—‚ğ‚µ‚È‚¢
+		if(GetGObject()->aid == ACTID_KOUTAI)return(TRUE);//äº¤ä»£æ™‚ã¯ã‚¯ãƒªãƒƒãƒ—å‡¦ç†ã‚’ã—ãªã„
 		else return(0);
 	case GOBJMSG_CNGROUND:
-		return(TRUE);//ƒ‰ƒEƒ“ƒh‚ª•Ï‚í‚Á‚Ä‚àÁ‚¦‚È‚¢
+		return(TRUE);//ãƒ©ã‚¦ãƒ³ãƒ‰ãŒå¤‰ã‚ã£ã¦ã‚‚æ¶ˆãˆãªã„
 	default:
-		//‚ ‚Æ‚ÌƒƒbƒZ[ƒW‚ÍƒIƒuƒWƒFƒNƒgŠî–{ƒNƒ‰ƒX‚É”C‚¹‚é
+		//ã‚ã¨ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¯ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåŸºæœ¬ã‚¯ãƒ©ã‚¹ã«ä»»ã›ã‚‹
 		return(CGoluahObject::Message(msg,pd,prm));
 	}
 	return(0);
@@ -640,7 +640,7 @@ void CCharacterBase::Command()
 	BOOL callstriker=FALSE;
 	GOBJECT* pdat = GetGObject();
 
-	if(pdat->aid & ACTID_SYSTEM){//ƒVƒXƒeƒ€’è‹`“®ì’†‚È‚Ì‚ÅAŠî–{“I‚É‚Í‚¢‚¶‚ç‚È‚¢
+	if(pdat->aid & ACTID_SYSTEM){//ã‚·ã‚¹ãƒ†ãƒ å®šç¾©å‹•ä½œä¸­ãªã®ã§ã€åŸºæœ¬çš„ã«ã¯ã„ã˜ã‚‰ãªã„
 		Command_OnSystem(key_now);
 		return;
 	}
@@ -648,7 +648,7 @@ void CCharacterBase::Command()
 	if(pdat->aid & ACTID_NAGE)return;
 	if(pdat->aid & ACTID_INOUT)return;
 
-	//ƒXƒgƒ‰ƒCƒJ[‚ğŒÄ‚Ô
+	//ã‚¹ãƒˆãƒ©ã‚¤ã‚«ãƒ¼ã‚’å‘¼ã¶
 	if( (key_now&KEYSTA_FOWORD) && (key_now&KEYSTA_DOWN) && (key_now&KEYSTA_BD2) ){
 		if((*funcs->msg2system)(pdat->id,MSGOBJ2SYS_STRIKER1,0)){
 			ADDEFFECT(EFCTID_COMEON,(int)pdat->x,(int)pdat->y-100,pdat->muki);
@@ -662,30 +662,30 @@ void CCharacterBase::Command()
 		}
 	}
 
-	if(pdat->aid & ACTID_HISSATU){//•KE‹Z’†iŠî–{“I‚É‚¢‚¶‚é‚×‚©‚ç‚¸j
+	if(pdat->aid & ACTID_HISSATU){//å¿…æ®ºæŠ€ä¸­ï¼ˆåŸºæœ¬çš„ã«ã„ã˜ã‚‹ã¹ã‹ã‚‰ãšï¼‰
 		Command_OnHissatuAttacking(key_now);
 		return;
 	}
 
-	//•KE‹ZƒRƒ}ƒ“ƒh”»’è
+	//å¿…æ®ºæŠ€ã‚³ãƒãƒ³ãƒ‰åˆ¤å®š
 	if (Command_Hissatu(key_now))
 		return;
 
-	if(pdat->aid & ACTID_ATTACK){//UŒ‚“®ì’†iŠî–{“I‚É‚¢‚¶‚ç‚È‚¢Bƒ`ƒF[ƒ“ƒRƒ“ƒ{o‚·‚È‚ç‚±‚±‚Å‚¢‚¶‚éj
+	if(pdat->aid & ACTID_ATTACK){//æ”»æ’ƒå‹•ä½œä¸­ï¼ˆåŸºæœ¬çš„ã«ã„ã˜ã‚‰ãªã„ã€‚ãƒã‚§ãƒ¼ãƒ³ã‚³ãƒ³ãƒœå‡ºã™ãªã‚‰ã“ã“ã§ã„ã˜ã‚‹ï¼‰
 		Command_OnAttacking(key_now);
 		return;
 	}
 
-	//Šî–{“®ì’†
+	//åŸºæœ¬å‹•ä½œä¸­
 	if (Command_OnNormal(key_now) || pdat->aid & ACTID_KUCYU)
 		return;
 
-	//ƒXƒgƒ‰ƒCƒJ[
+	//ã‚¹ãƒˆãƒ©ã‚¤ã‚«ãƒ¼
 	if(callstriker){
 		pdat->aid = ACTID_STRIKERCOMEON;
 		return;
 	}
-	//‚±[‚½‚¢
+	//ã“ãƒ¼ãŸã„
 	else if( (key_now&KEYSTA_FOWORD) && (key_now&KEYSTA_BD2) && !(key_now&KEYSTA_DOWN) ){
 		if((*funcs->msg2system)(pdat->id,MSGOBJ2SYS_KOUTAI1,0)){
 			pdat->aid = ACTID_KOUTAIOUT;
@@ -699,7 +699,7 @@ void CCharacterBase::Command()
 		}
 	}
 
-	if(pdat->aid==ACTID_STRIKERCOMEON){//“ü—Í‚ª‚È‚¯‚ê‚Îƒ|[ƒYƒLƒ
+	if(pdat->aid==ACTID_STRIKERCOMEON){//å…¥åŠ›ãŒãªã‘ã‚Œã°ãƒãƒ¼ã‚ºã‚­ãƒ¡
 		if(!(key_now & (KEYSTA_UP2|KEYSTA_DOWN2|KEYSTA_FOWORD2|KEYSTA_BACK2))){
 			return;
 		}
@@ -720,16 +720,16 @@ BOOL CCharacterBase::Command_Normal(DWORD keyinfo)
 	if(keyinfo & KEYSTA_UP){
 		pdat->aid = ACTID_JAMPS;
 	}
-	else if(keyinfo & KEYSTA_DOWN){//‚µ‚á‚ª‚İ
+	else if(keyinfo & KEYSTA_DOWN){//ã—ã‚ƒãŒã¿
 		pdat->aid = ACTID_CROUCH;
 	}
-	else if(keyinfo & KEYSTA_FOWORD){//‘O•à‚«
+	else if(keyinfo & KEYSTA_FOWORD){//å‰æ­©ã
 		pdat->aid = ACTID_WALKF;
 	}
-	else if(keyinfo & KEYSTA_BACK){//Œã‚ë•à‚«
+	else if(keyinfo & KEYSTA_BACK){//å¾Œã‚æ­©ã
 		pdat->aid = ACTID_WALKB;
 	}
-	else{//ƒjƒ…[ƒgƒ‰ƒ‹ƒ|[ƒY
+	else{//ãƒ‹ãƒ¥ãƒ¼ãƒˆãƒ©ãƒ«ãƒãƒ¼ã‚º
 		pdat->aid = ACTID_NEUTRAL;
 	}
 
@@ -750,7 +750,7 @@ BOOL CCharacterBase::Command_OnAttacking(DWORD keyinfo)
 {
 	GOBJECT* pdat = GetGObject();
 
-	if(pdat->aid & ACTID_KUCYU){////ƒWƒƒƒ“ƒv“®ì’†
+	if(pdat->aid & ACTID_KUCYU){////ã‚¸ãƒ£ãƒ³ãƒ—å‹•ä½œä¸­
 		return FALSE;
 	}
 	else{
@@ -775,7 +775,7 @@ BOOL CCharacterBase::Command_OnNormal(DWORD keyinfo)
 {
 	GOBJECT* pdat = GetGObject();
 
-	if(pdat->aid & ACTID_KUCYU){//ƒWƒƒƒ“ƒv“®ì’†
+	if(pdat->aid & ACTID_KUCYU){//ã‚¸ãƒ£ãƒ³ãƒ—å‹•ä½œä¸­
 		if(keyinfo & 0x22220000){
 			if(keyinfo & KEYSTA_BC2){pdat->aid = ACTID_ATT_JC;return TRUE;}
 			else if(keyinfo & KEYSTA_BB2){pdat->aid = ACTID_ATT_JB;return TRUE;}
@@ -784,7 +784,7 @@ BOOL CCharacterBase::Command_OnNormal(DWORD keyinfo)
 		return FALSE;
 	}
 
-	//’nã“®ì’†
+	//åœ°ä¸Šå‹•ä½œä¸­
 	if(keyinfo & 0x22220000){
 		if(keyinfo & KEYSTA_DOWN){
 			if(keyinfo & KEYSTA_BC2){pdat->aid = ACTID_ATT_CC;return TRUE;}
@@ -805,11 +805,11 @@ BOOL CCharacterBase::Command_OnNormal(DWORD keyinfo)
 	}
 
 	if(pdat->aid == ACTID_JAMPS){
-		if(keyinfo & KEYSTA_FOWORD){//‘OƒWƒƒƒ“ƒv
+		if(keyinfo & KEYSTA_FOWORD){//å‰ã‚¸ãƒ£ãƒ³ãƒ—
 			pdat->aid = ACTID_JAMPF;
 			return TRUE;
 		}
-		else if(keyinfo & KEYSTA_BACK){//ŒãƒWƒƒƒ“ƒv
+		else if(keyinfo & KEYSTA_BACK){//å¾Œã‚¸ãƒ£ãƒ³ãƒ—
 			pdat->aid = ACTID_JAMPB;
 			return TRUE;
 		}
@@ -822,12 +822,12 @@ DWORD CCharacterBase::TouchA(ATTACKINFO *info,DWORD ta_eid)
 {
 	GOBJECT* pdat = GetGObject();
 
-	//ƒX[ƒp[ƒA[ƒ}[ˆ—BUŒ‚‚ğ–³‹
+	//ã‚¹ãƒ¼ãƒ‘ãƒ¼ã‚¢ãƒ¼ãƒãƒ¼å‡¦ç†ã€‚æ”»æ’ƒã‚’ç„¡è¦–
 	if(isSuperArmer){
 		if(pdat->hp>0)
 			return TOUCHA_MUSI;
 	}
-	//ƒI[ƒgƒK[ƒhˆ—BUŒ‚E‹ò‚ç‚¢’†ˆÈŠO‚Í–³ğŒƒK[ƒh
+	//ã‚ªãƒ¼ãƒˆã‚¬ãƒ¼ãƒ‰å‡¦ç†ã€‚æ”»æ’ƒãƒ»å–°ã‚‰ã„ä¸­ä»¥å¤–ã¯ç„¡æ¡ä»¶ã‚¬ãƒ¼ãƒ‰
 	if(isAutoGuard){
 		if(pdat->aid & ACTID_ATTACK)return 0;
 		if(pdat->aid & ACTID_KURAI)return 0;
@@ -847,7 +847,7 @@ DWORD CCharacterBase::CommandCOM(DWORD wid)
 	if(pdat->aid & ACTID_NAGE)return(FALSE);
 	if(pdat->aid & ACTID_INOUT)return(FALSE);
 	
-	if(pdat->aid & ACTID_HISSATU){//•KE‹Z’†iŠî–{“I‚É‚¢‚¶‚é‚×‚©‚ç‚¸j
+	if(pdat->aid & ACTID_HISSATU){//å¿…æ®ºæŠ€ä¸­ï¼ˆåŸºæœ¬çš„ã«ã„ã˜ã‚‹ã¹ã‹ã‚‰ãšï¼‰
 		return(CmdCom_OnHissatuAttacking(wid));
 	}
 
@@ -871,27 +871,27 @@ DWORD CCharacterBase::CmdCom_OnHissatuAttacking(DWORD wid)
 
 DWORD CCharacterBase::CmdCom_OnKucyu(DWORD wid)
 {
-	if(GetGObject()->aid & ACTID_ATTACK){//‹ó’†UŒ‚’†
+	if(GetGObject()->aid & ACTID_ATTACK){//ç©ºä¸­æ”»æ’ƒä¸­
 		if(wid&ACTID_NAGE)return(FALSE);
-		if(wid&ACTID_HISSATU && wid&ACTID_KUCYU)return(TRUE);//‹ó’†•KE‹Z‚È‚çOK
-		return(FALSE);//‚»‚êˆÈŠO‚Í‚¾‚ß
+		if(wid&ACTID_HISSATU && wid&ACTID_KUCYU)return(TRUE);//ç©ºä¸­å¿…æ®ºæŠ€ãªã‚‰OK
+		return(FALSE);//ãã‚Œä»¥å¤–ã¯ã ã‚
 	}
-	else{//‹ó’†’Êí“®ì’†
-		if(wid&ACTID_ATTACK && wid&ACTID_KUCYU)return(TRUE);//‹ó’†’Êí‹Z‚È‚çOK
-		return(FALSE);//‚»‚êˆÈŠO‚Í‚¾‚ß
+	else{//ç©ºä¸­é€šå¸¸å‹•ä½œä¸­
+		if(wid&ACTID_ATTACK && wid&ACTID_KUCYU)return(TRUE);//ç©ºä¸­é€šå¸¸æŠ€ãªã‚‰OK
+		return(FALSE);//ãã‚Œä»¥å¤–ã¯ã ã‚
 	}
 }
 
 DWORD CCharacterBase::CmdCom_OnNormal(DWORD wid)
 {
-	if(GetGObject()->aid & ACTID_ATTACK){//’nãUŒ‚’†
+	if(GetGObject()->aid & ACTID_ATTACK){//åœ°ä¸Šæ”»æ’ƒä¸­
 		if(wid&ACTID_NAGE)return(FALSE);
-		if(wid&ACTID_HISSATU && !(wid&ACTID_KUCYU))return(TRUE);//’nã•KE‹Z‚È‚çOK
-		return(FALSE);//‚»‚êˆÈŠO‚Í‚¾‚ß
+		if(wid&ACTID_HISSATU && !(wid&ACTID_KUCYU))return(TRUE);//åœ°ä¸Šå¿…æ®ºæŠ€ãªã‚‰OK
+		return(FALSE);//ãã‚Œä»¥å¤–ã¯ã ã‚
 	}
-	else{//’nã’Êí“®ì
-		if(wid&ACTID_KUCYU && wid&ACTID_ATTACK)return(FALSE);//‹ó’†UŒ‚‚Í‚¾‚ß
-		return(TRUE);//‚»‚êˆÈŠO‚È‚çOK
+	else{//åœ°ä¸Šé€šå¸¸å‹•ä½œ
+		if(wid&ACTID_KUCYU && wid&ACTID_ATTACK)return(FALSE);//ç©ºä¸­æ”»æ’ƒã¯ã ã‚
+		return(TRUE);//ãã‚Œä»¥å¤–ãªã‚‰OK
 	}
 }
 
@@ -906,24 +906,24 @@ void CCharacterBase::InitGCDandBMP()
 
 #ifdef _DEBUG
 	if(pal_number==0)
-		OutputDebugString("ƒLƒƒƒ‰DLL [warning] : ƒpƒŒƒbƒg”Ô†‚ª0‚Å‚·B");
+		OutputDebugString("ã‚­ãƒ£ãƒ©DLL [warning] : ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ãŒ0ã§ã™ã€‚");
 #endif
 
-	//"image?.bmp" ‚ğ“Ç‚İ‚Ş
+	//"image?.bmp" ã‚’èª­ã¿è¾¼ã‚€
 	sprintf(palname,"%s\\pal%d.bmp",g_chardir,pal_number);
 	for(i=0;i<GCDMAX_IMAGES;i++){
 		sprintf(filename,"%s\\image%d.bmp",g_chardir,i+1);
 		bitmaps[i] = (MYSURFACE*) ( (*funcd->loadbmp)(filename,palname) );
 	}
 
-	//"cell.gcd"‚ğ“Ç‚İ‚İ
+	//"cell.gcd"ã‚’èª­ã¿è¾¼ã¿
 	hantei = (GCD_HANTEI*)calloc(GCDMAX_CELLS, sizeof(GCD_HANTEI));
 	rects = (GCD_RECT*)calloc(GCDMAX_RECTANGLES, sizeof(GCD_RECT));
 	cells = (GCD_CELL2*)calloc(GCDMAX_CELLS, sizeof(GCD_CELL2_070));
 	sprintf(filename,"%s\\cell.gcd",g_chardir);
 	(*funcd->loadcelldat)(filename,cells,rects,hantei);
 	if (((GCD_CELL2_070*)cells)[0].cell[0].flag >= 900)
-	{	// ƒZƒ‹‚Ìƒo[ƒWƒ‡ƒ“‚ª0.90ˆÈã
+	{	// ã‚»ãƒ«ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãŒ0.90ä»¥ä¸Š
 		if(cells!=NULL){free(cells);cells=NULL;}
 		if(hantei!=NULL){free(hantei);hantei=NULL;}
 		if(rects!=NULL){free(rects);rects=NULL;}
@@ -931,7 +931,7 @@ void CCharacterBase::InitGCDandBMP()
 		funcd->create_celldat(filename, (void**)&cells, (void**)&rects, (void**)&hantei);
 	}
 
-	//pdat‚É“ü‚ê‚Ä‚¨‚­
+	//pdatã«å…¥ã‚Œã¦ãŠã
 	pdat->phdat			= hantei;
 	pdat->pmsarr		= bitmaps;
 	pdat->pcdat			= cells;
@@ -940,7 +940,7 @@ void CCharacterBase::InitGCDandBMP()
 
 void CCharacterBase::InitMySound()
 {
-	//sound1.wav ` sound32.wav‚ğ“Ç‚İ‚Ş
+	//sound1.wav ï½ sound32.wavã‚’èª­ã¿è¾¼ã‚€
 	char *filename = new char [256];
 	for(int i=0;i<CBASE_NUMMYSOUND;i++){
 		sprintf(filename,"%s\\sound%d.wav",g_chardir,i+1);
@@ -1048,13 +1048,13 @@ void CCharacterBase::InitWazInfo()
 	waz.walkb = ACTID_WALKB;
 	waz.jampf = ACTID_JAMPF;
 	waz.jampb = ACTID_JAMPB;
-	waz.att_short[0] = ACTID_ATT_SA;//’ZƒŠ[ƒ`UŒ‚
+	waz.att_short[0] = ACTID_ATT_SA;//çŸ­ãƒªãƒ¼ãƒæ”»æ’ƒ
 	waz.att_short[1] = ACTID_ATT_CA;
 	waz.att_short[2] = ACTID_ATT_CB;
-	waz.att_middle[0] = ACTID_ATT_SB;//’†ƒŠ[ƒ`UŒ‚
+	waz.att_middle[0] = ACTID_ATT_SB;//ä¸­ãƒªãƒ¼ãƒæ”»æ’ƒ
 	waz.att_middle[1] = ACTID_ATT_CC;
-	waz.att_long[0] = ACTID_ATT_SC;//’·ƒŠ[ƒ`UŒ‚
-	waz.att_jamp[0] = ACTID_ATT_JC;//ƒWƒƒƒ“ƒvUŒ‚
+	waz.att_long[0] = ACTID_ATT_SC;//é•·ãƒªãƒ¼ãƒæ”»æ’ƒ
+	waz.att_jamp[0] = ACTID_ATT_JC;//ã‚¸ãƒ£ãƒ³ãƒ—æ”»æ’ƒ
 	waz.att_jamp[1] = ACTID_ATT_JB;
 	waz.att_jamp[2] = ACTID_ATT_JA;
 }
@@ -1069,8 +1069,8 @@ void CCharacterBase::AddPowerGauge(double dp)
 }
 
 
-//«_¨
-BOOL CCharacterBase::com236(int dt)//—t“¯Œ ƒRƒ}ƒ“ƒh
+//â†“ï¼¼â†’
+BOOL CCharacterBase::com236(int dt)//è‘‰åŒæ¨©ã‚³ãƒãƒ³ãƒ‰
 {
 	int ofst=0;
 
@@ -1084,8 +1084,8 @@ BOOL CCharacterBase::com236(int dt)//—t“¯Œ ƒRƒ}ƒ“ƒh
 	return(TRUE);
 }
 
-//«_¨«_¨
-BOOL CCharacterBase::com236236(int dt)//—t“¯Œ ƒRƒ}ƒ“ƒhx2
+//â†“ï¼¼â†’â†“ï¼¼â†’
+BOOL CCharacterBase::com236236(int dt)//è‘‰åŒæ¨©ã‚³ãƒãƒ³ãƒ‰x2
 {
 	int ofst=0;
 
@@ -1105,8 +1105,8 @@ BOOL CCharacterBase::com236236(int dt)//—t“¯Œ ƒRƒ}ƒ“ƒhx2
 	return(TRUE);
 }
 
-//¨«_
-BOOL CCharacterBase::com623(int dt)//‚µ‚å[‚è‚ã[‚±‚Ü‚ñ‚Ç
+//â†’â†“ï¼¼
+BOOL CCharacterBase::com623(int dt)//ã—ã‚‡ãƒ¼ã‚Šã‚…ãƒ¼ã“ã¾ã‚“ã©
 {
 	int ofst=0;
 
@@ -1120,8 +1120,8 @@ BOOL CCharacterBase::com623(int dt)//‚µ‚å[‚è‚ã[‚±‚Ü‚ñ‚Ç
 	return(TRUE);
 }
 
-//«^©
-BOOL CCharacterBase::com214(int dt)//‹t‚Í‚Ç[
+//â†“ï¼â†
+BOOL CCharacterBase::com214(int dt)//é€†ã¯ã©ãƒ¼
 {
 	int ofst=0;
 
@@ -1135,7 +1135,7 @@ BOOL CCharacterBase::com214(int dt)//‹t‚Í‚Ç[
 	return(TRUE);
 }
 
-//©«^
+//â†â†“ï¼
 BOOL CCharacterBase::com421(int dt)
 {
 	int ofst=0;
@@ -1150,8 +1150,8 @@ BOOL CCharacterBase::com421(int dt)
 	return(TRUE);
 }
 
-//©^«_¨
-BOOL CCharacterBase::com426(int dt)//‚æ‚ª
+//â†ï¼â†“ï¼¼â†’
+BOOL CCharacterBase::com426(int dt)//ã‚ˆãŒ
 {
 	int ofst=0;
 
@@ -1167,8 +1167,8 @@ BOOL CCharacterBase::com426(int dt)//‚æ‚ª
 	return(TRUE);
 }
 
-//¨¨
-BOOL CCharacterBase::com66(int dt)//ƒ_ƒbƒVƒ…ƒRƒ}ƒ“ƒh
+//â†’â†’
+BOOL CCharacterBase::com66(int dt)//ãƒ€ãƒƒã‚·ãƒ¥ã‚³ãƒãƒ³ãƒ‰
 {
 	int ofst=0;
 
@@ -1181,8 +1181,8 @@ BOOL CCharacterBase::com66(int dt)//ƒ_ƒbƒVƒ…ƒRƒ}ƒ“ƒh
 	return(TRUE);
 }
 
-//©©
-BOOL CCharacterBase::com44(int dt)//ƒoƒbƒNƒ_ƒbƒVƒ…ƒRƒ}ƒ“ƒh
+//â†â†
+BOOL CCharacterBase::com44(int dt)//ãƒãƒƒã‚¯ãƒ€ãƒƒã‚·ãƒ¥ã‚³ãƒãƒ³ãƒ‰
 {
 	int ofst=0;
 
@@ -1195,8 +1195,8 @@ BOOL CCharacterBase::com44(int dt)//ƒoƒbƒNƒ_ƒbƒVƒ…ƒRƒ}ƒ“ƒh
 	return(TRUE);
 }
 
-//««
-BOOL CCharacterBase::com22(int dt)//ƒnƒ‰ƒnƒ‰ƒAƒ^ƒbƒNHƒRƒ}ƒ“ƒh
+//â†“â†“
+BOOL CCharacterBase::com22(int dt)//ãƒãƒ©ãƒãƒ©ã‚¢ã‚¿ãƒƒã‚¯ï¼Ÿã‚³ãƒãƒ³ãƒ‰
 {
 	int ofst=0;
 
@@ -1209,13 +1209,13 @@ BOOL CCharacterBase::com22(int dt)//ƒnƒ‰ƒnƒ‰ƒAƒ^ƒbƒNHƒRƒ}ƒ“ƒh
 	return(TRUE);
 }
 
-BOOL CCharacterBase::NageHantei(DWORD maai)//“Š‚°‚Ì”»’è
+BOOL CCharacterBase::NageHantei(DWORD maai)//æŠ•ã’ã®åˆ¤å®š
 {
 	DWORD hm;
 	GOBJECT *pedat= (GOBJECT*)(*funco->getinfo)(GetGObject()->eid);
 	if(pedat==NULL)return(FALSE);
 
-	if(pedat->aid & ACTID_KUCYU)//‘Šè‚ª‹ó’†”»’è
+	if(pedat->aid & ACTID_KUCYU)//ç›¸æ‰‹ãŒç©ºä¸­åˆ¤å®š
 		return(FALSE);
 
 	hm = (*funco->getmaai_h)(GetGObject()->id,pedat->id);
@@ -1226,7 +1226,7 @@ BOOL CCharacterBase::NageHantei(DWORD maai)//“Š‚°‚Ì”»’è
 }
 
 
-//  «_¨_«^©
+//  â†“ï¼¼â†’ï¼¼â†“ï¼â†
 BOOL CCharacterBase::com2363214(int dt)
 {
 	int ofst=0;
@@ -1245,7 +1245,7 @@ BOOL CCharacterBase::com2363214(int dt)
 	return(TRUE);
 }
 
-//¨_«^©^«_¨
+//â†’ï¼¼â†“ï¼â†ï¼â†“ï¼¼â†’
 BOOL CCharacterBase::com62426(int dt)
 {
 	int ofst=0;
@@ -1268,7 +1268,7 @@ BOOL CCharacterBase::com62426(int dt)
 	return(TRUE);
 }
 
-//¨©^«_¨
+//â†’â†ï¼â†“ï¼¼â†’
 BOOL CCharacterBase::com6426(int dt)
 {
 	int ofst=0;
@@ -1288,20 +1288,20 @@ BOOL CCharacterBase::com6426(int dt)
 }
 
 //*******************************************************************
-//@Šî–{“I‚Ès“®ŠÖ” g‚¢‚Ü‚í‚µ‚Ä‚­‚¾‚³‚¢
+//ã€€åŸºæœ¬çš„ãªè¡Œå‹•é–¢æ•° ä½¿ã„ã¾ã‚ã—ã¦ãã ã•ã„
 //*******************************************************************
 
 void CCharacterBase::act_koutai_in()
 {
 	/*
-	 * Œğ‘ã‚µ‚Ä‰æ–Ê“à‚É‚Í‚¢‚Á‚Ä‚­‚é(1)
-	 * “oêƒ|[ƒY‚Í‚µ‚È‚¢B
+	 * äº¤ä»£ã—ã¦ç”»é¢å†…ã«ã¯ã„ã£ã¦ãã‚‹(1)
+	 * ç™»å ´ãƒãƒ¼ã‚ºã¯ã—ãªã„ã€‚
 	 */
 
 	GOBJECT* pdat = GetGObject();
 
 	if(pdat->counter==0){
-		pdat->objtype |= GOBJTYPE_DISPLAY;//‰æ–Ê“à‚É‚¢‚é
+		pdat->objtype |= GOBJTYPE_DISPLAY;//ç”»é¢å†…ã«ã„ã‚‹
 	}
 
 	GOBJECT *pedat;
@@ -1334,8 +1334,8 @@ void CCharacterBase::act_koutai_in()
 	pdat->vy++;
 
 	if(pdat->y > 0){
-		pdat->objtype &= ~GOBJFLG_TAIKI;//‘Ò‹@ƒtƒ‰ƒO‚ğÁ‚·
-		AddProperty( GOBJFLG_TOBETARGET );//ƒ^[ƒQƒbƒg‚É‚È‚é
+		pdat->objtype &= ~GOBJFLG_TAIKI;//å¾…æ©Ÿãƒ•ãƒ©ã‚°ã‚’æ¶ˆã™
+		AddProperty( GOBJFLG_TOBETARGET );//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ãªã‚‹
 		pdat->y=0;
 		pdat->aid = ACTID_NEUTRAL;
 	}
@@ -1344,15 +1344,15 @@ void CCharacterBase::act_koutai_in()
 void CCharacterBase::act_koutai_out()
 {
 	/*
-	 * ‰æ–ÊŠO‚É‚Ò‚å[‚ñ‚Á‚Ä‚Å‚Ä‚Á‚Ä‘Ò‹@‚·‚é
+	 * ç”»é¢å¤–ã«ã´ã‚‡ãƒ¼ã‚“ã£ã¦ã§ã¦ã£ã¦å¾…æ©Ÿã™ã‚‹
 	 */
 
 	GOBJECT* pdat = GetGObject();
 
 	if(pdat->counter==0){
-		pdat->objtype &= GOBJTYPE_NODISPLAY;//‰æ–ÊŠO‚Ö‚¢‚¯‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­
-		pdat->objtype |= GOBJFLG_TAIKI;//‘Ò‹@ƒtƒ‰ƒO‚ğ—§‚Ä‚é
-		RemoveProperty( GOBJFLG_TOBETARGET );//ƒ^[ƒQƒbƒg‚É‚Í‚È‚ç‚È‚¢
+		pdat->objtype &= GOBJTYPE_NODISPLAY;//ç”»é¢å¤–ã¸ã„ã‘ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã
+		pdat->objtype |= GOBJFLG_TAIKI;//å¾…æ©Ÿãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
+		RemoveProperty( GOBJFLG_TOBETARGET );//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ã¯ãªã‚‰ãªã„
 	}
 
 	if(pdat->counter < 2){
@@ -1368,14 +1368,14 @@ void CCharacterBase::act_koutai_out()
 	}
 }
 
-void CCharacterBase::act_taiki()//‰æ–ÊŠO‚É”ò‚ñ‚Å‚Á‚Ä‘Ò‹@‚·‚é
+void CCharacterBase::act_taiki()//ç”»é¢å¤–ã«é£›ã‚“ã§ã£ã¦å¾…æ©Ÿã™ã‚‹
 {
 	GOBJECT* pdat = GetGObject();
 
 	if(pdat->counter==0){
-		pdat->objtype &= GOBJTYPE_NODISPLAY;//‰æ–ÊŠO‚Ö‚¢‚¯‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­
-		AddProperty( GOBJFLG_TAIKI );//‘Ò‹@ƒtƒ‰ƒO‚ğ—§‚Ä‚é
-		RemoveProperty( GOBJFLG_TOBETARGET );//ƒ^[ƒQƒbƒg‚É‚Í‚È‚ç‚È‚¢
+		pdat->objtype &= GOBJTYPE_NODISPLAY;//ç”»é¢å¤–ã¸ã„ã‘ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã
+		AddProperty( GOBJFLG_TAIKI );//å¾…æ©Ÿãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
+		RemoveProperty( GOBJFLG_TOBETARGET );//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ã¯ãªã‚‰ãªã„
 	}
 
 	if(pdat->counter < 2){
@@ -1391,7 +1391,7 @@ void CCharacterBase::act_taiki()//‰æ–ÊŠO‚É”ò‚ñ‚Å‚Á‚Ä‘Ò‹@‚·‚é
 	}
 }
 
-void CCharacterBase::act_koutai2()//“oêƒ|[ƒYEƒLƒ
+void CCharacterBase::act_koutai2()//ç™»å ´ãƒãƒ¼ã‚ºãƒ»ã‚­ãƒ¡
 {
 	if(GetGObject()->counter<150)act_tojyo();
 
@@ -1405,7 +1405,7 @@ void CCharacterBase::act_koutai()
 {
 	GOBJECT* pdat = GetGObject();
 
-	pdat->objtype |= GOBJTYPE_DISPLAY;//‰æ–Ê“à‚É‚¢‚é
+	pdat->objtype |= GOBJTYPE_DISPLAY;//ç”»é¢å†…ã«ã„ã‚‹
 
 	GOBJECT *pedat;
 	if(pdat->counter==0){
@@ -1437,14 +1437,14 @@ void CCharacterBase::act_koutai()
 	pdat->vy++;
 
 	if(pdat->y > 0){
-		pdat->objtype &= ~GOBJFLG_TAIKI;//‘Ò‹@ƒtƒ‰ƒO‚ğÁ‚·
-		AddProperty( GOBJFLG_TOBETARGET );//ƒ^[ƒQƒbƒg‚É‚È‚é
+		pdat->objtype &= ~GOBJFLG_TAIKI;//å¾…æ©Ÿãƒ•ãƒ©ã‚°ã‚’æ¶ˆã™
+		AddProperty( GOBJFLG_TOBETARGET );//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ãªã‚‹
 		pdat->y=0;
-		pdat->aid = ACTID_KOUTAI2;//“oêƒ|[ƒY
+		pdat->aid = ACTID_KOUTAI2;//ç™»å ´ãƒãƒ¼ã‚º
 	}
 }
 
-void CCharacterBase::act_taikicyu(){}//‘Ò‹@’†
+void CCharacterBase::act_taikicyu(){}//å¾…æ©Ÿä¸­
 
 void CCharacterBase::act_strikercomeon()
 {
@@ -1454,7 +1454,7 @@ void CCharacterBase::act_strikercomeon()
 void CCharacterBase::act_rakka2(){act_rakka();}
 
 //**********************************************************
-//@Ÿ—˜‘äŒæ“¾ˆ—
+//ã€€å‹åˆ©å°è©å–å¾—å‡¦ç†
 //**********************************************************
 
 int GetRandNum(int num);
@@ -1474,38 +1474,38 @@ void CCharacterBase::LoadAndSetKatiSerif()
 	if(GetWinSerif(katiserifu,enemyname,filepath)){
 		funcs->setkatiserif(pdat->tid,katiserifu);
 	}
-	else funcs->setkatiserif(pdat->tid,"ƒZƒŠƒt‚Ìæ“¾‚É¸”s");
+	else funcs->setkatiserif(pdat->tid,"ã‚»ãƒªãƒ•ã®å–å¾—ã«å¤±æ•—");
 }
 
 BOOL GetWinSerif(char *getmsg,char *enename,char *filepath)
 {
-	sprintf(getmsg,"(‘äŒ‚Ìİ’è‚ªŒŸõ‚³‚ê‚Ü‚¹‚ñ‚Å‚µ‚½)");
+	sprintf(getmsg,"(å°è©ã®è¨­å®šãŒæ¤œç´¢ã•ã‚Œã¾ã›ã‚“ã§ã—ãŸ)");
 
-	//ƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“
+	//ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³
 	HANDLE hFile = CreateFile(filepath,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
 	if(hFile==INVALID_HANDLE_VALUE)return(FALSE);
 
-	//—ÌˆæŠm•Û
+	//é ˜åŸŸç¢ºä¿
 	DWORD fsiz = GetFileSize(hFile,NULL);
 	char *buf = (char*)malloc(fsiz);
 	ZeroMemory(buf,sizeof(buf));
 
-	//ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ
+	//ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿
 	DWORD br;
 	ReadFile(hFile,buf,fsiz,&br,NULL);
 	CloseHandle(hFile);
 
-	//‚»‚ÌƒLƒƒƒ‰ƒNƒ^[‚ÉŠ„‚èU‚ç‚ê‚½‘äŒ‚ª‚¢‚­‚Â‚ ‚é‚©‚ğŒŸõ
+	//ãã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã«å‰²ã‚ŠæŒ¯ã‚‰ã‚ŒãŸå°è©ãŒã„ãã¤ã‚ã‚‹ã‹ã‚’æ¤œç´¢
 	DWORD numser=0,numserr=0,pnow=0;
 	BOOL loop=TRUE,loop2;
 	char tmpname[64];
 	DWORD tmpnamelen;
 	DWORD sstartpos[16],sstartposr[16];
 	while(pnow < fsiz && loop){
-		//u#v‚ğŒŸõ
+		//ã€Œ#ã€ã‚’æ¤œç´¢
 		loop2=TRUE;
 		while(pnow < fsiz && loop2){
-			//s“ªi‚Ü‚½‚Íƒtƒ@ƒCƒ‹æ“ªj‚Ì‚İ
+			//è¡Œé ­ï¼ˆã¾ãŸã¯ãƒ•ã‚¡ã‚¤ãƒ«å…ˆé ­ï¼‰ã®ã¿
 			if(pnow==0){
 				if(buf[pnow]=='#'){
 					loop2=FALSE;
@@ -1520,61 +1520,61 @@ BOOL GetWinSerif(char *getmsg,char *enename,char *filepath)
 			}
 			pnow++;
 		}
-		if(!loop2){//#‚ª”­Œ©‚³‚ê‚Ä‚¢‚é‚È‚ç‚Î
-			//‚»‚ÌŒã‚Ì‰üs‚Ü‚Å‚ğ–¼‘O‚Æ‚µ‚Ä‹L˜^
+		if(!loop2){//#ãŒç™ºè¦‹ã•ã‚Œã¦ã„ã‚‹ãªã‚‰ã°
+			//ãã®å¾Œã®æ”¹è¡Œã¾ã§ã‚’åå‰ã¨ã—ã¦è¨˜éŒ²
 			tmpnamelen=0;
 			ZeroMemory(tmpname,sizeof(tmpname));
 			loop2=TRUE;
 			while(pnow < fsiz && loop2){
 				tmpname[tmpnamelen] = buf[pnow];
 				tmpnamelen++;
-				if(pnow < fsiz-2){//‰üs”»’è
-					if(buf[pnow+1]==0x0d && buf[pnow+2]==0x0a){//‚»‚ÌŸ‚Í‰üs‚¾‚Á‚½
+				if(pnow < fsiz-2){//æ”¹è¡Œåˆ¤å®š
+					if(buf[pnow+1]==0x0d && buf[pnow+2]==0x0a){//ãã®æ¬¡ã¯æ”¹è¡Œã ã£ãŸ
 						loop2=FALSE;
 						pnow+=3;
 					}
-					else pnow++;//‚»‚ÌŸ‚à‰üs‚Å‚Í‚È‚¢
+					else pnow++;//ãã®æ¬¡ã‚‚æ”¹è¡Œã§ã¯ãªã„
 				}
-				else pnow++;//ƒtƒ@ƒCƒ‹‚ÌI‚í‚è‚Ì‚Ù‚¤‚È‚Ì‚Å‰üs”»’è‚ª‚Å‚«‚È‚¢
+				else pnow++;//ãƒ•ã‚¡ã‚¤ãƒ«ã®çµ‚ã‚ã‚Šã®ã»ã†ãªã®ã§æ”¹è¡Œåˆ¤å®šãŒã§ããªã„
 			}
-			//–¼‘O‚ğ”äŠr
-			if(strcmp(tmpname,"random")==0 && numserr<16){//ƒ‰ƒ“ƒ_ƒ€‘äŒ
+			//åå‰ã‚’æ¯”è¼ƒ
+			if(strcmp(tmpname,"random")==0 && numserr<16){//ãƒ©ãƒ³ãƒ€ãƒ å°è©
 				sstartposr[numserr]=pnow;
 				numserr++;
 			}
-			if(strcmp(tmpname,enename)==0 && numser<16){//ƒLƒƒƒ‰ŒÅ—L‘äŒ
+			if(strcmp(tmpname,enename)==0 && numser<16){//ã‚­ãƒ£ãƒ©å›ºæœ‰å°è©
 				sstartpos[numser]=pnow;
 				numser++;
 			}
 		}
 	}
 
-	if(numser==0 && numserr==0)return(FALSE);//ˆê‚Â‚à‘äŒ‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½
+	if(numser==0 && numserr==0)return(FALSE);//ä¸€ã¤ã‚‚å°è©ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸ
 
-	//Œ©‚Â‚©‚Á‚½‘äŒ‚Ì‚¤‚¿Aƒ‰ƒ“ƒ_ƒ€‚É1‚Â‚Ì‘äŒ‚ğ‘I‘ğ
+	//è¦‹ã¤ã‹ã£ãŸå°è©ã®ã†ã¡ã€ãƒ©ãƒ³ãƒ€ãƒ ã«1ã¤ã®å°è©ã‚’é¸æŠ
 	if(numser != 0)pnow = sstartpos[GetRandNum(numser)];
-	else pnow = sstartposr[GetRandNum(numserr)];//ƒ‰ƒ“ƒ_ƒ€‘äŒ
+	else pnow = sstartposr[GetRandNum(numserr)];//ãƒ©ãƒ³ãƒ€ãƒ å°è©
 
 
-	//‚»‚ÌŒã‚Ì‰üs‚Ü‚Å‚ğŸ‚¿‘äŒ‚Æ‚µ‚ÄƒRƒs[
+	//ãã®å¾Œã®æ”¹è¡Œã¾ã§ã‚’å‹ã¡å°è©ã¨ã—ã¦ã‚³ãƒ”ãƒ¼
 	int tmpcnt=0;
 	DWORD retlen=0;
 	while(pnow < fsiz){
 		getmsg[retlen] = buf[pnow];
 		retlen++;
-		if(pnow < fsiz-2){//‰üs”»’è
-			if(buf[pnow+1]==0x0d && buf[pnow+2]==0x0a){//‚»‚ÌŸ‚Í‰üs‚¾‚Á‚½
-				if(pnow == fsiz-2){//‚±‚±‚Ì”»’è‚ğ’Ç‰Á
+		if(pnow < fsiz-2){//æ”¹è¡Œåˆ¤å®š
+			if(buf[pnow+1]==0x0d && buf[pnow+2]==0x0a){//ãã®æ¬¡ã¯æ”¹è¡Œã ã£ãŸ
+				if(pnow == fsiz-2){//ã“ã“ã®åˆ¤å®šã‚’è¿½åŠ 
 					getmsg[retlen] = 0;
 					free(buf);
 					return(TRUE);
-				}//‚±‚±‚Ü‚Å
-				if(buf[pnow+3]=='#' || tmpcnt>=2){//ƒƒbƒZ[ƒW‚É—LŒø‚È‰üs‚©H
+				}//ã“ã“ã¾ã§
+				if(buf[pnow+3]=='#' || tmpcnt>=2){//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«æœ‰åŠ¹ãªæ”¹è¡Œã‹ï¼Ÿ
 					getmsg[retlen] = 0;
 					free(buf);
 					return(TRUE);
 				}
-				else{//‰üs‚Í‚QŒÂ‚Ü‚Åƒoƒbƒtƒ@‚·‚é
+				else{//æ”¹è¡Œã¯ï¼’å€‹ã¾ã§ãƒãƒƒãƒ•ã‚¡ã™ã‚‹
 					getmsg[retlen++] = buf[++pnow];
 					getmsg[retlen++] = buf[++pnow];
 					tmpcnt++;
@@ -1604,24 +1604,24 @@ BOOL APIENTRY DllMain(HANDLE hModule, DWORD dwReason, LPVOID lpReserved)
 	return TRUE;
 }
 
-inline int GetRandNum(int num)//ƒ‰ƒ“ƒ_ƒ€ƒiƒ“ƒo[”­¶
+inline int GetRandNum(int num)//ãƒ©ãƒ³ãƒ€ãƒ ãƒŠãƒ³ãƒãƒ¼ç™ºç”Ÿ
 {
 	return(rand()%num);
 }
 
 /* ********************************************************************************
 
-@CBulletBase : ”ò“¹‹ïŠî–{ƒNƒ‰ƒX
+ã€€CBulletBase : é£›é“å…·åŸºæœ¬ã‚¯ãƒ©ã‚¹
 
-@@@@@@@@@@@@@@@ ..,,,,,,..........................@@@@\@@@-@@\@@@(Ü;:)
-]@@@@@@@@@@ @@/'" @@@@@@@@ @@@@@@ @"'R.@@@@@@@@@@@@@@@@@|@@\
-@@@\@@ @@@@@ /"@@@@@| @ @@@ /@@@ @@@@@"R,i'';:ÜÜR˜¤,..
-@@@@@@@@@@@@i@@@›@@|PPP/@@›@@@@@@@ ‚Ö@ @@@@@@;;:: l@@@(Ü::;
-@@]@] @ -@@ @ @|@ @@@@ i @@..::/@@@@@B@@@;:::^@ :: ::@:@::ÜP""ÜS
-@@@@@@@@@@@ @!.@ @@@@|@:::::/|@Q _B@@::::::::: /:::@;@":P@@:::@@:::::::::::)
-@@-@@@@@\@@@R@@@ @@@ lR__É˜¦@@@,,..:;::::::::::^:'i: : :@;;:;:@@@@@@Ü:;;Ü)
-@@@@@@@@@@@@ @_@@@@@ ‚µQ/ .......::::::;;:;::::::^;:/:::: : :ƒm;;::@ :;@:@@....:::::@@@..... @::::É
--@@ @ @ @@@ @@@ @@PPPPPPPP'P""P" "@PPP"'"" PPP"@''''P''P
+ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ ..,,,,,,..........................ã€€ã€€ã€€ã€€â€•ã€€ã€€ã€€-ã€€ã€€â€•ã€€ã€€ã€€(âŒ’;:)
+â€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ ã€€ã€€/'" ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ ã€€ã€€ã€€ã€€ã€€ã€€ ã€€"'ãƒ½.ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ï¼ã€€ã€€â€•
+ã€€ã€€ã€€â€•ã€€ã€€ ã€€ã€€ã€€ã€€ã€€ /"ã€€ã€€ã€€ã€€ã€€| ã€€ ã€€ã€€ã€€ /ã€€ã€€ã€€ ã€€ã€€ã€€ã€€ã€€"ãƒ½,ï¼ˆ'';:âŒ’âŒ’ãƒ½ä¸¶,..
+ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€iã€€ã€€ã€€â—‹ã€€ã€€|ï¿£ï¿£ï¿£/ã€€ã€€â—‹ã€€ã€€ã€€ã€€ã€€ã€€ã€€ ã¸ã€€ ã€€ã€€ã€€ã€€ã€€ã€€;;:: ã€•ã€€ã€€ã€€(âŒ’::;
+ã€€ã€€â€ã€€â€ ã€€ -ã€€ã€€ ã€€ ã€€|ã€€ ã€€ã€€ã€€ã€€ i ã€€ã€€..::/ã€€ã€€ã€€ã€€ã€€ã€‚ã€€ã€€ã€€;:::ï¼ã€€ :: ::ã€€:ã€€::âŒ’ï¿£""âŒ’ãƒ¾
+ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ ã€€!.ã€€ ã€€ã€€ã€€ã€€|ã€€:::::/|ã€€ï¼¿ _ã€‚ã€€ã€€::::::::: /:::ã€€;ã€€":ï¿£ã€€ã€€:::ã€€ã€€:::::::::::)
+ã€€ã€€-ã€€ã€€ã€€ã€€ã€€â€•ã€€ã€€ã€€ãƒ½ã€€ã€€ã€€ ã€€ã€€ã€€ lãƒ½__ï¾‰ä¸¿ã€€ã€€ã€€,,..:;::::::::::ï¼:'ï¼ˆ: : :ã€€;;:;:ã€€ã€€ã€€ã€€ã€€ã€€âŒ’:;;âŒ’)
+ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ ã€€ï¼¼ã€€ã€€ã€€ã€€ã€€ ã—ï¼¿/ .......::::::;;:;::::::ï¼;:/:::: : :ãƒ;;::ã€€ :;ã€€:ã€€ã€€....:::::ã€€ã€€ã€€..... ã€€::::ï¾‰
+-ã€€ã€€ ã€€ ã€€ ã€€ã€€ã€€ ã€€ã€€ã€€ ã€€ã€€ï¿£ï¿£ï¿£ï¿£ï¿£ï¿£ï¿£ï¿£'ï¿£""ï¿£" "ã€€ï¿£ï¿£ï¿£"'"" ï¿£ï¿£ï¿£"ã€€''''ï¿£''ï¿£
 
  ******************************************************************************** */
 
@@ -1671,8 +1671,8 @@ void CBulletBase::CBulletBaseCreate()
 	GOBJECT* pdat = GetGObject();
 
 	if(parent_obj!=NULL){
-		pdat->tid = parent_obj->tid;//ƒ`[ƒ€ID
-		pdat->pmsarr = parent_obj->pmsarr;//gcd‚Íe‚Æ“¯‚¶‚à‚Ì‚ğg‚¦‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­
+		pdat->tid = parent_obj->tid;//ãƒãƒ¼ãƒ ID
+		pdat->pmsarr = parent_obj->pmsarr;//gcdã¯è¦ªã¨åŒã˜ã‚‚ã®ã‚’ä½¿ãˆã‚‹ã‚ˆã†ã«ã—ã¦ãŠã
 		pdat->pcdat = parent_obj->pcdat;
 		pdat->prdat = parent_obj->prdat;
 		pdat->phdat = parent_obj->phdat;
@@ -1684,7 +1684,7 @@ void CBulletBase::CBulletBaseCreate()
 	}
 
 	pdat->aid = CBB_STATE_IDLE;
-	pdat->objtype	= GOBJTYPE_BULLET;//ƒIƒuƒWƒFƒNƒgƒ^ƒCƒv
+	pdat->objtype	= GOBJTYPE_BULLET;//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚¿ã‚¤ãƒ—
 	base_z=ZZAHYO_BULLET1;
 
 	ZeroMemory(&atkinfo,sizeof(ATTACKINFO));
@@ -1697,13 +1697,13 @@ DWORD CBulletBase::Message(DWORD msg,LPVOID pd,DWORD prm)
 	case GOBJMSG_SOUSAI:return( Sousai(prm) );
 	case GOBJMSG_CNGROUND:Suicide();return(TRUE);
 	default:
-		//‚ ‚Æ‚ÌƒƒbƒZ[ƒW‚ÍƒIƒuƒWƒFƒNƒgŠî–{ƒNƒ‰ƒX‚É”C‚¹‚é
+		//ã‚ã¨ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¯ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåŸºæœ¬ã‚¯ãƒ©ã‚¹ã«ä»»ã›ã‚‹
 		return(CGoluahObject::Message(msg,pd,prm));
 	}
 	return(0);
 }
 
-DWORD CBulletBase::Draw()//idle‚Í•`‰æ‚µ‚È‚¢
+DWORD CBulletBase::Draw()//idleæ™‚ã¯æç”»ã—ãªã„
 {
 	if(GetGObject()->aid==CBB_STATE_IDLE)return TRUE;
 	return 0;
@@ -1725,7 +1725,7 @@ DWORD CBulletBase::TouchB(ATTACKINFO *info,BOOL hit)
 
 DWORD CBulletBase::Sousai(DWORD prm)
 {
-	GetGObject()->kougeki=FALSE;//UŒ‚—Í–³Œø‰»
+	GetGObject()->kougeki=FALSE;//æ”»æ’ƒåŠ›ç„¡åŠ¹åŒ–
 	GetGObject()->aid = CBB_STATE_BOMB;
 	return(TRUE);
 }
@@ -1739,7 +1739,7 @@ void CBulletBase::Suicide()
 	funco->suicide(GetGObject()->id);
 }
 
-//ƒTƒEƒ“ƒhÄ¶ ‚à‚µe‚ª‚¢‚ê‚ÎA‚»‚¿‚ç‚Ì‚Ù‚¤‚Éˆ—‚ğŠÛ“Š‚°
+//ã‚µã‚¦ãƒ³ãƒ‰å†ç”Ÿ ã‚‚ã—è¦ªãŒã„ã‚Œã°ã€ãã¡ã‚‰ã®ã»ã†ã«å‡¦ç†ã‚’ä¸¸æŠ•ã’
 void CBulletBase::PlayMySound(DWORD number)
 {
 	if(parent_class!=NULL)parent_class->PlayMySound(number);
@@ -1798,7 +1798,7 @@ void CBulletBase::act_idle()
 
 /* ********************************************************************************
 
-@CClassicalBullet : ©“®”ò“¹‹ïƒNƒ‰ƒX
+ã€€CClassicalBullet : è‡ªå‹•é£›é“å…·ã‚¯ãƒ©ã‚¹
 
  ******************************************************************************** */
 
@@ -1808,11 +1808,11 @@ CClassicalBullet::CClassicalBullet( CCharacterBase *parent,CDI_CHARACTERINFO2 *i
 	array_len_r = 0;
 	array_len_d = 0;
 
-	//”z—ñ‚Ì’·‚³‚ğæ“¾‚·‚é
+	//é…åˆ—ã®é•·ã•ã‚’å–å¾—ã™ã‚‹
 	while(bulinfo->cell_run[array_len_r]>0)array_len_r++;
 	while(bulinfo->cell_dis[array_len_d]>0)array_len_d++;
 
-	//ƒƒ‚‚èŠm•Û&”z—ñ‚ğƒRƒs[‚·‚é
+	//ãƒ¡ãƒ¢ã‚Šç¢ºä¿&é…åˆ—ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	DWORD i;
 	if(array_len_r==0)pcr=NULL;
 	else{
@@ -1829,14 +1829,14 @@ CClassicalBullet::CClassicalBullet( CCharacterBase *parent,CDI_CHARACTERINFO2 *i
 		}
 	}
 
-	//‹ŒUŒ‚î•ñ”z—ñ‚©‚çVUŒ‚î•ñ”z—ñ‚É•ÏŠ·‚·‚é
+	//æ—§æ”»æ’ƒæƒ…å ±é…åˆ—ã‹ã‚‰æ–°æ”»æ’ƒæƒ…å ±é…åˆ—ã«å¤‰æ›ã™ã‚‹
 	atkinfo.damage = bulinfo->atk.damage;
 	atkinfo.kezuri = bulinfo->atk.kezuri;
 	atkinfo.guard = bulinfo->atk.guard;
 	atkinfo.hit = bulinfo->atk.hit;
-	atkinfo.muki = FALSE;//‹Œ\‘¢‘Ì‚Æ‚Í‚¿‚å‚Á‚ÆˆÓ–¡‚ªˆá‚¤
+	atkinfo.muki = FALSE;//æ—§æ§‹é€ ä½“ã¨ã¯ã¡ã‚‡ã£ã¨æ„å‘³ãŒé•ã†
 
-	//ƒpƒ‰ƒ[ƒ^ƒRƒs[
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
 	ax = bulinfo->ax;
 	ay = bulinfo->ay;
 	vx = bulinfo->vx;
@@ -1848,7 +1848,7 @@ CClassicalBullet::CClassicalBullet( CCharacterBase *parent,CDI_CHARACTERINFO2 *i
 
 	pState = &bulinfo->state;
 
-	//ƒtƒ‰ƒOˆ— 
+	//ãƒ•ãƒ©ã‚°å‡¦ç† 
 	if( !(flags&BULLETA_VSHUMAN) )RemoveProperty(GOBJFLG_ATTACK);
 	if( !(flags&BULLETA_VSBULLET) )RemoveProperty(GOBJFLG_ZBULLET);
 	if( flags&BULLETA_DRAWBACK )base_z=ZZAHYO_BULLET3;
@@ -1927,18 +1927,18 @@ void CClassicalBullet::act_bomb()
 
 /* **************************************************************************
 
-  CBulletList : ”ò‚Ñ“¹‹ïƒŠƒXƒgƒNƒ‰ƒX
+  CBulletList : é£›ã³é“å…·ãƒªã‚¹ãƒˆã‚¯ãƒ©ã‚¹
 
-@ƒlƒbƒg‘Îí—p‚Ì”ò‚Ñ“¹‹ïƒIƒuƒWƒFƒNƒg‚ğƒŠƒXƒgŠÇ—‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
-@ˆê“x‚É‘å—Ê”­Ë‚·‚é”ò‚Ñ“¹‹ï‚âA˜AË‚µ‚½‚¢‚Æ‚«‚Ég—p‚µ‚Ä‚­‚¾‚³‚¢B
-@‚Ó‚Â‚¤‚Ì”ò‚Ñ“¹‹ï‚Å‚àA“®‚«‚ÉáŠQ‚ªo‚éê‡‚Ég—p‚·‚é‚Æ•Ö—˜‚Å‚·B
-@CGoluahObject‚Ì”h¶ƒNƒ‰ƒX‚Å‚Í‚È‚¢‚Ì‚ÅA“®“I¶¬‚·‚é•K—v‚Í‚ ‚è‚Ü‚¹‚ñB
-@i“r’†‚ÅƒŠƒXƒg‚ğƒNƒŠƒA‚·‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñ‚Ì‚Å‚²’ˆÓ‚­‚¾‚³‚¢Bj
+ã€€ãƒãƒƒãƒˆå¯¾æˆ¦ç”¨ã®é£›ã³é“å…·ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ãƒªã‚¹ãƒˆç®¡ç†ã™ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚
+ã€€ä¸€åº¦ã«å¤§é‡ç™ºå°„ã™ã‚‹é£›ã³é“å…·ã‚„ã€é€£å°„ã—ãŸã„ã¨ãã«ä½¿ç”¨ã—ã¦ãã ã•ã„ã€‚
+ã€€ãµã¤ã†ã®é£›ã³é“å…·ã§ã‚‚ã€å‹•ãã«éšœå®³ãŒå‡ºã‚‹å ´åˆã«ä½¿ç”¨ã™ã‚‹ã¨ä¾¿åˆ©ã§ã™ã€‚
+ã€€CGoluahObjectã®æ´¾ç”Ÿã‚¯ãƒ©ã‚¹ã§ã¯ãªã„ã®ã§ã€å‹•çš„ç”Ÿæˆã™ã‚‹å¿…è¦ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚
+ã€€ï¼ˆé€”ä¸­ã§ãƒªã‚¹ãƒˆã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ã“ã¨ã¯ã§ãã¾ã›ã‚“ã®ã§ã”æ³¨æ„ãã ã•ã„ã€‚ï¼‰
 
  ************************************************************************** */
 
 //////////////////////////////////////////////////////////////////////
-// \’z/Á–Å
+// æ§‹ç¯‰/æ¶ˆæ»…
 //////////////////////////////////////////////////////////////////////
 
 CBulletList::CBulletList()

@@ -1,9 +1,9 @@
-
+﻿
 /*!
 *	@file
-*	@brief �f�J��L���b�V��
-*	�\���ɕK�v�Ȃ��Ȃ������̂��A�����[�h�����ɕێ����Ă�����
-*	�ǂݍ��݉񐔂��y������
+*	@brief デカ顔キャッシュ
+*	表示に必要なくなったものもアンロードせずに保持しておいて
+*	読み込み回数を軽減する
 */
 #pragma once
 
@@ -14,19 +14,19 @@
 
 /*!
 *	@ingroup global
-*	@brief �f�J��擾�N���X
+*	@brief デカ顔取得クラス
 *
-*	�f�J��(face2.bmp)��\������Ƃ��ɁA���������r�b�g�}�b�v�̃��[�h�ƃA�����[�h��
-*	�Ǘ�����̂��ʓ|�Ȃ̂ŁA��������擾����悤�ɂ����B
-*	�v�����ꂽ�r�b�g�}�b�v�����łɓǂݍ��܂�Ă���ꍇ�̓��[�h���Ȃ��ł����Ԃ��B
-*	�����I�ȃA�����[�h�͑��݂��Ȃ��̂ŁA�펞���\�Ȑ��̃r�b�g�}�b�v�����[�h������ςȂ��B
+*	デカ顔(face2.bmp)を表示するときに、いちいちビットマップのロードとアンロードを
+*	管理するのが面倒なので、こいつから取得するようにした。
+*	要求されたビットマップがすでに読み込まれている場合はロードしないでそれを返す。
+*	明示的なアンロードは存在しないので、常時結構な数のビットマップがロードされっぱなし。
 */
 class CTBigFaceCache : public CBackgroundTaskBase
 {
 public:
 	~CTBigFaceCache(){Terminate();}
 	
-	BOOL Execute(DWORD time);			//!< 1�t���X�V�^�C�~���O
+	BOOL Execute(DWORD time);			//!< 1フレ更新タイミング
 	void Terminate();
 	DWORD GetID(){return BIGFACE_TASKID;}
 	
@@ -34,7 +34,7 @@ public:
 	void Destroy();
 
 protected:
-	//! face2�r�b�g�}�b�v���Ǘ�,1����
+	//! face2ビットマップ情報管理,1枚分
 	struct CTextureRef
 	{
 		MYSURFACE *dds;

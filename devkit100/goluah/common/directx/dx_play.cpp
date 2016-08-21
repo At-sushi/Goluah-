@@ -1,6 +1,6 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 
-#include "global.h"	//g_muki[g_muki],g_config ‚ª•K—v
+#include "global.h"	//g_muki[g_muki],g_config ãŒå¿…è¦
 #include "goluah.h"
 #include "dx_play.h"
 
@@ -8,7 +8,7 @@
 *	@file
 *	@brief DirectPlay
 *
-*	¡v‚¤‚Æƒƒ“ƒoŠÖ”‚ÌŠT—v‚Æ‚©æ‚É‘‚¢‚Æ‚¯‚Î—Ç‚©‚Á‚½‚Æv‚¤
+*	ä»Šæ€ã†ã¨ãƒ¡ãƒ³ãƒé–¢æ•°ã®æ¦‚è¦ã¨ã‹å…ˆã«æ›¸ã„ã¨ã‘ã°è‰¯ã‹ã£ãŸã¨æ€ã†
 */
 
 #ifdef _DEBUG
@@ -36,8 +36,8 @@ CDirectPlay::~CDirectPlay()
 	Destroy();
 }
 
-// ‰Šú‰»
-// •¡”‰ñì¬Á‹‚ª•K—v‚È‚Ì‚ÅAƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Æ‚Í•Ê‚ÅB
+// åˆæœŸåŒ–
+// è¤‡æ•°å›ä½œæˆæ¶ˆå»ãŒå¿…è¦ãªã®ã§ã€ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¨ã¯åˆ¥ã§ã€‚
 HRESULT CDirectPlay::Initialize(const TCHAR* Name, const TCHAR* Port)
 {
 	HRESULT hr;
@@ -47,7 +47,7 @@ HRESULT CDirectPlay::Initialize(const TCHAR* Name, const TCHAR* Port)
 	CoCreateInstance(CLSID_DirectPlay8Peer, NULL, CLSCTX_INPROC_SERVER,
 		IID_IDirectPlay8Peer, (void**)&pDPlay);
 
-	// ‚µ‚Î‚ç‚­g‚¤‚æ
+	// ã—ã°ã‚‰ãä½¿ã†ã‚ˆ
 	if (SUCCEEDED(CoCreateInstance(CLSID_DirectPlay8ThreadPool, NULL, CLSCTX_INPROC_SERVER,
 		IID_IDirectPlay8ThreadPool, (void**)&pThreadPool)))
 	{
@@ -55,20 +55,20 @@ HRESULT CDirectPlay::Initialize(const TCHAR* Name, const TCHAR* Port)
 		pThreadPool->SetThreadCount((DWORD)-1, 0, 0);
 	}
 
-	// ¡‰ñ‚ÍŠÈ—ª‰»
+	// ä»Šå›ã¯ç°¡ç•¥åŒ–
 	if (!pDPlay || !pThreadPool)
 	{
-		MessageBox(NULL, _T("‚È‚ñ‚©–³—‚Á‚Û‚¢"), _T("CDirectPlay ƒGƒ‰["), MB_OK | MB_ICONERROR);
+		MessageBox(NULL, _T("ãªã‚“ã‹ç„¡ç†ã£ã½ã„"), _T("CDirectPlay ã‚¨ãƒ©ãƒ¼"), MB_OK | MB_ICONERROR);
 		return DD_FALSE;
 	}
 
 	hr = pDPlay->Initialize(this, G_OnMessage, DPNINITIALIZE_HINT_LANSESSION);
-	// ƒAƒhƒŒƒX‚Á‚Û‚¢‚à‚ÌŠ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã£ã½ã„ã‚‚ã®æ‰€å¾—
 	if ( FAILED(hr = CoCreateInstance(CLSID_DirectPlay8Address, NULL, CLSCTX_INPROC_SERVER,
 		 IID_IDirectPlay8Address, (void**)&pMyAddr)) )
 		 return hr;
 	pMyAddr->SetSP(&CLSID_DP8SP_TCPIP);
-	// ƒ|[ƒgİ’è
+	// ãƒãƒ¼ãƒˆè¨­å®š
 	if (Port[0] != '\0')
 	{
 		DWORD DPort = atoi(Port);
@@ -76,7 +76,7 @@ HRESULT CDirectPlay::Initialize(const TCHAR* Name, const TCHAR* Port)
 			DPNA_KEY_PORT, &DPort, sizeof(DWORD), DPNA_DATATYPE_DWORD);
 	}
 
-	// –¼‘O‚Æ‚©İ’è
+	// åå‰ã¨ã‹è¨­å®š
 	DPN_PLAYER_INFO PlayerInfo;
 	CStringW trans;
 
@@ -90,7 +90,7 @@ HRESULT CDirectPlay::Initialize(const TCHAR* Name, const TCHAR* Port)
 	return hr;
 }
 
-// Š±‚·
+// å¹²ã™
 HRESULT CDirectPlay::Host(void)
 {
 	DPN_APPLICATION_DESC dpdesc;
@@ -116,7 +116,7 @@ HRESULT CDirectPlay::Host(void)
 	return hr;
 }
 
-// ƒNƒ‰ƒCƒAƒ“ƒg‚Æ‚µ‚ÄÚ‘±
+// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã¨ã—ã¦æ¥ç¶š
 HRESULT CDirectPlay::Connect(const TCHAR* IP, DWORD Port)
 {
 	HRESULT hr;
@@ -149,7 +149,7 @@ HRESULT CDirectPlay::Connect(const TCHAR* IP, DWORD Port)
 	return hr;
 }
 
-// ¡‚Í‚½‚¾AƒfƒXƒgƒƒC•ƒfƒXƒgƒƒCII@@@|ŠORPˆê|
+// ä»Šã¯ãŸã ã€ãƒ‡ã‚¹ãƒˆãƒ­ã‚¤ï¼†ãƒ‡ã‚¹ãƒˆãƒ­ã‚¤ï¼ï¼ã€€ã€€ã€€ï¼å¤–å±±æ’ä¸€ï¼
 HRESULT CDirectPlay::Destroy()
 {
 	HRESULT hr = S_OK;
@@ -171,7 +171,7 @@ HRESULT CDirectPlay::Destroy()
 
 // ==========================================================================================================
 
-// ƒƒbƒZ[ƒWóMƒR[ƒ‹ƒoƒbƒN
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 HRESULT CALLBACK CDirectPlay::G_OnMessage(PVOID UserCont, DWORD mtype, PVOID pmes)
 {
 	CDirectPlay* pClass = (CDirectPlay*)UserCont;
@@ -179,7 +179,7 @@ HRESULT CALLBACK CDirectPlay::G_OnMessage(PVOID UserCont, DWORD mtype, PVOID pme
 	return pClass->OnMessage(UserCont, mtype, pmes);
 }
 
-// DirectPlayƒƒbƒZ[ƒWˆ—
+// DirectPlayãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†
 HRESULT CDirectPlay::OnMessage(PVOID UserCont, DWORD mtype, PVOID pmes)
 {
 	switch (mtype)
@@ -195,25 +195,25 @@ HRESULT CDirectPlay::OnMessage(PVOID UserCont, DWORD mtype, PVOID pmes)
 
 			if (*pMsg->pReceiveData == GNETMSG_CHAT)
 			{
-				CString data;	// ƒƒO‚É‘—‚é•¶Í
+				CString data;	// ãƒ­ã‚°ã«é€ã‚‹æ–‡ç« 
 				wchar_t name[256];
 
-				// –¼‘O‚Æ–{•¶‚ğ‘g‚İ—§‚Ä‚Ä‘—M
+				// åå‰ã¨æœ¬æ–‡ã‚’çµ„ã¿ç«‹ã¦ã¦é€ä¿¡
 				GetName(pMsg->dpnidSender, name);
 				data = name;
-				data += _T(" „ ");
-				data += ((TCHAR*)pMsg->pReceiveData + 1);	// Å‰‚É¯•Ê”Ô†‚ª“ü‚Á‚Ä‚é‚Ì‚ÅA”²‚­B
+				data += _T(" ï¼ ");
+				data += ((TCHAR*)pMsg->pReceiveData + 1);	// æœ€åˆã«è­˜åˆ¥ç•ªå·ãŒå…¥ã£ã¦ã‚‹ã®ã§ã€æŠœãã€‚
 				m_pStateDlg->WriteLog(data);
 			}
 			break;
 		}
 	}
 
-	// •Ê‚ÌƒR[ƒ‹ƒoƒbƒN‚ğŒÄ‚Ño‚·
+	// åˆ¥ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å‘¼ã³å‡ºã™
 	return pRemoteCallBack ? (*pRemoteCallBack)(UserCont, mtype, pmes) : DPN_OK;
 }
 
-// ‘Šè‚Öƒf[ƒ^‘—M
+// ç›¸æ‰‹ã¸ãƒ‡ãƒ¼ã‚¿é€ä¿¡
 HRESULT CDirectPlay::SendMsg(DPNID dpnid, BYTE* pData, DWORD size, DWORD timeout, DWORD flags)
 {
 	DPN_BUFFER_DESC dpbdesc;
@@ -224,7 +224,7 @@ HRESULT CDirectPlay::SendMsg(DPNID dpnid, BYTE* pData, DWORD size, DWORD timeout
 	return pDPlay->SendTo(dpnid, &dpbdesc, 1, timeout, NULL, &AHandle, flags);
 }
 
-// w’è‚µ‚½ƒvƒŒƒCƒ„[‚Ì–¼‘O‚ğŠ“¾
+// æŒ‡å®šã—ãŸãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®åå‰ã‚’æ‰€å¾—
 wchar_t* CDirectPlay::GetName(DPNID dpnid, wchar_t* pBuffer)
 {
 	PDPN_PLAYER_INFO pdpi = 0;

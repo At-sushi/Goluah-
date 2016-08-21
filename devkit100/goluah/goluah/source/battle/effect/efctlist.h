@@ -1,7 +1,7 @@
-
+ï»¿
 /*===============================================================
 
-	ƒVƒXƒeƒ€ƒGƒtƒFƒNƒgƒIƒuƒWƒFƒNƒgŠÇ—ƒNƒ‰ƒX
+	ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç®¡ç†ã‚¯ãƒ©ã‚¹
 
 =================================================================*/
 #pragma once
@@ -15,7 +15,7 @@ class CEffectList;
 class CSystemFxBase;
 
 /*---------------------------------------------------------------
-	ƒVƒXƒeƒ€ƒGƒtƒFƒNƒg—pƒeƒNƒXƒ`ƒƒ[”Ô†’è‹`
+	ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ç•ªå·å®šç¾©
 -----------------------------------------------------------------*/
 #define SYSFXTEX_FIRE			0
 #define SYSFXTEX_KO_K			1
@@ -24,10 +24,10 @@ class CSystemFxBase;
 #define MAXNUM_SYSFXTEXTURES	3
 
 /*!
-*	@brief ƒGƒtƒFƒNƒg¶¬E•`‰æƒNƒ‰ƒX
+*	@brief ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”Ÿæˆãƒ»æç”»ã‚¯ãƒ©ã‚¹
 *	@ingroup Battle
 *
-*	–{‘ÌEXE‚©‚ç‚Ì•ª—£‚ğ‰æô’†
+*	æœ¬ä½“EXEã‹ã‚‰ã®åˆ†é›¢ã‚’ç”»ç­–ä¸­
 */
 class CEffectList
 {
@@ -38,15 +38,15 @@ public:
 	void Initialize();
 	void Destroy();
 
-	void AddEffect(DWORD type,int prm1,int prm2,int prm3=0);			//!< w’èID‚ÌƒGƒtƒFƒNƒg•`‰æƒIƒuƒWƒFƒNƒg‚ğ¶¬
-	static DWORD EfctObjectMessage(DWORD msg,LPVOID dat,DWORD prm1);	//!< ƒGƒtƒFƒNƒg•`‰æƒIƒuƒWƒFƒNƒg‹¤’ÊƒƒbƒZˆ—ŠÖ”
-	LPDIRECT3DTEXTURE9 GetTexture(UINT no){return textures[no];}		//!< ƒGƒtƒFƒNƒg‹¤’ÊƒeƒNƒXƒ`ƒƒ[æ“¾
+	void AddEffect(DWORD type,int prm1,int prm2,int prm3=0);			//!< æŒ‡å®šIDã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
+	static DWORD EfctObjectMessage(DWORD msg,LPVOID dat,DWORD prm1);	//!< ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå…±é€šãƒ¡ãƒƒã‚»å‡¦ç†é–¢æ•°
+	LPDIRECT3DTEXTURE9 GetTexture(UINT no){return textures[no];}		//!< ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå…±é€šãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼å–å¾—
 
 protected:
 	CBattleTaskBase *battleTask;
 	static CEffectList *pinst;
 	
-	//!ƒGƒtƒFƒNƒg—p‹¤’ÊƒeƒNƒXƒ`ƒƒ[
+	//!ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨å…±é€šãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼
 	typedef std::vector<LPDIRECT3DTEXTURE9> TextureList;
 	TextureList textures;
 	void LoadTextures();
@@ -57,7 +57,7 @@ friend class CSystemFxBase;
 
 
 /*!
-*	@brief ƒGƒtƒFƒNƒg•`‰æƒIƒuƒWƒFƒNƒgEŠî‘b’è‹`
+*	@brief ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»åŸºç¤å®šç¾©
 *	@ingroup Battle
 */
 class CSystemFxBase

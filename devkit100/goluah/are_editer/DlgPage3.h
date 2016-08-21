@@ -1,18 +1,18 @@
-#pragma once
+ï»¿#pragma once
 
 
-// CDlgPage3 ƒ_ƒCƒAƒƒO
+// CDlgPage3 ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 class CDlgPage3 : public CMyDialogTab
 {
 	DECLARE_DYNAMIC(CDlgPage3)
 
 public:
-	CDlgPage3(CWnd* pParent = NULL);   // •W€ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	CDlgPage3(CWnd* pParent = NULL);   // æ¨™æº–ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~CDlgPage3();
-	void UpdateItems();//•\¦•¨XV
+	void UpdateItems();//è¡¨ç¤ºç‰©æ›´æ–°
 
-// ƒ_ƒCƒAƒƒO ƒf[ƒ^
+// ãƒ€ã‚¤ã‚¢ãƒ­ã‚° ãƒ‡ãƒ¼ã‚¿
 	enum { IDD = IDD_DIALOG_TAB3 };
 
 protected:
@@ -22,7 +22,7 @@ protected:
 	UINT m_mode;
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ƒTƒ|[ƒg
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ã‚µãƒãƒ¼ãƒˆ
 
 	DECLARE_MESSAGE_MAP()
 public:

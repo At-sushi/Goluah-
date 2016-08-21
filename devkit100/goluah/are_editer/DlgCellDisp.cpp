@@ -1,4 +1,4 @@
-// DlgCellDisp.cpp : À‘•ƒtƒ@ƒCƒ‹
+ï»¿// DlgCellDisp.cpp : å®Ÿè£…ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #include "stdafx.h"
@@ -8,7 +8,7 @@
 #include "ChildWnd.h"
 
 
-// CDlgCellDisp ƒ_ƒCƒAƒƒO
+// CDlgCellDisp ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 IMPLEMENT_DYNAMIC(CDlgCellDisp, CMyDialogTab)
 CDlgCellDisp::CDlgCellDisp(CWnd* pParent /*=NULL*/)
@@ -55,20 +55,20 @@ END_MESSAGE_MAP()
 BEGIN_DHTML_EVENT_MAP(CDlgCellDisp)
 END_DHTML_EVENT_MAP()
 
-// CDlgCellDisp ƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰
+// CDlgCellDisp ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ©
 
 /*------------------------------------------------------------------------
-	‰Šú‰»
+	åˆæœŸåŒ–
 --------------------------------------------------------------------------*/
 BOOL CDlgCellDisp::OnInitDialog()
 {
 	CMyDialogTab::OnInitDialog();
 
-	// TODO :  ‚±‚±‚É‰Šú‰»‚ğ’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢
-	//Šg‘å—¦€–Úİ’è
+	// TODO :  ã“ã“ã«åˆæœŸåŒ–ã‚’è¿½åŠ ã—ã¦ãã ã•ã„
+	//æ‹¡å¤§ç‡é …ç›®è¨­å®š
 	CComboBox* combo = (CComboBox*)GetDlgItem(IDC_COMBO_MAG);
 	if(!combo){
-		OutputDebugString("CDlgRPage1::OnInitDialog æ“¾¸”sHH\n");
+		OutputDebugString("CDlgRPage1::OnInitDialog å–å¾—å¤±æ•—ï¼Ÿï¼Ÿ\n");
 		throw;
 	}
 	RECT r = {90,8,90+100,8+200};
@@ -82,7 +82,7 @@ BOOL CDlgCellDisp::OnInitDialog()
 	m_mag = 3;
 	combo->SetCurSel(m_mag);
 
-	//ƒXƒ‰ƒCƒ_[ƒRƒ“ƒgƒ[ƒ‹‚É”ÍˆÍƒZƒbƒg
+	//ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã«ç¯„å›²ã‚»ãƒƒãƒˆ
 	CSliderCtrl *sl;
 	sl = (CSliderCtrl*)GetDlgItem(IDC_SLIDER_OFSX);
 	sl->SetRange(-300,300,TRUE);
@@ -98,11 +98,11 @@ BOOL CDlgCellDisp::OnInitDialog()
 	SetupSliders();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// —áŠO : OCX ƒvƒƒpƒeƒB ƒy[ƒW‚Í•K‚¸ FALSE ‚ğ•Ô‚µ‚Ü‚·B
+	// ä¾‹å¤– : OCX ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ ãƒšãƒ¼ã‚¸ã¯å¿…ãš FALSE ã‚’è¿”ã—ã¾ã™ã€‚
 }
 
 /*--------------------------------------------------------------
-	ƒXƒ‰ƒCƒ_[ƒRƒ“ƒgƒ[ƒ‹’lİ’è
+	ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«å€¤è¨­å®š
 ----------------------------------------------------------------*/
 void CDlgCellDisp::SetupSliders()
 {
@@ -121,11 +121,11 @@ void CDlgCellDisp::SetupSliders()
 }
 
 /*--------------------------------------------------------------
-	Šg‘å—¦ƒRƒ“ƒ{ƒ{ƒbƒNƒX•ÏXˆ—
+	æ‹¡å¤§ç‡ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹å¤‰æ›´æ™‚å‡¦ç†
 ----------------------------------------------------------------*/
 void CDlgCellDisp::OnCbnSelchangeComboMag()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	UpdateData(TRUE);
 	g_childwnd.SetCMag(m_mag);
 
@@ -135,17 +135,17 @@ void CDlgCellDisp::OnCbnSelchangeComboMag()
 }
 
 /*--------------------------------------------------------------
-	ƒeƒXƒg—p xEy”½“]ƒ`ƒFƒbƒNƒ{ƒbƒNƒX•ÏXˆ—
+	ãƒ†ã‚¹ãƒˆç”¨ xãƒ»yåè»¢ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹å¤‰æ›´æ™‚å‡¦ç†
 ----------------------------------------------------------------*/
 void CDlgCellDisp::OnBnClickedCheckFlipxtest()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	UpdateData(TRUE);
 	g_childwnd.SetCFlipX( x_flip );
 }
 void CDlgCellDisp::OnBnClickedCheckFlipytest()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	UpdateData(TRUE);
 	g_childwnd.SetCFlipY( y_flip );
 }
@@ -153,25 +153,25 @@ void CDlgCellDisp::OnBnClickedCheckFlipytest()
 
 
 /*--------------------------------------------------------------
-	ƒ}[ƒJ[ON / OFF
+	ãƒãƒ¼ã‚«ãƒ¼ON / OFF
 ----------------------------------------------------------------*/
 void CDlgCellDisp::OnBnClickedCheck1()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	UpdateData(TRUE);
 	g_childwnd.MarkerON(m_marker_on);
 
-	if(m_marker_on)	theApp.SetStatus("ƒ}[ƒJ[ON");
-	else			theApp.SetStatus("ƒ}[ƒJ[OFF");
+	if(m_marker_on)	theApp.SetStatus("ãƒãƒ¼ã‚«ãƒ¼ON");
+	else			theApp.SetStatus("ãƒãƒ¼ã‚«ãƒ¼OFF");
 }
 
 
 /*--------------------------------------------------------------
-	ƒ`ƒFƒbƒN—p•\¦İ’èƒNƒŠƒA
+	ãƒã‚§ãƒƒã‚¯ç”¨è¡¨ç¤ºè¨­å®šã‚¯ãƒªã‚¢
 ----------------------------------------------------------------*/
 void CDlgCellDisp::OnBnClickedButton1()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 
 	m_ofsx = m_ofsy = 0;
 	m_scax = m_scay = 1.0f;
@@ -182,12 +182,12 @@ void CDlgCellDisp::OnBnClickedButton1()
 
 
 /*--------------------------------------------------------------
-	ƒ`ƒFƒbƒN—p•\¦İ’èEƒXƒ‰ƒCƒ_[ƒRƒ“ƒgƒ[ƒ‹‘€ìˆ—
+	ãƒã‚§ãƒƒã‚¯ç”¨è¡¨ç¤ºè¨­å®šãƒ»ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«æ“ä½œæ™‚å‡¦ç†
 ----------------------------------------------------------------*/
 void CDlgCellDisp::OnNMCustomdrawSliderOfsx(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	*pResult = 0;
 
 	CSliderCtrl *sl;
@@ -200,7 +200,7 @@ void CDlgCellDisp::OnNMCustomdrawSliderOfsx(NMHDR *pNMHDR, LRESULT *pResult)
 void CDlgCellDisp::OnNMCustomdrawSliderOfsy(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	*pResult = 0;
 
 	CSliderCtrl *sl;
@@ -213,7 +213,7 @@ void CDlgCellDisp::OnNMCustomdrawSliderOfsy(NMHDR *pNMHDR, LRESULT *pResult)
 void CDlgCellDisp::OnNMCustomdrawSliderScax(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	*pResult = 0;
 
 	CSliderCtrl *sl;
@@ -226,7 +226,7 @@ void CDlgCellDisp::OnNMCustomdrawSliderScax(NMHDR *pNMHDR, LRESULT *pResult)
 void CDlgCellDisp::OnNMCustomdrawSliderScay(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	*pResult = 0;
 
 	CSliderCtrl *sl;
@@ -239,7 +239,7 @@ void CDlgCellDisp::OnNMCustomdrawSliderScay(NMHDR *pNMHDR, LRESULT *pResult)
 void CDlgCellDisp::OnNMCustomdrawSliderRot(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	*pResult = 0;
 
 	CSliderCtrl *sl;
@@ -251,7 +251,7 @@ void CDlgCellDisp::OnNMCustomdrawSliderRot(NMHDR *pNMHDR, LRESULT *pResult)
 
 
 /*--------------------------------------------------------------
-	•\¦ƒEƒCƒ“ƒhƒE‚ÉƒXƒ‰ƒCƒ_[ƒRƒ“ƒgƒ[ƒ‹‚Ì’l‚ğ’Ê’m
+	è¡¨ç¤ºã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã«ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®å€¤ã‚’é€šçŸ¥
 ----------------------------------------------------------------*/
 void CDlgCellDisp::NotifyChild()
 {

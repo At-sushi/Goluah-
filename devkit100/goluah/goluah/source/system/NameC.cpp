@@ -1,4 +1,4 @@
-// source\system\NameC.cpp : À‘•ƒtƒ@ƒCƒ‹
+ï»¿// source\system\NameC.cpp : å®Ÿè£…ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "NameC.h"
 
 
-// CNameC ƒ_ƒCƒAƒƒO
+// CNameC ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 IMPLEMENT_DYNAMIC(CNameC, CDialog)
 CNameC::CNameC(CWnd* pParent /*=NULL*/)
@@ -36,4 +36,4 @@ BEGIN_MESSAGE_MAP(CNameC, CDialog)
 END_MESSAGE_MAP()
 
 
-// CNameC ƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰
+// CNameC ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ©

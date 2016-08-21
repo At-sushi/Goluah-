@@ -1,4 +1,4 @@
-// goluah.cpp : ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒNƒ‰ƒX“®ì‚ğ’è‹`‚µ‚Ü‚·B
+ï»¿// goluah.cpp : ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚¯ãƒ©ã‚¹å‹•ä½œã‚’å®šç¾©ã—ã¾ã™ã€‚
 //
 
 #include "stdafx.h"
@@ -12,7 +12,7 @@ END_MESSAGE_MAP()
 
 extern INT gOldEntryPoint(HINSTANCE hInst);
 
-// CgoluahApp ƒRƒ“ƒXƒgƒ‰ƒNƒVƒ‡ƒ“
+// CgoluahApp ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚·ãƒ§ãƒ³
 
 CgoluahApp::CgoluahApp()
 {
@@ -22,11 +22,11 @@ CgoluahApp::CgoluahApp()
 }
 
 
-// —Bˆê‚Ì CgoluahApp ƒIƒuƒWƒFƒNƒg‚Å‚·B
+// å”¯ä¸€ã® CgoluahApp ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã§ã™ã€‚
 
 CgoluahApp theApp;
 
-// CgoluahApp ‰Šú‰»
+// CgoluahApp åˆæœŸåŒ–
 
 BOOL CgoluahApp::InitInstance()
 {
@@ -38,7 +38,7 @@ BOOL CgoluahApp::InitInstance()
 
 	BOOL ret = gOldEntryPoint(m_hInstance);
 
-	//_CrtDumpMemoryLeaks();‚±‚ÌˆÊ’u‚Å‚ÍAstatic‚ÈƒIƒuƒWƒFƒNƒg‚ª‚à‚Âƒƒ‚ƒŠ‚ªƒŠ[ƒN‚Æ‚µ‚ÄƒŒƒ|[ƒg‚³‚ê‚é
+	//_CrtDumpMemoryLeaks();ã“ã®ä½ç½®ã§ã¯ã€staticãªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒã‚‚ã¤ãƒ¡ãƒ¢ãƒªãŒãƒªãƒ¼ã‚¯ã¨ã—ã¦ãƒ¬ãƒãƒ¼ãƒˆã•ã‚Œã‚‹
 	return ret;
 }
 

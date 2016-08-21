@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include <lua.hpp>
 #include "script_story.h"
 #include "srcipt_demo.h"
@@ -12,7 +12,7 @@ BOOL CGoluahDemoScript::CreateScriptElementList(SScriptElementList& list,TCHAR *
 
 	if (L)
 	{
-		// ‘g‚İ‚İŠÖ”‚Ì“o˜^
+		// çµ„ã¿è¾¼ã¿é–¢æ•°ã®ç™»éŒ²
 		lua_register(L, _T("vs"), &l_vs);
 
 		lua_close(L);
@@ -26,7 +26,7 @@ BOOL CGoluahDemoScript::CreateScriptElementList(SScriptElementList& list,TCHAR *
 
 static int l_vs(lua_State *L)
 {
-	// ƒtƒB[ƒ‹ƒhŠ“¾
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æ‰€å¾—
 	lua_getfield(L, 1, _T("type"));
 	lua_getfield(L, 1, _T("friend"));
 	lua_getfield(L, 1, _T("enemy"));

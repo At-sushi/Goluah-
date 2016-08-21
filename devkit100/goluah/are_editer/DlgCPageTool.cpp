@@ -1,4 +1,4 @@
-// DlgCPageTool.cpp : À‘•ƒtƒ@ƒCƒ‹
+ï»¿// DlgCPageTool.cpp : å®Ÿè£…ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "DlgCPageTool.h"
 
 
-// CDlgCPageTool ƒ_ƒCƒAƒƒO
+// CDlgCPageTool ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 IMPLEMENT_DYNAMIC(CDlgCPageTool, CMyDialogTab)
 CDlgCPageTool::CDlgCPageTool(CWnd* pParent /*=NULL*/)
@@ -44,15 +44,15 @@ BEGIN_MESSAGE_MAP(CDlgCPageTool, CDialog)
 END_MESSAGE_MAP()
 
 
-// CDlgCPageTool ƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰
+// CDlgCPageTool ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ©
 
 /*------------------------------------------------------------
-	‹éŒ`“ü‚ê‘Ö‚¦ƒ{ƒ^ƒ“
+	çŸ©å½¢å…¥ã‚Œæ›¿ãˆãƒœã‚¿ãƒ³
 --------------------------------------------------------------*/
 void CDlgCPageTool::OnBnClickedButtonRflip0()
 {
 	if(theApp.GetCurrentCellNO()<2){
-		theApp.SetStatus("‹éŒ`“ü‚ê‘Ö‚¦F‘OƒZƒ‹‚ª”ÍˆÍŠO‚Å‚·B‚Å‚«‚Ü‚¹‚ñB");
+		theApp.SetStatus("çŸ©å½¢å…¥ã‚Œæ›¿ãˆï¼šå‰ã‚»ãƒ«ãŒç¯„å›²å¤–ã§ã™ã€‚ã§ãã¾ã›ã‚“ã€‚");
 		return;
 	}
 	CGCDHandler *gcd = theApp.GetGCD();
@@ -64,7 +64,7 @@ void CDlgCPageTool::OnBnClickedButtonRflip0()
 	pc1->cell[0] = pc0->cell[7];
 	pc0->cell[7] = c;
 
-	theApp.SetStatus("‹éŒ`“ü‚ê‘Ö‚¦F‘O7Ì0");
+	theApp.SetStatus("çŸ©å½¢å…¥ã‚Œæ›¿ãˆï¼šå‰7â‡”0");
 	theApp.InvalidateAll();
 }
 
@@ -75,7 +75,7 @@ void CDlgCPageTool::OnBnClickedButtonRflip1()
 	pc->cell[0] = pc->cell[1];
 	pc->cell[1] = c;
 
-	theApp.SetStatus("‹éŒ`“ü‚ê‘Ö‚¦F0Ì1");
+	theApp.SetStatus("çŸ©å½¢å…¥ã‚Œæ›¿ãˆï¼š0â‡”1");
 	theApp.InvalidateAll();
 }
 
@@ -86,7 +86,7 @@ void CDlgCPageTool::OnBnClickedButtonRflip2()
 	pc->cell[1] = pc->cell[2];
 	pc->cell[2] = c;
 
-	theApp.SetStatus("‹éŒ`“ü‚ê‘Ö‚¦F1Ì2");
+	theApp.SetStatus("çŸ©å½¢å…¥ã‚Œæ›¿ãˆï¼š1â‡”2");
 	theApp.InvalidateAll();
 }
 
@@ -97,7 +97,7 @@ void CDlgCPageTool::OnBnClickedButtonRflip3()
 	pc->cell[2] = pc->cell[3];
 	pc->cell[3] = c;
 
-	theApp.SetStatus("‹éŒ`“ü‚ê‘Ö‚¦F2Ì3");
+	theApp.SetStatus("çŸ©å½¢å…¥ã‚Œæ›¿ãˆï¼š2â‡”3");
 	theApp.InvalidateAll();
 }
 
@@ -108,7 +108,7 @@ void CDlgCPageTool::OnBnClickedButtonRflip4()
 	pc->cell[3] = pc->cell[4];
 	pc->cell[4] = c;
 
-	theApp.SetStatus("‹éŒ`“ü‚ê‘Ö‚¦F3Ì4");
+	theApp.SetStatus("çŸ©å½¢å…¥ã‚Œæ›¿ãˆï¼š3â‡”4");
 	theApp.InvalidateAll();
 }
 
@@ -119,7 +119,7 @@ void CDlgCPageTool::OnBnClickedButtonRflip5()
 	pc->cell[4] = pc->cell[5];
 	pc->cell[5] = c;
 
-	theApp.SetStatus("‹éŒ`“ü‚ê‘Ö‚¦F4Ì5");
+	theApp.SetStatus("çŸ©å½¢å…¥ã‚Œæ›¿ãˆï¼š4â‡”5");
 	theApp.InvalidateAll();
 }
 
@@ -130,7 +130,7 @@ void CDlgCPageTool::OnBnClickedButtonRflip6()
 	pc->cell[5] = pc->cell[6];
 	pc->cell[6] = c;
 
-	theApp.SetStatus("‹éŒ`“ü‚ê‘Ö‚¦F5Ì6");
+	theApp.SetStatus("çŸ©å½¢å…¥ã‚Œæ›¿ãˆï¼š5â‡”6");
 	theApp.InvalidateAll();
 }
 
@@ -141,14 +141,14 @@ void CDlgCPageTool::OnBnClickedButtonRflip7()
 	pc->cell[6] = pc->cell[7];
 	pc->cell[7] = c;
 
-	theApp.SetStatus("‹éŒ`“ü‚ê‘Ö‚¦F6Ì7");
+	theApp.SetStatus("çŸ©å½¢å…¥ã‚Œæ›¿ãˆï¼š6â‡”7");
 	theApp.InvalidateAll();
 }
 
 void CDlgCPageTool::OnBnClickedButtonRflip8()
 {
 	if(theApp.GetCurrentCellNO()>1022){
-		theApp.SetStatus("‹éŒ`“ü‚ê‘Ö‚¦FŸƒZƒ‹‚ª”ÍˆÍŠO‚Å‚·B‚Å‚«‚Ü‚¹‚ñB");
+		theApp.SetStatus("çŸ©å½¢å…¥ã‚Œæ›¿ãˆï¼šæ¬¡ã‚»ãƒ«ãŒç¯„å›²å¤–ã§ã™ã€‚ã§ãã¾ã›ã‚“ã€‚");
 		return;
 	}
 	CGCDHandler *gcd = theApp.GetGCD();
@@ -160,50 +160,50 @@ void CDlgCPageTool::OnBnClickedButtonRflip8()
 	pc1->cell[7] = pc0->cell[0];
 	pc0->cell[0] = c;
 
-	theApp.SetStatus("‹éŒ`“ü‚ê‘Ö‚¦F‘O7Ì0");
+	theApp.SetStatus("çŸ©å½¢å…¥ã‚Œæ›¿ãˆï¼šå‰7â‡”0");
 	theApp.InvalidateAll();
 }
 
 
 /*------------------------------------------------------------
-	‹óƒZƒ‹‘}“üƒ{ƒ^ƒ“
+	ç©ºã‚»ãƒ«æŒ¿å…¥ãƒœã‚¿ãƒ³
 --------------------------------------------------------------*/
 void CDlgCPageTool::OnBnClickedButton6()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	UpdateData(TRUE);
 
 	CString str;
 
 	if( m_insEmptyCellIndex<1 || 1022<m_insEmptyCellIndex )
 	{
-		str.Format("w’è‚³‚ê‚½ƒCƒ“ƒfƒbƒNƒX‚ª”ÍˆÍŠO‚Å‚·(%d)",m_insEmptyCellIndex);
-		MessageBox(str,"‹óƒZƒ‹‘}“üˆ—");
+		str.Format("æŒ‡å®šã•ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒç¯„å›²å¤–ã§ã™(%d)",m_insEmptyCellIndex);
+		MessageBox(str,"ç©ºã‚»ãƒ«æŒ¿å…¥å‡¦ç†");
 		return;
 	}
 
-	str.Format("%d‚É‹óƒZƒ‹‚ğ‘}“ü‚µ‚Ü‚·",m_insEmptyCellIndex);
-	if( IDYES==MessageBox(str,"‹óƒZƒ‹‘}“üˆ—",MB_YESNO) ){
+	str.Format("%dã«ç©ºã‚»ãƒ«ã‚’æŒ¿å…¥ã—ã¾ã™",m_insEmptyCellIndex);
+	if( IDYES==MessageBox(str,"ç©ºã‚»ãƒ«æŒ¿å…¥å‡¦ç†",MB_YESNO) ){
 		theApp.InsertEmptyCell(m_insEmptyCellIndex);
 		return;
 	}
 
-	theApp.SetStatus("‹óƒZƒ‹‘}“üˆ—‚ÍƒLƒƒƒ“ƒZƒ‹‚³‚ê‚Ü‚µ‚½");
+	theApp.SetStatus("ç©ºã‚»ãƒ«æŒ¿å…¥å‡¦ç†ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚Œã¾ã—ãŸ");
 }
 
 /*------------------------------------------------------------
-	‹ó‚Ì‹éŒ`‚µ‚©QÆ‚µ‚Ä‚¢‚È‚¢CELL‚ğíœ
+	ç©ºã®çŸ©å½¢ã—ã‹å‚ç…§ã—ã¦ã„ãªã„CELLã‚’å‰Šé™¤
 --------------------------------------------------------------*/
 void CDlgCPageTool::OnBnClickedButton5()
 {
 	CString war_str;
-	war_str += "‹ó‚Ì‹éŒ`‚µ‚©QÆ‚µ‚Ä‚¢‚È‚¢CELL‚ğíœ‚µ‚Ü‚·B\n";
-	war_str += "‚±‚Ì‘€ì‚ÍAƒIƒtƒZƒbƒg‚âŠg‘å—¦,”»’è‹éŒ`“™‚Ì”’lƒpƒ‰ƒ[ƒ^‚Ì‚İ‚ª\n";
-	war_str += "‘¶İ‚·‚é‚½‚ß‚É‹ó‚Å‚È‚¢‚Æ‚İ‚È‚³‚ê‚Ä‚¢‚é•s‰Â‹CELL‚Ìƒpƒ‰ƒ[ƒ^‚ğƒNƒŠƒA‚µA\n";
-	war_str += "u‹ó‚Å‚ ‚év‚Æ”F¯‚³‚ê‚é‚æ‚¤‚É‚µ‚Ü‚·B\n";
+	war_str += "ç©ºã®çŸ©å½¢ã—ã‹å‚ç…§ã—ã¦ã„ãªã„CELLã‚’å‰Šé™¤ã—ã¾ã™ã€‚\n";
+	war_str += "ã“ã®æ“ä½œã¯ã€ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚„æ‹¡å¤§ç‡,åˆ¤å®šçŸ©å½¢ç­‰ã®æ•°å€¤ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã¿ãŒ\n";
+	war_str += "å­˜åœ¨ã™ã‚‹ãŸã‚ã«ç©ºã§ãªã„ã¨ã¿ãªã•ã‚Œã¦ã„ã‚‹ä¸å¯è¦–CELLã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚¯ãƒªã‚¢ã—ã€\n";
+	war_str += "ã€Œç©ºã§ã‚ã‚‹ã€ã¨èªè­˜ã•ã‚Œã‚‹ã‚ˆã†ã«ã—ã¾ã™ã€‚\n";
 	war_str += "\n";
-	war_str += "Às‘O‚ÉƒoƒbƒNƒAƒbƒv‚ğæ‚é‚±‚Æ‚ğ‚¨Š©‚ß‚µ‚Ü‚·B\n";
-	war_str += "Às‚µ‚Ü‚·‚©H";
+	war_str += "å®Ÿè¡Œå‰ã«ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã‚’å–ã‚‹ã“ã¨ã‚’ãŠå‹§ã‚ã—ã¾ã™ã€‚\n";
+	war_str += "å®Ÿè¡Œã—ã¾ã™ã‹ï¼Ÿ";
 
 	if(IDYES!=MessageBox(war_str,"",MB_YESNO))return;
 
@@ -211,18 +211,18 @@ void CDlgCPageTool::OnBnClickedButton5()
 }
 
 /*------------------------------------------------------------
-	‹ó‚Ì‹éŒ`‚µ‚©QÆ‚µ‚Ä‚¢‚È‚¢CELL‚ğíœ
+	ç©ºã®çŸ©å½¢ã—ã‹å‚ç…§ã—ã¦ã„ãªã„CELLã‚’å‰Šé™¤
 --------------------------------------------------------------*/
 void CDlgCPageTool::OnBnClickedButton3()
 {
 	UpdateData(TRUE);
 
 	CString war_str;
-	war_str += "‹ó‚Å‚ ‚é‹éŒ`‚ğíœ‚µAŠÔ‚ğ‹l‚ß‚Ä”Ô†‚ğ®—‚µ‚Ü‚·B\n";
-	war_str += "ƒLƒƒƒ‰ƒNƒ^[‚Ìê‡A’Êí 0`100‚ÌCELL‚ğ‘ÎÛ‚Æ‚µ‚È‚¢‚æ‚¤‚É‚µ‚Ä‚­‚¾‚³‚¢B";
+	war_str += "ç©ºã§ã‚ã‚‹çŸ©å½¢ã‚’å‰Šé™¤ã—ã€é–“ã‚’è©°ã‚ã¦ç•ªå·ã‚’æ•´ç†ã—ã¾ã™ã€‚\n";
+	war_str += "ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®å ´åˆã€é€šå¸¸ 0ï½100ã®CELLã‚’å¯¾è±¡ã¨ã—ãªã„ã‚ˆã†ã«ã—ã¦ãã ã•ã„ã€‚";
 	war_str += "\n";
-	war_str += "Às‘O‚ÉƒoƒbƒNƒAƒbƒv‚ğæ‚é‚±‚Æ‚ğ‚¨Š©‚ß‚µ‚Ü‚·B\n";
-	war_str += "Às‚µ‚Ü‚·‚©H";
+	war_str += "å®Ÿè¡Œå‰ã«ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã‚’å–ã‚‹ã“ã¨ã‚’ãŠå‹§ã‚ã—ã¾ã™ã€‚\n";
+	war_str += "å®Ÿè¡Œã—ã¾ã™ã‹ï¼Ÿ";
 
 	if(IDYES!=MessageBox(war_str,"",MB_YESNO))return;
 

@@ -1,4 +1,4 @@
-/*=====================================================================================
+ï»¿/*=====================================================================================
 
 Goluah!! Copyright (C) 2001-2004 aki, 2004-2016 At-sushi, 2014-2016 logger
 
@@ -12,14 +12,14 @@ You should have received a copy of the GNU General Public License along with thi
 
 /*==============================================================
 
-	”ò‚Ñ“¹‹ïŠÖŒW
+	é£›ã³é“å…·é–¢ä¿‚
 
 ================================================================*/
 #include "character.h"
 
 
 /*---------------------------------------------------------------
-	”ò“¹‹ï‰Šú‰»(CCharacter)
+	é£›é“å…·åˆæœŸåŒ–(CCharacter)
 -----------------------------------------------------------------*/
 void CCharacter::InitBullets()
 {
@@ -29,7 +29,7 @@ void CCharacter::InitBullets()
 }
 
 /***************************************************************
-	2ƒQƒbƒgƒYƒT[•—
+	2ã‚²ãƒƒãƒˆã‚ºã‚µãƒ¼æ™‚é¢¨
 ****************************************************************/
 
 C2GetWind::C2GetWind(CCharacterBase *parent) : CBulletBase(parent)
@@ -56,7 +56,7 @@ void C2GetWind::act_bomb()
 
 
 /***************************************************************
-	‚È‚ñ‚Æ‚©ƒXƒg[ƒ€‚İ‚½‚¢‚Ì
+	ãªã‚“ã¨ã‹ã‚¹ãƒˆãƒ¼ãƒ ã¿ãŸã„ã®
 ****************************************************************/
 CStorm::CStorm(CCharacterBase *parent,ATTACKINFO *aif) : CBulletBase(parent)
 {
@@ -107,7 +107,7 @@ void CStorm::act_run()
 	//if(pdat->counter%3==0)
 	pdat->kougeki = TRUE;
 
-	//‚ ‚½‚è”»’è‚Ì‚½‚ß
+	//ã‚ãŸã‚Šåˆ¤å®šã®ãŸã‚
 	cell( CELL_STORM_HANTEI );
 	pdat->magy = t*1.5f;
 
@@ -144,7 +144,7 @@ void CStorm::UpdateOne(CTristrip& strip,float t,float rot)
 	const float t1		= 0.0f;
 	const float t2		= 0.7f;
 
-	//deg ¨ rad
+	//deg â†’ rad
 	rot = rot/360.0f * 2.0f * 3.1416f;
 
 	ARGB color;
@@ -172,8 +172,8 @@ void CStorm::UpdateOne(CTristrip& strip,float t,float rot)
 			u *= 1.0f - (t-0.5f)*2.0f;
 		}
 
-		// h : ‚‚³
-		// r : ”¼Œa
+		// h : é«˜ã•
+		// r : åŠå¾„
 		float h = height*t*s;
 		float r;
 		if(h<h_mid){
@@ -235,17 +235,17 @@ DWORD CStorm::Message(DWORD msg,LPVOID dat,DWORD prm)
 		return CCharacter::eact_rotfuttobi(pobjdat);
 	}
 
-	return(CBulletBase::Message(msg,dat,prm));//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Éˆ—‚ğ”C‚¹‚é
+	return(CBulletBase::Message(msg,dat,prm));//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åŸºæœ¬ã‚¯ãƒ©ã‚¹ã«å‡¦ç†ã‚’ä»»ã›ã‚‹
 }
 
 DWORD CStorm::TouchC(ATTACKINFO *info,DWORD tc_id)
 {
-	//‚·‚Å‚É‚±‚¢‚Â‚ªUŒ‚‚É‚ ‚½‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©’T‚·
+	//ã™ã§ã«ã“ã„ã¤ãŒæ”»æ’ƒã«ã‚ãŸã£ã¦ã„ã‚‹ã‹ã©ã†ã‹æ¢ã™
 	for(UINT i=0;i<m_list.size();i++)
 	{
 		if(m_list[i]==tc_id)
 		{
-			return TOUCHC_CANCEL;//‚·‚Å‚É‚ ‚½‚Á‚½‚â‚Â‚É‚Í‚ ‚½‚ç‚È‚¢
+			return TOUCHC_CANCEL;//ã™ã§ã«ã‚ãŸã£ãŸã‚„ã¤ã«ã¯ã‚ãŸã‚‰ãªã„
 		}
 	}
 
@@ -271,7 +271,7 @@ void CStorm::ParticleInfo::Reset()
 }
 
 /***************************************************************
-	‰““–‚Ä
+	é å½“ã¦
 ****************************************************************/
 CToate::CToate(CCharacterBase *parent,ATTACKINFO *aif) : CBulletBase(parent)
 {
@@ -346,12 +346,12 @@ void CToate::act_run()
 
 DWORD CToate::TouchC(ATTACKINFO *info,DWORD tc_id)
 {
-	//‚·‚Å‚É‚±‚¢‚Â‚ªUŒ‚‚É‚ ‚½‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©’T‚·
+	//ã™ã§ã«ã“ã„ã¤ãŒæ”»æ’ƒã«ã‚ãŸã£ã¦ã„ã‚‹ã‹ã©ã†ã‹æ¢ã™
 	for(UINT i=0;i<m_list.size();i++)
 	{
 		if(m_list[i]==tc_id)
 		{
-			return TOUCHC_CANCEL;//‚·‚Å‚É‚ ‚½‚Á‚½‚â‚Â‚É‚Í‚ ‚½‚ç‚È‚¢
+			return TOUCHC_CANCEL;//ã™ã§ã«ã‚ãŸã£ãŸã‚„ã¤ã«ã¯ã‚ãŸã‚‰ãªã„
 		}
 	}
 

@@ -1,4 +1,4 @@
-/*=====================================================================================
+ï»¿/*=====================================================================================
 
 Goluah!! Copyright (C) 2001-2004 aki, 2004-2016 At-sushi, 2014-2016 logger
 
@@ -12,14 +12,14 @@ You should have received a copy of the GNU General Public License along with thi
 
 /*==============================================================
 
-	s“®ŠÖ”E•KE‹Z
+	è¡Œå‹•é–¢æ•°ãƒ»å¿…æ®ºæŠ€
 
 ================================================================*/
 #include "character.h"
 #include <math.h>
 
 /*--------------------------------------------------------------
-	ageƒ^ƒbƒNƒ‹
+	ageã‚¿ãƒƒã‚¯ãƒ«
 ----------------------------------------------------------------*/
 void CCharacter::act_agetackle1(DWORD atkid)
 {
@@ -35,12 +35,12 @@ void CCharacter::act_agetackle1(DWORD atkid)
 
 	pdat->muteki = (pdat->counter>8) ? FALSE : TRUE;
 	
-	if(pdat->vy<0)//ã¸’†
+	if(pdat->vy<0)//ä¸Šæ˜‡ä¸­
 	{
 		pdat->cnow = CELL_AGE1 + (pdat->counter%8);
 		if(pdat->counter%2==0)StartAttack( atkid );
 	}
-	else//‰º~’†
+	else//ä¸‹é™ä¸­
 	{
 		cell( CELL_JAMP1 );
 	}
@@ -61,12 +61,12 @@ void CCharacter::act_agetackle2(DWORD atkid)
 
 	pdat->muteki = (pdat->counter>8) ? FALSE : TRUE;
 	
-	if(pdat->vy<0)//ã¸’†
+	if(pdat->vy<0)//ä¸Šæ˜‡ä¸­
 	{
 		pdat->cnow = CELL_AGE1 + (pdat->counter%8);
 		if(pdat->counter%2==0)StartAttack(atkid);
 	}
-	else//‰º~’†
+	else//ä¸‹é™ä¸­
 	{
 		cell( CELL_JAMP1 );
 	}
@@ -87,12 +87,12 @@ void CCharacter::act_agetackle3(DWORD atkid)
 
 	pdat->muteki = (pdat->counter>8) ? FALSE : TRUE;
 	
-	if(pdat->vy<0)//ã¸’†
+	if(pdat->vy<0)//ä¸Šæ˜‡ä¸­
 	{
 		pdat->cnow = CELL_AGE1 + (pdat->counter%8);
 		if(pdat->counter%2==0)StartAttack(atkid);
 	}
-	else//‰º~’†
+	else//ä¸‹é™ä¸­
 	{
 		cell( CELL_JAMP1 );
 	}
@@ -107,9 +107,9 @@ void CCharacter::act_agetacklesuki()
 
 
 /*--------------------------------------------------------------
-	“–‚Äg“Š‚°
+	å½“ã¦èº«æŠ•ã’
 ----------------------------------------------------------------*/
-//ã’i
+//ä¸Šæ®µ
 void CCharacter::act_atemi1()
 {
 	if(ccounter==0)PlayMySound(wave_atemi);
@@ -117,7 +117,7 @@ void CCharacter::act_atemi1()
 	if(ccounter>30)ChangeAction(ACTID_ATEMI_SUKI);
 }
 
-//‰º’i
+//ä¸‹æ®µ
 void CCharacter::act_atemi2()
 {
 	if(ccounter==0)PlayMySound(wave_atemi);
@@ -125,7 +125,7 @@ void CCharacter::act_atemi2()
 	if(ccounter>30)ChangeAction(ACTID_ATEMI_SUKI);
 }
 
-//ƒtƒFƒCƒ“ƒg
+//ãƒ•ã‚§ã‚¤ãƒ³ãƒˆ
 void CCharacter::act_atemi3()
 {
 	if(ccounter==0)PlayMySound(wave_atemi);
@@ -133,7 +133,7 @@ void CCharacter::act_atemi3()
 	if(ccounter>15)ChangeAction(ACTID_NEUTRAL);
 }
 
-//Œ„
+//éš™
 void CCharacter::act_atemi_suki()
 {
 	if(ccounter<5)cell( CELL_ATEMI1 );
@@ -142,7 +142,7 @@ void CCharacter::act_atemi_suki()
 	else ChangeAction( ACTID_NEUTRAL );
 }
 
-//“Š‚°“®ì
+//æŠ•ã’å‹•ä½œ
 void CCharacter::act_atemi_nage()
 {
 	if(ccounter==0)PlayMySound(wave_atemi_nage);
@@ -158,7 +158,7 @@ void CCharacter::act_atemi_nage()
 	else ChangeAction(ACTID_NEUTRAL);
 }
 
-//“G‘¤“®ì
+//æ•µå´å‹•ä½œ
 DWORD CCharacter::eact_atemi_nage(GOBJECT *pedat)
 {
 	if(pedat->counter<2)return 0;
@@ -197,7 +197,7 @@ DWORD CCharacter::eact_atemi_nage(GOBJECT *pedat)
 
 
 /*--------------------------------------------------------------
-	’´•K
+	è¶…å¿…
 ----------------------------------------------------------------*/
 void CCharacter::act_cyohi()
 {
@@ -237,7 +237,7 @@ DWORD CCharacter::eact_rotfuttobi(GOBJECT *pedat)
 	pedat->cnow = DCELL_KAITENFUTTOBI;
 	pedat->rot = pedat->counter * 50;
 
-	//’n–Ê“’B
+	//åœ°é¢åˆ°é”
 	if(pedat->y > 0){
 		pedat->y = 0;
 		pedat->aid = ACTID_BOUND;
@@ -248,7 +248,7 @@ DWORD CCharacter::eact_rotfuttobi(GOBJECT *pedat)
 
 
 /*--------------------------------------------------------------
-	‰““–‚Ä
+	é å½“ã¦
 ----------------------------------------------------------------*/
 void CCharacter::act_toate1()
 {

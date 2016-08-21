@@ -1,7 +1,7 @@
-
+ï»¿
 /*===============================================================
 
-	ƒVƒXƒeƒ€ƒGƒtƒFƒNƒgƒIƒuƒWƒFƒNƒgŠÇ—ƒNƒ‰ƒX
+	ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç®¡ç†ã‚¯ãƒ©ã‚¹
 
 =================================================================*/
 #include "stdafx.h"
@@ -12,18 +12,18 @@
 #include "battleTaskBase.h"
 #include "efctlist.h"
 
-#include "efct_sys.h"		//FIGHT,ROUNDX“™
-#include "efct_hit.h"		//ƒqƒbƒgƒ}[ƒN“™
-#include "efct_other.h"		//‚»‚Ì‘¼
+#include "efct_sys.h"		//FIGHT,ROUNDXç­‰
+#include "efct_hit.h"		//ãƒ’ãƒƒãƒˆãƒãƒ¼ã‚¯ç­‰
+#include "efct_other.h"		//ãã®ä»–
 
 
-//ƒCƒ“ƒXƒ^ƒ“ƒX‚ğ2‚ÂˆÈãì‚ç‚È‚¢‚±‚Æ
+//ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’2ã¤ä»¥ä¸Šä½œã‚‰ãªã„ã“ã¨
 CEffectList* CEffectList::pinst = NULL;
 
 LPDIRECT3DTEXTURE9 aki3dtexture_circle = NULL;
 
 /*---------------------------------------------------------------
-	¶¬
+	ç”Ÿæˆ
 -----------------------------------------------------------------*/
 CEffectList::CEffectList()
 {
@@ -35,7 +35,7 @@ CEffectList::CEffectList()
 
 
 /*---------------------------------------------------------------
-	”jŠü
+	ç ´æ£„
 -----------------------------------------------------------------*/
 void CEffectList::Destroy()
 {
@@ -47,19 +47,19 @@ void CEffectList::Destroy()
 
 
 /*---------------------------------------------------------------
-	‰Šú‰»
+	åˆæœŸåŒ–
 -----------------------------------------------------------------*/
 void CEffectList::Initialize()
 {
 	battleTask = dynamic_cast<CBattleTaskBase*>( g_system.GetCurrentMainTask() );
-	if(!battleTask)throw;//catch‚µ‚Ä‚È‚¢‚¯‚Ç‚Ë
+	if(!battleTask)throw;//catchã—ã¦ãªã„ã‘ã©ã­
 
 	LoadTextures();
 }
 
 
 /*---------------------------------------------------------------
-	ƒeƒNƒXƒ`ƒƒ“Ç‚İ‚İEÁ‹
+	ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­ã¿è¾¼ã¿ãƒ»æ¶ˆå»
 -----------------------------------------------------------------*/
 void CEffectList::LoadTextures()
 {
@@ -71,7 +71,7 @@ void CEffectList::LoadTextures()
 		if(D3D_OK!=D3DXCreateTextureFromFileA(g_draw.d3ddev,filename,&p))p=NULL;
 		textures.push_back(p);
 		if(!p){
-			gbl.ods(_T("CEffectList::LoadTextures - %s “Ç‚İ‚İ¸”s"),filename);
+			gbl.ods(_T("CEffectList::LoadTextures - %s èª­ã¿è¾¼ã¿å¤±æ•—"),filename);
 		}
 	}
 
@@ -91,7 +91,7 @@ void CEffectList::UnloadTextures()
 }
 
 /*---------------------------------------------------------------
-	ƒGƒtƒFƒNƒg’Ç‰Á
+	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆè¿½åŠ 
 -----------------------------------------------------------------*/
 void CEffectList::AddEffect(DWORD type,int prm1,int prm2,int prm3)
 {
@@ -99,12 +99,12 @@ void CEffectList::AddEffect(DWORD type,int prm1,int prm2,int prm3)
 		if(type==EFCTID_TUBUTUBU || type==EFCTID_TUBUTUBU2)return;
 	}
 
-	//ƒIƒuƒWƒFƒNƒg¶¬
+	//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
 	DWORD objid = battleTask->CreateGObjectFx();
 	if(objid==0)return;
 	GOBJECT *pdat = (GOBJECT*)battleTask->GetGObjectInfo(objid);
 
-	//Šî–{
+	//åŸºæœ¬
 	pdat->tid = TEAM_SYSTEM;
 	pdat->uid = type;
 	pdat->msghandler = EfctObjectMessage;
@@ -159,11 +159,11 @@ void CEffectList::AddEffect(DWORD type,int prm1,int prm2,int prm3)
 	case EFCTID_TIMEOVER:	fx=new CFxTimeOver;		break;
 	case EFCTID_DOUBLEKO:
 	default:
-		gbl.ods(_T("CEffectList::AddEffect / ƒGƒtƒFƒNƒg–¢À‘•"));
+		gbl.ods(_T("CEffectList::AddEffect / ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæœªå®Ÿè£…"));
 		return;
 	}
 
-	if(!fx){//‚È‚ÉH
+	if(!fx){//ãªã«ï¼Ÿ
 		battleTask->DeleteGObject(pdat->id);
 		return;
 	}
@@ -178,7 +178,7 @@ void CEffectList::AddEffect(DWORD type,int prm1,int prm2,int prm3)
 
 
 /*---------------------------------------------------------------
-	‘SƒGƒtƒFƒNƒg‹¤’ÊƒIƒuƒWƒFƒNƒgƒƒbƒZ[ƒWƒnƒ“ƒhƒ‰
+	å…¨ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå…±é€šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ©
 -----------------------------------------------------------------*/
 DWORD CEffectList::EfctObjectMessage(DWORD msg,LPVOID dat,DWORD prm1)
 {
@@ -201,8 +201,8 @@ DWORD CEffectList::EfctObjectMessage(DWORD msg,LPVOID dat,DWORD prm1)
 
 
 /*---------------------------------------------------------------
-	ƒGƒtƒFƒNƒgUpdate“®ì
-	destraoyed ƒ‚ƒEƒRƒlƒGƒˆ 
+	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆUpdateå‹•ä½œ
+	destraoyed ãƒ¢ã‚¦ã‚³ãƒã‚¨ãƒ¨ 
 -----------------------------------------------------------------*
 void CEffectList::EfctAction(GOBJECT *pdat)
 {
@@ -243,7 +243,7 @@ CSystemFxBase::~CSystemFxBase()
 }
 
 /*---------------------------------------------------------------
-	ƒVƒXƒeƒ€ƒGƒtƒFƒNƒgE•ÊƒGƒtƒFƒNƒg‚Ì‹N“®
+	ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ»åˆ¥ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®èµ·å‹•
 -----------------------------------------------------------------*/
 void CSystemFxBase::AddEffect(DWORD type,int prm1,int prm2,int prm3)
 {
@@ -251,7 +251,7 @@ void CSystemFxBase::AddEffect(DWORD type,int prm1,int prm2,int prm3)
 }
 
 /*---------------------------------------------------------------
-	ƒVƒXƒeƒ€ƒGƒtƒFƒNƒgEI—¹
+	ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ»çµ‚äº†
 -----------------------------------------------------------------*/
 void CSystemFxBase::End()
 {

@@ -1,32 +1,32 @@
-#pragma once
+ï»¿#pragma once
 
 
-// CNameC ƒ_ƒCƒAƒƒO
+// CNameC ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
-//!–¼‘O“ü—Í(ƒNƒ‰ƒCƒAƒ“ƒgÚ‘±İ’è)ƒ_ƒCƒAƒƒO
+//!åå‰å…¥åŠ›(ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆæ¥ç¶šè¨­å®š)ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 class CNameC : public CDialog
 {
 	DECLARE_DYNAMIC(CNameC)
 
 public:
-	CNameC(CWnd* pParent = NULL);   // •W€ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	CNameC(CWnd* pParent = NULL);   // æ¨™æº–ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~CNameC();
 
-// ƒ_ƒCƒAƒƒO ƒf[ƒ^
+// ãƒ€ã‚¤ã‚¢ãƒ­ã‚° ãƒ‡ãƒ¼ã‚¿
 	enum { IDD = IDD_DIALOG_NAMEC };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ƒTƒ|[ƒg
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ã‚µãƒãƒ¼ãƒˆ
 
 	DECLARE_MESSAGE_MAP()
 
 public:
-	// –¼‘O
+	// åå‰
 	CString m_name;
-	// ƒ|[ƒg”Ô†
+	// ãƒãƒ¼ãƒˆç•ªå·
 	CString m_port;
-	// ƒzƒXƒg‚ÌIP
+	// ãƒ›ã‚¹ãƒˆã®IP
 	CString m_hostIP;
-	// ƒzƒXƒg‚Ìƒ|[ƒg”Ô†
+	// ãƒ›ã‚¹ãƒˆã®ãƒãƒ¼ãƒˆç•ªå·
 	CString m_hostPort;
 };

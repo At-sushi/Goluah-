@@ -1,27 +1,27 @@
-#pragma once
+ï»¿#pragma once
 
 
-// CName ƒ_ƒCƒAƒƒO
+// CName ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
-//!ƒzƒXƒgİ’èE–¼‘O“ü—Íƒ_ƒCƒAƒƒO
+//!ãƒ›ã‚¹ãƒˆè¨­å®šãƒ»åå‰å…¥åŠ›ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 class CName : public CDialog
 {
 	DECLARE_DYNAMIC(CName)
 
 public:
-	CName(CWnd* pParent = NULL);   // •W€ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	CName(CWnd* pParent = NULL);   // æ¨™æº–ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~CName();
 
-// ƒ_ƒCƒAƒƒO ƒf[ƒ^
+// ãƒ€ã‚¤ã‚¢ãƒ­ã‚° ãƒ‡ãƒ¼ã‚¿
 	enum { IDD = IDD_DIALOG_NAME };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ƒTƒ|[ƒg
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ã‚µãƒãƒ¼ãƒˆ
 
 	DECLARE_MESSAGE_MAP()
 public:
-	// –¼‘O
+	// åå‰
 	CString m_name;
-	// ƒ|[ƒg
+	// ãƒãƒ¼ãƒˆ
 	CString m_port;
 };

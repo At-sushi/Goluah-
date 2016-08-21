@@ -1,4 +1,4 @@
-#include <windows.h>
+ï»¿#include <windows.h>
 #include <stdio.h>
 #include <d3d8.h>
 
@@ -21,12 +21,12 @@ extern void SetOptionItems(CDI_CHARACTERINFO *pif);
 extern char charactername[32];
 
 //===========================================================
-//‹N“®Žž‚ÉŒÄ‚Ño‚³‚ê‚éB
+//èµ·å‹•æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã€‚
 EXPORT BOOL CharacterInfo(LPVOID info)
 {
 	CDI_CHARACTERINFO *pif = (CDI_CHARACTERINFO*)info;
-	sprintf(pif->name,charactername);//–¼‘O
-	pif->ver=CDI_VERSION;//ƒo[ƒWƒ‡ƒ“
+	sprintf(pif->name,charactername);//åå‰
+	pif->ver=CDI_VERSION;//ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 
 	if(pif->system_version!=0){
 		pif->caps |= CHARACTER_CAPS_NET;

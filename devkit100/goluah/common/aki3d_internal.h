@@ -1,4 +1,4 @@
-/*=====================================================================================
+ï»¿/*=====================================================================================
 
 Goluah!! Copyright (C) 2001-2004 aki, 2004-2016 At-sushi, 2014-2016 logger
 
@@ -12,14 +12,14 @@ You should have received a copy of the GNU General Public License along with thi
 
 /*========================================================
 	
-	“à•”’è‹`
+	å†…éƒ¨å®šç¾©
 
 ==========================================================*/
 #pragma once
 #include "aki3d.h"
 
 /*--------------------------------------------------------
-	ƒeƒNƒXƒ`ƒƒŠÇ—
+	ãƒ†ã‚¯ã‚¹ãƒãƒ£ç®¡ç†
 ----------------------------------------------------------*/
 class CTexManager
 {
@@ -44,7 +44,7 @@ extern CTexManager* tex_man;
 
 
 /*--------------------------------------------------------
-	TƒXƒgƒŠƒbƒvÀ‘Ì
+	Tã‚¹ãƒˆãƒªãƒƒãƒ—å®Ÿä½“
 ----------------------------------------------------------*/
 class CTristripBody : public CTristrip
 {
@@ -62,25 +62,25 @@ public:
 	void SetColorDW(UINT index,DWORD value)	{if(index<node_num)col[index].dwcol=value;}
 
 protected:
-	virtual void SetupTexCoords();	//Create‚ÉƒeƒNƒXƒ`ƒƒÀ•W‚ğİ’è‚·‚éB
+	virtual void SetupTexCoords();	//Createæ™‚ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™ã‚’è¨­å®šã™ã‚‹ã€‚
 
-	UINT				node_num;	//ƒm[ƒh(ß)”
-	float				*rad;		//ß‚Ì‘¾‚³
-	V3d					*pos;		//ß‚ÌˆÊ’u
-	ARGB				*col;		//ß‚Ì‚ÌF
+	UINT				node_num;	//ãƒãƒ¼ãƒ‰(ç¯€)æ•°
+	float				*rad;		//ç¯€ã®å¤ªã•
+	V3d					*pos;		//ç¯€ã®ä½ç½®
+	ARGB				*col;		//ç¯€ã®ã®è‰²
 
-	V2d					*vtemp;		//ƒeƒ“ƒ|ƒ‰ƒŠ’¸“_ƒoƒbƒtƒ@BˆÈ‰º‚Ìƒoƒbƒtƒ@‚Í‚±‚ê‚ğƒIƒtƒZƒbƒg‚µ‚Äg‚¤‚Ì‚ÅAdelete‚µ‚È‚¢‚±‚Æ
-	V2d					*vsubs;		//Šeƒm[ƒhŠÔ‚ÌsubƒxƒNƒgƒ‹‚Æ‚’¼‚ÈƒxƒNƒgƒ‹
-	V2d					*norms;		//Šeƒm[ƒh‚Ì–@ü‚İ‚½‚¢‚È‚à‚Ì
-	MYVERTEX3D			*vb;		//•`‰æ—p’¸“_ƒoƒbƒtƒ@
+	V2d					*vtemp;		//ãƒ†ãƒ³ãƒãƒ©ãƒªé ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã€‚ä»¥ä¸‹ã®ãƒãƒƒãƒ•ã‚¡ã¯ã“ã‚Œã‚’ã‚ªãƒ•ã‚»ãƒƒãƒˆã—ã¦ä½¿ã†ã®ã§ã€deleteã—ãªã„ã“ã¨
+	V2d					*vsubs;		//å„ãƒãƒ¼ãƒ‰é–“ã®subãƒ™ã‚¯ãƒˆãƒ«ã¨å‚ç›´ãªãƒ™ã‚¯ãƒˆãƒ«
+	V2d					*norms;		//å„ãƒãƒ¼ãƒ‰ã®æ³•ç·šã¿ãŸã„ãªã‚‚ã®
+	MYVERTEX3D			*vb;		//æç”»ç”¨é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡
 
-	LPDIRECT3DTEXTURE9	tex;		//ƒeƒNƒXƒ`ƒƒ
+	LPDIRECT3DTEXTURE9	tex;		//ãƒ†ã‚¯ã‚¹ãƒãƒ£
 
-	BOOL				zenka;		//‘O‰È
+	BOOL				zenka;		//å‰ç§‘
 };
 
 /*--------------------------------------------------------
-	ƒp[ƒeƒBƒNƒ‹ À‘Ì
+	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ« å®Ÿä½“
 ----------------------------------------------------------*/
 #define CParticleBody_3D
 class CParticleBody : public CParticle
@@ -100,30 +100,30 @@ public:
 	void SetAxis(UINT index,V3d& value)		{if(index<num)ax[index] =value;}
 
 protected:
-	virtual void SetupTexCoords();	//Create‚ÉƒeƒNƒXƒ`ƒƒÀ•W‚ğİ’è‚·‚éB
+	virtual void SetupTexCoords();	//Createæ™‚ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™ã‚’è¨­å®šã™ã‚‹ã€‚
 
-	UINT				num;		//—±q”
-	V3d					*pos;		//ˆÊ’u
-	ARGB				*col;		//F
-	float				*rad;		//‘å‚«‚³
-	V3d					*ax;		//‚Ì‚Î‚µ²
+	UINT				num;		//ç²’å­æ•°
+	V3d					*pos;		//ä½ç½®
+	ARGB				*col;		//è‰²
+	float				*rad;		//å¤§ãã•
+	V3d					*ax;		//ã®ã°ã—è»¸
 
-	MYVERTEX3D			*vb;		//•`‰æ—p’¸“_ƒoƒbƒtƒ@
-	WORD				*index_arr;	//’¸“_ƒCƒ“ƒfƒbƒNƒXƒŠƒXƒg
+	MYVERTEX3D			*vb;		//æç”»ç”¨é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡
+	WORD				*index_arr;	//é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒªã‚¹ãƒˆ
 
-	LPDIRECT3DTEXTURE9	tex;		//ƒeƒNƒXƒ`ƒƒ
+	LPDIRECT3DTEXTURE9	tex;		//ãƒ†ã‚¯ã‚¹ãƒãƒ£
 	
 	#ifdef CParticleBody_3D
-	D3DXVECTOR4			*tpos;		//À•W•ÏŠ·Ï‚İ’¸“_
-	D3DXVECTOR3			*tax;		//À•W•ÏŠ·Ï‚İƒxƒNƒgƒ‹
+	D3DXVECTOR4			*tpos;		//åº§æ¨™å¤‰æ›æ¸ˆã¿é ‚ç‚¹
+	D3DXVECTOR3			*tax;		//åº§æ¨™å¤‰æ›æ¸ˆã¿ãƒ™ã‚¯ãƒˆãƒ«
 	#endif
 	
-	BOOL				zenka;		//‘O‰È
+	BOOL				zenka;		//å‰ç§‘
 };
 
 
 /*--------------------------------------------------------
-	ƒtƒ‰ƒbƒgƒp[ƒeƒBƒNƒ‹ À‘Ì
+	ãƒ•ãƒ©ãƒƒãƒˆãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ« å®Ÿä½“
 ----------------------------------------------------------*/
 class CFlatBoardsBody : public CFlatBoards
 {
@@ -142,21 +142,21 @@ public:
 	void	SetColorDW(UINT index,DWORD value)	{if(index<num)col[index].dwcol=value;}
 
 protected:
-	UINT		num;		//—±q”
-	V3d			*pos;		//ˆÊ’u
-	V3d			*ax1;		//ƒWƒN1
-	V3d			*ax2;		//ƒWƒN2
-	ARGB		*col;		//F
-	MYVERTEX3D	*vb;		//•`‰æ—p’¸“_ƒoƒbƒtƒ@
-	WORD		*index_arr;	//’¸“_ƒCƒ“ƒfƒbƒNƒXƒŠƒXƒg
-	LPDIRECT3DTEXTURE9 tex;	//ƒeƒNƒXƒ`ƒƒ
+	UINT		num;		//ç²’å­æ•°
+	V3d			*pos;		//ä½ç½®
+	V3d			*ax1;		//ã‚¸ã‚¯1
+	V3d			*ax2;		//ã‚¸ã‚¯2
+	ARGB		*col;		//è‰²
+	MYVERTEX3D	*vb;		//æç”»ç”¨é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡
+	WORD		*index_arr;	//é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒªã‚¹ãƒˆ
+	LPDIRECT3DTEXTURE9 tex;	//ãƒ†ã‚¯ã‚¹ãƒãƒ£
 	
-	BOOL		zenka;		//‘O‰È
+	BOOL		zenka;		//å‰ç§‘
 };
 
 
 /*--------------------------------------------------------
-	ƒƒbƒVƒ…À‘Ì
+	ãƒ¡ãƒƒã‚·ãƒ¥å®Ÿä½“
 ----------------------------------------------------------*/
 class CMeshBody : public CMesh
 {
@@ -178,23 +178,23 @@ public:
 	void SetSpecular(BOOL value)		{isspecular=value;}
 
 protected:
-	DWORD				node_num;	//ƒm[ƒh(ß)”
-	float				rad;		//ß‚Ì‘¾‚³
-	V3d					pos;		//ß‚ÌˆÊ’u
-	V3d					rot;		//‰ñ“]
-	/*ARGB				*col;		//ß‚Ì‚ÌF
+	DWORD				node_num;	//ãƒãƒ¼ãƒ‰(ç¯€)æ•°
+	float				rad;		//ç¯€ã®å¤ªã•
+	V3d					pos;		//ç¯€ã®ä½ç½®
+	V3d					rot;		//å›è»¢
+	/*ARGB				*col;		//ç¯€ã®ã®è‰²
 
-	V2d					*vtemp;		//ƒeƒ“ƒ|ƒ‰ƒŠ’¸“_ƒoƒbƒtƒ@BˆÈ‰º‚Ìƒoƒbƒtƒ@‚Í‚±‚ê‚ğƒIƒtƒZƒbƒg‚µ‚Äg‚¤‚Ì‚ÅAdelete‚µ‚È‚¢‚±‚Æ
-	V2d					*vsubs;		//Šeƒm[ƒhŠÔ‚ÌsubƒxƒNƒgƒ‹‚Æ‚’¼‚ÈƒxƒNƒgƒ‹
-	V2d					*norms;		//Šeƒm[ƒh‚Ì–@ü‚İ‚½‚¢‚È‚à‚Ì*/
-	ID3DXMesh			*x_mesh;	//•`‰æ—p’¸“_ƒoƒbƒtƒ@
-	V3d					ldir;		//ƒ‰ƒCƒg‚ÌŒü‚«
-	D3DCOLOR			amb;		//ŠÂ‹«Œõ
-	BOOL				isspecular;	//”½ËŒõ‚ğg‚¤‚©‚Ç‚¤‚©
+	V2d					*vtemp;		//ãƒ†ãƒ³ãƒãƒ©ãƒªé ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã€‚ä»¥ä¸‹ã®ãƒãƒƒãƒ•ã‚¡ã¯ã“ã‚Œã‚’ã‚ªãƒ•ã‚»ãƒƒãƒˆã—ã¦ä½¿ã†ã®ã§ã€deleteã—ãªã„ã“ã¨
+	V2d					*vsubs;		//å„ãƒãƒ¼ãƒ‰é–“ã®subãƒ™ã‚¯ãƒˆãƒ«ã¨å‚ç›´ãªãƒ™ã‚¯ãƒˆãƒ«
+	V2d					*norms;		//å„ãƒãƒ¼ãƒ‰ã®æ³•ç·šã¿ãŸã„ãªã‚‚ã®*/
+	ID3DXMesh			*x_mesh;	//æç”»ç”¨é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡
+	V3d					ldir;		//ãƒ©ã‚¤ãƒˆã®å‘ã
+	D3DCOLOR			amb;		//ç’°å¢ƒå…‰
+	BOOL				isspecular;	//åå°„å…‰ã‚’ä½¿ã†ã‹ã©ã†ã‹
 
-	D3DMATERIAL9		*mat;		//ƒ}ƒeƒŠƒAƒ‹i”z—ñj
-	LPDIRECT3DTEXTURE9	*tex;		//ƒeƒNƒXƒ`ƒƒi”z—ñj
+	D3DMATERIAL9		*mat;		//ãƒãƒ†ãƒªã‚¢ãƒ«ï¼ˆé…åˆ—ï¼‰
+	LPDIRECT3DTEXTURE9	*tex;		//ãƒ†ã‚¯ã‚¹ãƒãƒ£ï¼ˆé…åˆ—ï¼‰
 
-	BOOL				zenka;		//‘O‰È
+	BOOL				zenka;		//å‰ç§‘
 };
 

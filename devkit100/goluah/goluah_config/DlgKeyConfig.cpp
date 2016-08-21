@@ -1,4 +1,4 @@
-// DlgKeyConfig.cpp : À‘•ƒtƒ@ƒCƒ‹
+ï»¿// DlgKeyConfig.cpp : å®Ÿè£…ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #include "stdafx.h"
@@ -8,7 +8,7 @@
 
 CKeyCode2Str keycode;
 
-// CDlgKeyConfig ƒ_ƒCƒAƒƒO
+// CDlgKeyConfig ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 IMPLEMENT_DYNAMIC(CDlgKeyConfig, CDialog)
 CDlgKeyConfig::CDlgKeyConfig(CWnd* pParent , KEYCONFIG& cfg)
@@ -84,18 +84,18 @@ BOOL CDlgKeyConfig::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO :  ‚±‚±‚É‰Šú‰»‚ğ’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢
+	// TODO :  ã“ã“ã«åˆæœŸåŒ–ã‚’è¿½åŠ ã—ã¦ãã ã•ã„
 	UpdateNames();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// —áŠO : OCX ƒvƒƒpƒeƒB ƒy[ƒW‚Í•K‚¸ FALSE ‚ğ•Ô‚µ‚Ü‚·B
+	// ä¾‹å¤– : OCX ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ ãƒšãƒ¼ã‚¸ã¯å¿…ãš FALSE ã‚’è¿”ã—ã¾ã™ã€‚
 }
 
-// CDlgKeyConfig ƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰
+// CDlgKeyConfig ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ©
 /*-----------------------------------------------------------------
-	ƒL[İ’è(1P)
+	ã‚­ãƒ¼è¨­å®š(1P)
 -------------------------------------------------------------------*/
-//©
+//â†
 void CDlgKeyConfig::OnBnClickedButtonSetkey11()
 {
 	CDlgKBKeyGet dlg(this);
@@ -106,7 +106,7 @@ void CDlgKeyConfig::OnBnClickedButtonSetkey11()
 	UpdateNames();
 }
 
-//¨
+//â†’
 void CDlgKeyConfig::OnBnClickedButtonSetkey12()
 {
 	CDlgKBKeyGet dlg(this);
@@ -117,7 +117,7 @@ void CDlgKeyConfig::OnBnClickedButtonSetkey12()
 	UpdateNames();
 }
 
-//ª
+//â†‘
 void CDlgKeyConfig::OnBnClickedButtonSetkey13()
 {
 	CDlgKBKeyGet dlg(this);
@@ -128,7 +128,7 @@ void CDlgKeyConfig::OnBnClickedButtonSetkey13()
 	UpdateNames();
 }
 
-//«
+//â†“
 void CDlgKeyConfig::OnBnClickedButtonSetkey14()
 {
 	CDlgKBKeyGet dlg(this);
@@ -139,7 +139,7 @@ void CDlgKeyConfig::OnBnClickedButtonSetkey14()
 	UpdateNames();
 }
 
-//ƒ{ƒ^ƒ“A
+//ãƒœã‚¿ãƒ³A
 void CDlgKeyConfig::OnBnClickedButtonSetkey15()
 {
 	CDlgKBKeyGet dlg(this);
@@ -150,7 +150,7 @@ void CDlgKeyConfig::OnBnClickedButtonSetkey15()
 	UpdateNames();
 }
 
-//ƒ{ƒ^ƒ“B
+//ãƒœã‚¿ãƒ³B
 void CDlgKeyConfig::OnBnClickedButtonSetkey16()
 {
 	CDlgKBKeyGet dlg(this);
@@ -161,7 +161,7 @@ void CDlgKeyConfig::OnBnClickedButtonSetkey16()
 	UpdateNames();
 }
 
-//ƒ{ƒ^ƒ“C
+//ãƒœã‚¿ãƒ³C
 void CDlgKeyConfig::OnBnClickedButtonSetkey17()
 {
 	CDlgKBKeyGet dlg(this);
@@ -172,7 +172,7 @@ void CDlgKeyConfig::OnBnClickedButtonSetkey17()
 	UpdateNames();
 }
 
-//ƒ{ƒ^ƒ“D
+//ãƒœã‚¿ãƒ³D
 void CDlgKeyConfig::OnBnClickedButtonSetkey18()
 {
 	CDlgKBKeyGet dlg(this);
@@ -184,9 +184,9 @@ void CDlgKeyConfig::OnBnClickedButtonSetkey18()
 }
 
 /*-----------------------------------------------------------------
-	ƒL[İ’è(2P)
+	ã‚­ãƒ¼è¨­å®š(2P)
 -------------------------------------------------------------------*/
-//©
+//â†
 void CDlgKeyConfig::OnBnClickedButtonSetkey21()
 {
 	CDlgKBKeyGet dlg(this);
@@ -197,7 +197,7 @@ void CDlgKeyConfig::OnBnClickedButtonSetkey21()
 	UpdateNames();
 }
 
-//¨
+//â†’
 void CDlgKeyConfig::OnBnClickedButtonSetkey22()
 {
 	CDlgKBKeyGet dlg(this);
@@ -208,7 +208,7 @@ void CDlgKeyConfig::OnBnClickedButtonSetkey22()
 	UpdateNames();
 }
 
-//ª
+//â†‘
 void CDlgKeyConfig::OnBnClickedButtonSetkey23()
 {
 	CDlgKBKeyGet dlg(this);
@@ -219,7 +219,7 @@ void CDlgKeyConfig::OnBnClickedButtonSetkey23()
 	UpdateNames();
 }
 
-//«
+//â†“
 void CDlgKeyConfig::OnBnClickedButtonSetkey24()
 {
 	CDlgKBKeyGet dlg(this);
@@ -230,7 +230,7 @@ void CDlgKeyConfig::OnBnClickedButtonSetkey24()
 	UpdateNames();
 }
 
-//ƒ{ƒ^ƒ“A
+//ãƒœã‚¿ãƒ³A
 void CDlgKeyConfig::OnBnClickedButtonSetkey26()
 {
 	CDlgKBKeyGet dlg(this);
@@ -241,7 +241,7 @@ void CDlgKeyConfig::OnBnClickedButtonSetkey26()
 	UpdateNames();
 }
 
-//ƒ{ƒ^ƒ“B
+//ãƒœã‚¿ãƒ³B
 void CDlgKeyConfig::OnBnClickedButtonSetkey27()
 {
 	CDlgKBKeyGet dlg(this);
@@ -252,7 +252,7 @@ void CDlgKeyConfig::OnBnClickedButtonSetkey27()
 	UpdateNames();
 }
 
-//ƒ{ƒ^ƒ“C
+//ãƒœã‚¿ãƒ³C
 void CDlgKeyConfig::OnBnClickedButtonSetkey28()
 {
 	CDlgKBKeyGet dlg(this);
@@ -263,7 +263,7 @@ void CDlgKeyConfig::OnBnClickedButtonSetkey28()
 	UpdateNames();
 }
 
-//ƒ{ƒ^ƒ“D
+//ãƒœã‚¿ãƒ³D
 void CDlgKeyConfig::OnBnClickedButtonSetkey29()
 {
 	CDlgKBKeyGet dlg(this);
@@ -275,35 +275,35 @@ void CDlgKeyConfig::OnBnClickedButtonSetkey29()
 }
 
 /*-----------------------------------------------------------------
-	•\¦XV
+	è¡¨ç¤ºæ›´æ–°
 -------------------------------------------------------------------*/
 void CDlgKeyConfig::UpdateNames()
 {
-	//sstr_1_3.Format("ª : %s(%d)", keycode.GetStr( VK_CAPITAL ),m_cfg.key_up[0]);
+	//sstr_1_3.Format("â†‘ : %s(%d)", keycode.GetStr( VK_CAPITAL ),m_cfg.key_up[0]);
 
-	sstr_1_3.Format("ª : %s", keycode.GetStr( m_cfg.key_up[0] ));
-	sstr_1_4.Format("« : %s", keycode.GetStr( m_cfg.key_down[0] ));
-	sstr_1_1.Format("© : %s", keycode.GetStr( m_cfg.key_left[0] ));
-	sstr_1_2.Format("¨ : %s", keycode.GetStr( m_cfg.key_right[0] ));
-	sstr_1_5.Format("A(ã) : %s", keycode.GetStr( m_cfg.key_button[0][0] ));
-	sstr_1_6.Format("B(’†) : %s", keycode.GetStr( m_cfg.key_button[1][0] ));
-	sstr_1_7.Format("C(‹­) : %s", keycode.GetStr( m_cfg.key_button[2][0] ));
-	sstr_1_8.Format("D(“Á) : %s", keycode.GetStr( m_cfg.key_button[3][0] ));
+	sstr_1_3.Format("â†‘ : %s", keycode.GetStr( m_cfg.key_up[0] ));
+	sstr_1_4.Format("â†“ : %s", keycode.GetStr( m_cfg.key_down[0] ));
+	sstr_1_1.Format("â† : %s", keycode.GetStr( m_cfg.key_left[0] ));
+	sstr_1_2.Format("â†’ : %s", keycode.GetStr( m_cfg.key_right[0] ));
+	sstr_1_5.Format("A(å¼±) : %s", keycode.GetStr( m_cfg.key_button[0][0] ));
+	sstr_1_6.Format("B(ä¸­) : %s", keycode.GetStr( m_cfg.key_button[1][0] ));
+	sstr_1_7.Format("C(å¼·) : %s", keycode.GetStr( m_cfg.key_button[2][0] ));
+	sstr_1_8.Format("D(ç‰¹) : %s", keycode.GetStr( m_cfg.key_button[3][0] ));
 	
-	sstr_2_3.Format("ª : %s", keycode.GetStr( m_cfg.key_up[1] ));
-	sstr_2_4.Format("« : %s", keycode.GetStr( m_cfg.key_down[1] ));
-	sstr_2_1.Format("© : %s", keycode.GetStr( m_cfg.key_left[1] ));
-	sstr_2_2.Format("¨ : %s", keycode.GetStr( m_cfg.key_right[1] ));
-	sstr_2_5.Format("A(ã) : %s", keycode.GetStr( m_cfg.key_button[0][1] ));
-	sstr_2_6.Format("B(’†) : %s", keycode.GetStr( m_cfg.key_button[1][1] ));
-	sstr_2_7.Format("C(‹­) : %s", keycode.GetStr( m_cfg.key_button[2][1] ));
-	sstr_2_8.Format("D(“Á) : %s", keycode.GetStr( m_cfg.key_button[3][1] ));
+	sstr_2_3.Format("â†‘ : %s", keycode.GetStr( m_cfg.key_up[1] ));
+	sstr_2_4.Format("â†“ : %s", keycode.GetStr( m_cfg.key_down[1] ));
+	sstr_2_1.Format("â† : %s", keycode.GetStr( m_cfg.key_left[1] ));
+	sstr_2_2.Format("â†’ : %s", keycode.GetStr( m_cfg.key_right[1] ));
+	sstr_2_5.Format("A(å¼±) : %s", keycode.GetStr( m_cfg.key_button[0][1] ));
+	sstr_2_6.Format("B(ä¸­) : %s", keycode.GetStr( m_cfg.key_button[1][1] ));
+	sstr_2_7.Format("C(å¼·) : %s", keycode.GetStr( m_cfg.key_button[2][1] ));
+	sstr_2_8.Format("D(ç‰¹) : %s", keycode.GetStr( m_cfg.key_button[3][1] ));
 
 	UpdateData(FALSE);
 }
 
 /*-----------------------------------------------------------------
-	ƒL[ƒR[ƒh ¨ •¶š•ÏŠ·
+	ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ â†’ æ–‡å­—å¤‰æ›
 -------------------------------------------------------------------*/
 CKeyCode2Str::CKeyCode2Str()
 {
@@ -329,7 +329,7 @@ CKeyCode2Str::CKeyCode2Str()
 	Add("Alt"); 
 	Add("PAUSE");
 	Add("Caps Lock");
-	Add("‚©‚È");
+	Add("ã‹ãª");
 	
 	Add("?");			//0x16
 
@@ -340,19 +340,19 @@ CKeyCode2Str::CKeyCode2Str()
 	Add("?");			//0x1a
 
 	Add("Esc"); 
-	Add("•ÏŠ·");
-	Add("–³•ÏŠ·"); 
+	Add("å¤‰æ›");
+	Add("ç„¡å¤‰æ›"); 
 	Add("ACCEPT");
-	Add("ƒ‚[ƒh•ÏX");
-	Add("ƒXƒy[ƒX");
+	Add("ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´");
+	Add("ã‚¹ãƒšãƒ¼ã‚¹");
 	Add("Page Up");
 	Add("Page Down");
 	Add("End");
 	Add("Home");
-	Add("©");
-	Add("ª");
-	Add("¨");
-	Add("«");
+	Add("â†");
+	Add("â†‘");
+	Add("â†’");
+	Add("â†“");
 	Add("Select");
 	Add("Print");
 	Add("Execute"); 
@@ -373,7 +373,7 @@ CKeyCode2Str::CKeyCode2Str()
 	Add("9");
 
 	
-	if(m_list.size()!='9'+1)OutputDebugString("CKeyCode2Str : ƒ`ƒFƒbƒN¸”s at 0x39\n");
+	if(m_list.size()!='9'+1)OutputDebugString("CKeyCode2Str : ãƒã‚§ãƒƒã‚¯å¤±æ•— at 0x39\n");
 	while(m_list.size()<0x40+1)
 	{
 		Add("?");
@@ -406,37 +406,37 @@ CKeyCode2Str::CKeyCode2Str()
 	Add("Y");
 	Add("Z");
 
-	Add("¶Win");
-	Add("‰EWin");
-	Add("ƒAƒvƒŠ"); 
+	Add("å·¦Win");
+	Add("å³Win");
+	Add("ã‚¢ãƒ—ãƒª"); 
 	Add("?");
 	Add("SLEEP");
 
-	if(m_list.size()!=0x5F+1)OutputDebugString("CKeyCode2Str : ƒ`ƒFƒbƒN¸”s at 0x5F\n");
+	if(m_list.size()!=0x5F+1)OutputDebugString("CKeyCode2Str : ãƒã‚§ãƒƒã‚¯å¤±æ•— at 0x5F\n");
 	
-	Add("ƒeƒ“ƒL[0");
-	Add("ƒeƒ“ƒL[1");
-	Add("ƒeƒ“ƒL[2");
-	Add("ƒeƒ“ƒL[3");
-	Add("ƒeƒ“ƒL[4");
-	Add("ƒeƒ“ƒL[5");
-	Add("ƒeƒ“ƒL[6");
-	Add("ƒeƒ“ƒL[7");
-	Add("ƒeƒ“ƒL[8");
-	Add("ƒeƒ“ƒL[9");
+	Add("ãƒ†ãƒ³ã‚­ãƒ¼0");
+	Add("ãƒ†ãƒ³ã‚­ãƒ¼1");
+	Add("ãƒ†ãƒ³ã‚­ãƒ¼2");
+	Add("ãƒ†ãƒ³ã‚­ãƒ¼3");
+	Add("ãƒ†ãƒ³ã‚­ãƒ¼4");
+	Add("ãƒ†ãƒ³ã‚­ãƒ¼5");
+	Add("ãƒ†ãƒ³ã‚­ãƒ¼6");
+	Add("ãƒ†ãƒ³ã‚­ãƒ¼7");
+	Add("ãƒ†ãƒ³ã‚­ãƒ¼8");
+	Add("ãƒ†ãƒ³ã‚­ãƒ¼9");
 
-	Add("ƒeƒ“ƒL[[ * ]");
-	Add("ƒeƒ“ƒL[[ + ]");
-	Add("ƒeƒ“ƒL[[Enter]");
-	Add("ƒeƒ“ƒL[[ - ]");
-	Add("ƒeƒ“ƒL[[ . ]");
-	Add("ƒeƒ“ƒL[[ / ]");
+	Add("ãƒ†ãƒ³ã‚­ãƒ¼[ * ]");
+	Add("ãƒ†ãƒ³ã‚­ãƒ¼[ + ]");
+	Add("ãƒ†ãƒ³ã‚­ãƒ¼[Enter]");
+	Add("ãƒ†ãƒ³ã‚­ãƒ¼[ - ]");
+	Add("ãƒ†ãƒ³ã‚­ãƒ¼[ . ]");
+	Add("ãƒ†ãƒ³ã‚­ãƒ¼[ / ]");
 
 	Add("F1");
 	Add("F2");
 	Add("F3");
 	Add("F4");
-	Add("F5<˜¤MÍL>");
+	Add("F5<ä¸¶ï½€âˆ€Â´>");
 	Add("F6");
 	Add("F7");
 	Add("F8");
@@ -457,7 +457,7 @@ CKeyCode2Str::CKeyCode2Str()
 	Add("F23");
 	Add("F24");
 
-	if(m_list.size()!=VK_F24+1)OutputDebugString("CKeyCode2Str : ƒ`ƒFƒbƒN¸”s at 0x88\n");
+	if(m_list.size()!=VK_F24+1)OutputDebugString("CKeyCode2Str : ãƒã‚§ãƒƒã‚¯å¤±æ•— at 0x88\n");
 	while(m_list.size()<0x8F+1)
 	{
 		Add("?");
@@ -471,50 +471,50 @@ CKeyCode2Str::CKeyCode2Str()
 	Add("OEM4");
 	Add("OEM5");
 
-	if(m_list.size()!=0x96+1)OutputDebugString("CKeyCode2Str : ƒ`ƒFƒbƒN¸”s at 0x96\n");
+	if(m_list.size()!=0x96+1)OutputDebugString("CKeyCode2Str : ãƒã‚§ãƒƒã‚¯å¤±æ•— at 0x96\n");
 	while(m_list.size()<0x9F+1)
 	{
 		Add("?");
 	}
 
-	Add("¶Shift"); 
-	Add("‰EShift") ;
-	Add("¶Ctrl");
-	Add("‰ECtrl") ;
-	Add("¶Alt");
-	Add("‰EAlt");
+	Add("å·¦Shift"); 
+	Add("å³Shift") ;
+	Add("å·¦Ctrl");
+	Add("å³Ctrl") ;
+	Add("å·¦Alt");
+	Add("å³Alt");
 
-	if(m_list.size()!=0xA5+1)OutputDebugString("CKeyCode2Str : ƒ`ƒFƒbƒN¸”s at 0xA5\n");
+	if(m_list.size()!=0xA5+1)OutputDebugString("CKeyCode2Str : ãƒã‚§ãƒƒã‚¯å¤±æ•— at 0xA5\n");
 
-	Add("ƒuƒ‰ƒEƒU[–ß‚é]");
-	Add("ƒuƒ‰ƒEƒU[i‚Ş]");
-	Add("ƒuƒ‰ƒEƒU[“c‘ã–CiÎj]");
-	Add("ƒuƒ‰ƒEƒU[ƒuƒŒƒCƒN]");
-	Add("ƒuƒ‰ƒEƒU[ŒŸõ]");
-	Add("ƒuƒ‰ƒEƒU[‚¨‹C‚É“ü‚è]");
-	Add("ƒuƒ‰ƒEƒU[ƒz[ƒ€ƒy[ƒW]");
-	Add("ƒƒfƒBƒA[ƒ~ƒ…[ƒg]");
-	Add("ƒƒfƒBƒA[‰¹—Êsage]");
-	Add("ƒƒfƒBƒA[‰¹—Êage]");
-	Add("ƒƒfƒBƒA[Ÿ‚Ìƒgƒ‰ƒbƒN]");
-	Add("ƒƒfƒBƒA[‘O‚Ìƒgƒ‰ƒbƒN]");
-	Add("ƒƒfƒBƒA[’â~]");
-	Add("ƒƒfƒBƒA[Ä¶^ˆê’â~]");
-	Add("ƒ[ƒ‹");
-	Add("ƒƒfƒBƒA‘I‘ğ");
-	Add("ƒAƒvƒŠ‹N“®‚P");
-	Add("ƒAƒvƒŠ‹N“®‚Q");
+	Add("ãƒ–ãƒ©ã‚¦ã‚¶[æˆ»ã‚‹]");
+	Add("ãƒ–ãƒ©ã‚¦ã‚¶[é€²ã‚€]");
+	Add("ãƒ–ãƒ©ã‚¦ã‚¶[ç”°ä»£ç ²ï¼ˆç¬‘ï¼‰]");
+	Add("ãƒ–ãƒ©ã‚¦ã‚¶[ãƒ–ãƒ¬ã‚¤ã‚¯]");
+	Add("ãƒ–ãƒ©ã‚¦ã‚¶[æ¤œç´¢]");
+	Add("ãƒ–ãƒ©ã‚¦ã‚¶[ãŠæ°—ã«å…¥ã‚Š]");
+	Add("ãƒ–ãƒ©ã‚¦ã‚¶[ãƒ›ãƒ¼ãƒ ãƒšãƒ¼ã‚¸]");
+	Add("ãƒ¡ãƒ‡ã‚£ã‚¢[ãƒŸãƒ¥ãƒ¼ãƒˆ]");
+	Add("ãƒ¡ãƒ‡ã‚£ã‚¢[éŸ³é‡sage]");
+	Add("ãƒ¡ãƒ‡ã‚£ã‚¢[éŸ³é‡age]");
+	Add("ãƒ¡ãƒ‡ã‚£ã‚¢[æ¬¡ã®ãƒˆãƒ©ãƒƒã‚¯]");
+	Add("ãƒ¡ãƒ‡ã‚£ã‚¢[å‰ã®ãƒˆãƒ©ãƒƒã‚¯]");
+	Add("ãƒ¡ãƒ‡ã‚£ã‚¢[åœæ­¢]");
+	Add("ãƒ¡ãƒ‡ã‚£ã‚¢[å†ç”Ÿï¼ä¸€æ™‚åœæ­¢]");
+	Add("ãƒ¡ãƒ¼ãƒ«");
+	Add("ãƒ¡ãƒ‡ã‚£ã‚¢é¸æŠ");
+	Add("ã‚¢ãƒ—ãƒªèµ·å‹•ï¼‘");
+	Add("ã‚¢ãƒ—ãƒªèµ·å‹•ï¼’");
 
-	if(m_list.size()!=0xB7+1)OutputDebugString("CKeyCode2Str : ƒ`ƒFƒbƒN¸”s at 0xA5\n");
+	if(m_list.size()!=0xB7+1)OutputDebugString("CKeyCode2Str : ãƒã‚§ãƒƒã‚¯å¤±æ•— at 0xA5\n");
 }
 
 const char* CKeyCode2Str::GetStr(BYTE code)
 {
 	if(code >= m_list.size())
 	{
-		static char buffer[32]; // ƒƒ“ƒo‚É‚·‚ñ‚ÌÏİÄŞ¸¾
+		static char buffer[32]; // ãƒ¡ãƒ³ãƒã«ã™ã‚“ã®ï¾ï¾ï¾„ï¾ï½¸ï½¾
 		
-		sprintf(buffer, "•s–¾(%d”Ô)", code);
+		sprintf(buffer, "ä¸æ˜(%dç•ª)", code);
 		return buffer;
 	}
 
@@ -550,7 +550,7 @@ void CDlgKeyConfig::OnBnClickedOk()
 
 void CDlgKeyConfig::OnCancel()
 {
-	// TODO : ‚±‚±‚É“Á’è‚ÈƒR[ƒh‚ğ’Ç‰Á‚·‚é‚©A‚à‚µ‚­‚ÍŠî–{ƒNƒ‰ƒX‚ğŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢B
+	// TODO : ã“ã“ã«ç‰¹å®šãªã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã‹ã€ã‚‚ã—ãã¯åŸºæœ¬ã‚¯ãƒ©ã‚¹ã‚’å‘¼ã³å‡ºã—ã¦ãã ã•ã„ã€‚
 
 	OnBnClickedOk();
 	//CDialog::OnCancel();

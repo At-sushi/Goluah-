@@ -1,14 +1,14 @@
-#pragma once
+Ôªø#pragma once
 
 
-// CDlgOther É_ÉCÉAÉçÉO
+// CDlgOther „ÉÄ„Ç§„Ç¢„É≠„Ç∞
 
 class CDlgOther : public CCfgDialogBase
 {
 	DECLARE_DYNAMIC(CDlgOther)
 
 public:
-	CDlgOther(CWnd* pParent = NULL);   // ïWèÄÉRÉìÉXÉgÉâÉNÉ^
+	CDlgOther(CWnd* pParent = NULL);   // Ê®ôÊ∫ñ„Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	virtual ~CDlgOther();
 
 	void UpdateSettings();
@@ -16,11 +16,11 @@ public:
 
 	void EnableLogChecks(BOOL en);
 
-// É_ÉCÉAÉçÉO ÉfÅ[É^
+// „ÉÄ„Ç§„Ç¢„É≠„Ç∞ „Éá„Éº„Çø
 	enum { IDD = IDD_DIALOG_PAGE4 };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ÉTÉ|Å[Ég
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV „Çµ„Éù„Éº„Éà
 
 	DECLARE_MESSAGE_MAP()
 public:

@@ -1,18 +1,18 @@
-
+﻿
 /*====================================================================================
 
 	Goluah Cell Data
     ~      ~    ~
-	�e��\����/�萔��`
+	各種構造体/定数定義
 
-	ver0.90����ǂ̃o�[�W������GCD�t�@�C�����ǂݍ��܂ꂽ�o�b�t�@�����f���邽�߂ɁA
-	���[�h���ɃZ����0�Ԃ�cell[0]->flag�Ƀo�[�W�����ԍ� (0.90��������900) �𖄂ߍ��ނ��Ƃɂ����B
+	ver0.90からどのバージョンのGCDファイルが読み込まれたバッファか判断するために、
+	ロード時にセルの0番のcell[0]->flagにバージョン番号 (0.90だったら900) を埋め込むことにした。
 
 ======================================================================================*/
 #pragma once
 
 #include <d3d8.h>
-//#define LPDIRECT3DTEXTURE8 LPVOID//directx sdk ���Ȃ��ꍇ�͂�������`
+//#define LPDIRECT3DTEXTURE8 LPVOID//directx sdk がない場合はこちらを定義
 
 #define GCD_VERSION			(900)
 #define GCDMAX_RECTANGLES	(1024)
@@ -46,7 +46,7 @@ struct GCD_CELL
 
 #define GCDCELL_REVERSE_X		0x00000001
 #define GCDCELL_REVERSE_Y		0x00000002
-#define GCDCELL_BLEND_ADD		0x00000010//�`�掞�ɉ��Z�������s��
+#define GCDCELL_BLEND_ADD		0x00000010//描画時に加算合成を行う
 
 struct GCD_CELL2
 {
@@ -57,8 +57,8 @@ struct GCD_CELL2
 };
 
 #define GCDCELL2_LINK			0x00000001
-#define GCDCELL2_DISABLE_ZR		0x00000002//z�o�b�t�@�ւ̏������݂��s��Ȃ�
-#define GCDCELL2_DISABLE_ZT		0x00000004//z�e�X�g���s��Ȃ�
+#define GCDCELL2_DISABLE_ZR		0x00000002//zバッファへの書き込みを行わない
+#define GCDCELL2_DISABLE_ZT		0x00000004//zテストを行わない
 
 struct GCD_HANTEI
 {
@@ -69,8 +69,8 @@ struct GCD_HANTEI
 
 struct GCD_FILEHEADER
 {
-	DWORD size;			//�Œ�@���̍\���̂̃T�C�Y�炵��.�Œ�ł�8�Ƃ���
-	DWORD ver;			//�Œ�@�ǂ̃o�[�W�����̂��̂�
+	DWORD size;			//固定　この構造体のサイズらしい.最低でも8とする
+	DWORD ver;			//固定　どのバージョンのものか
 };
 
 struct GCD_CELLNAMES
@@ -120,13 +120,13 @@ struct GCD_CELL2_070
 struct MYSURFACE
 {
 	BOOL valid;
-	DWORD xsufsize[MYSUF_MAXNUMTEX];//�e�N�X�`���̕��̔z��
-	DWORD ysufsize[MYSUF_MAXNUMTEX];//�e�N�X�`���̍����̔z��
-	DWORD xsufindx[MYSUF_MAXNUMTEX];//MYSURFACE���ł�left���W
-	DWORD ysufindx[MYSUF_MAXNUMTEX];//MYSURFACE���ł�top���W
+	DWORD xsufsize[MYSUF_MAXNUMTEX];//テクスチャの幅の配列
+	DWORD ysufsize[MYSUF_MAXNUMTEX];//テクスチャの高さの配列
+	DWORD xsufindx[MYSUF_MAXNUMTEX];//MYSURFACE中でのleft座標
+	DWORD ysufindx[MYSUF_MAXNUMTEX];//MYSURFACE中でのtop座標
 	DWORD xsufnum;
 	DWORD ysufnum;
-	LPDIRECT3DTEXTURE8 *pTex;//pTex�̔z��
+	LPDIRECT3DTEXTURE8 *pTex;//pTexの配列
 	float wg;
 	float hg;
 };
@@ -145,9 +145,9 @@ struct MYRECT3D
 #define FVF_3DVERTEX	(D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1 )
 struct MYVERTEX3D
 {
-	float x,y,z;//���W
+	float x,y,z;//座標
 	DWORD color;
-	float tu,tv;//�e�N�X�`�����W
+	float tu,tv;//テクスチャ座標
 };
 
 #endif

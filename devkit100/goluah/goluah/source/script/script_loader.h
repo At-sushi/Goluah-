@@ -1,11 +1,11 @@
-/*!
+ï»¿/*!
 *	@file
-*	@brief ƒXƒNƒŠƒvƒgŠÖ˜AƒNƒ‰ƒX’è‹`
+*	@brief ã‚¹ã‚¯ãƒªãƒ—ãƒˆé–¢é€£ã‚¯ãƒ©ã‚¹å®šç¾©
 */
 #pragma once
 /*!
 *	@defgroup Script
-*	@brief ƒXƒg[ƒŠ[/ƒXƒg[ƒŠ[’†ŠÔƒfƒ‚ ƒXƒNƒŠƒvƒg
+*	@brief ã‚¹ãƒˆãƒ¼ãƒªãƒ¼/ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ä¸­é–“ãƒ‡ãƒ¢ ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 */
 /*!
 *	@ingroup Script
@@ -15,7 +15,7 @@
 class CScriptLoader;
 class CAliasList;
 
-// golush_plus.dll‚Ì–¼c
+//â–¡golush_plus.dllã®åæ®‹
 /*
 #ifdef GOLUAH_PLUS_DLL
 #define DLLEXINPORT __declspec(dllexport)
@@ -24,11 +24,11 @@ class CAliasList;
 #endif*/
 #define DLLEXINPORT
 /*!
-*	@brief –¼cBˆÓ–¡‚È‚µB
+*	@brief åæ®‹ã€‚æ„å‘³ãªã—ã€‚
 *	@ingroup Script
 *
-*	ˆÈ‘OCString‚ğg‚Á‚Ä‚é‚Æ‚±‚ë‚ğMFCg—p‚ÌDLL‚Æ‚µ‚Ä•ªŠ„‚µ‚Ä‚½‚Æ‚«‚Ì–¼c‚Á‚Û‚¢B
-*	¡‚Í–{‘ÌƒvƒƒWƒFƒNƒg‚²‚ÆMFCƒvƒƒWƒFƒNƒg‚É‚È‚Á‚¿‚á‚Á‚½‚©‚çˆÓ–¡‚È‚µB
+*	ä»¥å‰CStringã‚’ä½¿ã£ã¦ã‚‹ã¨ã“ã‚ã‚’MFCä½¿ç”¨ã®DLLã¨ã—ã¦åˆ†å‰²ã—ã¦ãŸã¨ãã®åæ®‹ã£ã½ã„ã€‚
+*	ä»Šã¯æœ¬ä½“ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã”ã¨MFCãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã«ãªã£ã¡ã‚ƒã£ãŸã‹ã‚‰æ„å‘³ãªã—ã€‚
 */
 class DLLEXINPORT CGoluahPlusBase
 {
@@ -38,12 +38,12 @@ public:
 };
 
 /*!
-*	@brief ƒXƒNƒŠƒvƒgƒ[ƒhƒNƒ‰ƒX
+*	@brief ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ­ãƒ¼ãƒ‰ã‚¯ãƒ©ã‚¹
 *	@ingroup Script
 *
-*	ƒXƒg[ƒŠ[‚ÌƒXƒNƒŠƒvƒg‚ğ“Ç‚İ‚ŞƒNƒ‰ƒX‚İ‚½‚¢B
-*	ÀÛ‚É‚Í‚±‚¢‚Â‚Í‹ó‚Á‚Û‚ÅACScriptLoaderInstance ‚ª‹@”\‚ğÀ‘•‚µ‚Ä‚éB
-*	DLL‰»‚µ‚Ä‚½‚Æ‚«‚Ì–¼c
+*	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’èª­ã¿è¾¼ã‚€ã‚¯ãƒ©ã‚¹ã¿ãŸã„ã€‚
+*	å®Ÿéš›ã«ã¯ã“ã„ã¤ã¯ç©ºã£ã½ã§ã€CScriptLoaderInstance ãŒæ©Ÿèƒ½ã‚’å®Ÿè£…ã—ã¦ã‚‹ã€‚
+*	DLLåŒ–ã—ã¦ãŸã¨ãã®åæ®‹
 */
 class DLLEXINPORT CScriptLoader : public CGoluahPlusBase
 {
@@ -58,11 +58,11 @@ public:
 };
 
 /*!
-*	@brief •Ê–¼ƒŠƒXƒgƒNƒ‰ƒX
+*	@brief åˆ¥åãƒªã‚¹ãƒˆã‚¯ãƒ©ã‚¹
 *	@ingroup Script
 *
-*	ƒXƒNƒŠƒvƒg‚ÌƒeƒLƒXƒg‚ÅA•¶š—ñ’uŠ·‚ğ‚·‚é‚Ì‚Ég‚¨‚¤‚Æ‚µ‚Ä‚½‚æ‚¤‚È‹C‚ª‚·‚éB
-*	ÀÛg‚Á‚Ä‚½‚Á‚¯H
+*	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ãƒ†ã‚­ã‚¹ãƒˆã§ã€æ–‡å­—åˆ—ç½®æ›ã‚’ã™ã‚‹ã®ã«ä½¿ãŠã†ã¨ã—ã¦ãŸã‚ˆã†ãªæ°—ãŒã™ã‚‹ã€‚
+*	å®Ÿéš›ä½¿ã£ã¦ãŸã£ã‘ï¼Ÿ
 */
 class DLLEXINPORT CAliasList : public CGoluahPlusBase
 {
@@ -81,7 +81,7 @@ public:
 #include <vector>
 
 /*!
-*	@brief CStringHandler‚ª“à•”“I‚É‚à‚ÂsƒŠƒXƒg‚Ìˆês•ª
+*	@brief CStringHandlerãŒå†…éƒ¨çš„ã«ã‚‚ã¤è¡Œãƒªã‚¹ãƒˆã®ä¸€è¡Œåˆ†
 *	@ingroup Script
 */
 struct OneStringLine
@@ -92,54 +92,54 @@ struct OneStringLine
 typedef std::vector<OneStringLine> strlinelist;
 
 
-#define STRINGHANDLER_MAXNESTCOUNT	10		//includeÅ‘åƒlƒXƒg”
-#define STRINGHANDLER_COMMENTSTART	_T("//")	//ƒRƒƒ“ƒg¯•Ê•¶š—ñ
+#define STRINGHANDLER_MAXNESTCOUNT	10		//includeæœ€å¤§ãƒã‚¹ãƒˆæ•°
+#define STRINGHANDLER_COMMENTSTART	_T("//")	//ã‚³ãƒ¡ãƒ³ãƒˆè­˜åˆ¥æ–‡å­—åˆ—
 
 /*!
-*	@brief CScriptLoaderƒNƒ‰ƒX–{‘Ì
+*	@brief CScriptLoaderã‚¯ãƒ©ã‚¹æœ¬ä½“
 *	@ingroup Script
 */
 class CScriptLoaderInstance : public CScriptLoader
 {
 public:
 	/*!
-	@brief ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+	@brief ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 
-	ˆ—“à—eF
-	 1.ƒtƒ@ƒCƒ‹‘S‘Ì‚Ìƒ[ƒh
-	 2.s‚²‚Æ‚É•ªŠ„
-	 3.ƒRƒƒ“ƒgœ‹
-	 4.includeˆ—
+	å‡¦ç†å†…å®¹ï¼š
+	 1.ãƒ•ã‚¡ã‚¤ãƒ«å…¨ä½“ã®ãƒ­ãƒ¼ãƒ‰
+	 2.è¡Œã”ã¨ã«åˆ†å‰²
+	 3.ã‚³ãƒ¡ãƒ³ãƒˆé™¤å»
+	 4.includeå‡¦ç†
 	*/
 	BOOL LoadFile(TCHAR *base_dir,TCHAR *filename,UINT include_count=0);
 
-	//!•Ê–¼’uŠ·ˆ—
+	//!åˆ¥åç½®æ›å‡¦ç†
 	void ReplaceAlias(CAliasList *alist);
 
-	//!w’èsæ“¾
+	//!æŒ‡å®šè¡Œå–å¾—
 	TCHAR*   GetLine(int index);
 	CString GetLineC(int index);
 	UINT	GetLineNum(){return (UINT)list.size();}
 
 #ifdef _DEBUG
 	/*!
-		@brief ƒfƒoƒbƒO—pB
-		•Û‚µ‚Ä‚¢‚éƒŠƒXƒg‚ğƒtƒ@ƒCƒ‹‚Éo—Í‚·‚é*/
+		@brief ãƒ‡ãƒãƒƒã‚°ç”¨ã€‚
+		ä¿æŒã—ã¦ã„ã‚‹ãƒªã‚¹ãƒˆã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«å‡ºåŠ›ã™ã‚‹*/
 	void DebugOutput(TCHAR *filename);
 
-	//!ƒ\[ƒg—p”äŠrŠÖ”
+	//!ã‚½ãƒ¼ãƒˆç”¨æ¯”è¼ƒé–¢æ•°
 	static bool compline(OneStringLine line1,OneStringLine line2)
 					{return line1.line_no<line2.line_no;}
 #endif
 
 protected:
-	//LoadFile“à•”ˆ—
-	BYTE* LoadWholeFile(CString *filename,UINT *size);	//!< ƒtƒ@ƒCƒ‹ƒ[ƒhˆ—
-	BOOL  DivideLine(BYTE* str_org,UINT size);			//!< s‚²‚Æ•ªŠ„ˆ—‚µ‚ÄƒŠƒXƒg‚ğ\’z
-	BOOL  EliminateComment();							//!< ƒRƒƒ“ƒgœ‹ˆ—
-	BOOL  IncludeCheck(UINT include_count);				//!< include ˆ—
+	//LoadFileå†…éƒ¨å‡¦ç†
+	BYTE* LoadWholeFile(CString *filename,UINT *size);	//!< ãƒ•ã‚¡ã‚¤ãƒ«ãƒ­ãƒ¼ãƒ‰å‡¦ç†
+	BOOL  DivideLine(BYTE* str_org,UINT size);			//!< è¡Œã”ã¨åˆ†å‰²å‡¦ç†ã—ã¦ãƒªã‚¹ãƒˆã‚’æ§‹ç¯‰
+	BOOL  EliminateComment();							//!< ã‚³ãƒ¡ãƒ³ãƒˆé™¤å»å‡¦ç†
+	BOOL  IncludeCheck(UINT include_count);				//!< include å‡¦ç†
 
-	//!ƒ}[ƒWBIncludeˆ—‚Ég—p
+	//!ãƒãƒ¼ã‚¸ã€‚Includeå‡¦ç†æ™‚ã«ä½¿ç”¨
 	void Marge(int index,CScriptLoaderInstance& sh);
 
 	CString m_base_dir;
@@ -149,7 +149,7 @@ protected:
 
 
 
-//! •Ê–¼’è‹`
+//! åˆ¥åå®šç¾©
 struct StringPear
 {
 	CString str;
@@ -162,7 +162,7 @@ typedef std::list<StringPear> aliaslist;
 
 
 
-//! •Ê–¼ƒŠƒXƒgƒNƒ‰ƒXÀ‘Ì
+//! åˆ¥åãƒªã‚¹ãƒˆã‚¯ãƒ©ã‚¹å®Ÿä½“
 class CAliasListInstance : public CAliasList
 {
 public:

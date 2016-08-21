@@ -1,4 +1,4 @@
-#include "task.h"
+﻿#include "task.h"
 
 CFade::CFade(void)
 {

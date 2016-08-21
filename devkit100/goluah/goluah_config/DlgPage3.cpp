@@ -1,4 +1,4 @@
-// DlgPage3.cpp : À‘•ƒtƒ@ƒCƒ‹
+ï»¿// DlgPage3.cpp : å®Ÿè£…ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "DlgPage3.h"
 
 
-// CDlgPage3 ƒ_ƒCƒAƒƒO
+// CDlgPage3 ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 IMPLEMENT_DYNAMIC(CDlgPage3, CCfgDialogBase)
 CDlgPage3::CDlgPage3(CWnd* pParent /*=NULL*/)
@@ -35,18 +35,18 @@ BEGIN_MESSAGE_MAP(CDlgPage3, CDialog)
 END_MESSAGE_MAP()
 
 
-// CDlgPage3 ƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰
+// CDlgPage3 ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ©
 
 
 
 /*------------------------------------------------------------------
-	İ’è¨ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€
+	è¨­å®šâ†’ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ 
 --------------------------------------------------------------------*/
 BOOL CDlgPage3::OnInitDialog()
 {
 	CCfgDialogBase::OnInitDialog();
 
-	// TODO :  ‚±‚±‚É‰Šú‰»‚ğ’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢
+	// TODO :  ã“ã“ã«åˆæœŸåŒ–ã‚’è¿½åŠ ã—ã¦ãã ã•ã„
 	CComboBox* combo = (CComboBox*)GetDlgItem(IDC_COMBO_DEVTYPE);
 	if(!combo){
 		throw;
@@ -57,7 +57,7 @@ BOOL CDlgPage3::OnInitDialog()
 	Reset();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// —áŠO : OCX ƒvƒƒpƒeƒB ƒy[ƒW‚Í•K‚¸ FALSE ‚ğ•Ô‚µ‚Ü‚·B
+	// ä¾‹å¤– : OCX ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ ãƒšãƒ¼ã‚¸ã¯å¿…ãš FALSE ã‚’è¿”ã—ã¾ã™ã€‚
 }
 
 void CDlgPage3::Reset()
@@ -71,7 +71,7 @@ void CDlgPage3::Reset()
 }
 
 /*------------------------------------------------------------------
-	İ’è©ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€
+	è¨­å®šâ†ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ 
 --------------------------------------------------------------------*/
 void CDlgPage3::UpdateSettings()
 {

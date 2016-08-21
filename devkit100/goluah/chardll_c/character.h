@@ -1,4 +1,4 @@
-/*=====================================================================================
+ï»¿/*=====================================================================================
 
 Goluah!! Copyright (C) 2001-2004 aki, 2004-2016 At-sushi, 2014-2016 logger
 
@@ -12,7 +12,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 /*==============================================================
 
-	ƒLƒƒƒ‰ƒNƒ^[’è‹`ƒwƒbƒ_
+	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼å®šç¾©ãƒ˜ãƒƒãƒ€
 
 ================================================================*/
 #pragma once
@@ -25,11 +25,11 @@ You should have received a copy of the GNU General Public License along with thi
 #include <vector>
 
 #include "gobjbase.h"
-#include "cell.h"// ’ÊíAare_editer‚Å¶¬‚µ‚½ƒwƒbƒ_[ƒtƒ@ƒCƒ‹‚ğ‚±‚±‚Éinclude‚µ‚Ü‚·
+#include "cell.h"// é€šå¸¸ã€are_editerã§ç”Ÿæˆã—ãŸãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã“ã“ã«includeã—ã¾ã™
 
 #include "aki3d.h"
 
-//”ò‚Ñ“¹‹ï
+//é£›ã³é“å…·
 class COcya;
 class CJien;
 class CAroe;
@@ -53,11 +53,11 @@ class CMoyamoyaC;
 class CBlood;
 class CCutin;
 
-#define MISSILE_NUM		(4+4+4)//ƒ~ƒTƒCƒ‹,ƒCƒ“ƒXƒ^ƒ“ƒX”
+#define MISSILE_NUM		(4+4+4)//ãƒŸã‚µã‚¤ãƒ«,ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹æ•°
 #define NEEDGAUGE_REV	(0.3)
 
 /*--------------------------------------------------------------
-	ƒƒCƒ“ƒLƒƒƒ‰ƒNƒ^[ƒNƒ‰ƒX
+	ãƒ¡ã‚¤ãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚¯ãƒ©ã‚¹
 ----------------------------------------------------------------*/
 class CCharacter : public CCharacterBase
 {
@@ -67,7 +67,7 @@ public:
 
 protected:
 	//*********************************************
-	//  ƒI[ƒo[ƒ‰ƒCƒh‚·‚éŠÖ”
+	//  ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã™ã‚‹é–¢æ•°
 	//*********************************************
 
 	DWORD Message(DWORD msg,LPVOID pd,DWORD prm);
@@ -88,30 +88,30 @@ protected:
 	void InitWazInfo();
 	void InitBullets();
 
-	//’Êí“®ì
-	void act_neutral();//ƒjƒ…[ƒgƒ‰ƒ‹
-	void act_crouch();//‚µ‚á‚ª‚İ
-	void act_rakka();//—‰º
-	void act_tojyo();//“oê
-	void act_win();//Ÿ—˜
-	void act_timeoverlose();//ƒ^ƒCƒ€ƒI[ƒo[
-	void act_walkf();//‘Oi
-	void act_walkb();//Œã‘Ş
-	void act_jamps();//ƒWƒƒƒ“ƒv—\”õ“®ì
-	void act_jampc();//‚’¼ƒWƒƒƒ“ƒv
-	void act_jampf();//‘OƒWƒƒƒ“ƒv
-	void act_jampb();//ŒãƒWƒƒƒ“ƒv
-	//’Êí.UŒ‚
-	void act_att_sa();//—§ã
-	void act_att_sb();//—§’†
-	void act_att_sc();//—§‹­
-	void act_att_ca();//‹üã
-	void act_att_cb();//‹ü’†
-	void act_att_cc();//‹ü‹­
-	void act_att_ja();//”òã
-	void act_att_jb();//”ò’†
-	void act_att_jc();//”ò‹­
-	//‚»‚Ì‘¼
+	//é€šå¸¸å‹•ä½œ
+	void act_neutral();//ãƒ‹ãƒ¥ãƒ¼ãƒˆãƒ©ãƒ«
+	void act_crouch();//ã—ã‚ƒãŒã¿
+	void act_rakka();//è½ä¸‹
+	void act_tojyo();//ç™»å ´
+	void act_win();//å‹åˆ©
+	void act_timeoverlose();//ã‚¿ã‚¤ãƒ ã‚ªãƒ¼ãƒãƒ¼
+	void act_walkf();//å‰é€²
+	void act_walkb();//å¾Œé€€
+	void act_jamps();//ã‚¸ãƒ£ãƒ³ãƒ—äºˆå‚™å‹•ä½œ
+	void act_jampc();//å‚ç›´ã‚¸ãƒ£ãƒ³ãƒ—
+	void act_jampf();//å‰ã‚¸ãƒ£ãƒ³ãƒ—
+	void act_jampb();//å¾Œã‚¸ãƒ£ãƒ³ãƒ—
+	//é€šå¸¸.æ”»æ’ƒ
+	void act_att_sa();//ç«‹å¼±
+	void act_att_sb();//ç«‹ä¸­
+	void act_att_sc();//ç«‹å¼·
+	void act_att_ca();//å±ˆå¼±
+	void act_att_cb();//å±ˆä¸­
+	void act_att_cc();//å±ˆå¼·
+	void act_att_ja();//é£›å¼±
+	void act_att_jb();//é£›ä¸­
+	void act_att_jc();//é£›å¼·
+	//ãã®ä»–
 	void act_taiki();
 	void act_koutai_out();
 	void act_koutai_in();
@@ -119,16 +119,16 @@ protected:
 	void act_koutai2();
 
 	//*********************************************
-	//@CCharacterƒNƒ‰ƒX“Æ©‚ÌŠÖ”
+	//ã€€CCharacterã‚¯ãƒ©ã‚¹ç‹¬è‡ªã®é–¢æ•°
 	//*********************************************
 private:
-	void InitParameters();//ƒpƒ‰ƒ[ƒ^‰Šú‰»
+	void InitParameters();//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
 	void StartAttack(DWORD atk_info_id);
 
-	void ArekoreCancel();		//ƒAƒŒƒRƒŒ’†’f
-	void ArekoreRelease();		//ƒAƒŒƒRƒŒ”­Ë
+	void ArekoreCancel();		//ã‚¢ãƒ¬ã‚³ãƒ¬ä¸­æ–­
+	void ArekoreRelease();		//ã‚¢ãƒ¬ã‚³ãƒ¬ç™ºå°„
 
-	//’Ç‰Ás“®ŠÖ”
+	//è¿½åŠ è¡Œå‹•é–¢æ•°
 	void act_dashf();
 	void act_dashb();
 	void act_2danjamps();
@@ -166,17 +166,17 @@ private:
 	void act_striker_out();
 	void act_reversal();
 
-	//“G‘¤s“®
+	//æ•µå´è¡Œå‹•
 	DWORD eact_nage(GOBJECT *pedat);
 
-	BOOL nidanjamp;		//“ñ’iƒWƒƒƒ“ƒvƒtƒ‰ƒO
-	float m_nage_magx;	//“Š‚°‚½‘Šè‚ÌŠî€Šg‘å—¦
+	BOOL nidanjamp;		//äºŒæ®µã‚¸ãƒ£ãƒ³ãƒ—ãƒ•ãƒ©ã‚°
+	float m_nage_magx;	//æŠ•ã’ãŸç›¸æ‰‹ã®åŸºæº–æ‹¡å¤§ç‡
 	float m_nage_magy;
 
-	//UŒ‚—Íî•ñ
+	//æ”»æ’ƒåŠ›æƒ…å ±
 	ATTACKINFO aif[32];
 
-	//”ò‚Ñ“¹‹ï‚Ì—Ş
+	//é£›ã³é“å…·ã®é¡
 	COcya*			pbul_ocya;
 	CJien*			pbul_jien;
 	CAroe*			pbul_aroe;
@@ -199,10 +199,10 @@ private:
 	CBlood*			pbul_blood;
 	CCutin*			pbul_cutin;
 
-	//ƒ_ƒbƒR‹]µÒID
+	//ãƒ€ãƒƒã‚³çŠ ç‰²è€…ID
 	DWORD m_dakko_eid;
 
-	//ƒIƒvƒVƒ‡ƒ“ƒtƒ‰ƒO
+	//ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãƒ•ãƒ©ã‚°
 	BOOL m_opt_quickA;
 	BOOL m_opt_quickB;
 	BOOL m_opt_quickC;
@@ -213,7 +213,7 @@ private:
 
 extern LPTSTR CharDirectory;
 
-//s“®ID‚ğ‚±‚±‚É’Ç‰Á‚·‚é
+//è¡Œå‹•IDã‚’ã“ã“ã«è¿½åŠ ã™ã‚‹
 #define ACTID_DASHF					(ACTID_KUCYU  | 0x0001)
 #define ACTID_DASHB					(ACTID_KUCYU  | 0x0002)
 #define ACTID_2DANJAMPS				(ACTID_KUCYU  | 0x0003)
@@ -251,7 +251,7 @@ extern LPTSTR CharDirectory;
 #define ACTID_MOYAMOYA2				(ACTID_ATTACK | ACTID_HISSATU | ACTID_MOYAMOYA | 0x0022)
 #define ACTID_MOYAMOYA3				(ACTID_ATTACK | ACTID_HISSATU | ACTID_MOYAMOYA | 0x0023)
 
-//UŒ‚—Í”Ô†‚ğ‚±‚±‚É’è‹`‚·‚é
+//æ”»æ’ƒåŠ›ç•ªå·ã‚’ã“ã“ã«å®šç¾©ã™ã‚‹
 #define ATTACKINFO_STAND_A			0
 #define ATTACKINFO_STAND_B			1
 #define ATTACKINFO_STAND_C			2
@@ -281,26 +281,26 @@ extern LPTSTR CharDirectory;
 #define ATTACKINFO_DAKKO			26
 #define ATTACKINFO_REVERSAL			27
 
-//UŒ‚IDi•K—v‚ª‚ ‚ê‚Î•ÏX‚·‚éj
+//æ”»æ’ƒIDï¼ˆå¿…è¦ãŒã‚ã‚Œã°å¤‰æ›´ã™ã‚‹ï¼‰
 #define ATTACK_WEAK					1
 #define ATTACK_MIDDLE				2
 #define ATTACK_STRONG				3
 #define ATTACK_HISSATU				4
 #define ATTACK_DAKKO				5
 
-//ƒ`ƒF[ƒ“ƒRƒ“ƒ{ƒtƒ‰ƒO
-//#define CHAIN_SA					0x00010000//ƒx[ƒX‚Å’è‹`
+//ãƒã‚§ãƒ¼ãƒ³ã‚³ãƒ³ãƒœãƒ•ãƒ©ã‚°
+//#define CHAIN_SA					0x00010000//ãƒ™ãƒ¼ã‚¹ã§å®šç¾©
 //#define CHAIN_SB					0x00020000
 //#define CHAIN_SC					0x00040000
 //#define CHAIN_CA					0x00080000
 //#define CHAIN_CB					0x00100000
 //#define CHAIN_CC					0x00200000
-#define CHAIN_STAFF					0x00000001//’Ç‰Á•ª
+#define CHAIN_STAFF					0x00000001//è¿½åŠ åˆ†
 
-//ƒ†[ƒU[’è‹`ƒƒbƒZ[ƒW
-#define GOBJMSG_NAGE				(GOBJMSG_USERDEFINE | 0x0001)	//“Š‚°—p
+//ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+#define GOBJMSG_NAGE				(GOBJMSG_USERDEFINE | 0x0001)	//æŠ•ã’ç”¨
 
-//ƒIƒvƒVƒ‡ƒ“’è‹`
+//ã‚ªãƒ—ã‚·ãƒ§ãƒ³å®šç¾©
 #define OPTIONS_QUICK_LUNCH_A		0x00000001
 #define OPTIONS_QUICK_LUNCH_B		0x00000002
 #define OPTIONS_QUICK_LUNCH_C		0x00000004
@@ -311,22 +311,22 @@ extern LPTSTR CharDirectory;
 
 #define OPTIONS_QUICKS				(OPTIONS_QUICK_LUNCH_A | OPTIONS_QUICK_LUNCH_B | OPTIONS_QUICK_LUNCH_C)
 
-//ƒ}ƒNƒ’è‹`
+//ãƒã‚¯ãƒ­å®šç¾©
 #define cell(a)						pdat->cnow=a
 #define ccounter					pdat->counter
 #define ALLGUARDFLAG				(GUARDINFO_XSTAND | GUARDINFO_XCROUCH | GUARDINFO_XJAMP)
 #define CANNOT_GUARD(a)				((a&ALLGUARDFLAG)==0)
 #define SetDWAlpha(d,a)				d=(d&0x00FFFFFF)|(a<<24)
-#define ROGER						TRUE//ƒ‰ƒWƒƒ[I						
+#define ROGER						TRUE//ãƒ©ã‚¸ãƒ£ãƒ¼ï¼						
 
 
-//ŠÔ‡‚¢
+//é–“åˆã„
 #define MAAI_SHORT				(70)
 #define MAAI_MIDDLE				(140)
 #define MAAI_LONG				(200)
 #define MAAI_NAGE				(20)
 
-//wave ”Ô†
+//wave ç•ªå·
 #define wave_tojyo				4
 #define wave_win				5
 #define wave_staff				6
@@ -358,10 +358,10 @@ extern LPTSTR CharDirectory;
 #define wave_poi_3f3			99
 
 /*--------------------------------------------------------------
-	”ò“¹‹ï
+	é£›é“å…·
 ----------------------------------------------------------------*/
 
-//¡‚¨’ƒ
+//â– ãŠèŒ¶
 class COcya : public CBulletBase
 {
 public:
@@ -371,7 +371,7 @@ protected:
 	void act_bomb();
 };
 
-//¡ƒWƒTƒNƒWƒGƒ“
+//â– ã‚¸ã‚µã‚¯ã‚¸ã‚¨ãƒ³
 class CJien : public CBulletBase
 {
 public:
@@ -381,7 +381,7 @@ protected:
 	void act_bomb();
 };
 
-//¡ƒAƒƒGƒŠ[ƒi
+//â– ã‚¢ãƒ­ã‚¨ãƒªãƒ¼ãƒŠ
 class CAroe : public CBulletBase
 {
 public:
@@ -391,7 +391,7 @@ protected:
 	void act_bomb();
 };
 
-//¡ƒ‚ƒEƒRƒlƒGƒˆ
+//â– ãƒ¢ã‚¦ã‚³ãƒã‚¨ãƒ¨
 class CMoukoneeyo : public CBulletBase
 {
 public:
@@ -410,7 +410,7 @@ protected:
 	DWORD dispcell;
 };
 
-//¡ƒ~ƒTƒCƒ‹
+//â– ãƒŸã‚µã‚¤ãƒ«
 class CMissile : public CBulletBase
 {
 public:
@@ -420,7 +420,7 @@ protected:
 	void act_bomb();
 };
 
-//¡ƒnƒ“ƒhƒOƒŒƒl[ƒh
+//â– ãƒãƒ³ãƒ‰ã‚°ãƒ¬ãƒãƒ¼ãƒ‰
 
 #define HANDG_NUM1	16
 #define HANDG_NUM2	16
@@ -463,7 +463,7 @@ protected:
 	HandgInfo2 m_info2[HANDG_NUM2];
 };
 
-//¡ƒNƒŒƒCƒ‚ƒA
+//â– ã‚¯ãƒ¬ã‚¤ãƒ¢ã‚¢
 
 #define CRAYMORE_STATE_ATTACK	(0x0001)
 #define CRAYMORE_STATE_WAIT		(0x0002)
@@ -485,7 +485,7 @@ protected:
 	DWORD TouchC( ATTACKINFO *info,DWORD tc_eid );
 	DWORD Draw();
 
-	//‚ ‚½‚Á‚Ä‚àÁ‚¦‚È‚¢
+	//ã‚ãŸã£ã¦ã‚‚æ¶ˆãˆãªã„
 	void Hit(){pdat->kougeki= FALSE;}
 	DWORD Sousai(DWORD prm);
 
@@ -502,7 +502,7 @@ protected:
 	ParticleInfo m_info[CRAYMORE_NUM];
 };
 
-//¡ƒVƒ‡ƒbƒgƒKƒ“
+//â– ã‚·ãƒ§ãƒƒãƒˆã‚¬ãƒ³
 
 #define SHOTGUN_NUM			(16)
 
@@ -516,7 +516,7 @@ protected:
 	void  act_bomb();
 	DWORD Draw();
 
-	//‚ ‚½‚Á‚Ä‚àÁ‚¦‚È‚¢
+	//ã‚ãŸã£ã¦ã‚‚æ¶ˆãˆãªã„
 	void Hit(){pdat->kougeki= FALSE;}
 	DWORD Sousai(DWORD prm){return TRUE;}
 
@@ -535,7 +535,7 @@ protected:
 };
 
 
-//¡ƒ‰ƒCƒtƒ‹
+//â– ãƒ©ã‚¤ãƒ•ãƒ«
 
 #define RIFLE_TIMEOUT		(500)
 
@@ -552,7 +552,7 @@ protected:
 	int   key_idx;
 };
 
-//¡‰Î‰Š•úËŠí
+//â– ç«ç‚æ”¾å°„å™¨
 
 #define NUM_FIRETHROWER		(64)
 #define DUR_FIRETHROW		(100)
@@ -593,12 +593,12 @@ protected:
 
 	std::vector<DWORD>	list;
 
-	//‚ ‚½‚Á‚Ä‚àÁ‚¦‚È‚¢
+	//ã‚ãŸã£ã¦ã‚‚æ¶ˆãˆãªã„
 	void Hit(){pdat->kougeki= FALSE;}
 	DWORD Sousai(DWORD prm){return TRUE;}
 };
 
-//¡ƒƒPƒbƒg?
+//â– ãƒ­ã‚±ãƒƒãƒˆ?
 #define ROCKET_BOMB_NUM		64
 
 class CRocket : public CBulletBase
@@ -634,7 +634,7 @@ friend class CEraser99;
 
 };
 
-//¡ƒ‰ƒ“ƒ^ƒ“(ƒAƒM)
+//â– ãƒ©ãƒ³ã‚¿ãƒ³(ã‚¢ã‚®)
 
 #define AGI_NUM				(64)
 
@@ -664,7 +664,7 @@ public:
 	ParticleInfo info[AGI_NUM];
 };
 
-#define LANTERN_NUM_AGI			(4)//ƒCƒjƒVƒƒƒ‰ƒCƒU[‚à•ÏX‚·‚é‚±‚Æ
+#define LANTERN_NUM_AGI			(4)//ã‚¤ãƒ‹ã‚·ãƒ£ãƒ©ã‚¤ã‚¶ãƒ¼ã‚‚å¤‰æ›´ã™ã‚‹ã“ã¨
 
 #define ACT_LANTERN_AGI			(0x00000001)
 #define ACT_LANTERN_MAHA_AGI	(0x00000002)
@@ -693,7 +693,7 @@ protected:
 };
 
 
-//¡COME ON!
+//â– COME ON!
 class CComeon : public CBulletBase//CEffectBase
 {
 public:
@@ -704,7 +704,7 @@ protected:
 };
 
 
-//¡httpƒŒ[ƒU[
+//â– httpãƒ¬ãƒ¼ã‚¶ãƒ¼
 
 class CHttpLaser : public CBulletBase
 {
@@ -717,13 +717,13 @@ protected:
 	DWORD TouchC( ATTACKINFO *info,DWORD tc_eid );
 	std::vector<DWORD> list;
 
-	//‚ ‚½‚Á‚Ä‚àÁ‚¦‚È‚¢
+	//ã‚ãŸã£ã¦ã‚‚æ¶ˆãˆãªã„
 	void Hit(){pdat->kougeki= FALSE;}
 	DWORD Sousai(DWORD prm){return TRUE;}
 };
 
 
-//¡ƒCƒŒƒCƒT[99
+//â– ã‚¤ãƒ¬ã‚¤ã‚µãƒ¼99
 
 #define ERASER99_NUM_CONPART	(128)
 #define ERASER99_NUM_RAY		(64)
@@ -742,11 +742,11 @@ protected:
 	void act_run();
 	void act_bomb();
 
-	//‚ ‚½‚Á‚Ä‚àÁ‚¦‚È‚¢
+	//ã‚ãŸã£ã¦ã‚‚æ¶ˆãˆãªã„
 	void Hit(){pdat->kougeki= FALSE;}
 	DWORD Sousai(DWORD prm){return TRUE;}
 	
-	//û‘©—±q
+	//åæŸç²’å­
 	CParticle* m_part;
 	struct ParticleInfo
 	{
@@ -760,10 +760,10 @@ protected:
 	};
 	ParticleInfo m_info[ERASER99_NUM_CONPART];
 
-	//”­“®‰ŒiƒƒPƒbƒg—¬—pj
+	//ç™ºå‹•æ™‚ç…™ï¼ˆãƒ­ã‚±ãƒƒãƒˆæµç”¨ï¼‰
 	CRocket*	obj_rkt;
 
-	//Œõü–{‘Ì
+	//å…‰ç·šæœ¬ä½“
 	CParticle* m_part_ray;
 	struct RayPartInfo
 	{
@@ -784,11 +784,11 @@ protected:
 };
 
 
-//¡‚à‚â‚à‚â
+//â– ã‚‚ã‚„ã‚‚ã‚„
 
 enum MoyaType
 {
-	//Aƒ‹[ƒg
+	//Aãƒ«ãƒ¼ãƒˆ
 	Moya_Ocya,			//
 	Moya_Jien,			//
 	Moya_Aroe,			//
@@ -796,14 +796,14 @@ enum MoyaType
 	Moya_MissileH,		//
 	Moya_MissileSP,		//
 
-	//Bƒ‹[ƒg
+	//Bãƒ«ãƒ¼ãƒˆ
 	Moya_Handg,			//
 	Moya_Craymore,		//
 	Moya_Lantern,		//*
 	Moya_FireThrow,		//
 	Moya_Hellfire,		//*
 
-	//Cƒ‹[ƒg
+	//Cãƒ«ãƒ¼ãƒˆ
 	Moya_Shot,			//
 	Moya_Rifle,			//
 	Moya_Rocket,		//
@@ -848,7 +848,7 @@ protected:
 	virtual MoyaType GetFirstType() = 0;
 };
 
-//Aƒ‹[ƒg
+//Aãƒ«ãƒ¼ãƒˆ
 class CMoyamoyaA : public CMoyamoya
 {
 public:
@@ -858,7 +858,7 @@ protected:
 	MoyaType GetNextType();
 };
 
-//Bƒ‹[ƒg
+//Bãƒ«ãƒ¼ãƒˆ
 class CMoyamoyaB : public CMoyamoya
 {
 public:
@@ -868,7 +868,7 @@ protected:
 	MoyaType GetNextType();
 };
 
-//Cƒ‹[ƒg
+//Cãƒ«ãƒ¼ãƒˆ
 class CMoyamoyaC : public CMoyamoya
 {
 public:
@@ -879,7 +879,7 @@ protected:
 };
 
 
-//¡ƒ_ƒbƒRŒŒ
+//â– ãƒ€ãƒƒã‚³è¡€
 class CBlood : public CBulletBase
 {
 public:
@@ -891,7 +891,7 @@ protected:
 	DWORD DrawBack();
 };
 
-//¡ƒ_ƒbƒREƒJƒbƒgƒCƒ“
+//â– ãƒ€ãƒƒã‚³ãƒ»ã‚«ãƒƒãƒˆã‚¤ãƒ³
 class CCutin : public CBulletBase
 {
 public:

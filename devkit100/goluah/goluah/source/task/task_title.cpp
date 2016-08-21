@@ -1,6 +1,6 @@
-/*===========================================================
+ï»¿/*===========================================================
 
-	ƒ^ƒCƒgƒ‹‰æ–Ê
+	ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢
 
 =============================================================*/
 #include "define_const.h"
@@ -11,10 +11,10 @@
 #include "task_select_story.h"
 #include "task_opening.h"
 #include "task_select_practice.h"
-#include "task_demobattle.h"		// Á¸
+#include "task_demobattle.h"		// æ¶ˆå¤±
 
 /*-----------------------------------------------------------
-	¶¬E”jŠü
+	ç”Ÿæˆãƒ»ç ´æ£„
 -------------------------------------------------------------*/
 CTitle::CTitle()
 {
@@ -32,22 +32,22 @@ CTitle::~CTitle()
 
 /*==========================================================
 
-	ƒ^ƒXƒNŠÖŒW
+	ã‚¿ã‚¹ã‚¯é–¢ä¿‚
 
 ============================================================*/
 void CTitle::Activate(DWORD taskId)
 {
 	g_sound.BGMStop();
 
-	//•Ï”‚Ì‰Šú‰»
+	//å¤‰æ•°ã®åˆæœŸåŒ–
 	counter=0;
 	selected_item=0;
 	setting_now=FALSE;
 
-	//“Ç‚İ‚İ‚Æ‚©‚È‚ñ‚©‚»‚¤‚¢‚¤‚à‚Ì
+	//èª­ã¿è¾¼ã¿ã¨ã‹ãªã‚“ã‹ãã†ã„ã†ã‚‚ã®
 	dds_back = g_draw.CreateSurfaceFrom256Image(_T(".\\system\\logo"));
 
-	//BGMÄ¶
+	//BGMå†ç”Ÿ
 	g_sound.BGMPlay(_T(".\\system\\bgm\\title"));
 }
 
@@ -61,13 +61,13 @@ BOOL CTitle::Inactivate(DWORD taskId)
 BOOL CTitle::Execute(DWORD time)
 {
 	counter++;
-	if(counter < 20)return TRUE;//ƒCƒLƒiƒŠŒˆ’è‚³‚ê‚Ä‚µ‚Ü‚¤‚Ì‚ğ–h~
+	if(counter < 20)return TRUE;//ã‚¤ã‚­ãƒŠãƒªæ±ºå®šã•ã‚Œã¦ã—ã¾ã†ã®ã‚’é˜²æ­¢
 
 	if(setting_now){
 		Settings();
 	}
 	else{
-		// ƒfƒ‚
+		// ãƒ‡ãƒ¢
 		if(counter == TIME_DEMOSTART){
 			BOOL demobattle = TRUE;
 
@@ -75,18 +75,18 @@ BOOL CTitle::Execute(DWORD time)
 			{
 				CTOpening* pTask = new CTOpening;
 
-				// ƒ€[ƒr[•\¦
+				// ãƒ ãƒ¼ãƒ“ãƒ¼è¡¨ç¤º
 				demobattle = FALSE;
 				g_system.AddTask(pTask);
 				if( !pTask->IsOK() )
-					demobattle = TRUE; // ƒ_ƒƒ|
+					demobattle = TRUE; // ãƒ€ãƒ¡ãƒ
 			}
 
 			if(demobattle){
-				// ‘Îíƒfƒ‚
+				// å¯¾æˆ¦ãƒ‡ãƒ¢
 				g_system.AddTask(new CBattleTaskDemo);
 			}
-			demomode = !demomode; // ƒtƒ‰ƒO”½“]
+			demomode = !demomode; // ãƒ•ãƒ©ã‚°åè»¢
 
 			return TRUE;
 		}
@@ -101,7 +101,7 @@ BOOL CTitle::Execute(DWORD time)
 
 
 /*-----------------------------------------------------------
-	•`‰æˆ—
+	æç”»å‡¦ç†
 -------------------------------------------------------------*/
 
 #define CELLDRAW1(x,y,id) g_draw.CellDraw(g_system.GetSystemGraphicSurface(),g_system.GetSystemGraphicCell(),g_system.GetSystemGraphicRect(),id,x,y,-0.02f,0,FALSE,FALSE,0xFF8888FF);
@@ -125,8 +125,8 @@ void CTitle::Draw()
 	TCHAR msg[128];
 
 	DWORD text_color;
-	DWORD text1_color = 0xFF4455AA;//‘I‘ğ‚³‚ê‚Ä‚¢‚é‚Æ‚«‚ÌF
-	DWORD text2_color = 0xFF99AADD;//‘I‘ğ‚³‚ê‚Ä‚¢‚È‚¢‚Æ‚«‚ÌF
+	DWORD text1_color = 0xFF4455AA;//é¸æŠã•ã‚Œã¦ã„ã‚‹ã¨ãã®è‰²
+	DWORD text2_color = 0xFF99AADD;//é¸æŠã•ã‚Œã¦ã„ãªã„ã¨ãã®è‰²
 
 	if(!setting_now){
 		g_draw.CheckBlt(dds_back,0,0,r,FALSE,FALSE,0,0,/*g_system.IsErrorTitle() ? 0xFFFF8888 : */0xFFFFFFFF);//logo
@@ -134,7 +134,7 @@ void CTitle::Draw()
 		if (g_system.IsErrorTitle())
 		{
 			r.top=20;
-			g_draw.DrawRedText(r, _T("ƒGƒ‰[”­¶ƒQ[ƒ€’†~A½Ï¿B"), -1, DT_CENTER, 2);
+			g_draw.DrawRedText(r, _T("ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿã‚²ãƒ¼ãƒ ä¸­æ­¢ã€ï½½ï¾ï½¿ã€‚"), -1, DT_CENTER, 2);
 		}
 
 		//storymode
@@ -185,17 +185,17 @@ void CTitle::Draw()
 		
 		r.top+=30;
 
-		_tcscpy(msg,_T("“ïˆÕ“xF"));
+		_tcscpy(msg,_T("é›£æ˜“åº¦ï¼š"));
 		switch(g_config.GetDifficulty()){
-		case DIFF_VERYEASY	:_tcscpy(&msg[strlen(msg)],_T("‹ø’èH"));break;
-		case DIFF_EASY		:_tcscpy(&msg[strlen(msg)],_T("150‰~ˆø‚«"));break;
-		case DIFF_NORMAL	:_tcscpy(&msg[strlen(msg)],_T("•W€"));break;
-		case DIFF_HARD		:_tcscpy(&msg[strlen(msg)],_T("ƒpƒp“Á·‚è"));break;
-		case DIFF_VERYHARD	:_tcscpy(&msg[strlen(msg)],_T("‘fl‚É‚Í‚¨Š©‚ß‚Å‚«‚È‚¢"));break;
-		case DIFF_SUPERHARD	:_tcscpy(&msg[strlen(msg)],_T("E”°"));break;
-		case DIFF_ULTRAHARD	:_tcscpy(&msg[strlen(msg)],_T("h‚·‚©h‚³‚ê‚é‚©"));break;
-		case DIFF_LIMITERCUT:_tcscpy(&msg[strlen(msg)],_T("‚Ô‚¿Ø‚ê"));break;
-		default:_tcscpy(&msg[strlen(msg)],_T("–¢’m‚Ì“ïˆÕ“xH"));
+		case DIFF_VERYEASY	:_tcscpy(&msg[strlen(msg)],_T("ç‰›é®­å®šé£Ÿ"));break;
+		case DIFF_EASY		:_tcscpy(&msg[strlen(msg)],_T("150å††å¼•ã"));break;
+		case DIFF_NORMAL	:_tcscpy(&msg[strlen(msg)],_T("æ¨™æº–"));break;
+		case DIFF_HARD		:_tcscpy(&msg[strlen(msg)],_T("ãƒ‘ãƒ‘ç‰¹ç››ã‚Š"));break;
+		case DIFF_VERYHARD	:_tcscpy(&msg[strlen(msg)],_T("ç´ äººã«ã¯ãŠå‹§ã‚ã§ããªã„"));break;
+		case DIFF_SUPERHARD	:_tcscpy(&msg[strlen(msg)],_T("æ®ºä¼"));break;
+		case DIFF_ULTRAHARD	:_tcscpy(&msg[strlen(msg)],_T("åˆºã™ã‹åˆºã•ã‚Œã‚‹ã‹"));break;
+		case DIFF_LIMITERCUT:_tcscpy(&msg[strlen(msg)],_T("ã¶ã¡åˆ‡ã‚Œ"));break;
+		default:_tcscpy(&msg[strlen(msg)],_T("æœªçŸ¥ã®é›£æ˜“åº¦ï¼Ÿ"));
 		}
 		if(selected_item==SETTINGS_DIFFICULTY)
 			g_draw.DrawRedText(r,msg,-1,DT_CENTER,2);
@@ -203,7 +203,7 @@ void CTitle::Draw()
 			g_draw.DrawBlueText(r,msg,-1,DT_CENTER,2);
 
 		r.top+=20;
-		_tcscpy(msg,_T("ææƒ|ƒCƒ“ƒg”F"));
+		_tcscpy(msg,_T("å…ˆå–ãƒã‚¤ãƒ³ãƒˆæ•°ï¼š"));
 		_stprintf(&msg[strlen(msg)],_T("%d"),g_config.GetMaxPoint());
 		if(selected_item==SETTINGS_1V1_NUMPOINT)
 			g_draw.DrawRedText(r,msg,-1,DT_CENTER,2);
@@ -211,7 +211,7 @@ void CTitle::Draw()
 			g_draw.DrawBlueText(r,msg,-1,DT_CENTER,2);
 
 		r.top+=20;
-		_tcscpy(msg,_T("x‰‡UŒ‚”F"));
+		_tcscpy(msg,_T("æ”¯æ´æ”»æ’ƒæ•°ï¼š"));
 		_stprintf(&msg[strlen(msg)],_T("%d"),g_config.GetStrikerCount());
 		if(selected_item==SETTINGS_NUMSTRIKER)
 			g_draw.DrawRedText(r,msg,-1,DT_CENTER,2);
@@ -219,14 +219,14 @@ void CTitle::Draw()
 			g_draw.DrawBlueText(r,msg,-1,DT_CENTER,2);
 
 		r.top+=20;
-		_tcscpy(msg,_T("ƒQ[ƒ€‘¬“xF"));
+		_tcscpy(msg,_T("ã‚²ãƒ¼ãƒ é€Ÿåº¦ï¼š"));
 		switch(g_config.GetGameSpeed()){
-		case GSPEED_SLOW	:_tcscpy(&msg[strlen(msg)],_T("’x‚¢(40fps)"));break;
-		case GSPEED_OLD		:_tcscpy(&msg[strlen(msg)],_T("‹Œ•W€(50fps)"));break;
-		case GSPEED_NEW		:_tcscpy(&msg[strlen(msg)],_T("•W€(60fps)"));break;
-		case GSPEED_30x2	:_tcscpy(&msg[strlen(msg)],_T("ƒRƒ}”ò‚Î‚µ(30fpsA2”{‘¬)"));break;
-//		case GSPEED_25x2	:_tcscpy(&msg[strlen(msg)],_T("ƒRƒ}”ò‚Î‚µ|•W€(25fpsA2”{)"));break;
-		default:_tcscpy(&msg[strlen(msg)],_T("Ü¶İÈi‚Æ‚è‚ ‚¦‚¸50fps‚Å“®ì‚µ‚Ü‚·j"));
+		case GSPEED_SLOW	:_tcscpy(&msg[strlen(msg)],_T("é…ã„(40fps)"));break;
+		case GSPEED_OLD		:_tcscpy(&msg[strlen(msg)],_T("æ—§æ¨™æº–(50fps)"));break;
+		case GSPEED_NEW		:_tcscpy(&msg[strlen(msg)],_T("æ¨™æº–(60fps)"));break;
+		case GSPEED_30x2	:_tcscpy(&msg[strlen(msg)],_T("ã‚³ãƒé£›ã°ã—(30fpsã€2å€é€Ÿ)"));break;
+//		case GSPEED_25x2	:_tcscpy(&msg[strlen(msg)],_T("ã‚³ãƒé£›ã°ã—ï¼æ¨™æº–(25fpsã€2å€)"));break;
+		default:_tcscpy(&msg[strlen(msg)],_T("ï¾œï½¶ï¾ï¾ˆï¼ˆã¨ã‚Šã‚ãˆãš50fpsã§å‹•ä½œã—ã¾ã™ï¼‰"));
 		}
 		if(selected_item==SETTINGS_GAMESPEED)
 			g_draw.DrawRedText(r,msg,-1,DT_CENTER,2);
@@ -234,12 +234,12 @@ void CTitle::Draw()
 			g_draw.DrawBlueText(r,msg,-1,DT_CENTER,2);
 
 		r.top += 20;
-		_tcscpy(msg, _T("ƒJƒƒ‰ã‰ºF"));
+		_tcscpy(msg, _T("ã‚«ãƒ¡ãƒ©ä¸Šä¸‹ï¼š"));
 		switch (g_config.GetCameraMode()){
-		case CAMERA_OLD:_tcscpy(&msg[strlen(msg)], _T("‚µ‚È‚¢")); break;
-		case CAMERA_UPPER:_tcscpy(&msg[strlen(msg)], _T("ã—Dæ")); break;
-		case CAMERA_NEW:_tcscpy(&msg[strlen(msg)], _T("‰º—Dæ")); break;
-		default:_tcscpy(&msg[strlen(msg)], _T("Ü¶İÈ"));
+		case CAMERA_OLD:_tcscpy(&msg[strlen(msg)], _T("ã—ãªã„")); break;
+		case CAMERA_UPPER:_tcscpy(&msg[strlen(msg)], _T("ä¸Šå„ªå…ˆ")); break;
+		case CAMERA_NEW:_tcscpy(&msg[strlen(msg)], _T("ä¸‹å„ªå…ˆ")); break;
+		default:_tcscpy(&msg[strlen(msg)], _T("ï¾œï½¶ï¾ï¾ˆ"));
 		}
 		if (selected_item == SETTINGS_CAMERAMODE)
 			g_draw.DrawRedText(r, msg, -1, DT_CENTER, 2);
@@ -247,11 +247,11 @@ void CTitle::Draw()
 			g_draw.DrawBlueText(r, msg, -1, DT_CENTER, 2);
 
 		r.top += 20;
-		_tcscpy(msg, _T("HPƒQ[ƒWF"));
+		_tcscpy(msg, _T("HPã‚²ãƒ¼ã‚¸ï¼š"));
 		switch (g_config.GetGaugeMode()){
-		case GAUGE_1000:_tcscpy(&msg[strlen(msg)], _T("×‚ß(`1.21)")); break;
-		case GAUGE_1220:_tcscpy(&msg[strlen(msg)], _T("‘¾‚ß(1.22`)")); break;
-		default:_tcscpy(&msg[strlen(msg)], _T("Ü¶İÈ"));
+		case GAUGE_1000:_tcscpy(&msg[strlen(msg)], _T("ç´°ã‚(ï½1.21)")); break;
+		case GAUGE_1220:_tcscpy(&msg[strlen(msg)], _T("å¤ªã‚(1.22ï½)")); break;
+		default:_tcscpy(&msg[strlen(msg)], _T("ï¾œï½¶ï¾ï¾ˆ"));
 		}
 		if (selected_item == SETTINGS_GAUGEMODE)
 			g_draw.DrawRedText(r, msg, -1, DT_CENTER, 2);
@@ -270,7 +270,7 @@ void CTitle::Draw()
 
 
 /*-----------------------------------------------------------
-	ƒƒCƒ“ƒƒjƒ…[
+	ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 -------------------------------------------------------------*/
 void CTitle::MainMenu()
 {
@@ -278,7 +278,7 @@ void CTitle::MainMenu()
 	CTStorySelect *sselect;
 
 	DWORD keystate = g_input.GetAllKey();
-	UINT  dec_index;//Œˆ’èƒL[‚ğ‰Ÿ‚µ‚½ƒvƒŒƒCƒ„[
+	UINT  dec_index;//æ±ºå®šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 	for(int k=0;k<MAXNUM_KEYI;k++){
 		if(g_input.GetKey(k,0) & KEYSTA_ANYKEY){
 			dec_index = k;
@@ -286,7 +286,7 @@ void CTitle::MainMenu()
 		}
 	}
 
-	//ƒPƒe[ƒC
+	//ã‚±ãƒ†ãƒ¼ã‚¤
 	if(keystate & KEYSTA_ANYKEY){
 		counter=0;
 		if(selectedgamemode==TITLE_STORY){//story mode
@@ -329,14 +329,14 @@ void CTitle::MainMenu()
 		}
 	}
 
-	//«ˆÚ“®
+	//â†“ç§»å‹•
 	if(keystate & KEYSTA_DOWN){
 		selectedgamemode++;
 		if(selectedgamemode>TITLE_OPMOVIE)selectedgamemode=0;
 		g_system.PlaySystemSound(SYSTEMSOUND_HIT1);
 		counter = 0;
 	}
-	//ªˆÚ“®
+	//â†‘ç§»å‹•
 	if(keystate & KEYSTA_UP){
 		if(selectedgamemode==0)selectedgamemode=TITLE_OPMOVIE;
 		else selectedgamemode--;
@@ -348,7 +348,7 @@ void CTitle::MainMenu()
 
 
 /*-----------------------------------------------------------
-	uSETTINGSv
+	ã€ŒSETTINGSã€
 -------------------------------------------------------------*/
 void CTitle::Settings()
 {
@@ -361,80 +361,80 @@ void CTitle::Settings()
 	DWORD camera_mode = g_config.GetCameraMode();
 	DWORD gauge_mode = g_config.GetGaugeMode();
 
-	if(g_input.GetKey(0,0) & KEYSTA_DOWN2 || g_input.GetKey(1,0) & KEYSTA_DOWN2){//ˆÚ“®
+	if(g_input.GetKey(0,0) & KEYSTA_DOWN2 || g_input.GetKey(1,0) & KEYSTA_DOWN2){//ç§»å‹•
 		selected_item++;
 		if(selected_item>SETTINGS_EXIT)selected_item=0;
 		g_system.PlaySystemSound(SYSTEMSOUND_HIT1);
 	}
-	if(g_input.GetKey(0,0) & KEYSTA_UP2 || g_input.GetKey(1,0) & KEYSTA_UP2){//ˆÚ“®
+	if(g_input.GetKey(0,0) & KEYSTA_UP2 || g_input.GetKey(1,0) & KEYSTA_UP2){//ç§»å‹•
 		if(selected_item==0)selected_item=SETTINGS_EXIT;
 		else selected_item--;
 		g_system.PlaySystemSound(SYSTEMSOUND_HIT1);
 	}
 
 	switch(selected_item){
-	case SETTINGS_DIFFICULTY://“ïˆÕ“x•ÏX
-		if(g_input.GetKey(0,0) & KEYSTA_ALEFT2 || g_input.GetKey(1,0) & KEYSTA_ALEFT2){//ˆÚ“®
+	case SETTINGS_DIFFICULTY://é›£æ˜“åº¦å¤‰æ›´
+		if(g_input.GetKey(0,0) & KEYSTA_ALEFT2 || g_input.GetKey(1,0) & KEYSTA_ALEFT2){//ç§»å‹•
 			difficulty--;
 			//if(difficulty>DIFF_END)difficulty=0;
 		}
-		if(g_input.GetKey(0,0) & KEYSTA_ARIGHT2 || g_input.GetKey(1,0) & KEYSTA_ARIGHT2){//ˆÚ“®
+		if(g_input.GetKey(0,0) & KEYSTA_ARIGHT2 || g_input.GetKey(1,0) & KEYSTA_ARIGHT2){//ç§»å‹•
 			difficulty++;
 			//if(difficulty==DIFF_END)difficulty--;
 		}
 		g_config.SetDifficulty((Config2_Difficulty)(difficulty%8));
 		break;
-	case SETTINGS_1V1_NUMPOINT://•K—vƒ|ƒCƒ“ƒgææ”
-		if(g_input.GetKey(0,0) & KEYSTA_ARIGHT2 || g_input.GetKey(1,0) & KEYSTA_ARIGHT2){//ˆÚ“®
+	case SETTINGS_1V1_NUMPOINT://å¿…è¦ãƒã‚¤ãƒ³ãƒˆå…ˆå–æ•°
+		if(g_input.GetKey(0,0) & KEYSTA_ARIGHT2 || g_input.GetKey(1,0) & KEYSTA_ARIGHT2){//ç§»å‹•
 			point_max++;
 			if(point_max==4)point_max=1;
 		}
-		if(g_input.GetKey(0,0) & KEYSTA_ALEFT2 || g_input.GetKey(1,0) & KEYSTA_ALEFT2){//ˆÚ“®
+		if(g_input.GetKey(0,0) & KEYSTA_ALEFT2 || g_input.GetKey(1,0) & KEYSTA_ALEFT2){//ç§»å‹•
 			point_max--;
 			if(point_max==0)point_max=3;
 		}
 		g_config.SetMaxPoint(point_max);
 		break;
-	case SETTINGS_NUMSTRIKER://ƒXƒgƒ‰ƒCƒJ[”
-		if(g_input.GetKey(0,0) & KEYSTA_ARIGHT2 || g_input.GetKey(1,0) & KEYSTA_ARIGHT2){//ˆÚ“®
+	case SETTINGS_NUMSTRIKER://ã‚¹ãƒˆãƒ©ã‚¤ã‚«ãƒ¼æ•°
+		if(g_input.GetKey(0,0) & KEYSTA_ARIGHT2 || g_input.GetKey(1,0) & KEYSTA_ARIGHT2){//ç§»å‹•
 			num_striker++;
 			if(num_striker==9)num_striker=0;
 		}
-		if(g_input.GetKey(0,0) & KEYSTA_ALEFT2 || g_input.GetKey(1,0) & KEYSTA_ALEFT2){//ˆÚ“®
+		if(g_input.GetKey(0,0) & KEYSTA_ALEFT2 || g_input.GetKey(1,0) & KEYSTA_ALEFT2){//ç§»å‹•
 			num_striker--;
 			if(num_striker==0)num_striker=8;
 		}
 		g_config.SetStrikerCount(num_striker);
 		break;
-	case SETTINGS_GAMESPEED://ƒQ[ƒ€‘¬“x
-		if(g_input.GetKey(0,0) & KEYSTA_ARIGHT2 || g_input.GetKey(1,0) & KEYSTA_ARIGHT2){//ˆÚ“®
+	case SETTINGS_GAMESPEED://ã‚²ãƒ¼ãƒ é€Ÿåº¦
+		if(g_input.GetKey(0,0) & KEYSTA_ARIGHT2 || g_input.GetKey(1,0) & KEYSTA_ARIGHT2){//ç§»å‹•
 			game_speed++;
 			if(game_speed==4)game_speed=0;
 		}
-		if(g_input.GetKey(0,0) & KEYSTA_ALEFT2 || g_input.GetKey(1,0) & KEYSTA_ALEFT2){//ˆÚ“®
+		if(g_input.GetKey(0,0) & KEYSTA_ALEFT2 || g_input.GetKey(1,0) & KEYSTA_ALEFT2){//ç§»å‹•
 			game_speed--;
 			if(game_speed>3)game_speed=3;
 		}
 		g_config.SetGameSpeed((Config2_GameSpeed)game_speed);
 		g_system.UpdateFrameRate();
 		break;
-	case SETTINGS_CAMERAMODE://ƒJƒƒ‰ƒ‚[ƒh
-		if (g_input.GetKey(0, 0) & KEYSTA_ARIGHT2 || g_input.GetKey(1, 0) & KEYSTA_ARIGHT2){//ˆÚ“®
+	case SETTINGS_CAMERAMODE://ã‚«ãƒ¡ãƒ©ãƒ¢ãƒ¼ãƒ‰
+		if (g_input.GetKey(0, 0) & KEYSTA_ARIGHT2 || g_input.GetKey(1, 0) & KEYSTA_ARIGHT2){//ç§»å‹•
 			camera_mode++;
 			if (camera_mode == 3)camera_mode = 0;
 		}
-		if (g_input.GetKey(0, 0) & KEYSTA_ALEFT2 || g_input.GetKey(1, 0) & KEYSTA_ALEFT2){//ˆÚ“®
+		if (g_input.GetKey(0, 0) & KEYSTA_ALEFT2 || g_input.GetKey(1, 0) & KEYSTA_ALEFT2){//ç§»å‹•
 			camera_mode--;
 			if (camera_mode > 2)camera_mode = 2;
 		}
 		g_config.SetCameraMode((Config2_CameraMode)camera_mode);
 		break;
-	case SETTINGS_GAUGEMODE://HPƒQ[ƒWƒ‚[ƒh
-		if (g_input.GetKey(0, 0) & KEYSTA_ARIGHT2 || g_input.GetKey(1, 0) & KEYSTA_ARIGHT2){//ˆÚ“®
+	case SETTINGS_GAUGEMODE://HPã‚²ãƒ¼ã‚¸ãƒ¢ãƒ¼ãƒ‰
+		if (g_input.GetKey(0, 0) & KEYSTA_ARIGHT2 || g_input.GetKey(1, 0) & KEYSTA_ARIGHT2){//ç§»å‹•
 			gauge_mode++;
 			if (gauge_mode == 2)gauge_mode = 0;
 		}
-		if (g_input.GetKey(0, 0) & KEYSTA_ALEFT2 || g_input.GetKey(1, 0) & KEYSTA_ALEFT2){//ˆÚ“®
+		if (g_input.GetKey(0, 0) & KEYSTA_ALEFT2 || g_input.GetKey(1, 0) & KEYSTA_ALEFT2){//ç§»å‹•
 			gauge_mode--;
 			if (gauge_mode > 1)gauge_mode = 1;
 		}

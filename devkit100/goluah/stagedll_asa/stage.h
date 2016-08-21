@@ -1,4 +1,4 @@
-#pragma once
+Ôªø#pragma once
 
 #include <windows.h>
 #include <stdio.h>
@@ -11,7 +11,7 @@
 #define MOYA_NUM	32
 
 /*!
-*	@brief ÉXÉeÅ[ÉWÉNÉâÉX
+*	@brief „Çπ„ÉÜ„Éº„Ç∏„ÇØ„É©„Çπ
 */
 class CStage : public CStageBase
 {

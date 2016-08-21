@@ -1,8 +1,8 @@
-/*============================================================================
+ï»¿/*============================================================================
 
-í“¬ƒ^ƒXƒNƒNƒ‰ƒX
+æˆ¦é—˜ã‚¿ã‚¹ã‚¯ã‚¯ãƒ©ã‚¹
 
-iƒlƒbƒgƒ[ƒN‘Î‰”Åj
+ï¼ˆãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯å¯¾å¿œç‰ˆï¼‰
 
 Goluah!!Copyright(C) 2001-2004 aki, 2014-2015 logger, 2004-2015 At-sushi
 
@@ -25,13 +25,13 @@ You should have received a copy of the GNU General Public License along with thi
 #define DEBUGMSGBUFFERSIZE	(1024*4)
 
 #include <PshPack1.h>
-//! ƒlƒbƒg‚É‘—M‚·‚éƒƒbƒZ[ƒW‚Ìƒx[ƒX
+//! ãƒãƒƒãƒˆã«é€ä¿¡ã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒ™ãƒ¼ã‚¹
 typedef struct NetMessage{
 	BYTE msgid;
 	operator BYTE*()	{ return &msgid; }
 } NET_MESSAGE;
 
-//!10ƒtƒŒ[ƒ€‚²‚ÆAACTIDXV‚È‚Ç‚Ì“¯ŠúƒƒbƒZ[ƒW
+//!10ãƒ•ãƒ¬ãƒ¼ãƒ ã”ã¨ã€ACTIDæ›´æ–°æ™‚ãªã©ã®åŒæœŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 #define GNETMSG_TESTSYNC		0
 struct TestSyncMes : NetMessage{
 	DWORD id;
@@ -40,7 +40,7 @@ struct TestSyncMes : NetMessage{
 	bool muki;
 };
 
-//!HPEƒQ[ƒW“¯Šú(—v‰ü—Çj
+//!HPãƒ»ã‚²ãƒ¼ã‚¸åŒæœŸ(è¦æ”¹è‰¯ï¼‰
 #define GNETMSG_SYNC2			1
 struct Sync2Mes : NetMessage{
 	BYTE pid;
@@ -48,53 +48,53 @@ struct Sync2Mes : NetMessage{
 	float gauge;
 };
 
-//!ƒtƒŒ[ƒ€‚ª‚Pi‚ñ‚¾’Ê’m
+//!ãƒ•ãƒ¬ãƒ¼ãƒ ãŒï¼‘é€²ã‚“ã é€šçŸ¥
 #define GNETMSG_ACTION			2
 struct ActionMes : NetMessage{
-	bool isStop;		// ƒXƒgƒbƒv’†‚©‚Ç‚¤‚©
+	bool isStop;		// ã‚¹ãƒˆãƒƒãƒ—ä¸­ã‹ã©ã†ã‹
 };
 
-//!UŒ‚‚ğ‹ò‚ç‚Á‚½’Ê’m
+//!æ”»æ’ƒã‚’å–°ã‚‰ã£ãŸé€šçŸ¥
 #define GNETMSG_HIT				3
 struct HitMes : NetMessage{
 	DWORD oid/*, aid*/;
 	BOOL hit;
 };
 
-//!ƒL[“ü—Í’Ê’m
+//!ã‚­ãƒ¼å…¥åŠ›é€šçŸ¥
 #define GNETMSG_INPUT				4
 struct InputMes : NetMessage{
 	DWORD key;
 };
 
-//!ƒRƒ}ƒ“ƒh‹Z”­“®’Ê’m
+//!ã‚³ãƒãƒ³ãƒ‰æŠ€ç™ºå‹•é€šçŸ¥
 #define GNETMSG_COMMAND				5
 struct CommandMes : NetMessage{
 	DWORD aid;
 };
 
-//!HP“¯Šú
+//!HPåŒæœŸ
 #define GNETMSG_SYNCHP				6
 struct SyncHPMes : NetMessage{
 	BYTE pid;
 	int hp;
 };
-#include <PopPack.h>						// ƒlƒbƒgƒƒbƒZ[ƒWI‚í‚è
+#include <PopPack.h>						// ãƒãƒƒãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚ã‚ã‚Š
 
-//!ƒtƒŒ[ƒ€‚ª‚Qi‚ñ‚¾’Ê’m
+//!ãƒ•ãƒ¬ãƒ¼ãƒ ãŒï¼’é€²ã‚“ã é€šçŸ¥
 #define GNETMSG_ACTION2				7
 typedef struct ActionMes Action2Mes;
 
 /*!
-*	@brief ƒlƒbƒg‘Îí”Åí“¬ƒ^ƒXƒN
+*	@brief ãƒãƒƒãƒˆå¯¾æˆ¦ç‰ˆæˆ¦é—˜ã‚¿ã‚¹ã‚¯
 *	@ingroup Battle
 *	@sa CBattleTask
 *	@sa CDirectPlay
 *
-*	ƒlƒbƒg‘Îí‚Ég‚¤—\’è‚Ìƒ^ƒXƒNƒNƒ‰ƒX(“Ç‚İ‚É‚­‚¢c)‚Å‚·
-*	À‘•‚³‚ê‚Ä‚¢‚é•”•ª‚ÍCBattleTask‚Æ—‚½•”•ª‚ª‘½‚¢‚Å‚·‚ªA‘—M–½—ß(SendMsg)‚ÌˆÊ’u‚ª‚Î‚ç‚Î‚ç‚È‚Ì‚ğ‰½‚Æ‚©‚µ‚½‚¢c
+*	ãƒãƒƒãƒˆå¯¾æˆ¦ã«ä½¿ã†äºˆå®šã®ã‚¿ã‚¹ã‚¯ã‚¯ãƒ©ã‚¹(èª­ã¿ã«ãã„â€¦)ã§ã™
+*	å®Ÿè£…ã•ã‚Œã¦ã„ã‚‹éƒ¨åˆ†ã¯CBattleTaskã¨ä¼¼ãŸéƒ¨åˆ†ãŒå¤šã„ã§ã™ãŒã€é€ä¿¡å‘½ä»¤(SendMsg)ã®ä½ç½®ãŒã°ã‚‰ã°ã‚‰ãªã®ã‚’ä½•ã¨ã‹ã—ãŸã„â€¦
 *
-*	b’è‘[’u‚ÅKƒL[‚Å©•ª‚ÌHP‚ğ‰ñ•œ‚Å‚«‚Ü‚·
+*	æš«å®šæªç½®ã§Kã‚­ãƒ¼ã§è‡ªåˆ†ã®HPã‚’å›å¾©ã§ãã¾ã™
 */
 class CBattleTaskNet :
 	public CBattleTaskBase
@@ -104,19 +104,19 @@ public:
 	virtual ~CBattleTaskNet(void);
 	virtual DWORD GetID(){return 'BtlN';}
 
-	//ƒ^ƒXƒNŠÖ”
+	//ã‚¿ã‚¹ã‚¯é–¢æ•°
 	virtual void Initialize();
 	virtual BOOL Execute(DWORD time);
 	virtual void Draw();
-	virtual void WndMessage(HWND hWnd,UINT msg,WPARAM wparam, LPARAM lparam);//!< F7‚Åƒ|[ƒY
+	virtual void WndMessage(HWND hWnd,UINT msg,WPARAM wparam, LPARAM lparam);//!< F7ã§ãƒãƒ¼ã‚º
 	static  HRESULT CALLBACK DPlayCallBack(PVOID UserCont, DWORD mtype, PVOID pmes);
 	HRESULT DPlayMessage(PVOID UserCont, DWORD mtype, PVOID pmes);
 
-	//î•ñæ“¾Œn
+	//æƒ…å ±å–å¾—ç³»
 	virtual double GetDisplayCenterX(){return disp_center_x;}
 	virtual double GetDisplayCenterY(){return disp_center_y;}
 	virtual BOOL   IsNetwork(){return TRUE;}
-	virtual BOOL   IsLocal(BYTE dllid){return g_play.IsHost()/*g_battleinfo.GetKeyAssign((dllid-1)/MAXNUM_TEAM, (dllid-1)%MAXNUM_TEAM) == 0*/;}	// b’è
+	virtual BOOL   IsLocal(BYTE dllid){return g_play.IsHost()/*g_battleinfo.GetKeyAssign((dllid-1)/MAXNUM_TEAM, (dllid-1)%MAXNUM_TEAM) == 0*/;}	// æš«å®š
 
 	//void SetKatiSerif(DWORD tid,TCHAR *serif);
 	virtual DWORD MessageFromObject(DWORD oid,DWORD msg,DWORD prm);
@@ -129,70 +129,70 @@ public:
 
 
 protected:
-	//Initialize‚©‚çƒR[ƒ‹
+	//Initializeã‹ã‚‰ã‚³ãƒ¼ãƒ«
 	virtual void InitializeObjectList();
 	virtual void InitializeSubTasks();
 	virtual void InitializeParameters();
 
-	//Terminate‚©‚çƒR[ƒ‹
+	//Terminateã‹ã‚‰ã‚³ãƒ¼ãƒ«
 	virtual void TerminateObjectList();
 	virtual void TerminateDestroySubTasks();
 
-	//Execute•”•ªˆ—
-	virtual void T_Command();			//!< COMMAND ƒƒbƒZ[ƒW‚ğ‘—M‚·‚é
-	virtual void T_Action(BOOL stop);	//!< Action ƒƒbƒZ[ƒW‚ğ‘—M‚·‚é
-	virtual void T_Sousai();			//!< ”ò“¹‹ï‘ŠE—p ‹éŒ`‚ ‚½‚è”»’èˆ—
-	virtual void T_AtariHantei();		//!< UŒ‚—p@@@ ‹éŒ`‚ ‚½‚è”»’èˆ—
-	virtual void T_KasanariHantei();	//!< d‚È‚è”»’è—p ‹éŒ`‚ ‚½‚è”»’èˆ—
-//	virtual void T_Draw();				//!< DRAW ƒƒbƒZ[ƒW‚ğ‘—M‚·‚é
-	virtual void T_ChangeTarget();		//!< ƒIƒuƒWƒFƒNƒgƒ^[ƒQƒbƒg•ÏXˆ—
-	virtual void T_UpdateStatus();		//!< ‡‚Ìó‘ÔXV
+	//Executeéƒ¨åˆ†å‡¦ç†
+	virtual void T_Command();			//!< COMMAND ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ä¿¡ã™ã‚‹
+	virtual void T_Action(BOOL stop);	//!< Action ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ä¿¡ã™ã‚‹
+	virtual void T_Sousai();			//!< é£›é“å…·ç›¸æ®ºç”¨ çŸ©å½¢ã‚ãŸã‚Šåˆ¤å®šå‡¦ç†
+	virtual void T_AtariHantei();		//!< æ”»æ’ƒç”¨ã€€ã€€ã€€ çŸ©å½¢ã‚ãŸã‚Šåˆ¤å®šå‡¦ç†
+	virtual void T_KasanariHantei();	//!< é‡ãªã‚Šåˆ¤å®šç”¨ çŸ©å½¢ã‚ãŸã‚Šåˆ¤å®šå‡¦ç†
+//	virtual void T_Draw();				//!< DRAW ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ä¿¡ã™ã‚‹
+	virtual void T_ChangeTarget();		//!< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚¿ãƒ¼ã‚²ãƒƒãƒˆå¤‰æ›´å‡¦ç†
+	virtual void T_UpdateStatus();		//!< è©¦åˆã®çŠ¶æ…‹æ›´æ–°
 
 	virtual void StartRound();
 	virtual void UpdateKeyInputDirections();
 
 protected:
-	//‘S‘ÌƒGƒtƒFƒNƒgŠÖ˜A
+	//å…¨ä½“ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–¢é€£
 	int efct_slowdown,efct_stop,efct_darkbg,efct_nobg;
 	int efct_sindo,efct_sindom;
 	int efct_hitstop;
 	int efct_fadein;
 	int efct_flash;
 
-	//ó‘Ô
-	DWORD hprecratio[2][MAXNUM_TEAM];	//!<©—RŒğ‘ã§‚Ì‚Æ‚«‚Ì‘Ì—Í‰ñ•œ—¦
-	BOOL  battle_end;					//!<ƒ^ƒXƒN‚ğƒk‚¯‚é‚Ì‚Ég—p
-	int	  actcount;						//!<‚ ‚Æ‰½‰ñAction‚ÌÀs‚ª‹–‰Â‚³‚ê‚½‚©
-	bool  hoststop;						//!<ƒzƒXƒg‚ª’â~’†
+	//çŠ¶æ…‹
+	DWORD hprecratio[2][MAXNUM_TEAM];	//!<è‡ªç”±äº¤ä»£åˆ¶ã®ã¨ãã®ä½“åŠ›å›å¾©ç‡
+	BOOL  battle_end;					//!<ã‚¿ã‚¹ã‚¯ã‚’ãƒŒã‘ã‚‹ã®ã«ä½¿ç”¨
+	int	  actcount;						//!<ã‚ã¨ä½•å›Actionã®å®Ÿè¡ŒãŒè¨±å¯ã•ã‚ŒãŸã‹
+	bool  hoststop;						//!<ãƒ›ã‚¹ãƒˆãŒåœæ­¢ä¸­
 
-	//!ƒfƒoƒbƒOƒeƒLƒXƒg•\¦—pƒoƒbƒtƒ@
+	//!ãƒ‡ãƒãƒƒã‚°ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¤ºç”¨ãƒãƒƒãƒ•ã‚¡
 	TCHAR *debugmsgbuff;
 
-	//!•\¦’†S
+	//!è¡¨ç¤ºä¸­å¿ƒ
 	double disp_center_x,disp_center_y;
 
-	//ƒNƒ‰ƒX
+	//ã‚¯ãƒ©ã‚¹
 	CGauge		*cp_gauge;
 	CEffectList	*cp_efctlist;
-	DWORD score[2];			//!< ƒXƒRƒŒ
+	DWORD score[2];			//!< ã‚¹ã‚³ãƒ¬
 
-	//ŠÖ”‚ğ•ªŠ„‚µ‚½‚Ì‚Åƒ[ƒJƒ‹‚¶‚á‚¢‚¯‚È‚­‚È‚Á‚½‚à‚Ì
+	//é–¢æ•°ã‚’åˆ†å‰²ã—ãŸã®ã§ãƒ­ãƒ¼ã‚«ãƒ«ã˜ã‚ƒã„ã‘ãªããªã£ãŸã‚‚ã®
 	BOOL act_stop;
 
 
-	/*¡ƒIƒuƒWƒFƒNƒgŠÇ—¡-----------------------------------------------------*/
+	/*â– ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç®¡ç†â– -----------------------------------------------------*/
 public:
-	CGObject* GetGObject(DWORD id);					//!< w’èIDƒIƒuƒWƒFƒNƒgæ“¾
-	DWORD CreateGObject();							//!< ƒIƒuƒWƒFƒNƒg¶¬
-	DWORD CreateGObjectFx();						//!< ƒIƒuƒWƒFƒNƒg¶¬(ƒGƒtƒFƒNƒg)
-	void DeleteGObject(DWORD oid);					//!< ƒIƒuƒWƒFƒNƒg”jŠü
-	void SuicideGObject(DWORD oid);					//!< ƒIƒuƒWƒFƒNƒg”jŠü—\–ñ
-	CGObject* GetCharacterObject(DWORD j,DWORD i);	//!< ƒLƒƒƒ‰ƒNƒ^[‚ÌƒIƒuƒWƒFƒNƒgæ“¾iƒQ[ƒW“™‚Å•K—vj
+	CGObject* GetGObject(DWORD id);					//!< æŒ‡å®šIDã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå–å¾—
+	DWORD CreateGObject();							//!< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
+	DWORD CreateGObjectFx();						//!< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ(ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ)
+	void DeleteGObject(DWORD oid);					//!< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„
+	void SuicideGObject(DWORD oid);					//!< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„äºˆç´„
+	CGObject* GetCharacterObject(DWORD j,DWORD i);	//!< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå–å¾—ï¼ˆã‚²ãƒ¼ã‚¸ç­‰ã§å¿…è¦ï¼‰
 protected:
-	std::unordered_map< int, CGObject* > p_objects;	//!< ƒIƒuƒWƒFƒNƒg‘€ìƒNƒ‰ƒX‚Ìƒ|ƒCƒ“ƒ^
-	DWORD object_regindex[MAXNUM_TEAM * 2 + 2];		//!< Ÿ‚É¶¬‚·‚éƒIƒuƒWƒFƒNƒg‚ÌƒCƒ“ƒfƒbƒNƒX
-	std::unordered_map< int, WORD > object_regno;	//!< ‚»‚ÌƒCƒ“ƒfƒbƒNƒX‚Å‚¢‚­‚Â‚ÌƒIƒuƒWƒFƒNƒg‚ª¶¬‚³‚ê‚Ä‚«‚½‚©
-	std::deque< DWORD > suicide_list;				//!< Á–ÅƒIƒuƒWƒFƒNƒgƒŠƒXƒg
+	std::unordered_map< int, CGObject* > p_objects;	//!< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ“ä½œã‚¯ãƒ©ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿
+	DWORD object_regindex[MAXNUM_TEAM * 2 + 2];		//!< æ¬¡ã«ç”Ÿæˆã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	std::unordered_map< int, WORD > object_regno;	//!< ãã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã§ã„ãã¤ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒç”Ÿæˆã•ã‚Œã¦ããŸã‹
+	std::deque< DWORD > suicide_list;				//!< æ¶ˆæ»…ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆ
 };
 
 #define BATTLETASK_FXOBJFLAG		0x80000000

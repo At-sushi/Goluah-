@@ -1,4 +1,4 @@
-
+ï»¿
 #pragma once
 #include <windows.h>
 #include <stdio.h>
@@ -41,47 +41,47 @@ private:
 
 private:
 
-	//ŒŽA‚»‚µ‚ÄŠX
+	//æœˆã€ãã—ã¦è¡—
 	LPDIRECT3DTEXTURE9 ptex_moon;
 	LPDIRECT3DVERTEXBUFFER9 vb_moon;
 	LPDIRECT3DTEXTURE9 ptex_city;
 	LPDIRECT3DVERTEXBUFFER9 vb_city;
 
-	//“¹˜H
+	//é“è·¯
 	LPDIRECT3DTEXTURE9 ptex_road;
 	LPDIRECT3DVERTEXBUFFER9 vb_road[NUMDIV_ROADY];
 	LPDIRECT3DTEXTURE9 ptex_gurd;
-	//ƒK[ƒhƒŒ[ƒ‹
+	//ã‚¬ãƒ¼ãƒ‰ãƒ¬ãƒ¼ãƒ«
 	LPDIRECT3DVERTEXBUFFER9 vb_gurd;
-	LPDIRECT3DVERTEXBUFFER9 vb_gurdpoll;//’Œ
+	LPDIRECT3DVERTEXBUFFER9 vb_gurdpoll;//æŸ±
 	
-	//Œð·“_’n–Ê
+	//äº¤å·®ç‚¹åœ°é¢
 	LPDIRECT3DTEXTURE9 ptex_jct;
 	LPDIRECT3DVERTEXBUFFER9 vb_jct[NUMDIV_JCTY];
 
-	LPDIRECT3DVERTEXBUFFER9 vb_ground;//’n–Ê•‚­“h‚è‚Â‚Ô‚µ
+	LPDIRECT3DVERTEXBUFFER9 vb_ground;//åœ°é¢é»’ãå¡—ã‚Šã¤ã¶ã—
 
-	//ŠÅ”Â
+	//çœ‹æ¿
 	LPDIRECT3DTEXTURE9 ptex_brd1a,ptex_brd1b;
 	LPDIRECT3DVERTEXBUFFER9 vb_brd1a,vb_brd1b;
 	LPDIRECT3DTEXTURE9 ptex_tlight;
 	MYVERTEX3D vb_tlight[4];
 
-	//ŠÅ”Âi— Œü‚«j
+	//çœ‹æ¿ï¼ˆè£å‘ãï¼‰
 	LPDIRECT3DTEXTURE9 ptex_brd2;
 	MYVERTEX3D vb_brd2a[4],vb_brd2b[4];
 
-	//ŠX“”
+	//è¡—ç¯
 	LPDIRECT3DTEXTURE9 ptex_light;
 	MYVERTEX3D vb_light[NUM_LIGHT][4];
 
-	//ƒK[ƒhƒŒ[ƒ‹iŽè‘O‘¤j
+	//ã‚¬ãƒ¼ãƒ‰ãƒ¬ãƒ¼ãƒ«ï¼ˆæ‰‹å‰å´ï¼‰
 	MYVERTEX3D vb_maegurd[4],vb_maegurdpoll[4];
 
-	//š
+	//â˜…
 	MYVERTEX3D vb_stars[NUM_STARS];
 
-	//‹óiHj
+	//ç©ºï¼ˆï¼Ÿï¼‰
 	MYVERTEX3D vb_sky[4];
 };
 

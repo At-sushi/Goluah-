@@ -1,4 +1,4 @@
-// DlgOther.cpp : À‘•ƒtƒ@ƒCƒ‹
+ï»¿// DlgOther.cpp : å®Ÿè£…ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "DlgOther.h"
 
 
-// CDlgOther ƒ_ƒCƒAƒƒO
+// CDlgOther ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 IMPLEMENT_DYNAMIC(CDlgOther, CDialog)
 CDlgOther::CDlgOther(CWnd* pParent /*=NULL*/)
@@ -39,7 +39,7 @@ BEGIN_MESSAGE_MAP(CDlgOther, CDialog)
 END_MESSAGE_MAP()
 
 
-// CDlgOther ƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰
+// CDlgOther ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ©
 
 void CDlgOther::Reset()
 {
@@ -61,7 +61,7 @@ void CDlgOther::Reset()
 }
 
 /*------------------------------------------------------------------
-	İ’è©ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€
+	è¨­å®šâ†ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ 
 --------------------------------------------------------------------*/
 void CDlgOther::UpdateSettings()
 {
@@ -84,9 +84,9 @@ BOOL CDlgOther::OnInitDialog()
 {
 	CCfgDialogBase::OnInitDialog();
 
-	// TODO :  ‚±‚±‚É‰Šú‰»‚ğ’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢
+	// TODO :  ã“ã“ã«åˆæœŸåŒ–ã‚’è¿½åŠ ã—ã¦ãã ã•ã„
 
-	//ƒpƒbƒhƒCƒ“ƒfƒbƒNƒX
+	//ãƒ‘ãƒƒãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	CComboBox* combo = (CComboBox*)GetDlgItem(IDC_COMBO_IMGFORMAT);
 	if(!combo){
 		throw;
@@ -98,11 +98,11 @@ BOOL CDlgOther::OnInitDialog()
 	Reset();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// —áŠO : OCX ƒvƒƒpƒeƒB ƒy[ƒW‚Í•K‚¸ FALSE ‚ğ•Ô‚µ‚Ü‚·B
+	// ä¾‹å¤– : OCX ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ ãƒšãƒ¼ã‚¸ã¯å¿…ãš FALSE ã‚’è¿”ã—ã¾ã™ã€‚
 }
 
 /*------------------------------------------------------------------
-	‚k‚n‚fŠÖŒWƒ`ƒFƒbƒNƒ{ƒbƒNƒXˆêŠ‡—LŒø/–³Œø‰»
+	ï¼¬ï¼¯ï¼§é–¢ä¿‚ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹ä¸€æ‹¬æœ‰åŠ¹/ç„¡åŠ¹åŒ–
 --------------------------------------------------------------------*/
 void CDlgOther::EnableLogChecks(BOOL en)
 {
@@ -120,7 +120,7 @@ void CDlgOther::EnableLogChecks(BOOL en)
 
 void CDlgOther::OnBnClickedCheckUselog()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	UpdateData(TRUE);
 	EnableLogChecks(ck_log2file);
 }

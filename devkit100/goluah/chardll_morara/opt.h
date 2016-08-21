@@ -1,4 +1,4 @@
-/*=====================================================================================
+ï»¿/*=====================================================================================
 
 Goluah!! Copyright (C) 2001-2004 aki, 2004-2016 At-sushi, 2014-2016 logger
 
@@ -12,7 +12,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #include "gobject.h"
 
-//ƒIƒvƒVƒ‡ƒ“’è‹`(ƒ‚ƒ‰ƒ‰ƒGƒ‹)
+//ã‚ªãƒ—ã‚·ãƒ§ãƒ³å®šç¾©(ãƒ¢ãƒ©ãƒ©ã‚¨ãƒ«)
 #define OPTIONS_CHAIN_COMBO_EL		0x00010000
 #define OPTIONS_TETRAGRAMMATON		0x00020000
 #define OPTIONS_SWORDOFJUSTICE		0x00040000
@@ -25,9 +25,9 @@ You should have received a copy of the GNU General Public License along with thi
 #define OPTIONS_HP50				0x02000000
 #define OPTIONS_AUTOGUARD			0x04000000
 
-#define OPTIONS_MORARAEL_ALL		0x07FF0000//ã‹L‚·‚×‚Ä‚Ì‘g‚İ‡‚í‚¹
+#define OPTIONS_MORARAEL_ALL		0x07FF0000//ä¸Šè¨˜ã™ã¹ã¦ã®çµ„ã¿åˆã‚ã›
 
-//ƒIƒvƒVƒ‡ƒ“’è‹`
+//ã‚ªãƒ—ã‚·ãƒ§ãƒ³å®šç¾©
 #define OPTIONS_CHAIN_COMBO			(0x00000001)
 #define OPTIONS_EXTRA_ATTACK		(0x00000002)
 #define OPTIONS_AUTO_GUARD			(0x00000004)
@@ -38,7 +38,7 @@ You should have received a copy of the GNU General Public License along with thi
 #define OPTIONS_STOCKABLE_GAUGE		(0x00000080)
 #define OPTIONS_MINIGUN_RELOADED	(0x00000100)
 
-#define OPTIONS_MORARA_ALL			(0x000001FF)//ã‹L‚·‚×‚Ä‚Ì‘g‚İ‡‚í‚¹
+#define OPTIONS_MORARA_ALL			(0x000001FF)//ä¸Šè¨˜ã™ã¹ã¦ã®çµ„ã¿åˆã‚ã›
 
 #define OPTIONS_MORARAEL_MODE		(0x08000000 | CHARACTER_LOAD_OPTION_FACE_A | OPTIONS_MORARAEL_ALL)
 

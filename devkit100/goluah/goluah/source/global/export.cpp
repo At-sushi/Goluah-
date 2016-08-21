@@ -1,6 +1,6 @@
-/*================================================================================
+ï»¿/*================================================================================
 
-	DLL‚É‘Î‚µ‚Ä’ñ‹Ÿ‚·‚éŠÖ”‚Ì’è‹`
+	DLLã«å¯¾ã—ã¦æä¾›ã™ã‚‹é–¢æ•°ã®å®šç¾©
 
 ==================================================================================*/
 
@@ -142,7 +142,7 @@ void CExport::Initialize()
 }
 
 //*********************************************************************************
-// Œ»İ‚Ìí“¬ƒ^ƒXƒNæ“¾
+// ç¾åœ¨ã®æˆ¦é—˜ã‚¿ã‚¹ã‚¯å–å¾—
 //*********************************************************************************
 CBattleTaskBase* CExport::GetCurrentBattleTask()
 {
@@ -152,7 +152,7 @@ CBattleTaskBase* CExport::GetCurrentBattleTask()
 
 
 //*********************************************************************************
-// ƒVƒXƒeƒ€ŠÖ˜A
+// ã‚·ã‚¹ãƒ†ãƒ é–¢é€£
 //*********************************************************************************
 
 DWORD CExport::GetKey(DWORD tid,DWORD index)
@@ -201,7 +201,7 @@ LPVOID CExport::LoadMySound(TCHAR* filename)
 	if (pSounds)
 	{
 		pSounds->pSound[0] = g_sound.CreateDSB(filename) ;
-		// ‚QŒÂ–Ú‚ÍƒRƒsƒy
+		// ï¼’å€‹ç›®ã¯ã‚³ãƒ”ãƒš
 		pSounds->pSound[1] = NULL;
 		g_sound.lpds->DuplicateSoundBuffer(pSounds->pSound[0], &pSounds->pSound[1]) ;
 		pSounds->num = 0;
@@ -393,7 +393,7 @@ void CExport::LogInfo(const TCHAR* str)
 }
 
 //*********************************************************************************
-//@ƒIƒuƒWƒFƒNƒgŠÖ˜A
+//ã€€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆé–¢é€£
 //*********************************************************************************
 
 DWORD CExport::CreateObject()
@@ -572,7 +572,7 @@ DWORD CExport::GetSexyDamage(DWORD oid)
 }
 
 //*********************************************************************************
-//@•`‰æŠÖ˜A‚ÌŠÖ”‚Ì’è‹`
+//ã€€æç”»é–¢é€£ã®é–¢æ•°ã®å®šç¾©
 //*********************************************************************************
 
 LPVOID CExport::GetD3D()
@@ -594,7 +594,7 @@ void   CExport::LoadCellDat(TCHAR* filename,LPVOID cdat,LPVOID rdat,LPVOID hdat)
 	FUNC_IN;
 	CGCDHandler::GCDLoad(filename,(GCD_CELL2*)cdat,(GCD_RECT*)rdat,(GCD_HANTEI*)hdat,NULL,700);
 
-	//NowLoading‚ği‚ß‚é
+	//NowLoadingã‚’é€²ã‚ã‚‹
 	CTNowLoading* task = dynamic_cast<CTNowLoading*>( g_system.FindTask('LOAD') );
 	if(task)task->Proceed(NowLoading_GCD);
 
@@ -611,7 +611,7 @@ LPVOID CExport::LoadBmp(TCHAR* filename,TCHAR* palname)
 			);
 	if(ret)
 	{
-		//NowLoading‚ği‚ß‚é
+		//NowLoadingã‚’é€²ã‚ã‚‹
 		CTNowLoading* task = dynamic_cast<CTNowLoading*>( g_system.FindTask('LOAD') );
 		if(task)task->Proceed(NowLoading_Image);
 	}
@@ -688,19 +688,19 @@ void   CExport::Blt3D(void* dds,RECT src,MYRECT3D dst,DWORD color)
 	g_draw.MyBlt3D((MYSURFACE*)dds,src,dst,0,color);
 	FUNC_OUT;
 }
-void   CExport::SetTransform(BOOL b)//À•W•ÏŠ·s—ñ‚ğÄİ’è
+void   CExport::SetTransform(BOOL b)//åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’å†è¨­å®š
 {
 	FUNC_IN;
 	GetCurrentBattleTask()->SetTransform(b);
 	FUNC_OUT;
 }
-void   CExport::SetBlendMode(DWORD m)//ƒ¿‡¬‚Ì•û–@‚ğ•ÏX
+void   CExport::SetBlendMode(DWORD m)//Î±åˆæˆã®æ–¹æ³•ã‚’å¤‰æ›´
 {
 	FUNC_IN;
 	g_draw.SetAlphaMode(m);
 	FUNC_OUT;
 }
-void   CExport::SetParentMatrix(LPVOID mat,BOOL root,LPVOID matprv)//uev•ÏŠ·s—ñİ’è
+void   CExport::SetParentMatrix(LPVOID mat,BOOL root,LPVOID matprv)//ã€Œè¦ªã€å¤‰æ›è¡Œåˆ—è¨­å®š
 {
 	FUNC_IN;
 	g_draw.SetParentMatrix2((D3DXMATRIX*)mat,root,(D3DXMATRIX*)matprv);
@@ -719,7 +719,7 @@ DWORD  CExport::CreateCellDat(TCHAR* filename,LPVOID *cdat,LPVOID *rdat,LPVOID *
 		DELETE_ARRAY( *rdat );
 		DELETE_ARRAY( *hdat );
 
-		//0.70‚ÅƒŠƒgƒ‰ƒC
+		//0.70ã§ãƒªãƒˆãƒ©ã‚¤
 		*cdat = new GCD_CELL2_070[GCDMAX_CELLS];
 		*rdat = new GCD_RECT_070[GCDMAX_RECTANGLES];
 		*hdat = new GCD_HANTEI_070[GCDMAX_CELLS];
@@ -732,7 +732,7 @@ DWORD  CExport::CreateCellDat(TCHAR* filename,LPVOID *cdat,LPVOID *rdat,LPVOID *
 		ret= 700;
 	}
 
-	//NowLoading‚ği‚ß‚é
+	//NowLoadingã‚’é€²ã‚ã‚‹
 	CTNowLoading* task = dynamic_cast<CTNowLoading*>( g_system.FindTask('LOAD') );
 	if(task)task->Proceed(NowLoading_GCD);
 
@@ -760,7 +760,7 @@ LPVOID  CExport::LoadImage(TCHAR* filename, TCHAR* palname)
 			);
 	if(ret)
 	{
-		//NowLoading‚ği‚ß‚é
+		//NowLoadingã‚’é€²ã‚ã‚‹
 		CTNowLoading* task = dynamic_cast<CTNowLoading*>( g_system.FindTask('LOAD') );
 		if(task)task->Proceed(NowLoading_Image);
 	}
@@ -791,7 +791,7 @@ DWORD  CExport::CreateCellDat2(TCHAR* filename,LPVOID *cdat,LPVOID *rdat,LPVOID 
 			DELETE_ARRAY( *rdat );
 			DELETE_ARRAY( *hdat );
 
-			//0.70‚ÅƒŠƒgƒ‰ƒC
+			//0.70ã§ãƒªãƒˆãƒ©ã‚¤
 			*cdat = new GCD_CELL2_070[GCDMAX_CELLS];
 			*rdat = new GCD_RECT_070[GCDMAX_RECTANGLES];
 			*hdat = new GCD_HANTEI_070[GCDMAX_CELLS];
@@ -806,7 +806,7 @@ DWORD  CExport::CreateCellDat2(TCHAR* filename,LPVOID *cdat,LPVOID *rdat,LPVOID 
 		}
 	}
 
-	//NowLoading‚ği‚ß‚é
+	//NowLoadingã‚’é€²ã‚ã‚‹
 	CTNowLoading* task = dynamic_cast<CTNowLoading*>( g_system.FindTask('LOAD') );
 	if(task)task->Proceed(NowLoading_GCD);
 

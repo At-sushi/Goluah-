@@ -1,4 +1,4 @@
-/*=====================================================================================
+О╩©/*=====================================================================================
 
 Goluah!! Copyright (C) 2001-2004 aki, 2004-2016 At-sushi, 2014-2016 logger
 
@@ -14,13 +14,13 @@ You should have received a copy of the GNU General Public License along with thi
 
 /*******************************************************************
 
-	┐e┐N┐X┐`┐┐┼г≈²┐N┐┴┐X
+	Ц┐├Ц┌╞Ц┌╧Ц┐│Ц┐ёГ╝║Г░├Ц┌╞Ц┐╘Ц┌╧
 
 ********************************************************************/
 
 CTexManager *tex_man = NULL;
 
-//┐e┐N┐X┐`┐┐⌠г┌щ█·┌щ
+//Ц┐├Ц┌╞Ц┌╧Ц┐│Ц┐ёХ╙╜Ц│©Х╬╪Ц│©
 LPDIRECT3DTEXTURE9 CTexManager::LoadTexture(const TCHAR* filename)
 {
 	if(!filename)return NULL;
@@ -29,7 +29,7 @@ LPDIRECT3DTEXTURE9 CTexManager::LoadTexture(const TCHAR* filename)
 
 	LPDIRECT3DTEXTURE9 ret=NULL;
 
-	//┼Ы▒╤┌л┌Ю┌л┌╘┌Г▓T┌╥
+	//Ф≈╒Е╜≤Ц│╝Ц┌┌Ц│╝Ц│▀Ц┌┴Ф▌╒Ц│≥
 	for(UINT i=0;i<m_texList.size();i++){
 		if( strcmp(m_texNameList[i],filename)==0 )
 		{
@@ -38,7 +38,7 @@ LPDIRECT3DTEXTURE9 CTexManager::LoadTexture(const TCHAR* filename)
 		}
 	}
 
-	//┐t┐@┐C┐▀√╪▐─■У
+	//Ц┐∙Ц┌║Ц┌╓Ц┐╚Е░█Ф╨√Е┌≥
 	TCHAR *path = new TCHAR[MAX_PATH];
 	if(m_texPath)
 		_stprintf(path,_T("%s\\%s"),m_texPath,filename);
@@ -49,7 +49,7 @@ LPDIRECT3DTEXTURE9 CTexManager::LoadTexture(const TCHAR* filename)
 	OutputDebugString( path );
 	OutputDebugString(_T("\n"));
 
-	//░V▀K┌и⌠г┌щ█·┌щ
+	//Ф√╟Х╕▐Ц│╚Х╙╜Ц│©Х╬╪Ц│©
 	HRESULT loadret = D3DXCreateTextureFromFileEx(d3ddev, path,
 		0,0,0,0,
 		D3DFMT_A1R5G5B5,
@@ -57,7 +57,7 @@ LPDIRECT3DTEXTURE9 CTexManager::LoadTexture(const TCHAR* filename)
 		0,NULL,NULL,&ret);
 	delete [] path;
 
-	//┐┼┐X┐g┌и▓г┴а
+	//Ц┐╙Ц┌╧Ц┐┬Ц│╚Х©╫Е┼═
 	m_texList.push_back(ret);
 	TCHAR* newTexName = new TCHAR [strlen(filename)+1];
 	_tcscpy(newTexName,filename);
@@ -67,7 +67,7 @@ LPDIRECT3DTEXTURE9 CTexManager::LoadTexture(const TCHAR* filename)
 	return ret;
 }
 
-//┐e┐N┐X┐`┐┐┌л┼J∙З
+//Ц┐├Ц┌╞Ц┌╧Ц┐│Ц┐ёЦ│╝И√▀Ф■╬
 void CTexManager::UnloadTexture(LPDIRECT3DTEXTURE9 ptex)
 {
 	if(!ptex)return;
@@ -90,10 +90,10 @@ void CTexManager::UnloadTexture(LPDIRECT3DTEXTURE9 ptex)
 	}
 }
 
-//┌╥┌в┌д■j┼Э
+//Ц│≥Ц│╧Ц│╕Г═╢Фё└
 void CTexManager::Destroy()
 {
-	//┐e┐N┐X┐`┐┐┐┼┐X┐g┌л■j┼Э
+	//Ц┐├Ц┌╞Ц┌╧Ц┐│Ц┐ёЦ┐╙Ц┌╧Ц┐┬Ц│╝Г═╢Фё└
 	while(m_texList.size()!=0){
 		std::vector<LPDIRECT3DTEXTURE9>::iterator itex = m_texList.begin();
 		RELEASE((*itex));
@@ -109,7 +109,7 @@ void CTexManager::Destroy()
 	DELETEARRAY(m_texPath);
 }
 
-//┐x│[┐X┐p┐X░щ▓Х
+//Ц┐≥Ц┐╪Ц┌╧Ц┐▒Ц┌╧Х╗╜Е╝ 
 void CTexManager::SetBasePath(const TCHAR *path)
 {
 	if(!path)return;
@@ -124,12 +124,12 @@ void CTexManager::SetBasePath(const TCHAR *path)
 
 /*******************************************************************
 
-	│╒┐X┐g┐┼┐b┐v∙`┴Ф┐N┐┴┐X
+	Б√ЁЦ┌╧Ц┐┬Ц┐╙Ц┐┐Ц┐≈Ф▐▐Г■╩Ц┌╞Ц┐╘Ц┌╧
 
 ********************************************************************/
 
 /*------------------------------------------------------------------
-	█\▓z
+	Ф╖▀Г╞┴
 --------------------------------------------------------------------*/
 CTristripBody::CTristripBody()
 {
@@ -145,7 +145,7 @@ CTristripBody::CTristripBody()
 }
 
 /*------------------------------------------------------------------
-	░╤░╛
+	Г■÷Ф┬░
 --------------------------------------------------------------------*/
 void CTristripBody::Create(UINT num_node , const TCHAR* tex_filename)
 {
@@ -168,7 +168,7 @@ void CTristripBody::Create(UINT num_node , const TCHAR* tex_filename)
 }
 
 /*------------------------------------------------------------------
-	■j┼Э
+	Г═╢Фё└
 --------------------------------------------------------------------*/
 void CTristripBody::Destroy()
 {
@@ -187,8 +187,8 @@ void CTristripBody::Destroy()
 }
 
 /*------------------------------------------------------------------
-	█ю∙W▓l▄v▌Z & ∙`┴Ф
-	(2D▄v▌Z)
+	Е╨╖Ф╗≥Е─╓Х╗┬Г╝≈ & Ф▐▐Г■╩
+	(2DХ╗┬Г╝≈)
 --------------------------------------------------------------------*/
 void CTristripBody::Render(D3DMATRIX *l2w)
 {
@@ -197,41 +197,41 @@ void CTristripBody::Render(D3DMATRIX *l2w)
 	LPDIRECT3DDEVICE9 d3ddev = aki3d.GetD3DDev();
 	if(d3ddev==NULL)return;
 
-	//┐█│[┐J┐▀│╗┐▐│[┐▀┐h┐}┐g┐┼┐N┐X┌П▌w▓Х┌Ё┌Й┌х┌╘┌а┌╫▐Й█┤┌м▓P┬й█s≈Я┌е▒Ц≈p┌╥┌И
+	//Ц┐╜Ц┐╪Ц┌╚Ц┐╚Б├▓Ц┐╞Ц┐╪Ц┐╚Ц┐┴Ц┐·Ц┐┬Ц┐╙Ц┌╞Ц┌╧Ц┌▓Ф▄┤Е╝ Ц│∙Ц┌▄Ц│╙Ц│▀Ц│ёЦ│÷Е═╢Е░┬Ц│╞Е█≤Д╫█Х║▄Е┬≈Ц│╖Д╩ёГ■╗Ц│≥Ц┌▀
 	D3DXMATRIX mati;
 	D3DXMatrixIdentity(&mati);
 	if(!l2w)l2w = &mati;
 
-	//┼e┐x┐N┐g┐▀┼т┌е┌лsub┌П┌ф┌Х│A
-	//┌╩┌Й┌П90│▀┴Я⌠]┌╥┌И( 2D┌л90│▀┴Я⌠]│F(x',y')=(y,-x) )
+	//Е░└Ц┐≥Ц┌╞Ц┐┬Ц┐╚И√⌠Ц│╖Ц│╝subЦ┌▓Ц│╗Ц┌┼Ц─│
+	//Ц│²Ц┌▄Ц┌▓90б╟Е⌡·Х╩╒Ц│≥Ц┌▀( 2DЦ│╝90б╟Е⌡·Х╩╒О╪ (x',y')=(y,-x) )
 	for(i=0;i<node_num-1;i++)
 	{
 		vsubs[i].x = (pos[i+1].y - pos[i].y);
 		vsubs[i].y = (pos[i].x - pos[i+1].x);
-		vsubs[i].Normalize();//┐m│[┐}┐┴┐C┐Y┌╣┌д┌╗┌╜
+		vsubs[i].Normalize();//Ц┐▌Ц┐╪Ц┐·Ц┐╘Ц┌╓Ц┌╨Ц│≈Ц│╕Ц│┼Ц│▐
 	}
 
-	//┼e┐m│[┐h┌е┌л√@░Э┌а┌ш┌╒┌Ю┌л┌П▐o┌╥
-	norms[0] = vsubs[0];//█е▐┴┌л1⌠_
+	//Е░└Ц┐▌Ц┐╪Ц┐┴Ц│╖Ц│╝ФЁ∙Г╥ Ц│ёЦ│╫Ц│└Ц┌┌Ц│╝Ц┌▓Е┤╨Ц│≥
+	norms[0] = vsubs[0];//Ф°─Е┬²Ц│╝1Г┌╧
 	i=1;
 	j=0;
 	for(i=1;i<node_num-1;i++,j++){
 		norms[i].x = vsubs[j].x + vsubs[j+1].x;
 		norms[i].y = vsubs[j].y + vsubs[j+1].y;
 	}
-	norms[i]=vsubs[i-1];//█е▄Ц┌л1⌠_
+	norms[i]=vsubs[i-1];//Ф°─Е╬▄Ц│╝1Г┌╧
 
-	//√@░Э┐m│[┐}┐┴┐C┐Y
+	//ФЁ∙Г╥ Ц┐▌Ц┐╪Ц┐·Ц┐╘Ц┌╓Ц┌╨
 	for(i=0;i<node_num;i++){
 		norms[i].Normalize();
 	}
 
 	for(i=0;i<node_num;i++)
 	{
-		//░F░щ▓Х
+		//Х┴╡Х╗╜Е╝ 
 		vb[i*2  ].color = vb[i*2+1].color = *((DWORD*)&col[i]);
 		
-		//┼e▓╦⌠_█ю∙W┌П√@░Э┌а┌ш┌╒┌Ю┌л∙Ш▄Э┌и░L┌н┌╣┌б┌б∙`┴Ф≈p┌л▓╦⌠_■z≈Я┌и▐▒┌╚█·┌щ
+		//Е░└И═┌Г┌╧Е╨╖Ф╗≥Ц┌▓ФЁ∙Г╥ Ц│ёЦ│╫Ц│└Ц┌┌Ц│╝Ф√╧Е░▒Ц│╚Д╪╦Ц│╟Ц│≈Ц│╓Ц│╓Ф▐▐Г■╩Г■╗Ц│╝И═┌Г┌╧И┘█Е┬≈Ц│╚Ф⌡╦Ц│█Х╬╪Ц│©
 		vb[i*2  ].x = pos[i].x + norms[i].x*rad[i]*0.5f;
 		vb[i*2+1].x = pos[i].x - norms[i].x*rad[i]*0.5f;
 		vb[i*2  ].y = pos[i].y + norms[i].y*rad[i]*0.5f;
@@ -240,20 +240,20 @@ void CTristripBody::Render(D3DMATRIX *l2w)
 		vb[i*2+1].z = pos[i].z  ;
 	}
 
-	//∙`┴Ф
+	//Ф▐▐Г■╩
 	try
 	{
-		//∙`┴Ф▒O░щ▓Х
-		d3ddev->SetTexture(0,tex);						//┐e┐N┐X┐`┐┐│[░щ▓Х
-		d3ddev->SetTransform(D3DTS_WORLD,l2w);			//█ю∙W∙о┼╥┐}┐g┐┼┐N┐X▌w▓Х
-		d3ddev->SetFVF(FVF_3DVERTEX);		//▓╦⌠_┌л┐t┐H│[┐}┐b┐g┌П▌w▓Х
+		//Ф▐▐Г■╩Е┴█Х╗╜Е╝ 
+		d3ddev->SetTexture(0,tex);						//Ц┐├Ц┌╞Ц┌╧Ц┐│Ц┐ёЦ┐╪Х╗╜Е╝ 
+		d3ddev->SetTransform(D3DTS_WORLD,l2w);			//Е╨╖Ф╗≥Е╓┴Ф▐⌡Ц┐·Ц┐┬Ц┐╙Ц┌╞Ц┌╧Ф▄┤Е╝ 
+		d3ddev->SetFVF(FVF_3DVERTEX);		//И═┌Г┌╧Ц│╝Ц┐∙Ц┌╘Ц┐╪Ц┐·Ц┐┐Ц┐┬Ц┌▓Ф▄┤Е╝ 
 
-		//∙`┴Ф
+		//Ф▐▐Г■╩
 		if(D3D_OK != d3ddev->DrawPrimitiveUP(
-								D3DPT_TRIANGLESTRIP,	//┐v┐┼┐~┐e┐B┐u▌М≈ч
-								(node_num-1)*2,			//┐v┐┼┐~┐e┐B┐u░■
-								vb,						//▓╦⌠_■z≈Я
-								sizeof(MYVERTEX3D)		//▓╦⌠_┐X┐g┐┴┐C┐h
+								D3DPT_TRIANGLESTRIP,	//Ц┐≈Ц┐╙Ц┐÷Ц┐├Ц┌ёЦ┐√Г╗╝И║·
+								(node_num-1)*2,			//Ц┐≈Ц┐╙Ц┐÷Ц┐├Ц┌ёЦ┐√Ф∙╟
+								vb,						//И═┌Г┌╧И┘█Е┬≈
+								sizeof(MYVERTEX3D)		//И═┌Г┌╧Ц┌╧Ц┐┬Ц┐╘Ц┌╓Ц┐┴
 						))
 		{
 			aki3d.LogWarning(_T("%s failed to render"),__FUNCTION__);
@@ -267,9 +267,9 @@ void CTristripBody::Render(D3DMATRIX *l2w)
 }
 
 /*------------------------------------------------------------------
-	┐e┐N┐X┐`┐┐█ю∙W░щ▓Х
-	u : ┐X┐g┐┼┐b┐v┌л≈╪▓[┌е 0│`1
-	v : ┐m│[┐h┌л2▓╦⌠_┼т┌е 0│`1
+	Ц┐├Ц┌╞Ц┌╧Ц┐│Ц┐ёЕ╨╖Ф╗≥Х╗╜Е╝ 
+	u : Ц┌╧Ц┐┬Ц┐╙Ц┐┐Ц┐≈Ц│╝Д╦║Г╚╞Ц│╖ 0О╫·1
+	v : Ц┐▌Ц┐╪Ц┐┴Ц│╝2И═┌Г┌╧И√⌠Ц│╖ 0О╫·1
 --------------------------------------------------------------------*/
 void CTristripBody::SetupTexCoords()
 {
@@ -289,13 +289,13 @@ void CTristripBody::SetupTexCoords()
 
 /*******************************************************************
 
-	┐p│[┐e┐B┐N┐▀┐N┐┴┐X▌ю▒л
+	Ц┐▒Ц┐╪Ц┐├Ц┌ёЦ┌╞Ц┐╚Ц┌╞Ц┐╘Ц┌╧Е╝÷Д╫⌠
 
 ********************************************************************/
 
 
 /*------------------------------------------------------------------
-	█\▓z
+	Ф╖▀Г╞┴
 --------------------------------------------------------------------*/
 CParticleBody::CParticleBody()
 {
@@ -318,7 +318,7 @@ CParticleBody::CParticleBody()
 }
 
 /*------------------------------------------------------------------
-	░╤░╛
+	Г■÷Ф┬░
 --------------------------------------------------------------------*/
 void CParticleBody::Create(UINT num_tubu , const TCHAR *tex_filename)
 {
@@ -341,10 +341,10 @@ void CParticleBody::Create(UINT num_tubu , const TCHAR *tex_filename)
 
 	for(UINT i=0;i<num;i++)
 	{
-		//axis┌П┐[┐█┐N┐┼┐A
+		//axisЦ┌▓Ц┌╪Ц┐╜Ц┌╞Ц┐╙Ц┌╒
 		ax[i] = Zero;
 
-		//┐C┐⌠┐f┐b┐N┐X┐f│[┐^▐─■У
+		//Ц┌╓Ц┐ЁЦ┐┤Ц┐┐Ц┌╞Ц┌╧Ц┐┤Ц┐╪Ц┌©Ф╨√Е┌≥
 		index_arr[i*6+0] = i*4;
 		index_arr[i*6+1] = i*4+1;
 		index_arr[i*6+2] = i*4+2;
@@ -361,7 +361,7 @@ void CParticleBody::Create(UINT num_tubu , const TCHAR *tex_filename)
 }
 
 /*------------------------------------------------------------------
-	■j┼Э
+	Г═╢Фё└
 --------------------------------------------------------------------*/
 void CParticleBody::Destroy()
 {
@@ -385,7 +385,7 @@ void CParticleBody::Destroy()
 }
 
 /*------------------------------------------------------------------
-	█ю∙W▓l▄v▌Z & ∙`┴Ф
+	Е╨╖Ф╗≥Е─╓Х╗┬Г╝≈ & Ф▐▐Г■╩
 --------------------------------------------------------------------*/
 void CParticleBody::Render(D3DMATRIX *l2w)
 {
@@ -398,27 +398,27 @@ void CParticleBody::Render(D3DMATRIX *l2w)
 	LPDIRECT3DDEVICE8 d3ddev = aki3d.GetD3DDev();
 	if(d3ddev==NULL)return;
 
-	//┐█│[┐J┐▀│╗┐▐│[┐▀┐h∙о┼╥┐}┐g┐┼┐N┐X┌╙▌w▓Х┌Ё┌Й┌д┌╒┌х┌╒▐Й█┤▓P┬й█s≈Я┌е▒Ц≈p┌╥┌И
+	//Ц┐╜Ц┐╪Ц┌╚Ц┐╚Б├▓Ц┐╞Ц┐╪Ц┐╚Ц┐┴Е╓┴Ф▐⌡Ц┐·Ц┐┬Ц┐╙Ц┌╞Ц┌╧Ц│▄Ф▄┤Е╝ Ц│∙Ц┌▄Ц│╕Ц│└Ц│╙Ц│└Е═╢Е░┬Е█≤Д╫█Х║▄Е┬≈Ц│╖Д╩ёГ■╗Ц│≥Ц┌▀
 	D3DXMATRIX mati;
 	D3DXMatrixIdentity(&mati);
 	if(!l2w)l2w = &mati;
 
 	for(i=0;i<num;i++){
-		//░F░щ▓Х
+		//Х┴╡Х╗╜Е╝ 
 		vb[i*4  ].color = vb[i*4+1].color = 
 		vb[i*4+2].color = vb[i*4+3].color = *((DWORD*)&col[i]);
 
-		//░L┌н┌╣∙Ш▄Э┐x┐N┐g┐▀┌Пxy∙╫√й▐Ц┌и▌й┌╣┌╫┌Ю┌л┌П┌П▄v▌Z
+		//Д╪╦Ц│╟Ц│≈Ф√╧Е░▒Ц┐≥Ц┌╞Ц┐┬Ц┐╚Ц┌▓xyЕ╧ЁИ²╒Д╦┼Ц│╚Е├≥Ц│≈Ц│÷Ц┌┌Ц│╝Ц┌▓Ц┌▓Х╗┬Г╝≈
 		V2d eax;
 		eax.x = ax[i].x;
 		eax.y = ax[i].y;
-		eax.SetLength(rad[i]*0.5f);//┌л┌н┌╥
+		eax.SetLength(rad[i]*0.5f);//Ц│╝Ц│╟Ц│≥
 
-		//▐Ц▀L┐x┐N┐g┐▀┌и░┌▓╪┌х┌Ю┌л┌П▄v▌Z
+		//Д╦┼Х╗≤Ц┐≥Ц┌╞Ц┐┬Ц┐╚Ц│╚Е·┌Г⌡╢Ц│╙Ц┌┌Ц│╝Ц┌▓Х╗┬Г╝≈
 		V2d vax = eax;
 		vax.Verticalize();
 
-		//pos┌и┐x┐N┐g┐▀┌П┌╫┌╣┌б┌б∙`┴Ф≈p┌л▓╦⌠_■z≈Я┌и▐▒┌╚█·┌щ
+		//posЦ│╚Ц┐≥Ц┌╞Ц┐┬Ц┐╚Ц┌▓Ц│÷Ц│≈Ц│╓Ц│╓Ф▐▐Г■╩Г■╗Ц│╝И═┌Г┌╧И┘█Е┬≈Ц│╚Ф⌡╦Ц│█Х╬╪Ц│©
 		vb[i*4  ].x = pos[i].x + ax[i].x + eax.x + vax.x;
 		vb[i*4+1].x = pos[i].x - ax[i].x - eax.x + vax.x;
 		vb[i*4+2].x = pos[i].x + ax[i].x + eax.x - vax.x;
@@ -435,14 +435,14 @@ void CParticleBody::Render(D3DMATRIX *l2w)
 		vb[i*2+3].z = pos[i].z - ax[i].z;
 	}
 
-	//∙`┴Ф
+	//Ф▐▐Г■╩
 	{
-		//∙`┴Ф▒O░щ▓Х
-		d3ddev->SetTexture(0,tex);						//┐e┐N┐X┐`┐┐│[░щ▓Х
-		d3ddev->SetTransform(D3DTS_WORLD,l2w);			//█ю∙W∙о┼╥┐}┐g┐┼┐N┐X▌w▓Х
-		d3ddev->SetFVF( FVF_3DVERTEX );		//▓╦⌠_┌л┐t┐H│[┐}┐b┐g┌П▌w▓Х
+		//Ф▐▐Г■╩Е┴█Х╗╜Е╝ 
+		d3ddev->SetTexture(0,tex);						//Ц┐├Ц┌╞Ц┌╧Ц┐│Ц┐ёЦ┐╪Х╗╜Е╝ 
+		d3ddev->SetTransform(D3DTS_WORLD,l2w);			//Е╨╖Ф╗≥Е╓┴Ф▐⌡Ц┐·Ц┐┬Ц┐╙Ц┌╞Ц┌╧Ф▄┤Е╝ 
+		d3ddev->SetFVF( FVF_3DVERTEX );		//И═┌Г┌╧Ц│╝Ц┐∙Ц┌╘Ц┐╪Ц┐·Ц┐┐Ц┐┬Ц┌▓Ф▄┤Е╝ 
 
-		//∙`┴Ф
+		//Ф▐▐Г■╩
 		d3ddev->DrawIndexedPrimitiveUP(
 									D3DPT_TRIANGLELIST,	//D3DPRIMITIVETYPE PrimitiveType,
 									0,					//UINT MinVertexIndex,
@@ -457,14 +457,14 @@ void CParticleBody::Render(D3DMATRIX *l2w)
 
 	#else
 
-	//┌Б┌а┌о┌╠┌а┌©┌╤┌А┌х┌╚┌А┌╬┌ъ│H
+	//Ц┌└Ц│ёЦ│╠Ц│⌠Ц│ёЦ│║Ц│≤Ц┌┐Ц│╙Ц│█Ц┌┐Ц│═Ц┌│О╪÷
 
 	UINT i;
-	D3DXMATRIX mati;	// ▓P┬й█s≈Я
-	D3DXMATRIX pmat;	// ┐v┐█┐W┐F┐N┐V┐┤┐⌠█s≈Я
-	D3DXMATRIX vmat;	// ┐r┐┘│[█s≈Я
-	D3DXMATRIX dmat;	// ┐█│[┐J┐▀█ю∙W▄n│╗┐f┐B┐X┐v┐▄┐C█ю∙W▄n∙о┼╥┐}┐g┐┼┐N┐X
-	D3DXMATRIX idmat;	// ┐█│[┐J┐▀█ю∙W▄n│╘┐f┐B┐X┐v┐▄┐C█ю∙W▄n∙о┼╥┐}┐g┐┼┐N┐X
+	D3DXMATRIX mati;	// Е█≤Д╫█Х║▄Е┬≈
+	D3DXMATRIX pmat;	// Ц┐≈Ц┐╜Ц┌╦Ц┌╖Ц┌╞Ц┌╥Ц┐╖Ц┐ЁХ║▄Е┬≈
+	D3DXMATRIX vmat;	// Ц┐⌠Ц┐╔Ц┐╪Х║▄Е┬≈
+	D3DXMATRIX dmat;	// Ц┐╜Ц┐╪Ц┌╚Ц┐╚Е╨╖Ф╗≥ГЁ╩Б├▓Ц┐┤Ц┌ёЦ┌╧Ц┐≈Ц┐╛Ц┌╓Е╨╖Ф╗≥ГЁ╩Е╓┴Ф▐⌡Ц┐·Ц┐┬Ц┐╙Ц┌╞Ц┌╧
+	D3DXMATRIX idmat;	// Ц┐╜Ц┐╪Ц┌╚Ц┐╚Е╨╖Ф╗≥ГЁ╩Б├░Ц┐┤Ц┌ёЦ┌╧Ц┐≈Ц┐╛Ц┌╓Е╨╖Ф╗≥ГЁ╩Е╓┴Ф▐⌡Ц┐·Ц┐┬Ц┐╙Ц┌╞Ц┌╧
 
 	LPDIRECT3DDEVICE9 d3ddev = aki3d.GetD3DDev();
 	if(d3ddev==NULL)return;
@@ -478,13 +478,13 @@ void CParticleBody::Render(D3DMATRIX *l2w)
 	dmat *= pmat;
 	D3DXMatrixInverse(&idmat,NULL,&dmat);
 
-	//┐|┐W┐V┐┤┐⌠┌фAxis┌П┐f┐B┐X┐v┐▄┐C█ю∙W▄n▐Ц┌и∙о┼╥┌╥┌И
+	//Ц┐²Ц┌╦Ц┌╥Ц┐╖Ц┐ЁЦ│╗AxisЦ┌▓Ц┐┤Ц┌ёЦ┌╧Ц┐≈Ц┐╛Ц┌╓Е╨╖Ф╗≥ГЁ╩Д╦┼Ц│╚Е╓┴Ф▐⌡Ц│≥Ц┌▀
 	for(i=0;i<num;i++)
 	{
 		D3DXVec3Transform(&tpos[i],&pos[i],&dmat);
 		D3DXVec3TransformNormal(&tax[i],&ax[i],&dmat);
 
-		//w┌е┐▐┐▀
+		//wЦ│╖Ц┐╞Ц┐╚
 		tpos[i].x /= tpos[i].w;
 		tpos[i].y /= tpos[i].w;
 		if(tpos[i].w<0.0f){
@@ -498,13 +498,13 @@ void CParticleBody::Render(D3DMATRIX *l2w)
 
 	float radius;
 	for(i=0;i<num;i++){
-		//░F░щ▓Х
+		//Х┴╡Х╗╜Е╝ 
 		vb[i*4  ].color = vb[i*4+1].color = 
 		vb[i*4+2].color = vb[i*4+3].color = *((DWORD*)&col[i]);
 
-		//┐f┐B┐X┐v┐▄┐C▐Ц┌е┌л▒Е┌╚┌Ё▄v▌Z
+		//Ц┐┤Ц┌ёЦ┌╧Ц┐≈Ц┐╛Ц┌╓Д╦┼Ц│╖Ц│╝Е╓╖Ц│█Ц│∙Х╗┬Г╝≈
 		if(tpos[i].z!=0)
-			radius = rad[i]/tpos[i].z ;	//┌═┌а┌д┌И┌╘│H
+			radius = rad[i]/tpos[i].z ;	//Ц│┌Ц│ёЦ│╕Ц┌▀Ц│▀О╪÷
 		else{
 			radius = 1.0f;
 		}
@@ -517,7 +517,7 @@ void CParticleBody::Render(D3DMATRIX *l2w)
 		vax.Verticalize();
 		//rad[i]);
 
-		//┼e▓╦⌠_█ю∙W┌П⌠В∙t┌╞┌╣┌б┌б∙`┴Ф≈p┌л▓╦⌠_■z≈Я┌и▐▒┌╚█·┌щ
+		//Е░└И═┌Г┌╧Е╨╖Ф╗≥Ц┌▓Х┌┴Д╩≤Ц│▒Ц│≈Ц│╓Ц│╓Ф▐▐Г■╩Г■╗Ц│╝И═┌Г┌╧И┘█Е┬≈Ц│╚Ф⌡╦Ц│█Х╬╪Ц│©
 		vb[i*4  ].x = tpos[i].x + tax[i].x + vax.x;
 		vb[i*4+1].x = tpos[i].x - tax[i].x + vax.x;
 		vb[i*4+2].x = tpos[i].x + tax[i].x - vax.x;
@@ -534,16 +534,16 @@ void CParticleBody::Render(D3DMATRIX *l2w)
 		vb[i*2+3].z = tpos[i].z / tpos[i].w ;//- tax[i].z;
 	}
 
-	//∙`┴Ф
+	//Ф▐▐Г■╩
 	{
-		//∙`┴Ф▒O░щ▓Х
-		d3ddev->SetTexture(0,tex);						//┐e┐N┐X┐`┐┐│[░щ▓Х
-		d3ddev->SetTransform(D3DTS_WORLD,	&mati);		//█ю∙W∙о┼╥┐}┐g┐┼┐N┐X▌w▓Х(┌╥┌е┌и∙о┼╥█о┌щ┌х┌л┌е┌Б┌Г┌х┌╒)
-		d3ddev->SetTransform(D3DTS_VIEW,	&mati);		//█ю∙W∙о┼╥┐}┐g┐┼┐N┐X▌w▓Х(┌╥┌е┌и∙о┼╥█о┌щ┌х┌л┌е┌Б┌Г┌х┌╒)
-		d3ddev->SetTransform(D3DTS_PROJECTION,&mati);	//█ю∙W∙о┼╥┐}┐g┐┼┐N┐X▌w▓Х(┌╥┌е┌и∙о┼╥█о┌щ┌х┌л┌е┌Б┌Г┌х┌╒)
-		d3ddev->SetFVF(FVF_3DVERTEX);		//▓╦⌠_┌л┐t┐H│[┐}┐b┐g┌П▌w▓Х
+		//Ф▐▐Г■╩Е┴█Х╗╜Е╝ 
+		d3ddev->SetTexture(0,tex);						//Ц┐├Ц┌╞Ц┌╧Ц┐│Ц┐ёЦ┐╪Х╗╜Е╝ 
+		d3ddev->SetTransform(D3DTS_WORLD,	&mati);		//Е╨╖Ф╗≥Е╓┴Ф▐⌡Ц┐·Ц┐┬Ц┐╙Ц┌╞Ц┌╧Ф▄┤Е╝ (Ц│≥Ц│╖Ц│╚Е╓┴Ф▐⌡Ф╦┬Ц│©Ц│╙Ц│╝Ц│╖Ц┌└Ц┌┴Ц│╙Ц│└)
+		d3ddev->SetTransform(D3DTS_VIEW,	&mati);		//Е╨╖Ф╗≥Е╓┴Ф▐⌡Ц┐·Ц┐┬Ц┐╙Ц┌╞Ц┌╧Ф▄┤Е╝ (Ц│≥Ц│╖Ц│╚Е╓┴Ф▐⌡Ф╦┬Ц│©Ц│╙Ц│╝Ц│╖Ц┌└Ц┌┴Ц│╙Ц│└)
+		d3ddev->SetTransform(D3DTS_PROJECTION,&mati);	//Е╨╖Ф╗≥Е╓┴Ф▐⌡Ц┐·Ц┐┬Ц┐╙Ц┌╞Ц┌╧Ф▄┤Е╝ (Ц│≥Ц│╖Ц│╚Е╓┴Ф▐⌡Ф╦┬Ц│©Ц│╙Ц│╝Ц│╖Ц┌└Ц┌┴Ц│╙Ц│└)
+		d3ddev->SetFVF(FVF_3DVERTEX);		//И═┌Г┌╧Ц│╝Ц┐∙Ц┌╘Ц┐╪Ц┐·Ц┐┐Ц┐┬Ц┌▓Ф▄┤Е╝ 
 
-		//∙`┴Ф
+		//Ф▐▐Г■╩
 		try{
 		if(D3D_OK!=d3ddev->DrawIndexedPrimitiveUP(
 									D3DPT_TRIANGLELIST,	//D3DPRIMITIVETYPE PrimitiveType,
@@ -564,7 +564,7 @@ void CParticleBody::Render(D3DMATRIX *l2w)
 			aki3d.LogWarning(_T("%s catch exception while rendering"),__FUNCTION__);
 		}
 
-		//┐}┐g┐┼┐N┐X░щ▓Х┌л┐▄┐X┐g┐A
+		//Ц┐·Ц┐┬Ц┐╙Ц┌╞Ц┌╧Х╗╜Е╝ Ц│╝Ц┐╛Ц┌╧Ц┐┬Ц┌╒
 		d3ddev->SetTransform(D3DTS_VIEW,&vmat);	
 		d3ddev->SetTransform(D3DTS_PROJECTION,&pmat);
 	}
@@ -573,7 +573,7 @@ void CParticleBody::Render(D3DMATRIX *l2w)
 }
 
 /*------------------------------------------------------------------
-	┐e┐N┐X┐`┐┐█ю∙W░щ▓Х
+	Ц┐├Ц┌╞Ц┌╧Ц┐│Ц┐ёЕ╨╖Ф╗≥Х╗╜Е╝ 
 --------------------------------------------------------------------*/
 void CParticleBody::SetupTexCoords()
 {
@@ -595,7 +595,7 @@ void CParticleBody::SetupTexCoords()
 
 /*******************************************************************
 
-	┐t┐┴┐b┐g┐p│[┐e┐B┐N┐▀∙`┴Ф┐N┐┴┐X▌ю▒л
+	Ц┐∙Ц┐╘Ц┐┐Ц┐┬Ц┐▒Ц┐╪Ц┐├Ц┌ёЦ┌╞Ц┐╚Ф▐▐Г■╩Ц┌╞Ц┐╘Ц┌╧Е╝÷Д╫⌠
 
 ********************************************************************/
 
@@ -729,11 +729,11 @@ void CFlatBoardsBody::Render(D3DMATRIX *l2w)
 		l2w = D3DXMatrixIdentity(&mat);
 	}
 
-	d3ddev->SetTexture(0,tex);						//┐e┐N┐X┐`┐┐│[░щ▓Х
-	d3ddev->SetTransform(D3DTS_WORLD,l2w);			//█ю∙W∙о┼╥┐}┐g┐┼┐N┐X▌w▓Х
-	d3ddev->SetFVF(FVF_3DVERTEX);		//▓╦⌠_┌л┐t┐H│[┐}┐b┐g┌П▌w▓Х
+	d3ddev->SetTexture(0,tex);						//Ц┐├Ц┌╞Ц┌╧Ц┐│Ц┐ёЦ┐╪Х╗╜Е╝ 
+	d3ddev->SetTransform(D3DTS_WORLD,l2w);			//Е╨╖Ф╗≥Е╓┴Ф▐⌡Ц┐·Ц┐┬Ц┐╙Ц┌╞Ц┌╧Ф▄┤Е╝ 
+	d3ddev->SetFVF(FVF_3DVERTEX);		//И═┌Г┌╧Ц│╝Ц┐∙Ц┌╘Ц┐╪Ц┐·Ц┐┐Ц┐┬Ц┌▓Ф▄┤Е╝ 
 
-	//∙`┴Ф
+	//Ф▐▐Г■╩
 	try{
 	if(D3D_OK!=d3ddev->DrawIndexedPrimitiveUP(
 								D3DPT_TRIANGLELIST,	//D3DPRIMITIVETYPE PrimitiveType,
@@ -763,13 +763,13 @@ void CFlatBoardsBody::Render(D3DMATRIX *l2w)
 
 /*******************************************************************
 
-	┐│┐b┐V┐┘┐N┐┴┐X▌ю▒л
+	Ц┐║Ц┐┐Ц┌╥Ц┐╔Ц┌╞Ц┐╘Ц┌╧Е╝÷Д╫⌠
 
 ********************************************************************/
 
 
 /*------------------------------------------------------------------
-	█\▓z
+	Ф╖▀Г╞┴
 --------------------------------------------------------------------*/
 CMeshBody::CMeshBody()
 {
@@ -788,7 +788,7 @@ CMeshBody::CMeshBody()
 }
 
 /*------------------------------------------------------------------
-	░╤░╛
+	Г■÷Ф┬░
 --------------------------------------------------------------------*/
 void CMeshBody::Create(const TCHAR* x_filename)
 {
@@ -800,7 +800,7 @@ void CMeshBody::Create(const TCHAR* x_filename)
 	HRESULT hr;
 	LPD3DXBUFFER mtrbuf = NULL;
 
-	// ⌠г┌щ█·┌щ
+	// Х╙╜Ц│©Х╬╪Ц│©
 	hr = D3DXLoadMeshFromX((LPSTR)x_filename,
 		D3DXMESH_MANAGED,
 		d3ddev,
@@ -810,14 +810,14 @@ void CMeshBody::Create(const TCHAR* x_filename)
 		&node_num,
 		&x_mesh);
 
-	if (FAILED(hr))		// сы╫╖
+	if (FAILED(hr))		// О╬⌠О╬≥О╫╫О╫╖
 		return;
 
-	// ┐}┐e┐┼┐A┐▀░щ▓Х
+	// Ц┐·Ц┐├Ц┐╙Ц┌╒Ц┐╚Х╗╜Е╝ 
 	LPD3DXMATERIAL mater = (LPD3DXMATERIAL)mtrbuf->GetBufferPointer();
 	mat = new D3DMATERIAL9[node_num];
 
-	// ┐e┐N┐X┐`┐┐┌П
+	// Ц┐├Ц┌╞Ц┌╧Ц┐│Ц┐ёЦ┌▓
 	tex = new LPDIRECT3DTEXTURE9[node_num];
 
 	for (int i = 0; i < (int)node_num; i++)
@@ -827,11 +827,11 @@ void CMeshBody::Create(const TCHAR* x_filename)
 		tex[i] = tex_man->LoadTexture(mater[i].pTextureFilename);
 	}
 
-	RELEASE(mtrbuf); // ┌═┌з┌Я┌й
+	RELEASE(mtrbuf); // Ц│┌Ц│╪Ц┌⌠Ц│╛
 }
 
 /*------------------------------------------------------------------
-	■j┼Э
+	Г═╢Фё└
 --------------------------------------------------------------------*/
 void CMeshBody::Destroy()
 {
@@ -843,8 +843,8 @@ void CMeshBody::Destroy()
 }
 
 /*------------------------------------------------------------------
-	█ю∙W▓l▄v▌Z & ∙`┴Ф
-	(2D▄v▌Z)
+	Е╨╖Ф╗≥Е─╓Х╗┬Г╝≈ & Ф▐▐Г■╩
+	(2DХ╗┬Г╝≈)
 --------------------------------------------------------------------*/
 void CMeshBody::Render(D3DMATRIX *l2w)
 {
@@ -855,8 +855,8 @@ void CMeshBody::Render(D3DMATRIX *l2w)
 	if(d3ddev==NULL)return;
 	if (x_mesh == NULL) return;
 
-	//┐█│[┐J┐▀│╗┐▐│[┐▀┐h┐}┐g┐┼┐N┐X┌П▌w▓Х┌Ё┌Й┌х┌╘┌а┌╫▐Й█┤┌м▓P┬й█s≈Я┌е▒Ц≈p┌╥┌И
-	D3DXMATRIX mati = aki3d.CreateMatrix(&V3d(rad, rad * -1.0f, rad), &rot, &pos);	// Y▌╡┌П■╫⌠]┌╥┌И
+	//Ц┐╜Ц┐╪Ц┌╚Ц┐╚Б├▓Ц┐╞Ц┐╪Ц┐╚Ц┐┴Ц┐·Ц┐┬Ц┐╙Ц┌╞Ц┌╧Ц┌▓Ф▄┤Е╝ Ц│∙Ц┌▄Ц│╙Ц│▀Ц│ёЦ│÷Е═╢Е░┬Ц│╞Е█≤Д╫█Х║▄Е┬≈Ц│╖Д╩ёГ■╗Ц│≥Ц┌▀
+	D3DXMATRIX mati = aki3d.CreateMatrix(&V3d(rad, rad * -1.0f, rad), &rot, &pos);	// YХ╩╦Ц┌▓Е▐█Х╩╒Ц│≥Ц┌▀
 	if(l2w)mati *= *l2w;
 
 	D3DLIGHT9 light;
@@ -866,17 +866,17 @@ void CMeshBody::Render(D3DMATRIX *l2w)
 	light.Diffuse.r = 1.0f;
 	light.Diffuse.g = 1.0f;
 	light.Diffuse.b = 1.0f;
-	light.Specular = light.Diffuse;		// ┐X┐y┐L┐┘┐┴░F┌Ю░щ▓Х┌╣┌ф┌╜
+	light.Specular = light.Diffuse;		// Ц┌╧Ц┐ Ц┌╜Ц┐╔Ц┐╘Х┴╡Ц┌┌Х╗╜Е╝ Ц│≈Ц│╗Ц│▐
 	D3DXVec3Normalize((V3d*)&light.Direction, &ldir);
 	light.Range = 1000.0f;
 
-	//∙`┴Ф
+	//Ф▐▐Г■╩
 	try
 	{
 		D3DMATERIAL9 old;
 		
-		//∙`┴Ф▒O░щ▓Х
-		d3ddev->SetTransform(D3DTS_WORLD,&mati);			//█ю∙W∙о┼╥┐}┐g┐┼┐N┐X▌w▓Х
+		//Ф▐▐Г■╩Е┴█Х╗╜Е╝ 
+		d3ddev->SetTransform(D3DTS_WORLD,&mati);			//Е╨╖Ф╗≥Е╓┴Ф▐⌡Ц┐·Ц┐┬Ц┐╙Ц┌╞Ц┌╧Ф▄┤Е╝ 
 		d3ddev->SetFVF(x_mesh->GetFVF());
 		d3ddev->GetMaterial(&old);
 		d3ddev->SetLight(0, &light);
@@ -886,18 +886,18 @@ void CMeshBody::Render(D3DMATRIX *l2w)
 		d3ddev->SetRenderState(D3DRS_SPECULARENABLE, isspecular);
 		d3ddev->SetRenderState( D3DRS_AMBIENT, amb );
 
-		//∙`┴Ф
+		//Ф▐▐Г■╩
 		for (i = 0; i < (int)node_num; i++)
 		{
 			d3ddev->SetMaterial(&mat[i]);
-			d3ddev->SetTexture(0,tex[i]);						//┐e┐N┐X┐`┐┐│[░щ▓Х
+			d3ddev->SetTexture(0,tex[i]);						//Ц┐├Ц┌╞Ц┌╧Ц┐│Ц┐ёЦ┐╪Х╗╜Е╝ 
 			if(D3D_OK != x_mesh->DrawSubset(i))
 			{
 				aki3d.LogWarning(_T("%s failed to render"),__FUNCTION__);
 			}
 		}
  
-		// ▄Ё┌и√ъ┌╣┌ф┌╜
+		// Е┘┐Ц│╚Ф┬╩Ц│≈Ц│╗Ц│▐
 		d3ddev->SetRenderState(D3DRS_SPECULARENABLE, FALSE);
 		d3ddev->SetRenderState(D3DRS_LIGHTING, FALSE);
 		d3ddev->SetMaterial(&old);

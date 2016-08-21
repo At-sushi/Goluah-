@@ -1,6 +1,6 @@
-/*----------------------------------------------------------------------
+ï»¿/*----------------------------------------------------------------------
 
-	ƒ|[ƒY‰æ–Ê
+	ãƒãƒ¼ã‚ºç”»é¢
 
 ------------------------------------------------------------------------*/
 
@@ -8,25 +8,25 @@
 #include "dx_draw.h"
 
 /*!
-*	@brief ŽŽ‡‚ðƒ|[ƒY‚µ‚½‚Æ‚«‚Ì‘€ì¥•`‰æ‚ðs‚¤
+*	@brief è©¦åˆã‚’ãƒãƒ¼ã‚ºã—ãŸã¨ãã®æ“ä½œãƒ»æç”»ã‚’è¡Œã†
 *	@ingroup Battle
 */
 class CTBattlePause : public CTaskBase
 {
 public:
-	void Initialize();						//Execute‚Ü‚½‚ÍDraw‚ªƒR[ƒ‹‚³‚ê‚é‘O‚É1“x‚¾‚¯ƒR[ƒ‹‚³‚ê‚é
-	void Terminate();						//ƒ^ƒXƒN‚ÌƒŠƒXƒg‚©‚çŠO‚³‚ê‚é‚Æ‚«‚ÉƒR[ƒ‹‚³‚ê‚éi‚»‚Ì’¼ŒãAdelete‚³‚ê‚éj
-	BOOL Execute(DWORD time);				//–ˆƒtƒŒ[ƒ€ƒR[ƒ‹‚³‚ê‚é
-	void Draw();							//•`‰æŽž‚ÉƒR[ƒ‹‚³‚ê‚é
-	int GetDrawPriority(){return 500;}		//•`‰æƒvƒ‰ƒCƒIƒŠƒeƒBB’á‚¢‚Ù‚ÇŽè‘O‚ÉiŒã‚Éj•`‰æBƒ}ƒCƒiƒX‚È‚ç‚Î•\Ž¦‚µ‚È‚¢
+	void Initialize();						//Executeã¾ãŸã¯DrawãŒã‚³ãƒ¼ãƒ«ã•ã‚Œã‚‹å‰ã«1åº¦ã ã‘ã‚³ãƒ¼ãƒ«ã•ã‚Œã‚‹
+	void Terminate();						//ã‚¿ã‚¹ã‚¯ã®ãƒªã‚¹ãƒˆã‹ã‚‰å¤–ã•ã‚Œã‚‹ã¨ãã«ã‚³ãƒ¼ãƒ«ã•ã‚Œã‚‹ï¼ˆãã®ç›´å¾Œã€deleteã•ã‚Œã‚‹ï¼‰
+	BOOL Execute(DWORD time);				//æ¯Žãƒ•ãƒ¬ãƒ¼ãƒ ã‚³ãƒ¼ãƒ«ã•ã‚Œã‚‹
+	void Draw();							//æç”»æ™‚ã«ã‚³ãƒ¼ãƒ«ã•ã‚Œã‚‹
+	int GetDrawPriority(){return 500;}		//æç”»ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã€‚ä½Žã„ã»ã©æ‰‹å‰ã«ï¼ˆå¾Œã«ï¼‰æç”»ã€‚ãƒžã‚¤ãƒŠã‚¹ãªã‚‰ã°è¡¨ç¤ºã—ãªã„
 
 	void Kill()	{m_kill_flag=TRUE;}
 	void ChangeInst(UINT i);
 
 protected:
-	LPDIRECT3DTEXTURE9 tex_fb;				//!< ƒtƒƒ“ƒgƒoƒbƒtƒ@‚ðƒRƒs[‚µ‚½ƒeƒNƒXƒ`ƒƒ
-	LPDIRECT3DTEXTURE9 tex_pause;			//!< "Pause Press F7 Key" •\Ž¦—pƒeƒNƒXƒ`ƒƒ
-	MYSURFACE* ms_inst[2];					//!< 1P/2P ƒCƒ“ƒXƒgbmp
+	LPDIRECT3DTEXTURE9 tex_fb;				//!< ãƒ•ãƒ­ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ã‚’ã‚³ãƒ”ãƒ¼ã—ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£
+	LPDIRECT3DTEXTURE9 tex_pause;			//!< "Pause Press F7 Key" è¡¨ç¤ºç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£
+	MYSURFACE* ms_inst[2];					//!< 1P/2P ã‚¤ãƒ³ã‚¹ãƒˆbmp
 
 	UINT m_counter;
 	UINT m_face_counter[2];
