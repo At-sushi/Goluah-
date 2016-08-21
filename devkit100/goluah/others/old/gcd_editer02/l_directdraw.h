@@ -1,4 +1,4 @@
-
+ï»¿
 #ifndef GOLDAT_MYSURFACE
 
 #define MYSUF_MAXNUMTEX	(16)
@@ -6,13 +6,13 @@
 struct MYSURFACE
 {
 	BOOL valid;
-	DWORD xsufsize[MYSUF_MAXNUMTEX];//ƒeƒNƒXƒ`ƒƒ‚Ì•‚Ì”z—ñ
-	DWORD ysufsize[MYSUF_MAXNUMTEX];//ƒeƒNƒXƒ`ƒƒ‚Ì‚‚³‚Ì”z—ñ
-	DWORD xsufindx[MYSUF_MAXNUMTEX];//MYSURFACE’†‚Å‚ÌleftÀ•W
-	DWORD ysufindx[MYSUF_MAXNUMTEX];//MYSURFACE’†‚Å‚ÌtopÀ•W
+	DWORD xsufsize[MYSUF_MAXNUMTEX];//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å¹…ã®é…åˆ—
+	DWORD ysufsize[MYSUF_MAXNUMTEX];//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®é«˜ã•ã®é…åˆ—
+	DWORD xsufindx[MYSUF_MAXNUMTEX];//MYSURFACEä¸­ã§ã®leftåº§æ¨™
+	DWORD ysufindx[MYSUF_MAXNUMTEX];//MYSURFACEä¸­ã§ã®topåº§æ¨™
 	DWORD xsufnum;
 	DWORD ysufnum;
-	LPDIRECT3DTEXTURE8 *pTex;//pTex‚Ì”z—ñ
+	LPDIRECT3DTEXTURE8 *pTex;//pTexã®é…åˆ—
 	float wg;
 	float hg;
 };
@@ -52,8 +52,8 @@ public:
 	void StartDraw();
 	void EndDraw();
 
-	//ƒ[ƒhŠÖ˜A
-	MYSURFACE* CreateSurfaceFrom256BMP(char *filename,char *pallet=NULL,BOOL dmy=TRUE);//256F‚Ìƒrƒbƒgƒ}ƒbƒv‚©‚çƒT[ƒtƒFƒCƒX‚ğì¬
+	//ãƒ­ãƒ¼ãƒ‰é–¢é€£
+	MYSURFACE* CreateSurfaceFrom256BMP(char *filename,char *pallet=NULL,BOOL dmy=TRUE);//256è‰²ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‹ã‚‰ã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã‚’ä½œæˆ
 	DWORD CopyOne_R5G6B5(MYPALLET src,PBYTE dst);
 	DWORD CopyOne_A1R5G5B5(MYPALLET src,PBYTE dst);
 	DWORD CopyOne_A4R4G4B4(MYPALLET src,PBYTE dst);
@@ -62,8 +62,8 @@ public:
 	BOOL CopyBB2TS(MYPALLET *pbb,DWORD bbpitch,DWORD offset_x,DWORD offset_y,LPDIRECT3DTEXTURE8 ptex,DWORD damex=0,DWORD damey=0);
 	BOOL AssignTextureDiv(MYSURFACE *pmsf,DWORD width,DWORD height);
 	BOOL Load256Bitmapbits(MYPALLET **bits,DWORD *width,DWORD *height,char *bmpfilename,char *palfilename=NULL);
-	BOOL GetPallet(char *filename,MYPALLET *pal);//256‚‚‚‚ƒtƒ@ƒCƒ‹‚©‚çAƒpƒŒƒbƒg‚¾‚¯‚ğæo
-	void RelSurface(MYSURFACE *s);//ƒeƒNƒXƒ`ƒƒŠJ•ú
+	BOOL GetPallet(char *filename,MYPALLET *pal);//256ï½‚ï½ï½ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã€ãƒ‘ãƒ¬ãƒƒãƒˆã ã‘ã‚’å–å‡º
+	void RelSurface(MYSURFACE *s);//ãƒ†ã‚¯ã‚¹ãƒãƒ£é–‹æ”¾
 
 	void CheckBlt(MYSURFACE *dds,int x,int y,RECT r,
 		BOOL revx=FALSE,BOOL revy=FALSE,DWORD flag=0,float z=0.0f,DWORD color=0xFFFFFF);
@@ -86,7 +86,7 @@ public:
 	void ClearBackBuffer();
 	void MyBlt3D(MYSURFACE *dds,RECT src,MYRECT3D dst,DWORD flag=0,DWORD color=0xFFFFFF);
 
-	void DrawCircle(int x,int y,int rad,int w);//íœ‚«‚Ú‚ñ *ahyahya*
+	void DrawCircle(int x,int y,int rad,int w);//å‰Šé™¤ãã¼ã‚“ *ahyahya*
 	void Draw3DText();
 
 	//for directx8
@@ -113,8 +113,8 @@ public:
 	DWORD clearbgcolor;
 };
 
-//bltŒnŠÖ”‚Ìƒtƒ‰ƒO
-#define CKBLT_YUREY			(0x00000001)//—h‚ê
+//bltç³»é–¢æ•°ã®ãƒ•ãƒ©ã‚°
+#define CKBLT_YUREY			(0x00000001)//æºã‚Œ
 
 #define RELEASE(a)	if(a!=NULL){a->Release();a=NULL;}
 
@@ -130,13 +130,13 @@ struct AKIVERTEX
 #define FVF_3DVERTEX	(D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1 )
 struct MYVERTEX3D
 {
-	float x,y,z;//À•W
+	float x,y,z;//åº§æ¨™
 	DWORD color;
-	float tu,tv;//ƒeƒNƒXƒ`ƒƒÀ•W
+	float tu,tv;//ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™
 };
 
 
-//ƒGƒfƒBƒ^[‚É‘g‚İ‚Şê‡‚Ìˆ—
+//ã‚¨ãƒ‡ã‚£ã‚¿ãƒ¼ã«çµ„ã¿è¾¼ã‚€å ´åˆã®å‡¦ç†
 
 #ifdef ___GCDEDITER
 

@@ -1,4 +1,4 @@
-/*=====================================================================================
+ï»¿/*=====================================================================================
 
 Goluah!! Copyright (C) 2001-2004 aki, 2004-2016 At-sushi, 2014-2016 logger
 
@@ -12,7 +12,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 /*==============================================================
 
-	”ò‚Ñ“¹‹ïŠÖŒW
+	é£›ã³é“å…·é–¢ä¿‚
 
 ================================================================*/
 #include "character.h"
@@ -20,20 +20,20 @@ You should have received a copy of the GNU General Public License along with thi
 extern V2d v2Zero;
 
 /*---------------------------------------------------------------
-	”ò“¹‹ï‰Šú‰»(CCharacter)
+	é£›é“å…·åˆæœŸåŒ–(CCharacter)
 -----------------------------------------------------------------*/
 void CCharacter::InitBullets()
 {
-	//’n‘–‚è
+	//åœ°èµ°ã‚Š
 	bul_chiba = new CChibasiri(this,m_opt_ChibasiriPlus);
 
-	//GEƒJƒbƒ^[—p‹OÕ
+	//Gãƒ»ã‚«ãƒƒã‚¿ãƒ¼ç”¨è»Œè·¡
 	efe_track = new CTrack(this);
 
-	//ƒ~ƒjƒKƒ“
-	efe_minigun = new CMiniGunE(this);//ƒGƒtƒFƒNƒg
+	//ãƒŸãƒ‹ã‚¬ãƒ³
+	efe_minigun = new CMiniGunE(this);//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 	for(UINT i=0;i<NUM_MINIGUN;i++){
-		bul_minigun[i] = new CMiniGunB(this);//’e
+		bul_minigun[i] = new CMiniGunB(this);//å¼¾
 		bul_minigun[i]->Setup(&aif[ATTACKINFO_MINIGUN],0,0);
 	}
 
@@ -42,7 +42,7 @@ void CCharacter::InitBullets()
 
 
 /****************************************************************
-	’n‘–‚è
+	åœ°èµ°ã‚Š
 *****************************************************************/
 
 CChibasiri::CChibasiri(CCharacterBase *parent,BOOL ext) : CBulletBase(parent)
@@ -50,7 +50,7 @@ CChibasiri::CChibasiri(CCharacterBase *parent,BOOL ext) : CBulletBase(parent)
 	m_extended = ext;
 }
 
-//İ’è
+//è¨­å®š
 void CChibasiri::Startup(ATTACKINFO *patkinfo,DWORD hit_msg_id,DWORD grd_msg_id,	 
 								BOOL muki,
 								double x,
@@ -66,7 +66,7 @@ void CChibasiri::Startup(ATTACKINFO *patkinfo,DWORD hit_msg_id,DWORD grd_msg_id,
 	Go(muki,x,y,vx);
 }
 
-//”òãÄ(?)’†
+//é£›ç¿”(?)ä¸­
 void CChibasiri::act_run()
 {
 	DWORD run_len = m_extended ? 50 : 25 ;
@@ -89,7 +89,7 @@ void CChibasiri::act_run()
 	pdat->cnow = CELL_BUL_CHIBA1 + (pdat->counter)%4;
 }
 
-//“G‚ÉƒqƒbƒgŒã
+//æ•µã«ãƒ’ãƒƒãƒˆå¾Œ
 void CChibasiri::act_bomb()
 {
 	float cnt2 = (float)pdat->counter ;
@@ -103,7 +103,7 @@ void CChibasiri::act_bomb()
 
 
 /****************************************************************
-	‹OÕ
+	è»Œè·¡
 *****************************************************************/
 
 CTrack::CTrack(CCharacterBase *parent) : CBulletBase(parent)
@@ -121,7 +121,7 @@ CTrack::CTrack(CCharacterBase *parent) : CBulletBase(parent)
 }
 
 /*---------------------------------------------------------------
-	¶¬
+	ç”Ÿæˆ
 -----------------------------------------------------------------*/
 void CTrack::Create()
 {
@@ -146,7 +146,7 @@ void CTrack::Create()
 }
 
 /*---------------------------------------------------------------
-	”jŠü
+	ç ´æ£„
 -----------------------------------------------------------------*/
 void CTrack::Destroy()
 {
@@ -155,13 +155,13 @@ void CTrack::Destroy()
 }
 
 /*---------------------------------------------------------------
-	ƒ|ƒCƒ“ƒgİ’è
+	ãƒã‚¤ãƒ³ãƒˆè¨­å®š
 -----------------------------------------------------------------*/
 void CTrack::PosUpdate()
 {
 	if(pdat->aid==CBB_STATE_IDLE)return;
 	
-	//ƒpƒ‰ƒ[ƒ^XV
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ›´æ–°
 	m_rot += m_rotspd ;
 	m_rotspd *= 1.0f-m_rotdamp;
 	m_offset *= 1.0f-m_offsetdamp;
@@ -177,7 +177,7 @@ void CTrack::PosUpdate()
 	
 	static float vec_ratio = 0.5f;
 
-	//EˆÊ’uXV
+	//ãƒ»ä½ç½®æ›´æ–°
 	{
 		for(i=m_num-1;i>=m_step;i--)
 		{
@@ -200,17 +200,17 @@ void CTrack::PosUpdate()
 			float it = (1.0f/(float)m_step)*(i+1);
 			t= (1.0f-it);
 
-			//ƒxƒWƒF[
+			//ãƒ™ã‚¸ã‚§ãƒ¼
 			m_pos[i] = v2Zero;
 			m_pos[i] += (v0*(it*it*it));
 			m_pos[i] += (v1*(3.0f*t*it*it));
 			m_pos[i] += (v2*(3.0f*t*t*it));
 			m_pos[i] += (v3*(t*t*t));
 		
-			//ƒPƒcˆÊ’uXV
+			//ã‚±ãƒ„ä½ç½®æ›´æ–°
 			m_tail++;
 			if(m_tail>m_num)m_tail=m_num;
-			//“ªˆÊ’uXV
+			//é ­ä½ç½®æ›´æ–°
 			if(pdat->aid==CBB_STATE_RUN)m_head = 0;
 			else{
 				m_head ++;
@@ -228,7 +228,7 @@ void CTrack::PosUpdate()
 		m_ts->SetPos(i,pos);
 	}
 
-	//E•AF İ’è
+	//ãƒ»å¹…ã€è‰² è¨­å®š
 
 	float wdt;
 	if(pdat->aid==CBB_STATE_RUN){
@@ -267,7 +267,7 @@ void CTrack::PosUpdate()
 }
 
 /*---------------------------------------------------------------
-	•`‰æ
+	æç”»
 -----------------------------------------------------------------*/
 DWORD CTrack::Draw()
 {
@@ -276,7 +276,7 @@ DWORD CTrack::Draw()
 }
 
 /*---------------------------------------------------------------
-	s“®ŠÖ”
+	è¡Œå‹•é–¢æ•°
 -----------------------------------------------------------------*/
 void CTrack::act_run()
 {
@@ -311,7 +311,7 @@ void CTrack::Startup(
 				float offset2,
 				BOOL inv_flag)
 {
-	//ƒpƒ‰ƒ[ƒ^ƒRƒs[
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
 	m_width = width;
 	m_duration = dur;
 	m_stopcount = stop;
@@ -322,7 +322,7 @@ void CTrack::Startup(
 	m_offsetdamp = offset_damp;
 	m_offset2 = offset2;
 
-	//“à•”ƒpƒ‰ƒ[ƒ^ƒŠƒZƒbƒg
+	//å†…éƒ¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒªã‚»ãƒƒãƒˆ
 	if(GetParentObj()->muki)inv_flag = !inv_flag;
 	pdat->muki = inv_flag;
 	m_rot = 0;
@@ -337,7 +337,7 @@ void CTrack::Startup(
 }
 
 /*---------------------------------------------------------------
-	ƒpƒ‰ƒ[ƒ^İ’è
+	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 -----------------------------------------------------------------*/
 void CTrack::SetColor(BYTE a,BYTE r,BYTE g,BYTE b)
 {
@@ -349,7 +349,7 @@ void CTrack::SetColor(BYTE a,BYTE r,BYTE g,BYTE b)
 
 
 /****************************************************************
-	ƒ~ƒjƒKƒ“i’ej
+	ãƒŸãƒ‹ã‚¬ãƒ³ï¼ˆå¼¾ï¼‰
 *****************************************************************/
 CMiniGunB::CMiniGunB(CCharacterBase *parent) : CBulletBase(parent)
 {
@@ -380,7 +380,7 @@ void CMiniGunB::act_bomb()
 }
 
 /****************************************************************
-	ƒ~ƒjƒKƒ“iƒGƒtƒFƒNƒgj
+	ãƒŸãƒ‹ã‚¬ãƒ³ï¼ˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼‰
 *****************************************************************/
 CMiniGunE::CMiniGunE(CCharacterBase *parent) : CBulletBase(parent)
 {

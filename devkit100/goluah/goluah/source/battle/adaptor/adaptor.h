@@ -1,15 +1,15 @@
-
+﻿
 #define YEAH TRUE
 
 /*!
-*	@brief �L�����A�_�v�^�[�N���X
+*	@brief キャラアダプタークラス
 *	@ingroup Battle
 *
-*	�A�_�v�^�[����ڐA���Ă��������̃N���X
-*	DLL�̒��g���قƂ�ǂ��̂܂܈��p���Ă�̂ŁA���������{�̂ɓ����ł��镔�������邩���B
-*	�ȑO�̖��c�ŃO���[�o���ϐ��Ɉˑ����Ă��镔��������������̂Œ���
+*	アダプターから移植してきただけのクラス
+*	DLLの中身をほとんどそのまま引用してるので、もう少し本体に統合できる部分があるかも。
+*	以前の名残でグローバル変数に依存している部分がいくつかあるので注意
 *
-*	�܂�������ƃo�O������݂���(�L�������r���ōd������)�B
+*	まだちょっとバグがあるみたい(キャラが途中で硬直する)。
 */
 class CCharAdaptor
 {
@@ -18,7 +18,7 @@ public:
 	~CCharAdaptor();
 
 	DWORD CreateCharacter(PVOID info);
-	void InitAdaptor(CDI_CHARACTERINFO2 *info);		//!<�ȑO�̃R���X�g���N�^
+	void InitAdaptor(CDI_CHARACTERINFO2 *info);		//!<以前のコンストラクタ
 
 	DWORD Message(DWORD msg,LPVOID dat,DWORD prm1);
 	DWORD Action();
@@ -34,7 +34,7 @@ public:
 	BOOL com214(int dt);
 	BOOL com66(int dt);
 	BOOL com44(int dt);
-	BOOL NageHantei(DWORD maai);//�����̊ԍ�������
+	BOOL NageHantei(DWORD maai);//投げの間合い判定
 	BOOL com236236(int dt);
 
 	BOOL ChainCombo(DWORD chainid);
@@ -90,12 +90,12 @@ public:
 
 	DWORD chainlist;
 
-	// �s���ɂ��O���[�o���̈悩��ڂ��Ă���ꂽ���X
+	// 都合によりグローバル領域から移ってこられた方々
 	HMODULE hAction2;
-	GOBJECT *m_pchar[2];	// �O���[�o���ϐ��̕��ɑ��邽�߂́A�ʂ��B
+	GOBJECT *m_pchar[2];	// グローバル変数の方に送るための、写し。
 	DWORD m_pnagerare[2];
-	TCHAR *m_chardir;		// �v�Ή�
-	LPVOID m_mysounds[MAXMYSOUND];		// �v�Ή�
+	TCHAR *m_chardir;		// 要対応
+	LPVOID m_mysounds[MAXMYSOUND];		// 要対応
 	MYSURFACE* m_mysurface[2][12];
 	GCD_CELL2 m_cdat[2][GCDMAX_CELLS];
 	GCD_RECT m_rdat[2][GCDMAX_RECTANGLES];
@@ -109,9 +109,9 @@ public:
 };
 extern DWORD extwin;
 /*
-#define ACTID_WALKF		0x0005//�O����
-#define ACTID_WALKB		0x0006//������
-#define ACTID_JAMPS		0x0007//�W�����v�\������
+#define ACTID_WALKF		0x0005//前歩き
+#define ACTID_WALKB		0x0006//後ろ歩き
+#define ACTID_JAMPS		0x0007//ジャンプ予備動作
 #define ACTID_DASH		0x0008
 #define ACTID_DASHB		0x0009
 #define ACTID_JAMPC		(ACTID_KUCYU | 0x0002)
@@ -119,7 +119,7 @@ extern DWORD extwin;
 #define ACTID_JAMPB		(ACTID_KUCYU | 0x0004)
 #define ACTID_RAKKA2	(ACTID_KUCYU | 0x0005)
 */
-#define ACTID_STRIKERCOMEON	(0x000B)//�����[
+#define ACTID_STRIKERCOMEON	(0x000B)//いけー
 /*
 #define ACTID_ATT_SA	(ACTID_ATTACK | 0x0001)
 #define ACTID_ATT_SB	(ACTID_ATTACK | 0x0002)
@@ -133,12 +133,12 @@ extern DWORD extwin;
 #define ACTID_ATT_JB	(ACTID_ATTACK | ACTID_KUCYU | 0x0002)
 #define ACTID_ATT_JC	(ACTID_ATTACK | ACTID_KUCYU | 0x0003)
 */
-#define ACTID_KOUTAIOUT	(ACTID_INOUT | 0x0001)//���B��ʊO�ɔ��ł��B
-#define ACTID_KOUTAIIN	(ACTID_INOUT | 0x0002)//���B��ʓ��ɔ��ł���
-#define ACTID_TAIKI		(ACTID_INOUT | 0x0003)//��ʊO�ɔ��ł��đҋ@
-#define ACTID_KOUTAI	(ACTID_INOUT | 0x0004)//��ʊO������ł���
-#define ACTID_TAIKICYU	(ACTID_INOUT | 0x0009)//�ҋ@����\
-#define ACTID_KOUTAI2	(ACTID_INOUT | 0x000A)//����A�|�[�Y�L��
+#define ACTID_KOUTAIOUT	(ACTID_INOUT | 0x0001)//交代。画面外に飛んでく。
+#define ACTID_KOUTAIIN	(ACTID_INOUT | 0x0002)//交代。画面内に飛んでくる
+#define ACTID_TAIKI		(ACTID_INOUT | 0x0003)//画面外に飛んでって待機
+#define ACTID_KOUTAI	(ACTID_INOUT | 0x0004)//画面外から飛んでくる
+#define ACTID_TAIKICYU	(ACTID_INOUT | 0x0009)//待機ちゅ—
+#define ACTID_KOUTAI2	(ACTID_INOUT | 0x000A)//交代後、ポーズキメ
 
 #define MYGOBJMSG_NAGE	(GOBJMSG_USERDEFINE | 1)
 //chain combo

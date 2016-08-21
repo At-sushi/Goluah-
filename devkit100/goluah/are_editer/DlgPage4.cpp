@@ -1,4 +1,4 @@
-// DlgPage4.cpp : À‘•ƒtƒ@ƒCƒ‹
+ï»¿// DlgPage4.cpp : å®Ÿè£…ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 
 CDlgPage4* CDlgPage4::m_pinstance=NULL;
 
-// CDlgPage4 ƒ_ƒCƒAƒƒO
+// CDlgPage4 ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 IMPLEMENT_DYNAMIC(CDlgPage4, CMyDialogTab)
 CDlgPage4::CDlgPage4(CWnd* pParent /*=NULL*/)
@@ -85,45 +85,45 @@ BEGIN_MESSAGE_MAP(CDlgPage4, CDialog)
 END_MESSAGE_MAP()
 
 
-// CDlgPage4 ƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰
+// CDlgPage4 ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ©
 
 /*-----------------------------------------------------------------------
-	ƒ_ƒCƒAƒƒO‰Šú‰»ˆ—
+	ãƒ€ã‚¤ã‚¢ãƒ­ã‚°åˆæœŸåŒ–å‡¦ç†
 -------------------------------------------------------------------------*/
 BOOL CDlgPage4::OnInitDialog()
 {
 	CMyDialogTab::OnInitDialog();
 
-	// TODO :  ‚±‚±‚É‰Šú‰»‚ğ’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢
+	// TODO :  ã“ã“ã«åˆæœŸåŒ–ã‚’è¿½åŠ ã—ã¦ãã ã•ã„
 
-	//‹éŒ`ƒCƒ“ƒfƒbƒNƒXƒRƒ“ƒ{ƒ{ƒbƒNƒX‚É€–Ú“Ë‚Á‚İ
+	//çŸ©å½¢ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã«é …ç›®çªã£è¾¼ã¿
 /*	CComboBox* combo = (CComboBox*)GetDlgItem(IDC_COMBO_RECT);
 	if(!combo){
-		OutputDebugString("CDlgPage4::OnInitDialog æ“¾¸”sHH\n");
+		OutputDebugString("CDlgPage4::OnInitDialog å–å¾—å¤±æ•—ï¼Ÿï¼Ÿ\n");
 		throw;
 	}
 	RECT r = {65,24,65+100,24+200};
 	combo->MoveWindow(&r,FALSE);
-	combo->InsertString(0, "‹éŒ`0" );
-	combo->InsertString(1, "‹éŒ`1" );
-	combo->InsertString(2, "‹éŒ`2" );
-	combo->InsertString(3, "‹éŒ`3" );
-	combo->InsertString(4, "‹éŒ`4" );
-	combo->InsertString(5, "‹éŒ`5" );
-	combo->InsertString(6, "‹éŒ`6" );
-	combo->InsertString(7, "‹éŒ`7" );
+	combo->InsertString(0, "çŸ©å½¢0" );
+	combo->InsertString(1, "çŸ©å½¢1" );
+	combo->InsertString(2, "çŸ©å½¢2" );
+	combo->InsertString(3, "çŸ©å½¢3" );
+	combo->InsertString(4, "çŸ©å½¢4" );
+	combo->InsertString(5, "çŸ©å½¢5" );
+	combo->InsertString(6, "çŸ©å½¢6" );
+	combo->InsertString(7, "çŸ©å½¢7" );
 	combo->SetCurSel(0);*/
 
-	//ƒXƒsƒ“ƒRƒ“ƒgƒ[ƒ‹İ’è
+	//ã‚¹ãƒ”ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«è¨­å®š
 	CSpinButtonCtrl* spin = (CSpinButtonCtrl*)GetDlgItem(IDC_SPIN1);
 	if(!spin){
-		OutputDebugString("CDlgRPage1::OnInitDialog spinæ“¾¸”sHH\n");
+		OutputDebugString("CDlgRPage1::OnInitDialog spinå–å¾—å¤±æ•—ï¼Ÿï¼Ÿ\n");
 		throw;
 	}
 	spin->SetRange32(0,1023);
 	spin->SetPos(0);
 
-	//ƒXƒ‰ƒCƒ_[İ’è
+	//ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼è¨­å®š
 	CSliderCtrl *sl;
 	sl = (CSliderCtrl*)GetDlgItem(IDC_SLIDER_COLOR_A);
 	sl->SetRange(0,1000);
@@ -140,24 +140,24 @@ BOOL CDlgPage4::OnInitDialog()
 	sl = (CSliderCtrl*)GetDlgItem(IDC_SLIDER_ROT);
 	sl->SetRange(0,360*2);
 
-	//ƒ‰ƒWƒIƒ{ƒ^ƒ“İ’è
+	//ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³è¨­å®š
 	CButton* item_radio = (CButton*)GetDlgItem(IDC_RADIO1);
 	if(item_radio)item_radio->SetCheck(TRUE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// —áŠO : OCX ƒvƒƒpƒeƒB ƒy[ƒW‚Í•K‚¸ FALSE ‚ğ•Ô‚µ‚Ü‚·B
+	// ä¾‹å¤– : OCX ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ ãƒšãƒ¼ã‚¸ã¯å¿…ãš FALSE ã‚’è¿”ã—ã¾ã™ã€‚
 }
 
 /*------------------------------------------------------------------------
-	‹éŒ`ƒCƒ“ƒfƒbƒNƒX•ÏXˆ—
+	çŸ©å½¢ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å¤‰æ›´æ™‚å‡¦ç†
 --------------------------------------------------------------------------*
 void CDlgPage4::OnCbnSelchangeComboRect()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	CCelleditDlg* pdlg = m_niseParent;
 
 	if(!pdlg){
-		theApp.SetStatus("CDlgPage4::OnCbnSelchangeCombo1 ƒGƒ‰[Aeƒ_ƒCƒAƒƒOæ“¾¸”s");
+		theApp.SetStatus("CDlgPage4::OnCbnSelchangeCombo1 ã‚¨ãƒ©ãƒ¼ã€è¦ªãƒ€ã‚¤ã‚¢ãƒ­ã‚°å–å¾—å¤±æ•—");
 		return;
 	}
 
@@ -166,7 +166,7 @@ void CDlgPage4::OnCbnSelchangeComboRect()
 }
 
 /*------------------------------------------------------------------------
-	•\¦•¨XV
+	è¡¨ç¤ºç‰©æ›´æ–°
 --------------------------------------------------------------------------*/
 void CDlgPage4::UpdateItems()
 {
@@ -208,11 +208,11 @@ void CDlgPage4::UpdateItems()
 }
 
 /*------------------------------------------------------------------------
-	”½“]ƒtƒ‰ƒO@ƒ`ƒFƒbƒNƒ{ƒbƒNƒX
+	åè»¢ãƒ•ãƒ©ã‚°ã€€ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹
 --------------------------------------------------------------------------*/
 void CDlgPage4::OnBnClickedCheckFlipx()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	UpdateData(TRUE);
 	GCD_CELL2 *pc = theApp.GetCurrentCell();
 	if(!pc)return;
@@ -221,13 +221,13 @@ void CDlgPage4::OnBnClickedCheckFlipx()
 
 	if(m_flipX){
 		pc->cell[ theApp.GetCurrentCellRectNO() ].flag |= GCDCELL_REVERSE_X;
-		str.Format("ƒZƒ‹%d - ‹éŒ`%d : X”½“] ON",
+		str.Format("ã‚»ãƒ«%d - çŸ©å½¢%d : Xåè»¢ ON",
 			theApp.GetCurrentCellNO(),theApp.GetCurrentCellRectNO());
 		theApp.SetStatus(str);
 	}
 	else{
 		pc->cell[ theApp.GetCurrentCellRectNO() ].flag &= ~GCDCELL_REVERSE_X;
-		str.Format("ƒZƒ‹%d - ‹éŒ`%d : X”½“] OFF",
+		str.Format("ã‚»ãƒ«%d - çŸ©å½¢%d : Xåè»¢ OFF",
 			theApp.GetCurrentCellNO(),theApp.GetCurrentCellRectNO());
 		theApp.SetStatus(str);
 	}
@@ -236,7 +236,7 @@ void CDlgPage4::OnBnClickedCheckFlipx()
 
 void CDlgPage4::OnBnClickedCheckFlipy()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	UpdateData(TRUE);
 	GCD_CELL2 *pc = theApp.GetCurrentCell();
 	if(!pc)return;
@@ -245,13 +245,13 @@ void CDlgPage4::OnBnClickedCheckFlipy()
 
 	if(m_flipY){
 		pc->cell[ theApp.GetCurrentCellRectNO() ].flag |= GCDCELL_REVERSE_Y;
-		str.Format("ƒZƒ‹%d - ‹éŒ`%d : Y”½“] ON",
+		str.Format("ã‚»ãƒ«%d - çŸ©å½¢%d : Yåè»¢ ON",
 			theApp.GetCurrentCellNO(),theApp.GetCurrentCellRectNO());
 		theApp.SetStatus(str);
 	}
 	else{
 		pc->cell[ theApp.GetCurrentCellRectNO() ].flag &= ~GCDCELL_REVERSE_Y;
-		str.Format("ƒZƒ‹%d - ‹éŒ`%d : Y”½“] OFF",
+		str.Format("ã‚»ãƒ«%d - çŸ©å½¢%d : Yåè»¢ OFF",
 			theApp.GetCurrentCellNO(),theApp.GetCurrentCellRectNO());
 		theApp.SetStatus(str);
 	}
@@ -259,11 +259,11 @@ void CDlgPage4::OnBnClickedCheckFlipy()
 }
 
 /*------------------------------------------------------------------------
-	‰ÁZ‡¬@ƒ`ƒFƒbƒNƒ{ƒbƒNƒX
+	åŠ ç®—åˆæˆã€€ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹
 --------------------------------------------------------------------------*/
 void CDlgPage4::OnBnClickedCheckBlendadd()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	UpdateData(TRUE);
 	GCD_CELL2 *pc = theApp.GetCurrentCell();
 	if(!pc)return;
@@ -272,13 +272,13 @@ void CDlgPage4::OnBnClickedCheckBlendadd()
 
 	if(m_blendadd){
 		pc->cell[ theApp.GetCurrentCellRectNO() ].flag |= GCDCELL_BLEND_ADD;
-		str.Format("ƒZƒ‹%d - ‹éŒ`%d : ‰ÁZ‡¬",
+		str.Format("ã‚»ãƒ«%d - çŸ©å½¢%d : åŠ ç®—åˆæˆ",
 			theApp.GetCurrentCellNO(),theApp.GetCurrentCellRectNO());
 		theApp.SetStatus(str);
 	}
 	else{
 		pc->cell[ theApp.GetCurrentCellRectNO() ].flag &= ~GCDCELL_BLEND_ADD;
-		str.Format("ƒZƒ‹%d - ‹éŒ`%d : ’Êí‡¬",
+		str.Format("ã‚»ãƒ«%d - çŸ©å½¢%d : é€šå¸¸åˆæˆ",
 			theApp.GetCurrentCellNO(),theApp.GetCurrentCellRectNO());
 		theApp.SetStatus(str);
 	}
@@ -286,12 +286,12 @@ void CDlgPage4::OnBnClickedCheckBlendadd()
 }
 
 /*------------------------------------------------------------------------
-	‹éŒ`”Ô†•ÏXˆ—
+	çŸ©å½¢ç•ªå·å¤‰æ›´æ™‚å‡¦ç†
 --------------------------------------------------------------------------*/
 void CDlgPage4::OnDeltaposSpin1(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMUPDOWN pNMUpDown = reinterpret_cast<LPNMUPDOWN>(pNMHDR);
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	*pResult = 0;
 
 	GCD_CELL2 *pc = theApp.GetCurrentCell();
@@ -306,7 +306,7 @@ void CDlgPage4::OnDeltaposSpin1(NMHDR *pNMHDR, LRESULT *pResult)
 
 void CDlgPage4::OnBnClickedButtonPrev10()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	GCD_CELL2 *pc = theApp.GetCurrentCell();
 	UINT next = pc->cell[ theApp.GetCurrentCellRectNO() ].cdr - 10;
 
@@ -319,7 +319,7 @@ void CDlgPage4::OnBnClickedButtonPrev10()
 
 void CDlgPage4::OnBnClickedButtonNext10()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	GCD_CELL2 *pc = theApp.GetCurrentCell();
 	UINT next = pc->cell[ theApp.GetCurrentCellRectNO() ].cdr + 10;
 
@@ -332,11 +332,11 @@ void CDlgPage4::OnBnClickedButtonNext10()
 
 void CDlgPage4::OnBnClickedButtonPrevFind()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	GCD_CELL2 *pc = theApp.GetCurrentCell();
 	UINT next = pc->cell[ theApp.GetCurrentCellRectNO() ].cdr - 1;
 	if(next==0){
-		theApp.SetStatus("s‚«~‚Ü‚è");
+		theApp.SetStatus("è¡Œãæ­¢ã¾ã‚Š");
 		return;
 	}
 
@@ -345,7 +345,7 @@ void CDlgPage4::OnBnClickedButtonPrevFind()
 	while(gcd->IsEmptyRect(next)){
 		next--;
 		if(next==0){
-			theApp.SetStatus("Prev Rect : ‚ ‚è‚Ü‚¹‚ñ");
+			theApp.SetStatus("Prev Rect : ã‚ã‚Šã¾ã›ã‚“");
 			return;
 		}
 	}
@@ -355,11 +355,11 @@ void CDlgPage4::OnBnClickedButtonPrevFind()
 
 void CDlgPage4::OnBnClickedButtonNextFind()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	GCD_CELL2 *pc = theApp.GetCurrentCell();
 	UINT next = pc->cell[ theApp.GetCurrentCellRectNO() ].cdr + 1;
 	if(next==1023){
-		theApp.SetStatus("s‚«~‚Ü‚è");
+		theApp.SetStatus("è¡Œãæ­¢ã¾ã‚Š");
 		return;
 	}
 
@@ -368,7 +368,7 @@ void CDlgPage4::OnBnClickedButtonNextFind()
 	while(gcd->IsEmptyRect(next)){
 		next++;
 		if(next==1023){
-			theApp.SetStatus("Next Rect : ‚ ‚è‚Ü‚¹‚ñ");
+			theApp.SetStatus("Next Rect : ã‚ã‚Šã¾ã›ã‚“");
 			return;
 		}
 	}
@@ -377,29 +377,29 @@ void CDlgPage4::OnBnClickedButtonNextFind()
 }
 
 /*------------------------------------------------------------------------
-	‹éŒ`”Ô†‚ğ0i‚È‚µj‚Éİ’è
+	çŸ©å½¢ç•ªå·ã‚’0ï¼ˆãªã—ï¼‰ã«è¨­å®š
 --------------------------------------------------------------------------*/
 void CDlgPage4::OnBnClickedButtonErase()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	GCD_CELL2 *pc = theApp.GetCurrentCell();
 	pc->cell[ theApp.GetCurrentCellRectNO() ].cdr = 0;
 
-	theApp.SetStatus("‹éŒ`–³‚µ(0”Ô)İ’è");
+	theApp.SetStatus("çŸ©å½¢ç„¡ã—(0ç•ª)è¨­å®š");
 	theApp.InvalidateAll();
 }
 
 /*------------------------------------------------------------------------
-	ƒZƒ‹‹éŒ`”Ô†EDIT BOX
+	ã‚»ãƒ«çŸ©å½¢ç•ªå·EDIT BOX
 --------------------------------------------------------------------------*/
 void CDlgPage4::OnEnChangeEdit1()
 {
-	// TODO :  ‚±‚ê‚ª RICHEDIT ƒRƒ“ƒgƒ[ƒ‹‚Ìê‡A‚Ü‚¸ACMyDialogTab::OnInitDialog() ŠÖ”‚ğƒI[ƒo[ƒ‰ƒCƒh‚µ‚ÄA
-	// OR ó‘Ô‚Ì ENM_CORRECTTEXT ƒtƒ‰ƒO‚ğƒ}ƒXƒN‚É“ü‚ê‚ÄA
-	// CRichEditCtrl().SetEventMask() ‚ğŒÄ‚Ño‚³‚È‚¢ŒÀ‚èA
-	// ƒRƒ“ƒgƒ[ƒ‹‚ÍA‚±‚Ì’Ê’m‚ğ‘—M‚µ‚Ü‚¹‚ñB
+	// TODO :  ã“ã‚ŒãŒ RICHEDIT ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®å ´åˆã€ã¾ãšã€CMyDialogTab::OnInitDialog() é–¢æ•°ã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã—ã¦ã€
+	// OR çŠ¶æ…‹ã® ENM_CORRECTTEXT ãƒ•ãƒ©ã‚°ã‚’ãƒã‚¹ã‚¯ã«å…¥ã‚Œã¦ã€
+	// CRichEditCtrl().SetEventMask() ã‚’å‘¼ã³å‡ºã•ãªã„é™ã‚Šã€
+	// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã¯ã€ã“ã®é€šçŸ¥ã‚’é€ä¿¡ã—ã¾ã›ã‚“ã€‚
 
-	// TODO :  ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+	// TODO :  ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 	DWORD prv = m_cellrectNO;
 	UpdateData(TRUE);
 
@@ -407,7 +407,7 @@ void CDlgPage4::OnEnChangeEdit1()
 
 	if(m_cellrectNO<1 || m_cellrectNO>1023){
 		m_cellrectNO = prv;
-		theApp.SetStatus("‹éŒ`”Ô†‚É•s³‚È’l‚ª“ü—Í‚³‚ê‚½");
+		theApp.SetStatus("çŸ©å½¢ç•ªå·ã«ä¸æ­£ãªå€¤ãŒå…¥åŠ›ã•ã‚ŒãŸ");
 		return;
 	}
 	pc->cell[ theApp.GetCurrentCellRectNO() ].cdr = m_cellrectNO;
@@ -415,71 +415,71 @@ void CDlgPage4::OnEnChangeEdit1()
 }
 
 /*------------------------------------------------------------------------
-	‹éŒ`ƒCƒ“ƒfƒbƒNƒXEƒ‰ƒWƒIƒ{ƒ^ƒ“ˆ—
+	çŸ©å½¢ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ»ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³å‡¦ç†
 --------------------------------------------------------------------------*/
 void CDlgPage4::OnBnClickedRadio1()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	m_rectIndex = 0;
 	m_niseParent->OnChangeRectIndex(0);
 }
 
 void CDlgPage4::OnBnClickedRadio2()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	m_rectIndex = 1;
 	m_niseParent->OnChangeRectIndex(1);
 }
 
 void CDlgPage4::OnBnClickedRadio3()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	m_rectIndex = 2;
 	m_niseParent->OnChangeRectIndex(2);
 }
 
 void CDlgPage4::OnBnClickedRadio4()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	m_rectIndex = 3;
 	m_niseParent->OnChangeRectIndex(3);
 }
 
 void CDlgPage4::OnBnClickedRadio5()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	m_rectIndex = 4;
 	m_niseParent->OnChangeRectIndex(4);
 }
 
 void CDlgPage4::OnBnClickedRadio8()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	m_rectIndex = 5;
 	m_niseParent->OnChangeRectIndex(5);
 }
 
 void CDlgPage4::OnBnClickedRadio9()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	m_rectIndex = 6;
 	m_niseParent->OnChangeRectIndex(6);
 }
 
 void CDlgPage4::OnBnClickedRadio10()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	m_rectIndex = 7;
 	m_niseParent->OnChangeRectIndex(7);
 }
 
 /*------------------------------------------------------------------------
-	FŠ„‡ƒXƒ‰ƒCƒ_[ƒRƒ“ƒgƒ[ƒ‹ˆ—
+	è‰²å‰²åˆã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«å‡¦ç†
 --------------------------------------------------------------------------*/
 void CDlgPage4::OnNMCustomdrawSliderColorA(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	*pResult = 0;
 
 	int pos ;
@@ -497,7 +497,7 @@ void CDlgPage4::OnNMCustomdrawSliderColorA(NMHDR *pNMHDR, LRESULT *pResult)
 void CDlgPage4::OnNMCustomdrawSliderColorR(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	*pResult = 0;
 	
 	int pos ;
@@ -515,7 +515,7 @@ void CDlgPage4::OnNMCustomdrawSliderColorR(NMHDR *pNMHDR, LRESULT *pResult)
 void CDlgPage4::OnNMCustomdrawSliderColorG(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	*pResult = 0;
 
 	int pos ;
@@ -533,7 +533,7 @@ void CDlgPage4::OnNMCustomdrawSliderColorG(NMHDR *pNMHDR, LRESULT *pResult)
 void CDlgPage4::OnNMCustomdrawSliderColorB(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	*pResult = 0;
 
 	int pos ;
@@ -550,7 +550,7 @@ void CDlgPage4::OnNMCustomdrawSliderColorB(NMHDR *pNMHDR, LRESULT *pResult)
 
 
 /*------------------------------------------------------------------------
-	FŠ„‡ƒGƒfƒBƒbƒgƒRƒ“ƒgƒ[ƒ‹ˆ—
+	è‰²å‰²åˆã‚¨ãƒ‡ã‚£ãƒƒãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«å‡¦ç†
 --------------------------------------------------------------------------*/
 void CDlgPage4::OnEnChangeEditColorA()
 {
@@ -593,12 +593,12 @@ void CDlgPage4::OnEnChangeEditColorB()
 }
 
 /*------------------------------------------------------------------------
-	X/Y ƒXƒP[ƒ‹
+	X/Y ã‚¹ã‚±ãƒ¼ãƒ«
 --------------------------------------------------------------------------*/
 void CDlgPage4::OnNMCustomdrawSliderScax(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	*pResult = 0;
 
 	int pos ;
@@ -616,7 +616,7 @@ void CDlgPage4::OnNMCustomdrawSliderScax(NMHDR *pNMHDR, LRESULT *pResult)
 void CDlgPage4::OnNMCustomdrawSliderScay(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	*pResult = 0;
 
 	int pos ;
@@ -653,12 +653,12 @@ void CDlgPage4::OnEnChangeEditScay()
 }
 
 /*------------------------------------------------------------------------
-	‰ñ“]
+	å›è»¢
 --------------------------------------------------------------------------*/
 void CDlgPage4::OnNMCustomdrawSliderRot(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	*pResult = 0;
 
 	int pos ;

@@ -1,23 +1,23 @@
-#pragma once
+ï»¿#pragma once
 
 
-// CDlgTPage2 ƒ_ƒCƒAƒƒO
+// CDlgTPage2 ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 class CDlgTPage2 : public CMyDialogTab
 {
 	DECLARE_DYNAMIC(CDlgTPage2)
 
 public:
-	CDlgTPage2(CWnd* pParent = NULL);   // •W€ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	CDlgTPage2(CWnd* pParent = NULL);   // æ¨™æº–ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~CDlgTPage2();
 
-	void UpdateItems(){}//•\¦•¨XV
+	void UpdateItems(){}//è¡¨ç¤ºç‰©æ›´æ–°
 
-// ƒ_ƒCƒAƒƒO ƒf[ƒ^
+// ãƒ€ã‚¤ã‚¢ãƒ­ã‚° ãƒ‡ãƒ¼ã‚¿
 	enum { IDD = IDD_DIALOG_RTAB2 };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ƒTƒ|[ƒg
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ã‚µãƒãƒ¼ãƒˆ
 
 	DECLARE_MESSAGE_MAP()
 public:

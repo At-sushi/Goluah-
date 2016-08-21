@@ -1,8 +1,8 @@
-/*=======================================================================================
+ï»¿/*=======================================================================================
 
-	•\¦Œnƒx[ƒX
+	è¡¨ç¤ºç³»ãƒ™ãƒ¼ã‚¹
 
-	‰æ–Êã•\¦•¨ƒx[ƒXƒNƒ‰ƒX
+	ç”»é¢ä¸Šè¡¨ç¤ºç‰©ãƒ™ãƒ¼ã‚¹ã‚¯ãƒ©ã‚¹
 
 =========================================================================================*/
 #pragma once
@@ -11,9 +11,9 @@
 #include "define_gcd.h"
 #include "define_const.h"
 
-class CTBeltBase;				//‘ÑóƒEƒCƒ“ƒhƒE
-class CTWindowBase;				//’PƒlŠpŒ`ƒEƒCƒ“ƒhƒE
-class CTIconRingBase;			//ƒAƒCƒRƒ“ƒŠƒ“ƒO•\¦&‘I‘ğ
+class CTBeltBase;				//å¸¯çŠ¶ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+class CTWindowBase;				//å˜ç´”å››è§’å½¢ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+class CTIconRingBase;			//ã‚¢ã‚¤ã‚³ãƒ³ãƒªãƒ³ã‚°è¡¨ç¤º&é¸æŠ
 
 /*!
 *	@ingroup Tasks
@@ -21,7 +21,7 @@ class CTIconRingBase;			//ƒAƒCƒRƒ“ƒŠƒ“ƒO•\¦&‘I‘ğ
 /*@{*/
 
 /*!
-*	@brief ƒIƒró•`‰æ•¨ƒx[ƒXƒNƒ‰ƒX
+*	@brief ã‚ªãƒ“çŠ¶æç”»ç‰©ãƒ™ãƒ¼ã‚¹ã‚¯ãƒ©ã‚¹
 */
 class CTBeltBase : public CTaskBase
 {
@@ -31,12 +31,12 @@ public:
 
 	virtual void Draw();
 
-	//•`‰æƒvƒ‰ƒCƒIƒŠƒeƒB
+	//æç”»ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 	int m_draw_priority;
 	virtual int GetDrawPriority(){return m_draw_priority;}
 	virtual void SetPriority(int pri){m_draw_priority = pri;}
 
-	//Šeí‘€ì
+	//å„ç¨®æ“ä½œ
 	void SetLeft(){m_pos=0;}
 	void SetRight(){m_pos=1;}
 	void SetCenter(){m_pos=2;}
@@ -47,36 +47,36 @@ public:
 	void SetAlpha2(BYTE a){m_alpha2=a;}
 	
 protected:
-	BYTE  m_pos;				//!< xˆÊ’u 0:‰E 1:¶ 2:’†‰› iƒeƒLƒXƒgEƒ¿”²‚« ‚É‰e‹¿j
+	BYTE  m_pos;				//!< xä½ç½® 0:å³ 1:å·¦ 2:ä¸­å¤® ï¼ˆãƒ†ã‚­ã‚¹ãƒˆãƒ»Î±æŠœã ã«å½±éŸ¿ï¼‰
 	
-	TCHAR  m_disp_str[128];		//!< •\¦ƒeƒLƒXƒg@i’Nj
-	TCHAR  m_disp_str2[128];		//!< •\¦ƒeƒLƒXƒg@iƒtƒHƒ‹ƒ_j
-	BOOL  m_show_text;			//!< ƒeƒLƒXƒg on/off
-	BOOL  m_txtTop;				//!< ƒeƒLƒXƒg‚ğã‚É”z’u‚·‚é‚©A‰º‚É”z’u‚·‚é‚©
-	float m_txtLeft;			//!< ƒeƒLƒXƒg‚Ì¶ˆÊ’u
-	BOOL  m_txtR2L;				//!< ƒeƒLƒXƒg‰E¨¶•`‰æ
+	TCHAR  m_disp_str[128];		//!< è¡¨ç¤ºãƒ†ã‚­ã‚¹ãƒˆã€€ï¼ˆèª°ï¼‰
+	TCHAR  m_disp_str2[128];		//!< è¡¨ç¤ºãƒ†ã‚­ã‚¹ãƒˆã€€ï¼ˆãƒ•ã‚©ãƒ«ãƒ€ï¼‰
+	BOOL  m_show_text;			//!< ãƒ†ã‚­ã‚¹ãƒˆ on/off
+	BOOL  m_txtTop;				//!< ãƒ†ã‚­ã‚¹ãƒˆã‚’ä¸Šã«é…ç½®ã™ã‚‹ã‹ã€ä¸‹ã«é…ç½®ã™ã‚‹ã‹
+	float m_txtLeft;			//!< ãƒ†ã‚­ã‚¹ãƒˆã®å·¦ä½ç½®
+	BOOL  m_txtR2L;				//!< ãƒ†ã‚­ã‚¹ãƒˆå³â†’å·¦æç”»
 
-	BYTE  m_alpha1,m_alpha2;	//!< ƒ¿A”Z‚¢‚Æ‚±E”–‚¢‚Æ‚±
-	DWORD m_lineCol;			//!< ƒ‰ƒCƒ“‚ÌƒJƒ‰[iƒ¿ˆÈŠOj
-	DWORD m_bodyCol;			//!< –{‘Ì‚ÌƒJƒ‰[iƒ¿ˆÈŠOj
-	DWORD m_txtCol1,m_txtCol2;	//!< ƒeƒLƒXƒgƒJƒ‰[iƒ¿ŠÜj
+	BYTE  m_alpha1,m_alpha2;	//!< Î±ã€æ¿ƒã„ã¨ã“ãƒ»è–„ã„ã¨ã“
+	DWORD m_lineCol;			//!< ãƒ©ã‚¤ãƒ³ã®ã‚«ãƒ©ãƒ¼ï¼ˆÎ±ä»¥å¤–ï¼‰
+	DWORD m_bodyCol;			//!< æœ¬ä½“ã®ã‚«ãƒ©ãƒ¼ï¼ˆÎ±ä»¥å¤–ï¼‰
+	DWORD m_txtCol1,m_txtCol2;	//!< ãƒ†ã‚­ã‚¹ãƒˆã‚«ãƒ©ãƒ¼ï¼ˆÎ±å«ï¼‰
 
-	float m_lineWidth;			//!< F‚Â‚«ƒ‰ƒCƒ“‘¾‚³
+	float m_lineWidth;			//!< è‰²ã¤ããƒ©ã‚¤ãƒ³å¤ªã•
 
-	//y ˆÊ’u’¼w’è—p
+	//y ä½ç½®ç›´æŒ‡å®šç”¨
 	float m_top , m_bottom;
 
-	//y ˆÊ’uŠÔÚw’è
-	float m_base_y;				//!< yˆÊ’u
-	float m_height_base;		//!< •½í‚‚³
-	float m_ratio;				//!< ‚‚³—¦
-	void CalcTopBottom();		//!< m_top , m_bottom Zo(•`‰æ‘O‚ÉƒR[ƒ‹‚·‚é‚±‚Æ)
+	//y ä½ç½®é–“æ¥æŒ‡å®š
+	float m_base_y;				//!< yä½ç½®
+	float m_height_base;		//!< å¹³å¸¸æ™‚é«˜ã•
+	float m_ratio;				//!< é«˜ã•ç‡
+	void CalcTopBottom();		//!< m_top , m_bottom ç®—å‡º(æç”»å‰ã«ã‚³ãƒ¼ãƒ«ã™ã‚‹ã“ã¨)
 
 };
 
 
 /*!
-*	@brief ’PƒlŠpŒ`ƒEƒCƒ“ƒhƒEó•`‰æ•¨ƒx[ƒXƒNƒ‰ƒX
+*	@brief å˜ç´”å››è§’å½¢ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦çŠ¶æç”»ç‰©ãƒ™ãƒ¼ã‚¹ã‚¯ãƒ©ã‚¹
 */
 class CTWindowBase : public CTaskBase
 {
@@ -86,39 +86,39 @@ public:
 	virtual BOOL Execute(DWORD time);
 	virtual void Draw();
 
-	//•`‰æƒvƒ‰ƒCƒIƒŠƒeƒB
+	//æç”»ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 	int m_draw_priority;
 	virtual int GetDrawPriority(){return (m_ratio<0.01f) ? -1 : m_draw_priority;}
 	virtual void SetPriority(int pri){m_draw_priority = pri;}
 
-	//‘€ì
+	//æ“ä½œ
 	virtual void Open();
 	virtual void Close();
 	virtual void SetPos(float x,float y){m_winleft=x;m_wintop=y;}
 
 protected:
-	//ƒEƒCƒ“ƒhƒEƒpƒ‰ƒ[ƒ^
-	float m_ratio;			//ƒEƒCƒ“ƒhƒE‘å‚«‚³
-	float m_winwidth;		//ƒEƒCƒ“ƒhƒE‚Ì•i•W€j
-	float m_winheight;		//ƒEƒCƒ“ƒhƒE‚Ì‚‚³i•W€j
-	float m_winleft;		//ƒEƒCƒ“ƒhƒEˆÊ’u
-	float m_wintop;			//ƒEƒCƒ“ƒhƒEˆÊ’u
-	DWORD m_wincolor;		//•`‰æ‚Ég‚¤’¸“_F
-	float m_winOpenTime;	//ƒEƒBƒ“ƒhƒEƒI[ƒvƒ“ƒAƒjƒ[ƒVƒ‡ƒ“‘¬“x
-	float m_winCloseTime;	//ƒEƒBƒ“ƒhƒEƒNƒ[ƒYƒAƒjƒ[ƒVƒ‡ƒ“‘¬“x
+	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	float m_ratio;			//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å¤§ãã•
+	float m_winwidth;		//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®å¹…ï¼ˆæ¨™æº–æ™‚ï¼‰
+	float m_winheight;		//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®é«˜ã•ï¼ˆæ¨™æº–æ™‚ï¼‰
+	float m_winleft;		//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½ç½®
+	float m_wintop;			//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½ç½®
+	DWORD m_wincolor;		//æç”»ã«ä½¿ã†é ‚ç‚¹è‰²
+	float m_winOpenTime;	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ¼ãƒ—ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é€Ÿåº¦
+	float m_winCloseTime;	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ­ãƒ¼ã‚ºã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é€Ÿåº¦
 	
-	//ƒeƒLƒXƒg•`‰æBƒEƒCƒ“ƒhƒE‚ÌƒTƒCƒY‚É‡‚í‚¹‚Ä•`‰æ‚µ‚Ä‚­‚¾‚³‚éB
-	//ˆø”‚ÍCSystem‚ÌDrawBMPText‚Æˆê‚¾‚¯‚ÇAˆÊ’u‚ÍƒEƒCƒ“ƒhƒE“à‚Å‚ÌˆÊ’u
+	//ãƒ†ã‚­ã‚¹ãƒˆæç”»ã€‚ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºã«åˆã‚ã›ã¦æç”»ã—ã¦ãã ã•ã‚‹ã€‚
+	//å¼•æ•°ã¯CSystemã®DrawBMPTextã¨ä¸€ç·’ã ã‘ã©ã€ä½ç½®ã¯ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…ã§ã®ä½ç½®
 	void DrawText(float x,float y,float z,
 					TCHAR *str,DWORD col,
 					float scaX=1.0f,float scaY=1.0f,DWORD flags=SYSBMPTXT_PROP);
 
-	//•`‰æ‚ÉÀÛ‚Ég‚¤’lBƒTƒuƒNƒ‰ƒX‚Å‚ÍCalcDrawParameters‚ğƒR[ƒ‹‚µ‚Ä‚©‚çDraw‚·‚é‚±‚ÆB
+	//æç”»æ™‚ã«å®Ÿéš›ã«ä½¿ã†å€¤ã€‚ã‚µãƒ–ã‚¯ãƒ©ã‚¹ã§ã¯CalcDrawParametersã‚’ã‚³ãƒ¼ãƒ«ã—ã¦ã‹ã‚‰Drawã™ã‚‹ã“ã¨ã€‚
 	virtual void CalcDrawParameters();
 	float m_drx1,m_drx2,m_dry1,m_dry2;
 
 private:
-	//ó‘Ô
+	//çŠ¶æ…‹
 	enum CTWindowBaseState
 	{
 		state_restore,
@@ -131,7 +131,7 @@ private:
 
 
 /*!
-*	@brief ƒŠƒ“ƒOóƒAƒCƒRƒ“•\¦&‘I‘ğ ƒx[ƒX
+*	@brief ãƒªãƒ³ã‚°çŠ¶ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º&é¸æŠ ãƒ™ãƒ¼ã‚¹
 */
 class CTIconRingBase : public CTaskBase
 {
@@ -142,51 +142,51 @@ public:
 	BOOL Execute(DWORD time);
 	void Draw();
 
-	//ó‘Ô‘€ì
+	//çŠ¶æ…‹æ“ä½œ
 	virtual void Hide();
 	virtual void Restore();
 
-	//ƒpƒ‰ƒ[ƒ^‘€ì
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ“ä½œ
 	virtual void SetHeight(float h){m_height = h;}
 	virtual void SetPos(double basePosX,double basePosY){m_basePosX=basePosX/240.0;m_basePosY=basePosY/240.0;}
 	virtual void SetKeyInputIndex(int i);
 	virtual int GetKeyInputIndex(){return m_keyindex;}
 	virtual UINT GetRing(){return m_selected_ring;}
 
-	//•`‰æƒvƒ‰ƒCƒIƒŠƒeƒB
+	//æç”»ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 	virtual void SetPriority(int pri){m_draw_priority = pri;}
 	virtual int  GetDrawPriority(){return m_state == CTCRS_HideComplete ? -1 : m_draw_priority;}
 	int m_draw_priority;
 
-	//ƒI[ƒo[ƒ‰ƒCƒh‚·‚é‚×‚«ŠÖ”
+	//ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã™ã‚‹ã¹ãé–¢æ•°
 protected:
-	virtual void InitializeSub(){}						//!< Initialize‚©‚çƒR[ƒ‹‚³‚ê‚é
-	virtual void TerminateSub(){}						//!< Terminate ‚©‚çƒR[ƒ‹‚³‚ê‚é
+	virtual void InitializeSub(){}						//!< Initializeã‹ã‚‰ã‚³ãƒ¼ãƒ«ã•ã‚Œã‚‹
+	virtual void TerminateSub(){}						//!< Terminate ã‹ã‚‰ã‚³ãƒ¼ãƒ«ã•ã‚Œã‚‹
 public:
-	virtual UINT GetSelected()=0;						//!< ƒŠƒ“ƒO”Ô†+ƒCƒ“ƒfƒbƒNƒX ‚©‚çA‘S‘Ì‚Å‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
+	virtual UINT GetSelected()=0;						//!< ãƒªãƒ³ã‚°ç•ªå·+ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ã‹ã‚‰ã€å…¨ä½“ã§ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
 protected:
-	virtual void InitializeIcons()=0;					//!< •\¦‚·‚éƒAƒCƒRƒ“‰æ‘œ‚ğ€”õ‚·‚é
-	virtual void DestroyIcons()=0;						//!< •\¦‚·‚éƒAƒCƒRƒ“‰æ‘œ‚ğ”jŠü‚·‚é
-	virtual MYSURFACE* GetIcon(UINT ridx,UINT idx)=0;	//!< •\¦‚·‚éƒAƒCƒRƒ“‰æ‘œ‚ğæ“¾iDraw‚©‚çƒR[ƒ‹j
-	virtual DWORD GetColor(UINT ridx,UINT idx)=0;		//!< ƒAƒCƒRƒ“•`‰æ‚Ì’¸“_F‚ğw’è‚·‚é(Draw‚©‚çƒR[ƒ‹,ƒ¿‚Í0‚Ì‚±‚Æ)
-	virtual void OnButtonDown(DWORD key)=0;				//!< Œˆ’èiAƒ{ƒ^ƒ“j‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚Ìˆ—
-	virtual void OnChangeIndex()=0;						//!< ƒŠƒ“ƒO‚ª‚Ü‚í‚³‚ê‚ÄƒCƒ“ƒfƒbƒNƒX‚ª•Ï‰»‚µ‚½‚Æ‚«‚Ìˆ—
-	virtual void OnChangeRing()=0;						//!< ƒŠƒ“ƒO‚ª•ÏX‚³‚ê‚½‚Æ‚«‚Ìˆ—
-	virtual UINT GetMaxRing()=0;						//!< ƒŠƒ“ƒO‚Ì‘”‚ğæ“¾‚·‚é
-	virtual UINT GetMaxIndex(UINT ridx)=0;				//!< w’èƒŠƒ“ƒO‚ª‚Á‚Ä‚¢‚éƒAƒCƒRƒ“‚Ì”‚ğæ“¾
+	virtual void InitializeIcons()=0;					//!< è¡¨ç¤ºã™ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ç”»åƒã‚’æº–å‚™ã™ã‚‹
+	virtual void DestroyIcons()=0;						//!< è¡¨ç¤ºã™ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ç”»åƒã‚’ç ´æ£„ã™ã‚‹
+	virtual MYSURFACE* GetIcon(UINT ridx,UINT idx)=0;	//!< è¡¨ç¤ºã™ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ç”»åƒã‚’å–å¾—ï¼ˆDrawã‹ã‚‰ã‚³ãƒ¼ãƒ«ï¼‰
+	virtual DWORD GetColor(UINT ridx,UINT idx)=0;		//!< ã‚¢ã‚¤ã‚³ãƒ³æç”»æ™‚ã®é ‚ç‚¹è‰²ã‚’æŒ‡å®šã™ã‚‹(Drawã‹ã‚‰ã‚³ãƒ¼ãƒ«,Î±ã¯0ã®ã“ã¨)
+	virtual void OnButtonDown(DWORD key)=0;				//!< æ±ºå®šï¼ˆAãƒœã‚¿ãƒ³ï¼‰ãŒæŠ¼ã•ã‚ŒãŸã¨ãã®å‡¦ç†
+	virtual void OnChangeIndex()=0;						//!< ãƒªãƒ³ã‚°ãŒã¾ã‚ã•ã‚Œã¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒå¤‰åŒ–ã—ãŸã¨ãã®å‡¦ç†
+	virtual void OnChangeRing()=0;						//!< ãƒªãƒ³ã‚°ãŒå¤‰æ›´ã•ã‚ŒãŸã¨ãã®å‡¦ç†
+	virtual UINT GetMaxRing()=0;						//!< ãƒªãƒ³ã‚°ã®ç·æ•°ã‚’å–å¾—ã™ã‚‹
+	virtual UINT GetMaxIndex(UINT ridx)=0;				//!< æŒ‡å®šãƒªãƒ³ã‚°ãŒæŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ã®æ•°ã‚’å–å¾—
 
-	//ó‘Ô‚ÆUpdateŠÖ”
+	//çŠ¶æ…‹ã¨Updateé–¢æ•°
 	enum CTIconRingState
 	{
-		CTCRS_NotReady,		//!< oŒ»’†
-		CTCRS_Ready,		//!< ‘I‘ğ‰Â”\
-		CTCRS_RotateRight,	//!< ‰E‰ñ“]’†
-		CTCRS_RotateLeft,	//!< ¶‰ñ“]’†
-		CTCRS_ChangeUp,		//!< ƒŠƒ“ƒOã•ÏX’†
-		CTCRS_ChangeDown,	//!< ƒŠƒ“ƒO‰º•ÏX’†
-		CTCRS_Hide,			//!< Á¸’†
-		CTCRS_HideComplete,	//!< Š®‘S‚ÉÁ¸
-		CTCRS_Restore,		//!< •œ‹A“r’†
+		CTCRS_NotReady,		//!< å‡ºç¾ä¸­
+		CTCRS_Ready,		//!< é¸æŠå¯èƒ½
+		CTCRS_RotateRight,	//!< å³å›è»¢ä¸­
+		CTCRS_RotateLeft,	//!< å·¦å›è»¢ä¸­
+		CTCRS_ChangeUp,		//!< ãƒªãƒ³ã‚°ä¸Šå¤‰æ›´ä¸­
+		CTCRS_ChangeDown,	//!< ãƒªãƒ³ã‚°ä¸‹å¤‰æ›´ä¸­
+		CTCRS_Hide,			//!< æ¶ˆå¤±ä¸­
+		CTCRS_HideComplete,	//!< å®Œå…¨ã«æ¶ˆå¤±
+		CTCRS_Restore,		//!< å¾©å¸°é€”ä¸­
 	};
 	virtual void Exec_NotReady();
 	virtual void Exec_Ready();
@@ -197,25 +197,25 @@ protected:
 	virtual void Exec_Hide();
 	virtual void Exec_Restore();
 
-	//•Ï”
-	int m_keyindex;					//!< ƒL[“ü—ÍƒCƒ“ƒfƒbƒNƒXBƒ}ƒCƒiƒX‚Å‘I‘ğ‚ğƒƒbƒN
-	UINT m_sleepCount;				//!< ƒŠƒ“ƒO•ÏXE•œ‹AŒã‚Ì‰½ƒtƒŒ‚©‚ÍƒL[‘€ì‚ğƒƒbƒN‚·‚é
-	CTIconRingState m_state;		//!< ó‘Ô
-	DWORD m_selected_ring;			//!< Œ»İ‘I‘ğ‚³‚ê‚Ä‚¢‚éƒŠƒ“ƒO
-	DWORD m_selected_index;			//!< Œ»İ‘I‘ğ‚³‚ê‚Ä‚¢‚éƒŠƒ“ƒO’†‚ÌƒCƒ“ƒfƒbƒNƒX
-	DWORD m_previous_ring;			//!< ‘O‰ñ‘I‘ğ‚³‚ê‚Ä‚¢‚½ƒŠƒ“ƒOi•ÏX‚ÌÁ¸ƒAƒjƒ[ƒVƒ‡ƒ“‚É•K—vj
-	DWORD m_previous_index;			//!< ‘O‰ñ‘I‘ğ‚³‚ê‚Ä‚¢‚½ƒŠƒ“ƒO’†‚ÌƒCƒ“ƒfƒbƒNƒX
+	//å¤‰æ•°
+	int m_keyindex;					//!< ã‚­ãƒ¼å…¥åŠ›ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€‚ãƒã‚¤ãƒŠã‚¹ã§é¸æŠã‚’ãƒ­ãƒƒã‚¯
+	UINT m_sleepCount;				//!< ãƒªãƒ³ã‚°å¤‰æ›´ãƒ»å¾©å¸°å¾Œã®ä½•ãƒ•ãƒ¬ã‹ã¯ã‚­ãƒ¼æ“ä½œã‚’ãƒ­ãƒƒã‚¯ã™ã‚‹
+	CTIconRingState m_state;		//!< çŠ¶æ…‹
+	DWORD m_selected_ring;			//!< ç¾åœ¨é¸æŠã•ã‚Œã¦ã„ã‚‹ãƒªãƒ³ã‚°
+	DWORD m_selected_index;			//!< ç¾åœ¨é¸æŠã•ã‚Œã¦ã„ã‚‹ãƒªãƒ³ã‚°ä¸­ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	DWORD m_previous_ring;			//!< å‰å›é¸æŠã•ã‚Œã¦ã„ãŸãƒªãƒ³ã‚°ï¼ˆå¤‰æ›´æ™‚ã®æ¶ˆå¤±ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã«å¿…è¦ï¼‰
+	DWORD m_previous_index;			//!< å‰å›é¸æŠã•ã‚Œã¦ã„ãŸãƒªãƒ³ã‚°ä¸­ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
-	double m_basePosX,m_basePosY;	//!< Šî€ˆÊ’u
-	float m_height;					//!< ‚‚³
+	double m_basePosX,m_basePosY;	//!< åŸºæº–ä½ç½®
+	float m_height;					//!< é«˜ã•
 	
-	DWORD  m_counter;				//!< ƒAƒjƒ[ƒVƒ‡ƒ“—pƒJƒEƒ“ƒ^
-	double m_rotation2;				//!< ’Ç‰Á‰ñ“]idegreej
-	double m_radius_base;			//!< Šî€”¼Œa
-	double m_radius_ratio;			//!< ”¼Œa”{—¦
-	double m_radius_ratio2;			//!< ”¼Œa”{—¦iÁ‚¦‚Ä‚¢‚­ƒŠƒ“ƒOj
-	BYTE   m_alpha;					//!< ƒ¿’l
-	BYTE   m_alpha2;				//!< ƒ¿’liÁ‚¦‚Ä‚¢‚­ƒŠƒ“ƒOj
+	DWORD  m_counter;				//!< ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç”¨ã‚«ã‚¦ãƒ³ã‚¿
+	double m_rotation2;				//!< è¿½åŠ å›è»¢ï¼ˆdegreeï¼‰
+	double m_radius_base;			//!< åŸºæº–åŠå¾„
+	double m_radius_ratio;			//!< åŠå¾„å€ç‡
+	double m_radius_ratio2;			//!< åŠå¾„å€ç‡ï¼ˆæ¶ˆãˆã¦ã„ããƒªãƒ³ã‚°ï¼‰
+	BYTE   m_alpha;					//!< Î±å€¤
+	BYTE   m_alpha2;				//!< Î±å€¤ï¼ˆæ¶ˆãˆã¦ã„ããƒªãƒ³ã‚°ï¼‰
 };
 
 

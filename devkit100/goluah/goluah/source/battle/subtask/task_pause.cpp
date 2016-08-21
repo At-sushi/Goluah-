@@ -1,6 +1,6 @@
-/*----------------------------------------------------------------------
+ï»¿/*----------------------------------------------------------------------
 
-	ƒ|[ƒY‰æ–Ê
+	ãƒãƒ¼ã‚ºç”»é¢
 
 ------------------------------------------------------------------------*/
 
@@ -61,7 +61,7 @@ BOOL CTBattlePause::Execute(DWORD time)
 			m_face_counter[i] ++;
 		}
 
-		//‚»‚Ìƒ`[ƒ€‚Å‚ÌƒL[“ü—Í‚Ì‘˜a‚ğ‚Æ‚é
+		//ãã®ãƒãƒ¼ãƒ ã§ã®ã‚­ãƒ¼å…¥åŠ›ã®ç·å’Œã‚’ã¨ã‚‹
 		for(UINT j=0;j<MAXNUM_TEAM;j++)
 		{
 			UINT ki = g_battleinfo.GetKeyAssign(i,j);
@@ -133,7 +133,7 @@ void CTBattlePause::Draw()
 	vb[2].tv = 0.0f;
 	vb[3].tv = 1.0f;
 
-	//ƒtƒƒ“ƒgƒoƒbƒtƒ@‚ğƒRƒs[‚µ‚½‚â‚Â
+	//ãƒ•ãƒ­ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ã‚’ã‚³ãƒ”ãƒ¼ã—ãŸã‚„ã¤
 	if(tex_fb)
 	{
 		DWORD col;
@@ -195,12 +195,12 @@ void CTBattlePause::Draw()
 	{
 		if(!m_inst_on[t])continue;
 /*
-ƒIƒvƒVƒ‡ƒ“ó‹µ‚ğ•\¦‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚½cŠ[B
-ƒCƒeƒŒ[ƒ^‚ª•ª‚©‚ç‚¸ƒIƒvƒVƒ‡ƒ“–¼‚ªE‚Á‚Ä‚±‚ê‚¸“€Œ‹’†B
-0‚Æ1‚¾‚¯‚Å‚¢‚¢‚Ì‚Å‚ ‚ê‚Î‚·‚®•\¦‚Å‚«‚é‚Í‚¸B
-		DWORD setting_now = g_battleinfo.GetCharacterOption(t,m_face_idx[t]);//‚±‚ê‚ÍŠÈ’P‚ÉE‚¦‚é‚ªEEE
-		2i”‚É•ÏŠ·¨ŠeŒ…for‚Å‰ñ‚µ‚Ä1‚Ì‚Æ‚±‚ÍƒŠƒXƒg‚©‚ç–¼‘Oˆø‚Á’£‚Á‚Ä‚­‚é‚Æ‚¢‚¤—Í‹Z‚·‚é‚È‚ç‚±‚ê‚àg‚¦‚é
-		int nisin[28],i;	//face—p‚Ì•”•ª‚ÍŒvZ‚µ‚È‚¢‚©‚ç28‚Å‚¨‚‹
+ã‚ªãƒ—ã‚·ãƒ§ãƒ³çŠ¶æ³ã‚’è¡¨ç¤ºã—ã‚ˆã†ã¨ã—ã¦ã„ãŸæ®‹éª¸ã€‚
+ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ãŒåˆ†ã‹ã‚‰ãšï¼ã‚ªãƒ—ã‚·ãƒ§ãƒ³åãŒæ‹¾ã£ã¦ã“ã‚Œãšå‡çµä¸­ã€‚
+0ã¨1ã ã‘ã§ã„ã„ã®ã§ã‚ã‚Œã°ã™ãè¡¨ç¤ºã§ãã‚‹ã¯ãšã€‚
+		DWORD setting_now = g_battleinfo.GetCharacterOption(t,m_face_idx[t]);//ã“ã‚Œã¯ç°¡å˜ã«æ‹¾ãˆã‚‹ãŒãƒ»ãƒ»ãƒ»
+		2é€²æ•°ã«å¤‰æ›â†’å„æ¡forã§å›ã—ã¦1ã®ã¨ã“ã¯ãƒªã‚¹ãƒˆã‹ã‚‰åå‰å¼•ã£å¼µã£ã¦ãã‚‹ã¨ã„ã†åŠ›æŠ€ã™ã‚‹ãªã‚‰ã“ã‚Œã‚‚ä½¿ãˆã‚‹
+		int nisin[28],i;	//faceç”¨ã®éƒ¨åˆ†ã¯è¨ˆç®—ã—ãªã„ã‹ã‚‰28ã§ãŠï½‹
 		DWORD jyu = setting_now;
 		double xxx = 300.0;
 		double yyy = 20.0;
@@ -214,12 +214,12 @@ void CTBattlePause::Draw()
 		yyy += 10.0;
 		}
 
-		ƒCƒeƒŒ[ƒ^‘—¿iglobal.cpp‚æ‚èj
-		//ƒtƒ@ƒCƒ‹–¼ƒŠƒXƒg
+		ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿è³‡æ–™ï¼ˆglobal.cppã‚ˆã‚Šï¼‰
+		//ãƒ•ã‚¡ã‚¤ãƒ«åãƒªã‚¹ãƒˆ
 		std::vector<TCHAR*> filelist;
 		std::vector<TCHAR*>::iterator ite;
 		std::vector<TCHAR*>::iterator itee;
-		//Ä¶‚ğ‚İ‚é
+		//å†ç”Ÿã‚’è©¦ã¿ã‚‹
 		ite = filelist.begin();
 		itee= filelist.end();
 		for(;ite!=itee;ite++)
@@ -227,13 +227,13 @@ void CTBattlePause::Draw()
 		_stprintf( filepath, "%s\\%s",dir,*ite);
 		if(g_sound.BGMPlay( filepath ))
 		{
-		break;//Ä¶‚É¬Œ÷‚µ‚½‚çI—¹
+		break;//å†ç”Ÿã«æˆåŠŸã—ãŸã‚‰çµ‚äº†
 		}
 		gbl.ods2("AkiGlobal::PlayRandomBGM : %s ...failed",filepath);
 		}
 		//	delete [] filepath;
 
-		//ƒtƒ@ƒCƒ‹–¼‚ÌƒŠƒXƒg‚ğ”jŠü
+		//ãƒ•ã‚¡ã‚¤ãƒ«åã®ãƒªã‚¹ãƒˆã‚’ç ´æ£„
 		ite = filelist.begin();
 		itee= filelist.end();
 		for(;ite!=itee;ite++)
@@ -241,7 +241,7 @@ void CTBattlePause::Draw()
 		delete [] (*ite);
 		}
 */
-		//ƒfƒJŠç
+		//ãƒ‡ã‚«é¡”
 
 		alt = OPT2ALT(g_battleinfo.GetCharacterOption(t,m_face_idx[t]));
 		dds_face = gbl.GetBigFace(g_battleinfo.GetCharacter(t,m_face_idx[t]),g_battleinfo.GetColor(t,m_face_idx[t]),alt);
@@ -299,7 +299,7 @@ void CTBattlePause::Draw()
 					m_shiftY =0;
 			}
 
-			//‰º’n
+			//ä¸‹åœ°
 			int mgn = 0;
 			vb[0].x =  (x-mgn)/240.0f;
 			vb[1].x =  (x-mgn)/240.0f;
@@ -330,7 +330,7 @@ void CTBattlePause::Draw()
 			g_draw.d3ddev->SetTexture(0,NULL);
 			g_draw.d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vb,sizeof(MYVERTEX3D));
 
-			//ƒrƒbƒgƒ}ƒbƒv
+			//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
 			alpha = m_face_counter[t]*10>255 ? 255 : m_face_counter[t]*10;
 			g_draw.CheckBlt(
 					ms_inst[t],

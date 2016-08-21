@@ -1,4 +1,4 @@
-// gcd_tool03Dlg.cpp : �����t�@�C��
+﻿// gcd_tool03Dlg.cpp : 実装ファイル
 //
 
 #include "stdafx.h"
@@ -12,20 +12,20 @@
 HWND ghwnd = NULL;
 extern Cgcd_tool03App theApp;
 
-// �A�v���P�[�V�����̃o�[�W�������Ɏg���� CAboutDlg �_�C�A���O
+// アプリケーションのバージョン情報に使われる CAboutDlg ダイアログ
 
 class CAboutDlg : public CDialog
 {
 public:
 	CAboutDlg();
 
-// �_�C�A���O �f�[�^
+// ダイアログ データ
 	enum { IDD = IDD_ABOUTBOX };
 
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV �T�|�[�g
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV サポート
 
-// ����
+// 実装
 protected:
 	DECLARE_MESSAGE_MAP()
 };
@@ -43,7 +43,7 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// Cgcd_tool03Dlg �_�C�A���O
+// Cgcd_tool03Dlg ダイアログ
 
 
 
@@ -80,15 +80,15 @@ BEGIN_MESSAGE_MAP(Cgcd_tool03Dlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// Cgcd_tool03Dlg ���b�Z�[�W �n���h��
+// Cgcd_tool03Dlg メッセージ ハンドラ
 
 BOOL Cgcd_tool03Dlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// "�o�[�W�������..." ���j���[���V�X�e�� ���j���[�ɒǉ����܂��B
+	// "バージョン情報..." メニューをシステム メニューに追加します。
 
-	// IDM_ABOUTBOX �́A�V�X�e�� �R�}���h�͈͓̔��ɂȂ���΂Ȃ�܂���B
+	// IDM_ABOUTBOX は、システム コマンドの範囲内になければなりません。
 	ASSERT((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
 	ASSERT(IDM_ABOUTBOX < 0xF000);
 
@@ -104,18 +104,18 @@ BOOL Cgcd_tool03Dlg::OnInitDialog()
 		}
 	}
 
-	// ���̃_�C�A���O�̃A�C�R����ݒ肵�܂��B�A�v���P�[�V�����̃��C�� �E�B���h�E���_�C�A���O�łȂ��ꍇ�A
-	//  Framework �́A���̐ݒ�������I�ɍs���܂��B
-	SetIcon(m_hIcon, TRUE);			// �傫���A�C�R���̐ݒ�
-	SetIcon(m_hIcon, FALSE);		// �������A�C�R���̐ݒ�
+	// このダイアログのアイコンを設定します。アプリケーションのメイン ウィンドウがダイアログでない場合、
+	//  Framework は、この設定を自動的に行います。
+	SetIcon(m_hIcon, TRUE);			// 大きいアイコンの設定
+	SetIcon(m_hIcon, FALSE);		// 小さいアイコンの設定
 
-	// TODO: �������������ɒǉ����܂��B
+	// TODO: 初期化をここに追加します。
 	ghwnd = m_hWnd;
-	m_str_status = "�t�@�C���̓h���b�O&�h���b�v�Ń��[�h����";
+	m_str_status = "ファイルはドラッグ&ドロップでロードだよ";
 	m_bCheck1 = TRUE;
 	UpdateData(FALSE);
 	
-	return TRUE;  // �t�H�[�J�X���R���g���[���ɐݒ肵���ꍇ�������ATRUE ��Ԃ��܂��B
+	return TRUE;  // フォーカスをコントロールに設定した場合を除き、TRUE を返します。
 }
 
 void Cgcd_tool03Dlg::OnSysCommand(UINT nID, LPARAM lParam)
@@ -131,19 +131,19 @@ void Cgcd_tool03Dlg::OnSysCommand(UINT nID, LPARAM lParam)
 	}
 }
 
-// �_�C�A���O�ɍŏ����{�^����ǉ�����ꍇ�A�A�C�R����`�悷�邽�߂�
-//  ���̃R�[�h���K�v�ł��B�h�L�������g/�r���[ ���f�����g�� MFC �A�v���P�[�V�����̏ꍇ�A
-//  ����́AFramework �ɂ���Ď����I�ɐݒ肳��܂��B
+// ダイアログに最小化ボタンを追加する場合、アイコンを描画するための
+//  下のコードが必要です。ドキュメント/ビュー モデルを使う MFC アプリケーションの場合、
+//  これは、Framework によって自動的に設定されます。
 
 void Cgcd_tool03Dlg::OnPaint() 
 {
 	if (IsIconic())
 	{
-		CPaintDC dc(this); // �`��̃f�o�C�X �R���e�L�X�g
+		CPaintDC dc(this); // 描画のデバイス コンテキスト
 
 		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
 
-		// �N���C�A���g�̎l�p�`�̈���̒���
+		// クライアントの四角形領域内の中央
 		int cxIcon = GetSystemMetrics(SM_CXICON);
 		int cyIcon = GetSystemMetrics(SM_CYICON);
 		CRect rect;
@@ -151,7 +151,7 @@ void Cgcd_tool03Dlg::OnPaint()
 		int x = (rect.Width() - cxIcon + 1) / 2;
 		int y = (rect.Height() - cyIcon + 1) / 2;
 
-		// �A�C�R���̕`��
+		// アイコンの描画
 		dc.DrawIcon(x, y, m_hIcon);
 	}
 	else
@@ -162,8 +162,8 @@ void Cgcd_tool03Dlg::OnPaint()
 
 
 
-//���[�U�[���ŏ��������E�B���h�E���h���b�O���Ă���Ƃ��ɕ\������J�[�\�����擾���邽�߂ɁA
-//  �V�X�e�������̊֐����Ăяo���܂��B
+//ユーザーが最小化したウィンドウをドラッグしているときに表示するカーソルを取得するために、
+//  システムがこの関数を呼び出します。
 HCURSOR Cgcd_tool03Dlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
@@ -172,7 +172,7 @@ HCURSOR Cgcd_tool03Dlg::OnQueryDragIcon()
 
 
 /*--------------------------------------------------------------------------------
-	�t�@�C���̃h���b�v
+	ファイルのドロップ
 ----------------------------------------------------------------------------------*/
 void Cgcd_tool03Dlg::OnDropFiles( HDROP hDropInfo )
 {
@@ -186,31 +186,31 @@ void Cgcd_tool03Dlg::OnDropFiles( HDROP hDropInfo )
 
 
 /*--------------------------------------------------------------------------------
-	���`�f�[�^�̏���
+	空矩形データの消去
 ----------------------------------------------------------------------------------*/
 void Cgcd_tool03Dlg::OnBnClickedButton1()
 {
-	// TODO : �����ɃR���g���[���ʒm�n���h�� �R�[�h��ǉ����܂��B
+	// TODO : ここにコントロール通知ハンドラ コードを追加します。
 	theApp.DeleteEmptyRect();
 }
 
 
 /*--------------------------------------------------------------------------------
-	��`�ԍ��̐���
+	矩形番号の整理
 ----------------------------------------------------------------------------------*/
 void Cgcd_tool03Dlg::OnBnClickedButton2()
 {
-	// TODO : �����ɃR���g���[���ʒm�n���h�� �R�[�h��ǉ����܂��B
+	// TODO : ここにコントロール通知ハンドラ コードを追加します。
 	theApp.SortRects();
 }
 
 
 /*--------------------------------------------------------------------------------
-	�Z���ԍ��̐���
+	セル番号の整理
 ----------------------------------------------------------------------------------*/
 void Cgcd_tool03Dlg::OnBnClickedButton3()
 {
-	// TODO : �����ɃR���g���[���ʒm�n���h�� �R�[�h��ǉ����܂��B
+	// TODO : ここにコントロール通知ハンドラ コードを追加します。
 	UpdateData(TRUE);
 	theApp.SortCells(m_bCheck1);
 }
@@ -218,52 +218,52 @@ void Cgcd_tool03Dlg::OnBnClickedButton3()
 
 
 /*--------------------------------------------------------------------------------
-	�ۑ�
+	保存
 ----------------------------------------------------------------------------------*/
 void Cgcd_tool03Dlg::OnBnClickedButton4()
 {
-	// TODO : �����ɃR���g���[���ʒm�n���h�� �R�[�h��ǉ����܂��B
+	// TODO : ここにコントロール通知ハンドラ コードを追加します。
 	theApp.Save();
 }
 
 
 
 /*--------------------------------------------------------------------------------
-	���`�����Q�Ƃ��Ă��Ȃ��Z�����폜
+	空矩形しか参照していないセルを削除
 ----------------------------------------------------------------------------------*/
 void Cgcd_tool03Dlg::OnBnClickedButton5()
 {
-	// TODO : �����ɃR���g���[���ʒm�n���h�� �R�[�h��ǉ����܂��B
+	// TODO : ここにコントロール通知ハンドラ コードを追加します。
 	theApp.DeleteEmptyCell();
 }
 
 
 /*--------------------------------------------------------------------------------
-	�w��ԍ��ɋ�Z����ǉ�����
+	指定番号に空セルを追加する
 ----------------------------------------------------------------------------------*/
 void Cgcd_tool03Dlg::OnBnClickedButton6()
 {
-	// TODO : �����ɃR���g���[���ʒm�n���h�� �R�[�h��ǉ����܂��B
+	// TODO : ここにコントロール通知ハンドラ コードを追加します。
 	UpdateData(TRUE);
 
 	if(m_edit_number1>GCDMAX_CELLS){
-		m_str_status = "���͂��ꂽ�l���s���ł�";
+		m_str_status = "入力された値が不正です";
 	}
 	else{
 		if(theApp.InsertEmptyCell(m_edit_number1)){
-			m_str_status.Format("%d�Ԃɋ�̃Z����}�����܂���",m_edit_number1);
+			m_str_status.Format("%d番に空のセルを挿入しました",m_edit_number1);
 		}
-		else m_str_status = "����Ɏ��s���܂���";
+		else m_str_status = "操作に失敗しました";
 	}
 
 	UpdateData(FALSE);
 }
 
 /*--------------------------------------------------------------------------------
-	�F���V�I��1.0�ɂ���
+	色レシオを1.0にする
 ----------------------------------------------------------------------------------*/
 void Cgcd_tool03Dlg::OnBnClickedButton7()
 {
-	// TODO : �����ɃR���g���[���ʒm�n���h�� �R�[�h��ǉ����܂��B
+	// TODO : ここにコントロール通知ハンドラ コードを追加します。
 	theApp.ForceRatio();
 }

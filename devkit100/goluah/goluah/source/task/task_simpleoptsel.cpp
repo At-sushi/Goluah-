@@ -1,7 +1,7 @@
-
+ï»¿
 /*=======================================================================================
 
-	ƒIƒvƒVƒ‡ƒ“‘I‘ğƒNƒ‰ƒX
+	ã‚ªãƒ—ã‚·ãƒ§ãƒ³é¸æŠã‚¯ãƒ©ã‚¹
 
 =========================================================================================*/
 
@@ -10,7 +10,7 @@
 #include "task_simpleoptsel.h"
 
 /*-----------------------------------------------------------
-	\’z
+	æ§‹ç¯‰
 -------------------------------------------------------------*/
 CTSimpleOptionSelecter::CTSimpleOptionSelecter()
 {
@@ -19,7 +19,7 @@ CTSimpleOptionSelecter::CTSimpleOptionSelecter()
 
 
 /*-----------------------------------------------------------
-	Às
+	å®Ÿè¡Œ
 -------------------------------------------------------------*/
 BOOL CTSimpleOptionSelecter::Execute(DWORD time)
 {
@@ -33,7 +33,7 @@ BOOL CTSimpleOptionSelecter::Execute(DWORD time)
 
 
 /*-----------------------------------------------------------
-	•`‰æ
+	æç”»
 -------------------------------------------------------------*/
 void CTSimpleOptionSelecter::Draw()
 {
@@ -49,7 +49,7 @@ void CTSimpleOptionSelecter::Draw()
 	TCHAR *tmp_str;
 	tmp_str = new TCHAR[128];
 
-	//”r‘¼‚³‚ê‚Ä‚¢‚éƒtƒ‰ƒO‚ğƒQƒbƒg
+	//æ’ä»–ã•ã‚Œã¦ã„ã‚‹ãƒ•ãƒ©ã‚°ã‚’ã‚²ãƒƒãƒˆ
 	DWORD ex_flag =0;
 	DWORD k=0;
 	CharOptionList::iterator ite;
@@ -61,23 +61,23 @@ void CTSimpleOptionSelecter::Draw()
 		k++;
 	}
 
-	//ƒeƒLƒXƒgFi”ñ‘I‘ğj
-	DWORD color_option		= 0x00444444;//--OPTIONS--•\¦
-    DWORD color_ok			= 0x005237FF;//ƒ|ƒCƒ“ƒgEOK•\¦(—LŒø)
-	DWORD color_ng			= 0x00FF3752;//ƒ|ƒCƒ“ƒgEOK•\¦(–³Œø)
-	DWORD color_collis		= 0x0033AA33;//‹£‡ƒtƒ‰ƒO‚ ‚è
-	DWORD color_na2			= 0x0033AA33;//depend•s‘«
-	DWORD color_enable		= 0x00222222;//—LŒøó‘Ô
-	DWORD color_disable		= 0x004444AA;//–³Œøó‘Ô
-	DWORD color_pointb		= 0x00AA3333;//ƒ|ƒCƒ“ƒg•s‘«
-	//ƒeƒLƒXƒgFi‘I‘ğj
-	DWORD color_ok_sel		= 0x0000AAFF;//ƒ|ƒCƒ“ƒgEOK•\¦(—LŒø)
-	DWORD color_ng_sel		= 0x00AA0000;//ƒ|ƒCƒ“ƒgEOK•\¦(–³Œø)
-	DWORD color_collis_sel	= 0x0000AA00;//‹£‡ƒtƒ‰ƒO‚ ‚è
-	DWORD color_na2_sel		= 0x0000AA00;//depend•s‘«
-	DWORD color_enable_sel	= 0x00222222;//—LŒøó‘Ô
-	DWORD color_disable_sel	= 0x000000AA;//–³Œøó‘Ô
-	DWORD color_pointb_sel	= 0x00AA0000;//ƒ|ƒCƒ“ƒg•s‘«
+	//ãƒ†ã‚­ã‚¹ãƒˆè‰²ï¼ˆéé¸æŠæ™‚ï¼‰
+	DWORD color_option		= 0x00444444;//--OPTIONS--è¡¨ç¤º
+    DWORD color_ok			= 0x005237FF;//ãƒã‚¤ãƒ³ãƒˆãƒ»OKè¡¨ç¤º(æœ‰åŠ¹æ™‚)
+	DWORD color_ng			= 0x00FF3752;//ãƒã‚¤ãƒ³ãƒˆãƒ»OKè¡¨ç¤º(ç„¡åŠ¹æ™‚)
+	DWORD color_collis		= 0x0033AA33;//ç«¶åˆãƒ•ãƒ©ã‚°ã‚ã‚Š
+	DWORD color_na2			= 0x0033AA33;//dependä¸è¶³
+	DWORD color_enable		= 0x00222222;//æœ‰åŠ¹çŠ¶æ…‹
+	DWORD color_disable		= 0x004444AA;//ç„¡åŠ¹çŠ¶æ…‹
+	DWORD color_pointb		= 0x00AA3333;//ãƒã‚¤ãƒ³ãƒˆä¸è¶³
+	//ãƒ†ã‚­ã‚¹ãƒˆè‰²ï¼ˆé¸æŠæ™‚ï¼‰
+	DWORD color_ok_sel		= 0x0000AAFF;//ãƒã‚¤ãƒ³ãƒˆãƒ»OKè¡¨ç¤º(æœ‰åŠ¹æ™‚)
+	DWORD color_ng_sel		= 0x00AA0000;//ãƒã‚¤ãƒ³ãƒˆãƒ»OKè¡¨ç¤º(ç„¡åŠ¹æ™‚)
+	DWORD color_collis_sel	= 0x0000AA00;//ç«¶åˆãƒ•ãƒ©ã‚°ã‚ã‚Š
+	DWORD color_na2_sel		= 0x0000AA00;//dependä¸è¶³
+	DWORD color_enable_sel	= 0x00222222;//æœ‰åŠ¹çŠ¶æ…‹
+	DWORD color_disable_sel	= 0x000000AA;//ç„¡åŠ¹çŠ¶æ…‹
+	DWORD color_pointb_sel	= 0x00AA0000;//ãƒã‚¤ãƒ³ãƒˆä¸è¶³
 
 	float y=m_top,z=0;
 	float text_xscale = 0.8f;
@@ -87,7 +87,7 @@ void CTSimpleOptionSelecter::Draw()
 	BYTE  _alpha = (BYTE)(m_tick * 255);
 	DWORD alpha = _alpha << 24;
 
-	//OPTIONS •`‰æ
+	//OPTIONS æç”»
 	DWORD okcolor;
 	double tmpx = g_system.DrawBMPTextEx(offset_x,y,z,_T("--PRESETS--"),color_option|alpha,1.0f,text_yscale*1.2f,SYSBMPTXT_PROP);
 	_stprintf(tmp_str,_T("POINT:%d"),m_selecter->current_point);
@@ -97,7 +97,7 @@ void CTSimpleOptionSelecter::Draw()
 
 	y+=text_spacing*1.2f;
 
-	//İ’è–¼•\¦
+	//è¨­å®šåè¡¨ç¤º
 	FavoriteOptionList::iterator itef;
 	k=0;
 	DWORD color;
@@ -122,7 +122,7 @@ void CTSimpleOptionSelecter::Draw()
 
 
 /*-----------------------------------------------------------
-	‘€ìEİ’è
+	æ“ä½œãƒ»è¨­å®š
 -------------------------------------------------------------*/
 
 int CTSimpleOptionSelecter::SetAndShow(DWORD cindex,DWORD keyindex)
@@ -143,10 +143,10 @@ int CTSimpleOptionSelecter::SetAndShow(DWORD cindex,DWORD keyindex)
 		if(optnum<2)m_fontheight = 20.0f;
 		else if(optnum<20)m_fontheight = 20.0f - (20.0f-8.0f)*((float)optnum-2)/18.0f ;
 		else m_fontheight = 8.0f;
-		custom_mode = FALSE;	// ƒŠƒZƒbƒg
+		custom_mode = FALSE;	// ãƒªã‚»ãƒƒãƒˆ
 		if (optnum == 0)
 		{
-			// ƒJƒXƒ^ƒ€‘I‘ğ‚µ‚©‚Å‚«‚È‚¢‚Ím_customselect‚Ìˆ—ƒ‚[ƒh‚É‹­§ˆÚs
+			// ã‚«ã‚¹ã‚¿ãƒ é¸æŠã—ã‹ã§ããªã„æ™‚ã¯m_customselectã®å‡¦ç†ãƒ¢ãƒ¼ãƒ‰ã«å¼·åˆ¶ç§»è¡Œ
 			m_customselect.SetAndShow(m_cindex, m_keyIndex);
 			custom_mode = TRUE;
 		}
@@ -158,7 +158,7 @@ int CTSimpleOptionSelecter::SetAndShow(DWORD cindex,DWORD keyindex)
 
 float CTSimpleOptionSelecter::GetHeight()
 {
-	// ƒIƒvƒVƒ‡ƒ“‚ÌŒÂ”‚Æ“_ƒvƒŒ‚ÌŒÂ”‚Æ‚ÅA‘½‚¢•ûB
+	// ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®å€‹æ•°ã¨ç‚¹ãƒ—ãƒ¬ã®å€‹æ•°ã¨ã§ã€å¤šã„æ–¹ã€‚
 	return max((m_selecter->m_ref_cinfo->fav_opts.size()+2), (m_selecter->list->size()+2))
 			*(m_fontheight+1.0f) + (m_fontheight*1.2f) ;
 }
@@ -166,9 +166,9 @@ float CTSimpleOptionSelecter::GetHeight()
 void CTSimpleOptionSelecter::EndSelect()
 {
 /*	if (custom_mode)
-		m_customselect.EndSelect();	// ‚±‚Á‚¿‚Å•ñ‚·‚é‚©‚ç—v‚ç‚È‚¢‚©‚È
+		m_customselect.EndSelect();	// ã“ã£ã¡ã§å ±å‘Šã™ã‚‹ã‹ã‚‰è¦ã‚‰ãªã„ã‹ãª
 	else*/ if (m_selecter->m_current_favorite == 0 && m_selecter->state != 0xFFFFFFFF){
-		// CUSTOM‚ª‘I‚Î‚ê‚½‚Ì‚ÅAm_customselect‚Ìˆ—ƒ‚[ƒh‚ÉˆÚs
+		// CUSTOMãŒé¸ã°ã‚ŒãŸã®ã§ã€m_customselectã®å‡¦ç†ãƒ¢ãƒ¼ãƒ‰ã«ç§»è¡Œ
 		m_customselect.SetAndShow(m_cindex, m_keyIndex);
 		custom_mode = TRUE;
 	}

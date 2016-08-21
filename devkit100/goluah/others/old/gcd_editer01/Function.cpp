@@ -1,4 +1,4 @@
-#include <windows.h>
+ï»¿#include <windows.h>
 #include <stdio.h>
 #include <math.h>
 #include <ddraw.h>
@@ -14,11 +14,11 @@ BMPINFO256 bmp_info2[GCDMAX_IMAGES];
 PBYTE bmp_bits[GCDMAX_IMAGES]={NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL};
 
 // global val.=================================================================
-HWND ghwnd;//ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚Ìƒnƒ“ƒhƒ‹
+HWND ghwnd;//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒãƒ³ãƒ‰ãƒ«
 char datfilepath[256];
 
 //******************************************************************************
-// •`‰æŠÖ˜A
+// æç”»é–¢é€£
 //******************************************************************************
 
 void DrawRECT(HWND hwnd,int sx,int gx,int sy,int gy,DWORD type)
@@ -108,16 +108,16 @@ void DrawPos(HDC hdc,int x,int y,BOOL not)
 }
 
 //******************************************************************************
-//ƒrƒbƒgƒ}ƒbƒv“Ç‚İ‚İŠÖ˜A
+//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—èª­ã¿è¾¼ã¿é–¢é€£
 //******************************************************************************
 
-//bmp_loaded[] ‚Ìó‘Ô
-//0:³í‚É“Ç‚İ‚Ü‚ê‚Ä‚¢‚é
-//1:‚Ü‚¾“Ç‚İ‚Ü‚ê‚Ä‚¢‚È‚¢
-//2:ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚È‚¢‚©A‚Ü‚½‚ÍŠJ‚¯‚È‚©‚Á‚½
-//3:ƒtƒ@ƒCƒ‹‚Ì“Ç‚İo‚µ’†‚É¸”s‚µ‚½
-//4:‚Æ‚¢‚¤‚©Aƒrƒbƒgƒ}ƒbƒv‚Å‚Í‚È‚©‚Á‚½
-//5:ƒtƒ@ƒCƒ‹ƒwƒbƒ_‚É‰½‚ç‚©‚Ì•s“s‡‚ª‚ ‚Á‚½(256‚Å‚È‚¢‚Æ‚©)
+//bmp_loaded[] ã®çŠ¶æ…‹
+//0:æ­£å¸¸ã«èª­ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹
+//1:ã¾ã èª­ã¿è¾¼ã¾ã‚Œã¦ã„ãªã„
+//2:ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ãªã„ã‹ã€ã¾ãŸã¯é–‹ã‘ãªã‹ã£ãŸ
+//3:ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿å‡ºã—ä¸­ã«å¤±æ•—ã—ãŸ
+//4:ã¨ã„ã†ã‹ã€ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã§ã¯ãªã‹ã£ãŸ
+//5:ãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€ã«ä½•ã‚‰ã‹ã®ä¸éƒ½åˆãŒã‚ã£ãŸ(256ã§ãªã„ã¨ã‹)
 
 
 BOOL ChangeBmp2(DWORD n)
@@ -136,26 +136,26 @@ BOOL ChangeBmp2(DWORD n)
 		GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
 	if(hFile==INVALID_HANDLE_VALUE){
 		bmp_loaded[n] = 2;
-//		MessageBox(ghwnd,"Ì§²Ù‚ªŠJ‚¯‚È‚©‚Á‚½","ChangeBmp()",MB_OK);
+//		MessageBox(ghwnd,"ï¾Œï½§ï½²ï¾™ãŒé–‹ã‘ãªã‹ã£ãŸ","ChangeBmp()",MB_OK);
 		return(FALSE);
 	}
 
-	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//”O‚Ì‚½‚ßƒtƒ@ƒCƒ‹‚Ìæ“ª‚ÉˆÚ“®
+	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//å¿µã®ãŸã‚ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã«ç§»å‹•
 
 	BOOL err=FALSE;
 
-	//Ì§²Ùƒwƒbƒ_‚Ì“Ç‚İo‚µ
+	//ï¾Œï½§ï½²ï¾™ãƒ˜ãƒƒãƒ€ã®èª­ã¿å‡ºã—
 	BITMAPFILEHEADER fileheader;
 	DWORD br;
 	DWORD ret=ReadFile(hFile,&fileheader,sizeof(BITMAPFILEHEADER),&br,NULL);
 	if(!ret || br!=sizeof(BITMAPFILEHEADER)){
 		bmp_loaded[n] = 3;
-//		MessageBox(ghwnd,"ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s(1)\n","ChangeBmp()",MB_OK);
+//		MessageBox(ghwnd,"ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—(1)\n","ChangeBmp()",MB_OK);
 		err=TRUE;
 	}
 	if(fileheader.bfType != 0x4d42){//"BM"
 		bmp_loaded[n] = 4;
-//		MessageBox(ghwnd,"‚Â[‚©‚±‚Ìƒtƒ@ƒCƒ‹‚Íƒrƒbƒgƒ}ƒbƒv‚Å‚Í‚È‚¢\n","ChangeBmp()",MB_OK);
+//		MessageBox(ghwnd,"ã¤ãƒ¼ã‹ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã§ã¯ãªã„\n","ChangeBmp()",MB_OK);
 		err=TRUE;
 	}
 	if(err){
@@ -163,26 +163,26 @@ BOOL ChangeBmp2(DWORD n)
 		return(FALSE);
 	}
 
-	//BITMAPINFOHEADER‚Ì“Ç‚İ‚İ
+	//BITMAPINFOHEADERã®èª­ã¿è¾¼ã¿
 	ret=ReadFile(hFile,&bmp_info[n].hed,sizeof(BITMAPINFOHEADER),&br,NULL);
 	if(!ret || br!=sizeof(BITMAPINFOHEADER)){
-//		MessageBox(ghwnd,"ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s(2)\n","ChangeBmp()",MB_OK);
+//		MessageBox(ghwnd,"ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—(2)\n","ChangeBmp()",MB_OK);
 		bmp_loaded[n] = 3;
 		err=TRUE;
 	}
 	if(bmp_info[n].hed.biSize != sizeof(BITMAPINFOHEADER)){
-//		MessageBox(ghwnd,"BITMAPINFOHEADER‚ÌƒTƒCƒY‚ª‡‚í‚È‚¢\n","ChangeBmp()",MB_OK);
+//		MessageBox(ghwnd,"BITMAPINFOHEADERã®ã‚µã‚¤ã‚ºãŒåˆã‚ãªã„\n","ChangeBmp()",MB_OK);
 		bmp_loaded[n] = 5;
 		err=TRUE;
 	}
 	if(bmp_info[n].hed.biBitCount != 8){
 		bmp_loaded[n]=2;
-//		MessageBox(ghwnd,"‚Â[‚©‚±‚Ìƒtƒ@ƒCƒ‹‚Í256‚Å‚Í‚È‚¢\n","ChangeBmp()",MB_OK);
+//		MessageBox(ghwnd,"ã¤ãƒ¼ã‹ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯256ã§ã¯ãªã„\n","ChangeBmp()",MB_OK);
 		bmp_loaded[n] = 5;
 		err=TRUE;
 	}
 	if(bmp_info[n].hed.biCompression != BI_RGB){
-//		MessageBox(ghwnd,"ˆ³k‚ª‚©‚©‚Á‚Ä‚¢‚é‚ç‚µ‚¢\n","ChangeBmp()",MB_OK);
+//		MessageBox(ghwnd,"åœ§ç¸®ãŒã‹ã‹ã£ã¦ã„ã‚‹ã‚‰ã—ã„\n","ChangeBmp()",MB_OK);
 		bmp_loaded[n] = 5;
 		err=TRUE;
 	}
@@ -194,10 +194,10 @@ BOOL ChangeBmp2(DWORD n)
 		return(FALSE);
 	}
 
-	//ƒpƒŒƒbƒg‚Ì“Ç‚İ‚İ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã®èª­ã¿è¾¼ã¿
 	ret=ReadFile(hFile,bmp_info[n].pal,sizeof(RGBQUAD)*bmp_info[n].hed.biClrUsed,&br,NULL);
 	if(!ret || br!=sizeof(RGBQUAD)*bmp_info[n].hed.biClrUsed){
-//		MessageBox(ghwnd,"ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s(3)\n","ChangeBmp()",MB_OK);
+//		MessageBox(ghwnd,"ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—(3)\n","ChangeBmp()",MB_OK);
 		bmp_loaded[n] = 3;
 		CloseHandle(hFile);
 		return(FALSE);
@@ -219,11 +219,11 @@ BOOL ChangeBmp2(DWORD n)
 	bmp_info[n].pal[255].rgbGreen=0;
 	bmp_info[n].pal[255].rgbReserved =0;
 
-	//ƒrƒbƒgƒ}ƒbƒvƒrƒbƒg‚ÌƒTƒCƒY‚ğŒvZ‚·‚é(ƒrƒbƒgƒ}ƒbƒv‚Ì•‚Í4‚Ì”{”‚ÅŠi”[‚³‚ê‚Ä‚¢‚é‚ç‚µ‚¢)
+	//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ“ãƒƒãƒˆã®ã‚µã‚¤ã‚ºã‚’è¨ˆç®—ã™ã‚‹(ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®å¹…ã¯4ã®å€æ•°ã§æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã‚‰ã—ã„)
 	DWORD sizeimage = bmp_info[n].hed.biWidth;
 	if(bmp_info[n].hed.biWidth%4 != 0)sizeimage +=  ( 4 - bmp_info[n].hed.biWidth%4 );
 	sizeimage *= bmp_info[n].hed.biHeight;
-	//ƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Äƒrƒbƒgƒ}ƒbƒvƒrƒbƒg‚ğ“Ç‚İ‚Ş
+	//ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ“ãƒƒãƒˆã‚’èª­ã¿è¾¼ã‚€
 	bmp_bits[n] = (PBYTE)malloc(sizeimage);
 	ret=ReadFile(hFile,bmp_bits[n],sizeimage,&br,NULL);
 	CloseHandle(hFile);

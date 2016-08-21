@@ -1,4 +1,4 @@
-
+ï»¿
 #include <windows.h>
 #include <stdio.h>
 #include <d3d8.h>
@@ -28,7 +28,7 @@ extern int edit_now;
 BOOL mousedown=FALSE;
 BOOL drawprv=FALSE;
 
-//ƒ}ƒEƒX‚Å‘I‘ð‚³‚ê‚Ä‚¢‚é‹éŒ`
+//ãƒžã‚¦ã‚¹ã§é¸æŠžã•ã‚Œã¦ã„ã‚‹çŸ©å½¢
 int sx=0,gx=0,sy=0,gy=0,mu_xpos=0,mu_ypos=0;
 
 extern BOOL testmirrorx,testmirrory;
@@ -89,7 +89,7 @@ RECT GetRECTNow()
 	return(rr);
 }
 
-// •`‰æ -----------------------------------------------------------------------------
+// æç”» -----------------------------------------------------------------------------
 
 void CldDraw(HWND hwnd)
 {
@@ -164,7 +164,7 @@ LRESULT WINAPI CldMsgProc( HWND hWnd, UINT msg, WPARAM wparam, LPARAM lparam )
 			sx=gx=LOWORD(lparam);
 			sy=gy=HIWORD(lparam);
 		}
-		else if(radio==2){//dSÝ’è
+		else if(radio==2){//é‡å¿ƒè¨­å®š
 			switch(radioview){
 			case 0:mag=4;break;//25%
 			case 1:mag=2;break;//50%
@@ -177,7 +177,7 @@ LRESULT WINAPI CldMsgProc( HWND hWnd, UINT msg, WPARAM wparam, LPARAM lparam )
 			ed_c[edit_now].gcy = (int)((HIWORD(lparam)-MYCHILDCENTERY)*mag);
 			CldRedraw();
 		}
-		else{//‚»‚Ì‘¼(üˆø‚«‚ðŽn‚ß‚é)
+		else{//ãã®ä»–(ç·šå¼•ãã‚’å§‹ã‚ã‚‹)
 			sx=gx=LOWORD(lparam);
 			sy=gy=HIWORD(lparam);
 		}
@@ -185,12 +185,12 @@ LRESULT WINAPI CldMsgProc( HWND hWnd, UINT msg, WPARAM wparam, LPARAM lparam )
 	case WM_LBUTTONUP:
 		if(mousedown){
 			mousedown=FALSE;
-			if(radio==1){//”»’èÝ’è
+			if(radio==1){//åˆ¤å®šè¨­å®š
 				gx=LOWORD(lparam);
 				gy=HIWORD(lparam);
 			}
-			else if(radio==0){//ˆÚ“®
-				if(drawprv)DrawLINE(hWnd,sx,gx,sy,gy,0);//‚Æ‚è‚ ‚¦‚¸ü‚ðÁ‚µ‚Æ‚­
+			else if(radio==0){//ç§»å‹•
+				if(drawprv)DrawLINE(hWnd,sx,gx,sy,gy,0);//ã¨ã‚Šã‚ãˆãšç·šã‚’æ¶ˆã—ã¨ã
 				gx=LOWORD(lparam);
 				gy=HIWORD(lparam);
 				drawprv=FALSE;
@@ -198,39 +198,39 @@ LRESULT WINAPI CldMsgProc( HWND hWnd, UINT msg, WPARAM wparam, LPARAM lparam )
 				ed_c[edit_now].cell[radio2].dy += gy-sy;
 				CldRedraw();
 			}
-			else if(radio==2){//dS(‰½‚à‚µ‚È‚¢B‰Ÿ‚µ‚½‚Æ‚«‚É‚·‚Å‚ÉŽw’è‚³‚ê‚é)
+			else if(radio==2){//é‡å¿ƒ(ä½•ã‚‚ã—ãªã„ã€‚æŠ¼ã—ãŸã¨ãã«ã™ã§ã«æŒ‡å®šã•ã‚Œã‚‹)
 			}
-			else if(radio==3){//‰ñ“]
-				if(drawprv)DrawLINE(hWnd,sx,gx,sy,gy,0);//‚Æ‚è‚ ‚¦‚¸ü‚ðÁ‚µ‚Æ‚­
+			else if(radio==3){//å›žè»¢
+				if(drawprv)DrawLINE(hWnd,sx,gx,sy,gy,0);//ã¨ã‚Šã‚ãˆãšç·šã‚’æ¶ˆã—ã¨ã
 				gx=LOWORD(lparam);
 				ed_c[edit_now].cell[radio2].rot += gx - sx;
 				CldRedraw();
 			}
-			else if(radio==4){//Šg‘å(X)
-				if(drawprv)DrawLINE(hWnd,sx,gx,sy,gy,0);//‚Æ‚è‚ ‚¦‚¸ü‚ðÁ‚µ‚Æ‚­
+			else if(radio==4){//æ‹¡å¤§(X)
+				if(drawprv)DrawLINE(hWnd,sx,gx,sy,gy,0);//ã¨ã‚Šã‚ãˆãšç·šã‚’æ¶ˆã—ã¨ã
 				gx=LOWORD(lparam);
-				if(gx>sx){//Šg‘å
-					for(tmp=0;tmp<gx-sx;tmp++){//100pixel‚Å10%‘å‚«‚­‚È‚é
+				if(gx>sx){//æ‹¡å¤§
+					for(tmp=0;tmp<gx-sx;tmp++){//100pixelã§10%å¤§ãããªã‚‹
 						ed_c[edit_now].cell[radio2].magx *= 1.001f;
 					}
 				}
-				else{//k¬
-					for(tmp=0;tmp<sx-gx;tmp++){//100pixel‚Å10%¬‚³‚­‚È‚é
+				else{//ç¸®å°
+					for(tmp=0;tmp<sx-gx;tmp++){//100pixelã§10%å°ã•ããªã‚‹
 						ed_c[edit_now].cell[radio2].magx /= 1.001f;
 					}
 				}
 				CldRedraw();
 			}
-			else if(radio==5){//Šg‘å(Y)
-				if(drawprv)DrawLINE(hWnd,sx,gx,sy,gy,0);//‚Æ‚è‚ ‚¦‚¸ü‚ðÁ‚µ‚Æ‚­
+			else if(radio==5){//æ‹¡å¤§(Y)
+				if(drawprv)DrawLINE(hWnd,sx,gx,sy,gy,0);//ã¨ã‚Šã‚ãˆãšç·šã‚’æ¶ˆã—ã¨ã
 				gy=HIWORD(lparam);
-				if(gy>sy){//Šg‘å
-					for(tmp=0;tmp<gy-sy;tmp++){//100pixel‚Å10%‘å‚«‚­‚È‚é
+				if(gy>sy){//æ‹¡å¤§
+					for(tmp=0;tmp<gy-sy;tmp++){//100pixelã§10%å¤§ãããªã‚‹
 						ed_c[edit_now].cell[radio2].magy *= 1.001f;
 					}
 				}
-				else{//k¬
-					for(tmp=0;tmp<sy-gy;tmp++){//100pixel‚Å10%¬‚³‚­‚È‚é
+				else{//ç¸®å°
+					for(tmp=0;tmp<sy-gy;tmp++){//100pixelã§10%å°ã•ããªã‚‹
 						ed_c[edit_now].cell[radio2].magy /= 1.001f;
 					}
 				}
@@ -240,28 +240,28 @@ LRESULT WINAPI CldMsgProc( HWND hWnd, UINT msg, WPARAM wparam, LPARAM lparam )
 		break;
 	case WM_MOUSEMOVE:
 		if(mousedown){
-			if(radio==0){//ü‚ðˆø‚­
+			if(radio==0){//ç·šã‚’å¼•ã
 				if(drawprv)DrawLINE(hWnd,sx,gx,sy,gy,0);
 				gx=LOWORD(lparam);
 				gy=HIWORD(lparam);
 				DrawLINE(hWnd,sx,gx,sy,gy,0);
 				drawprv=TRUE;
 			}
-			else if(radio==1){//” ‚ð•`‚­
+			else if(radio==1){//ç®±ã‚’æã
 				if(drawprv)DrawRECT(hWnd,sx,gx,sy,gy,0);
 				gx=LOWORD(lparam);
 				gy=HIWORD(lparam);
 				DrawRECT(hWnd,sx,gx,sy,gy,0);
 				drawprv=TRUE;
 			}
-			if(radio==3 || radio==4){//ƒˆƒRü‚ðˆø‚­(‰ñ“]•XLk)
+			if(radio==3 || radio==4){//ãƒ¨ã‚³ç·šã‚’å¼•ã(å›žè»¢ï¼†Xä¼¸ç¸®)
 				if(drawprv)DrawLINE(hWnd,sx,gx,sy,gy,0);
 				gx=LOWORD(lparam);
 //				gy=HIWORD(lparam);
 				DrawLINE(hWnd,sx,gx,sy,gy,0);
 				drawprv=TRUE;
 			}
-			if(radio==5){//ƒ^ƒeü‚ðˆø‚­(YLk)
+			if(radio==5){//ã‚¿ãƒ†ç·šã‚’å¼•ã(Yä¼¸ç¸®)
 				if(drawprv)DrawLINE(hWnd,sx,gx,sy,gy,0);
 //				gx=LOWORD(lparam);
 				gy=HIWORD(lparam);
@@ -286,7 +286,7 @@ LRESULT WINAPI CldMsgProc( HWND hWnd, UINT msg, WPARAM wparam, LPARAM lparam )
 }
 
 
-// window ¶¬----------------------------------------------------------------------------
+// window ç”Ÿæˆ----------------------------------------------------------------------------
 
 HWND CreateChildWindow(HWND hdlg)
 {

@@ -1,24 +1,24 @@
-#pragma once
+Ôªø#pragma once
 #include "config.h"
 #include <vector>
 
-// CDlgKeyConfig É_ÉCÉAÉçÉO
+// CDlgKeyConfig „ÉÄ„Ç§„Ç¢„É≠„Ç∞
 
 class CDlgKeyConfig : public CDialog
 {
 	DECLARE_DYNAMIC(CDlgKeyConfig)
 
 public:
-	CDlgKeyConfig(CWnd* pParent , KEYCONFIG& cfg);   // ïWèÄÉRÉìÉXÉgÉâÉNÉ^
+	CDlgKeyConfig(CWnd* pParent , KEYCONFIG& cfg);   // Ê®ôÊ∫ñ„Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	virtual ~CDlgKeyConfig();
 
-// É_ÉCÉAÉçÉO ÉfÅ[É^
+// „ÉÄ„Ç§„Ç¢„É≠„Ç∞ „Éá„Éº„Çø
 	enum { IDD = IDD_DIALOG_KEYBORD };
 
 protected:
 	KEYCONFIG m_cfg;
 	void UpdateNames();
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ÉTÉ|Å[Ég
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV „Çµ„Éù„Éº„Éà
 
 	DECLARE_MESSAGE_MAP()
 public:

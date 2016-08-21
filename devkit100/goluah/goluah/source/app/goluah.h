@@ -1,4 +1,4 @@
-// goluah.h : goluah ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒƒCƒ“ ƒwƒbƒ_[ ƒtƒ@ƒCƒ‹
+ï»¿// goluah.h : goluah ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ¡ã‚¤ãƒ³ ãƒ˜ãƒƒãƒ€ãƒ¼ ãƒ•ã‚¡ã‚¤ãƒ«
 //
 #pragma once
 
@@ -6,19 +6,19 @@
 	#error include 'stdafx.h' before including this file for PCH
 #endif
 */
-#include "../resource.h"       // ƒƒCƒ“ ƒVƒ“ƒ{ƒ‹
+#include "../resource.h"       // ãƒ¡ã‚¤ãƒ³ ã‚·ãƒ³ãƒœãƒ«
 
 
 /*!
 *	@defgroup Application
-*	@brief ƒAƒvƒŠƒP[ƒVƒ‡ƒ“
+*	@brief ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³
 */
 
 /*!
 *	@ingroup Application
-*	@brief  ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒNƒ‰ƒX
-*	ƒvƒƒWƒFƒNƒg‚ªMFCƒAƒvƒŠ‚É‚È‚Á‚½‚½‚ß‚µ‚å‚¤‚ª‚È‚­‚ ‚éƒNƒ‰ƒXB
-*	InitInstance‚Å‹ŒWinMain‚ğŒÄ‚ñ‚ÅI—¹
+*	@brief  ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚¯ãƒ©ã‚¹
+*	ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆãŒMFCã‚¢ãƒ—ãƒªã«ãªã£ãŸãŸã‚ã—ã‚‡ã†ãŒãªãã‚ã‚‹ã‚¯ãƒ©ã‚¹ã€‚
+*	InitInstanceã§æ—§WinMainã‚’å‘¼ã‚“ã§çµ‚äº†
 */
 class CgoluahApp : public CWinApp
 {
@@ -26,12 +26,12 @@ public:
 	CgoluahApp();
 
 
-// ƒI[ƒo[ƒ‰ƒCƒh
+// ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
 public:
-	//!‹ŒWinMain‚ğŒÄ‚ñ‚Å‚¢‚é‚¾‚¯
+	//!æ—§WinMainã‚’å‘¼ã‚“ã§ã„ã‚‹ã ã‘
 	virtual BOOL InitInstance();
 
-// À‘•
+// å®Ÿè£…
 
 public:
 	DECLARE_MESSAGE_MAP()

@@ -1,5 +1,5 @@
-/*--------------------------------------------------------------
-	‚»‚ç
+ï»¿/*--------------------------------------------------------------
+	ãã‚‰
 ----------------------------------------------------------------*/
 #include "sky.h"
 
@@ -53,19 +53,19 @@ void CSky::Draw()
 		5,6,7,
 	};
 
-	//ƒ}ƒgƒŠƒN[ƒX
+	//ãƒžãƒˆãƒªã‚¯ãƒ¼ã‚¹
 	D3DXMATRIX mati;
 	D3DXMatrixIdentity(&mati);
-	d3ddev->SetTransform(D3DTS_WORLD,	&mati);		//À•W•ÏŠ·ƒ}ƒgƒŠƒNƒXŽw’è
-	d3ddev->SetFVF( FVF_3DVERTEX );		//’¸“_‚ÌƒtƒH[ƒ}ƒbƒg‚ðŽw’è
+	d3ddev->SetTransform(D3DTS_WORLD,	&mati);		//åº§æ¨™å¤‰æ›ãƒžãƒˆãƒªã‚¯ã‚¹æŒ‡å®š
+	d3ddev->SetFVF( FVF_3DVERTEX );		//é ‚ç‚¹ã®ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã‚’æŒ‡å®š
 
-	//ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒbƒVƒ“ƒOƒ‚[ƒh-ŒJ‚è•Ô‚µ
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ãƒƒã‚·ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰-ç¹°ã‚Šè¿”ã—
 	
 
 	aki3d.EnableZ(FALSE,FALSE);
 	aki3d.SetBlend_Add();
 	
-	d3ddev->SetTexture(0,tex);							//ƒeƒNƒXƒ`ƒƒ[Ý’è
+	d3ddev->SetTexture(0,tex);							//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼è¨­å®š
 	d3ddev->DrawIndexedPrimitiveUP(
 									D3DPT_TRIANGLELIST,	//D3DPRIMITIVETYPE PrimitiveType,
 									0,					//UINT MinVertexIndex,

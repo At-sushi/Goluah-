@@ -1,4 +1,4 @@
-/*=====================================================================================
+ï»¿/*=====================================================================================
 
 Goluah!! Copyright (C) 2001-2004 aki, 2004-2016 At-sushi, 2014-2016 logger
 
@@ -12,7 +12,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 /*==============================================================
 
-	ƒLƒƒƒ‰ƒNƒ^[’è‹`ƒwƒbƒ_
+	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼å®šç¾©ãƒ˜ãƒƒãƒ€
 
 ================================================================*/
 #pragma once
@@ -30,17 +30,17 @@ You should have received a copy of the GNU General Public License along with thi
 
 #include "opt.h"
 
-//”ò‚Ñ“¹‹ïƒNƒ‰ƒX
+//é£›ã³é“å…·ã‚¯ãƒ©ã‚¹
 class CHadou;
 class CEnergyArrow;
 namespace Morarael
 {
-class CTrack;//ƒm[ƒ}ƒ‹ƒ‚ƒ‰ƒ‰[‚Æ‚©‚Ô‚Á‚½‚Ì‚Å
+class CTrack;//ãƒãƒ¼ãƒãƒ«ãƒ¢ãƒ©ãƒ©ãƒ¼ã¨ã‹ã¶ã£ãŸã®ã§
 }
 class CJudge;
 class CDashWind;
 
-//’è”’è‹`
+//å®šæ•°å®šç¾©
 #define EARROW_NUM		(4)
 #define SOJ_OFFSET		(10)
 #define NUM_ATTACKINFO	(32)
@@ -53,7 +53,7 @@ class CDashWind;
 #define JUDGE_MAXHIT	(3)
 
 /*--------------------------------------------------------------
-	ƒƒCƒ“ƒLƒƒƒ‰ƒNƒ^[ƒNƒ‰ƒX
+	ãƒ¡ã‚¤ãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚¯ãƒ©ã‚¹
 ----------------------------------------------------------------*/
 class CCharacterEL : public CCharacterBase
 {
@@ -63,7 +63,7 @@ public:
 
 protected:
 	//*********************************************
-	//  ƒI[ƒo[ƒ‰ƒCƒh‚·‚éŠÖ”
+	//  ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã™ã‚‹é–¢æ•°
 	//*********************************************
 
 	DWORD Message(DWORD msg,LPVOID pd,DWORD prm);
@@ -77,39 +77,39 @@ protected:
 	DWORD CmdCom_OnHissatuAttacking(DWORD wid);
 	DWORD CmdCom_OnKucyu(DWORD wid);
 	DWORD CmdCom_OnNormal(DWORD wid);
-	void InitAttackInfo();//UŒ‚—Íî•ñ‚Ì‰Šú‰»
-	void InitWazInfo();//‹Zî•ñ‚Ì‰Šú‰»
-	void InitBullets();//”ò“¹‹ï‰Šú‰»
-	void InitGCDandBMP();//ƒrƒbƒgƒ}ƒbƒvƒ[ƒh
+	void InitAttackInfo();//æ”»æ’ƒåŠ›æƒ…å ±ã®åˆæœŸåŒ–
+	void InitWazInfo();//æŠ€æƒ…å ±ã®åˆæœŸåŒ–
+	void InitBullets();//é£›é“å…·åˆæœŸåŒ–
+	void InitGCDandBMP();//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰
 	void InitMySound(char* path_name,char* list_name);
 	DWORD TouchB(ATTACKINFO *info,BOOL hit);
 	DWORD TouchA(ATTACKINFO *info,DWORD ta_eid);
 	DWORD ComThink();
 
-	//’Êí“®ì
-	void act_neutral();//ƒjƒ…[ƒgƒ‰ƒ‹
-	void act_crouch();//‚µ‚á‚ª‚İ
-	void act_rakka();//—‰º
-	void act_tojyo();//“oê
-	void act_win();//Ÿ—˜
-	void act_walkf();//‘Oi
-	void act_walkb();//Œã‘Ş
-	void act_jamps();//ƒWƒƒƒ“ƒv—\”õ“®ì
-	void act_jampc();//‚’¼ƒWƒƒƒ“ƒv
-	void act_jampf();//‘OƒWƒƒƒ“ƒv
-	void act_jampb();//ŒãƒWƒƒƒ“ƒv
-	void act_timeoverlose();//ƒ^ƒCƒ€ƒI[ƒo[
-	//’Êí.UŒ‚
-	void act_att_sa();//—§ã
-	void act_att_sb();//—§’†
-	void act_att_sc();//—§‹­
-	void act_att_ca();//‹üã
-	void act_att_cb();//‹ü’†
-	void act_att_cc();//‹ü‹­
-	void act_att_ja();//”òã
-	void act_att_jb();//”ò’†
-	void act_att_jc();//”ò‹­
-	//‚»‚Ì‘¼
+	//é€šå¸¸å‹•ä½œ
+	void act_neutral();//ãƒ‹ãƒ¥ãƒ¼ãƒˆãƒ©ãƒ«
+	void act_crouch();//ã—ã‚ƒãŒã¿
+	void act_rakka();//è½ä¸‹
+	void act_tojyo();//ç™»å ´
+	void act_win();//å‹åˆ©
+	void act_walkf();//å‰é€²
+	void act_walkb();//å¾Œé€€
+	void act_jamps();//ã‚¸ãƒ£ãƒ³ãƒ—äºˆå‚™å‹•ä½œ
+	void act_jampc();//å‚ç›´ã‚¸ãƒ£ãƒ³ãƒ—
+	void act_jampf();//å‰ã‚¸ãƒ£ãƒ³ãƒ—
+	void act_jampb();//å¾Œã‚¸ãƒ£ãƒ³ãƒ—
+	void act_timeoverlose();//ã‚¿ã‚¤ãƒ ã‚ªãƒ¼ãƒãƒ¼
+	//é€šå¸¸.æ”»æ’ƒ
+	void act_att_sa();//ç«‹å¼±
+	void act_att_sb();//ç«‹ä¸­
+	void act_att_sc();//ç«‹å¼·
+	void act_att_ca();//å±ˆå¼±
+	void act_att_cb();//å±ˆä¸­
+	void act_att_cc();//å±ˆå¼·
+	void act_att_ja();//é£›å¼±
+	void act_att_jb();//é£›ä¸­
+	void act_att_jc();//é£›å¼·
+	//ãã®ä»–
 	void act_taiki();
 	void act_koutai_out();
 	void act_koutai_in();
@@ -117,57 +117,57 @@ protected:
 	void act_koutai2();
 
 	//*********************************************
-	//@CCharacterƒNƒ‰ƒX“Æ©‚ÌŠÖ”
+	//ã€€CCharacterã‚¯ãƒ©ã‚¹ç‹¬è‡ªã®é–¢æ•°
 	//*********************************************
 private:
-	void InitParameters();//ƒpƒ‰ƒ[ƒ^‰Šú‰»
-	void InitAnalyzeOptions();//ƒIƒvƒVƒ‡ƒ“•ªŠ„
+	void InitParameters();//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
+	void InitAnalyzeOptions();//ã‚ªãƒ—ã‚·ãƒ§ãƒ³åˆ†å‰²
 	void StartAttack(DWORD atk_info_id);
 	BOOL com_nage2(DWORD maai);
 	BOOL ComLevelCk(UINT level);
 
-	//’Ç‰Ás“®ŠÖ”
-	void act_earrow1();	//ƒGƒiƒW[ƒAƒ[
+	//è¿½åŠ è¡Œå‹•é–¢æ•°
+	void act_earrow1();	//ã‚¨ãƒŠã‚¸ãƒ¼ã‚¢ãƒ­ãƒ¼
 	void act_earrow2();
 	void act_earrow3();
-	void act_earrow1j();//ƒGƒiƒW[ƒAƒ[(‹ó’†)
+	void act_earrow1j();//ã‚¨ãƒŠã‚¸ãƒ¼ã‚¢ãƒ­ãƒ¼(ç©ºä¸­)
 	void act_earrow2j();
 	void act_earrow3j();
-	void act_dashf();	//ƒ_ƒbƒVƒ…
+	void act_dashf();	//ãƒ€ãƒƒã‚·ãƒ¥
 	void act_dashb();
-	void act_dashfj();	//‹ó’†ƒ_ƒbƒVƒ…
+	void act_dashfj();	//ç©ºä¸­ãƒ€ãƒƒã‚·ãƒ¥
 	void act_dashbj();
-	void act_sword1r();	//ƒ\[ƒhA‹ïŒ»‰»
+	void act_sword1r();	//ã‚½ãƒ¼ãƒ‰ã€å…·ç¾åŒ–
 	void act_sword2r();
 	void act_sword3r();
 	BOOL act_swordRealize();
-	void act_sword1a();	//ƒ\[ƒhAUŒ‚
+	void act_sword1a();	//ã‚½ãƒ¼ãƒ‰ã€æ”»æ’ƒ
 	void act_sword2a();
 	void act_sword3a();
-	void act_sword1d();	//ƒ\[ƒhAÁ¸
+	void act_sword1d();	//ã‚½ãƒ¼ãƒ‰ã€æ¶ˆå¤±
 	void act_sword2d();
 	void act_sword3d();
-	void act_nage1();	//“Š‚°
+	void act_nage1();	//æŠ•ã’
 	void act_nage2();
 	void act_nageend();
-	void act_judgement();//ƒWƒƒƒbƒWƒƒ“ƒg
+	void act_judgement();//ã‚¸ãƒ£ãƒƒã‚¸ãƒ¡ãƒ³ãƒˆ
 	void act_att_scs1();
 	void act_att_scs2();
 
-	//“G‘¤s“®
+	//æ•µå´è¡Œå‹•
 	DWORD eact_nage(GOBJECT *pedat);
 
-	//UŒ‚—Íî•ñ
+	//æ”»æ’ƒåŠ›æƒ…å ±
 	ATTACKINFO aif[NUM_ATTACKINFO];
 
-	//”ò“¹‹ï
+	//é£›é“å…·
 	CHadou				*pbul_hadou;
 	CEnergyArrow		*pbul_earrow[EARROW_NUM];
 	Morarael::CTrack	*pefe_track;
 	CJudge				*pbul_judge;
 	CDashWind			*pefe_wind;
 
-	//ƒIƒvƒVƒ‡ƒ“
+	//ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 	BOOL m_opt_tetra;
 	BOOL m_opt_sword;
 	BOOL m_opt_judge;
@@ -183,34 +183,34 @@ private:
 
 extern LPTSTR CharDirectory;
 
-//s“®ID‚ğ‚±‚±‚É’Ç‰Á‚·‚é
-#define ACTID_EARROW1			(ACTID_HISSATU | ACTID_ATTACK | 0x0001)//ƒeƒgƒ‰ƒOƒ‰ƒ}ƒgƒ“i‹Œ–¼ƒGƒiƒW[ƒAƒ[j
+//è¡Œå‹•IDã‚’ã“ã“ã«è¿½åŠ ã™ã‚‹
+#define ACTID_EARROW1			(ACTID_HISSATU | ACTID_ATTACK | 0x0001)//ãƒ†ãƒˆãƒ©ã‚°ãƒ©ãƒãƒˆãƒ³ï¼ˆæ—§åã‚¨ãƒŠã‚¸ãƒ¼ã‚¢ãƒ­ãƒ¼ï¼‰
 #define ACTID_EARROW2			(ACTID_HISSATU | ACTID_ATTACK | 0x0002)
 #define ACTID_EARROW3			(ACTID_HISSATU | ACTID_ATTACK | 0x0003)
-#define ACTID_DASHF				(ACTID_KUCYU | 0x0004)//ƒ_ƒbƒVƒ…i’nã‚©‚çj
+#define ACTID_DASHF				(ACTID_KUCYU | 0x0004)//ãƒ€ãƒƒã‚·ãƒ¥ï¼ˆåœ°ä¸Šã‹ã‚‰ï¼‰
 #define ACTID_DASHB				(ACTID_KUCYU | 0x0005)
-#define ACTID_EARROW1J			(ACTID_HISSATU | ACTID_ATTACK | ACTID_KUCYU | 0x0006)//‹ó’†ƒeƒgƒ‰ƒOƒ‰ƒ}ƒgƒ“i‹Œ–¼ƒGƒiƒW[ƒAƒ[j
+#define ACTID_EARROW1J			(ACTID_HISSATU | ACTID_ATTACK | ACTID_KUCYU | 0x0006)//ç©ºä¸­ãƒ†ãƒˆãƒ©ã‚°ãƒ©ãƒãƒˆãƒ³ï¼ˆæ—§åã‚¨ãƒŠã‚¸ãƒ¼ã‚¢ãƒ­ãƒ¼ï¼‰
 #define ACTID_EARROW2J			(ACTID_HISSATU | ACTID_ATTACK | ACTID_KUCYU | 0x0007)
 #define ACTID_EARROW3J			(ACTID_HISSATU | ACTID_ATTACK | ACTID_KUCYU | 0x0008)
-#define ACTID_DASHFJ			(ACTID_KUCYU | 0x0009)//ƒ_ƒbƒVƒ…i‹ó’†‚©‚çj
+#define ACTID_DASHFJ			(ACTID_KUCYU | 0x0009)//ãƒ€ãƒƒã‚·ãƒ¥ï¼ˆç©ºä¸­ã‹ã‚‰ï¼‰
 #define ACTID_DASHBJ			(ACTID_KUCYU | 0x000A)
-#define ACTID_SWORD1R			(ACTID_HISSATU | ACTID_ATTACK | 0x000B)//ƒ\[ƒh(‰¼)A‹ïŒ»‰»
+#define ACTID_SWORD1R			(ACTID_HISSATU | ACTID_ATTACK | 0x000B)//ã‚½ãƒ¼ãƒ‰(ä»®)ã€å…·ç¾åŒ–
 #define ACTID_SWORD2R			(ACTID_HISSATU | ACTID_ATTACK | 0x000C)
 #define ACTID_SWORD3R			(ACTID_HISSATU | ACTID_ATTACK | 0x000D)
-#define ACTID_SWORD1A			(ACTID_HISSATU | ACTID_ATTACK | 0x000E)//ƒ\[ƒh(‰¼)AUŒ‚
+#define ACTID_SWORD1A			(ACTID_HISSATU | ACTID_ATTACK | 0x000E)//ã‚½ãƒ¼ãƒ‰(ä»®)ã€æ”»æ’ƒ
 #define ACTID_SWORD2A			(ACTID_HISSATU | ACTID_ATTACK | 0x000F)
 #define ACTID_SWORD3A			(ACTID_HISSATU | ACTID_ATTACK | 0x0010)
-#define ACTID_SWORD1D			(ACTID_HISSATU | ACTID_ATTACK | 0x0011)//ƒ\[ƒh(‰¼)AÁ¸
+#define ACTID_SWORD1D			(ACTID_HISSATU | ACTID_ATTACK | 0x0011)//ã‚½ãƒ¼ãƒ‰(ä»®)ã€æ¶ˆå¤±
 #define ACTID_SWORD2D			(ACTID_HISSATU | ACTID_ATTACK | 0x0012)
 #define ACTID_SWORD3D			(ACTID_HISSATU | ACTID_ATTACK | 0x0013)
-#define ACTID_NAGE1				(ACTID_ATTACK | ACTID_NAGE | 0x0014)				//“Š‚°
+#define ACTID_NAGE1				(ACTID_ATTACK | ACTID_NAGE | 0x0014)				//æŠ•ã’
 #define ACTID_NAGE2				(ACTID_ATTACK | ACTID_NAGE | ACTID_KUCYU | 0x0015)
 #define ACTID_NAGEEND			(ACTID_ATTACK | ACTID_NAGE | ACTID_KUCYU | 0x0016)
-#define ACTID_JUDGEMENT			(ACTID_HISSATU | ACTID_ATTACK | ACTID_KUCYU | 0x0017)//ƒfƒCEƒIƒuEƒWƒƒƒbƒWƒƒ“ƒg
+#define ACTID_JUDGEMENT			(ACTID_HISSATU | ACTID_ATTACK | ACTID_KUCYU | 0x0017)//ãƒ‡ã‚¤ãƒ»ã‚ªãƒ–ãƒ»ã‚¸ãƒ£ãƒƒã‚¸ãƒ¡ãƒ³ãƒˆ
 #define ACTID_ATT_SCS1			(ACTID_ATTACK | 0x0018)
 #define ACTID_ATT_SCS2			(ACTID_ATTACK | 0x0019)
 
-//UŒ‚—Í”Ô†‚ğ‚±‚±‚É’è‹`‚·‚é
+//æ”»æ’ƒåŠ›ç•ªå·ã‚’ã“ã“ã«å®šç¾©ã™ã‚‹
 #define ATTACKINFO_STAND_A		0
 #define ATTACKINFO_STAND_B		1
 #define ATTACKINFO_STAND_C		2
@@ -228,38 +228,38 @@ extern LPTSTR CharDirectory;
 #define ATTACKINFO_JUDGE		14
 
 
-//UŒ‚IDi•K—v‚ª‚ ‚ê‚Î•ÏX‚·‚éj
+//æ”»æ’ƒIDï¼ˆå¿…è¦ãŒã‚ã‚Œã°å¤‰æ›´ã™ã‚‹ï¼‰
 #define ATTACK_WEAK				1
 #define ATTACK_MIDDLE			2
 #define ATTACK_STRONG			3
 #define ATTACK_HISSATU			4
 #define ATTACK_EREAL			0x00010000
 
-//ƒ†[ƒU[’è‹`ƒƒbƒZ[ƒW
-#define GOBJMSG_NAGE			(GOBJMSG_USERDEFINE | 0x0001)	//“Š‚°—p
-#define GOBJMSG_EARROWHIT		(GOBJMSG_USERDEFINE | 0x0002)	// ƒRƒ“ƒ{—p
+//ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+#define GOBJMSG_NAGE			(GOBJMSG_USERDEFINE | 0x0001)	//æŠ•ã’ç”¨
+#define GOBJMSG_EARROWHIT		(GOBJMSG_USERDEFINE | 0x0002)	// ã‚³ãƒ³ãƒœç”¨
 
-//ƒ}ƒNƒ’è‹`
+//ãƒã‚¯ãƒ­å®šç¾©
 #define cell(a)				pdat->cnow=a
 #define ccounter			(pdat->counter)
 #define ALLGUARDFLAG		(GUARDINFO_XSTAND | GUARDINFO_XCROUCH | GUARDINFO_XJAMP)
 #define CANNOT_GUARD(a)		((a&ALLGUARDFLAG)==0)
 
-//ƒ`ƒF[ƒ“ƒRƒ“ƒ{ƒtƒ‰ƒO
-//#define CHAIN_SA	0x00010000 ƒx[ƒX‚Å’è‹`
+//ãƒã‚§ãƒ¼ãƒ³ã‚³ãƒ³ãƒœãƒ•ãƒ©ã‚°
+//#define CHAIN_SA	0x00010000 ãƒ™ãƒ¼ã‚¹ã§å®šç¾©
 //#define CHAIN_SB	0x00020000
 //#define CHAIN_SC	0x00040000
 //#define CHAIN_CA	0x00080000
 //#define CHAIN_CB	0x00100000
 //#define CHAIN_CC	0x00200000
-#define CHAIN_SWORD1	0x00000001//ƒ`ƒF[ƒ“‚Æ‚µ‚ÄƒJƒEƒ“ƒg‚·‚é
+#define CHAIN_SWORD1	0x00000001//ãƒã‚§ãƒ¼ãƒ³ã¨ã—ã¦ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹
 #define CHAIN_SWORD2	0x00000002
 #define CHAIN_SWORD3	0x00000004
 
-//ŠÔ‡‚¢
+//é–“åˆã„
 #define MAAI_NAGE		(30)
 
-//wave”Ô†
+//waveç•ªå·
 #define	wave_tojyo			4
 #define	wave_win			5
 #define	wave_tetra			6
@@ -271,7 +271,7 @@ extern LPTSTR CharDirectory;
 
 
 //--------------------------------------------------------------------------------
-//	”ò“¹‹ïƒNƒ‰ƒX’è‹`
+//	é£›é“å…·ã‚¯ãƒ©ã‚¹å®šç¾©
 //----------------------------------------------------------------------------------
 
 class CHadou : public CBulletBase
@@ -314,23 +314,23 @@ protected:
 	void UpdateTrack(float t,BOOL damp);
 
 	
-	CTristrip* m_ts;			//ƒgƒ‰ƒCƒXƒgƒŠƒbƒv
-	UINT m_num;				//‘ƒ|ƒCƒ“ƒg”
-	UINT m_step;			//1ƒtƒŒ‚ÅXV‚·‚éƒ|ƒCƒ“ƒg”
-	V2d m_ppos;				//‘O‰ñˆÊ’u
-	V2d m_pvec;				//‘O‰ñƒjƒZ‘¬“x
+	CTristrip* m_ts;			//ãƒˆãƒ©ã‚¤ã‚¹ãƒˆãƒªãƒƒãƒ—
+	UINT m_num;				//ç·ãƒã‚¤ãƒ³ãƒˆæ•°
+	UINT m_step;			//1ãƒ•ãƒ¬ã§æ›´æ–°ã™ã‚‹ãƒã‚¤ãƒ³ãƒˆæ•°
+	V2d m_ppos;				//å‰å›ä½ç½®
+	V2d m_pvec;				//å‰å›ãƒ‹ã‚»é€Ÿåº¦
 
-	V2d *m_pos;				//ˆÊ’uƒoƒbƒtƒ@
-	float m_width;			//Šî€‘¾‚³
-	ARGB m_color;			//Šî€F
+	V2d *m_pos;				//ä½ç½®ãƒãƒƒãƒ•ã‚¡
+	float m_width;			//åŸºæº–å¤ªã•
+	ARGB m_color;			//åŸºæº–è‰²
 
-	float m_maxspeed;		//Å‘å‘¬“x
-	float m_trackstrength;	//’Ç”ö‹­‚³
-	float m_lifetime;		//õ–½
+	float m_maxspeed;		//æœ€å¤§é€Ÿåº¦
+	float m_trackstrength;	//è¿½å°¾å¼·ã•
+	float m_lifetime;		//å¯¿å‘½
 };
 
 /*--------------------------------------------------------------
-	‹OÕ
+	è»Œè·¡
 ----------------------------------------------------------------*/
 namespace Morarael
 {
@@ -365,14 +365,14 @@ public:
 	float parentY(){ return (float)GetParentObj()->y; }
 
 protected:
-	void act_run();	//ÀÛ‚É‚Í‰½‚à‚µ‚È‚¢
-	void act_bomb();//ÀÛ‚É‚Í‰½‚à‚µ‚È‚¢
+	void act_run();	//å®Ÿéš›ã«ã¯ä½•ã‚‚ã—ãªã„
+	void act_bomb();//å®Ÿéš›ã«ã¯ä½•ã‚‚ã—ãªã„
 
-	void PosUpdate();//V‹K’¸“_’Ç‰Á
+	void PosUpdate();//æ–°è¦é ‚ç‚¹è¿½åŠ 
 
 	CTristrip* m_ts;
 
-	//ƒpƒ‰ƒ[ƒ^
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	float m_width;
 	ARGB m_color;
 	float m_inirot;
@@ -384,7 +384,7 @@ protected:
 	DWORD m_duration;
 	DWORD m_stopcount;
 
-	//“à•”ƒpƒ‰ƒ[ƒ^
+	//å†…éƒ¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	float m_rot;
 	UINT m_num,m_step;
 	V2d  m_ppos,m_pvec;
@@ -397,7 +397,7 @@ protected:
 }//namespace Morarael
 
 /*--------------------------------------------------------------
-	ƒWƒƒƒbƒWƒƒ“ƒg
+	ã‚¸ãƒ£ãƒƒã‚¸ãƒ¡ãƒ³ãƒˆ
 ----------------------------------------------------------------*/
 #define JUDGE_TOGENUM	256
 
@@ -424,18 +424,18 @@ protected:
 
 	void UpdateToge();
 
-	CParticle* m_tubu;			//ƒp[ƒeƒBƒNƒ‹ƒNƒ‰ƒX
-	LPDIRECT3DTEXTURE9 m_tex;	//ƒeƒNƒXƒ`ƒƒ
+	CParticle* m_tubu;			//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚¯ãƒ©ã‚¹
+	LPDIRECT3DTEXTURE9 m_tex;	//ãƒ†ã‚¯ã‚¹ãƒãƒ£
 
-	//ƒpƒ‰ƒ[ƒ^
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	float m_width;
 	float m_widthorg;
 
-	//ŠJn“_
+	//é–‹å§‹ç‚¹
 	float m_start_x;
 	float m_start_y;
 
-	//“–‚½‚Á‚½‚â‚ÂƒŠƒXƒg
+	//å½“ãŸã£ãŸã‚„ã¤ãƒªã‚¹ãƒˆ
 	struct JudgeHitInfo
 	{
 		DWORD oid;
@@ -445,7 +445,7 @@ protected:
 	JudgeHitList m_hitlist;
 	JudgeHitList::iterator FindHitInfo(DWORD oid);
 
-	//‚Æ‚°‚Æ‚°ƒpƒ‰ƒ[ƒ^
+	//ã¨ã’ã¨ã’ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	struct TogeParam
 	{
 		float time;
@@ -457,7 +457,7 @@ protected:
 	TogeParam m_toge[JUDGE_TOGENUM];
 };
 
-//¡ƒ_ƒbƒVƒ…‚Ì•—
+//â– ãƒ€ãƒƒã‚·ãƒ¥æ™‚ã®é¢¨
 class CDashWind : public CBulletBase
 {
 public:

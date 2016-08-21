@@ -1,4 +1,4 @@
-// source\system\NetState.cpp : À‘•ƒtƒ@ƒCƒ‹
+ï»¿// source\system\NetState.cpp : å®Ÿè£…ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #include "stdafx.h"
@@ -8,7 +8,7 @@
 #include ".\netstate.h"
 
 
-// CNetState ƒ_ƒCƒAƒƒO
+// CNetState ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 IMPLEMENT_DYNAMIC(CNetState, CDialog)
 CNetState::CNetState(CWnd* pParent /*=NULL*/, CNetState** pPointerMe /*=NULL*/)
@@ -39,11 +39,11 @@ BEGIN_MESSAGE_MAP(CNetState, CDialog)
 END_MESSAGE_MAP()
 
 
-// CNetState ƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰
+// CNetState ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ©
 
 void CNetState::PostNcDestroy()
 {
-	// TODO : ‚±‚±‚É“Á’è‚ÈƒR[ƒh‚ğ’Ç‰Á‚·‚é‚©A‚à‚µ‚­‚ÍŠî–{ƒNƒ‰ƒX‚ğŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢B
+	// TODO : ã“ã“ã«ç‰¹å®šãªã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã‹ã€ã‚‚ã—ãã¯åŸºæœ¬ã‚¯ãƒ©ã‚¹ã‚’å‘¼ã³å‡ºã—ã¦ãã ã•ã„ã€‚
 
 	CDialog::PostNcDestroy();
 
@@ -54,7 +54,7 @@ void CNetState::PostNcDestroy()
 
 BOOL CNetState::OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 {
-	// TODO : ‚±‚±‚É“Á’è‚ÈƒR[ƒh‚ğ’Ç‰Á‚·‚é‚©A‚à‚µ‚­‚ÍŠî–{ƒNƒ‰ƒX‚ğŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢B
+	// TODO : ã“ã“ã«ç‰¹å®šãªã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã‹ã€ã‚‚ã—ãã¯åŸºæœ¬ã‚¯ãƒ©ã‚¹ã‚’å‘¼ã³å‡ºã—ã¦ãã ã•ã„ã€‚
 	if (message == WM_UPDATELOG)
 		UpdateData(FALSE);
 
@@ -63,18 +63,18 @@ BOOL CNetState::OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pR
 
 void CNetState::OnEnUpdateEditChat()
 {
-	// TODO :  ‚±‚ê‚ª RICHEDIT ƒRƒ“ƒgƒ[ƒ‹‚Ìê‡A‚Ü‚¸ACDialog::OnInitDialog() ŠÖ”‚ğƒI[ƒo[ƒ‰ƒCƒh‚µ‚ÄA
-	// OR ó‘Ô‚Ì ENM_CORRECTTEXT ƒtƒ‰ƒO‚ğƒ}ƒXƒN‚É“ü‚ê‚ÄA
-	// OR ó‘Ô‚Ì ENM_CORRECTTEXT ƒtƒ‰ƒO‚ğ IParam ƒ}ƒXƒN‚Ì‚É“ü‚ê‚ÄA
-	// OR ó‘Ô‚Ì ENM_UPDATE ƒtƒ‰ƒO‚ğ lParam ƒ}ƒXƒN‚É“ü‚ê‚ÄA
+	// TODO :  ã“ã‚ŒãŒ RICHEDIT ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®å ´åˆã€ã¾ãšã€CDialog::OnInitDialog() é–¢æ•°ã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã—ã¦ã€
+	// OR çŠ¶æ…‹ã® ENM_CORRECTTEXT ãƒ•ãƒ©ã‚°ã‚’ãƒã‚¹ã‚¯ã«å…¥ã‚Œã¦ã€
+	// OR çŠ¶æ…‹ã® ENM_CORRECTTEXT ãƒ•ãƒ©ã‚°ã‚’ IParam ãƒã‚¹ã‚¯ã®ã«å…¥ã‚Œã¦ã€
+	// OR çŠ¶æ…‹ã® ENM_UPDATE ãƒ•ãƒ©ã‚°ã‚’ lParam ãƒã‚¹ã‚¯ã«å…¥ã‚Œã¦ã€
 
-	// TODO :  ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+	// TODO :  ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 	UpdateData(TRUE);
 
 	if (m_chat.Find('\n') >= 0)
 	{
-		m_chat.Insert(0, (TCHAR)GNETMSG_CHAT);	// “ª‚ÉƒƒbƒZ[ƒW¯•Êq‚ğ•t‚¯‚é
-		m_chat.TrimRight('\n');			// ‰üs‚ğŠO‚·
+		m_chat.Insert(0, (TCHAR)GNETMSG_CHAT);	// é ­ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è­˜åˆ¥å­ã‚’ä»˜ã‘ã‚‹
+		m_chat.TrimRight('\n');			// æ”¹è¡Œã‚’å¤–ã™
 		if (!m_chat.IsEmpty())
 		{
 			g_play.SendMsg(DPNID_ALL_PLAYERS_GROUP,
@@ -87,7 +87,7 @@ void CNetState::OnEnUpdateEditChat()
 	}
 }
 
-// ƒƒO‚É‘‚«‚Ş
+// ãƒ­ã‚°ã«æ›¸ãè¾¼ã‚€
 void CNetState::WriteLog(const TCHAR* pStr)
 {
 	m_log.InsertString(0, pStr);

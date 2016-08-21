@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <windows.h>
 #include <stdio.h>
@@ -16,7 +16,7 @@
 
 
 /*!
-*	@brief ƒXƒe[ƒWƒNƒ‰ƒX
+*	@brief ã‚¹ãƒ†ãƒ¼ã‚¸ã‚¯ãƒ©ã‚¹
 */
 
 class CStage : public CStageBase
@@ -31,10 +31,10 @@ protected:
 	void InitVrtx();
 	void LoadTextures();
 
-	void DrawJimen();//’n–Ê
-	void DrawBuilding1();//ƒrƒ‹‚P
-	void DrawBuilding2();//ƒrƒ‹‚Q
-	void DrawBackGround();//”wŒi
+	void DrawJimen();//åœ°é¢
+	void DrawBuilding1();//ãƒ“ãƒ«ï¼‘
+	void DrawBuilding2();//ãƒ“ãƒ«ï¼’
+	void DrawBackGround();//èƒŒæ™¯
 
 	LPDIRECT3DDEVICE9 d3ddev;
 
@@ -46,10 +46,10 @@ protected:
 
 	LPDIRECT3DTEXTURE9 ptex_buil1a;
 	MYVERTEX3D vb_buil1a[2][4];
-	MYVERTEX3D vb_buil1b[4];//‰®ª•”•ª
+	MYVERTEX3D vb_buil1b[4];//å±‹æ ¹éƒ¨åˆ†
 	LPDIRECT3DTEXTURE9 ptex_brdura;
-	MYVERTEX3D vb_buil1c[4];//ŠÅ”Â
-	LPDIRECT3DVERTEXBUFFER9 vb_buil1d[10];//ŠÅ”Âx‚¦
+	MYVERTEX3D vb_buil1c[4];//çœ‹æ¿
+	LPDIRECT3DVERTEXBUFFER9 vb_buil1d[10];//çœ‹æ¿æ”¯ãˆ
 
 	LPDIRECT3DTEXTURE9 ptex_buil2a;
 	MYVERTEX3D vb_buil2a[4];

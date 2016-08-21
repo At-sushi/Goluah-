@@ -1,39 +1,39 @@
-#pragma once
+ï»¿#pragma once
 #include "afxwin.h"
 
-// “Æ©ƒƒbƒZ[ƒW
+// ç‹¬è‡ªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 #define WM_UPDATELOG	WM_APP
 
-// CNetState ƒ_ƒCƒAƒƒO
+// CNetState ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
-//!ƒlƒbƒg‘Îí’†‚Ìƒ`ƒƒƒbƒg‚Æ‚©ƒXƒe[ƒg•\¦ƒ_ƒCƒAƒƒO
+//!ãƒãƒƒãƒˆå¯¾æˆ¦ä¸­ã®ãƒãƒ£ãƒƒãƒˆã¨ã‹ã‚¹ãƒ†ãƒ¼ãƒˆè¡¨ç¤ºãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 class CNetState : public CDialog
 {
 	DECLARE_DYNAMIC(CNetState)
 
 public:
-	CNetState(CWnd* pParent = NULL, CNetState** pPointerMe = NULL);   // •W€ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	CNetState(CWnd* pParent = NULL, CNetState** pPointerMe = NULL);   // æ¨™æº–ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~CNetState();
 
-// ƒ_ƒCƒAƒƒO ƒf[ƒ^
+// ãƒ€ã‚¤ã‚¢ãƒ­ã‚° ãƒ‡ãƒ¼ã‚¿
 	enum { IDD = IDD_DIALOG_NETSTATE };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ƒTƒ|[ƒg
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ã‚µãƒãƒ¼ãƒˆ
 
 	DECLARE_MESSAGE_MAP()
 	virtual void PostNcDestroy();
-	// ƒ`ƒƒƒbƒg“ü—Í—“
+	// ãƒãƒ£ãƒƒãƒˆå…¥åŠ›æ¬„
 	CString m_chat;
-	// ƒƒO
+	// ãƒ­ã‚°
 	CListBox m_log;
-	// ƒƒ“ƒc
+	// ãƒ¡ãƒ³ãƒ„
 	CListBox m_member;
 
 	CNetState** m_pMe;
 	virtual BOOL OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 public:
 	afx_msg void OnEnUpdateEditChat();
-	// ƒƒO‚É‘‚«‚Ş
+	// ãƒ­ã‚°ã«æ›¸ãè¾¼ã‚€
 	void WriteLog(const TCHAR* pStr);
 };

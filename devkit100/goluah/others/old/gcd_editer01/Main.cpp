@@ -1,4 +1,4 @@
-#include <windows.h>
+Ôªø#include <windows.h>
 #include <stdio.h>
 #include <math.h>
 #include "define.h"
@@ -29,13 +29,13 @@ int radio2=0;
 int edit_now;
 
 // function ====================================================================
-//éqÉEÉCÉìÉhÉE
+//Â≠ê„Ç¶„Ç§„É≥„Éâ„Ç¶
 HWND CreateChildWindow(HWND hdlg);
 void CldReset();
 void CldRedraw();
 RECT GetRECTNow();
 
-//ÉÅÉCÉìÉ_ÉCÉAÉçÉO
+//„É°„Ç§„É≥„ÉÄ„Ç§„Ç¢„É≠„Ç∞
 BOOL CALLBACK DialogProc(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam);
 BOOL DlgCommand(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam);
 void DlgDraw(HWND hwndDlg);
@@ -64,7 +64,7 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
 		GetDesktopWindow(),
 		DialogProc);
 
-	for(int i=0;i<GCDMAX_IMAGES;i++){//ÉrÉbÉgÉ}ÉbÉvÇÃÉÅÉÇÉäÇäJï˙
+	for(int i=0;i<GCDMAX_IMAGES;i++){//„Éì„ÉÉ„Éà„Éû„ÉÉ„Éó„ÅÆ„É°„É¢„É™„ÇíÈñãÊîæ
 		if(bmp_bits[i]!=NULL){
 			free(bmp_bits[i]);
 		}
@@ -109,7 +109,7 @@ BOOL DlgCommand(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 		GCDSaveDlg(ed_c,ed_r,ed_h,&ed_hed);
 		break;
 
-	//edit_now à⁄ìÆ
+	//edit_now ÁßªÂãï
 	case IDC_BUTTON_P:
 		edit_now--;if(edit_now < 0)edit_now=0;
 		EditChanged();
@@ -138,10 +138,10 @@ BOOL DlgCommand(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 	case IDC_BUTTON_NF:
 		FindFind(FALSE);EditChanged();
 		break;
-	case IDC_EDIT1://íºê⁄éwíË
+	case IDC_EDIT1://Áõ¥Êé•ÊåáÂÆö
 		EditChanged2();break;
 
-	//ÉrÉbÉgÉ}ÉbÉvïœçX
+	//„Éì„ÉÉ„Éà„Éû„ÉÉ„ÉóÂ§âÊõ¥
 	case IDC_RADIO1:
 	case IDC_RADIO2:
 	case IDC_RADIO3:
@@ -158,12 +158,12 @@ BOOL DlgCommand(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 	case IDC_RADIO_E1:
 	case IDC_RADIO_E2:RadioChanged2();break;
 
-	//É{É^Éì
+	//„Éú„Çø„É≥
 	case IDC_BUTTON_KETTEI:
 		OnKettei();break;
 	case IDC_BUTTON_ERASE:
-		sprintf(msgout,"%dî‘ÇÃãÈå`Çè¡ãéÇµÇ‹Ç∑ÅB\nÇÊÇÎÇµÇ¢Ç≈Ç∑Ç©ÅH",edit_now);
-		if(MessageBox(hwndDlg,msgout,"ãÈå`è¡ãé",MB_YESNO)==IDYES){
+		sprintf(msgout,"%dÁï™„ÅÆÁü©ÂΩ¢„ÇíÊ∂àÂéª„Åó„Åæ„Åô„ÄÇ\n„Çà„Çç„Åó„ÅÑ„Åß„Åô„ÅãÔºü",edit_now);
+		if(MessageBox(hwndDlg,msgout,"Áü©ÂΩ¢Ê∂àÂéª",MB_YESNO)==IDYES){
 			ZeroMemory(&ed_r[edit_now],sizeof(GCD_RECT));
 			DlgRedraw();
 		}break;
@@ -175,7 +175,7 @@ BOOL DlgCommand(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 	return(TRUE);
 }
 
-void FindBlank(BOOL pre)//ãÛÇ¡Ç€ÇÃÉfÅ[É^ÇíTÇ∑
+void FindBlank(BOOL pre)//Á©∫„Å£„ÅΩ„ÅÆ„Éá„Éº„Çø„ÇíÊé¢„Åô
 {
 	int tmp = edit_now;
 
@@ -190,16 +190,16 @@ void FindBlank(BOOL pre)//ãÛÇ¡Ç€ÇÃÉfÅ[É^ÇíTÇ∑
 			ed_r[tmp].r.left==0 &&
 			ed_r[tmp].r.right==0 &&
 			ed_r[tmp].r.top==0 &&
-			ed_r[tmp].r.bottom==0){//å©Ç¬Ç©Ç¡ÇΩ
+			ed_r[tmp].r.bottom==0){//Ë¶ã„Å§„Åã„Å£„Åü
 			edit_now=tmp;
 			return;
 		}
 		else tmp+=a;
 	}
-	MessageBox(ghwnd,"Ç†ÇËÇ‹ÇπÇÒ","FindBlank()",MB_OK);
+	MessageBox(ghwnd,"„ÅÇ„Çä„Åæ„Åõ„Çì","FindBlank()",MB_OK);
 }
 
-void FindFind(BOOL pre)//ãÛÇ¡Ç€Ç≈ÇÕÇ»Ç¢ÉfÅ[É^ÇíTÇ∑
+void FindFind(BOOL pre)//Á©∫„Å£„ÅΩ„Åß„ÅØ„Å™„ÅÑ„Éá„Éº„Çø„ÇíÊé¢„Åô
 {
 	int tmp = edit_now;
 
@@ -214,13 +214,13 @@ void FindFind(BOOL pre)//ãÛÇ¡Ç€Ç≈ÇÕÇ»Ç¢ÉfÅ[É^ÇíTÇ∑
 			ed_r[tmp].r.left!=0 ||
 			ed_r[tmp].r.right!=0 ||
 			ed_r[tmp].r.top!=0 ||
-			ed_r[tmp].r.bottom!=0){//å©Ç¬Ç©Ç¡ÇΩ
+			ed_r[tmp].r.bottom!=0){//Ë¶ã„Å§„Åã„Å£„Åü
 			edit_now=tmp;
 			return;
 		}
 		else tmp+=a;
 	}
-	MessageBox(ghwnd,"Ç†ÇËÇ‹ÇπÇÒ","FindFind()",MB_OK);
+	MessageBox(ghwnd,"„ÅÇ„Çä„Åæ„Åõ„Çì","FindFind()",MB_OK);
 }
 
 void RadioChanged()
@@ -251,7 +251,7 @@ void RadioChanged2()
 	CldReset();
 }
 
-void EditChanged()//edit_nowî‘çÜÇÃïœçX
+void EditChanged()//edit_nowÁï™Âè∑„ÅÆÂ§âÊõ¥
 {
 	char str[256];
 	itoa(edit_now,str,10);
@@ -260,7 +260,7 @@ void EditChanged()//edit_nowî‘çÜÇÃïœçX
 	DlgRedraw();
 }
 
-void EditChanged2()//edit_nowà⁄ìÆ-íºê⁄î‘çÜéwíË
+void EditChanged2()//edit_nowÁßªÂãï-Áõ¥Êé•Áï™Âè∑ÊåáÂÆö
 {
 	char str[256];
 	GetDlgItemText(ghwnd,IDC_EDIT1,str,256);
@@ -272,7 +272,7 @@ void EditChanged2()//edit_nowà⁄ìÆ-íºê⁄î‘çÜéwíË
 	DlgRedraw();
 }
 
-void OnKettei()//åàíËÉ{É^Éì
+void OnKettei()//Ê±∫ÂÆö„Éú„Çø„É≥
 {
 	RECT rn = GetRECTNow();
 	ed_r[edit_now].bmpno=radio;
@@ -291,10 +291,10 @@ void DlgDraw(HWND hwndDlg)
 	if(ed_r[edit_now].bmpno == 0
 		&& ed_r[edit_now].r.left==ed_r[edit_now].r.right
 		&& ed_r[edit_now].r.top==ed_r[edit_now].r.bottom){
-		sprintf(msgout,"ñ¢íËã`");
+		sprintf(msgout,"Êú™ÂÆöÁæ©");
 	}
 	else
-		sprintf(msgout,"íËã`çœÇ›\nbmp=%d , x=%dÅ`%d (%d) , y=%dÅ`%d (%d)\ncenter : %d/%d",
+		sprintf(msgout,"ÂÆöÁæ©Ê∏à„Åø\nbmp=%d , x=%dÔΩû%d (%d) , y=%dÔΩû%d (%d)\ncenter : %d/%d",
 			ed_r[edit_now].bmpno,
 			ed_r[edit_now].r.left,ed_r[edit_now].r.right,
 			ed_r[edit_now].r.right - ed_r[edit_now].r.left,
@@ -309,7 +309,7 @@ void DlgDraw(HWND hwndDlg)
 	r.right=510;
 
 	hdc = BeginPaint(hwndDlg, &ps);
-	int oldmode = SetROP2(hdc,TRANSPARENT);//ÉeÉLÉXÉgîwåiÇìßâﬂÇ…Ç∑ÇÈ
+	int oldmode = SetROP2(hdc,TRANSPARENT);//„ÉÜ„Ç≠„Çπ„ÉàËÉåÊôØ„ÇíÈÄèÈÅé„Å´„Åô„Çã
 	DrawText(hdc,msgout,-1,&r,DT_LEFT);
 	SetROP2(hdc,oldmode);
 	EndPaint(hwndDlg, &ps);

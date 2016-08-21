@@ -1,6 +1,6 @@
-/*------------------------------------------------------------
+ï»¿/*------------------------------------------------------------
 
-	ƒfƒoƒbƒOƒƒjƒE
+	ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ã‚¦
 
 --------------------------------------------------------------*/
 #include "stdafx.h"
@@ -19,7 +19,7 @@
 #include "debug_endurance.h"
 
 /*------------------------------------------------------------
-	(¶¬)
+	(ç”Ÿæˆ)
 --------------------------------------------------------------*/
 void CDebugMenu::Activate(DWORD pid)
 {
@@ -27,29 +27,29 @@ void CDebugMenu::Activate(DWORD pid)
 
 	g_sound.BGMStop();
 
-	str = _T("ƒ^ƒCƒgƒ‹‰æ–Ê‚Ö");
+	str = _T("ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã¸");
 	namelist.push_back(str);
 
-	str = _T("ƒLƒƒƒ‰ƒZƒŒ");
+	str = _T("ã‚­ãƒ£ãƒ©ã‚»ãƒ¬");
 	namelist.push_back(str);
 
-	str = _T("Ÿ—˜‰æ–Ê");
+	str = _T("å‹åˆ©ç”»é¢");
 	namelist.push_back(str);
 	
-	str = _T("ƒXƒ^ƒbƒtƒ[ƒ‹");
+	str = _T("ã‚¹ã‚¿ãƒƒãƒ•ãƒ­ãƒ¼ãƒ«");
 	namelist.push_back(str);
 
-	str = _T("‘Ï‹vƒeƒXƒg");
+	str = _T("è€ä¹…ãƒ†ã‚¹ãƒˆ");
 	namelist.push_back(str);
 
-	str = _T("‘Ï‹vƒeƒXƒg2");
+	str = _T("è€ä¹…ãƒ†ã‚¹ãƒˆ2");
 	namelist.push_back(str);
 
 	if (!g_config.IsFullScreen())
 	{
-		str = _T("ƒlƒbƒg‘Îíƒ‚|ƒhiƒzƒXƒgj");
+		str = _T("ãƒãƒƒãƒˆå¯¾æˆ¦ãƒ¢ï¼ãƒ‰ï¼ˆãƒ›ã‚¹ãƒˆï¼‰");
 		namelist.push_back(str);
-		str = _T("ƒlƒbƒg‘Îíƒ‚|ƒhiƒNƒ‰ƒCƒAƒ“ƒgj");
+		str = _T("ãƒãƒƒãƒˆå¯¾æˆ¦ãƒ¢ï¼ãƒ‰ï¼ˆã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆï¼‰");
 		namelist.push_back(str);
 	}
 
@@ -60,7 +60,7 @@ void CDebugMenu::Activate(DWORD pid)
 
 
 /*------------------------------------------------------------
-	(”jŠü)
+	(ç ´æ£„)
 --------------------------------------------------------------*/
 BOOL CDebugMenu::Inactivate(DWORD nid)
 {
@@ -70,14 +70,14 @@ BOOL CDebugMenu::Inactivate(DWORD nid)
 
 
 /*------------------------------------------------------------
-	XV
+	æ›´æ–°
 --------------------------------------------------------------*/
 BOOL CDebugMenu::Execute(DWORD time)
 {
 	DWORD keysta = g_input.GetKey(0,0);
 	if(m_cnt++ < 10)return TRUE;
 
-	//˜A‘±Às
+	//é€£ç¶šå®Ÿè¡Œ
 	if(m_loop_exec){
 		keysta |= KEYSTA_BA2;
 		m_selected = m_last_selected;
@@ -170,7 +170,7 @@ BOOL CDebugMenu::Execute(DWORD time)
 
 
 /*------------------------------------------------------------
-	•`‰æ
+	æç”»
 --------------------------------------------------------------*/
 void CDebugMenu::Draw()
 {
@@ -194,14 +194,14 @@ void CDebugMenu::Draw()
 		DWORD ipt = g_input.GetKey(i,0);
 		_stprintf(str_ipt,_T("%d : %s %s %s %s %s %s %s %s"),
 			i,
-			(ipt&KEYSTA_UP)		? _T("ª") : _T("@"),
-			(ipt&KEYSTA_DOWN)	? _T("«") : _T("@"),
-			(ipt&KEYSTA_ALEFT)	? _T("©") : _T("@"),
-			(ipt&KEYSTA_ARIGHT)	? _T("¨") : _T("@"),
-			(ipt&KEYSTA_BA)		? _T("‚`") : _T("@"),
-			(ipt&KEYSTA_BB)		? _T("‚a") : _T("@"),
-			(ipt&KEYSTA_BC)		? _T("‚b") : _T("@"),
-			(ipt&KEYSTA_BD)		? _T("‚c") : _T("@")
+			(ipt&KEYSTA_UP)		? _T("â†‘") : _T("ã€€"),
+			(ipt&KEYSTA_DOWN)	? _T("â†“") : _T("ã€€"),
+			(ipt&KEYSTA_ALEFT)	? _T("â†") : _T("ã€€"),
+			(ipt&KEYSTA_ARIGHT)	? _T("â†’") : _T("ã€€"),
+			(ipt&KEYSTA_BA)		? _T("ï¼¡") : _T("ã€€"),
+			(ipt&KEYSTA_BB)		? _T("ï¼¢") : _T("ã€€"),
+			(ipt&KEYSTA_BC)		? _T("ï¼£") : _T("ã€€"),
+			(ipt&KEYSTA_BD)		? _T("ï¼¤") : _T("ã€€")
 			);
 		g_draw.DrawBlueText(r,str_ipt,strlen(str_ipt),DT_LEFT,1);
 		r.top += 24;

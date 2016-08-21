@@ -1,51 +1,51 @@
-// Goluah!! ����DLL�p�C���^�[�t�F�[�X�Ƃ����̂ق�
+﻿// Goluah!! 分割DLL用インターフェースとかそのほか
 
-// �v����ɏ������z�֐��Ȗ󂾂�
+// 要するに純粋仮想関数な訳だが
 #define IF(a)	virtual a = 0
 
 class ISystem
 {
-	//�T�[�r�X
-	IF(double DrawBMPText(double x,double y,float z,TCHAR *str,DWORD col));	//!< �r�b�g�}�b�v�e�L�X�g��`��
-	IF(double DrawBMPTextEx(double x,double y,float z,TCHAR *str,			//!< �r�b�g�}�b�v�e�L�X�g��`��(�g�k�E�v���|�[�V���i���I�v�V������)
+	//サービス
+	IF(double DrawBMPText(double x,double y,float z,TCHAR *str,DWORD col));	//!< ビットマップテキストを描画
+	IF(double DrawBMPTextEx(double x,double y,float z,TCHAR *str,			//!< ビットマップテキストを描画(拡縮・プロポーショナルオプションつき)
 		DWORD col,float scaX,float scaY,DWORD flags));
 
 	//fps
-	IF(DWORD GetFPS());														//!< ���ۃt���[�����[�g�擾
+	IF(DWORD GetFPS());														//!< 実際フレームレート取得
 
-	//�^�X�N
-	IF(void AddTask(CTaskBase* task));										//!< �V�K�^�X�N�ǉ�
-	IF(CExclusiveTaskBase* GetCurrentMainTask());							//!< ���݂̔r���^�X�N���擾
+	//タスク
+	IF(void AddTask(CTaskBase* task));										//!< 新規タスク追加
+	IF(CExclusiveTaskBase* GetCurrentMainTask());							//!< 現在の排他タスクを取得
 
-	//�V�X�e���O���t�B�b�N���擾
-	IF(MYSURFACE** GetSystemGraphicSurface());								//!< �V�X�e���Ƃ��ĕێ�����Ă���GCD�p�̃r�b�g�}�b�v�z����擾
-	IF(GCD_RECT* GetSystemGraphicRect());									//!< �V�X�e���Ƃ��ĕێ�����Ă���GCD�̋�`�z����擾
-	IF(GCD_CELL2* GetSystemGraphicCell());									//!< �V�X�e���Ƃ��ĕێ�����Ă���GCD�̃Z���z����擾
-	IF(GCD_HANTEI* GetSystemGraphicHantei());								//!< �V�X�e���Ƃ��ĕێ�����Ă���GCD�̂����蔻���`�z����擾
+	//システムグラフィックを取得
+	IF(MYSURFACE** GetSystemGraphicSurface());								//!< システムとして保持されているGCD用のビットマップ配列を取得
+	IF(GCD_RECT* GetSystemGraphicRect());									//!< システムとして保持されているGCDの矩形配列を取得
+	IF(GCD_CELL2* GetSystemGraphicCell());									//!< システムとして保持されているGCDのセル配列を取得
+	IF(GCD_HANTEI* GetSystemGraphicHantei());								//!< システムとして保持されているGCDのあたり判定矩形配列を取得
 };
 
 class IDraw
 {
 
-	//�����̑��`��
-	//���C���`��
+	//■その他描画
+	//ライン描画
 	IF(void DrawLine(int sx,int sy,int gx,int gy,DWORD col));
-	//�o�b�N�o�b�t�@�̃N���A
+	//バックバッファのクリア
 	IF(void ClearBackBuffer());
-	//�~�̕`��
+	//円の描画
 	IF(void DrawCircle(int x,int y,int rad,int w,
 		float z=0,DWORD color=0xFF55AAFF,BOOL toumei=FALSE,float rot=0,BOOL rot_y=TRUE,BOOL hosei=TRUE));
-	//�Ȃɂ���H
+	//なにこれ？
 	IF(void Draw3DText());
-	//�e�L�X�g�`��
+	//テキスト描画
 	IF(void DrawBlueText(RECT& r,TCHAR *text,int len,DWORD method,DWORD size));
 	IF(void DrawRedText(RECT& r,TCHAR *text,int len,DWORD method,DWORD size));
 
-	//���֗��֐��H
-	IF(void SetAlphaMode(DWORD alphamode));//���u�����h�̃��[�h��ݒ�
-	IF(void EnableZ(BOOL test=TRUE,BOOL write=TRUE));//Z�e�X�g�E���C�g�̗L���E������ݒ�
+	//■便利関数？
+	IF(void SetAlphaMode(DWORD alphamode));//αブレンドのモードを設定
+	IF(void EnableZ(BOOL test=TRUE,BOOL write=TRUE));//Zテスト・ライトの有効・無効を設定
 
-	//�����W�ϊ��}�g���N�X�֘A
+	//■座標変換マトリクス関連
 	//for directx8
 	IF(void ResetTransformMatrix());//view & projection
 	IF(void SetTransform(BOOL b));

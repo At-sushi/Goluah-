@@ -1,4 +1,4 @@
-// are_editer.h : PROJECT_NAME ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒƒCƒ“ ƒwƒbƒ_[ ƒtƒ@ƒCƒ‹‚Å‚·B
+ï»¿// are_editer.h : PROJECT_NAME ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ¡ã‚¤ãƒ³ ãƒ˜ãƒƒãƒ€ãƒ¼ ãƒ•ã‚¡ã‚¤ãƒ«ã§ã™ã€‚
 //
 
 #pragma once
@@ -9,13 +9,13 @@
 
 #include "dx_draw.h"
 #include "gcdhandler.h"
-#include "resource.h"		// ƒƒCƒ“ ƒVƒ“ƒ{ƒ‹
+#include "resource.h"		// ãƒ¡ã‚¤ãƒ³ ã‚·ãƒ³ãƒœãƒ«
 #include <atlimage.h>
 
 /*-------------------------------------------------------------------------
 // CAre_editerApp:
-// ‚±‚ÌƒNƒ‰ƒX‚ÌÀ‘•‚É‚Â‚¢‚Ä‚ÍAare_editer.cpp ‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
-//EEE‚¾‚Æ‚³
+// ã“ã®ã‚¯ãƒ©ã‚¹ã®å®Ÿè£…ã«ã¤ã„ã¦ã¯ã€are_editer.cpp ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚
+//ãƒ»ãƒ»ãƒ»ã ã¨ã•
 ---------------------------------------------------------------------------*/
 class CAre_editerApp : public CWinApp
 {
@@ -49,14 +49,14 @@ public:
 	UINT GetCurrentCellRectNO(){return *m_pCurrentCellRectNO;}
 
 	//r-tools
-	void InsertEmptyRect(UINT index);	//w’èˆÊ’u‚É‹ó‚Ì‹éŒ`‚ğ‘}“ü
-	void DeleteInvalidRect();			//ƒrƒbƒgƒ}ƒbƒvã‚Ì‰½‚à‚È‚¢—Ìˆæ‚ğQÆ‚µ‚Ä‚¢‚é‹éŒ`‚ğÁ‹‚·‚é
-	void DeleteEmptyRect();				//‹ó‚Ì‹éŒ`‚ğÁ‹‚µ‚Ä”Ô†‚ğ‹l‚ß‚é
+	void InsertEmptyRect(UINT index);	//æŒ‡å®šä½ç½®ã«ç©ºã®çŸ©å½¢ã‚’æŒ¿å…¥
+	void DeleteInvalidRect();			//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ä¸Šã®ä½•ã‚‚ãªã„é ˜åŸŸã‚’å‚ç…§ã—ã¦ã„ã‚‹çŸ©å½¢ã‚’æ¶ˆå»ã™ã‚‹
+	void DeleteEmptyRect();				//ç©ºã®çŸ©å½¢ã‚’æ¶ˆå»ã—ã¦ç•ªå·ã‚’è©°ã‚ã‚‹
 
 	//c-tools
-	void InsertEmptyCell(UINT index);	//w’èˆÊ’u‚É‹ó‚«ƒZƒ‹‚ğ‘}“ü
-	void DeleteInvalidCell();			//‹ó‚Ì‹éŒ`‚µ‚©QÆ‚µ‚Ä‚¢‚È‚¢ƒZƒ‹‚ğÁ‹‚·‚é
-	void DeleteEmptyCell(BOOL under100);//‹ó‚ÌCELL‚ğÁ‹‚µ‚Ä”Ô†‚ğ‹l‚ß‚é
+	void InsertEmptyCell(UINT index);	//æŒ‡å®šä½ç½®ã«ç©ºãã‚»ãƒ«ã‚’æŒ¿å…¥
+	void DeleteInvalidCell();			//ç©ºã®çŸ©å½¢ã—ã‹å‚ç…§ã—ã¦ã„ãªã„ã‚»ãƒ«ã‚’æ¶ˆå»ã™ã‚‹
+	void DeleteEmptyCell(BOOL under100);//ç©ºã®CELLã‚’æ¶ˆå»ã—ã¦ç•ªå·ã‚’è©°ã‚ã‚‹
 
 protected:
 	CGCDHandler m_gcd;
@@ -67,11 +67,11 @@ protected:
 	DWORD *m_pCurrentCellNO;
 	DWORD *m_pCurrentCellRectNO;
 
-// ƒI[ƒo[ƒ‰ƒCƒh
+// ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
 	public:
 	virtual BOOL InitInstance();
 
-// À‘•
+// å®Ÿè£…
 	DECLARE_MESSAGE_MAP()
 };
 
@@ -80,13 +80,13 @@ extern CAre_editerApp theApp;
 
 
 /*-------------------------------------------------------------------------
-	‹¤’Êƒ_ƒCƒAƒƒOƒx[ƒX
+	å…±é€šãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒ™ãƒ¼ã‚¹
 ---------------------------------------------------------------------------*/
 class CMyDialogTab : public CDialog
 {
 public:
 
-	DECLARE_DYNAMIC(CMyDialogTab)//‚È‚ñ‚¶‚á‚±‚è‚áH
+	DECLARE_DYNAMIC(CMyDialogTab)//ãªã‚“ã˜ã‚ƒã“ã‚Šã‚ƒï¼Ÿ
 
 	CMyDialogTab(UINT nIDTemplate,CWnd* pParentWnd = NULL); 
 	virtual void UpdateItems()=0;

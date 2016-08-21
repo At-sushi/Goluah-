@@ -1,4 +1,4 @@
-
+ï»¿
 #include "StdAfx.h"
 
 #include "define_const.h"
@@ -18,17 +18,17 @@ extern DI_FUNCTIONS_S *funcs;
 extern DI_FUNCTIONS_O *funco;
 extern DI_FUNCTIONS_D *funcd;
 
-// LPVOID g_mysounds[MAXMYSOUND];		// ƒƒ“ƒo—Ìˆæ‚ÉˆÚ“®
+// LPVOID g_mysounds[MAXMYSOUND];		// ãƒ¡ãƒ³ãƒé ˜åŸŸã«ç§»å‹•
 
 //****************************************************************
-//  î•ñŒğŠ·ŠÖ”
+//  æƒ…å ±äº¤æ›é–¢æ•°
 //****************************************************************
 
 void Exchange(GOBJECT* pNew, CHARACTERINFO2* pOld, BOOL isOldToNew)
 {
 	if (isOldToNew)
 	{
-		// ‹Œƒo[ƒWƒ‡ƒ“‚©‚çVƒo[ƒWƒ‡ƒ“‚Ö
+		// æ—§ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‹ã‚‰æ–°ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã¸
 		if (pOld->aid == OLDACTID_NEUTRAL)
 			pNew->aid = ACTID_NEUTRAL;
 		else if (pOld->aid == OLDACTID_TOJYO)
@@ -53,7 +53,7 @@ void Exchange(GOBJECT* pNew, CHARACTERINFO2* pOld, BOOL isOldToNew)
 	}
 	else
 	{
-		// Vƒo[ƒWƒ‡ƒ“‚©‚ç‹Œƒo[ƒWƒ‡ƒ“‚Ö
+		// æ–°ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‹ã‚‰æ—§ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã¸
 		if (pNew->aid == ACTID_NEUTRAL)
 			pOld->aid = OLDACTID_NEUTRAL;
 		else if (pNew->aid == ACTID_TOJYO)
@@ -80,7 +80,7 @@ void Exchange(GOBJECT* pNew, CHARACTERINFO2* pOld, BOOL isOldToNew)
 }
 
 //****************************************************************
-//  ‚¢‚ë‚¢‚ë
+//  ã„ã‚ã„ã‚
 //****************************************************************
 
 void Furimuki(DWORD oid)
@@ -134,8 +134,8 @@ void CCharAdaptor::UnloadMySound()
 	}
 }
 
-// pdat‘¤‚Å‰ğ•ú‚µ‚Ä‚é‚©‚ç‚±‚Á‚¿‚Í‘åä•vH
-// ‚â‚Á‚Ïƒ_ƒ
+// pdatå´ã§è§£æ”¾ã—ã¦ã‚‹ã‹ã‚‰ã“ã£ã¡ã¯å¤§ä¸ˆå¤«ï¼Ÿ
+// ã‚„ã£ã±ãƒ€ãƒ¡
 /* MYSURFACE* g_mysurface[2][12];
 GCD_CELL2 g_cdat[2][GCDMAX_CELLS];
 GCD_RECT g_rdat[2][GCDMAX_RECTANGLES];
@@ -160,7 +160,7 @@ void CCharAdaptor::InitializeGCDandBMP(GOBJECT *pdat,DWORD color)
 		_stprintf(filename,_T("%s\\image%d.bmp"),m_chardir,i+1);
 		m_mysurface[j][i] = (MYSURFACE*) ( (*funcd->loadbmp)(filename,palname) );//image1-12.bmp
 	}
-	// pdat‚É“ü‚ê‚é
+	// pdatã«å…¥ã‚Œã‚‹
 	pdat->pmsarr		= m_mysurface[j];
 
 	_stprintf(filename,_T("%s\\cell.gcd"),m_chardir);
@@ -174,13 +174,13 @@ void CCharAdaptor::InitializeGCDandBMP(GOBJECT *pdat,DWORD color)
 		CloseHandle(hFile);
 		return;
 	}
-	if(cfh.size == sizeof(GCD_FILEHEADER)) { // ÅVƒo[ƒWƒ‡ƒ“
+	if(cfh.size == sizeof(GCD_FILEHEADER)) { // æœ€æ–°ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 		CloseHandle(hFile);
 		(*funcd->create_celldat)(filename,(LPVOID*)&pdat->pcdat,(LPVOID*)&pdat->prdat,(LPVOID*)&pdat->phdat);//cell.gcd
 	}
 	else {
-		if (cfh.flag & 0x0001) { // ƒwƒbƒ_‚ ‚è
-			// ƒtƒ@ƒCƒ‹ƒwƒbƒ_•”•ª‚ğ”ò‚Î‚·
+		if (cfh.flag & 0x0001) { // ãƒ˜ãƒƒãƒ€ã‚ã‚Š
+			// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€éƒ¨åˆ†ã‚’é£›ã°ã™
 			SetFilePointer(hFile, sizeof(CHARDAT_FILEHEADER), NULL, FILE_CURRENT);
 		}
 		crect = new CHARDAT_RECT[cfh.num_rects];
@@ -227,7 +227,7 @@ void CCharAdaptor::InitializeGCDandBMP(GOBJECT *pdat,DWORD color)
 					m_cdat[j][i].cell[k].magy = 1.0;
 				m_cdat[j][i].cell[k].rot = 0;
 
-				// ÅV”Å‘‰Á•ª
+				// æœ€æ–°ç‰ˆå¢—åŠ åˆ†
 				m_cdat[j][i].cell[k].red_ratio = 1;
 				m_cdat[j][i].cell[k].green_ratio = 1;
 				m_cdat[j][i].cell[k].blue_ratio = 1;
@@ -243,15 +243,15 @@ void CCharAdaptor::InitializeGCDandBMP(GOBJECT *pdat,DWORD color)
 		delete [] ccell;
 		CloseHandle(hFile);
 
-		// ÅŒã‚Ì’÷‚ß
+		// æœ€å¾Œã®ç· ã‚
 		m_cdat[j][0].cell[0].flag = GCD_VERSION;
 
-		//pdat‚É“ü‚ê‚Ä‚¨‚­
+		//pdatã«å…¥ã‚Œã¦ãŠã
 		pdat->phdat			= m_hdat[j];
 		pdat->pcdat			= m_cdat[j];
 		pdat->prdat			= m_rdat[j];
 
-		//NowLoading‚ği‚ß‚é
+		//NowLoadingã‚’é€²ã‚ã‚‹
 		CTNowLoading* task = dynamic_cast<CTNowLoading*>( g_system.FindTask('LOAD') );
 		if(task)task->Proceed(NowLoading_GCD);
 	}
@@ -265,15 +265,15 @@ void CCharAdaptor::UnloadMyBitmaps(GOBJECT *pdat)
 		(*funcd->unloadbmp)(pdat->pmsarr[i]);
 	}
 
-	// ŠÇŠŠO‚¾‚¯‚ÇƒZƒ‹‚Ì‰ğ•ú‚à‚±‚±‚ÅBiÅV”Å‚Ìcell‚Ì‚İj
+	// ç®¡è½„å¤–ã ã‘ã©ã‚»ãƒ«ã®è§£æ”¾ã‚‚ã“ã“ã§ã€‚ï¼ˆæœ€æ–°ç‰ˆã®cellã®ã¿ï¼‰
 	if ((pdat->prdat != NULL && pdat->prdat != m_rdat[pdat->tid]) ||
 		(pdat->pcdat != NULL && pdat->pcdat != m_cdat[pdat->tid]) ||
 		(pdat->phdat != NULL && pdat->phdat != m_hdat[pdat->tid])   )
 			funcd->destroy_celldat((LPVOID*)&pdat->pcdat, (LPVOID*)&pdat->prdat, (LPVOID*)&pdat->phdat);
 }
 
-//‚±‚Ò[‚Ø
-int GetRandNum(int num)//ƒ‰ƒ“ƒ_ƒ€ƒiƒ“ƒo[”­¶
+//ã“ã´ãƒ¼ãº
+int GetRandNum(int num)//ãƒ©ãƒ³ãƒ€ãƒ ãƒŠãƒ³ãƒãƒ¼ç™ºç”Ÿ
 {
 	srand(timeGetTime());
 	return(rand()%num);
@@ -282,34 +282,34 @@ int GetRandNum(int num)//ƒ‰ƒ“ƒ_ƒ€ƒiƒ“ƒo[”­¶
 BOOL GetWinSerif(TCHAR *getmsg,TCHAR *enename,TCHAR *filepath)
 {
 //	BY_HANDLE_FILE_INFORMATION FileInformation;
-	_stprintf(getmsg,_T("(‘äŒ‚Ìİ’è‚ªŒŸõ‚³‚ê‚Ü‚¹‚ñ‚Å‚µ‚½)"));
+	_stprintf(getmsg,_T("(å°è©ã®è¨­å®šãŒæ¤œç´¢ã•ã‚Œã¾ã›ã‚“ã§ã—ãŸ)"));
 
-	//ƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“
+	//ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³
 	HANDLE hFile = CreateFile(filepath,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
 	if(hFile==INVALID_HANDLE_VALUE)return(FALSE);
 //	if (GetFileInformationByHandle(hFile, &FileInformation) &&
 //		(FileInformation.ftLastAccessTime.dwLowDateTime > timeGetTime()))
-	//—ÌˆæŠm•Û
+	//é ˜åŸŸç¢ºä¿
 	DWORD fsiz = GetFileSize(hFile,NULL);
 	TCHAR *buf = (TCHAR*)malloc(fsiz);
 	ZeroMemory(buf,sizeof(buf));
 
-	//ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ
+	//ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿
 	DWORD br;
 	ReadFile(hFile,buf,fsiz,&br,NULL);
 	CloseHandle(hFile);
 
-	//‚»‚ÌƒLƒƒƒ‰ƒNƒ^[‚ÉŠ„‚èU‚ç‚ê‚½‘äŒ‚ª‚¢‚­‚Â‚ ‚é‚©‚ğŒŸõ
+	//ãã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã«å‰²ã‚ŠæŒ¯ã‚‰ã‚ŒãŸå°è©ãŒã„ãã¤ã‚ã‚‹ã‹ã‚’æ¤œç´¢
 	DWORD numser=0,numserr=0,pnow=0;
 	BOOL loop=TRUE,loop2;
 	TCHAR tmpname[64];
 	DWORD tmpnamelen;
 	DWORD sstartpos[16],sstartposr[16];
 	while(pnow < fsiz && loop){
-		//u#v‚ğŒŸõ
+		//ã€Œ#ã€ã‚’æ¤œç´¢
 		loop2=TRUE;
 		while(pnow < fsiz && loop2){
-			//s“ªi‚Ü‚½‚Íƒtƒ@ƒCƒ‹æ“ªj‚Ì‚İ
+			//è¡Œé ­ï¼ˆã¾ãŸã¯ãƒ•ã‚¡ã‚¤ãƒ«å…ˆé ­ï¼‰ã®ã¿
 			if(pnow==0){
 				if(buf[pnow]=='#'){
 					loop2=FALSE;
@@ -324,61 +324,61 @@ BOOL GetWinSerif(TCHAR *getmsg,TCHAR *enename,TCHAR *filepath)
 			}
 			pnow++;
 		}
-		if(!loop2){//#‚ª”­Œ©‚³‚ê‚Ä‚¢‚é‚È‚ç‚Î
-			//‚»‚ÌŒã‚Ì‰üs‚Ü‚Å‚ğ–¼‘O‚Æ‚µ‚Ä‹L˜^
+		if(!loop2){//#ãŒç™ºè¦‹ã•ã‚Œã¦ã„ã‚‹ãªã‚‰ã°
+			//ãã®å¾Œã®æ”¹è¡Œã¾ã§ã‚’åå‰ã¨ã—ã¦è¨˜éŒ²
 			tmpnamelen=0;
 			ZeroMemory(tmpname,sizeof(tmpname));
 			loop2=TRUE;
 			while(pnow < fsiz && loop2){
 				tmpname[tmpnamelen] = buf[pnow];
 				tmpnamelen++;
-				if(pnow < fsiz-2){//‰üs”»’è
-					if(buf[pnow+1]==0x0d && buf[pnow+2]==0x0a){//‚»‚ÌŸ‚Í‰üs‚¾‚Á‚½
+				if(pnow < fsiz-2){//æ”¹è¡Œåˆ¤å®š
+					if(buf[pnow+1]==0x0d && buf[pnow+2]==0x0a){//ãã®æ¬¡ã¯æ”¹è¡Œã ã£ãŸ
 						loop2=FALSE;
 						pnow+=3;
 					}
-					else pnow++;//‚»‚ÌŸ‚à‰üs‚Å‚Í‚È‚¢
+					else pnow++;//ãã®æ¬¡ã‚‚æ”¹è¡Œã§ã¯ãªã„
 				}
-				else pnow++;//ƒtƒ@ƒCƒ‹‚ÌI‚í‚è‚Ì‚Ù‚¤‚È‚Ì‚Å‰üs”»’è‚ª‚Å‚«‚È‚¢
+				else pnow++;//ãƒ•ã‚¡ã‚¤ãƒ«ã®çµ‚ã‚ã‚Šã®ã»ã†ãªã®ã§æ”¹è¡Œåˆ¤å®šãŒã§ããªã„
 			}
-			//–¼‘O‚ğ”äŠr
-			if(strcmp(tmpname,_T("random"))==0 && numserr<16){//ƒ‰ƒ“ƒ_ƒ€‘äŒ
+			//åå‰ã‚’æ¯”è¼ƒ
+			if(strcmp(tmpname,_T("random"))==0 && numserr<16){//ãƒ©ãƒ³ãƒ€ãƒ å°è©
 				sstartposr[numserr]=pnow;
 				numserr++;
 			}
-			if(strcmp(tmpname,enename)==0 && numser<16){//ƒLƒƒƒ‰ŒÅ—L‘äŒ
+			if(strcmp(tmpname,enename)==0 && numser<16){//ã‚­ãƒ£ãƒ©å›ºæœ‰å°è©
 				sstartpos[numser]=pnow;
 				numser++;
 			}
 		}
 	}
 
-	if(numser==0 && numserr==0)return(FALSE);//ˆê‚Â‚à‘äŒ‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½
+	if(numser==0 && numserr==0)return(FALSE);//ä¸€ã¤ã‚‚å°è©ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸ
 
-	//Œ©‚Â‚©‚Á‚½‘äŒ‚Ì‚¤‚¿Aƒ‰ƒ“ƒ_ƒ€‚É1‚Â‚Ì‘äŒ‚ğ‘I‘ğ
+	//è¦‹ã¤ã‹ã£ãŸå°è©ã®ã†ã¡ã€ãƒ©ãƒ³ãƒ€ãƒ ã«1ã¤ã®å°è©ã‚’é¸æŠ
 	if(numser != 0)pnow = sstartpos[GetRandNum(numser)];
-	else pnow = sstartposr[GetRandNum(numserr)];//ƒ‰ƒ“ƒ_ƒ€‘äŒ
+	else pnow = sstartposr[GetRandNum(numserr)];//ãƒ©ãƒ³ãƒ€ãƒ å°è©
 
 
-	//‚»‚ÌŒã‚Ì‰üs‚Ü‚Å‚ğŸ‚¿‘äŒ‚Æ‚µ‚ÄƒRƒs[
+	//ãã®å¾Œã®æ”¹è¡Œã¾ã§ã‚’å‹ã¡å°è©ã¨ã—ã¦ã‚³ãƒ”ãƒ¼
 	int tmpcnt=0;
 	DWORD retlen=0;
 	while(pnow < fsiz){
 		getmsg[retlen] = buf[pnow];
 		retlen++;
-		if(pnow < fsiz-2){//‰üs”»’è
-			if(buf[pnow+1]==0x0d && buf[pnow+2]==0x0a){//‚»‚ÌŸ‚Í‰üs‚¾‚Á‚½
-				if(pnow == fsiz-2){//‚±‚±‚Ì”»’è‚ğ’Ç‰Á
+		if(pnow < fsiz-2){//æ”¹è¡Œåˆ¤å®š
+			if(buf[pnow+1]==0x0d && buf[pnow+2]==0x0a){//ãã®æ¬¡ã¯æ”¹è¡Œã ã£ãŸ
+				if(pnow == fsiz-2){//ã“ã“ã®åˆ¤å®šã‚’è¿½åŠ 
 					getmsg[retlen] = 0;
 					free(buf);
 					return(TRUE);
-				}//‚±‚±‚Ü‚Å
-				if(buf[pnow+3]=='#' || tmpcnt>=2){//ƒƒbƒZ[ƒW‚É—LŒø‚È‰üs‚©H
+				}//ã“ã“ã¾ã§
+				if(buf[pnow+3]=='#' || tmpcnt>=2){//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«æœ‰åŠ¹ãªæ”¹è¡Œã‹ï¼Ÿ
 					getmsg[retlen] = 0;
 					free(buf);
 					return(TRUE);
 				}
-				else{//‰üs‚Í‚QŒÂ‚Ü‚Åƒoƒbƒtƒ@‚·‚é
+				else{//æ”¹è¡Œã¯ï¼’å€‹ã¾ã§ãƒãƒƒãƒ•ã‚¡ã™ã‚‹
 					getmsg[retlen++] = buf[++pnow];
 					getmsg[retlen++] = buf[++pnow];
 					tmpcnt++;
@@ -400,7 +400,7 @@ BOOL GetWinSerif(TCHAR *getmsg,TCHAR *enename,TCHAR *filepath)
 
 }
 
-void LoadAndSetKatiSerif(DWORD tid)//ƒeƒLƒXƒg‚©‚çŸ—˜‚ÌƒZƒŠƒt‚ğ“Ç‚İ‚ñ‚Åİ’è‚·‚é
+void LoadAndSetKatiSerif(DWORD tid)//ãƒ†ã‚­ã‚¹ãƒˆã‹ã‚‰å‹åˆ©æ™‚ã®ã‚»ãƒªãƒ•ã‚’èª­ã¿è¾¼ã‚“ã§è¨­å®šã™ã‚‹
 {
 	TCHAR katiserifu[256];
 	TCHAR *enemyname;
@@ -413,7 +413,7 @@ void LoadAndSetKatiSerif(DWORD tid)//ƒeƒLƒXƒg‚©‚çŸ—˜‚ÌƒZƒŠƒt‚ğ“Ç‚İ‚ñ‚Åİ’è‚
 	if(GetWinSerif(katiserifu,enemyname,filepath)){
 		funcs->setkatiserif(tid,katiserifu);
 	}
-//	else funcs->setkatiserif(tid,_T("ƒZƒŠƒt‚Ìæ“¾‚É¸”s"));
+//	else funcs->setkatiserif(tid,_T("ã‚»ãƒªãƒ•ã®å–å¾—ã«å¤±æ•—"));
 }
 
 void DrawFront(GOBJECT *pdat,BOOL fr)
@@ -476,7 +476,7 @@ ATTACKINFO* ResisterAttackInfo(DWORD oid,MYATTACKINFO *mainfo)
 	return(&my_ainfo[index]);
 }
 
-// ATTACKINFO\‘¢‘Ì‚ğ‹Œ®‚É•ÏŠ·
+// ATTACKINFOæ§‹é€ ä½“ã‚’æ—§å¼ã«å¤‰æ›
 void GetMyAttackInfo(DWORD oid, const ATTACKINFO *ainfo,
 							 MYATTACKINFO* mainfo, BOOL IsMyObject)
 {
@@ -523,7 +523,7 @@ void GetMyAttackInfo(DWORD oid, const ATTACKINFO *ainfo,
 }
 
 //****************************************************************
-//  ŠÈˆÕ”ò‚Ñ“¹‹ï
+//  ç°¡æ˜“é£›ã³é“å…·
 //****************************************************************
 void GoBulletA(GOBJECT *pdat,BULLETINFO_A *bulinfo)
 {
@@ -606,31 +606,31 @@ DWORD BulletACallBack(DWORD msg,LPVOID dat,DWORD prm)
 	}
 
 	switch(msg){
-	case GOBJMSG_ACTION://ƒAƒNƒVƒ‡ƒ\
+	case GOBJMSG_ACTION://ã‚¢ã‚¯ã‚·ãƒ§ã‚½
 		switch(pdat->aid){
 		case BULLETASTATE_RUN:
-			pdat->kougeki=TRUE;//UŒ‚‚ğs‚¤
+			pdat->kougeki=TRUE;//æ”»æ’ƒã‚’è¡Œã†
 		case BULLETASTATE_RUN2:
-			if(pdat->aid==BULLETASTATE_RUN2)pdat->kougeki=FALSE;//UŒ‚‚ğs‚í‚È‚¢
-			//‘O‚Éi‚Ş
+			if(pdat->aid==BULLETASTATE_RUN2)pdat->kougeki=FALSE;//æ”»æ’ƒã‚’è¡Œã‚ãªã„
+			//å‰ã«é€²ã‚€
 			if(pdat->muki)pdat->x -= pdat->vx;
 			else pdat->x += pdat->vx;
 			pdat->y += pdat->vy;
-			//‰Á‘¬‚·‚é
+			//åŠ é€Ÿã™ã‚‹
 			pdat->vx += pdat->ax;
 			pdat->vy += pdat->ay;
-			//•\¦ƒZƒ‹‚ğ•ÏX‚·‚é
+			//è¡¨ç¤ºã‚»ãƒ«ã‚’å¤‰æ›´ã™ã‚‹
 			if(pbdat->spd_run !=0  &&  pbdat->num_run!=0)
 				pdat->cnow = pbdat->cell_run[ (pdat->counter / pbdat->spd_run)%pbdat->num_run ];
-			//‘±ŠÔ
+			//æŒç¶šæ™‚é–“
 			if(pdat->counter > (DWORD)pbdat->dur){
 				pdat->aid = BULLETASTATE_DIS;
 			}
-			//‰æ–ÊŠO
+			//ç”»é¢å¤–
 			if(pdat->uid & BULLETA_XGAMENGAI && (pdat->x > 700 || pdat->x < -700)){
 				pdat->aid = BULLETASTATE_DIS;
 			}
-			//’n–Ê‚É“’B
+			//åœ°é¢ã«åˆ°é”
 			if(pdat->uid & BULLETA_XJIMENN){
 				if(pdat->y > 0){
 					pdat->aid = BULLETASTATE_DIS;
@@ -638,11 +638,11 @@ DWORD BulletACallBack(DWORD msg,LPVOID dat,DWORD prm)
 			}
 			break;
 		case BULLETASTATE_DIS:
-			pdat->kougeki=FALSE;//UŒ‚‚ğs‚í‚È‚¢
-			//•\¦ƒZƒ‹‚ğ•ÏX‚·‚é
+			pdat->kougeki=FALSE;//æ”»æ’ƒã‚’è¡Œã‚ãªã„
+			//è¡¨ç¤ºã‚»ãƒ«ã‚’å¤‰æ›´ã™ã‚‹
 			if(pbdat->spd_dis !=0  &&  pbdat->num_dis!=0)
 				pdat->cnow = pbdat->cell_dis[ (pdat->counter / pbdat->spd_dis)%pbdat->num_dis ];
-			//Š®‘SÁ–Å
+			//å®Œå…¨æ¶ˆæ»…
 			if(pdat->counter / pbdat->spd_dis > (DWORD)pbdat->num_dis){
 				(*funco->suicide)(pdat->id);
 			}
@@ -651,23 +651,23 @@ DWORD BulletACallBack(DWORD msg,LPVOID dat,DWORD prm)
 			pdat->aid = BULLETASTATE_DIS;
 		}
 		pbinfo_a->counter++;
-		//è“®‘€ì‚É‚æ‚éÁ‹
+		//æ‰‹å‹•æ“ä½œã«ã‚ˆã‚‹æ¶ˆå»
 		if(pbinfo_a->state == 0){
 			funco->suicide(pdat->id);
 		}
-		//zÀ•W
+		//zåº§æ¨™
 		pdat->z = ZZAHYO_BULLET4;
 		if(pbdat->flags & BULLETA_DRAWBACK)pdat->z = ZZAHYO_BULLET2;
 		if(pbdat->flags & BULLETA_DRAWMIDDLE)pdat->z = ZZAHYO_BULLET3;
 		break;
-	case GOBJMSG_SOUSAI://‘¼‚Ì”ò‚Ñ“¹‹ï‚Æ“–‚½‚Á‚½
+	case GOBJMSG_SOUSAI://ä»–ã®é£›ã³é“å…·ã¨å½“ãŸã£ãŸ
 		if(pdat->uid & BULLETA_DONOTDIE)
 			pdat->aid = BULLETASTATE_RUN2;
 		else
 			pdat->aid = BULLETASTATE_DIS;
-		pdat->kougeki=FALSE;//UŒ‚‚ğs‚í‚È‚¢
+		pdat->kougeki=FALSE;//æ”»æ’ƒã‚’è¡Œã‚ãªã„
 		break;
-	case GOBJMSG_TOUCHB://“G‚É“–‚½‚Á‚½
+	case GOBJMSG_TOUCHB://æ•µã«å½“ãŸã£ãŸ
 	{
 		GOBJECT* ppdat = (GOBJECT*)(*funco->getinfo)(pbdat->poid);
 
@@ -677,22 +677,22 @@ DWORD BulletACallBack(DWORD msg,LPVOID dat,DWORD prm)
 
 				BulAtkInfo.pbul = pdat;
 				BulAtkInfo.hit = prm;
-				(*ppdat->msghandler)(MYGOBJMSG_BULLETHIT,ppdat, (DWORD)&BulAtkInfo);//‚â‚Á‚½[“–‚½‚Á‚½‚æ[
+				(*ppdat->msghandler)(MYGOBJMSG_BULLETHIT,ppdat, (DWORD)&BulAtkInfo);//ã‚„ã£ãŸãƒ¼å½“ãŸã£ãŸã‚ˆãƒ¼
 			}
 		}
 		if(pdat->uid & BULLETA_DONOTDIE)
 			pdat->aid = BULLETASTATE_RUN2;
 		else
 			pdat->aid = BULLETASTATE_DIS;
-		pdat->kougeki=FALSE;//UŒ‚‚ğs‚í‚È‚¢
+		pdat->kougeki=FALSE;//æ”»æ’ƒã‚’è¡Œã‚ãªã„
 		break;
 	}
-	case GOBJMSG_DELETE://Á–Å
+	case GOBJMSG_DELETE://æ¶ˆæ»…
 		if (funco->getinfo(pbdat->poid) != NULL)
 			pbdat->pbinfo_a->state = 0;
 		free(pdat->pobjdat_u);
 		return(TRUE);
-	case GOBJMSG_DRAW://•`‰æ‚ÍƒVƒXƒeƒ€‚É”C‚¹‚é
+	case GOBJMSG_DRAW://æç”»ã¯ã‚·ã‚¹ãƒ†ãƒ ã«ä»»ã›ã‚‹
 	default:
 		return(0);
 	}
@@ -742,10 +742,10 @@ DWORD JimaeBulletACallBack(DWORD msg,LPVOID dat,DWORD prm)
 		if (pbinfo_b->pf_action)
 			pbinfo_b->pf_action(pbinfo_a);
 		break;
-	case GOBJMSG_SOUSAI://‘¼‚Ì”ò‚Ñ“¹‹ï‚Æ“–‚½‚Á‚½
+	case GOBJMSG_SOUSAI://ä»–ã®é£›ã³é“å…·ã¨å½“ãŸã£ãŸ
 		if (pbinfo_b->pf_hit && pbinfo_b->pf_hit(pbinfo_a))
 			funco->suicide(pdat->id);
-		pdat->kougeki=FALSE;//UŒ‚‚ğs‚í‚È‚¢
+		pdat->kougeki=FALSE;//æ”»æ’ƒã‚’è¡Œã‚ãªã„
 		break;
 	case GOBJMSG_TOUCHB:
 	{
@@ -757,20 +757,20 @@ DWORD JimaeBulletACallBack(DWORD msg,LPVOID dat,DWORD prm)
 
 				BulAtkInfo.pbul = pdat;
 				BulAtkInfo.hit = prm;
-				(*ppdat->msghandler)(MYGOBJMSG_BULLETHIT,ppdat, (DWORD)&BulAtkInfo);//‚â‚Á‚½[“–‚½‚Á‚½‚æ[
+				(*ppdat->msghandler)(MYGOBJMSG_BULLETHIT,ppdat, (DWORD)&BulAtkInfo);//ã‚„ã£ãŸãƒ¼å½“ãŸã£ãŸã‚ˆãƒ¼
 			}
 		}
 		if (pbinfo_b->pf_hit && pbinfo_b->pf_hit(pbinfo_a))
 			funco->suicide(pdat->id);
-		pdat->kougeki=FALSE;//UŒ‚‚ğs‚í‚È‚¢
+		pdat->kougeki=FALSE;//æ”»æ’ƒã‚’è¡Œã‚ãªã„
 		break;
 	}
-	case GOBJMSG_DELETE://Á–Å
+	case GOBJMSG_DELETE://æ¶ˆæ»…
 		if (pbdat->ObjectID < 256)
 			ObjID[pbdat->ObjectID] = 0;
 		free(pdat->pobjdat_u);
 		return(TRUE);
-	case GOBJMSG_DRAW://•`‰æ‚ÍƒVƒXƒeƒ€‚É”C‚¹‚é
+	case GOBJMSG_DRAW://æç”»ã¯ã‚·ã‚¹ãƒ†ãƒ ã«ä»»ã›ã‚‹
 	default:
 		return(0);
 	}

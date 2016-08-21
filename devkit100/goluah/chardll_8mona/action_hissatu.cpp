@@ -1,4 +1,4 @@
-/*=====================================================================================
+ï»¿/*=====================================================================================
 
 Goluah!! Copyright (C) 2001-2004 aki, 2004-2016 At-sushi, 2014-2016 logger
 
@@ -12,15 +12,15 @@ You should have received a copy of the GNU General Public License along with thi
 
 /*==============================================================
 
-	s“®ŠÖ”(•KE)
+	è¡Œå‹•é–¢æ•°(å¿…æ®º)
 
 ================================================================*/
 #include "character.h"
 
 
-//•KE==========================================================
+//å¿…æ®º==========================================================
 
-//‚³‚ŸI1‚³‚ñ
+//ã•ãï¼1ã•ã‚“
 void CCharacter::act_sah1()
 {
 	if(pdat->counter == 0){
@@ -111,7 +111,7 @@ void CCharacter::act_sah_landing()
 	else ChangeAction(ACTID_NEUTRAL);
 }
 
-//ƒRƒŒƒK@ƒAƒC@ƒm@ƒJƒ^ƒ`
+//ã‚³ãƒ¬ã‚¬ã€€ã‚¢ã‚¤ã€€ãƒã€€ã‚«ã‚¿ãƒ
 void CCharacter::act_fig1()
 {
 	if(pdat->counter < 3)pdat->cnow = CELL_FIG1;
@@ -132,10 +132,10 @@ void CCharacter::act_fig1()
 	}
 }
 
-void CCharacter::act_fig2(){act_fig1();}//’†E«”\‚¨‚ñ‚È‚¶
-void CCharacter::act_fig3(){act_fig1();}//‹­E«”\‚¨‚ñ‚È‚¶
+void CCharacter::act_fig2(){act_fig1();}//ä¸­ãƒ»æ€§èƒ½ãŠã‚“ãªã˜
+void CCharacter::act_fig3(){act_fig1();}//å¼·ãƒ»æ€§èƒ½ãŠã‚“ãªã˜
 
-//“{‚è‚ğ‚Ô‚Â‚¯‚é“Š‚°
+//æ€’ã‚Šã‚’ã¶ã¤ã‘ã‚‹æŠ•ã’
 void CCharacter::act_ikari()
 {
 	DrawFront();
@@ -148,8 +148,8 @@ void CCharacter::act_ikari()
 	else if(pdat->counter < 24){pdat->cnow=CELL_IKARI1;}
 	else if(pdat->counter < 40){pdat->cnow=CELL_IKARI2;}
 	else if(pdat->counter < 42){pdat->cnow=CELL_JAMP;}
-	else if(pdat->counter < 55){pdat->cnow=CELL_JAMP1;movex(2);pdat->y-=12;pdat->vy=-12;}//ƒWƒƒƒ“ƒv‚µ‚Ä’Ç‚¢‚©‚¯
-	else if(pdat->counter < 90){//’Í‚ñ‚Å—‰º
+	else if(pdat->counter < 55){pdat->cnow=CELL_JAMP1;movex(2);pdat->y-=12;pdat->vy=-12;}//ã‚¸ãƒ£ãƒ³ãƒ—ã—ã¦è¿½ã„ã‹ã‘
+	else if(pdat->counter < 90){//æ´ã‚“ã§è½ä¸‹
 		pdat->cnow=CELL_IKARI3;
 		pdat->y+=pdat->vy;
 		pdat->vy++;
@@ -205,11 +205,11 @@ DWORD CCharacter::act_ikarie(GOBJECT *pedat)
 		return(ACTID_FUTTOBI);
 	}
 
-	//‚È‚ÉH
+	//ãªã«ï¼Ÿ
 	return(0);
 }
 
-//u1‚³‚ñ‚ª‚ ‚Á‚¿‚É“¦‚°‚½‚¼Iv-----------------------------------------------------------------
+//ã€Œ1ã•ã‚“ãŒã‚ã£ã¡ã«é€ƒã’ãŸãï¼ã€-----------------------------------------------------------------
 
 void CCharacter::act_escape()
 {

@@ -1,17 +1,17 @@
-
+ï»¿
 /*=======================================================================================
 
-	—ûKƒ‚[ƒh ƒLƒƒƒ‰ƒZƒŒ
+	ç·´ç¿’ãƒ¢ãƒ¼ãƒ‰ ã‚­ãƒ£ãƒ©ã‚»ãƒ¬
 
 =========================================================================================*/
 
 #include "task_select.h"
 
 /*!
-*	@brief PRACTICE ƒ‚[ƒh—pƒLƒƒƒ‰ƒZƒŒ
+*	@brief PRACTICE ãƒ¢ãƒ¼ãƒ‰ç”¨ã‚­ãƒ£ãƒ©ã‚»ãƒ¬
 *	@ingroup Tasks
 *
-*	¡‚Í‚©‚È‚èŽè”²‚«
+*	ä»Šã¯ã‹ãªã‚Šæ‰‹æŠœã
 */
 class CCharacterSelectPractice : public CCharacterSelect
 {
@@ -22,13 +22,13 @@ public:
 
 
 /*!
-*	@brief PRACTICE ƒ‚[ƒh—pŽŽ‡ðŒ‘I‘ðƒ^ƒXƒN
+*	@brief PRACTICE ãƒ¢ãƒ¼ãƒ‰ç”¨è©¦åˆæ¡ä»¶é¸æŠžã‚¿ã‚¹ã‚¯
 *	@ingroup Tasks
 *
-*	ƒvƒŒƒCƒ„[‚É‘I‘ð‚³‚¹‚¸AŒÅ’èðŒ‚ð•Ô‚·‚æ‚¤‚É‚µ‚½B
-*	Žè”²‚«ƒNƒ‰ƒXB
+*	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«é¸æŠžã•ã›ãšã€å›ºå®šæ¡ä»¶ã‚’è¿”ã™ã‚ˆã†ã«ã—ãŸã€‚
+*	æ‰‹æŠœãã‚¯ãƒ©ã‚¹ã€‚
 *
-*	–{‰Æ(1.00)‚É”ä‚×‚Ä­‚µC³‚ª“ü‚Á‚Ä‚¢‚é‚Ì‚ÅA¡‚Í‚à‚¤­‚µì‹Æ‚µ‚Ä‚Ü‚·B
+*	æœ¬å®¶(1.00)ã«æ¯”ã¹ã¦å°‘ã—ä¿®æ­£ãŒå…¥ã£ã¦ã„ã‚‹ã®ã§ã€ä»Šã¯ã‚‚ã†å°‘ã—ä½œæ¥­ã—ã¦ã¾ã™ã€‚
 */
 class CTConditionSelecterPractice : public CTConditionSelecter
 {

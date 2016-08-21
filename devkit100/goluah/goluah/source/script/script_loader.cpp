@@ -1,6 +1,6 @@
-/*===============================================================
+ï»¿/*===============================================================
 
-	ƒXƒNƒŠƒvƒgƒ[ƒhƒNƒ‰ƒX@À‘•
+	ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ­ãƒ¼ãƒ‰ã‚¯ãƒ©ã‚¹ã€€å®Ÿè£…
 
 =================================================================*/
 
@@ -8,13 +8,13 @@
 #include "script_loader.h"
 
 
-//goluah_plus.dll‚Ì–¼c
+//goluah_plus.dllã®åæ®‹
 CGoluahPlusBase::~CGoluahPlusBase(){}
 void CGoluahPlusBase::Destroy(CGoluahPlusBase *ptr){if(ptr)delete ptr;}
 
 
 /*---------------------------------------------------------------
-	ƒCƒ“ƒXƒ^ƒ“ƒX‚ğƒQƒg[
+	ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ã‚²ãƒˆãƒ¼
 -----------------------------------------------------------------*/
 CScriptLoader* CScriptLoader::Create()
 {
@@ -23,9 +23,9 @@ CScriptLoader* CScriptLoader::Create()
 
 
 /*---------------------------------------------------------------
-	ƒtƒ@ƒCƒ‹‚Ìƒ[ƒh
-	UINT include_nest : include‚ÌˆË‘¶ŠÖŒW‚ª–³ŒÀƒ‹[ƒv‚µ‚È‚¢‚æ‚¤A
-						Å‘åƒlƒXƒg”‚ğ’´‚¦‚½‚çˆ—‚ğ’†~‚·‚éB
+	ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ­ãƒ¼ãƒ‰
+	UINT include_nest : includeã®ä¾å­˜é–¢ä¿‚ãŒç„¡é™ãƒ«ãƒ¼ãƒ—ã—ãªã„ã‚ˆã†ã€
+						æœ€å¤§ãƒã‚¹ãƒˆæ•°ã‚’è¶…ãˆãŸã‚‰å‡¦ç†ã‚’ä¸­æ­¢ã™ã‚‹ã€‚
 -----------------------------------------------------------------*/
 BOOL CScriptLoaderInstance::LoadFile(TCHAR *base_dir,TCHAR *filename,UINT include_count)
 {
@@ -34,7 +34,7 @@ BOOL CScriptLoaderInstance::LoadFile(TCHAR *base_dir,TCHAR *filename,UINT includ
 	m_base_dir = base_dir;
 	m_filename = filename;
 
-	//ƒtƒ@ƒCƒ‹‘S‘Ì‚ğ“Ç‚İ‚Ş
+	//ãƒ•ã‚¡ã‚¤ãƒ«å…¨ä½“ã‚’èª­ã¿è¾¼ã‚€
 	UINT fsize;
 	CString *file_path = new CString;
 	file_path->Format(_T("%s\\%s"),base_dir,filename);
@@ -45,25 +45,25 @@ BOOL CScriptLoaderInstance::LoadFile(TCHAR *base_dir,TCHAR *filename,UINT includ
 	}
 	delete file_path;
 
-	//s‚²‚Æ‚É•ªŠ„‚µ‚ÄƒŠƒXƒg‚ğì¬
+	//è¡Œã”ã¨ã«åˆ†å‰²ã—ã¦ãƒªã‚¹ãƒˆã‚’ä½œæˆ
 	if(!DivideLine(str_org,fsize))return FALSE;
 	delete [] str_org;
 
-	//ƒRƒƒ“ƒg‚ğœ‹
+	//ã‚³ãƒ¡ãƒ³ãƒˆã‚’é™¤å»
 	if(!EliminateComment())return FALSE;
 
-	//includeˆ—
+	//includeå‡¦ç†
 	if(!IncludeCheck(include_count+1))return FALSE;
 
 	//DebugOutput(NULL);
 
-	//¬Œ÷?
+	//æˆåŠŸ?
 	return (list.size()!=0);
 }
 
 
 /*---------------------------------------------------------------
-	•Ê–¼’uŠ·ˆ—
+	åˆ¥åç½®æ›å‡¦ç†
 -----------------------------------------------------------------*/
 void CScriptLoaderInstance::ReplaceAlias(CAliasList *palist)
 {
@@ -88,7 +88,7 @@ void CScriptLoaderInstance::ReplaceAlias(CAliasList *palist)
 
 
 /*---------------------------------------------------------------
-	sæ“¾iC•¶š—ñj
+	è¡Œå–å¾—ï¼ˆCæ–‡å­—åˆ—ï¼‰
 -----------------------------------------------------------------*/
 TCHAR* CScriptLoaderInstance::GetLine(int index)
 {
@@ -103,7 +103,7 @@ TCHAR* CScriptLoaderInstance::GetLine(int index)
 
 
 /*---------------------------------------------------------------
-	sæ“¾iMFC CStringƒNƒ‰ƒXBATL‚©‚àHj
+	è¡Œå–å¾—ï¼ˆMFC CStringã‚¯ãƒ©ã‚¹ã€‚ATLã‹ã‚‚ï¼Ÿï¼‰
 -----------------------------------------------------------------*/
 CString CScriptLoaderInstance::GetLineC(int index)
 {
@@ -120,8 +120,8 @@ CString CScriptLoaderInstance::GetLineC(int index)
 
 
 /*---------------------------------------------------------------
-	ƒtƒ@ƒCƒ‹ƒ[ƒhˆ—
-	–ß‚è’l‚Ì BYTE* ‚Í new[] ‚µ‚½‚à‚Ì‚È‚Ì‚ÅAŒÄ‚Ño‚µŒ³‚Ådelete[]‚·‚é
+	ãƒ•ã‚¡ã‚¤ãƒ«ãƒ­ãƒ¼ãƒ‰å‡¦ç†
+	æˆ»ã‚Šå€¤ã® BYTE* ã¯ new[] ã—ãŸã‚‚ã®ãªã®ã§ã€å‘¼ã³å‡ºã—å…ƒã§delete[]ã™ã‚‹
 -----------------------------------------------------------------*/
 BYTE* CScriptLoaderInstance::LoadWholeFile(CString* filename,UINT *size)
 {
@@ -143,14 +143,14 @@ BYTE* CScriptLoaderInstance::LoadWholeFile(CString* filename,UINT *size)
 
 
 /*---------------------------------------------------------------
-	s‚²‚Æ•ªŠ„ˆ—
+	è¡Œã”ã¨åˆ†å‰²å‡¦ç†
 -----------------------------------------------------------------*/
 BOOL CScriptLoaderInstance::DivideLine(BYTE* str_org,UINT size)
 {
 	BYTE *strbuf = new BYTE[1024];
 	if(!strbuf)return FALSE;
 
-	list.clear();//Šù‘¶‚Ìƒf[ƒ^‚ğ”jŠü
+	list.clear();//æ—¢å­˜ã®ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„
 
 	BYTE *str_org_end = str_org + size;
 	UINT strsize = 0;
@@ -183,7 +183,7 @@ BOOL CScriptLoaderInstance::DivideLine(BYTE* str_org,UINT size)
 
 
 /*---------------------------------------------------------------
-	ƒRƒƒ“ƒgœ‹ˆ—
+	ã‚³ãƒ¡ãƒ³ãƒˆé™¤å»å‡¦ç†
 -----------------------------------------------------------------*/
 BOOL CScriptLoaderInstance::EliminateComment()
 {
@@ -203,7 +203,7 @@ BOOL CScriptLoaderInstance::EliminateComment()
 
 
 /*---------------------------------------------------------------
-	include ˆ—
+	include å‡¦ç†
 -----------------------------------------------------------------*/
 BOOL CScriptLoaderInstance::IncludeCheck(UINT include_count)
 {
@@ -220,7 +220,7 @@ BOOL CScriptLoaderInstance::IncludeCheck(UINT include_count)
 				int line_no = il->line_no;
 				list.erase(il);
 				Marge(line_no,subtext);
-				//ied‚ª•ÏX‚³‚ê‚½‰Â”\«‚ª‚ ‚é‚Ì‚ÅAÅ‰‚©‚ç‚â‚è’¼‚µ
+				//iedãŒå¤‰æ›´ã•ã‚ŒãŸå¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§ã€æœ€åˆã‹ã‚‰ã‚„ã‚Šç›´ã—
 				il	=list.begin();
 				iled=list.end();
 			}
@@ -233,14 +233,14 @@ BOOL CScriptLoaderInstance::IncludeCheck(UINT include_count)
 
 
 /*---------------------------------------------------------------
-	ƒ}[ƒWBIncludeˆ—‚Ég—p
+	ãƒãƒ¼ã‚¸ã€‚Includeå‡¦ç†ã«ä½¿ç”¨
 -----------------------------------------------------------------*/
 void CScriptLoaderInstance::Marge(int index,CScriptLoaderInstance& sh)
 {
 	strlinelist::iterator il;
 	strlinelist::iterator iled;
 
-	//index ˆÈ‰º‚Ìs”‚ğ‚¸‚ç‚·
+	//index ä»¥ä¸‹ã®è¡Œæ•°ã‚’ãšã‚‰ã™
 	il	=list.begin();
 	iled=list.end();
 	for(;il!=iled;il++){
@@ -249,7 +249,7 @@ void CScriptLoaderInstance::Marge(int index,CScriptLoaderInstance& sh)
 		}
 	}
 
-	//sh‚Ì“à—e‚ğƒŠƒXƒg‚É’Ç‰Á
+	//shã®å†…å®¹ã‚’ãƒªã‚¹ãƒˆã«è¿½åŠ 
 	il	=sh.list.begin();
 	iled=sh.list.end();
 	for(;il!=iled;il++){
@@ -261,13 +261,13 @@ void CScriptLoaderInstance::Marge(int index,CScriptLoaderInstance& sh)
 
 
 /*---------------------------------------------------------------
-	ƒfƒoƒbƒO—pAˆê——o—Í
+	ãƒ‡ãƒãƒƒã‚°ç”¨ã€ä¸€è¦§å‡ºåŠ›
 -----------------------------------------------------------------*/
 #ifdef _DEBUG
 #include<algorithm>
 void CScriptLoaderInstance::DebugOutput(TCHAR *filename)
 {
-	OutputDebugString(_T("\n¡CScriptLoaderInstance::DebugOutput - start\n"));
+	OutputDebugString(_T("\nâ– CScriptLoaderInstance::DebugOutput - start\n"));
 
 	strlinelist::iterator il;
 	strlinelist::iterator iled;
@@ -284,7 +284,7 @@ void CScriptLoaderInstance::DebugOutput(TCHAR *filename)
 		OutputDebugString(tmp);
 	}
 
-	OutputDebugString(_T("\n¡CScriptLoaderInstance::DebugOutput - end\n"));
+	OutputDebugString(_T("\nâ– CScriptLoaderInstance::DebugOutput - end\n"));
 }
 #endif
 

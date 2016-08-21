@@ -1,4 +1,4 @@
-/*=====================================================================================
+ï»¿/*=====================================================================================
 
 Goluah!! Copyright (C) 2001-2004 aki, 2004-2016 At-sushi, 2014-2016 logger
 
@@ -12,7 +12,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 /*==============================================================
 
-	”ò“¹‹ï
+	é£›é“å…·
 
 ================================================================*/
 #include "el_character.h"
@@ -21,7 +21,7 @@ V2d v2Zero;
 
 
 /***************************************************************
-	”ò“¹‹ï‰Šú‰»
+	é£›é“å…·åˆæœŸåŒ–
 ****************************************************************/
 void CCharacterEL::InitBullets()
 {
@@ -47,7 +47,7 @@ void CCharacterEL::InitBullets()
 
 
 /***************************************************************
-	”g“®i”ò‚Î‚È‚¢j
+	æ³¢å‹•ï¼ˆé£›ã°ãªã„ï¼‰
 ****************************************************************/
 
 CHadou::CHadou(CCharacterBase *parent) : CBulletBase(parent)
@@ -77,7 +77,7 @@ void CHadou::act_bomb()
 
 void CHadou::act_base()
 {
-	float t = ((float)pdat->counter/m_duration) ;//0¨1
+	float t = ((float)pdat->counter/m_duration) ;//0â†’1
 	if(t>1.0f){
 		ChangeAction(CBB_STATE_IDLE);
 		return;
@@ -101,25 +101,25 @@ void CHadou::GoA(BOOL muki,double x,double y,float duration,ATTACKINFO *atk)
 
 
 /***************************************************************
-	ƒeƒgƒ‰ƒOƒ‰ƒ}ƒgƒ“
+	ãƒ†ãƒˆãƒ©ã‚°ãƒ©ãƒãƒˆãƒ³
 ****************************************************************/
 
 CEnergyArrow::CEnergyArrow(CCharacterBase *parent) : CBulletBase(parent)
 {
 	base_z = ZZAHYO_EFFECT2;
-	AddProperty( GOBJFLG_NEEDTARGET );//ƒ^[ƒQƒbƒg‚ª•K—v
+	AddProperty( GOBJFLG_NEEDTARGET );//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãŒå¿…è¦
 
-	m_num =  64;			//ƒ|ƒCƒ“ƒg”
-	m_step =  1;			//1ƒtƒŒ•âŠÔ”EEE‚Â‚¤‚©•âŠÔ‚¢‚ç‚Ë‚¥
+	m_num =  64;			//ãƒã‚¤ãƒ³ãƒˆæ•°
+	m_step =  1;			//1ãƒ•ãƒ¬è£œé–“æ•°ãƒ»ãƒ»ãƒ»ã¤ã†ã‹è£œé–“ã„ã‚‰ã­ã‡
 
-	//‰Šúƒpƒ‰ƒ[ƒ^
-	m_width = 40.0f;		//Šî€‘¾‚³
-	m_color.red = 60;		//F
+	//åˆæœŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	m_width = 40.0f;		//åŸºæº–å¤ªã•
+	m_color.red = 60;		//è‰²
 	m_color.green = 60;
 	m_color.blue = 255;
 	m_color.alpha = 220;
-	m_trackstrength = 2.85f;	//’Ç”ö‹­‚³
-	m_maxspeed = 30.0f;		//Å‘å‘¬“x
+	m_trackstrength = 2.85f;	//è¿½å°¾å¼·ã•
+	m_maxspeed = 30.0f;		//æœ€å¤§é€Ÿåº¦
 	m_lifetime = 60.0f;
 
 	m_pos = NULL;
@@ -129,7 +129,7 @@ CEnergyArrow::CEnergyArrow(CCharacterBase *parent) : CBulletBase(parent)
 
 
 /*--------------------------------------------------------------
-	¶¬ˆ—
+	ç”Ÿæˆå‡¦ç†
 ----------------------------------------------------------------*/
 void CEnergyArrow::Create()
 {
@@ -139,7 +139,7 @@ void CEnergyArrow::Create()
 }
 
 /*--------------------------------------------------------------
-	”jŠüˆ—
+	ç ´æ£„å‡¦ç†
 ----------------------------------------------------------------*/
 void CEnergyArrow::Destroy()
 {
@@ -148,19 +148,19 @@ void CEnergyArrow::Destroy()
 }
 
 /*--------------------------------------------------------------
-	Ëo
+	å°„å‡º
 ----------------------------------------------------------------*/
 BOOL CEnergyArrow::Go(BOOL muki,double x,double y,double vx,double vy)
 {
 	if(!m_pos)return FALSE;
 	if(!CBulletBase::Go(muki,x,y,vx,vy))return FALSE;
 
-	for(UINT i=0;i<m_num;i++){//ƒ|ƒCƒ“ƒg‰Šú‰»
+	for(UINT i=0;i<m_num;i++){//ãƒã‚¤ãƒ³ãƒˆåˆæœŸåŒ–
 		m_pos[i].x = (float)x/ 240.0f;
 		m_pos[i].y = (float)y/ 240.0f;
 	}
 
-	//•âŠÔ‚É•K—v‚ÈƒxƒNƒgƒ‹‰Šú‰»
+	//è£œé–“ã«å¿…è¦ãªãƒ™ã‚¯ãƒˆãƒ«åˆæœŸåŒ–
 	m_ppos.x = (float)x / 240.0f;
 	m_ppos.y = (float)y / 240.0f;
 	m_pvec.x = m_pvec.y = 0;
@@ -169,7 +169,7 @@ BOOL CEnergyArrow::Go(BOOL muki,double x,double y,double vx,double vy)
 }
 	
 /*--------------------------------------------------------------
-	”òãÄ’†
+	é£›ç¿”ä¸­
 ----------------------------------------------------------------*/
 void CEnergyArrow::act_run()
 {
@@ -177,16 +177,16 @@ void CEnergyArrow::act_run()
 	float t = ((float)ccounter) / ((float)start_time);
 	if(t>1.0f)t=1.0f;
 
-	//UŒ‚—Íİ’è
+	//æ”»æ’ƒåŠ›è¨­å®š
 	if(ccounter<start_time) pdat->kougeki = FALSE;
 	else pdat->kougeki = TRUE;
 
 	hitprm = pdat->eid;
 	grdprm = pdat->eid;
-	//•\¦ƒZƒ‹İ’è
+	//è¡¨ç¤ºã‚»ãƒ«è¨­å®š
 	cell( CELL_EARROW );
 
-	//“G’Ç”ö
+	//æ•µè¿½å°¾
 	float t2 = ((float)ccounter) / m_lifetime;
 	if(t2 < 0.3f){
 		t2 /= 0.3f;
@@ -199,7 +199,7 @@ void CEnergyArrow::act_run()
 	EnemyTrack( tstr );
 
 
-	//ˆÊ’uˆÚ“®
+	//ä½ç½®ç§»å‹•
 	pdat->x += pdat->vx;
 	pdat->y += pdat->vy;
 
@@ -212,7 +212,7 @@ void CEnergyArrow::act_run()
 }
 
 /*--------------------------------------------------------------
-	ƒqƒbƒgŒã/”»’èÁ¸Œã
+	ãƒ’ãƒƒãƒˆå¾Œ/åˆ¤å®šæ¶ˆå¤±å¾Œ
 ----------------------------------------------------------------*/
 void CEnergyArrow::act_bomb()
 {
@@ -224,16 +224,16 @@ void CEnergyArrow::act_bomb()
 		return;
 	}
 
-	//•\¦ƒZƒ‹İ’è
+	//è¡¨ç¤ºã‚»ãƒ«è¨­å®š
 	cell( CELL_EARROW );
 
-	//“G’Ç”ö
+	//æ•µè¿½å°¾
 	EnemyTrack( 0.2f );
 
 	
 	pdat->magx = pdat->magy = 1.0f - t;
 
-	//ˆÊ’uˆÚ“®
+	//ä½ç½®ç§»å‹•
 	pdat->x += pdat->vx;
 	pdat->y += pdat->vy;
 
@@ -244,7 +244,7 @@ void CEnergyArrow::act_bomb()
 
 
 /*--------------------------------------------------------------
-	“G’Ç”öˆ—
+	æ•µè¿½å°¾å‡¦ç†
 ----------------------------------------------------------------*/
 void CEnergyArrow::EnemyTrack(float strength)
 {
@@ -273,7 +273,7 @@ void CEnergyArrow::EnemyTrack(float strength)
 }
 
 /*--------------------------------------------------------------
-	ƒgƒ‰ƒCƒXƒgƒŠƒbƒvXV
+	ãƒˆãƒ©ã‚¤ã‚¹ãƒˆãƒªãƒƒãƒ—æ›´æ–°
 ----------------------------------------------------------------*/
 void CEnergyArrow::UpdateTrack(float t,BOOL damp)
 {
@@ -288,19 +288,19 @@ void CEnergyArrow::UpdateTrack(float t,BOOL damp)
 	{
 		t2 = (float)i/(float)m_num;
 
-		//ƒ|ƒCƒ“ƒgİ’è
+		//ãƒã‚¤ãƒ³ãƒˆè¨­å®š
 		V3d pos;
 		pos.x = m_pos[i].x;
 		pos.y = m_pos[i].y;
 		pos.z = pdat->z;
 		m_ts->SetPos(i,pos);
 		
-		//Fİ’è
+		//è‰²è¨­å®š
 		ARGB col = m_color;
 		col.alpha = (BYTE)( ((float)col.alpha) * alpha_r ); 
 		m_ts->SetColor(i,col);
 
-		//‘¾‚³İ’è
+		//å¤ªã•è¨­å®š
 		m_ts->SetWidth(i, wdt*(1.0f-t2) );
 	}
 	
@@ -309,7 +309,7 @@ void CEnergyArrow::UpdateTrack(float t,BOOL damp)
 
 void CEnergyArrow::UpdateBez()
 {
-	//ƒ|ƒCƒ“ƒgXV
+	//ãƒã‚¤ãƒ³ãƒˆæ›´æ–°
 	static float vec_ratio = 0.5f;
 	UINT i;
 	{
@@ -334,7 +334,7 @@ void CEnergyArrow::UpdateBez()
 			float it = (1.0f/(float)m_step)*(i+1);
 			float t= (1.0f-it);
 
-			//ƒxƒWƒF[
+			//ãƒ™ã‚¸ã‚§ãƒ¼
 			m_pos[i].x=m_pos[i].y = 0;
 			m_pos[i] += (v0*(it*it*it));
 			m_pos[i] += (v1*(3.0f*t*it*it));
@@ -347,7 +347,7 @@ void CEnergyArrow::UpdateBez()
 }
 
 /*--------------------------------------------------------------
-	•`‰æ
+	æç”»
 ----------------------------------------------------------------*/
 DWORD CEnergyArrow::Draw()
 {
@@ -360,18 +360,18 @@ DWORD CEnergyArrow::Draw()
 		aki3d.EnableZ(TRUE,TRUE);
 
 		if(pdat->magx>0)
-			return 0;//ƒZƒ‹•`‰æ‚às‚¤
+			return 0;//ã‚»ãƒ«æç”»ã‚‚è¡Œã†
 		else
 			return TRUE;
 	}
 
-	return TRUE;//•`‰æ‚Ì•K—v‚È‚µ
+	return TRUE;//æç”»ã®å¿…è¦ãªã—
 }
 
 
 
 /****************************************************************
-	‹OÕ
+	è»Œè·¡
 *****************************************************************/
 using namespace Morarael;
 
@@ -390,7 +390,7 @@ CTrack::CTrack(CCharacterBase *parent) : CBulletBase(parent)
 }
 
 /*---------------------------------------------------------------
-	¶¬
+	ç”Ÿæˆ
 -----------------------------------------------------------------*/
 void CTrack::Create()
 {
@@ -415,7 +415,7 @@ void CTrack::Create()
 }
 
 /*---------------------------------------------------------------
-	”jŠü
+	ç ´æ£„
 -----------------------------------------------------------------*/
 void CTrack::Destroy()
 {
@@ -424,13 +424,13 @@ void CTrack::Destroy()
 }
 
 /*---------------------------------------------------------------
-	ƒ|ƒCƒ“ƒgİ’è
+	ãƒã‚¤ãƒ³ãƒˆè¨­å®š
 -----------------------------------------------------------------*/
 void CTrack::PosUpdate()
 {
 	if(pdat->aid==CBB_STATE_IDLE)return;
 	
-	//ƒpƒ‰ƒ[ƒ^XV
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ›´æ–°
 	m_rot += m_rotspd ;
 	m_rotspd *= 1.0f-m_rotdamp;
 	m_offset *= 1.0f-m_offsetdamp;
@@ -446,7 +446,7 @@ void CTrack::PosUpdate()
 	
 	static float vec_ratio = 0.5f;
 
-	//EˆÊ’uXV
+	//ãƒ»ä½ç½®æ›´æ–°
 	{
 		for(i=m_num-1;i>=m_step;i--)
 		{
@@ -469,17 +469,17 @@ void CTrack::PosUpdate()
 			float it = (1.0f/(float)m_step)*(i+1);
 			t= (1.0f-it);
 
-			//ƒxƒWƒF[
+			//ãƒ™ã‚¸ã‚§ãƒ¼
 			m_pos[i]=v2Zero;
 			m_pos[i] += (v0*(it*it*it));
 			m_pos[i] += (v1*(3.0f*t*it*it));
 			m_pos[i] += (v2*(3.0f*t*t*it));
 			m_pos[i] += (v3*(t*t*t));
 		
-			//ƒPƒcˆÊ’uXV
+			//ã‚±ãƒ„ä½ç½®æ›´æ–°
 			m_tail++;
 			if(m_tail>m_num)m_tail=m_num;
-			//“ªˆÊ’uXV
+			//é ­ä½ç½®æ›´æ–°
 			if(pdat->aid==CBB_STATE_RUN)m_head = 0;
 			else{
 				m_head ++;
@@ -497,7 +497,7 @@ void CTrack::PosUpdate()
 		m_ts->SetPos(i,v3d);
 	}
 
-	//E•AF İ’è
+	//ãƒ»å¹…ã€è‰² è¨­å®š
 
 	float wdt;
 	if(pdat->aid==CBB_STATE_RUN){
@@ -535,7 +535,7 @@ void CTrack::PosUpdate()
 }
 
 /*---------------------------------------------------------------
-	•`‰æ
+	æç”»
 -----------------------------------------------------------------*/
 DWORD CTrack::Draw()
 {
@@ -549,7 +549,7 @@ DWORD CTrack::Draw()
 }
 
 /*---------------------------------------------------------------
-	s“®ŠÖ”
+	è¡Œå‹•é–¢æ•°
 -----------------------------------------------------------------*/
 void CTrack::act_run()
 {
@@ -584,7 +584,7 @@ void CTrack::Startup(
 				float offset2,
 				BOOL inv_flag)
 {
-	//ƒpƒ‰ƒ[ƒ^ƒRƒs[
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
 	m_width = width;
 	m_duration = dur;
 	m_stopcount = stop;
@@ -595,7 +595,7 @@ void CTrack::Startup(
 	m_offsetdamp = offset_damp;
 	m_offset2 = offset2;
 
-	//“à•”ƒpƒ‰ƒ[ƒ^ƒŠƒZƒbƒg
+	//å†…éƒ¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒªã‚»ãƒƒãƒˆ
 	if(GetParentObj()->muki)inv_flag = !inv_flag;
 	pdat->muki = inv_flag;
 	m_rot = 0;
@@ -610,7 +610,7 @@ void CTrack::Startup(
 }
 
 /*---------------------------------------------------------------
-	ƒpƒ‰ƒ[ƒ^İ’è
+	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 -----------------------------------------------------------------*/
 void CTrack::SetColor(BYTE a,BYTE r,BYTE g,BYTE b)
 {
@@ -622,7 +622,7 @@ void CTrack::SetColor(BYTE a,BYTE r,BYTE g,BYTE b)
 
 
 /***************************************************************
-	ƒWƒƒƒbƒWƒƒ“ƒg
+	ã‚¸ãƒ£ãƒƒã‚¸ãƒ¡ãƒ³ãƒˆ
 ****************************************************************/
 
 CJudge::CJudge(CCharacterBase *parent) : CBulletBase(parent)
@@ -648,14 +648,14 @@ void CJudge::Destroy()
 
 BOOL CJudge::Go(BOOL muki,double x,double y,double vx,double vy)
 {
-	//ƒqƒbƒgƒŠƒXƒgƒNƒŠƒA
+	//ãƒ’ãƒƒãƒˆãƒªã‚¹ãƒˆã‚¯ãƒªã‚¢
 	m_hitlist.clear();
 
-	//ŠJn“_æ“¾
+	//é–‹å§‹ç‚¹å–å¾—
 	m_start_x = (float)( GetParentObj()->x );
 	m_start_y = (float)( GetParentObj()->y );
 
-	//‚Æ‚°‚Æ‚°ƒpƒ‰ƒ[ƒ^ƒŠƒZƒbƒg
+	//ã¨ã’ã¨ã’ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒªã‚»ãƒƒãƒˆ
 	for(UINT i=0;i<JUDGE_TOGENUM;i++)
 	{
 		m_toge[i].Reset((float)x,pdat->z,muki);
@@ -706,7 +706,7 @@ DWORD CJudge::TouchC(ATTACKINFO *info,DWORD tc_eid)
 	JudgeHitList::iterator i = FindHitInfo( tc_eid );
 	if( i==m_hitlist.end() )
 	{
-		//Œ©‚Â‚©‚ç‚È‚©‚Á‚½‚çV‹K‚É’Ç‰Á‚·‚é
+		//è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã‚‰æ–°è¦ã«è¿½åŠ ã™ã‚‹
 		JudgeHitInfo newInfo;
 		newInfo.oid = tc_eid;
 		newInfo.cnt = 1;
@@ -714,12 +714,12 @@ DWORD CJudge::TouchC(ATTACKINFO *info,DWORD tc_eid)
 		return TOUCHC_OK;
 	}
 
-	//‚»‚¢‚Â‚É‰½‰ñ‚àƒqƒbƒg‚µ‚Ä‚éê‡‚Í“–‚½‚Á‚Ä‚È‚¢‚±‚Æ‚É‚·‚é
+	//ãã„ã¤ã«ä½•å›ã‚‚ãƒ’ãƒƒãƒˆã—ã¦ã‚‹å ´åˆã¯å½“ãŸã£ã¦ãªã„ã“ã¨ã«ã™ã‚‹
 	if( i->cnt >= JUDGE_MAXHIT ){
 		return TOUCHC_CANCEL;
 	}
 
-	//ƒqƒbƒgƒJƒEƒ“ƒg‚ğ‘‚â‚·
+	//ãƒ’ãƒƒãƒˆã‚«ã‚¦ãƒ³ãƒˆã‚’å¢—ã‚„ã™
 	i->cnt ++;
 	return TOUCHC_OK;
 }
@@ -740,15 +740,15 @@ DWORD CJudge::Draw()
 {
 	if(pdat->aid==CBB_STATE_IDLE)
 	{
-		//•`‰æ‚Ì•K—v‚È‚µ
+		//æç”»ã®å¿…è¦ãªã—
 		return TRUE;
 	}
 	LPDIRECT3DDEVICE9 d3ddev = aki3d.GetD3DDev();
-	if(!d3ddev)return TRUE;//•`‰æ‚Å‚«‚È‚¢
+	if(!d3ddev)return TRUE;//æç”»ã§ããªã„
 
 	aki3d.EnableZ(TRUE,FALSE);
 
-	//Ô‚¢ƒr[ƒ€‚Ì•`‰æ
+	//èµ¤ã„ãƒ“ãƒ¼ãƒ ã®æç”»
 	MYVERTEX3D vb[4];
 	D3DXMATRIX mat;	
 	float m=1.0f;
@@ -785,17 +785,17 @@ DWORD CJudge::Draw()
 	d3ddev->SetTransform(D3DTS_WORLD,&mat);
 	d3ddev->SetTexture(0,m_tex);
 	
-	//‚Ñ[‚Ş
+	//ã³ãƒ¼ã‚€
 	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vb,sizeof(MYVERTEX3D));
 	
-	//’n–Ê‚ğ‘–‚éÕŒ‚”g‚Ì•`‰æ
+	//åœ°é¢ã‚’èµ°ã‚‹è¡æ’ƒæ³¢ã®æç”»
 	m_tubu->Render();
 
 	aki3d.SetBlend_Normal();
 	aki3d.EnableZ();
 
-	return(TRUE);//ƒZƒ‹•`‰æ‚Í•K—v‚È‚¢
-	//return 0;//ƒeƒXƒg—p
+	return(TRUE);//ã‚»ãƒ«æç”»ã¯å¿…è¦ãªã„
+	//return 0;//ãƒ†ã‚¹ãƒˆç”¨
 }
 
 DWORD CJudge::Sousai(DWORD prm)
@@ -805,7 +805,7 @@ DWORD CJudge::Sousai(DWORD prm)
 
 void CJudge::Hit()
 {
-	//‚È‚É‚à‚µ‚È‚¢
+	//ãªã«ã‚‚ã—ãªã„
 }
 
 void CJudge::UpdateToge()
@@ -850,7 +850,7 @@ void CJudge::TogeParam::Reset(float x,float z,BOOL muki)
 }
 
 /***************************************************************
-	ƒ_ƒbƒVƒ…•—ƒGƒtƒFƒNƒg
+	ãƒ€ãƒƒã‚·ãƒ¥æ™‚é¢¨ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 ****************************************************************/
 
 CDashWind::CDashWind(CCharacterBase *parent) : CBulletBase(parent)

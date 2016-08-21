@@ -1,18 +1,18 @@
-
+﻿
 /*!
 *	@file
-*	@brief DirectSound�N���X
+*	@brief DirectSoundクラス
 *
-*	�E�E�E�Ƃ�����DirectShow���g�p
+*	・・・といいつつDirectShowも使用
 *
-*	.wav�t�@�C����ǂݍ��ށB�J���͎�����(�Ăяo������)���B
-*	DirectShow���g���� .mid .mp3 .wma ���̍Đ����s���B����̍Đ����ł����肷��B
+*	.wavファイルを読み込む。開放は自分で(呼び出し側が)やる。
+*	DirectShowを使って .mid .mp3 .wma 等の再生を行う。動画の再生もできたりする。
 *
 */
 #include "stdafx.h"
 
-#include "global.h"			//config�I�u�W�F�N�g���K�v
-#include "task.h"			//�o�b�N�O���E���h�^�X�N�̍쐬�ɕK�v
+#include "global.h"			//configオブジェクトが必要
+#include "task.h"			//バックグラウンドタスクの作成に必要
 #include "dx_sound.h"
 
 #ifndef RELEASE
@@ -25,11 +25,11 @@
 #define WM_GRAPHNOTIFY  WM_APP + 1
 
 /*!
-	@brief BGM���[�v�p�E�B���h�E���b�Z�[�W�擾�N���X
+	@brief BGMループ用ウィンドウメッセージ取得クラス
 
-	BGM�����[�v�����邽�߂ɃE�C���h�E�̃��b�Z�[�W���E���K�v������
-	���̂��߂Ƀo�b�N�O���E���h�^�X�N�Ƃ��ēo�^����N���X
-	�O���[�o���� g_sound �� OnWmgraphnotify() ���R�[������
+	BGMをループさせるためにウインドウのメッセージを拾う必要がある
+	そのためにバックグラウンドタスクとして登録するクラス
+	グローバルの g_sound の OnWmgraphnotify() をコールする
 */
 class CBGMLoopMessageListener : public CBackgroundTaskBase
 {
@@ -45,8 +45,8 @@ public:
 
 
 
-//�����Ə���========================================================
-//!����
+//生成と消滅========================================================
+//!生成
 CDirectSound::CDirectSound()
 {
 	ready=FALSE;
@@ -65,34 +65,34 @@ CDirectSound::CDirectSound()
 	lpds = NULL;
 }
 
-//!������
+//!初期化
 BOOL CDirectSound::Initialize(HWND hwnd)
 {
 	hwndmain = hwnd;
 
 	if(g_config.UseDSound()){
 		if(DirectSoundCreate(NULL,&lpds,NULL) != DS_OK){
-			CSystem::Log(_T("DirectSoundCreate�Ɏ��s"),SYSLOG_ERROR);
+			CSystem::Log(_T("DirectSoundCreateに失敗"),SYSLOG_ERROR);
 			lpds=NULL;
 		}
 		if(lpds){
 			if(lpds->SetCooperativeLevel(hwnd,DSSCL_PRIORITY) != DS_OK){
-				CSystem::Log(_T("DSound-SetCooperativeLevel�Ɏ��s"),SYSLOG_ERROR);
+				CSystem::Log(_T("DSound-SetCooperativeLevelに失敗"),SYSLOG_ERROR);
 				lpds->Release();
 				lpds=NULL;
 			}
 		}
 	}
-	else CSystem::Log(_T("DirectSound (wav�Đ�) ��g�p"),SYSLOG_INFO);
+	else CSystem::Log(_T("DirectSound (wav再生) 非使用"),SYSLOG_INFO);
 
 	//CoInitialize(NULL);
-	g_system.AddTask(new CBGMLoopMessageListener());//BGM���[�v���b�Z�[�W�̎擾�^�X�N
+	g_system.AddTask(new CBGMLoopMessageListener());//BGMループメッセージの取得タスク
 
 	ready=TRUE;
 	return (lpds!=NULL);
 }
 
-//!�j��
+//!破棄
 void CDirectSound::Destroy()
 {
 	BGMStop();
@@ -103,16 +103,16 @@ void CDirectSound::Destroy()
 }
 
 
-//���̑�=============================================================
+//その他=============================================================
 
 /*!
-*	wav��ǂݍ����DirectSound�o�b�t�@�[��Ԃ��B�󂯎�����玩����Release���邱�ƁB
-*	wav�̃t�H�[�}�b�g��PCM�łȂ��ƃ_���炵���BADPCM�Ƃ��_���������B
-*	Windows�A�N�Z�T���̃T�E���h���R�[�_��wav�t�@�C���̌`���������̂ŁA������Q�l�ɁB
-*	DirectX5�̍��ɗF�l�̏������R�[�h���R�s�y�����o��������B
+*	wavを読み込んでDirectSoundバッファーを返す。受け取ったら自分でReleaseすること。
+*	wavのフォーマットはPCMでないとダメらしい。ADPCMとかダメだった。
+*	Windowsアクセサリのサウンドレコーダでwavファイルの形式が見れるので、それを参考に。
+*	DirectX5の頃に友人の書いたコードをコピペした覚えがある。
 *
-*	@param filename wav�̃t�@�C����
-*	@return ���s��NULL
+*	@param filename wavのファイル名
+*	@return 失敗はNULL
 */
 LPDIRECTSOUNDBUFFER CDirectSound::CreateDSB(TCHAR *filename)
 {
@@ -124,7 +124,7 @@ LPDIRECTSOUNDBUFFER CDirectSound::CreateDSB(TCHAR *filename)
 	WAVEFORMATEX	wfmtx;
 	LPDIRECTSOUNDBUFFER lpDSBuffer=NULL;
 
-	//�v�`�u�t�@�C�����}���`���f�B�A�h/�n�֐��ŊJ��
+	//ＷＡＶファイルをマルチメディアＩ/Ｏ関数で開く
 	hmfr = mmioOpen(filename,NULL,MMIO_READ | MMIO_ALLOCBUF);
 	if(hmfr == NULL){
 		return(NULL);
@@ -149,13 +149,13 @@ LPDIRECTSOUNDBUFFER CDirectSound::CreateDSB(TCHAR *filename)
 		return(NULL);
 	}
 
-	//�v�`�u�t�H�[�}�b�g����ǂݍ���
+	//ＷＡＶフォーマット情報を読み込む
 	if(mmioRead(hmfr,(TCHAR*)&wfmtx,sizeof(wfmtx)) != sizeof(wfmtx)){
 		mmioClose(hmfr,0);
 		return false;
 	}
 
-	//���̃t�@�C�����v�`�u���m�F
+	//このファイルがＷＡＶか確認
 	if(wfmtx.wFormatTag != WAVE_FORMAT_PCM){
 		mmioClose(hmfr,0);
 		return false;
@@ -166,14 +166,14 @@ LPDIRECTSOUNDBUFFER CDirectSound::CreateDSB(TCHAR *filename)
 		return false;
 	}
 
-	//�`�����N���\���̂ɓǂݍ���
+	//チャンクを構造体に読み込む
 	child.ckid		= mmioFOURCC('d','a','t','a');
 	if(mmioDescend(hmfr,&child,&parent,MMIO_FINDCHUNK)){
 		mmioClose(hmfr,0);
 		return false;
 	}
 
-	//���������蓖�ā@�f�[�^��ǂݍ���
+	//メモリ割り当て　データを読み込む
 	BYTE *pBuffer = new BYTE[child.cksize];
 	if((DWORD)mmioRead(hmfr,(TCHAR*)pBuffer,child.cksize) != child.cksize){
 		mmioClose(hmfr,0);
@@ -181,10 +181,10 @@ LPDIRECTSOUNDBUFFER CDirectSound::CreateDSB(TCHAR *filename)
 		return(FALSE);
 	}
 
-	//�v�`�u�d�t�@�C�������
+	//ＷＡＶＥファイルを閉じる
 	mmioClose(hmfr,0);
 
-	//DirectSound�o�b�t�@���쐬����
+	//DirectSoundバッファを作成する
 	DSBUFFERDESC	dsbdesc;
 	PCMWAVEFORMAT	pcmwf;
 
@@ -207,7 +207,7 @@ LPDIRECTSOUNDBUFFER CDirectSound::CreateDSB(TCHAR *filename)
 		return(NULL);
 	}
 
-	//�v�`�u�d�t�@�C���̃f�[�^���o�b�t�@�ɓ]��
+	//ＷＡＶＥファイルのデータをバッファに転送
 	LPVOID				written1,written2;
 	DWORD				length1,length2;
 
@@ -219,7 +219,7 @@ LPDIRECTSOUNDBUFFER CDirectSound::CreateDSB(TCHAR *filename)
 	if(written2 != NULL) CopyMemory(written2,pBuffer+length1,length2);
 	lpDSBuffer->Unlock(written1,length1,written2,length2);
 
-	//��ƃo�b�t�@���
+	//作業バッファ解放
 	delete []pBuffer;
 
 	return(lpDSBuffer);
@@ -228,37 +228,37 @@ LPDIRECTSOUNDBUFFER CDirectSound::CreateDSB(TCHAR *filename)
 TCHAR* GetDSErrCode(HRESULT ret)
 {
 	switch(ret){
-	case S_OK :							return _T("����");
-	case VFW_S_AUDIO_NOT_RENDERED :		return _T("�I�[�f�B�I �X�g���[�����Đ��ł��Ȃ��B�K�؂ȃ����_����������Ȃ������B ");
-	case VFW_S_DUPLICATE_NAME :			return _T("���O���d�����Ă���t�B���^�̒ǉ����A�ύX��̖��O�Ő��������B ");
-	case VFW_S_PARTIAL_RENDER :			return _T("���̃��[�r�[�ɃT�|�[�g����Ȃ��t�H�[�}�b�g�̃X�g���[�����܂܂�Ă���B ");
-	case VFW_S_VIDEO_NOT_RENDERED :		return _T("�r�f�I �X�g���[�����Đ��ł��Ȃ��B�K�؂ȃ����_����������Ȃ������B ");
-	case E_ABORT :						return _T("���삪���~���ꂽ�B");
-	case E_FAIL :						return _T("���s�B ");
-	case E_INVALIDARG :					return _T("�����������B ");
-	case E_OUTOFMEMORY :				return _T("�������s���B ");
-	case E_POINTER :					return _T("NULL �|�C���^�����B ");
-	case VFW_E_CANNOT_CONNECT :			return _T("�ڑ����m�����钆�ԃt�B���^�̑g�ݍ��킹��������Ȃ������B ");
-	case VFW_E_CANNOT_LOAD_SOURCE_FILTER :return _T("���̃t�@�C���̃\�[�X �t�B���^�����[�h�ł��Ȃ��B ");
-	case VFW_E_CANNOT_RENDER :			return _T("�X�g���[���������_�����O����t�B���^�̑g�ݍ��킹��������Ȃ������B ");
-	case VFW_E_INVALID_FILE_FORMAT :	return _T("�t�@�C�� �t�H�[�}�b�g�������B ");
-	case VFW_E_NOT_FOUND :				return _T("�I�u�W�F�N�g�܂��͖��O��������Ȃ������B ");
-	case VFW_E_NOT_IN_GRAPH :			return _T("�t�B���^ �O���t�ɑ��݂��Ȃ��I�u�W�F�N�g�ɗv�����ꂽ�֐������s�ł��Ȃ��B");
-	case VFW_E_UNKNOWN_FILE_TYPE :		return _T("���̃t�@�C���̃��f�B�A �^�C�v���F������Ȃ��B ");
-	case VFW_E_UNSUPPORTED_STREAM :		return _T("�t�@�C�����Đ��ł��Ȃ��B�t�H�[�}�b�g���T�|�[�g����Ă��Ȃ��B");
-	default:return _T("�s��");
+	case S_OK :							return _T("成功");
+	case VFW_S_AUDIO_NOT_RENDERED :		return _T("オーディオ ストリームを再生できない。適切なレンダラが見つからなかった。 ");
+	case VFW_S_DUPLICATE_NAME :			return _T("名前が重複しているフィルタの追加が、変更後の名前で成功した。 ");
+	case VFW_S_PARTIAL_RENDER :			return _T("このムービーにサポートされないフォーマットのストリームが含まれている。 ");
+	case VFW_S_VIDEO_NOT_RENDERED :		return _T("ビデオ ストリームを再生できない。適切なレンダラが見つからなかった。 ");
+	case E_ABORT :						return _T("操作が中止された。");
+	case E_FAIL :						return _T("失敗。 ");
+	case E_INVALIDARG :					return _T("引数が無効。 ");
+	case E_OUTOFMEMORY :				return _T("メモリ不足。 ");
+	case E_POINTER :					return _T("NULL ポインタ引数。 ");
+	case VFW_E_CANNOT_CONNECT :			return _T("接続を確立する中間フィルタの組み合わせが見つからなかった。 ");
+	case VFW_E_CANNOT_LOAD_SOURCE_FILTER :return _T("このファイルのソース フィルタをロードできない。 ");
+	case VFW_E_CANNOT_RENDER :			return _T("ストリームをレンダリングするフィルタの組み合わせが見つからなかった。 ");
+	case VFW_E_INVALID_FILE_FORMAT :	return _T("ファイル フォーマットが無効。 ");
+	case VFW_E_NOT_FOUND :				return _T("オブジェクトまたは名前が見つからなかった。 ");
+	case VFW_E_NOT_IN_GRAPH :			return _T("フィルタ グラフに存在しないオブジェクトに要求された関数を実行できない。");
+	case VFW_E_UNKNOWN_FILE_TYPE :		return _T("このファイルのメディア タイプが認識されない。 ");
+	case VFW_E_UNSUPPORTED_STREAM :		return _T("ファイルを再生できない。フォーマットがサポートされていない。");
+	default:return _T("不明");
 	}
 }
 
 /*!
-*	@brief ����Đ�
+*	@brief 動画再生
 *
-*	DirectShow�Ƀt�@�C������n���čĐ����߂����邾���B
-*	����̍Đ����́ADirect3D�̃����_�����O�𔭐�������Ƃ�����̂ŁA
-*	���C�����[�v�̃����_�����O�J�n�E�I���������~���čs�����ƁB
+*	DirectShowにファイル名を渡して再生命令をするだけ。
+*	動画の再生中は、Direct3Dのレンダリングを発生させるとちらつくので、
+*	メインループのレンダリング開始・終了処理を停止して行うこと。
 *
-*	@param filename �Đ��t�@�C����
-*	@return FALSE�͎c�O�Ȍ��ʂɏI�����
+*	@param filename 再生ファイル名
+*	@return FALSEは残念な結果に終わった
 */
 BOOL CDirectSound::PlayVideo(const TCHAR *filename)
 {
@@ -271,17 +271,17 @@ BOOL CDirectSound::PlayVideo(const TCHAR *filename)
 	videoon=TRUE;
 	bgmloop=FALSE;
 	
-	//����ݒ���V�X�e��(?)�̂��̂ɐݒ�. mbstowcs�ɉe��
+	//言語設定をシステム(?)のものに設定. mbstowcsに影響
 	setlocale(LC_ALL,_T(""));
 
-	//������ϊ�
+	//文字列変換
 	TCHAR bgmfilename[256];
 	wchar_t ubgmfilename[256];
 	_stprintf(bgmfilename,_T("%s"),filename);
 	mbstowcs( ubgmfilename, bgmfilename, strlen(bgmfilename)+1 );
-    // �O���t���\�z����B
+    // グラフを構築する。
 	if(pGraph->RenderFile(ubgmfilename, NULL) != S_OK){
-		gbl.ods(_T("CDSound::PlayVideo / RenderFile�񎸔s\n"));
+		gbl.ods(_T("CDSound::PlayVideo / RenderFile二失敗\n"));
 		BGMStop();
 		return(FALSE);
 	}
@@ -298,15 +298,15 @@ BOOL CDirectSound::PlayVideo(const TCHAR *filename)
 }
 
 /*!
-*	@brief BGM�Đ�
+*	@brief BGM再生
 *
-*	DirectShow�Ƀt�@�C������n���čĐ����߂����邾���B
-*	����̍Đ����́ADirect3D�̃����_�����O�𔭐�������Ƃ�����̂ŁA
-*	���C�����[�v�̃����_�����O�J�n�E�I���������~���čs�����ƁB
+*	DirectShowにファイル名を渡して再生命令をするだけ。
+*	動画の再生中は、Direct3Dのレンダリングを発生させるとちらつくので、
+*	メインループのレンダリング開始・終了処理を停止して行うこと。
 *
-*	@param filename �Đ��t�@�C����
-*	@param loop TRUE�Ȃ�΁A�Đ��I����Ƀ��[�v����
-*	@return FALSE�͎c�O�Ȍ��ʂɏI�����
+*	@param filename 再生ファイル名
+*	@param loop TRUEならば、再生終了後にループする
+*	@return FALSEは残念な結果に終わった
 */
 BOOL CDirectSound::BGMPlay(const TCHAR *filename,BOOL loop)
 {
@@ -319,7 +319,7 @@ BOOL CDirectSound::BGMPlay(const TCHAR *filename,BOOL loop)
 	videoon=FALSE;
 	bgmloop=loop;
 
-	//����ݒ���V�X�e��(?)�̂��̂ɐݒ�. mbstowcs�ɉe��
+	//言語設定をシステム(?)のものに設定. mbstowcsに影響
 	setlocale(LC_ALL,_T(""));
 
 	TCHAR *bgmfilename = new TCHAR[256];
@@ -331,7 +331,7 @@ BOOL CDirectSound::BGMPlay(const TCHAR *filename,BOOL loop)
 	mbstowcs( ubgmfilename, bgmfilename, strlen(bgmfilename)+1 );
 	if(S_OK == pGraph->RenderFile(ubgmfilename, NULL)){
 		pMediaControl->Run();
-		// �{�����[���������Ă���
+		// ボリュームを下げておく
 		pAudio->put_Volume(-500);
 		delete [] bgmfilename;
 		delete [] ubgmfilename;
@@ -343,7 +343,7 @@ BOOL CDirectSound::BGMPlay(const TCHAR *filename,BOOL loop)
 	mbstowcs( ubgmfilename, bgmfilename, strlen(bgmfilename)+1 );
 	if(S_OK == pGraph->RenderFile(ubgmfilename, NULL)){
 		pMediaControl->Run();
-		// �{�����[���������Ă���
+		// ボリュームを下げておく
 		pAudio->put_Volume(-500);
 		delete [] bgmfilename;
 		delete [] ubgmfilename;
@@ -355,7 +355,7 @@ BOOL CDirectSound::BGMPlay(const TCHAR *filename,BOOL loop)
 	mbstowcs( ubgmfilename, bgmfilename, strlen(bgmfilename)+1 );
 	if(S_OK == pGraph->RenderFile(ubgmfilename, NULL)){
 		pMediaControl->Run();
-		// �{�����[���������Ă���
+		// ボリュームを下げておく
 		pAudio->put_Volume(-500);
 		delete [] bgmfilename;
 		delete [] ubgmfilename;
@@ -367,14 +367,14 @@ BOOL CDirectSound::BGMPlay(const TCHAR *filename,BOOL loop)
 	mbstowcs( ubgmfilename, bgmfilename, strlen(bgmfilename)+1 );
 	if(S_OK == pGraph->RenderFile(ubgmfilename, NULL)){
 		pMediaControl->Run();
-		// �{�����[���������Ă���
+		// ボリュームを下げておく
 //		pAudio->put_Volume(-500);
 		delete [] bgmfilename;
 		delete [] ubgmfilename;
 		return(TRUE);
 	}
 
-	gbl.ods(_T("CDirectSound::BGMPlay : %s �Đ����s"),filename);
+	gbl.ods(_T("CDirectSound::BGMPlay : %s 再生失敗"),filename);
 
 	BGMStop();
 	delete [] bgmfilename;
@@ -383,10 +383,10 @@ BOOL CDirectSound::BGMPlay(const TCHAR *filename,BOOL loop)
 }
 
 /*!
-*	@brief BGM�Đ��I���E�C���h�E���b�Z�[�W�擾
+*	@brief BGM再生終了ウインドウメッセージ取得
 *
-*	DirectShow�̓t�@�C���̍Đ��I�����ɃE�C���h�E�ɑ΂��ă��b�Z�[�W�𑗐M����悤�ɂȂ��Ă���B
-*	���̊֐���BGM/���� �Đ����I�������Ƃ��̃��b�Z�[�W����M�����Ƃ��ɌĂ΂�A���[�v�����Ȃǂ��s���B
+*	DirectShowはファイルの再生終了時にウインドウに対してメッセージを送信するようになっている。
+*	この関数はBGM/動画 再生が終了したときのメッセージを受信したときに呼ばれ、ループ処理などを行う。
 */
 void CDirectSound::OnWmgraphnotify()
 {
@@ -427,10 +427,10 @@ void CDirectSound::OnWmgraphnotify()
 }
 
 /*!
-*	@brief DirectShow����
+*	@brief DirectShow生成
 *
-*	DirectShow�̐����E�j���́ABGM�⓮��̍Đ��E��~���ɖ���s���Ă���B
-*	�����������猋�\�Ȗ��ʂȂ̂�������Ȃ��B
+*	DirectShowの生成・破棄は、BGMや動画の再生・停止時に毎回行っている。
+*	もしかしたら結構な無駄なのかもしれない。
 */
 BOOL CDirectSound::CreateDirectShow()
 {
@@ -449,7 +449,7 @@ BOOL CDirectSound::CreateDirectShow()
 }
 
 /*!
-*	@brief BGM�E���� �̍Đ���~
+*	@brief BGM・動画 の再生停止
 */
 void CDirectSound::BGMStop()
 {
@@ -475,7 +475,7 @@ void CDirectSound::BGMStop()
 }
 
 /*!
-*	@brief BGM�E���� �̍Đ��ꎞ��~
+*	@brief BGM・動画 の再生一時停止
 */
 void CDirectSound::BGMPause()
 {
@@ -487,7 +487,7 @@ void CDirectSound::BGMPause()
 }
 
 /*!
-*	@brief BGM�E���� �̈ꎞ��~�ĊJ
+*	@brief BGM・動画 の一時停止再開
 */
 void CDirectSound::BGMResume()
 {
@@ -499,9 +499,9 @@ void CDirectSound::BGMResume()
 }
 
 /*!
-*	@brief �J�n�ʒu���w�肵�čĐ�
+*	@brief 開始位置を指定して再生
 *
-*	���̂���BGMPlay�ɓ������邩��
+*	そのうちBGMPlayに統合するかも
 */
 BOOL CDirectSound::BGMSeekAndPlay(const TCHAR* filename, BOOL loop, double starttime)
 {
@@ -515,17 +515,17 @@ BOOL CDirectSound::BGMSeekAndPlay(const TCHAR* filename, BOOL loop, double start
 }
 
 /*!
-*	@brief BGM��T��
+*	@brief BGMを探す
 *
-*	BGMPlay�̓t�@�C����������Ȃ������ꍇ�ł����̑O�܂ŗ���Ă���BGM��stop���Ă��܂�
-*	����Ńt�@�C����{�����Ă���BGMPlay�ɓ����邱�ƂŌp���Đ����\
-*	BGMPlay�ɓ����ł�����
+*	BGMPlayはファイルが見つからなかった場合でもその前まで流れていたBGMがstopしてしまう
+*	これでファイルを捜索してからBGMPlayに投げることで継続再生が可能
+*	BGMPlayに統合できそう
 */
 BOOL CDirectSound::BGMSearch(const TCHAR *filename)
 {
 	TCHAR *bgmfilename = new TCHAR[256];
 
-	//�g�p�p�x�������ȏ��ɂ��Ƃ��܂���
+	//使用頻度高そうな順にしときました
 	_stprintf(bgmfilename, _T("%s.mp3"), filename);
 	if (gbl.FileExist(bgmfilename))
 		return TRUE;

@@ -1,7 +1,7 @@
-
+ï»¿
 /*=======================================================================================
 
-	ƒXƒg[ƒŠ[ƒZƒŒƒNƒg
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã‚»ãƒ¬ã‚¯ãƒˆ
 
 =========================================================================================*/
 #pragma once
@@ -13,18 +13,18 @@
 #include "task_select.h"
 #include "task_simpleoptsel.h"
 
-class CTStorySelect;			//‘I‘ğƒNƒ‰ƒX–{‘Ì
-class CTStorySelecterRing;		//ƒŠƒ“ƒOóƒXƒg[ƒŠ[‘I‘ğƒNƒ‰ƒX
-class CTStorySelectPreview;		//ƒXƒg[ƒŠ[ƒvƒŒƒrƒ…[ƒNƒ‰ƒX
-class CTStoryBigFace;			//ƒXƒg[ƒŠ[—pƒfƒJŠç•\¦ƒNƒ‰ƒX
-class CTStorySelectBG;			//ƒXƒg[ƒŠ[—p”wŒi•`‰æƒNƒ‰ƒX
-class CTStoryParamWindow;		//ƒpƒ‰ƒ[ƒ^‚¢‚¶‚èƒEƒCƒ“ƒhƒE
+class CTStorySelect;			//é¸æŠã‚¯ãƒ©ã‚¹æœ¬ä½“
+class CTStorySelecterRing;		//ãƒªãƒ³ã‚°çŠ¶ã‚¹ãƒˆãƒ¼ãƒªãƒ¼é¸æŠã‚¯ãƒ©ã‚¹
+class CTStorySelectPreview;		//ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼ã‚¯ãƒ©ã‚¹
+class CTStoryBigFace;			//ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ç”¨ãƒ‡ã‚«é¡”è¡¨ç¤ºã‚¯ãƒ©ã‚¹
+class CTStorySelectBG;			//ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ç”¨èƒŒæ™¯æç”»ã‚¯ãƒ©ã‚¹
+class CTStoryParamWindow;		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã„ã˜ã‚Šã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
 
 /*!
-*	@brief ƒXƒg[ƒŠ[ƒZƒŒƒNƒg‰æ–ÊE–{‘Ì
+*	@brief ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã‚»ãƒ¬ã‚¯ãƒˆç”»é¢ãƒ»æœ¬ä½“
 *	@ingroup Tasks
 *
-*	ƒXƒg[ƒŠ[ƒZƒŒƒNƒg‰æ–Ê—p‚Ìƒ^ƒXƒNƒNƒ‰ƒXB
+*	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã‚»ãƒ¬ã‚¯ãƒˆç”»é¢ç”¨ã®ã‚¿ã‚¹ã‚¯ã‚¯ãƒ©ã‚¹ã€‚
 */
 class CTStorySelect : public CExclusiveTaskBase
 {
@@ -33,7 +33,7 @@ public:
 	BOOL Execute(DWORD time);
 	void Terminate();
 	
-	//!‘€ì‚ÉQÆ‚·‚éƒL[”Ô†
+	//!æ“ä½œæ™‚ã«å‚ç…§ã™ã‚‹ã‚­ãƒ¼ç•ªå·
 	void SetKeyIndex(UINT ki){m_keyindex=ki;}
 	UINT m_keyindex;
 
@@ -42,29 +42,29 @@ public:
 	void OnParamSelectComplete();
 	void OnCancel();
 
-	//ƒXƒg[ƒŠ[‘I‘ğŒã‚Ìƒpƒ‰ƒ[ƒ^•ÏX
+	//ã‚¹ãƒˆãƒ¼ãƒªãƒ¼é¸æŠå¾Œã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¤‰æ›´
 	void SelectChangeCharacter(UINT idx,int cindex);
 	void SelectChangeColor(UINT idx,int col);
 	void SelectChangeOption(UINT idx,DWORD opt);
 
 	CStoryList::CStoryInfo* m_sinfo;
 protected:
-	BOOL m_first_update;		//!< ‰‰ñUpdateƒtƒ‰ƒOBƒŠƒ“ƒOEƒvƒŒƒrƒ…[‚É’l‚ğİ’è‚·‚é‚½‚ß‚Ég—p
-	BOOL m_sselected;			//!< ƒXƒg[ƒŠ[‚Ì‘I‘ğŠ®—¹ƒtƒ‰ƒO
-	BOOL m_complete_flag;		//!< ‘I‘ğŠ®—¹ƒtƒ‰ƒO
-	UINT m_complete_counter;	//!< ‘I‘ğŠ®—¹ŒãAƒ^ƒXƒN‚ğ”²‚¯‚é‚Ü‚Å‚ÌƒEƒFƒCƒg‚Ég—p
-	UINT m_selected_story_index;//!< ‘I‘ğ‚³‚ê‚½ƒXƒg[ƒŠ[”Ô†
+	BOOL m_first_update;		//!< åˆå›Updateãƒ•ãƒ©ã‚°ã€‚ãƒªãƒ³ã‚°ãƒ»ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼ã«å€¤ã‚’è¨­å®šã™ã‚‹ãŸã‚ã«ä½¿ç”¨
+	BOOL m_sselected;			//!< ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã®é¸æŠå®Œäº†ãƒ•ãƒ©ã‚°
+	BOOL m_complete_flag;		//!< é¸æŠå®Œäº†ãƒ•ãƒ©ã‚°
+	UINT m_complete_counter;	//!< é¸æŠå®Œäº†å¾Œã€ã‚¿ã‚¹ã‚¯ã‚’æŠœã‘ã‚‹ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆã«ä½¿ç”¨
+	UINT m_selected_story_index;//!< é¸æŠã•ã‚ŒãŸã‚¹ãƒˆãƒ¼ãƒªãƒ¼ç•ªå·
 
 	int m_alts[MAXNUM_TEAM];
 
-	//ƒIƒuƒWƒFƒNƒg
-	CTStorySelecterRing		*m_ring;	//!< ƒŠƒ“ƒOƒNƒ‰ƒX
-	CTStorySelectBG			*m_bg;		//!< ”wŒi•`‰æƒNƒ‰ƒX
-	CTStoryBigFace			*m_face;	//!< ƒfƒJŠçƒNƒ‰ƒX
-	CTStorySelectPreview	*m_pv;		//!< ƒvƒŒƒrƒ…[
-	CTStoryParamWindow		*m_paramwin;//!< ƒpƒ‰ƒ[ƒ^ƒEƒBƒ“ƒhƒE
+	//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	CTStorySelecterRing		*m_ring;	//!< ãƒªãƒ³ã‚°ã‚¯ãƒ©ã‚¹
+	CTStorySelectBG			*m_bg;		//!< èƒŒæ™¯æç”»ã‚¯ãƒ©ã‚¹
+	CTStoryBigFace			*m_face;	//!< ãƒ‡ã‚«é¡”ã‚¯ãƒ©ã‚¹
+	CTStorySelectPreview	*m_pv;		//!< ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼
+	CTStoryParamWindow		*m_paramwin;//!< ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 
-	//•`‰æƒvƒ‰ƒCƒIƒŠƒeƒBi’è”j
+	//æç”»ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ï¼ˆå®šæ•°ï¼‰
 	static int m_pri_ring;
 	static int m_pri_brief;
 	static int m_pri_bigface;
@@ -75,7 +75,7 @@ protected:
 
 
 /*!
-*	@brief ƒXƒg[ƒŠ[‘I‘ğƒŠƒ“ƒO
+*	@brief ã‚¹ãƒˆãƒ¼ãƒªãƒ¼é¸æŠãƒªãƒ³ã‚°
 *	@ingroup Tasks
 */
 class CTStorySelecterRing : public CTIconRingBase
@@ -84,33 +84,33 @@ public:
 	BOOL Execute(DWORD time);
 	void Hide();
 
-	//ƒˆ‰¼‘zŠÖ”‚ÌÀ‘•
+	//ç´”ç²‹ä»®æƒ³é–¢æ•°ã®å®Ÿè£…
 protected:
-	void InitializeSub();					//!< Initialize‚©‚çƒR[ƒ‹‚³‚ê‚é
+	void InitializeSub();					//!< Initializeã‹ã‚‰ã‚³ãƒ¼ãƒ«ã•ã‚Œã‚‹
 public:
-	UINT GetSelected();						//!< ƒŠƒ“ƒO”Ô†+ƒCƒ“ƒfƒbƒNƒX ‚©‚çA‘S‘Ì‚Å‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
+	UINT GetSelected();						//!< ãƒªãƒ³ã‚°ç•ªå·+ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ã‹ã‚‰ã€å…¨ä½“ã§ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
 protected:
-	void InitializeIcons();					//!< •\¦‚·‚éƒAƒCƒRƒ“‰æ‘œ‚ğ€”õ‚·‚é
-	void DestroyIcons();					//!< •\¦‚·‚éƒAƒCƒRƒ“‰æ‘œ‚ğ”jŠü‚·‚é
-	MYSURFACE* GetIcon(UINT ridx,UINT idx);	//!< •\¦‚·‚éƒAƒCƒRƒ“‰æ‘œ‚ğæ“¾iDraw‚©‚çƒR[ƒ‹j
-	DWORD GetColor(UINT ridx,UINT idx);		//!< ƒAƒCƒRƒ“•`‰æ‚Ì’¸“_F‚ğw’è‚·‚é(Draw‚©‚çƒR[ƒ‹,ƒ¿‚Í0‚Ì‚±‚Æ)
-	void OnButtonDown(DWORD key);			//!< Œˆ’èiAƒ{ƒ^ƒ“j‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚Ìˆ—
-	void OnChangeIndex();					//!< ƒŠƒ“ƒO‚ª‚Ü‚í‚³‚ê‚ÄƒCƒ“ƒfƒbƒNƒX‚ª•Ï‰»‚µ‚½‚Æ‚«‚Ìˆ—
-	void OnChangeRing();					//!< ƒŠƒ“ƒO‚ª•ÏX‚³‚ê‚½‚Æ‚«‚Ìˆ—
-	UINT GetMaxRing();						//!< ƒŠƒ“ƒO‚Ì‘”‚ğæ“¾‚·‚é
-	UINT GetMaxIndex(UINT ridx);			//!< w’èƒŠƒ“ƒO‚ª‚Á‚Ä‚¢‚éƒAƒCƒRƒ“‚Ì”‚ğæ“¾
+	void InitializeIcons();					//!< è¡¨ç¤ºã™ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ç”»åƒã‚’æº–å‚™ã™ã‚‹
+	void DestroyIcons();					//!< è¡¨ç¤ºã™ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ç”»åƒã‚’ç ´æ£„ã™ã‚‹
+	MYSURFACE* GetIcon(UINT ridx,UINT idx);	//!< è¡¨ç¤ºã™ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ç”»åƒã‚’å–å¾—ï¼ˆDrawã‹ã‚‰ã‚³ãƒ¼ãƒ«ï¼‰
+	DWORD GetColor(UINT ridx,UINT idx);		//!< ã‚¢ã‚¤ã‚³ãƒ³æç”»æ™‚ã®é ‚ç‚¹è‰²ã‚’æŒ‡å®šã™ã‚‹(Drawã‹ã‚‰ã‚³ãƒ¼ãƒ«,Î±ã¯0ã®ã“ã¨)
+	void OnButtonDown(DWORD key);			//!< æ±ºå®šï¼ˆAãƒœã‚¿ãƒ³ï¼‰ãŒæŠ¼ã•ã‚ŒãŸã¨ãã®å‡¦ç†
+	void OnChangeIndex();					//!< ãƒªãƒ³ã‚°ãŒã¾ã‚ã•ã‚Œã¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒå¤‰åŒ–ã—ãŸã¨ãã®å‡¦ç†
+	void OnChangeRing();					//!< ãƒªãƒ³ã‚°ãŒå¤‰æ›´ã•ã‚ŒãŸã¨ãã®å‡¦ç†
+	UINT GetMaxRing();						//!< ãƒªãƒ³ã‚°ã®ç·æ•°ã‚’å–å¾—ã™ã‚‹
+	UINT GetMaxIndex(UINT ridx);			//!< æŒ‡å®šãƒªãƒ³ã‚°ãŒæŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ã®æ•°ã‚’å–å¾—
 
-	//•Ï”
+	//å¤‰æ•°
 protected:
 	MYSURFACE** m_icons;
 
-	//ƒIƒr
+	//ã‚ªãƒ“
 protected:
 	class CTStorySelectBelt : public CTCharacterSelectBelt
 	{
 	public:
 		void Initialize();
-		void SetRing(UINT idx,BOOL real_change);//!< real_change‚ªFALSE‚È‚çLk‚µ‚È‚¢
+		void SetRing(UINT idx,BOOL real_change);//!< real_changeãŒFALSEãªã‚‰ä¼¸ç¸®ã—ãªã„
 	protected:
 		void UpdateText();
 		
@@ -120,19 +120,19 @@ protected:
 
 
 /*!
-*	@brief ƒXƒg[ƒŠ[—p”wŒi•`‰æƒNƒ‰ƒX
+*	@brief ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ç”¨èƒŒæ™¯æç”»ã‚¯ãƒ©ã‚¹
 *	@ingroup Tasks
 *
-*	CTCharacterSelectBG‚©‚ç”h¶‚µ‚Ä‚é‚¯‚Ç‰½‚É‚àƒI[ƒo[ƒ‰ƒCƒh‚Æ‚©‚³‚ê‚Ä‚È‚¢‚İ‚½‚¢B
+*	CTCharacterSelectBGã‹ã‚‰æ´¾ç”Ÿã—ã¦ã‚‹ã‘ã©ä½•ã«ã‚‚ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã¨ã‹ã•ã‚Œã¦ãªã„ã¿ãŸã„ã€‚
 */
 class CTStorySelectBG : public CTCharacterSelectBG
 {
-	//‚»‚Ì‚Ü‚Ü
+	//ãã®ã¾ã¾
 };
 
 
 /*!
-*	@brief ƒXƒg[ƒŠ[‘I‘ğƒfƒJŠç•\¦ƒNƒ‰ƒX
+*	@brief ã‚¹ãƒˆãƒ¼ãƒªãƒ¼é¸æŠæ™‚ãƒ‡ã‚«é¡”è¡¨ç¤ºã‚¯ãƒ©ã‚¹
 */
 class CTStoryBigFace : public CTCharacterBigFace
 {
@@ -140,30 +140,30 @@ public:
 	void Initialize();
 	BOOL Execute(DWORD time);
 
-	void Setup(int *chars,int *colors,int *alts,int num);	//!< ƒLƒƒƒ‰ˆêŠ‡w’è
-	void ChangeCharacter(int cindex,int idx);				//!< Šù‘¶ƒLƒƒƒ‰F•ÏX
-	void ChangeColor(int color,int idx);					//!< Šù‘¶ƒLƒƒƒ‰•ÏX
-	void ChangeAlt(int alt,int idx);						//!< Alt•ÏX
+	void Setup(int *chars,int *colors,int *alts,int num);	//!< ã‚­ãƒ£ãƒ©ä¸€æ‹¬æŒ‡å®š
+	void ChangeCharacter(int cindex,int idx);				//!< æ—¢å­˜ã‚­ãƒ£ãƒ©è‰²å¤‰æ›´
+	void ChangeColor(int color,int idx);					//!< æ—¢å­˜ã‚­ãƒ£ãƒ©å¤‰æ›´
+	void ChangeAlt(int alt,int idx);						//!< Altå¤‰æ›´
 
-	void SetDisplayMode(BOOL dark);	//!< dark=TRUE ‚Å ‘I‘ğƒLƒƒƒ‰ˆÈŠO‚ğˆÃ‚­•\¦
-	void SetLightIndex(int idx);	//!< dark=TRUE ‚É–¾‚é‚­•\¦‚·‚éƒLƒƒƒ‰‚ğw’è
+	void SetDisplayMode(BOOL dark);	//!< dark=TRUE ã§ é¸æŠã‚­ãƒ£ãƒ©ä»¥å¤–ã‚’æš—ãè¡¨ç¤º
+	void SetLightIndex(int idx);	//!< dark=TRUE æ™‚ã«æ˜ã‚‹ãè¡¨ç¤ºã™ã‚‹ã‚­ãƒ£ãƒ©ã‚’æŒ‡å®š
 
 protected:
-	BOOL m_dark;					//!< ˆÃ‚­‚·‚éƒtƒ‰ƒO
-	int  m_lighting;				//!< ˆÃ‚­‚µ‚½‚Æ‚«‚É–¾‚é‚­‚·‚éƒCƒ“ƒfƒbƒNƒX
-	UINT m_appear_counter;			//!< oŒ»ƒJƒEƒ“ƒ^. Setup‚ÉƒŠƒZƒbƒg
-	int  m_appear_cnt;				//!< oŒ»”
+	BOOL m_dark;					//!< æš—ãã™ã‚‹ãƒ•ãƒ©ã‚°
+	int  m_lighting;				//!< æš—ãã—ãŸã¨ãã«æ˜ã‚‹ãã™ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	UINT m_appear_counter;			//!< å‡ºç¾ã‚«ã‚¦ãƒ³ã‚¿. Setupæ™‚ã«ãƒªã‚»ãƒƒãƒˆ
+	int  m_appear_cnt;				//!< å‡ºç¾æ•°
 
-	int m_num;						//!< •\¦‚·‚é‚×‚«l”
-	int m_characters[MAXNUM_TEAM];	//!< “n‚³‚ê‚½ƒLƒƒƒ‰ƒNƒ^
-	int m_colors[MAXNUM_TEAM];		//!< “n‚³‚ê‚½ƒJƒ‰[
+	int m_num;						//!< è¡¨ç¤ºã™ã‚‹ã¹ãäººæ•°
+	int m_characters[MAXNUM_TEAM];	//!< æ¸¡ã•ã‚ŒãŸã‚­ãƒ£ãƒ©ã‚¯ã‚¿
+	int m_colors[MAXNUM_TEAM];		//!< æ¸¡ã•ã‚ŒãŸã‚«ãƒ©ãƒ¼
 
-	DWORD GetDispColor(UINT idx);	//!< •`‰æ•\¦Fw’è
+	DWORD GetDispColor(UINT idx);	//!< æç”»æ™‚è¡¨ç¤ºè‰²æŒ‡å®š
 };
 
 
 /*!
-*	@brief ƒXƒg[ƒŠ[ƒvƒŒƒrƒ…[•\¦ƒNƒ‰ƒX
+*	@brief ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼è¡¨ç¤ºã‚¯ãƒ©ã‚¹
 *	@ingroup Tasks
 */
 class CTStorySelectPreview : public CTaskBase
@@ -174,11 +174,11 @@ public:
 	void Terminate();
 	void Draw();
 
-	void Change(UINT sindex);//!< •ÏX
+	void Change(UINT sindex);//!< å¤‰æ›´
 	void HideText(){m_brief->Hide();}
 	void HidePreview();
 
-	//•`‰æƒvƒ‰ƒCƒIƒŠƒeƒB
+	//æç”»ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 	int m_draw_priority;
 	int m_txt_draw_priority;
 	virtual int GetDrawPriority(){return m_draw_priority;}
@@ -186,22 +186,22 @@ public:
 		{m_draw_priority = pri;m_txt_draw_priority=txtpri;}
 
 public:
-	//•Ï”
-	UINT m_counter;		//!< oŒ»E•ÏXƒAƒjƒ[ƒVƒ‡ƒ“—pƒJƒEƒ“ƒ^
-	int m_crnt_sindex;	//!< ƒXƒg[ƒŠ[”Ô†Bƒ}ƒCƒiƒX‚Í–³Œø
-	int m_prev_sindex;	//!< ƒXƒg[ƒŠ[”Ô†Bƒ}ƒCƒiƒX‚Í–³Œø
+	//å¤‰æ•°
+	UINT m_counter;		//!< å‡ºç¾ãƒ»å¤‰æ›´æ™‚ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç”¨ã‚«ã‚¦ãƒ³ã‚¿
+	int m_crnt_sindex;	//!< ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ç•ªå·ã€‚ãƒã‚¤ãƒŠã‚¹ã¯ç„¡åŠ¹
+	int m_prev_sindex;	//!< ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ç•ªå·ã€‚ãƒã‚¤ãƒŠã‚¹ã¯ç„¡åŠ¹
 	float y_pos;
 	float m_height;
 
-	//!ƒvƒŒƒrƒ…[ƒrƒbƒgƒ}ƒbƒv
+	//!ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
 	MYSURFACE* m_pv;
 	MYSURFACE* m_pv_prev;
 
-	//!•`‰æƒpƒ‰ƒ[ƒ^
+	//!æç”»æ™‚ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	float m_ratio;
 
 
-	//!ƒXƒg[ƒŠ[ŠT—vƒeƒLƒXƒg•`‰æ—pƒNƒ‰ƒX
+	//!ã‚¹ãƒˆãƒ¼ãƒªãƒ¼æ¦‚è¦ãƒ†ã‚­ã‚¹ãƒˆæç”»ç”¨ã‚¯ãƒ©ã‚¹
 	class CTStoryBrief : public CTaskBase
 	{
 	public:
@@ -210,19 +210,19 @@ public:
 		void Terminate();
 		void Draw();
 
-		//•`‰æƒvƒ‰ƒCƒIƒŠƒ`[
+		//æç”»ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒãƒ¼
 		int m_draw_priority;
 		virtual int GetDrawPriority(){return m_draw_priority;}
 		virtual void SetPriority(int pri){m_draw_priority = pri;}
 
 		void Set(UINT sindex);
 		void Clear();
-		void Hide();//!<‰B‚·
+		void Hide();//!<éš ã™
 
 	protected:
-		int   disp_len;	//!<•¶š—ñ•\¦’·‚³
-		TCHAR* disp_txt;	//!<•\¦•¶š—ñ
-		int   m_sindex;	//!<ƒXƒg[ƒŠ[”Ô†Bƒ}ƒCƒiƒX‚Í–³Œø
+		int   disp_len;	//!<æ–‡å­—åˆ—è¡¨ç¤ºé•·ã•
+		TCHAR* disp_txt;	//!<è¡¨ç¤ºæ–‡å­—åˆ—
+		int   m_sindex;	//!<ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ç•ªå·ã€‚ãƒã‚¤ãƒŠã‚¹ã¯ç„¡åŠ¹
 		BOOL  m_hideFlag;
 		float m_hideMove;
 	};
@@ -231,10 +231,10 @@ public:
 
 
 /*!
-*	@brief ƒXƒg[ƒŠ[Eƒpƒ‰ƒ[ƒ^‚¢‚¶‚èƒEƒCƒ“ƒhƒE
+*	@brief ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒ»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã„ã˜ã‚Šã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
 *	@ingroup Tasks
 *
-*	ƒXƒg[ƒŠ[‘I‘ğŒã‚ÉAƒLƒƒƒ‰ƒNƒ^[‚Æ‚©ƒIƒvƒVƒ‡ƒ“‚Æ‚©‘I‚ÔƒEƒCƒ“ƒhƒE‚İ‚½‚¢‚È‚â‚Â
+*	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼é¸æŠå¾Œã«ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã¨ã‹ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã¨ã‹é¸ã¶ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã¿ãŸã„ãªã‚„ã¤
 */
 class CTStoryParamWindow : public CTWindowBase
 {
@@ -244,33 +244,33 @@ public:
 	void Terminate();
 	void Draw();
 
-	//!•`‰æƒvƒ‰ƒCƒIƒŠƒ`[
+	//!æç”»ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒãƒ¼
 	int m_draw_priority;
 	virtual int GetDrawPriority(){return m_draw_priority;}
 	virtual void SetPriority(int pri){m_draw_priority = pri;}
 	
-	//!‘€ì‚ÉQÆ‚·‚éƒL[”Ô†
+	//!æ“ä½œæ™‚ã«å‚ç…§ã™ã‚‹ã‚­ãƒ¼ç•ªå·
 	void SetKeyIndex(UINT ki){m_keyindex=ki;}
 	UINT m_keyindex;
 
-	UINT GetCurrentCharacter()			//!<‘I‘ğƒNƒ‰ƒX–{‘Ì‚ªAƒfƒJŠçƒNƒ‰ƒX‚Ì‰æ‘œ‚ğ–¾‚é‚­‚·‚é‚Æ‚«‚Ég—p
+	UINT GetCurrentCharacter()			//!<é¸æŠã‚¯ãƒ©ã‚¹æœ¬ä½“ãŒã€ãƒ‡ã‚«é¡”ã‚¯ãƒ©ã‚¹ã®ç”»åƒã‚’æ˜ã‚‹ãã™ã‚‹ã¨ãã«ä½¿ç”¨
 		{return m_crnt_cindex;}
 
 public:
-	UINT m_num;							//!<ƒLƒƒƒ‰”
-	UINT m_crnt_cindex;					//!<Œ»İƒLƒƒƒ‰
-	UINT m_crnt_param;					//!<ƒpƒ‰ƒƒ^i 0:ƒLƒƒƒ‰ 1:ƒJƒ‰[ 2:ƒIƒvƒVƒ‡ƒ“ / 3:OKƒ{ƒ^ƒ“j
-	BOOL  m_lock[MAXNUM_TEAM][3];		//!<‘I‘ğ‚ª‹Ö~‚³‚ê‚Ä‚¢‚éƒpƒ‰ƒ[ƒ^
-	CStoryList::CStoryInfo** m_sinfo;	//!<ƒXƒg[ƒŠ[î•ñiSELECTƒ^ƒXƒN–{‘Ì‚Ì•Ï”‚Ö‚ÌQÆj
+	UINT m_num;							//!<ã‚­ãƒ£ãƒ©æ•°
+	UINT m_crnt_cindex;					//!<ç¾åœ¨ã‚­ãƒ£ãƒ©
+	UINT m_crnt_param;					//!<ãƒ‘ãƒ©ãƒ¡ã‚¿ï¼ˆ 0:ã‚­ãƒ£ãƒ© 1:ã‚«ãƒ©ãƒ¼ 2:ã‚ªãƒ—ã‚·ãƒ§ãƒ³ / 3:OKãƒœã‚¿ãƒ³ï¼‰
+	BOOL  m_lock[MAXNUM_TEAM][3];		//!<é¸æŠãŒç¦æ­¢ã•ã‚Œã¦ã„ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	CStoryList::CStoryInfo** m_sinfo;	//!<ã‚¹ãƒˆãƒ¼ãƒªãƒ¼æƒ…å ±ï¼ˆSELECTã‚¿ã‚¹ã‚¯æœ¬ä½“ã®å¤‰æ•°ã¸ã®å‚ç…§ï¼‰
 
 	MYSURFACE** m_miniface;
-	DWORD GetDrawColor(UINT cidx,UINT param_idx);	//•`‰æƒeƒLƒXƒgƒJƒ‰[æ“¾
+	DWORD GetDrawColor(UINT cidx,UINT param_idx);	//æç”»æ™‚ãƒ†ã‚­ã‚¹ãƒˆã‚«ãƒ©ãƒ¼å–å¾—
 
 	BOOL m_ok;
 	void OkCheck();
 	void ToWaitMode();
 
-	//ó‘Ô‚ÆExecŠÖ”
+	//çŠ¶æ…‹ã¨Execé–¢æ•°
 	enum CTStoryParamWindowState
 	{
 		state_start,
@@ -285,29 +285,29 @@ public:
 	CTStoryParamWindowState m_state;
 
 	/*!
-	*	@brief ƒXƒg[ƒŠ[‘I‘ğŒãEƒLƒƒƒ‰‘I‘ğƒTƒuƒ^ƒXƒN
+	*	@brief ã‚¹ãƒˆãƒ¼ãƒªãƒ¼é¸æŠå¾Œãƒ»ã‚­ãƒ£ãƒ©é¸æŠã‚µãƒ–ã‚¿ã‚¹ã‚¯
 	*/
 	class CCharSelecter : public CTCharacterRing
 	{
 	protected:
-		void InitializeIcons(){}		//!< ƒAƒCƒRƒ“€”õA‚È‚É‚à‚µ‚È‚¢
-		void DestroyIcons(){}			//!< ƒAƒCƒRƒ“”jŠüA‚È‚É‚à‚µ‚È‚¢
-		void OnButtonDown(DWORD key);	//!< ƒ{ƒ^ƒ“‰Ÿ‚³‚ê‚½‚Æ‚«‚Ìˆ—
-		void OnChangeIndex(){Notify();}	//!< ƒŠƒ“ƒO‚ª‚Ü‚í‚³‚ê‚ÄƒCƒ“ƒfƒbƒNƒX‚ª•Ï‰»‚µ‚½‚Æ‚«‚Ìˆ—
-		void OnChangeRing() {Notify();}	//!< ƒŠƒ“ƒO‚ª•ÏX‚³‚ê‚½‚Æ‚«‚Ìˆ—
-		MYSURFACE* GetIcon(UINT ridx,UINT idx);	//!< •\¦‚·‚éƒAƒCƒRƒ“‰æ‘œ‚ğæ“¾iDraw‚©‚çƒR[ƒ‹j
+		void InitializeIcons(){}		//!< ã‚¢ã‚¤ã‚³ãƒ³æº–å‚™ã€ãªã«ã‚‚ã—ãªã„
+		void DestroyIcons(){}			//!< ã‚¢ã‚¤ã‚³ãƒ³ç ´æ£„ã€ãªã«ã‚‚ã—ãªã„
+		void OnButtonDown(DWORD key);	//!< ãƒœã‚¿ãƒ³æŠ¼ã•ã‚ŒãŸã¨ãã®å‡¦ç†
+		void OnChangeIndex(){Notify();}	//!< ãƒªãƒ³ã‚°ãŒã¾ã‚ã•ã‚Œã¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒå¤‰åŒ–ã—ãŸã¨ãã®å‡¦ç†
+		void OnChangeRing() {Notify();}	//!< ãƒªãƒ³ã‚°ãŒå¤‰æ›´ã•ã‚ŒãŸã¨ãã®å‡¦ç†
+		MYSURFACE* GetIcon(UINT ridx,UINT idx);	//!< è¡¨ç¤ºã™ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ç”»åƒã‚’å–å¾—ï¼ˆDrawã‹ã‚‰ã‚³ãƒ¼ãƒ«ï¼‰
 	public:
-		MYSURFACE** m_miniface;			//!< ƒ~ƒjŠçB–{‘ÌƒNƒ‰ƒX‚©‚ç‚¢‚½‚¾‚­
-		UINT cidx;						//!< ƒLƒƒƒ‰ƒNƒ^
+		MYSURFACE** m_miniface;			//!< ãƒŸãƒ‹é¡”ã€‚æœ¬ä½“ã‚¯ãƒ©ã‚¹ã‹ã‚‰ã„ãŸã ã
+		UINT cidx;						//!< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 
 		void SetInitialValue(int chr);
-		BOOL Execute(DWORD time);		//!< HideCompleteAƒ^ƒXƒNƒkƒP
-		void Terminate();				//!< eƒ^ƒXƒN•œ‹A‚Ì‚½‚ß
+		BOOL Execute(DWORD time);		//!< HideCompleteæ™‚ã€ã‚¿ã‚¹ã‚¯ãƒŒã‚±
+		void Terminate();				//!< è¦ªã‚¿ã‚¹ã‚¯å¾©å¸°ã®ãŸã‚
 	protected:
-		void Notify();					//!< ChangeIndex/Ring‹¤’Êˆ—
+		void Notify();					//!< ChangeIndex/Ringå…±é€šå‡¦ç†
 	};
 	/*!
-	*	@brief ƒXƒg[ƒŠ[‘I‘ğŒãEF‘I‘ğƒTƒuƒ^ƒXƒN
+	*	@brief ã‚¹ãƒˆãƒ¼ãƒªãƒ¼é¸æŠå¾Œãƒ»è‰²é¸æŠã‚µãƒ–ã‚¿ã‚¹ã‚¯
 	*/
 	class CColorSelecter : public CTWindowBase
 	{
@@ -318,16 +318,16 @@ public:
 		void Draw();
 
 		void SetInitialValue(int col);
-		UINT m_keyindex;				//‘€ì‚ÉQÆ‚·‚éƒL[”Ô†
-		UINT cidx;						//ƒLƒƒƒ‰ƒNƒ^
+		UINT m_keyindex;				//æ“ä½œæ™‚ã«å‚ç…§ã™ã‚‹ã‚­ãƒ¼ç•ªå·
+		UINT cidx;						//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 
 	protected:
-		void Notify();					//•ÏX’Ê’m
-		UINT color;						//F
-		BOOL m_end_flag;				//I—¹ƒtƒ‰ƒO
+		void Notify();					//å¤‰æ›´é€šçŸ¥
+		UINT color;						//è‰²
+		BOOL m_end_flag;				//çµ‚äº†ãƒ•ãƒ©ã‚°
 	};
 	/*!
-	*	@brief ƒXƒg[ƒŠ[‘I‘ğŒãEƒIƒvƒVƒ‡ƒ“‘I‘ğƒTƒuƒ^ƒXƒN
+	*	@brief ã‚¹ãƒˆãƒ¼ãƒªãƒ¼é¸æŠå¾Œãƒ»ã‚ªãƒ—ã‚·ãƒ§ãƒ³é¸æŠã‚µãƒ–ã‚¿ã‚¹ã‚¯
 	*/
 	class COptionSelecter : public CTSimpleOptionSelecter
 	{
@@ -343,9 +343,9 @@ public:
 		bool customend;
 	};
 
-	//!ƒTƒuƒ^ƒXƒN‚©‚ç‚ÌI—¹ƒƒbƒZ[ƒWó‚¯æ‚è—p
+	//!ã‚µãƒ–ã‚¿ã‚¹ã‚¯ã‹ã‚‰ã®çµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ã‘å–ã‚Šç”¨
 	public:		static void EndSub();
-	protected:	static CTStoryParamWindow *m_instance;//ã‹LŠÖ”’†‚ÅƒCƒ“ƒXƒ^ƒ“ƒX‚ğæ“¾‚·‚é‚½‚ß
+	protected:	static CTStoryParamWindow *m_instance;//ä¸Šè¨˜é–¢æ•°ä¸­ã§ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å–å¾—ã™ã‚‹ãŸã‚
 };
 
 

@@ -1,7 +1,7 @@
-
+ï»¿
 /*===============================================================
 
-	ƒXƒg[ƒŠ[’†ŠÔƒfƒ‚ ƒ^ƒXƒN
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ä¸­é–“ãƒ‡ãƒ¢ ã‚¿ã‚¹ã‚¯
 	ver0.5
 
 =================================================================*/
@@ -13,7 +13,7 @@
 
 //*************************************************************************
 
-extern int story_selectflag;		// b’èİ’uA¡‚Ì’u‚«ê‚Íscript_story.cppB
+extern int story_selectflag;		// æš«å®šè¨­ç½®ã€ä»Šã®ç½®ãå ´ã¯script_story.cppã€‚
 
 CTDemo::CTDemo()
 {
@@ -49,7 +49,7 @@ void CTDemo::Initialize()
 {
 	demodat = (DEMODAT*)malloc(sizeof(DEMODAT)*DEMO050MAX_DEMOSCENE);
 	if(demodat==NULL){
-		_stprintf(errc,_T("ˆÙíFƒƒ‚ƒŠŠm•Û‚É¸”sH"));
+		_stprintf(errc,_T("ç•°å¸¸ï¼šãƒ¡ãƒ¢ãƒªç¢ºä¿ã«å¤±æ•—ï¼Ÿ"));
 		demoready=FALSE;
 		return;
 	}
@@ -72,12 +72,12 @@ void CTDemo::Initialize()
 	multibyte_flag = FALSE;
 
 	g_sound.BGMStop();
-	//ƒfƒ‚ƒf[ƒ^‚Ìd—l‚ÉŠî‚Ã‚¢‚Äƒrƒbƒgƒ}ƒbƒv‚È‚Ç‚ğƒ[ƒh
+	//ãƒ‡ãƒ¢ãƒ‡ãƒ¼ã‚¿ã®ä»•æ§˜ã«åŸºã¥ã„ã¦ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãªã©ã‚’ãƒ­ãƒ¼ãƒ‰
 	_stprintf(fpath,_T("%s\\"),m_current_dir);
 	_stprintf(&fpath[strlen(fpath)],demodat[playingdemodat].bitmap[0]);
 	RELSURFACE(ms);
 	ms = g_draw.CreateSurfaceFrom256BMP(fpath);
-	if(ms != NULL){//ƒT[ƒtƒFƒCƒX‚Ì•^‚‚³
+	if(ms != NULL){//ã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã®å¹…ï¼é«˜ã•
 		bmpw = (DWORD)ms->wg;
 		bmph = (DWORD)ms->hg;
 		if(g_config.IsHalfMode()){bmpw*=2;bmph*=2;}
@@ -99,7 +99,7 @@ void CTDemo::Initialize()
 void CTDemo::Terminate()
 {
 	if(select>=0)
-	story_selectflag += select_base + select;		// ‘I‘ğƒtƒ‰ƒO‚ğXV
+	story_selectflag += select_base + select;		// é¸æŠãƒ•ãƒ©ã‚°ã‚’æ›´æ–°
 
 	CleanUp();
 	g_sound.BGMStop();
@@ -117,12 +117,12 @@ BOOL CTDemo::Execute(DWORD time)
 	yurex=0;
 	yurey=0;
 
-	//”wŒi•`‰æƒpƒ‰ƒ[ƒ^
+	//èƒŒæ™¯æç”»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	r_all.top=r_all.left=0;
 	r_all.right=bmpw;
 	r_all.bottom=bmph;
 	if(demodat[playingdemodat].bmpdisp & 0x0000000F){
-		if(demodat[playingdemodat].bmpdisp & DEMOBMPDISP_MOVER){//¨ƒXƒNƒ[ƒ‹
+		if(demodat[playingdemodat].bmpdisp & DEMOBMPDISP_MOVER){//â†’ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 			r_all.left = counter;
 			r_all.right = counter + DEMODISPX;
 			if(r_all.right > bmpw){
@@ -130,7 +130,7 @@ BOOL CTDemo::Execute(DWORD time)
 				r_all.right = bmpw;
 			}
 		}
-		if(demodat[playingdemodat].bmpdisp & DEMOBMPDISP_MOVEL){//©ƒXƒNƒ[ƒ‹
+		if(demodat[playingdemodat].bmpdisp & DEMOBMPDISP_MOVEL){//â†ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 			r_all.right = bmpw - counter;
 			r_all.left = r_all.right - DEMODISPX;
 			if(r_all.left < 0){
@@ -138,7 +138,7 @@ BOOL CTDemo::Execute(DWORD time)
 				r_all.right = DEMODISPX;
 			}
 		}
-		if(demodat[playingdemodat].bmpdisp & DEMOBMPDISP_MOVED){//«ƒXƒNƒ[ƒ‹
+		if(demodat[playingdemodat].bmpdisp & DEMOBMPDISP_MOVED){//â†“ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 			r_all.top = counter;
 			r_all.bottom = r_all.top + DEMODISPY;
 			if(r_all.bottom > bmph){
@@ -146,7 +146,7 @@ BOOL CTDemo::Execute(DWORD time)
 				r_all.bottom = bmph;
 			}
 		}
-		if(demodat[playingdemodat].bmpdisp & DEMOBMPDISP_MOVEU){//ªƒXƒNƒ[ƒ‹
+		if(demodat[playingdemodat].bmpdisp & DEMOBMPDISP_MOVEU){//â†‘ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 			r_all.bottom = bmph - counter;
 			r_all.top = r_all.bottom - DEMODISPY;
 			if(r_all.top <0){
@@ -155,18 +155,18 @@ BOOL CTDemo::Execute(DWORD time)
 			}
 		}
 	}
-	if(demodat[playingdemodat].bmpdisp & DEMOBMPDISP_FIXR){//‰E’[fix
+	if(demodat[playingdemodat].bmpdisp & DEMOBMPDISP_FIXR){//å³ç«¯fix
 		r_all.left = bmpw-DEMODISPX;
 		r_all.right = bmpw;
 	}
-	if(demodat[playingdemodat].bmpdisp & DEMOBMPDISP_FIXB){//‰º’[fix
+	if(demodat[playingdemodat].bmpdisp & DEMOBMPDISP_FIXB){//ä¸‹ç«¯fix
 		r_all.bottom = bmph;
 		r_all.top = bmph - DEMODISPY;
 	}
-	if(demodat[playingdemodat].bmpdisp & DEMOBMPDISP_YUREX){//x•ûŒü—h‚ê
+	if(demodat[playingdemodat].bmpdisp & DEMOBMPDISP_YUREX){//xæ–¹å‘æºã‚Œ
 		yurex = (counter/2%2)*2;
 	}
-	if(demodat[playingdemodat].bmpdisp & DEMOBMPDISP_YUREY){//y•ûŒü—h‚ê
+	if(demodat[playingdemodat].bmpdisp & DEMOBMPDISP_YUREY){//yæ–¹å‘æºã‚Œ
 		yurey = (counter/2%2)*2;
 	}
 	r_all.left += yurex;
@@ -174,7 +174,7 @@ BOOL CTDemo::Execute(DWORD time)
 	if(r_all.bottom-r_all.top >DEMODISPY)r_all.bottom = r_all.top+DEMODISPY;
 	if(r_all.right - r_all.left >DEMODISPX)r_all.right = r_all.left+DEMODISPX;
 
-	//•¶š—ñ•`‰æƒpƒ‰ƒ[ƒ^
+	//æ–‡å­—åˆ—æç”»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	if(demodat[playingdemodat].spdmsg <= 0){
 		txtlen = strlen(demodat[playingdemodat].msg);
 	}
@@ -189,36 +189,36 @@ BOOL CTDemo::Execute(DWORD time)
 	if(txtlen > strlen(demodat[playingdemodat].msg))
 		{txtlen=strlen(demodat[playingdemodat].msg);}
 
-	//Ÿ‚ÌƒV[ƒ“‚ÉˆÚ“®‚·‚é‚©H
+	//æ¬¡ã®ã‚·ãƒ¼ãƒ³ã«ç§»å‹•ã™ã‚‹ã‹ï¼Ÿ
 	if(txtlen >= strlen(demodat[playingdemodat].msg)){
 		demodat[playingdemodat].dur--;
-		if(demodat[playingdemodat].dur <= 0){//Ÿ‚ÌƒV[ƒ“‚ÉˆÚ“®
+		if(demodat[playingdemodat].dur <= 0){//æ¬¡ã®ã‚·ãƒ¼ãƒ³ã«ç§»å‹•
 			counter = counter2 = 1;
 			txtlen = 0;
 			multibyte_flag = FALSE;
 			playingdemodat++;
-			if(playingdemodat >= num_demoscenes){//ƒfƒ‚I—¹
+			if(playingdemodat >= num_demoscenes){//ãƒ‡ãƒ¢çµ‚äº†
 				playingdemodat--;
 				return FALSE;
 			}
-			//ƒrƒbƒgƒ}ƒbƒv‚Ì•ÏX
+			//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®å¤‰æ›´
 			if(strlen(demodat[playingdemodat].bitmap[0]) > 0){
 				_stprintf(fpath,_T("%s\\"),m_current_dir);
 				_stprintf(&fpath[strlen(fpath)],demodat[playingdemodat].bitmap[0]);
 				RELSURFACE(ms);
 				ms = g_draw.CreateSurfaceFrom256BMP(fpath);
-				if(ms != NULL){//ƒT[ƒtƒFƒCƒX‚Ì•^‚‚³
+				if(ms != NULL){//ã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã®å¹…ï¼é«˜ã•
 					bmpw = (DWORD)ms->wg;
 					bmph = (DWORD)ms->hg;
 				}
 			}
-			//‚a‚f‚l‚Ì•ÏX
+			//ï¼¢ï¼§ï¼­ã®å¤‰æ›´
 			if(strlen(demodat[playingdemodat].bgm) != 0){
 				_stprintf(fpath,_T("%s\\"),m_current_dir);
 				_stprintf(&fpath[strlen(fpath)],demodat[playingdemodat].bgm);
 				g_sound.BGMSeekAndPlay(fpath,FALSE,demodat[playingdemodat].bgmpos);
 			}
-			// ‘I‘ğˆƒŠƒZƒbƒg
+			// é¸æŠè‚¢ãƒªã‚»ãƒƒãƒˆ
 			if (demodat[playingdemodat].num_select > 0){
 				select = 0;
 			}
@@ -227,7 +227,7 @@ BOOL CTDemo::Execute(DWORD time)
 	counter++;
 	counter2++;
 	
-	// ‘I‘ğˆˆ—
+	// é¸æŠè‚¢å‡¦ç†
 	if (demodat[playingdemodat].num_select > 0)
 	{
 		select_base = demodat[playingdemodat].select_base;
@@ -244,16 +244,16 @@ BOOL CTDemo::Execute(DWORD time)
 		}
 	}
 
-	if(counter > 1 && g_input.GetKey(m_keyindex,0) & KEYSTA_BUTTONS){//‹­§“I‚ÉI—¹
+	if(counter > 1 && g_input.GetKey(m_keyindex,0) & KEYSTA_BUTTONS){//å¼·åˆ¶çš„ã«çµ‚äº†
 //		return FALSE;
-		// ’P‚Éˆê•¶”ò‚Î‚·‚¾‚¯‚É•Ï‚¦‚Ä‚İ‚½
+		// å˜ã«ä¸€æ–‡é£›ã°ã™ã ã‘ã«å¤‰ãˆã¦ã¿ãŸ
 		if(txtlen < strlen(demodat[playingdemodat].msg))
 			{ txtlen=strlen(demodat[playingdemodat].msg); }
 		else
 			demodat[playingdemodat].dur = 0;
 	}
 
-	if(counter > 1 && g_input.GetKey(m_keyindex,0) & KEYSTA_BD && demodat[playingdemodat].num_select <= 0){//‘I‘ğˆ‚Å‚È‚¯‚ê‚ÎD‚Å‘‘—‚è
+	if(counter > 1 && g_input.GetKey(m_keyindex,0) & KEYSTA_BD && demodat[playingdemodat].num_select <= 0){//é¸æŠè‚¢ã§ãªã‘ã‚Œã°Dã§æ—©é€ã‚Š
 		if(txtlen < strlen(demodat[playingdemodat].msg))
 			{ txtlen=strlen(demodat[playingdemodat].msg); }
 		else
@@ -265,14 +265,14 @@ BOOL CTDemo::Execute(DWORD time)
 
 BOOL CTDemo::Execute2()
 {
-	//Œ»İ‚Â‚©‚í‚ê‚Ä‚Ë[‚ç‚µ‚¢
+	//ç¾åœ¨ã¤ã‹ã‚ã‚Œã¦ã­ãƒ¼ã‚‰ã—ã„
 /*	RECT r;
 	r.left = r.top =0;
 	r.right = 640;
 	r.bottom = 480;
 	g_draw.DrawBlueText(r,errc,-1,DT_CENTER | DT_VCENTER,3);
 
-	if(g_input.GetKey(m_keyindex,0) & 0x22220000){//‹­§“I‚ÉI—¹
+	if(g_input.GetKey(m_keyindex,0) & 0x22220000){//å¼·åˆ¶çš„ã«çµ‚äº†
 		return FALSE;
 	}*/
 
@@ -283,19 +283,19 @@ void CTDemo::Draw()
 {
 	g_draw.SetTransform(FALSE);
 
-	//”wŒi‚ğ•`‰æ
+	//èƒŒæ™¯ã‚’æç”»
 	if(ms != NULL)g_draw.CheckBlt(ms,70,90,r_all);
 	for (int i = 0; i < 3; i++)
 		if(chr[i] != NULL)g_draw.CheckBlt(chr[i],70+100+200*(i-1),90/*DEMODISPY - (int)(chr[i]->hg / 2)*/,r_all);
 
-	//•¶š—ñ‚ğ•`‰æ
+	//æ–‡å­—åˆ—ã‚’æç”»
 	r_serif.top=370;
 	r_serif.bottom=470;
 	r_serif.left=30;
 	r_serif.right=630;
 	g_draw.DrawBlueText(r_serif,demodat[playingdemodat].msg,txtlen,DT_LEFT|DT_WORDBREAK,3);
 
-	if (demodat[playingdemodat].num_select > 0)	// ‘I‘ğˆ—L‚è
+	if (demodat[playingdemodat].num_select > 0)	// é¸æŠè‚¢æœ‰ã‚Š
 	{
 		TCHAR tmp[8];
 
@@ -304,13 +304,13 @@ void CTDemo::Draw()
 
 		for (int i = 0; i < select; i++)
 			strncat(tmp, _T("\n"), 8 - 1);
-		strncat(tmp, _T("„"), 8 - 1);
+		strncat(tmp, _T("ï¼"), 8 - 1);
 		g_draw.DrawRedText(r_serif, tmp, lstrlen(tmp), DT_LEFT, 3);
 	}
 
 	if(g_config.IsDebugMode())
 	{
-		//ƒpƒ‰ƒ[ƒ^•\¦
+		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¡¨ç¤º
 		TCHAR *outs = new TCHAR[256];
 		_stprintf(outs,_T("scene=%d\n txtlen=%d , dur=%d / spd=%d\n"),playingdemodat,txtlen,demodat[playingdemodat].dur,demodat[playingdemodat].spdmsg);
 		_stprintf(&outs[strlen(outs)],_T(" bmp w/h = %d/%d\n"),bmpw,bmph);
@@ -323,14 +323,14 @@ void CTDemo::Draw()
 
 //======================================================================================
 
-//³íI—¹FƒV[ƒ“”
-//ƒGƒ‰[F0
+//æ­£å¸¸çµ‚äº†ï¼šã‚·ãƒ¼ãƒ³æ•°
+//ã‚¨ãƒ©ãƒ¼ï¼š0
 int CTDemo::InitDemoDat(TCHAR *filepath)
 {
 	HANDLE hFile = CreateFile(filepath,
 		GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
 	if(hFile==INVALID_HANDLE_VALUE){
-		_stprintf(errc,_T("ƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“‚É¸”s\n%s"),filepath);
+		_stprintf(errc,_T("ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³ã«å¤±æ•—\n%s"),filepath);
 		return(0);
 	}
 
@@ -338,26 +338,26 @@ int CTDemo::InitDemoDat(TCHAR *filepath)
 	DWORD fsize = GetFileSize(hFile,NULL);
 	if(fsize==0){
 		CloseHandle(hFile);
-		_stprintf(errc,_T("ƒtƒ@ƒCƒ‹ƒTƒCƒY0\n%s"),filepath);
+		_stprintf(errc,_T("ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚º0\n%s"),filepath);
 		return(0);
 	}
 	gotfile = (TCHAR*)malloc(fsize+2);
 	ZeroMemory(gotfile,fsize+2);
 
 
-	gbl.ods(_T("™ƒfƒ‚[%s/%dbyte]ƒ[ƒhŠJn"),filepath,fsize);
+	gbl.ods(_T("â˜†ãƒ‡ãƒ¢[%s/%dbyte]ãƒ­ãƒ¼ãƒ‰é–‹å§‹"),filepath,fsize);
 
 	DWORD br;
 	DWORD ret=ReadFile(hFile,gotfile,fsize,&br,NULL);
 	CloseHandle(hFile);
 
-	gotfile[fsize]=13;//‰üsƒR[ƒh•t‰Á
+	gotfile[fsize]=13;//æ”¹è¡Œã‚³ãƒ¼ãƒ‰ä»˜åŠ 
 	gotfile[fsize+1]=10;
 	fsize+=2;
 
 #define RSTRBUFFERSIZE 1024
 
-	//ˆês‚Ã‚Â–|–ó
+	//ä¸€è¡Œã¥ã¤ç¿»è¨³
 	DWORD strpos=0;
 	DWORD susumu;
 	int rval;
@@ -366,7 +366,7 @@ int CTDemo::InitDemoDat(TCHAR *filepath)
 	BOOL find;
 	int numevents=0;
 
-	//‚Æ‚è‚ ‚¦‚¸Å‰‚ÌˆêŒÂ‚ğŒ©‚Â‚¯‚é
+	//ã¨ã‚Šã‚ãˆãšæœ€åˆã®ä¸€å€‹ã‚’è¦‹ã¤ã‘ã‚‹
 	find=FALSE;
 	while(strpos < fsize && !find){
 		rval = GetGyoDemo(&gotfile[strpos],rstr,&susumu);
@@ -374,7 +374,7 @@ int CTDemo::InitDemoDat(TCHAR *filepath)
 		if(rval == 1)find = TRUE;
 	}
 	if(!find){
-		_stprintf(errc,_T("“à—e–³‚µ\n%s"),filepath);
+		_stprintf(errc,_T("å†…å®¹ç„¡ã—\n%s"),filepath);
 		free(gotfile);
 		free(rstr);
 		return(0);
@@ -465,7 +465,7 @@ int CTDemo::InitDemoDat(TCHAR *filepath)
 				strpos+=susumu;
 			}
 
-			// Ÿè‚ÉÁ‚¦‚È‚¢‚æ‚¤‚É
+			// å‹æ‰‹ã«æ¶ˆãˆãªã„ã‚ˆã†ã«
 			if (demodat[numevents].num_select > 0){
 				demodat[numevents].dur = INT_MAX;
 				demodat[numevents].spdmsg = 0;
@@ -574,9 +574,9 @@ DWORD CTDemo::GetGyoDemo(TCHAR *strin,TCHAR *strout,DWORD *susumu)
 		rval=0;
 	}
 
-	if(rval==0 || rval==1 || rval>=8 && rval<16 ){//‰üsƒR[ƒh‚ğŒ©‚Â‚¯‚Ä–ß‚·
+	if(rval==0 || rval==1 || rval>=8 && rval<16 ){//æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã‚’è¦‹ã¤ã‘ã¦æˆ»ã™
 		while(1){
-			if(strin[i]==13 && strin[i+1]==10){//‰üsƒR[ƒh”­Œ©
+			if(strin[i]==13 && strin[i+1]==10){//æ”¹è¡Œã‚³ãƒ¼ãƒ‰ç™ºè¦‹
 				i+=2;
 				*susumu = i;
 				return(rval);
@@ -585,7 +585,7 @@ DWORD CTDemo::GetGyoDemo(TCHAR *strin,TCHAR *strout,DWORD *susumu)
 		}
 	}
 
-	//ƒXƒy[ƒX‚ğ”ò‚Î‚·ˆ—
+	//ã‚¹ãƒšãƒ¼ã‚¹ã‚’é£›ã°ã™å‡¦ç†
 	BOOL ext=FALSE;
 	while(!ext){
 		if(strin[i]==0x20)i++;
@@ -595,7 +595,7 @@ DWORD CTDemo::GetGyoDemo(TCHAR *strin,TCHAR *strout,DWORD *susumu)
 
 	if(strin[i]!='='){
 		while(1){
-			if(strin[i]==13 && strin[i+1]==10){//‰üsƒR[ƒh”­Œ©
+			if(strin[i]==13 && strin[i+1]==10){//æ”¹è¡Œã‚³ãƒ¼ãƒ‰ç™ºè¦‹
 				i+=2;
 				*susumu = i;
 				return(0);
@@ -605,7 +605,7 @@ DWORD CTDemo::GetGyoDemo(TCHAR *strin,TCHAR *strout,DWORD *susumu)
 	}
 	i++;
 
-	//ƒXƒy[ƒX‚ğ”ò‚Î‚·ˆ—
+	//ã‚¹ãƒšãƒ¼ã‚¹ã‚’é£›ã°ã™å‡¦ç†
 	if(rval != 5){
 		ext=FALSE;
 		while(!ext){
@@ -617,19 +617,19 @@ DWORD CTDemo::GetGyoDemo(TCHAR *strin,TCHAR *strout,DWORD *susumu)
 
 	DWORD j=0;
 	while(1){
-		if(strin[i]==13 && strin[i+1]==10){//‰üsƒR[ƒh”­Œ©
+		if(strin[i]==13 && strin[i+1]==10){//æ”¹è¡Œã‚³ãƒ¼ãƒ‰ç™ºè¦‹
 			i+=2;
 			*susumu = i;
 			return(rval);
 		}
 		else{i++;j++;}
-		strout[j-1]=strin[i-1];//•¶š—ñ‚±‚Ò[
+		strout[j-1]=strin[i-1];//æ–‡å­—åˆ—ã“ã´ãƒ¼
 		if(rval==5 && j>1023)break;
 		else if(rval!=5 && j>64)break;
 	}
 
 	while(1){
-		if(strin[i]==13 && strin[i+1]==10){//‰üsƒR[ƒh”­Œ©
+		if(strin[i]==13 && strin[i+1]==10){//æ”¹è¡Œã‚³ãƒ¼ãƒ‰ç™ºè¦‹
 			i+=2;
 			*susumu = i;
 			return(0);

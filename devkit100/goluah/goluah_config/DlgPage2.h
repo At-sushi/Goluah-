@@ -1,25 +1,25 @@
-#pragma once
+ï»¿#pragma once
 #include "afxwin.h"
 
 
-// CDlgPage2 ƒ_ƒCƒAƒƒO
+// CDlgPage2 ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 class CDlgPage2 : public CCfgDialogBase
 {
 	DECLARE_DYNAMIC(CDlgPage2)
 
 public:
-	CDlgPage2(CWnd* pParent = NULL);   // •W€ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	CDlgPage2(CWnd* pParent = NULL);   // æ¨™æº–ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~CDlgPage2();
 
 	void UpdateSettings();
 	void Reset();
 
-// ƒ_ƒCƒAƒƒO ƒf[ƒ^
+// ãƒ€ã‚¤ã‚¢ãƒ­ã‚° ãƒ‡ãƒ¼ã‚¿
 	enum { IDD = IDD_DIALOG_PAGE2 };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ƒTƒ|[ƒg
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ã‚µãƒãƒ¼ãƒˆ
 
 	DECLARE_MESSAGE_MAP()
 public:

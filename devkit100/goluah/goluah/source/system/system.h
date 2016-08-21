@@ -1,14 +1,14 @@
-
+ï»¿
 
 /*!
 *	@file 
-*	@brief ƒVƒXƒeƒ€ƒNƒ‰ƒX“™‚Ì’è‹`
-*	ƒƒCƒ“ƒVƒXƒeƒ€BƒQ[ƒ€‘S”Ê‚Ì“Š‡
+*	@brief ã‚·ã‚¹ãƒ†ãƒ ã‚¯ãƒ©ã‚¹ç­‰ã®å®šç¾©
+*	ãƒ¡ã‚¤ãƒ³ã‚·ã‚¹ãƒ†ãƒ ã€‚ã‚²ãƒ¼ãƒ å…¨èˆ¬ã®çµ±æ‹¬
 */
 
 /*!
 *	@defgroup System
-*	@brief ƒQ[ƒ€‘S”Ê‚Ì“Š‡•—–¡
+*	@brief ã‚²ãƒ¼ãƒ å…¨èˆ¬ã®çµ±æ‹¬é¢¨å‘³
 */
 
 #ifndef _SYSTEM_H_
@@ -20,137 +20,137 @@
 #include "task.h"
 
 
-#define NUM_SYSTEMSOUND		32//0-31‚Ü‚Å‚Ìwav‚ð“Ç‚Ýž‚Þ
+#define NUM_SYSTEMSOUND		32//0-31ã¾ã§ã®wavã‚’èª­ã¿è¾¼ã‚€
 
 /*!
 *	@ingroup System
-*	@brief System::Log ƒƒO‚Ì•ª—Þ
+*	@brief System::Log ãƒ­ã‚°ã®åˆ†é¡ž
 */
 enum SyatemLogCategory
 {
-	SYSLOG_NONE,		//‚Æ‚­‚É‚È‚ñ‚à‚È‚µ
-	SYSLOG_INFO,		//î•ñ@EEE‚Á‚ÄA‚È‚ñ‚ÌH
-	SYSLOG_ERROR,		//ƒGƒ‰[
-	SYSLOG_WARNING,		//Œx
-	SYSLOG_ALERT,		//Œx•ñi“¯‚¶‚¶‚á‚ñIj
-	SYSLOG_DEBUG		//ƒfƒoƒbƒOî•ñ
+	SYSLOG_NONE,		//ã¨ãã«ãªã‚“ã‚‚ãªã—
+	SYSLOG_INFO,		//æƒ…å ±ã€€ãƒ»ãƒ»ãƒ»ã£ã¦ã€ãªã‚“ã®ï¼Ÿ
+	SYSLOG_ERROR,		//ã‚¨ãƒ©ãƒ¼
+	SYSLOG_WARNING,		//è­¦å‘Š
+	SYSLOG_ALERT,		//è­¦å ±ï¼ˆåŒã˜ã˜ã‚ƒã‚“ï¼ï¼‰
+	SYSLOG_DEBUG		//ãƒ‡ãƒãƒƒã‚°æƒ…å ±
 };
 
 
 /*!
 *	@ingroup System
 *
-*	@brief ƒVƒXƒeƒ€ƒNƒ‰ƒXBƒQ[ƒ€‘S”Ê‚Ì“Š‡
+*	@brief ã‚·ã‚¹ãƒ†ãƒ ã‚¯ãƒ©ã‚¹ã€‚ã‚²ãƒ¼ãƒ å…¨èˆ¬ã®çµ±æ‹¬
 *
-*	ŽÀÛ‚É‚Í‚ ‚ñ‚Ü‚èŽdŽ–‚µ‚Ä‚¢‚È‚¢B
-*	DX‰ñ‚è‚ÌƒNƒ‰ƒX‚ð‰Šú‰»‚µ‚½‚èAƒƒCƒ“ƒ‹[ƒv‚Åƒ^ƒXƒNŠÇ—ƒNƒ‰ƒX‚ðŒÄ‚Ô‚®‚ç‚¢B
-*	‚ ‚Æ‚ÍƒƒO“f‚«o‚µ‚Æ‚©‚ÌŽG—pŒnB
+*	å®Ÿéš›ã«ã¯ã‚ã‚“ã¾ã‚Šä»•äº‹ã—ã¦ã„ãªã„ã€‚
+*	DXå›žã‚Šã®ã‚¯ãƒ©ã‚¹ã‚’åˆæœŸåŒ–ã—ãŸã‚Šã€ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã§ã‚¿ã‚¹ã‚¯ç®¡ç†ã‚¯ãƒ©ã‚¹ã‚’å‘¼ã¶ãã‚‰ã„ã€‚
+*	ã‚ã¨ã¯ãƒ­ã‚°åãå‡ºã—ã¨ã‹ã®é›‘ç”¨ç³»ã€‚
 */
 class CSystem
 {
-friend class CExport;//ƒ^ƒXƒNƒ}ƒl[ƒWƒƒ‚©‚ç’¼Úí“¬ƒ^ƒXƒN‚ð”²‚«o‚·‚½‚ß‚É•K—v
+friend class CExport;//ã‚¿ã‚¹ã‚¯ãƒžãƒãƒ¼ã‚¸ãƒ£ã‹ã‚‰ç›´æŽ¥æˆ¦é—˜ã‚¿ã‚¹ã‚¯ã‚’æŠœãå‡ºã™ãŸã‚ã«å¿…è¦
 
 public:
-	CSystem();							//!< ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	~CSystem(){Destroy();}				//!< ƒfƒXƒgƒ‰ƒNƒ^
+	CSystem();							//!< ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	~CSystem(){Destroy();}				//!< ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-	//‰Šú‰»E”jŠü
-	BOOL Initialize(HWND hwnd);			//!< ‰Šú‰»
-	BOOL GameStart();					//!< ƒQ[ƒ€ŠJŽnŽž‚ÉƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒgi‚Ì•û–Êj‚©‚çŒÄ‚Î‚ê‚é
-	void Destroy();						//!< ”jŠüBƒfƒXƒgƒ‰ƒNƒ^‚ÌŽÀˆ—
+	//åˆæœŸåŒ–ãƒ»ç ´æ£„
+	BOOL Initialize(HWND hwnd);			//!< åˆæœŸåŒ–
+	BOOL GameStart();					//!< ã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ã«ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆï¼ˆã®æ–¹é¢ï¼‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹
+	void Destroy();						//!< ç ´æ£„ã€‚ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã®å®Ÿå‡¦ç†
 
-	void MainLoop();					//!< ƒƒCƒ“ƒ‹[ƒv‚©‚çŒÄ‚Î‚ê‚éB’èŽžˆ—
-	void WndMessage(HWND hWnd,UINT msg, WPARAM wparam, LPARAM lparam);//!< ƒEƒCƒ“ƒhƒvƒƒV[ƒWƒƒ‚©‚çŒÄ‚Î‚ê‚é
+	void MainLoop();					//!< ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã‹ã‚‰å‘¼ã°ã‚Œã‚‹ã€‚å®šæ™‚å‡¦ç†
+	void WndMessage(HWND hWnd,UINT msg, WPARAM wparam, LPARAM lparam);//!< ã‚¦ã‚¤ãƒ³ãƒ‰ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£ã‹ã‚‰å‘¼ã°ã‚Œã‚‹
 
-	//ó‘ÔŽæ“¾
-	BOOL IsWindowActive();				//!< ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒEƒCƒ“ƒhƒE‚ªƒAƒNƒeƒBƒu‚Èó‘Ô‚©‚Ç‚¤‚©
-	BOOL IsReady(){return ready;}		//!< ƒQ[ƒ€‚ªŠJŽn‚Å‚«‚éó‘Ô‚©‚Ç‚¤‚©i‚¾‚Á‚¯H
-	HWND GetHWnd(){return hwnd;}		//!< ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒEƒCƒ“ƒhƒE‚ÌƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‹‚ðŽæ“¾
+	//çŠ¶æ…‹å–å¾—
+	BOOL IsWindowActive();				//!< ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªçŠ¶æ…‹ã‹ã©ã†ã‹
+	BOOL IsReady(){return ready;}		//!< ã‚²ãƒ¼ãƒ ãŒé–‹å§‹ã§ãã‚‹çŠ¶æ…‹ã‹ã©ã†ã‹ï¼ˆã ã£ã‘ï¼Ÿ
+	HWND GetHWnd(){return hwnd;}		//!< ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—
 
-	//ƒT[ƒrƒX
-	void PlaySystemSound(DWORD sid);									//!< ƒTƒEƒ“ƒhÄ¶
-	double DrawBMPText(double x,double y,float z,TCHAR *str,DWORD col);	//!< ƒrƒbƒgƒ}ƒbƒvƒeƒLƒXƒg‚ð•`‰æ
-	double DrawBMPTextEx(double x,double y,float z,TCHAR *str,			//!< ƒrƒbƒgƒ}ƒbƒvƒeƒLƒXƒg‚ð•`‰æ(ŠgkEƒvƒƒ|[ƒVƒ‡ƒiƒ‹ƒIƒvƒVƒ‡ƒ“‚Â‚«)
+	//ã‚µãƒ¼ãƒ“ã‚¹
+	void PlaySystemSound(DWORD sid);									//!< ã‚µã‚¦ãƒ³ãƒ‰å†ç”Ÿ
+	double DrawBMPText(double x,double y,float z,TCHAR *str,DWORD col);	//!< ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ãƒ†ã‚­ã‚¹ãƒˆã‚’æç”»
+	double DrawBMPTextEx(double x,double y,float z,TCHAR *str,			//!< ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ãƒ†ã‚­ã‚¹ãƒˆã‚’æç”»(æ‹¡ç¸®ãƒ»ãƒ—ãƒ­ãƒãƒ¼ã‚·ãƒ§ãƒŠãƒ«ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã¤ã)
 		DWORD col,float scaX,float scaY,DWORD flags);
-	void ReturnTitle();													//!< ƒ^ƒCƒgƒ‹‰æ–Ê‚Ö–ß‚é
-	void DisableRendering()	{m_render_disabled=TRUE;}					//!< ƒ^ƒXƒNŠÇ—‚Å•`‰æ‚ð‚µ‚È‚¢i“®‰æÄ¶—pj
-	void EnableRendering()	{m_render_disabled=FALSE;}					//!< DisableRendering•œ‹A
+	void ReturnTitle();													//!< ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã¸æˆ»ã‚‹
+	void DisableRendering()	{m_render_disabled=TRUE;}					//!< ã‚¿ã‚¹ã‚¯ç®¡ç†ã§æç”»ã‚’ã—ãªã„ï¼ˆå‹•ç”»å†ç”Ÿç”¨ï¼‰
+	void EnableRendering()	{m_render_disabled=FALSE;}					//!< DisableRenderingå¾©å¸°
 
 	//fps
-	DWORD GetFPS(){return m_fps;}										//!< ŽÀÛƒtƒŒ[ƒ€ƒŒ[ƒgŽæ“¾
-	DWORD GetMaxFPS(){return (DWORD)(1000.0/m_loopTime);}				//!< Å‘åƒtƒŒ[ƒ€ƒŒ[ƒgiˆ——Ž‚¿‚µ‚Ä‚¢‚È‚¢ó‘Ô‚Åo‚éjŽæ“¾
-	void SetMaxFPS(float newFPS){m_loopTime = (DWORD)(1000.0/newFPS);}	//!< ƒtƒŒ[ƒ€ƒŒ[ƒgƒŠƒ~ƒbƒgÝ’è
-	void UpdateFrameRate();												//!< ƒRƒ“ƒtƒBƒO‚©‚çÝ’è
+	DWORD GetFPS(){return m_fps;}										//!< å®Ÿéš›ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆå–å¾—
+	DWORD GetMaxFPS(){return (DWORD)(1000.0/m_loopTime);}				//!< æœ€å¤§ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆï¼ˆå‡¦ç†è½ã¡ã—ã¦ã„ãªã„çŠ¶æ…‹ã§å‡ºã‚‹ï¼‰å–å¾—
+	void SetMaxFPS(float newFPS){m_loopTime = (DWORD)(1000.0/newFPS);}	//!< ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆãƒªãƒŸãƒƒãƒˆè¨­å®š
+	void UpdateFrameRate();												//!< ã‚³ãƒ³ãƒ•ã‚£ã‚°ã‹ã‚‰è¨­å®š
 
-	//ƒ^ƒXƒN
-	void AddTask(CTaskBase* task){taskManager.AddTask(task);}			//!< V‹Kƒ^ƒXƒN’Ç‰Á
-	void RemoveTask(DWORD id){taskManager.RemoveTaskByID(id);}			//!< Žw’èID‚ðŽ‚Âƒ^ƒXƒN‚ðíœ
-	CExclusiveTaskBase* GetCurrentMainTask();							//!< Œ»Ý‚Ì”r‘¼ƒ^ƒXƒN‚ðŽæ“¾
-	CBackgroundTaskBase* FindBGTask(DWORD id);							//!< BGŒnƒ^ƒXƒN‚Ì’†‚©‚çŽw’èID‚ðŽ‚Âƒ^ƒXƒN‚ð’T‚·
-	CTaskBase*			 FindTask(DWORD id);							//!< ’ÊíŒnƒ^ƒXƒN‚Ì’†‚©‚çŽw’èID‚ðŽ‚Âƒ^ƒXƒN‚ð’T‚·
+	//ã‚¿ã‚¹ã‚¯
+	void AddTask(CTaskBase* task){taskManager.AddTask(task);}			//!< æ–°è¦ã‚¿ã‚¹ã‚¯è¿½åŠ 
+	void RemoveTask(DWORD id){taskManager.RemoveTaskByID(id);}			//!< æŒ‡å®šIDã‚’æŒã¤ã‚¿ã‚¹ã‚¯ã‚’å‰Šé™¤
+	CExclusiveTaskBase* GetCurrentMainTask();							//!< ç¾åœ¨ã®æŽ’ä»–ã‚¿ã‚¹ã‚¯ã‚’å–å¾—
+	CBackgroundTaskBase* FindBGTask(DWORD id);							//!< BGç³»ã‚¿ã‚¹ã‚¯ã®ä¸­ã‹ã‚‰æŒ‡å®šIDã‚’æŒã¤ã‚¿ã‚¹ã‚¯ã‚’æŽ¢ã™
+	CTaskBase*			 FindTask(DWORD id);							//!< é€šå¸¸ç³»ã‚¿ã‚¹ã‚¯ã®ä¸­ã‹ã‚‰æŒ‡å®šIDã‚’æŒã¤ã‚¿ã‚¹ã‚¯ã‚’æŽ¢ã™
 
-	//ƒVƒXƒeƒ€ƒOƒ‰ƒtƒBƒbƒN‚ðŽæ“¾
-	MYSURFACE** GetSystemGraphicSurface(){return sdds;}					//!< ƒVƒXƒeƒ€‚Æ‚µ‚Ä•ÛŽ‚³‚ê‚Ä‚¢‚éGCD—p‚Ìƒrƒbƒgƒ}ƒbƒv”z—ñ‚ðŽæ“¾
-	GCD_RECT* GetSystemGraphicRect(){return srdat;}						//!< ƒVƒXƒeƒ€‚Æ‚µ‚Ä•ÛŽ‚³‚ê‚Ä‚¢‚éGCD‚Ì‹éŒ`”z—ñ‚ðŽæ“¾
-	GCD_CELL2* GetSystemGraphicCell(){return scdat;}					//!< ƒVƒXƒeƒ€‚Æ‚µ‚Ä•ÛŽ‚³‚ê‚Ä‚¢‚éGCD‚ÌƒZƒ‹”z—ñ‚ðŽæ“¾
-	GCD_HANTEI* GetSystemGraphicHantei(){return shdat;}					//!< ƒVƒXƒeƒ€‚Æ‚µ‚Ä•ÛŽ‚³‚ê‚Ä‚¢‚éGCD‚Ì‚ ‚½‚è”»’è‹éŒ`”z—ñ‚ðŽæ“¾
+	//ã‚·ã‚¹ãƒ†ãƒ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’å–å¾—
+	MYSURFACE** GetSystemGraphicSurface(){return sdds;}					//!< ã‚·ã‚¹ãƒ†ãƒ ã¨ã—ã¦ä¿æŒã•ã‚Œã¦ã„ã‚‹GCDç”¨ã®ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—é…åˆ—ã‚’å–å¾—
+	GCD_RECT* GetSystemGraphicRect(){return srdat;}						//!< ã‚·ã‚¹ãƒ†ãƒ ã¨ã—ã¦ä¿æŒã•ã‚Œã¦ã„ã‚‹GCDã®çŸ©å½¢é…åˆ—ã‚’å–å¾—
+	GCD_CELL2* GetSystemGraphicCell(){return scdat;}					//!< ã‚·ã‚¹ãƒ†ãƒ ã¨ã—ã¦ä¿æŒã•ã‚Œã¦ã„ã‚‹GCDã®ã‚»ãƒ«é…åˆ—ã‚’å–å¾—
+	GCD_HANTEI* GetSystemGraphicHantei(){return shdat;}					//!< ã‚·ã‚¹ãƒ†ãƒ ã¨ã—ã¦ä¿æŒã•ã‚Œã¦ã„ã‚‹GCDã®ã‚ãŸã‚Šåˆ¤å®šçŸ©å½¢é…åˆ—ã‚’å–å¾—
 
-	//ƒfƒoƒbƒO
-	void NotifyExcption();												//!< —áŠO”­¶‚ð’Ê’mBŽŸ‰ñƒƒCƒ“ƒ‹[ƒv‚Åƒ^ƒCƒgƒ‹–ß‚èiÝ’è‚ÉˆË‚éj
-	BOOL IsErrorTitle()		{return m_error_title;}						//!< ƒGƒ‰[”­¶‚Åƒ^ƒCƒgƒ‹‚É–ß‚Á‚½‚Ì‚©ƒtƒ‰ƒOŽæ“¾
-	static void Log(const TCHAR *msg,DWORD category);					//!< •ª—Þ‚Â‚«‚Åƒtƒ@ƒCƒ‹‚ÖƒƒO‚ðo‚·
-	static void LogErr(const TCHAR *fmt,...);							//!< ƒtƒ@ƒCƒ‹‚ÖƒƒO‚ðo‚·(ƒGƒ‰[ˆµA’¼Œãƒtƒ@ƒCƒ‹FLUSH)
-	static void LogWarning(const TCHAR *fmt,...);						//!< •ª—Þ:Œx ‚ÅƒƒO‚ðo‚·BƒtƒH[ƒ}ƒbƒg‚Â‚«
-	void PushSysTag(const TCHAR* tag_str);								//!< ƒ^ƒO‚ðÝ’è
-	void PopSysTag();													//!< ƒ^ƒO‚ð‚Ð‚Æ‚ÂPopADLLƒ^ƒO‚ÌƒNƒŠƒA
-	void ClearSysTag();													//!< ƒVƒXƒeƒ€ƒ^ƒO‚ÌƒNƒŠƒAADLLƒ^ƒO‚àƒNƒŠƒA
-	void PushDLLTag(const TCHAR* tag_str);								//!< ƒ^ƒO‚ðÝ’è
-	void PopDLLTag();													//!< ƒ^ƒO‚ð‚Ð‚Æ‚ÂPop
-	void ClearDLLTag();													//!< DLLƒ^ƒO‚ÌƒNƒŠƒA
-	void DumpTags();													//!< ƒ^ƒO‚ðƒGƒ‰[ƒƒO‚Æ‚µ‚Äo—Í
+	//ãƒ‡ãƒãƒƒã‚°
+	void NotifyExcption();												//!< ä¾‹å¤–ç™ºç”Ÿã‚’é€šçŸ¥ã€‚æ¬¡å›žãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã§ã‚¿ã‚¤ãƒˆãƒ«æˆ»ã‚Šï¼ˆè¨­å®šã«ä¾ã‚‹ï¼‰
+	BOOL IsErrorTitle()		{return m_error_title;}						//!< ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿã§ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã£ãŸã®ã‹ãƒ•ãƒ©ã‚°å–å¾—
+	static void Log(const TCHAR *msg,DWORD category);					//!< åˆ†é¡žã¤ãã§ãƒ•ã‚¡ã‚¤ãƒ«ã¸ãƒ­ã‚°ã‚’å‡ºã™
+	static void LogErr(const TCHAR *fmt,...);							//!< ãƒ•ã‚¡ã‚¤ãƒ«ã¸ãƒ­ã‚°ã‚’å‡ºã™(ã‚¨ãƒ©ãƒ¼æ‰±ã€ç›´å¾Œãƒ•ã‚¡ã‚¤ãƒ«FLUSH)
+	static void LogWarning(const TCHAR *fmt,...);						//!< åˆ†é¡ž:è­¦å‘Š ã§ãƒ­ã‚°ã‚’å‡ºã™ã€‚ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã¤ã
+	void PushSysTag(const TCHAR* tag_str);								//!< ã‚¿ã‚°ã‚’è¨­å®š
+	void PopSysTag();													//!< ã‚¿ã‚°ã‚’ã²ã¨ã¤Popã€DLLã‚¿ã‚°ã®ã‚¯ãƒªã‚¢
+	void ClearSysTag();													//!< ã‚·ã‚¹ãƒ†ãƒ ã‚¿ã‚°ã®ã‚¯ãƒªã‚¢ã€DLLã‚¿ã‚°ã‚‚ã‚¯ãƒªã‚¢
+	void PushDLLTag(const TCHAR* tag_str);								//!< ã‚¿ã‚°ã‚’è¨­å®š
+	void PopDLLTag();													//!< ã‚¿ã‚°ã‚’ã²ã¨ã¤Pop
+	void ClearDLLTag();													//!< DLLã‚¿ã‚°ã®ã‚¯ãƒªã‚¢
+	void DumpTags();													//!< ã‚¿ã‚°ã‚’ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°ã¨ã—ã¦å‡ºåŠ›
 
 protected:
-	void InitSystemSound();												//!< ƒVƒXƒeƒ€ƒTƒEƒ“ƒh‚Ìƒ[ƒh
-	void InitSystemGraphics();											//!< ƒVƒXƒeƒ€ƒOƒ‰ƒtƒBƒbƒN(system/cell.gcd“™)‚ðƒ[ƒh
-public:	void OnWMKeydown(WPARAM wp,LPARAM lp);							//!< WM_KEYDOWNƒEƒBƒ“ƒhƒEƒƒbƒZ[ƒWˆ—
+	void InitSystemSound();												//!< ã‚·ã‚¹ãƒ†ãƒ ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒ­ãƒ¼ãƒ‰
+	void InitSystemGraphics();											//!< ã‚·ã‚¹ãƒ†ãƒ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯(system/cell.gcdç­‰)ã‚’ãƒ­ãƒ¼ãƒ‰
+public:	void OnWMKeydown(WPARAM wp,LPARAM lp);							//!< WM_KEYDOWNã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†
 protected:
-	BOOL ShowInformation();												//!< ‰Šú‰»Œã‚Ìî•ñƒ_ƒCƒAƒƒO‚Ì•\Ž¦
-	void SaveScreenShot();												//!< ƒXƒNƒŠ[ƒ“ƒVƒ‡ƒbƒg•Û‘¶
+	BOOL ShowInformation();												//!< åˆæœŸåŒ–å¾Œã®æƒ…å ±ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®è¡¨ç¤º
+	void SaveScreenShot();												//!< ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚·ãƒ§ãƒƒãƒˆä¿å­˜
 
-	//ƒf[ƒ^ƒƒ“ƒo
+	//ãƒ‡ãƒ¼ã‚¿ãƒ¡ãƒ³ãƒ
 public:
-	//ƒXƒCƒbƒ`
-	BOOL sw_rects;										//!< –¢Žg—p
-	BOOL sw_showfps;									//!< –¢Žg—p
-	BOOL sw_showbg;										//!< –¢Žg—p
-	int  sw_showstates;									//!< –¢Žg—p
-	int  sw_slowmode;									//!< –¢Žg—p
+	//ã‚¹ã‚¤ãƒƒãƒ
+	BOOL sw_rects;										//!< æœªä½¿ç”¨
+	BOOL sw_showfps;									//!< æœªä½¿ç”¨
+	BOOL sw_showbg;										//!< æœªä½¿ç”¨
+	int  sw_showstates;									//!< æœªä½¿ç”¨
+	int  sw_slowmode;									//!< æœªä½¿ç”¨
 protected:
-	BOOL ready;											//!< ‰Šú‰»‚ª¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
-	HWND hwnd;											//!< ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒEƒCƒ“ƒhƒE‚ÌƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‹
-	DWORD m_fps;										//!< Œ»Ý‚ÌƒtƒŒ[ƒ€ƒŒ[ƒg
-	DWORD m_loopTime;									//!< ƒƒCƒ“ƒ‹[ƒv‚ð‰½ms‚Å‰ñ‚·‚©iƒtƒŒ[ƒ€ƒŒ[ƒg§Œäj
-	BOOL  m_render_disabled;							//!< •`‰æŠJŽn/I—¹‚ðs‚í‚È‚¢iSirectShow“®‰æÄ¶—pj
+	BOOL ready;											//!< åˆæœŸåŒ–ãŒæˆåŠŸã—ãŸã‹ã©ã†ã‹
+	HWND hwnd;											//!< ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«
+	DWORD m_fps;										//!< ç¾åœ¨ã®ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆ
+	DWORD m_loopTime;									//!< ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã‚’ä½•msã§å›žã™ã‹ï¼ˆãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆåˆ¶å¾¡ï¼‰
+	BOOL  m_render_disabled;							//!< æç”»é–‹å§‹/çµ‚äº†ã‚’è¡Œã‚ãªã„ï¼ˆSirectShowå‹•ç”»å†ç”Ÿç”¨ï¼‰
 
-	//ƒVƒXƒeƒ€EƒOƒ‰ƒtƒBƒbƒN
-	MYSURFACE *sdds[GCDMAX_IMAGES];						//!< system/image?.bmp‚ðƒ[ƒh‚µ‚½‚à‚Ì
-	GCD_RECT srdat[GCDMAX_RECTANGLES];					//!< system/cellgcd‚ð ƒ[ƒh‚µ‚½‚à‚Ì
-	GCD_CELL2 scdat[GCDMAX_CELLS];						//!< system/cellgcd‚ð ƒ[ƒh‚µ‚½‚à‚Ì
-	GCD_HANTEI shdat[GCDMAX_CELLS];						//!< system/cellgcd‚ð ƒ[ƒh‚µ‚½‚à‚Ì
+	//ã‚·ã‚¹ãƒ†ãƒ ãƒ»ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	MYSURFACE *sdds[GCDMAX_IMAGES];						//!< system/image?.bmpã‚’ãƒ­ãƒ¼ãƒ‰ã—ãŸã‚‚ã®
+	GCD_RECT srdat[GCDMAX_RECTANGLES];					//!< system/cellgcdã‚’ ãƒ­ãƒ¼ãƒ‰ã—ãŸã‚‚ã®
+	GCD_CELL2 scdat[GCDMAX_CELLS];						//!< system/cellgcdã‚’ ãƒ­ãƒ¼ãƒ‰ã—ãŸã‚‚ã®
+	GCD_HANTEI shdat[GCDMAX_CELLS];						//!< system/cellgcdã‚’ ãƒ­ãƒ¼ãƒ‰ã—ãŸã‚‚ã®
 
-	//ƒVƒXƒeƒ€EƒTƒEƒ“ƒh
-	LPDIRECTSOUNDBUFFER dsb_efct[2][NUM_SYSTEMSOUND];	//!< ƒVƒXƒeƒ€ƒTƒEƒ“ƒh
-	BOOL b_efctlst[NUM_SYSTEMSOUND];					//!< ƒVƒXƒeƒ€ƒTƒCƒ“‚Ç‚Ì‚¤‚¿‚Ç‚¿‚ç‚ÌƒTƒEƒ“ƒh‚ðÄ¶‚µ‚½‚©B˜A‘±‚µ‚Ä“¯‚¶wav‚ðÄ¶‚·‚é‚½‚ß‚É•K—v
+	//ã‚·ã‚¹ãƒ†ãƒ ãƒ»ã‚µã‚¦ãƒ³ãƒ‰
+	LPDIRECTSOUNDBUFFER dsb_efct[2][NUM_SYSTEMSOUND];	//!< ã‚·ã‚¹ãƒ†ãƒ ã‚µã‚¦ãƒ³ãƒ‰
+	BOOL b_efctlst[NUM_SYSTEMSOUND];					//!< ã‚·ã‚¹ãƒ†ãƒ ã‚µã‚¤ãƒ³ã©ã®ã†ã¡ã©ã¡ã‚‰ã®ã‚µã‚¦ãƒ³ãƒ‰ã‚’å†ç”Ÿã—ãŸã‹ã€‚é€£ç¶šã—ã¦åŒã˜wavã‚’å†ç”Ÿã™ã‚‹ãŸã‚ã«å¿…è¦
 
-	CTaskManager taskManager;							//!< ƒ^ƒXƒNŠÇ—ƒNƒ‰ƒX
-	BOOL m_return_title_flag;							//!< ReturnTitleƒtƒ‰ƒO
-	BOOL m_error_title;									//!< ƒGƒ‰[ƒ^ƒCƒgƒ‹‰æ–Êƒtƒ‰ƒO
-	BOOL m_first_update_flag;							//!< ‹N“®Œã‰‰ñƒtƒ‰ƒO
-	BOOL m_debug_menu_enabled;							//!< ƒfƒoƒbƒOƒƒjƒ…[‚ª—LŒø
+	CTaskManager taskManager;							//!< ã‚¿ã‚¹ã‚¯ç®¡ç†ã‚¯ãƒ©ã‚¹
+	BOOL m_return_title_flag;							//!< ReturnTitleãƒ•ãƒ©ã‚°
+	BOOL m_error_title;									//!< ã‚¨ãƒ©ãƒ¼ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ãƒ•ãƒ©ã‚°
+	BOOL m_first_update_flag;							//!< èµ·å‹•å¾Œåˆå›žãƒ•ãƒ©ã‚°
+	BOOL m_debug_menu_enabled;							//!< ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒæœ‰åŠ¹
 
-	static TCHAR *logBuffer;								//!< ƒfƒoƒbƒOƒƒO•¶Žš—ñƒtƒH[ƒ}ƒbƒg—pƒoƒbƒtƒ@
-	std::stack<const TCHAR*> m_systag;					//!< —áŠO”­¶Žž‚É“f‚«o‚·ƒVƒXƒeƒ€ƒ^ƒO
-	std::stack<const TCHAR*> m_dlltag;					//!< —áŠO”­¶Žž‚É“f‚«o‚·DLLƒ^ƒO
+	static TCHAR *logBuffer;								//!< ãƒ‡ãƒãƒƒã‚°ãƒ­ã‚°æ–‡å­—åˆ—ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆç”¨ãƒãƒƒãƒ•ã‚¡
+	std::stack<const TCHAR*> m_systag;					//!< ä¾‹å¤–ç™ºç”Ÿæ™‚ã«åãå‡ºã™ã‚·ã‚¹ãƒ†ãƒ ã‚¿ã‚°
+	std::stack<const TCHAR*> m_dlltag;					//!< ä¾‹å¤–ç™ºç”Ÿæ™‚ã«åãå‡ºã™DLLã‚¿ã‚°
 };
 
 

@@ -1,4 +1,4 @@
-#include <windows.h>
+ï»¿#include <windows.h>
 #include <stdio.h>
 
 //#define LPDIRECT3DTEXTURE8 LPVOID
@@ -18,27 +18,27 @@ extern DI_FUNCTIONS_O *funco;
 extern DI_FUNCTIONS_D *funcd;
 
 //*********************************************************
-//@@’Êí“®ì
+//ã€€ã€€é€šå¸¸å‹•ä½œ
 //*********************************************************
 
-void CCharacter::act_neutral()//ƒjƒ…[ƒgƒ‰ƒ‹
+void CCharacter::act_neutral()//ãƒ‹ãƒ¥ãƒ¼ãƒˆãƒ©ãƒ«
 {
 	pdat->cnow = CELL_NEUTRAL;
 }
 
-void CCharacter::act_crouch()//‚µ‚á‚ª‚İ
+void CCharacter::act_crouch()//ã—ã‚ƒãŒã¿
 {
 	pdat->cnow = CELL_CROUCH;
 }
 
-void CCharacter::act_rakka()//—‰º
+void CCharacter::act_rakka()//è½ä¸‹
 {
 	JiyuuRakka(ACTID_NEUTRAL,TRUE);
 
 	pdat->cnow = CELL_JAMP1;
 }
 
-void CCharacter::act_tojyo()//“oê
+void CCharacter::act_tojyo()//ç™»å ´
 {
 	if(pdat->counter==0)PlayMySound(4);
 
@@ -48,13 +48,13 @@ void CCharacter::act_tojyo()//“oê
 	else if(pdat->counter < 68)pdat->cnow=CELL_TOJO4;
 	else if(pdat->counter < 76)pdat->cnow=CELL_TOJO5;
 	else if(pdat->counter < 84)pdat->cnow=CELL_TOJO6;
-	else{//s“®‚ÌÅŒã‚É‚Í‚±‚ê‚ğs‚¤‚±‚Æ
+	else{//è¡Œå‹•ã®æœ€å¾Œã«ã¯ã“ã‚Œã‚’è¡Œã†ã“ã¨
 		pdat->aid = ACTID_NEUTRAL;
 		(*funcs->msg2system)(pdat->id,MSGOBJ2SYS_TOJYOEND,0);
 	}
 }
 
-void CCharacter::act_win()//Ÿ—˜
+void CCharacter::act_win()//å‹åˆ©
 {
 	if(pdat->counter==0){
 		PlayMySound(5);
@@ -81,25 +81,25 @@ void CCharacter::act_win()//Ÿ—˜
 		funcs->msg2system(pdat->id,MSGOBJ2SYS_WINPOSEEND,0);
 }
 
-void CCharacter::act_walkf()//‘Oi
+void CCharacter::act_walkf()//å‰é€²
 {
 	pdat->cnow = CELL_WALK1+(pdat->counter/3)%2;
 	movex(4);
 }
 
-void CCharacter::act_walkb()//Œã‘Ş
+void CCharacter::act_walkb()//å¾Œé€€
 {
 	pdat->cnow = CELL_WALKB1+(pdat->counter/3)%2;
 	movex(-4);
 }
 
-void CCharacter::act_jamps()//ƒWƒƒƒ“ƒv—\”õ“®ì
+void CCharacter::act_jamps()//ã‚¸ãƒ£ãƒ³ãƒ—äºˆå‚™å‹•ä½œ
 {	
 	if(pdat->counter >2)pdat->aid = ACTID_JAMPC;
 	pdat->cnow = CELL_JAMP;
 }
 
-void CCharacter::act_jampc()//‚’¼ƒWƒƒƒ“ƒv
+void CCharacter::act_jampc()//å‚ç›´ã‚¸ãƒ£ãƒ³ãƒ—
 {
 	if(pdat->counter == 0){pdat->vy=-20;pdat->vx=0;}
 	pdat->cnow = CELL_JAMP1;
@@ -107,7 +107,7 @@ void CCharacter::act_jampc()//‚’¼ƒWƒƒƒ“ƒv
 	JiyuuRakka(ACTID_NEUTRAL,TRUE);
 }
 
-void CCharacter::act_jampf()//‘OƒWƒƒƒ“ƒv
+void CCharacter::act_jampf()//å‰ã‚¸ãƒ£ãƒ³ãƒ—
 {
 	if(pdat->counter == 0){pdat->vy=-20;pdat->vx=6;}
 	pdat->cnow = CELL_JAMP1;
@@ -115,7 +115,7 @@ void CCharacter::act_jampf()//‘OƒWƒƒƒ“ƒv
 	JiyuuRakka(ACTID_NEUTRAL,TRUE);
 }
 
-void CCharacter::act_jampb()//ŒãƒWƒƒƒ“ƒv
+void CCharacter::act_jampb()//å¾Œã‚¸ãƒ£ãƒ³ãƒ—
 {
 	if(pdat->counter == 0){pdat->vy=-20;pdat->vx=-6;}
 
@@ -124,10 +124,10 @@ void CCharacter::act_jampb()//ŒãƒWƒƒƒ“ƒv
 }
 
 //*********************************************************
-//’Êí.UŒ‚
+//é€šå¸¸.æ”»æ’ƒ
 //*********************************************************
 
-void CCharacter::act_att_sa()//—§ã
+void CCharacter::act_att_sa()//ç«‹å¼±
 {
 	pdat->cnow = CELL_SA;
 	if(pdat->counter > 10){
@@ -137,7 +137,7 @@ void CCharacter::act_att_sa()//—§ã
 	if(pdat->counter == 1)StartAttack(ATTACKINFO_STAND_A);
 }
 
-void CCharacter::act_att_sb()//—§’†
+void CCharacter::act_att_sb()//ç«‹ä¸­
 {
 	if(pdat->counter == 1)StartAttack(ATTACKINFO_STAND_B);
 	if(pdat->counter < 19)movex(3);
@@ -151,7 +151,7 @@ void CCharacter::act_att_sb()//—§’†
 	}
 }
 
-void CCharacter::act_att_sc()//—§‹­
+void CCharacter::act_att_sc()//ç«‹å¼·
 {
 	if(pdat->counter < 4)pdat->cnow = CELL_SC1;
 	else if(pdat->counter < 8)pdat->cnow = CELL_SC2;
@@ -168,7 +168,7 @@ void CCharacter::act_att_sc()//—§‹­
 	if(pdat->counter ==12)StartAttack(ATTACKINFO_STAND_C2);
 }
 
-void CCharacter::act_att_ca()//‹üã
+void CCharacter::act_att_ca()//å±ˆå¼±
 {
 	if(pdat->counter == 1)StartAttack(ATTACKINFO_CROUCH_A);
 
@@ -178,7 +178,7 @@ void CCharacter::act_att_ca()//‹üã
 	}
 }
 
-void CCharacter::act_att_cb()//‹ü’†
+void CCharacter::act_att_cb()//å±ˆä¸­
 {
 	if(pdat->counter == 1)StartAttack(ATTACKINFO_CROUCH_C);
 
@@ -193,7 +193,7 @@ void CCharacter::act_att_cb()//‹ü’†
 	}
 }
 
-void CCharacter::act_att_cc()//‹ü‹­
+void CCharacter::act_att_cc()//å±ˆå¼·
 {
 	if(pdat->counter == 10)StartAttack(ATTACKINFO_CROUCH_C);
 	
@@ -208,7 +208,7 @@ void CCharacter::act_att_cc()//‹ü‹­
 	}
 }
 
-void CCharacter::act_att_ja()//”òã
+void CCharacter::act_att_ja()//é£›å¼±
 {
 	if(pdat->counter == 1)StartAttack(ATTACKINFO_JAMP_A);
 	
@@ -218,7 +218,7 @@ void CCharacter::act_att_ja()//”òã
 	JiyuuRakka(ACTID_NEUTRAL,TRUE);
 }
 
-void CCharacter::act_att_jb()//”ò’†
+void CCharacter::act_att_jb()//é£›ä¸­
 {
 	if(pdat->counter == 1)StartAttack(ATTACKINFO_JAMP_B);
 
@@ -235,7 +235,7 @@ void CCharacter::act_att_jb()//”ò’†
 	JiyuuRakka(ACTID_NEUTRAL,TRUE);
 }
 
-void CCharacter::act_att_jc()//”ò‹­
+void CCharacter::act_att_jc()//é£›å¼·
 {
 	if(pdat->counter == 1)StartAttack(ATTACKINFO_JAMP_C);
 
@@ -247,35 +247,35 @@ void CCharacter::act_att_jc()//”ò‹­
 
 
 //*********************************************************
-//@‚»‚Ì‘¼
+//ã€€ãã®ä»–
 //*********************************************************
 void CCharacter::act_taiki()
 {
 	if(pdat->counter<2)pdat->cnow=CELL_JAMP1;
 	else pdat->cnow= CELL_JAMP1;
-	CCharacterBase::act_taiki();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
+	CCharacterBase::act_taiki();//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åŸºæœ¬ã‚¯ãƒ©ã‚¹ã®å‹•ä½œã‚’æµç”¨
 }
 
 void CCharacter::act_koutai_out()
 {
 	if(pdat->counter<2)pdat->cnow=CELL_JAMP1;
 	else pdat->cnow= CELL_JAMP1;
-	CCharacterBase::act_koutai_out();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
+	CCharacterBase::act_koutai_out();//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åŸºæœ¬ã‚¯ãƒ©ã‚¹ã®å‹•ä½œã‚’æµç”¨
 }
 
 void CCharacter::act_koutai_in()
 {
 	pdat->cnow= CELL_JAMP1;
-	CCharacterBase::act_koutai_in();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
+	CCharacterBase::act_koutai_in();//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åŸºæœ¬ã‚¯ãƒ©ã‚¹ã®å‹•ä½œã‚’æµç”¨
 }
 
 void CCharacter::act_koutai()
 {
 	pdat->cnow= CELL_JAMP1;
-	CCharacterBase::act_koutai();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
+	CCharacterBase::act_koutai();//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åŸºæœ¬ã‚¯ãƒ©ã‚¹ã®å‹•ä½œã‚’æµç”¨
 }
 
 void CCharacter::act_koutai2()
 {
-	CCharacterBase::act_koutai2();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
+	CCharacterBase::act_koutai2();//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åŸºæœ¬ã‚¯ãƒ©ã‚¹ã®å‹•ä½œã‚’æµç”¨
 }

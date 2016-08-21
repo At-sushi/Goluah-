@@ -1,4 +1,4 @@
-/*=====================================================================================
+ï»¿/*=====================================================================================
 
 Goluah!! Copyright (C) 2001-2004 aki, 2004-2016 At-sushi, 2014-2016 logger
 
@@ -12,7 +12,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 /*==============================================================
 
-	”ò‚Ñ“¹‹ï
+	é£›ã³é“å…·
 
 ================================================================*/
 #include "character.h"
@@ -24,7 +24,7 @@ void CCharacter::InitBullets()
 	int nakcr[17],nakcd[2],//windcr[4],windcd[2],
 		folacr[3],folbcr[2],folccr[4],foldcr[2],folecr[5],folcd[2];
 
-	//‹ŒCCharacterƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Å‚â‚Á‚Ä‚½‚Ì
+	//æ—§CCharacterã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã§ã‚„ã£ã¦ãŸã®
 	nak1.muki=pdat->muki;
 	nak1.x	=pdat->x-100;
 	nak1.y	=0;
@@ -103,7 +103,7 @@ void CCharacter::InitBullets()
 
 	folcd[0] = folcd[1] = -1;
 
-	//‚­‚é‚­‚é
+	//ãã‚‹ãã‚‹
 	fola[0].cid	=pdat->id;
 	fola[0].type	=BULLETA_VSHUMAN | BULLETA_VSBULLET | BULLETA_DONOTDIE;
 	folacr[0]=CELL_FOLLOW11;
@@ -118,7 +118,7 @@ void CCharacter::InitBullets()
 
 	fola[1] = fola[2] = fola[0];
 
-	//ƒoƒCƒNiHj
+	//ãƒã‚¤ã‚¯ï¼ˆï¼Ÿï¼‰
 	folb[0].cid	=pdat->id;
 	folb[0].type	=BULLETA_VSHUMAN | BULLETA_DONOTDIE;
 	folbcr[0]=CELL_FOLLOW2;
@@ -132,7 +132,7 @@ void CCharacter::InitBullets()
 
 	folb[1] = folb[2] = folb[0];
 
-	//‘–‚é
+	//èµ°ã‚‹
 	folc[0].cid	=pdat->id;
 	folc[0].type	=BULLETA_VSHUMAN | BULLETA_DONOTDIE;
 	folccr[0]=CELL_FOLLOW31;
@@ -148,7 +148,7 @@ void CCharacter::InitBullets()
 
 	folc[1] = folc[2] = folc[0];
 
-	//½Ş»°
+	//ï½½ï¾ï½»ï½°
 	fold[0].cid	=pdat->id;
 	fold[0].type	=BULLETA_VSHUMAN | BULLETA_VSBULLET | BULLETA_DONOTDIE;
 	foldcr[0]=CELL_FOLLOW4;
@@ -162,7 +162,7 @@ void CCharacter::InitBullets()
 
 	fold[1] = fold[2] = fold[0];
 
-	//•à‚­
+	//æ­©ã
 	fole[0].cid	=pdat->id;
 	fole[0].type	=BULLETA_VSHUMAN | BULLETA_DONOTDIE;
 	folecr[0]=CELL_FOLLOW51;
@@ -297,7 +297,7 @@ BOOL CCharacter::EscapeOK()
 
 
 /***************************************************************
-	ƒ_ƒbƒVƒ…•—ƒGƒtƒFƒNƒg
+	ãƒ€ãƒƒã‚·ãƒ¥æ™‚é¢¨ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 ****************************************************************/
 
 CDashWind::CDashWind(CCharacter *parent) : CBulletBase(parent)
@@ -325,7 +325,7 @@ void CDashWind::act_bomb()
 
 
 /***************************************************************
-	ƒn[ƒg
+	ãƒãƒ¼ãƒˆ
 ****************************************************************/
 
 CHeart::CHeart(CCharacter *parent) : CBulletBase(parent)

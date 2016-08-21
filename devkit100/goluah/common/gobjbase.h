@@ -1,4 +1,4 @@
-/*=====================================================================================
+﻿/*=====================================================================================
 
 Goluah!! Copyright (C) 2001-2004 aki, 2004-2016 At-sushi, 2014-2016 logger
 
@@ -13,40 +13,40 @@ You should have received a copy of the GNU General Public License along with thi
 /*!=======================================================================================
 
 	@file
-	@brief Goluah ��{�N���X�Q
+	@brief Goluah 基本クラス群
 
-	CCharacterInfo	�@�L�����N�^�[���ݒ�N���X
-	CGoluahObject	�@Goluah�I�u�W�F�N�g��{�N���X
-	CCharacterBase	�@�L�����N�^�[�I�u�W�F�N�g��{�N���X
-	CBulletBase		�@��ѓ����{�N���X
-	CClassicalBullet�@���򓹋�\���̌݊���ѓ���N���X
-	CBulletList		�@�򓹋�X�g�N���X
+	CCharacterInfo	　キャラクター情報設定クラス
+	CGoluahObject	　Goluahオブジェクト基本クラス
+	CCharacterBase	　キャラクターオブジェクト基本クラス
+	CBulletBase		　飛び道具基本クラス
+	CClassicalBullet　旧飛道具構造体互換飛び道具クラス
+	CBulletList		　飛道具リストクラス
 
 =========================================================================================*/
 #pragma once
 
 /*! 
 *	@defgroup GObjectBase
-*	@brief Goluah �L�����N�^/�X�e�[�WDLL�����̊�b�N���X�Q
+*	@brief Goluah キャラクタ/ステージDLL向けの基礎クラス群
 */
 
-#include "gobject.h"//GOLUAH DLL�C���^�[�t�F�C�X��`
+#include "gobject.h"//GOLUAH DLLインターフェイス定義
 
-//�r���h�ݒ�
+//ビルド設定
 
 #ifdef COMMONDLL_C100_EXPORTS
-	//����DLL���r���h����ꍇ
+	//共通DLLをビルドする場合
 #ifndef USE_DIRECT3D_DIRECT
 #error
 #endif
 #define RUNTIME_EXPORT __declspec(dllexport)
 #else
-	//����DLL�𗘗p����L�����N�^DLL���쐬����ꍇ
+	//共通DLLを利用するキャラクタDLLを作成する場合
 #ifdef USE_GOLUAH_COMMON_DLL
 #pragma comment(lib, "goluah_c100.lib")
 #define RUNTIME_BUILD_OFF
 #else
-	//����DLL�𗘗p���Ȃ��L�����N�^DLL���쐬����ꍇ
+	//共通DLLを利用しないキャラクタDLLを作成する場合
 #endif
 #define RUNTIME_EXPORT
 #endif // COMMONDLL_C100_EXPORTS
@@ -71,26 +71,26 @@ struct GCD_CELL2_070 : public GCD_CELL2 {};
 extern void RUNTIME_EXPORT DebugPrintf(char* fmt,...);
 extern void RUNTIME_EXPORT DebugPrintfDummy(char* fmt,...);
 
-//! �T�E���h�ێ��p�̍\����
+//! サウンド保持用の構造体
 /*typedef struct tagMYSOUND
 {
-	DWORD number; //!< �T�E���h�ԍ�
-	LPVOID sound; //!< �T�E���h�ւ̃|�C���^
+	DWORD number; //!< サウンド番号
+	LPVOID sound; //!< サウンドへのポインタ
 } MYSOUND, *LPMYSOUND;*/
 
-// �Ȃ����������ɂ��o�[�W�����U���Ă܂��B
+// なぜかこっちにもバージョン振ってます。
 #define DTB_VERSION 1100
 #define STB_VERSION 1100
 
 /********************************************************
-  �L�����N�^�[���ݒ�N���X
-  �l�b�g�Ή��F
-	�R���X�g���N�^�U�Ԗڂ̈�����TRUE�ɐݒ肵�Ă��������B
-�@********************************************************/
+  キャラクター情報設定クラス
+  ネット対応：
+	コンストラクタ６番目の引数をTRUEに設定してください。
+　********************************************************/
 class RUNTIME_EXPORT CCharacterInfo  
 {
 public:
-	CCharacterInfo(LPCTSTR CharName = "����������", DWORD CdiVersion = CDI_VERSION, CHARACTER_LOAD_OPTION* Options = NULL,
+	CCharacterInfo(LPCTSTR CharName = "名無しさん", DWORD CdiVersion = CDI_VERSION, CHARACTER_LOAD_OPTION* Options = NULL,
 		int num_Options = 0, DWORD max_option_point = 0, BOOL isNetworkable = FALSE, DWORD DtbVersion = DTB_VERSION);
 	virtual ~CCharacterInfo();
 
@@ -109,13 +109,13 @@ private:
 	BOOL m_Error;
 };
 
-/*! @brief �L�����N�^�[�ݒ�}�N��
-*	@param cinfo �K�v�ȏ����i�[����CCharacterInfo�N���X�̃C���X�^���X
-*	@param Type ���C���L�����N�^�[�Ƃ��Đ�������N���X�̌^
+/*! @brief キャラクター設定マクロ
+*	@param cinfo 必要な情報を格納したCCharacterInfoクラスのインスタンス
+*	@param Type メインキャラクターとして生成するクラスの型
 *	@ingroup GObjectBase
 *
-*	DLL�́A���̃}�N������������֐����O���ɃG�N�X�|�[�g���Ȃ���΂Ȃ�Ȃ��B
-*	�K�؂ȃ��W���[����`�t�@�C�����g�p���邱�ƁB
+*	DLLは、このマクロが生成する関数を外部にエクスポートしなければならない。
+*	適切なモジュール定義ファイルを使用すること。
 */
 #define SET_CHARACTERINFO(cinfo, Type) \
 extern "C" BOOL CharacterInfo(LPVOID info) {\
@@ -129,7 +129,7 @@ extern "C" DWORD CreateCharacter(PVOID info) {\
 }
 
 /*--------------------------------------------------------------
-	Goluah�I�u�W�F�N�g��{�N���X
+	Goluahオブジェクト基本クラス
 ----------------------------------------------------------------*/
 class RUNTIME_EXPORT CGoluahObject
 {
@@ -145,7 +145,7 @@ public:
 	DWORD GetObjectID();
 	GOBJECT* GetGObject();
 	char* GetCharDir() { return g_chardir; }
-	char* GetDLLPath() { return g_chardir; }//�X�e�[�W�̏ꍇ�Ȃ񂾂�����킵���̂�
+	char* GetDLLPath() { return g_chardir; }//ステージの場合なんだか紛らわしいので
 	operator GOBJECT*() { return pdat; }
 
 	static void* operator new(size_t size);
@@ -176,7 +176,7 @@ protected:
 
 	virtual void ChangeAction(DWORD actid);
 
-	// �V�X�e���֘A�̊֐�
+	// システム関連の関数
 	static DWORD GetKey(DWORD keyinput, DWORD interval);
 	static int SeekKey(DWORD keyinput, int offset, int delay, DWORD keystate);
 	static void SetKatiSerif(DWORD tid, char* serif);
@@ -187,7 +187,7 @@ protected:
 	static void KillMySound(LPVOID psound);
 	DWORD Message2System(DWORD mes, DWORD prm);
 	static char* GetEnemyName(DWORD tid);
-	static char* GetCharacterName(DWORD oid);				//�I�u�W�F�N�g���疼�O����
+	static char* GetCharacterName(DWORD oid);				//オブジェクトから名前所得
 	static double GetDisplayCenter_X();
 	static double GetDisplayCenter_Y();
 	static DWORD GetTeamNum();
@@ -208,25 +208,25 @@ protected:
 	static int GetGameSpeed();
 	static DWORD GetMaxWin();
 
-	// �I�u�W�F�N�g�֘A�̊֐�
-	BOOL   ObjCatch(DWORD eid,DWORD msg_nage);				//�����Ƃ��ő��������
-	static GOBJECT* GetInfo(DWORD oid);						//���Q�b�c
-	void   AddDamage(DWORD eid,int x,int y);				//(��ɓ����̂Ƃ�)�����I�Ƀ_���[�W��^����
-	void   ActIDChanged();									//�s��ID���ω������Ƃ��̏����𖾎��I�ɍs��
-	static GOBJECT*  GetActiveCharacter(DWORD tid);			//���݃A�N�e�B�u�ȃL�����N�^�[�̏��
-		   GOBJECT*  GetActiveEnemy();						//���݃A�N�e�B�u�ȓG�L�����N�^�[�̏��
-	void   Suicide();										//�I�u�W�F�N�g����
-	static DWORD  GetMaai_H(DWORD oid, DWORD eoid);			//�ԍ�����get(����)
-	static DWORD  GetMaai_V(DWORD oid, DWORD eoid);			//�ԍ�����get(����)
-	       DWORD  GetMaaiFromMe_H(DWORD eoid)				//!��������̊ԍ�����get(����)
+	// オブジェクト関連の関数
+	BOOL   ObjCatch(DWORD eid,DWORD msg_nage);				//投げとかで相手をつかむ
+	static GOBJECT* GetInfo(DWORD oid);						//情報ゲッツ
+	void   AddDamage(DWORD eid,int x,int y);				//(主に投げのとき)強制的にダメージを与える
+	void   ActIDChanged();									//行動IDが変化したときの処理を明示的に行う
+	static GOBJECT*  GetActiveCharacter(DWORD tid);			//現在アクティブなキャラクターの情報
+		   GOBJECT*  GetActiveEnemy();						//現在アクティブな敵キャラクターの情報
+	void   Suicide();										//オブジェクト消滅
+	static DWORD  GetMaai_H(DWORD oid, DWORD eoid);			//間合いをget(水平)
+	static DWORD  GetMaai_V(DWORD oid, DWORD eoid);			//間合いをget(垂直)
+	       DWORD  GetMaaiFromMe_H(DWORD eoid)				//!自分からの間合いをget(水平)
 				{ return GetMaai_H(GetObjectID(), eoid); }
-	       DWORD  GetMaaiFromMe_V(DWORD eoid)				//!��������̊ԍ�����get(����)
+	       DWORD  GetMaaiFromMe_V(DWORD eoid)				//!自分からの間合いをget(垂直)
 				{ return GetMaai_V(GetObjectID(), eoid); }
-	static DWORD  GetCharacterID(DWORD tid,DWORD index);	//�L�����N�^�[�̃I�u�W�F�N�gID
-	       DWORD  GetComLevel();							//COM���x���擾
-	       void   SetComReach(DWORD idx,int length);		//COM���[�`�ݒ�
-	       void   SetComAct(DWORD aid,int delay);			//COM�s���ݒ�
-	       void   ComDelay(int delay);						//COM�s���}��
+	static DWORD  GetCharacterID(DWORD tid,DWORD index);	//キャラクターのオブジェクトID
+	       DWORD  GetComLevel();							//COMレベル取得
+	       void   SetComReach(DWORD idx,int length);		//COMリーチ設定
+	       void   SetComAct(DWORD aid,int delay);			//COM行動設定
+	       void   ComDelay(int delay);						//COM行動抑制
 		   BOOL	  IsLocal();
 		   BOOL   IsRemote(){return !IsLocal();}
    	static void dact_damages1(GOBJECT *p);
@@ -263,31 +263,31 @@ protected:
 	static void dact_tatakituke2a(GOBJECT *p);
 	static void dact_tatakituke2b(GOBJECT *p);
 
-	       void   SetComRange(DWORD idx);					//COM�����W�ݒ�
-	static DWORD  GetKeyInput(DWORD oid);					//�I�u�W�F�N�g����L�[ID����
-	static DWORD GetHitCount(DWORD oid);				//!< �A���Z�q�b�g���i��R���{���j�擾
-	static DWORD GetSexyDamage(DWORD oid);				//!< �A���Z�~�σ_���[�W�i��R���{�_���[�W�j�擾
+	       void   SetComRange(DWORD idx);					//COMレンジ設定
+	static DWORD  GetKeyInput(DWORD oid);					//オブジェクトからキーID所得
+	static DWORD GetHitCount(DWORD oid);				//!< 連続技ヒット数（被コンボ数）取得
+	static DWORD GetSexyDamage(DWORD oid);				//!< 連続技蓄積ダメージ（被コンボダメージ）取得
 
 
-	//�@�`��֘A�̊֐��̒�`
-	static LPDIRECT3D9 GetD3D();							//IDirect3D* �̎擾
-	static LPDIRECT3DDEVICE9 GetD3DDevice();				//IDirect3DDevice* �̎擾
-	static void   LoadCellData(char* pathname,GCD_CELL2_070* pCells,GCD_RECT* pRects,GCD_HANTEI* pHanteis);//�Z���f�[�^�ǂݍ��݊֐��Bver0.90�ȍ~�ł͔񐄏�
-	static MYSURFACE* LoadBitmap(char* PathName,char* PalletFileName = NULL);			//�r�b�g�}�b�v�ǂݍ��݊֐�
-	static void   UnloadBitMap(MYSURFACE* Bitmap);			//�r�b�g�}�b�v��n���֐�
-	static void   CellDraw(MYSURFACE** pBmps,GCD_CELL2* cdat,GCD_RECT* rdat,		//�Z���`��֐�
+	//　描画関連の関数の定義
+	static LPDIRECT3D9 GetD3D();							//IDirect3D* の取得
+	static LPDIRECT3DDEVICE9 GetD3DDevice();				//IDirect3DDevice* の取得
+	static void   LoadCellData(char* pathname,GCD_CELL2_070* pCells,GCD_RECT* pRects,GCD_HANTEI* pHanteis);//セルデータ読み込み関数。ver0.90以降では非推奨
+	static MYSURFACE* LoadBitmap(char* PathName,char* PalletFileName = NULL);			//ビットマップ読み込み関数
+	static void   UnloadBitMap(MYSURFACE* Bitmap);			//ビットマップ後始末関数
+	static void   CellDraw(MYSURFACE** pBmps,GCD_CELL2* cdat,GCD_RECT* rdat,		//セル描画関数
 		DWORD cnum,int x,int y,float z,int Rotate,BOOL ReverseX,BOOL ReverseY,DWORD Color,float magx,float magy,BOOL shadowed = 1);
 	static void	  CellDraw(GOBJECT *objdat,BOOL shadowed = 1);
 	static void   CkBlt(MYSURFACE* pBmp,int x1,int y1,RECT bltrect,
 		double magx,double magy,BOOL revx,BOOL revy,float z,DWORD color);			//Blt2
 	static void   Blt3D(MYSURFACE* pBmp,RECT bltrect,MYRECT3D rect,DWORD color);	//Blt3
-	static void   SetTransform(BOOL BonVoyage);				//�ϊ��s��ݒ�
-	static void   SetBlend(DWORD type);						//�u�����h�̎d����ύX
-	static void   SetParentMatrix(LPD3DXMATRIX pMatrix,BOOL erase,LPD3DXMATRIX OldMatrix);	//�u�e�v�̕ϊ��s��ݒ�
-	static DWORD  CreateCellData(char* filename,GCD_CELL2 **cdat,GCD_RECT **rdat,GCD_HANTEI **hdat);//�Z���f�[�^�ǂݍ��݁Bver0.90�ȍ~�ł�LoadCellDat���炱����ɕύX����ׂ�
-	static void   DestroyCellData(GCD_CELL2 **cdat,GCD_RECT **rdat,GCD_HANTEI **hdat);		//CreateCellDat�Ő������ꂽ�o�b�t�@���N���A
-	static MYSURFACE* LoadImage(char* PathName, char* PalletFileName);	// �摜�ǂݍ��݊֐��APNG�Ή��ɔ����ǉ��B
-	static DWORD  CreateCellData2(char* filename,GCD_CELL2 **cdat,GCD_RECT **rdat,GCD_HANTEI **hdat);// �Z���f�[�^�ǂݍ��݁i�Q�j�A���k�`���Ή��ɔ����ǉ��B
+	static void   SetTransform(BOOL BonVoyage);				//変換行列設定
+	static void   SetBlend(DWORD type);						//ブレンドの仕方を変更
+	static void   SetParentMatrix(LPD3DXMATRIX pMatrix,BOOL erase,LPD3DXMATRIX OldMatrix);	//「親」の変換行列設定
+	static DWORD  CreateCellData(char* filename,GCD_CELL2 **cdat,GCD_RECT **rdat,GCD_HANTEI **hdat);//セルデータ読み込み。ver0.90以降ではLoadCellDatからこちらに変更するべき
+	static void   DestroyCellData(GCD_CELL2 **cdat,GCD_RECT **rdat,GCD_HANTEI **hdat);		//CreateCellDatで生成されたバッファをクリア
+	static MYSURFACE* LoadImage(char* PathName, char* PalletFileName);	// 画像読み込み関数、PNG対応に伴い追加。
+	static DWORD  CreateCellData2(char* filename,GCD_CELL2 **cdat,GCD_RECT **rdat,GCD_HANTEI **hdat);// セルデータ読み込み（２）、圧縮形式対応に伴い追加。
 
 protected:
 	float base_z;
@@ -304,30 +304,30 @@ inline DWORD CGoluahObject::GetObjectID(){return(oid);}
 inline GOBJECT* CGoluahObject::GetGObject(){return(pdat);}
 
 /*!
-*	@brief �I�u�W�F�N�g�쐬�}�N��
-*	@param pointer �쐬�����I�u�W�F�N�g�̃A�h���X���i�[����|�C���^
-*	@param obj �쐬����I�u�W�F�N�g�̃N���X��
+*	@brief オブジェクト作成マクロ
+*	@param pointer 作成したオブジェクトのアドレスを格納するポインタ
+*	@param obj 作成するオブジェクトのクラス名
 *	@ingroup GObjectBase
 *
-*	�I�u�W�F�N�g�������̐����}�N���ł��B
-*	�I�u�W�F�N�g�쐬�̑��A�G���[�����Ȃǂ������ōs���Ă���܂��B
+*	オブジェクト生成時の推奨マクロです。
+*	オブジェクト作成の他、エラー処理などを自動で行ってくれます。
 *
-*	���������R���X�g���N�^���Ăяo���ꍇ�A�N���X���Ɠ����ɐݒ肵�Ă��������B
+*	引数を持つコンストラクタを呼び出す場合、クラス名と同時に設定してください。
 */
 #define CREATE_GOBJ(pointer, obj)	{ pointer = new obj; if ( pointer && !pointer->GetGObject() )\
 										{ delete pointer; pointer = NULL; }\
 									}
 
 /*!
-*	@brief �G�t�F�N�g�p�I�u�W�F�N�g�쐬�}�N��
-*	@param obj �쐬����I�u�W�F�N�g�̃N���X��
+*	@brief エフェクト用オブジェクト作成マクロ
+*	@param obj 作成するオブジェクトのクラス名
 *	@ingroup GObjectBase
 *
-*	�G�t�F�N�g�I�u�W�F�N�g�������̐����}�N���ł��B
-*	�I�u�W�F�N�g�쐬�̑��A�G���[�����Ȃǂ������ōs���Ă���܂��B
-*	�����ō폜�����\���̂���N���X�Ȃ̂ŁA�|�C���^�ϐ��ւ̊i�[�͏o���܂���B
+*	エフェクトオブジェクト生成時の推奨マクロです。
+*	オブジェクト作成の他、エラー処理などを自動で行ってくれます。
+*	自動で削除される可能性のあるクラスなので、ポインタ変数への格納は出来ません。
 *
-*	���������R���X�g���N�^���Ăяo���ꍇ�A�N���X���Ɠ����ɐݒ肵�Ă��������B
+*	引数を持つコンストラクタを呼び出す場合、クラス名と同時に設定してください。
 */
 #define CREATE_GOBJ_FX(obj)			{ CGoluahObject* pointer = new obj; if ( pointer && !pointer->GetGObject() )\
 										{ delete pointer; }\
@@ -336,7 +336,7 @@ inline GOBJECT* CGoluahObject::GetGObject(){return(pdat);}
 
 /**********************************************************************
 
-�@�L�����N�^�[�I�u�W�F�N�g��{�N���X
+　キャラクターオブジェクト基本クラス
 
 ***********************************************************************/
 
@@ -349,74 +349,74 @@ public:
 
 	virtual ~CCharacterBase();
 	
-	virtual DWORD Message(DWORD msg,LPVOID pd,DWORD prm);//�K�v������΃I�[�o�[���C�h���܂�
+	virtual DWORD Message(DWORD msg,LPVOID pd,DWORD prm);//必要があればオーバーライドします
 	DWORD TouchA(ATTACKINFO *info,DWORD ta_eid);
 
 private:
-	void CCharacterBaseCreate();//���ꂼ���Create�ŋ��ʂ̏���������
+	void CCharacterBaseCreate();//それぞれのCreateで共通の初期化処理
 
 protected:
 
-	virtual DWORD Action();				//�ʏ� �K���I�[�o�[���C�h���܂�
-	virtual void PreAction();			//�ʏ� �I�[�o�[���C�h����K�v�͂���܂���
-	virtual void PostAction();			//�ʏ� �I�[�o�[���C�h����K�v�͂���܂���
-	virtual void Command();				//�ʏ� �I�[�o�[���C�h����K�v�͂���܂���
-	virtual DWORD CommandCOM(DWORD wid);//�ʏ� �I�[�o�[���C�h����K�v�͂���܂���
+	virtual DWORD Action();				//通常 必ずオーバーライドします
+	virtual void PreAction();			//通常 オーバーライドする必要はありません
+	virtual void PostAction();			//通常 オーバーライドする必要はありません
+	virtual void Command();				//通常 オーバーライドする必要はありません
+	virtual DWORD CommandCOM(DWORD wid);//通常 オーバーライドする必要はありません
 
-	//�������������B�K�v�ȕ������I�[�o�[���C�h���Ďg�p���܂�
-	virtual void InitParameters()=0;	//�I�v�V�����EHP���ݒ菈���B�ʏ�I�[�o�[���C�h���Ďg�p���܂�
-	virtual void InitAttackInfo();		//�U���͏��̏����� �ʏ�K���I�[�o�[���C�h���Ďg�p���܂�
-	virtual void InitWazInfo();			//�Z���̐ݒ� �ʏ�K���I�[�o�[���C�h���Ďg�p���܂�
-	virtual void InitBullets(){}		//�򓹋���������B�K�v������΃I�[�o�[���C�h���Ďg�p���܂�
+	//■初期化処理。必要な部分をオーバーライドして使用します
+	virtual void InitParameters()=0;	//オプション・HP等設定処理。通常オーバーライドして使用します
+	virtual void InitAttackInfo();		//攻撃力情報の初期化 通常必ずオーバーライドして使用します
+	virtual void InitWazInfo();			//技情報の設定 通常必ずオーバーライドして使用します
+	virtual void InitBullets(){}		//飛道具初期化処理。必要があればオーバーライドして使用します
 
-	virtual BOOL ChainCombo(DWORD chainid);//�`�F�[���R���{���� �K�v������΃I�[�o�[���C�h���܂�
-	virtual BOOL ChainCheck(DWORD chainid);//��L�̃`�F�b�N�̂ݔ�
+	virtual BOOL ChainCombo(DWORD chainid);//チェーンコンボ判定 必要があればオーバーライドします
+	virtual BOOL ChainCheck(DWORD chainid);//上記のチェックのみ版
 
 	DWORD GetKeyInput()		{ return keyinput; }
 
-	//���T�E���h�֌W
-	// ���O�ł��ꍇ�̓I�[�o�[���C�h���Ă�������
-	// �R���X�g���N�^�̈����œn����num�̂Ԃ񂾂� sound**.wav ���g�p���܂�
+	//■サウンド関係
+	// 自前でやる場合はオーバーライドしてください
+	// コンストラクタの引数で渡したnumのぶんだけ sound**.wav を使用します
 protected:
 	virtual void InitMySound(char* path_name=NULL,char* list_name=NULL);
 	virtual void ReleaseMySound();
 public:
 	virtual void PlayMySound(DWORD number);
 
-	//���r�b�g�}�b�v��CELL�̓ǂݍ���
-	//�@���O�ł��ꍇ�̓I�[�o�[���C�h���Ă�������
+	//■ビットマップとCELLの読み込み
+	//　自前でやる場合はオーバーライドしてください
 protected:
 	virtual void InitGCDandBMP();
 	virtual void ReleaseGCDandBMP();
 
-	//��CCharacterBase�N���X���s���s���̒�`
-	//�ʏ퓮��
-	virtual void act_neutral()=0;//�j���[�g����
-	virtual void act_crouch()=0;//���Ⴊ��
-	virtual void act_rakka()=0;//����
-	virtual void act_tojyo()=0;//�o��
-	virtual void act_win()=0;//����
-	virtual void act_timeoverlose();//�^�C���I�[�o�[
-	virtual void act_walkf()=0;//�O�i
-	virtual void act_walkb()=0;//���
-	virtual void act_jamps()=0;//�W�����v�\������
-	virtual void act_jampc()=0;//�����W�����v
-	virtual void act_jampf()=0;//�O�W�����v
-	virtual void act_jampb()=0;//��W�����v
-	virtual void act_rakka2();//����
-	//virtual void act_win2_in();//���Ԃ������@��ʊO������ł���
-	//virtual void act_win2_pose();//���Ԃ������@�|�[�Y
-	//�ʏ�.�U��
-	virtual void act_att_sa()=0;//����
-	virtual void act_att_sb()=0;//����
-	virtual void act_att_sc()=0;//����
-	virtual void act_att_ca()=0;//����
-	virtual void act_att_cb()=0;//����
-	virtual void act_att_cc()=0;//����
-	virtual void act_att_ja()=0;//���
-	virtual void act_att_jb()=0;//��
-	virtual void act_att_jc()=0;//��
-	//���̑�
+	//■CCharacterBaseクラスが行う行動の定義
+	//通常動作
+	virtual void act_neutral()=0;//ニュートラル
+	virtual void act_crouch()=0;//しゃがみ
+	virtual void act_rakka()=0;//落下
+	virtual void act_tojyo()=0;//登場
+	virtual void act_win()=0;//勝利
+	virtual void act_timeoverlose();//タイムオーバー
+	virtual void act_walkf()=0;//前進
+	virtual void act_walkb()=0;//後退
+	virtual void act_jamps()=0;//ジャンプ予備動作
+	virtual void act_jampc()=0;//垂直ジャンプ
+	virtual void act_jampf()=0;//前ジャンプ
+	virtual void act_jampb()=0;//後ジャンプ
+	virtual void act_rakka2();//落下
+	//virtual void act_win2_in();//仲間が勝利　画面外から飛んでくる
+	//virtual void act_win2_pose();//仲間が勝利　ポーズ
+	//通常.攻撃
+	virtual void act_att_sa()=0;//立弱
+	virtual void act_att_sb()=0;//立中
+	virtual void act_att_sc()=0;//立強
+	virtual void act_att_ca()=0;//屈弱
+	virtual void act_att_cb()=0;//屈中
+	virtual void act_att_cc()=0;//屈強
+	virtual void act_att_ja()=0;//飛弱
+	virtual void act_att_jb()=0;//飛中
+	virtual void act_att_jc()=0;//飛強
+	//その他
 	virtual void act_taiki();
 	virtual void act_taikicyu();
 	virtual void act_koutai_out();
@@ -425,21 +425,21 @@ protected:
 	virtual void act_koutai2();
 	virtual void act_strikercomeon();
 
-	// �R�}���h����B�ʏ�I�[�o�[���C�h���܂�
-	virtual BOOL Command_Hissatu(DWORD keyinfo);			//�K�E�Z�R�}���h����
-	virtual BOOL Command_Normal(DWORD keyinfo);				//��{����
-	virtual BOOL Command_OnSystem(DWORD keyinfo);			//�V�X�e����`���쒆
-	virtual BOOL Command_OnHissatuAttacking(DWORD keyinfo);	//�K�E�Z��
-	virtual BOOL Command_OnAttacking(DWORD keyinfo);		//�U�����쒆
-	virtual BOOL Command_OnNormal(DWORD keyinfo);			//��{���쒆
+	// コマンド判定。通常オーバーライドします
+	virtual BOOL Command_Hissatu(DWORD keyinfo);			//必殺技コマンド判定
+	virtual BOOL Command_Normal(DWORD keyinfo);				//基本動作
+	virtual BOOL Command_OnSystem(DWORD keyinfo);			//システム定義動作中
+	virtual BOOL Command_OnHissatuAttacking(DWORD keyinfo);	//必殺技中
+	virtual BOOL Command_OnAttacking(DWORD keyinfo);		//攻撃動作中
+	virtual BOOL Command_OnNormal(DWORD keyinfo);			//基本動作中
 
-	// �R���s���[�^�R�}���h����B�K�v������΃I�[�o�[���C�h���܂�
-	virtual DWORD CmdCom_OnSystem(DWORD wid);				//�V�X�e����`���쒆
-	virtual DWORD CmdCom_OnHissatuAttacking(DWORD wid);		//�K�E�Z��
-	virtual DWORD CmdCom_OnKucyu(DWORD wid);				//�󒆓��쒆
-	virtual DWORD CmdCom_OnNormal(DWORD wid);				//��{���쒆
+	// コンピュータコマンド判定。必要があればオーバーライドします
+	virtual DWORD CmdCom_OnSystem(DWORD wid);				//システム定義動作中
+	virtual DWORD CmdCom_OnHissatuAttacking(DWORD wid);		//必殺技中
+	virtual DWORD CmdCom_OnKucyu(DWORD wid);				//空中動作中
+	virtual DWORD CmdCom_OnNormal(DWORD wid);				//基本動作中
 
-	//���o�[�R�}���h����֐�
+	//レバーコマンド判定関数
 	BOOL com236(int dt);
 	BOOL com623(int dt);
 	BOOL com214(int dt);
@@ -464,35 +464,35 @@ protected:
 	BOOL com2486(int dt);
 	BOOL com6248(int dt);
 	BOOL com8624(int dt);
-	//COM���x������
+	//COMレベル判定
 	BOOL ComLevelCk(UINT level);
 
-	//���̑�����
-	//�ʏ�A�I�[�o�[���C�h����K�v�͂���܂���
-	virtual BOOL Furimuki();		//�G�̂ق��ɐU�������������܂�
-	virtual void ZFront();			//z���W����O���Ɉړ����܂�
-	virtual void ZBack();			//z���W�������Ɉړ����܂�
+	//その他操作
+	//通常、オーバーライドする必要はありません
+	virtual BOOL Furimuki();		//敵のほうに振り向く動作をします
+	virtual void ZFront();			//z座標を手前側に移動します
+	virtual void ZBack();			//z座標を奥側に移動します
 	virtual void JiyuuRakka(double acc_g,BOOL cyakuchi=FALSE,DWORD toaid=ACTID_NEUTRAL);
-	virtual void CyakuchiHantei(DWORD toaid=ACTID_NEUTRAL);//���n�̔���
+	virtual void CyakuchiHantei(DWORD toaid=ACTID_NEUTRAL);//着地の判定
 	virtual void LoadAndSetKatiSerif(char* filename=NULL);
-	BOOL NageHantei(DWORD maai);	//�����̊ԍ�������
-	void AddPowerGauge(double dp);	//�p���[�Q�[�W�����i���/�����`�F�b�N���j
+	BOOL NageHantei(DWORD maai);	//投げの間合い判定
+	void AddPowerGauge(double dp);	//パワーゲージ増加（上限/下限チェックつき）
 	DWORD GetKey(DWORD interval)	{ return CGoluahObject::GetKey(keyinput, interval); }
 	int SeekKey(int offset, int delay, DWORD keystate);
 
-	//���擾�n
+	//情報取得系
 	BOOL IsCom()		{return (pdat->objtype&GOBJFLG_COMPUTER) ? TRUE : FALSE;}
 	BOOL IsLocalCom()	{ return (IsCom() && IsLocal()); }
 
 protected:
-	//�e�퓮��ݒ�
-	BOOL chainComboEnabled;		//�`�F�[���R���{��L���ɂ��邩�ǂ���
-	DWORD chainlist;			//�`�F�[���R���{�E���łɏo�����Z��ۑ�����ϐ�
-	float front_z,back_z;		//ZFront/Back���\�b�h�Ŏw�肳���Z���W
-	BOOL doStriker;				//�x���U������炩�����ǂ���
-	WAZAINFO waz;				//�Z���\����
-	DWORD pal_number;			//�V�X�e������w�肳�ꂽ�p���b�g�ԍ�
-	CCharacterBase *parent_char;//�u�e�v�L�����N�^�[
+	//各種動作設定
+	BOOL chainComboEnabled;		//チェーンコンボを有効にするかどうか
+	DWORD chainlist;			//チェーンコンボ・すでに出した技を保存する変数
+	float front_z,back_z;		//ZFront/Backメソッドで指定されるZ座標
+	BOOL doStriker;				//支援攻撃をやらかすかどうか
+	WAZAINFO waz;				//技情報構造体
+	DWORD pal_number;			//システムから指定されたパレット番号
+	CCharacterBase *parent_char;//「親」キャラクター
 	BOOL isSuperArmer;
 	BOOL isAutoGuard;
 	DWORD option_flags;
@@ -518,18 +518,18 @@ inline int CCharacterBase::SeekKey(int offset, int delay, DWORD keystate) {
 	return CGoluahObject::SeekKey(keyinput, offset, delay, keystate);
 }
 
-// �h���N���X�̍s��ID�́A���̃t���O���������Ȃ��悤�ɒ�`���邱�Ɓi���ʂ��Ȃ����ǁj
+// 派生クラスの行動IDは、このフラグが競合しないように定義すること（普通しないけど）
 #define ACTID_CHARACTERBASE (0x8000)
 
-#define ACTID_WALKF		(ACTID_CHARACTERBASE | 0x0001)//�O����
-#define ACTID_WALKB		(ACTID_CHARACTERBASE | 0x0002)//������
-#define ACTID_JAMPS		(ACTID_CHARACTERBASE | 0x0003)//�W�����v�\������
+#define ACTID_WALKF		(ACTID_CHARACTERBASE | 0x0001)//前歩き
+#define ACTID_WALKB		(ACTID_CHARACTERBASE | 0x0002)//後ろ歩き
+#define ACTID_JAMPS		(ACTID_CHARACTERBASE | 0x0003)//ジャンプ予備動作
 #define ACTID_JAMPC		(ACTID_CHARACTERBASE | ACTID_KUCYU | 0x0004)
 #define ACTID_JAMPF		(ACTID_CHARACTERBASE | ACTID_KUCYU | 0x0005)
 #define ACTID_JAMPB		(ACTID_CHARACTERBASE | ACTID_KUCYU | 0x0006)
 #define ACTID_RAKKA2	(ACTID_CHARACTERBASE | ACTID_KUCYU | 0x0007)
 
-#define ACTID_STRIKERCOMEON	(ACTID_CHARACTERBASE | 0x0008)//�����[
+#define ACTID_STRIKERCOMEON	(ACTID_CHARACTERBASE | 0x0008)//いけー
 
 #define ACTID_ATT_SA	(ACTID_CHARACTERBASE | ACTID_ATTACK | 0x0009)
 #define ACTID_ATT_SB	(ACTID_CHARACTERBASE | ACTID_ATTACK | 0x000A)
@@ -543,12 +543,12 @@ inline int CCharacterBase::SeekKey(int offset, int delay, DWORD keystate) {
 #define ACTID_ATT_JB	(ACTID_CHARACTERBASE | ACTID_ATTACK | ACTID_KUCYU | 0x0010)
 #define ACTID_ATT_JC	(ACTID_CHARACTERBASE | ACTID_ATTACK | ACTID_KUCYU | 0x0011)
 
-#define ACTID_KOUTAIOUT	(ACTID_CHARACTERBASE | ACTID_INOUT | 0x0012)//���B��ʊO�ɔ��ł��B
-#define ACTID_KOUTAIIN	(ACTID_CHARACTERBASE | ACTID_INOUT | 0x0013)//���B��ʓ��ɔ��ł���
-#define ACTID_TAIKI		(ACTID_CHARACTERBASE | ACTID_INOUT | 0x0014)//��ʊO�ɔ��ł��đҋ@
-#define ACTID_KOUTAI	(ACTID_CHARACTERBASE | ACTID_INOUT | 0x0015)//��ʊO������ł���
-#define ACTID_TAIKICYU	(ACTID_CHARACTERBASE | ACTID_INOUT | 0x0016)//�ҋ@����\
-#define ACTID_KOUTAI2	(ACTID_CHARACTERBASE | ACTID_INOUT | 0x0017)//����A�|�[�Y�L��
+#define ACTID_KOUTAIOUT	(ACTID_CHARACTERBASE | ACTID_INOUT | 0x0012)//交代。画面外に飛んでく。
+#define ACTID_KOUTAIIN	(ACTID_CHARACTERBASE | ACTID_INOUT | 0x0013)//交代。画面内に飛んでくる
+#define ACTID_TAIKI		(ACTID_CHARACTERBASE | ACTID_INOUT | 0x0014)//画面外に飛んでって待機
+#define ACTID_KOUTAI	(ACTID_CHARACTERBASE | ACTID_INOUT | 0x0015)//画面外から飛んでくる
+#define ACTID_TAIKICYU	(ACTID_CHARACTERBASE | ACTID_INOUT | 0x0016)//待機ちゅ—
+#define ACTID_KOUTAI2	(ACTID_CHARACTERBASE | ACTID_INOUT | 0x0017)//交代後、ポーズキメ
 
 #define ACTID_TIMEOVERLOSE	(ACTID_CHARACTERBASE | 0x0018)
 
@@ -567,13 +567,13 @@ inline int CCharacterBase::SeekKey(int offset, int delay, DWORD keystate) {
 
 
 /***************************************************************
-�@��ѓ����{�N���X
-�@�Ȃ񂩂��܂����g�����舫�����J��
+　飛び道具基本クラス
+　なんかいまいち使い勝手悪そうカモ
 
-�@�ɗ͎����r���Ő������Ȃ��ł�������
+　極力試合途中で生成しないでください
 ****************************************************************/
 
-//�s��ID�̒�`
+//行動IDの定義
 #define CBB_STATE_FLAG		0x00008000
 #define CBB_STATE_IDLE		(CBB_STATE_FLAG | 0x00000100)//act_idle
 #define CBB_STATE_RUN		(CBB_STATE_FLAG | 0x00000200)//act_run
@@ -583,14 +583,14 @@ inline int CCharacterBase::SeekKey(int offset, int delay, DWORD keystate) {
 class RUNTIME_EXPORT CBulletBase : public CGoluahObject
 {
 public:
-	CBulletBase(GOBJECT *parent = NULL);		//�R���X�g���N�^(1)
-	CBulletBase(CCharacterBase *parent);		//�R���X�g���N�^(2) ����
+	CBulletBase(GOBJECT *parent = NULL);		//コンストラクタ(1)
+	CBulletBase(CCharacterBase *parent);		//コンストラクタ(2) 推奨
 
 	virtual ~CBulletBase(){}
 
 	virtual BOOL Go(BOOL muki,double x,double y,double vx,double vy=0);
-	virtual void Bomb();//���œ���ɋ����ڍs���܂�
-	virtual void Hide();//�����I�ɑҋ@��Ԃɂ��܂�
+	virtual void Bomb();//消滅動作に強制移行します
+	virtual void Hide();//強制的に待機状態にします
 	void SetPos(double x,double y){GetGObject()->x=x;GetGObject()->y=y;}
 	virtual DWORD Draw();
 
@@ -603,32 +603,32 @@ public:
 	CCharacterBase* GetParentClass()	{ return parent_class; }
 
 private:
-	void CBulletBaseCreate();//���ʏ���������
+	void CBulletBaseCreate();//共通初期化処理
 
 protected:
-	//�K�v������΃I�[�o�[���C�h���܂�
+	//必要があればオーバーライドします
 	virtual DWORD Message(DWORD msg,LPVOID pd,DWORD prm);
 	virtual DWORD Action();
 	virtual DWORD TouchB(ATTACKINFO *info,BOOL hit);
-	virtual DWORD Sousai(DWORD prm);	//���򓹋�Ƒ��E�����Ƃ��ɌĂ΂�܂�
-	virtual void Hit();					//����Ƀq�b�g�����Ƃ��Ă΂�܂�(TouchB)
-	virtual BOOL OnChangeRound();		//���E���h�ω��������B���������Ȃ����TRUE��Ԃ�
+	virtual DWORD Sousai(DWORD prm);	//他飛道具と相殺したときに呼ばれます
+	virtual void Hit();					//相手にヒットしたとき呼ばれます(TouchB)
+	virtual BOOL OnChangeRound();		//ラウンド変化時処理。消えたくなければTRUEを返す
 
-	//�s���֐��ł��B�I�[�o�[���C�h���Ďg���܂�
+	//行動関数です。オーバーライドして使います
 	virtual void act_idle();
 	virtual void act_run()=0;
 	virtual void act_bomb()=0;
 	virtual void act_run2(){}
 
-	//�I�[�o�[���C�h�̕K�v�͑����Ȃ�
+	//オーバーライドの必要は多分ない
 	void Suicide();
 
-	//�T�E���h�Đ��B�e�̃T�E���h�@�\�𗬗p���܂�
-	//�R���X�g���N�^(2)�ō쐬�����ꍇ�̂ݎg�p�\�ł�
+	//サウンド再生。親のサウンド機能を流用します
+	//コンストラクタ(2)で作成した場合のみ使用可能です
 	virtual void PlayMySound(DWORD number);
 
 protected:
-	ATTACKINFO atkinfo;//�U���͏��\����
+	ATTACKINFO atkinfo;//攻撃力情報構造体
 
 	DWORD hitmsg,hitprm;
 	DWORD grdmsg,grdprm;
@@ -639,33 +639,33 @@ protected:
 
 
 /***************************************************************
-�@������ѓ���N���X
-�@�́X�̃\�[�X���ė��p���邽�߂ɍ���Ă݂�
+　自動飛び道具クラス
+　昔々のソースを再利用するために作ってみた
 
-�@�l�b�g�Ή��F�l�b�g�̂�
+　ネット対応：ネットのみ
 ****************************************************************/
 
-struct MYATTACKINFO//���U���͏��\����
+struct MYATTACKINFO//旧攻撃力情報構造体
 {
-	DWORD hit;		//�q�b�g���B���̃t���O(HITINFO_�`)�̘_���a���w��
-	DWORD guard;	//�K�[�h���B���̃t���O(GUARDINFO_�`)�̘_���a���w��
-	DWORD damage;	//�_���[�W
-	DWORD kezuri;	//���
+	DWORD hit;		//ヒット情報。下のフラグ(HITINFO_〜)の論理和を指定
+	DWORD guard;	//ガード情報。下のフラグ(GUARDINFO_〜)の論理和を指艇
+	DWORD damage;	//ダメージ
+	DWORD kezuri;	//削り
 
-	//�ȉ��g���Ă��܂���B�_�~�[�ł�
-	DWORD objid;	//�U�����s�����I�u�W�F�N�g��ID
-	DWORD id;		//�L�����N�^���ŏ���ɒ�`����
-	double pg_hit;	//�U���q�b�g���̃Q�[�W������
-	double pg_guard;//�U���K�[�h���ꂽ�Ƃ��̃Q�[�W������
-	BOOL muki;		//���肪�̂��������
+	//以下使われていません。ダミーです
+	DWORD objid;	//攻撃を行ったオブジェクトのID
+	DWORD id;		//キャラクタ側で勝手に定義して
+	double pg_hit;	//攻撃ヒット時のゲージ増加量
+	double pg_guard;//攻撃ガードされたときのゲージ増加量
+	BOOL muki;		//相手がのけぞる向き
 	DWORD dur;
 };
 
-struct BULLETINFO_A//���򓹋�\����
+struct BULLETINFO_A//旧飛道具構造体
 {
 	MYATTACKINFO atk;
-	int dur;//��������
-	DWORD type;//���ɂ���t���O���w��
+	int dur;//持続時間
+	DWORD type;//下にあるフラグを指定
 	int *cell_run;
 	int *cell_dis;
 	DWORD spd_run;
@@ -673,7 +673,7 @@ struct BULLETINFO_A//���򓹋�\����
 	double vx, vy;
 	double ax, ay;
 
-	//�ȉ��A�g���Ă܂���B�_�~�[�ł��B
+	//以下、使われてません。ダミーです。
 	BOOL muki;
 	double x;
 	double y;
@@ -685,17 +685,17 @@ struct BULLETINFO_A//���򓹋�\����
 class RUNTIME_EXPORT CClassicalBullet : public CBulletBase
 {
 public:
-	//!�R���X�g���N�^
-	CClassicalBullet( CCharacterBase *parent,	//!< �L�����N�^�N���X
-					BULLETINFO_A *bulinfo		//!< ��ѓ�����
+	//!コンストラクタ
+	CClassicalBullet( CCharacterBase *parent,	//!< キャラクタクラス
+					BULLETINFO_A *bulinfo		//!< 飛び道具情報
 					);
 
-	//!���R���X�g���N�^
-	CClassicalBullet( CCharacterBase *parent,	//!< �L�����N�^�N���X
-					CDI_CHARACTERINFO2 *info,	//!< ���g�p(����) NULL�ł悢
-					BULLETINFO_A *bulinfo,		//!< ��ѓ�����
-					BYTE userID = 0xFF,			//!< ���g�p
-					BYTE userNo = 0xFF			//!< ���g�p
+	//!旧コンストラクタ
+	CClassicalBullet( CCharacterBase *parent,	//!< キャラクタクラス
+					CDI_CHARACTERINFO2 *info,	//!< 未使用(多分) NULLでよい
+					BULLETINFO_A *bulinfo,		//!< 飛び道具情報
+					BYTE userID = 0xFF,			//!< 未使用
+					BYTE userNo = 0xFF			//!< 未使用
 					);
 	virtual ~CClassicalBullet();
 	
@@ -720,24 +720,24 @@ protected:
 	DWORD flags;
 };
 
-//�����ƃT�|�[�g����Ă邩�ǂ����s��
-#define BULLETA_VSHUMAN		0x00000001//�G�L�����N�^�[�ɓ�����
-#define BULLETA_VSBULLET	0x00000002//�G��ѓ���Ƒ��E����
-#define BULLETA_DONOTDIE	0x00000004//�Փˌ�����ł��Ȃ��Ŕ��ł���
-#define BULLETA_DRAWBACK	0x00000008//�l���������ɕ`�悷��
-#define BULLETA_DRAWMIDDLE	0x00000040//�L�����N�^�[�E�q�b�g�}�[�N�Ԃɕ`��
-#define BULLETA_XJIMENN		0x00010000//�n�ʂɗ���������Ə��ł���
-//#define BULLETA_XGAMENGAI	0x00020000//��ʊO�ɒB����Ə���
-//#define BULLETA_JIMAESYORI	0x10000000//info_b�����o���L���ł���A���������O�ōs��
-#define BULLETA_DISPZAHYO	0x00000010//���W�w��̓f�B�X�v���C��̍��W�B�X�e�[�W��̕\���ʒu�ɍ��E����Ȃ�
-#define BULLETA_DONOTSTOP	0x00000020//���K����stop�G�t�F�N�g���������Ă��Ă��`�悪�~�܂�Ȃ�
+//ちゃんとサポートされてるかどうか不明
+#define BULLETA_VSHUMAN		0x00000001//敵キャラクターに当たる
+#define BULLETA_VSBULLET	0x00000002//敵飛び道具と相殺する
+#define BULLETA_DONOTDIE	0x00000004//衝突後も消滅しないで飛んでいく
+#define BULLETA_DRAWBACK	0x00000008//人物よりも後ろに描画する
+#define BULLETA_DRAWMIDDLE	0x00000040//キャラクター・ヒットマーク間に描画
+#define BULLETA_XJIMENN		0x00010000//地面に落っこちると消滅する
+//#define BULLETA_XGAMENGAI	0x00020000//画面外に達すると消滅
+//#define BULLETA_JIMAESYORI	0x10000000//info_bメンバが有効であり、処理を自前で行う
+#define BULLETA_DISPZAHYO	0x00000010//座標指定はディスプレイ上の座標。ステージ上の表示位置に左右されない
+#define BULLETA_DONOTSTOP	0x00000020//超必等でstopエフェクトがかかっていても描画が止まらない
 
 /********************************************************
-  ��ѓ���X�g�N���X
-  �l�b�g�Ή��F�l�b�g�̂�
+  飛び道具リストクラス
+  ネット対応：ネットのみ
 
-  ����A������ł��������H(aki) �� ��������
-�@********************************************************/
+  これ、消すんでしたっけ？(aki) ＞ あつしさん
+　********************************************************/
 
 class RUNTIME_EXPORT CBulletList  
 {
@@ -748,30 +748,30 @@ public:
 
 	virtual void Add(CBulletBase* pBullet);
 	/*!
-		@brief ��ѓ���̔��ˍ��W�ݒ�
-		@param x ����X���W
-		@param y ����Y���W
+		@brief 飛び道具の発射座標設定
+		@param x 発射X座標
+		@param y 発射Y座標
 		@sa GetNext
 
-		Go�܂���Go_All�ɂč��W���ȗ������ꍇ�ɁA
-		����Őݒ肵�����W���g�p����܂��B
+		GoまたはGo_Allにて座標を省略した場合に、
+		これで設定した座標が使用されます。
 
-		�Ȃ��A����Őݒ�ł���̂̓��X�g�̍ŏ��̗v�f�����ł��i�΁j�B
-		��̕��Ɏg���ꍇ�́AGetNext���g���Ă��������B
+		なお、これで設定できるのはリストの最初の要素だけです（笑）。
+		後の方に使う場合は、GetNextを使ってください。
 	*/
 	void SetPos(double x, double y)			{ this->x = x; this->y = y; }
 	/*!
-		@brief ��ѓ���̔��ˑ��x�ݒ�
-		@param vx X�����̑��x
-		@param vy Y�����̑��x
+		@brief 飛び道具の発射速度設定
+		@param vx X方向の速度
+		@param vy Y方向の速度
 		@sa GetNext
 
-		Go�܂���Go_All�ɂ�vx��vy���ȗ������ꍇ�ɁA
-		����Őݒ肵�����x���g�p����܂��B
-		Go_All���g�p����ꍇ�͂قڕK�{�̍��ڂł��B
+		GoまたはGo_Allにてvxとvyを省略した場合に、
+		これで設定した速度が使用されます。
+		Go_Allを使用する場合はほぼ必須の項目です。
 
-		���x�̂��Ƃł����A����Őݒ�ł���̂̓��X�g�̍ŏ��̗v�f�����ł��i�΁j�B
-		��̕��Ɏg���ꍇ�́A��͂�GetNext���g���Ă��������B
+		毎度のことですが、これで設定できるのはリストの最初の要素だけです（笑）。
+		後の方に使う場合は、やはりGetNextを使ってください。
 	*/
 	void SetSpeed(double vx, double vy=0)	{ this->vx = vx; this->vy = vy; }
 	virtual BOOL Go(BOOL muki);
@@ -780,33 +780,33 @@ public:
 	virtual void Go_All(BOOL muki, double x, double y);
 	virtual void Go_All(BOOL muki);
 	/*!
-		@brief ���X�g�̎��̗v�f������
-		@return ���̗v�f������CBulletList�ւ̃|�C���^�A�����ꍇ��NULL
+		@brief リストの次の要素を所得
+		@return 次の要素を示すCBulletListへのポインタ、無い場合はNULL
 		@sa SetPos
 		@sa SetSpeed
 
-		�Ăяo�����́A���̗v�f��\��CBulletList�\���̂��������܂��B
-		���̗v�f���Ȃ��ꍇ��NULL��Ԃ��܂��B
-		�v�f���Ɛ�p�̃N���X�������ACBulletList�����̂܂ܘA�������Ă���͎̂��̎蔲���ł��i�΁j�B
+		呼び出し元の、次の要素を表すCBulletList構造体を所得します。
+		次の要素がない場合はNULLを返します。
+		要素ごと専用のクラスが無く、CBulletListをそのまま連結させているのは私の手抜きです（笑）。
 
-		��ɁA���X�g�����ɑ������Ȃ���SetPos��SetSpeed��K�p���邽�߂Ɏg���܂��B
-		�r���̃N���X������ɉ�������肷��Ɓi�E�`�E�j��Ų!!
+		主に、リストを順に走査しながらSetPosやSetSpeedを適用するために使います。
+		途中のクラスを勝手に解放したりすると（・Ａ・）イクナイ!!
 	*/
 	CBulletList* GetNext()		{ return pNext; }
 	/*!
-		@brief ���X�g�̗v�f��������
-		@return ���X�g�Ɋ܂܂�Ă���v�f�̐�
+		@brief リストの要素数を所得
+		@return リストに含まれている要素の数
 
-		���X�g���́A�S�Ă̗v�f�����������܂��B
+		リスト内の、全ての要素数を所得します。
 	*/
 	int GetCount()	{ return ListCount; }
 	/*!
-		@brief �擪�̔�ѓ��������
-		@return ���X�g�̐擪�Ɋ܂܂�Ă����ѓ���̃|�C���^
+		@brief 先頭の飛び道具を所得
+		@return リストの先頭に含まれている飛び道具のポインタ
 		@sa GetNext
 
-		���X�g�̐擪�ɂ����ѓ�����������܂��B�g�����Ƃ͂���܂�Ȃ������B
-		GetNext���g���΁A�擪�ȊO�̂��̂������o���܂��B
+		リストの先頭にある飛び道具を所得します。使うことはあんまりなさそう。
+		GetNextを使えば、先頭以外のものも所得出来ます。
 	*/
 	CBulletBase* GetBullet()	{ return m_pBullet; }
 	//CBulletList* operator [](int num);
@@ -823,7 +823,7 @@ protected:
 
 
 /********************************************************
-	�}�N����`
+	マクロ定義
 **********************************************************/
 
 #define ALLGUARDFLAG		(GUARDINFO_XSTAND | GUARDINFO_XCROUCH | GUARDINFO_XJAMP)
@@ -832,17 +832,17 @@ protected:
 
 
 /********************************************************
-	�G�t�F�N�g�x�[�X
+	エフェクトベース
 **********************************************************/
 /*!
-*	@brief �G�t�F�N�g�x�[�X
+*	@brief エフェクトベース
 *	@ingroup GObjectBase
 *
-*	�������ɕp�ɂɐ����E�j�����s���Ă��ǂ��I�u�W�F�N�g�B
-*	���̃N���X�ɂ�萶�������I�u�W�F�N�g��(�I�u�W�F�N�g�t���O�Ɋւ�炸�A
-*	�V�X�e���I��)���I�u�W�F�N�g�Ƃ̂����蔻�肪�s���Ȃ��B
-*	�܂��A���̃I�u�W�F�N�g�����I�u�W�F�N�g�ɑ΂��ĉ��炩�̑��ݍ�p
-*	�i���̃N���X����������邱�Ƃ������j���s�����Ƃ͂��@�x�ł��B
+*	試合中に頻繁に生成・破棄を行っても良いオブジェクト。
+*	このクラスにより生成されるオブジェクトは(オブジェクトフラグに関わらず、
+*	システム的に)他オブジェクトとのあたり判定が行われない。
+*	また、このオブジェクトが他オブジェクトに対して何らかの相互作用
+*	（このクラスが生成されることを除く）を行うことはご法度です。
 */
 class RUNTIME_EXPORT CEffectBase : public CGoluahObject
 {
@@ -853,34 +853,34 @@ public:
 protected:
 
 	/*!
-	*	@brief GOBJMSG_ACTION��������
+	*	@brief GOBJMSG_ACTION応答処理
 	*
-	*	CEffectBase�͏�Ԃ𖳎����A�J�E���^��SetDuration�ŗ^����ꂽ�l����time���v�Z����
-	*	Update���Ăяo���܂��B
-	*	�J�E���^��SetDuration�ŗ^����ꂽ�l�𒴂���ƃI�u�W�F�N�g���ł̎葱�����s���A
-	*	�N���X�͎����I��delete����܂��B
+	*	CEffectBaseは状態を無視し、カウンタとSetDurationで与えられた値からtimeを計算して
+	*	Updateを呼び出します。
+	*	カウンタがSetDurationで与えられた値を超えるとオブジェクト消滅の手続きを行い、
+	*	クラスは自動的にdeleteされます。
 	*/
 	virtual DWORD Action();
 
-	//!���E���h�ω��ŏ���
+	//!ラウンド変化で消滅
 	virtual BOOL OnChangeRound(){return FALSE;}
 
 	/*!
-	*	@brief �������Ԃ̐ݒ�
+	*	@brief 持続時間の設定
 	*	@sa CEffectBase::Update
 	*	
-	*	�ʏ�̓R���X�g���N�^�����炱�̊֐����Ăяo���A�ݒ���s���Ă��������B
+	*	通常はコンストラクタ等からこの関数を呼び出し、設定を行ってください。
 	*/
 	void SetDuration(UINT dur);
 
 	/*!
-	*	@brief �X�V����
-	*	@param time 0�`1�̒l
+	*	@brief 更新処理
+	*	@param time 0〜1の値
 	*
-	*	�p���N���X�ł͂��̊֐����I�[�o�[���C�h���ď������������܂��B
-	*	time��SetDuration�ŗ^�����������Ԃ̊Ԃ�0.0f�`1.0f�̒l���n����܂��B
-	*	�p���N���X��Action�����������������ꍇ�͂��̊֐��̓���͕s��ł��B
-	*	"���"�𕡐����������ꍇ�͂��̊֐����g�p�����A���O��Action����̏����������Ă��������B
+	*	継承クラスではこの関数をオーバーライドして処理を実装します。
+	*	timeはSetDurationで与えた持続時間の間で0.0f〜1.0fの値が渡されます。
+	*	継承クラスでAction処理を書き換えた場合はこの関数の動作は不定です。
+	*	"状態"を複数持ちたい場合はこの関数を使用せず、自前でAction周りの処理を書いてください。
 	*/
 	virtual void Update(float time) = 0;
 
@@ -890,18 +890,18 @@ private:
 
 
 /********************************************************
-	�X�e�[�W�x�[�X
+	ステージベース
 **********************************************************/
 
 /*!
-*	@brief �X�e�[�W�x�[�X�N���X
+*	@brief ステージベースクラス
 *	@ingroup GObjectBase
 *
-*	�X�e�[�W�̃x�[�X...�Ƃ����Ă�CGoluahObject����ǉ����ꂽ�T�[�r�X�͂قƂ�ǂȂ��B
-*	SET_STAGEINFO�}�N�����g�p���ăG�N�X�|�[�g����֐����������������ꍇ��
-*	�����̊J�n�O��InitializeStage���R�[�������̂ŏ����������͂����ɋL�q���邱�ƁB
-*	�`���DrawBack���I�[�o�[���C�h���čs�����ƁB
-*	���炩�̍X�V�������s���ꍇ��Action���I�[�o�[���C�h���čs�����ƁB
+*	ステージのベース...といってもCGoluahObjectから追加されたサービスはほとんどない。
+*	SET_STAGEINFOマクロを使用してエクスポートする関数を自動生成した場合は
+*	試合の開始前にInitializeStageがコールされるので初期化処理はそこに記述すること。
+*	描画はDrawBackをオーバーライドして行うこと。
+*	何らかの更新処理を行う場合はActionをオーバーライドして行うこと。
 */
 class RUNTIME_EXPORT CStageBase : public CGoluahObject
 {
@@ -909,46 +909,46 @@ public:
 	CStageBase(SDI_STAGEINFO2 *info);
 	virtual ~CStageBase();
 
-	/*!	@brief ������
+	/*!	@brief 初期化
 	*
-	*	�p���N���X�͂��̊֐����I�[�o�[���C�h���ď������������L�q���邱�ƁB
+	*	継承クラスはこの関数をオーバーライドして初期化処理を記述すること。
 	*/
 	virtual void InitializeStage() = 0;
 
 	/*!
-	*	@brief �֐��|�C���^�̏�����
+	*	@brief 関数ポインタの初期化
 	*
-	*	CreateStage�֐��ŁA�N���X�̃C���X�^���X�����O��
-	*	�O���[�o���̊֐��|�C���^������������K�v������B
-	*	���̊֐������̎葱�����s���B
+	*	CreateStage関数で、クラスのインスタンス生成前に
+	*	グローバルの関数ポインタを初期化する必要がある。
+	*	この関数がその手続きを行う。
 	*/
 	static void SetupStageDLL(SDI_STAGEINFO2 *info);
 
 	/*!
-	*	@brief ���C�u�����o�[�W�����`�F�b�N
+	*	@brief ライブラリバージョンチェック
 	*
-	*	�x�[�X�N���X�̃o�[�W�����`�F�b�N���s���܂��B
-	*	���ʃ��C�u�������g�p����ꍇ�A������g���ƃo�[�W�����̃Y��������ł��邩���B
-	*	�}�N��������Ɏg���̂ŁA���[�U���Ŏg���K�v�͂���܂���B
+	*	ベースクラスのバージョンチェックを行います。
+	*	共通ライブラリを使用する場合、これを使うとバージョンのズレを回避できるかも。
+	*	マクロが勝手に使うので、ユーザ側で使う必要はありません。
 	*/
 	static BOOL CheckSTB(DWORD Version = STB_VERSION);
 
 protected:
 	/*!
-	*	�X�e�[�W�͕��ʁAGOBJMSG_DRAW�ɑΉ�����ʏ�`��͍s��Ȃ��B
-	*	������DrawBack���I�[�o�[���C�h���ĕ`����s������
+	*	ステージは普通、GOBJMSG_DRAWに対応する通常描画は行わない。
+	*	かわりにDrawBackをオーバーライドして描画を行うこと
 	*/
 	virtual DWORD Draw(){return TRUE;}
 };
 
 
 /*!
-*	@brief �ݒ�p�}�N��(�X�e�[�W)
-*	@param Type �X�e�[�W�Ƃ��Đ�������CStageBase�p���N���X�̌^
+*	@brief 設定用マクロ(ステージ)
+*	@param Type ステージとして生成するCStageBase継承クラスの型
 *	@ingroup GObjectBase
 *
-*	DLL�́A���̃}�N������������֐����O���ɃG�N�X�|�[�g���Ȃ���΂Ȃ�Ȃ��B
-*	�K�؂ȃ��W���[����`�t�@�C�����g�p���邱�ƁB
+*	DLLは、このマクロが生成する関数を外部にエクスポートしなければならない。
+*	適切なモジュール定義ファイルを使用すること。
 */
 #define SET_STAGEINFO(Type) \
 extern "C" BOOL StageInfo(LPVOID info) {\
@@ -963,13 +963,13 @@ extern "C" DWORD CreateStage(PVOID info) {\
 }
 
 /*!
-*	@brief �ݒ�p�}�N��(�X�e�[�W�A�o�[�W�����`�F�b�N�@�\�t��)
-*	@param Type �X�e�[�W�Ƃ��Đ�������CStageBase�p���N���X�̌^
-*	@param Ver ���C�u�����̃o�[�W����
+*	@brief 設定用マクロ(ステージ、バージョンチェック機能付き)
+*	@param Type ステージとして生成するCStageBase継承クラスの型
+*	@param Ver ライブラリのバージョン
 *	@ingroup GObjectBase
 *
-*	DLL�́A���̃}�N������������֐����O���ɃG�N�X�|�[�g���Ȃ���΂Ȃ�Ȃ��B
-*	�K�؂ȃ��W���[����`�t�@�C�����g�p���邱�ƁB
+*	DLLは、このマクロが生成する関数を外部にエクスポートしなければならない。
+*	適切なモジュール定義ファイルを使用すること。
 */
 #define SET_STAGEINFO_VERCHK(Type, Ver) \
 extern "C" BOOL StageInfo(LPVOID info) {\

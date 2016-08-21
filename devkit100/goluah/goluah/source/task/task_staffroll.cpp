@@ -1,7 +1,7 @@
-
+ï»¿
 /*===============================================================
 
-	ƒXƒ^ƒbƒtƒ[ƒ‹@ƒ^ƒXƒN
+	ã‚¹ã‚¿ãƒƒãƒ•ãƒ­ãƒ¼ãƒ«ã€€ã‚¿ã‚¹ã‚¯
 
 =================================================================*/
 
@@ -10,7 +10,7 @@
 
 
 /*----------------------------------------------------------------------
-	\’z
+	æ§‹ç¯‰
 ------------------------------------------------------------------------*/
 CTStaffRoll::CTStaffRoll()
 {
@@ -21,7 +21,7 @@ CTStaffRoll::CTStaffRoll()
 
 
 /*----------------------------------------------------------------------
-	I—¹Žžˆ—
+	çµ‚äº†æ™‚å‡¦ç†
 ------------------------------------------------------------------------*/
 
 void CTStaffRoll::Terminate()
@@ -39,7 +39,7 @@ void CTStaffRoll::CleanUp()
 
 
 /*----------------------------------------------------------------------
-	‰ŠúÝ’è
+	åˆæœŸè¨­å®š
 ------------------------------------------------------------------------*/
 void CTStaffRoll::Initialize()
 {
@@ -54,7 +54,7 @@ void CTStaffRoll::Initialize()
 	if(hFile==INVALID_HANDLE_VALUE){
 		fsize = 256;
 		credits = new TCHAR [fsize];
-		_stprintf(credits,_T("\n\n\n\n\n\n\n\nƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“‚ÉŽ¸”s‚µ‚Ü‚µ‚½"));
+		_stprintf(credits,_T("\n\n\n\n\n\n\n\nãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³ã«å¤±æ•—ã—ã¾ã—ãŸ"));
 	}
 	else{
 		fsize=GetFileSize(hFile,NULL);
@@ -72,7 +72,7 @@ void CTStaffRoll::Initialize()
 
 
 /*----------------------------------------------------------------------
-	XV
+	æ›´æ–°
 ------------------------------------------------------------------------*/
 #define GYOHEIGHT 22
 
@@ -108,20 +108,20 @@ BOOL CTStaffRoll::Execute(DWORD time)
 
 
 /*----------------------------------------------------------------------
-	•`‰æ
+	æç”»
 ------------------------------------------------------------------------*/
 void CTStaffRoll::Draw()
 {
 	g_draw.SetTransform(FALSE);
 
-	//”wŒi‚ð•`‰æ
+	//èƒŒæ™¯ã‚’æç”»
 	RECT r_all;
 	r_all.top=r_all.left=0;
 	r_all.right=640;
 	r_all.bottom=480;
 	g_draw.CheckBlt(ms,0,0,r_all);
 
-	//•¶Žš•`‰æ
+	//æ–‡å­—æç”»
 	g_draw.DrawBlueText(r,&credits[staffindex],-1,DT_CENTER,2);
 }
 
@@ -140,17 +140,17 @@ int CTStaffRoll::Get1Gyo(TCHAR *str)
 
 
 /*----------------------------------------------------------------------
-	ƒXƒNƒŠƒvƒg‚ÌÝ’è‚ðŽæ‚èž‚Ý
+	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®è¨­å®šã‚’å–ã‚Šè¾¼ã¿
 ------------------------------------------------------------------------*/
 void CTStaffRoll::Setup(TCHAR *basedir,CStoryElement_Staff* ele_staff)
 {
-	if(credits)return;//‚·‚Å‚ÉÄ¶’†‚È‚Ì‚Å–³Ž‹
-	if(!basedir)return;//Ý’è‚Å‚«‚È‚¢‚Ì‚Å–³Ž‹
+	if(credits)return;//ã™ã§ã«å†ç”Ÿä¸­ãªã®ã§ç„¡è¦–
+	if(!basedir)return;//è¨­å®šã§ããªã„ã®ã§ç„¡è¦–
 	CleanUp();
 
 	UINT baselen = strlen(basedir+1);
 
-	//ƒeƒLƒXƒgƒtƒ@ƒCƒ‹–¼Žæ‚èž‚Ý
+	//ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«åå–ã‚Šè¾¼ã¿
 	if(ele_staff->m_filename){
 		txtpath = new TCHAR [ baselen + strlen(ele_staff->m_filename) +3 ];
 		_stprintf(txtpath,_T("%s\\%s"),basedir,ele_staff->m_filename);

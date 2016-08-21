@@ -1,8 +1,8 @@
-
+ï»¿
 /*===================================================================
 
-	ƒRƒhƒ‚ƒEƒCƒ“ƒhƒE
-	DirectX‚Å‚Ì•`‰æ‚Ég—p
+	ã‚³ãƒ‰ãƒ¢ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+	DirectXã§ã®æç”»ã«ä½¿ç”¨
 
 =====================================================================*/
 
@@ -22,7 +22,7 @@ CChildWnd g_childwnd;
 #define CHILDCENTERY (g_DISPLAYHEIGHT*2/3-20)
 
 /*-------------------------------------------------------------------
-	\’z
+	æ§‹ç¯‰
 ---------------------------------------------------------------------*/
 CChildWnd::CChildWnd() : CWnd()
 {
@@ -41,7 +41,7 @@ CChildWnd::CChildWnd() : CWnd()
 	mr_EditMode = 0;
 
 	mc_mag		=3;
-	mc_EditMode	=7;//ƒ}ƒEƒX‘€ì:none
+	mc_EditMode	=7;//ãƒã‚¦ã‚¹æ“ä½œ:none
 	mc_mirrorX	=FALSE;
 	mc_mirrorY	=FALSE;
 
@@ -61,7 +61,7 @@ CChildWnd::CChildWnd() : CWnd()
 }
 
 /*-------------------------------------------------------------------
-	ƒƒbƒZ[ƒWƒ}ƒbƒv
+	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ—
 ---------------------------------------------------------------------*/
 BEGIN_MESSAGE_MAP(CChildWnd, CWnd)
 ON_WM_PAINT()
@@ -77,13 +77,13 @@ END_MESSAGE_MAP()
 
 
 /*-------------------------------------------------------------------
-	•`‰æ
+	æç”»
 ---------------------------------------------------------------------*/
 void CChildWnd::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
-	// TODO : ‚±‚±‚ÉƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
-	// •`‰æƒƒbƒZ[ƒW‚Å CWnd::OnPaint() ‚ğŒÄ‚Ño‚³‚È‚¢‚Å‚­‚¾‚³‚¢B
+	// TODO : ã“ã“ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
+	// æç”»ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã§ CWnd::OnPaint() ã‚’å‘¼ã³å‡ºã•ãªã„ã§ãã ã•ã„ã€‚
 
 	if(!m_EditMode)	OnPaint_RectMode(dc);
 	else			OnPaint_CellMode(dc);
@@ -95,12 +95,12 @@ void CChildWnd::OnPaint()
 	}
 }
 
-//¡‹éŒ`•ÒWƒ‚[ƒh‚Ì•`‰æ
+//â– çŸ©å½¢ç·¨é›†ãƒ¢ãƒ¼ãƒ‰æ™‚ã®æç”»
 void CChildWnd::OnPaint_RectMode(CPaintDC& dc)
 {
-	//Direct3D•`‰æ
+	//Direct3Dæç”»
 	
-	//ƒJƒƒ‰İ’è
+	//ã‚«ãƒ¡ãƒ©è¨­å®š
 	g_draw.camera_x = 0.0f;
 	g_draw.camera_z = -3.0f;
 	g_draw.camera_y = 0.0f;
@@ -115,23 +115,23 @@ void CChildWnd::OnPaint_RectMode(CPaintDC& dc)
 	MYSURFACE *ms = theApp.GetBitmap(mr_current_bmp);
 	if(!ms)
 	{
-		g_draw.DrawRedText(r,"ƒrƒbƒgƒ}ƒbƒv‚ª“Ç‚İ‚ß‚Ä‚¢‚Ü‚¹‚ñ",-1,DT_LEFT,2);
+		g_draw.DrawRedText(r,"ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãŒèª­ã¿è¾¼ã‚ã¦ã„ã¾ã›ã‚“",-1,DT_LEFT,2);
 		g_draw.EndDraw();
 	}
 	else
 	{
-		//ƒXƒNƒ[ƒ‹ˆÊ’u‚É‚ ‚í‚¹‚Äƒrƒbƒgƒ}ƒbƒv‚ğ“]‘—
+		//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ä½ç½®ã«ã‚ã‚ã›ã¦ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’è»¢é€
 		GetClientRect(&r);
 
-		if(r.right-r.left < ms->wg)bltw=r.right-r.left;//ƒrƒbƒgƒ}ƒbƒv‚Ì•
+		if(r.right-r.left < ms->wg)bltw=r.right-r.left;//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®å¹…
 		else bltw = (DWORD)ms->wg ;
-		if(r.bottom-r.top < ms->hg)blth=r.bottom-r.top;//ƒrƒbƒgƒ}ƒbƒv‚Ì‚‚³
+		if(r.bottom-r.top < ms->hg)blth=r.bottom-r.top;//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®é«˜ã•
 		else blth = (DWORD)ms->hg;
 
 		ofsty=((DWORD)ms->hg)-si_y.nPos-(r.bottom - r.top);
 		if(ofsty<0)ofsty=0;
 
-		//[ƒoƒO]@‰E1ƒsƒNƒZƒ‹A‰º2ƒsƒNƒZƒ‹‚ª•\¦‚³‚ê‚È‚¢B
+		//[ãƒã‚°]ã€€å³1ãƒ”ã‚¯ã‚»ãƒ«ã€ä¸‹2ãƒ”ã‚¯ã‚»ãƒ«ãŒè¡¨ç¤ºã•ã‚Œãªã„ã€‚
 		r.left	= si_x.nPos;
 		r.right	= r.left+bltw;
 		r.bottom= (LONG)ms->hg - ofsty;
@@ -139,7 +139,7 @@ void CChildWnd::OnPaint_RectMode(CPaintDC& dc)
 		//g_draw.CheckBlt2(ms,0,0,r);
 
 		g_draw.EndDraw();
-		//GDI•`‰æ
+		//GDIæç”»
 		CImage& img = theApp.GetImage(mr_current_bmp);
 		RECT imgDst;
 		imgDst.top = 0;
@@ -153,18 +153,18 @@ void CChildWnd::OnPaint_RectMode(CPaintDC& dc)
 	}
 	//g_draw.EndDraw();
 
-	//GDI•`‰æ
+	//GDIæç”»
 	GCD_RECT *ed_r = theApp.GetCurrentRect();
 	if(!ed_r)return;
-	if(mr_current_bmp==ed_r->bmpno){//‚±‚Ìƒrƒbƒgƒ}ƒbƒv# ‚É‹éŒ`‚ª‚ ‚é
-		//‹éŒ`•\¦
+	if(mr_current_bmp==ed_r->bmpno){//ã“ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—# ã«çŸ©å½¢ãŒã‚ã‚‹
+		//çŸ©å½¢è¡¨ç¤º
 		DrawRECT2(dc,
 			ed_r->r.left -si_x.nPos,
 			ed_r->r.right-si_x.nPos,
 			ed_r->r.top   -si_y.nPos,
 			ed_r->r.bottom-si_y.nPos,
 			2);
-		//’†S•\¦
+		//ä¸­å¿ƒè¡¨ç¤º
 		DrawPos(dc,
 			ed_r->r.left -si_x.nPos + ed_r->center_x,
 			ed_r->r.top  -si_y.nPos + ed_r->center_y,
@@ -172,7 +172,7 @@ void CChildWnd::OnPaint_RectMode(CPaintDC& dc)
 	}
 }
 
-//¡ƒZƒ‹•ÒWƒ‚[ƒh‚Ì•`‰æ
+//â– ã‚»ãƒ«ç·¨é›†ãƒ¢ãƒ¼ãƒ‰æ™‚ã®æç”»
 void CChildWnd::OnPaint_CellMode(CPaintDC& dc)
 {
 	CGCDHandler *gcd = theApp.GetGCD();
@@ -180,7 +180,7 @@ void CChildWnd::OnPaint_CellMode(CPaintDC& dc)
 	g_draw.StartDraw(TRUE);
 	g_draw.SetTransform(FALSE);
 	{
-		//ƒJƒƒ‰İ’è
+		//ã‚«ãƒ¡ãƒ©è¨­å®š
 		float cmz;
 		switch(mc_mag){
 		case 0:cmz=-3.0f/(1.0f/4.0);break;	//25%
@@ -195,12 +195,12 @@ void CChildWnd::OnPaint_CellMode(CPaintDC& dc)
 		g_draw.camera_y = cmz/12.0f;
 		g_draw.ResetTransformMatrix();
 
-		//ƒZƒ“ƒ^[ƒ‰ƒCƒ“•`‰æ
+		//ã‚»ãƒ³ã‚¿ãƒ¼ãƒ©ã‚¤ãƒ³æç”»
 		g_draw.ResetParentMatrix();
 		g_draw.DrawLine(0 + mc_offset_x,-999,0 + mc_offset_x,999,0xFF000000);
 		g_draw.DrawLine(-999,0 + mc_offset_y,999,0 + mc_offset_y,0xFF000000);
 
-		//ƒZƒ‹•`‰æ
+		//ã‚»ãƒ«æç”»
 		g_draw.CellDrawED(
 			theApp.GetBitmaps(),
 			gcd->m_cdat,
@@ -215,12 +215,12 @@ void CChildWnd::OnPaint_CellMode(CPaintDC& dc)
 			0xFFFFFFFF,
 			mc_scale_x,
 			mc_scale_y,
-			theApp.GetCurrentCellRectNO(),						//•ÒW’†‚Ì‹éŒ`”Ô†
-			(mc_EditMode==0||mc_EditMode==5) ? TRUE : FALSE		//‹­’²•\¦‚ğs‚¤?
+			theApp.GetCurrentCellRectNO(),						//ç·¨é›†ä¸­ã®çŸ©å½¢ç•ªå·
+			(mc_EditMode==0||mc_EditMode==5) ? TRUE : FALSE		//å¼·èª¿è¡¨ç¤ºã‚’è¡Œã†?
 			);
 
 		if(mc_EditMode==1){
-			//”»’è‹éŒ`•`‰æ
+			//åˆ¤å®šçŸ©å½¢æç”»
 			g_draw.ResetParentMatrix();
 			g_draw.HRectDraw(
 					gcd->m_cdat,
@@ -232,7 +232,7 @@ void CChildWnd::OnPaint_CellMode(CPaintDC& dc)
 					mc_scale_x, mc_scale_y);
 		}
 		if(mc_EditMode==2){
-			//dS•`‰æ
+			//é‡å¿ƒæç”»
 			g_draw.ResetParentMatrix();
 			g_draw.GCenterDraw(
 					gcd->m_cdat,
@@ -245,8 +245,8 @@ void CChildWnd::OnPaint_CellMode(CPaintDC& dc)
 	}
 	g_draw.EndDraw();
 
-	//GDI•`‰æ
-	//ƒ}[ƒJ[
+	//GDIæç”»
+	//ãƒãƒ¼ã‚«ãƒ¼
 	if(mc_MarkerON){
 		int gcx = gcd->m_cdat[theApp.GetCurrentCellNO()].gcx;
 		int gcy = gcd->m_cdat[theApp.GetCurrentCellNO()].gcy;
@@ -257,14 +257,14 @@ void CChildWnd::OnPaint_CellMode(CPaintDC& dc)
 }
 
 /*-------------------------------------------------------------------
-	ƒXƒNƒ[ƒ‹Eƒo[iƒ^ƒej
+	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ»ãƒãƒ¼ï¼ˆã‚¿ãƒ†ï¼‰
 ---------------------------------------------------------------------*/
 void CChildWnd::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
-	// TODO : ‚±‚±‚ÉƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚·‚é‚©AŠù’è‚Ìˆ—‚ğŒÄ‚Ño‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã‹ã€æ—¢å®šã®å‡¦ç†ã‚’å‘¼ã³å‡ºã—ã¾ã™ã€‚
 	//CWnd::OnVScroll(nSBCode, nPos, pScrollBar);
 
-	//¡‹éŒ`•ÒWƒ‚[ƒh
+	//â– çŸ©å½¢ç·¨é›†ãƒ¢ãƒ¼ãƒ‰æ™‚
 	if(!m_EditMode)
 	{
 		BOOL red=TRUE;
@@ -299,11 +299,11 @@ void CChildWnd::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 }
 
 /*-------------------------------------------------------------------
-	ƒXƒNƒ[ƒ‹Eƒo[iƒˆƒRj
+	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ»ãƒãƒ¼ï¼ˆãƒ¨ã‚³ï¼‰
 ---------------------------------------------------------------------*/
 void CChildWnd::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
-	// TODO : ‚±‚±‚ÉƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚·‚é‚©AŠù’è‚Ìˆ—‚ğŒÄ‚Ño‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã‹ã€æ—¢å®šã®å‡¦ç†ã‚’å‘¼ã³å‡ºã—ã¾ã™ã€‚
 	//CWnd::OnHScroll(nSBCode, nPos, pScrollBar);
 
 	BOOL red=TRUE;
@@ -312,9 +312,9 @@ void CChildWnd::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 
 	switch (nSBCode) {
 		case SB_LINEUP:	 dx = -1 * ddd;break;
-		case SB_LINEDOWN:dx =  1 * ddd;break;//ƒRƒR
+		case SB_LINEDOWN:dx =  1 * ddd;break;//ã‚³ã‚³
 		case SB_PAGEUP:  dx = -1 * si_x.nPage;break;
-		case SB_PAGEDOWN:dx =      si_x.nPage;break;//ƒRƒR
+		case SB_PAGEDOWN:dx =      si_x.nPage;break;//ã‚³ã‚³
 		case SB_THUMBPOSITION:dx = nPos - si_x.nPos;break;
 		default:dx = 0;break;
 	}
@@ -330,11 +330,11 @@ void CChildWnd::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 }
 
 /*-------------------------------------------------------------------
-	ƒXƒNƒ[ƒ‹Eƒo[î•ñ‚ÌƒŠƒZƒbƒg
+	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ»ãƒãƒ¼æƒ…å ±ã®ãƒªã‚»ãƒƒãƒˆ
 ---------------------------------------------------------------------*/
 void CChildWnd::ResetScrollInfo()
 {
-	if(!m_EditMode)//‹éŒ`•ÒWƒ‚[ƒh‚Ìê‡
+	if(!m_EditMode)//çŸ©å½¢ç·¨é›†ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆ
 	{
 		ShowScrollBar(SB_BOTH,TRUE);
 
@@ -346,7 +346,7 @@ void CChildWnd::ResetScrollInfo()
 			m_prev_scroll_width == ms->wg &&
 			m_prev_scroll_height == ms->hg)return;
 
-		//ƒ^ƒe ------------------------------------------------------------
+		//ã‚¿ãƒ† ------------------------------------------------------------
 		si_y.cbSize = sizeof(SCROLLINFO);
 		si_y.fMask = SIF_POS | SIF_RANGE | SIF_PAGE | SIF_DISABLENOSCROLL;
 		si_y.nMin = 0;
@@ -358,7 +358,7 @@ void CChildWnd::ResetScrollInfo()
 		si_y.nPos = 0;
 		SetScrollInfo(SB_VERT, &si_y, TRUE);
 		
-		//ƒˆƒR ------------------------------------------------------------
+		//ãƒ¨ã‚³ ------------------------------------------------------------
 		si_x.cbSize = sizeof(SCROLLINFO);
 		si_x.fMask = SIF_POS | SIF_RANGE | SIF_PAGE | SIF_DISABLENOSCROLL;
 		si_x.nMin = 0;
@@ -374,7 +374,7 @@ void CChildWnd::ResetScrollInfo()
 		m_prev_scroll_height = si_y.nMax;
 	}
 	else{
-		ShowScrollBar(SB_BOTH,FALSE/*TRUE*/);//ƒZƒ‹•ÒWƒ‚[ƒh‚Ìê‡‚Í”ñ•\¦
+		ShowScrollBar(SB_BOTH,FALSE/*TRUE*/);//ã‚»ãƒ«ç·¨é›†ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯éè¡¨ç¤º
 
 		int wx = g_DISPLAYWIDTH;//MYCHILDWIDTH;
 		int wy = g_DISPLAYHEIGHT;//MYCHILDHEIGHT;
@@ -391,13 +391,13 @@ void CChildWnd::ResetScrollInfo()
 
 
 /*-------------------------------------------------------------------
-	‰Šú‰»
+	åˆæœŸåŒ–
 ---------------------------------------------------------------------*/
 int CChildWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
-	// TODO :  ‚±‚±‚É“Á’è‚Èì¬ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+	// TODO :  ã“ã“ã«ç‰¹å®šãªä½œæˆã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 
 	ResetScrollInfo();
 
@@ -405,7 +405,7 @@ int CChildWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 }
 
 /*-------------------------------------------------------------------
-	•\¦‚ğXV‚·‚é•K—v‚ª‚ ‚é
+	è¡¨ç¤ºã‚’æ›´æ–°ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
 ---------------------------------------------------------------------*/
 void CChildWnd::Dirty()
 {
@@ -417,17 +417,17 @@ void CChildWnd::Dirty()
 
 
 /*-------------------------------------------------------------------
-	•ÒWƒ‚[ƒh‚Ì•ÏX
+	ç·¨é›†ãƒ¢ãƒ¼ãƒ‰ã®å¤‰æ›´
 ---------------------------------------------------------------------*/
 void CChildWnd::ChangeEditMode(BOOL em)
 {
 	m_EditMode = em;
 
-	Dirty();//•\¦•¨XV
+	Dirty();//è¡¨ç¤ºç‰©æ›´æ–°
 }
 
 /*-------------------------------------------------------------------
-	ƒrƒbƒgƒ}ƒbƒv‚Ì•ÏX
+	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®å¤‰æ›´
 ---------------------------------------------------------------------*/
 void CChildWnd::ChangeBitmap(UINT n)
 {
@@ -437,7 +437,7 @@ void CChildWnd::ChangeBitmap(UINT n)
 
 
 //******************************************************************************
-// GDI•`‰æ
+// GDIæç”»
 //******************************************************************************
 
 void CChildWnd::DrawRECT(int sx,int gx,int sy,int gy,DWORD type)
@@ -532,16 +532,16 @@ void CChildWnd::DrawPos(HDC hdc,int x,int y,BOOL not)
 
 
 /*-------------------------------------------------------------------
-	ƒ}ƒEƒX‘€ì
+	ãƒã‚¦ã‚¹æ“ä½œ
 ---------------------------------------------------------------------*/
 void CChildWnd::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	// TODO : ‚±‚±‚ÉƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚·‚é‚©AŠù’è‚Ìˆ—‚ğŒÄ‚Ño‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã‹ã€æ—¢å®šã®å‡¦ç†ã‚’å‘¼ã³å‡ºã—ã¾ã™ã€‚
 	CWnd::OnLButtonDown(nFlags, point);
 	GCD_CELL2 *pc = theApp.GetCurrentCell();
 	float mag;
 
-	//¡‹éŒ`•ÒWƒ‚[ƒh
+	//â– çŸ©å½¢ç·¨é›†ãƒ¢ãƒ¼ãƒ‰æ™‚
 	if(!m_EditMode)
 	{
 		GCD_RECT *ed_r = theApp.GetCurrentRect();
@@ -553,13 +553,13 @@ void CChildWnd::OnLButtonDown(UINT nFlags, CPoint point)
 			m_sx=m_gx=point.x;
 			m_sy=m_gy=point.y;
 		}
-		else if(ed_r!=NULL && !CGCDHandler::GCDIsEmptyRect(*ed_r)){//‚»‚Ì‹éŒ`‚ª‹ó‚Å‚È‚¢ê‡‚Ì‚İ
+		else if(ed_r!=NULL && !CGCDHandler::GCDIsEmptyRect(*ed_r)){//ãã®çŸ©å½¢ãŒç©ºã§ãªã„å ´åˆã®ã¿
 			ed_r->center_x = point.x - (ed_r->r.left -si_x.nPos);
 			ed_r->center_y = point.y - (ed_r->r.top  -si_y.nPos);
 			InvalidateRect(NULL,TRUE);
 		}
 		else{
-			theApp.SetStatus("‹éŒ`dSİ’èF‹éŒ`‚ª‹ó‚Å‚·Bİ’è‚Å‚¯‚Ü‚¹‚ñB");
+			theApp.SetStatus("çŸ©å½¢é‡å¿ƒè¨­å®šï¼šçŸ©å½¢ãŒç©ºã§ã™ã€‚è¨­å®šã§ã‘ã¾ã›ã‚“ã€‚");
 		}
 	}
 	else
@@ -567,13 +567,13 @@ void CChildWnd::OnLButtonDown(UINT nFlags, CPoint point)
 		mousedown=TRUE;
 		SetCapture();
 
-		//¡ƒZƒ‹”»’è‹éŒ`•ÒW
+		//â– ã‚»ãƒ«åˆ¤å®šçŸ©å½¢ç·¨é›†æ™‚
 		if(mc_EditMode==1){
 			if(drawprv)DrawRECT(m_sx,m_gx,m_sy,m_gy,0);
 			m_sx=m_gx= point.x;
 			m_sy=m_gy= point.y;
 		}
-		//¡dSİ’è
+		//â– é‡å¿ƒè¨­å®š
 
 		else if(mc_EditMode==2){
 			switch(mc_mag){
@@ -588,11 +588,11 @@ void CChildWnd::OnLButtonDown(UINT nFlags, CPoint point)
 			pc->gcy = (int)((point.y-CHILDCENTERY)*mag*(1.0f/mc_scale_y) - mc_offset_y/mc_scale_y);
 			theApp.InvalidateAll();
 		}
-		//¡ƒ}[ƒJ[ƒ|ƒCƒ“ƒg
+		//â– ãƒãƒ¼ã‚«ãƒ¼ãƒã‚¤ãƒ³ãƒˆ
 		else if(mc_EditMode==6){
 			mc_MarkerPoint = point;
 			CString str;
-			str.Format("ƒ}[ƒJ[ƒZƒbƒg ( %d , %d )",point.x,point.y);
+			str.Format("ãƒãƒ¼ã‚«ãƒ¼ã‚»ãƒƒãƒˆ ( %d , %d )",point.x,point.y);
 			theApp.SetStatus(str);
 			Invalidate();
 		}
@@ -602,12 +602,12 @@ void CChildWnd::OnLButtonDown(UINT nFlags, CPoint point)
 
 void CChildWnd::OnLButtonUp(UINT nFlags, CPoint point)
 {
-	// TODO : ‚±‚±‚ÉƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚·‚é‚©AŠù’è‚Ìˆ—‚ğŒÄ‚Ño‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã‹ã€æ—¢å®šã®å‡¦ç†ã‚’å‘¼ã³å‡ºã—ã¾ã™ã€‚
 	CWnd::OnLButtonUp(nFlags, point);
 	mousedown=FALSE;
 	ReleaseCapture();
 
-	//¡‹éŒ`•ÒWƒ‚[ƒh
+	//â– çŸ©å½¢ç·¨é›†ãƒ¢ãƒ¼ãƒ‰æ™‚
 	if(!m_EditMode)
 	{
 		if(mr_EditMode==0){
@@ -625,7 +625,7 @@ void CChildWnd::OnLButtonUp(UINT nFlags, CPoint point)
 	}
 	else
 	{
-		//¡ƒZƒ‹”»’è‹éŒ`•ÒW
+		//â– ã‚»ãƒ«åˆ¤å®šçŸ©å½¢ç·¨é›†æ™‚
 		if(mc_EditMode==1){
 			m_gx=point.x;
 			m_gy=point.y;
@@ -637,7 +637,7 @@ void CChildWnd::OnLButtonUp(UINT nFlags, CPoint point)
 
 void CChildWnd::OnMouseMove(UINT nFlags, CPoint point)
 {
-	// TODO : ‚±‚±‚ÉƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚·‚é‚©AŠù’è‚Ìˆ—‚ğŒÄ‚Ño‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã‹ã€æ—¢å®šã®å‡¦ç†ã‚’å‘¼ã³å‡ºã—ã¾ã™ã€‚
 	CWnd::OnMouseMove(nFlags, point);
 
 	GCD_CELL2 *pc2 = theApp.GetCurrentCell();
@@ -645,7 +645,7 @@ void CChildWnd::OnMouseMove(UINT nFlags, CPoint point)
 
 	BOOL no_move=FALSE;
 
-	//¡‹éŒ`•ÒWƒ‚[ƒh
+	//â– çŸ©å½¢ç·¨é›†ãƒ¢ãƒ¼ãƒ‰æ™‚
 	if(!m_EditMode)
 	{
 		if(mousedown){
@@ -664,13 +664,13 @@ void CChildWnd::OnMouseMove(UINT nFlags, CPoint point)
 
 		switch(mc_EditMode)
 		{
-			case 0://¡ƒIƒtƒZƒbƒgİ’è
+			case 0://â– ã‚ªãƒ•ã‚»ãƒƒãƒˆè¨­å®š
 			{
 				pc->dx += dx;
 				pc->dy += dy;
 			}
 			break;
-			case 1://¡ƒZƒ‹”»’è‹éŒ`•ÒW
+			case 1://â– ã‚»ãƒ«åˆ¤å®šçŸ©å½¢ç·¨é›†æ™‚
 			{
 				if(drawprv)DrawRECT(m_sx,m_gx,m_sy,m_gy,0);
 				m_gx=point.x;
@@ -679,18 +679,18 @@ void CChildWnd::OnMouseMove(UINT nFlags, CPoint point)
 				drawprv=TRUE;
 			}
 			break;
-			case 3://¡‰ñ“]
+			case 3://â– å›è»¢
 			{
 				pc->rot += dx;
 			}
 			break;
-			case 4://¡Šg‘åk¬
+			case 4://â– æ‹¡å¤§ç¸®å°
 			{
 				pc->magx += (float)dx / 100.0f;
 				pc->magy += (float)dy / 100.0f;
 			}
 			break;
-			case 5://¡ƒIƒtƒZƒbƒgİ’è(”÷’²)
+			case 5://â– ã‚ªãƒ•ã‚»ãƒƒãƒˆè¨­å®š(å¾®èª¿)
 			{
 				dx/=10;
 				dy/=10;
@@ -720,17 +720,17 @@ void CChildWnd::OnRButtonDown(UINT nFlags, CPoint point)
 		return;
 	}
 
-	// TODO : ‚±‚±‚ÉƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚·‚é‚©AŠù’è‚Ìˆ—‚ğŒÄ‚Ño‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã‹ã€æ—¢å®šã®å‡¦ç†ã‚’å‘¼ã³å‡ºã—ã¾ã™ã€‚
 	CWnd::OnRButtonDown(nFlags, point);
 
-	if(m_EditMode)//ƒZƒ‹•ÒWƒ‚[ƒh
+	if(m_EditMode)//ã‚»ãƒ«ç·¨é›†ãƒ¢ãƒ¼ãƒ‰
 	{
 /*		mc_MouseLock = !mc_MouseLock;
-		if(mc_MouseLock)	theApp.SetStatus("ƒ}ƒEƒX‘€ì@ƒƒbƒN‰ğœ");
-		else				theApp.SetStatus("ƒ}ƒEƒX‘€ì@ƒƒbƒN");
+		if(mc_MouseLock)	theApp.SetStatus("ãƒã‚¦ã‚¹æ“ä½œã€€ãƒ­ãƒƒã‚¯è§£é™¤");
+		else				theApp.SetStatus("ãƒã‚¦ã‚¹æ“ä½œã€€ãƒ­ãƒƒã‚¯");
 		Invalidate();*/
 	}
-	else{//‹éŒ`•ÒWƒ‚[ƒh
+	else{//çŸ©å½¢ç·¨é›†ãƒ¢ãƒ¼ãƒ‰
 		GCD_RECT *r = theApp.GetCurrentRect();
 		if(!r)return;
 		switch(mr_EditMode)
@@ -747,7 +747,7 @@ void CChildWnd::OnRButtonDown(UINT nFlags, CPoint point)
 
 
 /*-------------------------------------------------------------------
-	Œ»İ‘I‘ğ’†‚Ì‹éŒ`‚ğæ“¾
+	ç¾åœ¨é¸æŠä¸­ã®çŸ©å½¢ã‚’å–å¾—
 ---------------------------------------------------------------------*/
 RECT CChildWnd::GetCurrentRect()
 {
@@ -803,35 +803,35 @@ RECT CChildWnd::GetCurrentRect()
 }
 
 /*-------------------------------------------------------------------
-	‹éŒ`•ÒWƒ‚[ƒh‚Ì•ÏX
+	çŸ©å½¢ç·¨é›†ãƒ¢ãƒ¼ãƒ‰ã®å¤‰æ›´
 ---------------------------------------------------------------------*/
 void CChildWnd::ChangeEditModeR(UINT mode)
 {
 	mr_EditMode = mode;
 
 	switch(mr_EditMode){
-	case 0:theApp.SetStatus("‹éŒ`•ÒWƒ‚[ƒh / ‹éŒ`w’èƒ‚[ƒh");break;
-	case 1:theApp.SetStatus("‹éŒ`•ÒWƒ‚[ƒh / dSw’èƒ‚[ƒh");break;
+	case 0:theApp.SetStatus("çŸ©å½¢ç·¨é›†ãƒ¢ãƒ¼ãƒ‰ / çŸ©å½¢æŒ‡å®šãƒ¢ãƒ¼ãƒ‰");break;
+	case 1:theApp.SetStatus("çŸ©å½¢ç·¨é›†ãƒ¢ãƒ¼ãƒ‰ / é‡å¿ƒæŒ‡å®šãƒ¢ãƒ¼ãƒ‰");break;
 	}
 	Invalidate();
 }
 
 /*-------------------------------------------------------------------
-	ƒZƒ‹•ÒWƒ‚[ƒh‚Ì•ÏX
+	ã‚»ãƒ«ç·¨é›†ãƒ¢ãƒ¼ãƒ‰ã®å¤‰æ›´
 ---------------------------------------------------------------------*/
 void CChildWnd::ChangeEditModeC(UINT m)
 {
 	mc_EditMode = m;
 
 	switch(mc_EditMode){
-	case 0:theApp.SetStatus("ƒZƒ‹•ÒWƒ‚[ƒh / ƒIƒtƒZƒbƒg•ÒWƒ‚[ƒh");break;
-	case 1:theApp.SetStatus("ƒZƒ‹•ÒWƒ‚[ƒh / ”»’è‹éŒ`w’èƒ‚[ƒh");break;
-	case 2:theApp.SetStatus("ƒZƒ‹•ÒWƒ‚[ƒh / dSw’èƒ‚[ƒh");break;
-	case 3:theApp.SetStatus("ƒZƒ‹•ÒWƒ‚[ƒh / ‰ñ“]ƒ‚[ƒh");break;
-	case 4:theApp.SetStatus("ƒZƒ‹•ÒWƒ‚[ƒh / Šgkƒ‚[ƒh");break;
-	case 5:theApp.SetStatus("ƒZƒ‹•ÒWƒ‚[ƒh / ƒIƒtƒZƒbƒg•ÒWƒ‚[ƒh(”÷’²)");break;
-	case 6:theApp.SetStatus("ƒZƒ‹•ÒWƒ‚[ƒh / ƒ}[ƒJ[İ’èƒ‚[ƒh@ƒ}[ƒJ[ON");mc_MarkerON=TRUE;break;
-	case 7:theApp.SetStatus("ƒZƒ‹•ÒWƒ‚[ƒh / ƒ}ƒEƒX‘€ì‚È‚µ");break;
+	case 0:theApp.SetStatus("ã‚»ãƒ«ç·¨é›†ãƒ¢ãƒ¼ãƒ‰ / ã‚ªãƒ•ã‚»ãƒƒãƒˆç·¨é›†ãƒ¢ãƒ¼ãƒ‰");break;
+	case 1:theApp.SetStatus("ã‚»ãƒ«ç·¨é›†ãƒ¢ãƒ¼ãƒ‰ / åˆ¤å®šçŸ©å½¢æŒ‡å®šãƒ¢ãƒ¼ãƒ‰");break;
+	case 2:theApp.SetStatus("ã‚»ãƒ«ç·¨é›†ãƒ¢ãƒ¼ãƒ‰ / é‡å¿ƒæŒ‡å®šãƒ¢ãƒ¼ãƒ‰");break;
+	case 3:theApp.SetStatus("ã‚»ãƒ«ç·¨é›†ãƒ¢ãƒ¼ãƒ‰ / å›è»¢ãƒ¢ãƒ¼ãƒ‰");break;
+	case 4:theApp.SetStatus("ã‚»ãƒ«ç·¨é›†ãƒ¢ãƒ¼ãƒ‰ / æ‹¡ç¸®ãƒ¢ãƒ¼ãƒ‰");break;
+	case 5:theApp.SetStatus("ã‚»ãƒ«ç·¨é›†ãƒ¢ãƒ¼ãƒ‰ / ã‚ªãƒ•ã‚»ãƒƒãƒˆç·¨é›†ãƒ¢ãƒ¼ãƒ‰(å¾®èª¿)");break;
+	case 6:theApp.SetStatus("ã‚»ãƒ«ç·¨é›†ãƒ¢ãƒ¼ãƒ‰ / ãƒãƒ¼ã‚«ãƒ¼è¨­å®šãƒ¢ãƒ¼ãƒ‰ã€€ãƒãƒ¼ã‚«ãƒ¼ON");mc_MarkerON=TRUE;break;
+	case 7:theApp.SetStatus("ã‚»ãƒ«ç·¨é›†ãƒ¢ãƒ¼ãƒ‰ / ãƒã‚¦ã‚¹æ“ä½œãªã—");break;
 	}
 	Invalidate();
 }

@@ -1,7 +1,7 @@
-
+ï»¿
 /*----------------------------------------------------------------------
 
-	ƒ[ƒh‰æ–Ê
+	ãƒ­ãƒ¼ãƒ‰ç”»é¢
 
 ------------------------------------------------------------------------*/
 
@@ -12,7 +12,7 @@
 void CTNowLoading::Initialize()
 {
 	tex_fb = g_draw.GetFrontBufferCopy();
-	if(!tex_fb){OutputDebugString(_T("CTNowLoading: ƒtƒƒ“ƒgƒoƒbƒtƒ@ƒRƒs[¸”s\n"));}
+	if(!tex_fb){OutputDebugString(_T("CTNowLoading: ãƒ•ãƒ­ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ã‚³ãƒ”ãƒ¼å¤±æ•—\n"));}
 
 	tex_nowload = NULL;
 	tex_dll = NULL;
@@ -148,7 +148,7 @@ void CTNowLoading::DrawIcon()
 
 	float ar = 320.0f/240.0f;
 
-	//ƒtƒƒ“ƒgƒoƒbƒtƒ@‚ğƒRƒs[‚µ‚½‚â‚Â
+	//ãƒ•ãƒ­ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ã‚’ã‚³ãƒ”ãƒ¼ã—ãŸã‚„ã¤
 	if(tex_fb)
 	{
 		vb[0].color = 

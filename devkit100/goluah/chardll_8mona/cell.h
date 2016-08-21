@@ -1,4 +1,4 @@
-#define CELL_NEUTRAL 100
+﻿#define CELL_NEUTRAL 100
 #define CELL_WALK1 101
 #define CELL_WALK2 102
 #define CELL_WALK3 103

@@ -1,4 +1,4 @@
-// DlgInputAssign.cpp : ŽÀ‘•ƒtƒ@ƒCƒ‹
+ï»¿// DlgInputAssign.cpp : å®Ÿè£…ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include ".\dlginputassign.h"
 
 
-// CDlgInputAssign ƒ_ƒCƒAƒƒO
+// CDlgInputAssign ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 IMPLEMENT_DYNAMIC(CDlgInputAssign, CDialog)
 CDlgInputAssign::CDlgInputAssign(CWnd* pParent /*=NULL*/)
@@ -48,13 +48,13 @@ BEGIN_MESSAGE_MAP(CDlgInputAssign, CDialog)
 END_MESSAGE_MAP()
 
 
-// CDlgInputAssign ƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰
+// CDlgInputAssign ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ©
 
 BOOL CDlgInputAssign::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO :  ‚±‚±‚É‰Šú‰»‚ð’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢
+	// TODO :  ã“ã“ã«åˆæœŸåŒ–ã‚’è¿½åŠ ã—ã¦ãã ã•ã„
 
 	SetComboItem(IDC_COMBO_KB1, 60,10);
 	SetComboItem(IDC_COMBO_KB2, 60,10);
@@ -78,20 +78,20 @@ BOOL CDlgInputAssign::OnInitDialog()
 	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// —áŠO : OCX ƒvƒƒpƒeƒB ƒy[ƒW‚Í•K‚¸ FALSE ‚ð•Ô‚µ‚Ü‚·B
+	// ä¾‹å¤– : OCX ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ ãƒšãƒ¼ã‚¸ã¯å¿…ãš FALSE ã‚’è¿”ã—ã¾ã™ã€‚
 }
 
 void CDlgInputAssign::OnOK()
 {
-	// TODO : ‚±‚±‚É“Á’è‚ÈƒR[ƒh‚ð’Ç‰Á‚·‚é‚©A‚à‚µ‚­‚ÍŠî–{ƒNƒ‰ƒX‚ðŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢B
+	// TODO : ã“ã“ã«ç‰¹å®šãªã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã‹ã€ã‚‚ã—ãã¯åŸºæœ¬ã‚¯ãƒ©ã‚¹ã‚’å‘¼ã³å‡ºã—ã¦ãã ã•ã„ã€‚
 	UpdateData(TRUE);
 
-	//ƒL[ƒ{[ƒhd•¡ƒ`ƒFƒbƒN
+	//ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰é‡è¤‡ãƒã‚§ãƒƒã‚¯
 /*	if(m_cfg.kb[0]==m_cfg.kb[1]){
-		MessageBox("ƒL[ƒ{[ƒh‚ÌŠ„‚è“–‚Ä‚ªd•¡‚µ‚Ä‚¢‚Ü‚·","‘Ê–Ú‚ÁEEEI ‚â‚è‚È‚¨‚µ‚ÁEEEII");
+		MessageBox("ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å‰²ã‚Šå½“ã¦ãŒé‡è¤‡ã—ã¦ã„ã¾ã™","é§„ç›®ã£ãƒ»ãƒ»ãƒ»ï¼ ã‚„ã‚ŠãªãŠã—ã£ãƒ»ãƒ»ãƒ»ï¼ï¼");
 		return;
 	}
-	//ƒpƒbƒhd•¡ƒ`ƒFƒbƒN
+	//ãƒ‘ãƒƒãƒ‰é‡è¤‡ãƒã‚§ãƒƒã‚¯
 	for(int i=0;i<NUM_PAD;i++)
 	{
 		for(int j=i+1;j<NUM_PAD;j++)
@@ -99,8 +99,8 @@ void CDlgInputAssign::OnOK()
 			if(m_cfg.pad[i]==m_cfg.pad[j])
 			{
 				CString str;
-				str.Format("ƒpƒbƒh%d‚Æ%d‚ÌŠ„‚è“–‚Ä‚ªd•¡‚µ‚Ä‚¢‚Ü‚·",i,j);
-				MessageBox(str,"‘Ê–Ú‚ÁEEEI ‚â‚è‚È‚¨‚µ‚ÁEEEII");
+				str.Format("ãƒ‘ãƒƒãƒ‰%dã¨%dã®å‰²ã‚Šå½“ã¦ãŒé‡è¤‡ã—ã¦ã„ã¾ã™",i,j);
+				MessageBox(str,"é§„ç›®ã£ãƒ»ãƒ»ãƒ»ï¼ ã‚„ã‚ŠãªãŠã—ã£ãƒ»ãƒ»ãƒ»ï¼ï¼");
 				return;
 			}
 		}
@@ -135,18 +135,18 @@ void CDlgInputAssign::SetComboItem(int id,int left,int top)
 
 void CDlgInputAssign::OnBnClickedOk()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ð’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	OnOK();
 }
 
 void CDlgInputAssign::OnCbnSelchangeComboPad3()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ð’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 }
 
 void CDlgInputAssign::OnCancel()
 {
-	// TODO : ‚±‚±‚É“Á’è‚ÈƒR[ƒh‚ð’Ç‰Á‚·‚é‚©A‚à‚µ‚­‚ÍŠî–{ƒNƒ‰ƒX‚ðŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢B
+	// TODO : ã“ã“ã«ç‰¹å®šãªã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã‹ã€ã‚‚ã—ãã¯åŸºæœ¬ã‚¯ãƒ©ã‚¹ã‚’å‘¼ã³å‡ºã—ã¦ãã ã•ã„ã€‚
 
 	//CDialog::OnCancel();
 	OnOK();
@@ -154,5 +154,5 @@ void CDlgInputAssign::OnCancel()
 
 void CDlgInputAssign::OnCbnSelchangeComboKb1()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ð’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 }

@@ -1,4 +1,4 @@
-/*=====================================================================================
+ï»¿/*=====================================================================================
 
 Goluah!! Copyright (C) 2001-2004 aki, 2004-2016 At-sushi, 2014-2016 logger
 
@@ -12,16 +12,16 @@ You should have received a copy of the GNU General Public License along with thi
 
 /*==============================================================
 
-	s“®ŠÖ”i’ÊíUŒ‚j
+	è¡Œå‹•é–¢æ•°ï¼ˆé€šå¸¸æ”»æ’ƒï¼‰
 
 ================================================================*/
 #include "el_character.h"
 
 //**************************************************************
-//@—§
+//ã€€ç«‹
 //**************************************************************
 
-void CCharacterEL::act_att_sa()//—§ã
+void CCharacterEL::act_att_sa()//ç«‹å¼±
 {
 	if(ccounter==6){
 		pbul_hadou->GoA(
@@ -40,7 +40,7 @@ void CCharacterEL::act_att_sa()//—§ã
 	else ChangeAction( ACTID_NEUTRAL );
 }
 
-void CCharacterEL::act_att_sb()//—§’†
+void CCharacterEL::act_att_sb()//ç«‹ä¸­
 {
 	if(ccounter==0)StartAttack( ATTACKINFO_STAND_B );
 
@@ -56,7 +56,7 @@ void CCharacterEL::act_att_sb()//—§’†
 	else ChangeAction( ACTID_NEUTRAL );
 }
 
-void CCharacterEL::act_att_sc()//—§‹­
+void CCharacterEL::act_att_sc()//ç«‹å¼·
 {
 	if(ccounter==5)StartAttack( ATTACKINFO_STAND_C );
 	if(ccounter==2)pefe_wind->Go( pdat->muki,pdat->x,pdat->y,2);
@@ -114,10 +114,10 @@ void CCharacterEL::act_att_scs2()
 }
 
 //**************************************************************
-//@‹ü
+//ã€€å±ˆ
 //**************************************************************
 
-void CCharacterEL::act_att_ca()//‹üã
+void CCharacterEL::act_att_ca()//å±ˆå¼±
 {
 	if(ccounter==6){
 		pbul_hadou->GoA(
@@ -136,7 +136,7 @@ void CCharacterEL::act_att_ca()//‹üã
 	else ChangeAction( ACTID_CROUCH );
 }
 
-void CCharacterEL::act_att_cb()//‹ü’†
+void CCharacterEL::act_att_cb()//å±ˆä¸­
 {
 	if(ccounter==0)StartAttack( ATTACKINFO_CROUCH_B );
 
@@ -152,7 +152,7 @@ void CCharacterEL::act_att_cb()//‹ü’†
 	else ChangeAction( ACTID_CROUCH );
 }
 
-void CCharacterEL::act_att_cc()//‹ü‹­
+void CCharacterEL::act_att_cc()//å±ˆå¼·
 {
 	if(ccounter==5)StartAttack( ATTACKINFO_CROUCH_C );
 
@@ -171,10 +171,10 @@ void CCharacterEL::act_att_cc()//‹ü‹­
 }
 
 //**************************************************************
-//@”ò
+//ã€€é£›
 //**************************************************************
 
-void CCharacterEL::act_att_ja()//”òã
+void CCharacterEL::act_att_ja()//é£›å¼±
 {
 	if(ccounter==6){
 		pbul_hadou->GoA(pdat->muki,
@@ -194,7 +194,7 @@ void CCharacterEL::act_att_ja()//”òã
 	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
 }
 
-void CCharacterEL::act_att_jb()//”ò’†
+void CCharacterEL::act_att_jb()//é£›ä¸­
 {
 	if(ccounter==0)StartAttack( ATTACKINFO_JAMP_B );
 
@@ -212,7 +212,7 @@ void CCharacterEL::act_att_jb()//”ò’†
 	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
 }
 
-void CCharacterEL::act_att_jc()//”ò‹­
+void CCharacterEL::act_att_jc()//é£›å¼·
 {
 	if(ccounter==5)StartAttack( ATTACKINFO_JAMP_C );
 
@@ -233,7 +233,7 @@ void CCharacterEL::act_att_jc()//”ò‹­
 }
 
 //**************************************************************
-//@“Š
+//ã€€æŠ•
 //**************************************************************
 
 void CCharacterEL::act_nage1()

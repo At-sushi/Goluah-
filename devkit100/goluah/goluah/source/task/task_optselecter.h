@@ -1,7 +1,7 @@
-
+ï»¿
 /*=======================================================================================
 
-	ƒIƒvƒVƒ‡ƒ“‘I‘ğ
+	ã‚ªãƒ—ã‚·ãƒ§ãƒ³é¸æŠ
 
 =========================================================================================*/
 #pragma once
@@ -11,7 +11,7 @@
 #include "charlist.h"
 
 /*!
-*	@brief CTOptionSelecterBase ‚Ìó‘Ô
+*	@brief CTOptionSelecterBase ã®çŠ¶æ…‹
 *	@ingroup Tasks
 */
 enum CTOptionSelecterState
@@ -23,11 +23,11 @@ enum CTOptionSelecterState
 };
 
 /*!
-*	@brief ƒIƒvƒVƒ‡ƒ“‘I‘ğƒx[ƒX
+*	@brief ã‚ªãƒ—ã‚·ãƒ§ãƒ³é¸æŠãƒ™ãƒ¼ã‚¹
 *	@ingroup Tasks
 *
-*	“à•”“I‚ÉŒÃ‚¢ƒNƒ‰ƒX‚ğ‚à‚¿Aƒf[ƒ^‚ÌŠÇ—‚Í‚»‚¢‚Â‚ª‚â‚Á‚Ä‚¢‚éB
-*	•\¦‚ğ‚©‚Á‚±‚æ‚­‚µ‚½‚­‚ÄVƒNƒ‰ƒX‚É‚µ‚½–Í—lB
+*	å†…éƒ¨çš„ã«å¤ã„ã‚¯ãƒ©ã‚¹ã‚’ã‚‚ã¡ã€ãƒ‡ãƒ¼ã‚¿ã®ç®¡ç†ã¯ãã„ã¤ãŒã‚„ã£ã¦ã„ã‚‹ã€‚
+*	è¡¨ç¤ºã‚’ã‹ã£ã“ã‚ˆãã—ãŸãã¦æ–°ã‚¯ãƒ©ã‚¹ã«ã—ãŸæ¨¡æ§˜ã€‚
 */
 class CTOptionSelecterBase : public CTaskBase
 {
@@ -41,12 +41,12 @@ public:
 	virtual void Draw();
 	virtual void SetInitialValue(DWORD val){m_selecter->Initialize(val);}
 
-	//!•`‰æƒvƒ‰ƒCƒIƒŠƒeƒB
+	//!æç”»ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 	int m_draw_priority;
 	virtual int GetDrawPriority(){return m_state==CTOPTSS_HideComplete ? -1 : m_draw_priority;}
 	virtual void SetPriority(int pri){m_draw_priority = pri;}
 
-	//‘€ìEİ’è
+	//æ“ä½œãƒ»è¨­å®š
 	virtual int  SetAndShow(DWORD cindex,DWORD kindex);
 	virtual void SetPos(float x,float y){offset_x=x;m_top=y;}
 	virtual float GetHeight();
@@ -54,15 +54,15 @@ public:
 	CCOptionSelecter* GetSelecter()	{ return m_selecter; }
 
 protected:
-	virtual void EndSelect() = 0;//!<‘I‘ğI—¹‚Ìˆ—
+	virtual void EndSelect() = 0;//!<é¸æŠçµ‚äº†æ™‚ã®å‡¦ç†
 
 protected:
 	CTOptionSelecterState m_state;
-	CCOptionSelecter *m_selecter;//!<–{‘ÌH
+	CCOptionSelecter *m_selecter;//!<æœ¬ä½“ï¼Ÿ
 
 	UINT  m_cindex;
 	float m_tick;
-	DWORD m_keyIndex;		//!<ƒL[“ü—Íƒ\[ƒX
+	DWORD m_keyIndex;		//!<ã‚­ãƒ¼å…¥åŠ›ã‚½ãƒ¼ã‚¹
 	float m_fontheight;
 	float m_top,offset_x;
 };

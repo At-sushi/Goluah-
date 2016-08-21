@@ -1,25 +1,25 @@
-#pragma once
+ï»¿#pragma once
 
 
-// CDlgCellDisp ƒ_ƒCƒAƒƒO
+// CDlgCellDisp ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 class CDlgCellDisp : public CMyDialogTab
 {
 	DECLARE_DYNAMIC(CDlgCellDisp)
 
 public:
-	CDlgCellDisp(CWnd* pParent = NULL);   // •W€ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	CDlgCellDisp(CWnd* pParent = NULL);   // æ¨™æº–ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~CDlgCellDisp();
 	void UpdateItems(){}
 
-// ƒ_ƒCƒAƒƒO ƒf[ƒ^
+// ãƒ€ã‚¤ã‚¢ãƒ­ã‚° ãƒ‡ãƒ¼ã‚¿
 	enum { IDD = IDD_DIALOG_CTAB_DISP };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ƒTƒ|[ƒg
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ã‚µãƒãƒ¼ãƒˆ
 	
 	void SetupSliders();
-	void NotifyChild();//•\¦ƒEƒCƒ“ƒhƒE‚ÉAƒXƒ‰ƒCƒ_[ƒRƒ“ƒgƒ[ƒ‹‚Ì’l‚ğ’Ê’m
+	void NotifyChild();//è¡¨ç¤ºã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã«ã€ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®å€¤ã‚’é€šçŸ¥
 
 	int m_ofsx,m_ofsy;
 	float m_scax,m_scay;
@@ -28,14 +28,14 @@ protected:
 	DECLARE_MESSAGE_MAP()
 	DECLARE_DHTML_EVENT_MAP()
 public:
-	int m_mag;			//Šg‘å—¦
-	BOOL m_marker_on;	//ƒ}[ƒJ[ON/OFF
-	BOOL x_flip;		//x”½“]ƒ`ƒFƒbƒNƒ{ƒbƒNƒX
-	BOOL y_flip;		//y”½“]ƒ`ƒFƒbƒNƒ{ƒbƒNƒX
-	afx_msg void OnCbnSelchangeComboMag();		//Šg‘å—¦ƒRƒ“ƒ{
-	afx_msg void OnBnClickedCheck1();			//ƒ}[ƒJ[(‘½•ª)
-	afx_msg void OnBnClickedCheckFlipxtest();	//X”½“]
-	afx_msg void OnBnClickedCheckFlipytest();	//Y”½“]
+	int m_mag;			//æ‹¡å¤§ç‡
+	BOOL m_marker_on;	//ãƒãƒ¼ã‚«ãƒ¼ON/OFF
+	BOOL x_flip;		//xåè»¢ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹
+	BOOL y_flip;		//yåè»¢ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹
+	afx_msg void OnCbnSelchangeComboMag();		//æ‹¡å¤§ç‡ã‚³ãƒ³ãƒœ
+	afx_msg void OnBnClickedCheck1();			//ãƒãƒ¼ã‚«ãƒ¼(å¤šåˆ†)
+	afx_msg void OnBnClickedCheckFlipxtest();	//Xåè»¢
+	afx_msg void OnBnClickedCheckFlipytest();	//Yåè»¢
 	virtual BOOL OnInitDialog();
 	afx_msg void OnBnClickedButton1();
 	afx_msg void OnNMCustomdrawSliderOfsx(NMHDR *pNMHDR, LRESULT *pResult);

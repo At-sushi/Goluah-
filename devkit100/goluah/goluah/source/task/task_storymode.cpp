@@ -1,6 +1,6 @@
-/*===============================================================
+ï»¿/*===============================================================
 
-	ƒXƒg[ƒŠ[ƒ‚[ƒhƒ^ƒXƒN
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒ¢ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯
 
 =================================================================*/
 
@@ -16,14 +16,14 @@
 
 /*===============================================================
 
-	ƒXƒg[ƒŠ[ƒ‚[ƒh–{‘Ì
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒ¢ãƒ¼ãƒ‰æœ¬ä½“
 
 =================================================================*/
 
-extern int story_selectflag;		// b’èİ’uA¡‚Ì’u‚«ê‚Íscript_story.cppB
+extern int story_selectflag;		// æš«å®šè¨­ç½®ã€ä»Šã®ç½®ãå ´ã¯script_story.cppã€‚
 
 /*----------------------------------------------------------------
-	\’z
+	æ§‹ç¯‰
 ------------------------------------------------------------------*/
 CTaskStoryMode::CTaskStoryMode()
 {
@@ -31,7 +31,7 @@ CTaskStoryMode::CTaskStoryMode()
 }
 
 /*----------------------------------------------------------------
-	íœ
+	å‰Šé™¤
 ------------------------------------------------------------------*/
 CTaskStoryMode::~CTaskStoryMode()
 {
@@ -40,7 +40,7 @@ CTaskStoryMode::~CTaskStoryMode()
 }
 
 /*----------------------------------------------------------------
-	ŠJnî•ñİ’è
+	é–‹å§‹æƒ…å ±è¨­å®š
 ------------------------------------------------------------------*/
 void CTaskStoryMode::Setup(UINT storyIndex,UINT keyindex,CStoryList::CStoryInfo* info)
 {
@@ -49,7 +49,7 @@ void CTaskStoryMode::Setup(UINT storyIndex,UINT keyindex,CStoryList::CStoryInfo*
 
 	for(int i=0;i<m_setting->cnum;i++)
 	{
-		//”r‘¼EˆË‘¶ƒIƒvƒVƒ‡ƒ“‚ÅA•s³‚É‚È‚Á‚Ä‚¢‚é‚à‚Ì‚ğ³‚·
+		//æ’ä»–ãƒ»ä¾å­˜ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã§ã€ä¸æ­£ã«ãªã£ã¦ã„ã‚‹ã‚‚ã®ã‚’æ­£ã™
 		g_charlist.CorrectOption( m_setting->characters[i],&m_setting->option[i] );
 	}
 
@@ -59,11 +59,11 @@ void CTaskStoryMode::Setup(UINT storyIndex,UINT keyindex,CStoryList::CStoryInfo*
 }
 
 /*----------------------------------------------------------------
-	‰Šú‰»
+	åˆæœŸåŒ–
 ------------------------------------------------------------------*/
 void CTaskStoryMode::Initialize()
 {
-	//ƒXƒNƒŠƒvƒg‚Ì“Ç‚İ‚İ(entry.txt‚Í©“®‚Å‚­‚Á‚Â‚­‚ç‚µ‚¢)
+	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®èª­ã¿è¾¼ã¿(entry.txtã¯è‡ªå‹•ã§ãã£ã¤ãã‚‰ã—ã„)
 //	TCHAR *filename = new TCHAR[MAX_PATH];
 //	_stprintf(filename,_T("%s\\entry.txt"),g_storylist.GetStoryDir(m_story_index));
 	BOOL ret = CGoluahStoryScript::CreateScriptElementList(
@@ -75,7 +75,7 @@ void CTaskStoryMode::Initialize()
 		return;
 	}
 
-	//vsƒuƒƒbƒN‚ÅAƒLƒƒƒ‰ƒNƒ^[‚ÌƒIƒvƒVƒ‡ƒ“‚Ì•s³‚ğ’¼‚·
+	//vsãƒ–ãƒ­ãƒƒã‚¯ã§ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®ä¸æ­£ã‚’ç›´ã™
 	CStoryElement_VS	*ele_vs;
 	SScriptElementList::iterator i =scr_list.begin();
 	SScriptElementList::iterator ie=scr_list.begin();
@@ -97,7 +97,7 @@ void CTaskStoryMode::Initialize()
 
 	scr_i = scr_list.begin();
 
-	//ƒRƒ“ƒeƒBƒjƒ…[‰ñ”‚ğE‚¤
+	//ã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼å›æ•°ã‚’æ‹¾ã†
 	CStoryElement_Settings* pset=dynamic_cast<CStoryElement_Settings*>(*scr_i);
 	if(!pset){
 		g_system.ReturnTitle();
@@ -105,10 +105,10 @@ void CTaskStoryMode::Initialize()
 	}
 	m_continue_num = pset->continue_num;
 
-	//settingƒuƒƒbƒN‚ğ”ò‚Î‚·
+	//settingãƒ–ãƒ­ãƒƒã‚¯ã‚’é£›ã°ã™
 	while(dynamic_cast<CStoryElement_Settings*>(*scr_i))scr_i++;
 
-	//ƒ‰ƒ“ƒ_ƒ€ƒLƒƒƒ‰ƒNƒ^[EƒXƒe[ƒW‘I‘ğƒNƒ‰ƒX‚ğ‰Šú‰»
+	//ãƒ©ãƒ³ãƒ€ãƒ ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ»ã‚¹ãƒ†ãƒ¼ã‚¸é¸æŠã‚¯ãƒ©ã‚¹ã‚’åˆæœŸåŒ–
 	for(UINT n=0;n<MAXNUM_TEAM;n++)
 	{
 		m_RandomCharacterGetter.chars[n] = m_setting->characters[n];
@@ -120,7 +120,7 @@ void CTaskStoryMode::Initialize()
 }
 
 /*----------------------------------------------------------------
-	Às
+	å®Ÿè¡Œ
 ------------------------------------------------------------------*/
 BOOL CTaskStoryMode::Execute(DWORD time)
 {
@@ -135,21 +135,21 @@ BOOL CTaskStoryMode::Execute(DWORD time)
 
 	switch(m_prev_task_id)
 	{
-	//#vsƒuƒƒbƒN‚ÌI—¹
+	//#vsãƒ–ãƒ­ãƒƒã‚¯ã®çµ‚äº†
 	case 'Btl':
 		{
 			if(!ele_vs)return FALSE;
 			if(ele_vs->show_win || (g_battleresult.GetWinner()/*==1*/ && !ele_vs->nogameover)){
-				//Ÿ—˜‰æ–Ê‚Ö
+				//å‹åˆ©ç”»é¢ã¸
 				CYouWin *t_win = new CYouWin;
 				if(g_battleresult.GetWinner() && ele_vs->text_lose)
 				{
-					//•‰‚¯ƒeƒLƒXƒgİ’è
+					//è² ã‘ãƒ†ã‚­ã‚¹ãƒˆè¨­å®š
 					t_win->SetStoryText(ele_vs->text_lose);
 				}
 				if(!g_battleresult.GetWinner() && ele_vs->text_win)
 				{
-					//Ÿ—˜ƒeƒLƒXƒgİ’è
+					//å‹åˆ©ãƒ†ã‚­ã‚¹ãƒˆè¨­å®š
 					t_win->SetStoryText(ele_vs->text_win);
 				}
 				g_system.AddTask( t_win );
@@ -163,35 +163,35 @@ BOOL CTaskStoryMode::Execute(DWORD time)
 		{
 			if(!ele_vs)return FALSE;
 
-			if (ele_vs->nogameover)	// nogameover‚È‚çˆ—‚ğƒpƒX
+			if (ele_vs->nogameover)	// nogameoverãªã‚‰å‡¦ç†ã‚’ãƒ‘ã‚¹
 			{
 				story_selectflag += ele_vs->sel_shift + g_battleresult.GetWinner();
 			} else {
-				//•‰‚¯‚¿‚á‚Á‚Ä‚é
+				//è² ã‘ã¡ã‚ƒã£ã¦ã‚‹
 				if(g_battleresult.GetWinner()){
 					if(m_continue_num<0){
-						//–³ŒÀƒRƒ“ƒeƒBƒjƒ…[
+						//ç„¡é™ã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼
 						StartContinueTask();
 						return TRUE;
 					}
 					if(m_continue_num != 0){
-						//ƒRƒ“ƒeƒBƒjƒ…[
+						//ã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼
 						m_continue_num--;
 						StartContinueTask();
 						return TRUE;
 					}
-					//ƒQ[ƒ€ƒI[ƒo[
+					//ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼
 					CTStoryGameOver *go = new CTStoryGameOver;
 					g_system.AddTask(go);
 					return TRUE;
 				}
 			}
-			//Ÿ‚Á‚½
+			//å‹ã£ãŸ
 			scr_i++;
 			StartNextTask();
 		}
 		break;
-	//#demoƒuƒƒbƒN‚ÌI—¹
+	//#demoãƒ–ãƒ­ãƒƒã‚¯ã®çµ‚äº†
 	case 'Demo':
 		{
 			if(!ele_demo)return FALSE;
@@ -199,7 +199,7 @@ BOOL CTaskStoryMode::Execute(DWORD time)
 			StartNextTask();
 		}
 		break;
-	//#staffƒuƒƒbƒN‚ÌI—¹
+	//#staffãƒ–ãƒ­ãƒƒã‚¯ã®çµ‚äº†
 	case 'Staf':
 		{
 			if(!ele_staff)return FALSE;
@@ -207,20 +207,20 @@ BOOL CTaskStoryMode::Execute(DWORD time)
 			StartNextTask();
 		}
 		break;
-	//Å‰‚ÌƒuƒƒbƒN
+	//æœ€åˆã®ãƒ–ãƒ­ãƒƒã‚¯
 	case 'strt':
 		{
 			StartNextTask();
 		}
 		break;
-	//ƒRƒ“ƒeƒBƒjƒ…[‰æ–Ê‚©‚ç–ß‚Á‚Ä‚«‚½
+	//ã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼ç”»é¢ã‹ã‚‰æˆ»ã£ã¦ããŸ
 	case 'Cntn':
 		{
 			if(!ele_vs)return FALSE;
 			StartVSTask();
 		}
 		break;
-	//ƒQ[ƒ€ƒI[ƒo[H
+	//ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ï¼Ÿ
 	default:
 		g_system.ReturnTitle();
 	}
@@ -228,11 +228,11 @@ BOOL CTaskStoryMode::Execute(DWORD time)
 }
 
 /*----------------------------------------------------------------
-	I—¹
+	çµ‚äº†
 ------------------------------------------------------------------*/
 void CTaskStoryMode::Terminate()
 {
-	//“Á‚É‚â‚é‚±‚Æ‚È‚µ
+	//ç‰¹ã«ã‚„ã‚‹ã“ã¨ãªã—
 }
 
 /*----------------------------------------------------------------
@@ -244,24 +244,24 @@ void CTaskStoryMode::Activate(DWORD prvTaskID)
 }
 
 /*----------------------------------------------------------------
-	ƒ^ƒXƒN‹N“®
+	ã‚¿ã‚¹ã‚¯èµ·å‹•
 ------------------------------------------------------------------*/
 void CTaskStoryMode::StartNextTask()
 {
 	// #select
-	//      «‚ÌƒCƒeƒŒ[ƒ^‚Ìd—l‚Á‚Ä‚¿‚å‚Á‚Æ•s•Ö‚¾‚æ‚Ë
+	//      â†“ã®ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ã®ä»•æ§˜ã£ã¦ã¡ã‚‡ã£ã¨ä¸ä¾¿ã ã‚ˆã­
 	while (scr_i != scr_list.end() && (*scr_i)->GetType() == CStoryScriptElement::CStoryElement_Types::GSE_ST_SELECT){
 		CStoryElement_Select *ele_select	= dynamic_cast<CStoryElement_Select*>(*scr_i);
 
-		scr_i++;	// ©•ª©g‚Í‚à‚¤ˆ—‚µ‚½‚Ì‚ÅŸ‚Ö
-		// ğŒ”»’f‚É‡‚í‚È‚¢•”•ª‚ğ”ò‚Î‚·
+		scr_i++;	// è‡ªåˆ†è‡ªèº«ã¯ã‚‚ã†å‡¦ç†ã—ãŸã®ã§æ¬¡ã¸
+		// æ¡ä»¶åˆ¤æ–­ã«åˆã‚ãªã„éƒ¨åˆ†ã‚’é£›ã°ã™
 		if (ele_select){
 			if (ele_select->GetNum() == story_selectflag && !in_select)
-				in_select = true;					// “ü‚Á‚½
+				in_select = true;					// å…¥ã£ãŸ
 			else if (ele_select->GetNum() == -1)
-				in_select = false;					// ”²‚¯‚½
+				in_select = false;					// æŠœã‘ãŸ
 			else {
-				// Ÿ‚Ìselect•¶‚Ü‚Å”ò‚Î‚·
+				// æ¬¡ã®selectæ–‡ã¾ã§é£›ã°ã™
 				while (scr_i != scr_list.end() && (*scr_i)->GetType() != CStoryScriptElement::CStoryElement_Types::GSE_ST_SELECT)
 					scr_i++;
 			}
@@ -278,7 +278,7 @@ void CTaskStoryMode::StartNextTask()
 	else g_system.ReturnTitle();
 }
 
-//‡
+//è©¦åˆ
 void CTaskStoryMode::StartVSTask()
 {
 	CStoryElement_VS *ele_vs = dynamic_cast<CStoryElement_VS*>(*scr_i);
@@ -289,7 +289,7 @@ void CTaskStoryMode::StartVSTask()
 
 	int t,j,n;
 
-	//char1-3w’è‚ğ‰ğŒˆ‚·‚é
+	//char1-3æŒ‡å®šã‚’è§£æ±ºã™ã‚‹
 	for(t=0;t<2;t++){
 		for(j=0;j<ele_vs->num[t];j++)
 		{
@@ -310,7 +310,7 @@ void CTaskStoryMode::StartVSTask()
 		}
 	}
 
-	//ƒ‰ƒ“ƒ_ƒ€‚Ìl”‚ğ”‚¦Aƒ‰ƒ“ƒ_ƒ€ƒLƒƒƒ‰æ“¾ƒNƒ‰ƒX‚É’Ê’m
+	//ãƒ©ãƒ³ãƒ€ãƒ ã®äººæ•°ã‚’æ•°ãˆã€ãƒ©ãƒ³ãƒ€ãƒ ã‚­ãƒ£ãƒ©å–å¾—ã‚¯ãƒ©ã‚¹ã«é€šçŸ¥
 	UINT rdm_cnum=0;
 	for(t=0;t<2;t++){
 		for(j=0;j<ele_vs->num[t];j++){
@@ -321,7 +321,7 @@ void CTaskStoryMode::StartVSTask()
 	}
 	m_RandomCharacterGetter.Req(rdm_cnum);
 
-	//ƒ‰ƒ“ƒ_ƒ€ƒLƒƒƒ‰ƒNƒ^[‰ğŒˆ
+	//ãƒ©ãƒ³ãƒ€ãƒ ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼è§£æ±º
 	for(t=0;t<2;t++){
 		for(j=0;j<ele_vs->num[t];j++)
 		{
@@ -334,36 +334,36 @@ void CTaskStoryMode::StartVSTask()
 
 	int t2,j2,c;
 
-	//F‚Ìautow’è‚ğ‰ğŒˆ‚·‚é
+	//è‰²ã®autoæŒ‡å®šã‚’è§£æ±ºã™ã‚‹
 	for(t=0;t<2;t++){
 		for(j=0;j<ele_vs->num[t];j++)
 		{
 			if(ele_vs->color[t][j]<0)
 			{
 				c=1;
-				//‚·‚Å‚ÉŒˆ’è‚µ‚Ä‚é‚â‚Â‚ç‚Æ‚Í‚©‚Ô‚ç‚È‚¢‚æ‚¤‚É‚·‚é
+				//ã™ã§ã«æ±ºå®šã—ã¦ã‚‹ã‚„ã¤ã‚‰ã¨ã¯ã‹ã¶ã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹
 				for(t2=0;t2<2;t2++){
 					for(j2=0;j2<ele_vs->num[t2];j2++)
 					{
 						if(t!=t2 && j!=j2){
-							if(c==ele_vs->color[t2][j2] &&								//F“¯‚¶
-								ele_vs->characters[t][j]==ele_vs->characters[t2][j2])	//ƒLƒƒƒ‰“¯‚¶
+							if(c==ele_vs->color[t2][j2] &&								//è‰²åŒã˜
+								ele_vs->characters[t][j]==ele_vs->characters[t2][j2])	//ã‚­ãƒ£ãƒ©åŒã˜
 							{
 								c++;
 								t2=0;
 								j2=0;
 							}
 						}
-						if(c==3)break;//‚¾‚ß‚Û
+						if(c==3)break;//ã ã‚ã½
 					}
-					if(c==3)break;//‚¾‚ß‚Û
+					if(c==3)break;//ã ã‚ã½
 				}
 				ele_vs->color[t][j]=c;
 			}
 		}
 	}
 
-	//ƒ‰ƒ“ƒ_ƒ€ƒXƒe[ƒW‚ğ‰ğŒˆ‚·‚é
+	//ãƒ©ãƒ³ãƒ€ãƒ ã‚¹ãƒ†ãƒ¼ã‚¸ã‚’è§£æ±ºã™ã‚‹
 	if(ele_vs->stage < 0){
 		ele_vs->stage = m_RandomStageGetter.GetNext();
 	}
@@ -371,14 +371,14 @@ void CTaskStoryMode::StartVSTask()
 	BOOL com;
 	BYTE key;
 
-	//‡î•ñƒNƒ‰ƒX‚Éî•ñİ’è
+	//è©¦åˆæƒ…å ±ã‚¯ãƒ©ã‚¹ã«æƒ…å ±è¨­å®š
 	g_battleinfo.Initialize();
 	for(t=0;t<2;t++){
 		com = t==0 ? FALSE : TRUE;
 		for(j=0;j<ele_vs->num[t];j++)
 		{
 			key = com ? CASSIGN_COM : m_keyindex;
-			if(ele_vs->type==TAISENKEISIKI_GOCYAMAZE && j!=0){//“¯‘Îí‚Ìê‡‚Íƒ`[ƒ€1‚Å‚àCOMˆµ‚¢
+			if(ele_vs->type==TAISENKEISIKI_GOCYAMAZE && j!=0){//åŒæ™‚å¯¾æˆ¦ã®å ´åˆã¯ãƒãƒ¼ãƒ 1ã§ã‚‚COMæ‰±ã„
 				key = CASSIGN_COM;
 			}
 			g_battleinfo.AddCharacter(
@@ -387,25 +387,25 @@ void CTaskStoryMode::StartVSTask()
 							ele_vs->color[t][j],
 							key,
 							ele_vs->option[t][j]);
-			//comƒŒƒxƒ‹‚ğİ’è
+			//comãƒ¬ãƒ™ãƒ«ã‚’è¨­å®š
 			g_battleinfo.SetComLevel( t,j,ele_vs->level[t][j],ele_vs->is_related_level[t][j]);
 		}
 	}
 
 	TCHAR *tmpbgmname = new TCHAR[256];
 	_stprintf(tmpbgmname,_T("%s\\%s"),g_storylist.GetStoryDir(m_story_index),ele_vs->bgm_filename);
-	g_battleinfo.SetStoryBGM( tmpbgmname );				//BGMİ’è
+	g_battleinfo.SetStoryBGM( tmpbgmname );				//BGMè¨­å®š
 	delete [] tmpbgmname;
 
-	g_battleinfo.SetBattleType( ele_vs->type );			//‡Œ`®
-	g_battleinfo.SetLimitTime( ele_vs->limit_time );	//§ŒÀŠÔ
-	g_battleinfo.SetStage( ele_vs->stage );				//ƒXƒe[ƒW
+	g_battleinfo.SetBattleType( ele_vs->type );			//è©¦åˆå½¢å¼
+	g_battleinfo.SetLimitTime( ele_vs->limit_time );	//åˆ¶é™æ™‚é–“
+	g_battleinfo.SetStage( ele_vs->stage );				//ã‚¹ãƒ†ãƒ¼ã‚¸
 
-	//‡ƒ^ƒXƒN‹N“®
+	//è©¦åˆã‚¿ã‚¹ã‚¯èµ·å‹•
 	g_system.AddTask( new CBattleTask );
 }
 
-//ƒfƒ‚
+//ãƒ‡ãƒ¢
 void CTaskStoryMode::StartDemoTask()
 {
 	CStoryElement_Demo	*ele_demo	= dynamic_cast<CStoryElement_Demo*>(*scr_i);
@@ -420,7 +420,7 @@ void CTaskStoryMode::StartDemoTask()
 	g_system.AddTask( tdemo );
 }
 
-//ƒXƒ^ƒbƒtƒ[ƒ‹
+//ã‚¹ã‚¿ãƒƒãƒ•ãƒ­ãƒ¼ãƒ«
 void CTaskStoryMode::StartStaffTask()
 {
 	CStoryElement_Staff	*ele_staff	= dynamic_cast<CStoryElement_Staff*>(*scr_i);
@@ -431,7 +431,7 @@ void CTaskStoryMode::StartStaffTask()
 	g_system.AddTask( tstaff );
 }
 
-//ƒRƒ“ƒeƒBƒjƒ…[
+//ã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼
 void CTaskStoryMode::StartContinueTask()
 {
 	CTStoryContinue *con = new CTStoryContinue;
@@ -442,17 +442,17 @@ void CTaskStoryMode::StartContinueTask()
 
 /*===============================================================
 
-	ƒ‰ƒ“ƒ_ƒ€ ƒLƒƒƒ‰ƒNƒ^[EƒXƒe[ƒW æ“¾ƒNƒ‰ƒX
+	ãƒ©ãƒ³ãƒ€ãƒ  ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ»ã‚¹ãƒ†ãƒ¼ã‚¸ å–å¾—ã‚¯ãƒ©ã‚¹
 
 =================================================================*/
 
 /*----------------------------------------------------------------
-	ƒ‰ƒ“ƒ_ƒ€ƒLƒƒƒ‰ƒNƒ^[ƒNƒ‰ƒX
+	ãƒ©ãƒ³ãƒ€ãƒ ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚¯ãƒ©ã‚¹
 ------------------------------------------------------------------*/
 void CTaskStoryMode::CRandomCharacterGetter::Initialize(SScriptElementList& scr_list)
 {
-	//‘SƒLƒƒƒ‰ƒNƒ^[‚ğæ‚è‚İ
-	UINT rseed = rand()%g_charlist.GetCharacterCount();//ƒCƒ“ƒ`ƒLƒ‰ƒ“ƒ_ƒ€ƒV[ƒh
+	//å…¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚’å–ã‚Šè¾¼ã¿
+	UINT rseed = rand()%g_charlist.GetCharacterCount();//ã‚¤ãƒ³ãƒã‚­ãƒ©ãƒ³ãƒ€ãƒ ã‚·ãƒ¼ãƒ‰
 	UINT n = g_charlist.GetCharacterCount();
 	UINT nn = g_charlist.GetCharacterCount();
 	while(n!=0){
@@ -468,9 +468,9 @@ void CTaskStoryMode::CRandomCharacterGetter::Initialize(SScriptElementList& scr_
 
 	int t,j;
 
-	gbl.ods(_T("ššš ƒ‰ƒ“ƒ_ƒ€ƒLƒƒƒ‰ƒNƒ^[all(%d) ššš"),all_list.size());
+	gbl.ods(_T("â˜…â˜…â˜… ãƒ©ãƒ³ãƒ€ãƒ ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼all(%d) â˜…â˜…â˜…"),all_list.size());
 
-	//ƒXƒg[ƒŠ[ƒXƒNƒŠƒvƒg‚Å–¾¦“I‚Éw’è‚³‚ê‚Ä‚¢‚éƒLƒƒƒ‰ƒNƒ^[‚ÍƒŠƒXƒg‚©‚çœ‚­
+	//ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§æ˜ç¤ºçš„ã«æŒ‡å®šã•ã‚Œã¦ã„ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã¯ãƒªã‚¹ãƒˆã‹ã‚‰é™¤ã
 	CStoryElement_VS *ele_vs;
 	CStoryElement_Settings *ele_set;
 	SScriptElementList::iterator i,ie;
@@ -496,25 +496,25 @@ void CTaskStoryMode::CRandomCharacterGetter::Initialize(SScriptElementList& scr_
 			}
 		}
 	}
-	gbl.ods(_T("ššš ƒ‰ƒ“ƒ_ƒ€ƒLƒƒƒ‰ƒNƒ^[all(%d) ššš"),all_list.size());
+	gbl.ods(_T("â˜…â˜…â˜… ãƒ©ãƒ³ãƒ€ãƒ ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼all(%d) â˜…â˜…â˜…"),all_list.size());
 
-	//Œ»İƒŠƒXƒg‚ğ¶¬iƒTƒCƒY‚ª0‚È‚Ì‚Å•K‚¸æ‚è‚İ”­¶j
+	//ç¾åœ¨ãƒªã‚¹ãƒˆã‚’ç”Ÿæˆï¼ˆã‚µã‚¤ã‚ºãŒ0ãªã®ã§å¿…ãšå–ã‚Šè¾¼ã¿ç™ºç”Ÿï¼‰
 	Req(1);
 }
 
-//Ÿ‚Ì‡‚Å,w’è‚µ‚½”‚Ìƒ‰ƒ“ƒ_ƒ€ƒLƒƒƒ‰ƒNƒ^[‚ª•K—vB
-//‘«‚è‚È‚¢ê‡‚ÍA‘S‘ÌƒŠƒXƒg‚ğæ‚è‚ñ‚ÅƒVƒƒƒbƒtƒ‹‚µ‚È‚¨‚·
+//æ¬¡ã®è©¦åˆã§,æŒ‡å®šã—ãŸæ•°ã®ãƒ©ãƒ³ãƒ€ãƒ ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãŒå¿…è¦ã€‚
+//è¶³ã‚Šãªã„å ´åˆã¯ã€å…¨ä½“ãƒªã‚¹ãƒˆã‚’å–ã‚Šè¾¼ã‚“ã§ã‚·ãƒ£ãƒƒãƒ•ãƒ«ã—ãªãŠã™
 void CTaskStoryMode::CRandomCharacterGetter::Req(UINT num)
 {
 	if(crnt_list.size() > num)return;
 
 	crnt_list.clear();
 
-	if(all_list.size() < num)//‚¾‚ß‚Û
+	if(all_list.size() < num)//ã ã‚ã½
 	{
-		//‘S‘ÌƒŠƒXƒg‚ğH‚Á‚Ä‚à‘«‚è‚È‚¢
-		//d•û‚ª‚È‚¢‚Ì‚Å‚Æ‚è‚ ‚¦‚¸‘SƒLƒƒƒ‰ƒNƒ^[‚ğæ‚è‚İ
-		gbl.ods(_T("ššš ƒ‰ƒ“ƒ_ƒ€ƒLƒƒƒ‰ƒNƒ^[•s‘«‚µ‚·‚¬(%d/%d) ššš"),all_list.size(),num);
+		//å…¨ä½“ãƒªã‚¹ãƒˆã‚’é£Ÿã£ã¦ã‚‚è¶³ã‚Šãªã„
+		//ä»•æ–¹ãŒãªã„ã®ã§ã¨ã‚Šã‚ãˆãšå…¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚’å–ã‚Šè¾¼ã¿
+		gbl.ods(_T("â˜…â˜…â˜… ãƒ©ãƒ³ãƒ€ãƒ ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ä¸è¶³ã—ã™ã(%d/%d) â˜…â˜…â˜…"),all_list.size(),num);
 		UINT n = g_charlist.GetCharacterCount();
 		while(n!=0){
 			n--;
@@ -522,7 +522,7 @@ void CTaskStoryMode::CRandomCharacterGetter::Req(UINT num)
 		}
 	}
 
-	//‘S‘ÌƒŠƒXƒg‚ğæ‚è‚İ
+	//å…¨ä½“ãƒªã‚¹ãƒˆã‚’å–ã‚Šè¾¼ã¿
 	CIndexList::iterator i,ie;
 	i = all_list.begin();
 	ie= all_list.end();
@@ -531,7 +531,7 @@ void CTaskStoryMode::CRandomCharacterGetter::Req(UINT num)
 		i++;
 	}
 
-	//ƒVƒƒƒbƒtƒ‹
+	//ã‚·ãƒ£ãƒƒãƒ•ãƒ«
 	srand(timeGetTime());
 	UINT tempra;
 	UINT tempra1;
@@ -546,10 +546,10 @@ void CTaskStoryMode::CRandomCharacterGetter::Req(UINT num)
 		crnt_list[tempra2] = tempra;
 	}
 
-	gbl.ods(_T("ššš ƒ‰ƒ“ƒ_ƒ€ƒLƒƒƒ‰ƒNƒ^[ƒŠƒXƒgƒŠƒZƒbƒg(%d) ššš"),crnt_list.size());
+	gbl.ods(_T("â˜…â˜…â˜… ãƒ©ãƒ³ãƒ€ãƒ ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒªã‚¹ãƒˆãƒªã‚»ãƒƒãƒˆ(%d) â˜…â˜…â˜…"),crnt_list.size());
 }
 
-//Ÿ‚Ìƒ‰ƒ“ƒ_ƒ€ƒLƒƒƒ‰ƒNƒ^[‚ğæ“¾‚·‚é
+//æ¬¡ã®ãƒ©ãƒ³ãƒ€ãƒ ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚’å–å¾—ã™ã‚‹
 UINT CTaskStoryMode::CRandomCharacterGetter::GetNext()
 {
 	if(crnt_list.size()==0){
@@ -566,7 +566,7 @@ UINT CTaskStoryMode::CRandomCharacterGetter::GetNext()
 	return ret;
 }
 
-//w’è‚³‚ê‚½ƒLƒƒƒ‰ƒNƒ^[‚ğ‘S‘ÌƒŠƒXƒg‚©‚çœŠO‚·‚é
+//æŒ‡å®šã•ã‚ŒãŸã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚’å…¨ä½“ãƒªã‚¹ãƒˆã‹ã‚‰é™¤å¤–ã™ã‚‹
 void CTaskStoryMode::CRandomCharacterGetter::EraseFromAllList(UINT n)
 {
 	CIndexList::iterator i =all_list.begin();
@@ -581,11 +581,11 @@ void CTaskStoryMode::CRandomCharacterGetter::EraseFromAllList(UINT n)
 
 
 /*----------------------------------------------------------------
-	ƒ‰ƒ“ƒ_ƒ€ƒXƒe[ƒWƒNƒ‰ƒX
+	ãƒ©ãƒ³ãƒ€ãƒ ã‚¹ãƒ†ãƒ¼ã‚¸ã‚¯ãƒ©ã‚¹
 ------------------------------------------------------------------*/
 void CTaskStoryMode::CRandomStageGetter::Initialize(SScriptElementList& scr_list)
 {
-	//‘SƒXƒe[ƒW‚ğæ‚è‚İ
+	//å…¨ã‚¹ãƒ†ãƒ¼ã‚¸ã‚’å–ã‚Šè¾¼ã¿
 	UINT nrand = rand()%g_stagelist.GetStageCount();
 	UINT n = g_stagelist.GetStageCount();
 	UINT nn = g_stagelist.GetStageCount();
@@ -594,7 +594,7 @@ void CTaskStoryMode::CRandomStageGetter::Initialize(SScriptElementList& scr_list
 		all_list.push_back((n+nrand)%nn);
 	}
 
-	//ƒXƒg[ƒŠ[ƒXƒNƒŠƒvƒg‚Å–¾¦“I‚Éw’è‚³‚ê‚Ä‚¢‚éƒXƒe[ƒW‚ÍƒŠƒXƒg‚©‚çœ‚­
+	//ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§æ˜ç¤ºçš„ã«æŒ‡å®šã•ã‚Œã¦ã„ã‚‹ã‚¹ãƒ†ãƒ¼ã‚¸ã¯ãƒªã‚¹ãƒˆã‹ã‚‰é™¤ã
 	CStoryElement_VS *ele_vs;
 	SScriptElementList::iterator i,ie;
 	i =scr_list.begin();
@@ -606,11 +606,11 @@ void CTaskStoryMode::CRandomStageGetter::Initialize(SScriptElementList& scr_list
 		}
 	}
 
-	//Œ»İƒŠƒXƒg‚ğ¶¬iƒTƒCƒY‚ª0‚È‚Ì‚Å•K‚¸æ‚è‚İ”­¶j
+	//ç¾åœ¨ãƒªã‚¹ãƒˆã‚’ç”Ÿæˆï¼ˆã‚µã‚¤ã‚ºãŒ0ãªã®ã§å¿…ãšå–ã‚Šè¾¼ã¿ç™ºç”Ÿï¼‰
 	Restore();
 }
 
-//‘S‘ÌƒŠƒXƒg‚ğAŒ»İƒŠƒXƒg‚Éæ‚è‚Ş
+//å…¨ä½“ãƒªã‚¹ãƒˆã‚’ã€ç¾åœ¨ãƒªã‚¹ãƒˆã«å–ã‚Šè¾¼ã‚€
 void CTaskStoryMode::CRandomStageGetter::Restore()
 {
 	SIndexList::iterator i,ie;
@@ -621,7 +621,7 @@ void CTaskStoryMode::CRandomStageGetter::Restore()
 		i++;
 	}
 
-	//ƒVƒƒƒbƒtƒ‹
+	//ã‚·ãƒ£ãƒƒãƒ•ãƒ«
 	srand(timeGetTime());
 	UINT tempra;
 	UINT tempra1;
@@ -636,10 +636,10 @@ void CTaskStoryMode::CRandomStageGetter::Restore()
 		crnt_list[tempra2] = tempra;
 	}
 	
-	gbl.ods(_T("ššš ƒ‰ƒ“ƒ_ƒ€ƒXƒe[ƒWƒŠƒXƒgƒŠƒZƒbƒg(%d) ššš"),crnt_list.size());
+	gbl.ods(_T("â˜…â˜…â˜… ãƒ©ãƒ³ãƒ€ãƒ ã‚¹ãƒ†ãƒ¼ã‚¸ãƒªã‚¹ãƒˆãƒªã‚»ãƒƒãƒˆ(%d) â˜…â˜…â˜…"),crnt_list.size());
 }
 
-//Ÿ‚Ìƒ‰ƒ“ƒ_ƒ€ƒXƒe[ƒW‚ğæ“¾‚·‚é
+//æ¬¡ã®ãƒ©ãƒ³ãƒ€ãƒ ã‚¹ãƒ†ãƒ¼ã‚¸ã‚’å–å¾—ã™ã‚‹
 UINT CTaskStoryMode::CRandomStageGetter::GetNext()
 {
 	if(crnt_list.size()==0){
@@ -653,7 +653,7 @@ UINT CTaskStoryMode::CRandomStageGetter::GetNext()
 	return ret;
 }
 
-//w’è‚³‚ê‚½ƒXƒe[ƒW‚ğ‘S‘ÌƒŠƒXƒg‚©‚çœŠO‚·‚é
+//æŒ‡å®šã•ã‚ŒãŸã‚¹ãƒ†ãƒ¼ã‚¸ã‚’å…¨ä½“ãƒªã‚¹ãƒˆã‹ã‚‰é™¤å¤–ã™ã‚‹
 void CTaskStoryMode::CRandomStageGetter::EraseFromAllList(UINT n)
 {
 	SIndexList::iterator i =all_list.begin();
@@ -670,7 +670,7 @@ void CTaskStoryMode::CRandomStageGetter::EraseFromAllList(UINT n)
 
 /*===============================================================
 
-	ƒRƒ“ƒeƒBƒjƒ…[ƒ^ƒXƒN
+	ã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼ã‚¿ã‚¹ã‚¯
 
 =================================================================*/
 
@@ -690,7 +690,7 @@ BOOL CTStoryContinue::Execute(DWORD time)
 		if(g_input.GetAllKey() & KEYSTA_ANYKEY)
 		{
 			if(m_yes_selected)
-				g_system.AddTask( new CBattleTask );//‘O‚Ìİ’è‚Ì‚Ü‚ÜÄí
+				g_system.AddTask( new CBattleTask );//å‰ã®è¨­å®šã®ã¾ã¾å†æˆ¦
 			else
 				g_system.ReturnTitle();
 		}
@@ -794,7 +794,7 @@ void CTStoryContinue::DrawFBC(float t)
 
 /*===============================================================
 
-	ƒQ[ƒ€ƒI[ƒo[ƒ^ƒXƒN
+	ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ã‚¿ã‚¹ã‚¯
 
 =================================================================*/
 

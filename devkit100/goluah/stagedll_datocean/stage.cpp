@@ -1,4 +1,4 @@
-
+ï»¿
 #include "stage.h"
 #include "soul.h"
 #include "soul_down.h"
@@ -11,7 +11,7 @@ DI_FUNCTIONS_D	*funcd=NULL;
 LPDIRECT3DDEVICE9 d3ddev=NULL;
 char *g_stgdir=NULL;
 
-//ƒƒbƒZ[ƒWˆ—ŠÖ”EƒOƒ[ƒoƒ‹
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†é–¢æ•°ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«
 DWORD gSTGMessage(DWORD msg,LPVOID pdat,DWORD prm)
 {
 	if(pdat==NULL)return(NULL);
@@ -28,21 +28,21 @@ DWORD gSTGMessage(DWORD msg,LPVOID pdat,DWORD prm)
 }
 
 //****************************************************************
-//ƒXƒe[ƒW‚Ì‰Šú‰»
+//ã‚¹ãƒ†ãƒ¼ã‚¸ã®åˆæœŸåŒ–
 //****************************************************************
 CStage::CStage(SDI_STAGEINFO2 *info)
 {
 	funcs = info->funcs;
 	funco = info->funco;
 	funcd = info->funcd;
-	//•Ï”
+	//å¤‰æ•°
 	d3ddev = (LPDIRECT3DDEVICE9)funcd->getd3dd();
 	g_stgdir = info->dir;
 
 	//aki3d
 	aki3d.Initialize( d3ddev, g_stgdir );
 
-	//ƒIƒuƒWƒFƒNƒg¶¬
+	//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
 	oid = funco->objcreate();
 	pdat = (GOBJECT*)funco->getinfo(oid);
 	if(pdat==NULL){
@@ -67,7 +67,7 @@ CStage::CStage(SDI_STAGEINFO2 *info)
 
 
 //****************************************************************
-//ƒXƒe[ƒWŒãn––
+//ã‚¹ãƒ†ãƒ¼ã‚¸å¾Œå§‹æœ«
 //****************************************************************
 CStage::~CStage()
 {
@@ -79,7 +79,7 @@ CStage::~CStage()
 }
 
 //****************************************************************
-//ƒƒbƒZ[ƒWˆ—ŠÖ”
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†é–¢æ•°
 //****************************************************************
 
 DWORD CStage::Message(DWORD msg,LPVOID pdatg,DWORD prm)
@@ -88,7 +88,7 @@ DWORD CStage::Message(DWORD msg,LPVOID pdatg,DWORD prm)
 
 	switch(msg){
 	case GOBJMSG_DRAWBACK:
-		Draw();//•`‰æ`
+		Draw();//æç”»ï½
 		return(TRUE);
 	case GOBJMSG_DRAW:
 		return(TRUE);
@@ -103,7 +103,7 @@ DWORD CStage::Message(DWORD msg,LPVOID pdatg,DWORD prm)
 }
 
 //*******************************************************
-//@”wŒi•`‰æ
+//ã€€èƒŒæ™¯æç”»
 //*******************************************************
 void CStage::Draw()
 {
@@ -123,7 +123,7 @@ void CStage::Draw()
 }
 
 //*******************************************************
-//@“®‚«
+//ã€€å‹•ã
 //*******************************************************
 void CStage::Action()
 {

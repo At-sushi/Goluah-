@@ -1,4 +1,4 @@
-
+ï»¿
 
 #include "stage.h"
 #include <math.h>
@@ -8,7 +8,7 @@ SET_STAGEINFO(CStage)
 
 
 /*!
-*	@brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+*	@brief ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 */
 CStage::CStage(SDI_STAGEINFO2 *info)
 			: CStageBase(info)
@@ -17,8 +17,8 @@ CStage::CStage(SDI_STAGEINFO2 *info)
 }
 
 /*!
-*	@brief ƒfƒXƒgƒ‰ƒNƒ^
-*	“Ç‚İ‚ñ‚¾image1.bmp‚ğ”jŠü‚·‚é
+*	@brief ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+*	èª­ã¿è¾¼ã‚“ã image1.bmpã‚’ç ´æ£„ã™ã‚‹
 */
 CStage::~CStage()
 {
@@ -26,32 +26,32 @@ CStage::~CStage()
 }
 
 /*!
-*	@brief ‰Šú‰»
-*	image1.bmp‚ğ“Ç‚İ‚ŞB
+*	@brief åˆæœŸåŒ–
+*	image1.bmpã‚’èª­ã¿è¾¼ã‚€ã€‚
 */
 void CStage::InitializeStage()
 {
-	//image1.bmp‚ğƒ[ƒh
+	//image1.bmpã‚’ãƒ­ãƒ¼ãƒ‰
 	char filename[256];
 	sprintf(filename,"%s\\back1",GetDLLPath());
 	bitmap = LoadImage(filename,NULL);
 }
 
 /*!
-*	@brief •`‰æ
-*	image1.bmp‚ğƒXƒe[ƒW‘S‘Ì‚É•`‰æ‚·‚é
+*	@brief æç”»
+*	image1.bmpã‚’ã‚¹ãƒ†ãƒ¼ã‚¸å…¨ä½“ã«æç”»ã™ã‚‹
 */
 DWORD CStage::DrawBack()
 {
 	if(bitmap!=NULL){
 
-		//“]‘—Œ³Eƒrƒbƒgƒ}ƒbƒv‘S‘Ì
+		//è»¢é€å…ƒãƒ»ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—å…¨ä½“
 		RECT src;
 		src.left = src.top = 0;
 		src.right = (long)bitmap->wg;
 		src.bottom= (long)bitmap->hg;
 
-		//“]‘—æ
+		//è»¢é€å…ˆ
 		MYRECT3D dst;
 		if(bitmap->wg!=640)
 			dst.z = 640.0f/(bitmap->wg-640)-1.0f;
@@ -61,9 +61,9 @@ DWORD CStage::DrawBack()
 		dst.top   = (-1.0f - (float)tan(40.0/180.0*3.1415926))*(1.0f+dst.z);
 		dst.bottom= ( 1.0f - (float)tan(40.0/180.0*3.1415926))*(1.0f+dst.z);
 
-		//•`‰æ
+		//æç”»
 		Blt3D(bitmap,src,dst,pdat->color);
 	}
 
-	return FALSE;//ƒfƒtƒHƒ‹ƒg•`‰æ‚Ís‚í‚È‚¢
+	return FALSE;//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæç”»ã¯è¡Œã‚ãªã„
 }

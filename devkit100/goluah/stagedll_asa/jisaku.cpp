@@ -1,4 +1,4 @@
-
+ï»¿
 #include <windows.h>
 #include <stdio.h>
 #include <math.h>
@@ -26,20 +26,20 @@ GCD_CELL2 *cdat = NULL;
 GCD_RECT  *rdat = NULL;
 void      *muda = NULL;
 
-//¼Ş»¸¼Ş´°İ
+//ï½¼ï¾ï½»ï½¸ï½¼ï¾ï½´ï½°ï¾
 int prev_hp[2];
 DWORD ouen;
 DWORD teki;
 
 //*****************************************************************
-//@‰Šú‰»
+//ã€€åˆæœŸåŒ–
 //*****************************************************************
 
 void InitializeJien()
 {
 	char fn[256];
 
-	//ƒZƒ‹“Ç‚İ‚İ
+	//ã‚»ãƒ«èª­ã¿è¾¼ã¿
 	for(int i=0;i<8;i++){
 		sprintf(fn,"%s\\image%d",g_stgdir,i+1);
 		pimg[i] = (MYSURFACE*)(*funcd->loadimage)(fn,NULL);
@@ -47,7 +47,7 @@ void InitializeJien()
 	sprintf(fn,"%s\\cell",g_stgdir);
 	(*funcd->create_celldat2)(fn,(LPVOID*)&cdat,(LPVOID*)&rdat,&muda);
 
-	//•Ï”‰Šú‰»i‚Ä‚«‚Æ‚¤j
+	//å¤‰æ•°åˆæœŸåŒ–ï¼ˆã¦ãã¨ã†ï¼‰
 	ouen=TEAM_PLAYER1;
 	teki=TEAM_PLAYER2;
 
@@ -58,7 +58,7 @@ void InitializeJien()
 	pdat = (GOBJECT*)funco->getactivechar(teki);
 	if(pdat!=NULL)prev_hp[teki]=pdat->hp;
 
-	//ƒIƒuƒWƒFƒNƒg¶¬
+	//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
 	DWORD oid;
 	oid = funco->objcreate();
 	pdat = (GOBJECT*)funco->getinfo(oid);
@@ -107,7 +107,7 @@ void CleanupJien()
 }
 
 //***************************************************************
-//@ƒƒbƒZ[ƒWˆ—ŠÖ”
+//ã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†é–¢æ•°
 //***************************************************************
 
 DWORD gMsgJien(DWORD msg,LPVOID pd,DWORD prm)
@@ -118,7 +118,7 @@ DWORD gMsgJien(DWORD msg,LPVOID pd,DWORD prm)
 	switch(msg){
 	case GOBJMSG_ACTION:
 		switch(pdat->uid){
-		case JISAKUID_PYON://¼Ş»¸¼Ş´İ‡@
+		case JISAKUID_PYON://ï½¼ï¾ï½»ï½¸ï½¼ï¾ï½´ï¾â‘ 
 			tmp = pdat->counter%120;
 			if(tmp < 2)pdat->cnow = CELL_1_4;
 			else if(tmp < 4)pdat->cnow = CELL_1_2;
@@ -132,21 +132,21 @@ DWORD gMsgJien(DWORD msg,LPVOID pd,DWORD prm)
 			else if(tmp <20)pdat->cnow = CELL_1_2;
 			else pdat->cnow = CELL_1_4;
 			break;
-		case JISAKUID_OUEN://¼Ş»¸¼Ş´İ‡A
+		case JISAKUID_OUEN://ï½¼ï¾ï½»ï½¸ï½¼ï¾ï½´ï¾â‘¡
 			switch(pdat->aid){
-			case 0://i¥Í¥j²²!
+			case 0://ï¼ˆï½¥âˆ€ï½¥ï¼‰ï½²ï½²!
 				pdat->cnow=CELL_2_GOOD;
 				if(pdat->counter > 20){
 					pdat->aid=2;
 				}
 				break;
-			case 1://i¥‚`¥j²¸Å²I
+			case 1://ï¼ˆï½¥ï¼¡ï½¥ï¼‰ï½²ï½¸ï¾…ï½²ï¼
 				pdat->cnow=CELL_2_BAD;
 				if(pdat->counter > 20){
 					pdat->aid=2;
 				}
 				break;
-			case 2://Ã~
+			case 2://é™æ­¢
 				pdat->cnow=CELL_2;
 				if(pdat->counter>20){
 					if(pdat->x-20 > funcs->getdispcenterx()){
@@ -157,14 +157,14 @@ DWORD gMsgJien(DWORD msg,LPVOID pd,DWORD prm)
 					}
 				}
 				break;
-			case 3://¨ˆÚ“®
+			case 3://â†’ç§»å‹•
 				pdat->x -=4;
 				pdat->cnow = CELL_2_LRUN1 + (pdat->counter/2)%8;
 				if(pdat->counter>60){
 					pdat->aid = 2;
 				}
 				break;
-			case 4://©ˆÚ“®
+			case 4://â†ç§»å‹•
 				pdat->x +=4;
 				pdat->cnow = CELL_2_RRUN1 + (pdat->counter/2)%8;
 				if(pdat->counter>60){
@@ -177,11 +177,11 @@ DWORD gMsgJien(DWORD msg,LPVOID pd,DWORD prm)
 			pmdat=(GOBJECT*)funco->getactivechar(ouen);
 			pedat=(GOBJECT*)funco->getactivechar(teki);
 			if(pmdat!=NULL && pedat!=NULL){
-				if(prev_hp[ouen] > pmdat->hp){//ƒ_ƒ[ƒW‚ğH‚ç‚Á‚½
+				if(prev_hp[ouen] > pmdat->hp){//ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’é£Ÿã‚‰ã£ãŸ
 					pdat->aid=1;
 					pdat->counter=0;
 				}
-				else if(prev_hp[teki] > pedat->hp){//ƒ_ƒ[ƒW‚ğ—^‚¦‚½
+				else if(prev_hp[teki] > pedat->hp){//ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä¸ãˆãŸ
 					pdat->aid=0;
 					pdat->counter=0;
 				}
@@ -189,7 +189,7 @@ DWORD gMsgJien(DWORD msg,LPVOID pd,DWORD prm)
 				prev_hp[teki]=pedat->hp;
 			}
 			break;
-		case JISAKUID_MITUME://¼Ş»¸¼Ş´İ‡B
+		case JISAKUID_MITUME://ï½¼ï¾ï½»ï½¸ï½¼ï¾ï½´ï¾â‘¢
 			tmp = pdat->counter%300;
 			if(tmp < 2)pdat->cnow = CELL_3_1;
 			else if(tmp < 4)pdat->cnow = CELL_3_2;
@@ -203,7 +203,7 @@ DWORD gMsgJien(DWORD msg,LPVOID pd,DWORD prm)
 			else if(tmp <158)pdat->cnow = CELL_3_2;
 			else pdat->cnow = CELL_3_1;
 			break;
-		case JISAKUID_MITUME2://¼Ş»¸¼Ş´İ‡C
+		case JISAKUID_MITUME2://ï½¼ï¾ï½»ï½¸ï½¼ï¾ï½´ï¾â‘£
 			tmp = pdat->counter%200;
 			if(tmp < 2)pdat->cnow = CELL_3_1;
 			else if(tmp < 4)pdat->cnow = CELL_3_2;

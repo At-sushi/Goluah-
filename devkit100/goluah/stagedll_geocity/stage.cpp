@@ -1,11 +1,11 @@
-
+ï»¿
 #include "stage.h"
 
 
 SET_STAGEINFO(CStage)
 
 //****************************************************************
-//ƒXƒe[ƒW‚Ì‰Šú‰»
+//ã‚¹ãƒ†ãƒ¼ã‚¸ã®åˆæœŸåŒ–
 //****************************************************************
 CStage::CStage(SDI_STAGEINFO2 *info) : CStageBase(info)
 {
@@ -13,11 +13,11 @@ CStage::CStage(SDI_STAGEINFO2 *info) : CStageBase(info)
 
 void CStage::InitializeStage()
 {
-	InitVrtx();//’¸“_À•W‰Šú‰»
-	LoadTextures();//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
+	InitVrtx();//é ‚ç‚¹åº§æ¨™åˆæœŸåŒ–
+	LoadTextures();//ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­è¾¼ã¿
 }
 
-void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
+void CStage::InitVrtx()//é ‚ç‚¹åº§æ¨™åˆæœŸåŒ–
 {
 	int i,j;
 	float x0,y0;
@@ -38,7 +38,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 	vb_brd1b = NULL;
 	vb_gurdpoll = NULL;
 
-	//Œ
+	//æœˆ
 	if ( SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_moon, NULL)) &&
 		 SUCCEEDED(vb_moon->Lock(0, 0, (void**)&vtx_tmp, 0)) )
 	{
@@ -66,7 +66,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 		vb_moon->Unlock();
 	}
 	
-	//ŠX
+	//è¡—
 	if ( SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_city, NULL)) &&
 		 SUCCEEDED(vb_city->Lock(0, 0, (void**)&vtx_tmp, 0)) )
 	{
@@ -94,7 +94,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 		vb_city->Unlock();
 	}
 
-	//’n–Ê
+	//åœ°é¢
 	if (SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_ground, NULL)) &&
 		SUCCEEDED(vb_ground->Lock(0, 0, (void**)&vtx_tmp, 0)) )
 	{
@@ -122,7 +122,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 		vb_ground->Unlock();
 	}
 
-	//“¹˜H
+	//é“è·¯
 /*	vb_road[1].color=vb_road[3].color=0xFF000000;
 	vb_road[2].color=vb_road[4].color=0xFFFFFFFF;
 	vb_road[1].tu=0;
@@ -197,7 +197,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 		}
 	}
 
-	//Œğ·“_
+	//äº¤å·®ç‚¹
 /*	vb_jct[1].color=vb_jct[2].color=
 		vb_jct[3].color=vb_jct[4].color=0xFFFFFFFF;
 	vb_jct[1].tu=0;
@@ -252,7 +252,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 		}
 	}
 
-	//ƒK[ƒhƒŒ[ƒ‹
+	//ã‚¬ãƒ¼ãƒ‰ãƒ¬ãƒ¼ãƒ«
 	if (SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * ((NUM_GURD + 1) * 2), 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_gurd, NULL)) &&
 		SUCCEEDED(vb_gurd->Lock(0, 0, (void**)&vtx_tmp, 0)) )
 	{
@@ -293,7 +293,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 		vb_gurd->Unlock();
 	}
 
-	//ŠÅ”Âx’Œ
+	//çœ‹æ¿æ”¯æŸ±
 	if (SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_brd1a, NULL)) &&
 		SUCCEEDED(vb_brd1a->Lock(0, 0, (void**)&vtx_tmp, 0)) )
 	{
@@ -320,7 +320,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 
 		vb_brd1a->Unlock();
 	}
-	//ŠÅ”Â•\
+	//çœ‹æ¿è¡¨
 	if (SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_brd1b, NULL)) &&
 		SUCCEEDED(vb_brd1b->Lock(0, 0, (void**)&vtx_tmp, 0)) )
 	{
@@ -348,7 +348,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 		vb_brd1b->Unlock();
 	}
 	
-	//ƒK[ƒhƒŒ[ƒ‹‚Ì’Œ
+	//ã‚¬ãƒ¼ãƒ‰ãƒ¬ãƒ¼ãƒ«ã®æŸ±
 	if (SUCCEEDED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * (6 * NUM_GURDPOLL), 0, FVF_3DVERTEX, D3DPOOL_MANAGED, &vb_gurdpoll, NULL)) &&
 		SUCCEEDED(vb_gurdpoll->Lock(0, 0, (void**)&vtx_tmp, 0)) )
 	{
@@ -383,7 +383,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 		vb_gurdpoll->Unlock();
 	}
 
-	//M†
+	//ä¿¡å·
 	vb_tlight[0].color=vb_tlight[1].color=
 		vb_tlight[2].color=vb_tlight[3].color=0xFF666666;
 	vb_tlight[0].tv=0;
@@ -405,7 +405,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 	vb_tlight[0].z=vb_tlight[1].z=
 		vb_tlight[2].z=vb_tlight[3].z=3;
 
-	//ŠX“”
+	//è¡—ç¯
 	for(i=0;i<NUM_LIGHT;i++){
 	//	alpha= (BYTE)( (255/(NUM_GURDPOLL*1.5))*(NUM_GURDPOLL-i) );
 		vb_light[i][0].color=
@@ -437,8 +437,8 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 		vb_light[i][3].y=0.0f;
 	}
 
-	//ŠÅ”Â‚QiŒã‚ëŒü‚«j
-	//ŠÅ”Âx’Œ
+	//çœ‹æ¿ï¼’ï¼ˆå¾Œã‚å‘ãï¼‰
+	//çœ‹æ¿æ”¯æŸ±
 	vb_brd2a[0].color=0xFFFFFFFF;
 	vb_brd2a[1].color=vb_brd2a[2].color=vb_brd2a[3].color=0xFF777777;
 	vb_brd2a[0].tv=0;
@@ -459,7 +459,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 	vb_brd2a[3].y= 0;
 	vb_brd2a[0].z=vb_brd2a[1].z=
 		vb_brd2a[2].z=vb_brd2a[3].z=6;
-	//ŠÅ”Â— 
+	//çœ‹æ¿è£
 	vb_brd2b[0].color=vb_brd2b[1].color=
 		vb_brd2b[2].color=vb_brd2b[3].color=0xFF666666;
 	vb_brd2b[0].tv=0;
@@ -487,7 +487,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 		vb_brd2b[i].y*=0.7f;
 	}
 
-	//è‘OƒK[ƒhƒŒ[ƒ‹
+	//æ‰‹å‰ã‚¬ãƒ¼ãƒ‰ãƒ¬ãƒ¼ãƒ«
 	vb_maegurd[0].color=
 		vb_maegurd[1].color=
 		vb_maegurd[2].color=
@@ -509,7 +509,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 	vb_maegurd[3].tv=1;
 	vb_maegurd[3].tu=1;
 
-	//è‘OƒK[ƒhƒŒ[ƒ‹x’Œ
+	//æ‰‹å‰ã‚¬ãƒ¼ãƒ‰ãƒ¬ãƒ¼ãƒ«æ”¯æŸ±
 	vb_maegurdpoll[0].color=
 		vb_maegurdpoll[1].color=
 		vb_maegurdpoll[2].color=
@@ -531,7 +531,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 	vb_maegurdpoll[3].tv=1;
 	vb_maegurdpoll[3].tu=1;
 
-	//š
+	//â˜…
 	for(i=0;i<NUM_STARS;i++){
 		vb_stars[i].color=0xFFFFFF77;
 		vb_stars[i].tu=vb_stars[i].tu=0;
@@ -540,7 +540,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 		vb_stars[i].z=33;
 	}
 
-	//‚¨‹ó
+	//ãŠç©º
 	vb_sky[0].z=
 		vb_sky[1].z=
 		vb_sky[2].z=
@@ -563,7 +563,7 @@ void CStage::InitVrtx()//’¸“_À•W‰Šú‰»
 	vb_sky[3].y=  0;
 }
 
-void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
+void CStage::LoadTextures()//ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­è¾¼ã¿
 {
 	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 	if(!d3ddev)return;
@@ -580,7 +580,7 @@ void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
 	char *filename=(char*)malloc(256);
 	if(filename==NULL)return;
 
-	//Œ”wŒi
+	//æœˆèƒŒæ™¯
 	sprintf(filename,"%s\\tex_moon.png",GetDLLPath());
 	D3DXCreateTextureFromFileExA(
 		d3ddev,filename,
@@ -590,7 +590,7 @@ void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
 		0xFF000000,NULL,NULL,
 		&ptex_moon);
 
-	//ŠXƒVƒ‹ƒGƒbƒg
+	//è¡—ã‚·ãƒ«ã‚¨ãƒƒãƒˆ
 	sprintf(filename,"%s\\tex_city.png",GetDLLPath());
 	D3DXCreateTextureFromFileExA(
 		d3ddev,filename,
@@ -600,7 +600,7 @@ void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
 		0xFF000000,NULL,NULL,
 		&ptex_city);
 	
-	//Œğ·“_
+	//äº¤å·®ç‚¹
 	sprintf(filename,"%s\\tex_jct.png",GetDLLPath());
 	D3DXCreateTextureFromFileExA(
 		d3ddev,filename,
@@ -610,21 +610,21 @@ void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
 		0,NULL,NULL,
 		&ptex_jct);
 	
-	//“¹˜H
+	//é“è·¯
 	sprintf(filename,"%s\\tex_road.bmp",GetDLLPath());
 	D3DXCreateTextureFromFileA(
 		d3ddev,
 		filename,
 		&ptex_road);
 	
-	//ƒK[ƒhƒŒ[ƒ‹
+	//ã‚¬ãƒ¼ãƒ‰ãƒ¬ãƒ¼ãƒ«
 	sprintf(filename,"%s\\tex_gurd.bmp",GetDLLPath());
 	D3DXCreateTextureFromFileA(
 		d3ddev,
 		filename,
 		&ptex_gurd);
 
-	//ŠÅ”Âx’Œ
+	//çœ‹æ¿æ”¯æŸ±
 	sprintf(filename,"%s\\tex_sicyu.bmp",GetDLLPath());
 	D3DXCreateTextureFromFileExA(
 		d3ddev,filename,
@@ -633,7 +633,7 @@ void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
 		D3DPOOL_MANAGED,D3DX_FILTER_POINT,D3DX_FILTER_POINT,
 		0xFF000000,NULL,NULL,
 		&ptex_brd1a);
-	//ŠÅ”Â•\
+	//çœ‹æ¿è¡¨
 	sprintf(filename,"%s\\tex_bord.png",GetDLLPath());
 	D3DXCreateTextureFromFileExA(
 		d3ddev,filename,
@@ -643,7 +643,7 @@ void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
 		0,NULL,NULL,
 		&ptex_brd1b);
 	
-	//M†
+	//ä¿¡å·
 	sprintf(filename,"%s\\tex_tlight.bmp",GetDLLPath());
 	D3DXCreateTextureFromFileExA(
 		d3ddev,filename,
@@ -653,7 +653,7 @@ void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
 		0xFFFFFFFF,NULL,NULL,
 		&ptex_tlight);
 
-	//ŠX“”
+	//è¡—ç¯
 	sprintf(filename,"%s\\tex_light.bmp",GetDLLPath());
 	D3DXCreateTextureFromFileExA(
 		d3ddev,filename,
@@ -663,7 +663,7 @@ void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
 		0xFFFFFFFF,NULL,NULL,
 		&ptex_light);
 
-	//ŠÅ”Â— Œü‚«
+	//çœ‹æ¿è£å‘ã
 	sprintf(filename,"%s\\tex_bord2.bmp",GetDLLPath());
 	D3DXCreateTextureFromFileExA(
 		d3ddev,filename,
@@ -677,11 +677,11 @@ void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
 }
 
 //****************************************************************
-//ƒXƒe[ƒWŒãn––
+//ã‚¹ãƒ†ãƒ¼ã‚¸å¾Œå§‹æœ«
 //****************************************************************
 CStage::~CStage()
 {
-	UnloadTextures();//ƒeƒNƒXƒ`ƒƒŠJ•ú
+	UnloadTextures();//ãƒ†ã‚¯ã‚¹ãƒãƒ£é–‹æ”¾
 }
 
 void CStage::UnloadTextures()
@@ -713,7 +713,7 @@ void CStage::UnloadTextures()
 }
 
 //****************************************************************
-//ƒƒbƒZ[ƒWˆ—ŠÖ”
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†é–¢æ•°
 //****************************************************************
 
 void CStage::DrawStage()
@@ -721,19 +721,19 @@ void CStage::DrawStage()
 	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 	if(!d3ddev)return;
 
-	//ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒbƒVƒ“ƒOƒ‚[ƒh-ŒJ‚è•Ô‚µ
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ãƒƒã‚·ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰-ç¹°ã‚Šè¿”ã—
 	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_WRAP);
 	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_WRAP);
 	d3ddev->SetFVF( FVF_3DVERTEX );
 
 	d3ddev->Clear(0,NULL,D3DCLEAR_TARGET,D3DCOLOR_XRGB(5,0,20),1.0f,0);
 
-	//•`‰æ
+	//æç”»
 	DrawJct();
 	DrawRoad();
 	DrawBacks();
 
-	//ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒVƒ“ƒOƒ‚[ƒh - Œ³‚É–ß‚·
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚·ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ - å…ƒã«æˆ»ã™
 	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP);
 	d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);
 }
@@ -743,27 +743,27 @@ void CStage::DrawBacks()
 	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 	if(!d3ddev)return;
 
-	//À•W•ÏŠ·-‚È‚µ
+	//åº§æ¨™å¤‰æ›-ãªã—
 	D3DXMATRIX mati;
 	D3DXMatrixIdentity(&mati);
 	d3ddev->SetTransform(D3DTS_WORLD,&mati);
 
-	//ŠX
+	//è¡—
 	d3ddev->SetTexture(0,ptex_city);
 	d3ddev->SetStreamSource(0, vb_city, 0, sizeof(MYVERTEX3D));
 	d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);
-	//Œ
+	//æœˆ
 	d3ddev->SetTexture(0,ptex_moon);
 	d3ddev->SetStreamSource(0, vb_moon, 0, sizeof(MYVERTEX3D));
 	d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);
-	//’n–Ê
+	//åœ°é¢
 	d3ddev->SetTexture(0,NULL);
 	d3ddev->SetStreamSource(0, vb_ground, 0, sizeof(MYVERTEX3D));
 	d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);
-	//‹ó
+	//ç©º
 	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,
 		vb_sky,sizeof(MYVERTEX3D));
-	//š
+	//â˜…
 	d3ddev->DrawPrimitiveUP(D3DPT_POINTLIST,NUM_STARS,
 		vb_stars,sizeof(MYVERTEX3D));
 
@@ -774,7 +774,7 @@ void CStage::DrawJct()
 	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 	if(!d3ddev)return;
 
-	//À•W•ÏŠ·E”½“]
+	//åº§æ¨™å¤‰æ›ãƒ»åè»¢
 	D3DXMATRIX matrx;
 	D3DXPLANE plane_x;
 	plane_x.a=1;
@@ -782,30 +782,30 @@ void CStage::DrawJct()
 	D3DXMatrixReflect(&matrx,&plane_x);
 	d3ddev->SetTransform(D3DTS_WORLD,&matrx);
 
-	//è‘OƒK[ƒhƒŒ[ƒ‹
+	//æ‰‹å‰ã‚¬ãƒ¼ãƒ‰ãƒ¬ãƒ¼ãƒ«
 	d3ddev->SetTexture(0,ptex_gurd);
 	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,
 		vb_maegurd,sizeof(MYVERTEX3D));
-	//è‘OƒK[ƒhƒŒ[ƒ‹x’Œ
+	//æ‰‹å‰ã‚¬ãƒ¼ãƒ‰ãƒ¬ãƒ¼ãƒ«æ”¯æŸ±
 	d3ddev->SetTexture(0,NULL);
 	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,
 		vb_maegurdpoll,sizeof(MYVERTEX3D));
 
-	//À•W•ÏŠ·-‚È‚µ
+	//åº§æ¨™å¤‰æ›-ãªã—
 	D3DXMATRIX mati;
 	D3DXMatrixIdentity(&mati);
 	d3ddev->SetTransform(D3DTS_WORLD,&mati);
 
-	//è‘OƒK[ƒhƒŒ[ƒ‹
+	//æ‰‹å‰ã‚¬ãƒ¼ãƒ‰ãƒ¬ãƒ¼ãƒ«
 	d3ddev->SetTexture(0,ptex_gurd);
 	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,
 		vb_maegurd,sizeof(MYVERTEX3D));
-	//è‘OƒK[ƒhƒŒ[ƒ‹x’Œ
+	//æ‰‹å‰ã‚¬ãƒ¼ãƒ‰ãƒ¬ãƒ¼ãƒ«æ”¯æŸ±
 	d3ddev->SetTexture(0,NULL);
 	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,
 		vb_maegurdpoll,sizeof(MYVERTEX3D));
 
-	//’n–Ê
+	//åœ°é¢
 	d3ddev->SetTexture(0,ptex_jct);
 	for(int i=0;i<NUMDIV_JCTY;i++)
 	{
@@ -813,7 +813,7 @@ void CStage::DrawJct()
 		d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,NUMDIV_JCTX*2);
 	}
 
-	//ŠÅ”Â‚P
+	//çœ‹æ¿ï¼‘
 	d3ddev->SetTexture(0,ptex_brd1a);
 	d3ddev->SetStreamSource(0, vb_brd1a, 0, sizeof(MYVERTEX3D));
 	d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);
@@ -821,7 +821,7 @@ void CStage::DrawJct()
 	d3ddev->SetStreamSource(0, vb_brd1b, 0, sizeof(MYVERTEX3D));
 	d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);
 
-	//ŠÅ”Â2
+	//çœ‹æ¿2
 	d3ddev->SetTexture(0,ptex_brd1a);
 	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,
 		vb_brd2a,sizeof(MYVERTEX3D));
@@ -829,7 +829,7 @@ void CStage::DrawJct()
 	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,
 		vb_brd2b,sizeof(MYVERTEX3D));
 
-	//M†
+	//ä¿¡å·
 	d3ddev->SetTexture(0,ptex_tlight);
 	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,
 		vb_tlight,sizeof(MYVERTEX3D));
@@ -840,12 +840,12 @@ void CStage::DrawRoad()
 	LPDIRECT3DDEVICE9 d3ddev = GetD3DDevice();
 	if(!d3ddev)return;
 
-	//À•W•ÏŠ·-‚È‚µ
+	//åº§æ¨™å¤‰æ›-ãªã—
 	D3DXMATRIX mati;
 	D3DXMatrixIdentity(&mati);
 	d3ddev->SetTransform(D3DTS_WORLD,&mati);
 
-	//“¹˜H
+	//é“è·¯
 	d3ddev->SetTexture(0,ptex_road);
 	for(int i=0;i<NUMDIV_ROADY;i++)
 	{
@@ -853,21 +853,21 @@ void CStage::DrawRoad()
 		d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,NUMDIV_ROADX*2);
 	}
 	
-	//ƒK[ƒhƒŒ[ƒ‹
+	//ã‚¬ãƒ¼ãƒ‰ãƒ¬ãƒ¼ãƒ«
 	d3ddev->SetTexture(0,ptex_gurd);
 	d3ddev->SetStreamSource(0, vb_gurd, 0, sizeof(MYVERTEX3D));
 	d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,NUM_GURD*2);
 	d3ddev->SetTexture(0,NULL);
 	d3ddev->SetStreamSource(0, vb_gurdpoll, 0, sizeof(MYVERTEX3D));
 	d3ddev->DrawPrimitive(D3DPT_TRIANGLELIST,0,NUM_GURDPOLL*2);
-	//ŠX“”
+	//è¡—ç¯
 	d3ddev->SetTexture(0,ptex_light);
 	for(int i=0;i<NUM_LIGHT;i++){
 		d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,
 			vb_light[i],sizeof(MYVERTEX3D));
 	}
 
-	//”½‘Î‘¤	
+	//åå¯¾å´	
 	D3DXMATRIX matrx;
 	D3DXPLANE plane_x;
 	plane_x.a=1;
@@ -875,14 +875,14 @@ void CStage::DrawRoad()
 	D3DXMatrixReflect(&matrx,&plane_x);
 	d3ddev->SetTransform(D3DTS_WORLD,&matrx);
 
-	//ƒK[ƒhƒŒ[ƒ‹
+	//ã‚¬ãƒ¼ãƒ‰ãƒ¬ãƒ¼ãƒ«
 	d3ddev->SetTexture(0,ptex_gurd);
 	d3ddev->SetStreamSource(0, vb_gurd, 0, sizeof(MYVERTEX3D));
 	d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,NUM_GURD*2);
 	d3ddev->SetTexture(0,NULL);
 	d3ddev->SetStreamSource(0, vb_gurdpoll, 0, sizeof(MYVERTEX3D));
 	d3ddev->DrawPrimitive(D3DPT_TRIANGLELIST,0,NUM_GURDPOLL*2);
-	//ŠX“”
+	//è¡—ç¯
 	d3ddev->SetTexture(0,ptex_light);
 	for(int i=0;i<NUM_LIGHT;i++){
 		d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,

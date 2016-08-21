@@ -1,9 +1,9 @@
-
+ï»¿
 /*========================================================================
 	
-	ƒXƒe[ƒWŠÇ—
+	ã‚¹ãƒ†ãƒ¼ã‚¸ç®¡ç†
 
-	ƒfƒBƒŒƒNƒgƒŠ‚©‚çƒXƒe[ƒW‚ÌƒŠƒXƒg‚ðì¬‚µ‚ÄŠÇ—‚·‚éB
+	ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‹ã‚‰ã‚¹ãƒ†ãƒ¼ã‚¸ã®ãƒªã‚¹ãƒˆã‚’ä½œæˆã—ã¦ç®¡ç†ã™ã‚‹ã€‚
 
 ==========================================================================*/
 #pragma once
@@ -15,55 +15,55 @@
 
 
 /*!
-*	@brief ƒXƒe[ƒW‚Ìî•ñ 
+*	@brief ã‚¹ãƒ†ãƒ¼ã‚¸ã®æƒ…å ± 
 */
 struct CSL_STAGEINFO
 {
-	TCHAR dir[64];				//!< ‚Ç‚ÌƒfƒBƒŒƒNƒgƒŠ‚É‚ ‚é‚©
-	TCHAR name[32];				//!< –¼‘O‚Í‚È‚ñ‚Æ‚¢‚¤‚Ì‚©
-	DWORD ver;					//!< DLL‚ª•Ô‚µ‚½ƒo[ƒWƒ‡ƒ“
+	TCHAR dir[64];				//!< ã©ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«ã‚ã‚‹ã‹
+	TCHAR name[32];				//!< åå‰ã¯ãªã‚“ã¨ã„ã†ã®ã‹
+	DWORD ver;					//!< DLLãŒè¿”ã—ãŸãƒãƒ¼ã‚¸ãƒ§ãƒ³
 };
-typedef std::vector<CSL_STAGEINFO> CSL_STAGEINFOLIST;	//!< ƒXƒe[ƒWî•ñ”z—ñ(STL)
+typedef std::vector<CSL_STAGEINFO> CSL_STAGEINFOLIST;	//!< ã‚¹ãƒ†ãƒ¼ã‚¸æƒ…å ±é…åˆ—(STL)
 
 
 
 /*!
-*	@brief ”FØŽ¸”sƒXƒe[ƒW‚Ìî•ñ
+*	@brief èªè¨¼å¤±æ•—ã‚¹ãƒ†ãƒ¼ã‚¸ã®æƒ…å ±
 */
 struct CSL_DAMEINFO
 {
-	TCHAR dir[64];				//!< ‚Ç‚ÌƒfƒBƒŒƒNƒgƒŠ‚É‚ ‚é‚©
-	DWORD damereas;				//!< ‘Ê–Ú‚È——R
-	DWORD ver;					//!< DLL‚ª•Ô‚µ‚½ƒo[ƒWƒ‡ƒ“
+	TCHAR dir[64];				//!< ã©ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«ã‚ã‚‹ã‹
+	DWORD damereas;				//!< é§„ç›®ãªç†ç”±
+	DWORD ver;					//!< DLLãŒè¿”ã—ãŸãƒãƒ¼ã‚¸ãƒ§ãƒ³
 };
-typedef std::vector<CSL_DAMEINFO> CSL_DAMEINFOLIST;	//!< ”FØŽ¸”sƒXƒe[ƒW”z—ñ(STL)
+typedef std::vector<CSL_DAMEINFO> CSL_DAMEINFOLIST;	//!< èªè¨¼å¤±æ•—ã‚¹ãƒ†ãƒ¼ã‚¸é…åˆ—(STL)
 
-#define CSL_DAME_NONAME		1	//!< ƒXƒe[ƒW”FŽ¯Ž¸”s——RIDA–¼‘O‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½
-#define CSL_DAME_PROC		2	//!< ƒXƒe[ƒW”FŽ¯Ž¸”s——RIDAŠÖ”ƒ|ƒCƒ“ƒ^Žæ“¾‚ÉŽ¸”s
-#define CSL_DAME_PROC2		3	//!< ƒXƒe[ƒW”FŽ¯Ž¸”s——RIDAStageInfoŠÖ”‚ÉŽ¸”s
-#define CSL_DAME_OLDDLL		4	//!< ƒXƒe[ƒW”FŽ¯Ž¸”s——RIDADLL‚Ìƒo[ƒWƒ‡ƒ“‚ªŒÃ‚¢
-#define CSL_DAME_NEWDLL		5	//!< ƒXƒe[ƒW”FŽ¯Ž¸”s——RIDADLL‚Ìƒo[ƒWƒ‡ƒ“‚ªV‚µ‚¢
+#define CSL_DAME_NONAME		1	//!< ã‚¹ãƒ†ãƒ¼ã‚¸èªè­˜å¤±æ•—ç†ç”±IDã€åå‰ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸ
+#define CSL_DAME_PROC		2	//!< ã‚¹ãƒ†ãƒ¼ã‚¸èªè­˜å¤±æ•—ç†ç”±IDã€é–¢æ•°ãƒã‚¤ãƒ³ã‚¿å–å¾—ã«å¤±æ•—
+#define CSL_DAME_PROC2		3	//!< ã‚¹ãƒ†ãƒ¼ã‚¸èªè­˜å¤±æ•—ç†ç”±IDã€StageInfoé–¢æ•°ã«å¤±æ•—
+#define CSL_DAME_OLDDLL		4	//!< ã‚¹ãƒ†ãƒ¼ã‚¸èªè­˜å¤±æ•—ç†ç”±IDã€DLLã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãŒå¤ã„
+#define CSL_DAME_NEWDLL		5	//!< ã‚¹ãƒ†ãƒ¼ã‚¸èªè­˜å¤±æ•—ç†ç”±IDã€DLLã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãŒæ–°ã—ã„
 
 
 
 /*!
-*	@brief ƒXƒe[ƒWƒfƒBƒŒƒNƒgƒŠƒŠƒXƒgiƒXƒe[ƒWƒŠƒ“ƒOj
+*	@brief ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒªã‚¹ãƒˆï¼ˆã‚¹ãƒ†ãƒ¼ã‚¸ãƒªãƒ³ã‚°ï¼‰
 */
 struct CSL_RINGINFO
 {
-	TCHAR name[32];						//!< ƒŠƒ“ƒO–¼(=•\Ž¦–¼)
-	std::vector<DWORD> ring2serial;		//!< ƒŠƒ“ƒO“àƒCƒ“ƒfƒbƒNƒX¨‘S‘ÌƒCƒ“ƒfƒbƒNƒX
+	TCHAR name[32];						//!< ãƒªãƒ³ã‚°å(=è¡¨ç¤ºå)
+	std::vector<DWORD> ring2serial;		//!< ãƒªãƒ³ã‚°å†…ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹â†’å…¨ä½“ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 };
-typedef std::vector<CSL_RINGINFO> CSL_STAGERINGLIST;	//!< ƒXƒe[ƒWƒŠƒ“ƒO”z—ñ(STL)
+typedef std::vector<CSL_RINGINFO> CSL_STAGERINGLIST;	//!< ã‚¹ãƒ†ãƒ¼ã‚¸ãƒªãƒ³ã‚°é…åˆ—(STL)
 
 
 
 
 /*!
-*	@brief ƒXƒe[ƒWƒŠƒXƒgŠÇ—ƒNƒ‰ƒX–{‘Ì
+*	@brief ã‚¹ãƒ†ãƒ¼ã‚¸ãƒªã‚¹ãƒˆç®¡ç†ã‚¯ãƒ©ã‚¹æœ¬ä½“
 *
-*	ƒOƒ[ƒoƒ‹‚É‚Ð‚Æ‚Â‚¾‚¯ƒCƒ“ƒXƒ^ƒ“ƒX‚ª‚ ‚éB
-*	ƒXƒe[ƒW‚ÉŠÖ‚·‚éî•ñ‚Ü‚Æ‚ßB
+*	ã‚°ãƒ­ãƒ¼ãƒãƒ«ã«ã²ã¨ã¤ã ã‘ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒã‚ã‚‹ã€‚
+*	ã‚¹ãƒ†ãƒ¼ã‚¸ã«é–¢ã™ã‚‹æƒ…å ±ã¾ã¨ã‚ã€‚
 */
 class CStageList
 {
@@ -71,33 +71,33 @@ public:
 	CStageList();
 	~CStageList(){Destroy();}
 
-	void Initialize();				//!< ƒfƒBƒŒƒNƒgƒŠ‚ðŒŸõ‚µAƒŠƒXƒg‚ð‰Šú‰»
-	void Destroy();					//!< ƒŠƒXƒg‚ð”jŠü
+	void Initialize();				//!< ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’æ¤œç´¢ã—ã€ãƒªã‚¹ãƒˆã‚’åˆæœŸåŒ–
+	void Destroy();					//!< ãƒªã‚¹ãƒˆã‚’ç ´æ£„
 
-	int GetStageCount();			//!< ŒŸõ‚³‚ê‚½ƒXƒe[ƒW”‚ð•Ô‚·
-	TCHAR* GetStageDir(int index);	//!< ƒXƒe[ƒW‚ÌƒfƒBƒŒƒNƒgƒŠ‚ð•Ô‚·
-	TCHAR* GetStageName(int index);	//!< ƒXƒe[ƒW‚Ì–¼‘O‚ð•Ô‚·
-	DWORD GetStageVer(int index);	//!< ƒXƒe[ƒW‚Ìƒo[ƒWƒ‡ƒ“‚ð•Ô‚·
-	int FindStage(TCHAR *name);		//!< –¼‘O‚ÅŒŸõi‚È‚©‚Á‚½ê‡-1j
+	int GetStageCount();			//!< æ¤œç´¢ã•ã‚ŒãŸã‚¹ãƒ†ãƒ¼ã‚¸æ•°ã‚’è¿”ã™
+	TCHAR* GetStageDir(int index);	//!< ã‚¹ãƒ†ãƒ¼ã‚¸ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’è¿”ã™
+	TCHAR* GetStageName(int index);	//!< ã‚¹ãƒ†ãƒ¼ã‚¸ã®åå‰ã‚’è¿”ã™
+	DWORD GetStageVer(int index);	//!< ã‚¹ãƒ†ãƒ¼ã‚¸ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’è¿”ã™
+	int FindStage(TCHAR *name);		//!< åå‰ã§æ¤œç´¢ï¼ˆãªã‹ã£ãŸå ´åˆ-1ï¼‰
 
-	int GetDameStageCount();						//!< ŒŸõ‚ÉŽ¸”s‚µ‚½ƒXƒe[ƒW”‚ð•Ô‚·
-	TCHAR* GetDameStageDir(int index);				//!< Ž¸”s——R‚ð•¶Žš—ñ‚Å•Ô‚·
-	DWORD GetDameStageReason(int index);			//!< ŒŸõŽ¸”s——R‚ð——RID’l‚Å•Ô‚·
-	DWORD GetDameStageVer(int index);				//!< ŒŸõŽ¸”sƒXƒe[ƒWEƒo[ƒWƒ‡ƒ“‚ð•Ô‚·
+	int GetDameStageCount();						//!< æ¤œç´¢ã«å¤±æ•—ã—ãŸã‚¹ãƒ†ãƒ¼ã‚¸æ•°ã‚’è¿”ã™
+	TCHAR* GetDameStageDir(int index);				//!< å¤±æ•—ç†ç”±ã‚’æ–‡å­—åˆ—ã§è¿”ã™
+	DWORD GetDameStageReason(int index);			//!< æ¤œç´¢å¤±æ•—ç†ç”±ã‚’ç†ç”±IDå€¤ã§è¿”ã™
+	DWORD GetDameStageVer(int index);				//!< æ¤œç´¢å¤±æ•—ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ»ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’è¿”ã™
 
-	DWORD Ring2Serial(DWORD ring,DWORD rindex);		//!< ƒŠƒ“ƒO“à‚Å‚ÌƒCƒ“ƒfƒbƒNƒX‚ð‘S‘Ì‚Å‚ÌƒCƒ“ƒfƒbƒNƒX‚É•ÏŠ·
-	DWORD GetStageCountRing(DWORD rindex);			//!< Žw’èƒŠƒ“ƒO‚ÉƒXƒe[ƒW‚ª‚¢‚­‚Â‚ ‚é‚©•Ô‚·
-	DWORD GetRingNum(){return ringlist.size();}		//!< ƒŠƒ“ƒO‚ÌŒÂ”‚ð•Ô‚·
-
-private:
-	void InitializeRingList();						//!< Initialize‚©‚çŒÄ‚Î‚ê‚é
-	void InitializeRing(DWORD index);				//!< Initialize‚©‚çŒÄ‚Î‚ê‚é
-	BOOL VerifyStageDir(TCHAR *dir,DWORD ring);		//!< Initialize‚©‚çŒÄ‚Î‚ê‚é
+	DWORD Ring2Serial(DWORD ring,DWORD rindex);		//!< ãƒªãƒ³ã‚°å†…ã§ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å…¨ä½“ã§ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«å¤‰æ›
+	DWORD GetStageCountRing(DWORD rindex);			//!< æŒ‡å®šãƒªãƒ³ã‚°ã«ã‚¹ãƒ†ãƒ¼ã‚¸ãŒã„ãã¤ã‚ã‚‹ã‹è¿”ã™
+	DWORD GetRingNum(){return ringlist.size();}		//!< ãƒªãƒ³ã‚°ã®å€‹æ•°ã‚’è¿”ã™
 
 private:
-	CSL_STAGEINFOLIST infolist;		//!< ƒXƒe[ƒWî•ñƒŠƒXƒg
-	CSL_STAGERINGLIST ringlist;		//!< ƒXƒe[ƒWƒŠƒ“ƒOƒŠƒXƒg
-	CSL_DAMEINFOLIST damelist;		//!< ƒfƒBƒŒƒNƒgƒŠ‚Í‚ ‚Á‚½‚¯‚Ç”FŽ¯‚ÉŽ¸”s‚µ‚½ƒŠƒXƒg
+	void InitializeRingList();						//!< Initializeã‹ã‚‰å‘¼ã°ã‚Œã‚‹
+	void InitializeRing(DWORD index);				//!< Initializeã‹ã‚‰å‘¼ã°ã‚Œã‚‹
+	BOOL VerifyStageDir(TCHAR *dir,DWORD ring);		//!< Initializeã‹ã‚‰å‘¼ã°ã‚Œã‚‹
+
+private:
+	CSL_STAGEINFOLIST infolist;		//!< ã‚¹ãƒ†ãƒ¼ã‚¸æƒ…å ±ãƒªã‚¹ãƒˆ
+	CSL_STAGERINGLIST ringlist;		//!< ã‚¹ãƒ†ãƒ¼ã‚¸ãƒªãƒ³ã‚°ãƒªã‚¹ãƒˆ
+	CSL_DAMEINFOLIST damelist;		//!< ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã¯ã‚ã£ãŸã‘ã©èªè­˜ã«å¤±æ•—ã—ãŸãƒªã‚¹ãƒˆ
 };
 
 /*@}*/

@@ -1,4 +1,4 @@
-
+ï»¿
 
 #include <windows.h>
 #include <stdio.h>
@@ -20,7 +20,7 @@ extern DI_FUNCTIONS_O *funco;
 extern DI_FUNCTIONS_D *funcd;
 
 //*********************************************************
-//@@’Ç‰Á“®ì
+//ã€€ã€€è¿½åŠ å‹•ä½œ
 //*********************************************************
 
 void CCharacter::act_dash()
@@ -55,7 +55,7 @@ void CCharacter::act_att_smc()
 }
 
 /*------------------------------------------------------------------
-					—³Šªù•—‹qE‚à‚Ç‚«
+					ç«œå·»æ—‹é¢¨å®¢ãƒ»ã‚‚ã©ã
 --------------------------------------------------------------------*/
 
 void CCharacter::act_tatumaki1()
@@ -146,7 +146,7 @@ void CCharacter::act_tatumakif()
 	pdat->cnow = CELL_TATUMAKIF;
 }
 
-//ƒK[ƒhƒLƒƒƒ“ƒZƒ‹—³Šªù•—‹r
+//ã‚¬ãƒ¼ãƒ‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«ç«œå·»æ—‹é¢¨è„š
 void CCharacter::act_gcancel1()
 {
 	AddPowerGauge(-0.3);
@@ -168,7 +168,7 @@ void CCharacter::act_gcancel3()
 	pdat->aid = ACTID_TATUMAKI3;
 }
 
-//uƒŒvuƒCvuƒNv
+//ã€Œãƒ¬ã€ã€Œã‚¤ã€ã€Œã‚¯ã€
 void CCharacter::act_reiku1a()
 {
 	if(pdat->counter<3)pdat->cnow=CELL_RE2;
@@ -279,7 +279,7 @@ void CCharacter::act_reikucom()
 	
 		if(pdat->counter == 0)StartAttack(ATTACKINFO_REIKU);
 	}
-	else if(pdat->counter < 13+13){//uƒCv
+	else if(pdat->counter < 13+13){//ã€Œã‚¤ã€
 		if(pdat->counter<3+13)pdat->cnow=CELL_I2;
 		else if(pdat->counter<20+13){pdat->cnow=CELL_I1;movex(10);}
 		else if(pdat->counter<25+13)pdat->cnow=CELL_WALK1;
@@ -287,7 +287,7 @@ void CCharacter::act_reikucom()
 
 		if(pdat->counter == 0+13)StartAttack(ATTACKINFO_REIKU);
 	}
-	else{//uƒNv
+	else{//ã€Œã‚¯ã€
 		if(pdat->counter<3+13+13)pdat->cnow=CELL_KU2;
 		else if(pdat->counter<20+13+13){pdat->cnow=CELL_KU1;movex(10);}
 		else if(pdat->counter<25+13+13)pdat->cnow=CELL_WALK1;

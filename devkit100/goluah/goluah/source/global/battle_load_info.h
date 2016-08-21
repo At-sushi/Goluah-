@@ -1,9 +1,9 @@
-/*!
+﻿/*!
 	@file
 	@brief Battle Load Information
 
-	�퓬�^�X�N�J�n�ɕK�v�Ȋe����
-	���łɁA�퓬�^�X�N�I�����̏��
+	戦闘タスク開始に必要な各種情報
+	ついでに、戦闘タスク終了時の情報
 
 */
 #pragma once
@@ -13,84 +13,84 @@
 
 /*!
 	@ingroup global
-	@brief �퓬�^�X�N�J�n�ɕK�v�ȏ��ێ��N���X
-	�O���[�o����1�������݂��āA�^�X�N�ԂŎ��������󂯓n�����߂̃N���X�B
+	@brief 戦闘タスク開始に必要な情報保持クラス
+	グローバルに1つだけ存在して、タスク間で試合情報を受け渡すためのクラス。
 */
 class CBattleLoadInfo
 {
 public:
-	void Initialize();		//!<�S���ڂ��w�薳���ɐݒ肷��
-	void ResolveRandom();	//!<�w�薳�����ڂ������_���w��Ƃ݂Ȃ��A�L���Ȓl�����蓖�Ă�
+	void Initialize();		//!<全項目を指定無しに設定する
+	void ResolveRandom();	//!<指定無し項目をランダム指定とみなし、有効な値を割り当てる
 
-	//Set�n
-	void SetBattleType(BYTE type);								//!<�ΐ�`�����w��iTAISENKEISIKI_�`�j
-	void SetLimitTime(int val);									//!<�������Ԑݒ�
-	void AddCharacter(  										//!<�L�����N�^�ǉ�
+	//Set系
+	void SetBattleType(BYTE type);								//!<対戦形式を指定（TAISENKEISIKI_〜）
+	void SetLimitTime(int val);									//!<制限時間設定
+	void AddCharacter(  										//!<キャラクタ追加
 						DWORD team,
 						DWORD cindex,
 						DWORD color,
 						BYTE  key,
 						DWORD option);
-	void SetStage(DWORD stage_index);							//!<�X�e�[�W��ݒ�
-	void SetStoryBGM(TCHAR *filepath);							//!<�X�g�[���[����w�肳�ꂽBGM
-	void SetComLevel(DWORD team,DWORD cindex,					//!<COM�̃��x��
+	void SetStage(DWORD stage_index);							//!<ステージを設定
+	void SetStoryBGM(TCHAR *filepath);							//!<ストーリーから指定されたBGM
+	void SetComLevel(DWORD team,DWORD cindex,					//!<COMのレベル
 					int level,BOOL is_related);
 
-	//Get�n
-	DWORD GetBattleType();										//!<�ΐ�`�����擾
-	int   GetLimitTime();										//!<�������Ԏ擾
-	DWORD GetNumTeam(DWORD team);								//!<1�`�[���̐l�����擾
-	DWORD GetCharacter(DWORD team,DWORD member_index);			//!<�L�����N�^���擾
+	//Get系
+	DWORD GetBattleType();										//!<対戦形式を取得
+	int   GetLimitTime();										//!<制限時間取得
+	DWORD GetNumTeam(DWORD team);								//!<1チームの人数を取得
+	DWORD GetCharacter(DWORD team,DWORD member_index);			//!<キャラクタを取得
 	BYTE  GetKeyAssign(DWORD team,DWORD member_index);			
-	BOOL  GetCharacterIsCOM(DWORD team,DWORD member_index);		//!<�R���s���[�^���ǂ������擾
-	DWORD GetColor(DWORD team,DWORD member_index);				//!<�J���[���擾
-	DWORD GetCharacterOption(DWORD team,DWORD member_index);	//!<�I�v�V�������擾
-	DWORD GetStage();											//!<�X�e�[�W���擾
-	TCHAR* GetStoryBGM();										//!<�X�g�[���[�Ŏw�肳�ꂽBGM�擾�i�ݒ肳��Ă��Ȃ��ꍇNULL�j
-	Config2_Difficulty GetComLevel(DWORD team,DWORD member_idx);//!<COM���x���擾
+	BOOL  GetCharacterIsCOM(DWORD team,DWORD member_index);		//!<コンピュータかどうかを取得
+	DWORD GetColor(DWORD team,DWORD member_index);				//!<カラーを取得
+	DWORD GetCharacterOption(DWORD team,DWORD member_index);	//!<オプションを取得
+	DWORD GetStage();											//!<ステージを取得
+	TCHAR* GetStoryBGM();										//!<ストーリーで指定されたBGM取得（設定されていない場合NULL）
+	Config2_Difficulty GetComLevel(DWORD team,DWORD member_idx);//!<COMレベル取得
 
-	DWORD GetAllKey();//!<�����Ɋւ���Ă�S�v���C���[�L�[���̘͂a���Q�b�g
+	DWORD GetAllKey();//!<試合に関わってる全プレイヤーキー入力の和をゲット
 
 protected:
-	int	  m_limittime;					//!<��������
-	DWORD m_type;						//!<�ΐ�`��
-	DWORD m_num_team[2];				//!<1�`�[�����l��
-	DWORD m_char[2][MAXNUM_TEAM];		//!<�I�����ꂽ�L�����N�^�[
-	DWORD m_options[2][MAXNUM_TEAM];	//!<�I�����ꂽ�I�v�V�����ݒ�
-	DWORD m_color[2][MAXNUM_TEAM];		//!<�I�����ꂽ�L�����N�^�[�F
-	BYTE  m_key_assign[2][MAXNUM_TEAM];	//!<�R���s���[�^���ǂ���
-	DWORD m_stage;						//!<�I�����ꂽ�X�e�[�W
-	TCHAR  m_storybgm[256];				//!<�X�g�[���[����w�肳�ꂽBGM
-	Config2_Difficulty m_com_level[2][MAXNUM_TEAM];//!<�R���s���[�^��Փx�Bg_config����擾�����l+�X�g�[���[���[�h�ł̎w��l
+	int	  m_limittime;					//!<制限時間
+	DWORD m_type;						//!<対戦形式
+	DWORD m_num_team[2];				//!<1チーム何人か
+	DWORD m_char[2][MAXNUM_TEAM];		//!<選択されたキャラクター
+	DWORD m_options[2][MAXNUM_TEAM];	//!<選択されたオプション設定
+	DWORD m_color[2][MAXNUM_TEAM];		//!<選択されたキャラクター色
+	BYTE  m_key_assign[2][MAXNUM_TEAM];	//!<コンピュータかどうか
+	DWORD m_stage;						//!<選択されたステージ
+	TCHAR  m_storybgm[256];				//!<ストーリーから指定されたBGM
+	Config2_Difficulty m_com_level[2][MAXNUM_TEAM];//!<コンピュータ難易度。g_configから取得した値+ストーリーモードでの指定値
 };
 
 
 /*!
 	@ingroup global
-	@brief �퓬�^�X�N�I�����̏��
-	CBattleLoadInfo �Ɠ����悤�Ȉʒu�Â��ŁA�������͏��s��
-	��������ӓ��A�I�����̏���ێ�����
+	@brief 戦闘タスク終了時の情報
+	CBattleLoadInfo と同じような位置づけで、こっちは勝敗や
+	勝利せりふ等、終了時の情報を保持する
 */
 class CBattleResultInfo
 {
 public:
 	CBattleResultInfo();
 
-	void Initialize(BYTE wteam);						//!<CBattleLoadInfo��������R�s�[���ď�������
-	void SetKatiSerif(DWORD team,TCHAR *str);			//!<�����䎌�ݒ�
+	void Initialize(BYTE wteam);						//!<CBattleLoadInfoから情報をコピーして準備する
+	void SetKatiSerif(DWORD team,TCHAR *str);			//!<勝利台詞設定
 
-	BOOL  GetWinner();									//!<�����`�[���Q�g
-	UINT  GetWinnerCount(){return m_winner_count;}		//!<�������`�[���l��
-	TCHAR* GetKatiSerif(DWORD team=3);					//!<�䎌�Q�g
-	DWORD GetCharacter(DWORD index);					//!<�L�����N�^�Q�g
-	DWORD GetColor(UINT index);							//!<���������̃J���[
+	BOOL  GetWinner();									//!<勝利チームゲト
+	UINT  GetWinnerCount(){return m_winner_count;}		//!<勝利側チーム人数
+	TCHAR* GetKatiSerif(DWORD team=3);					//!<台詞ゲト
+	DWORD GetCharacter(DWORD index);					//!<キャラクタゲト
+	DWORD GetColor(UINT index);							//!<勝った方のカラー
 
 protected:
-	BYTE  m_winner;					//!<�����`�[��(0or1)
-	TCHAR  m_serif[2][256];			//!<�䎌
+	BYTE  m_winner;					//!<勝利チーム(0or1)
+	TCHAR  m_serif[2][256];			//!<台詞
 
-	DWORD m_character[MAXNUM_TEAM];	//!<�L�����N�^
-	UINT  m_color[MAXNUM_TEAM];		//!<�J���[
-	UINT  m_winner_count;			//!<�������`�[���l��
+	DWORD m_character[MAXNUM_TEAM];	//!<キャラクタ
+	UINT  m_color[MAXNUM_TEAM];		//!<カラー
+	UINT  m_winner_count;			//!<勝利側チーム人数
 };
 

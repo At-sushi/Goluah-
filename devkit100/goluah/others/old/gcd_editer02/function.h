@@ -1,4 +1,4 @@
-
+﻿
 void DrawRECT(HWND hwnd,int sx,int gx,int sy,int gy,DWORD type);
 void DrawRECT2(HDC  hdc ,int sx,int gx,int sy,int gy,DWORD type);
 

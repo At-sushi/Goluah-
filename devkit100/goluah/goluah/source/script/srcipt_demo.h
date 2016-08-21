@@ -1,10 +1,10 @@
-
+﻿
 /*!
 *	@file
-*	@brief �X�g�[���[���ԃf���X�N���v�g����(���g�p)
+*	@brief ストーリー中間デモスクリプト操作(未使用)
 *
-*	���ݎg���Ă���܂�����ۂ��B
-*	ver0.8�܂ł̃f���X�N���v�g����蒼�����Ƃ��Ă��݂����B
+*	現在使われておりませんっぽい。
+*	ver0.8までのデモスクリプトを作り直そうとしてたみたい。
 */
 /*! @ingroup script*/
 /*@{*/
@@ -17,19 +17,19 @@ class CDemoScriptElement;
 typedef std::vector<CDemoScriptElement*> DScriptElementList;
 
 /*!
-*	@brief �X�g�[���[�f���ǂݍ��݁H
+*	@brief ストーリーデモ読み込み？
 *
-*	�f���X�N���v�g����蒼�����Ƃ��Ă��݂����B
-*	���g�Ȃ�
+*	デモスクリプトを作り直そうとしてたみたい。
+*	中身なし
 */
 class CGoluahDemoScript
 {
 public:
 	/*!
-	*	@brief �ǂݍ��݊֐�
+	*	@brief 読み込み関数
 	*
-	*	�f���X�N���v�g����蒼�����Ƃ��Ă��݂����B
-	*	���g�Ȃ�
+	*	デモスクリプトを作り直そうとしてたみたい。
+	*	中身なし
 	*/
 	static BOOL CreateScriptElementList(SScriptElementList& list,TCHAR *filename,CAliasList *args);
 };

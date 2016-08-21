@@ -1,4 +1,4 @@
-// DlgKBKeyGet.cpp : ŽÀ‘•ƒtƒ@ƒCƒ‹
+ï»¿// DlgKBKeyGet.cpp : å®Ÿè£…ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 
 CDlgKBKeyGet* CDlgKBKeyGet::m_instance=NULL;
 
-// CDlgKBKeyGet ƒ_ƒCƒAƒƒO
+// CDlgKBKeyGet ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 IMPLEMENT_DYNAMIC(CDlgKBKeyGet, CDialog)
 CDlgKBKeyGet::CDlgKBKeyGet(CWnd* pParent /*=NULL*/)
@@ -36,11 +36,11 @@ BEGIN_MESSAGE_MAP(CDlgKBKeyGet, CDialog)
 END_MESSAGE_MAP()
 
 
-// CDlgKBKeyGet ƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰
+// CDlgKBKeyGet ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ©
 
 void CDlgKBKeyGet::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	// TODO : ‚±‚±‚ÉƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰ ƒR[ƒh‚ð’Ç‰Á‚·‚é‚©AŠù’è‚Ìˆ—‚ðŒÄ‚Ño‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã‹ã€æ—¢å®šã®å‡¦ç†ã‚’å‘¼ã³å‡ºã—ã¾ã™ã€‚
 
 	EndDialog(0);
 	CDialog::OnKeyDown(nChar, nRepCnt, nFlags);
@@ -48,7 +48,7 @@ void CDlgKBKeyGet::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 BOOL CDlgKBKeyGet::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO : ‚±‚±‚É“Á’è‚ÈƒR[ƒh‚ð’Ç‰Á‚·‚é‚©A‚à‚µ‚­‚ÍŠî–{ƒNƒ‰ƒX‚ðŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢B
+	// TODO : ã“ã“ã«ç‰¹å®šãªã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã‹ã€ã‚‚ã—ãã¯åŸºæœ¬ã‚¯ãƒ©ã‚¹ã‚’å‘¼ã³å‡ºã—ã¦ãã ã•ã„ã€‚
 	
 	if(pMsg->message == WM_KEYDOWN){
         if(pMsg->wParam != VK_ESCAPE)
@@ -82,7 +82,7 @@ BOOL CDlgKBKeyGet::PreTranslateMessage(MSG* pMsg)
 
 void CDlgKBKeyGet::OnCancel()
 {
-	// TODO : ‚±‚±‚É“Á’è‚ÈƒR[ƒh‚ð’Ç‰Á‚·‚é‚©A‚à‚µ‚­‚ÍŠî–{ƒNƒ‰ƒX‚ðŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢B
+	// TODO : ã“ã“ã«ç‰¹å®šãªã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã‹ã€ã‚‚ã—ãã¯åŸºæœ¬ã‚¯ãƒ©ã‚¹ã‚’å‘¼ã³å‡ºã—ã¦ãã ã•ã„ã€‚
 
 	//CDialog::OnCancel();
 

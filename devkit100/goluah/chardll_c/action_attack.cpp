@@ -1,4 +1,4 @@
-/*=====================================================================================
+ï»¿/*=====================================================================================
 
 Goluah!! Copyright (C) 2001-2004 aki, 2004-2016 At-sushi, 2014-2016 logger
 
@@ -12,17 +12,17 @@ You should have received a copy of the GNU General Public License along with thi
 
 /*==============================================================
 
-	’ÊíUŒ‚
+	é€šå¸¸æ”»æ’ƒ
 
 ================================================================*/
 #include "character.h"
 
 
 /*----------------------------------------------------------------
-	—§
+	ç«‹
 ------------------------------------------------------------------*/
 
-void CCharacter::act_att_sa()//—§ã
+void CCharacter::act_att_sa()//ç«‹å¼±
 {
 	if(pdat->counter == 1)StartAttack(ATTACKINFO_STAND_A);
 
@@ -32,7 +32,7 @@ void CCharacter::act_att_sa()//—§ã
 	}
 }
 
-void CCharacter::act_att_sb()//—§’†
+void CCharacter::act_att_sb()//ç«‹ä¸­
 {
 	if(pdat->counter == 1)StartAttack(ATTACKINFO_STAND_B);
 
@@ -46,7 +46,7 @@ void CCharacter::act_att_sb()//—§’†
 	}
 }
 
-void CCharacter::act_att_sc()//—§‹­
+void CCharacter::act_att_sc()//ç«‹å¼·
 {
 	if(pdat->counter ==5)StartAttack(ATTACKINFO_STAND_C);
 
@@ -65,10 +65,10 @@ void CCharacter::act_att_sc()//—§‹­
 }
 
 /*----------------------------------------------------------------
-	‹ü
+	å±ˆ
 ------------------------------------------------------------------*/
 
-void CCharacter::act_att_ca()//‹üã
+void CCharacter::act_att_ca()//å±ˆå¼±
 {
 	if(pdat->counter == 1)StartAttack(ATTACKINFO_CROUCH_A);
 
@@ -78,7 +78,7 @@ void CCharacter::act_att_ca()//‹üã
 	}
 }
 
-void CCharacter::act_att_cb()//‹ü’†
+void CCharacter::act_att_cb()//å±ˆä¸­
 {
 	if(pdat->counter == 1)StartAttack(ATTACKINFO_CROUCH_B);
 
@@ -92,7 +92,7 @@ void CCharacter::act_att_cb()//‹ü’†
 	}
 }
 
-void CCharacter::act_att_cc()//‹ü‹­
+void CCharacter::act_att_cc()//å±ˆå¼·
 {
 	if(pdat->counter == 6)StartAttack(ATTACKINFO_CROUCH_C);
 
@@ -108,10 +108,10 @@ void CCharacter::act_att_cc()//‹ü‹­
 }
 
 /*----------------------------------------------------------------
-	”ò
+	é£›
 ------------------------------------------------------------------*/
 
-void CCharacter::act_att_ja()//”òã
+void CCharacter::act_att_ja()//é£›å¼±
 {
 	if(pdat->counter == 1)StartAttack(ATTACKINFO_JAMP_A);
 
@@ -122,7 +122,7 @@ void CCharacter::act_att_ja()//”òã
 	JiyuuRakka(ACTID_NEUTRAL,TRUE);
 }
 
-void CCharacter::act_att_jb()//”ò’†
+void CCharacter::act_att_jb()//é£›ä¸­
 {
 	if(pdat->counter == 1)StartAttack(ATTACKINFO_JAMP_B);
 
@@ -141,7 +141,7 @@ void CCharacter::act_att_jb()//”ò’†
 	JiyuuRakka(ACTID_NEUTRAL,TRUE);
 }
 
-void CCharacter::act_att_jc()//”ò‹­
+void CCharacter::act_att_jc()//é£›å¼·
 {
 	if(pdat->counter%4 == 0)StartAttack(ATTACKINFO_JAMP_C);
 
@@ -154,9 +154,9 @@ void CCharacter::act_att_jc()//”ò‹­
 
 
 /*----------------------------------------------------------------
-	“Áê“ü—Í
+	ç‰¹æ®Šå…¥åŠ›
 ------------------------------------------------------------------*/
-//¨+C
+//â†’+C
 void CCharacter::act_staff()
 {
 	if(ccounter==0)PlayMySound(wave_staff);
@@ -191,7 +191,7 @@ void CCharacter::act_staff()
 
 
 /*----------------------------------------------------------------
-	“Š
+	æŠ•
 ------------------------------------------------------------------*/
 void CCharacter::act_nage()
 {
@@ -263,7 +263,7 @@ DWORD CCharacter::eact_nage(GOBJECT *pedat)
 }
 
 /*----------------------------------------------------------------
-	ƒXƒgƒ‰ƒCƒJ[
+	ã‚¹ãƒˆãƒ©ã‚¤ã‚«ãƒ¼
 ------------------------------------------------------------------*/
 void CCharacter::act_striker_in()
 {
@@ -271,7 +271,7 @@ void CCharacter::act_striker_in()
 	pdat->kasanari=FALSE;
 
 	if(pdat->counter==0){
-		AddProperty( GOBJTYPE_DISPLAY );//‰æ–Ê“à‚É‚¢‚é
+		AddProperty( GOBJTYPE_DISPLAY );//ç”»é¢å†…ã«ã„ã‚‹
 	}
 
 	GOBJECT *pedat;
@@ -319,8 +319,8 @@ void CCharacter::act_striker_out()
 	pdat->kasanari=FALSE;
 
 	if(pdat->counter==0){
-		pdat->objtype &= GOBJTYPE_NODISPLAY;//‰æ–ÊŠO‚Ö‚¢‚¯‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­
-		pdat->objtype |= GOBJFLG_TAIKI;//‘Ò‹@ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		pdat->objtype &= GOBJTYPE_NODISPLAY;//ç”»é¢å¤–ã¸ã„ã‘ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã
+		pdat->objtype |= GOBJFLG_TAIKI;//å¾…æ©Ÿãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	}
 
 	if(pdat->counter < 2){
@@ -345,7 +345,7 @@ void CCharacter::act_striker_out()
 
 
 /*----------------------------------------------------------------
-	ƒŠƒo[ƒTƒ‹
+	ãƒªãƒãƒ¼ã‚µãƒ«
 ------------------------------------------------------------------*/
 void CCharacter::act_reversal()
 {

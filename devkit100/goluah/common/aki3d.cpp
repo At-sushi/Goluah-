@@ -1,4 +1,4 @@
-/*=====================================================================================
+ï»¿/*=====================================================================================
 
 Goluah!! Copyright (C) 2001-2004 aki, 2004-2016 At-sushi, 2014-2016 logger
 
@@ -12,7 +12,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 /*========================================================
 	
-	‹¤’Ê’è‹`
+	å…±é€šå®šç¾©
 
 ==========================================================*/
 
@@ -34,7 +34,7 @@ Aki3d aki3d;
 ***********************************************************/
 
 /*---------------------------------------------------------
-	\’z
+	æ§‹ç¯‰
 -----------------------------------------------------------*/
 void Aki3d::Initialize(
 			 LPDIRECT3DDEVICE9 d3d_device,
@@ -51,7 +51,7 @@ void Aki3d::Initialize(
 	tex_man = new CTexManager;
 	tex_man->SetBasePath( tex_path );
 
-	//²‚Ì‰Šú‰»
+	//è»¸ã®åˆæœŸåŒ–
 	Zero.x = Zero.y = Zero.z = 0;
 	Xaxis = Zero;
 	Xaxis.x = 1.0f;
@@ -60,7 +60,7 @@ void Aki3d::Initialize(
 	Zaxis = Zero;
 	Zaxis.z = 1.0f;
 
-	// –‘O‚ÉƒXƒ^ƒbƒN—p”z—ñ‚ğ—¿—‚µ‚Ä‚¨‚­
+	// äº‹å‰ã«ã‚¹ã‚¿ãƒƒã‚¯ç”¨é…åˆ—ã‚’æ–™ç†ã—ã¦ãŠã
 	/*g_tstrip_list.clear();
 	g_particle_list.clear();
 	g_flatboards_list.clear();
@@ -68,7 +68,7 @@ void Aki3d::Initialize(
 }
 
 /*---------------------------------------------------------
-	0`1 À”ƒ‰ƒ“ƒ_ƒ€
+	0ï½1 å®Ÿæ•°ãƒ©ãƒ³ãƒ€ãƒ 
 -----------------------------------------------------------*/
 float Aki3d::RandomOne()
 {
@@ -76,7 +76,7 @@ float Aki3d::RandomOne()
 }
 
 /*---------------------------------------------------------
-	-1`1 À”ƒ‰ƒ“ƒ_ƒ€
+	-1ï½1 å®Ÿæ•°ãƒ©ãƒ³ãƒ€ãƒ 
 -----------------------------------------------------------*/
 float Aki3d::RandomOne2()
 {
@@ -84,7 +84,7 @@ float Aki3d::RandomOne2()
 }
 
 /*---------------------------------------------------------
-	0`1 •ÏŠ·Œn
+	0ï½1 å¤‰æ›ç³»
 -----------------------------------------------------------*/
 float Aki3d::zo_tri(float t,float mid)
 {
@@ -94,7 +94,7 @@ float Aki3d::zo_tri(float t,float mid)
 
 
 /*---------------------------------------------------------
-	ƒWƒN‚Æ‚©
+	ã‚¸ã‚¯ã¨ã‹
 -----------------------------------------------------------*/
 V3d Xaxis;
 V3d Yaxis;
@@ -102,10 +102,10 @@ V3d Zaxis;
 V3d Zero;
 
 /*---------------------------------------------------------
-	ƒT[ƒrƒX
+	ã‚µãƒ¼ãƒ“ã‚¹
 -----------------------------------------------------------*/
 
-//¡Zƒoƒbƒtƒ@ ON/OFF
+//â– Zãƒãƒƒãƒ•ã‚¡ ON/OFF
 void Aki3d::EnableZ(BOOL t,BOOL w)
 {
 	if(t)
@@ -115,21 +115,21 @@ void Aki3d::EnableZ(BOOL t,BOOL w)
 	d3ddev->SetRenderState(D3DRS_ZWRITEENABLE	,w);
 }
 
-//¡ƒ¿‡¬ƒ‚[ƒhİ’èA‰ÁZ‡¬
+//â– Î±åˆæˆãƒ¢ãƒ¼ãƒ‰è¨­å®šã€åŠ ç®—åˆæˆ
 void Aki3d::SetBlend_Add()
 {
 	d3ddev->SetRenderState(D3DRS_SRCBLEND,D3DBLEND_SRCALPHA);
 	d3ddev->SetRenderState(D3DRS_DESTBLEND,D3DBLEND_ONE);
 }
 
-//¡ƒ¿‡¬ƒ‚[ƒhİ’èA’Êí”¼“§–¾
+//â– Î±åˆæˆãƒ¢ãƒ¼ãƒ‰è¨­å®šã€é€šå¸¸åŠé€æ˜
 void Aki3d::SetBlend_Normal()
 {
 	d3ddev->SetRenderState(D3DRS_SRCBLEND,D3DBLEND_SRCALPHA);
 	d3ddev->SetRenderState(D3DRS_DESTBLEND,D3DBLEND_INVSRCALPHA);
 }
 
-//¡ƒ¿‡¬ƒ‚[ƒhİ’èA”½“]
+//â– Î±åˆæˆãƒ¢ãƒ¼ãƒ‰è¨­å®šã€åè»¢
 void Aki3d::SetBlend_Nega()
 {
 	d3ddev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_INVDESTCOLOR);
@@ -139,7 +139,7 @@ void Aki3d::SetBlend_Nega()
 
 
 /*---------------------------------------------------------
-	ƒIƒuƒWƒFƒNƒg‚Ìæ“¾
+	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å–å¾—
 -----------------------------------------------------------*/
 CTristrip* Aki3d::CreateTristripObject()
 {
@@ -178,7 +178,7 @@ CMesh* Aki3d::CreateMeshObject()
 }
 
 /*---------------------------------------------------------
-	ƒIƒuƒWƒFƒNƒg‚Ì”jŠü
+	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç ´æ£„
 -----------------------------------------------------------*/
 void Aki3d::DestroyTristripObject(CTristrip* obj)
 {
@@ -195,7 +195,7 @@ void Aki3d::DestroyTristripObject(CTristrip* obj)
 		}
 	}
 
-	OutputDebugString(_T("[ƒ„ƒoƒC] Aki3d::DestroyTristripObject , Œ©‚Â‚©‚ç‚¸\n"));
+	OutputDebugString(_T("[ãƒ¤ãƒã‚¤] Aki3d::DestroyTristripObject , è¦‹ã¤ã‹ã‚‰ãš\n"));
 }
 
 void Aki3d::DestroyParticleObject(CParticle* obj)
@@ -213,7 +213,7 @@ void Aki3d::DestroyParticleObject(CParticle* obj)
 		}
 	}
 
-	OutputDebugString(_T("[ƒ„ƒoƒC] Aki3d::DestroyParticleObject , Œ©‚Â‚©‚ç‚¸\n"));
+	OutputDebugString(_T("[ãƒ¤ãƒã‚¤] Aki3d::DestroyParticleObject , è¦‹ã¤ã‹ã‚‰ãš\n"));
 }
 
 void Aki3d::DestroyFlatBoardsObject(CFlatBoards* obj)
@@ -231,7 +231,7 @@ void Aki3d::DestroyFlatBoardsObject(CFlatBoards* obj)
 		}
 	}
 
-	OutputDebugString(_T("[ƒ„ƒoƒC] Aki3d::DestroyFlatBoardsObject , Œ©‚Â‚©‚ç‚¸\n"));
+	OutputDebugString(_T("[ãƒ¤ãƒã‚¤] Aki3d::DestroyFlatBoardsObject , è¦‹ã¤ã‹ã‚‰ãš\n"));
 }
 
 void Aki3d::DestroyMeshObject(CMesh* obj)
@@ -249,11 +249,11 @@ void Aki3d::DestroyMeshObject(CMesh* obj)
 		}
 	}
 
-	OutputDebugString(_T("[ƒ„ƒoƒC] Aki3d::DestroyMeshObject , Œ©‚Â‚©‚ç‚¸\n"));
+	OutputDebugString(_T("[ãƒ¤ãƒã‚¤] Aki3d::DestroyMeshObject , è¦‹ã¤ã‹ã‚‰ãš\n"));
 }
 
 /*---------------------------------------------------------
-	ƒ}ƒgƒŠƒbƒNƒX¶¬
+	ãƒãƒˆãƒªãƒƒã‚¯ã‚¹ç”Ÿæˆ
 -----------------------------------------------------------*/
 D3DXMATRIX mat;
 
@@ -261,7 +261,7 @@ D3DXMATRIX& Aki3d::CreateMatrix( V3d* scale, V3d* rotation, V3d* trans )
 {
 	D3DXMATRIX tempra;
 
-	//ƒXƒP[ƒ‹
+	//ã‚¹ã‚±ãƒ¼ãƒ«
 	if(scale)
 	{
 		D3DXMatrixScaling( &mat, scale->x, scale->y, scale->z );
@@ -271,13 +271,13 @@ D3DXMATRIX& Aki3d::CreateMatrix( V3d* scale, V3d* rotation, V3d* trans )
 		D3DXMatrixIdentity( &mat );
 	}
 
-	//‰ñ“]iƒxƒNƒgƒ‹‚Ì’·‚³‚ğƒ‰ƒWƒAƒ“‚Ì‰ñ“]Šp‚Æ‚·‚éj
+	//å›è»¢ï¼ˆãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ã‚’ãƒ©ã‚¸ã‚¢ãƒ³ã®å›è»¢è§’ã¨ã™ã‚‹ï¼‰
 	if(rotation)
 	{
 		mat*= *D3DXMatrixRotationAxis( &tempra, rotation, D3DXVec3Length(rotation) );
 	}
 
-	//ˆÚ“®
+	//ç§»å‹•
 	if(trans)
 	{
 		mat*= *D3DXMatrixTranslation( &tempra, trans->x, trans->y, trans->z );
@@ -288,7 +288,7 @@ D3DXMATRIX& Aki3d::CreateMatrix( V3d* scale, V3d* rotation, V3d* trans )
 
 
 /*---------------------------------------------------------
-	Œãn––
+	å¾Œå§‹æœ«
 -----------------------------------------------------------*/
 void Aki3d::Destroy()
 {
@@ -313,7 +313,7 @@ void Aki3d::Destroy()
 }
 
 /*---------------------------------------------------------
-	ƒeƒNƒXƒ`ƒƒ[
+	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼
 -----------------------------------------------------------*/
 LPDIRECT3DTEXTURE9 Aki3d::LoadTexture(const TCHAR *filename)
 {
@@ -328,7 +328,7 @@ void Aki3d::UnloadTexture(LPDIRECT3DTEXTURE9 ptex)
 }
 
 /*---------------------------------------------------------
-	ŒxƒƒO
+	è­¦å‘Šãƒ­ã‚°
 -----------------------------------------------------------*/
 void Aki3d::LogWarning(const TCHAR* fmt,...)
 {
@@ -343,10 +343,10 @@ void Aki3d::LogWarning(const TCHAR* fmt,...)
 }
 
 /*------------------------------------------------------------------
-	V2DƒNƒ‰ƒXŠÖŒW
+	V2Dã‚¯ãƒ©ã‚¹é–¢ä¿‚
 --------------------------------------------------------------------*/
 
-//’·‚³1‰»
+//é•·ã•1åŒ–
 void V2d::Normalize()
 {
 	float len = sqrtf(x*x + y*y);
@@ -354,13 +354,13 @@ void V2d::Normalize()
 		x /= len;
 		y /= len;
 	}
-	else {//“K“–
+	else {//é©å½“
 		y = 1.0f;
 		x = 0.0f;
 	}
 }
 
-//‚’¼‰»
+//å‚ç›´åŒ–
 void V2d::Verticalize()
 {
 	float tmp = y;
@@ -368,13 +368,13 @@ void V2d::Verticalize()
 	x = -tmp;
 }
 
-//’·‚³æ“¾
+//é•·ã•å–å¾—
 float V2d::Length()
 {
 	return sqrtf(x*x+y*y);
 }
 
-//’·‚³İ’è
+//é•·ã•è¨­å®š
 void V2d::SetLength(float len)
 {
 	Normalize();
@@ -382,7 +382,7 @@ void V2d::SetLength(float len)
 	y*=len;
 }
 
-//‰‰ZqŠÖŒW
+//æ¼”ç®—å­é–¢ä¿‚
 V2d& V2d::operator=(const V2d& v)
 {
 	x = v.x;

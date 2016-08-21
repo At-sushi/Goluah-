@@ -1,8 +1,8 @@
-/*============================================================================
+ï»¿/*============================================================================
 
-	í“¬ƒ^ƒXƒNƒNƒ‰ƒX
+	æˆ¦é—˜ã‚¿ã‚¹ã‚¯ã‚¯ãƒ©ã‚¹
 
-	iƒlƒbƒgƒ[ƒN”ñ‘Î‰”Åj
+	ï¼ˆãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯éå¯¾å¿œç‰ˆï¼‰
 
 	Goluah!!Copyright(C) 2001-2004 aki, 2014-2015 logger, 2004-2015 At-sushi
 
@@ -23,7 +23,7 @@
 #include "gcdhandler.h"
 
 /*----------------------------------------------------------------------------
-	\’z
+	æ§‹ç¯‰
 ------------------------------------------------------------------------------*/
 CBattleTask::CBattleTask()
 {	
@@ -41,7 +41,7 @@ CBattleTask::CBattleTask()
 }
 
 /*----------------------------------------------------------------------------
-	”jŠü
+	ç ´æ£„
 ------------------------------------------------------------------------------*/
 CBattleTask::~CBattleTask()
 {
@@ -54,13 +54,13 @@ CBattleTask::~CBattleTask()
 
 /*===========================================================================
 
-	ƒ^ƒXƒN@‰Šú‰»
+	ã‚¿ã‚¹ã‚¯ã€€åˆæœŸåŒ–
 
 =============================================================================*/
 void CBattleTask::Initialize()
 {
 	CTNowLoading* now_loading = new CTNowLoading;
-	g_system.AddTask(now_loading);//Now Loading•\¦ƒ^ƒXƒNŠJn
+	g_system.AddTask(now_loading);//Now Loadingè¡¨ç¤ºã‚¿ã‚¹ã‚¯é–‹å§‹
 
 	TCHAR filename[256];
 	int i,j;
@@ -68,14 +68,14 @@ void CBattleTask::Initialize()
 
 	if (!g_config.IsFullScreen())
 		AfxGetApp()->DoWaitCursor(1);
-	// “®“I”z—ñ‰Šú‰»
+	// å‹•çš„é…åˆ—åˆæœŸåŒ–
 	p_objects.clear();
 	object_regno.clear();
 	suicide_list.resize(0);
 
 	CBattleTaskBase::Initialize();
 
-	//ƒRƒ“ƒsƒ…[ƒ^§Œäƒtƒ‰ƒO•t‰Á
+	//ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿åˆ¶å¾¡ãƒ•ãƒ©ã‚°ä»˜åŠ 
 	double hp_ratio=1.0;
 	for(i=0;i<3;i++){
 		for(j=0;j<2;j++){
@@ -85,7 +85,7 @@ void CBattleTask::Initialize()
 					if(g_battleinfo.GetCharacterIsCOM(j,i))
 					{
 						GetGObject( charobjid[j][i] )->data.objtype |= GOBJFLG_COMPUTER;
-						//‘Ì—Í‚ÌÅ‘å’l = DLL‚ªİ’è‚µ‚½’l x “ïˆÕ“xİ’è‚É‚æ‚é•â³’l
+						//ä½“åŠ›ã®æœ€å¤§å€¤ = DLLãŒè¨­å®šã—ãŸå€¤ x é›£æ˜“åº¦è¨­å®šã«ã‚ˆã‚‹è£œæ­£å€¤
 						switch(GetGObject( charobjid[j][i] )->com_level){
 						case DIFF_VERYEASY	:hp_ratio=0.75;	break;
 						case DIFF_EASY		:hp_ratio=0.875;break;
@@ -104,24 +104,24 @@ void CBattleTask::Initialize()
 		}
 	}
 
-	// ƒŠƒvƒŒƒCƒtƒ@ƒCƒ‹ì¬
+	// ãƒªãƒ—ãƒ¬ã‚¤ãƒ•ã‚¡ã‚¤ãƒ«ä½œæˆ
 	/*time_t crnt_time;
 	time(&crnt_time);
 	struct tm* crnt_time_l = localtime(&crnt_time);
 	_stprintf(filename,_T("%s\\%d%s%d%s%d%s%d%s%d%s%d.%s"),
 		_T("system\\replay\\"),
-		crnt_time_l->tm_year + 1900,				//”N
+		crnt_time_l->tm_year + 1900,				//å¹´
 		(crnt_time_l->tm_mon + 1)<10 ? _T("0") : _T(""),
-		crnt_time_l->tm_mon + 1,					//Œ
+		crnt_time_l->tm_mon + 1,					//æœˆ
 		crnt_time_l->tm_mday<10 ? _T("0") : _T(""),
-		crnt_time_l->tm_mday,						//“ú
+		crnt_time_l->tm_mday,						//æ—¥
 		crnt_time_l->tm_hour<10 ? _T("0") : _T(""),
-		crnt_time_l->tm_hour,						//
+		crnt_time_l->tm_hour,						//æ™‚
 		crnt_time_l->tm_min<10 ? _T("0") : _T(""),
-		crnt_time_l->tm_min,						//•ª
+		crnt_time_l->tm_min,						//åˆ†
 		crnt_time_l->tm_sec<10 ? _T("0") : _T(""),
-		crnt_time_l->tm_sec,						//•b
-		_T("grd")										//Šg’£q
+		crnt_time_l->tm_sec,						//ç§’
+		_T("grd")										//æ‹¡å¼µå­
 	);
 	RepFile.Open(filename,CFile::modeWrite | CFile::modeCreate);*/
 
@@ -129,10 +129,10 @@ void CBattleTask::Initialize()
 
 	//bgm
 	BOOL story_bgm_on = FALSE;
-	if(g_battleinfo.GetStoryBGM()){//ƒXƒg[ƒŠ[‚Åw’è‚³‚ê‚½ê‡
+	if(g_battleinfo.GetStoryBGM()){//ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã§æŒ‡å®šã•ã‚ŒãŸå ´åˆ
 		if(!g_sound.BGMPlay(g_battleinfo.GetStoryBGM()))
 		{
-			// .stage/bgm/‚©‚ç’T‚µ‚Ä‚İ‚é
+			// .stage/bgm/ã‹ã‚‰æ¢ã—ã¦ã¿ã‚‹
 			CString tmpcstr(g_battleinfo.GetStoryBGM());
 			int yen_pos = tmpcstr.ReverseFind('\\');
 			if(yen_pos>0){
@@ -148,7 +148,7 @@ void CBattleTask::Initialize()
 	{
 
 
-		//char/ZZ/sound/bgm(.mp3‚È‚Ç) ‚ÌÄ¶‚ğ‚İ‚é
+		//char/ã€‡ã€‡/sound/bgm(.mp3ãªã©) ã®å†ç”Ÿã‚’è©¦ã¿ã‚‹
 		for (i = 0; i < 2; i++)
 		{
 			for (j = 0; j < (int)g_battleinfo.GetNumTeam(i); j++)
@@ -164,12 +164,12 @@ void CBattleTask::Initialize()
 		}
 		if (playflag == FALSE)
 		{
-			//ƒXƒe[ƒWƒfƒBƒŒƒNƒgƒŠ‚Ìbgm‚ÌÄ¶‚ğ‚İ‚é
+			//ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®bgmã®å†ç”Ÿã‚’è©¦ã¿ã‚‹
 			_stprintf(filename, _T("%s\\bgm"),
 				g_stagelist.GetStageDir(g_battleinfo.GetStage()));
 			if (!g_sound.BGMPlay(filename))
 			{
-				//ƒXƒe[ƒW–¼‚Æ“¯ˆê‚ÌbgmÄ¶‚ğ‚İ‚é
+				//ã‚¹ãƒ†ãƒ¼ã‚¸åã¨åŒä¸€ã®bgmå†ç”Ÿã‚’è©¦ã¿ã‚‹
 				_stprintf(filename, _T("stage\\bgm\\%s"), g_stagelist.GetStageDir(g_battleinfo.GetStage()));
 				if (!g_sound.BGMPlay(filename)){
 					gbl.PlayRandomBGM(_T("stage\\bgm"));
@@ -179,12 +179,12 @@ void CBattleTask::Initialize()
 	}
 
 	AfxGetApp()->DoWaitCursor(-1);
- 	g_system.RemoveTask('LOAD');//NowLoading •\¦ƒ^ƒXƒNœ‹
+ 	g_system.RemoveTask('LOAD');//NowLoading è¡¨ç¤ºã‚¿ã‚¹ã‚¯é™¤å»
 }
 
 
 /*----------------------------------------------------------------
-	ƒIƒuƒWƒFƒNƒgƒŠƒXƒg‰Šú‰»
+	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆåˆæœŸåŒ–
 ------------------------------------------------------------------*/
 void CBattleTask::InitializeObjectList()
 {
@@ -195,7 +195,7 @@ void CBattleTask::InitializeObjectList()
 	}
 	object_regindex=0;
 
-	//ƒIƒuƒWƒFƒNƒg0ì¬
+	//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ0ä½œæˆ
 	DWORD obj0=
 		CreateGObject();
 	GetGObjectInfo(0)->tid = TEAM_SYSTEM;
@@ -207,11 +207,11 @@ void CBattleTask::InitializeObjectList()
 
 
 /*----------------------------------------------------------------
-	ƒpƒ‰ƒ[ƒ^ƒŠƒZƒbƒg
+	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒªã‚»ãƒƒãƒˆ
 ------------------------------------------------------------------*/
 void CBattleTask::InitializeParameters()
 {
-	round=0;//‚È‚º‚È‚çStartRound‚Å++‚³‚ê‚é‚©‚çB
+	round=0;//ãªãœãªã‚‰StartRoundã§++ã•ã‚Œã‚‹ã‹ã‚‰ã€‚
 	wincount[0] = wincount[1]=0;
 	strikercount[0] = strikercount[1] = g_config.GetStrikerCount();
 	active_character[0] = active_character[1] =0;
@@ -231,8 +231,8 @@ void CBattleTask::InitializeParameters()
 
 
 /*----------------------------------------------------------------
-	‚»‚Ì‘¼ƒNƒ‰ƒX‚ğ‰Šú‰»
-	ƒQ[ƒWEƒGƒtƒFƒNƒg
+	ãã®ä»–ã‚¯ãƒ©ã‚¹ã‚’åˆæœŸåŒ–
+	ã‚²ãƒ¼ã‚¸ãƒ»ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 ------------------------------------------------------------------*/
 void CBattleTask::InitializeSubTasks()
 {
@@ -249,8 +249,8 @@ void CBattleTask::InitializeSubTasks()
 
 
 /*----------------------------------------------------------------
-	ƒ‰ƒEƒ“ƒh”‚ği‚ß‚é
-	ƒpƒ‰ƒ[ƒ^“™‚ğƒŠƒZƒbƒg‚·‚é
+	ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã‚’é€²ã‚ã‚‹
+	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç­‰ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 ------------------------------------------------------------------*/
 void CBattleTask::StartRound()
 {
@@ -260,12 +260,12 @@ void CBattleTask::StartRound()
 	BOOL call_round = TRUE;
 	BOOL playflag = FALSE;
 
-	//‡I—¹”»’è
+	//è©¦åˆçµ‚äº†åˆ¤å®š
 	switch( g_battleinfo.GetBattleType() ){
 	case TAISENKEISIKI_GOCYAMAZE:	
 		disp_center_x=0;
 		limittime=g_battleinfo.GetLimitTime();
-		//Ÿ‚¿‚ªææƒ|ƒCƒ“ƒg”ˆÈã‚È‚ç‚ÎŸ—˜‰æ–Ê‚Ö
+		//å‹ã¡ãŒå…ˆå–ãƒã‚¤ãƒ³ãƒˆæ•°ä»¥ä¸Šãªã‚‰ã°å‹åˆ©ç”»é¢ã¸
 		if(wincount[0]>=g_config.GetMaxPoint()){
 			g_battleresult.Initialize(0);
 			battle_end = TRUE;
@@ -283,7 +283,7 @@ void CBattleTask::StartRound()
 			}
 		}
 		break;
-	case TAISENKEISIKI_JYUNBAN://ƒ‰ƒEƒ“ƒhI—¹ = ‡I—¹
+	case TAISENKEISIKI_JYUNBAN://ãƒ©ã‚¦ãƒ³ãƒ‰çµ‚äº† = è©¦åˆçµ‚äº†
 	case TAISENKEISIKI_KOUTAI:
 		disp_center_x=0;
 		limittime=-1;
@@ -296,7 +296,7 @@ void CBattleTask::StartRound()
 		break;
 	}
 
-	//•‰‚¯‚½ƒ`[ƒ€‚ÌƒLƒƒƒ‰BGM‚ÌÄ¶‚ğ‚İ‚é
+	//è² ã‘ãŸãƒãƒ¼ãƒ ã®ã‚­ãƒ£ãƒ©BGMã®å†ç”Ÿã‚’è©¦ã¿ã‚‹
 	if (round > 1)
 	{
 		if (m_round_winner == 0)
@@ -325,13 +325,13 @@ void CBattleTask::StartRound()
 		}
 	}
 
-	//uƒ‰ƒEƒ“ƒhXvƒTƒEƒ“ƒhƒ[ƒh
+	//ã€Œãƒ©ã‚¦ãƒ³ãƒ‰Xã€ã‚µã‚¦ãƒ³ãƒ‰ãƒ­ãƒ¼ãƒ‰
 	if(call_round){
 		_stprintf(filename,_T(".\\system\\sound\\round%d.wav"),round);
 		dsb_round = g_sound.CreateDSB(filename);
 	}
 
-	if(round!=1){//uƒ‰ƒEƒ“ƒh‚ª•Ï‚í‚Á‚½‚çÁ–Å‚·‚évƒIƒuƒWƒFƒNƒg‚ğ‘S•”Á‚·
+	if(round!=1){//ã€Œãƒ©ã‚¦ãƒ³ãƒ‰ãŒå¤‰ã‚ã£ãŸã‚‰æ¶ˆæ»…ã™ã‚‹ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å…¨éƒ¨æ¶ˆã™
 		for(i=1;i<(int)p_objects.size();i++){
 			if(p_objects[i]!=NULL){
 				if(!p_objects[i]->Message(GOBJMSG_CNGROUND)){
@@ -341,7 +341,7 @@ void CBattleTask::StartRound()
 		}
 	}
 
-	//ƒLƒƒƒ‰ƒNƒ^[‚Ìó‘Ô‚ğİ’è‚·‚é
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®çŠ¶æ…‹ã‚’è¨­å®šã™ã‚‹
 	DWORD k;
 	GOBJECT	  *pdat;
 	for(j=0;j<2;j++){
@@ -349,25 +349,25 @@ void CBattleTask::StartRound()
 			k=charobjid[j][i];
 			if(k!=0){
 				pdat = &(GetGObject(k)->data);
-				//u“GƒLƒƒƒ‰ƒNƒ^v‚Ìid‚ğİ’èi“K“–j
+				//ã€Œæ•µã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã€ã®idã‚’è¨­å®šï¼ˆé©å½“ï¼‰
 				if(pdat->tid==TEAM_PLAYER1)
 					pdat->eid = charobjid[TEAM_PLAYER2][0];
 				else
 					pdat->eid = charobjid[TEAM_PLAYER1][0];
-				//ˆÊ’uİ’è
+				//ä½ç½®è¨­å®š
 				pdat->y = 0;
 				pdat->x = (150 + 50*i) *(j==0 ? -1 : 1);
 				pdat->muki = (j==0 ? FALSE : TRUE);
 	
 				if(pdat != NULL){
-					pdat->hp = pdat->hpmax;		//HP‰ñ•œ
-					pdat->aid = ACTID_NEUTRAL;	//s“®ID
+					pdat->hp = pdat->hpmax;		//HPå›å¾©
+					pdat->aid = ACTID_NEUTRAL;	//è¡Œå‹•ID
 					GetGObject(pdat->id)->ActionIDChanged(TRUE,TRUE);
 				}
-				if(g_battleinfo.GetCharacterIsCOM(j,i)){//ƒRƒ“ƒsƒ…[ƒ^‘€ìƒtƒ‰ƒO•t‰Á
+				if(g_battleinfo.GetCharacterIsCOM(j,i)){//ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿æ“ä½œãƒ•ãƒ©ã‚°ä»˜åŠ 
 						GetGObject(k)->data.objtype |= GOBJFLG_COMPUTER;
 				}
-				GetGObject(k)->Message(GOBJMSG_CNGROUND);//ƒ‰ƒEƒ“ƒhŠJn‚ÌƒƒbƒZ[ƒW‘—M
+				GetGObject(k)->Message(GOBJMSG_CNGROUND);//ãƒ©ã‚¦ãƒ³ãƒ‰é–‹å§‹ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡
 			}
 		}
 	}
@@ -375,7 +375,7 @@ void CBattleTask::StartRound()
 	bf_state = BFSTATE_WAITFORENDPOSE;
 	bf_counter=0;
 	
-	//ƒGƒtƒFƒNƒg‚·‚×‚Ä–³Œø
+	//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã™ã¹ã¦ç„¡åŠ¹
 	efct_slowdown=0;
 	efct_stop=0;
 	efct_darkbg=0;
@@ -387,10 +387,10 @@ void CBattleTask::StartRound()
 
 	CGObject *pobj;
 
-	//x‰‡UŒ‚—v¿ƒJƒEƒ“ƒ^ƒŠƒZƒbƒg
+	//æ”¯æ´æ”»æ’ƒè¦è«‹ã‚«ã‚¦ãƒ³ã‚¿ãƒªã‚»ãƒƒãƒˆ
 	strikercall_counter[0] = strikercall_counter[1] = 0;
 
-	//“oêƒ|[ƒYˆÚsİ’è
+	//ç™»å ´ãƒãƒ¼ã‚ºç§»è¡Œè¨­å®š
 	if(round==1){
 		for(j=0;j<2;j++){
 			for(i=0;i<(int)g_battleinfo.GetNumTeam(j);i++){
@@ -414,7 +414,7 @@ void CBattleTask::StartRound()
 		}
 	}
 
-	// ƒtƒF[ƒhƒAƒEƒgŠJn
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆé–‹å§‹
 	RELEASE(tex_fb);
 	tex_fb = g_draw.GetFrontBufferCopy();
 	efct_fadein = 20;
@@ -424,7 +424,7 @@ void CBattleTask::StartRound()
 
 /*===========================================================================
 
-	ƒ^ƒXƒN@”jŠü
+	ã‚¿ã‚¹ã‚¯ã€€ç ´æ£„
 
 =============================================================================*/
 void CBattleTask::TerminateObjectList()
@@ -454,7 +454,7 @@ void CBattleTask::TerminateDestroySubTasks()
 
 /*===========================================================================
 
-	ƒ^ƒXƒN@Às
+	ã‚¿ã‚¹ã‚¯ã€€å®Ÿè¡Œ
 
 =============================================================================*/
 BOOL CBattleTask::Execute(DWORD time)
@@ -476,7 +476,7 @@ BOOL CBattleTask::Execute(DWORD time)
 
 	if(TRUE){
 
-		//ƒGƒtƒFƒNƒgEƒXƒ[
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ»ã‚¹ãƒ­ãƒ¼
 		if(efct_slowdown>0){
 			efct_slowdown--;
 			if(efct_slowdown%2==0){
@@ -486,7 +486,7 @@ BOOL CBattleTask::Execute(DWORD time)
 		}
 		efct_sindo--;
 
-		//ƒXƒgƒbƒvˆ—
+		//ã‚¹ãƒˆãƒƒãƒ—å‡¦ç†
 		if(efct_stop>0){
 			efct_stop--;
 			act_stop=TRUE;
@@ -498,11 +498,11 @@ BOOL CBattleTask::Execute(DWORD time)
 
 		T_Command();//command
 		T_Action(act_stop);//action
-		T_KasanariHantei();//d‚È‚è”»’è
-		T_Sousai();//”ò‚Ñ“¹‹ï‚Ì‘ŠE
-		T_AtariHantei();//“–‚½‚è”»’è
-		T_ChangeTarget();//ƒ^[ƒQƒbƒg•ÏXˆ—
-		T_UpdateStatus();//‡ó‘ÔXV
+		T_KasanariHantei();//é‡ãªã‚Šåˆ¤å®š
+		T_Sousai();//é£›ã³é“å…·ã®ç›¸æ®º
+		T_AtariHantei();//å½“ãŸã‚Šåˆ¤å®š
+		T_ChangeTarget();//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆå¤‰æ›´å‡¦ç†
+		T_UpdateStatus();//è©¦åˆçŠ¶æ…‹æ›´æ–°
 
 		if(battle_end){
 			g_system.PopSysTag();
@@ -512,7 +512,7 @@ BOOL CBattleTask::Execute(DWORD time)
 
 	g_input.KeyLock(FALSE);
 
-	//ƒIƒuƒWƒFƒNƒgƒŠƒXƒgˆ—BÁ–Å‚µ‚½‚ª‚Á‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg‚ğÁ–Å‚³‚¹‚é
+	//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆå‡¦ç†ã€‚æ¶ˆæ»…ã—ãŸãŒã£ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ¶ˆæ»…ã•ã›ã‚‹
 	for(i = 0; i<(int)suicide_list.size(); i++){
 		if(suicide_list[i] != 0){
 			DeleteGObject(suicide_list[i]);
@@ -520,28 +520,28 @@ BOOL CBattleTask::Execute(DWORD time)
 	}
 	suicide_list.resize(0);
 
-	//ƒL[“ü—ÍŒü‚«XV
+	//ã‚­ãƒ¼å…¥åŠ›å‘ãæ›´æ–°
 	UpdateKeyInputDirections();
 
-	//”wŒiˆÃƒGƒtƒFƒNƒg
+	//èƒŒæ™¯æš—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 	efct_darkbg--;
-	//”wŒi‚È‚µƒGƒtƒFƒNƒg
+	//èƒŒæ™¯ãªã—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 	efct_nobg--;
-	//ƒtƒF[ƒhƒCƒ“
+	//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 	efct_fadein--;
-	//ƒtƒ‰ƒbƒVƒ…
+	//ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
 	efct_flash--;
 
-	//‰B‚êƒLƒƒƒ‰oŒ»
+	//éš ã‚Œã‚­ãƒ£ãƒ©å‡ºç¾
 	if(rand()%(50*60*3000) - bf_counter % 30==0)
 		if(rand()%(50*60*3000)==0)
 			AddEffect(EFCTID_HATTEN,640, 5);//Hatten
 
-	//ƒXƒgƒ‰ƒCƒJ[ƒJƒEƒ“ƒg‰ñ•œ
+	//ã‚¹ãƒˆãƒ©ã‚¤ã‚«ãƒ¼ã‚«ã‚¦ãƒ³ãƒˆå›å¾©
 /*	if (g_config.GetStrikerCount() != 0){
 		for (int i = 0; i < 2; i++){
-			if (strikercount[i] == 0){	//c‚è0‚È‚ç
-				if (bf_counter == striker_lastcall[i] + g_config.GetGameSpeed2() * 10)	//10•b‚Å‰ñ•œ
+			if (strikercount[i] == 0){	//æ®‹ã‚Š0ãªã‚‰
+				if (bf_counter == striker_lastcall[i] + g_config.GetGameSpeed2() * 10)	//10ç§’ã§å›å¾©
 					strikercount[i]++;
 			}
 		}
@@ -555,7 +555,7 @@ BOOL CBattleTask::Execute(DWORD time)
 
 
 /*----------------------------------------------------------------
-	COMMANDƒƒbƒZ[ƒW‚ğƒIƒuƒWƒFƒNƒg‚É‘—M
+	COMMANDãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«é€ä¿¡
 ------------------------------------------------------------------*/
 void CBattleTask::T_Command()
 {
@@ -572,7 +572,7 @@ void CBattleTask::T_Command()
 
 
 /*----------------------------------------------------------------
-	ACTIONƒƒbƒZ[ƒW‚ğƒIƒuƒWƒFƒNƒg‚É‘—M
+	ACTIONãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«é€ä¿¡
 ------------------------------------------------------------------*/
 void CBattleTask::T_Action(BOOL stop)
 {
@@ -587,7 +587,7 @@ void CBattleTask::T_Action(BOOL stop)
 					p_objects[i]->data.nonstop)
 				p_objects[i]->Message(GOBJMSG_ACTION);
 
-			// b’è
+			// æš«å®š
 			////RepFile.Write(&p_objects[i]->data, sizeof(GOBJECT));
 			//RepFile.Write(&p_objects[i]->data.aid, sizeof(DWORD));
 		}
@@ -598,7 +598,7 @@ void CBattleTask::T_Action(BOOL stop)
 
 
 /*----------------------------------------------------------------
-	d‚È‚è”»’èˆ—
+	é‡ãªã‚Šåˆ¤å®šå‡¦ç†
 ------------------------------------------------------------------*/
 void CBattleTask::T_KasanariHantei()
 {
@@ -614,44 +614,44 @@ void CBattleTask::T_KasanariHantei()
 	BOOL revx1,revx2;
 	UINT magmode1,magmode2;
 
-	//d‚È‚è”»’è
+	//é‡ãªã‚Šåˆ¤å®š
 	for(i=0;i<(int)p_objects.size();i++){
-		if(p_objects[i]!=NULL){//ƒIƒuƒWƒFƒNƒg‚ª‘¶İ‚·‚é
+		if(p_objects[i]!=NULL){//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒå­˜åœ¨ã™ã‚‹
 			pdat1 = &(p_objects[i]->data);
-			if(pdat1->objtype & GOBJFLG_KASANARI){//ƒIƒuƒWƒFƒNƒg‚Íd‚È‚è”»’è‚ğs‚¤
-				if(pdat1->kasanari){//d‚È‚è”»’èON
+			if(pdat1->objtype & GOBJFLG_KASANARI){//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯é‡ãªã‚Šåˆ¤å®šã‚’è¡Œã†
+				if(pdat1->kasanari){//é‡ãªã‚Šåˆ¤å®šON
 					if(pdat1->phdat!=NULL){
 						if(pdat1->pcdat!=NULL){
 							if( ((GCD_CELL2_070*)pdat1->pcdat)[0].cell[0].flag==700 ){
-								magmode1 = 1;//dS’†S
+								magmode1 = 1;//é‡å¿ƒä¸­å¿ƒ
 							}
 							else{
 								if(pdat1->pcdat[pdat1->cnow].flag & GCDCELL2_ROT_BASEPOINT){
-									magmode1 = 0;//‘«Œ³’†S
+									magmode1 = 0;//è¶³å…ƒä¸­å¿ƒ
 								}
 								else magmode1=1;
 							}
-							// •ÏXF©•ª‚æ‚èŒã‚Ì‚İ‚É‘Î‚µ‚Ä”»’èi‚¿‚å‚Á‚ÆŒy‚­‚È‚é‚©‚Èj
-							for(j=i+1;j<(int)p_objects.size();j++){//** ‘¼‚Ì‘S‚Ä‚ÌƒIƒuƒWƒFƒNƒg‚É‘Î‚µ‚Ä **
-								if(/*i!=j*/TRUE){//©•ªˆÈŠO‚É
+							// å¤‰æ›´ï¼šè‡ªåˆ†ã‚ˆã‚Šå¾Œã®ã¿ã«å¯¾ã—ã¦åˆ¤å®šï¼ˆã¡ã‚‡ã£ã¨è»½ããªã‚‹ã‹ãªï¼‰
+							for(j=i+1;j<(int)p_objects.size();j++){//** ä»–ã®å…¨ã¦ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¯¾ã—ã¦ **
+								if(/*i!=j*/TRUE){//è‡ªåˆ†ä»¥å¤–ã«
 									if(p_objects[j]!=NULL){
 										pdat2 = &(p_objects[j]->data);
 										if(pdat1->tid != pdat2->tid){
-											if(pdat2->objtype & GOBJFLG_KASANARI){//ƒIƒuƒWƒFƒNƒg‚ÍUŒ‚‚ğ‹ò‚ç‚¤
-												if(pdat2->kasanari){//d‚È‚è”»’èON
+											if(pdat2->objtype & GOBJFLG_KASANARI){//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯æ”»æ’ƒã‚’å–°ã‚‰ã†
+												if(pdat2->kasanari){//é‡ãªã‚Šåˆ¤å®šON
 													if(pdat2->phdat!=NULL){
 														if(pdat2->pcdat!=NULL)
 														{
 															if( ((GCD_CELL2_070*)pdat2->pcdat)[0].cell[0].flag==700 ){
-																magmode2 = 1;//dS’†S
+																magmode2 = 1;//é‡å¿ƒä¸­å¿ƒ
 															}
 															else{
 																if(pdat2->pcdat[pdat2->cnow].flag & GCDCELL2_ROT_BASEPOINT){
-																	magmode2 = 0;//‘«Œ³’†S
+																	magmode2 = 0;//è¶³å…ƒä¸­å¿ƒ
 																}
 																else magmode2=1;
 															}
-															//“–‚½‚è”»’è‚ğs‚¤
+															//å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã†
 															kas_yes=FALSE;
 															h_1 = (pdat1->phdat[ pdat1->cnow ]);
 															h_2 = (pdat2->phdat[ pdat2->cnow ]);
@@ -682,7 +682,7 @@ void CBattleTask::T_KasanariHantei()
 																	}
 																}
 															}
-															if(kas_yes){//ˆê‚ÂˆÈã‚Ì‹éŒ`‚ªÕ“Ë‚µ‚½
+															if(kas_yes){//ä¸€ã¤ä»¥ä¸Šã®çŸ©å½¢ãŒè¡çªã—ãŸ
 																if(pdat1->x > pdat2->x){
 																	pdat1->x += 3;
 																	pdat2->x -= 3;
@@ -707,7 +707,7 @@ void CBattleTask::T_KasanariHantei()
 		}
 	}
 
-	//‰æ–Ê’†S‚ğo‚·
+	//ç”»é¢ä¸­å¿ƒã‚’å‡ºã™
 	j=0;
 	int new_disp_center_x=0;
 	for(i=0;i<(int)p_objects.size();i++){
@@ -724,18 +724,18 @@ void CBattleTask::T_KasanariHantei()
 		if(disp_center_x > new_disp_center_x+50)disp_center_x-=16;
 		else if(disp_center_x > new_disp_center_x+20)disp_center_x-=8;
 		else disp_center_x-=4;
-		if(disp_center_x < new_disp_center_x)disp_center_x = new_disp_center_x;//‚¢‚«‚·‚¬
+		if(disp_center_x < new_disp_center_x)disp_center_x = new_disp_center_x;//ã„ãã™ã
 	}
 	if(disp_center_x < new_disp_center_x){
 		if(disp_center_x < new_disp_center_x-50)disp_center_x+=16;
 		else if(disp_center_x < new_disp_center_x-20)disp_center_x+=8;
 		else disp_center_x+=4;
-		if(disp_center_x > new_disp_center_x)disp_center_x = new_disp_center_x;//‚¢‚«‚·‚¬
+		if(disp_center_x > new_disp_center_x)disp_center_x = new_disp_center_x;//ã„ãã™ã
 	}
 	if(disp_center_x>320)disp_center_x=320;
 	else if(disp_center_x<-320)disp_center_x=-320;
 
-	//‰æ–ÊŠO‚És‚Á‚¿‚á‚Á‚Ä‚é‚¨ƒƒbƒZ[ƒW
+	//ç”»é¢å¤–ã«è¡Œã£ã¡ã‚ƒã£ã¦ã‚‹ãŠãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	int gamengai;
 	for(i=0;i<(int)p_objects.size();i++){
 		if(p_objects[i]!=NULL){
@@ -752,11 +752,11 @@ void CBattleTask::T_KasanariHantei()
 		}
 	}
 
-	//x•ûŒüƒXƒe[ƒW’[ƒNƒŠƒbƒvˆ—
+	//xæ–¹å‘ã‚¹ãƒ†ãƒ¼ã‚¸ç«¯ã‚¯ãƒªãƒƒãƒ—å‡¦ç†
 	for(i=0;i<(int)p_objects.size();i++){
-		if(p_objects[i]!=NULL){//ƒIƒuƒWƒFƒNƒg‚ª‘¶İ‚·‚é
+		if(p_objects[i]!=NULL){//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒå­˜åœ¨ã™ã‚‹
 			pdat1 = &(p_objects[i]->data);
-			if(pdat1->objtype & GOBJFLG_CLIPX){//X•ûŒüŒÀ’è
+			if(pdat1->objtype & GOBJFLG_CLIPX){//Xæ–¹å‘é™å®š
 				if(pdat1->x < -620){
 					gamengai= (int)(-620 - pdat1->x);
 					p_objects[i]->Message(GOBJMSG_CLIPX,(DWORD)(&gamengai));
@@ -774,7 +774,7 @@ void CBattleTask::T_KasanariHantei()
 
 
 /*----------------------------------------------------------------
-	UŒ‚”»’èˆ—
+	æ”»æ’ƒåˆ¤å®šå‡¦ç†
 ------------------------------------------------------------------*/
 void CBattleTask::T_AtariHantei()
 {
@@ -795,45 +795,45 @@ void CBattleTask::T_AtariHantei()
 	int i,j,k,l;
 	if(!hantaihantei){
 		for(i=0;i<(int)p_objects.size();i++){
-			if(p_objects[i]!=NULL){//ƒIƒuƒWƒFƒNƒg‚ª‘¶İ‚·‚é
+			if(p_objects[i]!=NULL){//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒå­˜åœ¨ã™ã‚‹
 				pdat1 = &(p_objects[i]->data);
 				if((pdat1->tid==TEAM_PLAYER1 || pdat1->tid==TEAM_PLAYER2) && BATTLETASK_ISNOTFXOBJ(pdat1)){
-					if(pdat1->objtype & GOBJFLG_ATTACK){//ƒIƒuƒWƒFƒNƒg‚ÍUŒ‚‚ğs‚¤
-						if(pdat1->kougeki){//UŒ‚—ÍON
+					if(pdat1->objtype & GOBJFLG_ATTACK){//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯æ”»æ’ƒã‚’è¡Œã†
+						if(pdat1->kougeki){//æ”»æ’ƒåŠ›ON
 							if(pdat1->phdat!=NULL){
 								if(pdat1->pcdat!=NULL)
 								{
 									if( ((GCD_CELL2_070*)pdat1->pcdat)[0].cell[0].flag==700 ){
-										magmode1 = 1;//dS’†S
+										magmode1 = 1;//é‡å¿ƒä¸­å¿ƒ
 									}
 									else{
 										if(pdat1->pcdat[pdat1->cnow].flag & GCDCELL2_ROT_BASEPOINT){
-											magmode1 = 0;//‘«Œ³’†S
+											magmode1 = 0;//è¶³å…ƒä¸­å¿ƒ
 										}
 										else magmode1=1;
 									}
-									for(j=0;j<(int)p_objects.size();j++){//** ‘¼‚Ì‘S‚Ä‚ÌƒIƒuƒWƒFƒNƒg‚É‘Î‚µ‚Ä **
-										if(i!=j){//©•ªˆÈŠO‚É
+									for(j=0;j<(int)p_objects.size();j++){//** ä»–ã®å…¨ã¦ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¯¾ã—ã¦ **
+										if(i!=j){//è‡ªåˆ†ä»¥å¤–ã«
 											if(p_objects[j]!=NULL){
 												pdat2 = &(p_objects[j]->data);
 												if((pdat2->tid==TEAM_PLAYER1 || pdat2->tid==TEAM_PLAYER2)  && BATTLETASK_ISNOTFXOBJ(pdat2)){
 													if(pdat1->tid != pdat2->tid){
 														if(TRUE/*pdat2->counter!=0*/){
-															if(pdat2->objtype & GOBJFLG_KURAI){//ƒIƒuƒWƒFƒNƒg‚ÍUŒ‚‚ğ‹ò‚ç‚¤
-																if(!pdat2->muteki){//–³“Gó‘ÔOFF
+															if(pdat2->objtype & GOBJFLG_KURAI){//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯æ”»æ’ƒã‚’å–°ã‚‰ã†
+																if(!pdat2->muteki){//ç„¡æ•µçŠ¶æ…‹OFF
 																	if(pdat2->phdat!=NULL){
 																		if(pdat2->pcdat!=NULL)
 																		{
 																			if( ((GCD_CELL2_070*)pdat2->pcdat)[0].cell[0].flag==700 ){
-																				magmode2 = 1;//dS’†S
+																				magmode2 = 1;//é‡å¿ƒä¸­å¿ƒ
 																				}
 																				else{
 																					if(pdat2->pcdat[pdat2->cnow].flag & GCDCELL2_ROT_BASEPOINT){
-																						magmode2 = 0;//‘«Œ³’†S
+																						magmode2 = 0;//è¶³å…ƒä¸­å¿ƒ
 																					}
 																					else magmode2=1;
 																			}
-																			//“–‚½‚è”»’è‚ğs‚¤
+																			//å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã†
 																			num_kas=0;
 																			h_a = (pdat1->phdat[ pdat1->cnow ]);
 																			h_k = (pdat2->phdat[ pdat2->cnow ]);
@@ -869,7 +869,7 @@ void CBattleTask::T_AtariHantei()
 																					}
 																				}
 																			}
-																			if(num_kas>0){//ˆê‚ÂˆÈã‚Ì‹éŒ`‚ªÕ“Ë‚µ‚½
+																			if(num_kas>0){//ä¸€ã¤ä»¥ä¸Šã®çŸ©å½¢ãŒè¡çªã—ãŸ
 																				kas_point2.x=0;
 																				kas_point2.y=0;
 																				for(k=0;k<num_kas;k++){
@@ -898,47 +898,47 @@ void CBattleTask::T_AtariHantei()
 			}
 		}
 	}
-	else{//”½‘Î‘¤‚©‚ç“–‚½‚è”»’è‚ğ‚â‚é
+	else{//åå¯¾å´ã‹ã‚‰å½“ãŸã‚Šåˆ¤å®šã‚’ã‚„ã‚‹
 		for(i=(int)p_objects.size()-1;i>=0;i--){
-			if(p_objects[i]!=NULL){//ƒIƒuƒWƒFƒNƒg‚ª‘¶İ‚·‚é
+			if(p_objects[i]!=NULL){//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒå­˜åœ¨ã™ã‚‹
 				pdat1 = &(p_objects[i]->data);
 				if((pdat1->tid==TEAM_PLAYER1 || pdat1->tid==TEAM_PLAYER2) && BATTLETASK_ISNOTFXOBJ(pdat1)){
-					if(pdat1->objtype & GOBJFLG_ATTACK){//ƒIƒuƒWƒFƒNƒg‚ÍUŒ‚‚ğs‚¤
-						if(pdat1->kougeki){//UŒ‚—ÍON
+					if(pdat1->objtype & GOBJFLG_ATTACK){//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯æ”»æ’ƒã‚’è¡Œã†
+						if(pdat1->kougeki){//æ”»æ’ƒåŠ›ON
 							if(pdat1->phdat!=NULL){
 								if(pdat1->pcdat!=NULL)
 								{
 									if( ((GCD_CELL2_070*)pdat1->pcdat)[0].cell[0].flag==700 ){
-										magmode1 = 1;//dS’†S
+										magmode1 = 1;//é‡å¿ƒä¸­å¿ƒ
 									}
 									else{
 										if(pdat1->pcdat[pdat1->cnow].flag & GCDCELL2_ROT_BASEPOINT){
-											magmode1 = 0;//‘«Œ³’†S
+											magmode1 = 0;//è¶³å…ƒä¸­å¿ƒ
 										}
 										else magmode1=1;
 									}
-									for(j=0;j<(int)p_objects.size();j++){//** ‘¼‚Ì‘S‚Ä‚ÌƒIƒuƒWƒFƒNƒg‚É‘Î‚µ‚Ä **
-										if(i!=j){//©•ªˆÈŠO‚É
+									for(j=0;j<(int)p_objects.size();j++){//** ä»–ã®å…¨ã¦ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¯¾ã—ã¦ **
+										if(i!=j){//è‡ªåˆ†ä»¥å¤–ã«
 											if(p_objects[j]!=NULL){
 												pdat2 = &(p_objects[j]->data);
 												if((pdat2->tid==TEAM_PLAYER1 || pdat2->tid==TEAM_PLAYER2)  && BATTLETASK_ISNOTFXOBJ(pdat2) ){
 													if(pdat1->tid != pdat2->tid){
 														if(TRUE/*pdat2->counter!=0*/){
-															if(pdat2->objtype & GOBJFLG_KURAI){//ƒIƒuƒWƒFƒNƒg‚ÍUŒ‚‚ğ‹ò‚ç‚¤
-																if(!pdat2->muteki){//–³“Gó‘ÔOFF
+															if(pdat2->objtype & GOBJFLG_KURAI){//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯æ”»æ’ƒã‚’å–°ã‚‰ã†
+																if(!pdat2->muteki){//ç„¡æ•µçŠ¶æ…‹OFF
 																	if(pdat2->phdat!=NULL){
 																		if(pdat2->pcdat!=NULL)
 																		{
 																			if( ((GCD_CELL2_070*)pdat2->pcdat)[0].cell[0].flag==700 ){
-																				magmode2 = 1;//dS’†S
+																				magmode2 = 1;//é‡å¿ƒä¸­å¿ƒ
 																				}
 																				else{
 																					if(pdat2->pcdat[pdat2->cnow].flag & GCDCELL2_ROT_BASEPOINT){
-																						magmode2 = 0;//‘«Œ³’†S
+																						magmode2 = 0;//è¶³å…ƒä¸­å¿ƒ
 																					}
 																					else magmode2=1;
 																			}
-																			//“–‚½‚è”»’è‚ğs‚¤
+																			//å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã†
 																			num_kas=0;
 																			h_a = (pdat1->phdat[ pdat1->cnow ]);
 																			h_k = (pdat2->phdat[ pdat2->cnow ]);
@@ -974,7 +974,7 @@ void CBattleTask::T_AtariHantei()
 																					}
 																				}
 																			}
-																			if(num_kas>0){//ˆê‚ÂˆÈã‚Ì‹éŒ`‚ªÕ“Ë‚µ‚½
+																			if(num_kas>0){//ä¸€ã¤ä»¥ä¸Šã®çŸ©å½¢ãŒè¡çªã—ãŸ
 																				kas_point2.x=0;
 																				kas_point2.y=0;
 																				for(k=0;k<num_kas;k++){
@@ -1010,7 +1010,7 @@ void CBattleTask::T_AtariHantei()
 
 
 /*----------------------------------------------------------------
-	”ò“¹‹ï‚Ì”»’èˆ—
+	é£›é“å…·ã®åˆ¤å®šå‡¦ç†
 ------------------------------------------------------------------*/
 void CBattleTask::T_Sousai()
 {
@@ -1026,43 +1026,43 @@ void CBattleTask::T_Sousai()
 	UINT magmode1,magmode2;
 
 	for(i=1;i<(int)p_objects.size()-1;i++){
-		if(p_objects[i]!=NULL){//ƒIƒuƒWƒFƒNƒg‚ª‘¶İ‚·‚é
+		if(p_objects[i]!=NULL){//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒå­˜åœ¨ã™ã‚‹
 			pdat1 = &(p_objects[i]->data);
 			if((pdat1->tid==TEAM_PLAYER1 || pdat1->tid==TEAM_PLAYER2)  && BATTLETASK_ISNOTFXOBJ(pdat1)){
-				if(pdat1->objtype & GOBJFLG_ZBULLET){//ƒIƒuƒWƒFƒNƒg‚Í”ò‚Ñ“¹‹ï‘®«‚ğ‚Â
-					if(pdat1->kougeki){//UŒ‚—Í‚ğ¸‚Á‚Ä‚¢‚È‚¢
+				if(pdat1->objtype & GOBJFLG_ZBULLET){//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯é£›ã³é“å…·å±æ€§ã‚’æŒã¤
+					if(pdat1->kougeki){//æ”»æ’ƒåŠ›ã‚’å¤±ã£ã¦ã„ãªã„
 						if(pdat1->phdat!=NULL){
 							if(pdat1->pcdat!=NULL)
 							{
 								if( ((GCD_CELL2_070*)pdat1->pcdat)[0].cell[0].flag==700 ){
-									magmode1 = 1;//dS’†S
+									magmode1 = 1;//é‡å¿ƒä¸­å¿ƒ
 								}
 								else{
 									if(pdat1->pcdat[pdat1->cnow].flag & GCDCELL2_ROT_BASEPOINT){
-										magmode1 = 0;//‘«Œ³’†S
+										magmode1 = 0;//è¶³å…ƒä¸­å¿ƒ
 									}
 									else magmode1=1;
 								}
-								for(j=i+1;j<(int)p_objects.size();j++){//** ‘¼‚Ì‘S‚Ä‚ÌƒIƒuƒWƒFƒNƒg‚É‘Î‚µ‚Ä **
+								for(j=i+1;j<(int)p_objects.size();j++){//** ä»–ã®å…¨ã¦ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¯¾ã—ã¦ **
 									if(p_objects[j]!=NULL){
 										pdat2 = &(p_objects[j]->data);
 										if((pdat2->tid==TEAM_PLAYER1 || pdat2->tid==TEAM_PLAYER2)  && BATTLETASK_ISNOTFXOBJ(pdat2)){
 											if(pdat1->tid != pdat2->tid){
-												if(pdat2->objtype & GOBJFLG_ZBULLET){//ƒIƒuƒWƒFƒNƒg‚Í”ò‚Ñ“¹‹ï‘®«‚ğ‚Â
-													if(pdat2->kougeki ){//UŒ‚—Í‚ğ¸‚Á‚Ä‚¢‚È‚¢
+												if(pdat2->objtype & GOBJFLG_ZBULLET){//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯é£›ã³é“å…·å±æ€§ã‚’æŒã¤
+													if(pdat2->kougeki ){//æ”»æ’ƒåŠ›ã‚’å¤±ã£ã¦ã„ãªã„
 														if(pdat2->phdat!=NULL){
 															if(pdat2->pcdat!=NULL)
 															{
 																if( ((GCD_CELL2_070*)pdat2->pcdat)[0].cell[0].flag==700 ){
-																	magmode2 = 1;//dS’†S
+																	magmode2 = 1;//é‡å¿ƒä¸­å¿ƒ
 																}
 																else{
 																	if(pdat2->pcdat[pdat2->cnow].flag & GCDCELL2_ROT_BASEPOINT){
-																		magmode2 = 0;//‘«Œ³’†S
+																		magmode2 = 0;//è¶³å…ƒä¸­å¿ƒ
 																	}
 																	else magmode2=1;
 																}
-																//“–‚½‚è”»’è‚ğs‚¤
+																//å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã†
 																num_kas=0;
 																h_a = (pdat1->phdat[ pdat1->cnow ]);
 																h_k = (pdat2->phdat[ pdat2->cnow ]);
@@ -1092,7 +1092,7 @@ void CBattleTask::T_Sousai()
 																		}
 																	}
 																}
-																if(num_kas>0){//ˆê‚ÂˆÈã‚Ì‹éŒ`‚ªÕ“Ë‚µ‚½
+																if(num_kas>0){//ä¸€ã¤ä»¥ä¸Šã®çŸ©å½¢ãŒè¡çªã—ãŸ
 																	p_objects[i]->Message(GOBJMSG_SOUSAI,0);
 																	p_objects[j]->Message(GOBJMSG_SOUSAI,0);
 																}
@@ -1118,7 +1118,7 @@ void CBattleTask::T_Sousai()
 
 
 /*----------------------------------------------------------------
-	ƒ^[ƒQƒbƒg•ÏXˆ—
+	ã‚¿ãƒ¼ã‚²ãƒƒãƒˆå¤‰æ›´å‡¦ç†
 ------------------------------------------------------------------*/
 void CBattleTask::T_ChangeTarget()
 {
@@ -1138,17 +1138,17 @@ void CBattleTask::T_ChangeTarget()
 	for(i=change_target_index;i<min(change_target_index+64, (int)p_objects.size());i++){
 		if(p_objects[i]!=NULL){
 			pdat=&(p_objects[i]->data);
-			if((pdat->objtype & GOBJFLG_NEEDTARGET) && BATTLETASK_ISNOTFXOBJ(pdat)){//ƒ^[ƒQƒbƒg‚ª•K—v
+			if((pdat->objtype & GOBJFLG_NEEDTARGET) && BATTLETASK_ISNOTFXOBJ(pdat)){//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãŒå¿…è¦
 				minimum_distance=9999*9999;
 				for(j=0;j<(int)p_objects.size();j++){
 					if(j!=i){
 						if(p_objects[j]!=NULL){
 							pedat=&(p_objects[j]->data);
-							if((pdat->tid!=pedat->tid) && BATTLETASK_ISNOTFXOBJ(pedat)){//ƒ`[ƒ€‚ªˆá‚¤
-								if(pedat->objtype & GOBJFLG_TOBETARGET){//ƒ^[ƒQƒbƒg‚É‚È‚ê‚é
-									if(pedat->hp > 0){//‚Ü‚¾¶‚«‚Ä‚¢‚é
-										//‹——£‚ğ‘ª‚é
-										if( (pedat->x-pdat->x)*(pedat->x-pdat->x) < minimum_distance){//‹ß‚¢
+							if((pdat->tid!=pedat->tid) && BATTLETASK_ISNOTFXOBJ(pedat)){//ãƒãƒ¼ãƒ ãŒé•ã†
+								if(pedat->objtype & GOBJFLG_TOBETARGET){//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ãªã‚Œã‚‹
+									if(pedat->hp > 0){//ã¾ã ç”Ÿãã¦ã„ã‚‹
+										//è·é›¢ã‚’æ¸¬ã‚‹
+										if( (pedat->x-pdat->x)*(pedat->x-pdat->x) < minimum_distance){//è¿‘ã„
 											minimum_distance = (pedat->x-pdat->x)*(pedat->x-pdat->x);
 											newtarget=j;
 										}
@@ -1172,7 +1172,7 @@ void CBattleTask::T_ChangeTarget()
 
 /*================================================================
 
-	•`‰æˆ—
+	æç”»å‡¦ç†
 
 ==================================================================*/
 void CBattleTask::Draw()
@@ -1181,15 +1181,15 @@ void CBattleTask::Draw()
 
 	g_system.PushSysTag(__FUNCTION__);
 
-	if (efct_flash>0){	// ‰æ–Êƒtƒ‰ƒbƒVƒ…
+	if (efct_flash>0){	// ç”»é¢ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
 		g_draw.d3ddev->Clear(0, NULL, D3DCLEAR_TARGET, RGB(255,255,255), 0.0f, 0);
 		g_system.PopSysTag();
-		return;		// •`‰æ‚µ‚È‚¢
+		return;		// æç”»ã—ãªã„
 	}
 	SetTransform(TRUE);
 	g_draw.EnableZ();
 
-	//•`‰æ—pƒŠƒXƒg€”õ
+	//æç”»ç”¨ãƒªã‚¹ãƒˆæº–å‚™
 	DWORD i;
 	std::vector<CGObject*> objlist;
 	for(i=0;i<(int)p_objects.size();i++){
@@ -1197,10 +1197,10 @@ void CBattleTask::Draw()
 			objlist.push_back(p_objects[i]);
 		}
 	}
-	std::sort(objlist.begin(),objlist.end(),CGObject::ZCompare);//zƒ\[ƒg
+	std::sort(objlist.begin(),objlist.end(),CGObject::ZCompare);//zã‚½ãƒ¼ãƒˆ
 
-	//”wŒiƒXƒe[ƒW•`‰æ
-	if(g_system.sw_showbg && !(efct_nobg>0)){//i©”wŒi‚È‚µƒGƒtƒFƒNƒgj
+	//èƒŒæ™¯ã‚¹ãƒ†ãƒ¼ã‚¸æç”»
+	if(g_system.sw_showbg && !(efct_nobg>0)){//ï¼ˆâ†èƒŒæ™¯ãªã—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼‰
 		for(i=0;i<objlist.size();i++){
 			objlist[i]->Message(GOBJMSG_DRAWBACK);
 		}
@@ -1210,7 +1210,7 @@ void CBattleTask::Draw()
 	if (!g_draw.StencilEnable())
 		g_draw.d3ddev->Clear(0,NULL,D3DCLEAR_ZBUFFER,0,1.0f,0);// clear z buffer
 
-	//”wŒiˆÃ‚­‚·‚éƒGƒtƒFƒNƒg
+	//èƒŒæ™¯æš—ãã™ã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 	MYVERTEX3D vb[4];
 	D3DXMATRIX mati;
 	if(efct_darkbg>0){
@@ -1233,12 +1233,12 @@ void CBattleTask::Draw()
 	if (!g_draw.StencilEnable())
 		g_draw.d3ddev->Clear(0,NULL,D3DCLEAR_ZBUFFER,0,1.0f,0);// clear z buffer
 
-	//’ÊíˆÊ’u•`‰æ
+	//é€šå¸¸ä½ç½®æç”»
 	for(i=0;i<objlist.size();i++){
 		objlist[i]->Message(GOBJMSG_DRAW);
 	}
 
-	// ‰e
+	// å½±
 	if (g_draw.StencilEnable())
 	{
 		g_draw.d3ddev->SetRenderState(D3DRS_STENCILFUNC, D3DCMP_NOTEQUAL);
@@ -1255,7 +1255,7 @@ void CBattleTask::Draw()
 	int hitdispx;
 	CGObject *pobj;
 	if(!(!g_system.sw_showbg && g_config.IsDebugMode())){
-		//ƒqƒbƒgƒJƒEƒ“ƒg‚Æƒ_ƒ[ƒW
+		//ãƒ’ãƒƒãƒˆã‚«ã‚¦ãƒ³ãƒˆã¨ãƒ€ãƒ¡ãƒ¼ã‚¸
 		SetTransform(FALSE);
 		pobj=(CGObject*)GetActiveCharacter(0);
 		if(pobj!=NULL){
@@ -1269,7 +1269,7 @@ void CBattleTask::Draw()
 					DrawNumber(pobj->hitcount,hitdispx,120,TRUE,0.0f,scale,scale);
 					DrawNumber2(pobj->sexydamage_anim,hitdispx-25,145,0.0f);
 
-					// •\¦—p‚Ì”šƒAƒjƒ
+					// è¡¨ç¤ºç”¨ã®æ•°å­—ã‚¢ãƒ‹ãƒ¡
 					if (pobj->sexydamage > pobj->sexydamage_anim)
 					{
 						pobj->sexydamage_anim += pobj->sexydamage_haba;
@@ -1278,7 +1278,7 @@ void CBattleTask::Draw()
 					}
 					else if  (pobj->sexydamage < pobj->sexydamage_anim)
 					{
-						// ‚Ü‚ –³‚¢‚¾‚ë‚¤‚¯‚Çc
+						// ã¾ã‚ç„¡ã„ã ã‚ã†ã‘ã©â€¦
 						pobj->sexydamage_anim -= pobj->sexydamage_haba;
 						if (pobj->sexydamage > pobj->sexydamage_anim)
 							pobj->sexydamage_anim = pobj->sexydamage;
@@ -1298,7 +1298,7 @@ void CBattleTask::Draw()
 					DrawNumber5(pobj->hitcount,hitdispx,120,TRUE,0.0f,scale,scale);
 					DrawNumber6(pobj->sexydamage_anim,hitdispx+25,145,0.0f);
 
-					// •\¦—p‚Ì”šƒAƒjƒ
+					// è¡¨ç¤ºç”¨ã®æ•°å­—ã‚¢ãƒ‹ãƒ¡
 					if (pobj->sexydamage > pobj->sexydamage_anim)
 					{
 						pobj->sexydamage_anim += pobj->sexydamage_haba;
@@ -1307,7 +1307,7 @@ void CBattleTask::Draw()
 					}
 					else if  (pobj->sexydamage < pobj->sexydamage_anim)
 					{
-						// ‚Ü‚ –³‚¢‚¾‚ë‚¤‚¯‚Çc
+						// ã¾ã‚ç„¡ã„ã ã‚ã†ã‘ã©â€¦
 						pobj->sexydamage_anim -= pobj->sexydamage_haba;
 						if (pobj->sexydamage > pobj->sexydamage_anim)
 							pobj->sexydamage_anim = pobj->sexydamage;
@@ -1328,25 +1328,25 @@ void CBattleTask::Draw()
 
 	GOBJECT *pdat;
 
-	if(g_system.sw_rects){//“–‚½‚è”»’è•\¦
+	if(g_system.sw_rects){//å½“ãŸã‚Šåˆ¤å®šè¡¨ç¤º
 		for(i=0;i<(int)p_objects.size();i++){
-			if(p_objects[i]!=NULL){//ƒIƒuƒWƒFƒNƒg‚ª‘¶İ‚·‚é
+			if(p_objects[i]!=NULL){//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒå­˜åœ¨ã™ã‚‹
 				pdat = &(p_objects[i]->data);
 				if(pdat->tid==TEAM_PLAYER1 || pdat->tid==TEAM_PLAYER2){
 					if(pdat->pcdat!=NULL && pdat->phdat!=NULL){
 						show_kas=FALSE;
 						show_atr=FALSE;
 						show_atk=FALSE;
-						if(pdat->objtype & GOBJFLG_ATTACK){//ƒIƒuƒWƒFƒNƒg‚ÍUŒ‚‚ğs‚¤
-							if(TRUE){//pdat->kougeki){//UŒ‚—ÍON
+						if(pdat->objtype & GOBJFLG_ATTACK){//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯æ”»æ’ƒã‚’è¡Œã†
+							if(TRUE){//pdat->kougeki){//æ”»æ’ƒåŠ›ON
 								show_atk=TRUE;
 							}
 						}
-						if(pdat->objtype & GOBJFLG_ZBULLET){//”ò‚Ñ“¹‹ï‘®«
+						if(pdat->objtype & GOBJFLG_ZBULLET){//é£›ã³é“å…·å±æ€§
 							show_atk=TRUE;
 						}
-						if(pdat->objtype & GOBJFLG_KURAI){//ƒIƒuƒWƒFƒNƒg‚ÍUŒ‚‚ğ‹ò‚ç‚¤
-							if(TRUE){//!pdat->muteki){//–³“G‚Å‚Í‚È‚¢
+						if(pdat->objtype & GOBJFLG_KURAI){//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯æ”»æ’ƒã‚’å–°ã‚‰ã†
+							if(TRUE){//!pdat->muteki){//ç„¡æ•µã§ã¯ãªã„
 								show_kas=TRUE;
 								show_atr=TRUE;
 							}
@@ -1377,14 +1377,14 @@ void CBattleTask::Draw()
 	}
 
 
-	//‘OŒiƒXƒe[ƒW•`‰æ
+	//å‰æ™¯ã‚¹ãƒ†ãƒ¼ã‚¸æç”»
 	if(!(!g_system.sw_showbg && g_config.IsDebugMode())){
 		for(i=0;i<objlist.size();i++){
 			objlist[i]->Message(GOBJMSG_DRAWFRONT);
 		}
 	}
 
-	// ƒtƒF[ƒhƒAƒEƒgŒø‰Ê
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆåŠ¹æœ
 	if (tex_fb)
 	{
 		if (efct_fadein > 0)
@@ -1447,7 +1447,7 @@ void CBattleTask::Draw()
 
 
 //********************************************************************************
-// ƒIƒuƒWƒFƒNƒgƒŠƒXƒgŠÇ—Œn
+// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆç®¡ç†ç³»
 //********************************************************************************
 
 DWORD CBattleTask::CreateGObject()
@@ -1463,7 +1463,7 @@ DWORD CBattleTask::CreateGObject()
 		}
 	}
 
-	g_system.Log(_T("ƒIƒuƒWƒFƒNƒg‚ªÅ‘å”‚ğ’´‚¦‚Ä‚¢‚Ü‚·\n"),SYSLOG_WARNING);
+	g_system.Log(_T("ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒæœ€å¤§æ•°ã‚’è¶…ãˆã¦ã„ã¾ã™\n"),SYSLOG_WARNING);
 	g_system.PopSysTag();
 	return(0);
 }
@@ -1489,9 +1489,9 @@ void CBattleTask::DeleteGObject(DWORD oid)
 {
 	g_system.PushSysTag(__FUNCTION__);
 
-	//ƒ[ƒEƒIƒuƒWƒFƒNƒg
+	//ã‚¼ãƒ­ãƒ»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	if(oid==0){
-		g_system.LogWarning(_T("%s ƒ[ƒEƒIƒuƒWƒFƒNƒgíœ–¢‹"));
+		g_system.LogWarning(_T("%s ã‚¼ãƒ­ãƒ»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‰Šé™¤æœªé‚"));
 		g_system.PopSysTag();
 		return;
 	}
@@ -1502,19 +1502,19 @@ void CBattleTask::DeleteGObject(DWORD oid)
 		return;
 	}
 
-	//ƒLƒƒƒ‰ƒNƒ^[EƒXƒe[ƒW‚ÍÁ‚¦‚ç‚ê‚Ü‚¹‚ñ
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ»ã‚¹ãƒ†ãƒ¼ã‚¸ã¯æ¶ˆãˆã‚‰ã‚Œã¾ã›ã‚“
 	for(int j=0;j<2;j++){
 		for(int i=0;i<3;i++)
 		{
 			if(charobjid[j][i]==oid){
-				g_system.LogWarning(_T("%s ƒLƒƒƒ‰ƒNƒ^[ƒIƒuƒWƒFƒNƒgíœ–¢‹(%d,%d)"),__FUNCTION__,j,i);
+				g_system.LogWarning(_T("%s ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‰Šé™¤æœªé‚(%d,%d)"),__FUNCTION__,j,i);
 				g_system.PopSysTag();
 				return;
 			}
 		}
 	}
 	if(stgobjid==oid){
-		g_system.LogWarning(_T("%s ƒXƒe[ƒWƒIƒuƒWƒFƒNƒgíœ–¢‹"),__FUNCTION__);
+		g_system.LogWarning(_T("%s ã‚¹ãƒ†ãƒ¼ã‚¸ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‰Šé™¤æœªé‚"),__FUNCTION__);
 		g_system.PopSysTag();
 		return;
 	}
@@ -1537,17 +1537,17 @@ DWORD CBattleTask::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
 {
 	g_system.PushSysTag(__FUNCTION__);
 
-	//•Ï”€”õ
+	//å¤‰æ•°æº–å‚™
 	CGObject *pdat = GetGObject(oid);
 	if(pdat==NULL){
-		g_system.LogWarning(_T("%s msg=%08X ,ƒIƒuƒWƒFƒNƒgNULL"),__FUNCTION__,msg);
+		g_system.LogWarning(_T("%s msg=%08X ,ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆNULL"),__FUNCTION__,msg);
 		g_system.PopSysTag();
 		return(0);
 	}
 	
 	BOOL striker_front=FALSE;
-	DWORD team = pdat->data.tid;	//Š‘®ƒ`[ƒ€
-	DWORD team2 = team==TEAM_PLAYER1 ? TEAM_PLAYER2 : TEAM_PLAYER1;	//“Gƒ`[ƒ€
+	DWORD team = pdat->data.tid;	//æ‰€å±ãƒãƒ¼ãƒ 
+	DWORD team2 = team==TEAM_PLAYER1 ? TEAM_PLAYER2 : TEAM_PLAYER1;	//æ•µãƒãƒ¼ãƒ 
 
 	UINT cidx=0;
 	for(int i=0;i<MAXNUM_TEAM;i++){
@@ -1558,54 +1558,54 @@ DWORD CBattleTask::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
 
 
 	switch(msg){
-	//¡“oêI—¹
+	//â– ç™»å ´çµ‚äº†
 	case MSGOBJ2SYS_TOJYOEND:
-		//“¯‘Îí‚Å‚È‚¯‚ê‚ÎA”ñƒAƒNƒeƒBƒuƒLƒƒƒ‰ƒNƒ^[‚É‘Ò‹@ƒƒbƒZ[ƒW”­M
+		//åŒæ™‚å¯¾æˆ¦ã§ãªã‘ã‚Œã°ã€éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã«å¾…æ©Ÿãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç™ºä¿¡
 		if(g_battleinfo.GetBattleType() != TAISENKEISIKI_GOCYAMAZE){
 			if(oid != charobjid[team][active_character[team]]){
 				GetGObject(oid)->Message(GOBJMSG_TAIKI,0);
 			}
-		}//«‚Ìˆ—‚à‘±‚¯‚Äs‚¤
-	//¡Œğ‘ãŒã“oêƒ|[ƒYI—¹
+		}//â†“ã®å‡¦ç†ã‚‚ç¶šã‘ã¦è¡Œã†
+	//â– äº¤ä»£å¾Œç™»å ´ãƒãƒ¼ã‚ºçµ‚äº†
 	case MSGOBJ2SYS_KOUTAIEND:
 		m_tojyo_end[team][cidx]=TRUE;
 		break;
-	//¡ÅIƒ_ƒEƒ“I—¹
+	//â– æœ€çµ‚ãƒ€ã‚¦ãƒ³çµ‚äº†
 	case MSGOBJ2SYS_FINALDOWNEND:
 		m_finaldown_end[team]=TRUE;
 		break;
-	//¡Ÿ—˜ƒ|[ƒYI—¹
+	//â– å‹åˆ©ãƒãƒ¼ã‚ºçµ‚äº†
 	case MSGOBJ2SYS_WINPOSEEND:
 		if(oid == winner_oid){
 			m_winpose_end=TRUE;
 		}
-		if(g_battleinfo.GetBattleType()==TAISENKEISIKI_JYUNBAN){//KOFLike‚Ìê‡Aƒjƒ…[ƒgƒ‰ƒ‹‚É–ß‚µ‚Ä‚â‚é
+		if(g_battleinfo.GetBattleType()==TAISENKEISIKI_JYUNBAN){//KOFLikeã®å ´åˆã€ãƒ‹ãƒ¥ãƒ¼ãƒˆãƒ©ãƒ«ã«æˆ»ã—ã¦ã‚„ã‚‹
 			GetGObject(oid)->data.aid = ACTID_NEUTRAL;
 		}
 		break;
-	//¡Œğ‘ã—v¿(ƒLƒƒƒ‰ƒNƒ^[1)
+	//â– äº¤ä»£è¦è«‹(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼1)
 	case MSGOBJ2SYS_KOUTAI1:
-		striker_front = TRUE;//‚ ‚Æ‚Í«‚Æ“¯—l‚Ìˆ—i•Ï”–¼‚Í‹C‚É‚µ‚È‚¢‚Åj
-	//¡Œğ‘ã—v¿(ƒLƒƒƒ‰ƒNƒ^[2)
+		striker_front = TRUE;//ã‚ã¨ã¯â†“ã¨åŒæ§˜ã®å‡¦ç†ï¼ˆå¤‰æ•°åã¯æ°—ã«ã—ãªã„ã§ï¼‰
+	//â– äº¤ä»£è¦è«‹(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼2)
 	case MSGOBJ2SYS_KOUTAI2:
 		{
-			if(g_battleinfo.GetBattleType()!=TAISENKEISIKI_KOUTAI){//‘ÎíŒ`®ƒ`ƒFƒbƒN
+			if(g_battleinfo.GetBattleType()!=TAISENKEISIKI_KOUTAI){//å¯¾æˆ¦å½¢å¼ãƒã‚§ãƒƒã‚¯
 				g_system.PopSysTag();
 				return(FALSE);
 			}
-			if(bf_state != BFSTATE_FIGHTING){//‡ó‘Ôƒ`ƒFƒbƒN
+			if(bf_state != BFSTATE_FIGHTING){//è©¦åˆçŠ¶æ…‹ãƒã‚§ãƒƒã‚¯
 				g_system.PopSysTag();
 				return(FALSE);
 			}
 
-			//uŸ‚ÌvƒLƒƒƒ‰ƒNƒ^[æ“¾
+			//ã€Œæ¬¡ã®ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼å–å¾—
 			DWORD next_act;
-			switch(cidx){	//HP‚Æface1‚Ì”z’u•ÏX‚É”º‚¢A¶‰E‚ğ‹t‚É
+			switch(cidx){	//HPã¨face1ã®é…ç½®å¤‰æ›´ã«ä¼´ã„ã€å·¦å³ã‚’é€†ã«
 				case 0:next_act= striker_front ? 2 : 1 ;break;
 				case 1:next_act= striker_front ? 0 : 2 ;break;
 				case 2:next_act= striker_front ? 1 : 0 ;break;
 				default:
-					g_system.LogWarning(_T("%s msg=%08X ,¸”s(cidx=%d)"),__FUNCTION__,msg,cidx);
+					g_system.LogWarning(_T("%s msg=%08X ,å¤±æ•—(cidx=%d)"),__FUNCTION__,msg,cidx);
 					g_system.PopSysTag();
 					return(FALSE);
 			}
@@ -1615,37 +1615,37 @@ DWORD CBattleTask::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
 			}
 			pdat=(CGObject*)GetGObject( charobjid[team][next_act] );
 			if(!pdat){
-				g_system.LogWarning(_T("%s msg=%08X ,¸”s(ƒIƒuƒWƒFƒNƒgNULL)"),__FUNCTION__,msg,cidx);
+				g_system.LogWarning(_T("%s msg=%08X ,å¤±æ•—(ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆNULL)"),__FUNCTION__,msg,cidx);
 				g_system.PopSysTag();
 				return(FALSE);
 			}
 
-			//Œğ‘ãƒƒbƒZ[ƒW‘—M
+			//äº¤ä»£ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡
 			if(pdat->Message(GOBJMSG_KOUTAI,charobjid[team][cidx]))
 			{
-				hprecratio[team][cidx]*=1.8;		//HP‰ñ•œƒCƒ“ƒ^[ƒoƒ‹‘
-				active_character[team]=next_act;//"ƒAƒNƒeƒBƒu" ƒLƒƒƒ‰ƒNƒ^[XV
+				hprecratio[team][cidx]*=1.8;		//HPå›å¾©ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«å¢—
+				active_character[team]=next_act;//"ã‚¢ã‚¯ãƒ†ã‚£ãƒ–" ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æ›´æ–°
 				g_system.PopSysTag();
-				return(TRUE);					//¬Œ÷
+				return(TRUE);					//æˆåŠŸ
 			}
-			else g_system.Log(_T("ŸŒğ‘ã—v¿‹‘”ÛBŒğ‘ã¸”sB\n"),SYSLOG_DEBUG);
+			else g_system.Log(_T("â—†äº¤ä»£è¦è«‹æ‹’å¦ã€‚äº¤ä»£å¤±æ•—ã€‚\n"),SYSLOG_DEBUG);
 			g_system.PopSysTag();
 			return(FALSE);
 		}
 		break;
 
-	//¡ƒXƒgƒ‰ƒCƒJ[—v¿(ƒLƒƒƒ‰ƒNƒ^[1)
+	//â– ã‚¹ãƒˆãƒ©ã‚¤ã‚«ãƒ¼è¦è«‹(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼1)
 	case MSGOBJ2SYS_STRIKER1:
-		striker_front=TRUE;//‚ ‚Æ‚Í«‚Æ“¯—l‚Ìˆ—
-	//¡ƒXƒgƒ‰ƒCƒJ[—v¿(ƒLƒƒƒ‰ƒNƒ^[2)
+		striker_front=TRUE;//ã‚ã¨ã¯â†“ã¨åŒæ§˜ã®å‡¦ç†
+	//â– ã‚¹ãƒˆãƒ©ã‚¤ã‚«ãƒ¼è¦è«‹(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼2)
 	case MSGOBJ2SYS_STRIKER2:
 		{
-			//ƒ`ƒFƒbƒN
+			//ãƒã‚§ãƒƒã‚¯
 			{
 				BOOL striker_ck = TRUE;
-				if(g_battleinfo.GetBattleType()==TAISENKEISIKI_GOCYAMAZE){	striker_ck=FALSE; }//‘ÎíŒ`®ƒ`ƒFƒbƒN
-				if(bf_state != BFSTATE_FIGHTING){ striker_ck=FALSE; }//‡ó‘Ôƒ`ƒFƒbƒN
-				if(strikercount[team]==0){ striker_ck=FALSE; }//ƒXƒgƒ‰ƒCƒJ[ƒ|ƒCƒ“ƒgƒ`ƒFƒbƒN
+				if(g_battleinfo.GetBattleType()==TAISENKEISIKI_GOCYAMAZE){	striker_ck=FALSE; }//å¯¾æˆ¦å½¢å¼ãƒã‚§ãƒƒã‚¯
+				if(bf_state != BFSTATE_FIGHTING){ striker_ck=FALSE; }//è©¦åˆçŠ¶æ…‹ãƒã‚§ãƒƒã‚¯
+				if(strikercount[team]==0){ striker_ck=FALSE; }//ã‚¹ãƒˆãƒ©ã‚¤ã‚«ãƒ¼ãƒã‚¤ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
 	
 				if(!striker_ck){
 					g_system.PopSysTag();
@@ -1653,9 +1653,9 @@ DWORD CBattleTask::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
 				}
 			}
 			
-			//uŸ‚ÌvƒLƒƒƒ‰ƒNƒ^[æ“¾
+			//ã€Œæ¬¡ã®ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼å–å¾—
 			DWORD next_act;
-			switch(cidx){	//HP‚Æface1‚Ì”z’u•ÏX‚É”º‚¢A¶‰E‚ğ‹t‚É
+			switch(cidx){	//HPã¨face1ã®é…ç½®å¤‰æ›´ã«ä¼´ã„ã€å·¦å³ã‚’é€†ã«
 				case 0:next_act= striker_front ? 2 : 1 ;break;
 				case 1:next_act= striker_front ? 0 : 2 ;break;
 				case 2:next_act= striker_front ? 1 : 0 ;break;
@@ -1673,7 +1673,7 @@ DWORD CBattleTask::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
 				return(FALSE);
 			}
 
-			if(pdat->Message(GOBJMSG_STRIKER,charobjid[team][cidx]))//ƒXƒgƒ‰ƒCƒJ[—v¿–â‚¢‡‚í‚¹
+			if(pdat->Message(GOBJMSG_STRIKER,charobjid[team][cidx]))//ã‚¹ãƒˆãƒ©ã‚¤ã‚«ãƒ¼è¦è«‹å•ã„åˆã‚ã›
 			{
 				//OK
 				strikercount[team]--;
@@ -1681,12 +1681,12 @@ DWORD CBattleTask::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
 				g_system.PopSysTag();
 				return(TRUE);
 			}
-			else gbl.ods(_T("šƒXƒgƒ‰ƒCƒJ[‹p‰º"));
+			else gbl.ods(_T("â˜…ã‚¹ãƒˆãƒ©ã‚¤ã‚«ãƒ¼å´ä¸‹"));
 		}
 		break;
 
 	default:
-		g_system.LogWarning(_T("%s msg=%08X ,À‘•‚³‚ê‚Ä‚È‚¢ƒƒbƒZ[ƒW"),__FUNCTION__,msg);
+		g_system.LogWarning(_T("%s msg=%08X ,å®Ÿè£…ã•ã‚Œã¦ãªã„ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸"),__FUNCTION__,msg);
 	}
 
 	g_system.PopSysTag();
@@ -1700,24 +1700,24 @@ BOOL CBattleTask::CatchObject(DWORD eoid,LPVOID cy)
 	CGObject *peobj = (CGObject*)GetGObject(eoid);
 	if(peobj==NULL)return(FALSE);
 
-	if(!(peobj->data.objtype & GOBJFLG_NAGERARE))return(FALSE);//‘Šè‚ª“Š‚°‚ç‚êƒtƒ‰ƒO‚ğ‚Á‚Ä‚¢‚È‚©‚Á‚½‚ç¸”s
+	if(!(peobj->data.objtype & GOBJFLG_NAGERARE))return(FALSE);//ç›¸æ‰‹ãŒæŠ•ã’ã‚‰ã‚Œãƒ•ãƒ©ã‚°ã‚’æŒã£ã¦ã„ãªã‹ã£ãŸã‚‰å¤±æ•—
 	if(!peobj->data.nagerare)return(FALSE);
 	if(peobj->nage_muteki_cnt>0)return FALSE;
-	if(peobj->data.counter==0)return(FALSE);//‘Šè‚ªs“®‘JˆÚ’¼Œã‚¾‚Á‚½‚ç~‚ß‚Ä‚¨‚­
-	if(peobj->data.aid & ACTID_GUARD)return(FALSE);//ƒK[ƒh’†‚àAˆê‰ƒ_ƒ‚Á‚Ä‚±‚Æ‚É‚µ‚Ä‚¨‚­
-	if(peobj->data.aid & ACTID_NAGE)return(FALSE);//“Š‚°’†‚àAˆê‰ƒ_ƒ‚Á‚Ä‚±‚Æ‚É‚µ‚Ä‚¨‚­
-	if(peobj->data.aid & ACTID_INOUT)return(FALSE);//Œğ‘ãorƒXƒgƒ‰ƒCƒJ[UŒ‚’†
+	if(peobj->data.counter==0)return(FALSE);//ç›¸æ‰‹ãŒè¡Œå‹•é·ç§»ç›´å¾Œã ã£ãŸã‚‰æ­¢ã‚ã¦ãŠã
+	if(peobj->data.aid & ACTID_GUARD)return(FALSE);//ã‚¬ãƒ¼ãƒ‰ä¸­ã‚‚ã€ä¸€å¿œãƒ€ãƒ¡ã£ã¦ã“ã¨ã«ã—ã¦ãŠã
+	if(peobj->data.aid & ACTID_NAGE)return(FALSE);//æŠ•ã’ä¸­ã‚‚ã€ä¸€å¿œãƒ€ãƒ¡ã£ã¦ã“ã¨ã«ã—ã¦ãŠã
+	if(peobj->data.aid & ACTID_INOUT)return(FALSE);//äº¤ä»£orã‚¹ãƒˆãƒ©ã‚¤ã‚«ãƒ¼æ”»æ’ƒä¸­
 
 	if(!(peobj->data.aid&ACTID_KURAI)){
 		peobj->hitcount=0;
 	}
 
-	//¬Œ÷
+	//æˆåŠŸ
 	peobj->data.aid = ACTID_NAGERARE;
 	peobj->ActionIDChanged(TRUE,TRUE);
-	peobj->data.muteki=TRUE;//‹ò‚ç‚¢”»’èOFF
-	peobj->data.kasanari=FALSE;//d‚È‚è”»’èOFF
-	peobj->data.nagerare=FALSE;//“Š‚°‚ç‚ê”»’èOFF
+	peobj->data.muteki=TRUE;//å–°ã‚‰ã„åˆ¤å®šOFF
+	peobj->data.kasanari=FALSE;//é‡ãªã‚Šåˆ¤å®šOFF
+	peobj->data.nagerare=FALSE;//æŠ•ã’ã‚‰ã‚Œåˆ¤å®šOFF
 	peobj->cy = *(CATCHYOU*)cy;
 
 	return(TRUE);
@@ -1725,8 +1725,8 @@ BOOL CBattleTask::CatchObject(DWORD eoid,LPVOID cy)
 
 CGObject* CBattleTask::GetGObject(DWORD oid)
 {
-	DWORD id1 = oid & 0x0000FFFF;			//”z—ñƒCƒ“ƒfƒbƒNƒX
-	DWORD id2 = (oid >> 16) & 0x00007FFF;	//¶¬ƒJƒEƒ“ƒg
+	DWORD id1 = oid & 0x0000FFFF;			//é…åˆ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	DWORD id2 = (oid >> 16) & 0x00007FFF;	//ç”Ÿæˆã‚«ã‚¦ãƒ³ãƒˆ
 
 	if(id1 >= (int)p_objects.size())
 		return(NULL);
@@ -1741,7 +1741,7 @@ CGObject* CBattleTask::GetGObject(DWORD oid)
 CGObject* CBattleTask::GetCharacterObject(DWORD j,DWORD i)
 {
 	if(j>=2 || i>=MAXNUM_TEAM){
-		g_system.LogWarning(_T("%s ”ÍˆÍƒ`ƒFƒbƒNƒGƒ‰[(team=%d,index=%d)"),__FUNCTION__,j,i);
+		g_system.LogWarning(_T("%s ç¯„å›²ãƒã‚§ãƒƒã‚¯ã‚¨ãƒ©ãƒ¼(team=%d,index=%d)"),__FUNCTION__,j,i);
 		return 0;
 	}
 
@@ -1755,7 +1755,7 @@ void CBattleTask::AddEffect(DWORD efctid,int prm1,int prm2,int prm3)
 	g_system.PushSysTag(__FUNCTION__);
 
 	switch(efctid){
-	//CBattleTask‚ª’S‚¤ƒGƒtƒFƒNƒg
+	//CBattleTaskãŒæ‹…ã†ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 	case EFCTID_STOP:
 		efct_stop = prm1;
 		break;
@@ -1766,8 +1766,8 @@ void CBattleTask::AddEffect(DWORD efctid,int prm1,int prm2,int prm3)
 		efct_sindo = prm2;
 		efct_sindom= prm1;
 
-/*		// U“®ƒGƒtƒFƒNƒg‚Éc‘œ‚ğ‚Â‚¯‚½
-		// ƒRƒ}—‚¿‚·‚é‚±‚Æ‚ª‚ ‚éiPart37‚Ì>>705j‚Ì‚Å–ß‚µ‚Ä‚¨‚«‚Ü‚·
+/*		// æŒ¯å‹•ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã«æ®‹åƒã‚’ã¤ã‘ãŸ
+		// ã‚³ãƒè½ã¡ã™ã‚‹ã“ã¨ãŒã‚ã‚‹ï¼ˆPart37ã®>>705ï¼‰ã®ã§æˆ»ã—ã¦ãŠãã¾ã™
 		RELEASE(tex_fb);
 		tex_fb = g_draw.GetFrontBufferCopy();
 		efct_fadein = min(prm2, 8);*/
@@ -1783,7 +1783,7 @@ void CBattleTask::AddEffect(DWORD efctid,int prm1,int prm2,int prm3)
 	case EFCTID_FLASH:
 		efct_flash = prm1;
 		break;
-	default://‚ ‚Æ‚ÍCEffectList‚É”C‚¹‚éyo
+	default://ã‚ã¨ã¯CEffectListã«ä»»ã›ã‚‹yo
 		cp_efctlist->AddEffect(efctid,prm1,prm2,prm3);
 	}
 
@@ -1793,7 +1793,7 @@ void CBattleTask::AddEffect(DWORD efctid,int prm1,int prm2,int prm3)
 
 
 //****************************************************************
-//  Atari - ‹éŒ`Õ“Ë‚Ìˆ—
+//  Atari - çŸ©å½¢è¡çªæ™‚ã®å‡¦ç†
 //****************************************************************
 
 void CBattleTask::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
@@ -1808,28 +1808,28 @@ void CBattleTask::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 		return;
 	}
 	
-	//‚Æ‚è‚ ‚¦‚¸“–‚½‚Á‚½‚±‚Æ‚ğ’Ê’m
+	//ã¨ã‚Šã‚ãˆãšå½“ãŸã£ãŸã“ã¨ã‚’é€šçŸ¥
 	if(attacker->Message(GOBJMSG_TOUCHC,k_id)==TOUCHC_CANCEL)
 	{
 		g_system.PopSysTag();
 		return;
 	}
 
-	//Œ³‚ÌUŒ‚î•ñ‚ğ•Û‘¶(atk2)
+	//å…ƒã®æ”»æ’ƒæƒ…å ±ã‚’ä¿å­˜(atk2)
 	ATTACKINFO2 tmpatkinfo = higaisya->data.atk2;
 	{
-		//‹ò‚ç‚Á‚½ƒ_ƒ[ƒWî•ñ‚ğƒRƒs[
+		//å–°ã‚‰ã£ãŸãƒ€ãƒ¡ãƒ¼ã‚¸æƒ…å ±ã‚’ã‚³ãƒ”ãƒ¼
 		higaisya->data.atk2.info1 = attacker->data.atk;
 		higaisya->data.atk2.oid = a_id;
-		//ƒtƒ‰ƒO—§
+		//ãƒ•ãƒ©ã‚°ç«‹
 		higaisya->data.atk2.flags = 0;
-		//‰æ–Ê’[‚Å‘Šè‚ğ‰Ÿ‚µ–ß‚·‚©‚Ç‚¤‚©
+		//ç”»é¢ç«¯ã§ç›¸æ‰‹ã‚’æŠ¼ã—æˆ»ã™ã‹ã©ã†ã‹
 		if(higaisya->data.objtype & GOBJFLG_CLIPX){
 			if(attacker->data.objtype & GOBJFLG_HANSAYOU){
 				higaisya->data.atk2.flags |= ATKINFO2_ATTACKERBACK;
 			}
 		}
-		//‚Ì‚¯‚¼‚è‚ÌŒü‚«
+		//ã®ã‘ãã‚Šã®å‘ã
 		if(attacker->data.muki){
 			if(attacker->data.atk->muki){
 				higaisya->data.atk2.flags |= ATKINFO2_RIGHTBACK;
@@ -1842,7 +1842,7 @@ void CBattleTask::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 		}
 	}
 
-	//ƒRƒ“ƒsƒ…[ƒ^§Œä‚È‚ç‚ÎAƒL[‚ğ‚¢‚ê‚Ä‚â‚é
+	//ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿åˆ¶å¾¡ãªã‚‰ã°ã€ã‚­ãƒ¼ã‚’ã„ã‚Œã¦ã‚„ã‚‹
 	BOOL cool_guard = FALSE;
 	if(higaisya->data.objtype & GOBJFLG_COMPUTER)
 	{
@@ -1854,7 +1854,7 @@ void CBattleTask::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 		
 		cool_guard = (rand()%8 < higaisya->com_level) ? TRUE : FALSE;
 
-		//ã‰º’i”»’è
+		//ä¸Šä¸‹æ®µåˆ¤å®š
 		if(cool_guard)
 		{
 			if(attacker->data.atk->guard & GUARDINFO_XSTAND)
@@ -1862,7 +1862,7 @@ void CBattleTask::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 				comgrdkey |= KEYSTA_DOWN;
 			}
 		}
-		//“K“–
+		//é©å½“
 		else
 		{
 			if(rand()%2 == 0){
@@ -1872,25 +1872,25 @@ void CBattleTask::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 		g_input.SetComKey(comgrdkey);
 	}
 
-	DWORD res = higaisya->Message(GOBJMSG_TOUCHA,a_id);//”½‰‚ğ‚İ‚é
+	DWORD res = higaisya->Message(GOBJMSG_TOUCHA,a_id);//åå¿œã‚’ã¿ã‚‹
 	g_input.DisableComKey();
 
 	GOBJECT		*pdat  =&(higaisya->data);
 	ATTACKINFO  *aif = attacker->data.atk;
 
-	// í‚è‚Å‚â‚ç‚ê‚»‚¤‚È‚ç‹ò‚ç‚í‚¹‚é
+	// å‰Šã‚Šã§ã‚„ã‚‰ã‚Œãã†ãªã‚‰å–°ã‚‰ã‚ã›ã‚‹
 	if (res & 0x20000000 && bf_state==BFSTATE_FIGHTING && aif->kezuri >= pdat->hp)
 		res |= 0x10000000;
 
 	double dmkanwa;
 	DWORD i;
 
-	if(res & 0x10000000){//‹ò‚ç‚Á‚½
-		dmkanwa=1.0;//ƒ_ƒ[ƒWŠÉ˜a—Ê
+	if(res & 0x10000000){//å–°ã‚‰ã£ãŸ
+		dmkanwa=1.0;//ãƒ€ãƒ¡ãƒ¼ã‚¸ç·©å’Œé‡
 		//hit count
 		if(pdat->aid&ACTID_KURAI){
 			higaisya->hitcount++;
-			if(higaisya->data.id == charobjid[higaisya->data.tid][active_character[higaisya->data.tid]]){//˜A‘±ƒqƒbƒg•\¦
+			if(higaisya->data.id == charobjid[higaisya->data.tid][active_character[higaisya->data.tid]]){//é€£ç¶šãƒ’ãƒƒãƒˆè¡¨ç¤º
 				if(higaisya->hitcount==2)
 					bf_hitdisp[pdat->tid]=0;
 				else bf_hitdisp[pdat->tid]=30;
@@ -1898,7 +1898,7 @@ void CBattleTask::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 		}
 		else{
 			higaisya->hitcount=1;
-			if(higaisya->data.id == charobjid[higaisya->data.tid][active_character[higaisya->data.tid]]){//˜A‘±ƒqƒbƒg•\¦
+			if(higaisya->data.id == charobjid[higaisya->data.tid][active_character[higaisya->data.tid]]){//é€£ç¶šãƒ’ãƒƒãƒˆè¡¨ç¤º
 				bf_hitdisp[pdat->tid]=0;
 			}
 		}
@@ -1913,9 +1913,9 @@ void CBattleTask::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 		else if(higaisya->hitcount>=2){
 			higaisya->sexydamage += (DWORD)(pdat->atk2.info1->damage * dmkanwa);
 
-			if(higaisya->hitcount == 2)		// •\¦—p‚àİ’è
+			if(higaisya->hitcount == 2)		// è¡¨ç¤ºç”¨ã‚‚è¨­å®š
 				higaisya->sexydamage_anim = higaisya->sexydamage;
-			else							// •İ’è
+			else							// å¹…è¨­å®š
 			{
 				higaisya->sexydamage_haba = abs((int)higaisya->sexydamage - (int)higaisya->sexydamage_anim) / 8;
 				if (higaisya->sexydamage_haba == 0)
@@ -1923,14 +1923,14 @@ void CBattleTask::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 			}
 		}
 
-		switch(aif->hit & 0x000F0000){//ƒqƒbƒgƒ}[ƒN•`‰æ
+		switch(aif->hit & 0x000F0000){//ãƒ’ãƒƒãƒˆãƒãƒ¼ã‚¯æç”»
 		case 0:break;
 		case HITINFO_MARK1:AddEffect(EFCTID_MARK1,(int)kas_point.x,(int)kas_point.y);break;
 		case HITINFO_MARK2:AddEffect(EFCTID_MARK2,(int)kas_point.x,(int)kas_point.y);break;
 		case HITINFO_MARK3:AddEffect(EFCTID_MARK3,(int)kas_point.x,(int)kas_point.y);break;
 		case HITINFO_MARK4:AddEffect(EFCTID_MARK4,(int)kas_point.x,(int)kas_point.y);break;
 		}
-		switch(aif->hit & 0x00F00000){//Œø‰Ê‰¹
+		switch(aif->hit & 0x00F00000){//åŠ¹æœéŸ³
 		case 0:break;
 		case HITINFO_SNDHIT1:g_system.PlaySystemSound(SYSTEMSOUND_HIT1);break;
 		case HITINFO_SNDHIT2:g_system.PlaySystemSound(SYSTEMSOUND_HIT2);break;
@@ -1938,73 +1938,73 @@ void CBattleTask::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 		case HITINFO_SNDSHK1:g_system.PlaySystemSound(SYSTEMSOUND_SHOCK1);break;
 		case HITINFO_SNDSHK2:g_system.PlaySystemSound(SYSTEMSOUND_SHOCK2);break;
 		}
-		switch(aif->hit & 0x0F000000){//ƒqƒbƒgƒXƒgƒbƒv
+		switch(aif->hit & 0x0F000000){//ãƒ’ãƒƒãƒˆã‚¹ãƒˆãƒƒãƒ—
 		case 0:break;
 		case HITINFO_SIV1:HitStop( 4,k_id);break;
 		case HITINFO_SIV2:HitStop( 7,k_id);break;
 		case HITINFO_SIV3:HitStop(13,k_id);break;
 		case HITINFO_STOP:HitStop(40,k_id);break;
 		}
-		int vib_type = 0;		// U“®‚Ì‹­‚³[0..2]
+		int vib_type = 0;		// æŒ¯å‹•ã®å¼·ã•[0..2]
 		if(!(res & 0x40000000)){
 			switch(aif->hit & 0x0000000F){
-			case HITINFO_REACT1://’ÊíãUŒ‚
+			case HITINFO_REACT1://é€šå¸¸å¼±æ”»æ’ƒ
 				switch(res & 0x0000000F){
-				case 1:pdat->aid=ACTID_DAMAGE1;break;//—§‚¿
-				case 2:pdat->aid=ACTID_DAMAGEC1;break;//‚µ‚á‚ª‚İ
-				case 3:pdat->aid=ACTID_DAMAGEJ1;break;//‹ó’†
+				case 1:pdat->aid=ACTID_DAMAGE1;break;//ç«‹ã¡
+				case 2:pdat->aid=ACTID_DAMAGEC1;break;//ã—ã‚ƒãŒã¿
+				case 3:pdat->aid=ACTID_DAMAGEJ1;break;//ç©ºä¸­
 				}
 				vib_type = 0;
 				break;
-			case HITINFO_REACT2://’Êí’†UŒ‚
+			case HITINFO_REACT2://é€šå¸¸ä¸­æ”»æ’ƒ
 				switch(res & 0x0000000F){
-				case 1:pdat->aid=ACTID_DAMAGE2;break;//—§‚¿
-				case 2:pdat->aid=ACTID_DAMAGEC2;break;//‚µ‚á‚ª‚İ
-				case 3:pdat->aid=ACTID_DAMAGEJ2;break;//‹ó’†
+				case 1:pdat->aid=ACTID_DAMAGE2;break;//ç«‹ã¡
+				case 2:pdat->aid=ACTID_DAMAGEC2;break;//ã—ã‚ƒãŒã¿
+				case 3:pdat->aid=ACTID_DAMAGEJ2;break;//ç©ºä¸­
 				}
 				vib_type = 1;
 				break;
-			case HITINFO_REACT3://’Êí‹­UŒ‚
+			case HITINFO_REACT3://é€šå¸¸å¼·æ”»æ’ƒ
 				switch(res & 0x0000000F){
-				case 1:pdat->aid=ACTID_DAMAGE3;break;//—§‚¿
-				case 2:pdat->aid=ACTID_DAMAGEC3;break;//‚µ‚á‚ª‚İ
-				case 3:pdat->aid=ACTID_DAMAGEJ3;break;//‹ó’†
+				case 1:pdat->aid=ACTID_DAMAGE3;break;//ç«‹ã¡
+				case 2:pdat->aid=ACTID_DAMAGEC3;break;//ã—ã‚ƒãŒã¿
+				case 3:pdat->aid=ACTID_DAMAGEJ3;break;//ç©ºä¸­
 				}
 				vib_type = 2;
 				break;
-			case HITINFO_DOWN://‘«•¥‚¢‚È‚Ç‚Å‚Ì“]“|
+			case HITINFO_DOWN://è¶³æ‰•ã„ãªã©ã§ã®è»¢å€’
 				pdat->aid=ACTID_DOWN;
 				vib_type = 1;
 				break;
-			case HITINFO_FUTTOBI://‚Ô‚Á”ò‚Ñ
+			case HITINFO_FUTTOBI://ã¶ã£é£›ã³
 				pdat->aid=ACTID_FUTTOBI;
 				vib_type = 2;
 				break;
-			case HITINFO_FUTTOBI2://‚Ô‚Á”ò‚Ñ2
+			case HITINFO_FUTTOBI2://ã¶ã£é£›ã³2
 				pdat->aid=ACTID_FUTTOBI2;
 				vib_type = 2;
 				break;
-			case HITINFO_REACT1A://’ÊíãUŒ‚A‚Ì‚¯‚¼‚è‚È‚µ
+			case HITINFO_REACT1A://é€šå¸¸å¼±æ”»æ’ƒã€ã®ã‘ãã‚Šãªã—
 				switch(res & 0x0000000F){
-				case 1:pdat->aid=ACTID_DAMAGE1A;break;//—§‚¿
-				case 2:pdat->aid=ACTID_DAMAGEC1A;break;//‚µ‚á‚ª‚İ
-				case 3:pdat->aid=ACTID_DAMAGEJ1;break;//‹ó’†i‚ÍA•’Êj
+				case 1:pdat->aid=ACTID_DAMAGE1A;break;//ç«‹ã¡
+				case 2:pdat->aid=ACTID_DAMAGEC1A;break;//ã—ã‚ƒãŒã¿
+				case 3:pdat->aid=ACTID_DAMAGEJ1;break;//ç©ºä¸­ï¼ˆã¯ã€æ™®é€šï¼‰
 				}
 				vib_type = 0;
 				break;
-			case HITINFO_REACT2A://’Êí’†UŒ‚A‚Ì‚¯‚¼‚è‚È‚µ
+			case HITINFO_REACT2A://é€šå¸¸ä¸­æ”»æ’ƒã€ã®ã‘ãã‚Šãªã—
 				switch(res & 0x0000000F){
-				case 1:pdat->aid=ACTID_DAMAGE2A;break;//—§‚¿
-				case 2:pdat->aid=ACTID_DAMAGEC2A;break;//‚µ‚á‚ª‚İ
-				case 3:pdat->aid=ACTID_DAMAGEJ2;break;//‹ó’†i‚ÍA•’Êj
+				case 1:pdat->aid=ACTID_DAMAGE2A;break;//ç«‹ã¡
+				case 2:pdat->aid=ACTID_DAMAGEC2A;break;//ã—ã‚ƒãŒã¿
+				case 3:pdat->aid=ACTID_DAMAGEJ2;break;//ç©ºä¸­ï¼ˆã¯ã€æ™®é€šï¼‰
 				}
 				vib_type = 1;
 				break;
-			case HITINFO_REACT3A://’Êí‹­UŒ‚A‚Ì‚¯‚¼‚è‚È‚µ
+			case HITINFO_REACT3A://é€šå¸¸å¼·æ”»æ’ƒã€ã®ã‘ãã‚Šãªã—
 				switch(res & 0x0000000F){
-				case 1:pdat->aid=ACTID_DAMAGE3A;break;//—§‚¿
-				case 2:pdat->aid=ACTID_DAMAGEC3A;break;//‚µ‚á‚ª‚İ
-				case 3:pdat->aid=ACTID_DAMAGEJ3;break;//‹ó’†i‚ÍA•’Êj
+				case 1:pdat->aid=ACTID_DAMAGE3A;break;//ç«‹ã¡
+				case 2:pdat->aid=ACTID_DAMAGEC3A;break;//ã—ã‚ƒãŒã¿
+				case 3:pdat->aid=ACTID_DAMAGEJ3;break;//ç©ºä¸­ï¼ˆã¯ã€æ™®é€šï¼‰
 				}
 				vib_type = 2;
 				break;
@@ -2024,18 +2024,18 @@ void CBattleTask::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 				pdat->aid=ACTID_TATAKITUKE2B;
 				vib_type = 2;
 				break;
-			case HITINFO_USERDEFINE://ƒ†[ƒU[’è‹`‹ò‚ç‚¢
+			case HITINFO_USERDEFINE://ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©å–°ã‚‰ã„
 				switch(res & 0x0000000F){
-				case 1://—§‚¿
-				case 2:pdat->aid=ACTID_USERHIT1;break;//‚µ‚á‚ª‚İ
-				case 3:pdat->aid=ACTID_USERHIT2;break;//‹ó’†
+				case 1://ç«‹ã¡
+				case 2:pdat->aid=ACTID_USERHIT1;break;//ã—ã‚ƒãŒã¿
+				case 3:pdat->aid=ACTID_USERHIT2;break;//ç©ºä¸­
 				}
 				higaisya->userhit_attacker = a_id;
 				higaisya->userhit_id = (aif->hit&HITINFO_USERIDMASK)>>4;
 				vib_type = 1;
 				break;
-			case HITINFO_USERDEFINE2://ƒ†[ƒU[’è‹`‹ò‚ç‚¢i‚Qj
-				pdat->aid=ACTID_USERHIT2;//í‚É‹ó’†
+			case HITINFO_USERDEFINE2://ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©å–°ã‚‰ã„ï¼ˆï¼’ï¼‰
+				pdat->aid=ACTID_USERHIT2;//å¸¸ã«ç©ºä¸­
 				higaisya->userhit_attacker = a_id;
 				higaisya->userhit_id = (aif->hit&HITINFO_USERIDMASK)>>4;
 				vib_type = 1;
@@ -2043,7 +2043,7 @@ void CBattleTask::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 			}
 		}
 
-		if(pdat->hp<=0){//€–S
+		if(pdat->hp<=0){//æ­»äº¡
 			if(g_battleinfo.GetBattleType()==TAISENKEISIKI_GOCYAMAZE)
 				pdat->aid=ACTID_FINALDOWN;
 			else
@@ -2054,97 +2054,97 @@ void CBattleTask::Atari(DWORD a_id,DWORD k_id,MY2DVECTOR &kas_point)
 			AddEffect(EFCTID_SINDO,2,20);
 		}
 
-		//ƒGƒtƒFƒNƒg
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 		if((aif->hit & 0x0000F000) & HITINFO_EFCTSINDO)AddEffect(EFCTID_SINDO,2,20);
 		if((aif->hit & 0x0000F000) & HITINFO_EFCTBURN  )AddEffect(EFCTID_BURN  ,0,0,k_id);
 		if((aif->hit & 0x0000F000) & HITINFO_EFCTBURN_B)AddEffect(EFCTID_BURN_B,0,0,k_id);
 		if((aif->hit & 0x0000F000) & HITINFO_EFCTBURN_G)AddEffect(EFCTID_BURN_G,0,0,k_id);
 		if (aif->hit & HITINFO_EFCTFLASH) AddEffect(EFCTID_FLASH,4,0);
 
-		//ƒtƒB[ƒhƒoƒbƒNib’èj
+		//ãƒ•ã‚£ãƒ¼ãƒ‰ãƒãƒƒã‚¯ï¼ˆæš«å®šï¼‰
 		g_input.StartForce( g_battleinfo.GetKeyAssign((attacker->dll_id - 1) / MAXNUM_TEAM, (attacker->dll_id - 1) % MAXNUM_TEAM), vib_type );
 		g_input.StartForce( g_battleinfo.GetKeyAssign((higaisya->dll_id - 1) / MAXNUM_TEAM, (higaisya->dll_id - 1) % MAXNUM_TEAM), vib_type );
 
-		//‹ò‚ç‚Á‚½‚Æ‚«As“®‚ªƒXƒgƒbƒv‚µ‚ÄŠiDˆ«‚¢‚Ì‚Å1‰ñ‚¾‚¯action()‚³‚¹‚é
+		//å–°ã‚‰ã£ãŸã¨ãã€è¡Œå‹•ãŒã‚¹ãƒˆãƒƒãƒ—ã—ã¦æ ¼å¥½æ‚ªã„ã®ã§1å›ã ã‘action()ã•ã›ã‚‹
 		if(!(res & 0x40000000)){
 			higaisya->ActionIDChanged(TRUE, TRUE);
 			higaisya->Message(GOBJMSG_ACTION);
 		}
-		//UŒ‚‚ª“–‚½‚Á‚½‚±‚Æ‚ğUŒ‚‚µ‚½‚â‚Â‚É’Ê’m
+		//æ”»æ’ƒãŒå½“ãŸã£ãŸã“ã¨ã‚’æ”»æ’ƒã—ãŸã‚„ã¤ã«é€šçŸ¥
 		attacker->Message(GOBJMSG_TOUCHB,TRUE);
 	}
-	else if(res & 0x20000000){//ƒK[ƒh‚µ‚½
-		if(bf_state==BFSTATE_FIGHTING)pdat->hp -= aif->kezuri;//í‚è
-		if(aif->kezuri==0)AddEffect(EFCTID_MARKG,(int)kas_point.x,(int)kas_point.y);//ƒK[ƒhƒ}[ƒN•`‰æ
+	else if(res & 0x20000000){//ã‚¬ãƒ¼ãƒ‰ã—ãŸ
+		if(bf_state==BFSTATE_FIGHTING)pdat->hp -= aif->kezuri;//å‰Šã‚Š
+		if(aif->kezuri==0)AddEffect(EFCTID_MARKG,(int)kas_point.x,(int)kas_point.y);//ã‚¬ãƒ¼ãƒ‰ãƒãƒ¼ã‚¯æç”»
 		else AddEffect(EFCTID_MARKG2,(int)kas_point.x,(int)kas_point.y);
-		switch(aif->guard & 0x0F000000){//ƒqƒbƒgƒXƒgƒbƒv
+		switch(aif->guard & 0x0F000000){//ãƒ’ãƒƒãƒˆã‚¹ãƒˆãƒƒãƒ—
 		case 0:break;
 		case GUARDINFO_SIV1:HitStop( 4,k_id);break;
 		case GUARDINFO_SIV2:HitStop( 7,k_id);break;
 		case GUARDINFO_SIV3:HitStop(13,k_id);break;
 		case GUARDINFO_STOP:HitStop(40,k_id);break;
 		}
-		g_system.PlaySystemSound(SYSTEMSOUND_GUARD);//Œø‰Ê‰¹
+		g_system.PlaySystemSound(SYSTEMSOUND_GUARD);//åŠ¹æœéŸ³
 		if(!(res & 0x40000000)){
 			switch(aif->guard & 0x0000000F){
-			case GUARDINFO_REACT1://ãd’¼
+			case GUARDINFO_REACT1://å¼±ç¡¬ç›´
 				switch(res & 0x0000000F){
-				case 1:pdat->aid=ACTID_GUARD1;break;//—§‚¿
-				case 2:pdat->aid=ACTID_GUARDC1;break;//‚µ‚á‚ª‚İ
-				case 3:pdat->aid=ACTID_GUARDJ1;break;//‹ó’†
+				case 1:pdat->aid=ACTID_GUARD1;break;//ç«‹ã¡
+				case 2:pdat->aid=ACTID_GUARDC1;break;//ã—ã‚ƒãŒã¿
+				case 3:pdat->aid=ACTID_GUARDJ1;break;//ç©ºä¸­
 				}
 				break;
-			case GUARDINFO_REACT2://’†d’¼
+			case GUARDINFO_REACT2://ä¸­ç¡¬ç›´
 				switch(res & 0x0000000F){
-				case 1:pdat->aid=ACTID_GUARD2;break;//—§‚¿
-				case 2:pdat->aid=ACTID_GUARDC2;break;//‚µ‚á‚ª‚İ
-				case 3:pdat->aid=ACTID_GUARDJ2;break;//‹ó’†
+				case 1:pdat->aid=ACTID_GUARD2;break;//ç«‹ã¡
+				case 2:pdat->aid=ACTID_GUARDC2;break;//ã—ã‚ƒãŒã¿
+				case 3:pdat->aid=ACTID_GUARDJ2;break;//ç©ºä¸­
 				}
 				break;
-			case GUARDINFO_REACT3://‹­d’¼
+			case GUARDINFO_REACT3://å¼·ç¡¬ç›´
 				switch(res & 0x0000000F){
-				case 1:pdat->aid=ACTID_GUARD3;break;//—§‚¿
-				case 2:pdat->aid=ACTID_GUARDC3;break;//‚µ‚á‚ª‚İ
-				case 3:pdat->aid=ACTID_GUARDJ3;break;//‹ó’†
+				case 1:pdat->aid=ACTID_GUARD3;break;//ç«‹ã¡
+				case 2:pdat->aid=ACTID_GUARDC3;break;//ã—ã‚ƒãŒã¿
+				case 3:pdat->aid=ACTID_GUARDJ3;break;//ç©ºä¸­
 				}
 				break;
-			case GUARDINFO_USERDEFINE://ƒ†[ƒU[’è‹`d’¼
+			case GUARDINFO_USERDEFINE://ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©ç¡¬ç›´
 				switch(res & 0x0000000F){
-				case 1://—§‚¿
-				case 2:pdat->aid=ACTID_USERGUARD1;break;//‚µ‚á‚ª‚İ
-				case 3:pdat->aid=ACTID_USERGUARD2;break;//‹ó’†i‚ÍA•’Êj
+				case 1://ç«‹ã¡
+				case 2:pdat->aid=ACTID_USERGUARD1;break;//ã—ã‚ƒãŒã¿
+				case 3:pdat->aid=ACTID_USERGUARD2;break;//ç©ºä¸­ï¼ˆã¯ã€æ™®é€šï¼‰
 				}
 				higaisya->userhit_attacker = a_id;
 				higaisya->userhit_id = (aif->hit&GUARDINFO_USERIDMASK)>>4;
 				break;
 			}
 		}
-		switch(aif->hit & 0x0000F000){//ƒGƒtƒFƒNƒg
+		switch(aif->hit & 0x0000F000){//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 		case GUARDINFO_EFCTSINDO:
 			AddEffect(EFCTID_SINDO,2,20);
 			break;
-/*		case GUARDINFO_EFCTFLASH:			// ‹““®‚ª‰ö‚µ‚¢‚Ì‚Å•Û—¯
+/*		case GUARDINFO_EFCTFLASH:			// æŒ™å‹•ãŒæ€ªã—ã„ã®ã§ä¿ç•™
 			AddEffect(EFCTID_FLASH,4,0);
 			break;
 */		}
 	
-		if(pdat->hp<=0){//€–S
+		if(pdat->hp<=0){//æ­»äº¡
 			if(g_battleinfo.GetBattleType()==TAISENKEISIKI_GOCYAMAZE)
 				pdat->aid=ACTID_FINALDOWN;
 			else
 				pdat->aid=ACTID_KAITENFINISH;
 		}
 
-		//‹ò‚ç‚Á‚½‚Æ‚«As“®‚ªƒXƒgƒbƒv‚µ‚ÄŠiDˆ«‚¢‚Ì‚Å1‰ñ‚¾‚¯action()‚³‚¹‚é
+		//å–°ã‚‰ã£ãŸã¨ãã€è¡Œå‹•ãŒã‚¹ãƒˆãƒƒãƒ—ã—ã¦æ ¼å¥½æ‚ªã„ã®ã§1å›ã ã‘action()ã•ã›ã‚‹
 		if(!(res & 0x40000000)){
 			higaisya->ActionIDChanged(TRUE,TRUE);
 			higaisya->Message(GOBJMSG_ACTION);
 		}
-		//UŒ‚‚ª“–‚½‚Á‚½‚±‚Æ‚ğUŒ‚‚µ‚½‚â‚Â‚É’Ê’m
+		//æ”»æ’ƒãŒå½“ãŸã£ãŸã“ã¨ã‚’æ”»æ’ƒã—ãŸã‚„ã¤ã«é€šçŸ¥
 		attacker->Message(GOBJMSG_TOUCHB,FALSE);
 	}
 	else{
-		//UŒ‚‚ğ–³‹‚µ‚½‚È‚ç‚ÎŒ³‚ÌUŒ‚—Íî•ñ‚É–ß‚µ‚Ä‚¨‚­
+		//æ”»æ’ƒã‚’ç„¡è¦–ã—ãŸãªã‚‰ã°å…ƒã®æ”»æ’ƒåŠ›æƒ…å ±ã«æˆ»ã—ã¦ãŠã
 		higaisya->data.atk2 = tmpatkinfo;
 	}
 	
@@ -2168,7 +2168,7 @@ void CBattleTask::DrawState()
 	case BFSTATE_FINISHED:		_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("BFSTATE_FINISHED,%d"),bf_counter);break;
 	case BFSTATE_WAITFORENDWIN:	_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("BFSTATE_WAITFORENDWIN,%d"),bf_counter);break;
 	case BFSTATE_DOUBLEKO:		_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("BFSTATE_DOUBLEKO,%d"),bf_counter);break;
-	default:_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("•s–¾H,%d"),bf_counter);break;
+	default:_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("ä¸æ˜ï¼Ÿ,%d"),bf_counter);break;
 	}
 	_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n"));
 //	_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("num_char=%d , "),g_battleinfo.GetNumTeam());
@@ -2177,7 +2177,7 @@ void CBattleTask::DrawState()
 //	case TAISENKEISIKI_KOUTAI		:_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("TAISENKEISIKI_KOUTAI , tl=%d\n"),g_battleinfo.GetLimitTime());break;
 //	case TAISENKEISIKI_JYUNBAN	:_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("TAISENKEISIKI_JYUNBAN , tl=%d\n"),g_battleinfo.GetLimitTime());break;
 //	case KEISIKI_END		:_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("KEISIKI_END , tl=%d\n"),g_battleinfo.GetLimitTime());break;
-//	default					:_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("•s–¾H , tl=%d\n"),g_battleinfo.GetLimitTime());break;
+//	default					:_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("ä¸æ˜ï¼Ÿ , tl=%d\n"),g_battleinfo.GetLimitTime());break;
 //	}
 //	_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\ndisplay_(x, y)=%d ,%d"),disp_center_x, disp_center_y);
 
@@ -2195,8 +2195,8 @@ void CBattleTask::DrawObjectList()
 	for(int i=0;i<(int)p_objects.size();i++){
 		if(i%10==0)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T(" "));
 		if(i%40==0)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n"));
-		if(p_objects[i]!=NULL)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("œ"));
-		else _stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("›"));
+		if(p_objects[i]!=NULL)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("â—"));
+		else _stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("â—‹"));
 	}
 
 	RECT r;
@@ -2216,43 +2216,43 @@ void CBattleTask::DrawCharacterState()
 
 	for(int j=0;j<2;j++){
 		ZeroMemory(debugmsgbuff,DEBUGMSGBUFFERSIZE);
-		//–¼‘O
+		//åå‰
 		_stprintf(debugmsgbuff,g_charlist.GetCharacterName(g_battleinfo.GetCharacter(j,active_character[j])));
 		if(GetGObject( charobjid[j][active_character[j]] ) ==NULL){
-			_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n\n ˆÙíFƒIƒuƒWƒFƒNƒg‚ªNULL‚Å‚·"));
+			_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n\n ç•°å¸¸ï¼šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒNULLã§ã™"));
 		}
 		else{
 			pdat = &(GetGObject( charobjid[j][active_character[j]] )->data);
-			_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n ID:%d , ƒ`[ƒ€:%d , “G:%d , ƒ†[ƒU[ID:%d"),pdat->id,pdat->tid,pdat->eid,pdat->uid);
+			_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n ID:%d , ãƒãƒ¼ãƒ :%d , æ•µ:%d , ãƒ¦ãƒ¼ã‚¶ãƒ¼ID:%d"),pdat->id,pdat->tid,pdat->eid,pdat->uid);
 			_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n cell#:%d"),pdat->cnow);
-			if(pdat->muki)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n Œü‚«:<- "));
-			else _stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n Œü‚«:-> "));
-			if(pdat->revx)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("X”½“] "));
-			if(pdat->revy)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("Y”½“] "));
-			_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("Šg‘å—¦(%5.2f,%5.2f) ‰ñ“]:%d"),
+			if(pdat->muki)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n å‘ã:<- "));
+			else _stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n å‘ã:-> "));
+			if(pdat->revx)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("Xåè»¢ "));
+			if(pdat->revy)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("Yåè»¢ "));
+			_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("æ‹¡å¤§ç‡(%5.2f,%5.2f) å›è»¢:%d"),
 				pdat->magx,pdat->magy,pdat->rot);
-			_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n À•W(%5.2f,%5.2f)"),pdat->x,pdat->y);
+			_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n åº§æ¨™(%5.2f,%5.2f)"),pdat->x,pdat->y);
 			if(FALSE){
-				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n\n ˆÙíFƒIƒuƒWƒFƒNƒg- pobjdat_a ‚ªNULL‚Å‚·"));
+				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n\n ç•°å¸¸ï¼šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ- pobjdat_a ãŒNULLã§ã™"));
 			}
 			else{
-				//À•W
-				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n ‘¬“x(%5.3f,%5.3f) - ‰Á‘¬“x(%5.3f,%5.3f)"),
+				//åº§æ¨™
+				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n é€Ÿåº¦(%5.3f,%5.3f) - åŠ é€Ÿåº¦(%5.3f,%5.3f)"),
 					pdat->vx,pdat->vy,pdat->ax,pdat->ay);
-				//s“®ID
-				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n s“®ID:%d ("),pdat->aid);
-				if(pdat->aid & ACTID_KUCYU)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("‹ó’† "));
-				if(pdat->aid & ACTID_SYAGAMI)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("‹ü "));
-				if(pdat->aid & ACTID_ATTACK)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("UŒ‚ "));
-				if(pdat->aid & ACTID_HISSATU)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("•KE "));
-				if(pdat->aid & ACTID_SYSTEM)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("ƒVƒXƒeƒ€ "));
-				if(pdat->aid & ACTID_KURAI)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("‹ò‚ç‚¢ "));
-				if(pdat->aid & ACTID_GUARD)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("ƒK[ƒh "));
-				if(pdat->aid & ACTID_NAGE)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("“Š‚° "));
+				//è¡Œå‹•ID
+				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n è¡Œå‹•ID:%d ("),pdat->aid);
+				if(pdat->aid & ACTID_KUCYU)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("ç©ºä¸­ "));
+				if(pdat->aid & ACTID_SYAGAMI)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("å±ˆ "));
+				if(pdat->aid & ACTID_ATTACK)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("æ”»æ’ƒ "));
+				if(pdat->aid & ACTID_HISSATU)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("å¿…æ®º "));
+				if(pdat->aid & ACTID_SYSTEM)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("ã‚·ã‚¹ãƒ†ãƒ  "));
+				if(pdat->aid & ACTID_KURAI)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("å–°ã‚‰ã„ "));
+				if(pdat->aid & ACTID_GUARD)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("ã‚¬ãƒ¼ãƒ‰ "));
+				if(pdat->aid & ACTID_NAGE)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("æŠ•ã’ "));
 				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("- %d )"),pdat->aid&0x00000FFFF);
 			}
 		}
-		//ƒeƒLƒXƒg•`‰æ
+		//ãƒ†ã‚­ã‚¹ãƒˆæç”»
 		r.top=0;
 		r.bottom=g_DISPLAYHEIGHT;
 		if(j==0){
@@ -2278,48 +2278,48 @@ void CBattleTask::DrawCharacterState2()
 
 	for(int j=0;j<2;j++){
 		ZeroMemory(debugmsgbuff,DEBUGMSGBUFFERSIZE);
-		//–¼‘O
+		//åå‰
 		_stprintf(debugmsgbuff,g_charlist.GetCharacterName(g_battleinfo.GetCharacter(j,active_character[j])));
 		if(GetGObject( charobjid[j][active_character[j]] ) ==NULL){
-			_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n\n ˆÙíFƒIƒuƒWƒFƒNƒg‚ªNULL‚Å‚·"));
+			_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n\n ç•°å¸¸ï¼šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒNULLã§ã™"));
 		}
 		else{
 			pdat = &(GetGObject( charobjid[j][active_character[j]] )->data);
 			if(FALSE){
-				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n\n ˆÙíFƒIƒuƒWƒFƒNƒg- pobjdat_a ‚ªNULL‚Å‚·"));
+				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n\n ç•°å¸¸ï¼šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ- pobjdat_a ãŒNULLã§ã™"));
 			}
 			else{
-				//ƒJƒEƒ“ƒ^
+				//ã‚«ã‚¦ãƒ³ã‚¿
 				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n counter=%d"),pdat->counter);
-				//‘Ì—ÍEƒQ[ƒW
-				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n ‘Ì—Í:%d/%d  ƒQ[ƒW:%1.4f/%lu.0000"),pdat->hp,pdat->hpmax,pdat->gauge,pdat->gaugemax);
-				//ŠeƒXƒCƒbƒ`
-				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n d‚È‚è”»’è"));
+				//ä½“åŠ›ãƒ»ã‚²ãƒ¼ã‚¸
+				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n ä½“åŠ›:%d/%d  ã‚²ãƒ¼ã‚¸:%1.4f/%lu.0000"),pdat->hp,pdat->hpmax,pdat->gauge,pdat->gaugemax);
+				//å„ã‚¹ã‚¤ãƒƒãƒ
+				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n é‡ãªã‚Šåˆ¤å®š"));
 				if(pdat->kasanari)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("ON"));
 				else _stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("OFF"));
-				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T(" –³“G"));
+				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T(" ç„¡æ•µ"));
 				if(pdat->muteki)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("ON"));
 				else _stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("OFF"));
-				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n UŒ‚—Í"));
+				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n æ”»æ’ƒåŠ›"));
 				if(pdat->kougeki)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("ON"));
 				else _stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("OFF"));
-				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T(" “Š‚°‚ç‚ê"));
+				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T(" æŠ•ã’ã‚‰ã‚Œ"));
 				if(pdat->nagerare)_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("ON"));
 				else _stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("OFF"));
 			}
 			if(FALSE){
-				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n\n ˆÙíFƒIƒuƒWƒFƒNƒg- pobjdat_d ‚ªNULL‚Å‚·"));
+				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n\n ç•°å¸¸ï¼šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ- pobjdat_d ãŒNULLã§ã™"));
 			}
 			else{
-				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n F:(%d / %d,%d,%d)"),
+				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n è‰²:(%d / %d,%d,%d)"),
 					(pdat->color&0xFF000000)/(256*256*256),
 					(pdat->color&0x00FF0000)/(256*256),
 					(pdat->color&0x0000FF00)/(256),
 					(pdat->color&0x000000FF));
-				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n zÀ•W:%5.2f"),pdat->z);
+				_stprintf(&debugmsgbuff[strlen(debugmsgbuff)],_T("\n zåº§æ¨™:%5.2f"),pdat->z);
 			}
 		}
-		//ƒeƒLƒXƒg•`‰æ
+		//ãƒ†ã‚­ã‚¹ãƒˆæç”»
 		r.top=0;
 		r.bottom=g_DISPLAYHEIGHT;
 		if(j==0){
@@ -2353,15 +2353,15 @@ void CBattleTask::SetTransform(BOOL b)
 	float dy_move;
 	GOBJECT   *pdat1 = NULL, *pdat2 = NULL;
 
-	//‰¼À‘•‚È‚Ì‚ÅƒAƒNƒeƒBƒuƒLƒƒƒ‰‚Åæ“¾‚µ‚Ä‚Ü‚·BCOOP‚Í‚»‚Ì‚¤‚¿B
+	//ä»®å®Ÿè£…ãªã®ã§ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚­ãƒ£ãƒ©ã§å–å¾—ã—ã¦ã¾ã™ã€‚COOPã¯ãã®ã†ã¡ã€‚
 	pdat1 = &(GetGObject(charobjid[0][active_character[0]])->data);
 	pdat2 = &(GetGObject(charobjid[1][active_character[1]])->data);
 
 	switch (g_config.GetCameraMode()){
-	case CAMERA_OLD:	//ŒÅ’è
+	case CAMERA_OLD:	//å›ºå®š
 		dy_move = 0;
 		break;
-	case CAMERA_UPPER:	//ã‚É‚¢‚é“z‚ğ‰f‚·
+	case CAMERA_UPPER:	//ä¸Šã«ã„ã‚‹å¥´ã‚’æ˜ ã™
 		if (pdat1->aid != ACTID_KAITENFINISH && pdat2->aid != ACTID_KAITENFINISH && pdat1->aid != ACTID_TOJYO && pdat2->aid != ACTID_TOJYO)
 		{
 			if (pdat1->y < -365 || pdat2->y < -365)
@@ -2377,7 +2377,7 @@ void CBattleTask::SetTransform(BOOL b)
 		else
 			dy_move = 0;
 		break;
-	case CAMERA_NEW:	//‰º‚É‚¢‚é“z‚ğ‰f‚·
+	case CAMERA_NEW:	//ä¸‹ã«ã„ã‚‹å¥´ã‚’æ˜ ã™
 		if (pdat1->y < -365 && pdat2->y < -365){
 			if (pdat1->y > pdat2->y)
 				dy_move = pdat1->y + 360;
@@ -2413,7 +2413,7 @@ void CBattleTask::SetTransform(BOOL b)
 
 /*----------------------------------------------------------------
 
-	‡ó‘Ô‚ÌXV
+	è©¦åˆçŠ¶æ…‹ã®æ›´æ–°
 
 ------------------------------------------------------------------*/
 void CBattleTask::T_UpdateStatus()
@@ -2422,13 +2422,13 @@ void CBattleTask::T_UpdateStatus()
 
 	switch(bf_state)
 	{
-		case BFSTATE_WAITFORENDPOSE	:T_UpdateStatus_WaitForEndPose();	break;//“oêƒ|[ƒYI—¹‘Ò‚¿
-		case BFSTATE_ROUNDCALL		:T_UpdateStatus_RoundCall();		break;//ƒ‰ƒEƒ“ƒhƒR[ƒ‹I—¹‘Ò‚¿
-		case BFSTATE_FIGHTING		:T_UpdateStatus_Fighting();			break;//í“¬ó‘Ô
-		case BFSTATE_FINISHED		:T_UpdateStatus_Finished();			break;//KOAƒLƒƒƒ‰ƒNƒ^‚ÌÅIƒ_ƒEƒ“I—¹‘Ò‚¿
-		case BFSTATE_WAITFORENDWIN	:T_UpdateStatus_WaitForEndWin();	break;//Ÿ—˜ƒ|[ƒYI—¹‘Ò‚¿
-		case BFSTATE_DOUBLEKO		:T_UpdateStatus_DoubleKO();			break;//ƒ_ƒuƒ‹KO•\¦I—¹‘Ò‚¿
-		case BFSTATE_TIMEOVER		:T_UpdateStatus_TimeOver();			break;//ƒ^ƒCƒ€ƒI[ƒo[•\¦I—¹‘Ò‚¿
+		case BFSTATE_WAITFORENDPOSE	:T_UpdateStatus_WaitForEndPose();	break;//ç™»å ´ãƒãƒ¼ã‚ºçµ‚äº†å¾…ã¡
+		case BFSTATE_ROUNDCALL		:T_UpdateStatus_RoundCall();		break;//ãƒ©ã‚¦ãƒ³ãƒ‰ã‚³ãƒ¼ãƒ«çµ‚äº†å¾…ã¡
+		case BFSTATE_FIGHTING		:T_UpdateStatus_Fighting();			break;//æˆ¦é—˜çŠ¶æ…‹
+		case BFSTATE_FINISHED		:T_UpdateStatus_Finished();			break;//KOã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®æœ€çµ‚ãƒ€ã‚¦ãƒ³çµ‚äº†å¾…ã¡
+		case BFSTATE_WAITFORENDWIN	:T_UpdateStatus_WaitForEndWin();	break;//å‹åˆ©ãƒãƒ¼ã‚ºçµ‚äº†å¾…ã¡
+		case BFSTATE_DOUBLEKO		:T_UpdateStatus_DoubleKO();			break;//ãƒ€ãƒ–ãƒ«KOè¡¨ç¤ºçµ‚äº†å¾…ã¡
+		case BFSTATE_TIMEOVER		:T_UpdateStatus_TimeOver();			break;//ã‚¿ã‚¤ãƒ ã‚ªãƒ¼ãƒãƒ¼è¡¨ç¤ºçµ‚äº†å¾…ã¡
 	}
 
 	bf_counter++;
@@ -2438,14 +2438,14 @@ void CBattleTask::T_UpdateStatus()
 }
 
 
-//“oêƒ|[ƒYI—¹‘Ò‚¿
+//ç™»å ´ãƒãƒ¼ã‚ºçµ‚äº†å¾…ã¡
 void CBattleTask::T_UpdateStatus_WaitForEndPose()
 {
 	g_system.PushSysTag(__FUNCTION__);
 
 	BOOL next=TRUE;
 
-	//“oêƒ|[ƒYI—¹ƒtƒ‰ƒO‚ª‘S•”ON‚É‚È‚Á‚Ä‚¢‚é‚©H
+	//ç™»å ´ãƒãƒ¼ã‚ºçµ‚äº†ãƒ•ãƒ©ã‚°ãŒå…¨éƒ¨ONã«ãªã£ã¦ã„ã‚‹ã‹ï¼Ÿ
 	for(int i=0;i<2;i++){
 		for(int j=0;j<MAXNUM_TEAM;j++){
 			if(!m_tojyo_end[i][j]){
@@ -2453,25 +2453,25 @@ void CBattleTask::T_UpdateStatus_WaitForEndPose()
 			}
 		}
 	}
-	if(bf_counter>600){//‹~Ï‘[’u
+	if(bf_counter>600){//æ•‘æ¸ˆæªç½®
 		next=TRUE;
 	}
 
 	if(next){
 		bf_state=BFSTATE_ROUNDCALL;
-		gbl.ods(_T("WAITFORENDPOSE ¨ BFSTATE_ROUNDCALL"));
+		gbl.ods(_T("WAITFORENDPOSE â†’ BFSTATE_ROUNDCALL"));
 	}
 
 	g_system.PopSysTag();
 }
 
-//ƒ‰ƒEƒ“ƒhƒR[ƒ‹I—¹‘Ò‚¿
+//ãƒ©ã‚¦ãƒ³ãƒ‰ã‚³ãƒ¼ãƒ«çµ‚äº†å¾…ã¡
 void CBattleTask::T_UpdateStatus_RoundCall()
 {
 	g_system.PushSysTag(__FUNCTION__);
 
 	if(bf_counter==2){
-		if(dsb_round!=NULL)dsb_round->Play(0,0,0);//uƒ‰ƒEƒ“ƒh`v
+		if(dsb_round!=NULL)dsb_round->Play(0,0,0);//ã€Œãƒ©ã‚¦ãƒ³ãƒ‰ï½ã€
 		switch(round){
 		case 1:AddEffect(EFCTID_ROUND1,0,-1000);break;
 		case 2:AddEffect(EFCTID_ROUND2,0,-1000);break;
@@ -2481,21 +2481,21 @@ void CBattleTask::T_UpdateStatus_RoundCall()
 		case 6:AddEffect(EFCTID_ROUND6,0,-1000);break;
 		}
 	}
-	if (bf_counter == 70 * g_config.GetGameSpeed2() / 50)//uƒ‰ƒEƒ“ƒh`v‚ªI—¹‚·‚éŠÔi‘å‘Ìj
+	if (bf_counter == 70 * g_config.GetGameSpeed2() / 50)//ã€Œãƒ©ã‚¦ãƒ³ãƒ‰ï½ã€ãŒçµ‚äº†ã™ã‚‹æ™‚é–“ï¼ˆå¤§ä½“ï¼‰
 	{
-		if(dsb_fight!=NULL)dsb_fight->Play(0,0,0);//uƒtƒ@ƒCƒgv
+		if(dsb_fight!=NULL)dsb_fight->Play(0,0,0);//ã€Œãƒ•ã‚¡ã‚¤ãƒˆã€
 		AddEffect(EFCTID_FIGHT,0,0);
 	}
-	if (bf_counter>130 * g_config.GetGameSpeed2() / 50)//uƒtƒ@ƒCƒgv‚ªI—¹‚·‚éŠÔi‘å‘Ìj
+	if (bf_counter>130 * g_config.GetGameSpeed2() / 50)//ã€Œãƒ•ã‚¡ã‚¤ãƒˆã€ãŒçµ‚äº†ã™ã‚‹æ™‚é–“ï¼ˆå¤§ä½“ï¼‰
 	{
 		bf_state=BFSTATE_FIGHTING;
-		gbl.ods(_T("BFSTATE_ROUNDCALL ¨ BFSTATE_FIGHTING"));
+		gbl.ods(_T("BFSTATE_ROUNDCALL â†’ BFSTATE_FIGHTING"));
 	}
 
 	g_system.PopSysTag();
 }
 
-//í“¬ó‘Ô
+//æˆ¦é—˜çŠ¶æ…‹
 void CBattleTask::T_UpdateStatus_Fighting()
 {
 	g_system.PushSysTag(__FUNCTION__);
@@ -2504,7 +2504,7 @@ void CBattleTask::T_UpdateStatus_Fighting()
 	CGObject *pobj , *pobj2 , *pobj3;
 	int k;
 
-	//ƒ^ƒCƒ€ƒŠƒ~ƒbƒg”»’è
+	//ã‚¿ã‚¤ãƒ ãƒªãƒŸãƒƒãƒˆåˆ¤å®š
 	if(!act_stop && limittime>0)
 	{
 		if (bf_counter%g_config.GetGameSpeed2() == 0)limittime--;
@@ -2515,13 +2515,13 @@ void CBattleTask::T_UpdateStatus_Fighting()
 			AddEffect(EFCTID_TIMEOVER,0,0,0);
 			bf_state = BFSTATE_TIMEOVER;
 			bf_counter = 0;
-			gbl.ods(_T("BFSTATE_FIGHTING ¨ BFSTATE_TIMEOVER"));
+			gbl.ods(_T("BFSTATE_FIGHTING â†’ BFSTATE_TIMEOVER"));
 			g_system.PopSysTag();
 			return;
 		}
 	}
 
-	//€–Sƒtƒ‰ƒOXV
+	//æ­»äº¡ãƒ•ãƒ©ã‚°æ›´æ–°
 	Update_DeadFlag();
 
 	BOOL the_end=FALSE;
@@ -2530,7 +2530,7 @@ void CBattleTask::T_UpdateStatus_Fighting()
 	{
 		case TAISENKEISIKI_GOCYAMAZE:
 			{
-				//€‚ñ‚Å‚¢‚½‚ç‰æ–Ê‚©‚çŠO‚Éo‚Ä‚à‚¢‚¢
+				//æ­»ã‚“ã§ã„ãŸã‚‰ç”»é¢ã‹ã‚‰å¤–ã«å‡ºã¦ã‚‚ã„ã„
 				for(j=0;j<2;j++){
 					for(i=0;i<(int)g_battleinfo.GetNumTeam(j);i++){
 						if(m_dead_one[j][i] && !m_all_dead[j])
@@ -2540,12 +2540,12 @@ void CBattleTask::T_UpdateStatus_Fighting()
 						}
 					}
 				}
-				//ƒ‰ƒEƒ“ƒhI—¹”»’è
+				//ãƒ©ã‚¦ãƒ³ãƒ‰çµ‚äº†åˆ¤å®š
 				if( m_all_dead[0] || m_all_dead[1] )
 				{
 					the_end=TRUE;
 
-					//ƒ_ƒEƒ“‘Ò‚¿ƒtƒ‰ƒOİ’è
+					//ãƒ€ã‚¦ãƒ³å¾…ã¡ãƒ•ãƒ©ã‚°è¨­å®š
 					m_finaldown_end[0]=m_all_dead[0] ? FALSE : TRUE;
 					m_finaldown_end[1]=m_all_dead[1] ? FALSE : TRUE;
 				}
@@ -2553,19 +2553,19 @@ void CBattleTask::T_UpdateStatus_Fighting()
 			break;
 		case TAISENKEISIKI_JYUNBAN:
 			{
-				//ƒ‰ƒEƒ“ƒhI—¹”»’è
+				//ãƒ©ã‚¦ãƒ³ãƒ‰çµ‚äº†åˆ¤å®š
 				if( m_active_dead[0] || m_active_dead[1] )
 				{
 					the_end=TRUE;
 
-					//ƒ_ƒEƒ“‘Ò‚¿ƒtƒ‰ƒOİ’è
+					//ãƒ€ã‚¦ãƒ³å¾…ã¡ãƒ•ãƒ©ã‚°è¨­å®š
 					m_finaldown_end[0]=m_active_dead[0] ? FALSE : TRUE;
 					m_finaldown_end[1]=m_active_dead[1] ? FALSE : TRUE;
 				}
 
 				else
 				{
-					//x‰‡UŒ‚—v¿”»’è
+					//æ”¯æ´æ”»æ’ƒè¦è«‹åˆ¤å®š
 					for(j=0;j<2;j++)
 					{
 						pobj = GetGObject(  charobjid[j][active_character[j]]  );
@@ -2598,29 +2598,29 @@ void CBattleTask::T_UpdateStatus_Fighting()
 								}
 							}
 						}
-					}//©x‰‡UŒ‚—v¿”»’è‚±‚±‚Ü‚Å
+					}//â†æ”¯æ´æ”»æ’ƒè¦è«‹åˆ¤å®šã“ã“ã¾ã§
 				}
 			}
 			break;
 		case TAISENKEISIKI_KOUTAI:
 			{
-				//ƒ‰ƒEƒ“ƒhI—¹”»’è
+				//ãƒ©ã‚¦ãƒ³ãƒ‰çµ‚äº†åˆ¤å®š
 				if( m_all_dead[0] || m_all_dead[1] )
 				{
 					the_end=TRUE;
 
-					//ƒ_ƒEƒ“‘Ò‚¿ƒtƒ‰ƒOİ’è
+					//ãƒ€ã‚¦ãƒ³å¾…ã¡ãƒ•ãƒ©ã‚°è¨­å®š
 					m_finaldown_end[0]=m_all_dead[0] ? FALSE : TRUE;
 					m_finaldown_end[1]=m_all_dead[1] ? FALSE : TRUE;
 				}
 				else
 				{
-					//Œğ‘ã”»’è(€–S)
+					//äº¤ä»£åˆ¤å®š(æ­»äº¡æ™‚)
 					for(j=0;j<2;j++)
 					{
 						if( m_active_dead[j] )
 						{
-							for(i=0;i<(int)g_battleinfo.GetNumTeam(j);i++)//¶‚«‚Ä‚¢‚é‚â‚Â‚ğ’T‚µ‚ÄŒğ‘ã‚·‚é
+							for(i=0;i<(int)g_battleinfo.GetNumTeam(j);i++)//ç”Ÿãã¦ã„ã‚‹ã‚„ã¤ã‚’æ¢ã—ã¦äº¤ä»£ã™ã‚‹
 							{
 								pobj = GetGObject( charobjid[j][i] );
 								if(pobj!=NULL)
@@ -2632,11 +2632,11 @@ void CBattleTask::T_UpdateStatus_Fighting()
 									}
 								}
 							}
-							if(i==3)g_system.Log(_T("ŸƒLƒƒƒ‰ƒNƒ^[‚ÌŒğ‘ã‚É¸”s\n"),SYSLOG_WARNING);
+							if(i==3)g_system.Log(_T("â—†ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®äº¤ä»£ã«å¤±æ•—\n"),SYSLOG_WARNING);
 						}
 					}
 
-					//Œğ‘ã”»’è(¶‘¶)
+					//äº¤ä»£åˆ¤å®š(ç”Ÿå­˜æ™‚)
 					for(j=0;j<2;j++)
 					{
 						pobj = GetGObject(  charobjid[j][active_character[j]]  );
@@ -2678,22 +2678,22 @@ void CBattleTask::T_UpdateStatus_Fighting()
 										}
 									}
 								}
-								//Œğ‘ã‚ğ‚İ‚é
+								//äº¤ä»£ã‚’è©¦ã¿ã‚‹
 								if(pobj3)
 								{
-									//–{—ˆ‚ÍƒVƒXƒeƒ€ƒƒbƒZ[ƒW‚ğ”­s‚·‚×‚«‚©‚à‚µ‚ê‚È‚¢‚ª¥¥¥
+									//æœ¬æ¥ã¯ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ç™ºè¡Œã™ã¹ãã‹ã‚‚ã—ã‚Œãªã„ãŒï½¥ï½¥ï½¥
 									if(pobj3->Message(GOBJMSG_KOUTAI,charobjid[j][active_character[j]]))
 									{
-										hprecratio[j][active_character[j]]*=1.8;		//HP‰ñ•œƒCƒ“ƒ^[ƒoƒ‹‘
+										hprecratio[j][active_character[j]]*=1.8;		//HPå›å¾©ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«å¢—
 										active_character[j]=k;
 										pobj->Message(GOBJMSG_TAIKI,0);
 									}
 								}
 							}
 						}
-					}//©Œğ‘ã”»’èA‚±‚±‚Ü‚Å
+					}//â†äº¤ä»£åˆ¤å®šã€ã“ã“ã¾ã§
 
-					//x‰‡UŒ‚—v¿”»’è
+					//æ”¯æ´æ”»æ’ƒè¦è«‹åˆ¤å®š
 					for(j=0;j<2;j++)
 					{
 						pobj = GetGObject(  charobjid[j][active_character[j]]  );
@@ -2726,36 +2726,36 @@ void CBattleTask::T_UpdateStatus_Fighting()
 								}
 							}
 						}
-					}//©x‰‡UŒ‚—v¿”»’è‚±‚±‚Ü‚Å
+					}//â†æ”¯æ´æ”»æ’ƒè¦è«‹åˆ¤å®šã“ã“ã¾ã§
 				}
 			}
 			break;
-	}//switchƒuƒƒbƒNI—¹
+	}//switchãƒ–ãƒ­ãƒƒã‚¯çµ‚äº†
 
 	if(the_end)
 	{
-		//ƒGƒtƒFƒNƒg”­“®
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™ºå‹•
 		AddEffect(EFCTID_KO,0,-1000);
 		efct_slowdown=60;
 		if(dsb_ko!=NULL)dsb_ko->Play(0,0,0);
 	
-		//ƒ‰ƒEƒ“ƒhŸÒİ’è
-		if(!m_finaldown_end[0] && !m_finaldown_end[1]){//ƒ_ƒuƒ‹KO
+		//ãƒ©ã‚¦ãƒ³ãƒ‰å‹è€…è¨­å®š
+		if(!m_finaldown_end[0] && !m_finaldown_end[1]){//ãƒ€ãƒ–ãƒ«KO
 			m_round_winner=2;
 		}
 		else{
 			m_round_winner = m_finaldown_end[0] ? 0 : 1;
 		}
 
-		//ó‘Ô•ÏX
+		//çŠ¶æ…‹å¤‰æ›´
 		bf_state = BFSTATE_FINISHED;
-		gbl.ods(_T("BFSTATE_FIGHTING ¨ BFSTATE_FINISHED"));
+		gbl.ods(_T("BFSTATE_FIGHTING â†’ BFSTATE_FINISHED"));
 	}
 	
 	g_system.PopSysTag();
 }
 
-//KOAƒLƒƒƒ‰ƒNƒ^‚ÌÅIƒ_ƒEƒ“I—¹‘Ò‚¿
+//KOã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®æœ€çµ‚ãƒ€ã‚¦ãƒ³çµ‚äº†å¾…ã¡
 void CBattleTask::T_UpdateStatus_Finished()
 {
 	g_system.PushSysTag(__FUNCTION__);
@@ -2764,19 +2764,19 @@ void CBattleTask::T_UpdateStatus_Finished()
 	CGObject *pobj;
 	BOOL next=FALSE;
 
-	if(m_finaldown_end[0] && m_finaldown_end[1])next=TRUE;//ƒ_ƒEƒ“Š®—¹
-	if(bf_counter<100)next=FALSE;	//‘‚·‚¬
-	if(bf_counter>600)next=TRUE;	//‹~Ï‘[’u
+	if(m_finaldown_end[0] && m_finaldown_end[1])next=TRUE;//ãƒ€ã‚¦ãƒ³å®Œäº†
+	if(bf_counter<100)next=FALSE;	//æ—©ã™ã
+	if(bf_counter>600)next=TRUE;	//æ•‘æ¸ˆæªç½®
 
 	if(next)
 	{
-		if(m_round_winner==2)//ƒ_ƒuƒ‹Œc‰
+		if(m_round_winner==2)//ãƒ€ãƒ–ãƒ«æ…¶å¿œ
 		{
 			bf_state=BFSTATE_DOUBLEKO;
-			gbl.ods(_T("BFSTATE_FINISHED ¨ BFSTATE_DOUBLEKO"));
+			gbl.ods(_T("BFSTATE_FINISHED â†’ BFSTATE_DOUBLEKO"));
 		}
 		else {
-			if(m_round_winner==0){j=0;j2=1;}//j‚ÍŸ‚Á‚½•û
+			if(m_round_winner==0){j=0;j2=1;}//jã¯å‹ã£ãŸæ–¹
 			else {j=1;j2=0;}
 			wincount[j]++;
 			switch(g_battleinfo.GetBattleType()){
@@ -2784,7 +2784,7 @@ void CBattleTask::T_UpdateStatus_Finished()
 					{
 						for(i=0;i<(int)g_battleinfo.GetNumTeam(j);i++){
 							if(!m_dead_one[j][i]){
-								winner_oid = charobjid[j][i];//‚±‚ÌƒLƒƒƒ‰ƒNƒ^[‚ÌŸ—˜ƒ|[ƒYI—¹‚ğ‘Ò‚Â
+								winner_oid = charobjid[j][i];//ã“ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®å‹åˆ©ãƒãƒ¼ã‚ºçµ‚äº†ã‚’å¾…ã¤
 								GetGObject(winner_oid)->Message(GOBJMSG_DOYOUWIN);
 							}
 						}
@@ -2792,7 +2792,7 @@ void CBattleTask::T_UpdateStatus_Finished()
 					break;
 				case TAISENKEISIKI_JYUNBAN:
 					{
-						//¶‚«‚Ä‚é‚Ù‚¤‚ÍHP‰ñ•œ
+						//ç”Ÿãã¦ã‚‹ã»ã†ã¯HPå›å¾©
 						pobj=GetGObject(charobjid[j][active_character[j]]);
 						if(pobj!=NULL){
 							pobj->data.hp+=150;
@@ -2801,21 +2801,21 @@ void CBattleTask::T_UpdateStatus_Finished()
 							}
 						}
 						else {
-							g_system.Log(_T("CBattleTask::T_UpdateStatus_Finished KOFŒ`® ŸÒ‚È‚µ?"),SYSLOG_ERROR);
+							g_system.Log(_T("CBattleTask::T_UpdateStatus_Finished KOFå½¢å¼ å‹è€…ãªã—?"),SYSLOG_ERROR);
 							g_system.ReturnTitle();
 						}
-					}//«‚Æ“¯‚¶ˆ—‚ğ‘±s
+					}//â†“ã¨åŒã˜å‡¦ç†ã‚’ç¶šè¡Œ
 				case TAISENKEISIKI_KOUTAI:
 					{
 						for(i=0;i<(int)g_battleinfo.GetNumTeam(j);i++)
 						{
 							if(!m_dead_one[j][i]){
 								if(i==(int)active_character[j]){
-									winner_oid = charobjid[j][active_character[j]];//‚±‚ÌƒLƒƒƒ‰ƒNƒ^[‚ÌŸ—˜ƒ|[ƒYI—¹‚ğ‘Ò‚Â
+									winner_oid = charobjid[j][active_character[j]];//ã“ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®å‹åˆ©ãƒãƒ¼ã‚ºçµ‚äº†ã‚’å¾…ã¤
 									GetGObject(winner_oid)->Message(GOBJMSG_DOYOUWIN);
 								}
 								else if(m_all_dead[j2]){
-									GetGObject(charobjid[j][i])->Message(GOBJMSG_DOYOUWIN2,charobjid[j][active_character[j]]);//ŠO‚©‚ç”ò‚ñ‚Å‚«‚ÄŸ—˜ƒ|[ƒY
+									GetGObject(charobjid[j][i])->Message(GOBJMSG_DOYOUWIN2,charobjid[j][active_character[j]]);//å¤–ã‹ã‚‰é£›ã‚“ã§ãã¦å‹åˆ©ãƒãƒ¼ã‚º
 								}
 							}
 						}
@@ -2824,14 +2824,14 @@ void CBattleTask::T_UpdateStatus_Finished()
 			}
 			bf_state=BFSTATE_WAITFORENDWIN;
 			m_winpose_end = FALSE;
-			gbl.ods(_T("BFSTATE_FINISHED ¨ WAITFORENDWIN"));
+			gbl.ods(_T("BFSTATE_FINISHED â†’ WAITFORENDWIN"));
 		}
 	}
 
 	g_system.PopSysTag();
 }
 
-//Ÿ—˜ƒ|[ƒYI—¹‘Ò‚¿
+//å‹åˆ©ãƒãƒ¼ã‚ºçµ‚äº†å¾…ã¡
 void CBattleTask::T_UpdateStatus_WaitForEndWin()
 {
 	g_system.PushSysTag(__FUNCTION__);
@@ -2841,32 +2841,32 @@ void CBattleTask::T_UpdateStatus_WaitForEndWin()
 	TCHAR filename[256];
 
 	if(m_winpose_end && bf_counter>150)next=TRUE;
-	if(g_battleinfo.GetBattleType()==TAISENKEISIKI_GOCYAMAZE && (g_battleinfo.GetAllKey()&0xFFFF0000) ){//ƒ{ƒ^ƒ““ü—Í‚ÅƒXƒLƒbƒv
+	if(g_battleinfo.GetBattleType()==TAISENKEISIKI_GOCYAMAZE && (g_battleinfo.GetAllKey()&0xFFFF0000) ){//ãƒœã‚¿ãƒ³å…¥åŠ›ã§ã‚¹ã‚­ãƒƒãƒ—
 		next=TRUE;
 	}
-	if(bf_counter>600)next=TRUE;//‹~Ï‘[’u
+	if(bf_counter>600)next=TRUE;//æ•‘æ¸ˆæªç½®
 
-	//Ÿ‚Ö
-	if(next)//I—¹”»’è
+	//æ¬¡ã¸
+	if(next)//çµ‚äº†åˆ¤å®š
 	{
-		//“¯‘Îí‚Ìê‡
+		//åŒæ™‚å¯¾æˆ¦ã®å ´åˆ
 		if(g_battleinfo.GetBattleType()==TAISENKEISIKI_GOCYAMAZE)
 		{
-			gbl.ods(_T("WAITFORENDWIN ¨ StartRound"));
+			gbl.ods(_T("WAITFORENDWIN â†’ StartRound"));
 			StartRound();
 			g_system.PopSysTag();
 			return;
 		}
 
-		//Ÿ‚¿ƒ`[ƒ€¨•‰‚¯ƒ`[ƒ€•ÏŠ·@¦ƒ_ƒuƒ‹KOÀ‘•‚É–ŒÌ‚è‚»‚¤‚È‚Ì‚Å‘Îô
+		//å‹ã¡ãƒãƒ¼ãƒ â†’è² ã‘ãƒãƒ¼ãƒ å¤‰æ›ã€€â€»ãƒ€ãƒ–ãƒ«KOå®Ÿè£…æ™‚ã«äº‹æ•…ã‚Šãã†ãªã®ã§å¯¾ç­–
 		if (m_round_winner == 0)
 			lteam = 1;
 		else if (m_round_winner == 1)
 			lteam = 0;
 
-		//‡I—¹H
-		// TAISENKEISIKI_KOUTAI ¨ •K‚¸TRUE
-		// TAISENKEISIKI_JYUNBAN¨ FALSE‚Ìê‡‚à‚ ‚è
+		//è©¦åˆçµ‚äº†ï¼Ÿ
+		// TAISENKEISIKI_KOUTAI â†’ å¿…ãšTRUE
+		// TAISENKEISIKI_JYUNBANâ†’ FALSEã®å ´åˆã‚‚ã‚ã‚Š
 		if(m_all_dead[lteam])
 		{
 			wincount[m_round_winner]++;
@@ -2876,11 +2876,11 @@ void CBattleTask::T_UpdateStatus_WaitForEndWin()
 		}
 		
 		if(g_battleinfo.GetBattleType()==TAISENKEISIKI_KOUTAI){
-			g_system.Log(_T("šCBattleTask::T_UpdateStatus_WaitForEndWin - ‚¨‚©‚µ‚¢"),SYSLOG_ERROR);
+			g_system.Log(_T("â˜…CBattleTask::T_UpdateStatus_WaitForEndWin - ãŠã‹ã—ã„"),SYSLOG_ERROR);
 			g_system.ReturnTitle();
 		}
 
-		//Ÿ‚ÌƒLƒƒƒ‰ƒNƒ^[‚ğo‚·(TAISENKEISIKI_JYUNBAN‚Ì‚İ)
+		//æ¬¡ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚’å‡ºã™(TAISENKEISIKI_JYUNBANã®ã¿)
 		active_character[lteam]++;
 		CGObject *pobj = GetGObject( charobjid[lteam][active_character[lteam]] );
 		if(pobj){
@@ -2896,7 +2896,7 @@ void CBattleTask::T_UpdateStatus_WaitForEndWin()
 		}
 		m_tojyo_end[lteam][active_character[lteam]]=FALSE;
 		round++;
-		{//ƒ‰ƒEƒ“ƒhŠJnwavXV
+		{//ãƒ©ã‚¦ãƒ³ãƒ‰é–‹å§‹wavæ›´æ–°
 			TCHAR *filename = new TCHAR[MAX_PATH];
 			_stprintf(filename,_T(".\\system\\sound\\round%d.wav"),round);
 			RELEASE(dsb_round);
@@ -2908,12 +2908,12 @@ void CBattleTask::T_UpdateStatus_WaitForEndWin()
 	g_system.PopSysTag();
 }
 
-//ƒ_ƒuƒ‹KO•\¦I—¹‘Ò‚¿
+//ãƒ€ãƒ–ãƒ«KOè¡¨ç¤ºçµ‚äº†å¾…ã¡
 void CBattleTask::T_UpdateStatus_DoubleKO()
 {
 /*	if(++bf_counter>200 || (g_input.GetKey(0,0)&0xFFFF0000 || g_input.GetKey(1,0)&0xFFFF0000))
 	{
-		gbl.ods(_T("DOUBLEKO ¨ StartRound\n"));
+		gbl.ods(_T("DOUBLEKO â†’ StartRound\n"));
 		if(!m_all_dead[0]){
 			wincount[0]++;
 		}
@@ -2922,12 +2922,12 @@ void CBattleTask::T_UpdateStatus_DoubleKO()
 		}
 		StartRound();
 	}*/
-	gbl.ods(_T("šƒ_ƒuƒ‹KOˆ—–¢À‘•"));
-	g_system.Log(_T("ƒ_ƒuƒ‹KOˆ—–¢À‘•"),SYSLOG_WARNING);
+	gbl.ods(_T("â˜…ãƒ€ãƒ–ãƒ«KOå‡¦ç†æœªå®Ÿè£…"));
+	g_system.Log(_T("ãƒ€ãƒ–ãƒ«KOå‡¦ç†æœªå®Ÿè£…"),SYSLOG_WARNING);
 	g_system.ReturnTitle();
 }
 
-//ƒ^ƒCƒ€ƒI[ƒo[•\¦I—¹‘Ò‚¿
+//ã‚¿ã‚¤ãƒ ã‚ªãƒ¼ãƒãƒ¼è¡¨ç¤ºçµ‚äº†å¾…ã¡
 void CBattleTask::T_UpdateStatus_TimeOver()
 {
 	g_system.PushSysTag(__FUNCTION__);
@@ -2940,7 +2940,7 @@ void CBattleTask::T_UpdateStatus_TimeOver()
 	CGObject *pobj;
 	float tmp_num;
 
-	//Ÿ‚Á‚½‚Ì‚Í‚Ç‚Á‚¿‚©Hi‘Ì—Í‚ÌŒ¸‚è‹ï‡‚ÅŒˆ’èj
+	//å‹ã£ãŸã®ã¯ã©ã£ã¡ã‹ï¼Ÿï¼ˆä½“åŠ›ã®æ¸›ã‚Šå…·åˆã§æ±ºå®šï¼‰
 	DWORD winner;
 	DWORD loser;
 	for(j=0;j<2;j++)
@@ -2959,24 +2959,24 @@ void CBattleTask::T_UpdateStatus_TimeOver()
 			}
 			else hpwariai[j][i] = 0;
 		}
-		hpwariai[j][0]=(hpwariai[j][0]+hpwariai[j][1]+hpwariai[j][2])/tmp_num;//•½‹Ï‚·‚é
+		hpwariai[j][0]=(hpwariai[j][0]+hpwariai[j][1]+hpwariai[j][2])/tmp_num;//å¹³å‡ã™ã‚‹
 	}
-	if(hpwariai[0][0] < hpwariai[1][0])j=1;//1p‘¤‚Ì•‰‚¯
-	else j=0;//2p‘¤‚Ì•‰‚¯
+	if(hpwariai[0][0] < hpwariai[1][0])j=1;//1på´ã®è² ã‘
+	else j=0;//2på´ã®è² ã‘
 	winner = j;
 	loser  = j==0 ? 1 : 0;
 
 
-	//Ÿ‚Éi‚ŞH
+	//æ¬¡ã«é€²ã‚€ï¼Ÿ
 	BOOL do_timeover = FALSE;
 	if(bf_counter>1000)
 	{
-		//‹­§“I‚Éi‚Ş
+		//å¼·åˆ¶çš„ã«é€²ã‚€
 		do_timeover = TRUE;
 	}
 	else if(bf_counter>310)
 	{
-		//‹ó’†‚É•‚‚¢‚Ä‚¢‚é“z‚ª‹‚½‚ç‚â‚ç‚È‚¢
+		//ç©ºä¸­ã«æµ®ã„ã¦ã„ã‚‹å¥´ãŒå±…ãŸã‚‰ã‚„ã‚‰ãªã„
 
 		do_timeover = TRUE;
 		j = loser;
@@ -2995,7 +2995,7 @@ void CBattleTask::T_UpdateStatus_TimeOver()
 	}
 
 
-	//Ÿ—˜ƒ|[ƒY‘Ò‚¿‚Éi‚Ş
+	//å‹åˆ©ãƒãƒ¼ã‚ºå¾…ã¡ã«é€²ã‚€
 	if(do_timeover)
 	{
 		if(g_battleinfo.GetBattleType()==TAISENKEISIKI_GOCYAMAZE)
@@ -3006,7 +3006,7 @@ void CBattleTask::T_UpdateStatus_TimeOver()
 			for(i=0;i<(int)g_battleinfo.GetNumTeam(j);i++)
 			{
 				if(GetGObject(charobjid[j][i])->data.hp>0){
-					winner_oid = charobjid[j][i];//‚±‚ÌƒLƒƒƒ‰ƒNƒ^[‚ÌŸ—˜ƒ|[ƒYI—¹‚ğ‘Ò‚Â
+					winner_oid = charobjid[j][i];//ã“ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®å‹åˆ©ãƒãƒ¼ã‚ºçµ‚äº†ã‚’å¾…ã¤
 					GetGObject(winner_oid)->Message(GOBJMSG_DOYOUWIN);
 				}
 			}
@@ -3027,20 +3027,20 @@ void CBattleTask::T_UpdateStatus_TimeOver()
 		}
 		bf_state=BFSTATE_WAITFORENDWIN;
 		m_winpose_end = FALSE;
-		gbl.ods(_T("BFSTATE_TIMEOVER ¨ WAITFORENDWIN"));
+		gbl.ods(_T("BFSTATE_TIMEOVER â†’ WAITFORENDWIN"));
 		bf_counter=0;
 	}
 
 	g_system.PopSysTag();
 }
 
-//€–Sƒtƒ‰ƒOXV
+//æ­»äº¡ãƒ•ãƒ©ã‚°æ›´æ–°
 void CBattleTask::Update_DeadFlag()
 {
 	int i,j;
 	CGObject *pobj;
 
-	//‘Sƒtƒ‰ƒO‰Šú‰»
+	//å…¨ãƒ•ãƒ©ã‚°åˆæœŸåŒ–
 	for(j=0;j<2;j++){
 		for(i=0;i<MAXNUM_TEAM;i++)
 		{
@@ -3049,7 +3049,7 @@ void CBattleTask::Update_DeadFlag()
 		}
 	}
 
-	//ƒ`ƒFƒbƒN
+	//ãƒã‚§ãƒƒã‚¯
 	for(j=0;j<2;j++){
 		for(i=0;i<(int)g_battleinfo.GetNumTeam(j);i++){
 			pobj = GetGObject(charobjid[j][i]);
@@ -3059,10 +3059,10 @@ void CBattleTask::Update_DeadFlag()
 				{
 					m_dead_one[j][i]=FALSE;
 					m_all_dead[j]=FALSE;
-					//Œğ‘ã§‚Ìê‡‚Íhp‰ñ•œ
+					//äº¤ä»£åˆ¶ã®å ´åˆã¯hpå›å¾©
 					if(g_battleinfo.GetBattleType()==TAISENKEISIKI_KOUTAI)
 					{
-						if(i!=(int)active_character[j]){//ƒAƒNƒeƒBƒu‚Å‚È‚¯‚ê‚Î
+						if(i!=(int)active_character[j]){//ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã§ãªã‘ã‚Œã°
 							if ((bf_counter%hprecratio[j][i]) == 0){
 								pobj->data.hp++;
 								if (pobj->data.hp > (int)pobj->data.hpmax){
@@ -3088,7 +3088,7 @@ void CBattleTask::Update_DeadFlag()
 }
 
 /*-------------------------------------------------------------------------
-	ƒL[“ü—ÍŒü‚«İ’èXV
+	ã‚­ãƒ¼å…¥åŠ›å‘ãè¨­å®šæ›´æ–°
 ---------------------------------------------------------------------------*/
 void CBattleTask::UpdateKeyInputDirections()
 {
@@ -3107,7 +3107,7 @@ void CBattleTask::UpdateKeyInputDirections()
 				{
 					CGObject* obj = GetGObject( charobjid[i][j] );
 					if(obj){
-						if(!(obj->data.objtype&GOBJFLG_COMPUTER))	//ƒRƒ“ƒsƒ…[ƒ^§Œä‚Å‚Í‚È‚¢
+						if(!(obj->data.objtype&GOBJFLG_COMPUTER))	//ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿åˆ¶å¾¡ã§ã¯ãªã„
 						{
 							g_muki[k] = obj->data.muki;
 						}
@@ -3120,7 +3120,7 @@ void CBattleTask::UpdateKeyInputDirections()
 
 
 /*-------------------------------------------------------------------------
-	F7‚Åƒ|[ƒY
+	F7ã§ãƒãƒ¼ã‚º
 ---------------------------------------------------------------------------*/
 void CBattleTask::WndMessage(HWND hWnd,UINT msg,WPARAM wparam, LPARAM lparam)
 {

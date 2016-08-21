@@ -1,21 +1,21 @@
-#pragma once
+Ôªø#pragma once
 
 
-// CDlgPadConfig É_ÉCÉAÉçÉO
+// CDlgPadConfig „ÉÄ„Ç§„Ç¢„É≠„Ç∞
 
 class CDlgPadConfig : public CDialog
 {
 	DECLARE_DYNAMIC(CDlgPadConfig)
 
 public:
-	CDlgPadConfig(CWnd* pParent = NULL);   // ïWèÄÉRÉìÉXÉgÉâÉNÉ^
+	CDlgPadConfig(CWnd* pParent = NULL);   // Ê®ôÊ∫ñ„Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	virtual ~CDlgPadConfig();
 
-// É_ÉCÉAÉçÉO ÉfÅ[É^
+// „ÉÄ„Ç§„Ç¢„É≠„Ç∞ „Éá„Éº„Çø
 	enum { IDD = IDD_DIALOG_PAD };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ÉTÉ|Å[Ég
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV „Çµ„Éù„Éº„Éà
 
 	DECLARE_MESSAGE_MAP()
 public:

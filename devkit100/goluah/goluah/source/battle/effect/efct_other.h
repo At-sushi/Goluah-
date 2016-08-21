@@ -1,6 +1,6 @@
-/*===============================================================
+ï»¿/*===============================================================
 
-	‚»‚Ì‘¼ƒGƒtƒFƒNƒg
+	ãã®ä»–ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 
 =================================================================*/
 #pragma once
@@ -9,7 +9,7 @@
 
 
 /*!
-*	@brief ƒGƒtƒFƒNƒg•`‰æƒIƒuƒWƒFƒNƒgE’´•K‚ÌŒõ
+*	@brief ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»è¶…å¿…ã®å…‰
 *	@ingroup Battle
 */
 class CFxCyohiLight : public CSystemFxBase
@@ -30,7 +30,7 @@ protected:
 };
 
 /*!
-*	@brief ƒGƒtƒFƒNƒg•`‰æƒIƒuƒWƒFƒNƒgE’Pƒ‚È › ‚ÌL‚ª‚è
+*	@brief ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»å˜ç´”ãª â—‹ ã®åºƒãŒã‚Š
 *	@ingroup Battle
 */
 class CFxCircle : public CSystemFxBase
@@ -42,7 +42,7 @@ public:
 
 #define BIGTUBUTUBUSIZE	8
 /*!
-*	@brief ƒGƒtƒFƒNƒg•`‰æƒIƒuƒWƒFƒNƒgE—±Xi‘åj
+*	@brief ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»ç²’ã€…ï¼ˆå¤§ï¼‰
 *	@ingroup Battle
 */
 class CFxPSprite : public CSystemFxBase
@@ -60,7 +60,7 @@ protected:
 	virtual void PointSetting();
 
 	float center_x,center_y;
-	DWORD num;//—±q”
+	DWORD num;//ç²’å­æ•°
 	MYVERTEX3D vb[16];
 	float vx[16],vy[16];
 	DWORD life[16];
@@ -70,7 +70,7 @@ protected:
 
 
 /*!
-*	@brief ƒGƒtƒFƒNƒg•`‰æƒIƒuƒWƒFƒNƒgE—±Xi¬j
+*	@brief ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»ç²’ã€…ï¼ˆå°ï¼‰
 *	@ingroup Battle
 */
 class CFxPSprite2 : public CFxPSprite
@@ -81,7 +81,7 @@ protected:
 
 
 /*!
-*	@brief ƒGƒtƒFƒNƒg•`‰æƒIƒuƒWƒFƒNƒgE‚à‚¦[
+*	@brief ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»ã‚‚ãˆãƒ¼
 *	@ingroup Battle
 */
 class CFxBurn : public CSystemFxBase
@@ -115,7 +115,7 @@ protected:
 };
 
 /*!
-*	@brief ƒGƒtƒFƒNƒg•`‰æƒIƒuƒWƒFƒNƒgEÂ‚à‚¦
+*	@brief ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»é’ã‚‚ãˆ
 *	@ingroup Battle
 */
 class CFxBurnB : public CFxBurn
@@ -128,7 +128,7 @@ protected:
 };
 
 /*!
-*	@brief ƒGƒtƒFƒNƒg•`‰æƒIƒuƒWƒFƒNƒgE—Î‚à‚¦
+*	@brief ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»ç·‘ã‚‚ãˆ
 *	@ingroup Battle
 */
 class CFxBurnG : public CFxBurn
@@ -142,7 +142,7 @@ protected:
 
 
 /*!
-*	@brief ƒGƒtƒFƒNƒg•`‰æƒIƒuƒWƒFƒNƒgE"Come On"
+*	@brief ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»"Come On"
 *	@ingroup Battle
 */
 class CFxComeon : public CSystemFxBase
@@ -153,7 +153,7 @@ public:
 
 
 /*!
-*	@brief ƒGƒtƒFƒNƒg•`‰æƒIƒuƒWƒFƒNƒgEƒK[ƒhƒLƒƒƒ“ƒZƒ‹
+*	@brief ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»ã‚¬ãƒ¼ãƒ‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 *	@ingroup Battle
 */
 class CFxGuardCancel : public CSystemFxBase
@@ -189,7 +189,7 @@ protected:
 
 
 /*!
-*	@brief ƒGƒtƒFƒNƒg•`‰æƒIƒuƒWƒFƒNƒgEƒX[ƒp[ƒA[ƒ}[
+*	@brief ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»ã‚¹ãƒ¼ãƒ‘ãƒ¼ã‚¢ãƒ¼ãƒãƒ¼
 *	@ingroup Battle
 */
 class CFxSuperArmer : public CFxGuardCancel
@@ -202,7 +202,7 @@ public:
 
 
 /*!
-*	@brief ƒGƒtƒFƒNƒg•`‰æƒIƒuƒWƒFƒNƒgEHatten ar din
+*	@brief ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»Hatten ar din
 *	@ingroup Battle
 */
 class CFxHatten : public CSystemFxBase

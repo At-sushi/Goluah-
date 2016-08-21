@@ -1,9 +1,9 @@
-
+﻿
 /*============================================================================
 
-	�퓬�^�X�N�N���X
+	戦闘タスククラス
 
-	�i�l�b�g���[�N��Ή��Łj
+	（ネットワーク非対応版）
 
 	Goluah!!Copyright(C) 2001-2004 aki, 2014-2015 logger, 2004-2015 At-sushi
 
@@ -27,16 +27,16 @@
 
 
 /*!
-*	@brief �ʏ�Ő퓬�^�X�N
+*	@brief 通常版戦闘タスク
 *	@ingroup Battle
 *
-*	�I�u�W�F�N�g�̊Ǘ��F
-*	�I�u�W�F�N�g��ID�́A�z��̃C���f�b�N�X + ���̃C���f�b�N�X�ł̐����ԍ� + �G�t�F�N�g�I�u�W�F�N�g�t���O�@
-*	�ɂ�萶�������BID����C���f�b�N�X��������̂ŁAID����̃I�u�W�F�N�g�̎擾��
-*	��r�I�����ɏ����ł���E�E�E�Ǝv���B�@�܂��A�����ԍ��𕍉����邱�Ƃɂ��
-*	�����������������Ȃ����蓯��ID�����I�u�W�F�N�g����������邱�Ƃ͂Ȃ��B
+*	オブジェクトの管理：
+*	オブジェクトのIDは、配列のインデックス + そのインデックスでの生成番号 + エフェクトオブジェクトフラグ　
+*	により生成される。IDからインデックスが分かるので、IDからのオブジェクトの取得が
+*	比較的高速に処理できる・・・と思う。　また、生成番号を附加することにより
+*	相当試合が長引かない限り同じIDをもつオブジェクトが生成されることはない。
 *
-*	�G�t�F�N�g�I�u�W�F�N�g�t���O�������Ă���ꍇ�͂����蔻��Ȃǂ��s��Ȃ�
+*	エフェクトオブジェクトフラグが立っている場合はあたり判定などを行わない
 */
 class CBattleTask : public CBattleTaskBase
 {
@@ -44,13 +44,13 @@ public:
 	CBattleTask();
 	virtual ~CBattleTask();
 
-	//�^�X�N�֐�
+	//タスク関数
 	virtual void Initialize();
 	virtual BOOL Execute(DWORD time);
 	virtual void Draw();
-	virtual void WndMessage(HWND hWnd,UINT msg,WPARAM wparam, LPARAM lparam);//!< F7�Ń|�[�Y
+	virtual void WndMessage(HWND hWnd,UINT msg,WPARAM wparam, LPARAM lparam);//!< F7でポーズ
 
-	//���擾�n
+	//情報取得系
 	virtual double GetDisplayCenterX(){return disp_center_x;}
 	virtual double GetDisplayCenterY(){return disp_center_y;}
 	virtual BOOL   IsNetwork(){return FALSE;}
@@ -67,109 +67,109 @@ public:
 
 
 protected:
-	//Initialize����R�[��
+	//Initializeからコール
 	virtual void InitializeObjectList();
 	virtual void InitializeSubTasks();
 	virtual void InitializeParameters();
 
-	//Terminate����R�[��
+	//Terminateからコール
 	virtual void TerminateObjectList();
 	virtual void TerminateDestroySubTasks();
 
-	//Execute��������
-	virtual void T_Command();			//!< COMMAND ���b�Z�[�W�𑗐M����
-	virtual void T_Action(BOOL stop);	//!< Action ���b�Z�[�W�𑗐M����
-	virtual void T_Sousai();			//!< �򓹋�E�p ��`�����蔻�菈��
-	virtual void T_AtariHantei();		//!< �U���p�@�@�@ ��`�����蔻�菈��
-	virtual void T_KasanariHantei();	//!< �d�Ȃ蔻��p ��`�����蔻�菈��
-//	virtual void T_Draw();				//!< DRAW ���b�Z�[�W�𑗐M����
-	virtual void T_ChangeTarget();		//!< �I�u�W�F�N�g�^�[�Q�b�g�ύX����
-	virtual void T_UpdateStatus();		//!< �����̏�ԍX�V
+	//Execute部分処理
+	virtual void T_Command();			//!< COMMAND メッセージを送信する
+	virtual void T_Action(BOOL stop);	//!< Action メッセージを送信する
+	virtual void T_Sousai();			//!< 飛道具相殺用 矩形あたり判定処理
+	virtual void T_AtariHantei();		//!< 攻撃用　　　 矩形あたり判定処理
+	virtual void T_KasanariHantei();	//!< 重なり判定用 矩形あたり判定処理
+//	virtual void T_Draw();				//!< DRAW メッセージを送信する
+	virtual void T_ChangeTarget();		//!< オブジェクトターゲット変更処理
+	virtual void T_UpdateStatus();		//!< 試合の状態更新
 
 	virtual void StartRound();
 	virtual void UpdateKeyInputDirections();
 
-	//�f�o�b�O�p ��ԕ\��
+	//デバッグ用 状態表示
 	virtual void DrawState();
 	virtual void DrawObjectList();
 	virtual void DrawCharacterState();
 	virtual void DrawCharacterState2();
 
 protected:
-	//�S�̃G�t�F�N�g�֘A
+	//全体エフェクト関連
 	int efct_slowdown,efct_stop,efct_darkbg,efct_nobg;
 	int efct_sindo,efct_sindom;
 	int efct_hitstop;
 	int efct_fadein;
 	int efct_flash;
 
-	//���
-	DWORD hprecratio[2][MAXNUM_TEAM];	//!<���R��㐧�̂Ƃ��̗͉̑񕜗�
-	BOOL  battle_end;		//!<�^�X�N���k����̂Ɏg�p
-//	DWORD striker_lastcall[2];	//�X�g���C�J�[���Ō�ɌĂ񂾂̂͂���
+	//状態
+	DWORD hprecratio[2][MAXNUM_TEAM];	//!<自由交代制のときの体力回復率
+	BOOL  battle_end;		//!<タスクをヌけるのに使用
+//	DWORD striker_lastcall[2];	//ストライカーを最後に呼んだのはいつか
 
-	//!�f�o�b�O�e�L�X�g�\���p�o�b�t�@
+	//!デバッグテキスト表示用バッファ
 	TCHAR *debugmsgbuff;
 
-	//!�\�����S
+	//!表示中心
 	double disp_center_x,disp_center_y;
 
-	//�N���X
+	//クラス
 	CGauge		*cp_gauge;
 	CEffectList	*cp_efctlist;
-	DWORD score[2];			//!< �X�R��
+	DWORD score[2];			//!< スコレ
 
-	//�֐��𕪊������̂Ń��[�J�����Ⴂ���Ȃ��Ȃ�������
+	//関数を分割したのでローカルじゃいけなくなったもの
 	BOOL act_stop;
 
-	//!�|�[�Y���̕`��E����
+	//!ポーズ時の描画・操作
 	CTBattlePause* m_pause_task;
 
-	//!�x���U���v���p�J�E���^
+	//!支援攻撃要請用カウンタ
 	UINT strikercall_counter[2];
 
 	LPDIRECT3DTEXTURE9 tex_fb;
 
-	//! ���v���C�ۑ��t�@�C���f�[�^
+	//! リプレイ保存ファイルデータ
 	CFile RepFile;
 
-	/*�������i�s�Ǘ��� ------------------------------------------------------*/
+	/*■試合進行管理■ ------------------------------------------------------*/
 protected:
-	//T_UpdateStatus������ɕ���
-	virtual void T_UpdateStatus_WaitForEndPose();	//!< �����i�s�Ǘ��E�o��|�[�Y�I���҂�
-	virtual void T_UpdateStatus_RoundCall();		//!< �����i�s�Ǘ��E���E���h�R�[���I���҂�
-	virtual void T_UpdateStatus_Fighting();			//!< �����i�s�Ǘ��E�퓬���
-	virtual void T_UpdateStatus_Finished();			//!< �����i�s�Ǘ��EKO�A�L�����N�^�̍ŏI�_�E���I���҂�
-	virtual void T_UpdateStatus_WaitForEndWin();	//!< �����i�s�Ǘ��E�����|�[�Y�I���҂�
-	virtual void T_UpdateStatus_DoubleKO();			//!< �����i�s�Ǘ��E�_�u��KO�\���I���҂�
-	virtual void T_UpdateStatus_TimeOver();			//!< �����i�s�Ǘ��E�^�C���I�[�o�[�\���I���҂�
+	//T_UpdateStatusをさらに分割
+	virtual void T_UpdateStatus_WaitForEndPose();	//!< 試合進行管理・登場ポーズ終了待ち
+	virtual void T_UpdateStatus_RoundCall();		//!< 試合進行管理・ラウンドコール終了待ち
+	virtual void T_UpdateStatus_Fighting();			//!< 試合進行管理・戦闘状態
+	virtual void T_UpdateStatus_Finished();			//!< 試合進行管理・KO、キャラクタの最終ダウン終了待ち
+	virtual void T_UpdateStatus_WaitForEndWin();	//!< 試合進行管理・勝利ポーズ終了待ち
+	virtual void T_UpdateStatus_DoubleKO();			//!< 試合進行管理・ダブルKO表示終了待ち
+	virtual void T_UpdateStatus_TimeOver();			//!< 試合進行管理・タイムオーバー表示終了待ち
 
-	virtual void Update_DeadFlag();					//!< ���S�t���O�X�V
+	virtual void Update_DeadFlag();					//!< 死亡フラグ更新
 
-	//�����i�s�Ǘ��t���O
-	DWORD winner_oid;								//!< �����|�[�Y�I���҂��Ώ�
-	BOOL m_winpose_end;								//!< �����|�[�Y�I���E����l���������ĂȂ�
-	BOOL m_finaldown_end[2];						//!< �_�E�������t���O
-	BOOL m_tojyo_end[2][MAXNUM_TEAM];				//!< �o��|�[�Y�I���t���O�BKOFLike���̃E�F�C�g�ɂ��g�p
-	BOOL m_all_dead[2];								//!< ���S�t���O
-	BOOL m_dead_one[2][MAXNUM_TEAM];				//!< ���S�t���O
-	BOOL m_active_dead[2];							//!< ���S�t���O
-	BYTE m_round_winner;							//!<  0/1:�����`�[�� , 2:�_�u��KO
+	//試合進行管理フラグ
+	DWORD winner_oid;								//!< 勝利ポーズ終了待ち対象
+	BOOL m_winpose_end;								//!< 勝利ポーズ終了・↑一人分しか見てない
+	BOOL m_finaldown_end[2];						//!< ダウン完了フラグ
+	BOOL m_tojyo_end[2][MAXNUM_TEAM];				//!< 登場ポーズ終了フラグ。KOFLike時のウェイトにも使用
+	BOOL m_all_dead[2];								//!< 死亡フラグ
+	BOOL m_dead_one[2][MAXNUM_TEAM];				//!< 死亡フラグ
+	BOOL m_active_dead[2];							//!< 死亡フラグ
+	BYTE m_round_winner;							//!<  0/1:勝利チーム , 2:ダブルKO
 
 
-	/*���I�u�W�F�N�g�Ǘ���-----------------------------------------------------*/
+	/*■オブジェクト管理■-----------------------------------------------------*/
 public:
-	CGObject* GetGObject(DWORD id);					//!< �w��ID�I�u�W�F�N�g�擾
-	DWORD CreateGObject();							//!< �I�u�W�F�N�g����
-	DWORD CreateGObjectFx();						//!< �I�u�W�F�N�g����(�G�t�F�N�g)
-	void DeleteGObject(DWORD oid);					//!< �I�u�W�F�N�g�j��
-	void SuicideGObject(DWORD oid);					//!< �I�u�W�F�N�g�j���\��
-	CGObject* GetCharacterObject(DWORD j,DWORD i);	//!< �L�����N�^�[�̃I�u�W�F�N�g�擾�i�Q�[�W���ŕK�v�j
+	CGObject* GetGObject(DWORD id);					//!< 指定IDオブジェクト取得
+	DWORD CreateGObject();							//!< オブジェクト生成
+	DWORD CreateGObjectFx();						//!< オブジェクト生成(エフェクト)
+	void DeleteGObject(DWORD oid);					//!< オブジェクト破棄
+	void SuicideGObject(DWORD oid);					//!< オブジェクト破棄予約
+	CGObject* GetCharacterObject(DWORD j,DWORD i);	//!< キャラクターのオブジェクト取得（ゲージ等で必要）
 protected:
-	std::unordered_map< int, CGObject* > p_objects;	//!< �I�u�W�F�N�g����N���X�̃|�C���^
-	DWORD object_regindex;							//!< ���ɐ�������I�u�W�F�N�g�̃C���f�b�N�X
-	std::unordered_map< int, WORD > object_regno;	//!< ���̃C���f�b�N�X�ł����̃I�u�W�F�N�g����������Ă�����
-	std::deque< DWORD > suicide_list;				//!< ���ŃI�u�W�F�N�g���X�g
+	std::unordered_map< int, CGObject* > p_objects;	//!< オブジェクト操作クラスのポインタ
+	DWORD object_regindex;							//!< 次に生成するオブジェクトのインデックス
+	std::unordered_map< int, WORD > object_regno;	//!< そのインデックスでいくつのオブジェクトが生成されてきたか
+	std::deque< DWORD > suicide_list;				//!< 消滅オブジェクトリスト
 };
 
 #define BATTLETASK_FXOBJFLAG		0x80000000

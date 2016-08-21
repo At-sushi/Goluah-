@@ -1,4 +1,4 @@
-// DlgPage2.cpp : À‘•ƒtƒ@ƒCƒ‹
+ï»¿// DlgPage2.cpp : å®Ÿè£…ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #include "stdafx.h"
@@ -10,7 +10,7 @@
 #include "DlgInputAssign.h"
 #include ".\dlgpage2.h"
 
-// CDlgPage2 ƒ_ƒCƒAƒƒO
+// CDlgPage2 ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 IMPLEMENT_DYNAMIC(CDlgPage2, CCfgDialogBase)
 CDlgPage2::CDlgPage2(CWnd* pParent /*=NULL*/)
@@ -43,20 +43,20 @@ BEGIN_MESSAGE_MAP(CDlgPage2, CDialog)
 END_MESSAGE_MAP()
 
 
-// CDlgPage2 ƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰
+// CDlgPage2 ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ©
 
 /*------------------------------------------------------------------
-	İ’è¨ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€
+	è¨­å®šâ†’ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ 
 --------------------------------------------------------------------*/
 BOOL CDlgPage2::OnInitDialog()
 {
 	CCfgDialogBase::OnInitDialog();
 
-	// TODO :  ‚±‚±‚É‰Šú‰»‚ğ’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢
+	// TODO :  ã“ã“ã«åˆæœŸåŒ–ã‚’è¿½åŠ ã—ã¦ãã ã•ã„
 	Reset();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// —áŠO : OCX ƒvƒƒpƒeƒB ƒy[ƒW‚Í•K‚¸ FALSE ‚ğ•Ô‚µ‚Ü‚·B
+	// ä¾‹å¤– : OCX ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ ãƒšãƒ¼ã‚¸ã¯å¿…ãš FALSE ã‚’è¿”ã—ã¾ã™ã€‚
 }
 
 void CDlgPage2::Reset()
@@ -77,7 +77,7 @@ void CDlgPage2::Reset()
 }
 
 /*------------------------------------------------------------------
-	İ’è©ƒ_ƒCƒAƒƒOƒAƒCƒeƒ€
+	è¨­å®šâ†ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¢ã‚¤ãƒ†ãƒ 
 --------------------------------------------------------------------*/
 void CDlgPage2::UpdateSettings()
 {
@@ -90,7 +90,7 @@ void CDlgPage2::UpdateSettings()
 }
 
 /*------------------------------------------------------------------
-	ƒL[ƒ{[ƒhİ’è
+	ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰è¨­å®š
 --------------------------------------------------------------------*/
 void CDlgPage2::OnBnClickedButtonKeybordSetteing()
 {
@@ -99,7 +99,7 @@ void CDlgPage2::OnBnClickedButtonKeybordSetteing()
 }
 
 /*------------------------------------------------------------------
-	ƒpƒbƒhƒ{ƒ^ƒ“İ’è
+	ãƒ‘ãƒƒãƒ‰ãƒœã‚¿ãƒ³è¨­å®š
 --------------------------------------------------------------------*/
 void CDlgPage2::OnBnClickedButtonPadSetting()
 {
@@ -108,7 +108,7 @@ void CDlgPage2::OnBnClickedButtonPadSetting()
 }
 
 /*------------------------------------------------------------------
-	ƒpƒbƒhƒ{ƒ^ƒ“İ’è
+	ãƒ‘ãƒƒãƒ‰ãƒœã‚¿ãƒ³è¨­å®š
 --------------------------------------------------------------------*/
 void CDlgPage2::OnBnClickedButtonInputassign()
 {
@@ -118,5 +118,5 @@ void CDlgPage2::OnBnClickedButtonInputassign()
 
 void CDlgPage2::OnBnClickedCheckPointlimitcut()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 }

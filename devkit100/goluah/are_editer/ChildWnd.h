@@ -1,8 +1,8 @@
-
+ï»¿
 /*===================================================================
 
-	ƒRƒhƒ‚ƒEƒCƒ“ƒhƒE
-	DirectX‚Å‚Ì•`‰æ‚Ég—p
+	ã‚³ãƒ‰ãƒ¢ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+	DirectXã§ã®æç”»ã«ä½¿ç”¨
 
 =====================================================================*/
 #pragma once
@@ -34,27 +34,27 @@ public:
 							}
 
 protected:
-	BOOL m_EditMode;//FALSE:‹éŒ`•ÒW / TRUE:ƒZƒ‹•ÒW
+	BOOL m_EditMode;//FALSE:çŸ©å½¢ç·¨é›† / TRUE:ã‚»ãƒ«ç·¨é›†
 
 	void OnPaint_RectMode(CPaintDC& dc);
 	void OnPaint_CellMode(CPaintDC& dc);
 	void ResetScrollInfo();
 
-	//¡‹éŒ`•ÒWƒ‚[ƒhƒpƒ‰ƒ[ƒ^
+	//â– çŸ©å½¢ç·¨é›†ãƒ¢ãƒ¼ãƒ‰æ™‚ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	UINT mr_current_bmp;
 	UINT mr_EditMode;
 
-	//ƒXƒNƒ[ƒ‹ŠÖŒW
+	//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é–¢ä¿‚
 	SCROLLINFO si_y,si_x;
 	UINT m_prev_scroll_width;
 	UINT m_prev_scroll_height;
 
-	//ƒ}ƒEƒXŠÖ˜A
+	//ãƒã‚¦ã‚¹é–¢é€£
 	BOOL mousedown;
 	BOOL drawprv;
 	int m_sx,m_gx,m_sy,m_gy,mu_xpos,mu_ypos;
 
-	//¡ƒZƒ‹•ÒWƒ‚[ƒhƒpƒ‰ƒ[ƒ^
+	//â– ã‚»ãƒ«ç·¨é›†ãƒ¢ãƒ¼ãƒ‰æ™‚ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	UINT	mc_mag;
 	UINT	mc_EditMode;
 	BOOL	mc_mirrorX;
@@ -69,7 +69,7 @@ protected:
 	float	mc_scale_y;
 	int		mc_rotation;
 
-	//¡GDI•`‰æŠÖ”
+	//â– GDIæç”»é–¢æ•°
 	void DrawRECT(int sx,int gx,int sy,int gy,DWORD type);
 	void DrawRECT2(HDC  hdc ,int sx,int gx,int sy,int gy,DWORD type);
 	void DrawLINE(int sx,int gx,int sy,int gy,DWORD type);

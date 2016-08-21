@@ -1,5 +1,5 @@
-/*
-2011/10/29	‹ó’†‚ÅƒXƒgƒ‰ƒCƒJ[‚ğŒÄ‚ñ‚¾‚É•‚—V‚µ‚È‚¢‚æ‚¤‚É‚µ‚½‚ªA—‰º‘¬“x‚É‰e‹¿ƒAƒŠ
+ï»¿/*
+2011/10/29	ç©ºä¸­ã§ã‚¹ãƒˆãƒ©ã‚¤ã‚«ãƒ¼ã‚’å‘¼ã‚“ã æ™‚ã«æµ®éŠã—ãªã„ã‚ˆã†ã«ã—ãŸãŒã€è½ä¸‹é€Ÿåº¦ã«å½±éŸ¿ã‚¢ãƒª
 */
 #include "StdAfx.h"
 
@@ -19,21 +19,21 @@ extern DI_FUNCTIONS_D *funcd;
 extern ATTACKINFO atkmuki;
 
 // #define MAXNUM_ATTACKINFO	64
-// ATTACKINFO ai[MAXNUM_ATTACKINFO];//UŒ‚—Íî•ñ
+// ATTACKINFO ai[MAXNUM_ATTACKINFO];//æ”»æ’ƒåŠ›æƒ…å ±
 
 void CCharAdaptor::InitAttackInfo()
 {
 //	ZeroMemory(ai,sizeof(ai));
 
-	/*‚±‚±‚ÅUŒ‚—Íî•ñ‚Ì‰Šú‰»‚ğs‚Á‚Ä‚­‚¾‚³‚¢*/
+	/*ã“ã“ã§æ”»æ’ƒåŠ›æƒ…å ±ã®åˆæœŸåŒ–ã‚’è¡Œã£ã¦ãã ã•ã„*/
 	atkmuki.damage = 0;
 	atkmuki.hit = 0;
 	atkmuki.muki = TRUE;
 }
 
-//ƒfƒtƒHƒ‹ƒg’Êí“®ì=================================================
+//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆé€šå¸¸å‹•ä½œ=================================================
 
-void CCharAdaptor::act_taiki()//‰æ–ÊŠO‚É”ò‚ñ‚Å‚Á‚Ä‘Ò‹@‚·‚é
+void CCharAdaptor::act_taiki()//ç”»é¢å¤–ã«é£›ã‚“ã§ã£ã¦å¾…æ©Ÿã™ã‚‹
 {
 	if(pdat->counter < 2){
 //		pdat->cnow = CELL_CROUCH;
@@ -54,7 +54,7 @@ void CCharAdaptor::act_taiki()//‰æ–ÊŠO‚É”ò‚ñ‚Å‚Á‚Ä‘Ò‹@‚·‚é
 	}
 }
 
-void CCharAdaptor::act_koutai()//Œğ‘ã‚µ‚Ä‰æ–Ê“à‚É“ü‚é(1)
+void CCharAdaptor::act_koutai()//äº¤ä»£ã—ã¦ç”»é¢å†…ã«å…¥ã‚‹(1)
 {
 	GOBJECT *pedat;
 	if(pdat->counter==0){
@@ -88,24 +88,24 @@ void CCharAdaptor::act_koutai()//Œğ‘ã‚µ‚Ä‰æ–Ê“à‚É“ü‚é(1)
 //	pdat->cnow = CELL_JAMP1;
 
 	if(pdat->y > 0){
-		pdat->objtype &= ~GOBJFLG_TAIKI;//‘Ò‹@ƒtƒ‰ƒO‚ğÁ‚·
+		pdat->objtype &= ~GOBJFLG_TAIKI;//å¾…æ©Ÿãƒ•ãƒ©ã‚°ã‚’æ¶ˆã™
 		pdat->y=0;
 		pdat->aid = ACTID_NEUTRAL;
 		(*funcs->msg2system)(pdat->id,MSGOBJ2SYS_KOUTAIEND,0);
 	}
 }
 
-void CCharAdaptor::act_koutai2()//“oêƒ|[ƒYEƒLƒ2
+void CCharAdaptor::act_koutai2()//ç™»å ´ãƒãƒ¼ã‚ºãƒ»ã‚­ãƒ¡2
 {
-	/*‚±‚±‚ÉŒğ‘ãŒã‚Ì“oêƒ|[ƒY“®ì‚ğ‹Lq‚µ‚Ä‚­‚¾‚³‚¢*/
+	/*ã“ã“ã«äº¤ä»£å¾Œã®ç™»å ´ãƒãƒ¼ã‚ºå‹•ä½œã‚’è¨˜è¿°ã—ã¦ãã ã•ã„*/
 }
 
-void CCharAdaptor::act_koutai_out()//ƒ`[ƒ€íAŒğ‘ã‚µ‚Ä‰æ–ÊŠO‚É‚¢‚­
+void CCharAdaptor::act_koutai_out()//ãƒãƒ¼ãƒ æˆ¦ã€äº¤ä»£ã—ã¦ç”»é¢å¤–ã«ã„ã
 {
 	if(pdat->counter==0){
-		pdat->objtype &= GOBJTYPE_NODISPLAY;//‰æ–ÊŠO‚Ö‚¢‚¯‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­
-		pdat->objtype |= GOBJFLG_TAIKI;//‘Ò‹@ƒtƒ‰ƒO‚ğ—§‚Ä‚é
-		pdat->objtype &= ~GOBJFLG_TOBETARGET;//ƒ^[ƒQƒbƒg‚É‚Í‚È‚ç‚È‚¢
+		pdat->objtype &= GOBJTYPE_NODISPLAY;//ç”»é¢å¤–ã¸ã„ã‘ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã
+		pdat->objtype |= GOBJFLG_TAIKI;//å¾…æ©Ÿãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
+		pdat->objtype &= ~GOBJFLG_TOBETARGET;//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ã¯ãªã‚‰ãªã„
 	}
 
 	if(pdat->counter < 2){
@@ -129,10 +129,10 @@ void CCharAdaptor::act_koutai_out()//ƒ`[ƒ€íAŒğ‘ã‚µ‚Ä‰æ–ÊŠO‚É‚¢‚­
 	}
 }
 
-void CCharAdaptor::act_koutai_in()//ƒ`[ƒ€íAŒğ‘ã‚µ‚Ä‰æ–Ê“à‚É“ü‚Á‚Ä‚¢‚­(2)
+void CCharAdaptor::act_koutai_in()//ãƒãƒ¼ãƒ æˆ¦ã€äº¤ä»£ã—ã¦ç”»é¢å†…ã«å…¥ã£ã¦ã„ã(2)
 {
 	if(pdat->counter==0){
-		pdat->objtype |= GOBJTYPE_DISPLAY;//‰æ–Ê“à‚É‚¢‚é
+		pdat->objtype |= GOBJTYPE_DISPLAY;//ç”»é¢å†…ã«ã„ã‚‹
 	}
 
 	GOBJECT *pedat;
@@ -166,7 +166,7 @@ void CCharAdaptor::act_koutai_in()//ƒ`[ƒ€íAŒğ‘ã‚µ‚Ä‰æ–Ê“à‚É“ü‚Á‚Ä‚¢‚­(2)
 
 //	pdat->cnow = CELL_JAMP1;
 	if(pdat->y > 0){
-		pdat->objtype &= ~GOBJFLG_TAIKI;//‘Ò‹@ƒtƒ‰ƒO‚ğÁ‚·
+		pdat->objtype &= ~GOBJFLG_TAIKI;//å¾…æ©Ÿãƒ•ãƒ©ã‚°ã‚’æ¶ˆã™
 		pdat->y=0;
 		pdat->aid = ACTID_NEUTRAL;
 	}
@@ -174,9 +174,9 @@ void CCharAdaptor::act_koutai_in()//ƒ`[ƒ€íAŒğ‘ã‚µ‚Ä‰æ–Ê“à‚É“ü‚Á‚Ä‚¢‚­(2)
 
 void CCharAdaptor::act_strikercomeon()
 {
-	/*‚±‚±‚ÉƒXƒgƒ‰ƒCƒJ[‚ğŒÄ‚ñ‚¾‚Æ‚«‚Ì“®ì‚ğ‹Lq‚µ‚Ä‚­‚¾‚³‚¢*/
+	/*ã“ã“ã«ã‚¹ãƒˆãƒ©ã‚¤ã‚«ãƒ¼ã‚’å‘¼ã‚“ã ã¨ãã®å‹•ä½œã‚’è¨˜è¿°ã—ã¦ãã ã•ã„*/
 	pdat->aid = ACTID_KUCYU;
 }
 
-//’Êí“®ì===========================================================
+//é€šå¸¸å‹•ä½œ===========================================================
 

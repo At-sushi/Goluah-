@@ -1,6 +1,6 @@
-
+ï»¿
 //*******************************************************************************
-//  l_directdraw3.cpp ƒrƒbƒgƒ}ƒbƒv•`‰æŠÖ˜A
+//  l_directdraw3.cpp ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—æç”»é–¢é€£
 //*******************************************************************************
 
 #include <windows.h>
@@ -32,7 +32,7 @@ void CDirectDraw::CheckBlt2(MYSURFACE *dds,int x,int y,RECT r,
 {
 	if(dds==NULL){return;}
 
-	//‹éŒ`‚ğ³‚µ‚­İ’è
+	//çŸ©å½¢ã‚’æ­£ã—ãè¨­å®š
 	int dmi;
 	if(r.left > r.right){
 		dmi = r.left;
@@ -56,37 +56,37 @@ void CDirectDraw::CheckBlt2(MYSURFACE *dds,int x,int y,RECT r,
 
 	DWORD i,j;	
 
-	DWORD r_top,r_bottom,r_left,r_right;//warning‚ªƒEƒUƒC
+	DWORD r_top,r_bottom,r_left,r_right;//warningãŒã‚¦ã‚¶ã‚¤
 	r_top=r.top;
 	r_bottom=r.bottom;
 	r_left=r.left;
 	r_right=r.right;
 
-	//‘S‚Ä‚ÌƒeƒNƒXƒ`ƒƒ‚ÉŠÖ‚µ‚Ä•`‰æ‚·‚é‚©‚Ç‚¤‚©’²‚×‚Ä•`‰æ‚·‚é
-	float vl,vr,vt,vb;//Še’¸“_‚ÌÀ•W
-	float tumin,tumax,tvmin,tvmax;//u,vÀ•W‚Ì”ÍˆÍ
-	float ar = (float)g_DISPLAYWIDTH/(float)g_DISPLAYHEIGHT;//ƒAƒXƒyƒNƒg”ä
+	//å…¨ã¦ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«é–¢ã—ã¦æç”»ã™ã‚‹ã‹ã©ã†ã‹èª¿ã¹ã¦æç”»ã™ã‚‹
+	float vl,vr,vt,vb;//å„é ‚ç‚¹ã®åº§æ¨™
+	float tumin,tumax,tvmin,tvmax;//u,våº§æ¨™ã®ç¯„å›²
+	float ar = (float)g_DISPLAYWIDTH/(float)g_DISPLAYHEIGHT;//ã‚¢ã‚¹ãƒšã‚¯ãƒˆæ¯”
 	float ar2 = 2.0f/(float)g_DISPLAYHEIGHT;
-	float centerx = (float)g_DISPLAYWIDTH/2.0f;//x•ûŒü‰æ–Ê’†S
-	float cut_left,cut_right,cut_top,cut_bottom;//Ø‚ê‚Ä‚é’·‚³(ƒsƒNƒZƒ‹’PˆÊ)
-	float transx,transy;//ˆê“I‚Ég—p
-	MYVERTEX3D vrtxarr[4];//’¸“_”z—ñ
-	D3DXMATRIX matw;//ƒ[ƒ‹ƒhÀ•W•ÏŠ·s—ñ
-	D3DXMATRIX tmpmat;//ƒeƒ“ƒ|ƒ‰ƒŠs—ñ
+	float centerx = (float)g_DISPLAYWIDTH/2.0f;//xæ–¹å‘ç”»é¢ä¸­å¿ƒ
+	float cut_left,cut_right,cut_top,cut_bottom;//åˆ‡ã‚Œã¦ã‚‹é•·ã•(ãƒ”ã‚¯ã‚»ãƒ«å˜ä½)
+	float transx,transy;//ä¸€æ™‚çš„ã«ä½¿ç”¨
+	MYVERTEX3D vrtxarr[4];//é ‚ç‚¹é…åˆ—
+	D3DXMATRIX matw;//ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™å¤‰æ›è¡Œåˆ—
+	D3DXMATRIX tmpmat;//ãƒ†ãƒ³ãƒãƒ©ãƒªè¡Œåˆ—
 	for(j=0;j<dds->ysufnum;j++){
 		for(i=0;i<dds->xsufnum;i++){
 			if(dds->pTex[j*dds->xsufnum+i] ==NULL );
-//				OutputDebugString("CheckBlt:ƒeƒNƒXƒ`ƒƒƒ`ƒFƒbƒN‚É¸”s\n");//ƒeƒNƒXƒ`ƒƒƒ`ƒFƒbƒN
+//				OutputDebugString("CheckBlt:ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒã‚§ãƒƒã‚¯ã«å¤±æ•—\n");//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒã‚§ãƒƒã‚¯
 			else if(dds->xsufindx[i]+dds->xsufsize[i] < r_left);
-//				OutputDebugString("¨");//”ÍˆÍƒ`ƒFƒbƒN
+//				OutputDebugString("â†’");//ç¯„å›²ãƒã‚§ãƒƒã‚¯
 			else if(dds->xsufindx[i] > r_right);
-//				OutputDebugString("©");//”ÍˆÍƒ`ƒFƒbƒN
+//				OutputDebugString("â†");//ç¯„å›²ãƒã‚§ãƒƒã‚¯
 			else if(dds->ysufindx[j]+dds->ysufsize[j] < r_top);
-//				OutputDebugString("«");//”ÍˆÍƒ`ƒFƒbƒN
+//				OutputDebugString("â†“");//ç¯„å›²ãƒã‚§ãƒƒã‚¯
 			else if(dds->ysufindx[j] > r_bottom);
-//				OutputDebugString("ª");//”ÍˆÍƒ`ƒFƒbƒN
+//				OutputDebugString("â†‘");//ç¯„å›²ãƒã‚§ãƒƒã‚¯
 			else{
-				//(0) ¶‰Eã‰ºA‚»‚ê‚¼‚ê“]‘—‚µ‚È‚¢•ª‚ğŒvZ
+				//(0) å·¦å³ä¸Šä¸‹ã€ãã‚Œãã‚Œè»¢é€ã—ãªã„åˆ†ã‚’è¨ˆç®—
 				if(dds->xsufindx[i] < r_left)cut_left=(float)(r_left-dds->xsufindx[i]);
 				else cut_left=0;
 				if(dds->xsufindx[i]+dds->xsufsize[i] > r_right)
@@ -99,47 +99,47 @@ void CDirectDraw::CheckBlt2(MYSURFACE *dds,int x,int y,RECT r,
 					cut_bottom = (float)( dds->ysufindx[j]+dds->ysufsize[j] - r_bottom );
 				else cut_bottom=0;
 
-				//(1) u,vÀ•W‚ÌŒvZ
+				//(1) u,våº§æ¨™ã®è¨ˆç®—
 				tumin = cut_left / (float)dds->xsufsize[i];
 				tumax = 1.0f - cut_right/(float)dds->xsufsize[i];
 				tvmin = cut_top / (float)dds->ysufsize[j];
 				tvmax = 1.0f - cut_bottom/(float)dds->ysufsize[j];
 
-				//(2) “]‘—À•W‚ÌŒvZ(ˆÈ~ƒƒ‚QÆ)
-				//•‚Æ‚‚³‚ğ‚¾‚·iƒsƒNƒZƒ‹¨float•ÏŠ·ÏÀ•WŒnj
-				//•
+				//(2) è»¢é€åº§æ¨™ã®è¨ˆç®—(ä»¥é™ãƒ¡ãƒ¢å‚ç…§)
+				//å¹…ã¨é«˜ã•ã‚’ã ã™ï¼ˆãƒ”ã‚¯ã‚»ãƒ«â†’floatå¤‰æ›æ¸ˆåº§æ¨™ç³»ï¼‰
+				//å¹…
 				vl=0;
 				vr=dds->xsufsize[i] - (cut_left+cut_right);
 				vr= vr*ar2;// - ar;
-				//‚‚³
+				//é«˜ã•
 				vt=0;
 				vb=dds->ysufsize[j] - (cut_top+cut_bottom);
 				vb=vb*ar2;//-1.0f
-				//(3) ’¸“_”z—ñ‚ÉÀ•W’l‚ğ‘ã“ü
-				//¶ã
+				//(3) é ‚ç‚¹é…åˆ—ã«åº§æ¨™å€¤ã‚’ä»£å…¥
+				//å·¦ä¸Š
 				vrtxarr[0].x = vl;
 				vrtxarr[0].y = vt;
 				vrtxarr[0].z = z;
-				//¶‰º
+				//å·¦ä¸‹
 				vrtxarr[1].x = vl;
 				vrtxarr[1].y = vb;
 				vrtxarr[1].z = z;
-				//‰Eã
+				//å³ä¸Š
 				vrtxarr[2].x = vr;
 				vrtxarr[2].y = vt;
 				vrtxarr[2].z = z;
-				//‰E‰º
+				//å³ä¸‹
 				vrtxarr[3].x = vr;
 				vrtxarr[3].y = vb;
 				vrtxarr[3].z = z;
 
-				//’¸“_F
+				//é ‚ç‚¹è‰²
 				vrtxarr[0].color = color;
 				vrtxarr[1].color = color;
 				vrtxarr[2].color = color;
 				vrtxarr[3].color = color;
 
-				//(3.5) ƒeƒNƒXƒ`ƒƒÀ•Wİ’è
+				//(3.5) ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™è¨­å®š
 				vrtxarr[0].tu = tumin;
 				vrtxarr[0].tv = tvmin;
 				vrtxarr[1].tu = tumin;
@@ -149,17 +149,17 @@ void CDirectDraw::CheckBlt2(MYSURFACE *dds,int x,int y,RECT r,
 				vrtxarr[3].tu = tumax;
 				vrtxarr[3].tv = tvmax;
 
-				//(4) ƒ[ƒ‹ƒhÀ•W•ÏŠ·s—ñ—pˆÓ
-				//’PˆÊs—ñ
+				//(4) ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™å¤‰æ›è¡Œåˆ—ç”¨æ„
+				//å˜ä½è¡Œåˆ—
 				D3DXMatrixIdentity(&matw);
-				//‹éŒ`“à•ÏŠ·(À•W‚Ì’PˆÊ‚Ífloat•ÏŠ·Œã‚Ì‚à‚Ì)
+				//çŸ©å½¢å†…å¤‰æ›(åº§æ¨™ã®å˜ä½ã¯floatå¤‰æ›å¾Œã®ã‚‚ã®)
 				if(r_left>dds->xsufindx[i])transx=0;
 				else transx = (float)( dds->xsufindx[i] - r_left );
 				if(r_top>dds->ysufindx[j])transy=0;
 				else transy = (float)( dds->ysufindx[j] - r_top );
 				D3DXMatrixTranslation(&tmpmat,transx*ar2,transy*ar2,0);
 				matw *= tmpmat;
-				//”½“]ˆ—
+				//åè»¢å‡¦ç†
 				if(revx){
 					d3dxplane_x.d=((float)r_right-(float)r_left)*ar2/2.0f;
 					D3DXMatrixReflect(&tmpmat,&d3dxplane_x);
@@ -170,23 +170,23 @@ void CDirectDraw::CheckBlt2(MYSURFACE *dds,int x,int y,RECT r,
 					D3DXMatrixReflect(&tmpmat,&d3dxplane_y);
 					matw *= tmpmat;
 				}
-				//Šg‘åk¬
+				//æ‹¡å¤§ç¸®å°
 				D3DXMatrixScaling(&tmpmat,(float)magx,(float)magy,1.0f);
 				matw *= tmpmat;
-				//ˆÚ“®(À•W‚Ì’PˆÊ‚Ífloat•ÏŠ·Œã‚Ì‚à‚Ìj
+				//ç§»å‹•(åº§æ¨™ã®å˜ä½ã¯floatå¤‰æ›å¾Œã®ã‚‚ã®ï¼‰
 				D3DXMatrixTranslation(&tmpmat,(float)x*ar2,(float)y*ar2,0);
 				matw *= tmpmat;
-				if(flag & CKBLT_YUREY){//—h‚ê
+				if(flag & CKBLT_YUREY){//æºã‚Œ
 					D3DXMatrixTranslation(&tmpmat,0,yurey*ar2,0);
 					matw *= tmpmat;
 				}
-				//İ’è‚³‚ê‚½e‚Ì•ÏŠ·‚Æ‡‚í‚¹‚é
+				//è¨­å®šã•ã‚ŒãŸè¦ªã®å¤‰æ›ã¨åˆã‚ã›ã‚‹
 				matw *= matparent;
-				d3ddev->SetTransform(D3DTS_WORLD,&matw);//*İ’è*
-				//(5) •`‰æ
-				d3ddev->SetTexture(0,dds->pTex[j*dds->xsufnum+i]);//ƒeƒNƒXƒ`ƒƒİ’è
-				d3ddev->SetVertexShader( FVF_3DVERTEX );//’¸“_‚ÌƒtƒH[ƒ}ƒbƒg‚ğw’è
-				d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vrtxarr,sizeof(MYVERTEX3D));//•`‰æ
+				d3ddev->SetTransform(D3DTS_WORLD,&matw);//*è¨­å®š*
+				//(5) æç”»
+				d3ddev->SetTexture(0,dds->pTex[j*dds->xsufnum+i]);//ãƒ†ã‚¯ã‚¹ãƒãƒ£è¨­å®š
+				d3ddev->SetVertexShader( FVF_3DVERTEX );//é ‚ç‚¹ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æŒ‡å®š
+				d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vrtxarr,sizeof(MYVERTEX3D));//æç”»
 			}
 		}
 	}
@@ -196,7 +196,7 @@ void CDirectDraw::MyBlt3D(MYSURFACE *dds,RECT src,MYRECT3D dst,DWORD flag,DWORD 
 {
 	if(dds==NULL){return;}
 
-	//‹éŒ`‚ğ³‚µ‚­İ’è
+	//çŸ©å½¢ã‚’æ­£ã—ãè¨­å®š
 	int dmi;
 	if(src.left > src.right){
 		dmi = src.left;
@@ -218,23 +218,23 @@ void CDirectDraw::MyBlt3D(MYSURFACE *dds,RECT src,MYRECT3D dst,DWORD flag,DWORD 
 
 	DWORD i,j;	
 
-	DWORD r_top,r_bottom,r_left,r_right;//warning‚ªƒEƒUƒC
+	DWORD r_top,r_bottom,r_left,r_right;//warningãŒã‚¦ã‚¶ã‚¤
 	r_top=src.top;
 	r_bottom=src.bottom;
 	r_left=src.left;
 	r_right=src.right;
 
-	//‘S‚Ä‚ÌƒeƒNƒXƒ`ƒƒ‚ÉŠÖ‚µ‚Ä•`‰æ‚·‚é‚©‚Ç‚¤‚©’²‚×‚Ä•`‰æ‚·‚é
-	float vl,vr,vt,vb;//Še’¸“_‚ÌÀ•W
-	float tumin,tumax,tvmin,tvmax;//u,vÀ•W‚Ì”ÍˆÍ
-	float ar = (float)g_DISPLAYWIDTH/(float)g_DISPLAYHEIGHT;//ƒAƒXƒyƒNƒg”ä
+	//å…¨ã¦ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«é–¢ã—ã¦æç”»ã™ã‚‹ã‹ã©ã†ã‹èª¿ã¹ã¦æç”»ã™ã‚‹
+	float vl,vr,vt,vb;//å„é ‚ç‚¹ã®åº§æ¨™
+	float tumin,tumax,tvmin,tvmax;//u,våº§æ¨™ã®ç¯„å›²
+	float ar = (float)g_DISPLAYWIDTH/(float)g_DISPLAYHEIGHT;//ã‚¢ã‚¹ãƒšã‚¯ãƒˆæ¯”
 	float ar2 = 2.0f/(float)g_DISPLAYHEIGHT;
-	float centerx = (float)g_DISPLAYWIDTH/2.0f;//x•ûŒü‰æ–Ê’†S
-	float cut_left,cut_right,cut_top,cut_bottom;//Ø‚ê‚Ä‚é’·‚³(ƒsƒNƒZƒ‹’PˆÊ)
-	float transx,transy,sclx,scly;//ˆê“I‚Ég—p
-	MYVERTEX3D vrtxarr[4];//’¸“_”z—ñ
-	D3DXMATRIX matw;//ƒ[ƒ‹ƒhÀ•W•ÏŠ·s—ñ
-	D3DXMATRIX tmpmat;//ƒeƒ“ƒ|ƒ‰ƒŠs—ñ
+	float centerx = (float)g_DISPLAYWIDTH/2.0f;//xæ–¹å‘ç”»é¢ä¸­å¿ƒ
+	float cut_left,cut_right,cut_top,cut_bottom;//åˆ‡ã‚Œã¦ã‚‹é•·ã•(ãƒ”ã‚¯ã‚»ãƒ«å˜ä½)
+	float transx,transy,sclx,scly;//ä¸€æ™‚çš„ã«ä½¿ç”¨
+	MYVERTEX3D vrtxarr[4];//é ‚ç‚¹é…åˆ—
+	D3DXMATRIX matw;//ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™å¤‰æ›è¡Œåˆ—
+	D3DXMATRIX tmpmat;//ãƒ†ãƒ³ãƒãƒ©ãƒªè¡Œåˆ—
 	for(j=0;j<dds->ysufnum;j++){
 		for(i=0;i<dds->xsufnum;i++){
 			if(dds->pTex[j*dds->xsufnum+i] ==NULL );
@@ -243,7 +243,7 @@ void CDirectDraw::MyBlt3D(MYSURFACE *dds,RECT src,MYRECT3D dst,DWORD flag,DWORD 
 			else if(dds->ysufindx[j]+dds->ysufsize[j] < r_top);
 			else if(dds->ysufindx[j] > r_bottom);
 			else{
-				//(0) ¶‰Eã‰ºA‚»‚ê‚¼‚ê“]‘—‚µ‚È‚¢•ª‚ğŒvZ
+				//(0) å·¦å³ä¸Šä¸‹ã€ãã‚Œãã‚Œè»¢é€ã—ãªã„åˆ†ã‚’è¨ˆç®—
 				if(dds->xsufindx[i] < r_left)cut_left=(float)(r_left-dds->xsufindx[i]);
 				else cut_left=0;
 				if(dds->xsufindx[i]+dds->xsufsize[i] > r_right)
@@ -256,47 +256,47 @@ void CDirectDraw::MyBlt3D(MYSURFACE *dds,RECT src,MYRECT3D dst,DWORD flag,DWORD 
 					cut_bottom = (float)( dds->ysufindx[j]+dds->ysufsize[j] - r_bottom );
 				else cut_bottom=0;
 
-				//(1) u,vÀ•W‚ÌŒvZ
+				//(1) u,våº§æ¨™ã®è¨ˆç®—
 				tumin = cut_left / (float)dds->xsufsize[i];
 				tumax = 1.0f - cut_right/(float)dds->xsufsize[i];
 				tvmin = cut_top / (float)dds->ysufsize[j];
 				tvmax = 1.0f - cut_bottom/(float)dds->ysufsize[j];
 
-				//(2) “]‘—À•W‚ÌŒvZ(ˆÈ~ƒƒ‚QÆ)
-				//•‚Æ‚‚³‚ğ‚¾‚·iƒsƒNƒZƒ‹¨float•ÏŠ·ÏÀ•WŒnj
-				//•
+				//(2) è»¢é€åº§æ¨™ã®è¨ˆç®—(ä»¥é™ãƒ¡ãƒ¢å‚ç…§)
+				//å¹…ã¨é«˜ã•ã‚’ã ã™ï¼ˆãƒ”ã‚¯ã‚»ãƒ«â†’floatå¤‰æ›æ¸ˆåº§æ¨™ç³»ï¼‰
+				//å¹…
 				vl=0;
 				vr=dds->xsufsize[i] - (cut_left+cut_right);
 				vr= vr*ar2;// - ar;
-				//‚‚³
+				//é«˜ã•
 				vt=0;
 				vb=dds->ysufsize[j] - (cut_top+cut_bottom);
 				vb=vb*ar2;//-1.0f
-				//(3) ’¸“_”z—ñ‚ÉÀ•W’l‚ğ‘ã“ü
-				//¶ã
+				//(3) é ‚ç‚¹é…åˆ—ã«åº§æ¨™å€¤ã‚’ä»£å…¥
+				//å·¦ä¸Š
 				vrtxarr[0].x = vl;
 				vrtxarr[0].y = vt;
 				vrtxarr[0].z = dst.z;
-				//¶‰º
+				//å·¦ä¸‹
 				vrtxarr[1].x = vl;
 				vrtxarr[1].y = vb;
 				vrtxarr[1].z = dst.z;
-				//‰Eã
+				//å³ä¸Š
 				vrtxarr[2].x = vr;
 				vrtxarr[2].y = vt;
 				vrtxarr[2].z = dst.z;
-				//‰E‰º
+				//å³ä¸‹
 				vrtxarr[3].x = vr;
 				vrtxarr[3].y = vb;
 				vrtxarr[3].z = dst.z;
 
-				//’¸“_F
+				//é ‚ç‚¹è‰²
 				vrtxarr[0].color = color;
 				vrtxarr[1].color = color;
 				vrtxarr[2].color = color;
 				vrtxarr[3].color = color;
 
-				//(3.5) ƒeƒNƒXƒ`ƒƒÀ•Wİ’è
+				//(3.5) ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™è¨­å®š
 				vrtxarr[0].tu = tumin;
 				vrtxarr[0].tv = tvmin;
 				vrtxarr[1].tu = tumin;
@@ -306,34 +306,34 @@ void CDirectDraw::MyBlt3D(MYSURFACE *dds,RECT src,MYRECT3D dst,DWORD flag,DWORD 
 				vrtxarr[3].tu = tumax;
 				vrtxarr[3].tv = tvmax;
 
-				//(4) ƒ[ƒ‹ƒhÀ•W•ÏŠ·s—ñ—pˆÓ
-				//’PˆÊs—ñ
+				//(4) ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™å¤‰æ›è¡Œåˆ—ç”¨æ„
+				//å˜ä½è¡Œåˆ—
 				D3DXMatrixIdentity(&matw);
-				//‹éŒ`“à•ÏŠ·(À•W‚Ì’PˆÊ‚Ífloat•ÏŠ·Œã‚Ì‚à‚Ì)
+				//çŸ©å½¢å†…å¤‰æ›(åº§æ¨™ã®å˜ä½ã¯floatå¤‰æ›å¾Œã®ã‚‚ã®)
 				if(r_left>dds->xsufindx[i])transx=0;
 				else transx = (float)( dds->xsufindx[i] - r_left );
 				if(r_top>dds->ysufindx[j])transy=0;
 				else transy = (float)( dds->ysufindx[j] - r_top );
 				D3DXMatrixTranslation(&tmpmat,transx*ar2,transy*ar2,0);
 				matw *= tmpmat;
-				//w’è‚³‚ê‚½MYRECT3D‚Ü‚ÅŠg‘å&ˆÚ“®
+				//æŒ‡å®šã•ã‚ŒãŸMYRECT3Dã¾ã§æ‹¡å¤§&ç§»å‹•
 				sclx=dst.right-dst.left;
 				scly=dst.bottom-dst.top;
 				D3DXMatrixScaling(&tmpmat,sclx,scly,1.0f);
 				matw *= tmpmat;
 				D3DXMatrixTranslation(&tmpmat,dst.left,dst.top,0);
 				matw *= tmpmat;
-				if(flag & CKBLT_YUREY){//—h‚ê
+				if(flag & CKBLT_YUREY){//æºã‚Œ
 					D3DXMatrixTranslation(&tmpmat,0,yurey*ar2,0);
 					matw *= tmpmat;
 				}
-				//İ’è‚³‚ê‚½e‚Ì•ÏŠ·‚Æ‡‚í‚¹‚é
+				//è¨­å®šã•ã‚ŒãŸè¦ªã®å¤‰æ›ã¨åˆã‚ã›ã‚‹
 				matw *= matparent;
-				d3ddev->SetTransform(D3DTS_WORLD,&matw);//*İ’è*
-				//(5) •`‰æ
-				d3ddev->SetTexture(0,dds->pTex[j*dds->xsufnum+i]);//ƒeƒNƒXƒ`ƒƒİ’è
-				d3ddev->SetVertexShader( FVF_3DVERTEX );//’¸“_‚ÌƒtƒH[ƒ}ƒbƒg‚ğw’è
-				d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vrtxarr,sizeof(MYVERTEX3D));//•`‰æ
+				d3ddev->SetTransform(D3DTS_WORLD,&matw);//*è¨­å®š*
+				//(5) æç”»
+				d3ddev->SetTexture(0,dds->pTex[j*dds->xsufnum+i]);//ãƒ†ã‚¯ã‚¹ãƒãƒ£è¨­å®š
+				d3ddev->SetVertexShader( FVF_3DVERTEX );//é ‚ç‚¹ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æŒ‡å®š
+				d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vrtxarr,sizeof(MYVERTEX3D));//æç”»
 			}
 		}
 	}
@@ -350,30 +350,30 @@ void CDirectDraw::CellDraw(MYSURFACE **pbuf,LPVOID pcdat,LPVOID prdat,DWORD cn,i
 	D3DXMATRIX matp,mat,tmt,matprv,matprv2;
 	float ar2 = 2.0f/(float)g_DISPLAYHEIGHT;
 
-	//ƒLƒƒƒ‰ƒNƒ^[‚Ì•ÏŠ·s—ñ
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®å¤‰æ›è¡Œåˆ—
 	D3DXMatrixIdentity(&matp);
-	D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//dS‚ÉˆÚ“®
+	D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//é‡å¿ƒã«ç§»å‹•
 	matp *= tmt;
-	D3DXMatrixScaling(&tmt,magx,magy,1.0f);//Šg‘å
+	D3DXMatrixScaling(&tmt,magx,magy,1.0f);//æ‹¡å¤§
 	matp *= tmt;
-	D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//‰ñ“]
+	D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//å›è»¢
 	matp *= tmt;
 	if(revy){
 		d3dxplane_y.d=0;
-		D3DXMatrixReflect(&tmt,&d3dxplane_y);//y”½“]
+		D3DXMatrixReflect(&tmt,&d3dxplane_y);//yåè»¢
 		matp *= tmt;
 	}
-	D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);//dS‚É–ß‚·
+	D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);//é‡å¿ƒã«æˆ»ã™
 	matp *= tmt;
 	if(revx){
 		d3dxplane_x.d=0;
-		D3DXMatrixReflect(&tmt,&d3dxplane_x);//x”½“]
+		D3DXMatrixReflect(&tmt,&d3dxplane_x);//xåè»¢
 		matp *= tmt;
 	}
-	D3DXMatrixTranslation(&tmt,(float)x*ar2,(float)y*ar2,0);//•\¦ˆÊ’u‚Ö‚ÌˆÚ“®
+	D3DXMatrixTranslation(&tmt,(float)x*ar2,(float)y*ar2,0);//è¡¨ç¤ºä½ç½®ã¸ã®ç§»å‹•
 	matp *= tmt;
 
-	matprv = SetParentMatrix(matp,FALSE);//uev‚Ì•ÏŠ·s—ñ‚Æ‚µ‚Äİ’è
+	matprv = SetParentMatrix(matp,FALSE);//ã€Œè¦ªã€ã®å¤‰æ›è¡Œåˆ—ã¨ã—ã¦è¨­å®š
 
 	DWORD rn;
 	BOOL c1revx,c1revy;
@@ -381,17 +381,17 @@ void CDirectDraw::CellDraw(MYSURFACE **pbuf,LPVOID pcdat,LPVOID prdat,DWORD cn,i
 	for(int i=0;i<8;i++){
 		rn = cdat[cn].cell[i].cdr;
 		if(rn < GCDMAX_RECTANGLES){
-			//•ÏŠ·s—ñ‚ğŒvZ
+			//å¤‰æ›è¡Œåˆ—ã‚’è¨ˆç®—
 			D3DXMatrixIdentity(&mat);
-			D3DXMatrixTranslation(&tmt,(float)(rdat[rn].center_x)*ar2*(-1.0f),(float)(rdat[rn].center_y)*ar2*(-1.0f),0);//dS‚ÉˆÚ“®
+			D3DXMatrixTranslation(&tmt,(float)(rdat[rn].center_x)*ar2*(-1.0f),(float)(rdat[rn].center_y)*ar2*(-1.0f),0);//é‡å¿ƒã«ç§»å‹•
 			mat *= tmt;
-			D3DXMatrixScaling(&tmt,cdat[cn].cell[i].magx,cdat[cn].cell[i].magy,1.0f);//Šg‘å
+			D3DXMatrixScaling(&tmt,cdat[cn].cell[i].magx,cdat[cn].cell[i].magy,1.0f);//æ‹¡å¤§
 			mat *= tmt;
-			D3DXMatrixRotationZ(&tmt,D3DXToRadian(cdat[cn].cell[i].rot));//‰ñ“]
+			D3DXMatrixRotationZ(&tmt,D3DXToRadian(cdat[cn].cell[i].rot));//å›è»¢
 			mat *= tmt;
-			D3DXMatrixTranslation(&tmt,(float)(rdat[rn].center_x)*ar2,(float)(rdat[rn].center_y)*ar2,0);//dS‚É–ß‚·
+			D3DXMatrixTranslation(&tmt,(float)(rdat[rn].center_x)*ar2,(float)(rdat[rn].center_y)*ar2,0);//é‡å¿ƒã«æˆ»ã™
 			mat *= tmt;
-			D3DXMatrixTranslation(&tmt,(float)(cdat[cn].cell[i].dx)*ar2,(float)(cdat[cn].cell[i].dy)*ar2,0);//•\¦ˆÊ’u‚Ö‚ÌˆÚ“®
+			D3DXMatrixTranslation(&tmt,(float)(cdat[cn].cell[i].dx)*ar2,(float)(cdat[cn].cell[i].dy)*ar2,0);//è¡¨ç¤ºä½ç½®ã¸ã®ç§»å‹•
 			mat *= tmt;
 
 			matprv2 = SetParentMatrix(mat,FALSE,TRUE);
@@ -403,13 +403,13 @@ void CDirectDraw::CellDraw(MYSURFACE **pbuf,LPVOID pcdat,LPVOID prdat,DWORD cn,i
 				0,0,rdat[rn].r,
 				c1revx,
 				c1revy,
-				0,z,color);//•`‰æ
+				0,z,color);//æç”»
 
 			SetParentMatrix(matprv2,TRUE);
 		}
 	}
 
-	SetParentMatrix(matprv,TRUE);//uev‚Ì•ÏŠ·s—ñ‚ğŒ³‚É–ß‚·
+	SetParentMatrix(matprv,TRUE);//ã€Œè¦ªã€ã®å¤‰æ›è¡Œåˆ—ã‚’å…ƒã«æˆ»ã™
 
 	if(cdat[cn].flag & GCDCELL2_LINK)
 		CellDraw(pbuf,pcdat,prdat,cn+1,x,y,z,rot,color);
@@ -435,31 +435,31 @@ void CDirectDraw::CellDrawED(int chcol,MYSURFACE **pbuf,LPVOID pcdat,LPVOID prda
 	D3DXMATRIX matp,mat,tmt,matprv,matprv2;
 	float ar2 = 2.0f/(float)g_DISPLAYHEIGHT;
 
-	//ƒLƒƒƒ‰ƒNƒ^[‚Ì•ÏŠ·s—ñ
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®å¤‰æ›è¡Œåˆ—
 	D3DXMatrixIdentity(&matp);
-	D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//dS‚ÉˆÚ“®
+	D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//é‡å¿ƒã«ç§»å‹•
 	matp *= tmt;
-	D3DXMatrixScaling(&tmt,magx,magy,1.0f);//Šg‘å
+	D3DXMatrixScaling(&tmt,magx,magy,1.0f);//æ‹¡å¤§
 	matp *= tmt;
-	D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//‰ñ“]
+	D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//å›è»¢
 	matp *= tmt;
 	if(revy){
 		d3dxplane_y.d=0;
-		D3DXMatrixReflect(&tmt,&d3dxplane_y);//y”½“]
+		D3DXMatrixReflect(&tmt,&d3dxplane_y);//yåè»¢
 		matp *= tmt;
 	}
-	//dS‚É–ß‚·
+	//é‡å¿ƒã«æˆ»ã™
 	D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);
 	matp *= tmt;
 	if(revx){
 		d3dxplane_x.d=0;
-		D3DXMatrixReflect(&tmt,&d3dxplane_x);//x”½“]
+		D3DXMatrixReflect(&tmt,&d3dxplane_x);//xåè»¢
 		matp *= tmt;
 	}
-	D3DXMatrixTranslation(&tmt,(float)x*ar2,(float)y*ar2,0);//•\¦ˆÊ’u‚Ö‚ÌˆÚ“®
+	D3DXMatrixTranslation(&tmt,(float)x*ar2,(float)y*ar2,0);//è¡¨ç¤ºä½ç½®ã¸ã®ç§»å‹•
 	matp *= tmt;
 
-	matprv = SetParentMatrix(matp,FALSE);//uev‚Ì•ÏŠ·s—ñ‚Æ‚µ‚Äİ’è
+	matprv = SetParentMatrix(matp,FALSE);//ã€Œè¦ªã€ã®å¤‰æ›è¡Œåˆ—ã¨ã—ã¦è¨­å®š
 
 	DWORD rn;
 	BOOL c1revx,c1revy;
@@ -470,21 +470,21 @@ void CDirectDraw::CellDrawED(int chcol,MYSURFACE **pbuf,LPVOID pcdat,LPVOID prda
 	for(int i=0;i<8;i++){
 		rn = cdat[cn].cell[i].cdr;
 		if(rn < GCDMAX_RECTANGLES){
-			//•ÏŠ·s—ñ‚ğŒvZ
+			//å¤‰æ›è¡Œåˆ—ã‚’è¨ˆç®—
 			D3DXMatrixIdentity(&mat);
-			//dS‚ÉˆÚ“®
+			//é‡å¿ƒã«ç§»å‹•
 			D3DXMatrixTranslation(&tmt,(float)(rdat[rn].center_x)*ar2*(-1.0f),(float)(rdat[rn].center_y)*ar2*(-1.0f),0);
 			mat *= tmt;
-			//Šg‘å
+			//æ‹¡å¤§
 			D3DXMatrixScaling(&tmt,cdat[cn].cell[i].magx,cdat[cn].cell[i].magy,1.0f);
 			mat *= tmt;
-			//‰ñ“]
+			//å›è»¢
 			D3DXMatrixRotationZ(&tmt,D3DXToRadian(cdat[cn].cell[i].rot));
 			mat *= tmt;
-			//dS‚É–ß‚·
+			//é‡å¿ƒã«æˆ»ã™
 			D3DXMatrixTranslation(&tmt,(float)(rdat[rn].center_x)*ar2,(float)(rdat[rn].center_y)*ar2,0);
 			mat *= tmt;
-			//•\¦ˆÊ’u‚Ö‚ÌˆÚ“®
+			//è¡¨ç¤ºä½ç½®ã¸ã®ç§»å‹•
 			D3DXMatrixTranslation(&tmt,(float)(cdat[cn].cell[i].dx)*ar2,(float)(cdat[cn].cell[i].dy)*ar2,0);
 			mat *= tmt;
 
@@ -501,13 +501,13 @@ void CDirectDraw::CellDrawED(int chcol,MYSURFACE **pbuf,LPVOID pcdat,LPVOID prda
 				0,0,rdat[rn].r,
 				c1revx,
 				c1revy,
-				0,z,color);//•`‰æ
+				0,z,color);//æç”»
 
 			SetParentMatrix(matprv2,TRUE);
 		}
 	}
 
-	SetParentMatrix(matprv,TRUE);//uev‚Ì•ÏŠ·s—ñ‚ğŒ³‚É–ß‚·
+	SetParentMatrix(matprv,TRUE);//ã€Œè¦ªã€ã®å¤‰æ›è¡Œåˆ—ã‚’å…ƒã«æˆ»ã™
 
 	if(cn < 1023 && linknext)
 		if(cdat[cn].flag & GCDCELL2_LINK)
@@ -545,31 +545,31 @@ void CDirectDraw::HRectDraw(LPVOID pcdat,LPVOID phdat,DWORD cn,int x,int y,float
 	D3DXMATRIX matp,mat,tmt,matprv,matprv2;
 	float ar2 = 2.0f/(float)g_DISPLAYHEIGHT;
 
-	//ƒLƒƒƒ‰ƒNƒ^[‚Ì•ÏŠ·s—ñ
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®å¤‰æ›è¡Œåˆ—
 	D3DXMatrixIdentity(&matp);
-	D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//dS‚ÉˆÚ“®
+	D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//é‡å¿ƒã«ç§»å‹•
 	matp *= tmt;
-	D3DXMatrixScaling(&tmt,magx,magy,1.0f);//Šg‘å
+	D3DXMatrixScaling(&tmt,magx,magy,1.0f);//æ‹¡å¤§
 	matp *= tmt;
-	D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//‰ñ“]
+	D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//å›è»¢
 	matp *= tmt;
 	if(revy){
 		d3dxplane_y.d=0;
-		D3DXMatrixReflect(&tmt,&d3dxplane_y);//y”½“]
+		D3DXMatrixReflect(&tmt,&d3dxplane_y);//yåè»¢
 		matp *= tmt;
 	}
-	//dS‚É–ß‚·
+	//é‡å¿ƒã«æˆ»ã™
 	D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);
 	matp *= tmt;
 	if(revx){
 		d3dxplane_x.d=0;
-		D3DXMatrixReflect(&tmt,&d3dxplane_x);//x”½“]
+		D3DXMatrixReflect(&tmt,&d3dxplane_x);//xåè»¢
 		matp *= tmt;
 	}
-	D3DXMatrixTranslation(&tmt,(float)x*ar2,(float)y*ar2,0);//•\¦ˆÊ’u‚Ö‚ÌˆÚ“®
+	D3DXMatrixTranslation(&tmt,(float)x*ar2,(float)y*ar2,0);//è¡¨ç¤ºä½ç½®ã¸ã®ç§»å‹•
 	matp *= tmt;
 
-	matprv = SetParentMatrix(matp,FALSE);//uev‚Ì•ÏŠ·s—ñ‚Æ‚µ‚Äİ’è
+	matprv = SetParentMatrix(matp,FALSE);//ã€Œè¦ªã€ã®å¤‰æ›è¡Œåˆ—ã¨ã—ã¦è¨­å®š
 
 //	DWORD color;
 	RECT r;
@@ -592,7 +592,7 @@ void CDirectDraw::HRectDraw(LPVOID pcdat,LPVOID phdat,DWORD cn,int x,int y,float
 		DrawLine(r.left,r.bottom,r.right,r.bottom,0xFF0000FF);
 	}
 
-	SetParentMatrix(matprv,TRUE);//uev‚Ì•ÏŠ·s—ñ‚ğŒ³‚É–ß‚·
+	SetParentMatrix(matprv,TRUE);//ã€Œè¦ªã€ã®å¤‰æ›è¡Œåˆ—ã‚’å…ƒã«æˆ»ã™
 }
 
 void CDirectDraw::GCenterDraw(LPVOID pcdat,DWORD cn,int x,int y,float z,int rot,BOOL revx,BOOL revy,float magx,float magy)
@@ -605,21 +605,21 @@ void CDirectDraw::GCenterDraw(LPVOID pcdat,DWORD cn,int x,int y,float z,int rot,
 	D3DXMATRIX matp,mat,tmt,matprv,matprv2;
 	float ar2 = 2.0f/(float)g_DISPLAYHEIGHT;
 
-	//ƒLƒƒƒ‰ƒNƒ^[‚Ì•ÏŠ·s—ñ
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®å¤‰æ›è¡Œåˆ—
 	D3DXMatrixIdentity(&matp);
 	if(revx){
 		d3dxplane_x.d=0;
-		D3DXMatrixReflect(&tmt,&d3dxplane_x);//x”½“]
+		D3DXMatrixReflect(&tmt,&d3dxplane_x);//xåè»¢
 		matp *= tmt;
 	}
-	//dSˆÊ’u‚Ö‚ÌˆÚ“®
+	//é‡å¿ƒä½ç½®ã¸ã®ç§»å‹•
 	D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);
 	matp *= tmt;
-	//•\¦ˆÊ’u‚Ö‚ÌˆÚ“®
+	//è¡¨ç¤ºä½ç½®ã¸ã®ç§»å‹•
 	D3DXMatrixTranslation(&tmt,(float)x*ar2,(float)y*ar2,0);
 	matp *= tmt;
 
-	matprv = SetParentMatrix(matp,FALSE);//uev‚Ì•ÏŠ·s—ñ‚Æ‚µ‚Äİ’è
+	matprv = SetParentMatrix(matp,FALSE);//ã€Œè¦ªã€ã®å¤‰æ›è¡Œåˆ—ã¨ã—ã¦è¨­å®š
 
 	//Draw
 	DrawLine(-20,0,20,0,0xFF00FF00);
@@ -629,11 +629,11 @@ void CDirectDraw::GCenterDraw(LPVOID pcdat,DWORD cn,int x,int y,float z,int rot,
 	DrawLine( 20,-20, 20, 20,0xFF00FF00);
 	DrawLine(-20,-20,-20, 20,0xFF00FF00);
 
-	SetParentMatrix(matprv,TRUE);//uev‚Ì•ÏŠ·s—ñ‚ğŒ³‚É–ß‚·
+	SetParentMatrix(matprv,TRUE);//ã€Œè¦ªã€ã®å¤‰æ›è¡Œåˆ—ã‚’å…ƒã«æˆ»ã™
 }
 
 //*******************************************************************************
-//@•ÏŠ·s—ñİ’èŠÖ˜A
+//ã€€å¤‰æ›è¡Œåˆ—è¨­å®šé–¢é€£
 //*******************************************************************************
 
 // world ------------------------------------------------------------------------
@@ -677,12 +677,12 @@ void CDirectDraw::ResetTransformMatrix()
 	d3ddev->SetTransform(D3DTS_PROJECTION,&matp);
 }
 
-// ŒİŠ·« ****************************************************************
+// äº’æ›æ€§ ****************************************************************
 
 void CDirectDraw::DrawCircle(int x,int y,int rad,int w)
 {
 #ifdef _DEBUG
-	OutputDebugString("¡iŒxjCDirectDraw::DrawCircle‚ªŒÄ‚Î‚ê‚Ü‚µ‚½¡\n");
+	OutputDebugString("â– ï¼ˆè­¦å‘Šï¼‰CDirectDraw::DrawCircleãŒå‘¼ã°ã‚Œã¾ã—ãŸâ– \n");
 #endif
 	return;
 }
