@@ -24,7 +24,6 @@
 CHARACTER_LOAD_OPTION option[] = {
 
 	// 　{ フラグ, 競合するｵﾌﾟｼｮﾝ,依存するｵﾌﾟｼｮﾝ, オプション名, 消費ポイント }
-	{ OPTIONS_HEAVY_HIT, 0, 0, "Heavy Hit", 5 },
 	{ OPTIONS_AUTO_GUARD, 0, 0, "Auto Guard", 8 },
 	{ OPTIONS_KOROKORO		, 0, 0, "KoroKoro"		, 5 },
 	{ OPTIONS_REGENERATOR	, 0, 0, "Regenerator"	, 8 },

@@ -28,7 +28,6 @@ CHARACTER_LOAD_OPTION option[] = {
 	{ OPTIONS_REVERSAL			,0						,0, "Reversal Attack"	, 5 },
 	{ OPTIONS_QUICK_CHARGE		,OPTIONS_STOCKABLE_GAUGE,0, "Quick Charge"		, 7 },
 	{ OPTIONS_STOCKABLE_GAUGE	,OPTIONS_QUICK_CHARGE	,0, "Stockable Gauge"	, 7 },
-	{ OPTIONS_HEAVY_HIT			,0						,0, "Heavy Hit"			, 7 }
 };
 
 
