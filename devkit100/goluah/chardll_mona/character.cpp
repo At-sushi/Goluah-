@@ -603,12 +603,42 @@ DWORD CCharacter::TouchB(ATTACKINFO *info,BOOL hit)
 			break;
 		case ACTID_ATT_CC:
 			{
-				if (m_opt_AAttack && ComLevelCk(3))
+				if (m_opt_AAttack && ComLevelCk(3)){
 					SetComAct(ACTID_AJAMP, 3);
+				}
 				else if (ComLevelCk(3))
 					SetComAct(ACTID_REIKU1C,5);
 			}
 			break;
+		case ACTID_ATT_JA:
+		{
+			if (m_opt_AAttack && ComLevelCk(2)){
+				SetComAct(ACTID_ATT_JB, 3);
+			}
+			if (m_opt_AAttack && ComLevelCk(2)){
+				SetComAct(ACTID_ATT_JC, 3);
+			}
+		}
+		break;
+		case ACTID_ATT_JB:{
+			if (m_opt_AAttack && ComLevelCk(2)){
+				SetComAct(ACTID_ATT_JC, 3);
+			}
+			if (m_opt_AAttack && ComLevelCk(2)){
+				SetComAct(ACTID_ATT_JA, 3);
+			}
+		}
+		break;
+		case ACTID_ATT_JC:{
+			if (m_opt_AAttack && ComLevelCk(2)){
+				SetComAct(ACTID_ATT_JA, 3);
+			}
+			if (m_opt_AAttack && ComLevelCk(2)){
+				SetComAct(ACTID_ATT_JB, 3);
+			}
+		}
+		break;
+
 		//レイク
 		case ACTID_REIKU1A:
 			{
@@ -1091,9 +1121,10 @@ void CCharacter::InitWazInfo()//コンピュータ用技情報の設定
 	waz.att_long[3]   = ACTID_REIKU3A;
 	waz.att_long[4]   = ACTID_GOODBYE1;
 
-	waz.att_tai[0] = ACTID_TATUMAKI1;
-	waz.att_tai[1] = ACTID_TATUMAKI2;
-	waz.att_tai[2] = ACTID_TATUMAKI3;
+	waz.att_tai[0] = ACTID_ATT_CC;
+	waz.att_tai[1] = ACTID_TATUMAKI1;
+	waz.att_tai[2] = ACTID_TATUMAKI2;
+	waz.att_tai[3] = ACTID_TATUMAKI3;
 
 	waz.nageid[0] = ACTID_NAGE1;
 

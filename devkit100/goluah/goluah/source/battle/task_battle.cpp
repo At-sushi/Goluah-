@@ -9,13 +9,13 @@
 
     （ネットワーク非対応版）
 
-	Goluah!! Copyright (C) 2001-2004 aki, 2014-2015 logger, 2004-2015 At-sushi
+    Goluah!! Copyright (C) 2001-2004 aki, 2014-2015 logger, 2004-2015 At-sushi
 
-	This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+    This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
-	This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-	You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+    You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 ==============================================================================*/
 
@@ -74,7 +74,7 @@ void CBattleTask::Initialize()
         AfxGetApp()->DoWaitCursor(1);
     // 動的配列初期化
     p_objects.clear();
-	object_regno.clear();
+    object_regno.clear();
     suicide_list.resize(0);
 
     CBattleTaskBase::Initialize();
@@ -2380,6 +2380,15 @@ void CBattleTask::T_UpdateStatus_WaitForEndPose()
     }
     if(bf_counter>600){//救済措置
         next=TRUE;
+        for (int i = 0; i<2; i++){
+            for (int j = 0; j<MAXNUM_TEAM; j++){
+                if (!m_tojyo_end[i][j]){
+                    GetGObject(charobjid[j][i])->data.aid = ACTID_NEUTRAL;
+                    GetGObject(charobjid[j][i])->data.y = 0;
+                    GetGObject(charobjid[j][i])->data.x = (150 + 50 * i) *(j == 0 ? -1 : 1);
+                }
+            }
+        }
     }
 
     if(next){

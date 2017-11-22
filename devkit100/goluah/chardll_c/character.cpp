@@ -392,14 +392,46 @@ DWORD CCharacter::TouchB(ATTACKINFO *info,BOOL hit)
 	{
 		switch(pdat->aid)
 		{
-			case ACTID_ATT_SC:
+		case ACTID_ATT_SA:
+		{
+			if (ComLevelCk(3)){
+				SetComAct(ACTID_ATT_SB, 5);
+			}
+		}
+		break;
+		case ACTID_ATT_SB:
+		{
+			if (ComLevelCk(2)){
+				SetComAct(ACTID_ATT_SC, 5);
+			}
+		}
+		break;
+		case ACTID_ATT_CA:
+		{
+			if (ComLevelCk(3)){
+				SetComAct(ACTID_ATT_CB, 5);
+			}
+		}
+		break;
+		case ACTID_ATT_CB:
+		{
+			if (ComLevelCk(3)){
+				SetComAct(ACTID_ATT_CC, 5);
+			}
+		}
+		break;
+		case ACTID_ATT_SC:
 			case ACTID_ATT_CC:
 			{
 				if(ComLevelCk(5) && pdat->gauge>=1.0f)
 				{
 					SetComAct(ACTID_DAKKO,10);
 				}
-				else if(ComLevelCk(3))
+				else if (this->pbul_moyaC->GetType() == Moya_Shot && ComLevelCk(3))
+				{
+					SetComAct(ACTID_POI_SHOT, 3);
+				}
+				else if (ComLevelCk(3))
 				{
 					SetComAct(ACTID_STAFF,5);
 				}

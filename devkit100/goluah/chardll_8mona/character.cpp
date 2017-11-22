@@ -371,6 +371,82 @@ DWORD CCharacter::CmdCom_OnNormal(DWORD wid)
 		}
 	}
 
+
+	if (IsLocalCom())
+	{
+		switch (pdat->aid)
+		{
+		case ACTID_ATT_SA:
+		{
+			if (ComLevelCk(3)){
+				SetComAct(ACTID_ATT_SB, 3);
+			}
+			if (ComLevelCk(3)){
+				SetComAct(ACTID_ATT_SC, 5);
+			}
+		}
+		break;
+
+		case ACTID_ATT_SB:
+		{
+			if (ComLevelCk(3)){
+				SetComAct(ACTID_ATT_SC, 3);
+			}
+		}
+		break;
+
+		case ACTID_ATT_SC:
+		{
+			if (ComLevelCk(3)){
+				SetComAct(ACTID_ATT_CC, 5);
+			}
+			if (ComLevelCk(3)){
+				SetComAct(ACTID_SAH2, 5);
+			}
+			if (ComLevelCk(3)){
+				SetComAct(ACTID_FIG2, 5);
+			}
+		}
+		break;
+
+		case ACTID_ATT_CA:
+		{
+			if (ComLevelCk(3)){
+				SetComAct(ACTID_ATT_CB, 3);
+			}
+			if (ComLevelCk(3)){
+				SetComAct(ACTID_ATT_SA, 3);
+			}
+			if (ComLevelCk(3)){
+				SetComAct(ACTID_ATT_CC, 3);
+			}
+		}
+		break;
+
+		case ACTID_ATT_CB:
+		{
+			if (ComLevelCk(3)){
+				SetComAct(ACTID_ATT_SA, 3);
+			}
+			if (ComLevelCk(3)){
+				SetComAct(ACTID_ATT_CC, 3);
+			}
+		}
+		break;
+
+		case ACTID_ATT_CC:
+		{
+			if (ComLevelCk(3)){
+				SetComAct(ACTID_SAH2, 5);
+			}
+			if (ComLevelCk(3)){
+				SetComAct(ACTID_FIG2, 5);
+			}
+		}
+		break;
+		}
+	}
+
 	return CCharacterBase::CmdCom_OnNormal(wid);
 }
 

@@ -278,7 +278,12 @@ DWORD CCharacter::TouchB(ATTACKINFO *info,BOOL hit)
 				if(ComLevelCk(3)){
 					SetComAct(ACTID_ATT_CA,5);
 				}
-			}
+				DWORD maai = GetMaai_H(pdat->id, pdat->eid);
+				if (maai > 230 && ComLevelCk(3)){
+					this->
+						SetComAct(ACTID_TOATE2, 1);
+				}
+		}
 			break;
 		case ACTID_ATT_CA:
 			{

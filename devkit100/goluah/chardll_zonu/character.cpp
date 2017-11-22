@@ -311,7 +311,52 @@ DWORD CCharacter::TouchB(ATTACKINFO *info,BOOL hit)
 	if(!hit)dp*=0.5;
 	AddPowerGauge(dp);
 
-	return CCharacterBase::TouchB(info,hit);
+
+	if (IsLocalCom())
+	{
+		switch (pdat->aid)
+		{
+		case ACTID_ATT_SA:
+		{
+			if (ComLevelCk(3)){
+				SetComAct(ACTID_ATT_SB, 5);
+			}
+		}
+		break;
+		case ACTID_ATT_SB:
+		{
+			if (ComLevelCk(2)){
+				SetComAct(ACTID_ATT_SC, 5);
+			}
+		}
+		break;
+		case ACTID_ATT_CA:
+		{
+			if (ComLevelCk(3)){
+				SetComAct(ACTID_ATT_CB, 5);
+			}
+		}
+		break;
+		case ACTID_ATT_CB:
+		{
+			if (ComLevelCk(3)){
+				SetComAct(ACTID_ATT_CC, 5);
+			}
+		}
+		break;
+		case ACTID_ATT_SC:
+		case ACTID_ATT_CC:
+		{
+			if (ComLevelCk(3))
+			{
+				SetComAct(ACTID_TETU2, 5);
+			}
+		}
+		break;
+		}
+	}
+
+	return CCharacterBase::TouchB(info, hit);
 }
 
 /*--------------------------------------------------------------------------------------
