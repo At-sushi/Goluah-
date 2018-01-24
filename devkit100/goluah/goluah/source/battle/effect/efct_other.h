@@ -40,7 +40,7 @@ public:
 	BOOL Draw();
 };
 
-#define BIGTUBUTUBUSIZE	8
+#define BIGTUBUTUBUSIZE	16
 /*!
 *	@brief エフェクト描画オブジェクト・粒々（大）
 *	@ingroup Battle

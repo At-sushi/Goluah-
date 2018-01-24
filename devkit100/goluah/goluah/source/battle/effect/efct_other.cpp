@@ -179,7 +179,7 @@ void CFxPSprite::Update()
 		vb[tmp2].y += vy[tmp2];
 		//α値を設定
 		tmp4 = (255 / (life[tmp2]+1) )* pdat->counter;
-		tmp4 = 255-tmp4;
+		tmp4 = 255/*-tmp4*/;
 		vb[tmp2].color &= 0x00FFFFFF;
 		vb[tmp2].color |= (((BYTE)tmp4)*255*255*255)&0xFF000000;
 		if(pdat->counter < life[tmp2])tmp3=FALSE;
@@ -196,7 +196,7 @@ BOOL CFxPSprite::Draw()
 	
 	PointSetting();
 
-	g_draw.SetAlphaMode(GBLEND_KASAN);//合成のモード
+//	g_draw.SetAlphaMode(GBLEND_KASAN);//合成のモード
 	g_draw.EnableZ(TRUE,FALSE);//Z書き込みOFF
 
 	for(UINT i=0;i<num;i++)
@@ -216,7 +216,7 @@ BOOL CFxPSprite::Draw()
 	D3DXMATRIX transm = aki3d.CreateMatrix( NULL, NULL, &vtrans);
 	m_part->Render(&matw);
 
-	g_draw.SetAlphaMode(0);//合成のモード
+//	g_draw.SetAlphaMode(0);//合成のモード
 	g_draw.EnableZ();//Z書き込みON(規定値)
 
 	return TRUE;

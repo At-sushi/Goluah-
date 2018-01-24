@@ -14,7 +14,7 @@
 void CFxHitmark1::Update()
 {
 	if(pdat->counter == 1){
-		AddEffect(EFCTID_TUBUTUBU,(int)pdat->x,(int)pdat->y,TUBUTUBUPRM(15,10,5,5,5,4,7,0));
+		AddEffect(EFCTID_TUBUTUBU2,(int)pdat->x,(int)pdat->y,TUBUTUBUPRM(15,10,5,5,5,4,7,0));
 	}
 	if(pdat->counter < 6)pdat->cnow=CELL_HITMARK1_4;
 	else if(pdat->counter < 8)pdat->cnow=CELL_HITMARK1_3;
@@ -32,6 +32,12 @@ void CFxHitmark1::Update()
 
 BOOL CFxHitmark1::Draw()
 {
+	UINT counter = pdat->counter;
+
+	if (counter < 15){//‰~
+		g_draw.DrawCircle((int)pdat->x, (int)pdat->y, (counter + 4) * 5,
+			30, 0, 0x00FFCC33 + (((255 - counter*(255 / 15)) * 255 * 255 * 255) & 0xFF000000), TRUE);
+	}
 	return pdat->counter<12 ? FALSE : TRUE;
 }
 
@@ -41,7 +47,7 @@ BOOL CFxHitmark1::Draw()
 void CFxHitmark2::Update()
 {
 	if(pdat->counter == 1){
-		AddEffect(EFCTID_TUBUTUBU,(int)pdat->x,(int)pdat->y,TUBUTUBUPRM(15,10,8,5,5,5,9,0));
+		AddEffect(EFCTID_TUBUTUBU2,(int)pdat->x,(int)pdat->y,TUBUTUBUPRM(15,10,8,5,5,5,9,0));
 	}
 	if(pdat->counter < 8)pdat->cnow=CELL_HITMARK2_1;
 	else if(pdat->counter < 11)pdat->cnow=CELL_HITMARK2_2;
@@ -62,7 +68,7 @@ void CFxHitmark2::Update()
 void CFxHitmark3::Update()
 {
 	if(pdat->counter == 1){
-		AddEffect(EFCTID_TUBUTUBU,(int)pdat->x,(int)pdat->y,TUBUTUBUPRM(15,12,8,5,5,8,9,0));
+		AddEffect(EFCTID_TUBUTUBU2,(int)pdat->x,(int)pdat->y,TUBUTUBUPRM(15,12,8,5,5,8,9,0));
 	}
 	if(pdat->counter < 10)pdat->cnow=CELL_HITMARK3_1;
 	else if(pdat->counter < 14)pdat->cnow=CELL_HITMARK3_2;
@@ -100,13 +106,40 @@ void CFxHitmark4::Update()
 	}
 }
 
+
+BOOL CFxHitmark2::Draw()
+{
+	UINT counter = pdat->counter;
+
+	if (counter < 15){//‰~
+		g_draw.DrawCircle((int)pdat->x, (int)pdat->y, (counter + 4) * 5,
+			30, 0, 0x00FFCC33 + (((255 - counter*(255 / 15)) * 255 * 255 * 255) & 0xFF000000), TRUE);
+	}
+	if (counter >= 20)return(TRUE);
+
+	return FALSE;
+}
+
+BOOL CFxHitmark3::Draw()
+{
+	UINT counter = pdat->counter;
+
+	if (counter < 15){//‰~
+		g_draw.DrawCircle((int)pdat->x, (int)pdat->y, (counter + 4) * 5,
+			30, 0, 0x00FFCC33 + (((255 - counter*(255 / 15)) * 255 * 255 * 255) & 0xFF000000), TRUE);
+	}
+	if (counter >= 20)return(TRUE);
+
+	return FALSE;
+}
+
 BOOL CFxHitmark4::Draw()
 {
 	UINT counter = pdat->counter;
 
 	if(counter < 15){//‰~
 		g_draw.DrawCircle((int)pdat->x,(int)pdat->y,(counter+4)*5,
-			10,0,0x00FFAA00 + (((255-counter*(255/15))*255*255*255)&0xFF000000),TRUE);
+			30,0,0x00FFCC33 + (((255-counter*(255/15))*255*255*255)&0xFF000000),TRUE);
 	}
 	if(counter>=20)return(TRUE);
 

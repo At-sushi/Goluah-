@@ -26,6 +26,7 @@ class CFxHitmark2 : public CSystemFxBase
 {
 public:
 	void Update();
+	BOOL Draw();
 };
 
 /*!
@@ -36,6 +37,7 @@ class CFxHitmark3 : public CSystemFxBase
 {
 public:
 	void Update();
+	BOOL Draw();
 };
 
 /*!
