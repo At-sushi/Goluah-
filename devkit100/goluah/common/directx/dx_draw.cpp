@@ -2684,7 +2684,8 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—
 	else
 	{
 		D3DXMATRIX matp,mat,tmt,matprv,matprv2;
-		float ar2 = 2.0f/480.0f;;
+		D3DXQUATERNION quat;
+		const float ar2 = 2.0f / 480.0f;
 
 		//ZW/ZTƒtƒ‰ƒO‘€ì
 		if((cdat[cn].flag & GCDCELL2_DISABLE_ZT) || (cdat[cn].flag & GCDCELL2_DISABLE_ZW))
@@ -2695,27 +2696,33 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—
 		}
 
 		//ƒLƒƒƒ‰ƒNƒ^[‚Ì•ÏŠ·s—ñ
-		D3DXMatrixIdentity(&matp);
+		const auto center = D3DXVECTOR3((float)(cdat[cn].gcx)*ar2, (float)(cdat[cn].gcy)*ar2, 0);//dS
+		D3DXQuaternionRotationAxis(&quat, &D3DXVECTOR3(0, 0, 1), D3DXToRadian(rot));
+
 		if(!(cdat[cn].flag & GCDCELL2_SCA_GCENTER))
 		{	
 			if(cdat[cn].flag & GCDCELL2_ROT_BASEPOINT)
 			{
 				//ƒXƒP[ƒ‹F‘«Œ³’†S ‰ñ“]F‘«Œ³’†S
-				D3DXMatrixScaling(&tmt,magx,magy,1.0f);//Šg‘å
-				matp *= tmt;
-				D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//‰ñ“]
-				matp *= tmt;
-				D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//dS‚ÉˆÚ“®
-				matp *= tmt;
+				D3DXMatrixTransformation(&matp,
+					NULL,
+					NULL,
+					&D3DXVECTOR3(magx, magy, 1.0f),//Šg‘å
+					NULL,
+					&quat,//‰ñ“]
+					&D3DXVECTOR3((float)(cdat[cn].gcx)*ar2, (float)(cdat[cn].gcy)*ar2, 0)//•\Ž¦ˆÊ’u‚Ö‚ÌˆÚ“®
+					);
 			}
 			else{
 				//ƒXƒP[ƒ‹F‘«Œ³’†S ‰ñ“]FdS’†S
-				D3DXMatrixScaling(&tmt,magx,magy,1.0f);//Šg‘å
-				matp *= tmt;
-				D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//dS‚ÉˆÚ“®
-				matp *= tmt;
-				D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//‰ñ“]
-				matp *= tmt;
+				D3DXMatrixTransformation(&matp,
+					NULL,
+					NULL,
+					&D3DXVECTOR3(magx, magy, 1.0f),//Šg‘å
+					&center,
+					&quat,//‰ñ“]
+					&D3DXVECTOR3((float)(cdat[cn].gcx)*ar2, (float)(cdat[cn].gcy)*ar2, 0)//•\Ž¦ˆÊ’u‚Ö‚ÌˆÚ“®
+					);
 			}
 		}
 		else
@@ -2723,30 +2730,36 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—
 			if(cdat[cn].flag & GCDCELL2_ROT_BASEPOINT)
 			{
 				//ƒXƒP[ƒ‹FdS’†S ‰ñ“]F‘«Œ³’†S
-				D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//‰ñ“]
-				matp *= tmt;
-				D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//dS‚ÉˆÚ“®
-				matp *= tmt;
-				D3DXMatrixScaling(&tmt,magx,magy,1.0f);//Šg‘å
-				matp *= tmt;
+				D3DXMatrixTransformation(&matp,
+					&center,
+					&quat,	// ©ƒoƒOor‚â‚Þ‚ð“¾‚È‚¢ˆ’u‚¾‚Á‚½‰Â”\«H‚Æ‚è‚ ‚¦‚¸v1.00‚Ì‹““®‚ðÄŒ»
+					&D3DXVECTOR3(magx, magy, 1.0f),//Šg‘å
+					NULL,
+					&quat,//‰ñ“]
+					&D3DXVECTOR3((float)(cdat[cn].gcx)*ar2, (float)(cdat[cn].gcy)*ar2, 0)//•\Ž¦ˆÊ’u‚Ö‚ÌˆÚ“®
+					);
 			}
 			else{
 				//ƒXƒP[ƒ‹FdS’†S ‰ñ“]FdS’†S
-				D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//dS‚ÉˆÚ“®
-				matp *= tmt;
-				D3DXMatrixScaling(&tmt,magx,magy,1.0f);//Šg‘å
-				matp *= tmt;
-				D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//‰ñ“]
-				matp *= tmt;
+				D3DXMatrixTransformation(&matp,
+					&center,
+					NULL,
+					&D3DXVECTOR3(magx, magy, 1.0f),//Šg‘å
+					&center,
+					&quat,//‰ñ“]
+					&D3DXVECTOR3((float)(cdat[cn].gcx)*ar2, (float)(cdat[cn].gcy)*ar2, 0)//•\Ž¦ˆÊ’u‚Ö‚ÌˆÚ“®
+					);
 			}
 		}
 		if(revy){
-			d3dxplane_y.d=0;
+			D3DXMatrixTranslation(&tmt, (float)(cdat[cn].gcx)*ar2*(-1.0f), (float)(cdat[cn].gcy)*ar2*(-1.0f), 0);//dS‚ÉˆÚ“®
+			matp *= tmt;
+			d3dxplane_y.d = 0;
 			D3DXMatrixReflect(&tmt,&d3dxplane_y);//y”½“]
 			matp *= tmt;
+			D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);//dS‚É–ß‚·
+			matp *= tmt;
 		}
-		D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);//dS‚É–ß‚·
-		matp *= tmt;
 		if(revx){
 			d3dxplane_x.d=0;
 			D3DXMatrixReflect(&tmt,&d3dxplane_x);//x”½“]
@@ -2764,17 +2777,16 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—
 			rn = cdat[cn].cell[i].cdr;
 			if(rn < GCDMAX_RECTANGLES && rn!=0 && rdat[rn].bmpno<GCDMAX_IMAGES){
 				//•ÏŠ·s—ñ‚ðŒvŽZ
-				D3DXMatrixIdentity(&mat);
-				D3DXMatrixTranslation(&tmt,(float)(rdat[rn].center_x)*ar2*(-1.0f),(float)(rdat[rn].center_y)*ar2*(-1.0f),0);//dS‚ÉˆÚ“®
-				mat *= tmt;
-				D3DXMatrixScaling(&tmt,cdat[cn].cell[i].magx,cdat[cn].cell[i].magy,1.0f);//Šg‘å
-				mat *= tmt;
-				D3DXMatrixRotationZ(&tmt,D3DXToRadian(cdat[cn].cell[i].rot));//‰ñ“]
-				mat *= tmt;
-				D3DXMatrixTranslation(&tmt,(float)(rdat[rn].center_x)*ar2,(float)(rdat[rn].center_y)*ar2,0);//dS‚É–ß‚·
-				mat *= tmt;
-				D3DXMatrixTranslation(&tmt,(float)(cdat[cn].cell[i].dx)*ar2,(float)(cdat[cn].cell[i].dy)*ar2,0);//•\Ž¦ˆÊ’u‚Ö‚ÌˆÚ“®
-				mat *= tmt;
+				const auto center = D3DXVECTOR3((float)(rdat[rn].center_x)*ar2, (float)(rdat[rn].center_y)*ar2, 0);//dS
+
+				D3DXMatrixTransformation(&mat,
+					&center,
+					NULL,
+					&D3DXVECTOR3(cdat[cn].cell[i].magx, cdat[cn].cell[i].magy, 1.0f),//Šg‘å
+					&center,
+					D3DXQuaternionRotationAxis(&quat, &D3DXVECTOR3(0, 0, 1), D3DXToRadian(cdat[cn].cell[i].rot)),//‰ñ“]
+					&D3DXVECTOR3((float)(cdat[cn].cell[i].dx)*ar2, (float)(cdat[cn].cell[i].dy)*ar2, 0)//•\Ž¦ˆÊ’u‚Ö‚ÌˆÚ“®
+					);
 
 				matprv2 = SetParentMatrix(mat,FALSE,TRUE);
 
@@ -2938,23 +2950,29 @@ void CDirectDraw::CellDraw070(
 	else
 	{
 		D3DXMATRIX matp,mat,tmt,matprv,matprv2;
-		float ar2 = 2.0f/480.0f;
+		D3DXQUATERNION quat;
+		const float ar2 = 2.0f / 480.0f;
 
 		//ƒLƒƒƒ‰ƒNƒ^[‚Ì•ÏŠ·s—ñ
-		D3DXMatrixIdentity(&matp);
-		D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//dS‚ÉˆÚ“®
-		matp *= tmt;
-		D3DXMatrixScaling(&tmt,magx,magy,1.0f);//Šg‘å
-		matp *= tmt;
-		D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//‰ñ“]
-		matp *= tmt;
+		const auto center = D3DXVECTOR3((float)(cdat[cn].gcx)*ar2, (float)(cdat[cn].gcy)*ar2, 0);//dS
+
+		D3DXMatrixTransformation(&matp,
+			&center,
+			NULL,
+			&D3DXVECTOR3(magx, magy, 1.0f),//Šg‘å
+			&center,
+			D3DXQuaternionRotationAxis(&quat, &D3DXVECTOR3(0, 0, 1), D3DXToRadian(rot)),//‰ñ“]
+			&D3DXVECTOR3((float)(cdat[cn].gcx)*ar2, (float)(cdat[cn].gcy)*ar2, 0)//•\Ž¦ˆÊ’u‚Ö‚ÌˆÚ“®
+			);
 		if(revy){
-			d3dxplane_y.d=0;
+			D3DXMatrixTranslation(&tmt, (float)(cdat[cn].gcx)*ar2*(-1.0f), (float)(cdat[cn].gcy)*ar2*(-1.0f), 0);//dS‚ÉˆÚ“®
+			matp *= tmt;
+			d3dxplane_y.d = 0;
 			D3DXMatrixReflect(&tmt,&d3dxplane_y);//y”½“]
 			matp *= tmt;
+			D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);//dS‚É–ß‚·
+			matp *= tmt;
 		}
-		D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);//dS‚É–ß‚·
-		matp *= tmt;
 		if(revx){
 			d3dxplane_x.d=0;
 			D3DXMatrixReflect(&tmt,&d3dxplane_x);//x”½“]
@@ -2972,17 +2990,16 @@ void CDirectDraw::CellDraw070(
 			rn = cdat[cn].cell[i].cdr;
 			if(rn < GCDMAX_RECTANGLES && rn!=0 && rdat[rn].bmpno<GCDMAX_IMAGES){
 				//•ÏŠ·s—ñ‚ðŒvŽZ
-				D3DXMatrixIdentity(&mat);
-				D3DXMatrixTranslation(&tmt,(float)(rdat[rn].center_x)*ar2*(-1.0f),(float)(rdat[rn].center_y)*ar2*(-1.0f),0);//dS‚ÉˆÚ“®
-				mat *= tmt;
-				D3DXMatrixScaling(&tmt,cdat[cn].cell[i].magx,cdat[cn].cell[i].magy,1.0f);//Šg‘å
-				mat *= tmt;
-				D3DXMatrixRotationZ(&tmt,D3DXToRadian(cdat[cn].cell[i].rot));//‰ñ“]
-				mat *= tmt;
-				D3DXMatrixTranslation(&tmt,(float)(rdat[rn].center_x*cdat[cn].cell[i].magx)*ar2,(float)(rdat[rn].center_y)*ar2,0);//dS‚É–ß‚·
-				mat *= tmt;
-				D3DXMatrixTranslation(&tmt,(float)(cdat[cn].cell[i].dx)*ar2,(float)(cdat[cn].cell[i].dy)*ar2,0);//•\Ž¦ˆÊ’u‚Ö‚ÌˆÚ“®
-				mat *= tmt;
+				const auto center = D3DXVECTOR3((float)(rdat[rn].center_x)*ar2, (float)(rdat[rn].center_y)*ar2, 0);//dS
+
+				D3DXMatrixTransformation(&mat,
+					&center,
+					NULL,
+					&D3DXVECTOR3(cdat[cn].cell[i].magx, cdat[cn].cell[i].magy, 1.0f),//Šg‘å
+					&center,
+					D3DXQuaternionRotationAxis(&quat, &D3DXVECTOR3(0, 0, 1), D3DXToRadian(cdat[cn].cell[i].rot)),//‰ñ“]
+					&D3DXVECTOR3((float)(cdat[cn].cell[i].dx)*ar2, (float)(cdat[cn].cell[i].dy)*ar2, 0)//•\Ž¦ˆÊ’u‚Ö‚ÌˆÚ“®
+					);
 
 				matprv2 = SetParentMatrix(mat,FALSE,TRUE);
 
