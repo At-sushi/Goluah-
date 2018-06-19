@@ -2710,7 +2710,7 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—
 					&D3DXVECTOR3(magx, magy, 1.0f),//Šg‘å
 					NULL,
 					&quat,//‰ñ“]
-					&D3DXVECTOR3((float)(cdat[cn].gcx)*ar2, (float)(cdat[cn].gcy)*ar2, 0)//•\Ž¦ˆÊ’u‚Ö‚ÌˆÚ“®
+					NULL
 					);
 			}
 			else{
@@ -2721,7 +2721,7 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—
 					&D3DXVECTOR3(magx, magy, 1.0f),//Šg‘å
 					&center,
 					&quat,//‰ñ“]
-					&D3DXVECTOR3((float)(cdat[cn].gcx)*ar2, (float)(cdat[cn].gcy)*ar2, 0)//•\Ž¦ˆÊ’u‚Ö‚ÌˆÚ“®
+					NULL
 					);
 			}
 		}
@@ -2736,7 +2736,7 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—
 					&D3DXVECTOR3(magx, magy, 1.0f),//Šg‘å
 					NULL,
 					&quat,//‰ñ“]
-					&D3DXVECTOR3((float)(cdat[cn].gcx)*ar2, (float)(cdat[cn].gcy)*ar2, 0)//•\Ž¦ˆÊ’u‚Ö‚ÌˆÚ“®
+					NULL
 					);
 			}
 			else{
@@ -2747,7 +2747,7 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—
 					&D3DXVECTOR3(magx, magy, 1.0f),//Šg‘å
 					&center,
 					&quat,//‰ñ“]
-					&D3DXVECTOR3((float)(cdat[cn].gcx)*ar2, (float)(cdat[cn].gcy)*ar2, 0)//•\Ž¦ˆÊ’u‚Ö‚ÌˆÚ“®
+					NULL
 					);
 			}
 		}
@@ -2765,8 +2765,9 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—
 			D3DXMatrixReflect(&tmt,&d3dxplane_x);//x”½“]
 			matp *= tmt;
 		}
-		D3DXMatrixTranslation(&tmt,(float)x*ar2,(float)y*ar2,0);//•\Ž¦ˆÊ’u‚Ö‚ÌˆÚ“®
-		matp *= tmt;
+		//•\Ž¦ˆÊ’u‚Ö‚ÌˆÚ“®
+		matp._41 += (float)x*ar2;
+		matp._42 += (float)y*ar2;
 
 		matprv = SetParentMatrix(matp,FALSE,TRUE);//uev‚Ì•ÏŠ·s—ñ‚Æ‚µ‚ÄÝ’è
 
@@ -2962,7 +2963,7 @@ void CDirectDraw::CellDraw070(
 			&D3DXVECTOR3(magx, magy, 1.0f),//Šg‘å
 			&center,
 			D3DXQuaternionRotationAxis(&quat, &D3DXVECTOR3(0, 0, 1), D3DXToRadian(rot)),//‰ñ“]
-			&D3DXVECTOR3((float)(cdat[cn].gcx)*ar2, (float)(cdat[cn].gcy)*ar2, 0)//•\Ž¦ˆÊ’u‚Ö‚ÌˆÚ“®
+			NULL
 			);
 		if(revy){
 			D3DXMatrixTranslation(&tmt, (float)(cdat[cn].gcx)*ar2*(-1.0f), (float)(cdat[cn].gcy)*ar2*(-1.0f), 0);//dS‚ÉˆÚ“®
@@ -2978,8 +2979,9 @@ void CDirectDraw::CellDraw070(
 			D3DXMatrixReflect(&tmt,&d3dxplane_x);//x”½“]
 			matp *= tmt;
 		}
-		D3DXMatrixTranslation(&tmt,(float)x*ar2,(float)y*ar2,0);//•\Ž¦ˆÊ’u‚Ö‚ÌˆÚ“®
-		matp *= tmt;
+		//•\Ž¦ˆÊ’u‚Ö‚ÌˆÚ“®
+		matp._41 += (float)x*ar2;
+		matp._42 += (float)y*ar2;
 
 		matprv = SetParentMatrix(matp,FALSE);//uev‚Ì•ÏŠ·s—ñ‚Æ‚µ‚ÄÝ’è
 
