@@ -2208,37 +2208,39 @@ void CDirectDraw::CheckBlt2(MYSURFACE *dds,int x,int y,RECT r,
 		//全てのテクスチャに関して描画するかどうか調べて描画する
 		float vl,vr,vt,vb;//各頂点の座標
 		float tumin,tumax,tvmin,tvmax;//u,v座標の範囲
-		float ar = 640.0f/480.0f;//アスペクト比
-		float ar2 = 2.0f/480.0f;
-		float centerx = (float)640.0f/2.0f;//x方向画面中心
+		const float ar = 640.0f/480.0f;//アスペクト比
+		const float ar2 = 2.0f/480.0f;
+		const float centerx = (float)640.0f/2.0f;//x方向画面中心
 		MYVERTEX3D* vrtxarr;//頂点配列
 		D3DXMATRIX matw;//ワールド座標変換行列
 		D3DXMATRIX tmpmat;//テンポラリ行列
 		D3DXMATRIX matpres;//プリセット変換行列
 
 		// プリセット準備
-		D3DXMatrixIdentity(&matpres);
 		//反転処理
 		if(revx){
 			d3dxplane_x.d=((float)r_right-(float)r_left)*ar2/2.0f;
-			D3DXMatrixReflect(&tmpmat,&d3dxplane_x);
-			matpres *= tmpmat;
+			D3DXMatrixReflect(&matpres, &d3dxplane_x);
 		}
+		else
+			D3DXMatrixIdentity(&matpres);
+
 		if(revy){
 			d3dxplane_y.d=((float)r_bottom-(float)r_top)*ar2/2.0f;
 			D3DXMatrixReflect(&tmpmat,&d3dxplane_y);
 			matpres *= tmpmat;
 		}
-		//拡大縮小
-		D3DXMatrixScaling(&tmpmat,(float)magx,(float)magy,1.0f);
+
+		auto tempY = (float)y / HALF_HEIGHT;
+		if(flag & CKBLT_YUREY)//揺れ
+			tempY += yurey*ar2;
+
+		D3DXMatrixTransformation(&tmpmat,
+			NULL, NULL,
+			&D3DXVECTOR3((float)magx, (float)magy, 1.0f),//拡大縮小
+			NULL, NULL,
+			&D3DXVECTOR3((float)x / HALF_HEIGHT, tempY,/*z*/0));//移動(座標の単位はfloat変換後のもの）
 		matpres *= tmpmat;
-		//移動(座標の単位はfloat変換後のもの）
-		D3DXMatrixTranslation(&tmpmat,(float)x/HALF_HEIGHT,(float)y/HALF_HEIGHT,/*z*/0);
-		matpres *= tmpmat;
-		if(flag & CKBLT_YUREY){//揺れ
-			D3DXMatrixTranslation(&tmpmat,0,yurey*ar2,0);
-			matpres *= tmpmat;
-		}
 		//設定された親の変換と合わせる
 		matpres *= matparent;
 
@@ -2320,15 +2322,12 @@ void CDirectDraw::CheckBlt2(MYSURFACE *dds,int x,int y,RECT r,
 					if (pMyVertex) pMyVertex->Unlock();
 
 					//(4) ワールド座標変換行列用意
-					//単位行列
-					D3DXMatrixIdentity(&matw);
 					//矩形内変換(座標の単位はfloat変換後のもの)
 					if(r_left>dds->xsufindx[i])transx=0;
 					else transx = (float)( dds->xsufindx[i] - r_left );
 					if(r_top>dds->ysufindx[j])transy=0;
 					else transy = (float)( dds->ysufindx[j] - r_top );
-					D3DXMatrixTranslation(&tmpmat,transx*ar2,transy*ar2,0);
-					matw *= tmpmat;
+					D3DXMatrixTranslation(&matw,transx*ar2,transy*ar2,0);
 					//プリセットのやつをかける
 					matw *= matpres;
 
