@@ -30,6 +30,13 @@ enum NowLoading_IconItem
 #define HALF_HEIGHT		(g_DISPLAYHEIGHT*0.5f)
 #define HALF_HEIGHT2	(240.0f)
 
+// ‚à‚¤‚¿‚å‚Á‚Æ‘‚­‘Î‰ž‚µ‚Ä—~‚µ‚©‚Á‚½c
+#if _MSC_VER < 1910
+#pragma push_macro("constexpr")
+#define constexpr const
+#define GSL_USE_STATIC_CONSTEXPR_WORKAROUND
+#endif // _MSC_VER < 1910
+
 /*---------------------------------------------------------------------------------
 	ƒGƒfƒBƒ^[‚Ìê‡‚ÌÝ’è
 -----------------------------------------------------------------------------------*/
@@ -2208,9 +2215,9 @@ void CDirectDraw::CheckBlt2(MYSURFACE *dds,int x,int y,RECT r,
 		//‘S‚Ä‚ÌƒeƒNƒXƒ`ƒƒ‚ÉŠÖ‚µ‚Ä•`‰æ‚·‚é‚©‚Ç‚¤‚©’²‚×‚Ä•`‰æ‚·‚é
 		float vl,vr,vt,vb;//Še’¸“_‚ÌÀ•W
 		float tumin,tumax,tvmin,tvmax;//u,vÀ•W‚Ì”ÍˆÍ
-		const float ar = 640.0f/480.0f;//ƒAƒXƒyƒNƒg”ä
-		const float ar2 = 2.0f/480.0f;
-		const float centerx = (float)640.0f/2.0f;//x•ûŒü‰æ–Ê’†S
+		constexpr float ar = 640.0f/480.0f;//ƒAƒXƒyƒNƒg”ä
+		constexpr float ar2 = 2.0f / 480.0f;
+		constexpr float centerx = (float)640.0f / 2.0f;//x•ûŒü‰æ–Ê’†S
 		MYVERTEX3D* vrtxarr;//’¸“_”z—ñ
 		D3DXMATRIXA16 matw;//ƒ[ƒ‹ƒhÀ•W•ÏŠ·s—ñ
 		D3DXMATRIXA16 tmpmat;//ƒeƒ“ƒ|ƒ‰ƒŠs—ñ
@@ -2412,36 +2419,33 @@ void CDirectDraw::MyBlt3D(MYSURFACE *dds,RECT src,MYRECT3D dst,DWORD flag,DWORD 
 		//‘S‚Ä‚ÌƒeƒNƒXƒ`ƒƒ‚ÉŠÖ‚µ‚Ä•`‰æ‚·‚é‚©‚Ç‚¤‚©’²‚×‚Ä•`‰æ‚·‚é
 		float vl,vr,vt,vb;//Še’¸“_‚ÌÀ•W
 		float tumin,tumax,tvmin,tvmax;//u,vÀ•W‚Ì”ÍˆÍ
-		float ar = 640.0f/480.0f;//ƒAƒXƒyƒNƒg”ä
-		float ar2 = 2.0f/480.0f;
-		float centerx = 640.0f/2.0f;//x•ûŒü‰æ–Ê’†S
+		constexpr float ar = 640.0f / 480.0f;//ƒAƒXƒyƒNƒg”ä
+		constexpr float ar2 = 2.0f / 480.0f;
+		constexpr float centerx = 640.0f / 2.0f;//x•ûŒü‰æ–Ê’†S
 		MYVERTEX3D* vrtxarr;//’¸“_”z—ñ
 		D3DXMATRIXA16 matw;//ƒ[ƒ‹ƒhÀ•W•ÏŠ·s—ñ
 		D3DXMATRIXA16 tmpmat;//ƒeƒ“ƒ|ƒ‰ƒŠs—ñ
 		D3DXMATRIXA16 matpres;//ƒvƒŠƒZƒbƒg•ÏŠ·s—ñ
 
 		// ƒvƒŠƒZƒbƒg€”õ
-		D3DXMatrixIdentity(&matpres);
 
 		//(0,0)-(1,1)‚Ì”ÍˆÍ‚É“ü‚é‚æ‚¤‚Ék¬
 		sclx = 1.0f / (float)(r_right - r_left);
 		scly = 1.0f / (float)(r_bottom - r_top);
-		D3DXMatrixScaling(&tmpmat,sclx,scly,1.0f);
-		matpres *= tmpmat;
 		
 		//Žw’è‚³‚ê‚½MYRECT3D‚Ü‚ÅŠg‘å&ˆÚ“®
-		sclx=dst.right/* * HALF_HEIGHT*/-dst.left/* * HALF_HEIGHT*/;
-		scly=dst.bottom/* * HALF_HEIGHT*/-dst.top/* * HALF_HEIGHT*/;
-		D3DXMatrixScaling(&tmpmat,sclx,scly,1.0f);
-		matpres *= tmpmat;
+		sclx*=dst.right/* * HALF_HEIGHT*/-dst.left/* * HALF_HEIGHT*/;
+		scly*=dst.bottom/* * HALF_HEIGHT*/-dst.top/* * HALF_HEIGHT*/;
 		
-		//ˆÚ“®
-		D3DXMatrixTranslation(&tmpmat,dst.left/* * HALF_HEIGHT*/,dst.top/* * HALF_HEIGHT*/,/*dst.z*/0);
-		matpres *= tmpmat;
-		if(flag & CKBLT_YUREY){//—h‚ê
-			D3DXMatrixTranslation(&tmpmat,0,yurey*ar2,0);
-			matpres *= tmpmat;
-		}
+		auto tempY = dst.top/* * HALF_HEIGHT*/;
+		if (flag & CKBLT_YUREY)//—h‚ê
+			tempY += yurey*ar2;
+
+		D3DXMatrixTransformation(&matpres,
+			NULL, NULL,
+			&D3DXVECTOR3(sclx, scly, 1.0f),//Šg‘åk¬
+			NULL, NULL,
+			&D3DXVECTOR3(dst.left/* * HALF_HEIGHT*/, tempY,/*dst.z*/0));//ˆÚ“®
 		//Ý’è‚³‚ê‚½e‚Ì•ÏŠ·‚Æ‡‚í‚¹‚é
 		matpres *= matparent;
 
@@ -2680,7 +2684,7 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—
 	{
 		D3DXMATRIXA16 matp,mat,tmt,matprv,matprv2;
 		D3DXQUATERNION quat;
-		const float ar2 = 2.0f / 480.0f;
+		constexpr float ar2 = 2.0f / 480.0f;
 
 		//ZW/ZTƒtƒ‰ƒO‘€ì
 		if((cdat[cn].flag & GCDCELL2_DISABLE_ZT) || (cdat[cn].flag & GCDCELL2_DISABLE_ZW))
@@ -2947,7 +2951,7 @@ void CDirectDraw::CellDraw070(
 	{
 		D3DXMATRIXA16 matp,mat,tmt,matprv,matprv2;
 		D3DXQUATERNION quat;
-		const float ar2 = 2.0f / 480.0f;
+		constexpr float ar2 = 2.0f / 480.0f;
 
 		//ƒLƒƒƒ‰ƒNƒ^[‚Ì•ÏŠ·s—ñ
 		const auto center = D3DXVECTOR3((float)(cdat[cn].gcx)*ar2, (float)(cdat[cn].gcy)*ar2, 0);//dS
