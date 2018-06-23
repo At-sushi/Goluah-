@@ -155,8 +155,8 @@ public:
 	void SetTransform(BOOL b);
 	void SetWorldMatrix(D3DXMATRIX *pmat);
 	//world
-	D3DXMATRIX SetParentMatrix(D3DXMATRIX& mat,BOOL root=TRUE,BOOL insert=FALSE);
-	D3DXMATRIX ResetParentMatrix();
+	D3DXMATRIXA16 SetParentMatrix(D3DXMATRIX& mat,BOOL root=TRUE,BOOL insert=FALSE);
+	D3DXMATRIXA16 ResetParentMatrix();
 	void SetParentMatrix2(D3DXMATRIX *mat,BOOL root,D3DXMATRIX *matprv);
 
 	//■デバッグ用関数
@@ -219,7 +219,7 @@ public:
 					maxtextureheight;	//!<デバイスで規定されるテクスチャの最大サイズ
 	D3DFORMAT texformat,dispformat;		//!<使用する画像フォーマット
 
-	D3DXMATRIX matparent;				//!<2D描画関数マトリックス
+	D3DXMATRIXA16 matparent;			//!<2D描画関数マトリックス
 	MYSURFACE ms[MAXNUMGOLUAHTEXTURES];	//!<独自形式サーフェイス管理
 
 	float yurey;						//!<画面揺れエフェクトに使用するY方向のずらし量
