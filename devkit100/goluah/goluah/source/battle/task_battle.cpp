@@ -746,9 +746,9 @@ void CBattleTask::T_AtariHantei()
 
     int i, j, k, l;
     if(!hantaihantei){
-        for(i=0;i<(int)p_objects.size();i++){
-            if(p_objects[i]!=NULL){//オブジェクトが存在する
-                pdat1 = &(p_objects[i]->data);
+		for (auto i : p_objects){
+			if (i.second != NULL){//オブジェクトが存在する
+                pdat1 = &(i.second->data);
                 if((pdat1->tid==TEAM_PLAYER1 || pdat1->tid==TEAM_PLAYER2) && BATTLETASK_ISNOTFXOBJ(pdat1)){
                     if(pdat1->objtype & GOBJFLG_ATTACK){//オブジェクトは攻撃を行う
                         if(pdat1->kougeki){//攻撃力ON
@@ -764,10 +764,10 @@ void CBattleTask::T_AtariHantei()
                                         }
                                         else magmode1=1;
                                     }
-                                    for(j=0;j<(int)p_objects.size();j++){//** 他の全てのオブジェクトに対して **
+									for (auto j : p_objects){//** 他の全てのオブジェクトに対して **
                                         if(i!=j){//自分以外に
-                                            if(p_objects[j]!=NULL){
-                                                pdat2 = &(p_objects[j]->data);
+                                            if(j.second!=NULL){
+												pdat2 = &(j.second->data);
                                                 if((pdat2->tid==TEAM_PLAYER1 || pdat2->tid==TEAM_PLAYER2)  && BATTLETASK_ISNOTFXOBJ(pdat2)){
                                                     if(pdat1->tid != pdat2->tid){
                                                         if(TRUE/*pdat2->counter!=0*/){
@@ -830,7 +830,7 @@ void CBattleTask::T_AtariHantei()
                                                                                 }
                                                                                 kas_point2.x /= num_kas;
                                                                                 kas_point2.y /= num_kas;
-                                                                                if (Atari(p_objects[i]->data.id, p_objects[j]->data.id, kas_point2))
+                                                                                if (Atari(i.second->data.id, j.second->data.id, kas_point2))
                                                                                     kurai_list.push_back(pdat2->id);// 後でやる
                                                                             }
                                                                         }
@@ -870,11 +870,11 @@ void CBattleTask::T_AtariHantei()
                                         }
                                         else magmode1=1;
                                     }
-                                    for(j=0;j<(int)p_objects.size();j++){//** 他の全てのオブジェクトに対して **
-                                        if(i!=j){//自分以外に
-                                            if(p_objects[j]!=NULL){
-                                                pdat2 = &(p_objects[j]->data);
-                                                if((pdat2->tid==TEAM_PLAYER1 || pdat2->tid==TEAM_PLAYER2)  && BATTLETASK_ISNOTFXOBJ(pdat2) ){
+									for (auto j : p_objects){//** 他の全てのオブジェクトに対して **
+										if (i != j.first){//自分以外に
+											if (j.second != NULL){
+												pdat2 = &(j.second->data);
+												if ((pdat2->tid == TEAM_PLAYER1 || pdat2->tid == TEAM_PLAYER2) && BATTLETASK_ISNOTFXOBJ(pdat2)){
                                                     if(pdat1->tid != pdat2->tid){
                                                         if(TRUE/*pdat2->counter!=0*/){
                                                             if(pdat2->objtype & GOBJFLG_KURAI){//オブジェクトは攻撃を喰らう
@@ -936,7 +936,7 @@ void CBattleTask::T_AtariHantei()
                                                                                 }
                                                                                 kas_point2.x /= num_kas;
                                                                                 kas_point2.y /= num_kas;
-                                                                                if (Atari(p_objects[i]->data.id, p_objects[j]->data.id, kas_point2))
+                                                                                if (Atari(p_objects[i]->data.id, j.second->data.id, kas_point2))
                                                                                     kurai_list.push_back(pdat2->id);// 後でやる
                                                                             }
                                                                         }
