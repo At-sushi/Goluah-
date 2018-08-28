@@ -526,13 +526,15 @@ void CBattleTask::T_Action(BOOL stop)
     g_system.PushSysTag(__FUNCTION__);
 
     int i;
-    for(i=0;i<(int)p_objects.size();i++){
-        if(p_objects[i]!=NULL){
+    for(auto i : p_objects){
+		const auto pobj = i.second;
+
+		if (pobj != NULL){
             if(!stop)
-                p_objects[i]->Message(GOBJMSG_ACTION);
-            else if(p_objects[i]->data.objtype & GOBJFLG_DONOTSTOP ||
-                    p_objects[i]->data.nonstop)
-                p_objects[i]->Message(GOBJMSG_ACTION);
+				pobj->Message(GOBJMSG_ACTION);
+			else if (pobj->data.objtype & GOBJFLG_DONOTSTOP ||
+					 pobj->data.nonstop)
+					 pobj->Message(GOBJMSG_ACTION);
 
             // 暫定
             ////RepFile.Write(&p_objects[i]->data, sizeof(GOBJECT));
@@ -1157,9 +1159,10 @@ void CBattleTask::Draw()
     //描画用リスト準備
     DWORD i;
     std::vector<CGObject*> objlist;
-    for(i=0;i<(int)p_objects.size();i++){
-        if(p_objects[i]!=NULL){
-            objlist.push_back(p_objects[i]);
+	objlist.reserve(p_objects.size());
+    for(auto i : p_objects){
+        if(i.second!=NULL){
+			objlist.push_back(i.second);
         }
     }
     std::sort(objlist.begin(),objlist.end(),CGObject::ZCompare);//zソート
