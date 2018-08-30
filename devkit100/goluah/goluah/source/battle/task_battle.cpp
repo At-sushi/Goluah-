@@ -9,7 +9,7 @@
 
     （ネットワーク非対応版）
 
-    Goluah!! Copyright (C) 2001-2004 aki, 2014-2015 logger, 2004-2015 At-sushi
+    Goluah!! Copyright (C) 2001-2004 aki, 2014-2015 logger, 2004-2018 At-sushi
 
     This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
@@ -73,8 +73,8 @@ void CBattleTask::Initialize()
     if (!g_config.IsFullScreen())
         AfxGetApp()->DoWaitCursor(1);
     // 動的配列初期化
-    p_objects.clear();
-    object_regno.clear();
+    p_objects.resize(OBJECTS_MEMINCRATE, nullptr);
+    object_regno.resize(OBJECTS_MEMINCRATE);
     suicide_list.resize(0);
 
     CBattleTaskBase::Initialize();
@@ -527,14 +527,12 @@ void CBattleTask::T_Action(BOOL stop)
 
     int i;
     for(auto i : p_objects){
-		const auto pobj = i.second;
-
-		if (pobj != NULL){
+        if (i != NULL){
             if(!stop)
-				pobj->Message(GOBJMSG_ACTION);
-			else if (pobj->data.objtype & GOBJFLG_DONOTSTOP ||
-					 pobj->data.nonstop)
-					 pobj->Message(GOBJMSG_ACTION);
+                i->Message(GOBJMSG_ACTION);
+            else if (i->data.objtype & GOBJFLG_DONOTSTOP ||
+                     i->data.nonstop)
+                     i->Message(GOBJMSG_ACTION);
 
             // 暫定
             ////RepFile.Write(&p_objects[i]->data, sizeof(GOBJECT));
@@ -746,9 +744,9 @@ void CBattleTask::T_AtariHantei()
 
     int i, j, k, l;
     if(!hantaihantei){
-		for (auto i : p_objects){
-			if (i.second != NULL){//オブジェクトが存在する
-                pdat1 = &(i.second->data);
+        for (auto i : p_objects){
+            if (i != NULL){//オブジェクトが存在する
+                pdat1 = &(i->data);
                 if((pdat1->tid==TEAM_PLAYER1 || pdat1->tid==TEAM_PLAYER2) && BATTLETASK_ISNOTFXOBJ(pdat1)){
                     if(pdat1->objtype & GOBJFLG_ATTACK){//オブジェクトは攻撃を行う
                         if(pdat1->kougeki){//攻撃力ON
@@ -764,10 +762,10 @@ void CBattleTask::T_AtariHantei()
                                         }
                                         else magmode1=1;
                                     }
-									for (auto j : p_objects){//** 他の全てのオブジェクトに対して **
+                                    for (auto j : p_objects){//** 他の全てのオブジェクトに対して **
                                         if(i!=j){//自分以外に
-                                            if(j.second!=NULL){
-												pdat2 = &(j.second->data);
+                                            if(j!=NULL){
+                                                pdat2 = &(j->data);
                                                 if((pdat2->tid==TEAM_PLAYER1 || pdat2->tid==TEAM_PLAYER2)  && BATTLETASK_ISNOTFXOBJ(pdat2)){
                                                     if(pdat1->tid != pdat2->tid){
                                                         if(TRUE/*pdat2->counter!=0*/){
@@ -830,7 +828,7 @@ void CBattleTask::T_AtariHantei()
                                                                                 }
                                                                                 kas_point2.x /= num_kas;
                                                                                 kas_point2.y /= num_kas;
-                                                                                if (Atari(i.second->data.id, j.second->data.id, kas_point2))
+                                                                                if (Atari(i->data.id, j->data.id, kas_point2))
                                                                                     kurai_list.push_back(pdat2->id);// 後でやる
                                                                             }
                                                                         }
@@ -870,11 +868,11 @@ void CBattleTask::T_AtariHantei()
                                         }
                                         else magmode1=1;
                                     }
-									for (auto j : p_objects){//** 他の全てのオブジェクトに対して **
-										if (i != j.first){//自分以外に
-											if (j.second != NULL){
-												pdat2 = &(j.second->data);
-												if ((pdat2->tid == TEAM_PLAYER1 || pdat2->tid == TEAM_PLAYER2) && BATTLETASK_ISNOTFXOBJ(pdat2)){
+                                    for (auto j : p_objects){//** 他の全てのオブジェクトに対して **
+                                        if (p_objects[i] != j){//自分以外に
+                                            if (j != NULL){
+                                                pdat2 = &(j->data);
+                                                if ((pdat2->tid == TEAM_PLAYER1 || pdat2->tid == TEAM_PLAYER2) && BATTLETASK_ISNOTFXOBJ(pdat2)){
                                                     if(pdat1->tid != pdat2->tid){
                                                         if(TRUE/*pdat2->counter!=0*/){
                                                             if(pdat2->objtype & GOBJFLG_KURAI){//オブジェクトは攻撃を喰らう
@@ -936,7 +934,7 @@ void CBattleTask::T_AtariHantei()
                                                                                 }
                                                                                 kas_point2.x /= num_kas;
                                                                                 kas_point2.y /= num_kas;
-                                                                                if (Atari(p_objects[i]->data.id, j.second->data.id, kas_point2))
+                                                                                if (Atari(p_objects[i]->data.id, j->data.id, kas_point2))
                                                                                     kurai_list.push_back(pdat2->id);// 後でやる
                                                                             }
                                                                         }
@@ -1159,10 +1157,10 @@ void CBattleTask::Draw()
     //描画用リスト準備
     DWORD i;
     std::vector<CGObject*> objlist;
-	objlist.reserve(p_objects.size());
+    objlist.reserve(p_objects.size());
     for(auto i : p_objects){
-        if(i.second!=NULL){
-			objlist.push_back(i.second);
+        if(i!=NULL){
+            objlist.push_back(i);
         }
     }
     std::sort(objlist.begin(),objlist.end(),CGObject::ZCompare);//zソート
@@ -1422,9 +1420,16 @@ DWORD CBattleTask::CreateGObject()
 {
     g_system.PushSysTag(__FUNCTION__);
 
-    for(DWORD i=0;i<(int)p_objects.size() + 1;i++){
+    for(DWORD i=0;i<(int)p_objects.size();i++){
         if(p_objects[i]==NULL){
             p_objects[i] = new CGObject( i | ((object_regno[i]<<16) & 0xFFFF0000) );
+
+            if (i == p_objects.size() - 1)
+            {
+                // 最大値なので、配列を広げる
+                p_objects.resize(p_objects.size() + OBJECTS_MEMINCRATE);
+                object_regno.resize(object_regno.size() + OBJECTS_MEMINCRATE);
+            }
 
             g_system.PopSysTag();
             return(p_objects[i]->data.id);
@@ -2458,15 +2463,15 @@ void CBattleTask::T_UpdateStatus_Fighting()
         }
     }
 
-	// 交代中なのにキャラが降りてこない場合の救済措置
-	for (int i = 0; i<2; i++){
-		auto pdat = GetGObject(charobjid[i][active_character[i]]);
-		if (pdat->data.aid & ACTID_INOUT && pdat->data.counter > 600){
-			pdat->data.aid = ACTID_NEUTRAL;
-			pdat->data.y = 0;
-			pdat->data.x = (150 + 50 * active_character[i]) *(i == 0 ? -1 : 1);
-		}
-	}
+    // 交代中なのにキャラが降りてこない場合の救済措置
+    for (int i = 0; i<2; i++){
+        auto pdat = GetGObject(charobjid[i][active_character[i]]);
+        if (pdat->data.aid & ACTID_INOUT && pdat->data.counter > 600){
+            pdat->data.aid = ACTID_NEUTRAL;
+            pdat->data.y = 0;
+            pdat->data.x = (150 + 50 * active_character[i]) *(i == 0 ? -1 : 1);
+        }
+    }
 
     //死亡フラグ更新
     Update_DeadFlag();

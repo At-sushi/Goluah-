@@ -24,6 +24,7 @@
 
 #define MAXEFCT_SIVER 16
 #define DEBUGMSGBUFFERSIZE	(1024*4)
+#define OBJECTS_MEMINCRATE	128//!< オブジェクト配列、メモリ増分値
 
 
 /*!
@@ -165,9 +166,9 @@ public:
 	void SuicideGObject(DWORD oid);					//!< オブジェクト破棄予約
 	CGObject* GetCharacterObject(DWORD j,DWORD i);	//!< キャラクターのオブジェクト取得（ゲージ等で必要）
 protected:
-	std::unordered_map< int, CGObject* > p_objects;	//!< オブジェクト操作クラスのポインタ
+	std::deque< CGObject* > p_objects;				//!< オブジェクト操作クラスのポインタ
 	DWORD object_regindex;							//!< 次に生成するオブジェクトのインデックス
-	std::unordered_map< int, WORD > object_regno;	//!< そのインデックスでいくつのオブジェクトが生成されてきたか
+	std::deque< WORD > object_regno;				//!< そのインデックスでいくつのオブジェクトが生成されてきたか
 	std::deque< DWORD > suicide_list;				//!< 消滅オブジェクトリスト
 };
 
