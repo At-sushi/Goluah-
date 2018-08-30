@@ -111,7 +111,7 @@ void CFxHitmark4::Update()
 
 BOOL CFxHitmark2::Draw()
 {
-	UINT counter = pdat->counter * 1.5;
+	UINT counter = pdat->counter * 1.25;
 
 	if (counter < 15){//‰~
 		g_draw.SetAlphaMode(GBLEND_KASAN);
@@ -126,7 +126,7 @@ BOOL CFxHitmark2::Draw()
 
 BOOL CFxHitmark3::Draw()
 {
-	UINT counter = pdat->counter * 1.5;
+	UINT counter = pdat->counter * 1.25;
 
 	if (counter < 15){//‰~
 		g_draw.SetAlphaMode(GBLEND_KASAN);
@@ -141,7 +141,7 @@ BOOL CFxHitmark3::Draw()
 
 BOOL CFxHitmark4::Draw()
 {
-	UINT counter = pdat->counter * 1.5;
+	UINT counter = pdat->counter * 1.25;
 
 	if(counter < 15){//‰~
 		g_draw.SetAlphaMode(GBLEND_KASAN);
@@ -165,7 +165,7 @@ void CFxGuardmark1::Update()
 
 BOOL CFxGuardmark1::Draw()
 {
-	DWORD counter = pdat->counter * 1.5;
+	DWORD counter = pdat->counter * 1.25;
 	if(counter<12){
 		if(pdat->muki){
 			g_draw.DrawCircle((int)pdat->x,(int)pdat->y,(counter+3)*5,
@@ -184,7 +184,7 @@ BOOL CFxGuardmark1::Draw()
 -----------------------------------------------------------------*/
 BOOL CFxGuardmark2::Draw()
 {
-	DWORD counter = pdat->counter * 1.5;
+	DWORD counter = pdat->counter * 1.25;
 	if(counter<12){
 		if(pdat->muki){
 			g_draw.DrawCircle((int)pdat->x,(int)pdat->y,(counter+3)*5,
