@@ -21,8 +21,8 @@ class CStorm;
 class CToate;
 
 #define AIF_NUM			(32)
-#define NEEDGAUGE_GC	(0.5)
-#define NEEDGAUGE_REV	(0.3)
+#define NEEDGAUGE_GC	(0.3)
+#define NEEDGAUGE_REV	(0.5)
 
 /*--------------------------------------------------------------
 	メインキャラクタークラス

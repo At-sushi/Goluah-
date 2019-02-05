@@ -15,7 +15,7 @@
 class CHeart;
 class CDashWind;
 
-#define NEEDGAUGE_GC	(0.5f)
+#define NEEDGAUGE_GC	(0.3f)
 #define NEEDGAUGE_SA	(0.1f)
 
 #define AIF_NUM			(32)

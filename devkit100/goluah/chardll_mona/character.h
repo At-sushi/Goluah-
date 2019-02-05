@@ -22,8 +22,8 @@ class CGoodbye;
 class CRocket;
 //class CEraser99;
 
-#define NEEDGAUGE_REV	(0.3)
-#define NEEDGAUGE_GC	(0.5)
+#define NEEDGAUGE_REV	(0.5)
+#define NEEDGAUGE_GC	(0.3)
 
 // エフェクト用オブジェクト作成マクロ
 #define CREATE_GOBJ_FX(obj)			{ CGoluahObject* pointer = new obj; if ( pointer && !pointer->GetGObject() )\

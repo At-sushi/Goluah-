@@ -32,8 +32,8 @@
 #define OPTIONS_REGENERATOR		0x00000020
 
 #define AIF_NUM					(32)
-#define NEEDGAUGE_GC			(0.5f)
-#define NEEDGAUGE_REV			(0.2f)
+#define NEEDGAUGE_GC			(0.3f)
+#define NEEDGAUGE_REV			(0.4f)
 #define NUM_BLURS				(3)
 
 class CWassoiLight;
