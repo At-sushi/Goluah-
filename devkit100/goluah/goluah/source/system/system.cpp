@@ -1,9 +1,9 @@
 
 /*============================================================================
 
-	ƒVƒXƒeƒ€ƒNƒ‰ƒX
+	ã‚·ã‚¹ãƒ†ãƒ ã‚¯ãƒ©ã‚¹
 
-	ƒƒCƒ“ƒVƒXƒeƒ€BƒQ[ƒ€‘S”Ê‚Ì“Š‡
+	ãƒ¡ã‚¤ãƒ³ã‚·ã‚¹ãƒ†ãƒ ã€‚ã‚²ãƒ¼ãƒ å…¨èˆ¬ã®çµ±æ‹¬
 
 ==============================================================================*/
 
@@ -24,26 +24,25 @@ extern "C"
 } // extern "C"
 
 /*------------------------------------------------------------------------------
-	¶¬
+	ç”Ÿæˆ
 --------------------------------------------------------------------------------*/
 CSystem::CSystem()
 {
 	int i;
 
-	//ƒTƒEƒ“ƒh‚ÌƒAƒ“ƒ[ƒh
+	//ã‚µã‚¦ãƒ³ãƒ‰ã®ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰
 	for(i=0;i<NUM_SYSTEMSOUND;i++){
-		RELEASE(dsb_efct[0][i]);
-		RELEASE(dsb_efct[1][i]);
+		dsb_efct[0][i] = nullptr;
+		dsb_efct[1][i] = nullptr;
 	}
 
-	//ƒVƒXƒeƒ€ƒOƒ‰ƒtƒBƒbƒN”jŠü
+	//ã‚·ã‚¹ãƒ†ãƒ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç ´æ£„
 	for(i=0;i<GCDMAX_IMAGES;i++)
 	{
-		g_draw.RelSurface(sdds[i]);
 		sdds[i] = NULL;
 	}
 
-	//‚»‚Ì‘¼‚¢‚ë‚¢‚ë
+	//ãã®ä»–ã„ã‚ã„ã‚
 	hwnd = NULL;
 	ready=FALSE;
 
@@ -63,9 +62,9 @@ CSystem::CSystem()
 }
 
 /*!
-*	‰Šú‰»
-*	‹N“®Œãƒ_ƒCƒAƒƒO‚ª•\¦‚³‚ê‚é‘O‚Ü‚Å‚Ì‚à‚ë‚à‚ë‚Ì‰Šú‰»B
-*	‚±‚ÌŠÖ”‚ÌÅŒã‚Åƒ_ƒCƒAƒƒO‚ğ•\¦B
+*	åˆæœŸåŒ–
+*	èµ·å‹•å¾Œãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãŒè¡¨ç¤ºã•ã‚Œã‚‹å‰ã¾ã§ã®ã‚‚ã‚ã‚‚ã‚ã®åˆæœŸåŒ–ã€‚
+*	ã“ã®é–¢æ•°ã®æœ€å¾Œã§ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’è¡¨ç¤ºã€‚
 */
 BOOL CSystem::Initialize(HWND hwnd)
 {
@@ -73,72 +72,72 @@ BOOL CSystem::Initialize(HWND hwnd)
 	this->hwnd = hwnd;
 	logBuffer = new char [512];
 
-	// CDirectPlay¶¬
+	// CDirectPlayç”Ÿæˆ
 	/*if (!g_play.Initialize(hwnd))
 	{
-		MessageBox(hwnd,"’ÊMŒn‚Ì‰Šú‰»‚É¸”s","‰Šú‰»ƒGƒ‰[(2)",MB_OK | MB_ICONERROR);
+		MessageBox(hwnd,"é€šä¿¡ç³»ã®åˆæœŸåŒ–ã«å¤±æ•—","åˆæœŸåŒ–ã‚¨ãƒ©ãƒ¼(2)",MB_OK | MB_ICONERROR);
 		Destroy();
 		return FALSE;
 	}*/
 
-	//CDirectSound¶¬
+	//CDirectSoundç”Ÿæˆ
 	if(g_config.UseDSound()){
 		if(!g_sound.Initialize(hwnd)){
-			MessageBox(hwnd,"‰¹Œn‚Ì‰Šú‰»‚É¸”s","‰Šú‰»ƒGƒ‰[(1)",MB_OK | MB_ICONERROR);
+			MessageBox(hwnd,"éŸ³ç³»ã®åˆæœŸåŒ–ã«å¤±æ•—","åˆæœŸåŒ–ã‚¨ãƒ©ãƒ¼(1)",MB_OK | MB_ICONERROR);
 			Destroy();
 			return FALSE;
 		}
 	}
 
-	//ƒVƒXƒeƒ€ƒTƒEƒ“ƒh“Ç‚İ‚İ
+	//ã‚·ã‚¹ãƒ†ãƒ ã‚µã‚¦ãƒ³ãƒ‰èª­ã¿è¾¼ã¿
 	InitSystemSound();
 
-	//CDirectInput¶¬
+	//CDirectInputç”Ÿæˆ
 	if(!g_input.Initialize(hwnd)){
-		MessageBox(hwnd,"“ü—ÍŒn‚Ì‰Šú‰»‚É¸”s","‰Šú‰»ƒGƒ‰[(2)",MB_OK | MB_ICONERROR);
+		MessageBox(hwnd,"å…¥åŠ›ç³»ã®åˆæœŸåŒ–ã«å¤±æ•—","åˆæœŸåŒ–ã‚¨ãƒ©ãƒ¼(2)",MB_OK | MB_ICONERROR);
 		Destroy();
 		return FALSE;
 	}
-	if(g_config.UseDInput()){//ƒpƒbƒh‚ğg—p‚·‚é
+	if(g_config.UseDInput()){//ãƒ‘ãƒƒãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹
 		if(!g_input.InitializePad()){
-			MessageBox(hwnd,"ƒQ[ƒ€ƒpƒbƒh‚Ì‰Šú‰»‚É¸”s","‰Šú‰»ƒGƒ‰[(2)",MB_OK | MB_ICONERROR);
+			MessageBox(hwnd,"ã‚²ãƒ¼ãƒ ãƒ‘ãƒƒãƒ‰ã®åˆæœŸåŒ–ã«å¤±æ•—","åˆæœŸåŒ–ã‚¨ãƒ©ãƒ¼(2)",MB_OK | MB_ICONERROR);
 			Destroy();
 			return FALSE;
 		}
 	}
 
-	g_exp.Initialize();			//DLL‚ÖƒGƒNƒXƒ|[ƒg‚·‚éŠÖ”ƒ|ƒCƒ“ƒ^‰Šú‰»
+	g_exp.Initialize();			//DLLã¸ã‚¨ã‚¯ã‚¹ãƒãƒ¼ãƒˆã™ã‚‹é–¢æ•°ãƒã‚¤ãƒ³ã‚¿åˆæœŸåŒ–
 
-	//ƒŠƒXƒg‰Šú‰»
-	g_charlist.Initialize();	//ƒLƒƒƒ‰ƒNƒ^ƒŠƒXƒg\’z
-	g_stagelist.Initialize();	//ƒXƒe[ƒWƒŠƒXƒg\’z
-	g_storylist.Initialize();	//ƒXƒg[ƒŠ[ƒŠƒXƒg\’z
+	//ãƒªã‚¹ãƒˆåˆæœŸåŒ–
+	g_charlist.Initialize();	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚¹ãƒˆæ§‹ç¯‰
+	g_stagelist.Initialize();	//ã‚¹ãƒ†ãƒ¼ã‚¸ãƒªã‚¹ãƒˆæ§‹ç¯‰
+	g_storylist.Initialize();	//ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒªã‚¹ãƒˆæ§‹ç¯‰
 
-	//CDirectDraw¶¬
+	//CDirectDrawç”Ÿæˆ
 	if(!g_draw.Initialize(hwnd,!g_config.IsFullScreen())){
-		MessageBox(hwnd,"•`‰æŒn‚Ì‰Šú‰»‚É¸”s","‰Šú‰»ƒGƒ‰[(2)",MB_OK);
+		MessageBox(hwnd,"æç”»ç³»ã®åˆæœŸåŒ–ã«å¤±æ•—","åˆæœŸåŒ–ã‚¨ãƒ©ãƒ¼(2)",MB_OK);
 		Destroy();
 		return(FALSE);
 	}
 
-	//aki3d‰Šú‰»
+	//aki3dåˆæœŸåŒ–
 	aki3d.Initialize(g_draw.d3ddev,"system\\texture");
 
-	InitSystemGraphics();		//ƒVƒXƒeƒ€ƒOƒ‰ƒtƒBƒbƒN“Ç‚İ‚İ
+	InitSystemGraphics();		//ã‚·ã‚¹ãƒ†ãƒ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯èª­ã¿è¾¼ã¿
 
-	//ƒ_ƒCƒAƒƒO•\¦
+	//ãƒ€ã‚¤ã‚¢ãƒ­ã‚°è¡¨ç¤º
 	if(g_config.SwShowInfo() && !ShowInformation()){
 		Destroy();
 		return FALSE;
 	}
 
-	if(g_charlist.GetCharacterCount()==0){//ƒLƒƒƒ‰ƒNƒ^[‚ªˆêŒÂ‚à‚¢‚È‚¢
-		MessageBox(hwnd,"ƒLƒƒƒ‰ƒNƒ^[‚ªˆê‘Ì‚à‚¢‚Ü‚¹‚ñBƒQ[ƒ€‚ğŠJn‚Å‚«‚Ü‚¹‚ñB","‰Šú‰»ƒGƒ‰[(2)",MB_OK);
+	if(g_charlist.GetCharacterCount()==0){//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãŒä¸€å€‹ã‚‚ã„ãªã„
+		MessageBox(hwnd,"ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãŒä¸€ä½“ã‚‚ã„ã¾ã›ã‚“ã€‚ã‚²ãƒ¼ãƒ ã‚’é–‹å§‹ã§ãã¾ã›ã‚“ã€‚","åˆæœŸåŒ–ã‚¨ãƒ©ãƒ¼(2)",MB_OK);
 		Destroy();
 		return(FALSE);
 	}
-	if(g_stagelist.GetStageCount()==0){//ƒXƒe[ƒW‚ªˆêŒÂ‚à‚È‚¢
-		MessageBox(hwnd,"ƒXƒe[ƒW‚ªˆê‚Â‚à‚ ‚è‚Ü‚¹‚ñBƒQ[ƒ€‚ğŠJn‚Å‚«‚Ü‚¹‚ñB","‰Šú‰»ƒGƒ‰[(2)",MB_OK);
+	if(g_stagelist.GetStageCount()==0){//ã‚¹ãƒ†ãƒ¼ã‚¸ãŒä¸€å€‹ã‚‚ãªã„
+		MessageBox(hwnd,"ã‚¹ãƒ†ãƒ¼ã‚¸ãŒä¸€ã¤ã‚‚ã‚ã‚Šã¾ã›ã‚“ã€‚ã‚²ãƒ¼ãƒ ã‚’é–‹å§‹ã§ãã¾ã›ã‚“ã€‚","åˆæœŸåŒ–ã‚¨ãƒ©ãƒ¼(2)",MB_OK);
 		Destroy();
 		return(FALSE);
 	}
@@ -150,12 +149,12 @@ BOOL CSystem::Initialize(HWND hwnd)
 
 
 /*!
-*	ƒQ[ƒ€ŠJn
-*	‹N“®Œã‚Ìî•ñ•\¦ƒ_ƒCƒAƒƒO‚ª•Â‚¶‚ç‚ê‚½ŒãAƒƒCƒ“ƒ‹[ƒv‚ªŠJn‚³‚ê‚é‘O‚ÉŒÄ‚Î‚ê‚éB
-*	ƒ^ƒCƒgƒ‹‚©AƒfƒoƒbƒOƒ‚[ƒh‚Ìê‡ƒfƒoƒbƒOƒƒjƒ…[‚ğ‰Šúƒ^ƒXƒN‚Æ‚µ‚ÄŠJn‚·‚éB
+*	ã‚²ãƒ¼ãƒ é–‹å§‹
+*	èµ·å‹•å¾Œã®æƒ…å ±è¡¨ç¤ºãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãŒé–‰ã˜ã‚‰ã‚ŒãŸå¾Œã€ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ãŒé–‹å§‹ã•ã‚Œã‚‹å‰ã«å‘¼ã°ã‚Œã‚‹ã€‚
+*	ã‚¿ã‚¤ãƒˆãƒ«ã‹ã€ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’åˆæœŸã‚¿ã‚¹ã‚¯ã¨ã—ã¦é–‹å§‹ã™ã‚‹ã€‚
 *
-*	ƒ^ƒXƒNƒ}ƒl[ƒWƒƒ‚ªi‚È‚º?j1ƒtƒŒ‚É1‚Â‚µ‚©”r‘¼ƒ^ƒXƒN‚ğó‚¯•t‚¯‚È‚¢‚æ‚¤‚É‚µ‚Ä‚¢‚é‚Ì‚ÅA
-*	ƒIƒvƒVƒ‡ƒ“‚Å‚Ì‹N“®’¼Œãƒ€[ƒr[Ä¶‚ÍƒƒCƒ“ƒ‹[ƒv‚Ì‰‰ñ‚É‹N“®‚µ‚Ä‚¢‚éB
+*	ã‚¿ã‚¹ã‚¯ãƒãƒãƒ¼ã‚¸ãƒ£ãŒï¼ˆãªãœ?ï¼‰1ãƒ•ãƒ¬ã«1ã¤ã—ã‹æ’ä»–ã‚¿ã‚¹ã‚¯ã‚’å—ã‘ä»˜ã‘ãªã„ã‚ˆã†ã«ã—ã¦ã„ã‚‹ã®ã§ã€
+*	ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã§ã®èµ·å‹•ç›´å¾Œãƒ ãƒ¼ãƒ“ãƒ¼å†ç”Ÿã¯ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã®åˆå›æ™‚ã«èµ·å‹•ã—ã¦ã„ã‚‹ã€‚
 */
 BOOL CSystem::GameStart()
 {
@@ -168,8 +167,8 @@ BOOL CSystem::GameStart()
 #else
 	if(/*g_config.IsDebugMode() && */GetKeyState(VK_SHIFT) & 0x8000)m_debug_menu_enabled = TRUE;
 
-	//ƒQ[ƒ€ŠJn
-	//‰Šúƒ^ƒXƒN‚Ì‘}“ü
+	//ã‚²ãƒ¼ãƒ é–‹å§‹
+	//åˆæœŸã‚¿ã‚¹ã‚¯ã®æŒ¿å…¥
 	if(m_debug_menu_enabled)AddTask( new CDebugMenu );
 	else AddTask( new CTitle );
 #endif
@@ -178,14 +177,14 @@ BOOL CSystem::GameStart()
 
 
 /*------------------------------------------------------------------------------
-	”jŠü
+	ç ´æ£„
 --------------------------------------------------------------------------------*/
 void CSystem::Destroy()
 {
 	taskManager.Destroy();
 
-	// ƒVƒXƒeƒ€ƒTƒEƒ“ƒh‰ğ•ú
-	// ‰ğ•úˆ—‚ªŒ©‚ ‚½‚ç‚È‚¢‚Ì‚Å‚Æ‚è‚ ‚¦‚¸‚±‚±‚Åˆ—B
+	// ã‚·ã‚¹ãƒ†ãƒ ã‚µã‚¦ãƒ³ãƒ‰è§£æ”¾
+	// è§£æ”¾å‡¦ç†ãŒè¦‹ã‚ãŸã‚‰ãªã„ã®ã§ã¨ã‚Šã‚ãˆãšã“ã“ã§å‡¦ç†ã€‚
 	for(int i=0;i<NUM_SYSTEMSOUND;i++){
 		for(int j=0;j<2;j++){
 			RELEASE(dsb_efct[j][i]);
@@ -204,24 +203,24 @@ void CSystem::Destroy()
 
 
 /*!
-*	ƒƒCƒ“ƒ‹[ƒv
-*	ƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg‚Ìwhileƒ‹[ƒv‚©‚çŒÄ‚Î‚ê‚Ä‚¢‚é
-*	FPS’²ß‚ğs‚¢Aƒ^ƒXƒNŠÇ—ƒNƒ‰ƒX‚Ì’èˆ—‚ğŒÄ‚Ño‚·B
+*	ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—
+*	ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆã®whileãƒ«ãƒ¼ãƒ—ã‹ã‚‰å‘¼ã°ã‚Œã¦ã„ã‚‹
+*	FPSèª¿ç¯€ã‚’è¡Œã„ã€ã‚¿ã‚¹ã‚¯ç®¡ç†ã‚¯ãƒ©ã‚¹ã®å®šæ™‚å‡¦ç†ã‚’å‘¼ã³å‡ºã™ã€‚
 */
 void CSystem::MainLoop()
 {
-	//fps’²ßBƒEƒFƒCƒg‚ğ‚©‚¯‚éB
+	//fpsèª¿ç¯€ã€‚ã‚¦ã‚§ã‚¤ãƒˆã‚’ã‹ã‘ã‚‹ã€‚
 	static DWORD timeprv = timeGetTime();
 	DWORD time_now = timeGetTime();
 	if( timeprv+m_loopTime > time_now ){
-		Sleep( timeprv+m_loopTime - time_now );//‚¨‚·‚»•ª‚¯
+		Sleep( timeprv+m_loopTime - time_now );//ãŠã™ãåˆ†ã‘
 		return;
 	}
 	time_now = timeGetTime();
 	DWORD eat_time = time_now - timeprv;
 	timeprv = time_now;
 
-	//fpsZo
+	//fpsç®—å‡º
 	static DWORD timepass=0;
 	static DWORD passCnt=0;
 	timepass += eat_time;
@@ -232,43 +231,43 @@ void CSystem::MainLoop()
 		passCnt=0;
 	}
 
-	//ƒƒO‚ğŒ©‚â‚·‚­‚·‚é‚½‚ß‚ÉA‘}“ü
+	//ãƒ­ã‚°ã‚’è¦‹ã‚„ã™ãã™ã‚‹ãŸã‚ã«ã€æŒ¿å…¥
 	//if(g_config.CfgFullDebugLog()){
 	//	g_log2file.AddLog("-----------------------------main loop start");
 	//}
 
-	//Àsƒ^ƒO‚ÌƒNƒŠƒA
+	//å®Ÿè¡Œã‚¿ã‚°ã®ã‚¯ãƒªã‚¢
 	ClearSysTag();
 
 
-	//ƒ^ƒXƒNEExecute
+	//ã‚¿ã‚¹ã‚¯ãƒ»Execute
 	CExclusiveTaskBase *xtask = taskManager.GetTopExclusiveTask();
 	taskManager.Execute(eat_time);
 
-	static DWORD DrawCnt = 0; // b’è
+	static DWORD DrawCnt = 0; // æš«å®š
 	if(xtask==taskManager.GetTopExclusiveTask() && !m_render_disabled && !IsIconic(this->hwnd) &&
-		(m_loopTime > 1 || timepass % (1000 / 60) <= 1) && // ƒm[ƒEƒFƒCƒgŒy—Ê‰»
-		(g_config.GetGameSpeed() != GSPEED_30x2 || DrawCnt % 2 == 0)) // ƒRƒ}”ò‚Î‚µˆ—
+		(m_loopTime > 1 || timepass % (1000 / 60) <= 1) && // ãƒãƒ¼ã‚¦ã‚§ã‚¤ãƒˆæ™‚è»½é‡åŒ–
+		(g_config.GetGameSpeed() != GSPEED_30x2 || DrawCnt % 2 == 0)) // ã‚³ãƒé£›ã°ã—å‡¦ç†
 	{
-		//ƒ^ƒXƒNEDraw
+		//ã‚¿ã‚¹ã‚¯ãƒ»Draw
 		g_draw.StartDraw(TRUE);
 		taskManager.Draw();
 		g_draw.EndDraw();
 	}
 	else if(m_first_update_flag)
 	{
-		//ƒCƒ“ƒ`ƒL‚­‚³‚¢ƒtƒ‰ƒO‚¾‚ª¥¥¥
+		//ã‚¤ãƒ³ãƒã‚­ãã•ã„ãƒ•ãƒ©ã‚°ã ãŒï½¥ï½¥ï½¥
 		m_first_update_flag = FALSE;
 		if(g_config.SwShowMovieFirst()){
 			AddTask(new CTOpening);
 		}
 	}
 	DrawCnt++;
-	//else ƒƒCƒ“‚Ìƒ^ƒXƒN‚ªØ‚è‘Ö‚í‚Á‚½’¼Œã‚Í•`‰æ‚ğs‚í‚È‚¢
+	//else ãƒ¡ã‚¤ãƒ³ã®ã‚¿ã‚¹ã‚¯ãŒåˆ‡ã‚Šæ›¿ã‚ã£ãŸç›´å¾Œã¯æç”»ã‚’è¡Œã‚ãªã„
 
-	//ƒ^ƒCƒgƒ‹‰æ–Ê–ß‚è‘€ì
+	//ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢æˆ»ã‚Šæ“ä½œ
 	if(m_return_title_flag){
-		//w’èID‚Ìƒ^ƒXƒN‚ªŒ»‚ê‚é‚Ü‚ÅƒGƒNƒXƒNƒ‹[ƒVƒuƒ^ƒXƒN‚ğpop
+		//æŒ‡å®šIDã®ã‚¿ã‚¹ã‚¯ãŒç¾ã‚Œã‚‹ã¾ã§ã‚¨ã‚¯ã‚¹ã‚¯ãƒ«ãƒ¼ã‚·ãƒ–ã‚¿ã‚¹ã‚¯ã‚’pop
 		if(m_debug_menu_enabled)
 			taskManager.ReturnExclusiveTaskByID('debg');
 		else
@@ -277,46 +276,46 @@ void CSystem::MainLoop()
 		m_return_title_flag = FALSE;
 	}
 
-	//‚È‚ñ‚©‚ÌŠÔˆá‚¢‚Å‘S•”‚È‚­‚È‚Á‚¿‚á‚Á‚½‚Æ‚«‚Ì•œ‹A—p
+	//ãªã‚“ã‹ã®é–“é•ã„ã§å…¨éƒ¨ãªããªã£ã¡ã‚ƒã£ãŸã¨ãã®å¾©å¸°ç”¨
 	if(taskManager.ExEmpty())
 	{
 		if(m_debug_menu_enabled)AddTask( new CDebugMenu );
 		else AddTask( new CTitle );
 	}
 
-	// b’èƒeƒXƒg‘[’u
-	// DirectPlay‚Éˆ—‚³‚¹‚é
+	// æš«å®šãƒ†ã‚¹ãƒˆæªç½®
+	// DirectPlayã«å‡¦ç†ã•ã›ã‚‹
 	g_play.Do(m_loopTime / 3);
 }
 
 
 
 /*!
-*	ƒEƒCƒ“ƒhƒEƒƒbƒZ[ƒWˆ—
+*	ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†
 *
-*	ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒƒbƒZ[ƒWƒvƒƒV[ƒWƒƒ‚©‚çŒÄ‚Î‚ê‚éB
-*	ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚Æ“¯‚¶ƒƒbƒZ[ƒW‚ğó‚¯æ‚é‚±‚Æ‚ª‚Å‚«‚é
+*	ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£ã‹ã‚‰å‘¼ã°ã‚Œã‚‹ã€‚
+*	ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã¨åŒã˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å—ã‘å–ã‚‹ã“ã¨ãŒã§ãã‚‹
 *
-*	ˆ—‚Íƒ^ƒXƒNŠÇ—ƒNƒ‰ƒX‚É‚à‚Ü‚í‚µA‚»‚ê‚ğŒo—R‚µ‚ÄŠeƒ^ƒXƒNƒNƒ‰ƒX‚Ü‚Å”zM‚³‚ê‚éB
+*	å‡¦ç†ã¯ã‚¿ã‚¹ã‚¯ç®¡ç†ã‚¯ãƒ©ã‚¹ã«ã‚‚ã¾ã‚ã—ã€ãã‚Œã‚’çµŒç”±ã—ã¦å„ã‚¿ã‚¹ã‚¯ã‚¯ãƒ©ã‚¹ã¾ã§é…ä¿¡ã•ã‚Œã‚‹ã€‚
 *
-*	ESCƒL[‚Å‚ÌƒQ[ƒ€I—¹‚Í‚±‚±‚Ås‚Á‚Ä‚¢‚é–Í—l
+*	ESCã‚­ãƒ¼ã§ã®ã‚²ãƒ¼ãƒ çµ‚äº†ã¯ã“ã“ã§è¡Œã£ã¦ã„ã‚‹æ¨¡æ§˜
 */
 void CSystem::WndMessage(HWND hWnd,UINT msg,WPARAM wp,LPARAM lp)
 {
 	if(msg==WM_KEYDOWN){
-		OnWMKeydown( wp, lp);//ƒL[“ü—Íˆ—
+		OnWMKeydown( wp, lp);//ã‚­ãƒ¼å…¥åŠ›å‡¦ç†
 	}
 
 	taskManager.WndMessage(hWnd,msg,wp,lp);
 }
 
 /*!
-*	ƒ^ƒCƒgƒ‹‰æ–Ê–ß‚è
-*	ŠÖ”“à‚Å‚Íƒtƒ‰ƒO‚ğ•Û‘¶‚·‚é‚¾‚¯‚ÅAÀÛ‚Ìˆ—‚ÍƒƒCƒ“ƒ‹[ƒv‚Ì’†‚Ås‚Á‚Ä‚¢‚éB
-*	å‚Éƒ^ƒXƒNŠÇ—ƒNƒ‰ƒX‚Ìƒ^ƒXƒNƒŠƒXƒg‚Ìƒ‹[ƒv“à‚©‚ç‚±‚ÌŠÖ”‚ªŒÄ‚Î‚ê‚Ä‚¢‚é‚Ì‚ÅA
-*	‚»‚±‚©‚çƒ^ƒXƒN”jŠü‚ğs‚¤‚ÆŠë‚È‚¢‚©‚çB‘½•ªB
+*	ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢æˆ»ã‚Š
+*	é–¢æ•°å†…ã§ã¯ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜ã™ã‚‹ã ã‘ã§ã€å®Ÿéš›ã®å‡¦ç†ã¯ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã®ä¸­ã§è¡Œã£ã¦ã„ã‚‹ã€‚
+*	ä¸»ã«ã‚¿ã‚¹ã‚¯ç®¡ç†ã‚¯ãƒ©ã‚¹ã®ã‚¿ã‚¹ã‚¯ãƒªã‚¹ãƒˆã®ãƒ«ãƒ¼ãƒ—å†…ã‹ã‚‰ã“ã®é–¢æ•°ãŒå‘¼ã°ã‚Œã¦ã„ã‚‹ã®ã§ã€
+*	ãã“ã‹ã‚‰ã‚¿ã‚¹ã‚¯ç ´æ£„ã‚’è¡Œã†ã¨å±ãªã„ã‹ã‚‰ã€‚å¤šåˆ†ã€‚
 *
-*	’Êí‚Ìˆ—‚Å‚±‚ÌŠÖ”‚ªŒÄ‚Î‚ê‚½ê‡AƒGƒ‰[ƒtƒ‰ƒO‚ğœ‹‚·‚é
+*	é€šå¸¸ã®å‡¦ç†ã§ã“ã®é–¢æ•°ãŒå‘¼ã°ã‚ŒãŸå ´åˆã€ã‚¨ãƒ©ãƒ¼ãƒ•ãƒ©ã‚°ã‚’é™¤å»ã™ã‚‹
 *	@sa NotifyExcption
 */
 void CSystem::ReturnTitle()
@@ -326,9 +325,9 @@ void CSystem::ReturnTitle()
 }
 
 /*!
-*	—áŠO”­¶
-*	İ’è‚É‚æ‚èA‚»‚Ì‚Ü‚Ü‘±s‚·‚é‚©AƒGƒ‰[ƒtƒ‰ƒO‚ğ—§‚Ä‚Äƒ^ƒCƒgƒ‹‚É–ß‚éB
-*	ƒGƒ‰[ƒtƒ‰ƒO‚ª‚½‚Â‚Æƒ^ƒCƒgƒ‹‰æ–Ê‚ªÔ‚Á‚Û‚­‚È‚éB
+*	ä¾‹å¤–ç™ºç”Ÿ
+*	è¨­å®šã«ã‚ˆã‚Šã€ãã®ã¾ã¾ç¶šè¡Œã™ã‚‹ã‹ã€ã‚¨ãƒ©ãƒ¼ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã¦ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹ã€‚
+*	ã‚¨ãƒ©ãƒ¼ãƒ•ãƒ©ã‚°ãŒãŸã¤ã¨ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ãŒèµ¤ã£ã½ããªã‚‹ã€‚
 *	@sa ReturnTitle
 */
 void CSystem::NotifyExcption()
@@ -336,31 +335,31 @@ void CSystem::NotifyExcption()
 	g_system.DumpTags();
 
 	if(g_config.IgnoreExceptions())return;
-	/*MessageBox(hwnd, "@ ÈQÈ\n@i@LÍMj ƒ ‚Ê‚é‚Û‚ª”­¶‚µ‚Ü‚·‚½",
-				"ƒEƒzƒbI‚¢‚¢ƒGƒ‰[c@@’¼@@‚³@@‚È@@‚¢@@‚©", MB_OK | MB_ICONERROR);*/
+	/*MessageBox(hwnd, "ã€€ âˆ§ï¼¿âˆ§\nã€€ï¼ˆã€€Â´âˆ€ï½€ï¼‰ ï¼œ ã¬ã‚‹ã½ãŒç™ºç”Ÿã—ã¾ã™ãŸ",
+				"ã‚¦ãƒ›ãƒƒï¼ã„ã„ã‚¨ãƒ©ãƒ¼â€¦ã€€ã€€ç›´ã€€ã€€ã•ã€€ã€€ãªã€€ã€€ã„ã€€ã€€ã‹", MB_OK | MB_ICONERROR);*/
 	ReturnTitle();
 	m_error_title = TRUE;
 }
 
 /*!
-*	ƒVƒXƒeƒ€“IƒL[“ü—Íˆ—
-*	å‚Éƒtƒ@ƒ“ƒNƒVƒ‡ƒ“ƒL[‚Ì‘€ì‚É‘Î‰B
-*	ƒfƒoƒbƒOƒ‚[ƒhONİ’è‚Ìê‡‚Í‚³‚ç‚É‘¼‚É‚¢‚­‚Â‚©‚Ì‹@”\‚ğ’S“–‚·‚éB
+*	ã‚·ã‚¹ãƒ†ãƒ çš„ã‚­ãƒ¼å…¥åŠ›å‡¦ç†
+*	ä¸»ã«ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã®æ“ä½œã«å¯¾å¿œã€‚
+*	ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰ONè¨­å®šã®å ´åˆã¯ã•ã‚‰ã«ä»–ã«ã„ãã¤ã‹ã®æ©Ÿèƒ½ã‚’æ‹…å½“ã™ã‚‹ã€‚
 */
 void CSystem::OnWMKeydown(WPARAM wp,LPARAM lp)
 {
 	switch(wp)
 	{
 	case VK_F6:SaveScreenShot();break;
-	//case VK_F7:sw_pause = !sw_pause;break;//í“¬ƒ^ƒXƒN‚Å‘€ì
+	//case VK_F7:sw_pause = !sw_pause;break;//æˆ¦é—˜ã‚¿ã‚¹ã‚¯ã§æ“ä½œ
 	case VK_F8:ReturnTitle();break;
 	}
 
 	if(!g_config.IsDebugMode())return;
 
-	//ˆÈ‰ºAƒfƒoƒbƒOƒ‚[ƒh‚Ì‚Æ‚«‚Ì‚İŒø‚­ƒXƒCƒbƒ`
+	//ä»¥ä¸‹ã€ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰ã®ã¨ãã®ã¿åŠ¹ãã‚¹ã‚¤ãƒƒãƒ
 	switch(wp){
-		//ƒJƒƒ‰ˆÚ“®
+		//ã‚«ãƒ¡ãƒ©ç§»å‹•
 		case 'O':g_draw.camera_z+=0.2f;break;
 		case 'P':g_draw.camera_z-=0.2f;break;
 		case 'U':g_draw.camera_zurax+=0.2f;break;
@@ -393,7 +392,7 @@ void CSystem::OnWMKeydown(WPARAM wp,LPARAM lp)
 
 
 /*------------------------------------------------------------------------------
-	ƒVƒXƒeƒ€‚ÅŠm•Û‚µ‚Ä‚¢‚éwav‚ğÄ¶
+	ã‚·ã‚¹ãƒ†ãƒ ã§ç¢ºä¿ã—ã¦ã„ã‚‹wavã‚’å†ç”Ÿ
 --------------------------------------------------------------------------------*/
 void CSystem::PlaySystemSound(DWORD sid)
 {
@@ -410,7 +409,7 @@ void CSystem::PlaySystemSound(DWORD sid)
 
 
 /*------------------------------------------------------------------------------
-	ƒVƒXƒeƒ€‚ÅÄ¶‚·‚éƒTƒEƒ“ƒh‚ğƒ[ƒh
+	ã‚·ã‚¹ãƒ†ãƒ ã§å†ç”Ÿã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ã‚’ãƒ­ãƒ¼ãƒ‰
 --------------------------------------------------------------------------------*/
 void CSystem::InitSystemSound()
 {
@@ -436,15 +435,15 @@ void CSystem::InitSystemSound()
 	dsb_efct[0][12] = g_sound.CreateDSB(".\\system\\sound\\ok.wav");
 
 	for(int i=0;i<NUM_SYSTEMSOUND;i++){
-		// DirectSound‚ÌŠÖ”‚ğg‚Á‚ÄƒRƒs[
-		// è”²‚«A–{“–‚Íê—pŠÖ”ì‚Á‚½•û‚ª—Ç‚³‚°B
+		// DirectSoundã®é–¢æ•°ã‚’ä½¿ã£ã¦ã‚³ãƒ”ãƒ¼
+		// æ‰‹æŠœãã€æœ¬å½“ã¯å°‚ç”¨é–¢æ•°ä½œã£ãŸæ–¹ãŒè‰¯ã•ã’ã€‚
 		g_sound.lpds->DuplicateSoundBuffer( dsb_efct[0][i], &dsb_efct[1][i] );
 	}
 }
 
 
 /*------------------------------------------------------------------------------
-	ƒVƒXƒeƒ€‚Åg—p‚·‚éƒrƒbƒgƒ}ƒbƒv‚âCELL“™‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğƒ[ƒh
+	ã‚·ã‚¹ãƒ†ãƒ ã§ä½¿ç”¨ã™ã‚‹ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚„CELLç­‰ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ãƒ­ãƒ¼ãƒ‰
 --------------------------------------------------------------------------------*/
 void CSystem::InitSystemGraphics()
 {
@@ -462,7 +461,7 @@ void CSystem::InitSystemGraphics()
 
 
 /*------------------------------------------------------------------------------
-	ƒQ[ƒ€ŠJn’¼Œã‚ÌƒCƒ“ƒtƒHƒ[ƒVƒ‡ƒ“ƒ_ƒCƒAƒƒOƒ{ƒbƒNƒX
+	ã‚²ãƒ¼ãƒ é–‹å§‹ç›´å¾Œã®ã‚¤ãƒ³ãƒ•ã‚©ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒœãƒƒã‚¯ã‚¹
 --------------------------------------------------------------------------------*/
 BOOL CALLBACK DialogProc(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam);
 
@@ -477,7 +476,7 @@ BOOL CSystem::ShowInformation()
 
 #define ADDLIST(x) SendMessage(GetDlgItem(hwndDlg,IDC_LIST1),LB_ADDSTRING,0,(LPARAM)(LPCTSTR)x)
 
-//! ƒQ[ƒ€ŠJn’¼Œã‚ÌƒCƒ“ƒtƒHƒ[ƒVƒ‡ƒ“ƒ_ƒCƒAƒƒOƒ{ƒbƒNƒX‚ÌƒƒbƒZ[ƒWƒvƒƒV[ƒWƒƒ
+//! ã‚²ãƒ¼ãƒ é–‹å§‹ç›´å¾Œã®ã‚¤ãƒ³ãƒ•ã‚©ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒœãƒƒã‚¯ã‚¹ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£
 BOOL CALLBACK DialogProc(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 {
 	char *str;
@@ -486,30 +485,30 @@ BOOL CALLBACK DialogProc(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 	if(uMsg == WM_INITDIALOG){
 		gbl.SetWinCenter(hwndDlg);
 		str = new char[1024*64];
-		//config “Ç‚İ‚İŒ‹‰Ê
-		sprintf(str,"¡İ’èƒtƒ@ƒCƒ‹“Ç‚İ‚İ");
+		//config èª­ã¿è¾¼ã¿çµæœ
+		sprintf(str,"â– è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿");
 		ADDLIST(str);
 		if(!g_config.readok1){
-			sprintf(str,"config.dat(ƒL[İ’è)“Ç‚İ¸”s ƒfƒtƒHƒ‹ƒg‚ğ“K—p");
+			sprintf(str,"config.dat(ã‚­ãƒ¼è¨­å®š)èª­è¾¼ã¿å¤±æ•— ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚’é©ç”¨");
 			ADDLIST(str);
 		}
 		else{
-			sprintf(str,"config.dat “Ç‚İ‚İOK");
+			sprintf(str,"config.dat èª­ã¿è¾¼ã¿OK");
 			ADDLIST(str);
 		}
 		if(!g_config.readok2){
-			sprintf(str,"config2.dat‚Ì“Ç‚İ¸”s ƒfƒtƒHƒ‹ƒg‚ğ“K—p");
+			sprintf(str,"config2.datã®èª­è¾¼ã¿å¤±æ•— ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚’é©ç”¨");
 			ADDLIST(str);
 		}
 		else{
-			sprintf(str,"config2.dat “Ç‚İ‚İOK");
+			sprintf(str,"config2.dat èª­ã¿è¾¼ã¿OK");
 			ADDLIST(str);
 		}
 		ADDLIST(" ");
-		//ƒpƒbƒh‚ÌŒŸõŒ‹‰Ê
-		sprintf(str,"¡ƒQ[ƒ€ƒpƒbƒhŒŸõŒ‹‰Ê");
+		//ãƒ‘ãƒƒãƒ‰ã®æ¤œç´¢çµæœ
+		sprintf(str,"â– ã‚²ãƒ¼ãƒ ãƒ‘ãƒƒãƒ‰æ¤œç´¢çµæœ");
 		ADDLIST(str);
-		sprintf(str,"%dŒÂ‚ÌƒQ[ƒ€ƒpƒbƒh‚ªŒ©‚Â‚©‚è‚Ü‚µ‚½",g_input.jsnum);
+		sprintf(str,"%då€‹ã®ã‚²ãƒ¼ãƒ ãƒ‘ãƒƒãƒ‰ãŒè¦‹ã¤ã‹ã‚Šã¾ã—ãŸ",g_input.jsnum);
 		ADDLIST(str);
 		if(g_input.jsnum!=0){
 			for(int i=0;i<g_input.jsnum;i++){
@@ -518,18 +517,18 @@ BOOL CALLBACK DialogProc(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 			}
 		}
 		ADDLIST(" ");
-		//ƒLƒƒƒ‰ƒNƒ^[‚ÌŒŸõŒ‹‰Ê
-		ADDLIST("¡ƒLƒƒƒ‰ƒNƒ^[ŒŸõŒ‹‰Ê");
+		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®æ¤œç´¢çµæœ
+		ADDLIST("â– ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æ¤œç´¢çµæœ");
 		for(i=0;i<g_charlist.GetRingNum();i++){
 			sprintf(str,"%s\\ : %d",g_charlist.GetRingName(i),g_charlist.GetCharacterCountRing(i));
 			ADDLIST(str);
 		}
-		sprintf(str,"Œv : %d",g_charlist.GetCharacterCount());
+		sprintf(str,"è¨ˆ : %d",g_charlist.GetCharacterCount());
 		ADDLIST(str);
 
 		ADDLIST(" ");
-		ADDLIST("(¥Í¥)“Ç‚İ‚İ‚É¬Œ÷‚µ‚½ƒLƒƒƒ‰ƒNƒ^[(¥Í¥)");
-		sprintf(str,"‘S:%d‘Ì",g_charlist.GetCharacterCount());
+		ADDLIST("(ï½¥âˆ€ï½¥)èª­ã¿è¾¼ã¿ã«æˆåŠŸã—ãŸã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼(ï½¥âˆ€ï½¥)");
+		sprintf(str,"å…¨:%dä½“",g_charlist.GetCharacterCount());
 		ADDLIST(str);
 		for(i=0;i<g_charlist.GetCharacterCount();i++){
 			sprintf(str,"%s : %s - ver%4.3f",
@@ -538,103 +537,103 @@ BOOL CALLBACK DialogProc(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 			ADDLIST(str);
 		}
 		ADDLIST(" ");
-		ADDLIST("(¥‚`¥)“Ç‚İ‚İ‚É¸”s‚µ‚½ƒLƒƒƒ‰ƒNƒ^[(¥‚`¥)");
-		sprintf(str,"‘S:%d‘Ì",g_charlist.GetDameCharCount());
+		ADDLIST("(ï½¥ï¼¡ï½¥)èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ãŸã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼(ï½¥ï¼¡ï½¥)");
+		sprintf(str,"å…¨:%dä½“",g_charlist.GetDameCharCount());
 		ADDLIST(str);
 		for(i=0;i<g_charlist.GetDameCharCount();i++){
 			sprintf(str,"%s : ",g_charlist.GetDameCharDir(i));
 			switch(g_charlist.GetDameCharReas(i)){
-			case CCL_DAME_NODLL://action.dll‚Ì“Ç‚İ‚İ‚É¸”s
-				sprintf(&str[strlen(str)],"dll‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½");
+			case CCL_DAME_NODLL://action.dllã®èª­ã¿è¾¼ã¿ã«å¤±æ•—
+				sprintf(&str[strlen(str)],"dllã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸ");
 				break;
-			case CCL_DAME_CANTGETFP://ŠÖ”ƒ|ƒCƒ“ƒ^æ“¾‚É¸”s
-				sprintf(&str[strlen(str)],"ŠÖ”ƒ|ƒCƒ“ƒ^‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½");
+			case CCL_DAME_CANTGETFP://é–¢æ•°ãƒã‚¤ãƒ³ã‚¿å–å¾—ã«å¤±æ•—
+				sprintf(&str[strlen(str)],"é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ");
 				break;
-			case CCL_DAME_FFAIL://ŠÖ”‚ªFALSE‚ğ•Ô‚µ‚Ä‚«‚½
-				sprintf(&str[strlen(str)],"CharacterInfoŠÖ”‚ªFALSE‚ğ•Ô‚µ‚Ü‚µ‚½");
+			case CCL_DAME_FFAIL://é–¢æ•°ãŒFALSEã‚’è¿”ã—ã¦ããŸ
+				sprintf(&str[strlen(str)],"CharacterInfoé–¢æ•°ãŒFALSEã‚’è¿”ã—ã¾ã—ãŸ");
 				break;
-			case CCL_DAME_OLDDLL://ƒo[ƒWƒ‡ƒ“ƒ`ƒFƒbƒN‚É¸”s
-				sprintf(&str[strlen(str)],"ver.%4.3f(ŒÃ) - %s",
+			case CCL_DAME_OLDDLL://ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒã‚§ãƒƒã‚¯ã«å¤±æ•—
+				sprintf(&str[strlen(str)],"ver.%4.3f(å¤) - %s",
 					(double)g_charlist.GetDameCharVer(i)/1000.0,
 					g_charlist.GetDameCharName(i));
 				break;
-			case CCL_DAME_NEWDLL://ƒo[ƒWƒ‡ƒ“ƒ`ƒFƒbƒN‚É¸”s(2)
-				sprintf(&str[strlen(str)],"ver.%4.3f(V) - %s",
+			case CCL_DAME_NEWDLL://ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒã‚§ãƒƒã‚¯ã«å¤±æ•—(2)
+				sprintf(&str[strlen(str)],"ver.%4.3f(æ–°) - %s",
 					(double)g_charlist.GetDameCharVer(i)/1000.0,
 					g_charlist.GetDameCharName(i));
 				break;
 			default:
-				sprintf(&str[strlen(str)],"ƒGƒ‰[‚ğ“Á’è‚Å‚«‚Ü‚¹‚ñ");
+				sprintf(&str[strlen(str)],"ã‚¨ãƒ©ãƒ¼ã‚’ç‰¹å®šã§ãã¾ã›ã‚“");
 				break;
 			}
 			ADDLIST(str);
 		}
 		ADDLIST(" ");
-		//ƒXƒe[ƒW‚ÌŒŸõŒ‹‰Ê
-		ADDLIST("¡ƒXƒe[ƒWŒŸõŒ‹‰Ê");
-		sprintf(str,"‘S%dƒXƒe[ƒW",g_stagelist.GetStageCount());
+		//ã‚¹ãƒ†ãƒ¼ã‚¸ã®æ¤œç´¢çµæœ
+		ADDLIST("â– ã‚¹ãƒ†ãƒ¼ã‚¸æ¤œç´¢çµæœ");
+		sprintf(str,"å…¨%dã‚¹ãƒ†ãƒ¼ã‚¸",g_stagelist.GetStageCount());
 		ADDLIST(str);
 		ADDLIST(" ");
-		ADDLIST("(`¥ƒÖ¥L)“Ç‚İ‚İ‚É¬Œ÷‚µ‚½ƒXƒe[ƒW(`¥ƒÖ¥L)");
+		ADDLIST("(`ï½¥Ï‰ï½¥Â´)èª­ã¿è¾¼ã¿ã«æˆåŠŸã—ãŸã‚¹ãƒ†ãƒ¼ã‚¸(`ï½¥Ï‰ï½¥Â´)");
 		for(i=0;i<g_stagelist.GetStageCount();i++){
 			sprintf(str,"%s - %s",g_stagelist.GetStageDir(i),g_stagelist.GetStageName(i));
 			if(g_stagelist.GetStageVer(i)!=0){
 				sprintf(&str[strlen(str)],"(ver%4.3f)",g_stagelist.GetStageVer(i)/1000.0);
 			}
 			else{
-				sprintf(&str[strlen(str)],"(DLL‚È‚µ)");
+				sprintf(&str[strlen(str)],"(DLLãªã—)");
 			}
 			ADDLIST(str);
 		}
 		ADDLIST(" ");
-		ADDLIST("(L¥ƒÖ¥`)“Ç‚İ‚İ‚É¸”s‚µ‚½ƒXƒe[ƒW(L¥ƒÖ¥`)");
-		sprintf(str,"‘S%dƒXƒe[ƒW",g_stagelist.GetDameStageCount());
+		ADDLIST("(Â´ï½¥Ï‰ï½¥`)èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ãŸã‚¹ãƒ†ãƒ¼ã‚¸(Â´ï½¥Ï‰ï½¥`)");
+		sprintf(str,"å…¨%dã‚¹ãƒ†ãƒ¼ã‚¸",g_stagelist.GetDameStageCount());
 		ADDLIST(str);
 		for(i=0;i<g_stagelist.GetDameStageCount();i++){
 			sprintf(str,"%s",g_stagelist.GetDameStageDir(i));
 			switch(g_stagelist.GetDameStageReason(i)){
 			case CSL_DAME_NONAME:
-				sprintf(&str[strlen(str)],"(–¼‘Oæ“¾‚É¸”s)");
+				sprintf(&str[strlen(str)],"(åå‰å–å¾—ã«å¤±æ•—)");
 				break;
 			case CSL_DAME_PROC:
-				sprintf(&str[strlen(str)],"(ŠÖ”ƒ|ƒCƒ“ƒ^æ“¾‚É¸”s)");
+				sprintf(&str[strlen(str)],"(é–¢æ•°ãƒã‚¤ãƒ³ã‚¿å–å¾—ã«å¤±æ•—)");
 				break;
 			case CSL_DAME_PROC2:
-				sprintf(&str[strlen(str)],"(StageInfo‚É¸”s)");
+				sprintf(&str[strlen(str)],"(StageInfoã«å¤±æ•—)");
 				break;
 			case CSL_DAME_OLDDLL:
-				sprintf(&str[strlen(str)],"(DLL‚ªŒÃ‚¢-%4.3f)",g_stagelist.GetDameStageVer(i)/1000.0);
+				sprintf(&str[strlen(str)],"(DLLãŒå¤ã„-%4.3f)",g_stagelist.GetDameStageVer(i)/1000.0);
 				break;
 			case CSL_DAME_NEWDLL:
-				sprintf(&str[strlen(str)],"(DLL‚ªV‚µ‚·‚¬-%4.3f)",g_stagelist.GetDameStageVer(i)/1000.0);
+				sprintf(&str[strlen(str)],"(DLLãŒæ–°ã—ã™ã-%4.3f)",g_stagelist.GetDameStageVer(i)/1000.0);
 				break;
 			}
 			ADDLIST(str);
 		}
 		ADDLIST(" ");
-		//ƒXƒg[ƒŠ[
-		ADDLIST("¡ƒXƒg[ƒŠ[ŒŸØŒ‹‰Ê");
-		ADDLIST("›“Ç‚İ‚İ¬Œ÷›");
+		//ã‚¹ãƒˆãƒ¼ãƒªãƒ¼
+		ADDLIST("â– ã‚¹ãƒˆãƒ¼ãƒªãƒ¼æ¤œè¨¼çµæœ");
+		ADDLIST("â—‹èª­ã¿è¾¼ã¿æˆåŠŸâ—‹");
 		for(i=0;i<(int)g_storylist.GetAllStoryNum();i++){
 			sprintf(str,"%s : %s",g_storylist.GetStoryDir(i),g_storylist.GetStoryName(i));
 			ADDLIST(str);
 		}
-		ADDLIST("~“Ç‚İ‚İ¸”s~");
+		ADDLIST("Ã—èª­ã¿è¾¼ã¿å¤±æ•—Ã—");
 		for(i=0;i<g_storylist.GetErrorCount();i++){
 			sprintf(str,"%s : %s",g_storylist.GetErrorDir(i),g_storylist.GetErrorStr(i));
 			ADDLIST(str);
 		}
 		ADDLIST(" ");
 
-		if(g_charlist.GetCharacterCount()==0){//ƒLƒƒƒ‰ƒNƒ^[‚ªˆêŒÂ‚à‚¢‚È‚¢
+		if(g_charlist.GetCharacterCount()==0){//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãŒä¸€å€‹ã‚‚ã„ãªã„
 			ADDLIST(" ");
-			ADDLIST("ƒLƒƒƒ‰ƒNƒ^[‚ªˆê‘Ì‚à‚¢‚Ü‚¹‚ñBƒQ[ƒ€‚ğŠJn‚Å‚«‚Ü‚¹‚ñB");
+			ADDLIST("ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãŒä¸€ä½“ã‚‚ã„ã¾ã›ã‚“ã€‚ã‚²ãƒ¼ãƒ ã‚’é–‹å§‹ã§ãã¾ã›ã‚“ã€‚");
 			ADDLIST(" ");
 			cannot_start = TRUE;
 		}
-		if(g_stagelist.GetStageCount()==0){//ƒXƒe[ƒW‚ªˆêŒÂ‚à‚¢‚È‚¢
+		if(g_stagelist.GetStageCount()==0){//ã‚¹ãƒ†ãƒ¼ã‚¸ãŒä¸€å€‹ã‚‚ã„ãªã„
 			ADDLIST(" ");
-			ADDLIST("ƒXƒe[ƒW‚ªˆê‚Â‚à‚ ‚è‚Ü‚¹‚ñBƒQ[ƒ€‚ğŠJn‚Å‚«‚Ü‚¹‚ñB");
+			ADDLIST("ã‚¹ãƒ†ãƒ¼ã‚¸ãŒä¸€ã¤ã‚‚ã‚ã‚Šã¾ã›ã‚“ã€‚ã‚²ãƒ¼ãƒ ã‚’é–‹å§‹ã§ãã¾ã›ã‚“ã€‚");
 			ADDLIST(" ");
 			cannot_start = TRUE;
 		}
@@ -685,7 +684,7 @@ BOOL CALLBACK DialogProc(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 
 
 /*------------------------------------------------------------------------------
-	ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ªƒAƒNƒeƒBƒu‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+	ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 --------------------------------------------------------------------------------*/
 BOOL CSystem::IsWindowActive()
 {
@@ -695,34 +694,34 @@ BOOL CSystem::IsWindowActive()
 
 
 /*!
-*	ƒrƒbƒgƒ}ƒbƒv‚É‚æ‚éƒeƒLƒXƒg•`‰æ
-*	ƒtƒHƒ“ƒg‚É‚æ‚éƒeƒLƒXƒg•`‰æ‚Íd‚¢‚Á‚Û‚¢‚Ì‚ÅA‹É—Í‚±‚Á‚¿‚ğg‚¤‚×‚«H
-*	ƒAƒ‹ƒtƒ@ƒxƒbƒg‘å•¶š(A-Z)‚Æ”š‚Æ‹Éˆê•”‚Ì‹L†‚µ‚©ƒTƒ|[ƒg‚µ‚È‚¢
-*	¬•¶šƒAƒ‹ƒtƒ@ƒxƒbƒg‚Í‘å•¶š‚É•ÏŠ·‚³‚ê‚é
-*	ƒTƒ|[ƒg‚·‚é‹L†  +-%:/
+*	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã«ã‚ˆã‚‹ãƒ†ã‚­ã‚¹ãƒˆæç”»
+*	ãƒ•ã‚©ãƒ³ãƒˆã«ã‚ˆã‚‹ãƒ†ã‚­ã‚¹ãƒˆæç”»ã¯é‡ã„ã£ã½ã„ã®ã§ã€æ¥µåŠ›ã“ã£ã¡ã‚’ä½¿ã†ã¹ãï¼Ÿ
+*	ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆå¤§æ–‡å­—(A-Z)ã¨æ•°å­—ã¨æ¥µä¸€éƒ¨ã®è¨˜å·ã—ã‹ã‚µãƒãƒ¼ãƒˆã—ãªã„
+*	å°æ–‡å­—ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆã¯å¤§æ–‡å­—ã«å¤‰æ›ã•ã‚Œã‚‹
+*	ã‚µãƒãƒ¼ãƒˆã™ã‚‹è¨˜å·  +-%:/
 */
-//CSystem::DrawBMPText ‚Åg—pB•¶šƒR[ƒh‚ğ‘Î‰‚·‚éƒZƒ‹”Ô†‚É•ÏŠ·
+//CSystem::DrawBMPText ã§ä½¿ç”¨ã€‚æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’å¯¾å¿œã™ã‚‹ã‚»ãƒ«ç•ªå·ã«å¤‰æ›
 int char2cell(char c)
 {
-	if(c<0x20)return -1;//•\¦‚Å‚«‚È‚¢•¶š
-	if(c==0x20)return 0;//‘SŠpƒXƒy[ƒX
-	if(c>0x7E)return -1;//•\¦‚Å‚«‚È‚¢•¶š
+	if(c<0x20)return -1;//è¡¨ç¤ºã§ããªã„æ–‡å­—
+	if(c==0x20)return 0;//å…¨è§’ã‚¹ãƒšãƒ¼ã‚¹
+	if(c>0x7E)return -1;//è¡¨ç¤ºã§ããªã„æ–‡å­—
 
 	return CELL_BMPTEXT21 + (c - 0x21);
 }
 
 #define CELLDRAW(x,y,z,id,col) g_draw.CellDraw(sdds,scdat,srdat,id,x,y,z,0,FALSE,FALSE,col);
 
-/*! ƒrƒbƒgƒ}ƒbƒvƒeƒLƒXƒg•`‰æB
-*	ƒAƒ‹ƒtƒ@ƒxƒbƒgi‘å•¶šjA”šA+-%‚Ì‚İ
+/*! ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ†ã‚­ã‚¹ãƒˆæç”»ã€‚
+*	ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆï¼ˆå¤§æ–‡å­—ï¼‰ã€æ•°å­—ã€+-%ã®ã¿
 */
 double CSystem::DrawBMPText(double x,double y,float z,char *str,DWORD col)
 {
 	return DrawBMPTextEx(x,y,z,str,col,1.0f,1.0f,SYSBMPTXT_DEFAULT);
 }
 
-/*!ƒrƒbƒgƒ}ƒbƒvƒeƒLƒXƒg•`‰æEx
-*	Šg‘åk¬EƒCƒ“ƒ`ƒLƒvƒƒ|[ƒVƒ‡ƒiƒ‹E‰E¶ƒeƒLƒXƒg‚ª‘I‘ğ‚Å‚«‚é
+/*!ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ†ã‚­ã‚¹ãƒˆæç”»Ex
+*	æ‹¡å¤§ç¸®å°ãƒ»ã‚¤ãƒ³ãƒã‚­ãƒ—ãƒ­ãƒãƒ¼ã‚·ãƒ§ãƒŠãƒ«ãƒ»å³å·¦ãƒ†ã‚­ã‚¹ãƒˆãŒé¸æŠã§ãã‚‹
 */
 double CSystem::DrawBMPTextEx(double x,double y,float z,char *str,DWORD col,float scaX,float scaY,DWORD flags)
 {
@@ -738,19 +737,19 @@ double CSystem::DrawBMPTextEx(double x,double y,float z,char *str,DWORD col,floa
 	shadecol.dwcol = col;
 	switch(flags & SYSBMPTXT_SHADEMASK)
 	{
-	case SYSBMPTXT_SHADE://‰e‚Â‚«(1)
+	case SYSBMPTXT_SHADE://å½±ã¤ã(1)
 		{
 			shadecol.red /= 2;
 			shadecol.green /= 2;
 			shadecol.blue /= 2;
 		}break;
-	case SYSBMPTXT_SHADE_W://^‚Á”’‰e‚Â‚«
+	case SYSBMPTXT_SHADE_W://çœŸã£ç™½å½±ã¤ã
 		{
 			shadecol.red = 255;
 			shadecol.green = 255;
 			shadecol.blue = 255;
 		}break;
-	case SYSBMPTXT_SHADE_B://^‚Á•‰e‚Â‚«
+	case SYSBMPTXT_SHADE_B://çœŸã£é»’å½±ã¤ã
 		{
 			shadecol.red = 0;
 			shadecol.green = 0;
@@ -761,7 +760,7 @@ double CSystem::DrawBMPTextEx(double x,double y,float z,char *str,DWORD col,floa
 
 	if(flags&SYSBMPTXT_ALPHAADD)g_draw.SetAlphaMode(GBLEND_KASAN);
 
-	//‹tŒü‚«
+	//é€†å‘ã
 	if(flags & SYSBMPTXT_R2L){
 		int len = strlen(str);
 		char *tmp = new char [len+1];
@@ -773,7 +772,7 @@ double CSystem::DrawBMPTextEx(double x,double y,float z,char *str,DWORD col,floa
 		while(*str!='\0'){
 			cno = char2cell(*str);
 			if(cno>0){
-				//step‚ğ‹‚ß‚é
+				//stepã‚’æ±‚ã‚ã‚‹
 				if(flags&SYSBMPTXT_PROP){
 					pr = &srdat[scdat[cno].cell[0].cdr].r;
 					step = (int)((pr->right-pr->left)*scaX);
@@ -795,11 +794,11 @@ double CSystem::DrawBMPTextEx(double x,double y,float z,char *str,DWORD col,floa
 		return x;
 	}
 
-	//‚Ó‚Â[
+	//ãµã¤ãƒ¼
 	while(*str!='\0'){
 		cno = char2cell(*str);
 		if(cno>0){
-			//step‚ğ‹‚ß‚é
+			//stepã‚’æ±‚ã‚ã‚‹
 			if(flags&SYSBMPTXT_PROP){
 				pr = &srdat[scdat[cno].cell[0].cdr].r;
 				step = (int)((pr->right-pr->left)*scaX +1);
@@ -824,7 +823,7 @@ double CSystem::DrawBMPTextEx(double x,double y,float z,char *str,DWORD col,floa
 
 
 /*------------------------------------------------------------------
-	Œ»İ‚ÌƒƒCƒ“ƒ^ƒXƒNƒNƒ‰ƒX‚ğæ“¾
+	ç¾åœ¨ã®ãƒ¡ã‚¤ãƒ³ã‚¿ã‚¹ã‚¯ã‚¯ãƒ©ã‚¹ã‚’å–å¾—
 --------------------------------------------------------------------*/
 CExclusiveTaskBase* CSystem::GetCurrentMainTask()
 {
@@ -832,7 +831,7 @@ CExclusiveTaskBase* CSystem::GetCurrentMainTask()
 }
 
 /*------------------------------------------------------------------
-	w’èID‚ÌƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒ^ƒXƒN‚ğæ“¾
+	æŒ‡å®šIDã®ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‚¿ã‚¹ã‚¯ã‚’å–å¾—
 --------------------------------------------------------------------*/
 CBackgroundTaskBase* CSystem::FindBGTask(DWORD id)
 {
@@ -840,7 +839,7 @@ CBackgroundTaskBase* CSystem::FindBGTask(DWORD id)
 }
 
 /*------------------------------------------------------------------
-	w’èID‚Ì’Êíƒ^ƒXƒN‚ğæ“¾
+	æŒ‡å®šIDã®é€šå¸¸ã‚¿ã‚¹ã‚¯ã‚’å–å¾—
 --------------------------------------------------------------------*/
 CTaskBase* CSystem::FindTask(DWORD id)
 {
@@ -848,7 +847,7 @@ CTaskBase* CSystem::FindTask(DWORD id)
 }
 
 /*------------------------------------------------------------------
-	ƒƒO
+	ãƒ­ã‚°
 --------------------------------------------------------------------*/
 
 char* CSystem::logBuffer = NULL;
@@ -936,36 +935,36 @@ void PngErrHandler(png_structp Png,png_const_charp message);
 
 void CSystem::SaveScreenShot()
 {
-	//ƒRƒs[
+	//ã‚³ãƒ”ãƒ¼
 	UINT width , height;
 	DWORD *bits = g_draw.GetFrontBufferCopyRaw(&width,&height);
 	if(!bits){
-		Log("ƒXƒNƒŠ[ƒ“ƒVƒ‡ƒbƒg‚Ìì¬‚É¸”s(ƒtƒƒ“ƒgƒoƒbƒtƒ@[ƒRƒs[)",SYSLOG_WARNING);
+		Log("ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚·ãƒ§ãƒƒãƒˆã®ä½œæˆã«å¤±æ•—(ãƒ•ãƒ­ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ãƒ¼ã‚³ãƒ”ãƒ¼)",SYSLOG_WARNING);
 		return;
 	}
 
-	//•Û‘¶ƒtƒ@ƒCƒ‹–¼‚ğ‚Ğ‚Ë‚èo‚·
+	//ä¿å­˜ãƒ•ã‚¡ã‚¤ãƒ«åã‚’ã²ã­ã‚Šå‡ºã™
 	char* filename = new char[256];
 	time_t crnt_time;
 	time(&crnt_time);
 	struct tm* crnt_time_l = localtime(&crnt_time);
 	sprintf(filename,"%s\\%d%s%d%s%d%s%d%s%d%s%d.%s",
 		"system\\sshot\\",
-		crnt_time_l->tm_year + 1900,				//”N
+		crnt_time_l->tm_year + 1900,				//å¹´
 		(crnt_time_l->tm_mon + 1)<10 ? "0" : "",
-		crnt_time_l->tm_mon + 1,					//Œ
+		crnt_time_l->tm_mon + 1,					//æœˆ
 		crnt_time_l->tm_mday<10 ? "0" : "",
-		crnt_time_l->tm_mday,						//“ú
+		crnt_time_l->tm_mday,						//æ—¥
 		crnt_time_l->tm_hour<10 ? "0" : "",
-		crnt_time_l->tm_hour,						//
+		crnt_time_l->tm_hour,						//æ™‚
 		crnt_time_l->tm_min<10 ? "0" : "",
-		crnt_time_l->tm_min,						//•ª
+		crnt_time_l->tm_min,						//åˆ†
 		crnt_time_l->tm_sec<10 ? "0" : "",
-		crnt_time_l->tm_sec,						//•b
-		g_config.GetSShotFileTypeStr()				//Šg’£q
+		crnt_time_l->tm_sec,						//ç§’
+		g_config.GetSShotFileTypeStr()				//æ‹¡å¼µå­
 	);
 
-/*	‚±‚ê‚ğ‚â‚é‚Ægdiplus‚ª•K—v‚É‚È‚é
+/*	ã“ã‚Œã‚’ã‚„ã‚‹ã¨gdiplusãŒå¿…è¦ã«ãªã‚‹
 
 	CImage img;
 	img.Create(width,height,32);
@@ -977,7 +976,7 @@ void CSystem::SaveScreenShot()
 		{
 			col.dwcol = *(bits + y*width + x);
 
-			//Ô‚ÆÂ‚ª‹t‚ç‚µ‚¢
+			//èµ¤ã¨é’ãŒé€†ã‚‰ã—ã„
 			tmp = col.red;
 			col.red = col.blue;
 			col.blue = tmp;
@@ -987,13 +986,13 @@ void CSystem::SaveScreenShot()
 	}
 	img.Save(filename);//,ImageFormatJPEG);*/
 
-	//ƒrƒbƒgƒ}ƒbƒv‚Å•Û‘¶
+	//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã§ä¿å­˜
 	if (g_config.GetSShotImageFormat() == SSHOT_BMP)
 	{
 		UINT stride = width*3;
 		stride += (stride%4) ? (4-stride%4) : 0;
 
-		//ƒtƒ@ƒCƒ‹ƒwƒbƒ_
+		//ãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€
 		BITMAPFILEHEADER head;
 		head.bfOffBits = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER);
 		head.bfReserved1 = 0;
@@ -1001,7 +1000,7 @@ void CSystem::SaveScreenShot()
 		head.bfSize = sizeof(head) + sizeof(BITMAPINFOHEADER) + height * stride;
 		head.bfType = 'MB';
 
-		//ƒrƒbƒgƒ}ƒbƒvƒwƒbƒ_
+		//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ˜ãƒƒãƒ€
 		BITMAPINFOHEADER head2;
 		head2.biBitCount = 24;		//32;	//32:The high byte in each DWORD is not used
 		head2.biClrImportant = 0;	//?
@@ -1012,26 +1011,26 @@ void CSystem::SaveScreenShot()
 		head2.biSize = sizeof(BITMAPINFOHEADER);
 		head2.biSizeImage = height*stride;
 		head2.biWidth = width;
-		head2.biXPelsPerMeter = 2000;//“K“–‚Å‚æ‚¢H
-		head2.biYPelsPerMeter = 2000;//“K“–‚Å‚æ‚¢H
+		head2.biXPelsPerMeter = 2000;//é©å½“ã§ã‚ˆã„ï¼Ÿ
+		head2.biYPelsPerMeter = 2000;//é©å½“ã§ã‚ˆã„ï¼Ÿ
 
-		//ƒtƒ@ƒCƒ‹ŠJ‚¯‚é
+		//ãƒ•ã‚¡ã‚¤ãƒ«é–‹ã‘ã‚‹
 		CFile file;
 		if(file.Open(filename,CFile::modeWrite | CFile::modeCreate))
 		{
-			//ƒwƒbƒ_‘‚«‚İ
+			//ãƒ˜ãƒƒãƒ€æ›¸ãè¾¼ã¿
 			file.Write(&head ,sizeof(BITMAPFILEHEADER));
 			file.Write(&head2,sizeof(BITMAPINFOHEADER));
 			
 			#if 1
 			{
-				//32¨24•ÏŠ·—pƒoƒbƒtƒ@
+				//32â†’24å¤‰æ›ç”¨ãƒãƒƒãƒ•ã‚¡
 				BYTE *cbuf = new BYTE[ stride ];
 				ZeroMemory(cbuf,stride);
 
 				if (!cbuf)
 				{
-					gbl.ods2("CSystem::SaveScreenShot : •ÏŠ·—pƒoƒbƒtƒ@‚ª‚È‚¢‚Û\n");
+					gbl.ods2("CSystem::SaveScreenShot : å¤‰æ›ç”¨ãƒãƒƒãƒ•ã‚¡ãŒãªã„ã½\n");
 					file.Close();
 					CFile::Remove(filename);
 					goto SSHOT_FAILED;
@@ -1039,7 +1038,7 @@ void CSystem::SaveScreenShot()
 
 				for(UINT y=0;y<height;y++)
 				{
-					//32¨24
+					//32â†’24
 					BYTE  *pd = cbuf;
 					DWORD *ps = bits + (height-y-1)*width;
 					for(UINT x=0;x<width;x++)
@@ -1053,7 +1052,7 @@ void CSystem::SaveScreenShot()
 						ps++;
 					}
 
-					//1ƒ‰ƒCƒ“•ª‘‚«‚İ
+					//1ãƒ©ã‚¤ãƒ³åˆ†æ›¸ãè¾¼ã¿
 					file.Write( cbuf , stride );
 				}
 
@@ -1071,31 +1070,31 @@ void CSystem::SaveScreenShot()
 		}
 		else
 		{
-			Log("ƒXƒNƒŠ[ƒ“ƒVƒ‡ƒbƒg‚Ìì¬‚É¸”s(ƒtƒ@ƒCƒ‹ƒI[ƒvƒ“)",SYSLOG_WARNING);
+			Log("ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚·ãƒ§ãƒƒãƒˆã®ä½œæˆã«å¤±æ•—(ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³)",SYSLOG_WARNING);
 		}
 	}
-	else if (g_config.GetSShotImageFormat() == SSHOT_PNG)	// PNG•Û‘¶
+	else if (g_config.GetSShotImageFormat() == SSHOT_PNG)	// PNGä¿å­˜
 	{
 		FILE* fp;
 
-		// PNG\‘¢‘Ì
-		png_structp strPNG = png_create_write_struct(PNG_LIBPNG_VER_STRING, "ƒPƒzƒpƒz‚Ì–é", PngErrHandler, NULL);
+		// PNGæ§‹é€ ä½“
+		png_structp strPNG = png_create_write_struct(PNG_LIBPNG_VER_STRING, "ã‚±ãƒ›ãƒ‘ãƒ›ã®å¤œ", PngErrHandler, NULL);
 		if (!strPNG)
 		{
-			gbl.ods2("CDirectDraw::Load256PNGbits : PNG\‘¢‘ÌÃŞ·ÃÈ´Ö!!R(`„DL)É³Ü§§İ!!\n");
+			gbl.ods2("CDirectDraw::Load256PNGbits : PNGæ§‹é€ ä½“ï¾ƒï¾ï½·ï¾ƒï¾ˆï½´ï¾–!!ãƒ½(`Ğ”Â´)ï¾‰ï½³ï¾œï½§ï½§ï¾!!\n");
 			goto SSHOT_FAILED;
 		}
 
-		// î•ñ\‘¢‘Ì
+		// æƒ…å ±æ§‹é€ ä½“
 		png_infop infoPNG = png_create_info_struct(strPNG);
 		if (!infoPNG)
 		{
-			gbl.ods2("CDirectDraw::Load256PNGbits : PNGî•ñ\‘¢‘ÌÃŞ·ÃÈ´Ö!!R(`„DL)É³Ü§§İ!!\n");
+			gbl.ods2("CDirectDraw::Load256PNGbits : PNGæƒ…å ±æ§‹é€ ä½“ï¾ƒï¾ï½·ï¾ƒï¾ˆï½´ï¾–!!ãƒ½(`Ğ”Â´)ï¾‰ï½³ï¾œï½§ï½§ï¾!!\n");
 			png_destroy_write_struct(&strPNG, NULL);
 			goto SSHOT_FAILED;
 		}
 
-		// ‘‚«‚İ€”õ
+		// æ›¸ãè¾¼ã¿æº–å‚™
 		fp = fopen(filename, "wb");
 		if (!fp)
 		{
@@ -1103,32 +1102,32 @@ void CSystem::SaveScreenShot()
 			goto SSHOT_FAILED;
 		}
 
-		// ƒ‰ƒCƒuƒ‰ƒŠ‚É”C‚¹‚é
+		// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«ä»»ã›ã‚‹
 		png_init_io(strPNG, fp);
 
-		// ‰æ‘œ‚Ìî•ñ‚ğİ’è
-		png_set_IHDR(strPNG, infoPNG,				// \‘¢‘Ìˆê®
-					 width,							// •
-					 height,						// ‚‚³
-					 8,								// ƒrƒbƒg[“x
-					 PNG_COLOR_TYPE_RGB,			// ƒJƒ‰[ƒ^ƒCƒv
-					 PNG_INTERLACE_NONE,			// ƒCƒ“ƒ^ƒŒ[ƒX
-					 PNG_COMPRESSION_TYPE_DEFAULT,	// ˆ³k•û–@H
-					 PNG_FILTER_TYPE_DEFAULT);		// ‚½‚Î‚±‚ÌƒtƒBƒ‹ƒ^[‚ğ”²‚¢‚Ä‹z‚¤‚Ì‚Í‚â‚ß‚Ü‚µ‚å‚¤B
+		// ç”»åƒã®æƒ…å ±ã‚’è¨­å®š
+		png_set_IHDR(strPNG, infoPNG,				// æ§‹é€ ä½“ä¸€å¼
+					 width,							// å¹…
+					 height,						// é«˜ã•
+					 8,								// ãƒ“ãƒƒãƒˆæ·±åº¦
+					 PNG_COLOR_TYPE_RGB,			// ã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—
+					 PNG_INTERLACE_NONE,			// ã‚¤ãƒ³ã‚¿ãƒ¬ãƒ¼ã‚¹
+					 PNG_COMPRESSION_TYPE_DEFAULT,	// åœ§ç¸®æ–¹æ³•ï¼Ÿ
+					 PNG_FILTER_TYPE_DEFAULT);		// ãŸã°ã“ã®ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚’æŠœã„ã¦å¸ã†ã®ã¯ã‚„ã‚ã¾ã—ã‚‡ã†ã€‚
 
-		// ƒtƒ@ƒCƒ‹‚É‚Ô‚¿‚Ş
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã«ã¶ã¡è¾¼ã‚€
 		png_write_info(strPNG, infoPNG);
 
 		{
 			UINT stride = width*3;
 			stride += (stride%4) ? (4-stride%4) : 0;
 
-			//32¨24•ÏŠ·—pƒoƒbƒtƒ@
+			//32â†’24å¤‰æ›ç”¨ãƒãƒƒãƒ•ã‚¡
 			BYTE *cbuf = new BYTE[ stride ];
 
 			if (!cbuf)
 			{
-				gbl.ods2("CSystem::SaveScreenShot : •ÏŠ·—pƒoƒbƒtƒ@‚ª‚È‚¢‚Û\n");
+				gbl.ods2("CSystem::SaveScreenShot : å¤‰æ›ç”¨ãƒãƒƒãƒ•ã‚¡ãŒãªã„ã½\n");
 				fclose(fp);
 				png_destroy_write_struct(&strPNG, &infoPNG);
 				goto SSHOT_FAILED;
@@ -1138,7 +1137,7 @@ void CSystem::SaveScreenShot()
 
 			for(int y=height - 1;y >= 0;y--)
 			{
-				//32¨24
+				//32â†’24
 				BYTE  *pd = cbuf;
 				DWORD *ps = bits + (height-y-1)*width;
 				for(UINT x=0;x<width;x++)
@@ -1152,31 +1151,31 @@ void CSystem::SaveScreenShot()
 					ps++;
 				}
 
-				//1ƒ‰ƒCƒ“•ª‘‚«‚İ
+				//1ãƒ©ã‚¤ãƒ³åˆ†æ›¸ãè¾¼ã¿
 				png_write_row(strPNG, cbuf);
 			}
 
 			DELETEARRAY(cbuf);
 		}
 
-		// Š®—¹
+		// å®Œäº†
 		png_write_end(strPNG, infoPNG);
 		fclose(fp);
 		png_destroy_write_struct(&strPNG, &infoPNG);
 	}
-	else	// JPEG•Û‘¶
+	else	// JPEGä¿å­˜
 	{
 		struct jpeg_compress_struct cinfo;
 		struct jpeg_error_mgr jerr;
 		FILE* fp;
 
-		// \‘¢‘Ì‰Šú‰»
+		// æ§‹é€ ä½“åˆæœŸåŒ–
 		ZeroMemory(&cinfo, sizeof(cinfo));
 		ZeroMemory(&jerr, sizeof(jerr));
 		cinfo.err = jpeg_std_error(&jerr);
 		jpeg_create_compress(&cinfo);
 
-		// ‘‚«‚İ€”õ
+		// æ›¸ãè¾¼ã¿æº–å‚™
 		fp = fopen(filename, "wb");
 		if (!fp)
 		{
@@ -1184,45 +1183,45 @@ void CSystem::SaveScreenShot()
 			goto SSHOT_FAILED;
 		}
 
-		// ‡‘Ì
+		// åˆä½“
 		jpeg_stdio_dest(&cinfo, fp);
 
-		// FXî•ñİ’è
+		// è‰²ã€…æƒ…å ±è¨­å®š
 		cinfo.image_width = width;
 		cinfo.image_height = height;
 		cinfo.input_components = 3;
 		cinfo.in_color_space = JCS_RGB;
-		jpeg_set_defaults(&cinfo);			// Œã‚Íƒ‰ƒCƒuƒ‰ƒŠ‚É”C‚¹‚é
+		jpeg_set_defaults(&cinfo);			// å¾Œã¯ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«ä»»ã›ã‚‹
 
-		// ‰æ¿‚ğİ’è
+		// ç”»è³ªã‚’è¨­å®š
 		jpeg_set_quality(&cinfo, 70, TRUE);
 
-		// ”­Ë€”õ
+		// ç™ºå°„æº–å‚™
 		jpeg_start_compress(&cinfo, TRUE);
 
 		{
 			UINT stride = width*3;
 			stride += (stride%4) ? (4-stride%4) : 0;
 
-			//32¨24•ÏŠ·—pƒoƒbƒtƒ@
+			//32â†’24å¤‰æ›ç”¨ãƒãƒƒãƒ•ã‚¡
 			BYTE *cbuf = new BYTE[ stride ];
 
 			if (!cbuf)
 			{
-				gbl.ods2("CSystem::SaveScreenShot : •ÏŠ·—pƒoƒbƒtƒ@‚ª‚È‚¢‚Û\n");
+				gbl.ods2("CSystem::SaveScreenShot : å¤‰æ›ç”¨ãƒãƒƒãƒ•ã‚¡ãŒãªã„ã½\n");
 				fclose(fp);
 				jpeg_destroy_compress(&cinfo);
 				goto SSHOT_FAILED;
 			}
 
-			// ƒf[ƒ^“`’B‚Ég‚¤ƒ|ƒCƒ“ƒ^
+			// ãƒ‡ãƒ¼ã‚¿ä¼é”ã«ä½¿ã†ãƒã‚¤ãƒ³ã‚¿
 			JSAMPROW row = (JSAMPROW)cbuf;
 
 			ZeroMemory(cbuf,stride);
 
 			for(int y=height - 1;y >= 0;y--)
 			{
-				//32¨24
+				//32â†’24
 				BYTE  *pd = cbuf;
 				DWORD *ps = bits + (height-y-1)*width;
 				for(UINT x=0;x<width;x++)
@@ -1236,14 +1235,14 @@ void CSystem::SaveScreenShot()
 					ps++;
 				}
 
-				//1ƒ‰ƒCƒ“•ª‘‚«‚İ
+				//1ãƒ©ã‚¤ãƒ³åˆ†æ›¸ãè¾¼ã¿
 				jpeg_write_scanlines(&cinfo, &row, 1);
 			}
 
 			DELETEARRAY(cbuf);
 		}
 
-		// Š®—¹
+		// å®Œäº†
 		jpeg_finish_compress(&cinfo);
 		jpeg_destroy_compress(&cinfo);
 		fclose(fp);
@@ -1254,7 +1253,7 @@ SSHOT_FAILED:
 	delete [] bits;
 }
 
-// İ’è‚É]‚¢ƒtƒŒ[ƒ€ƒŒ[ƒg‚ğ•ÏXB
+// è¨­å®šã«å¾“ã„ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆã‚’å¤‰æ›´ã€‚
 void CSystem::UpdateFrameRate()
 {
 	switch ( g_config.GetGameSpeed() )
