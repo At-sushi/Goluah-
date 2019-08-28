@@ -1913,10 +1913,10 @@ BOOL CBattleTask::Atari(DWORD a_id, DWORD k_id, MY2DVECTOR &kas_point)
         }
         switch(aif->hit & 0x0F000000){//ヒットストップ
         case 0:break;
-        case HITINFO_SIV1:HitStop( 4,k_id);break;
-        case HITINFO_SIV2:HitStop( 7,k_id);break;
-        case HITINFO_SIV3:HitStop(13,k_id);break;
-        case HITINFO_STOP:HitStop(40,k_id);break;
+        case HITINFO_SIV1:HitStop( 6,k_id);break;
+        case HITINFO_SIV2:HitStop( 9,k_id);break;
+        case HITINFO_SIV3:HitStop(16,k_id);break;
+        case HITINFO_STOP:HitStop(48,k_id);break;
         }
         int vib_type = 0;		// 振動の強さ[0..2]
         if(!(res & 0x40000000)){
@@ -2051,10 +2051,10 @@ BOOL CBattleTask::Atari(DWORD a_id, DWORD k_id, MY2DVECTOR &kas_point)
         else AddEffect(EFCTID_MARKG2,(int)kas_point.x,(int)kas_point.y);
         switch(aif->guard & 0x0F000000){//ヒットストップ
         case 0:break;
-        case GUARDINFO_SIV1:HitStop( 4,k_id);break;
-        case GUARDINFO_SIV2:HitStop( 7,k_id);break;
-        case GUARDINFO_SIV3:HitStop(13,k_id);break;
-        case GUARDINFO_STOP:HitStop(40,k_id);break;
+        case GUARDINFO_SIV1:HitStop( 6,k_id);break;
+        case GUARDINFO_SIV2:HitStop( 9,k_id);break;
+        case GUARDINFO_SIV3:HitStop(16,k_id);break;
+        case GUARDINFO_STOP:HitStop(48,k_id);break;
         }
         g_system.PlaySystemSound(SYSTEMSOUND_GUARD);//効果音
         if(!(res & 0x40000000)){
