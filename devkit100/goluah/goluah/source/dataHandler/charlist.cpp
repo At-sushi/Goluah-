@@ -1010,7 +1010,7 @@ BOOL CCSimpleOptionSelecter::HandlePad(DWORD inputIndex)
 	{
 /*		SetRandom();
 		current_selected = list->size();//OK位置にカーソル移動
-*/		m_current_favorite = rand() % (m_ref_cinfo->fav_opts.size() +1);
+*/		m_current_favorite = (rand() % m_ref_cinfo->fav_opts.size()) +1;
 
 		DWORD current_favorite = m_current_favorite;
 		Initialize( m_ref_cinfo->fav_opts[m_current_favorite-1].opt );
