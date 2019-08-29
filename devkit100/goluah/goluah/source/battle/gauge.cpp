@@ -916,7 +916,7 @@ void CGauge::DrawPowerGaugeType2(BOOL player,int pindex,int x,int y,BOOL pow)
 	rpg_R.right=135;
 
 	DWORD cell_max;
-	DWORD TGTCnt = (timeGetTime()/50)%12;
+	DWORD TGTCnt = (timeGetTime()/30)%12;
 
 	if(!player){
 		j=0;
