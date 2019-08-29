@@ -24,7 +24,7 @@
 
 #define MAXEFCT_SIVER 16
 #define DEBUGMSGBUFFERSIZE	(1024*4)
-#define OBJECTS_MEMINCRATE	128//!< オブジェクト配列、メモリ増分値
+#define OBJECTS_MEMINCRATE	1024//!< オブジェクト配列、メモリ増分値
 
 
 /*!
