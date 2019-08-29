@@ -1092,19 +1092,20 @@ void CBattleTask::T_ChangeTarget()
     double minimum_distance;
     int i,j;
     static int change_target_index=0;
-    DWORD newtarget;
 
     GOBJECT *pdat,*pedat;
 
-    newtarget=0;
     change_target_index += 64;
     if(change_target_index >= (int)p_objects.size())
         change_target_index = 0;
     for(i=change_target_index;i<min(change_target_index+64, (int)p_objects.size());i++){
-        if(p_objects[i]!=NULL){
+       if(p_objects[i]!=NULL){
             pdat=&(p_objects[i]->data);
             if((pdat->objtype & GOBJFLG_NEEDTARGET) && BATTLETASK_ISNOTFXOBJ(pdat)){//ターゲットが必要
+                DWORD newtarget = 0;
+
                 minimum_distance=9999*9999;
+
                 for(j=0;j<(int)p_objects.size();j++){
                     if(j!=i){
                         if(p_objects[j]!=NULL){
