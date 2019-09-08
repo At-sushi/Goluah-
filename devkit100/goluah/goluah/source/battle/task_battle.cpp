@@ -1573,36 +1573,36 @@ DWORD CBattleTask::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
             }
 
             //「次の」キャラクター取得
-            DWORD next_act;
+            DWORD next_act[MAXNUM_TEAM - 1];
             switch(cidx){	//HPとface1の配置変更に伴い、左右を逆に
-                case 0:next_act= striker_front ? 2 : 1 ;break;
-                case 1:next_act= striker_front ? 0 : 2 ;break;
-                case 2:next_act= striker_front ? 1 : 0 ;break;
-                default:
+            case 0:next_act[0] = striker_front ? 2 : 1; next_act[1] = striker_front ? 1 : 2; break;
+            case 1:next_act[0] = striker_front ? 0 : 2; next_act[1] = striker_front ? 2 : 0; break;
+            case 2:next_act[0] = striker_front ? 1 : 0; next_act[1] = striker_front ? 0 : 1; break;
+            default:
                     g_system.LogWarning("%s msg=%08X ,失敗(cidx=%d)",__FUNCTION__,msg,cidx);
                     g_system.PopSysTag();
                     return(FALSE);
             }
-            if(charobjid[team][next_act]==0){
-                g_system.PopSysTag();
-                return FALSE;
-            }
-            pdat=(CGObject*)GetGObject( charobjid[team][next_act] );
-            if(!pdat){
-                g_system.LogWarning("%s msg=%08X ,失敗(オブジェクトNULL)",__FUNCTION__,msg,cidx);
-                g_system.PopSysTag();
-                return(FALSE);
-            }
+            for (const auto next_act : next_act) {
+                if (charobjid[team][next_act] == 0){
+                    continue;
+                }
+                pdat = (CGObject*)GetGObject(charobjid[team][next_act]);
+                if (!pdat){
+                    g_system.LogWarning("%s msg=%08X ,失敗(オブジェクトNULL)", __FUNCTION__, msg, cidx);
+                    continue;
+                }
 
-            //交代メッセージ送信
-            if(pdat->Message(GOBJMSG_KOUTAI,charobjid[team][cidx]))
-            {
-                hprecratio[team][cidx]*=1.8;		//HP回復インターバル増
-                active_character[team]=next_act;//"アクティブ" キャラクター更新
-                g_system.PopSysTag();
-                return(TRUE);					//成功
+                //交代メッセージ送信
+                if (pdat->Message(GOBJMSG_KOUTAI, charobjid[team][cidx]))
+                {
+                    hprecratio[team][cidx] *= 1.8;		//HP回復インターバル増
+                    active_character[team] = next_act;//"アクティブ" キャラクター更新
+                    g_system.PopSysTag();
+                    return(TRUE);					//成功
+                }
+                else g_system.Log("◆交代要請拒否。交代失敗。\n", SYSLOG_DEBUG);
             }
-            else g_system.Log("◆交代要請拒否。交代失敗。\n",SYSLOG_DEBUG);
             g_system.PopSysTag();
             return(FALSE);
         }
@@ -1628,33 +1628,35 @@ DWORD CBattleTask::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
             }
             
             //「次の」キャラクター取得
-            DWORD next_act;
+            DWORD next_act[MAXNUM_TEAM - 1];
             switch(cidx){	//HPとface1の配置変更に伴い、左右を逆に
-                case 0:next_act= striker_front ? 2 : 1 ;break;
-                case 1:next_act= striker_front ? 0 : 2 ;break;
-                case 2:next_act= striker_front ? 1 : 0 ;break;
+            case 0:next_act[0] = striker_front ? 2 : 1; next_act[1] = striker_front ? 1 : 2; break;
+            case 1:next_act[0] = striker_front ? 0 : 2; next_act[1] = striker_front ? 2 : 0; break;
+            case 2:next_act[0] = striker_front ? 1 : 0; next_act[1] = striker_front ? 0 : 1; break;
                 default:
                     g_system.PopSysTag();
                     return(FALSE);
             }
-            if(charobjid[team][next_act]==0){
-                g_system.PopSysTag();
-                return FALSE;
-            }
-            pdat=(CGObject*)GetGObject( charobjid[team][next_act] );
-            if(!pdat){
-                g_system.PopSysTag();
-                return(FALSE);
-            }
+            for (const auto next_act : next_act) {
+                if (charobjid[team][next_act] == 0){
+                    continue;
+                }
+                pdat = (CGObject*)GetGObject(charobjid[team][next_act]);
+                if (!pdat){
+                    continue;
+                }
 
-            if(pdat->Message(GOBJMSG_STRIKER,charobjid[team][cidx]))//ストライカー要請問い合わせ
-            {
-                //OK
-                strikercount[team]--;
-                g_system.PopSysTag();
-                return(TRUE);
+                if (pdat->Message(GOBJMSG_STRIKER, charobjid[team][cidx]))//ストライカー要請問い合わせ
+                {
+                    //OK
+                    strikercount[team]--;
+                    g_system.PopSysTag();
+                    return(TRUE);
+                }
+                else gbl.ods("★ストライカー却下");
             }
-            else gbl.ods("★ストライカー却下");
+            g_system.PopSysTag();
+            return(FALSE);
         }
         break;
 
