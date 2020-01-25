@@ -1,12 +1,12 @@
 ﻿
 /*==================================================================================
-	
-	l_directdraw.cpp
-	
-	CDirectDrawクラスの基本的な部分。
-	主に初期化や破棄等の部分を記述
+    
+    l_directdraw.cpp
+    
+    CDirectDrawクラスの基本的な部分。
+    主に初期化や破棄等の部分を記述
 
-	MFCアプリケーションで使用する場合は「プリコンパイルヘッダーを使用しない」にする
+    MFCアプリケーションで使用する場合は「プリコンパイルヘッダーを使用しない」にする
 
 ====================================================================================*/
 
@@ -18,9 +18,9 @@
 #else
 enum NowLoading_IconItem
 {
-	NowLoading_DLL,
-	NowLoading_Image,
-	NowLoading_GCD,
+    NowLoading_DLL,
+    NowLoading_Image,
+    NowLoading_GCD,
 };
 #endif
 
@@ -30,8 +30,15 @@ enum NowLoading_IconItem
 #define HALF_HEIGHT		(g_DISPLAYHEIGHT*0.5f)
 #define HALF_HEIGHT2	(240.0f)
 
+// もうちょっと早く対応して欲しかった…
+#if _MSC_VER < 1910
+#pragma push_macro("constexpr")
+#define constexpr const
+#define GSL_USE_STATIC_CONSTEXPR_WORKAROUND
+#endif // _MSC_VER < 1910
+
 /*---------------------------------------------------------------------------------
-	エディターの場合の設定
+    エディターの場合の設定
 -----------------------------------------------------------------------------------*/
 #ifdef GCD_EDITER//■エディタの場合-------------------------------------------------
 
@@ -45,10 +52,10 @@ extern int g_DISPLAYHEIGHT;
 
 class CDummyCfg{
 public:
-	BOOL		NoAlphaTest(){return FALSE;}
-	D3DFORMAT	TexFormat(){return D3DFMT_A1R5G5B5;}
-	BOOL		IsHalfMode(){return FALSE;}
-	D3DDEVTYPE	DeviceType(){return D3DDEVTYPE_HAL;}
+    BOOL		NoAlphaTest(){return FALSE;}
+    D3DFORMAT	TexFormat(){return D3DFMT_A1R5G5B5;}
+    BOOL		IsHalfMode(){return FALSE;}
+    D3DDEVTYPE	DeviceType(){return D3DDEVTYPE_HAL;}
 };
 CDummyCfg g_config;
 
@@ -74,16 +81,16 @@ CDummyCfg g_config;
 */
 CDirectDraw::CDirectDraw()
 {
-	//パラメータリセット
-	state = CDDSTATE_NOINITIALIZE;
-	dd = NULL;
-	d3ddev = NULL;
-	//pSprite = NULL;
-	pMyVertex = NULL;
+    //パラメータリセット
+    state = CDDSTATE_NOINITIALIZE;
+    dd = NULL;
+    d3ddev = NULL;
+    //pSprite = NULL;
+    pMyVertex = NULL;
 
-	ZeroMemory(ms,sizeof(MYSURFACE)*MAXNUMGOLUAHTEXTURES);
-	clearbgcolor = 0;
-	ZeroMemory(lpFont,sizeof(LPD3DXFONT)*3);
+    ZeroMemory(ms,sizeof(MYSURFACE)*MAXNUMGOLUAHTEXTURES);
+    clearbgcolor = 0;
+    ZeroMemory(lpFont,sizeof(LPD3DXFONT)*3);
 }
 
 /*!
@@ -97,134 +104,134 @@ CDirectDraw::CDirectDraw()
 */
 BOOL CDirectDraw::Initialize(HWND hwnd,BOOL win)
 {
-	Destroy();
-	m_is_win = win;
-	stencil_enable = false;
+    Destroy();
+    m_is_win = win;
+    stencil_enable = false;
 
-	if(!InitDirectDraw(hwnd,win)){
-		Destroy();
-		return FALSE;
-	}
+    if(!InitDirectDraw(hwnd,win)){
+        Destroy();
+        return FALSE;
+    }
 
-	//最大テクスチャサイズ取得
-	D3DCAPS9 cap8;
-	if(dd->GetDeviceCaps(D3DADAPTER_DEFAULT,devtypenow,&cap8)!=D3D_OK){
-		Destroy();
-		return FALSE;
-	}
-	maxtexturewidth = cap8.MaxTextureWidth;
-	maxtextureheight = cap8.MaxTextureHeight;
+    //最大テクスチャサイズ取得
+    D3DCAPS9 cap8;
+    if(dd->GetDeviceCaps(D3DADAPTER_DEFAULT,devtypenow,&cap8)!=D3D_OK){
+        Destroy();
+        return FALSE;
+    }
+    maxtexturewidth = cap8.MaxTextureWidth;
+    maxtextureheight = cap8.MaxTextureHeight;
 
-	// ステート初期化
-	InitStates();
+    // ステート初期化
+    InitStates();
 
-	//x,y平面のデータセット
-	d3dxplane_x.a=-1.0f;//x平面 (x=0)
-	d3dxplane_x.b=0;
-	d3dxplane_x.c=0;
-	d3dxplane_x.d=0;
-	d3dxplane_y.a=0;//y平面 (y=0)
-	d3dxplane_y.b=-1.0f;
-	d3dxplane_y.c=0;
-	d3dxplane_y.d=0;
+    //x,y平面のデータセット
+    d3dxplane_x.a=-1.0f;//x平面 (x=0)
+    d3dxplane_x.b=0;
+    d3dxplane_x.c=0;
+    d3dxplane_x.d=0;
+    d3dxplane_y.a=0;//y平面 (y=0)
+    d3dxplane_y.b=-1.0f;
+    d3dxplane_y.c=0;
+    d3dxplane_y.d=0;
 
-	//テクスチャに用いるフォーマット
-	if (devtypenow == D3DDEVTYPE_HAL)
-		texformat=g_config.TexFormat();
-	else
-		texformat = d3dpp.BackBufferFormat;
+    //テクスチャに用いるフォーマット
+    if (devtypenow == D3DDEVTYPE_HAL)
+        texformat=g_config.TexFormat();
+    else
+        texformat = d3dpp.BackBufferFormat;
 
-	//フォントの作成
-	lpFont[0]=CreateMyFont( 8);
-	lpFont[1]=CreateMyFont(16);
-	lpFont[2]=CreateMyFont(22);
-	lpFont[3]=CreateMyFont(32);
+    //フォントの作成
+    lpFont[0]=CreateMyFont( 8);
+    lpFont[1]=CreateMyFont(16);
+    lpFont[2]=CreateMyFont(22);
+    lpFont[3]=CreateMyFont(32);
 
-	D3DXMATRIX mat;
-	D3DXMatrixIdentity(&mat);
-	SetParentMatrix(mat,TRUE);
+    D3DXMATRIX mat;
+    D3DXMatrixIdentity(&mat);
+    SetParentMatrix(mat,TRUE);
 
-	center_x=0;
-	camera_x=0;
-	camera_y=0;
-	camera_z=-2.99f;
-	camera_zurax=0;
-	camera_zuray=0;
-	ResetTransformMatrix();
+    center_x=0;
+    camera_x=0;
+    camera_y=0;
+    camera_z=-2.99f;
+    camera_zurax=0;
+    camera_zuray=0;
+    ResetTransformMatrix();
 
-	// スプライト製造
-	/*if ( FAILED(D3DXCreateSprite(d3ddev, &pSprite)) )
-	{
-		Destroy();
-		return FALSE;
-	}*/
+    // スプライト製造
+    /*if ( FAILED(D3DXCreateSprite(d3ddev, &pSprite)) )
+    {
+        Destroy();
+        return FALSE;
+    }*/
 
-	// 描画用の頂点バッファ
-	if ( FAILED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, D3DUSAGE_DYNAMIC | D3DUSAGE_WRITEONLY,
-											FVF_3DVERTEX, D3DPOOL_DEFAULT, &pMyVertex, NULL)) )
-	{
-		Destroy();
-		return FALSE;
-	}
+    // 描画用の頂点バッファ
+    if ( FAILED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, D3DUSAGE_DYNAMIC | D3DUSAGE_WRITEONLY,
+                                            FVF_3DVERTEX, D3DPOOL_DEFAULT, &pMyVertex, NULL)) )
+    {
+        Destroy();
+        return FALSE;
+    }
 
-	// ガンマランプを設定してみる
+    // ガンマランプを設定してみる
 /*	D3DGAMMARAMP gr;
 
-	for (int i = 0; i < 256; i++)
-	{
-		double gout = pow(i / 255.0, 1.0 / 2.2);
-		gr.red[i] = gr.green[i] = gr.blue[i] = (WORD)(gout * 0xFFFF);
-	}
+    for (int i = 0; i < 256; i++)
+    {
+        double gout = pow(i / 255.0, 1.0 / 2.2);
+        gr.red[i] = gr.green[i] = gr.blue[i] = (WORD)(gout * 0xFFFF);
+    }
 
-	d3ddev->SetGammaRamp(D3DSGR_CALIBRATE, &gr);
+    d3ddev->SetGammaRamp(D3DSGR_CALIBRATE, &gr);
 */
-	return TRUE;
+    return TRUE;
 }
 
 void CDirectDraw::InitStates()
 {
-	d3ddev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);//カリングなし
+    d3ddev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);//カリングなし
     d3ddev->SetRenderState(D3DRS_LIGHTING, FALSE);//ライティング無し
-	if (devtypenow != D3DDEVTYPE_HAL)
-	{
-		d3ddev->SetRenderState(D3DRS_FILLMODE, D3DFILL_POINT);//点だけ
-		d3ddev->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_FLAT);//フラットシェーディング
-	}
-	else
-	{
-		//アルファブレンディング有効
-		d3ddev->SetRenderState(D3DRS_ALPHABLENDENABLE,TRUE);
-		d3ddev->SetRenderState(D3DRS_SRCBLEND,D3DBLEND_SRCALPHA);
-		d3ddev->SetRenderState(D3DRS_DESTBLEND,D3DBLEND_INVSRCALPHA);
+    if (devtypenow != D3DDEVTYPE_HAL)
+    {
+        d3ddev->SetRenderState(D3DRS_FILLMODE, D3DFILL_POINT);//点だけ
+        d3ddev->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_FLAT);//フラットシェーディング
+    }
+    else
+    {
+        //アルファブレンディング有効
+        d3ddev->SetRenderState(D3DRS_ALPHABLENDENABLE,TRUE);
+        d3ddev->SetRenderState(D3DRS_SRCBLEND,D3DBLEND_SRCALPHA);
+        d3ddev->SetRenderState(D3DRS_DESTBLEND,D3DBLEND_INVSRCALPHA);
 
-		//これをやらないとディフューズ色が有効にならない
-		d3ddev->SetTextureStageState( 0, D3DTSS_ALPHAOP, D3DTOP_MODULATE);
-		d3ddev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
-		d3ddev->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
+        //これをやらないとディフューズ色が有効にならない
+        d3ddev->SetTextureStageState( 0, D3DTSS_ALPHAOP, D3DTOP_MODULATE);
+        d3ddev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
+        d3ddev->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
 
-		//アルファテスト
-		if(!g_config.NoAlphaTest()){
-			if(d3ddev->SetRenderState( D3DRS_ALPHATESTENABLE, TRUE ) ==D3D_OK){
-				d3ddev->SetRenderState( D3DRS_ALPHAREF, 0x02 );
-				d3ddev->SetRenderState( D3DRS_ALPHAFUNC, D3DCMP_GREATER );
-			}
-		}
+        //アルファテスト
+        if(!g_config.NoAlphaTest()){
+            if(d3ddev->SetRenderState( D3DRS_ALPHATESTENABLE, TRUE ) ==D3D_OK){
+                d3ddev->SetRenderState( D3DRS_ALPHAREF, 0x02 );
+                d3ddev->SetRenderState( D3DRS_ALPHAFUNC, D3DCMP_GREATER );
+            }
+        }
 
-		//ポイントスプライト
-		d3ddev->SetRenderState(D3DRS_POINTSPRITEENABLE,TRUE);
+        //ポイントスプライト
+        d3ddev->SetRenderState(D3DRS_POINTSPRITEENABLE,TRUE);
 
-		//マルチ
-		//d3ddev->SetRenderState(D3DRS_MULTISAMPLEANTIALIAS, TRUE);
+        //マルチ
+        //d3ddev->SetRenderState(D3DRS_MULTISAMPLEANTIALIAS, TRUE);
 
-		// ステンシル
-		if (stencil_enable)
-		{
-			d3ddev->SetRenderState(D3DRS_STENCILENABLE, TRUE);
-			d3ddev->SetRenderState(D3DRS_STENCILFUNC, D3DCMP_ALWAYS);
-		}
-	}
+        // ステンシル
+        if (stencil_enable)
+        {
+            d3ddev->SetRenderState(D3DRS_STENCILENABLE, TRUE);
+            d3ddev->SetRenderState(D3DRS_STENCILFUNC, D3DCMP_ALWAYS);
+        }
+    }
 
-	d3ddev->SetFVF(FVF_3DVERTEX);//とりあえず設定しとく
+    d3ddev->SetFVF(FVF_3DVERTEX);//とりあえず設定しとく
 }
 
 
@@ -239,119 +246,119 @@ void CDirectDraw::InitStates()
 */
 BOOL CDirectDraw::InitDirectDraw(HWND hwnd,BOOL win)
 {
-	// Direct3D オブジェクトを作成
-	dd = Direct3DCreate9(D3D_SDK_VERSION);
+    // Direct3D オブジェクトを作成
+    dd = Direct3DCreate9(D3D_SDK_VERSION);
     if (NULL == dd){
         MessageBox(hwnd,_T("Direct3DCreate9に失敗\nDirectXのバージョンが古いと思われ"),_T("エラー"),MB_OK|MB_ICONSTOP);
         return(FALSE);
     }
 
-	// Direct3D 初期化パラメータの設定
+    // Direct3D 初期化パラメータの設定
     ZeroMemory(&d3dpp, sizeof(D3DPRESENT_PARAMETERS));
-	d3dpp.EnableAutoDepthStencil = TRUE;
+    d3dpp.EnableAutoDepthStencil = TRUE;
     d3dpp.AutoDepthStencilFormat = D3DFMT_D16;
 
-	// デバイスタイプ所得
-	devtypenow=g_config.DeviceType();
+    // デバイスタイプ所得
+    devtypenow=g_config.DeviceType();
 
-	//ウインドウモードの場合の初期化
-	if(win){
-	    // 現在の画面モードを取得
-	    D3DDISPLAYMODE d3ddm;
-		if( dd->GetAdapterDisplayMode( D3DADAPTER_DEFAULT, &d3ddm ) != D3D_OK ) {
-			MessageBox(hwnd,_T("GetAdapterDisplayModeに失敗"),_T("エラー"),MB_OK|MB_ICONSTOP);
-			RELEASE(dd);
-			return(FALSE);
-		}
-		// ウインドウ : 現在の画面モードを使用
-	    d3dpp.BackBufferFormat = d3ddm.Format;
-	    d3dpp.MultiSampleType = D3DMULTISAMPLE_NONE;
-	    d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
-	    d3dpp.hDeviceWindow = hwnd;
-		d3dpp.Windowed = TRUE;
+    //ウインドウモードの場合の初期化
+    if(win){
+        // 現在の画面モードを取得
+        D3DDISPLAYMODE d3ddm;
+        if( dd->GetAdapterDisplayMode( D3DADAPTER_DEFAULT, &d3ddm ) != D3D_OK ) {
+            MessageBox(hwnd,_T("GetAdapterDisplayModeに失敗"),_T("エラー"),MB_OK|MB_ICONSTOP);
+            RELEASE(dd);
+            return(FALSE);
+        }
+        // ウインドウ : 現在の画面モードを使用
+        d3dpp.BackBufferFormat = d3ddm.Format;
+        d3dpp.MultiSampleType = D3DMULTISAMPLE_NONE;
+        d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
+        d3dpp.hDeviceWindow = hwnd;
+        d3dpp.Windowed = TRUE;
         d3dpp.BackBufferWidth = 0;
         d3dpp.BackBufferHeight = 0;
-		d3dpp.BackBufferCount = 1;
-		
-		m_desktop_width = d3ddm.Width;
-		m_desktop_height = d3ddm.Height;
-	}
-	//フルスクリーンの場合の初期化
+        d3dpp.BackBufferCount = 1;
+        
+        m_desktop_width = d3ddm.Width;
+        m_desktop_height = d3ddm.Height;
+    }
+    //フルスクリーンの場合の初期化
     else{
-		// 使用可能な画面モードを探して選択
-		if( dd->CheckDeviceType(D3DADAPTER_DEFAULT, devtypenow, D3DFMT_X8R8G8B8,
-								D3DFMT_X8R8G8B8, FALSE) == D3D_OK)
-								d3dpp.BackBufferFormat = D3DFMT_X8R8G8B8;
-		else if( dd->CheckDeviceType(D3DADAPTER_DEFAULT, devtypenow, D3DFMT_X1R5G5B5,
-								D3DFMT_X1R5G5B5, FALSE) == D3D_OK)
-								d3dpp.BackBufferFormat = D3DFMT_X1R5G5B5;
-		else if( dd->CheckDeviceType(D3DADAPTER_DEFAULT, devtypenow, D3DFMT_R5G6B5,
-								D3DFMT_R5G6B5, FALSE) == D3D_OK)
-								d3dpp.BackBufferFormat = D3DFMT_R5G6B5;
-		else { // ダメだぁ！
-			TraceCreateDeviceError(D3DERR_INVALIDCALL,hwnd);
-			Destroy();
-			return(FALSE);
-		}
+        // 使用可能な画面モードを探して選択
+        if( dd->CheckDeviceType(D3DADAPTER_DEFAULT, devtypenow, D3DFMT_X8R8G8B8,
+                                D3DFMT_X8R8G8B8, FALSE) == D3D_OK)
+                                d3dpp.BackBufferFormat = D3DFMT_X8R8G8B8;
+        else if( dd->CheckDeviceType(D3DADAPTER_DEFAULT, devtypenow, D3DFMT_X1R5G5B5,
+                                D3DFMT_X1R5G5B5, FALSE) == D3D_OK)
+                                d3dpp.BackBufferFormat = D3DFMT_X1R5G5B5;
+        else if( dd->CheckDeviceType(D3DADAPTER_DEFAULT, devtypenow, D3DFMT_R5G6B5,
+                                D3DFMT_R5G6B5, FALSE) == D3D_OK)
+                                d3dpp.BackBufferFormat = D3DFMT_R5G6B5;
+        else { // ダメだぁ！
+            TraceCreateDeviceError(D3DERR_INVALIDCALL,hwnd);
+            Destroy();
+            return(FALSE);
+        }
 
-	    d3dpp.MultiSampleType = D3DMULTISAMPLE_NONE;
-	    d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
-	    d3dpp.hDeviceWindow = hwnd;
+        d3dpp.MultiSampleType = D3DMULTISAMPLE_NONE;
+        d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
+        d3dpp.hDeviceWindow = hwnd;
         d3dpp.Windowed = FALSE;
         d3dpp.BackBufferWidth = g_DISPLAYWIDTH;
         d3dpp.BackBufferHeight = g_DISPLAYHEIGHT;
-		d3dpp.BackBufferCount = 1;
+        d3dpp.BackBufferCount = 1;
 
-		m_desktop_width = g_DISPLAYWIDTH;
-		m_desktop_height = g_DISPLAYHEIGHT;
+        m_desktop_width = g_DISPLAYWIDTH;
+        m_desktop_height = g_DISPLAYHEIGHT;
     }
-	// マルチサンプリング
-	/*if ( SUCCEEDED(dd->CheckDeviceMultiSampleType(D3DADAPTER_DEFAULT,
-				   D3DDEVTYPE_HAL, d3dpp.BackBufferFormat, d3dpp.Windowed,
-				   D3DMULTISAMPLE_2_SAMPLES)) &&
-		SUCCEEDED(dd->CheckDeviceMultiSampleType(D3DADAPTER_DEFAULT,
-				   D3DDEVTYPE_HAL, D3DFMT_D16, d3dpp.Windowed,
-				   D3DMULTISAMPLE_2_SAMPLES)) )
-		d3dpp.MultiSampleType = D3DMULTISAMPLE_2_SAMPLES;*/ // VRAMを倍近く食うみたいなので保留
+    // マルチサンプリング
+    /*if ( SUCCEEDED(dd->CheckDeviceMultiSampleType(D3DADAPTER_DEFAULT,
+                   D3DDEVTYPE_HAL, d3dpp.BackBufferFormat, d3dpp.Windowed,
+                   D3DMULTISAMPLE_2_SAMPLES)) &&
+        SUCCEEDED(dd->CheckDeviceMultiSampleType(D3DADAPTER_DEFAULT,
+                   D3DDEVTYPE_HAL, D3DFMT_D16, d3dpp.Windowed,
+                   D3DMULTISAMPLE_2_SAMPLES)) )
+        d3dpp.MultiSampleType = D3DMULTISAMPLE_2_SAMPLES;*/ // VRAMを倍近く食うみたいなので保留
 
-	// ステンシルが使えそうなら使う
-	if ( SUCCEEDED(dd->CheckDeviceFormat(D3DADAPTER_DEFAULT, devtypenow, d3dpp.BackBufferFormat,
-										 D3DUSAGE_DEPTHSTENCIL, D3DRTYPE_SURFACE, D3DFMT_D24S8)) )
-	{
-		stencil_enable = true;
-		d3dpp.AutoDepthStencilFormat = D3DFMT_D24S8;
-	}
+    // ステンシルが使えそうなら使う
+    if ( SUCCEEDED(dd->CheckDeviceFormat(D3DADAPTER_DEFAULT, devtypenow, d3dpp.BackBufferFormat,
+                                         D3DUSAGE_DEPTHSTENCIL, D3DRTYPE_SURFACE, D3DFMT_D24S8)) )
+    {
+        stencil_enable = true;
+        d3dpp.AutoDepthStencilFormat = D3DFMT_D24S8;
+    }
  
     // デバイスの作成
-	DWORD vertexprocessmode=D3DCREATE_HARDWARE_VERTEXPROCESSING;
+    DWORD vertexprocessmode=D3DCREATE_HARDWARE_VERTEXPROCESSING;
 
-	if (devtypenow != D3DDEVTYPE_HAL)
-		d3dpp.Flags |= D3DPRESENTFLAG_LOCKABLE_BACKBUFFER;
+    if (devtypenow != D3DDEVTYPE_HAL)
+        d3dpp.Flags |= D3DPRESENTFLAG_LOCKABLE_BACKBUFFER;
 
-	HRESULT ret_devcreate = dd->CreateDevice(D3DADAPTER_DEFAULT,devtypenow,
-		hwnd,vertexprocessmode,&d3dpp,&d3ddev);
+    HRESULT ret_devcreate = dd->CreateDevice(D3DADAPTER_DEFAULT,devtypenow,
+        hwnd,vertexprocessmode,&d3dpp,&d3ddev);
 
-	if(D3D_OK != ret_devcreate){//ありゃま
-		vertexprocessmode=D3DCREATE_SOFTWARE_VERTEXPROCESSING;
-		ret_devcreate = dd->CreateDevice(D3DADAPTER_DEFAULT,devtypenow,
-			hwnd,vertexprocessmode,&d3dpp,&d3ddev);// ソフト頂点処理でやり直し。
+    if(D3D_OK != ret_devcreate){//ありゃま
+        vertexprocessmode=D3DCREATE_SOFTWARE_VERTEXPROCESSING;
+        ret_devcreate = dd->CreateDevice(D3DADAPTER_DEFAULT,devtypenow,
+            hwnd,vertexprocessmode,&d3dpp,&d3ddev);// ソフト頂点処理でやり直し。
 
-		if(D3D_OK != ret_devcreate){//やっぱだめか。
-			// まともにゲーム出来んので封印
-			/*devtypenow = D3DDEVTYPE_REF;
-			d3dpp.Flags |= D3DPRESENTFLAG_LOCKABLE_BACKBUFFER;
+        if(D3D_OK != ret_devcreate){//やっぱだめか。
+            // まともにゲーム出来んので封印
+            /*devtypenow = D3DDEVTYPE_REF;
+            d3dpp.Flags |= D3DPRESENTFLAG_LOCKABLE_BACKBUFFER;
 
-			ret_devcreate = dd->CreateDevice(D3DADAPTER_DEFAULT,devtypenow,
-				hwnd,vertexprocessmode,&d3dpp,&d3ddev);// REF使用*/
+            ret_devcreate = dd->CreateDevice(D3DADAPTER_DEFAULT,devtypenow,
+                hwnd,vertexprocessmode,&d3dpp,&d3ddev);// REF使用*/
 
-			if(D3D_OK != ret_devcreate){//それでもダメってか？
-				TraceCreateDeviceError(ret_devcreate,hwnd);
-				return(FALSE);
-			}
-		}
-	}
+            if(D3D_OK != ret_devcreate){//それでもダメってか？
+                TraceCreateDeviceError(ret_devcreate,hwnd);
+                return(FALSE);
+            }
+        }
+    }
 
-	return(TRUE);
+    return(TRUE);
 }
 
 /*!
@@ -359,29 +366,29 @@ BOOL CDirectDraw::InitDirectDraw(HWND hwnd,BOOL win)
 */
 void CDirectDraw::Destroy()
 {
-	int i=0;
-	DWORD notrelcount = 0;
-	
-	//フォントの削除
-	for(int i=0;i<AKIDX_FONTNUM;i++){
-		RELEASE(lpFont[i]);
-	}
+    int i=0;
+    DWORD notrelcount = 0;
+    
+    //フォントの削除
+    for(int i=0;i<AKIDX_FONTNUM;i++){
+        RELEASE(lpFont[i]);
+    }
 
-	//テクスチャの削除
-	for(int i=0;i<MAXNUMGOLUAHTEXTURES;i++){
-		if(ms[i].valid)notrelcount++;
-		RelSurface(&ms[i]);
-	}
-	RELEASE(pMyVertex);
-	//RELEASE(pSprite);
-	RELEASE(d3ddev);
-	RELEASE(dd);
+    //テクスチャの削除
+    for(int i=0;i<MAXNUMGOLUAHTEXTURES;i++){
+        if(ms[i].valid)notrelcount++;
+        RelSurface(&ms[i]);
+    }
+    RELEASE(pMyVertex);
+    //RELEASE(pSprite);
+    RELEASE(d3ddev);
+    RELEASE(dd);
 
-	#ifndef GCD_EDITER
-	if(notrelcount>0){
-		gbl.ods(_T("CDirectDraw::CleanDirectDraw [warning] MYSURFACE Remain Count : %d"),notrelcount);
-	}
-	#endif
+    #ifndef GCD_EDITER
+    if(notrelcount>0){
+        gbl.ods(_T("CDirectDraw::CleanDirectDraw [warning] MYSURFACE Remain Count : %d"),notrelcount);
+    }
+    #endif
 }
 
 
@@ -396,13 +403,13 @@ void CDirectDraw::Destroy()
 */
 void CDirectDraw::StartDraw(BOOL erbs)
 {
-	if(erbs){
-		if (stencil_enable)
-			d3ddev->Clear(0,NULL,D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER | D3DCLEAR_STENCIL,clearbgcolor,1.0f,0);
-		else
-			d3ddev->Clear(0,NULL,D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,clearbgcolor,1.0f,0);
-	}
-	d3ddev->BeginScene();
+    if(erbs){
+        if (stencil_enable)
+            d3ddev->Clear(0,NULL,D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER | D3DCLEAR_STENCIL,clearbgcolor,1.0f,0);
+        else
+            d3ddev->Clear(0,NULL,D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,clearbgcolor,1.0f,0);
+    }
+    d3ddev->BeginScene();
 //	SetTransform(FALSE);
 //	ReduceColor(0xCC);
 //	SetTransform(TRUE);
@@ -414,7 +421,7 @@ void CDirectDraw::StartDraw(BOOL erbs)
 */
 void CDirectDraw::ClearBackBuffer()
 {
-	d3ddev->Clear(0,NULL,D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER | D3DCLEAR_STENCIL,clearbgcolor,1.0f,0);
+    d3ddev->Clear(0,NULL,D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER | D3DCLEAR_STENCIL,clearbgcolor,1.0f,0);
 }
 
 /*!
@@ -425,34 +432,34 @@ void CDirectDraw::ClearBackBuffer()
 */
 void CDirectDraw::EndDraw()
 {
-	d3ddev->EndScene();
-	HRESULT hr = d3ddev->Present(NULL,NULL,NULL,NULL);
+    d3ddev->EndScene();
+    HRESULT hr = d3ddev->Present(NULL,NULL,NULL,NULL);
 
-	if ( hr == D3DERR_DEVICELOST )
-	{
-		// DirectDrawデバイス再所得処理
-		while (1)
-		{
-			// こんなところでウィンドウメッセージ所得
-			MSG msg;
+    if ( hr == D3DERR_DEVICELOST )
+    {
+        // DirectDrawデバイス再所得処理
+        while (1)
+        {
+            // こんなところでウィンドウメッセージ所得
+            MSG msg;
 
-			if(PeekMessage( &msg, NULL, 0, 0 ,PM_REMOVE)){//message loop
-				if (msg.message == WM_QUIT) break;
-				TranslateMessage( &msg );
-				DispatchMessage( &msg );
-			}
-			
-			// ちょっと長めに
-			Sleep(100);
+            if(PeekMessage( &msg, NULL, 0, 0 ,PM_REMOVE)){//message loop
+                if (msg.message == WM_QUIT) break;
+                TranslateMessage( &msg );
+                DispatchMessage( &msg );
+            }
+            
+            // ちょっと長めに
+            Sleep(100);
 
-			hr = d3ddev->TestCooperativeLevel();
-			if (hr == D3DERR_DEVICENOTRESET)
-			{
-				ResetDirectDraw();
-				break;
-			}
-		}
-	}
+            hr = d3ddev->TestCooperativeLevel();
+            if (hr == D3DERR_DEVICENOTRESET)
+            {
+                ResetDirectDraw();
+                break;
+            }
+        }
+    }
 }
 
 /*!
@@ -463,49 +470,49 @@ void CDirectDraw::EndDraw()
 */
 LPD3DXFONT CDirectDraw::CreateMyFont(DWORD h)
 {
-	/*	HDC      hTextDC = NULL;
-		HFONT    hFont = NULL, hOldFont = NULL;
-		LPD3DXFONT cf;
+    /*	HDC      hTextDC = NULL;
+        HFONT    hFont = NULL, hOldFont = NULL;
+        LPD3DXFONT cf;
 
-		hTextDC = CreateCompatibleDC(NULL);
-		hFont = CreateFont( h, 0, 0, 0,
-		FW_REGULAR,
-		FALSE,FALSE,FALSE,
-		SHIFTJIS_CHARSET,
-		OUT_DEFAULT_PRECIS,
-		CLIP_DEFAULT_PRECIS,
-		DEFAULT_QUALITY,
-		DEFAULT_PITCH,
-		"ＭＳ Ｐゴシック"
-		);
-		if(!hFont) return(NULL);
-		hOldFont = (HFONT)SelectObject(hTextDC, hFont);
-		HRESULT ret=D3DXCreateFont( d3ddev, hFont, &cf );
+        hTextDC = CreateCompatibleDC(NULL);
+        hFont = CreateFont( h, 0, 0, 0,
+        FW_REGULAR,
+        FALSE,FALSE,FALSE,
+        SHIFTJIS_CHARSET,
+        OUT_DEFAULT_PRECIS,
+        CLIP_DEFAULT_PRECIS,
+        DEFAULT_QUALITY,
+        DEFAULT_PITCH,
+        "ＭＳ Ｐゴシック"
+        );
+        if(!hFont) return(NULL);
+        hOldFont = (HFONT)SelectObject(hTextDC, hFont);
+        HRESULT ret=D3DXCreateFont( d3ddev, hFont, &cf );
 
-		SelectObject(hTextDC, hOldFont);
-		DeleteObject(hFont);
+        SelectObject(hTextDC, hOldFont);
+        DeleteObject(hFont);
 
-		if(ret!=D3D_OK)return(NULL);
-		return(cf);*/
+        if(ret!=D3D_OK)return(NULL);
+        return(cf);*/
 
-	//エラー吐いたので他所からコードコピペしてきた
-	LPD3DXFONT pFont;
-	if (FAILED(D3DXCreateFont(d3ddev,
-		h,                     //文字高さ
-		0,                      //文字幅
-		FW_NORMAL,                //フォントスタイル
-		NULL,                   //ミップマップモデルの数
-		FALSE,                  //斜体にするかどうか
-		SHIFTJIS_CHARSET,       //文字セット
-		OUT_DEFAULT_PRECIS,
-		PROOF_QUALITY,
-		FIXED_PITCH | FF_MODERN,
-		"ＭＳ Ｐゴシック",               //フォントの種類
-		&pFont)))
-	{
-		return NULL;
-	}
-	return pFont;
+    //エラー吐いたので他所からコードコピペしてきた
+    LPD3DXFONT pFont;
+    if (FAILED(D3DXCreateFont(d3ddev,
+        h,                     //文字高さ
+        0,                      //文字幅
+        FW_NORMAL,                //フォントスタイル
+        NULL,                   //ミップマップモデルの数
+        FALSE,                  //斜体にするかどうか
+        SHIFTJIS_CHARSET,       //文字セット
+        OUT_DEFAULT_PRECIS,
+        PROOF_QUALITY,
+        FIXED_PITCH | FF_MODERN,
+        "ＭＳ Ｐゴシック",               //フォントの種類
+        &pFont)))
+    {
+        return NULL;
+    }
+    return pFont;
 }
 
 /*
@@ -516,125 +523,125 @@ LPD3DXFONT CDirectDraw::CreateMyFont(DWORD h)
 */
 /*int CDirectDraw::CreateMyFont2(DWORD h, TCHAR *text)
 {
-	// フォントの生成
-	int fontSize = 260;
-	int fontWeight = 500;
-	LOGFONT lf = { fontSize, 0, 0, 0, fontWeight, 0, 0, 0, SHIFTJIS_CHARSET, OUT_TT_ONLY_PRECIS, CLIP_DEFAULT_PRECIS, PROOF_QUALITY, DEFAULT_PITCH | FF_MODERN, _T("ＭＳ Ｐ明朝") };
-	HFONT hFont = CreateFontIndirect(&lf);
-	if (hFont == NULL) {
-		d3ddev->Release(); dd->Release();
-		return 0;
-	}
+    // フォントの生成
+    int fontSize = 260;
+    int fontWeight = 500;
+    LOGFONT lf = { fontSize, 0, 0, 0, fontWeight, 0, 0, 0, SHIFTJIS_CHARSET, OUT_TT_ONLY_PRECIS, CLIP_DEFAULT_PRECIS, PROOF_QUALITY, DEFAULT_PITCH | FF_MODERN, _T("ＭＳ Ｐ明朝") };
+    HFONT hFont = CreateFontIndirect(&lf);
+    if (hFont == NULL) {
+        d3ddev->Release(); dd->Release();
+        return 0;
+    }
 
-	// デバイスにフォントを持たせないとGetGlyphOutline関数はエラーとなる
-	HDC hdc = GetDC(NULL);
-	HFONT oldFont = (HFONT)SelectObject(hdc, hFont);
+    // デバイスにフォントを持たせないとGetGlyphOutline関数はエラーとなる
+    HDC hdc = GetDC(NULL);
+    HFONT oldFont = (HFONT)SelectObject(hdc, hFont);
 
-	// フォントビットマップ取得
-	const TCHAR*   d = text;
-	size_t     length = strlen(d);
-	wchar_t*   wc = new wchar_t[length + 1];
-	length = mbstowcs(wc, d, length + 1); // wc にワイド文字列が入る
-	UINT code = (UINT)wc[0];
-	const int gradFlag = GGO_GRAY4_BITMAP; // GGO_GRAY2_BITMAP or GGO_GRAY4_BITMAP or GGO_GRAY8_BITMAP
-	int grad = 0; // 階調の最大値
-	switch (gradFlag) {
-	case GGO_GRAY2_BITMAP: grad = 4; break;
-	case GGO_GRAY4_BITMAP: grad = 16; break;
-	case GGO_GRAY8_BITMAP: grad = 64; break;
-	}
-	if (grad == 0) {
-		d3ddev->Release(); dd->Release();
-		return 0;
-	}
+    // フォントビットマップ取得
+    const TCHAR*   d = text;
+    size_t     length = strlen(d);
+    wchar_t*   wc = new wchar_t[length + 1];
+    length = mbstowcs(wc, d, length + 1); // wc にワイド文字列が入る
+    UINT code = (UINT)wc[0];
+    const int gradFlag = GGO_GRAY4_BITMAP; // GGO_GRAY2_BITMAP or GGO_GRAY4_BITMAP or GGO_GRAY8_BITMAP
+    int grad = 0; // 階調の最大値
+    switch (gradFlag) {
+    case GGO_GRAY2_BITMAP: grad = 4; break;
+    case GGO_GRAY4_BITMAP: grad = 16; break;
+    case GGO_GRAY8_BITMAP: grad = 64; break;
+    }
+    if (grad == 0) {
+        d3ddev->Release(); dd->Release();
+        return 0;
+    }
 
-	TEXTMETRIC tm;
-	GetTextMetrics(hdc, &tm);
-	GLYPHMETRICS gm;
-	CONST MAT2 mat = { { 0, 1 }, { 0, 0 }, { 0, 0 }, { 0, 1 } };
-	DWORD size = GetGlyphOutlineW(hdc, code, gradFlag, &gm, 0, NULL, &mat);
-	BYTE *pMono = new BYTE[size];
-	GetGlyphOutlineW(hdc, code, gradFlag, &gm, size, pMono, &mat);
+    TEXTMETRIC tm;
+    GetTextMetrics(hdc, &tm);
+    GLYPHMETRICS gm;
+    CONST MAT2 mat = { { 0, 1 }, { 0, 0 }, { 0, 0 }, { 0, 1 } };
+    DWORD size = GetGlyphOutlineW(hdc, code, gradFlag, &gm, 0, NULL, &mat);
+    BYTE *pMono = new BYTE[size];
+    GetGlyphOutlineW(hdc, code, gradFlag, &gm, size, pMono, &mat);
 
-	// デバイスコンテキストとフォントハンドルはもういらないので解放
-	SelectObject(hdc, oldFont);
-	ReleaseDC(NULL, hdc);
+    // デバイスコンテキストとフォントハンドルはもういらないので解放
+    SelectObject(hdc, oldFont);
+    ReleaseDC(NULL, hdc);
 
-	// テクスチャ作成
-	IDirect3DTexture9 *pTex = 0;
-	int fontWidth = (gm.gmBlackBoxX + 3) / 4 * 4;
-	int fontHeight = gm.gmBlackBoxY;
-	d3ddev->CreateTexture(fontWidth, fontHeight, 1, 0, D3DFMT_A8R8G8B8, D3DPOOL_MANAGED, &pTex, NULL);
+    // テクスチャ作成
+    IDirect3DTexture9 *pTex = 0;
+    int fontWidth = (gm.gmBlackBoxX + 3) / 4 * 4;
+    int fontHeight = gm.gmBlackBoxY;
+    d3ddev->CreateTexture(fontWidth, fontHeight, 1, 0, D3DFMT_A8R8G8B8, D3DPOOL_MANAGED, &pTex, NULL);
 
-	// テクスチャにフォントビットマップ情報を書き込み
-	D3DLOCKED_RECT lockedRect;
-	pTex->LockRect(0, &lockedRect, NULL, 0);  // ロック
-	DWORD *pTexBuf = (DWORD*)lockedRect.pBits;   // テクスチャメモリへのポインタ
+    // テクスチャにフォントビットマップ情報を書き込み
+    D3DLOCKED_RECT lockedRect;
+    pTex->LockRect(0, &lockedRect, NULL, 0);  // ロック
+    DWORD *pTexBuf = (DWORD*)lockedRect.pBits;   // テクスチャメモリへのポインタ
 
-	for (int y = 0; y < fontHeight; y++) {
-		for (int x = 0; x < fontWidth; x++) {
-			DWORD alpha = pMono[y * fontWidth + x] * 255 / grad;
-			pTexBuf[y * fontWidth + x] = (alpha << 24) | 0x00ffffff;
-		}
-	}
+    for (int y = 0; y < fontHeight; y++) {
+        for (int x = 0; x < fontWidth; x++) {
+            DWORD alpha = pMono[y * fontWidth + x] * 255 / grad;
+            pTexBuf[y * fontWidth + x] = (alpha << 24) | 0x00ffffff;
+        }
+    }
 
-	pTex->UnlockRect(0);  // アンロック
-	delete[] pMono;
+    pTex->UnlockRect(0);  // アンロック
+    delete[] pMono;
 
 
-	// 単位フォントポリゴン作成
-	Vtx vtx[4] = {
-			{ 0.0f, -1.0f, 1.0f, 0.0f, 1.0f },
-			{ 0.0f, 0.0f, 1.0f, 0.0f, 0.0f },
-			{ 1.0f, -1.0f, 1.0f, 1.0f, 1.0f },
-			{ 1.0f, 0.0f, 1.0f, 1.0f, 0.0f },
-	};
-	Vtx *p = 0;
-	IDirect3DVertexBuffer9 *pVertexBuffer = 0;
-	d3ddev->CreateVertexBuffer(sizeof(vtx), 0, 0, D3DPOOL_MANAGED, &pVertexBuffer, 0);
-	pVertexBuffer->Lock(0, 0, (void**)&p, 0);
-	memcpy(p, vtx, sizeof(vtx));
-	pVertexBuffer->Unlock();
+    // 単位フォントポリゴン作成
+    Vtx vtx[4] = {
+            { 0.0f, -1.0f, 1.0f, 0.0f, 1.0f },
+            { 0.0f, 0.0f, 1.0f, 0.0f, 0.0f },
+            { 1.0f, -1.0f, 1.0f, 1.0f, 1.0f },
+            { 1.0f, 0.0f, 1.0f, 1.0f, 0.0f },
+    };
+    Vtx *p = 0;
+    IDirect3DVertexBuffer9 *pVertexBuffer = 0;
+    d3ddev->CreateVertexBuffer(sizeof(vtx), 0, 0, D3DPOOL_MANAGED, &pVertexBuffer, 0);
+    pVertexBuffer->Lock(0, 0, (void**)&p, 0);
+    memcpy(p, vtx, sizeof(vtx));
+    pVertexBuffer->Unlock();
 
-	// 各種行列
-	D3DXMATRIX localScale;
-	D3DXMatrixScaling(&localScale, (float)fontWidth, (float)fontHeight, 1.0f);
-	D3DXMATRIX localOffset;
-	D3DXMatrixTranslation(&localOffset, (float)gm.gmptGlyphOrigin.x, (float)gm.gmptGlyphOrigin.y, 0.0f);
-	D3DXMATRIX localMat = localScale * localOffset;
+    // 各種行列
+    D3DXMATRIX localScale;
+    D3DXMatrixScaling(&localScale, (float)fontWidth, (float)fontHeight, 1.0f);
+    D3DXMATRIX localOffset;
+    D3DXMatrixTranslation(&localOffset, (float)gm.gmptGlyphOrigin.x, (float)gm.gmptGlyphOrigin.y, 0.0f);
+    D3DXMATRIX localMat = localScale * localOffset;
 
 //	int ox = -230, oy = -100;
-	D3DXMATRIX world;
-	D3DXMATRIX worldOffset;
+    D3DXMATRIX world;
+    D3DXMATRIX worldOffset;
 //	D3DXMatrixTranslation(&worldOffset, (float)ox - 0.5f, (float)oy + 0.5f, 0.0f);
-	D3DXMatrixTranslation(&worldOffset, 0.0f, 0.0f, -1.0f);
-	world = localMat * worldOffset;
+    D3DXMatrixTranslation(&worldOffset, 0.0f, 0.0f, -1.0f);
+    world = localMat * worldOffset;
 
-	D3DXMATRIX ortho;
+    D3DXMATRIX ortho;
 //	D3DXMatrixOrthoLH(&ortho, (float)screenW, (float)screenH, 0.0f, 1000.0f);
-	D3DXMatrixOrthoLH(&ortho, 640.0f, 480.0f, -1000.0f, 1000.0f);
-	d3ddev->SetTransform(D3DTS_PROJECTION, &ortho);
+    D3DXMatrixOrthoLH(&ortho, 640.0f, 480.0f, -1000.0f, 1000.0f);
+    d3ddev->SetTransform(D3DTS_PROJECTION, &ortho);
 
-	// メッセージ ループ
-	
-			// αブレンド設定
+    // メッセージ ループ
+    
+            // αブレンド設定
 //			d3ddev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
 //			d3ddev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 //			d3ddev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 
-			// 描画
-			d3ddev->SetTransform(D3DTS_WORLD, &world);
-			d3ddev->SetStreamSource(0, pVertexBuffer, 0, sizeof(Vtx));
-			d3ddev->SetFVF(D3DFVF_XYZ | D3DFVF_TEX1);
-			d3ddev->SetTexture(0, pTex);
-			d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP, 0, 2);
+            // 描画
+            d3ddev->SetTransform(D3DTS_WORLD, &world);
+            d3ddev->SetStreamSource(0, pVertexBuffer, 0, sizeof(Vtx));
+            d3ddev->SetFVF(D3DFVF_XYZ | D3DFVF_TEX1);
+            d3ddev->SetTexture(0, pTex);
+            d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP, 0, 2);
 
 //			d3ddev->EndScene();
 //			d3ddev->Present(NULL, NULL, NULL, NULL);
-	
+    
 
-	pTex->Release();
-	pVertexBuffer->Release();
+    pTex->Release();
+    pVertexBuffer->Release();
 
 //	return 1;
 }*/
@@ -643,81 +650,81 @@ void CDirectDraw::ResetDirectDraw()
 {
 //	if (pSprite)
 //		pSprite->OnLostDevice();
-	RELEASE(pMyVertex);
+    RELEASE(pMyVertex);
 
-	for (int i = 0; i < AKIDX_FONTNUM; i++)
-		if (lpFont[i])
-			lpFont[i]->OnLostDevice();
+    for (int i = 0; i < AKIDX_FONTNUM; i++)
+        if (lpFont[i])
+            lpFont[i]->OnLostDevice();
 
-	d3ddev->Reset(&d3dpp);
-	InitStates();
+    d3ddev->Reset(&d3dpp);
+    InitStates();
 
 //	if (pSprite)
 //		pSprite->OnResetDevice();
-	d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, D3DUSAGE_DYNAMIC | D3DUSAGE_WRITEONLY,
-											FVF_3DVERTEX, D3DPOOL_DEFAULT, &pMyVertex, NULL);
+    d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, D3DUSAGE_DYNAMIC | D3DUSAGE_WRITEONLY,
+                                            FVF_3DVERTEX, D3DPOOL_DEFAULT, &pMyVertex, NULL);
 
-	for (int i = 0; i < AKIDX_FONTNUM; i++)
-		if (lpFont[i])
-			lpFont[i]->OnResetDevice();
+    for (int i = 0; i < AKIDX_FONTNUM; i++)
+        if (lpFont[i])
+            lpFont[i]->OnResetDevice();
 }
 
 // ウィンドウサイズ変更処理
-/*void CDirectDraw::OnWindowResized(int width, int height)
+void CDirectDraw::OnWindowResized(int width, int height)
 {
-	d3dpp.BackBufferWidth = width;
-	d3dpp.BackBufferHeight = height;
+    d3dpp.BackBufferWidth = width;
+    d3dpp.BackBufferHeight = height;
 
-	ResetDirectDraw();
-}*/
+    ResetDirectDraw();
+}
 
 // スクリーンモード変更
 BOOL CDirectDraw::ChangeScreenMode(BOOL win)
 {
-	if (win && d3dpp.Windowed == FALSE)
-	{
-		// ウィンドウモードに変更
+    if (win && d3dpp.Windowed == FALSE)
+    {
+        // ウィンドウモードに変更
 
-	    // 現在の画面モードを取得
-	    D3DDISPLAYMODE d3ddm;
-		if( dd->GetAdapterDisplayMode( D3DADAPTER_DEFAULT, &d3ddm ) != D3D_OK ) {
-			MessageBox(d3dpp.hDeviceWindow,_T("GetAdapterDisplayModeに失敗"),_T("エラー"),MB_OK|MB_ICONSTOP);
-			RELEASE(dd);
-			return(FALSE);
-		}
-		// ウインドウ : 現在の画面モードを使用
-	    d3dpp.BackBufferFormat = d3ddm.Format;
-		d3dpp.Windowed = TRUE;
+        // 現在の画面モードを取得
+        D3DDISPLAYMODE d3ddm;
+        if( dd->GetAdapterDisplayMode( D3DADAPTER_DEFAULT, &d3ddm ) != D3D_OK ) {
+            MessageBox(d3dpp.hDeviceWindow,_T("GetAdapterDisplayModeに失敗"),_T("エラー"),MB_OK|MB_ICONSTOP);
+            RELEASE(dd);
+            return(FALSE);
+        }
+        // ウインドウ : 現在の画面モードを使用
+        d3dpp.BackBufferFormat = d3ddm.Format;
+        d3dpp.Windowed = TRUE;
 
-		ResetDirectDraw();
-		SetWindowLong(d3dpp.hDeviceWindow, GWL_STYLE, WS_BORDER | WS_CAPTION | WS_SYSMENU);
-	}
-	else if (!win && d3dpp.Windowed == TRUE)
-	{
-		// フルスクリーンモードに変更
-		SetWindowLong(d3dpp.hDeviceWindow, GWL_STYLE, WS_POPUP);
+        ResetDirectDraw();
+        SetWindowLong(d3dpp.hDeviceWindow, GWL_STYLE, WS_BORDER | WS_CAPTION | WS_SYSMENU);
+    }
+    else if (!win && d3dpp.Windowed == TRUE)
+    {
+        // フルスクリーンモードに変更
+        SetWindowLong(d3dpp.hDeviceWindow, GWL_STYLE, WS_POPUP);
 
-		// 使用可能な画面モードを探して選択
-		if( dd->CheckDeviceType(D3DADAPTER_DEFAULT, devtypenow, D3DFMT_X8R8G8B8,
-								D3DFMT_X8R8G8B8, FALSE) == D3D_OK)
-								d3dpp.BackBufferFormat = D3DFMT_X8R8G8B8;
-		else if( dd->CheckDeviceType(D3DADAPTER_DEFAULT, devtypenow, D3DFMT_X1R5G5B5,
-								D3DFMT_X1R5G5B5, FALSE) == D3D_OK)
-								d3dpp.BackBufferFormat = D3DFMT_X1R5G5B5;
-		else if( dd->CheckDeviceType(D3DADAPTER_DEFAULT, devtypenow, D3DFMT_R5G6B5,
-								D3DFMT_R5G6B5, FALSE) == D3D_OK)
-								d3dpp.BackBufferFormat = D3DFMT_R5G6B5;
-		else { // ダメだぁ！
-			TraceCreateDeviceError(D3DERR_INVALIDCALL,d3dpp.hDeviceWindow);
-			Destroy();
-			return(FALSE);
-		}
-		d3dpp.Windowed = FALSE;
+        // 使用可能な画面モードを探して選択
+        if( dd->CheckDeviceType(D3DADAPTER_DEFAULT, devtypenow, D3DFMT_X8R8G8B8,
+                                D3DFMT_X8R8G8B8, FALSE) == D3D_OK)
+                                d3dpp.BackBufferFormat = D3DFMT_X8R8G8B8;
+        else if( dd->CheckDeviceType(D3DADAPTER_DEFAULT, devtypenow, D3DFMT_X1R5G5B5,
+                                D3DFMT_X1R5G5B5, FALSE) == D3D_OK)
+                                d3dpp.BackBufferFormat = D3DFMT_X1R5G5B5;
+        else if( dd->CheckDeviceType(D3DADAPTER_DEFAULT, devtypenow, D3DFMT_R5G6B5,
+                                D3DFMT_R5G6B5, FALSE) == D3D_OK)
+                                d3dpp.BackBufferFormat = D3DFMT_R5G6B5;
+        else { // ダメだぁ！
+            TraceCreateDeviceError(D3DERR_INVALIDCALL,d3dpp.hDeviceWindow);
+            Destroy();
+            return(FALSE);
+        }
+        d3dpp.Windowed = FALSE;
 
-		ResetDirectDraw();
-	}
+        ResetDirectDraw();
+    }
 
-	return (TRUE);
+    return (TRUE);
 }
 
 
@@ -733,33 +740,33 @@ BOOL CDirectDraw::ChangeScreenMode(BOOL win)
 */
 void CDirectDraw::SetAlphaMode(DWORD alphamode)
 {
-	switch(alphamode){
-	case GBLEND_KASAN://加算合成
-		d3ddev->SetRenderState(D3DRS_SRCBLEND,D3DBLEND_SRCALPHA);
-		d3ddev->SetRenderState(D3DRS_DESTBLEND,D3DBLEND_ONE);
-		break;
+    switch(alphamode){
+    case GBLEND_KASAN://加算合成
+        d3ddev->SetRenderState(D3DRS_SRCBLEND,D3DBLEND_SRCALPHA);
+        d3ddev->SetRenderState(D3DRS_DESTBLEND,D3DBLEND_ONE);
+        break;
 /*	case GBLEND_GENSAN:
-		d3ddev->SetRenderState(D3DRS_SRCBLEND,D3DBLEND_ZERO);
-		d3ddev->SetRenderState(D3DRS_DESTBLEND,D3DBLEND_INVSRCCOLOR);
-		break;
-	case GBLEND_JYOSAN:
-		d3ddev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_DESTCOLOR);
-		d3ddev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_ZERO);
-		break;
-	case GBLEND_NAZO:
-		d3ddev->SetRenderState(D3DRS_SRCBLEND,D3DBLEND_INVDESTCOLOR);
-		d3ddev->SetRenderState(D3DRS_DESTBLEND,D3DBLEND_ONE);
-		break;*/
-	case GBLEND_INV:
-		d3ddev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_INVDESTCOLOR);
-		d3ddev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_ZERO);
-		break;
-	case GBLEND_HANTOUMEI:
-	default:
-		d3ddev->SetRenderState(D3DRS_SRCBLEND,D3DBLEND_SRCALPHA);
-		d3ddev->SetRenderState(D3DRS_DESTBLEND,D3DBLEND_INVSRCALPHA);
-		break;
-	}
+        d3ddev->SetRenderState(D3DRS_SRCBLEND,D3DBLEND_ZERO);
+        d3ddev->SetRenderState(D3DRS_DESTBLEND,D3DBLEND_INVSRCCOLOR);
+        break;
+    case GBLEND_JYOSAN:
+        d3ddev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_DESTCOLOR);
+        d3ddev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_ZERO);
+        break;
+    case GBLEND_NAZO:
+        d3ddev->SetRenderState(D3DRS_SRCBLEND,D3DBLEND_INVDESTCOLOR);
+        d3ddev->SetRenderState(D3DRS_DESTBLEND,D3DBLEND_ONE);
+        break;*/
+    case GBLEND_INV:
+        d3ddev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_INVDESTCOLOR);
+        d3ddev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_ZERO);
+        break;
+    case GBLEND_HANTOUMEI:
+    default:
+        d3ddev->SetRenderState(D3DRS_SRCBLEND,D3DBLEND_SRCALPHA);
+        d3ddev->SetRenderState(D3DRS_DESTBLEND,D3DBLEND_INVSRCALPHA);
+        break;
+    }
 }
 
 /*!
@@ -770,11 +777,11 @@ void CDirectDraw::SetAlphaMode(DWORD alphamode)
 */
 void CDirectDraw::EnableZ(BOOL test,BOOL write)
 {
-	if(test)
-		d3ddev->SetRenderState(D3DRS_ZFUNC		,D3DCMP_LESSEQUAL);
-	else
-		d3ddev->SetRenderState(D3DRS_ZFUNC		,D3DCMP_ALWAYS );
-	d3ddev->SetRenderState(D3DRS_ZWRITEENABLE	,write);
+    if(test)
+        d3ddev->SetRenderState(D3DRS_ZFUNC		,D3DCMP_LESSEQUAL);
+    else
+        d3ddev->SetRenderState(D3DRS_ZFUNC		,D3DCMP_ALWAYS );
+    d3ddev->SetRenderState(D3DRS_ZWRITEENABLE	,write);
 }
 
 
@@ -789,42 +796,42 @@ void CDirectDraw::EnableZ(BOOL test,BOOL write)
 */
 void CDirectDraw::TraceCreateDeviceError(HRESULT ret,HWND hwnd)
 {
-	TCHAR *msg;
-	msg=(TCHAR*)malloc(1024);
-	_stprintf(msg,_T(""));
+    TCHAR *msg;
+    msg=(TCHAR*)malloc(1024);
+    _stprintf(msg,_T(""));
 
-	switch(ret){
-	case D3DERR_INVALIDCALL:
-		_stprintf(&msg[strlen(msg)],_T("D3DERR_INVALIDCALL:"));
-		_stprintf(&msg[strlen(msg)],_T("メソッドの呼び出しが無効である。\n"));
-		_stprintf(&msg[strlen(msg)],_T("　　たとえば、メソッドのパラメータに無効な値が設定されている場合など。"));
-		_stprintf(&msg[strlen(msg)],_T("\n\n･･･だそうです。"));
-		_stprintf(&msg[strlen(msg)],_T("\n・ディスプレイの表示色数を変更してください"));
-		_stprintf(&msg[strlen(msg)],_T("\n・ディスプレイのプロパティ/詳細/でハードウェアアクセラレータ最大にしてください"));
-		_stprintf(&msg[strlen(msg)],_T("\n・「ファイル名を指定して実行」からdxdiag.exeを実行し、"));
-		_stprintf(&msg[strlen(msg)],_T("\n\n　　「ディスプレイ」タブでDirect3Dアクセラレータが「使用可能」であることを確かめてください。"));
-		_stprintf(&msg[strlen(msg)],_T("\n・g_config.exeで「デバイスタイプ」を変更してください"));
-		break;
-	case D3DERR_NOTAVAILABLE:
-		_stprintf(&msg[strlen(msg)],_T("D3DERR_NOTAVAILABLE:"));
-		_stprintf(&msg[strlen(msg)],_T("このデバイスは、照会されたテクニックをサポートしていない。"));
-		_stprintf(&msg[strlen(msg)],_T("\n\n･･･だそうです。"));
-		_stprintf(&msg[strlen(msg)],_T("\nグラフィックカードが向いてないみたいなんで、買い換えませう。"));
-		break;
-	case D3DERR_OUTOFVIDEOMEMORY:
-		_stprintf(&msg[strlen(msg)],_T("D3DERR_OUTOFVIDEOMEMORY"));
-		_stprintf(&msg[strlen(msg)],_T("Direct3D が処理を行うのに十分なディスプレイ メモリがない。"));
-		_stprintf(&msg[strlen(msg)],_T("\n\n･･･だそうです。"));
-		_stprintf(&msg[strlen(msg)],_T("\n・ディスプレイの解像度と色数をできるだけ減らしてください。"));
-		_stprintf(&msg[strlen(msg)],_T("\n・g_config.exeで320x240モードにしてみてください"));
-		_stprintf(&msg[strlen(msg)],_T("\n・PCを買い換えてください"));
-		break;
-	default:
-		_stprintf(&msg[strlen(msg)],_T("エラーが特定できませんでした。"));
-	}
+    switch(ret){
+    case D3DERR_INVALIDCALL:
+        _stprintf(&msg[strlen(msg)],_T("D3DERR_INVALIDCALL:"));
+        _stprintf(&msg[strlen(msg)],_T("メソッドの呼び出しが無効である。\n"));
+        _stprintf(&msg[strlen(msg)],_T("　　たとえば、メソッドのパラメータに無効な値が設定されている場合など。"));
+        _stprintf(&msg[strlen(msg)],_T("\n\n･･･だそうです。"));
+        _stprintf(&msg[strlen(msg)],_T("\n・ディスプレイの表示色数を変更してください"));
+        _stprintf(&msg[strlen(msg)],_T("\n・ディスプレイのプロパティ/詳細/でハードウェアアクセラレータ最大にしてください"));
+        _stprintf(&msg[strlen(msg)],_T("\n・「ファイル名を指定して実行」からdxdiag.exeを実行し、"));
+        _stprintf(&msg[strlen(msg)],_T("\n\n　　「ディスプレイ」タブでDirect3Dアクセラレータが「使用可能」であることを確かめてください。"));
+        _stprintf(&msg[strlen(msg)],_T("\n・g_config.exeで「デバイスタイプ」を変更してください"));
+        break;
+    case D3DERR_NOTAVAILABLE:
+        _stprintf(&msg[strlen(msg)],_T("D3DERR_NOTAVAILABLE:"));
+        _stprintf(&msg[strlen(msg)],_T("このデバイスは、照会されたテクニックをサポートしていない。"));
+        _stprintf(&msg[strlen(msg)],_T("\n\n･･･だそうです。"));
+        _stprintf(&msg[strlen(msg)],_T("\nグラフィックカードが向いてないみたいなんで、買い換えませう。"));
+        break;
+    case D3DERR_OUTOFVIDEOMEMORY:
+        _stprintf(&msg[strlen(msg)],_T("D3DERR_OUTOFVIDEOMEMORY"));
+        _stprintf(&msg[strlen(msg)],_T("Direct3D が処理を行うのに十分なディスプレイ メモリがない。"));
+        _stprintf(&msg[strlen(msg)],_T("\n\n･･･だそうです。"));
+        _stprintf(&msg[strlen(msg)],_T("\n・ディスプレイの解像度と色数をできるだけ減らしてください。"));
+        _stprintf(&msg[strlen(msg)],_T("\n・g_config.exeで320x240モードにしてみてください"));
+        _stprintf(&msg[strlen(msg)],_T("\n・PCを買い換えてください"));
+        break;
+    default:
+        _stprintf(&msg[strlen(msg)],_T("エラーが特定できませんでした。"));
+    }
 
-	MessageBox(hwnd,msg,_T("起動に失敗"),MB_OK);
-	free(msg);
+    MessageBox(hwnd,msg,_T("起動に失敗"),MB_OK);
+    free(msg);
 }
 
 
@@ -835,11 +842,11 @@ void CDirectDraw::TraceCreateDeviceError(HRESULT ret,HWND hwnd)
 
 
 /*==================================================================================
-	
-	
+    
+    
 
 
-	ビットマップのロード/アンロード
+    ビットマップのロード/アンロード
 
 
 
@@ -865,99 +872,99 @@ void CDirectDraw::TraceCreateDeviceError(HRESULT ret,HWND hwnd)
 */
 MYSURFACE* CDirectDraw::CreateSurfaceFrom256BMP(TCHAR *filename,TCHAR *palname,BOOL dmy)
 {
-	BOOL bret;
-	DWORD i,j;
+    BOOL bret;
+    DWORD i,j;
 
-	//未使用のものを探す
-	int e=-1;
-	for(i=0;i<MAXNUMGOLUAHTEXTURES;i++){
-		if(!ms[i].valid){
-			e=i;
-			i=MAXNUMGOLUAHTEXTURES;
-		}
-	}
-	if(e<0){
-		ODS(_T("warning:テクスチャ数がMAXを超えています\n"));
-		return(NULL);
-	}
+    //未使用のものを探す
+    int e=-1;
+    for(i=0;i<MAXNUMGOLUAHTEXTURES;i++){
+        if(!ms[i].valid){
+            e=i;
+            i=MAXNUMGOLUAHTEXTURES;
+        }
+    }
+    if(e<0){
+        ODS(_T("warning:テクスチャ数がMAXを超えています\n"));
+        return(NULL);
+    }
 
-	//ビットマップのビットを読み込み
-	MYPALLET *bmpbits;
-	DWORD bmpwidth,bmpheight;
+    //ビットマップのビットを読み込み
+    MYPALLET *bmpbits;
+    DWORD bmpwidth,bmpheight;
 #ifdef GCD_EDITER
-	bret = FALSE;	// 使えない、パス。
+    bret = FALSE;	// 使えない、パス。
 #else
-	bret = LoadJPEGbits(&bmpbits, &bmpwidth, &bmpheight, filename);
+    bret = LoadJPEGbits(&bmpbits, &bmpwidth, &bmpheight, filename);
 #endif	// GCD_EDITER
-	if (!bret)
-	{
-		bret = Load256PNGbits(&bmpbits,&bmpwidth,&bmpheight,filename,palname);
-		if(!bret){
-			bret = Load256Bitmapbits(&bmpbits,&bmpwidth,&bmpheight,filename,palname);
+    if (!bret)
+    {
+        bret = Load256PNGbits(&bmpbits,&bmpwidth,&bmpheight,filename,palname);
+        if(!bret){
+            bret = Load256Bitmapbits(&bmpbits,&bmpwidth,&bmpheight,filename,palname);
 
-			if(!bret){
-				return(NULL);
-			}
-		}
-	}
-	ms[e].wg = (float)bmpwidth;
-	ms[e].hg = (float)bmpheight;
+            if(!bret){
+                return(NULL);
+            }
+        }
+    }
+    ms[e].wg = (float)bmpwidth;
+    ms[e].hg = (float)bmpheight;
 
-	//ビットマップの分割の仕方を決定
-	bret = AssignTextureDiv(&ms[e],bmpwidth,bmpheight);
-	if(!bret){
-		ODS(_T("AssignTextureDivに失敗\n"));
-		return(NULL);
-	}
+    //ビットマップの分割の仕方を決定
+    bret = AssignTextureDiv(&ms[e],bmpwidth,bmpheight);
+    if(!bret){
+        ODS(_T("AssignTextureDivに失敗\n"));
+        return(NULL);
+    }
 
-	//指定サイズのテクスチャを作成
-	LPVOID pointer;
-	pointer = malloc( sizeof(LPDIRECT3DTEXTURE9)*(ms[e].xsufnum*ms[e].ysufnum+1));
-	ZeroMemory(pointer,sizeof(LPDIRECT3DTEXTURE9)*(ms[e].xsufnum*ms[e].ysufnum+1));
-	ms[e].pTex = (LPDIRECT3DTEXTURE9*)pointer;//ポインタを確保する領域を確保
-	for(i=0;i<ms[e].ysufnum;i++){
-		for(j=0;j<ms[e].xsufnum;j++){
-			d3ddev->CreateTexture(
-				ms[e].xsufsize[j],
-				ms[e].ysufsize[i],
-				1,//mipmap level
-				0,//D3DUSAGE_RENDERTARGET,
-				texformat,//D3DFMT_A8R8G8B8,//D3DFMT_R5G6B5,//D3DFMT_R5G6B5,
-				D3DPOOL_MANAGED,
-				&(ms[e].pTex[i*ms[e].xsufnum + j]),
-				NULL);
-		}
-	}
+    //指定サイズのテクスチャを作成
+    LPVOID pointer;
+    pointer = malloc( sizeof(LPDIRECT3DTEXTURE9)*(ms[e].xsufnum*ms[e].ysufnum+1));
+    ZeroMemory(pointer,sizeof(LPDIRECT3DTEXTURE9)*(ms[e].xsufnum*ms[e].ysufnum+1));
+    ms[e].pTex = (LPDIRECT3DTEXTURE9*)pointer;//ポインタを確保する領域を確保
+    for(i=0;i<ms[e].ysufnum;i++){
+        for(j=0;j<ms[e].xsufnum;j++){
+            d3ddev->CreateTexture(
+                ms[e].xsufsize[j],
+                ms[e].ysufsize[i],
+                1,//mipmap level
+                0,//D3DUSAGE_RENDERTARGET,
+                texformat,//D3DFMT_A8R8G8B8,//D3DFMT_R5G6B5,//D3DFMT_R5G6B5,
+                D3DPOOL_MANAGED,
+                &(ms[e].pTex[i*ms[e].xsufnum + j]),
+                NULL);
+        }
+    }
 
-	DWORD dameyox = bmpwidth%MINIMUM_TEXSIZE;
-	DWORD dameyoy = bmpheight%MINIMUM_TEXSIZE;
+    DWORD dameyox = bmpwidth%MINIMUM_TEXSIZE;
+    DWORD dameyoy = bmpheight%MINIMUM_TEXSIZE;
 
-	//テクスチャにビットマップをコピー
-	DWORD damex,damey;
-	for(i=0;i<ms[e].ysufnum;i++){//okasi?
-		for(j=0;j<ms[e].xsufnum ;j++){
-			//コピー実行
-			if(i==ms[e].ysufnum-1){damey=dameyoy;}
-			else damey=0;
-			if(j==ms[e].xsufnum-1){damex=dameyox;}
-			else damex=0;
-			CopyBB2TS(bmpbits,bmpwidth,
-				ms[e].xsufindx[j],ms[e].ysufindx[i],
-				ms[e].pTex[ (i*ms[e].xsufnum+j) ],damex,damey);
-		}
-	}
+    //テクスチャにビットマップをコピー
+    DWORD damex,damey;
+    for(i=0;i<ms[e].ysufnum;i++){//okasi?
+        for(j=0;j<ms[e].xsufnum ;j++){
+            //コピー実行
+            if(i==ms[e].ysufnum-1){damey=dameyoy;}
+            else damey=0;
+            if(j==ms[e].xsufnum-1){damex=dameyox;}
+            else damex=0;
+            CopyBB2TS(bmpbits,bmpwidth,
+                ms[e].xsufindx[j],ms[e].ysufindx[i],
+                ms[e].pTex[ (i*ms[e].xsufnum+j) ],damex,damey);
+        }
+    }
 
-	//後始末
-	free(bmpbits);
-	//成功
-	ms[e].valid=TRUE;
+    //後始末
+    free(bmpbits);
+    //成功
+    ms[e].valid=TRUE;
 
-	if(g_config.IsHalfMode()){
-		ms[e].wg *=2;
-		ms[e].hg *=2;
-	}
+    if(g_config.IsHalfMode()){
+        ms[e].wg *=2;
+        ms[e].hg *=2;
+    }
 
-	return(&ms[e]);
+    return(&ms[e]);
 }
 
 /*!
@@ -979,86 +986,86 @@ MYSURFACE* CDirectDraw::CreateSurfaceFrom256BMP(TCHAR *filename,TCHAR *palname,B
 */
 MYSURFACE* CDirectDraw::CreateSurfaceFrom256Image(TCHAR *filename,TCHAR *pallet/*=NULL*/,BOOL dmy/*=TRUE*/)
 {
-	if (filename)
-	{
-		TCHAR* Buffer = (TCHAR*)malloc( strlen(filename) + (4 + 1));
+    if (filename)
+    {
+        TCHAR* Buffer = (TCHAR*)malloc( strlen(filename) + (4 + 1));
 
-		if (Buffer)
-		{
-			TCHAR* Buffer_pal = NULL;
-			MYSURFACE* result;
+        if (Buffer)
+        {
+            TCHAR* Buffer_pal = NULL;
+            MYSURFACE* result;
 
-			if (pallet)
-				Buffer_pal = (TCHAR*)malloc( strlen(pallet) + (4 + 1));
+            if (pallet)
+                Buffer_pal = (TCHAR*)malloc( strlen(pallet) + (4 + 1));
 
-			// まずはPNG形式で。
-			_stprintf(Buffer, _T("%s%s"), filename, _T(".png"));
-			if (Buffer_pal) _stprintf(Buffer_pal, _T("%s%s"), pallet, _T(".png"));
+            // まずはPNG形式で。
+            _stprintf(Buffer, _T("%s%s"), filename, _T(".png"));
+            if (Buffer_pal) _stprintf(Buffer_pal, _T("%s%s"), pallet, _T(".png"));
 
-			if ( result = CreateSurfaceFrom256BMP(Buffer, Buffer_pal, dmy) )
-			{
-				// 成功
-				if (Buffer_pal) free(Buffer_pal);
-				free(Buffer);
-				return result;
-			}
-			else
-			{
-				// パレットをBMPに。
-				if (Buffer_pal)
-				{
-					_stprintf(Buffer_pal, _T("%s%s"), pallet, _T(".bmp"));
+            if ( result = CreateSurfaceFrom256BMP(Buffer, Buffer_pal, dmy) )
+            {
+                // 成功
+                if (Buffer_pal) free(Buffer_pal);
+                free(Buffer);
+                return result;
+            }
+            else
+            {
+                // パレットをBMPに。
+                if (Buffer_pal)
+                {
+                    _stprintf(Buffer_pal, _T("%s%s"), pallet, _T(".bmp"));
 
-					if ( result = CreateSurfaceFrom256BMP(Buffer, Buffer_pal, dmy) )
-					{
-						// 成功
-						if (Buffer_pal) free(Buffer_pal);
-						free(Buffer);
-						return result;
-					}
-				}
+                    if ( result = CreateSurfaceFrom256BMP(Buffer, Buffer_pal, dmy) )
+                    {
+                        // 成功
+                        if (Buffer_pal) free(Buffer_pal);
+                        free(Buffer);
+                        return result;
+                    }
+                }
 
-				// JPEG形式でやってみる。
-				_stprintf(Buffer, _T("%s%s"), filename, _T(".jpg"));
+                // JPEG形式でやってみる。
+                _stprintf(Buffer, _T("%s%s"), filename, _T(".jpg"));
 
-				if ( result = CreateSurfaceFrom256BMP(Buffer, NULL, dmy) )
-				{
-					// 成功
-					if (Buffer_pal) free(Buffer_pal);
-					free(Buffer);
-					return result;
-				}
+                if ( result = CreateSurfaceFrom256BMP(Buffer, NULL, dmy) )
+                {
+                    // 成功
+                    if (Buffer_pal) free(Buffer_pal);
+                    free(Buffer);
+                    return result;
+                }
 
-				// 失敗したらビットマップ形式で。
-				_stprintf(Buffer, _T("%s%s"), filename, _T(".bmp"));
-				if (Buffer_pal) _stprintf(Buffer_pal, _T("%s%s"), pallet, _T(".png"));
+                // 失敗したらビットマップ形式で。
+                _stprintf(Buffer, _T("%s%s"), filename, _T(".bmp"));
+                if (Buffer_pal) _stprintf(Buffer_pal, _T("%s%s"), pallet, _T(".png"));
 
-				if ( result = CreateSurfaceFrom256BMP(Buffer, Buffer_pal, dmy) )
-				{
-					// 成功
-					if (Buffer_pal) free(Buffer_pal);
-					free(Buffer);
-					return result;
-				}
-				else
-				{
-					// パレットをBMPに。
-					if (Buffer_pal)
-					{
-						_stprintf(Buffer_pal, _T("%s%s"), pallet, _T(".bmp"));
+                if ( result = CreateSurfaceFrom256BMP(Buffer, Buffer_pal, dmy) )
+                {
+                    // 成功
+                    if (Buffer_pal) free(Buffer_pal);
+                    free(Buffer);
+                    return result;
+                }
+                else
+                {
+                    // パレットをBMPに。
+                    if (Buffer_pal)
+                    {
+                        _stprintf(Buffer_pal, _T("%s%s"), pallet, _T(".bmp"));
 
-						result = CreateSurfaceFrom256BMP(Buffer, Buffer_pal, dmy);
-					}
-				}
-			}
+                        result = CreateSurfaceFrom256BMP(Buffer, Buffer_pal, dmy);
+                    }
+                }
+            }
 
-			if (Buffer_pal) free(Buffer_pal);
-			free(Buffer);
-			return result;
-		}
-	}
+            if (Buffer_pal) free(Buffer_pal);
+            free(Buffer);
+            return result;
+        }
+    }
 
-	return NULL;
+    return NULL;
 }
 
 /*!
@@ -1075,88 +1082,88 @@ MYSURFACE* CDirectDraw::CreateSurfaceFrom256Image(TCHAR *filename,TCHAR *pallet/
 *	@return TRUE:成功, FALSE:残念
 */
 BOOL CDirectDraw::CopyBB2TS(MYPALLET *pbb,
-							DWORD bbpitch,
-							DWORD offset_x,
-							DWORD offset_y,
-							LPDIRECT3DTEXTURE9 ptex,
-							DWORD damex,
-							DWORD damey)
+                            DWORD bbpitch,
+                            DWORD offset_x,
+                            DWORD offset_y,
+                            LPDIRECT3DTEXTURE9 ptex,
+                            DWORD damex,
+                            DWORD damey)
 {
-	if(pbb==NULL)return(FALSE);
-	if(ptex==NULL)return(FALSE);
+    if(pbb==NULL)return(FALSE);
+    if(ptex==NULL)return(FALSE);
 
-	IDirect3DSurface9 *psuf = NULL;
-	if(D3D_OK != ptex->GetSurfaceLevel(0,&psuf)){
-		ODS(_T("CopyBB2TS / GetSurfaceLevelに失敗\n"));
-		return(FALSE);
-	}
+    IDirect3DSurface9 *psuf = NULL;
+    if(D3D_OK != ptex->GetSurfaceLevel(0,&psuf)){
+        ODS(_T("CopyBB2TS / GetSurfaceLevelに失敗\n"));
+        return(FALSE);
+    }
 
-	//幅と高さ、フォーマットを取得
-	D3DFORMAT fmt;
-	DWORD sw,sh;
-	D3DSURFACE_DESC dsc;
-	if(D3D_OK != psuf->GetDesc(&dsc)){
-		ODS(_T("CopyBB2TS / GetDescに失敗\n"));
-		RELEASE(psuf);
-		return(FALSE);
-	}
-	fmt = dsc.Format;
-	sw = dsc.Width;
-	sh = dsc.Height;
+    //幅と高さ、フォーマットを取得
+    D3DFORMAT fmt;
+    DWORD sw,sh;
+    D3DSURFACE_DESC dsc;
+    if(D3D_OK != psuf->GetDesc(&dsc)){
+        ODS(_T("CopyBB2TS / GetDescに失敗\n"));
+        RELEASE(psuf);
+        return(FALSE);
+    }
+    fmt = dsc.Format;
+    sw = dsc.Width;
+    sh = dsc.Height;
 
-	if(damex!=0)sw=damex;
-	if(damey!=0)sh=damey;
+    if(damex!=0)sw=damex;
+    if(damey!=0)sh=damey;
 
-	//サーフェイスのロック
-	D3DLOCKED_RECT lr;
-	if(D3D_OK != psuf->LockRect(&lr,NULL,0)){
-		ODS(_T("CopyBB2TS / LockRectに失敗\n"));
-		RELEASE(psuf);
-		return(FALSE);
-	}
+    //サーフェイスのロック
+    D3DLOCKED_RECT lr;
+    if(D3D_OK != psuf->LockRect(&lr,NULL,0)){
+        ODS(_T("CopyBB2TS / LockRectに失敗\n"));
+        RELEASE(psuf);
+        return(FALSE);
+    }
 
-	//コピー
-	DWORD i,j;
-	PBYTE pline;
-	int onepixsize;
-	for(j=0;j<sh;j++){
-		pline =  (PBYTE)lr.pBits + lr.Pitch*j ;
-		for(i=0;i<sw;i++){
-			switch(fmt){
-			case D3DFMT_R5G6B5://これは多分使えない
-				onepixsize = CopyOne_R5G6B5(pbb[(j+offset_y)*bbpitch+i+offset_x],pline);
-				break;
-			case D3DFMT_A8R8G8B8:
-			case D3DFMT_X8R8G8B8:
-				i=i;
-				j=j;
-				onepixsize = CopyOne_A8R8G8B8(pbb[(j+offset_y)*bbpitch+i+offset_x],pline);
-				break;
-			case D3DFMT_A1R5G5B5:
-			case D3DFMT_X1R5G5B5:
-				onepixsize = CopyOne_A1R5G5B5(pbb[(j+offset_y)*bbpitch+i+offset_x],pline);
-				break;
-			case D3DFMT_A4R4G4B4:
-			case D3DFMT_X4R4G4B4:
-				onepixsize = CopyOne_A4R4G4B4(pbb[(j+offset_y)*bbpitch+i+offset_x],pline);
-				break;
-			case D3DFMT_A8R3G3B2:
-				onepixsize = CopyOne_A8R3G3B2(pbb[(j+offset_y)*bbpitch+i+offset_x],pline);
-				break;
-			default:
-				ODS(_T("CopyBB2TS / このフォーマットはコピーできにゃい\n"));
-				psuf->UnlockRect();
-				RELEASE(psuf);
-				return(FALSE);
-			}
-			pline += onepixsize;
-		}
-	}
+    //コピー
+    DWORD i,j;
+    PBYTE pline;
+    int onepixsize;
+    for(j=0;j<sh;j++){
+        pline =  (PBYTE)lr.pBits + lr.Pitch*j ;
+        for(i=0;i<sw;i++){
+            switch(fmt){
+            case D3DFMT_R5G6B5://これは多分使えない
+                onepixsize = CopyOne_R5G6B5(pbb[(j+offset_y)*bbpitch+i+offset_x],pline);
+                break;
+            case D3DFMT_A8R8G8B8:
+            case D3DFMT_X8R8G8B8:
+                i=i;
+                j=j;
+                onepixsize = CopyOne_A8R8G8B8(pbb[(j+offset_y)*bbpitch+i+offset_x],pline);
+                break;
+            case D3DFMT_A1R5G5B5:
+            case D3DFMT_X1R5G5B5:
+                onepixsize = CopyOne_A1R5G5B5(pbb[(j+offset_y)*bbpitch+i+offset_x],pline);
+                break;
+            case D3DFMT_A4R4G4B4:
+            case D3DFMT_X4R4G4B4:
+                onepixsize = CopyOne_A4R4G4B4(pbb[(j+offset_y)*bbpitch+i+offset_x],pline);
+                break;
+            case D3DFMT_A8R3G3B2:
+                onepixsize = CopyOne_A8R3G3B2(pbb[(j+offset_y)*bbpitch+i+offset_x],pline);
+                break;
+            default:
+                ODS(_T("CopyBB2TS / このフォーマットはコピーできにゃい\n"));
+                psuf->UnlockRect();
+                RELEASE(psuf);
+                return(FALSE);
+            }
+            pline += onepixsize;
+        }
+    }
 
-	psuf->UnlockRect();	//サーフェイスのアンロック
-	RELEASE(psuf);		//GetSurfaceLevelでサーフェイスを取得したときにリファレンスカウントが増えてるから
+    psuf->UnlockRect();	//サーフェイスのアンロック
+    RELEASE(psuf);		//GetSurfaceLevelでサーフェイスを取得したときにリファレンスカウントが増えてるから
 
-	return(TRUE);
+    return(TRUE);
 }
 
 
@@ -1172,26 +1179,26 @@ BOOL CDirectDraw::CopyBB2TS(MYPALLET *pbb,
 */
 DWORD CDirectDraw::CopyOne_R5G6B5(MYPALLET src,PBYTE dst)
 {
-	WORD *pdst;
-	pdst = (PWORD)dst;
+    WORD *pdst;
+    pdst = (PWORD)dst;
 
-	WORD r,g,b;
-	r = src.red;
-	r *= 2*2*2*2*2*2 *2*2;
-	r &= 0xF800;
-	
-	g = src.green;
-	g *= 2*2*2;
-	g &= 0x07E0;
+    WORD r,g,b;
+    r = src.red;
+    r *= 2*2*2*2*2*2 *2*2;
+    r &= 0xF800;
+    
+    g = src.green;
+    g *= 2*2*2;
+    g &= 0x07E0;
 
-	b = src.blue;
-	b /= 2*2*2;
-	b &= 0x001F;
+    b = src.blue;
+    b /= 2*2*2;
+    b &= 0x001F;
 
-	WORD col = r | g | b ;
-	*pdst = col;
+    WORD col = r | g | b ;
+    *pdst = col;
 
-	return(2);
+    return(2);
 }
 
 /*!
@@ -1206,30 +1213,30 @@ DWORD CDirectDraw::CopyOne_R5G6B5(MYPALLET src,PBYTE dst)
 */
 DWORD CDirectDraw::CopyOne_A1R5G5B5(MYPALLET src,PBYTE dst)
 {
-	WORD *pdst;
-	pdst = (PWORD)dst;
+    WORD *pdst;
+    pdst = (PWORD)dst;
 
-	WORD a,r,g,b;
+    WORD a,r,g,b;
 
-	if(src.alpha!=0)a=0x8000;
-	else    a=0x0000;
+    if(src.alpha!=0)a=0x8000;
+    else    a=0x0000;
 
-	r = src.red;
-	r *= 2*2*2*2*2*2 *2;
-	r &= 0x7C00;
-	
-	g = src.green;
-	g *= 2*2;
-	g &= 0x03E0;
+    r = src.red;
+    r *= 2*2*2*2*2*2 *2;
+    r &= 0x7C00;
+    
+    g = src.green;
+    g *= 2*2;
+    g &= 0x03E0;
 
-	b = src.blue;
-	b /= 2*2*2;
-	b &= 0x001F;
+    b = src.blue;
+    b /= 2*2*2;
+    b &= 0x001F;
 
-	WORD col = a | r | g | b ;
-	*pdst = col;
+    WORD col = a | r | g | b ;
+    *pdst = col;
 
-	return(2);
+    return(2);
 }
 
 /*!
@@ -1244,30 +1251,30 @@ DWORD CDirectDraw::CopyOne_A1R5G5B5(MYPALLET src,PBYTE dst)
 */
 DWORD CDirectDraw::CopyOne_A4R4G4B4(MYPALLET src,PBYTE dst)
 {
-	WORD *pdst;
-	pdst = (PWORD)dst;
+    WORD *pdst;
+    pdst = (PWORD)dst;
 
-	WORD a,r,g,b;
+    WORD a,r,g,b;
 
-	a=src.alpha;
-	a *= 2*2*2*2 *2*2*2*2;
-	a &= 0xF000;
+    a=src.alpha;
+    a *= 2*2*2*2 *2*2*2*2;
+    a &= 0xF000;
 
-	r = src.red;
-	r *= 2*2*2*2;
-	r &= 0x0F00;
-	
-	g = src.green;
-	g &= 0x00F0;
+    r = src.red;
+    r *= 2*2*2*2;
+    r &= 0x0F00;
+    
+    g = src.green;
+    g &= 0x00F0;
 
-	b = src.blue;
-	b /= 2*2*2*2;
-	b &= 0x000F;
+    b = src.blue;
+    b /= 2*2*2*2;
+    b &= 0x000F;
 
-	WORD col = a | r | g | b ;
-	*pdst = col;
+    WORD col = a | r | g | b ;
+    *pdst = col;
 
-	return(2);
+    return(2);
 }
 
 /*!
@@ -1282,29 +1289,29 @@ DWORD CDirectDraw::CopyOne_A4R4G4B4(MYPALLET src,PBYTE dst)
 */
 DWORD CDirectDraw::CopyOne_A8R3G3B2(MYPALLET src,PBYTE dst)
 {
-	WORD *pdst;
-	pdst = (PWORD)dst;
+    WORD *pdst;
+    pdst = (PWORD)dst;
 
-	WORD a,r,g,b;
+    WORD a,r,g,b;
 
-	a=src.alpha;
-	a *= 2*2*2*2 *2*2*2*2;
+    a=src.alpha;
+    a *= 2*2*2*2 *2*2*2*2;
 
-	r = src.red;
-	r &= 0x00080;
-	
-	g = src.green;
-	g /= 2*2*2;
-	g &= 0x001C;
+    r = src.red;
+    r &= 0x00080;
+    
+    g = src.green;
+    g /= 2*2*2;
+    g &= 0x001C;
 
-	b = src.blue;
-	b /= 2*2*2*2 *2*2;
-	b &= 0x0003;
+    b = src.blue;
+    b /= 2*2*2*2 *2*2;
+    b &= 0x0003;
 
-	WORD col = a | r | g | b ;
-	*pdst = col;
+    WORD col = a | r | g | b ;
+    *pdst = col;
 
-	return(2);
+    return(2);
 }
 
 /*!
@@ -1319,12 +1326,12 @@ DWORD CDirectDraw::CopyOne_A8R3G3B2(MYPALLET src,PBYTE dst)
 */
 DWORD CDirectDraw::CopyOne_A8R8G8B8(MYPALLET src,PBYTE dst)
 {
-	MYPALLET *pdst;
-	pdst = (MYPALLET*)dst;
+    MYPALLET *pdst;
+    pdst = (MYPALLET*)dst;
 
-	*pdst = src;
+    *pdst = src;
 
-	return(4);
+    return(4);
 }
 
 
@@ -1341,68 +1348,68 @@ DWORD CDirectDraw::CopyOne_A8R8G8B8(MYPALLET src,PBYTE dst)
 */
 BOOL CDirectDraw::AssignTextureDiv(MYSURFACE *pmsf,DWORD width,DWORD height)
 {
-	DWORD i;
+    DWORD i;
 
-	DWORD ntx,nty,numsufx=0,numsufy=0;
-	BOOL bloop;
-	
-	//ヨコ方向
-	bloop=TRUE;
-	DWORD bmpwidthr = width;
-	DWORD asstexsize = maxtexturewidth;
-	
-	while(bloop){
-		ntx = bmpwidthr/asstexsize;
-		bmpwidthr = bmpwidthr%asstexsize;
-		for(i=0;i<ntx;i++){
-			pmsf->xsufsize[numsufx]=asstexsize;
-			numsufx++;
-			if(numsufx==MYSUF_MAXNUMTEX)return(FALSE);
-		}
-		if(bmpwidthr==0)bloop=FALSE;//きっちり終わったらそれで終了
-		else if(asstexsize <= MINIMUM_TEXSIZE){//最後は細かいから省略だ
-			pmsf->xsufsize[numsufx]=asstexsize;
-			numsufx++;
-			bloop=FALSE;
-		}
-		asstexsize /= 2;
-	}
-	pmsf->xsufsize[numsufx]=0;
-	pmsf->xsufnum = numsufx;
-	pmsf->xsufindx[0]=0;
-	for(i=1;i<pmsf->xsufnum;i++){
-		pmsf->xsufindx[i] = pmsf->xsufindx[i-1] + pmsf->xsufsize[i-1];
-	}
+    DWORD ntx,nty,numsufx=0,numsufy=0;
+    BOOL bloop;
+    
+    //ヨコ方向
+    bloop=TRUE;
+    DWORD bmpwidthr = width;
+    DWORD asstexsize = maxtexturewidth;
+    
+    while(bloop){
+        ntx = bmpwidthr/asstexsize;
+        bmpwidthr = bmpwidthr%asstexsize;
+        for(i=0;i<ntx;i++){
+            pmsf->xsufsize[numsufx]=asstexsize;
+            numsufx++;
+            if(numsufx==MYSUF_MAXNUMTEX)return(FALSE);
+        }
+        if(bmpwidthr==0)bloop=FALSE;//きっちり終わったらそれで終了
+        else if(asstexsize <= MINIMUM_TEXSIZE){//最後は細かいから省略だ
+            pmsf->xsufsize[numsufx]=asstexsize;
+            numsufx++;
+            bloop=FALSE;
+        }
+        asstexsize /= 2;
+    }
+    pmsf->xsufsize[numsufx]=0;
+    pmsf->xsufnum = numsufx;
+    pmsf->xsufindx[0]=0;
+    for(i=1;i<pmsf->xsufnum;i++){
+        pmsf->xsufindx[i] = pmsf->xsufindx[i-1] + pmsf->xsufsize[i-1];
+    }
 
-	//タテ方向
-	bloop=TRUE;
-	DWORD bmpheightr = height;
-	asstexsize = maxtextureheight;
+    //タテ方向
+    bloop=TRUE;
+    DWORD bmpheightr = height;
+    asstexsize = maxtextureheight;
 
-	while(bloop){
-		nty = bmpheightr/asstexsize;
-		bmpheightr= bmpheightr%asstexsize;
-		for(i=0;i<nty;i++){
-			pmsf->ysufsize[numsufy]=asstexsize;
-			numsufy++;
-			if(numsufy==MYSUF_MAXNUMTEX)return(FALSE);
-		}
-		if(bmpheightr==0)bloop=FALSE;//きっちり終わったらそれで終了
-		else if(asstexsize <= MINIMUM_TEXSIZE){//最後は細かいから省略だ
-			pmsf->ysufsize[numsufy]=MINIMUM_TEXSIZE;
-			numsufy++;
-			bloop=FALSE;
-		}
-		asstexsize /= 2;
-	}
-	pmsf->ysufsize[numsufy]=0;
-	pmsf->ysufnum = numsufy;
-	pmsf->ysufindx[0]=0;
-	for(i=1;i<pmsf->ysufnum;i++){
-		pmsf->ysufindx[i] = pmsf->ysufindx[i-1] + pmsf->ysufsize[i-1];
-	}
+    while(bloop){
+        nty = bmpheightr/asstexsize;
+        bmpheightr= bmpheightr%asstexsize;
+        for(i=0;i<nty;i++){
+            pmsf->ysufsize[numsufy]=asstexsize;
+            numsufy++;
+            if(numsufy==MYSUF_MAXNUMTEX)return(FALSE);
+        }
+        if(bmpheightr==0)bloop=FALSE;//きっちり終わったらそれで終了
+        else if(asstexsize <= MINIMUM_TEXSIZE){//最後は細かいから省略だ
+            pmsf->ysufsize[numsufy]=MINIMUM_TEXSIZE;
+            numsufy++;
+            bloop=FALSE;
+        }
+        asstexsize /= 2;
+    }
+    pmsf->ysufsize[numsufy]=0;
+    pmsf->ysufnum = numsufy;
+    pmsf->ysufindx[0]=0;
+    for(i=1;i<pmsf->ysufnum;i++){
+        pmsf->ysufindx[i] = pmsf->ysufindx[i-1] + pmsf->ysufsize[i-1];
+    }
 
-	return(TRUE);
+    return(TRUE);
 }
 
 
@@ -1423,162 +1430,162 @@ static BOOL GoluahReadFile(HANDLE hFile, LPBYTE bits, DWORD sizeimage, NowLoadin
 */
 BOOL CDirectDraw::Load256Bitmapbits(MYPALLET **pbits,DWORD *width,DWORD *height,TCHAR *bmpfilename,TCHAR *palfilename)
 {
-	BOOL ret2;
+    BOOL ret2;
 
-	//とりあえずパレットを確保
-	MYPALLET pal[256];
-	if(palfilename==NULL)palfilename=bmpfilename;
-	ret2 = GetPallet(palfilename,pal);
-	if(!ret2){
-		ret2 = GetPalletPNG(palfilename,pal);
+    //とりあえずパレットを確保
+    MYPALLET pal[256];
+    if(palfilename==NULL)palfilename=bmpfilename;
+    ret2 = GetPallet(palfilename,pal);
+    if(!ret2){
+        ret2 = GetPalletPNG(palfilename,pal);
 
-		if(!ret2){
-			return(FALSE);
-		}
-	}
+        if(!ret2){
+            return(FALSE);
+        }
+    }
 
-	//ビットマップのビットを取得~
-	//ビットマップをロード
-	HANDLE hFile;
-	DWORD ret,br,err=FALSE;
+    //ビットマップのビットを取得~
+    //ビットマップをロード
+    HANDLE hFile;
+    DWORD ret,br,err=FALSE;
 
-	if(bmpfilename==NULL){
-		ODS(_T("CDirectDraw::Load256Bitmapbits : ファイル名がNULLとはどういうことだ？\n"));
-	}
+    if(bmpfilename==NULL){
+        ODS(_T("CDirectDraw::Load256Bitmapbits : ファイル名がNULLとはどういうことだ？\n"));
+    }
 
-	//ファイルのオープン
-	hFile=CreateFile(bmpfilename,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
-	if(hFile==INVALID_HANDLE_VALUE){
-		return(NULL);
-	}
-	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//念のためファイルの先頭に移動
+    //ファイルのオープン
+    hFile=CreateFile(bmpfilename,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
+    if(hFile==INVALID_HANDLE_VALUE){
+        return(NULL);
+    }
+    SetFilePointer(hFile,0,NULL,FILE_BEGIN);//念のためファイルの先頭に移動
 
-	//ﾌｧｲﾙヘッダの読み出し
-	BITMAPFILEHEADER fileheader;
-	ret=ReadFile(hFile,&fileheader,sizeof(BITMAPFILEHEADER),&br,NULL);
-	if(!ret || br!=sizeof(BITMAPFILEHEADER)){
-		ODS(_T("CDirectDraw::Load256Bitmapbits : ファイルの読み込みに失敗(1)\n"));
-		err=TRUE;
-	}
-	if(fileheader.bfType != 0x4d42){//"BM"
-		ODS(_T("CDirectDraw::Load256Bitmapbits : つーかこのファイルはビットマップではない\n"));
-		err=TRUE;
-	}
-	if(err){
-		CloseHandle(hFile);
-		return(NULL);
-	}
+    //ﾌｧｲﾙヘッダの読み出し
+    BITMAPFILEHEADER fileheader;
+    ret=ReadFile(hFile,&fileheader,sizeof(BITMAPFILEHEADER),&br,NULL);
+    if(!ret || br!=sizeof(BITMAPFILEHEADER)){
+        ODS(_T("CDirectDraw::Load256Bitmapbits : ファイルの読み込みに失敗(1)\n"));
+        err=TRUE;
+    }
+    if(fileheader.bfType != 0x4d42){//"BM"
+        ODS(_T("CDirectDraw::Load256Bitmapbits : つーかこのファイルはビットマップではない\n"));
+        err=TRUE;
+    }
+    if(err){
+        CloseHandle(hFile);
+        return(NULL);
+    }
 
-	//BITMAPINFOHEADERの読み込み
-	BITMAPINFOHEADER infohed;
-	ret=ReadFile(hFile,&infohed,sizeof(BITMAPINFOHEADER),&br,NULL);
-	if(!ret || br!=sizeof(BITMAPINFOHEADER)){
-		ODS(_T("CDirectDraw::Load256Bitmapbits : ファイルの読み込みに失敗(2)\n"));
-		err=TRUE;
-	}
-	if(infohed.biSize != sizeof(BITMAPINFOHEADER)){
-		ODS(_T("CDirectDraw::Load256Bitmapbits : BITMAPINFOHEADERのサイズが合わない\n"));
-		err=TRUE;
-	}
-	if(infohed.biBitCount != 8){
-		ODS(_T("CDirectDraw::Load256Bitmapbits : つーかこのファイルは256ではない\n"));
-		err=TRUE;
-	}
-	if(infohed.biCompression != BI_RGB){
-		ODS(_T("CDirectDraw::Load256Bitmapbits : 圧縮がかかっているらしい\n"));
-		err=TRUE;
-	}
-	if(err){
-		CloseHandle(hFile);
-		return(NULL);
-	}
-	if(infohed.biClrUsed == 0){//0の場合、256を意味することがあるらしい
-		infohed.biClrUsed=256;
-	}
+    //BITMAPINFOHEADERの読み込み
+    BITMAPINFOHEADER infohed;
+    ret=ReadFile(hFile,&infohed,sizeof(BITMAPINFOHEADER),&br,NULL);
+    if(!ret || br!=sizeof(BITMAPINFOHEADER)){
+        ODS(_T("CDirectDraw::Load256Bitmapbits : ファイルの読み込みに失敗(2)\n"));
+        err=TRUE;
+    }
+    if(infohed.biSize != sizeof(BITMAPINFOHEADER)){
+        ODS(_T("CDirectDraw::Load256Bitmapbits : BITMAPINFOHEADERのサイズが合わない\n"));
+        err=TRUE;
+    }
+    if(infohed.biBitCount != 8){
+        ODS(_T("CDirectDraw::Load256Bitmapbits : つーかこのファイルは256ではない\n"));
+        err=TRUE;
+    }
+    if(infohed.biCompression != BI_RGB){
+        ODS(_T("CDirectDraw::Load256Bitmapbits : 圧縮がかかっているらしい\n"));
+        err=TRUE;
+    }
+    if(err){
+        CloseHandle(hFile);
+        return(NULL);
+    }
+    if(infohed.biClrUsed == 0){//0の場合、256を意味することがあるらしい
+        infohed.biClrUsed=256;
+    }
 
-	//パレットは読みとばし
-	SetFilePointer(hFile,sizeof(RGBQUAD)*infohed.biClrUsed,NULL,FILE_CURRENT);
+    //パレットは読みとばし
+    SetFilePointer(hFile,sizeof(RGBQUAD)*infohed.biClrUsed,NULL,FILE_CURRENT);
 
-	//ビットマップビットのサイズを計算する(ビットマップの幅は4の倍数で格納されているらしい)
-	DWORD linesize = infohed.biWidth;
-	if(infohed.biWidth%4 != 0)linesize +=  ( 4 - infohed.biWidth%4 );
-	DWORD sizeimage = linesize * infohed.biHeight;
-	//メモリを確保してビットマップビットを読み込む
-	LPBYTE bits = (LPBYTE)(malloc(sizeimage));
-	ret=GoluahReadFile(hFile,bits,sizeimage,NowLoading_Image,&br);
-	CloseHandle(hFile);
-	if(!ret || br!=sizeimage){
-		OutputDebugString(_T("CDirectDraw::Load256Bitmapbits : ファイルの読み込みに失敗(3)\n"));
-		free(bits);
-		return(NULL);
-	}
+    //ビットマップビットのサイズを計算する(ビットマップの幅は4の倍数で格納されているらしい)
+    DWORD linesize = infohed.biWidth;
+    if(infohed.biWidth%4 != 0)linesize +=  ( 4 - infohed.biWidth%4 );
+    DWORD sizeimage = linesize * infohed.biHeight;
+    //メモリを確保してビットマップビットを読み込む
+    LPBYTE bits = (LPBYTE)(malloc(sizeimage));
+    ret=GoluahReadFile(hFile,bits,sizeimage,NowLoading_Image,&br);
+    CloseHandle(hFile);
+    if(!ret || br!=sizeimage){
+        OutputDebugString(_T("CDirectDraw::Load256Bitmapbits : ファイルの読み込みに失敗(3)\n"));
+        free(bits);
+        return(NULL);
+    }
 
-	//ビットマップの大きさにあわせて新たにメモリ領域を作成する
-	LPVOID pnewbits2;
-	DWORD ishalf=1;
-	if(g_config.IsHalfMode())ishalf=2;
-	pnewbits2 = malloc(sizeof(MYPALLET)*infohed.biWidth*infohed.biHeight /ishalf);
-	MYPALLET *retbit;
-	retbit = (MYPALLET*)pnewbits2;
+    //ビットマップの大きさにあわせて新たにメモリ領域を作成する
+    LPVOID pnewbits2;
+    DWORD ishalf=1;
+    if(g_config.IsHalfMode())ishalf=2;
+    pnewbits2 = malloc(sizeof(MYPALLET)*infohed.biWidth*infohed.biHeight /ishalf);
+    MYPALLET *retbit;
+    retbit = (MYPALLET*)pnewbits2;
 
-	//そこにデータをコピー
-	LONG i,j;
-	PBYTE plinenow;
-	DWORD halfcopy=0;
-	for(i=infohed.biHeight-1;i>=0;i--){
-		plinenow = bits;
-		plinenow += linesize*i;
-		for(j=0;j<infohed.biWidth;j++){
-			if(g_config.IsHalfMode()){//半分しかコピーしない
-				if(i%2==0 && j%2==0 && j != infohed.biWidth - 1){
-					retbit[halfcopy] = pal[ plinenow[j] ];
-					halfcopy++;
-				}
-			}
-			else{
-				retbit[(infohed.biHeight-1-i)*infohed.biWidth + j] = pal[ plinenow[j] ];
-			}
-		}
-	}
+    //そこにデータをコピー
+    LONG i,j;
+    PBYTE plinenow;
+    DWORD halfcopy=0;
+    for(i=infohed.biHeight-1;i>=0;i--){
+        plinenow = bits;
+        plinenow += linesize*i;
+        for(j=0;j<infohed.biWidth;j++){
+            if(g_config.IsHalfMode()){//半分しかコピーしない
+                if(i%2==0 && j%2==0 && j != infohed.biWidth - 1){
+                    retbit[halfcopy] = pal[ plinenow[j] ];
+                    halfcopy++;
+                }
+            }
+            else{
+                retbit[(infohed.biHeight-1-i)*infohed.biWidth + j] = pal[ plinenow[j] ];
+            }
+        }
+    }
 
-	//完了
-	free(bits);
+    //完了
+    free(bits);
 
-	if(g_config.IsHalfMode()){
-		infohed.biWidth/=2;
-		infohed.biHeight/=2;
-	}
+    if(g_config.IsHalfMode()){
+        infohed.biWidth/=2;
+        infohed.biHeight/=2;
+    }
 
-	*pbits = retbit;
-	*width = infohed.biWidth;
-	*height = infohed.biHeight;
-	return(TRUE);
+    *pbits = retbit;
+    *width = infohed.biWidth;
+    *height = infohed.biHeight;
+    return(TRUE);
 }
 
 static BOOL GoluahReadFile(HANDLE hFile, LPBYTE bits, DWORD sizeimage, NowLoading_IconItem item, LPDWORD br)
 {
-	DWORD ret,br2,err=0;
+    DWORD ret,br2,err=0;
 
-	*br = 0;
+    *br = 0;
 
-	for (int i = 0; i < sizeimage; i += 524288)
-	{
-		DWORD LoadBytes = min(524288, sizeimage - i);
+    for (int i = 0; i < sizeimage; i += 524288)
+    {
+        DWORD LoadBytes = min(524288, sizeimage - i);
 
-		ret=ReadFile(hFile,bits + i,LoadBytes,&br2,NULL);
-		if(!ret || br2!=LoadBytes){
-			return(ret);
-		}
+        ret=ReadFile(hFile,bits + i,LoadBytes,&br2,NULL);
+        if(!ret || br2!=LoadBytes){
+            return(ret);
+        }
 
-		*br += br2;
+        *br += br2;
 #		ifndef GCD_EDITER
-			//進行状況表示
-			CTNowLoading* task = dynamic_cast<CTNowLoading*>( g_system.FindTask('LOAD') );
-			if(task)task->Progress(item, (float)((double)i / sizeimage));
+            //進行状況表示
+            CTNowLoading* task = dynamic_cast<CTNowLoading*>( g_system.FindTask('LOAD') );
+            if(task)task->Progress(item, (float)((double)i / sizeimage));
 #		endif
-	}
+    }
 
-	return(ret);
+    return(ret);
 }
 
 // 例外処理が2重なので、専用のジャンプ処理を用意。
@@ -1586,11 +1593,11 @@ jmp_buf PngErrJamp;
 void PngErrHandler(png_structp Png,png_const_charp message)
 {
 #ifndef GCD_EDITER
-	gbl.ods(_T("PNG読み込みエラー：%s"), message);
+    gbl.ods(_T("PNG読み込みエラー：%s"), message);
 #endif // GCD_EDITER
 
 //	throw(0x46497743);
-	longjmp(PngErrJamp, 0x46497743);
+    longjmp(PngErrJamp, 0x46497743);
 }
 
 #ifndef GCD_EDITER
@@ -1598,23 +1605,23 @@ void PngErrHandler(png_structp Png,png_const_charp message)
 // プログレス表示用のコールバック
 static void png_read_row_callback(png_structp strPNG, png_uint_32 row, int pass)
 {
-	if (row * strPNG->rowbytes % (524288 * 8) < strPNG->rowbytes)
-	{
-			//進行状況表示
-			CTNowLoading* task = dynamic_cast<CTNowLoading*>( g_system.FindTask('LOAD') );
-			if(task)task->Progress(NowLoading_Image, (float)((double)row / strPNG->height));
-	}
+    if (row * strPNG->rowbytes % (524288 * 8) < strPNG->rowbytes)
+    {
+            //進行状況表示
+            CTNowLoading* task = dynamic_cast<CTNowLoading*>( g_system.FindTask('LOAD') );
+            if(task)task->Progress(NowLoading_Image, (float)((double)row / strPNG->height));
+    }
 }
 
 // インターレースのある画像用
 static void png_read_row_callback_adam7(png_structp strPNG, png_uint_32 row, int pass)
 {
-	if (row == 0 && pass >= 3)
-	{
-			//進行状況表示
-			CTNowLoading* task = dynamic_cast<CTNowLoading*>( g_system.FindTask('LOAD') );
-			if(task)task->Progress(NowLoading_Image, (float)((double)pass*pass / (8*8)));			// 最大pass値の所得方法がないみたいなので･･･
-	}
+    if (row == 0 && pass >= 3)
+    {
+            //進行状況表示
+            CTNowLoading* task = dynamic_cast<CTNowLoading*>( g_system.FindTask('LOAD') );
+            if(task)task->Progress(NowLoading_Image, (float)((double)pass*pass / (8*8)));			// 最大pass値の所得方法がないみたいなので･･･
+    }
 }
 
 #endif	// GCD_EDITER
@@ -1635,220 +1642,220 @@ static void png_read_row_callback_adam7(png_structp strPNG, png_uint_32 row, int
 */
 BOOL CDirectDraw::Load256PNGbits(MYPALLET **pbits,DWORD *width,DWORD *height,TCHAR *pngfilename,TCHAR *palfilename)
 {
-	BOOL ret2;
+    BOOL ret2;
 
-	//とりあえずパレットを確保
-	MYPALLET pal[256];
-	if(palfilename==NULL)palfilename=pngfilename;
-	ret2 = GetPalletPNG(palfilename,pal);
-	if(!ret2){
-		ret2 = GetPallet(palfilename,pal);
+    //とりあえずパレットを確保
+    MYPALLET pal[256];
+    if(palfilename==NULL)palfilename=pngfilename;
+    ret2 = GetPalletPNG(palfilename,pal);
+    if(!ret2){
+        ret2 = GetPallet(palfilename,pal);
 
-		if(!ret2){
-			return(FALSE);
-		}
-	}
+        if(!ret2){
+            return(FALSE);
+        }
+    }
 
-	//PNGをさっくりロード
-	FILE* fp;
+    //PNGをさっくりロード
+    FILE* fp;
 
-	if(pngfilename==NULL){
-		ODS(_T("CDirectDraw::Load256PNGbits : ファイル名がNULLとはどういうことだ？\n"));
-		return(FALSE);
-	}
+    if(pngfilename==NULL){
+        ODS(_T("CDirectDraw::Load256PNGbits : ファイル名がNULLとはどういうことだ？\n"));
+        return(FALSE);
+    }
 
-	// PNG構造体？
-	png_structp strPNG = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, PngErrHandler, NULL);
-	if (!strPNG)
-	{
-		ODS(_T("CDirectDraw::Load256PNGbits : PNG構造体ﾃﾞｷﾃﾈｴﾖ!!ヽ(`Д´)ﾉｳﾜｧｧﾝ!!\n"));
-		return FALSE;
-	}
+    // PNG構造体？
+    png_structp strPNG = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, PngErrHandler, NULL);
+    if (!strPNG)
+    {
+        ODS(_T("CDirectDraw::Load256PNGbits : PNG構造体ﾃﾞｷﾃﾈｴﾖ!!ヽ(`Д´)ﾉｳﾜｧｧﾝ!!\n"));
+        return FALSE;
+    }
 
-	// 情報構造体…って何じゃ。
-	png_infop infoPNG = png_create_info_struct(strPNG);
-	if (!infoPNG)
-	{
-		ODS(_T("CDirectDraw::Load256PNGbits : PNG情報構造体ﾃﾞｷﾃﾈｴﾖ!!ヽ(`Д´)ﾉｳﾜｧｧﾝ!!\n"));
-		png_destroy_read_struct(&strPNG, NULL, NULL);
-		return FALSE;
-	}
+    // 情報構造体…って何じゃ。
+    png_infop infoPNG = png_create_info_struct(strPNG);
+    if (!infoPNG)
+    {
+        ODS(_T("CDirectDraw::Load256PNGbits : PNG情報構造体ﾃﾞｷﾃﾈｴﾖ!!ヽ(`Д´)ﾉｳﾜｧｧﾝ!!\n"));
+        png_destroy_read_struct(&strPNG, NULL, NULL);
+        return FALSE;
+    }
 
-	// 読み込むか。
-	fp = fopen(pngfilename, _T("rb"));
-	if (!fp)
-	{
-		png_destroy_read_struct(&strPNG, &infoPNG, NULL);
-		return FALSE;
-	}
+    // 読み込むか。
+    fp = fopen(pngfilename, _T("rb"));
+    if (!fp)
+    {
+        png_destroy_read_struct(&strPNG, &infoPNG, NULL);
+        return FALSE;
+    }
 
-	// tryの外で使うから
-	LONG i,j;
-	BYTE** Image = NULL;
-	MYPALLET *retbit = NULL;
+    // tryの外で使うから
+    LONG i,j;
+    BYTE** Image = NULL;
+    MYPALLET *retbit = NULL;
 
 //	try {
-	if (!setjmp(PngErrJamp)) {
-		// あとはライブラリに任せる
-		png_init_io(strPNG, fp);
+    if (!setjmp(PngErrJamp)) {
+        // あとはライブラリに任せる
+        png_init_io(strPNG, fp);
 
-		// シグネチャ解析
-		BYTE sig[8];
-		long pos = ftell(fp);
+        // シグネチャ解析
+        BYTE sig[8];
+        long pos = ftell(fp);
 
-		int len = fread(sig, sizeof(BYTE), 8, fp);
-		if ( png_sig_cmp(sig, 0, len) != 0 )
-		{
-			//ODS(_T("CDirectDraw::Load256PNGbits : つーかこのファイルはPNGではない。\n"));
-			fclose(fp);
-			png_destroy_read_struct(&strPNG, &infoPNG, NULL);
-			return FALSE;
-		}
+        int len = fread(sig, sizeof(BYTE), 8, fp);
+        if ( png_sig_cmp(sig, 0, len) != 0 )
+        {
+            //ODS(_T("CDirectDraw::Load256PNGbits : つーかこのファイルはPNGではない。\n"));
+            fclose(fp);
+            png_destroy_read_struct(&strPNG, &infoPNG, NULL);
+            return FALSE;
+        }
 
-		// 先頭に戻す
-		fseek(fp, pos, SEEK_SET);
+        // 先頭に戻す
+        fseek(fp, pos, SEEK_SET);
 
-		// PNG情報ゲッツ
-		png_read_info(strPNG, infoPNG);
+        // PNG情報ゲッツ
+        png_read_info(strPNG, infoPNG);
 
-		// イメージヘッダ所得
-		int bit_depth = 0, color_type = 0;
+        // イメージヘッダ所得
+        int bit_depth = 0, color_type = 0;
 
-		if ( !png_get_IHDR(strPNG, infoPNG, (UINT*)width, (UINT*)height, &bit_depth, &color_type, NULL, NULL, NULL) )
-		{
-			ODS(_T("CDirectDraw::Load256PNGbits : IHDR読み込み失敗\n"));
-			fclose(fp);
-			png_destroy_read_struct(&strPNG, &infoPNG, NULL);
-			return FALSE;
-		}
+        if ( !png_get_IHDR(strPNG, infoPNG, (UINT*)width, (UINT*)height, &bit_depth, &color_type, NULL, NULL, NULL) )
+        {
+            ODS(_T("CDirectDraw::Load256PNGbits : IHDR読み込み失敗\n"));
+            fclose(fp);
+            png_destroy_read_struct(&strPNG, &infoPNG, NULL);
+            return FALSE;
+        }
 
-		// パレット付きの256色じゃないとだめぽ
-		if (color_type != 3)
-		{
-			ODS(_T("CDirectDraw::Load256PNGbits : パレットがないよ。\n"));
-			fclose(fp);
-			png_destroy_read_struct(&strPNG, &infoPNG, NULL);
-			return FALSE;
-		}
-		if (bit_depth != 8)
-		{
-			ODS(_T("CDirectDraw::Load256PNGbits : つーかこのファイルは256ではない。\n"));
-			fclose(fp);
-			png_destroy_read_struct(&strPNG, &infoPNG, NULL);
-			return FALSE;
-		}
+        // パレット付きの256色じゃないとだめぽ
+        if (color_type != 3)
+        {
+            ODS(_T("CDirectDraw::Load256PNGbits : パレットがないよ。\n"));
+            fclose(fp);
+            png_destroy_read_struct(&strPNG, &infoPNG, NULL);
+            return FALSE;
+        }
+        if (bit_depth != 8)
+        {
+            ODS(_T("CDirectDraw::Load256PNGbits : つーかこのファイルは256ではない。\n"));
+            fclose(fp);
+            png_destroy_read_struct(&strPNG, &infoPNG, NULL);
+            return FALSE;
+        }
 
-		//ビットマップの大きさにあわせて新たにメモリ領域を作成する
-		Image = (BYTE**)malloc(*height * sizeof(BYTE**));
-		LPVOID pnewbits2;
-		DWORD ishalf=1;
-		if(g_config.IsHalfMode())ishalf=2;
-		pnewbits2 = malloc(sizeof(MYPALLET)* *width * *height / ishalf);
-		retbit = (MYPALLET*)pnewbits2;
+        //ビットマップの大きさにあわせて新たにメモリ領域を作成する
+        Image = (BYTE**)malloc(*height * sizeof(BYTE**));
+        LPVOID pnewbits2;
+        DWORD ishalf=1;
+        if(g_config.IsHalfMode())ishalf=2;
+        pnewbits2 = malloc(sizeof(MYPALLET)* *width * *height / ishalf);
+        retbit = (MYPALLET*)pnewbits2;
 
-		DWORD halfcopy=0;
+        DWORD halfcopy=0;
 
-		// ２次元動的配列
-		for (i = 0; i < (LONG)*height; i++)
-			Image[i] = (BYTE*)malloc(png_get_rowbytes(strPNG, infoPNG));
+        // ２次元動的配列
+        for (i = 0; i < (LONG)*height; i++)
+            Image[i] = (BYTE*)malloc(png_get_rowbytes(strPNG, infoPNG));
 
 #		ifndef GCD_EDITER
-			// コールバック設定
-			if (png_get_interlace_type(strPNG, infoPNG) == PNG_INTERLACE_ADAM7)
-				png_set_read_status_fn(strPNG, png_read_row_callback_adam7);	// ADAM7
-			else
-				png_set_read_status_fn(strPNG, png_read_row_callback);			// 標準（インターレース無し）
+            // コールバック設定
+            if (png_get_interlace_type(strPNG, infoPNG) == PNG_INTERLACE_ADAM7)
+                png_set_read_status_fn(strPNG, png_read_row_callback_adam7);	// ADAM7
+            else
+                png_set_read_status_fn(strPNG, png_read_row_callback);			// 標準（インターレース無し）
 #		endif	// GCD_EDITER
 
-		// 画像読み込み
-	
-		png_read_image(strPNG, Image);
+        // 画像読み込み
+    
+        png_read_image(strPNG, Image);
 
-		//そこにデータをコピー
-		for(i=0;i<(LONG)*height;i++){
-			for(j=0;j<(LONG)*width;j++){
-				if(g_config.IsHalfMode()){//半分しかコピーしない
-					if(i%2==0 && j%2==0 && j != *width - 1){
-						retbit[halfcopy] = pal[ Image[i][j] ];
-						halfcopy++;
-					}
-				}
-				else{
-					retbit[i * *width + j] = pal[ Image[i][j] ];
-				}
-			}
-		}
-	}
+        //そこにデータをコピー
+        for(i=0;i<(LONG)*height;i++){
+            for(j=0;j<(LONG)*width;j++){
+                if(g_config.IsHalfMode()){//半分しかコピーしない
+                    if(i%2==0 && j%2==0 && j != *width - 1){
+                        retbit[halfcopy] = pal[ Image[i][j] ];
+                        halfcopy++;
+                    }
+                }
+                else{
+                    retbit[i * *width + j] = pal[ Image[i][j] ];
+                }
+            }
+        }
+    }
 //	catch (int)
-	else
-	{
-		// ケホパホ発生
-		BOOL ret = FALSE;
+    else
+    {
+        // ケホパホ発生
+        BOOL ret = FALSE;
 
-		if (retbit)
-		{
-			if (Image)
-			{
-				DWORD halfcopy=0;
+        if (retbit)
+        {
+            if (Image)
+            {
+                DWORD halfcopy=0;
 
-				// 無理矢理返す
-				for(i=0;i<(LONG)*height;i++){
-					for(j=0;j<(LONG)*width;j++){
-						if(g_config.IsHalfMode()){//半分しかコピーしない
-							if(i%2==0 && j%2==0 && j != *width - 1){
-								retbit[halfcopy] = pal[ Image[i][j] ];
-								halfcopy++;
-							}
-						}
-						else{
-							retbit[i * *width + j] = pal[ Image[i][j] ];
-						}
-					}
-				}
+                // 無理矢理返す
+                for(i=0;i<(LONG)*height;i++){
+                    for(j=0;j<(LONG)*width;j++){
+                        if(g_config.IsHalfMode()){//半分しかコピーしない
+                            if(i%2==0 && j%2==0 && j != *width - 1){
+                                retbit[halfcopy] = pal[ Image[i][j] ];
+                                halfcopy++;
+                            }
+                        }
+                        else{
+                            retbit[i * *width + j] = pal[ Image[i][j] ];
+                        }
+                    }
+                }
 
-				*pbits = retbit;
+                *pbits = retbit;
 
-				ret = TRUE;
-			}
-			else
-				free(retbit);
-		}
+                ret = TRUE;
+            }
+            else
+                free(retbit);
+        }
 
-		if (Image)
-		{
-			for (i = 0; i < (LONG)*height; i++)
-						{if (Image[i]) free(Image[i]);}
+        if (Image)
+        {
+            for (i = 0; i < (LONG)*height; i++)
+                        {if (Image[i]) free(Image[i]);}
 
-			free(Image);
-		}
+            free(Image);
+        }
 
-		fclose(fp);
-		png_destroy_read_struct(&strPNG, &infoPNG, NULL);
+        fclose(fp);
+        png_destroy_read_struct(&strPNG, &infoPNG, NULL);
 
-		if(ret && g_config.IsHalfMode()){
-			*width/=2;
-			*height/=2;
-		}
+        if(ret && g_config.IsHalfMode()){
+            *width/=2;
+            *height/=2;
+        }
 
-		return ret;
-	}
+        return ret;
+    }
 
-	//完了
-	for (i = 0; i < (LONG)*height; i++)
-		free(Image[i]);
-	free(Image);
+    //完了
+    for (i = 0; i < (LONG)*height; i++)
+        free(Image[i]);
+    free(Image);
 
-	fclose(fp);
-	png_destroy_read_struct(&strPNG, &infoPNG, NULL);
+    fclose(fp);
+    png_destroy_read_struct(&strPNG, &infoPNG, NULL);
 
-	if(g_config.IsHalfMode()){
-		*width/=2;
-		*height/=2;
-	}
+    if(g_config.IsHalfMode()){
+        *width/=2;
+        *height/=2;
+    }
 
-	*pbits = retbit;
+    *pbits = retbit;
 
-	return TRUE;
+    return TRUE;
 }
 
 /*!
@@ -1869,115 +1876,115 @@ BOOL CDirectDraw::Load256PNGbits(MYPALLET **pbits,DWORD *width,DWORD *height,TCH
 #ifndef GCD_EDITER
 BOOL CDirectDraw::LoadJPEGbits(MYPALLET **pbits,DWORD *width,DWORD *height,TCHAR *jpegfilename)
 {
-	struct jpeg_decompress_struct cinfo;
-	struct jpeg_error_mgr jerr;
-	FILE* fp;
-	int i,j;
+    struct jpeg_decompress_struct cinfo;
+    struct jpeg_error_mgr jerr;
+    FILE* fp;
+    int i,j;
 
-	// 初期化
-	ZeroMemory(&cinfo, sizeof(cinfo));
-	ZeroMemory(&jerr, sizeof(jerr));
-	cinfo.err = jpeg_std_error(&jerr);
-	jpeg_create_decompress(&cinfo);
+    // 初期化
+    ZeroMemory(&cinfo, sizeof(cinfo));
+    ZeroMemory(&jerr, sizeof(jerr));
+    cinfo.err = jpeg_std_error(&jerr);
+    jpeg_create_decompress(&cinfo);
 
-	// ファイル読み込み
-	fp = fopen(jpegfilename, _T("rb"));
-	if (!fp)
-	{
-		jpeg_destroy_decompress(&cinfo);
-		return FALSE;
-	}
-	// シグネチャ解析
-	WORD startsig = 0;
-	long pos = ftell(fp);
-	int sigr = fread(&startsig, sizeof(WORD), 1, fp);
-	if ((sigr != 1) || (startsig != 0xD8FF))
-	{
-		// 違うっぽ
-		jpeg_destroy_decompress(&cinfo);
-		fclose(fp);
-		return FALSE;
-	}
-	fseek(fp, pos, SEEK_SET);
+    // ファイル読み込み
+    fp = fopen(jpegfilename, _T("rb"));
+    if (!fp)
+    {
+        jpeg_destroy_decompress(&cinfo);
+        return FALSE;
+    }
+    // シグネチャ解析
+    WORD startsig = 0;
+    long pos = ftell(fp);
+    int sigr = fread(&startsig, sizeof(WORD), 1, fp);
+    if ((sigr != 1) || (startsig != 0xD8FF))
+    {
+        // 違うっぽ
+        jpeg_destroy_decompress(&cinfo);
+        fclose(fp);
+        return FALSE;
+    }
+    fseek(fp, pos, SEEK_SET);
 
-	jpeg_stdio_src(&cinfo, fp);
+    jpeg_stdio_src(&cinfo, fp);
 
-	// ヘッダ読み込み
-	jpeg_read_header(&cinfo, TRUE);
-	if (!cinfo.saw_JFIF_marker)
-	{
-		ODS(_T("CDirectDraw::LoadJPEGbits : JFIFマーカーがない。\n"));
-		jpeg_destroy_decompress(&cinfo);
-		fclose(fp);
-		return FALSE;
-	}
+    // ヘッダ読み込み
+    jpeg_read_header(&cinfo, TRUE);
+    if (!cinfo.saw_JFIF_marker)
+    {
+        ODS(_T("CDirectDraw::LoadJPEGbits : JFIFマーカーがない。\n"));
+        jpeg_destroy_decompress(&cinfo);
+        fclose(fp);
+        return FALSE;
+    }
 
-	// 展開開始
-	jpeg_start_decompress(&cinfo);
+    // 展開開始
+    jpeg_start_decompress(&cinfo);
 
-	// 情報とか所得
-	*width = cinfo.image_width;
-	*height = cinfo.image_height;
+    // 情報とか所得
+    *width = cinfo.image_width;
+    *height = cinfo.image_height;
 
-	if (cinfo.out_color_components != 3)
-	{
-		ODS(_T("CDirectDraw::LoadJPEGbits : 対応してない形式が使われている。\n"));
-		jpeg_destroy_decompress(&cinfo);
-		fclose(fp);
-		return FALSE;
-	}
+    if (cinfo.out_color_components != 3)
+    {
+        ODS(_T("CDirectDraw::LoadJPEGbits : 対応してない形式が使われている。\n"));
+        jpeg_destroy_decompress(&cinfo);
+        fclose(fp);
+        return FALSE;
+    }
 
-	//ビットマップの大きさにあわせて新たにメモリ領域を作成する
-	JSAMPROW Image;			// 一行だけ
-	LPVOID pnewbits2;
-	DWORD ishalf=1;
-	if(g_config.IsHalfMode())ishalf=2;
-	pnewbits2 = malloc(sizeof(MYPALLET)* *width * *height / ishalf);
-	MYPALLET* retbit = (MYPALLET*)pnewbits2;
+    //ビットマップの大きさにあわせて新たにメモリ領域を作成する
+    JSAMPROW Image;			// 一行だけ
+    LPVOID pnewbits2;
+    DWORD ishalf=1;
+    if(g_config.IsHalfMode())ishalf=2;
+    pnewbits2 = malloc(sizeof(MYPALLET)* *width * *height / ishalf);
+    MYPALLET* retbit = (MYPALLET*)pnewbits2;
 
-	DWORD halfcopy=0;
+    DWORD halfcopy=0;
 
-	// ２次元動的配列
-	Image = (JSAMPROW)malloc(3 * *width);
+    // ２次元動的配列
+    Image = (JSAMPROW)malloc(3 * *width);
 
-	//そこにデータをコピー
-	for(i=0;i<(LONG)*height;i++){
-		jpeg_read_scanlines(&cinfo, &Image, 1);		// 何故かこんな半端なところで読み込み
-		for(j=0;j<(LONG)*width;j++){
-			if(g_config.IsHalfMode()){//半分しかコピーしない
-				if(i%2==0 && j%2==0 && j != *width - 1){
-					retbit[halfcopy].red = Image[j*3];
-					retbit[halfcopy].green = Image[j*3+1];
-					retbit[halfcopy].blue = Image[j*3+2];
-					retbit[halfcopy].alpha = 0xFF;
-					halfcopy++;
-				}
-			}
-			else{
-				int str = i * *width + j;
-				retbit[str].red = Image[j*3];
-				retbit[str].green = Image[j*3+1];
-				retbit[str].blue = Image[j*3+2];
-				retbit[str].alpha = 0xFF;
-			}
-		}
-	}
+    //そこにデータをコピー
+    for(i=0;i<(LONG)*height;i++){
+        jpeg_read_scanlines(&cinfo, &Image, 1);		// 何故かこんな半端なところで読み込み
+        for(j=0;j<(LONG)*width;j++){
+            if(g_config.IsHalfMode()){//半分しかコピーしない
+                if(i%2==0 && j%2==0 && j != *width - 1){
+                    retbit[halfcopy].red = Image[j*3];
+                    retbit[halfcopy].green = Image[j*3+1];
+                    retbit[halfcopy].blue = Image[j*3+2];
+                    retbit[halfcopy].alpha = 0xFF;
+                    halfcopy++;
+                }
+            }
+            else{
+                int str = i * *width + j;
+                retbit[str].red = Image[j*3];
+                retbit[str].green = Image[j*3+1];
+                retbit[str].blue = Image[j*3+2];
+                retbit[str].alpha = 0xFF;
+            }
+        }
+    }
 
-	// 完了
-	free(Image);
+    // 完了
+    free(Image);
 
-	jpeg_finish_decompress(&cinfo);
-	jpeg_destroy_decompress(&cinfo);
-	fclose(fp);
+    jpeg_finish_decompress(&cinfo);
+    jpeg_destroy_decompress(&cinfo);
+    fclose(fp);
 
-	if(g_config.IsHalfMode()){
-		*width/=2;
-		*height/=2;
-	}
+    if(g_config.IsHalfMode()){
+        *width/=2;
+        *height/=2;
+    }
 
-	*pbits = retbit;
+    *pbits = retbit;
 
-	return TRUE;
+    return TRUE;
 }
 #endif // GCD_EDITER
 
@@ -1995,91 +2002,91 @@ BOOL CDirectDraw::LoadJPEGbits(MYPALLET **pbits,DWORD *width,DWORD *height,TCHAR
 */
 BOOL CDirectDraw::GetPallet(TCHAR *filename,MYPALLET *pal)
 {
-	HANDLE hFile;
-	DWORD ret,br,err=FALSE;
+    HANDLE hFile;
+    DWORD ret,br,err=FALSE;
 
-	if(filename==NULL){
-		ODS(_T("CDirectDraw::GetPallet : ファイル名がNULLとはどういうことだ？\n"));
-		return(FALSE);
-	}
-	if(pal==NULL){
-		ODS(_T("CDirectDraw::GetPallet : パレットがNULLとはどういうことだ？\n"));
-		return(FALSE);
-	}
+    if(filename==NULL){
+        ODS(_T("CDirectDraw::GetPallet : ファイル名がNULLとはどういうことだ？\n"));
+        return(FALSE);
+    }
+    if(pal==NULL){
+        ODS(_T("CDirectDraw::GetPallet : パレットがNULLとはどういうことだ？\n"));
+        return(FALSE);
+    }
 
-	//ファイルのオープン
-	hFile=CreateFile(filename,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
-	if(hFile==INVALID_HANDLE_VALUE){
-		return(NULL);
-	}
-	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//念のためファイルの先頭に移動
+    //ファイルのオープン
+    hFile=CreateFile(filename,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
+    if(hFile==INVALID_HANDLE_VALUE){
+        return(NULL);
+    }
+    SetFilePointer(hFile,0,NULL,FILE_BEGIN);//念のためファイルの先頭に移動
 
-	//ﾌｧｲﾙヘッダの読み出し
-	BITMAPFILEHEADER fileheader;
-	ret=ReadFile(hFile,&fileheader,sizeof(BITMAPFILEHEADER),&br,NULL);
-	if(!ret || br!=sizeof(BITMAPFILEHEADER)){
-		ODS(_T("CDirectDraw::GetPallet : ファイルの読み込みに失敗(1)\n"));
-		err=TRUE;
-	}
-	if(fileheader.bfType != 0x4d42){//"BM"
-		ODS(_T("CDirectDraw::GetPallet : つーかこのファイルはビットマップではない\n"));
-		err=TRUE;
-	}
-	if(err){
-		CloseHandle(hFile);
-		return(FALSE);
-	}
+    //ﾌｧｲﾙヘッダの読み出し
+    BITMAPFILEHEADER fileheader;
+    ret=ReadFile(hFile,&fileheader,sizeof(BITMAPFILEHEADER),&br,NULL);
+    if(!ret || br!=sizeof(BITMAPFILEHEADER)){
+        ODS(_T("CDirectDraw::GetPallet : ファイルの読み込みに失敗(1)\n"));
+        err=TRUE;
+    }
+    if(fileheader.bfType != 0x4d42){//"BM"
+        ODS(_T("CDirectDraw::GetPallet : つーかこのファイルはビットマップではない\n"));
+        err=TRUE;
+    }
+    if(err){
+        CloseHandle(hFile);
+        return(FALSE);
+    }
 
-	//BITMAPINFOHEADERの読み込み
-	BITMAPINFOHEADER infohed;
-	ret=ReadFile(hFile,&infohed,sizeof(BITMAPINFOHEADER),&br,NULL);
-	if(!ret || br!=sizeof(BITMAPINFOHEADER)){
-		ODS(_T("CDirectDraw::GetPallet : ファイルの読み込みに失敗(2)\n"));
-		err=TRUE;
-	}
-	if(infohed.biSize != sizeof(BITMAPINFOHEADER)){
-		ODS(_T("CDirectDraw::GetPallet : BITMAPINFOHEADERのサイズが合わない\n"));
-		err=TRUE;
-	}
-	if(infohed.biBitCount != 8){
-		ODS(_T("CDirectDraw::GetPallet : つーかこのファイルは256ではない\n"));
-		err=TRUE;
-	}
-	if(infohed.biCompression != BI_RGB){
-		ODS(_T("CDirectDraw::GetPallet : 圧縮がかかっているらしい\n"));
-		err=TRUE;
-	}
-	if(infohed.biClrUsed == 0){
-		infohed.biClrUsed=256;
-	}
-	if(err){
-		CloseHandle(hFile);
-		return(FALSE);
-	}
+    //BITMAPINFOHEADERの読み込み
+    BITMAPINFOHEADER infohed;
+    ret=ReadFile(hFile,&infohed,sizeof(BITMAPINFOHEADER),&br,NULL);
+    if(!ret || br!=sizeof(BITMAPINFOHEADER)){
+        ODS(_T("CDirectDraw::GetPallet : ファイルの読み込みに失敗(2)\n"));
+        err=TRUE;
+    }
+    if(infohed.biSize != sizeof(BITMAPINFOHEADER)){
+        ODS(_T("CDirectDraw::GetPallet : BITMAPINFOHEADERのサイズが合わない\n"));
+        err=TRUE;
+    }
+    if(infohed.biBitCount != 8){
+        ODS(_T("CDirectDraw::GetPallet : つーかこのファイルは256ではない\n"));
+        err=TRUE;
+    }
+    if(infohed.biCompression != BI_RGB){
+        ODS(_T("CDirectDraw::GetPallet : 圧縮がかかっているらしい\n"));
+        err=TRUE;
+    }
+    if(infohed.biClrUsed == 0){
+        infohed.biClrUsed=256;
+    }
+    if(err){
+        CloseHandle(hFile);
+        return(FALSE);
+    }
 
-	//いよいよパレットの読み込み
-	RGBQUAD dpal[256];
-	ZeroMemory(dpal,sizeof(RGBQUAD)*256);
-	ret=ReadFile(hFile,dpal,sizeof(RGBQUAD)*infohed.biClrUsed,&br,NULL);
-	CloseHandle(hFile);
-	if(!ret || br!=sizeof(RGBQUAD)*infohed.biClrUsed){
-		ODS(_T("CDirectDraw::GetPallet : ファイルの読み込みに失敗(3)\n"));
-		return(FALSE);
-	}
-	//255番目の色は強制的に黒（透過色）
-	dpal[255].rgbBlue  =0;
-	dpal[255].rgbGreen =0;
-	dpal[255].rgbRed   =0;
+    //いよいよパレットの読み込み
+    RGBQUAD dpal[256];
+    ZeroMemory(dpal,sizeof(RGBQUAD)*256);
+    ret=ReadFile(hFile,dpal,sizeof(RGBQUAD)*infohed.biClrUsed,&br,NULL);
+    CloseHandle(hFile);
+    if(!ret || br!=sizeof(RGBQUAD)*infohed.biClrUsed){
+        ODS(_T("CDirectDraw::GetPallet : ファイルの読み込みに失敗(3)\n"));
+        return(FALSE);
+    }
+    //255番目の色は強制的に黒（透過色）
+    dpal[255].rgbBlue  =0;
+    dpal[255].rgbGreen =0;
+    dpal[255].rgbRed   =0;
 
-	for(int i=0;i<256;i++){
-		if(dpal[i].rgbRed==0 && dpal[i].rgbGreen==0 && dpal[i].rgbBlue==0)pal[i].alpha = 0;//透明
-		else pal[i].alpha = 0xFF;//不透明
-		pal[i].red = dpal[i].rgbRed;
-		pal[i].green = dpal[i].rgbGreen;
-		pal[i].blue = dpal[i].rgbBlue;
-	}
+    for(int i=0;i<256;i++){
+        if(dpal[i].rgbRed==0 && dpal[i].rgbGreen==0 && dpal[i].rgbBlue==0)pal[i].alpha = 0;//透明
+        else pal[i].alpha = 0xFF;//不透明
+        pal[i].red = dpal[i].rgbRed;
+        pal[i].green = dpal[i].rgbGreen;
+        pal[i].blue = dpal[i].rgbBlue;
+    }
 
-	return(TRUE);
+    return(TRUE);
 }
 
 /*!
@@ -2095,121 +2102,121 @@ BOOL CDirectDraw::GetPallet(TCHAR *filename,MYPALLET *pal)
 */
 BOOL CDirectDraw::GetPalletPNG(TCHAR *filename,MYPALLET *pal)
 {
-	FILE* fp;
+    FILE* fp;
 
-	if(filename==NULL){
-		ODS(_T("CDirectDraw::GetPalletPNG : ファイル名がNULLとはどういうことだ？\n"));
-		return(FALSE);
-	}
-	if(pal==NULL){
-		ODS(_T("CDirectDraw::GetPalletPNG : パレットがNULLとはどういうことだ？\n"));
-		return(FALSE);
-	}
+    if(filename==NULL){
+        ODS(_T("CDirectDraw::GetPalletPNG : ファイル名がNULLとはどういうことだ？\n"));
+        return(FALSE);
+    }
+    if(pal==NULL){
+        ODS(_T("CDirectDraw::GetPalletPNG : パレットがNULLとはどういうことだ？\n"));
+        return(FALSE);
+    }
 
-	// PNG構造体？
-	png_structp strPNG = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
-	if (!strPNG)
-	{
-		ODS(_T("CDirectDraw::GetPalletPNG : PNG構造体ﾃﾞｷﾃﾈｴﾖ!!ヽ(`Д´)ﾉｳﾜｧｧﾝ!!\n"));
-		return FALSE;
-	}
+    // PNG構造体？
+    png_structp strPNG = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+    if (!strPNG)
+    {
+        ODS(_T("CDirectDraw::GetPalletPNG : PNG構造体ﾃﾞｷﾃﾈｴﾖ!!ヽ(`Д´)ﾉｳﾜｧｧﾝ!!\n"));
+        return FALSE;
+    }
 
-	// 情報構造体…って何じゃ。
-	png_infop infoPNG = png_create_info_struct(strPNG);
-	if (!infoPNG)
-	{
-		ODS(_T("CDirectDraw::GetPalletPNG : PNG情報構造体ﾃﾞｷﾃﾈｴﾖ!!ヽ(`Д´)ﾉｳﾜｧｧﾝ!!\n"));
-		png_destroy_read_struct(&strPNG, NULL, NULL);
-		return FALSE;
-	}
-	
-	// 読み込むか。
-	fp = fopen(filename, _T("rb"));
-	if (!fp)
-	{
-		png_destroy_read_struct(&strPNG, &infoPNG, NULL);
-		return FALSE;
-	}
+    // 情報構造体…って何じゃ。
+    png_infop infoPNG = png_create_info_struct(strPNG);
+    if (!infoPNG)
+    {
+        ODS(_T("CDirectDraw::GetPalletPNG : PNG情報構造体ﾃﾞｷﾃﾈｴﾖ!!ヽ(`Д´)ﾉｳﾜｧｧﾝ!!\n"));
+        png_destroy_read_struct(&strPNG, NULL, NULL);
+        return FALSE;
+    }
+    
+    // 読み込むか。
+    fp = fopen(filename, _T("rb"));
+    if (!fp)
+    {
+        png_destroy_read_struct(&strPNG, &infoPNG, NULL);
+        return FALSE;
+    }
 
-	// ライブラリに任せる
-	png_init_io(strPNG, fp);
+    // ライブラリに任せる
+    png_init_io(strPNG, fp);
 
-	// シグネチャ解析
-	BYTE sig[8];
-	long pos = ftell(fp);
+    // シグネチャ解析
+    BYTE sig[8];
+    long pos = ftell(fp);
 
-	int len = fread(sig, sizeof(BYTE), 8, fp);
-	if ( png_sig_cmp(sig, 0, len) != 0 )
-	{
-		//ODS(_T("CDirectDraw::GetPalletPNG : つーかこのファイルはPNGではない。\n"));
-		fclose(fp);
-		png_destroy_read_struct(&strPNG, &infoPNG, NULL);
-		return FALSE;
-	}
+    int len = fread(sig, sizeof(BYTE), 8, fp);
+    if ( png_sig_cmp(sig, 0, len) != 0 )
+    {
+        //ODS(_T("CDirectDraw::GetPalletPNG : つーかこのファイルはPNGではない。\n"));
+        fclose(fp);
+        png_destroy_read_struct(&strPNG, &infoPNG, NULL);
+        return FALSE;
+    }
 
-	// 先頭に戻す
-	fseek(fp, pos, SEEK_SET);
+    // 先頭に戻す
+    fseek(fp, pos, SEEK_SET);
 
-	// PNG情報ゲッツ
-	png_read_info(strPNG, infoPNG);
+    // PNG情報ゲッツ
+    png_read_info(strPNG, infoPNG);
 
-	// アンド ターン
-	int bit_depth = 0, color_type = 0;
+    // アンド ターン
+    int bit_depth = 0, color_type = 0;
 
-	bit_depth = png_get_bit_depth(strPNG, infoPNG);
-	color_type = png_get_color_type(strPNG, infoPNG);
+    bit_depth = png_get_bit_depth(strPNG, infoPNG);
+    color_type = png_get_color_type(strPNG, infoPNG);
 
-	// パレット付きの256色じゃないとだめぽ
-	if (color_type != 3)
-	{
-		ODS(_T("CDirectDraw::GetPalletPNG : パレットがないよ。\n"));
-		fclose(fp);
-		png_destroy_read_struct(&strPNG, &infoPNG, NULL);
-		return FALSE;
-	}
-	if (bit_depth != 8)
-	{
-		ODS(_T("CDirectDraw::GetPalletPNG : つーかこのファイルは256ではない。\n"));
-		fclose(fp);
-		png_destroy_read_struct(&strPNG, &infoPNG, NULL);
-		return FALSE;
-	}
+    // パレット付きの256色じゃないとだめぽ
+    if (color_type != 3)
+    {
+        ODS(_T("CDirectDraw::GetPalletPNG : パレットがないよ。\n"));
+        fclose(fp);
+        png_destroy_read_struct(&strPNG, &infoPNG, NULL);
+        return FALSE;
+    }
+    if (bit_depth != 8)
+    {
+        ODS(_T("CDirectDraw::GetPalletPNG : つーかこのファイルは256ではない。\n"));
+        fclose(fp);
+        png_destroy_read_struct(&strPNG, &infoPNG, NULL);
+        return FALSE;
+    }
 
-	// いよいよパレット所得
-	png_colorp Palette;
-	int num_palette = 0;
+    // いよいよパレット所得
+    png_colorp Palette;
+    int num_palette = 0;
 
-	png_get_PLTE(strPNG, infoPNG, &Palette, &num_palette);
+    png_get_PLTE(strPNG, infoPNG, &Palette, &num_palette);
 
-	// α値所得
-	png_bytep trans;
-	int num_trans = 0;
+    // α値所得
+    png_bytep trans;
+    int num_trans = 0;
 
-	png_get_tRNS(strPNG, infoPNG, &trans, &num_trans, NULL);
+    png_get_tRNS(strPNG, infoPNG, &trans, &num_trans, NULL);
 
-	// 設定ｶｲｰｼ
-	for (int i = 0; i < 256; i++)
-	{
-		if (i < num_trans)
-			pal[i].alpha = trans[i];//透明度設定
-		else
-			pal[i].alpha = 0xFF;//設定がないので不透明
+    // 設定ｶｲｰｼ
+    for (int i = 0; i < 256; i++)
+    {
+        if (i < num_trans)
+            pal[i].alpha = trans[i];//透明度設定
+        else
+            pal[i].alpha = 0xFF;//設定がないので不透明
 
-		if (i < num_palette)	// 色設定
-		{
-			pal[i].red = Palette[i].red;
-			pal[i].green = Palette[i].green;
-			pal[i].blue = Palette[i].blue;
-		}
-		else
-			pal[i].red = pal[i].green = pal[i].blue = 0;	// 無い
-	}
+        if (i < num_palette)	// 色設定
+        {
+            pal[i].red = Palette[i].red;
+            pal[i].green = Palette[i].green;
+            pal[i].blue = Palette[i].blue;
+        }
+        else
+            pal[i].red = pal[i].green = pal[i].blue = 0;	// 無い
+    }
 
-	// 終了処理
-	fclose(fp);
-	png_destroy_read_struct(&strPNG, &infoPNG, NULL);
+    // 終了処理
+    fclose(fp);
+    png_destroy_read_struct(&strPNG, &infoPNG, NULL);
 
-	return TRUE;
+    return TRUE;
 }
 
 
@@ -2221,28 +2228,28 @@ BOOL CDirectDraw::GetPalletPNG(TCHAR *filename,MYPALLET *pal)
 */
 void CDirectDraw::RelSurface(MYSURFACE *s)
 {
-	if(s==NULL)return;
+    if(s==NULL)return;
 
-	if(s < &ms[0] || s > &ms[MAXNUMGOLUAHTEXTURES-1])
-	{
-		#ifndef GCD_EDITER
-		g_system.Log(_T("CDirectDraw::RelSurface 確保してないサーフェイスの開放？"),SYSLOG_WARNING);
-		#endif
-		return;
-	}
+    if(s < &ms[0] || s > &ms[MAXNUMGOLUAHTEXTURES-1])
+    {
+        #ifndef GCD_EDITER
+        g_system.Log(_T("CDirectDraw::RelSurface 確保してないサーフェイスの開放？"),SYSLOG_WARNING);
+        #endif
+        return;
+    }
 
-	UINT j,k;
+    UINT j,k;
 
-	if(s->valid){
-		s->valid=FALSE;
-		for(j=0;j<s->ysufnum;j++){
-			for(k=0;k<s->xsufnum;k++){
-				RELEASE(s->pTex[k*(s->ysufnum) + j]);
-			}
-		}
-	}
-	free(s->pTex);
-	s->pTex = NULL;
+    if(s->valid){
+        s->valid=FALSE;
+        for(j=0;j<s->ysufnum;j++){
+            for(k=0;k<s->xsufnum;k++){
+                RELEASE(s->pTex[k*(s->ysufnum) + j]);
+            }
+        }
+    }
+    free(s->pTex);
+    s->pTex = NULL;
 }
 
 
@@ -2251,10 +2258,10 @@ void CDirectDraw::RelSurface(MYSURFACE *s)
 
 
 /*==================================================================================
-	
+    
 
-	
-	2D描画・マトリクス関連
+    
+    2D描画・マトリクス関連
 
 
 
@@ -2262,7 +2269,7 @@ void CDirectDraw::RelSurface(MYSURFACE *s)
 
 
 /*----------------------------------------------------------------------------------
-	独自形式2Dサーフェイス描画
+    独自形式2Dサーフェイス描画
 ------------------------------------------------------------------------------------*/
 
 /*!
@@ -2282,7 +2289,7 @@ void CDirectDraw::RelSurface(MYSURFACE *s)
 */
 void CDirectDraw::CheckBlt(MYSURFACE *dds,int x,int y,RECT r,BOOL revx,BOOL revy,DWORD flag,float z,DWORD color, BOOL drawShadow)
 {
-	CheckBlt2(dds,x,y,r,1.0,1.0,revx,revy,flag,z,color,drawShadow);
+    CheckBlt2(dds,x,y,r,1.0,1.0,revx,revy,flag,z,color,drawShadow);
 }
 
 /*!
@@ -2305,205 +2312,203 @@ void CDirectDraw::CheckBlt(MYSURFACE *dds,int x,int y,RECT r,BOOL revx,BOOL revy
 *	@param color 32ビット形式頂点カラー。通常 0xFFFFFFFF
 */
 void CDirectDraw::CheckBlt2(MYSURFACE *dds,int x,int y,RECT r,
-			   double magx,double magy,BOOL revx,BOOL revy,DWORD flag,float z,DWORD color, BOOL drawShadow)
+               double magx,double magy,BOOL revx,BOOL revy,DWORD flag,float z,DWORD color, BOOL drawShadow)
 {
-	DWORD i,j;
-	float cut_left,cut_right,cut_top,cut_bottom;//切れてる長さ(ピクセル単位)
-	float transx,transy;//一時的に使用
+    DWORD i,j;
+    float cut_left,cut_right,cut_top,cut_bottom;//切れてる長さ(ピクセル単位)
+    float transx,transy;//一時的に使用
 
-	//if(dds==NULL){return;}
-	if(dds < &ms[0] || dds > &ms[MAXNUMGOLUAHTEXTURES-1])return;
+    //if(dds==NULL){return;}
+    if(dds < &ms[0] || dds > &ms[MAXNUMGOLUAHTEXTURES-1])return;
 
-	#ifdef AKIDX_DEBUG
-	if(magx==0 || magy==0){
-		ODS(_T("☆CDirectDraw::CheckBlt2() Warning-magx or magy ==0\n"));
-	}
-	#endif
-	//矩形を正しく設定
-	int dmi;
-	if(r.left > r.right){
-		dmi = r.left;
-		r.left = r.right;
-		r.right = dmi;
-	}
-	if(r.top > r.bottom){
-		dmi = r.top;
-		r.top = r.bottom;
-		r.bottom = dmi;
-	}
+    #ifdef AKIDX_DEBUG
+    if(magx==0 || magy==0){
+        ODS(_T("☆CDirectDraw::CheckBlt2() Warning-magx or magy ==0\n"));
+    }
+    #endif
+    //矩形を正しく設定
+    int dmi;
+    if(r.left > r.right){
+        dmi = r.left;
+        r.left = r.right;
+        r.right = dmi;
+    }
+    if(r.top > r.bottom){
+        dmi = r.top;
+        r.top = r.bottom;
+        r.bottom = dmi;
+    }
 
-	if(g_config.IsHalfMode()){
-		r.left/=2;
-		r.right/=2;
-		r.top/=2;
-		r.bottom/=2;
-	//	x/=2;
-	//	y/=2;
-		magx*=2;
-		magy*=2;
-	}
+    if(g_config.IsHalfMode()){
+        r.left/=2;
+        r.right/=2;
+        r.top/=2;
+        r.bottom/=2;
+    //	x/=2;
+    //	y/=2;
+        magx*=2;
+        magy*=2;
+    }
 
-	DWORD r_top,r_bottom,r_left,r_right;//warningがウザイ
-	r_top=r.top;
-	r_bottom=r.bottom;
-	r_left=r.left;
-	r_right=r.right;
+    DWORD r_top,r_bottom,r_left,r_right;//warningがウザイ
+    r_top=r.top;
+    r_bottom=r.bottom;
+    r_left=r.left;
+    r_right=r.right;
 
-	/*if (devtypenow != D3DDEVTYPE_HAL)
-	{
-		// 軽量化ver（かなり適当、つーか消えた。）
-		MyBlt3DLite(dds, r, x, y, FALSE);
-	}
-	else*/
-	{
-		//全てのテクスチャに関して描画するかどうか調べて描画する
-		float vl,vr,vt,vb;//各頂点の座標
-		float tumin,tumax,tvmin,tvmax;//u,v座標の範囲
-		float ar = 640.0f/480.0f;//アスペクト比
-		float ar2 = 2.0f/480.0f;
-		float centerx = (float)640.0f/2.0f;//x方向画面中心
-		MYVERTEX3D* vrtxarr;//頂点配列
-		D3DXMATRIX matw;//ワールド座標変換行列
-		D3DXMATRIX tmpmat;//テンポラリ行列
-		D3DXMATRIX matpres;//プリセット変換行列
+    /*if (devtypenow != D3DDEVTYPE_HAL)
+    {
+        // 軽量化ver（かなり適当、つーか消えた。）
+        MyBlt3DLite(dds, r, x, y, FALSE);
+    }
+    else*/
+    {
+        float vl, vr, vt, vb;//各頂点の座標
+        float tumin, tumax, tvmin, tvmax;//u,v座標の範囲
+        constexpr float ar = 640.0f / 480.0f;//アスペクト比
+        constexpr float ar2 = 2.0f / 480.0f;
+        constexpr float centerx = (float)640.0f / 2.0f;//x方向画面中心
+        MYVERTEX3D* vrtxarr;//頂点配列
+        D3DXMATRIXA16 matw;//ワールド座標変換行列
+        D3DXMATRIXA16 tmpmat;//テンポラリ行列
+        D3DXMATRIXA16 matpres;//プリセット変換行列
 
-		// プリセット準備
-		D3DXMatrixIdentity(&matpres);
-		//反転処理
-		if(revx){
-			d3dxplane_x.d=((float)r_right-(float)r_left)*ar2/2.0f;
-			D3DXMatrixReflect(&tmpmat,&d3dxplane_x);
-			matpres *= tmpmat;
-		}
-		if(revy){
-			d3dxplane_y.d=((float)r_bottom-(float)r_top)*ar2/2.0f;
-			D3DXMatrixReflect(&tmpmat,&d3dxplane_y);
-			matpres *= tmpmat;
-		}
-		//拡大縮小
-		D3DXMatrixScaling(&tmpmat,(float)magx,(float)magy,1.0f);
-		matpres *= tmpmat;
-		//移動(座標の単位はfloat変換後のもの）
-		D3DXMatrixTranslation(&tmpmat,(float)x/HALF_HEIGHT,(float)y/HALF_HEIGHT,/*z*/0);
-		matpres *= tmpmat;
-		if(flag & CKBLT_YUREY){//揺れ
-			D3DXMatrixTranslation(&tmpmat,0,yurey*ar2,0);
-			matpres *= tmpmat;
-		}
-		//設定された親の変換と合わせる
-		matpres *= matparent;
+        // プリセット準備
+        //反転処理
+        if (revx){
+            d3dxplane_x.d = ((float)r_right - (float)r_left)*ar2 / 2.0f;
+            D3DXMatrixReflect(&matpres, &d3dxplane_x);
+        }
+        else
+            D3DXMatrixIdentity(&matpres);
 
-		// pSprite->Begin();
-		for(j=0;j<dds->ysufnum;j++){
-			for(i=0;i<dds->xsufnum;i++){
-				if(dds->pTex[j*dds->xsufnum+i] ==NULL )continue;
-				else if(dds->xsufindx[i]+dds->xsufsize[i] < r_left)continue;
-				else if(dds->xsufindx[i] > r_right)continue;
-				else if(dds->ysufindx[j]+dds->ysufsize[j] < r_top)continue;
-				else if(dds->ysufindx[j] > r_bottom)continue;
-				else{
-					//(0) 左右上下、それぞれ転送しない分を計算
-					if(dds->xsufindx[i] < r_left)cut_left=(float)(r_left-dds->xsufindx[i]);
-					else cut_left=0;
-					if(dds->xsufindx[i]+dds->xsufsize[i] > r_right)
-						cut_right = (float)( dds->xsufindx[i]+dds->xsufsize[i] - r_right);
-					else cut_right=0;
+        if (revy){
+            d3dxplane_y.d = ((float)r_bottom - (float)r_top)*ar2 / 2.0f;
+            D3DXMatrixReflect(&tmpmat, &d3dxplane_y);
+            matpres *= tmpmat;
+        }
 
-					if(dds->ysufindx[j] < r_top)cut_top = (float)( r_top - dds->ysufindx[j] );
-					else cut_top=0;
-					if(dds->ysufindx[j]+dds->ysufsize[j] > r_bottom)
-						cut_bottom = (float)( dds->ysufindx[j]+dds->ysufsize[j] - r_bottom );
-					else cut_bottom=0;
+        auto tempY = (float)y / HALF_HEIGHT;
+        if (flag & CKBLT_YUREY)//揺れ
+            tempY += yurey*ar2;
 
-					//(1) u,v座標の計算
-					tumin = cut_left / (float)dds->xsufsize[i];
-					tumax = 1.0f - cut_right/(float)dds->xsufsize[i];
-					tvmin = cut_top / (float)dds->ysufsize[j];
-					tvmax = 1.0f - cut_bottom/(float)dds->ysufsize[j];
+        D3DXMatrixTransformation(&tmpmat,
+            NULL, NULL,
+            &D3DXVECTOR3((float)magx, (float)magy, 1.0f),//拡大縮小
+            NULL, NULL,
+            &D3DXVECTOR3((float)x / HALF_HEIGHT, tempY,/*z*/0));//移動(座標の単位はfloat変換後のもの）
+        matpres *= tmpmat;
+        //設定された親の変換と合わせる
+        matpres *= matparent;
 
-					//(2) 転送座標の計算(以降メモ参照)
-					//幅と高さをだす（ピクセル→float変換済座標系）
-					//幅
-					vl=0;
-					vr=dds->xsufsize[i] - (cut_left+cut_right);
-					vr= vr*ar2;// - ar;
-					//高さ
-					vt=0;
-					vb=dds->ysufsize[j] - (cut_top+cut_bottom);
-					vb=vb*ar2;//-1.0f
-					//(3) 頂点配列に座標値を代入
-					if ( !pMyVertex || FAILED(pMyVertex->Lock(0, 0, (void**)&vrtxarr, D3DLOCK_DISCARD)) )
-						return;
+        // pSprite->Begin();
+        for (j = 0; j<dds->ysufnum; j++){
+            for (i = 0; i<dds->xsufnum; i++){
+                if (dds->pTex[j*dds->xsufnum + i] == NULL)continue;
+                else if (dds->xsufindx[i] + dds->xsufsize[i] < r_left)continue;
+                else if (dds->xsufindx[i] > r_right)continue;
+                else if (dds->ysufindx[j] + dds->ysufsize[j] < r_top)continue;
+                else if (dds->ysufindx[j] > r_bottom)continue;
+                else{
+                    //(0) 左右上下、それぞれ転送しない分を計算
+                    if (dds->xsufindx[i] < r_left)cut_left = (float)(r_left - dds->xsufindx[i]);
+                    else cut_left = 0;
+                    if (dds->xsufindx[i] + dds->xsufsize[i] > r_right)
+                        cut_right = (float)(dds->xsufindx[i] + dds->xsufsize[i] - r_right);
+                    else cut_right = 0;
 
-					//左上
-					vrtxarr[0].x = vl;
-					vrtxarr[0].y = vt;
-					vrtxarr[0].z = z;
-					//左下
-					vrtxarr[1].x = vl;
-					vrtxarr[1].y = vb;
-					vrtxarr[1].z = z;
-					//右上
-					vrtxarr[2].x = vr;
-					vrtxarr[2].y = vt;
-					vrtxarr[2].z = z;
-					//右下
-					vrtxarr[3].x = vr;
-					vrtxarr[3].y = vb;
-					vrtxarr[3].z = z;
+                    if (dds->ysufindx[j] < r_top)cut_top = (float)(r_top - dds->ysufindx[j]);
+                    else cut_top = 0;
+                    if (dds->ysufindx[j] + dds->ysufsize[j] > r_bottom)
+                        cut_bottom = (float)(dds->ysufindx[j] + dds->ysufsize[j] - r_bottom);
+                    else cut_bottom = 0;
 
-					//頂点色
-					vrtxarr[0].color = color;
-					vrtxarr[1].color = color;
-					vrtxarr[2].color = color;
-					vrtxarr[3].color = color;
+                    //(1) u,v座標の計算
+                    tumin = cut_left / (float)dds->xsufsize[i];
+                    tumax = 1.0f - cut_right / (float)dds->xsufsize[i];
+                    tvmin = cut_top / (float)dds->ysufsize[j];
+                    tvmax = 1.0f - cut_bottom / (float)dds->ysufsize[j];
 
-					//(3.5) テクスチャ座標設定
-					vrtxarr[0].tu = tumin;
-					vrtxarr[0].tv = tvmin;
-					vrtxarr[1].tu = tumin;
-					vrtxarr[1].tv = tvmax;
-					vrtxarr[2].tu = tumax;
-					vrtxarr[2].tv = tvmin;
-					vrtxarr[3].tu = tumax;
-					vrtxarr[3].tv = tvmax;
+                    //(2) 転送座標の計算(以降メモ参照)
+                    //幅と高さをだす（ピクセル→float変換済座標系）
+                    //幅
+                    vl = 0;
+                    vr = dds->xsufsize[i] - (cut_left + cut_right);
+                    vr = vr*ar2;// - ar;
+                    //高さ
+                    vt = 0;
+                    vb = dds->ysufsize[j] - (cut_top + cut_bottom);
+                    vb = vb*ar2;//-1.0f
+                    //(3) 頂点配列に座標値を代入
+                    if (!pMyVertex || FAILED(pMyVertex->Lock(0, 0, (void**)&vrtxarr, D3DLOCK_DISCARD)))
+                        return;
 
-					if (pMyVertex) pMyVertex->Unlock();
+                    //左上
+                    vrtxarr[0].x = vl;
+                    vrtxarr[0].y = vt;
+                    vrtxarr[0].z = z;
+                    //左下
+                    vrtxarr[1].x = vl;
+                    vrtxarr[1].y = vb;
+                    vrtxarr[1].z = z;
+                    //右上
+                    vrtxarr[2].x = vr;
+                    vrtxarr[2].y = vt;
+                    vrtxarr[2].z = z;
+                    //右下
+                    vrtxarr[3].x = vr;
+                    vrtxarr[3].y = vb;
+                    vrtxarr[3].z = z;
 
-					//(4) ワールド座標変換行列用意
-					//単位行列
-					D3DXMatrixIdentity(&matw);
-					//矩形内変換(座標の単位はfloat変換後のもの)
-					if(r_left>dds->xsufindx[i])transx=0;
-					else transx = (float)( dds->xsufindx[i] - r_left );
-					if(r_top>dds->ysufindx[j])transy=0;
-					else transy = (float)( dds->ysufindx[j] - r_top );
-					D3DXMatrixTranslation(&tmpmat,transx*ar2,transy*ar2,0);
-					matw *= tmpmat;
-					//プリセットのやつをかける
-					matw *= matpres;
+                    //頂点色
+                    vrtxarr[0].color = color;
+                    vrtxarr[1].color = color;
+                    vrtxarr[2].color = color;
+                    vrtxarr[3].color = color;
 
-					/*RECT r2;
+                    //(3.5) テクスチャ座標設定
+                    vrtxarr[0].tu = tumin;
+                    vrtxarr[0].tv = tvmin;
+                    vrtxarr[1].tu = tumin;
+                    vrtxarr[1].tv = tvmax;
+                    vrtxarr[2].tu = tumax;
+                    vrtxarr[2].tv = tvmin;
+                    vrtxarr[3].tu = tumax;
+                    vrtxarr[3].tv = tvmax;
 
-					r2.left = (LONG)cut_left;
-					r2.top = (LONG)cut_top;
-					r2.right = dds->xsufsize[i] - (LONG)cut_right;
-					r2.bottom = dds->ysufsize[j] - (LONG)cut_bottom;*/
+                    if (pMyVertex) pMyVertex->Unlock();
 
-					// pSprite->DrawTransform(dds->pTex[j*dds->xsufnum+i], &r2, &matw, color);
-					d3ddev->SetTransform(D3DTS_WORLD,&matw);//*設定*
-					//(5) 描画
-					d3ddev->SetTexture(0,dds->pTex[j*dds->xsufnum+i]);//テクスチャ設定
-					d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP);
-					d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);
-					d3ddev->SetStreamSource(0, pMyVertex, 0, sizeof(MYVERTEX3D));
-					d3ddev->SetFVF(FVF_3DVERTEX);//頂点のフォーマットを指定
-					d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);//描画
-				}
-			}
-		}
-		// pSprite->End();
-	}
+                    //(4) ワールド座標変換行列用意
+                    //矩形内変換(座標の単位はfloat変換後のもの)
+                    if (r_left>dds->xsufindx[i])transx = 0;
+                    else transx = (float)(dds->xsufindx[i] - r_left);
+                    if (r_top>dds->ysufindx[j])transy = 0;
+                    else transy = (float)(dds->ysufindx[j] - r_top);
+                    D3DXMatrixTranslation(&matw, transx*ar2, transy*ar2, 0);
+                    //プリセットのやつをかける
+                    matw *= matpres;
+
+                    /*RECT r2;
+
+                    r2.left = (LONG)cut_left;
+                    r2.top = (LONG)cut_top;
+                    r2.right = dds->xsufsize[i] - (LONG)cut_right;
+                    r2.bottom = dds->ysufsize[j] - (LONG)cut_bottom;*/
+
+                    // pSprite->DrawTransform(dds->pTex[j*dds->xsufnum+i], &r2, &matw, color);
+                    d3ddev->SetTransform(D3DTS_WORLD,&matw);//*設定*
+                    //(5) 描画
+                    d3ddev->SetTexture(0,dds->pTex[j*dds->xsufnum+i]);//テクスチャ設定
+                    d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP);
+                    d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);
+                    d3ddev->SetStreamSource(0, pMyVertex, 0, sizeof(MYVERTEX3D));
+                    d3ddev->SetFVF(FVF_3DVERTEX);//頂点のフォーマットを指定
+                    d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);//描画
+                }
+            }
+        }
+        // pSprite->End();
+    }
 }
 
 
@@ -2521,193 +2526,186 @@ void CDirectDraw::CheckBlt2(MYSURFACE *dds,int x,int y,RECT r,
 */
 void CDirectDraw::MyBlt3D(MYSURFACE *dds,RECT src,MYRECT3D dst,DWORD flag,DWORD color)
 {
-	float cut_left,cut_right,cut_top,cut_bottom;//切れてる長さ(ピクセル単位)
-	float transx,transy,sclx,scly;//一時的に使用
+    float cut_left,cut_right,cut_top,cut_bottom;//切れてる長さ(ピクセル単位)
+    float transx,transy,sclx,scly;//一時的に使用
 
-	if(dds==NULL){return;}
+    if(dds==NULL){return;}
 
-	//矩形を正しく設定
-	int dmi;
-	if(src.left > src.right){
-		dmi = src.left;
-		src.left = src.right;
-		src.right = dmi;
-	}
-	if(src.top > src.bottom){
-		dmi = src.top;
-		src.top = src.bottom;
-		src.bottom = dmi;
-	}
+    //矩形を正しく設定
+    int dmi;
+    if(src.left > src.right){
+        dmi = src.left;
+        src.left = src.right;
+        src.right = dmi;
+    }
+    if(src.top > src.bottom){
+        dmi = src.top;
+        src.top = src.bottom;
+        src.bottom = dmi;
+    }
 
-	if(g_config.IsHalfMode()){
-		src.left/=2;
-		src.right/=2;
-		src.top/=2;
-		src.bottom/=2;
-	}
+    if(g_config.IsHalfMode()){
+        src.left/=2;
+        src.right/=2;
+        src.top/=2;
+        src.bottom/=2;
+    }
 
-	DWORD i,j;	
+    DWORD i,j;	
 
-	DWORD r_top,r_bottom,r_left,r_right;//warningがウザイ
-	r_top=src.top;
-	r_bottom=src.bottom;
-	r_left=src.left;
-	r_right=src.right;
+    DWORD r_top,r_bottom,r_left,r_right;//warningがウザイ
+    r_top=src.top;
+    r_bottom=src.bottom;
+    r_left=src.left;
+    r_right=src.right;
 
-	/*if (devtypenow != D3DDEVTYPE_HAL)
-	{
-		// 軽量化ver（かなり適当、つーか消えた。）
-		MyBlt3DLite(dds, src, (int)(dst.left * HALF_HEIGHT), (int)(dst.top * HALF_HEIGHT), TRUE);
-	}
-	else*/
-	{
-		//全てのテクスチャに関して描画するかどうか調べて描画する
-		float vl,vr,vt,vb;//各頂点の座標
-		float tumin,tumax,tvmin,tvmax;//u,v座標の範囲
-		float ar = 640.0f/480.0f;//アスペクト比
-		float ar2 = 2.0f/480.0f;
-		float centerx = 640.0f/2.0f;//x方向画面中心
-		MYVERTEX3D* vrtxarr;//頂点配列
-		D3DXMATRIX matw;//ワールド座標変換行列
-		D3DXMATRIX tmpmat;//テンポラリ行列
-		D3DXMATRIX matpres;//プリセット変換行列
+    /*if (devtypenow != D3DDEVTYPE_HAL)
+    {
+        // 軽量化ver（かなり適当、つーか消えた。）
+        MyBlt3DLite(dds, src, (int)(dst.left * HALF_HEIGHT), (int)(dst.top * HALF_HEIGHT), TRUE);
+    }
+    else*/
+    {
+        //全てのテクスチャに関して描画するかどうか調べて描画する
+        float vl, vr, vt, vb;//各頂点の座標
+        float tumin, tumax, tvmin, tvmax;//u,v座標の範囲
+        constexpr float ar = 640.0f / 480.0f;//アスペクト比
+        constexpr float ar2 = 2.0f / 480.0f;
+        constexpr float centerx = 640.0f / 2.0f;//x方向画面中心
+        MYVERTEX3D* vrtxarr;//頂点配列
+        D3DXMATRIXA16 matw;//ワールド座標変換行列
+        D3DXMATRIXA16 tmpmat;//テンポラリ行列
+        D3DXMATRIXA16 matpres;//プリセット変換行列
 
-		// プリセット準備
-		D3DXMatrixIdentity(&matpres);
+        // プリセット準備
 
-		//(0,0)-(1,1)の範囲に入るように縮小
-		sclx = 1.0f / (float)(r_right - r_left);
-		scly = 1.0f / (float)(r_bottom - r_top);
-		D3DXMatrixScaling(&tmpmat,sclx,scly,1.0f);
-		matpres *= tmpmat;
-		
-		//指定されたMYRECT3Dまで拡大&移動
-		sclx=dst.right/* * HALF_HEIGHT*/-dst.left/* * HALF_HEIGHT*/;
-		scly=dst.bottom/* * HALF_HEIGHT*/-dst.top/* * HALF_HEIGHT*/;
-		D3DXMatrixScaling(&tmpmat,sclx,scly,1.0f);
-		matpres *= tmpmat;
-		
-		//移動
-		D3DXMatrixTranslation(&tmpmat,dst.left/* * HALF_HEIGHT*/,dst.top/* * HALF_HEIGHT*/,/*dst.z*/0);
-		matpres *= tmpmat;
-		if(flag & CKBLT_YUREY){//揺れ
-			D3DXMatrixTranslation(&tmpmat,0,yurey*ar2,0);
-			matpres *= tmpmat;
-		}
-		//設定された親の変換と合わせる
-		matpres *= matparent;
+        //(0,0)-(1,1)の範囲に入るように縮小
+        sclx = 1.0f / (float)(r_right - r_left);
+        scly = 1.0f / (float)(r_bottom - r_top);
 
-		// pSprite->Begin();
-		for(j=0;j<dds->ysufnum;j++){
-			for(i=0;i<dds->xsufnum;i++){
-				if(dds->pTex[j*dds->xsufnum+i] ==NULL );
-				else if(dds->xsufindx[i]+dds->xsufsize[i] < r_left);
-				else if(dds->xsufindx[i] > r_right);
-				else if(dds->ysufindx[j]+dds->ysufsize[j] < r_top);
-				else if(dds->ysufindx[j] > r_bottom);
-				else{
-					//(0) 左右上下、それぞれ転送しない分を計算(src矩形上)
-					if(dds->xsufindx[i] < r_left)cut_left=(float)(r_left-dds->xsufindx[i]);
-					else cut_left=0;
-					if(dds->xsufindx[i]+dds->xsufsize[i] > r_right)
-						cut_right = (float)( dds->xsufindx[i]+dds->xsufsize[i] - r_right);
-					else cut_right=0;
+        //指定されたMYRECT3Dまで拡大&移動
+        sclx *= dst.right/* * HALF_HEIGHT*/ - dst.left/* * HALF_HEIGHT*/;
+        scly *= dst.bottom/* * HALF_HEIGHT*/ - dst.top/* * HALF_HEIGHT*/;
 
-					if(dds->ysufindx[j] < r_top)cut_top = (float)( r_top - dds->ysufindx[j] );
-					else cut_top=0;
-					if(dds->ysufindx[j]+dds->ysufsize[j] > r_bottom)
-						cut_bottom = (float)( dds->ysufindx[j]+dds->ysufsize[j] - r_bottom );
-					else cut_bottom=0;
+        auto tempY = dst.top/* * HALF_HEIGHT*/;
+        if (flag & CKBLT_YUREY)//揺れ
+            tempY += yurey*ar2;
 
-					//(1) u,v座標の計算
-					tumin = cut_left / (float)dds->xsufsize[i];
-					tumax = 1.0f - cut_right/(float)dds->xsufsize[i];
-					tvmin = cut_top / (float)dds->ysufsize[j];
-					tvmax = 1.0f - cut_bottom/(float)dds->ysufsize[j];
+        D3DXMatrixTransformation(&matpres,
+            NULL, NULL,
+            &D3DXVECTOR3(sclx, scly, 1.0f),//拡大縮小
+            NULL, NULL,
+            &D3DXVECTOR3(dst.left/* * HALF_HEIGHT*/, tempY,/*dst.z*/0));//移動
+        //設定された親の変換と合わせる
+        matpres *= matparent;
 
-					//(2) 転送座標の計算
-					//幅と高さをだす（ピクセル→float変換済座標系）
-					//幅
-					vl=0;
-					vr=dds->xsufsize[i] - (cut_left+cut_right);
-					//高さ
-					vt=0;
-					vb=dds->ysufsize[j] - (cut_top+cut_bottom);
-					//(3) 頂点配列に座標値を代入
-					if ( !pMyVertex || FAILED(pMyVertex->Lock(0, 0, (void**)&vrtxarr, D3DLOCK_DISCARD)) )
-						return;
+        // pSprite->Begin();
+        for (j = 0; j<dds->ysufnum; j++){
+            for (i = 0; i<dds->xsufnum; i++){
+                if (dds->pTex[j*dds->xsufnum + i] == NULL);
+                else if (dds->xsufindx[i] + dds->xsufsize[i] < r_left);
+                else if (dds->xsufindx[i] > r_right);
+                else if (dds->ysufindx[j] + dds->ysufsize[j] < r_top);
+                else if (dds->ysufindx[j] > r_bottom);
+                else{
+                    //(0) 左右上下、それぞれ転送しない分を計算(src矩形上)
+                    if (dds->xsufindx[i] < r_left)cut_left = (float)(r_left - dds->xsufindx[i]);
+                    else cut_left = 0;
+                    if (dds->xsufindx[i] + dds->xsufsize[i] > r_right)
+                        cut_right = (float)(dds->xsufindx[i] + dds->xsufsize[i] - r_right);
+                    else cut_right = 0;
 
-					//左上
-					vrtxarr[0].x = vl;
-					vrtxarr[0].y = vt;
-					vrtxarr[0].z = dst.z;
-					//左下
-					vrtxarr[1].x = vl;
-					vrtxarr[1].y = vb;
-					vrtxarr[1].z = dst.z;
-					//右上
-					vrtxarr[2].x = vr;
-					vrtxarr[2].y = vt;
-					vrtxarr[2].z = dst.z;
-					//右下
-					vrtxarr[3].x = vr;
-					vrtxarr[3].y = vb;
-					vrtxarr[3].z = dst.z;
+                    if (dds->ysufindx[j] < r_top)cut_top = (float)(r_top - dds->ysufindx[j]);
+                    else cut_top = 0;
+                    if (dds->ysufindx[j] + dds->ysufsize[j] > r_bottom)
+                        cut_bottom = (float)(dds->ysufindx[j] + dds->ysufsize[j] - r_bottom);
+                    else cut_bottom = 0;
 
-					//頂点色
-					vrtxarr[0].color = color;
-					vrtxarr[1].color = color;
-					vrtxarr[2].color = color;
-					vrtxarr[3].color = color;
+                    //(1) u,v座標の計算
+                    tumin = cut_left / (float)dds->xsufsize[i];
+                    tumax = 1.0f - cut_right / (float)dds->xsufsize[i];
+                    tvmin = cut_top / (float)dds->ysufsize[j];
+                    tvmax = 1.0f - cut_bottom / (float)dds->ysufsize[j];
 
-					//(3.5) テクスチャ座標設定
-					vrtxarr[0].tu = tumin;
-					vrtxarr[0].tv = tvmin;
-					vrtxarr[1].tu = tumin;
-					vrtxarr[1].tv = tvmax;
-					vrtxarr[2].tu = tumax;
-					vrtxarr[2].tv = tvmin;
-					vrtxarr[3].tu = tumax;
-					vrtxarr[3].tv = tvmax;
+                    //(2) 転送座標の計算
+                    //幅と高さをだす（ピクセル→float変換済座標系）
+                    //幅
+                    vl = 0;
+                    vr = dds->xsufsize[i] - (cut_left + cut_right);
+                    //高さ
+                    vt = 0;
+                    vb = dds->ysufsize[j] - (cut_top + cut_bottom);
+                    //(3) 頂点配列に座標値を代入
+                    if (!pMyVertex || FAILED(pMyVertex->Lock(0, 0, (void**)&vrtxarr, D3DLOCK_DISCARD)))
+                        return;
 
-					if (pMyVertex) pMyVertex->Unlock();
+                    //左上
+                    vrtxarr[0].x = vl;
+                    vrtxarr[0].y = vt;
+                    vrtxarr[0].z = dst.z;
+                    //左下
+                    vrtxarr[1].x = vl;
+                    vrtxarr[1].y = vb;
+                    vrtxarr[1].z = dst.z;
+                    //右上
+                    vrtxarr[2].x = vr;
+                    vrtxarr[2].y = vt;
+                    vrtxarr[2].z = dst.z;
+                    //右下
+                    vrtxarr[3].x = vr;
+                    vrtxarr[3].y = vb;
+                    vrtxarr[3].z = dst.z;
 
-					//(4) ワールド座標変換行列用意
-					//単位行列
-					D3DXMatrixIdentity(&matw);
+                    //頂点色
+                    vrtxarr[0].color = color;
+                    vrtxarr[1].color = color;
+                    vrtxarr[2].color = color;
+                    vrtxarr[3].color = color;
 
-					//矩形内変換
-					if(r_left>dds->xsufindx[i])transx=0;
-					else transx = (float)( dds->xsufindx[i] - r_left );//pixel単位
-					if(r_top>dds->ysufindx[j])transy=0;
-					else transy = (float)( dds->ysufindx[j] - r_top );//pixel単位
-					D3DXMatrixTranslation(&tmpmat,transx,transy,0);
-					matw *= tmpmat;
+                    //(3.5) テクスチャ座標設定
+                    vrtxarr[0].tu = tumin;
+                    vrtxarr[0].tv = tvmin;
+                    vrtxarr[1].tu = tumin;
+                    vrtxarr[1].tv = tvmax;
+                    vrtxarr[2].tu = tumax;
+                    vrtxarr[2].tv = tvmin;
+                    vrtxarr[3].tu = tumax;
+                    vrtxarr[3].tv = tvmax;
 
-					//プリセットのやつをかける
-					matw *= matpres;
+                    if (pMyVertex) pMyVertex->Unlock();
 
-					/*RECT r2;
+                    //(4) ワールド座標変換行列用意
+                    //矩形内変換
+                    if (r_left>dds->xsufindx[i])transx = 0;
+                    else transx = (float)(dds->xsufindx[i] - r_left);//pixel単位
+                    if (r_top>dds->ysufindx[j])transy = 0;
+                    else transy = (float)(dds->ysufindx[j] - r_top);//pixel単位
+                    D3DXMatrixTranslation(&matw, transx, transy, 0);
 
-					r2.left = (LONG)cut_left;
-					r2.top = (LONG)cut_top;
-					r2.right = dds->xsufsize[i] - (LONG)cut_right;
-					r2.bottom = dds->ysufsize[j] - (LONG)cut_bottom;*/
+                    //プリセットのやつをかける
+                    matw *= matpres;
 
-					// pSprite->DrawTransform(dds->pTex[j*dds->xsufnum+i], &r2, &matw, color);
-					d3ddev->SetTransform(D3DTS_WORLD,&matw);//*設定*
-					//(5) 描画
-					d3ddev->SetTexture(0,dds->pTex[j*dds->xsufnum+i]);//テクスチャ設定
-					d3ddev->SetStreamSource(0, pMyVertex, 0, sizeof(MYVERTEX3D));
-					d3ddev->SetFVF(FVF_3DVERTEX);//頂点のフォーマットを指定
-					d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP);
-					d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);
-					d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);//描画
-				}
-			}
-		}
-		// pSprite->End();
-	}
+                    /*RECT r2;
+
+                    r2.left = (LONG)cut_left;
+                    r2.top = (LONG)cut_top;
+                    r2.right = dds->xsufsize[i] - (LONG)cut_right;
+                    r2.bottom = dds->ysufsize[j] - (LONG)cut_bottom;*/
+
+                    // pSprite->DrawTransform(dds->pTex[j*dds->xsufnum+i], &r2, &matw, color);
+                    d3ddev->SetTransform(D3DTS_WORLD,&matw);//*設定*
+                    //(5) 描画
+                    d3ddev->SetTexture(0,dds->pTex[j*dds->xsufnum+i]);//テクスチャ設定
+                    d3ddev->SetStreamSource(0, pMyVertex, 0, sizeof(MYVERTEX3D));
+                    d3ddev->SetFVF(FVF_3DVERTEX);//頂点のフォーマットを指定
+                    d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP);
+                    d3ddev->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);
+                    d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);//描画
+                }
+            }
+        }
+        // pSprite->End();
+    }
 }
 
 /*!
@@ -2716,63 +2714,63 @@ void CDirectDraw::MyBlt3D(MYSURFACE *dds,RECT src,MYRECT3D dst,DWORD flag,DWORD 
 *	GCDのうち、指定インデックスのCELLを描画します。
 */
 void CDirectDraw::CellDraw(MYSURFACE **pbuf,//!< GCDで利用するビットマップ配列
-						   LPVOID pcdat,	//!< GCD,CELL (GCD_CELL2)配列
-						   LPVOID prdat,	//!< GCD,切り取り矩形 (GCD_RECT)配列
-						   DWORD cn,		//!< 描画するセル番号
-						   int x,			//!< 描画先基準x
-						   int y,			//!< 描画先基準y
-						   float z,			//!< 描画先z
-						   int rot,			//!< 全体回転角
-						   BOOL revx,		//!< 全体反転X
-						   BOOL revy,		//!< 全体反転Y
-						   DWORD color,		//!< 全体色
-						   float magx,		//!< 全体拡大率X
-						   float magy,		//!< 全体拡大率Y
-						   BOOL shadowed)	//!<影付き
+                           LPVOID pcdat,	//!< GCD,CELL (GCD_CELL2)配列
+                           LPVOID prdat,	//!< GCD,切り取り矩形 (GCD_RECT)配列
+                           DWORD cn,		//!< 描画するセル番号
+                           int x,			//!< 描画先基準x
+                           int y,			//!< 描画先基準y
+                           float z,			//!< 描画先z
+                           int rot,			//!< 全体回転角
+                           BOOL revx,		//!< 全体反転X
+                           BOOL revy,		//!< 全体反転Y
+                           DWORD color,		//!< 全体色
+                           float magx,		//!< 全体拡大率X
+                           float magy,		//!< 全体拡大率Y
+                           BOOL shadowed)	//!<影付き
 {
-	if(!pcdat || cn==0)return;
-	GCD_CELL2_070* pc = (GCD_CELL2_070*)pcdat;
+    if(!pcdat || cn==0)return;
+    GCD_CELL2_070* pc = (GCD_CELL2_070*)pcdat;
 
-	switch(pc->cell[0].flag){
-		case 900:
-			CellDraw090(pbuf,
-						pcdat,
-						prdat,
-						cn,
-						x,
-						y,
-						z,
-						rot,
-						revx,
-						revy,
-						color,
-						magx,
-						magy,
-						shadowed);break;
-		case 700:
-			CellDraw070(pbuf,
-						pcdat,
-						prdat,
-						cn,
-						x,
-						y,
-						z,
-						rot,
-						revx,
-						revy,
-						color,
-						magx,
-						magy,
-						shadowed);break;
-		#ifdef AKIDX_DEBUG
-		default:
-			{
-				TCHAR tmp[64];
-				_stprintf(tmp,_T("DX_Draw : warning , unknown GCD version %X\n"),pc->cell[0].flag);
-				ODS(tmp);
-			}
-		#endif
-	}
+    switch(pc->cell[0].flag){
+        case 900:
+            CellDraw090(pbuf,
+                        pcdat,
+                        prdat,
+                        cn,
+                        x,
+                        y,
+                        z,
+                        rot,
+                        revx,
+                        revy,
+                        color,
+                        magx,
+                        magy,
+                        shadowed);break;
+        case 700:
+            CellDraw070(pbuf,
+                        pcdat,
+                        prdat,
+                        cn,
+                        x,
+                        y,
+                        z,
+                        rot,
+                        revx,
+                        revy,
+                        color,
+                        magx,
+                        magy,
+                        shadowed);break;
+        #ifdef AKIDX_DEBUG
+        default:
+            {
+                TCHAR tmp[64];
+                _stprintf(tmp,_T("DX_Draw : warning , unknown GCD version %X\n"),pc->cell[0].flag);
+                ODS(tmp);
+            }
+        #endif
+    }
 }
 
 /*!
@@ -2781,250 +2779,263 @@ void CDirectDraw::CellDraw(MYSURFACE **pbuf,//!< GCDで利用するビットマ�
 *	CellDraw070とCellDraw090は、内部での座標変換の順番が微妙に入れ替わっているので注意
 */
 void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCDで利用するビットマップ配列
-						   LPVOID pcdat,	//!< GCD,CELL (GCD_CELL2_090)配列
-						   LPVOID prdat,	//!< GCD,切り取り矩形 (GCD_RECT_090)配列
-						   DWORD cn,		//!< 描画するセル番号
-						   int x,			//!< 描画先基準x
-						   int y,			//!< 描画先基準y
-						   float z,			//!< 描画先z
-						   int rot,			//!< 全体回転角
-						   BOOL revx,		//!< 全体反転X
-						   BOOL revy,		//!< 全体反転Y
-						   DWORD color,		//!< 全体色
-						   float magx,		//!< 全体拡大率X
-						   float magy,		//!< 全体拡大率Y
-						   BOOL shadowed)	//!<影付き
+                           LPVOID pcdat,	//!< GCD,CELL (GCD_CELL2_090)配列
+                           LPVOID prdat,	//!< GCD,切り取り矩形 (GCD_RECT_090)配列
+                           DWORD cn,		//!< 描画するセル番号
+                           int x,			//!< 描画先基準x
+                           int y,			//!< 描画先基準y
+                           float z,			//!< 描画先z
+                           int rot,			//!< 全体回転角
+                           BOOL revx,		//!< 全体反転X
+                           BOOL revy,		//!< 全体反転Y
+                           DWORD color,		//!< 全体色
+                           float magx,		//!< 全体拡大率X
+                           float magy,		//!< 全体拡大率Y
+                           BOOL shadowed)	//!<影付き
 {
-	if(pbuf==NULL || pcdat==NULL || prdat==NULL)return;
-	if(cn >= GCDMAX_CELLS)return;
+    if(pbuf==NULL || pcdat==NULL || prdat==NULL)return;
+    if(cn >= GCDMAX_CELLS)return;
 
-	#ifdef AKIDX_DEBUG
-	if(magx==0 || magy==0){
-		ODS(_T("☆CDirectDraw::CheckBlt2() Warning-magx or magy ==0\n"));
-	}
-	#endif
+    #ifdef AKIDX_DEBUG
+    if(magx==0 || magy==0){
+        ODS(_T("☆CDirectDraw::CheckBlt2() Warning-magx or magy ==0\n"));
+    }
+    #endif
 
-	GCD_CELL2_090 *cdat=(GCD_CELL2_090*)pcdat;
-	GCD_RECT_090  *rdat=(GCD_RECT_090*)prdat;
+    GCD_CELL2_090 *cdat=(GCD_CELL2_090*)pcdat;
+    GCD_RECT_090  *rdat=(GCD_RECT_090*)prdat;
 
-	/*if (g_config.IsHalfMode())
-	{
-		x /= 2;
-		y /= 2;
-		cdat[cn].gcx /= 2;
-		cdat[cn].gcy /= 2;
-		for(int i=0;i<8;i++){
-			cdat[cn].cell[i].dx /= 2;
-			cdat[cn].cell[i].dy /= 2;
-		}
-	}*/
+    /*if (g_config.IsHalfMode())
+    {
+        x /= 2;
+        y /= 2;
+        cdat[cn].gcx /= 2;
+        cdat[cn].gcy /= 2;
+        for(int i=0;i<8;i++){
+            cdat[cn].cell[i].dx /= 2;
+            cdat[cn].cell[i].dy /= 2;
+        }
+    }*/
 
-	if (devtypenow != D3DDEVTYPE_HAL)
-	{
-		for(int i=0;i<8;i++){
-			DWORD rn;
+    if (devtypenow != D3DDEVTYPE_HAL)
+    {
+        for(int i=0;i<8;i++){
+            DWORD rn;
 
-			rn = cdat[cn].cell[i].cdr;
-			CheckBlt(pbuf[rdat[rn].bmpno],
-				x + cdat[cn].cell[i].dx,y + cdat[cn].cell[i].dy,rdat[rn].r,
-				revx,
-				revy,
-				0,z,color);//描画
-		}
-	}
-	else
-	{
-		D3DXMATRIX matp,mat,tmt,matprv,matprv2;
-		float ar2 = 2.0f/480.0f;;
+            rn = cdat[cn].cell[i].cdr;
+            CheckBlt(pbuf[rdat[rn].bmpno],
+                x + cdat[cn].cell[i].dx,y + cdat[cn].cell[i].dy,rdat[rn].r,
+                revx,
+                revy,
+                0,z,color);//描画
+        }
+    }
+    else
+    {
+        D3DXMATRIXA16 matp, mat, tmt, matprv, matprv2;
+        D3DXQUATERNION quat;
+        constexpr float ar2 = 2.0f / 480.0f;
 
-		//ZW/ZTフラグ操作
-		if((cdat[cn].flag & GCDCELL2_DISABLE_ZT) || (cdat[cn].flag & GCDCELL2_DISABLE_ZW))
-		{
-			BOOL zt = (cdat[cn].flag & GCDCELL2_DISABLE_ZT);
-			BOOL zw = (cdat[cn].flag & GCDCELL2_DISABLE_ZW);
-			EnableZ(zt,zw);
-		}
+        //ZW/ZTフラグ操作
+        if ((cdat[cn].flag & GCDCELL2_DISABLE_ZT) || (cdat[cn].flag & GCDCELL2_DISABLE_ZW))
+        {
+            BOOL zt = (cdat[cn].flag & GCDCELL2_DISABLE_ZT);
+            BOOL zw = (cdat[cn].flag & GCDCELL2_DISABLE_ZW);
+            EnableZ(zt, zw);
+        }
 
-		//キャラクターの変換行列
-		D3DXMatrixIdentity(&matp);
-		if(!(cdat[cn].flag & GCDCELL2_SCA_GCENTER))
-		{	
-			if(cdat[cn].flag & GCDCELL2_ROT_BASEPOINT)
-			{
-				//スケール：足元中心 回転：足元中心
-				D3DXMatrixScaling(&tmt,magx,magy,1.0f);//拡大
-				matp *= tmt;
-				D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//回転
-				matp *= tmt;
-				D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//重心に移動
-				matp *= tmt;
-			}
-			else{
-				//スケール：足元中心 回転：重心中心
-				D3DXMatrixScaling(&tmt,magx,magy,1.0f);//拡大
-				matp *= tmt;
-				D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//重心に移動
-				matp *= tmt;
-				D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//回転
-				matp *= tmt;
-			}
-		}
-		else
-		{
-			if(cdat[cn].flag & GCDCELL2_ROT_BASEPOINT)
-			{
-				//スケール：重心中心 回転：足元中心
-				D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//回転
-				matp *= tmt;
-				D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//重心に移動
-				matp *= tmt;
-				D3DXMatrixScaling(&tmt,magx,magy,1.0f);//拡大
-				matp *= tmt;
-			}
-			else{
-				//スケール：重心中心 回転：重心中心
-				D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//重心に移動
-				matp *= tmt;
-				D3DXMatrixScaling(&tmt,magx,magy,1.0f);//拡大
-				matp *= tmt;
-				D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//回転
-				matp *= tmt;
-			}
-		}
-		if(revy){
-			d3dxplane_y.d=0;
-			D3DXMatrixReflect(&tmt,&d3dxplane_y);//y反転
-			matp *= tmt;
-		}
-		D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);//重心に戻す
-		matp *= tmt;
-		if(revx){
-			d3dxplane_x.d=0;
-			D3DXMatrixReflect(&tmt,&d3dxplane_x);//x反転
-			matp *= tmt;
-		}
-		D3DXMatrixTranslation(&tmt,(float)x*ar2,(float)y*ar2,0);//表示位置への移動
-		matp *= tmt;
+        //キャラクターの変換行列
+        const auto center = D3DXVECTOR3((float)(cdat[cn].gcx)*ar2, (float)(cdat[cn].gcy)*ar2, 0);//重心
+        D3DXQuaternionRotationAxis(&quat, &D3DXVECTOR3(0, 0, 1), D3DXToRadian(rot));
 
-		matprv = SetParentMatrix(matp,FALSE,TRUE);//「親」の変換行列として設定
+        if (!(cdat[cn].flag & GCDCELL2_SCA_GCENTER))
+        {
+            if (cdat[cn].flag & GCDCELL2_ROT_BASEPOINT)
+            {
+                //スケール：足元中心 回転：足元中心
+                D3DXMatrixTransformation(&matp,
+                    NULL,
+                    NULL,
+                    &D3DXVECTOR3(magx, magy, 1.0f),//拡大
+                    NULL,
+                    &quat,//回転
+                    NULL
+                    );
+            }
+            else{
+                //スケール：足元中心 回転：重心中心
+                D3DXMatrixTransformation(&matp,
+                    NULL,
+                    NULL,
+                    &D3DXVECTOR3(magx, magy, 1.0f),//拡大
+                    &center,
+                    &quat,//回転
+                    NULL
+                    );
+            }
+        }
+        else
+        {
+            if (cdat[cn].flag & GCDCELL2_ROT_BASEPOINT)
+            {
+                //スケール：重心中心 回転：足元中心
+                D3DXMatrixTransformation(&matp,
+                    &center,
+                    &quat,	// ←バグorやむを得ない処置だった可能性？とりあえずv1.00の挙動を再現
+                    &D3DXVECTOR3(magx, magy, 1.0f),//拡大
+                    NULL,
+                    &quat,//回転
+                    NULL
+                    );
+            }
+            else{
+                //スケール：重心中心 回転：重心中心
+                D3DXMatrixTransformation(&matp,
+                    &center,
+                    NULL,
+                    &D3DXVECTOR3(magx, magy, 1.0f),//拡大
+                    &center,
+                    &quat,//回転
+                    NULL
+                    );
+            }
+        }
+        if (revy){
+            D3DXMatrixTranslation(&tmt, (float)(cdat[cn].gcx)*ar2*(-1.0f), (float)(cdat[cn].gcy)*ar2*(-1.0f), 0);//重心に移動
+            matp *= tmt;
+            d3dxplane_y.d = 0;
+            D3DXMatrixReflect(&tmt, &d3dxplane_y);//y反転
+            matp *= tmt;
+            D3DXMatrixTranslation(&tmt, (float)(cdat[cn].gcx)*ar2, (float)(cdat[cn].gcy)*ar2, 0);//重心に戻す
+            matp *= tmt;
+        }
+        if (revx){
+            d3dxplane_x.d = 0;
+            D3DXMatrixReflect(&tmt, &d3dxplane_x);//x反転
+            matp *= tmt;
+        }
+        //表示位置への移動
+        matp._41 += (float)x*ar2;
+        matp._42 += (float)y*ar2;
 
-		DWORD rn;
-		BOOL c1revx,c1revy;
+        matprv = SetParentMatrix(matp, FALSE, TRUE);//「親」の変換行列として設定
 
-		for(int i=0;i<8;i++){
-			rn = cdat[cn].cell[i].cdr;
-			if(rn < GCDMAX_RECTANGLES && rn!=0 && rdat[rn].bmpno<GCDMAX_IMAGES){
-				//変換行列を計算
-				D3DXMatrixIdentity(&mat);
-				D3DXMatrixTranslation(&tmt,(float)(rdat[rn].center_x)*ar2*(-1.0f),(float)(rdat[rn].center_y)*ar2*(-1.0f),0);//重心に移動
-				mat *= tmt;
-				D3DXMatrixScaling(&tmt,cdat[cn].cell[i].magx,cdat[cn].cell[i].magy,1.0f);//拡大
-				mat *= tmt;
-				D3DXMatrixRotationZ(&tmt,D3DXToRadian(cdat[cn].cell[i].rot));//回転
-				mat *= tmt;
-				D3DXMatrixTranslation(&tmt,(float)(rdat[rn].center_x)*ar2,(float)(rdat[rn].center_y)*ar2,0);//重心に戻す
-				mat *= tmt;
-				D3DXMatrixTranslation(&tmt,(float)(cdat[cn].cell[i].dx)*ar2,(float)(cdat[cn].cell[i].dy)*ar2,0);//表示位置への移動
-				mat *= tmt;
+        DWORD rn;
+        BOOL c1revx, c1revy;
 
-				matprv2 = SetParentMatrix(mat,FALSE,TRUE);
+        for (int i = 0; i<8; i++){
+            rn = cdat[cn].cell[i].cdr;
+            if (rn < GCDMAX_RECTANGLES && rn != 0 && rdat[rn].bmpno<GCDMAX_IMAGES){
+                //変換行列を計算
+                const auto center = D3DXVECTOR3((float)(rdat[rn].center_x)*ar2, (float)(rdat[rn].center_y)*ar2, 0);//重心
 
-				c1revx = cdat[cn].cell[i].flag & GCDCELL_REVERSE_X;
-				c1revy = cdat[cn].cell[i].flag & GCDCELL_REVERSE_Y;
+                D3DXMatrixTransformation(&mat,
+                    &center,
+                    NULL,
+                    &D3DXVECTOR3(cdat[cn].cell[i].magx, cdat[cn].cell[i].magy, 1.0f),//拡大
+                    &center,
+                    D3DXQuaternionRotationAxis(&quat, &D3DXVECTOR3(0, 0, 1), D3DXToRadian(cdat[cn].cell[i].rot)),//回転
+                    &D3DXVECTOR3((float)(cdat[cn].cell[i].dx)*ar2, (float)(cdat[cn].cell[i].dy)*ar2, 0)//表示位置への移動
+                    );
 
-				//色を変更(090特有)
-				DWORD rcolor_a = (color&0xFF000000)>>24;
-				DWORD rcolor_r = (color&0x00FF0000)>>16;
-				DWORD rcolor_g = (color&0x0000FF00)>>8;
-				DWORD rcolor_b = (color&0x000000FF);
-				rcolor_a = (DWORD)(rcolor_a*cdat[cn].cell[i].alpha_ratio);
-				rcolor_r = (DWORD)(rcolor_r*cdat[cn].cell[i].red_ratio);
-				rcolor_g = (DWORD)(rcolor_g*cdat[cn].cell[i].green_ratio);
-				rcolor_b = (DWORD)(rcolor_b*cdat[cn].cell[i].blue_ratio);
-				DWORD rcolor = (rcolor_a<<24) | (rcolor_r<<16) | (rcolor_g<<8) | rcolor_b;
+                matprv2 = SetParentMatrix(mat, FALSE, TRUE);
 
-				//ブレンディングモード変更(090特有)
-				if(cdat[cn].cell[i].flag & GCDCELL_BLEND_ADD){
-					SetAlphaMode(GBLEND_KASAN);
-				}
+                c1revx = cdat[cn].cell[i].flag & GCDCELL_REVERSE_X;
+                c1revy = cdat[cn].cell[i].flag & GCDCELL_REVERSE_Y;
 
-			/*	//テクスチャフィルタリングを決定
-				if( cdat[cn].cell[i].magx != 1.0f ||
-					cdat[cn].cell[i].magy != 1.0f || 
-					(cdat[cn].cell[i].rot + rot)%90 != 0)
-				{
-					d3ddev->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_LINEAR );
-					d3ddev->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_LINEAR );
-				}
-				else
-				{
-					d3ddev->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_POINT );
-					d3ddev->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_POINT );
-				}*/
+                //色を変更(090特有)
+                DWORD rcolor_a = (color & 0xFF000000) >> 24;
+                DWORD rcolor_r = (color & 0x00FF0000) >> 16;
+                DWORD rcolor_g = (color & 0x0000FF00) >> 8;
+                DWORD rcolor_b = (color & 0x000000FF);
+                rcolor_a = (DWORD)(rcolor_a*cdat[cn].cell[i].alpha_ratio);
+                rcolor_r = (DWORD)(rcolor_r*cdat[cn].cell[i].red_ratio);
+                rcolor_g = (DWORD)(rcolor_g*cdat[cn].cell[i].green_ratio);
+                rcolor_b = (DWORD)(rcolor_b*cdat[cn].cell[i].blue_ratio);
+                DWORD rcolor = (rcolor_a << 24) | (rcolor_r << 16) | (rcolor_g << 8) | rcolor_b;
 
-				CheckBlt(pbuf[rdat[rn].bmpno],
-					0,0,rdat[rn].r,
-					c1revx,
-					c1revy,
-					0,z,rcolor);//描画
+                //ブレンディングモード変更(090特有)
+                if(cdat[cn].cell[i].flag & GCDCELL_BLEND_ADD){
+                    SetAlphaMode(GBLEND_KASAN);
+                }
 
-				//ブレンディングモードレストア
-				if(cdat[cn].cell[i].flag & GCDCELL_BLEND_ADD){
-					SetAlphaMode(0);
-				}
+            /*	//テクスチャフィルタリングを決定
+                if( cdat[cn].cell[i].magx != 1.0f ||
+                    cdat[cn].cell[i].magy != 1.0f || 
+                    (cdat[cn].cell[i].rot + rot)%90 != 0)
+                {
+                    d3ddev->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_LINEAR );
+                    d3ddev->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_LINEAR );
+                }
+                else
+                {
+                    d3ddev->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_POINT );
+                    d3ddev->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_POINT );
+                }*/
 
-				// ついでだから影も描くぜ
-				if (shadowed)
-				{
-					D3DXPLANE Plane = D3DXPLANE(0, -1, 0, -0.01);
-					D3DXMATRIX matp;
+                CheckBlt(pbuf[rdat[rn].bmpno],
+                    0,0,rdat[rn].r,
+                    c1revx,
+                    c1revy,
+                    0,z,rcolor);//描画
 
-					if (stencil_enable)
-					{
-						d3ddev->SetRenderState(D3DRS_STENCILPASS, D3DSTENCILCAPS_INCRSAT);	// ステンシルに書き込む
-						d3ddev->SetRenderState( D3DRS_COLORWRITEENABLE,  FALSE );
-						d3ddev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
-					}
-					D3DXMatrixShadow(&mat,
-						&D3DXVECTOR4(0,-100,100,1),
-						&Plane);
-					matp = SetParentMatrix(mat, FALSE);
-					CheckBlt(pbuf[rdat[rn].bmpno],
-						0,0,rdat[rn].r,
-						c1revx,
-						c1revy,
-						0,z,0xAA000000);//影描画
+                //ブレンディングモードレストア
+                if(cdat[cn].cell[i].flag & GCDCELL_BLEND_ADD){
+                    SetAlphaMode(0);
+                }
 
-					d3ddev->SetRenderState(D3DRS_STENCILPASS, D3DSTENCILCAPS_KEEP);	// 元に
-					d3ddev->SetRenderState( D3DRS_COLORWRITEENABLE,  0xFF );
-					d3ddev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
-				}
+                // ついでだから影も描くぜ
+                if (shadowed)
+                {
+                    D3DXPLANE Plane = D3DXPLANE(0, -1, 0, -0.01);
+                    D3DXMATRIX matp;
 
-				SetParentMatrix(matprv2,TRUE);
-			}
-		}
+                    if (stencil_enable)
+                    {
+                        d3ddev->SetRenderState(D3DRS_STENCILPASS, D3DSTENCILCAPS_INCRSAT);	// ステンシルに書き込む
+                        d3ddev->SetRenderState( D3DRS_COLORWRITEENABLE,  FALSE );
+                        d3ddev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
+                    }
+                    D3DXMatrixShadow(&mat,
+                        &D3DXVECTOR4(0,-100,100,1),
+                        &Plane);
+                    matp = SetParentMatrix(mat, FALSE);
+                    CheckBlt(pbuf[rdat[rn].bmpno],
+                        0,0,rdat[rn].r,
+                        c1revx,
+                        c1revy,
+                        0,z,0xAA000000);//影描画
 
-		SetParentMatrix(matprv,TRUE);//「親」の変換行列を元に戻す
-		EnableZ();
+                    d3ddev->SetRenderState(D3DRS_STENCILPASS, D3DSTENCILCAPS_KEEP);	// 元に
+                    d3ddev->SetRenderState( D3DRS_COLORWRITEENABLE,  0xFF );
+                    d3ddev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
+                }
 
-	/*	//テクスチャフィルタを元(?)に戻す
-		d3ddev->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_POINT );
-		d3ddev->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_POINT );*/
-	}
+                SetParentMatrix(matprv2,TRUE);
+            }
+        }
 
-	/*if (g_config.IsHalfMode())
-	{
-		cdat[cn].gcx *= 2;
-		cdat[cn].gcy *= 2;
-		for(int i=0;i<8;i++){
-			cdat[cn].cell[i].dx *= 2;
-			cdat[cn].cell[i].dy *= 2;
-		}
-	}*/
+        SetParentMatrix(matprv,TRUE);//「親」の変換行列を元に戻す
+        EnableZ();
 
-	if(cdat[cn].flag & GCDCELL2_LINK){
-		CellDraw(pbuf,pcdat,prdat,cn+1,x,y,z,rot,revx,revy,color,magx,magy);
-	}
+    /*	//テクスチャフィルタを元(?)に戻す
+        d3ddev->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_POINT );
+        d3ddev->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_POINT );*/
+    }
+
+    /*if (g_config.IsHalfMode())
+    {
+        cdat[cn].gcx *= 2;
+        cdat[cn].gcy *= 2;
+        for(int i=0;i<8;i++){
+            cdat[cn].cell[i].dx *= 2;
+            cdat[cn].cell[i].dy *= 2;
+        }
+    }*/
+
+    if(cdat[cn].flag & GCDCELL2_LINK){
+        CellDraw(pbuf,pcdat,prdat,cn+1,x,y,z,rot,revx,revy,color,magx,magy);
+    }
 }
 
 
@@ -3034,184 +3045,190 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCDで利用するビット�
 *	CellDraw070とCellDraw090は、内部での座標変換の順番が微妙に入れ替わっているので注意
 */
 void CDirectDraw::CellDraw070(
-						   MYSURFACE **pbuf,//!< GCDで利用するビットマップ配列
-						   LPVOID pcdat,	//!< GCD,CELL (GCD_CELL2_070)配列
-						   LPVOID prdat,	//!< GCD,切り取り矩形 (GCD_RECT_070)配列
-						   DWORD cn,		//!< 描画するセル番号
-						   int x,			//!< 描画先基準x
-						   int y,			//!< 描画先基準y
-						   float z,			//!< 描画先z
-						   int rot,			//!< 全体回転角
-						   BOOL revx,		//!< 全体反転X
-						   BOOL revy,		//!< 全体反転Y
-						   DWORD color,		//!< 全体色
-						   float magx,		//!< 全体拡大率X
-						   float magy,		//!< 全体拡大率Y
-						   BOOL shadowed)	//!<影付き
+                           MYSURFACE **pbuf,//!< GCDで利用するビットマップ配列
+                           LPVOID pcdat,	//!< GCD,CELL (GCD_CELL2_070)配列
+                           LPVOID prdat,	//!< GCD,切り取り矩形 (GCD_RECT_070)配列
+                           DWORD cn,		//!< 描画するセル番号
+                           int x,			//!< 描画先基準x
+                           int y,			//!< 描画先基準y
+                           float z,			//!< 描画先z
+                           int rot,			//!< 全体回転角
+                           BOOL revx,		//!< 全体反転X
+                           BOOL revy,		//!< 全体反転Y
+                           DWORD color,		//!< 全体色
+                           float magx,		//!< 全体拡大率X
+                           float magy,		//!< 全体拡大率Y
+                           BOOL shadowed)	//!<影付き
 {
-	if(pbuf==NULL || pcdat==NULL || prdat==NULL)return;
-	if(cn >= GCDMAX_CELLS)return;
+    if(pbuf==NULL || pcdat==NULL || prdat==NULL)return;
+    if(cn >= GCDMAX_CELLS)return;
 
-	#ifdef AKIDX_DEBUG
-	if(magx==0 || magy==0){
-		ODS(_T("☆CDirectDraw::CheckBlt2() Warning-magx or magy ==0\n"));
-	}
-	#endif
+    #ifdef AKIDX_DEBUG
+    if(magx==0 || magy==0){
+        ODS(_T("☆CDirectDraw::CheckBlt2() Warning-magx or magy ==0\n"));
+    }
+    #endif
 
-	GCD_CELL2_070 *cdat=(GCD_CELL2_070*)pcdat;
-	GCD_RECT_070  *rdat=(GCD_RECT_070*)prdat;
+    GCD_CELL2_070 *cdat=(GCD_CELL2_070*)pcdat;
+    GCD_RECT_070  *rdat=(GCD_RECT_070*)prdat;
 
-	/*if (g_config.IsHalfMode())
-	{
-		x /= 2;
-		y /= 2;
-		cdat[cn].gcx /= 2;
-		cdat[cn].gcy /= 2;
-		for(int i=0;i<8;i++){
-			cdat[cn].cell[i].dx /= 2;
-			cdat[cn].cell[i].dy /= 2;
-		}
-	}*/
+    /*if (g_config.IsHalfMode())
+    {
+        x /= 2;
+        y /= 2;
+        cdat[cn].gcx /= 2;
+        cdat[cn].gcy /= 2;
+        for(int i=0;i<8;i++){
+            cdat[cn].cell[i].dx /= 2;
+            cdat[cn].cell[i].dy /= 2;
+        }
+    }*/
 
-	if (devtypenow != D3DDEVTYPE_HAL)
-	{
-		for(int i=0;i<8;i++){
-			DWORD rn;
+    if (devtypenow != D3DDEVTYPE_HAL)
+    {
+        for(int i=0;i<8;i++){
+            DWORD rn;
 
-			rn = cdat[cn].cell[i].cdr;
-			CheckBlt(pbuf[rdat[rn].bmpno],
-				x + cdat[cn].cell[i].dx,y + cdat[cn].cell[i].dy,rdat[rn].r,
-				revx,
-				revy,
-				0,z,color);//描画
-		}
-	}
-	else
-	{
-		D3DXMATRIX matp,mat,tmt,matprv,matprv2;
-		float ar2 = 2.0f/480.0f;
+            rn = cdat[cn].cell[i].cdr;
+            CheckBlt(pbuf[rdat[rn].bmpno],
+                x + cdat[cn].cell[i].dx,y + cdat[cn].cell[i].dy,rdat[rn].r,
+                revx,
+                revy,
+                0,z,color);//描画
+        }
+    }
+    else
+    {
+        D3DXMATRIXA16 matp, mat, tmt, matprv, matprv2;
+        D3DXQUATERNION quat;
+        constexpr float ar2 = 2.0f / 480.0f;
 
-		//キャラクターの変換行列
-		D3DXMatrixIdentity(&matp);
-		D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//重心に移動
-		matp *= tmt;
-		D3DXMatrixScaling(&tmt,magx,magy,1.0f);//拡大
-		matp *= tmt;
-		D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//回転
-		matp *= tmt;
-		if(revy){
-			d3dxplane_y.d=0;
-			D3DXMatrixReflect(&tmt,&d3dxplane_y);//y反転
-			matp *= tmt;
-		}
-		D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);//重心に戻す
-		matp *= tmt;
-		if(revx){
-			d3dxplane_x.d=0;
-			D3DXMatrixReflect(&tmt,&d3dxplane_x);//x反転
-			matp *= tmt;
-		}
-		D3DXMatrixTranslation(&tmt,(float)x*ar2,(float)y*ar2,0);//表示位置への移動
-		matp *= tmt;
+        //キャラクターの変換行列
+        const auto center = D3DXVECTOR3((float)(cdat[cn].gcx)*ar2, (float)(cdat[cn].gcy)*ar2, 0);//重心
 
-		matprv = SetParentMatrix(matp,FALSE);//「親」の変換行列として設定
+        D3DXMatrixTransformation(&matp,
+            &center,
+            NULL,
+            &D3DXVECTOR3(magx, magy, 1.0f),//拡大
+            &center,
+            D3DXQuaternionRotationAxis(&quat, &D3DXVECTOR3(0, 0, 1), D3DXToRadian(rot)),//回転
+            NULL
+            );
+        if (revy){
+            D3DXMatrixTranslation(&tmt, (float)(cdat[cn].gcx)*ar2*(-1.0f), (float)(cdat[cn].gcy)*ar2*(-1.0f), 0);//重心に移動
+            matp *= tmt;
+            d3dxplane_y.d = 0;
+            D3DXMatrixReflect(&tmt, &d3dxplane_y);//y反転
+            matp *= tmt;
+            D3DXMatrixTranslation(&tmt, (float)(cdat[cn].gcx)*ar2, (float)(cdat[cn].gcy)*ar2, 0);//重心に戻す
+            matp *= tmt;
+        }
+        if (revx){
+            d3dxplane_x.d = 0;
+            D3DXMatrixReflect(&tmt, &d3dxplane_x);//x反転
+            matp *= tmt;
+        }
+        //表示位置への移動
+        matp._41 += (float)x*ar2;
+        matp._42 += (float)y*ar2;
 
-		DWORD rn;
-		BOOL c1revx,c1revy;
+        matprv = SetParentMatrix(matp, FALSE);//「親」の変換行列として設定
 
-		for(int i=0;i<8;i++){
-			rn = cdat[cn].cell[i].cdr;
-			if(rn < GCDMAX_RECTANGLES && rn!=0 && rdat[rn].bmpno<GCDMAX_IMAGES){
-				//変換行列を計算
-				D3DXMatrixIdentity(&mat);
-				D3DXMatrixTranslation(&tmt,(float)(rdat[rn].center_x)*ar2*(-1.0f),(float)(rdat[rn].center_y)*ar2*(-1.0f),0);//重心に移動
-				mat *= tmt;
-				D3DXMatrixScaling(&tmt,cdat[cn].cell[i].magx,cdat[cn].cell[i].magy,1.0f);//拡大
-				mat *= tmt;
-				D3DXMatrixRotationZ(&tmt,D3DXToRadian(cdat[cn].cell[i].rot));//回転
-				mat *= tmt;
-				D3DXMatrixTranslation(&tmt,(float)(rdat[rn].center_x*cdat[cn].cell[i].magx)*ar2,(float)(rdat[rn].center_y)*ar2,0);//重心に戻す
-				mat *= tmt;
-				D3DXMatrixTranslation(&tmt,(float)(cdat[cn].cell[i].dx)*ar2,(float)(cdat[cn].cell[i].dy)*ar2,0);//表示位置への移動
-				mat *= tmt;
+        DWORD rn;
+        BOOL c1revx, c1revy;
 
-				matprv2 = SetParentMatrix(mat,FALSE,TRUE);
+        for (int i = 0; i<8; i++){
+            rn = cdat[cn].cell[i].cdr;
+            if (rn < GCDMAX_RECTANGLES && rn != 0 && rdat[rn].bmpno<GCDMAX_IMAGES){
+                //変換行列を計算
+                const auto center = D3DXVECTOR3((float)(rdat[rn].center_x)*ar2, (float)(rdat[rn].center_y)*ar2, 0);//重心
 
-				c1revx = cdat[cn].cell[i].flag & GCDCELL_REVERSE_X;
-				c1revy = cdat[cn].cell[i].flag & GCDCELL_REVERSE_Y;
+                D3DXMatrixTransformation(&mat,
+                    &center,
+                    NULL,
+                    &D3DXVECTOR3(cdat[cn].cell[i].magx, cdat[cn].cell[i].magy, 1.0f),//拡大
+                    &center,
+                    D3DXQuaternionRotationAxis(&quat, &D3DXVECTOR3(0, 0, 1), D3DXToRadian(cdat[cn].cell[i].rot)),//回転
+                    &D3DXVECTOR3((float)(cdat[cn].cell[i].dx)*ar2, (float)(cdat[cn].cell[i].dy)*ar2, 0)//表示位置への移動
+                    );
 
-		/*		//テクスチャフィルタリングを決定
-				if( cdat[cn].cell[i].magx != 1.0f ||
-					cdat[cn].cell[i].magy != 1.0f || 
-					(cdat[cn].cell[i].rot + rot)%90 != 0)
-				{
-					d3ddev->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_LINEAR );
-					d3ddev->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_LINEAR );
-				}
-				else
-				{
-					d3ddev->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_POINT );
-					d3ddev->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_POINT );
-				}*/
+                matprv2 = SetParentMatrix(mat,FALSE,TRUE);
 
-				CheckBlt(pbuf[rdat[rn].bmpno],
-					0,0,rdat[rn].r,
-					c1revx,
-					c1revy,
-					0,z,color);//描画
+                c1revx = cdat[cn].cell[i].flag & GCDCELL_REVERSE_X;
+                c1revy = cdat[cn].cell[i].flag & GCDCELL_REVERSE_Y;
 
-				// ついでだから影も描くぜ
-				if (shadowed)
-				{
-					D3DXPLANE Plane = D3DXPLANE(0, -1, 0, -0.01);
-					D3DXMATRIX matp;
+        /*		//テクスチャフィルタリングを決定
+                if( cdat[cn].cell[i].magx != 1.0f ||
+                    cdat[cn].cell[i].magy != 1.0f || 
+                    (cdat[cn].cell[i].rot + rot)%90 != 0)
+                {
+                    d3ddev->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_LINEAR );
+                    d3ddev->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_LINEAR );
+                }
+                else
+                {
+                    d3ddev->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_POINT );
+                    d3ddev->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_POINT );
+                }*/
 
-					if (stencil_enable)
-					{
-						d3ddev->SetRenderState(D3DRS_STENCILPASS, D3DSTENCILCAPS_INCRSAT);	// ステンシルに書き込む
-						d3ddev->SetRenderState( D3DRS_COLORWRITEENABLE,  FALSE );
-						d3ddev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
-					}
-					D3DXMatrixShadow(&mat,
-						&D3DXVECTOR4(0,-100,100,1),
-						&Plane);
-					matp = SetParentMatrix(mat, FALSE);
-					CheckBlt(pbuf[rdat[rn].bmpno],
-						0,0,rdat[rn].r,
-						c1revx,
-						c1revy,
-						0,z,0xAA000000);//影描画
+                CheckBlt(pbuf[rdat[rn].bmpno],
+                    0,0,rdat[rn].r,
+                    c1revx,
+                    c1revy,
+                    0,z,color);//描画
 
-					d3ddev->SetRenderState(D3DRS_STENCILPASS, D3DSTENCILCAPS_KEEP);	// 元に
-					d3ddev->SetRenderState( D3DRS_COLORWRITEENABLE,  0xFF );
-					d3ddev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
-				}
+                // ついでだから影も描くぜ
+                if (shadowed)
+                {
+                    D3DXPLANE Plane = D3DXPLANE(0, -1, 0, -0.01);
+                    D3DXMATRIX matp;
 
-				SetParentMatrix(matprv2,TRUE);
-			}
-		}
+                    if (stencil_enable)
+                    {
+                        d3ddev->SetRenderState(D3DRS_STENCILPASS, D3DSTENCILCAPS_INCRSAT);	// ステンシルに書き込む
+                        d3ddev->SetRenderState( D3DRS_COLORWRITEENABLE,  FALSE );
+                        d3ddev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
+                    }
+                    D3DXMatrixShadow(&mat,
+                        &D3DXVECTOR4(0,-100,100,1),
+                        &Plane);
+                    matp = SetParentMatrix(mat, FALSE);
+                    CheckBlt(pbuf[rdat[rn].bmpno],
+                        0,0,rdat[rn].r,
+                        c1revx,
+                        c1revy,
+                        0,z,0xAA000000);//影描画
 
-		SetParentMatrix(matprv,TRUE);//「親」の変換行列を元に戻す
-		EnableZ();
-	}
+                    d3ddev->SetRenderState(D3DRS_STENCILPASS, D3DSTENCILCAPS_KEEP);	// 元に
+                    d3ddev->SetRenderState( D3DRS_COLORWRITEENABLE,  0xFF );
+                    d3ddev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
+                }
+
+                SetParentMatrix(matprv2,TRUE);
+            }
+        }
+
+        SetParentMatrix(matprv,TRUE);//「親」の変換行列を元に戻す
+        EnableZ();
+    }
 
 /*	//テクスチャーフィルタを元に戻す
-	d3ddev->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_POINT );
-	d3ddev->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_POINT );*/
+    d3ddev->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_POINT );
+    d3ddev->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_POINT );*/
 
-	/*if (g_config.IsHalfMode())
-	{
-		cdat[cn].gcx *= 2;
-		cdat[cn].gcy *= 2;
-		for(int i=0;i<8;i++){
-			cdat[cn].cell[i].dx *= 2;
-			cdat[cn].cell[i].dy *= 2;
-		}
-	}*/
+    /*if (g_config.IsHalfMode())
+    {
+        cdat[cn].gcx *= 2;
+        cdat[cn].gcy *= 2;
+        for(int i=0;i<8;i++){
+            cdat[cn].cell[i].dx *= 2;
+            cdat[cn].cell[i].dy *= 2;
+        }
+    }*/
 
-	if(cdat[cn].flag & GCDCELL2_LINK){
-		CellDraw(pbuf,pcdat,prdat,cn+1,x,y,z,rot,revx,revy,color,magx,magy);
-	}
+    if(cdat[cn].flag & GCDCELL2_LINK){
+        CellDraw(pbuf,pcdat,prdat,cn+1,x,y,z,rot,revx,revy,color,magx,magy);
+    }
 }
 
 
@@ -3226,214 +3243,214 @@ void CDirectDraw::CellDraw070(
 *	@sa CellDraw
 */
 void CDirectDraw::CellDrawED(
-						   MYSURFACE **pbuf,
-						   LPVOID pcdat,
-						   LPVOID prdat,
-						   DWORD cn,
-						   int x,
-						   int y,
-						   float z,
-						   int rot,
-						   BOOL revx,
-						   BOOL revy,
-						   DWORD color,
-						   float magx,
-						   float magy,
-						   UINT ed_rect,			//!< 編集中の矩形番号
-						   BOOL color_modulat,		//!< 強調表示を行う
-						   BOOL is_previous_cell,	//!< *さかのぼって描画されたセルかどうか
-						   BOOL is_next_cell,		//!< *"次"扱いで描画されたセルかどうか
-						   BOOL is_edit_cell)		//!< *現在編集ちゅうのセルかどうか
+                           MYSURFACE **pbuf,
+                           LPVOID pcdat,
+                           LPVOID prdat,
+                           DWORD cn,
+                           int x,
+                           int y,
+                           float z,
+                           int rot,
+                           BOOL revx,
+                           BOOL revy,
+                           DWORD color,
+                           float magx,
+                           float magy,
+                           UINT ed_rect,			//!< 編集中の矩形番号
+                           BOOL color_modulat,		//!< 強調表示を行う
+                           BOOL is_previous_cell,	//!< *さかのぼって描画されたセルかどうか
+                           BOOL is_next_cell,		//!< *"次"扱いで描画されたセルかどうか
+                           BOOL is_edit_cell)		//!< *現在編集ちゅうのセルかどうか
 {
-	if(pbuf==NULL || pcdat==NULL || prdat==NULL)return;
-	if(cn >= GCDMAX_CELLS)return;
+    if(pbuf==NULL || pcdat==NULL || prdat==NULL)return;
+    if(cn >= GCDMAX_CELLS)return;
 
-	GCD_CELL2_090 *cdat=(GCD_CELL2_090*)pcdat;
-	GCD_RECT_090  *rdat=(GCD_RECT_090*)prdat;
+    GCD_CELL2_090 *cdat=(GCD_CELL2_090*)pcdat;
+    GCD_RECT_090  *rdat=(GCD_RECT_090*)prdat;
 
-	//前セル描画(ED特有)--------------------------------------------------------------------------------
-	if(cn>0 && !is_next_cell && (cdat[cn-1].flag & GCDCELL2_LINK)){
-		CellDrawED(pbuf,pcdat,prdat,cn-1,x,y,z,rot,revx,revy,color,magx,magy,ed_rect,color_modulat,TRUE,FALSE,FALSE);
-	}//------------------------------------------------------------------------------------------------
+    //前セル描画(ED特有)--------------------------------------------------------------------------------
+    if(cn>0 && !is_next_cell && (cdat[cn-1].flag & GCDCELL2_LINK)){
+        CellDrawED(pbuf,pcdat,prdat,cn-1,x,y,z,rot,revx,revy,color,magx,magy,ed_rect,color_modulat,TRUE,FALSE,FALSE);
+    }//------------------------------------------------------------------------------------------------
 
-	//色準備(ED特有)------------------------------------------------------------------------------------
-	DWORD color1 = color;
-	DWORD color2_a = (color&0xFF000000)>>24;
-	DWORD color2_r = (color&0x00FF0000)>>16;
-	DWORD color2_g = (color&0x0000FF00)>>8;
-	DWORD color2_b = (color&0x000000FF);
-	if(is_edit_cell){
-		color2_r = (DWORD)(color2_r*0.7f);
-		color2_g = (DWORD)(color2_g*0.7f);
-		color2_b = (DWORD)(color2_b*0.7f);
-	}
-	else{
-		color2_r = (DWORD)(color2_r*0.4f);
-		color2_g = (DWORD)(color2_g*0.4f);
-		color2_b = (DWORD)(color2_b*0.4f);
-	}
-	DWORD color2 = (color2_a<<24) | (color2_r<<16) | (color2_g<<8) | color2_b;
-	//-------------------------------------------------------------------------------------------------
+    //色準備(ED特有)------------------------------------------------------------------------------------
+    DWORD color1 = color;
+    DWORD color2_a = (color&0xFF000000)>>24;
+    DWORD color2_r = (color&0x00FF0000)>>16;
+    DWORD color2_g = (color&0x0000FF00)>>8;
+    DWORD color2_b = (color&0x000000FF);
+    if(is_edit_cell){
+        color2_r = (DWORD)(color2_r*0.7f);
+        color2_g = (DWORD)(color2_g*0.7f);
+        color2_b = (DWORD)(color2_b*0.7f);
+    }
+    else{
+        color2_r = (DWORD)(color2_r*0.4f);
+        color2_g = (DWORD)(color2_g*0.4f);
+        color2_b = (DWORD)(color2_b*0.4f);
+    }
+    DWORD color2 = (color2_a<<24) | (color2_r<<16) | (color2_g<<8) | color2_b;
+    //-------------------------------------------------------------------------------------------------
 
-	D3DXMATRIX matp,mat,tmt,matprv,matprv2;
-	float ar2 = 1.0f/HALF_HEIGHT;
-	
-	//ZW/ZTフラグ操作
-	if((cdat[cn].flag & GCDCELL2_DISABLE_ZT) || (cdat[cn].flag & GCDCELL2_DISABLE_ZW))
-	{
-		BOOL zt = (cdat[cn].flag & GCDCELL2_DISABLE_ZT);
-		BOOL zw = (cdat[cn].flag & GCDCELL2_DISABLE_ZW);
-		EnableZ(zt,zw);
-	}
+    D3DXMATRIX matp,mat,tmt,matprv,matprv2;
+    float ar2 = 1.0f/HALF_HEIGHT;
+    
+    //ZW/ZTフラグ操作
+    if((cdat[cn].flag & GCDCELL2_DISABLE_ZT) || (cdat[cn].flag & GCDCELL2_DISABLE_ZW))
+    {
+        BOOL zt = (cdat[cn].flag & GCDCELL2_DISABLE_ZT);
+        BOOL zw = (cdat[cn].flag & GCDCELL2_DISABLE_ZW);
+        EnableZ(zt,zw);
+    }
 
-	//キャラクターの変換行列
-	D3DXMatrixIdentity(&matp);
-	float gcx = (float)(cdat[cn].gcx)*ar2;
-	float gcy = (float)(cdat[cn].gcy)*ar2;
-	if(!(cdat[cn].flag & GCDCELL2_SCA_GCENTER))
-	{	
-		if(cdat[cn].flag & GCDCELL2_ROT_BASEPOINT)
-		{
-			//スケール：足元中心 回転：足元中心
-			D3DXMatrixScaling(&tmt,magx,magy,1.0f);//拡大
-			gcx *= magx;
-			gcy *= magy;
-			matp *= tmt;
-			D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//回転
-			matp *= tmt;
-			D3DXMatrixTranslation(&tmt,-gcx,-gcy,0);//重心に移動
-			matp *= tmt;
-		}
-		else{
-			//スケール：足元中心 回転：重心中心
-			D3DXMatrixScaling(&tmt,magx,magy,1.0f);//拡大
-			gcx *= magx;
-			gcy *= magy;
-			matp *= tmt;
-			D3DXMatrixTranslation(&tmt,-gcx,-gcy,0);//重心に移動
-			matp *= tmt;
-			D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//回転
-			matp *= tmt;
-		}
-	}
-	else
-	{
-		if(cdat[cn].flag & GCDCELL2_ROT_BASEPOINT)
-		{
-			//スケール：重心中心 回転：足元中心
-			D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//回転
-			matp *= tmt;
-			D3DXMatrixTranslation(&tmt,-gcx,-gcy,0);//重心に移動
-			matp *= tmt;
-			D3DXMatrixScaling(&tmt,magx,magy,1.0f);//拡大
-			matp *= tmt;
-		}
-		else{
-			//スケール：重心中心 回転：重心中心
-			D3DXMatrixTranslation(&tmt,-gcx,-gcy,0);//重心に移動
-			matp *= tmt;
-			D3DXMatrixScaling(&tmt,magx,magy,1.0f);//拡大
-			matp *= tmt;
-			D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//回転
-			matp *= tmt;
-		}
-	}
-	if(revy){
-		d3dxplane_y.d=0;
-		D3DXMatrixReflect(&tmt,&d3dxplane_y);//y反転
-		matp *= tmt;
-	}
-	D3DXMatrixTranslation(&tmt,gcx,gcy,0);//重心に戻す
-	matp *= tmt;
-	if(revx){
-		d3dxplane_x.d=0;
-		D3DXMatrixReflect(&tmt,&d3dxplane_x);//x反転
-		matp *= tmt;
-	}
-	D3DXMatrixTranslation(&tmt,(float)x*ar2,(float)y*ar2,0);//表示位置への移動
-	matp *= tmt;
+    //キャラクターの変換行列
+    D3DXMatrixIdentity(&matp);
+    float gcx = (float)(cdat[cn].gcx)*ar2;
+    float gcy = (float)(cdat[cn].gcy)*ar2;
+    if(!(cdat[cn].flag & GCDCELL2_SCA_GCENTER))
+    {	
+        if(cdat[cn].flag & GCDCELL2_ROT_BASEPOINT)
+        {
+            //スケール：足元中心 回転：足元中心
+            D3DXMatrixScaling(&tmt,magx,magy,1.0f);//拡大
+            gcx *= magx;
+            gcy *= magy;
+            matp *= tmt;
+            D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//回転
+            matp *= tmt;
+            D3DXMatrixTranslation(&tmt,-gcx,-gcy,0);//重心に移動
+            matp *= tmt;
+        }
+        else{
+            //スケール：足元中心 回転：重心中心
+            D3DXMatrixScaling(&tmt,magx,magy,1.0f);//拡大
+            gcx *= magx;
+            gcy *= magy;
+            matp *= tmt;
+            D3DXMatrixTranslation(&tmt,-gcx,-gcy,0);//重心に移動
+            matp *= tmt;
+            D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//回転
+            matp *= tmt;
+        }
+    }
+    else
+    {
+        if(cdat[cn].flag & GCDCELL2_ROT_BASEPOINT)
+        {
+            //スケール：重心中心 回転：足元中心
+            D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//回転
+            matp *= tmt;
+            D3DXMatrixTranslation(&tmt,-gcx,-gcy,0);//重心に移動
+            matp *= tmt;
+            D3DXMatrixScaling(&tmt,magx,magy,1.0f);//拡大
+            matp *= tmt;
+        }
+        else{
+            //スケール：重心中心 回転：重心中心
+            D3DXMatrixTranslation(&tmt,-gcx,-gcy,0);//重心に移動
+            matp *= tmt;
+            D3DXMatrixScaling(&tmt,magx,magy,1.0f);//拡大
+            matp *= tmt;
+            D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//回転
+            matp *= tmt;
+        }
+    }
+    if(revy){
+        d3dxplane_y.d=0;
+        D3DXMatrixReflect(&tmt,&d3dxplane_y);//y反転
+        matp *= tmt;
+    }
+    D3DXMatrixTranslation(&tmt,gcx,gcy,0);//重心に戻す
+    matp *= tmt;
+    if(revx){
+        d3dxplane_x.d=0;
+        D3DXMatrixReflect(&tmt,&d3dxplane_x);//x反転
+        matp *= tmt;
+    }
+    D3DXMatrixTranslation(&tmt,(float)x*ar2,(float)y*ar2,0);//表示位置への移動
+    matp *= tmt;
 
-	matprv = SetParentMatrix(matp,FALSE,TRUE);//「親」の変換行列として設定
+    matprv = SetParentMatrix(matp,FALSE,TRUE);//「親」の変換行列として設定
 
-	DWORD rn;
-	BOOL c1revx,c1revy;
+    DWORD rn;
+    BOOL c1revx,c1revy;
 
-	for(int i=0;i<8;i++){
-		rn = cdat[cn].cell[i].cdr;
-		if(rn < GCDMAX_RECTANGLES && rn!=0 && rdat[rn].bmpno<GCDMAX_IMAGES){
-			//変換行列を計算
-			D3DXMatrixIdentity(&mat);
-			D3DXMatrixTranslation(&tmt,(float)(rdat[rn].center_x)*ar2*(-1.0f),(float)(rdat[rn].center_y)*ar2*(-1.0f),0);//重心に移動
-			mat *= tmt;
-			D3DXMatrixScaling(&tmt,cdat[cn].cell[i].magx,cdat[cn].cell[i].magy,1.0f);//拡大
-			mat *= tmt;
-			D3DXMatrixRotationZ(&tmt,D3DXToRadian(cdat[cn].cell[i].rot));//回転
-			mat *= tmt;
-			D3DXMatrixTranslation(&tmt,(float)(rdat[rn].center_x)*ar2,(float)(rdat[rn].center_y)*ar2,0);//重心に戻す
-			mat *= tmt;
-			D3DXMatrixTranslation(&tmt,(float)(cdat[cn].cell[i].dx)*ar2,(float)(cdat[cn].cell[i].dy)*ar2,0);//表示位置への移動
-			mat *= tmt;
+    for(int i=0;i<8;i++){
+        rn = cdat[cn].cell[i].cdr;
+        if(rn < GCDMAX_RECTANGLES && rn!=0 && rdat[rn].bmpno<GCDMAX_IMAGES){
+            //変換行列を計算
+            D3DXMatrixIdentity(&mat);
+            D3DXMatrixTranslation(&tmt,(float)(rdat[rn].center_x)*ar2*(-1.0f),(float)(rdat[rn].center_y)*ar2*(-1.0f),0);//重心に移動
+            mat *= tmt;
+            D3DXMatrixScaling(&tmt,cdat[cn].cell[i].magx,cdat[cn].cell[i].magy,1.0f);//拡大
+            mat *= tmt;
+            D3DXMatrixRotationZ(&tmt,D3DXToRadian(cdat[cn].cell[i].rot));//回転
+            mat *= tmt;
+            D3DXMatrixTranslation(&tmt,(float)(rdat[rn].center_x)*ar2,(float)(rdat[rn].center_y)*ar2,0);//重心に戻す
+            mat *= tmt;
+            D3DXMatrixTranslation(&tmt,(float)(cdat[cn].cell[i].dx)*ar2,(float)(cdat[cn].cell[i].dy)*ar2,0);//表示位置への移動
+            mat *= tmt;
 
-			matprv2 = SetParentMatrix(mat,FALSE,TRUE);
+            matprv2 = SetParentMatrix(mat,FALSE,TRUE);
 
-			c1revx = cdat[cn].cell[i].flag & GCDCELL_REVERSE_X;
-			c1revy = cdat[cn].cell[i].flag & GCDCELL_REVERSE_Y;
+            c1revx = cdat[cn].cell[i].flag & GCDCELL_REVERSE_X;
+            c1revy = cdat[cn].cell[i].flag & GCDCELL_REVERSE_Y;
 
-			//色変更(ED特有)--------------------------------------------------------------------
-			if(color_modulat)
-			{
-				if(is_edit_cell){
-					if(i==ed_rect)color = color1;
-					else color = color2;
-				}
-				else color = color2;
-			}
-			//---------------------------------------------------------------------------------
+            //色変更(ED特有)--------------------------------------------------------------------
+            if(color_modulat)
+            {
+                if(is_edit_cell){
+                    if(i==ed_rect)color = color1;
+                    else color = color2;
+                }
+                else color = color2;
+            }
+            //---------------------------------------------------------------------------------
 
-			//色を変更(090特有)
-			DWORD rcolor_a = (color&0xFF000000)>>24;
-			DWORD rcolor_r = (color&0x00FF0000)>>16;
-			DWORD rcolor_g = (color&0x0000FF00)>>8;
-			DWORD rcolor_b = (color&0x000000FF);
-			rcolor_a = (DWORD)(rcolor_a*cdat[cn].cell[i].alpha_ratio);
-			rcolor_r = (DWORD)(rcolor_r*cdat[cn].cell[i].red_ratio);
-			rcolor_g = (DWORD)(rcolor_g*cdat[cn].cell[i].green_ratio);
-			rcolor_b = (DWORD)(rcolor_b*cdat[cn].cell[i].blue_ratio);
-			DWORD rcolor = (rcolor_a<<24) | (rcolor_r<<16) | (rcolor_g<<8) | rcolor_b;
+            //色を変更(090特有)
+            DWORD rcolor_a = (color&0xFF000000)>>24;
+            DWORD rcolor_r = (color&0x00FF0000)>>16;
+            DWORD rcolor_g = (color&0x0000FF00)>>8;
+            DWORD rcolor_b = (color&0x000000FF);
+            rcolor_a = (DWORD)(rcolor_a*cdat[cn].cell[i].alpha_ratio);
+            rcolor_r = (DWORD)(rcolor_r*cdat[cn].cell[i].red_ratio);
+            rcolor_g = (DWORD)(rcolor_g*cdat[cn].cell[i].green_ratio);
+            rcolor_b = (DWORD)(rcolor_b*cdat[cn].cell[i].blue_ratio);
+            DWORD rcolor = (rcolor_a<<24) | (rcolor_r<<16) | (rcolor_g<<8) | rcolor_b;
 
-			//ブレンディングモード変更(090特有)
-			if(cdat[cn].cell[i].flag & GCDCELL_BLEND_ADD){
-				SetAlphaMode(GBLEND_KASAN);
-			}
-			
-			CheckBlt(pbuf[rdat[rn].bmpno],
-				0,0,rdat[rn].r,
-				c1revx,
-				c1revy,
-				0,z,rcolor);//描画
+            //ブレンディングモード変更(090特有)
+            if(cdat[cn].cell[i].flag & GCDCELL_BLEND_ADD){
+                SetAlphaMode(GBLEND_KASAN);
+            }
+            
+            CheckBlt(pbuf[rdat[rn].bmpno],
+                0,0,rdat[rn].r,
+                c1revx,
+                c1revy,
+                0,z,rcolor);//描画
 
-			//ブレンディングモードレストア
-			if(cdat[cn].cell[i].flag & GCDCELL_BLEND_ADD){
-				SetAlphaMode(0);
-			}
+            //ブレンディングモードレストア
+            if(cdat[cn].cell[i].flag & GCDCELL_BLEND_ADD){
+                SetAlphaMode(0);
+            }
 
-			SetParentMatrix(matprv2,TRUE);
-		}
-	}
+            SetParentMatrix(matprv2,TRUE);
+        }
+    }
 
-	SetParentMatrix(matprv,TRUE);//「親」の変換行列を元に戻す
+    SetParentMatrix(matprv,TRUE);//「親」の変換行列を元に戻す
 
-	if(!is_previous_cell){
-		color = color1;
-		if(cdat[cn].flag & GCDCELL2_LINK){
-			CellDrawED(pbuf,pcdat,prdat,cn+1,x,y,z,rot,revx,revy,color,magx,magy,
-						ed_rect,
-						color_modulat,
-						FALSE,
-						TRUE,
-						FALSE);
-		}
-	}
+    if(!is_previous_cell){
+        color = color1;
+        if(cdat[cn].flag & GCDCELL2_LINK){
+            CellDrawED(pbuf,pcdat,prdat,cn+1,x,y,z,rot,revx,revy,color,magx,magy,
+                        ed_rect,
+                        color_modulat,
+                        FALSE,
+                        TRUE,
+                        FALSE);
+        }
+    }
 }
 #endif
 
@@ -3445,125 +3462,125 @@ void CDirectDraw::CellDrawED(
 *	引数は基本的にCellDrawとおんなじもんである
 */
 void CDirectDraw::HanteiDraw(
-						LPVOID pcdat,
-						LPVOID phdat,	//!< GCD判定矩形(GCD_HANTEI)配列
-						DWORD cn,
-						BOOL b_atr,
-						BOOL b_kas,
-						BOOL b_atk,
-						int x,
-						int y,
-						float z,
-						int rot,
-						BOOL revx,
-						BOOL revy,
-						float magx,
-						float magy)
+                        LPVOID pcdat,
+                        LPVOID phdat,	//!< GCD判定矩形(GCD_HANTEI)配列
+                        DWORD cn,
+                        BOOL b_atr,
+                        BOOL b_kas,
+                        BOOL b_atk,
+                        int x,
+                        int y,
+                        float z,
+                        int rot,
+                        BOOL revx,
+                        BOOL revy,
+                        float magx,
+                        float magy)
 {
-	if(pcdat==NULL || phdat==NULL)return;
-	if(cn >= GCDMAX_CELLS)return;
+    if(pcdat==NULL || phdat==NULL)return;
+    if(cn >= GCDMAX_CELLS)return;
 
-	GCD_CELL2 *cdat=(GCD_CELL2*)pcdat;
-	GCD_HANTEI *hdat=(GCD_HANTEI*)phdat;
+    GCD_CELL2 *cdat=(GCD_CELL2*)pcdat;
+    GCD_HANTEI *hdat=(GCD_HANTEI*)phdat;
 
-	D3DXMATRIX matp,mat,tmt,matprv,matprv2;
-	float ar2 = 2.0f/480.0f;
+    D3DXMATRIX matp,mat,tmt,matprv,matprv2;
+    float ar2 = 2.0f/480.0f;
 
-	//キャラクターの変換行列
-	D3DXMatrixIdentity(&matp);
-	D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//重心に移動
-	matp *= tmt;
-	D3DXMatrixScaling(&tmt,magx,magy,1.0f);//拡大
-	matp *= tmt;
-	D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//回転
-	matp *= tmt;
-	if(revy){
-		d3dxplane_y.d=0;
-		D3DXMatrixReflect(&tmt,&d3dxplane_y);//y反転
-		matp *= tmt;
-	}
-	D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);//重心に戻す
-	matp *= tmt;
-	if(revx){
-		d3dxplane_x.d=0;
-		D3DXMatrixReflect(&tmt,&d3dxplane_x);//x反転
-		matp *= tmt;
-	}
-	D3DXMatrixTranslation(&tmt,(float)x*ar2,(float)y*ar2,0);//表示位置への移動
-	matp *= tmt;
+    //キャラクターの変換行列
+    D3DXMatrixIdentity(&matp);
+    D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//重心に移動
+    matp *= tmt;
+    D3DXMatrixScaling(&tmt,magx,magy,1.0f);//拡大
+    matp *= tmt;
+    D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//回転
+    matp *= tmt;
+    if(revy){
+        d3dxplane_y.d=0;
+        D3DXMatrixReflect(&tmt,&d3dxplane_y);//y反転
+        matp *= tmt;
+    }
+    D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);//重心に戻す
+    matp *= tmt;
+    if(revx){
+        d3dxplane_x.d=0;
+        D3DXMatrixReflect(&tmt,&d3dxplane_x);//x反転
+        matp *= tmt;
+    }
+    D3DXMatrixTranslation(&tmt,(float)x*ar2,(float)y*ar2,0);//表示位置への移動
+    matp *= tmt;
 
-	int i;
-	MYVERTEX3D vb[4];
-	for(i=0;i<4;i++){
-		vb[i].tu = vb[i].tv=0;
-		vb[i].z = 0;
-	}
+    int i;
+    MYVERTEX3D vb[4];
+    for(i=0;i<4;i++){
+        vb[i].tu = vb[i].tv=0;
+        vb[i].z = 0;
+    }
 
-	d3ddev->SetRenderState(D3DRS_ZENABLE,FALSE);
-	d3ddev->SetTexture(0,NULL);
-	d3ddev->SetTransform(D3DTS_WORLD,&matp);
+    d3ddev->SetRenderState(D3DRS_ZENABLE,FALSE);
+    d3ddev->SetTexture(0,NULL);
+    d3ddev->SetTransform(D3DTS_WORLD,&matp);
 
-	if(b_atr){//当たり判定（黄色）の描画
-		for(i=0;i<3;i++){
-			//座標値セット
-			vb[0].x = hdat[cn].kurai[i].left / HALF_HEIGHT;
-			vb[0].y = hdat[cn].kurai[i].top / HALF_HEIGHT;
-			vb[1].x = hdat[cn].kurai[i].right / HALF_HEIGHT;
-			vb[1].y = hdat[cn].kurai[i].top / HALF_HEIGHT;
-			vb[2].x = hdat[cn].kurai[i].left / HALF_HEIGHT;
-			vb[2].y = hdat[cn].kurai[i].bottom / HALF_HEIGHT;
-			vb[3].x = hdat[cn].kurai[i].right / HALF_HEIGHT;
-			vb[3].y = hdat[cn].kurai[i].bottom / HALF_HEIGHT;
-			vb[0].color=
-				vb[1].color=
-				vb[2].color=
-				vb[3].color=0x77FFFF00;
-			//描画
-			d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vb,sizeof(MYVERTEX3D));
-		}
-	}
+    if(b_atr){//当たり判定（黄色）の描画
+        for(i=0;i<3;i++){
+            //座標値セット
+            vb[0].x = hdat[cn].kurai[i].left / HALF_HEIGHT;
+            vb[0].y = hdat[cn].kurai[i].top / HALF_HEIGHT;
+            vb[1].x = hdat[cn].kurai[i].right / HALF_HEIGHT;
+            vb[1].y = hdat[cn].kurai[i].top / HALF_HEIGHT;
+            vb[2].x = hdat[cn].kurai[i].left / HALF_HEIGHT;
+            vb[2].y = hdat[cn].kurai[i].bottom / HALF_HEIGHT;
+            vb[3].x = hdat[cn].kurai[i].right / HALF_HEIGHT;
+            vb[3].y = hdat[cn].kurai[i].bottom / HALF_HEIGHT;
+            vb[0].color=
+                vb[1].color=
+                vb[2].color=
+                vb[3].color=0x77FFFF00;
+            //描画
+            d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vb,sizeof(MYVERTEX3D));
+        }
+    }
 
-	if(b_kas){//重なり判定（あか）の描画
-		for(i=0;i<3;i++){
-			//座標値セット
-			vb[0].x = hdat[cn].kas[i].left / HALF_HEIGHT;
-			vb[0].y = hdat[cn].kas[i].top / HALF_HEIGHT;
-			vb[1].x = hdat[cn].kas[i].right / HALF_HEIGHT;
-			vb[1].y = hdat[cn].kas[i].top / HALF_HEIGHT;
-			vb[2].x = hdat[cn].kas[i].left / HALF_HEIGHT;
-			vb[2].y = hdat[cn].kas[i].bottom / HALF_HEIGHT;
-			vb[3].x = hdat[cn].kas[i].right / HALF_HEIGHT;
-			vb[3].y = hdat[cn].kas[i].bottom / HALF_HEIGHT;
-			vb[0].color=
-				vb[1].color=
-				vb[2].color=
-				vb[3].color=0x77FF0000;
-			//描画
-			d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vb,sizeof(MYVERTEX3D));
-		}
-	}
+    if(b_kas){//重なり判定（あか）の描画
+        for(i=0;i<3;i++){
+            //座標値セット
+            vb[0].x = hdat[cn].kas[i].left / HALF_HEIGHT;
+            vb[0].y = hdat[cn].kas[i].top / HALF_HEIGHT;
+            vb[1].x = hdat[cn].kas[i].right / HALF_HEIGHT;
+            vb[1].y = hdat[cn].kas[i].top / HALF_HEIGHT;
+            vb[2].x = hdat[cn].kas[i].left / HALF_HEIGHT;
+            vb[2].y = hdat[cn].kas[i].bottom / HALF_HEIGHT;
+            vb[3].x = hdat[cn].kas[i].right / HALF_HEIGHT;
+            vb[3].y = hdat[cn].kas[i].bottom / HALF_HEIGHT;
+            vb[0].color=
+                vb[1].color=
+                vb[2].color=
+                vb[3].color=0x77FF0000;
+            //描画
+            d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vb,sizeof(MYVERTEX3D));
+        }
+    }
 
-	if(b_atk){//攻撃判定（あお）の描画
-		for(i=0;i<3;i++){
-			//座標値セット
-			vb[0].x = hdat[cn].attack[i].left / HALF_HEIGHT;
-			vb[0].y = hdat[cn].attack[i].top / HALF_HEIGHT;
-			vb[1].x = hdat[cn].attack[i].right / HALF_HEIGHT;
-			vb[1].y = hdat[cn].attack[i].top / HALF_HEIGHT;
-			vb[2].x = hdat[cn].attack[i].left / HALF_HEIGHT;
-			vb[2].y = hdat[cn].attack[i].bottom / HALF_HEIGHT;
-			vb[3].x = hdat[cn].attack[i].right / HALF_HEIGHT;
-			vb[3].y = hdat[cn].attack[i].bottom / HALF_HEIGHT;
-			vb[0].color=
-				vb[1].color=
-				vb[2].color=
-				vb[3].color=0x770000FF;
-			//描画
-			d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vb,sizeof(MYVERTEX3D));
-		}
-	}
+    if(b_atk){//攻撃判定（あお）の描画
+        for(i=0;i<3;i++){
+            //座標値セット
+            vb[0].x = hdat[cn].attack[i].left / HALF_HEIGHT;
+            vb[0].y = hdat[cn].attack[i].top / HALF_HEIGHT;
+            vb[1].x = hdat[cn].attack[i].right / HALF_HEIGHT;
+            vb[1].y = hdat[cn].attack[i].top / HALF_HEIGHT;
+            vb[2].x = hdat[cn].attack[i].left / HALF_HEIGHT;
+            vb[2].y = hdat[cn].attack[i].bottom / HALF_HEIGHT;
+            vb[3].x = hdat[cn].attack[i].right / HALF_HEIGHT;
+            vb[3].y = hdat[cn].attack[i].bottom / HALF_HEIGHT;
+            vb[0].color=
+                vb[1].color=
+                vb[2].color=
+                vb[3].color=0x770000FF;
+            //描画
+            d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vb,sizeof(MYVERTEX3D));
+        }
+    }
 
-	d3ddev->SetRenderState(D3DRS_ZENABLE,TRUE);
+    d3ddev->SetRenderState(D3DRS_ZENABLE,TRUE);
 }
 
 
@@ -3571,28 +3588,28 @@ void CDirectDraw::HanteiDraw(
 *	@brief 単純線描画
 */
 void CDirectDraw::DrawLine(
-						   int sx,		//!< 始点x 
-						   int sy,		//!< 始点y
-						   int gx,		//!< 終点x
-						   int gy,		//!< 終点y	
-						   DWORD col	//!< 描画色
-						   )
+                           int sx,		//!< 始点x 
+                           int sy,		//!< 始点y
+                           int gx,		//!< 終点x
+                           int gy,		//!< 終点y	
+                           DWORD col	//!< 描画色
+                           )
 {
-	MYVERTEX3D vb[2];
-	vb[0].color = col;
-	vb[0].tu = vb[0].tv = vb[0].z = 0;
-	vb[1] = vb[0];
+    MYVERTEX3D vb[2];
+    vb[0].color = col;
+    vb[0].tu = vb[0].tv = vb[0].z = 0;
+    vb[1] = vb[0];
 
-	vb[0].x = (float)sx / HALF_HEIGHT;
-	vb[0].y = (float)sy / HALF_HEIGHT;
-	vb[1].x = (float)gx / HALF_HEIGHT;
-	vb[1].y = (float)gy / HALF_HEIGHT;
+    vb[0].x = (float)sx / HALF_HEIGHT;
+    vb[0].y = (float)sy / HALF_HEIGHT;
+    vb[1].x = (float)gx / HALF_HEIGHT;
+    vb[1].y = (float)gy / HALF_HEIGHT;
 
-	d3ddev->SetTexture(0,NULL);
-	d3ddev->SetTransform(D3DTS_WORLD,&matparent);
-	d3ddev->SetFVF(FVF_3DVERTEX);
-	d3ddev->DrawPrimitiveUP(
-		D3DPT_LINELIST,2,vb,sizeof(MYVERTEX3D));
+    d3ddev->SetTexture(0,NULL);
+    d3ddev->SetTransform(D3DTS_WORLD,&matparent);
+    d3ddev->SetFVF(FVF_3DVERTEX);
+    d3ddev->DrawPrimitiveUP(
+        D3DPT_LINELIST,2,vb,sizeof(MYVERTEX3D));
 }
 
 /*!
@@ -3603,87 +3620,87 @@ void CDirectDraw::DrawLine(
 *	@sa CellDraw
 */
 void CDirectDraw::HRectDraw(LPVOID pcdat,
-							LPVOID phdat,
-							DWORD cn,
-							int x,
-							int y,
-							float z,
-							int rot,
-							BOOL revx,
-							BOOL revy,
-							float magx,
-							float magy)
+                            LPVOID phdat,
+                            DWORD cn,
+                            int x,
+                            int y,
+                            float z,
+                            int rot,
+                            BOOL revx,
+                            BOOL revy,
+                            float magx,
+                            float magy)
 {
-	if(pcdat==NULL || phdat==NULL)return;
-	if(cn >= GCDMAX_CELLS)return;
+    if(pcdat==NULL || phdat==NULL)return;
+    if(cn >= GCDMAX_CELLS)return;
 
-	GCD_CELL2 *cdat=(GCD_CELL2*)pcdat;
-	GCD_HANTEI *hdat=(GCD_HANTEI*)phdat;
+    GCD_CELL2 *cdat=(GCD_CELL2*)pcdat;
+    GCD_HANTEI *hdat=(GCD_HANTEI*)phdat;
 
-	D3DXMATRIX matp,mat,tmt,matprv,matprv2;
-	float ar2 = 2.0f/480.0f;
+    D3DXMATRIX matp,mat,tmt,matprv,matprv2;
+    float ar2 = 2.0f/480.0f;
 
-	//キャラクターの変換行列
-	D3DXMatrixIdentity(&matp);
-	D3DXMatrixTranslation(&tmt,0,0,0);//重心に移動
-	matp *= tmt;
-	/*if (cdat[cn].flag & GCDCELL2_SCA_GCENTER)
-	{
-		D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//重心に移動
-		matp *= tmt;
-	}*/
-	D3DXMatrixScaling(&tmt,magx,magy,1.0f);//拡大
-	matp *= tmt;
-	/*if (cdat[cn].flag & GCDCELL2_SCA_GCENTER)
-	{
-		//重心から戻す
-		D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);
-		matp *= tmt;
-	}*/
-	D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx*magx)*ar2*(-1.0f),(float)(cdat[cn].gcy*magy)*ar2*(-1.0f),0);//重心に移動
-	matp *= tmt;
-	D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//回転
-	matp *= tmt;
-	//重心に戻す
-	D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx*magx)*ar2,(float)(cdat[cn].gcy*magy)*ar2,0);
-	matp *= tmt;
-	if(revy){
-		d3dxplane_y.d=0;
-		D3DXMatrixReflect(&tmt,&d3dxplane_y);//y反転
-		matp *= tmt;
-	}
-	if(revx){
-		d3dxplane_x.d=0;
-		D3DXMatrixReflect(&tmt,&d3dxplane_x);//x反転
-		matp *= tmt;
-	}
-	D3DXMatrixTranslation(&tmt,(float)x*ar2,(float)y*ar2,0);//表示位置への移動
-	matp *= tmt;
+    //キャラクターの変換行列
+    D3DXMatrixIdentity(&matp);
+    D3DXMatrixTranslation(&tmt,0,0,0);//重心に移動
+    matp *= tmt;
+    /*if (cdat[cn].flag & GCDCELL2_SCA_GCENTER)
+    {
+        D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//重心に移動
+        matp *= tmt;
+    }*/
+    D3DXMatrixScaling(&tmt,magx,magy,1.0f);//拡大
+    matp *= tmt;
+    /*if (cdat[cn].flag & GCDCELL2_SCA_GCENTER)
+    {
+        //重心から戻す
+        D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);
+        matp *= tmt;
+    }*/
+    D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx*magx)*ar2*(-1.0f),(float)(cdat[cn].gcy*magy)*ar2*(-1.0f),0);//重心に移動
+    matp *= tmt;
+    D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//回転
+    matp *= tmt;
+    //重心に戻す
+    D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx*magx)*ar2,(float)(cdat[cn].gcy*magy)*ar2,0);
+    matp *= tmt;
+    if(revy){
+        d3dxplane_y.d=0;
+        D3DXMatrixReflect(&tmt,&d3dxplane_y);//y反転
+        matp *= tmt;
+    }
+    if(revx){
+        d3dxplane_x.d=0;
+        D3DXMatrixReflect(&tmt,&d3dxplane_x);//x反転
+        matp *= tmt;
+    }
+    D3DXMatrixTranslation(&tmt,(float)x*ar2,(float)y*ar2,0);//表示位置への移動
+    matp *= tmt;
 
-	matprv = SetParentMatrix(matp,FALSE);//「親」の変換行列として設定
+    matprv = SetParentMatrix(matp,FALSE);//「親」の変換行列として設定
 
 //	DWORD color;
-	RECT r;
+    RECT r;
 
-	for(int i=0;i<3;i++){
-		r=hdat[cn].kas[i];
-		DrawLine(r.left,r.top,r.left,r.bottom,0xFFFF0000);
-		DrawLine(r.right,r.top,r.right,r.bottom,0xFFFF0000);
-		DrawLine(r.left,r.top,r.right,r.top,0xFFFF0000);
-		DrawLine(r.left,r.bottom,r.right,r.bottom,0xFFFF0000);
-		r=hdat[cn].kurai[i];
-		DrawLine(r.left,r.top,r.left,r.bottom,0xFFFFFF00);
-		DrawLine(r.right,r.top,r.right,r.bottom,0xFFFFFF00);
-		DrawLine(r.left,r.top,r.right,r.top,0xFFFFFF00);
-		DrawLine(r.left,r.bottom,r.right,r.bottom,0xFFFFFF00);
-		r=hdat[cn].attack[i];
-		DrawLine(r.left,r.top,r.left,r.bottom,0xFF0000FF);
-		DrawLine(r.right,r.top,r.right,r.bottom,0xFF0000FF);
-		DrawLine(r.left,r.top,r.right,r.top,0xFF0000FF);
-		DrawLine(r.left,r.bottom,r.right,r.bottom,0xFF0000FF);
-	}
+    for(int i=0;i<3;i++){
+        r=hdat[cn].kas[i];
+        DrawLine(r.left,r.top,r.left,r.bottom,0xFFFF0000);
+        DrawLine(r.right,r.top,r.right,r.bottom,0xFFFF0000);
+        DrawLine(r.left,r.top,r.right,r.top,0xFFFF0000);
+        DrawLine(r.left,r.bottom,r.right,r.bottom,0xFFFF0000);
+        r=hdat[cn].kurai[i];
+        DrawLine(r.left,r.top,r.left,r.bottom,0xFFFFFF00);
+        DrawLine(r.right,r.top,r.right,r.bottom,0xFFFFFF00);
+        DrawLine(r.left,r.top,r.right,r.top,0xFFFFFF00);
+        DrawLine(r.left,r.bottom,r.right,r.bottom,0xFFFFFF00);
+        r=hdat[cn].attack[i];
+        DrawLine(r.left,r.top,r.left,r.bottom,0xFF0000FF);
+        DrawLine(r.right,r.top,r.right,r.bottom,0xFF0000FF);
+        DrawLine(r.left,r.top,r.right,r.top,0xFF0000FF);
+        DrawLine(r.left,r.bottom,r.right,r.bottom,0xFF0000FF);
+    }
 
-	SetParentMatrix(matprv,TRUE);//「親」の変換行列を元に戻す
+    SetParentMatrix(matprv,TRUE);//「親」の変換行列を元に戻す
 }
 
 
@@ -3693,50 +3710,50 @@ void CDirectDraw::HRectDraw(LPVOID pcdat,
 *	@sa CellDraw
 */
 void CDirectDraw::GCenterDraw(
-							LPVOID pcdat,
-							DWORD cn,
-							int x,
-							int y,
-							float z,
-							int rot,
-							BOOL revx,
-							BOOL revy,
-							float magx,
-							float magy)
+                            LPVOID pcdat,
+                            DWORD cn,
+                            int x,
+                            int y,
+                            float z,
+                            int rot,
+                            BOOL revx,
+                            BOOL revy,
+                            float magx,
+                            float magy)
 {
-	if(pcdat==NULL)return;
-	if(cn >= GCDMAX_CELLS)return;
+    if(pcdat==NULL)return;
+    if(cn >= GCDMAX_CELLS)return;
 
-	GCD_CELL2 *cdat=(GCD_CELL2*)pcdat;
+    GCD_CELL2 *cdat=(GCD_CELL2*)pcdat;
 
-	D3DXMATRIX matp,mat,tmt,matprv,matprv2;
-	float ar2 = 2.0f/480.0f;
+    D3DXMATRIX matp,mat,tmt,matprv,matprv2;
+    float ar2 = 2.0f/480.0f;
 
-	//キャラクターの変換行列
-	D3DXMatrixIdentity(&matp);
-	if(revx){
-		d3dxplane_x.d=0;
-		D3DXMatrixReflect(&tmt,&d3dxplane_x);//x反転
-		matp *= tmt;
-	}
-	//重心位置への移動
-	D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);
-	matp *= tmt;
-	//表示位置への移動
-	D3DXMatrixTranslation(&tmt,(float)cdat[cn].gcx*ar2*magx+(x-cdat[cn].gcx)*ar2,(float)cdat[cn].gcy*ar2*magy+(y-cdat[cn].gcy)*ar2,0);
-	matp *= tmt;
+    //キャラクターの変換行列
+    D3DXMatrixIdentity(&matp);
+    if(revx){
+        d3dxplane_x.d=0;
+        D3DXMatrixReflect(&tmt,&d3dxplane_x);//x反転
+        matp *= tmt;
+    }
+    //重心位置への移動
+    D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);
+    matp *= tmt;
+    //表示位置への移動
+    D3DXMatrixTranslation(&tmt,(float)cdat[cn].gcx*ar2*magx+(x-cdat[cn].gcx)*ar2,(float)cdat[cn].gcy*ar2*magy+(y-cdat[cn].gcy)*ar2,0);
+    matp *= tmt;
 
-	matprv = SetParentMatrix(matp,FALSE);//「親」の変換行列として設定
+    matprv = SetParentMatrix(matp,FALSE);//「親」の変換行列として設定
 
-	//Draw
-	DrawLine(-20,0,20,0,0xFF00FF00);
-	DrawLine(0,-20,0,-20,0xFF00FF00);
-	DrawLine(-20, 20, 20, 20,0xFF00FF00);
-	DrawLine(-20,-20, 20,-20,0xFF00FF00);
-	DrawLine( 20,-20, 20, 20,0xFF00FF00);
-	DrawLine(-20,-20,-20, 20,0xFF00FF00);
+    //Draw
+    DrawLine(-20,0,20,0,0xFF00FF00);
+    DrawLine(0,-20,0,-20,0xFF00FF00);
+    DrawLine(-20, 20, 20, 20,0xFF00FF00);
+    DrawLine(-20,-20, 20,-20,0xFF00FF00);
+    DrawLine( 20,-20, 20, 20,0xFF00FF00);
+    DrawLine(-20,-20,-20, 20,0xFF00FF00);
 
-	SetParentMatrix(matprv,TRUE);//「親」の変換行列を元に戻す
+    SetParentMatrix(matprv,TRUE);//「親」の変換行列を元に戻す
 }
 
 //*******************************************************************************
@@ -3759,16 +3776,16 @@ void CDirectDraw::GCenterDraw(
 *	@param insert TRUEの場合、設定されるマトリクスは、新マトリクス*旧マトリクス　の掛け算をしたもんである
 *	@return 関数の実行前に設定されていた古いマトリクス
 */
-D3DXMATRIX CDirectDraw::SetParentMatrix(D3DXMATRIX& mat,BOOL root,BOOL insert)
+D3DXMATRIXA16 CDirectDraw::SetParentMatrix(D3DXMATRIX& mat, BOOL root, BOOL insert)
 {
-	D3DXMATRIX matprv=matparent;
+    D3DXMATRIXA16 matprv = matparent;
 
-	if(root)ResetParentMatrix();
+    if (root)ResetParentMatrix();
 
-	if(insert)matparent = mat*matparent;
-	else matparent *= mat;
+    if (insert)matparent = mat*matparent;
+    else matparent *= mat;
 
-	return(matprv);
+    return(matprv);
 }
 
 
@@ -3779,11 +3796,11 @@ D3DXMATRIX CDirectDraw::SetParentMatrix(D3DXMATRIX& mat,BOOL root,BOOL insert)
 */
 void CDirectDraw::SetParentMatrix2(D3DXMATRIX *mat,BOOL root,D3DXMATRIX *matprv)
 {
-	if(matprv!=NULL)*matprv=matparent;
-	if(root){
-		matparent = *mat;
-	}
-	else matparent *= *mat;
+    if(matprv!=NULL)*matprv=matparent;
+    if(root){
+        matparent = *mat;
+    }
+    else matparent *= *mat;
 }
 
 
@@ -3791,11 +3808,11 @@ void CDirectDraw::SetParentMatrix2(D3DXMATRIX *mat,BOOL root,D3DXMATRIX *matprv)
 *	@brief 「親」マトリクスに単位行列を設定する
 *	@sa SetParentMatrix
 */
-D3DXMATRIX CDirectDraw::ResetParentMatrix()
+D3DXMATRIXA16 CDirectDraw::ResetParentMatrix()
 {
-	D3DXMATRIX matprv=matparent;
-	D3DXMatrixIdentity(&matparent);
-	return(matprv);
+    D3DXMATRIXA16 matprv = std::move(matparent);
+    D3DXMatrixIdentity(&matparent);
+    return(matprv);
 }
 
 
@@ -3814,21 +3831,21 @@ D3DXMATRIX CDirectDraw::ResetParentMatrix()
 */
 void CDirectDraw::ResetTransformMatrix()
 {
-	D3DXMATRIX matw,matv,matp;
+    D3DXMATRIX matw,matv,matp;
 
-	D3DXMatrixLookAtRH(&matv,
-		&D3DXVECTOR3(camera_x + camera_zurax,camera_y+camera_zuray,camera_z),
-		&D3DXVECTOR3(camera_x,camera_y,0),
-		&D3DXVECTOR3(0,-3,0));
-	d3ddev->SetTransform(D3DTS_VIEW,&matv);
+    D3DXMatrixLookAtRH(&matv,
+        &D3DXVECTOR3(camera_x + camera_zurax,camera_y+camera_zuray,camera_z),
+        &D3DXVECTOR3(camera_x,camera_y,0),
+        &D3DXVECTOR3(0,-3,0));
+    d3ddev->SetTransform(D3DTS_VIEW,&matv);
 
-	//projection
-	D3DXMatrixPerspectiveFovRH(&matp,
-		(float)(2.0*atan2(1.0,3.0)),
-		ASPECTRATIO,
-		0.1f,
-		50.0f);
-	d3ddev->SetTransform(D3DTS_PROJECTION,&matp);
+    //projection
+    D3DXMatrixPerspectiveFovRH(&matp,
+        (float)(2.0*atan2(1.0,3.0)),
+        ASPECTRATIO,
+        0.1f,
+        50.0f);
+    d3ddev->SetTransform(D3DTS_PROJECTION,&matp);
 }
 
 
@@ -3848,19 +3865,19 @@ void CDirectDraw::ResetTransformMatrix()
 void CDirectDraw::SetTransform(BOOL b)
 {
 //	camera_z = -3.0;
-	if(b){
-		camera_x = (float)center_x/320.0f  * ASPECTRATIO;
-		camera_y = -(float)tan(D3DXToRadian(40));
-		ResetTransformMatrix();
-		ResetParentMatrix();
-	}
-	else{
-		camera_x = 1.0f*ASPECTRATIO;
-		camera_y = 1.0f;
-		ResetTransformMatrix();
-		ResetParentMatrix();
-		d3ddev->SetTransform(D3DTS_WORLD,&matparent);
-	}
+    if(b){
+        camera_x = (float)center_x/320.0f  * ASPECTRATIO;
+        camera_y = -(float)tan(D3DXToRadian(40));
+        ResetTransformMatrix();
+        ResetParentMatrix();
+    }
+    else{
+        camera_x = 1.0f*ASPECTRATIO;
+        camera_y = 1.0f;
+        ResetTransformMatrix();
+        ResetParentMatrix();
+        d3ddev->SetTransform(D3DTS_WORLD,&matparent);
+    }
 }
 
 /*!
@@ -3871,7 +3888,7 @@ void CDirectDraw::SetTransform(BOOL b)
 */
 void CDirectDraw::SetWorldMatrix(D3DXMATRIX *pmat)
 {
-	d3ddev->SetTransform(D3DTS_WORLD,pmat);
+    d3ddev->SetTransform(D3DTS_WORLD,pmat);
 }
 
 
@@ -3883,60 +3900,60 @@ void CDirectDraw::SetWorldMatrix(D3DXMATRIX *pmat)
 *	@brief 円の描画
 */
 void CDirectDraw::DrawCircle(int x,			//!< 円の中心位置x
-							 int y,			//!< 円の中心位置y
-							 int rad,		//!< 円の半径
-							 int w,			//!< 線のふとさ
-							 float z,		//!< 円のz位置
-							 DWORD color,	//!< 円の色
-							 BOOL toumei,	//!< 線の内側を透明化するか
-							 float rot,		//!< 円の回転角
-							 BOOL rot_y,	//!< TRUE:Y軸を軸として回転する,FALSE:X軸を軸として回転する
-							 BOOL hosei		//!< 補正をいれるかどうか(なんの?)
-							 )
+                             int y,			//!< 円の中心位置y
+                             int rad,		//!< 円の半径
+                             int w,			//!< 線のふとさ
+                             float z,		//!< 円のz位置
+                             DWORD color,	//!< 円の色
+                             BOOL toumei,	//!< 線の内側を透明化するか
+                             float rot,		//!< 円の回転角
+                             BOOL rot_y,	//!< TRUE:Y軸を軸として回転する,FALSE:X軸を軸として回転する
+                             BOOL hosei		//!< 補正をいれるかどうか(なんの?)
+                             )
 {
-	float kakudo;
-	float radious = rad/HALF_HEIGHT2;
-	float futosa = w/HALF_HEIGHT2;
+    float kakudo;
+    float radious = rad/HALF_HEIGHT2;
+    float futosa = w/HALF_HEIGHT2;
 
-	if(radious-futosa/2 < 0){
-		radious= futosa/2;
-	}
+    if(radious-futosa/2 < 0){
+        radious= futosa/2;
+    }
 
-	MYVERTEX3D vb[(NUMCIRCLEDIVIDE+1)*2];
-	for(int i=0;i<NUMCIRCLEDIVIDE;i++){
-		vb[i*2].color = vb[i*2+1].color =color;
-		vb[i*2].tu = vb[i*2].tv = vb[i*2+1].tu = vb[i*2+1].tv = 0;
-		vb[i*2].z = vb[i*2+1].z = z;
-		kakudo = ((2.0f*3.1415926f)/(float)NUMCIRCLEDIVIDE) *i;
-		vb[i*2].x   = (radious+futosa/2)*(float)sin(kakudo);
-		vb[i*2+1].x = (radious-futosa/2)*(float)sin(kakudo);
-		vb[i*2].y   = (radious+futosa/2)*(float)cos(kakudo);
-		vb[i*2+1].y = (radious-futosa/2)*(float)cos(kakudo);
-		if(toumei)vb[i*2+1].color &= 0x00FFFFFF;
-	}
-	vb[NUMCIRCLEDIVIDE*2  ] = vb[0];
-	vb[NUMCIRCLEDIVIDE*2+1] = vb[1];
+    MYVERTEX3D vb[(NUMCIRCLEDIVIDE+1)*2];
+    for(int i=0;i<NUMCIRCLEDIVIDE;i++){
+        vb[i*2].color = vb[i*2+1].color =color;
+        vb[i*2].tu = vb[i*2].tv = vb[i*2+1].tu = vb[i*2+1].tv = 0;
+        vb[i*2].z = vb[i*2+1].z = z;
+        kakudo = ((2.0f*3.1415926f)/(float)NUMCIRCLEDIVIDE) *i;
+        vb[i*2].x   = (radious+futosa/2)*(float)sin(kakudo);
+        vb[i*2+1].x = (radious-futosa/2)*(float)sin(kakudo);
+        vb[i*2].y   = (radious+futosa/2)*(float)cos(kakudo);
+        vb[i*2+1].y = (radious-futosa/2)*(float)cos(kakudo);
+        if(toumei)vb[i*2+1].color &= 0x00FFFFFF;
+    }
+    vb[NUMCIRCLEDIVIDE*2  ] = vb[0];
+    vb[NUMCIRCLEDIVIDE*2+1] = vb[1];
 
-	D3DXMATRIX matw,mattrans,matrot,matrh;
-	D3DXMatrixTranslation(&mattrans,x/HALF_HEIGHT2,y/HALF_HEIGHT2,0);
-	if(rot_y){
-		D3DXMatrixRotationY(&matrh,(float)atan2(camera_x - x/HALF_HEIGHT2,-3));
-		D3DXMatrixRotationY(&matrot,D3DXToRadian(rot));
-	}
-	else{ 
-		D3DXMatrixRotationX(&matrh,(float)atan2(camera_y - y/HALF_HEIGHT2,-3));
-		D3DXMatrixRotationX(&matrot,D3DXToRadian(rot));
-	}
-	matw = matrh*matrot*mattrans;
+    D3DXMATRIX matw,mattrans,matrot,matrh;
+    D3DXMatrixTranslation(&mattrans,x/HALF_HEIGHT2,y/HALF_HEIGHT2,0);
+    if(rot_y){
+        D3DXMatrixRotationY(&matrh,(float)atan2(camera_x - x/HALF_HEIGHT2,-3));
+        D3DXMatrixRotationY(&matrot,D3DXToRadian(rot));
+    }
+    else{ 
+        D3DXMatrixRotationX(&matrh,(float)atan2(camera_y - y/HALF_HEIGHT2,-3));
+        D3DXMatrixRotationX(&matrot,D3DXToRadian(rot));
+    }
+    matw = matrh*matrot*mattrans;
 
-	d3ddev->SetRenderState(D3DRS_ZENABLE,FALSE);
-	d3ddev->SetTexture(0,NULL);
-	d3ddev->SetTransform(D3DTS_WORLD,&matw);
-	d3ddev->SetFVF(FVF_3DVERTEX);
-	d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,NUMCIRCLEDIVIDE*2,vb,sizeof(MYVERTEX3D));
-	d3ddev->SetRenderState(D3DRS_ZENABLE,TRUE);
+    d3ddev->SetRenderState(D3DRS_ZENABLE,FALSE);
+    d3ddev->SetTexture(0,NULL);
+    d3ddev->SetTransform(D3DTS_WORLD,&matw);
+    d3ddev->SetFVF(FVF_3DVERTEX);
+    d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,NUMCIRCLEDIVIDE*2,vb,sizeof(MYVERTEX3D));
+    d3ddev->SetRenderState(D3DRS_ZENABLE,TRUE);
 
-	return;
+    return;
 }
 
 
@@ -3947,23 +3964,23 @@ void CDirectDraw::DrawCircle(int x,			//!< 円の中心位置x
 *	色はブルー固定らしい。（なんで？）
 */
 void CDirectDraw::DrawBlueText(
-							RECT& r,		//!< 描画する矩形領域
-							TCHAR *text,		//!< テキスト文字列
-							int len,		//!< テキスト文字数
-							DWORD method,	//!< Win32APIのDrawText参照。DT_LEFTとかそういうの
-							DWORD size)		//!< 描画サイズ。1～(AKIDX_FONTNUM-1)
+                            RECT& r,		//!< 描画する矩形領域
+                            TCHAR *text,		//!< テキスト文字列
+                            int len,		//!< テキスト文字数
+                            DWORD method,	//!< Win32APIのDrawText参照。DT_LEFTとかそういうの
+                            DWORD size)		//!< 描画サイズ。1～(AKIDX_FONTNUM-1)
 {
-	if(size<1)return;
-	if(size>AKIDX_FONTNUM-1)return;
-	if(g_config.IsHalfMode()){
-		size--;
-		r.left/=2;
-		r.right/=2;
-		r.top/=2;
-		r.bottom/=2;
-	}
+    if(size<1)return;
+    if(size>AKIDX_FONTNUM-1)return;
+    if(g_config.IsHalfMode()){
+        size--;
+        r.left/=2;
+        r.right/=2;
+        r.top/=2;
+        r.bottom/=2;
+    }
 
-	lpFont[size]->DrawText(NULL, text, len, &r
+    lpFont[size]->DrawText(NULL, text, len, &r
                     ,method
                     ,0xFF5522FF
                     );
@@ -3973,16 +3990,16 @@ void CDirectDraw::DrawBlueText(
 //! sa DrawBlueText
 void CDirectDraw::DrawRedText(RECT& r,TCHAR *text,int len,DWORD method,DWORD size)
 {
-	if(size<1)return;
-	if(size>AKIDX_FONTNUM-1)return;
-	if(g_config.IsHalfMode()){
-		size--;
-		r.left/=2;
-		r.right/=2;
-		r.top/=2;
-		r.bottom/=2;
-	}
-	lpFont[size]->DrawText(NULL, text, len, &r
+    if(size<1)return;
+    if(size>AKIDX_FONTNUM-1)return;
+    if(g_config.IsHalfMode()){
+        size--;
+        r.left/=2;
+        r.right/=2;
+        r.top/=2;
+        r.bottom/=2;
+    }
+    lpFont[size]->DrawText(NULL, text, len, &r
                     ,method
                     ,0xFFFF2255
                     );
@@ -3990,61 +4007,61 @@ void CDirectDraw::DrawRedText(RECT& r,TCHAR *text,int len,DWORD method,DWORD siz
 
 void CDirectDraw::ReduceColor(DWORD alpha, bool isShadow /* = false */)
 {
-	MYVERTEX3D* vb = NULL;
-	float ar = 320.0f/240.0f;
+    MYVERTEX3D* vb = NULL;
+    float ar = 320.0f/240.0f;
 
-	if (alpha == 0xFF)
-		return;		// ｲﾗﾈ
+    if (alpha == 0xFF)
+        return;		// ｲﾗﾈ
 
-	// alpha値で暗くするらしい
-	d3ddev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_ZERO);
-	d3ddev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_SRCALPHA);
+    // alpha値で暗くするらしい
+    d3ddev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_ZERO);
+    d3ddev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_SRCALPHA);
 
-	// スクリーン全体を覆うポリゴン
-	if ( !pMyVertex || FAILED(pMyVertex->Lock(0, 0, (void**)&vb, D3DLOCK_DISCARD)) )
-		return;
-	vb[0].color = alpha << 24;
-	vb[1].color = alpha << 24;
-	vb[2].color = alpha << 24;
-	vb[3].color = alpha << 24;
-	vb[0].x =  0.0f*ar;
-	vb[1].x =  0.0f*ar;
-	vb[2].x =  2.0f*ar;
-	vb[3].x =  2.0f*ar;
-	vb[0].y =  0.0f;
-	vb[1].y =  2.0f;
-	vb[2].y =  0.0f;
-	vb[3].y =  2.0f;
-	vb[0].z =  0.01f;
-	vb[1].z =  0.01f;
-	vb[2].z =  0.01f;
-	vb[3].z =  0.01f;
-	vb[0].tu = 0.0f;
-	vb[1].tu = 0.0f;
-	vb[2].tu = 0.0f;
-	vb[3].tu = 0.0f;
-	vb[0].tv = 0.0f;
-	vb[1].tv = 0.0f;
-	vb[2].tv = 0.0f;
-	vb[3].tv = 0.0f;
-	pMyVertex->Unlock();
+    // スクリーン全体を覆うポリゴン
+    if ( !pMyVertex || FAILED(pMyVertex->Lock(0, 0, (void**)&vb, D3DLOCK_DISCARD)) )
+        return;
+    vb[0].color = alpha << 24;
+    vb[1].color = alpha << 24;
+    vb[2].color = alpha << 24;
+    vb[3].color = alpha << 24;
+    vb[0].x =  0.0f*ar;
+    vb[1].x =  0.0f*ar;
+    vb[2].x =  2.0f*ar;
+    vb[3].x =  2.0f*ar;
+    vb[0].y =  0.0f;
+    vb[1].y =  2.0f;
+    vb[2].y =  0.0f;
+    vb[3].y =  2.0f;
+    vb[0].z =  0.01f;
+    vb[1].z =  0.01f;
+    vb[2].z =  0.01f;
+    vb[3].z =  0.01f;
+    vb[0].tu = 0.0f;
+    vb[1].tu = 0.0f;
+    vb[2].tu = 0.0f;
+    vb[3].tu = 0.0f;
+    vb[0].tv = 0.0f;
+    vb[1].tv = 0.0f;
+    vb[2].tv = 0.0f;
+    vb[3].tv = 0.0f;
+    pMyVertex->Unlock();
 
-	if (!isShadow)
-		EnableZ(FALSE,FALSE);
-	d3ddev->SetStreamSource(0, pMyVertex, 0, sizeof(MYVERTEX3D));
-	d3ddev->SetTexture(0, NULL);
-	d3ddev->SetFVF(FVF_3DVERTEX);
-	d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP, 0, 2);
+    if (!isShadow)
+        EnableZ(FALSE,FALSE);
+    d3ddev->SetStreamSource(0, pMyVertex, 0, sizeof(MYVERTEX3D));
+    d3ddev->SetTexture(0, NULL);
+    d3ddev->SetFVF(FVF_3DVERTEX);
+    d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP, 0, 2);
 
-	// 元に戻す
-	EnableZ();
-	SetAlphaMode(GBLEND_HANTOUMEI);
+    // 元に戻す
+    EnableZ();
+    SetAlphaMode(GBLEND_HANTOUMEI);
 }
 
 
 
 /*----------------------------------------------------------------------------------
-	フロントバッファコピー
+    フロントバッファコピー
 ------------------------------------------------------------------------------------*/
 #ifndef GCD_EDITER
 
@@ -4060,162 +4077,162 @@ extern RECT g_rcClient;
 */
 LPDIRECT3DTEXTURE9 CDirectDraw::GetFrontBufferCopy()
 {
-	//生成するテクスチャーサイズを決定
-	UINT tex_width = m_desktop_width;//g_DISPLAYWIDTH;
-	UINT tex_height = m_desktop_height;//g_DISPLAYHEIGHT;
+    //生成するテクスチャーサイズを決定
+    UINT tex_width = m_desktop_width;//g_DISPLAYWIDTH;
+    UINT tex_height = m_desktop_height;//g_DISPLAYHEIGHT;
 
-	//コピー用テクスチャ生成
-	LPDIRECT3DTEXTURE9 ret=NULL;
-	if(D3D_OK!=d3ddev->CreateTexture(          
-							tex_width,	//UINT Width,
-							tex_height,	//UINT Height,
-							1,			//UINT Levels(mipmap),
-							0,			//DWORD Usage,
-							D3DFMT_A8R8G8B8,	//D3DFORMAT Format,コピーするときはこのフォーマットじゃなきゃダメらしい
+    //コピー用テクスチャ生成
+    LPDIRECT3DTEXTURE9 ret=NULL;
+    if(D3D_OK!=d3ddev->CreateTexture(          
+                            tex_width,	//UINT Width,
+                            tex_height,	//UINT Height,
+                            1,			//UINT Levels(mipmap),
+                            0,			//DWORD Usage,
+                            D3DFMT_A8R8G8B8,	//D3DFORMAT Format,コピーするときはこのフォーマットじゃなきゃダメらしい
 //							d3dpp.BackBufferFormat,	//D3DFORMAT Format,ひょっとしたらこっちかもしれないので試しに差し替えてみた
-							D3DPOOL_SYSTEMMEM ,//D3DPOOL Pool,コピーするときはシステムメモリじゃなきゃダメらしい
-							&ret,		//IDirect3DTexture9** ppTexture
-							NULL
-							))
-	{
-		return NULL;
-	}
-	if(!ret)return NULL;
+                            D3DPOOL_SYSTEMMEM ,//D3DPOOL Pool,コピーするときはシステムメモリじゃなきゃダメらしい
+                            &ret,		//IDirect3DTexture9** ppTexture
+                            NULL
+                            ))
+    {
+        return NULL;
+    }
+    if(!ret)return NULL;
 
-	//テクスチャーからサーフェースを取得する
-	//リファレンスカウントが増えるから、Releaseすること
-	IDirect3DSurface9 *surface = NULL;
-	if(D3D_OK!=ret->GetSurfaceLevel(0,&surface))
-	{
-		ret->Release();
-		return NULL;
-	}
+    //テクスチャーからサーフェースを取得する
+    //リファレンスカウントが増えるから、Releaseすること
+    IDirect3DSurface9 *surface = NULL;
+    if(D3D_OK!=ret->GetSurfaceLevel(0,&surface))
+    {
+        ret->Release();
+        return NULL;
+    }
 
-	D3DSURFACE_DESC suf_desc;
-	surface->GetDesc(&suf_desc);
-	TCHAR tekito[256];
-	_stprintf(tekito,_T("surface %d,%d\n"),suf_desc.Width,suf_desc.Height);
-	OutputDebugString(tekito);
+    D3DSURFACE_DESC suf_desc;
+    surface->GetDesc(&suf_desc);
+    TCHAR tekito[256];
+    _stprintf(tekito,_T("surface %d,%d\n"),suf_desc.Width,suf_desc.Height);
+    OutputDebugString(tekito);
 
-	//コピー
-	if(D3D_OK!=d3ddev->GetFrontBufferData(0,surface))
-	{
-		ret->Release();
-		surface->Release();
-		return NULL;
-	}
+    //コピー
+    if(D3D_OK!=d3ddev->GetFrontBufferData(0,surface))
+    {
+        ret->Release();
+        surface->Release();
+        return NULL;
+    }
 
-	//一旦別テクスチャにコピーしにゃならん。めんどくせー
-	LPDIRECT3DTEXTURE9 ret2=NULL;
-	IDirect3DSurface9 *surface2 = NULL;
-	do
-	{
-		//ウィンドウモードの場合、デスクトップ全体のコピーが
-		//作られてしまうので、オフセットする必要がある
-		UINT offset_x = 0;
-		UINT offset_y = 0;
-		if(m_is_win)
-		{
-			offset_x = g_rcClient.left;
-			offset_y = g_rcClient.top;
-		}
+    //一旦別テクスチャにコピーしにゃならん。めんどくせー
+    LPDIRECT3DTEXTURE9 ret2=NULL;
+    IDirect3DSurface9 *surface2 = NULL;
+    do
+    {
+        //ウィンドウモードの場合、デスクトップ全体のコピーが
+        //作られてしまうので、オフセットする必要がある
+        UINT offset_x = 0;
+        UINT offset_y = 0;
+        if(m_is_win)
+        {
+            offset_x = g_rcClient.left;
+            offset_y = g_rcClient.top;
+        }
 
 
-		tex_width = g_DISPLAYWIDTH;
-		tex_height = g_DISPLAYHEIGHT;
-		//コピー用テクスチャ生成
-		
-		/*if(D3D_OK!=d3ddev->CreateTexture(          
-								tex_width,	//UINT Width,
-								tex_height,	//UINT Height,
-								1,			//UINT Levels(mipmap),
-								0,			//DWORD Usage,
-								D3DFMT_A8R8G8B8,	//D3DFORMAT Format,コピーしたフォーマットと同じの
-								D3DPOOL_MANAGED ,//D3DPOOL Pool,描画するときはシステムメモリじゃダメらしい
-								&ret2		//IDirect3DTexture9** ppTexture
-								))*/
-		if(D3D_OK!=d3ddev->CreateTexture(          
-								tex_width,	//UINT Width,
-								tex_height,	//UINT Height,
-								1,			//UINT Levels(mipmap),
-								0,			//DWORD Usage,
-								D3DFMT_A1R5G5B5,	//D3DFORMAT Format,コピーしたフォーマットと同じの
-								D3DPOOL_MANAGED ,//D3DPOOL Pool,描画するときはシステムメモリじゃダメらしい
-								&ret2,		//IDirect3DTexture9** ppTexture
-								NULL
-								))
-		{
-			break;
-		}
+        tex_width = g_DISPLAYWIDTH;
+        tex_height = g_DISPLAYHEIGHT;
+        //コピー用テクスチャ生成
+        
+        /*if(D3D_OK!=d3ddev->CreateTexture(          
+                                tex_width,	//UINT Width,
+                                tex_height,	//UINT Height,
+                                1,			//UINT Levels(mipmap),
+                                0,			//DWORD Usage,
+                                D3DFMT_A8R8G8B8,	//D3DFORMAT Format,コピーしたフォーマットと同じの
+                                D3DPOOL_MANAGED ,//D3DPOOL Pool,描画するときはシステムメモリじゃダメらしい
+                                &ret2		//IDirect3DTexture9** ppTexture
+                                ))*/
+        if(D3D_OK!=d3ddev->CreateTexture(          
+                                tex_width,	//UINT Width,
+                                tex_height,	//UINT Height,
+                                1,			//UINT Levels(mipmap),
+                                0,			//DWORD Usage,
+                                D3DFMT_A1R5G5B5,	//D3DFORMAT Format,コピーしたフォーマットと同じの
+                                D3DPOOL_MANAGED ,//D3DPOOL Pool,描画するときはシステムメモリじゃダメらしい
+                                &ret2,		//IDirect3DTexture9** ppTexture
+                                NULL
+                                ))
+        {
+            break;
+        }
 
-		//テクスチャーからサーフェースを取得する
-		//リファレンスカウントが増えるから、Releaseすること
-		if(D3D_OK!=ret2->GetSurfaceLevel(0,&surface2))
-		{
-			break;
-		}
+        //テクスチャーからサーフェースを取得する
+        //リファレンスカウントが増えるから、Releaseすること
+        if(D3D_OK!=ret2->GetSurfaceLevel(0,&surface2))
+        {
+            break;
+        }
 
-		//2テクスチャをロック。
-		D3DLOCKED_RECT lr , lr2;
-		if(D3D_OK != surface->LockRect(&lr,NULL,0))
-		{
-			break;
-		}
-		if(D3D_OK != surface2->LockRect(&lr2,NULL,0))
-		{
-			surface->UnlockRect();
-			break;
-		}
+        //2テクスチャをロック。
+        D3DLOCKED_RECT lr , lr2;
+        if(D3D_OK != surface->LockRect(&lr,NULL,0))
+        {
+            break;
+        }
+        if(D3D_OK != surface2->LockRect(&lr2,NULL,0))
+        {
+            surface->UnlockRect();
+            break;
+        }
 
-		//コピー（1ピクセルは32ビット）
-		for(UINT y=0;y<tex_height;y++)
-		{
-			//A8R8G8B8→A8R8G8B8
-		/*	if(y+offset_y>=m_desktop_height)break;
-			DWORD *src = (DWORD*)((BYTE*)lr.pBits + lr.Pitch*(y+offset_y) + offset_x*4);
-			DWORD *dst = (DWORD*)((BYTE*)lr2.pBits + lr2.Pitch*y);
-			for(UINT x=0;x<tex_width;x++)
-			{
-				if(x+offset_x>=m_desktop_width)break;
-				(*dst) = (*src);
-				*dst|=0xFF000000;//ついでにα値も最大にしなきゃだめみたいですよ？
-				dst++;
-				src++;
-			}*/
+        //コピー（1ピクセルは32ビット）
+        for(UINT y=0;y<tex_height;y++)
+        {
+            //A8R8G8B8→A8R8G8B8
+        /*	if(y+offset_y>=m_desktop_height)break;
+            DWORD *src = (DWORD*)((BYTE*)lr.pBits + lr.Pitch*(y+offset_y) + offset_x*4);
+            DWORD *dst = (DWORD*)((BYTE*)lr2.pBits + lr2.Pitch*y);
+            for(UINT x=0;x<tex_width;x++)
+            {
+                if(x+offset_x>=m_desktop_width)break;
+                (*dst) = (*src);
+                *dst|=0xFF000000;//ついでにα値も最大にしなきゃだめみたいですよ？
+                dst++;
+                src++;
+            }*/
 
-			//A8R8G8B8→A1R5G5B5
-			if(y+offset_y>=m_desktop_height)break;
-			DWORD *src = (DWORD*)((BYTE*)lr.pBits + lr.Pitch*(y+offset_y) + offset_x*4);
-			WORD *dst = (WORD*)((BYTE*)lr2.pBits + lr2.Pitch*y);
-			for(UINT x=0;x<tex_width;x++)
-			{
-				if(x+offset_x>=m_desktop_width)break;
+            //A8R8G8B8→A1R5G5B5
+            if(y+offset_y>=m_desktop_height)break;
+            DWORD *src = (DWORD*)((BYTE*)lr.pBits + lr.Pitch*(y+offset_y) + offset_x*4);
+            WORD *dst = (WORD*)((BYTE*)lr2.pBits + lr2.Pitch*y);
+            for(UINT x=0;x<tex_width;x++)
+            {
+                if(x+offset_x>=m_desktop_width)break;
 
-				WORD r = (BYTE)(((*src) >> 16)&0x000000FF);
-				WORD g = (BYTE)(((*src) >> 8 )&0x000000FF);
-				WORD b = (BYTE)(((*src)      )&0x000000FF);
+                WORD r = (BYTE)(((*src) >> 16)&0x000000FF);
+                WORD g = (BYTE)(((*src) >> 8 )&0x000000FF);
+                WORD b = (BYTE)(((*src)      )&0x000000FF);
 
-				(*dst) = 0x8000 | ((r<<7)&0x7C00) | ((g<<2)&0x03E0) | ((b>>3)&0x001F);
-			//	(*dst) <<= 1;
-			//	(*dst) |=1;
-				dst++;
-				src++;
-			}
+                (*dst) = 0x8000 | ((r<<7)&0x7C00) | ((g<<2)&0x03E0) | ((b>>3)&0x001F);
+            //	(*dst) <<= 1;
+            //	(*dst) |=1;
+                dst++;
+                src++;
+            }
 
-		}
+        }
 
-		//テクスチャ案ロック
-		surface->UnlockRect();
-		surface2->UnlockRect();
-	}
-	while(0);
+        //テクスチャ案ロック
+        surface->UnlockRect();
+        surface2->UnlockRect();
+    }
+    while(0);
 
-	//おっけ～？
-	surface->Release();
-	ret->Release();
+    //おっけ～？
+    surface->Release();
+    ret->Release();
 
-	if(surface2)surface2->Release();
-	return ret2;
+    if(surface2)surface2->Release();
+    return ret2;
 }
 
 /*!
@@ -4229,114 +4246,114 @@ LPDIRECT3DTEXTURE9 CDirectDraw::GetFrontBufferCopy()
 */
 DWORD* CDirectDraw::GetFrontBufferCopyRaw(UINT *wdt,UINT *hgt)
 {
-	//生成するテクスチャーサイズを決定
-	UINT tex_width = m_desktop_width;//g_DISPLAYWIDTH;
-	UINT tex_height = m_desktop_height;//g_DISPLAYHEIGHT;
+    //生成するテクスチャーサイズを決定
+    UINT tex_width = m_desktop_width;//g_DISPLAYWIDTH;
+    UINT tex_height = m_desktop_height;//g_DISPLAYHEIGHT;
 
-	//コピー用テクスチャ生成
-	LPDIRECT3DTEXTURE9 ret=NULL;
-	if(D3D_OK!=d3ddev->CreateTexture(          
-							tex_width,	//UINT Width,
-							tex_height,	//UINT Height,
-							1,			//UINT Levels(mipmap),
-							0,			//DWORD Usage,
-							D3DFMT_A8R8G8B8,	//D3DFORMAT Format,コピーするときはこのフォーマットじゃなきゃダメらしい
+    //コピー用テクスチャ生成
+    LPDIRECT3DTEXTURE9 ret=NULL;
+    if(D3D_OK!=d3ddev->CreateTexture(          
+                            tex_width,	//UINT Width,
+                            tex_height,	//UINT Height,
+                            1,			//UINT Levels(mipmap),
+                            0,			//DWORD Usage,
+                            D3DFMT_A8R8G8B8,	//D3DFORMAT Format,コピーするときはこのフォーマットじゃなきゃダメらしい
 //							d3dpp.BackBufferFormat,	//D3DFORMAT Format,ひょっとしたらこっちかもしれないので試しに差し替えてみた
-							D3DPOOL_SYSTEMMEM ,//D3DPOOL Pool,コピーするときはシステムメモリじゃなきゃダメらしい
-							&ret,		//IDirect3DTexture9** ppTexture
-							NULL
-							))
-	{
-		return NULL;
-	}
-	if(!ret)return NULL;
+                            D3DPOOL_SYSTEMMEM ,//D3DPOOL Pool,コピーするときはシステムメモリじゃなきゃダメらしい
+                            &ret,		//IDirect3DTexture9** ppTexture
+                            NULL
+                            ))
+    {
+        return NULL;
+    }
+    if(!ret)return NULL;
 
-	//テクスチャーからサーフェースを取得する
-	//リファレンスカウントが増えるから、Releaseすること
-	IDirect3DSurface9 *surface = NULL;
-	if(D3D_OK!=ret->GetSurfaceLevel(0,&surface))
-	{
-		ret->Release();
-		return NULL;
-	}
+    //テクスチャーからサーフェースを取得する
+    //リファレンスカウントが増えるから、Releaseすること
+    IDirect3DSurface9 *surface = NULL;
+    if(D3D_OK!=ret->GetSurfaceLevel(0,&surface))
+    {
+        ret->Release();
+        return NULL;
+    }
 
-	D3DSURFACE_DESC suf_desc;
-	surface->GetDesc(&suf_desc);
-	TCHAR tekito[256];
-	_stprintf(tekito,_T("surface %d,%d\n"),suf_desc.Width,suf_desc.Height);
-	OutputDebugString(tekito);
+    D3DSURFACE_DESC suf_desc;
+    surface->GetDesc(&suf_desc);
+    TCHAR tekito[256];
+    _stprintf(tekito,_T("surface %d,%d\n"),suf_desc.Width,suf_desc.Height);
+    OutputDebugString(tekito);
 
-	//コピー
-	if(D3D_OK!=d3ddev->GetFrontBufferData(0,surface))
-	{
-		ret->Release();
-		surface->Release();
-		return NULL;
-	}
+    //コピー
+    if(D3D_OK!=d3ddev->GetFrontBufferData(0,surface))
+    {
+        ret->Release();
+        surface->Release();
+        return NULL;
+    }
 
-	//コピー
-	DWORD *rret = NULL;
-	BOOL fail = TRUE;
-	do
-	{
-		//ウィンドウモードの場合、デスクトップ全体のコピーが
-		//作られてしまうので、オフセットする必要がある
-		UINT offset_x = 0;
-		UINT offset_y = 0;
-		if(m_is_win)
-		{
-			offset_x = g_rcClient.left;
-			offset_y = g_rcClient.top;
-		}
+    //コピー
+    DWORD *rret = NULL;
+    BOOL fail = TRUE;
+    do
+    {
+        //ウィンドウモードの場合、デスクトップ全体のコピーが
+        //作られてしまうので、オフセットする必要がある
+        UINT offset_x = 0;
+        UINT offset_y = 0;
+        if(m_is_win)
+        {
+            offset_x = g_rcClient.left;
+            offset_y = g_rcClient.top;
+        }
 
 
-		tex_width = g_DISPLAYWIDTH;
-		tex_height = g_DISPLAYHEIGHT;
-		
-		*wdt = g_DISPLAYWIDTH;
-		*hgt = g_DISPLAYHEIGHT;
+        tex_width = g_DISPLAYWIDTH;
+        tex_height = g_DISPLAYHEIGHT;
+        
+        *wdt = g_DISPLAYWIDTH;
+        *hgt = g_DISPLAYHEIGHT;
 
-		//コピー用メモリ確保
-		rret = new DWORD [ tex_width*tex_height ];
+        //コピー用メモリ確保
+        rret = new DWORD [ tex_width*tex_height ];
 
-		//2テクスチャをロック。
-		D3DLOCKED_RECT lr ;
-		if(D3D_OK != surface->LockRect(&lr,NULL,0))
-		{
-			break;
-		}
+        //2テクスチャをロック。
+        D3DLOCKED_RECT lr ;
+        if(D3D_OK != surface->LockRect(&lr,NULL,0))
+        {
+            break;
+        }
 
-		//コピー（1ピクセルは32ビット）
-		for(UINT y=0;y<tex_height;y++)
-		{
-			//A8R8G8B8→DWORD
-			if(y+offset_y>=m_desktop_height)break;
-			DWORD *src = (DWORD*)((BYTE*)lr.pBits + lr.Pitch*(y+offset_y) + offset_x*4);
-			DWORD *dst = (DWORD*)(rret + y*tex_width);
-			for(UINT x=0;x<tex_width;x++)
-			{
-				if(x+offset_x>=m_desktop_width)break;
-				(*dst) = (*src);
-				*dst|=0x00000000;//α値？Flag？
-				dst++;
-				src++;
-			}
+        //コピー（1ピクセルは32ビット）
+        for(UINT y=0;y<tex_height;y++)
+        {
+            //A8R8G8B8→DWORD
+            if(y+offset_y>=m_desktop_height)break;
+            DWORD *src = (DWORD*)((BYTE*)lr.pBits + lr.Pitch*(y+offset_y) + offset_x*4);
+            DWORD *dst = (DWORD*)(rret + y*tex_width);
+            for(UINT x=0;x<tex_width;x++)
+            {
+                if(x+offset_x>=m_desktop_width)break;
+                (*dst) = (*src);
+                *dst|=0x00000000;//α値？Flag？
+                dst++;
+                src++;
+            }
 
-		}
+        }
 
-		//テクスチャ案ロック
-		surface->UnlockRect();
+        //テクスチャ案ロック
+        surface->UnlockRect();
 
-		fail = FALSE;
-	}
-	while(0);
+        fail = FALSE;
+    }
+    while(0);
 
-	//おっけ～？
-	surface->Release();
-	ret->Release();
+    //おっけ～？
+    surface->Release();
+    ret->Release();
 
-	if(fail)DELETEARRAY(rret);
-	return rret;
+    if(fail)DELETEARRAY(rret);
+    return rret;
 }
 
 #endif
