@@ -7,7 +7,6 @@
 #pragma once
 
 #include "task.h"
-#include "script_story.h"
 
 /*!
 *	@brief スタッフロール
@@ -26,7 +25,7 @@ public:
 	void Draw();
 
 	void SetKeyIndex(UINT ki){m_keyindex=ki;}
-	void Setup(TCHAR *basedir,CStoryElement_Staff* ele_staff);
+	void Setup(TCHAR *basedir, TCHAR* m_filename);
 
 private:
 	void CleanUp();

@@ -142,7 +142,7 @@ int CTStaffRoll::Get1Gyo(TCHAR *str)
 /*----------------------------------------------------------------------
 	スクリプトの設定を取り込み
 ------------------------------------------------------------------------*/
-void CTStaffRoll::Setup(TCHAR *basedir,CStoryElement_Staff* ele_staff)
+void CTStaffRoll::Setup(TCHAR *basedir, TCHAR* m_filename)
 {
 	if(credits)return;//すでに再生中なので無視
 	if(!basedir)return;//設定できないので無視
@@ -151,9 +151,9 @@ void CTStaffRoll::Setup(TCHAR *basedir,CStoryElement_Staff* ele_staff)
 	UINT baselen = strlen(basedir+1);
 
 	//テキストファイル名取り込み
-	if(ele_staff->m_filename){
-		txtpath = new TCHAR [ baselen + strlen(ele_staff->m_filename) +3 ];
-		_stprintf(txtpath,_T("%s\\%s"),basedir,ele_staff->m_filename);
+	if(m_filename){
+		txtpath = new TCHAR [ baselen + strlen(m_filename) +3 ];
+		_stprintf(txtpath,_T("%s\\%s"),basedir,m_filename);
 	}
 }
 

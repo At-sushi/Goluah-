@@ -19,23 +19,12 @@ void CTBattlePause::Initialize()
 	m_counter = 0;
 	m_face_counter[0] = 0;
 	m_face_counter[1] = 0;
-
-	CBattleTaskBase* battleTask = dynamic_cast<CBattleTaskBase*>( g_system.GetCurrentMainTask() );
-	if(!battleTask)
-	{
-		m_face_idx[0] = 0;
-		m_face_idx[1] = 0;
-	}
-	else
-	{
-		m_face_idx[0] = battleTask->GetActiveCharacterID(0);
-		m_face_idx[1] = battleTask->GetActiveCharacterID(1);
-	}
+	m_face_idx[0] = 0;
+	m_face_idx[1] = 0;
 
 	m_kill_flag = FALSE;
 	m_inst_on[0] = m_inst_on[1] = FALSE;
 
-	ms_inst[0] = ms_inst[1] = NULL;
 	m_shiftY = 0;
 }
 
@@ -43,67 +32,11 @@ void CTBattlePause::Terminate()
 {
 	RELEASE(tex_fb);
 	RELEASE(tex_pause);
-
-	g_draw.RelSurface( ms_inst[0] );
-	g_draw.RelSurface( ms_inst[1] );
 }
 
 BOOL CTBattlePause::Execute(DWORD time)
 {
 	m_counter ++;
-
-	for(UINT i=0;i<2;i++)
-	{
-		DWORD key = 0;
-
-		if(m_inst_on[i])
-		{
-			m_face_counter[i] ++;
-		}
-
-		//そのチームでのキー入力の総和をとる
-		for(UINT j=0;j<MAXNUM_TEAM;j++)
-		{
-			UINT ki = g_battleinfo.GetKeyAssign(i,j);
-			if(!(ki&CASSIGN_SPECIFIC))
-			{
-				key |= g_input.GetKey(ki,0);
-			}
-		}
-
-		if(m_inst_on[i])
-		{
-			if(key & KEYSTA_LEFT2)
-			{
-				m_face_idx[i] --;
-				m_face_idx[i] = (m_face_idx[i]+g_battleinfo.GetNumTeam(i)) % g_battleinfo.GetNumTeam(i);
-				m_face_counter[i] = 0;
-				ChangeInst(i);
-			}
-			if(key & KEYSTA_RIGHT2)
-			{
-				m_face_idx[i] ++;
-				m_face_idx[i] %= g_battleinfo.GetNumTeam(i);
-				m_face_counter[i] = 0;
-				ChangeInst(i);
-			}
-		}
-
-		if((key & KEYSTA_BA2) || (key & KEYSTA_BB2) || (key & KEYSTA_BC2)/* || (key & KEYSTA_BD2)*/)
-		{
-			m_inst_on[i] = !m_inst_on[i];
-			if(!m_inst_on[i])
-			{
-				g_draw.RelSurface( ms_inst[i] );
-				ms_inst[i] = NULL;
-				m_face_counter[i] = 0;
-			}
-			else
-			{
-				ChangeInst(i);
-			}
-		}
-	}
 
 	return m_kill_flag ? FALSE : TRUE;
 }
@@ -185,189 +118,4 @@ void CTBattlePause::Draw()
 	g_draw.SetAlphaMode(0);
 
 	if(!m_inst_on)return;
-
-	int alt;
-	int t;
-	MYSURFACE *dds_face;
-	RECT r_face;
-	int x,y;
-	for (t = 1; t >= 0; t--)
-	{
-		if(!m_inst_on[t])continue;
-/*
-オプション状況を表示しようとしていた残骸。
-イテレータが分からず＝オプション名が拾ってこれず凍結中。
-0と1だけでいいのであればすぐ表示できるはず。
-		DWORD setting_now = g_battleinfo.GetCharacterOption(t,m_face_idx[t]);//これは簡単に拾えるが・・・
-		2進数に変換→各桁forで回して1のとこはリストから名前引っ張ってくるという力技するならこれも使える
-		int nisin[28],i;	//face用の部分は計算しないから28でおｋ
-		DWORD jyu = setting_now;
-		double xxx = 300.0;
-		double yyy = 20.0;
-		CharOptionList::iterator ite;
-		CCOptionSelecter::GetSettings;
-		DWORD k=0;
-
-		for (ite = list->begin(); ite != m_selecter->list->end(); ite++)
-		{
-		g_system.DrawBMPTextEx(xxx, yyy, 0.0f, ite->name, 0xFFFFFFFF, 0.8f, 0.8f, 0);
-		yyy += 10.0;
-		}
-
-		イテレータ資料（global.cppより）
-		//ファイル名リスト
-		std::vector<TCHAR*> filelist;
-		std::vector<TCHAR*>::iterator ite;
-		std::vector<TCHAR*>::iterator itee;
-		//再生を試みる
-		ite = filelist.begin();
-		itee= filelist.end();
-		for(;ite!=itee;ite++)
-		{
-		_stprintf( filepath, "%s\\%s",dir,*ite);
-		if(g_sound.BGMPlay( filepath ))
-		{
-		break;//再生に成功したら終了
-		}
-		gbl.ods2("AkiGlobal::PlayRandomBGM : %s ...failed",filepath);
-		}
-		//	delete [] filepath;
-
-		//ファイル名のリストを破棄
-		ite = filelist.begin();
-		itee= filelist.end();
-		for(;ite!=itee;ite++)
-		{
-		delete [] (*ite);
-		}
-*/
-		//デカ顔
-
-		alt = OPT2ALT(g_battleinfo.GetCharacterOption(t,m_face_idx[t]));
-		dds_face = gbl.GetBigFace(g_battleinfo.GetCharacter(t,m_face_idx[t]),g_battleinfo.GetColor(t,m_face_idx[t]),alt);
-
-		if(!dds_face)continue;
-
-		r_face.top = 0;
-		r_face.left = 0;
-		r_face.right = (int)dds_face->wg;
-		r_face.bottom = (int)dds_face->hg;
-
-		if(t==0){
-			x = m_face_counter[t]*30 - (int)dds_face->wg;
-			if(x>0)x=0;
-		}
-		else{
-			x = 640 - m_face_counter[t]*30;
-			if(x< 640-(int)dds_face->wg)x=640-(int)dds_face->wg;
-		}
-
-		g_draw.CheckBlt(
-					dds_face,
-					x,
-					240-(DWORD)dds_face->hg/2,
-					r_face,
-					t==0 ? FALSE : TRUE,
-					FALSE,
-					0,
-					-0.01f,
-					0xFFFFFFFF);
-		//inst
-		if(ms_inst[t])
-		{
-			r_face.top = 0;
-			r_face.left = 0;
-			r_face.right = (int)ms_inst[t]->wg;
-			r_face.bottom = (int)ms_inst[t]->hg;
-
-			DWORD alpha ;
-			
-			x = t==0 ? 20 : 620-(int)ms_inst[t]->wg;
-			y = 450-(DWORD)ms_inst[t]->hg+m_shiftY;
-
-			DWORD key = 0;
-				for(UINT j=0;j<MAXNUM_TEAM;j++){
-					UINT ki = g_battleinfo.GetKeyAssign(t,j);
-					if(!(ki&CASSIGN_SPECIFIC)){
-					key |= g_input.GetKey(ki,0);
-					}
-				if(key & KEYSTA_UP)
-					m_shiftY +=1;
-				else if (key & KEYSTA_DOWN)
-					m_shiftY -=1;
-				else if(key & KEYSTA_BD2)
-					m_shiftY =0;
-			}
-
-			//下地
-			int mgn = 0;
-			vb[0].x =  (x-mgn)/240.0f;
-			vb[1].x =  (x-mgn)/240.0f;
-			vb[2].x =  (x+mgn+ms_inst[t]->wg)/240.0f;
-			vb[3].x =  (x+mgn+ms_inst[t]->wg)/240.0f;
-
-			vb[0].y =  (y-mgn)/240.0f;
-			vb[1].y =  (y+mgn+ms_inst[t]->hg)/240.0f;
-			vb[2].y =  (y-mgn)/240.0f;
-			vb[3].y =  (y+mgn+ms_inst[t]->hg)/240.0f;
-			
-			vb[0].z = 
-			vb[1].z = 
-			vb[2].z = 
-			vb[3].z = -0.02f;
-			
-			alpha = m_face_counter[t]*10>220 ? 220 : m_face_counter[t]*10;
-
-			vb[0].color = 
-			vb[1].color = 
-			vb[2].color = 
-			vb[3].color = alpha<<24 | 0x00FFFFFF;
-			
-			D3DXMATRIX mat;
-			D3DXMatrixIdentity(&mat);
-			g_draw.d3ddev->SetTransform(D3DTS_WORLD,&mat);
-
-			g_draw.d3ddev->SetTexture(0,NULL);
-			g_draw.d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vb,sizeof(MYVERTEX3D));
-
-			//ビットマップ
-			alpha = m_face_counter[t]*10>255 ? 255 : m_face_counter[t]*10;
-			g_draw.CheckBlt(
-					ms_inst[t],
-					x,
-					y,
-					r_face,
-					FALSE,
-					FALSE,
-					0,
-					-0.03f,
-					alpha<<24 | 0x00FFFFFF );
-		}
-	}
 }
-
-
-void CTBattlePause::ChangeInst(UINT t)
-{
-	TCHAR *filepath = new TCHAR[256];
-	TCHAR altstr[2] ={'\0','\0'};
-	int alt = OPT2ALT(g_battleinfo.GetCharacterOption(t,m_face_idx[t]));
-	if(alt!=0)
-	{
-		altstr[0] = 'a' + alt - 1;
-	}
-	UINT char_index = g_battleinfo.GetCharacter(t,m_face_idx[t]);
-	
-	_stprintf(filepath,_T("%s\\inst%s"),
-		g_charlist.GetCharacterDir(char_index),
-		altstr);
-
-	ms_inst[t] = g_draw.CreateSurfaceFrom256Image(filepath);
-	if(!ms_inst[t])
-	{
-		ms_inst[t] = g_draw.CreateSurfaceFrom256Image(_T("system\\inst"));
-	}
-
-	DELETE_ARRAY(filepath);
-}
-

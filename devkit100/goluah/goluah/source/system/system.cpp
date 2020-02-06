@@ -107,12 +107,8 @@ BOOL CSystem::Initialize(HWND hwnd)
 		}
 	}
 
-	g_exp.Initialize();			//DLLへエクスポートする関数ポインタ初期化
-
 	//リスト初期化
-	g_charlist.Initialize();	//キャラクタリスト構築
 	g_stagelist.Initialize();	//ステージリスト構築
-	g_storylist.Initialize();	//ストーリーリスト構築
 
 	//CDirectDraw生成
 	if(!g_draw.Initialize(hwnd,!g_config.IsFullScreen())){
@@ -132,11 +128,6 @@ BOOL CSystem::Initialize(HWND hwnd)
 		return FALSE;
 	}
 
-	if(g_charlist.GetCharacterCount()==0){//キャラクターが一個もいない
-		MessageBox(hwnd,_T("キャラクターが一体もいません。ゲームを開始できません。"),_T("初期化エラー(2)"),MB_OK);
-		Destroy();
-		return(FALSE);
-	}
 	if(g_stagelist.GetStageCount()==0){//ステージが一個もない
 		MessageBox(hwnd,_T("ステージが一つもありません。ゲームを開始できません。"),_T("初期化エラー(2)"),MB_OK);
 		Destroy();
@@ -518,58 +509,6 @@ BOOL CALLBACK DialogProc(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 			}
 		}
 		ADDLIST(_T(" "));
-		//キャラクターの検索結果
-		ADDLIST(_T("■キャラクター検索結果"));
-		for(i=0;i<g_charlist.GetRingNum();i++){
-			_stprintf(str,_T("%s\\ : %d"),g_charlist.GetRingName(i),g_charlist.GetCharacterCountRing(i));
-			ADDLIST(str);
-		}
-		_stprintf(str,_T("計 : %d"),g_charlist.GetCharacterCount());
-		ADDLIST(str);
-
-		ADDLIST(_T(" "));
-		ADDLIST(_T("(･∀･)読み込みに成功したキャラクター(･∀･)"));
-		_stprintf(str,_T("全:%d体"),g_charlist.GetCharacterCount());
-		ADDLIST(str);
-		for(i=0;i<g_charlist.GetCharacterCount();i++){
-			_stprintf(str,_T("%s : %s - ver%4.3f"),
-				g_charlist.GetCharacterDir(i),g_charlist.GetCharacterName(i),
-				g_charlist.GetCharacterVer(i)/1000.0);
-			ADDLIST(str);
-		}
-		ADDLIST(_T(" "));
-		ADDLIST(_T("(･Ａ･)読み込みに失敗したキャラクター(･Ａ･)"));
-		_stprintf(str,_T("全:%d体"),g_charlist.GetDameCharCount());
-		ADDLIST(str);
-		for(i=0;i<g_charlist.GetDameCharCount();i++){
-			_stprintf(str,_T("%s : "),g_charlist.GetDameCharDir(i));
-			switch(g_charlist.GetDameCharReas(i)){
-			case CCL_DAME_NODLL://action.dllの読み込みに失敗
-				_stprintf(&str[strlen(str)],_T("dllの読み込みに失敗しました"));
-				break;
-			case CCL_DAME_CANTGETFP://関数ポインタ取得に失敗
-				_stprintf(&str[strlen(str)],_T("関数ポインタの取得に失敗しました"));
-				break;
-			case CCL_DAME_FFAIL://関数がFALSEを返してきた
-				_stprintf(&str[strlen(str)],_T("CharacterInfo関数がFALSEを返しました"));
-				break;
-			case CCL_DAME_OLDDLL://バージョンチェックに失敗
-				_stprintf(&str[strlen(str)],_T("ver.%4.3f(古) - %s"),
-					(double)g_charlist.GetDameCharVer(i)/1000.0,
-					g_charlist.GetDameCharName(i));
-				break;
-			case CCL_DAME_NEWDLL://バージョンチェックに失敗(2)
-				_stprintf(&str[strlen(str)],_T("ver.%4.3f(新) - %s"),
-					(double)g_charlist.GetDameCharVer(i)/1000.0,
-					g_charlist.GetDameCharName(i));
-				break;
-			default:
-				_stprintf(&str[strlen(str)],_T("エラーを特定できません"));
-				break;
-			}
-			ADDLIST(str);
-		}
-		ADDLIST(_T(" "));
 		//ステージの検索結果
 		ADDLIST(_T("■ステージ検索結果"));
 		_stprintf(str,_T("全%dステージ"),g_stagelist.GetStageCount());
@@ -612,26 +551,7 @@ BOOL CALLBACK DialogProc(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 			ADDLIST(str);
 		}
 		ADDLIST(_T(" "));
-		//ストーリー
-		ADDLIST(_T("■ストーリー検証結果"));
-		ADDLIST(_T("○読み込み成功○"));
-		for(i=0;i<(int)g_storylist.GetAllStoryNum();i++){
-			_stprintf(str,_T("%s : %s"),g_storylist.GetStoryDir(i),g_storylist.GetStoryName(i));
-			ADDLIST(str);
-		}
-		ADDLIST(_T("×読み込み失敗×"));
-		for(i=0;i<g_storylist.GetErrorCount();i++){
-			_stprintf(str,_T("%s : %s"),g_storylist.GetErrorDir(i),g_storylist.GetErrorStr(i));
-			ADDLIST(str);
-		}
-		ADDLIST(_T(" "));
 
-		if(g_charlist.GetCharacterCount()==0){//キャラクターが一個もいない
-			ADDLIST(_T(" "));
-			ADDLIST(_T("キャラクターが一体もいません。ゲームを開始できません。"));
-			ADDLIST(_T(" "));
-			cannot_start = TRUE;
-		}
 		if(g_stagelist.GetStageCount()==0){//ステージが一個もいない
 			ADDLIST(_T(" "));
 			ADDLIST(_T("ステージが一つもありません。ゲームを開始できません。"));

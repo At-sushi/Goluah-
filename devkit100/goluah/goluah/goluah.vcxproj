@@ -34,7 +34,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v120_xp</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
     <PlatformToolset>v100</PlatformToolset>
@@ -163,7 +163,6 @@
     <ClCompile Include="source\system\Name.cpp" />
     <ClCompile Include="source\system\NameC.cpp" />
     <ClCompile Include="source\system\NetState.cpp" />
-    <ClCompile Include="source\battle\task_demobattle.cpp" />
     <ClCompile Include="source\app\goluah.cpp" />
     <ClCompile Include="source\app\main.cpp" />
     <ClCompile Include="source\app\stdafx.cpp">
@@ -172,57 +171,16 @@
     </ClCompile>
     <ClCompile Include="source\system\system.cpp" />
     <ClCompile Include="source\system\task.cpp" />
-    <ClCompile Include="source\global\battle_load_info.cpp" />
-    <ClCompile Include="source\global\bigface_cache.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="source\global\export.cpp" />
     <ClCompile Include="source\global\global.cpp" />
     <ClCompile Include="source\global\log2file.cpp" />
-    <ClCompile Include="source\dataHandler\charlist.cpp" />
     <ClCompile Include="source\dataHandler\stagelist.cpp" />
-    <ClCompile Include="source\dataHandler\storylist.cpp" />
-    <ClCompile Include="source\task\task_demo.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="source\task\task_fade.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="source\task\task_items.cpp" />
     <ClCompile Include="source\task\task_opening.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="source\task\task_optselecter.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="source\task\task_select.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="source\task\task_select_practice.cpp" />
-    <ClCompile Include="source\task\task_select_story.cpp" />
-    <ClCompile Include="source\task\task_simpleoptsel.cpp" />
     <ClCompile Include="source\task\task_staffroll.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="source\task\task_storymode.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -234,43 +192,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="source\task\task_vsmode.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="source\task\task_win.cpp" />
-    <ClCompile Include="source\battle\battleTaskBase.cpp" />
-    <ClCompile Include="source\battle\gauge.cpp" />
-    <ClCompile Include="source\battle\object.cpp" />
-    <ClCompile Include="source\battle\task_battle.cpp" />
-    <ClCompile Include="source\battle\task_battle_net.cpp" />
-    <ClCompile Include="source\battle\task_Bonus.cpp" />
-    <ClCompile Include="source\battle\task_practice.cpp" />
-    <ClCompile Include="source\battle\effect\efct_hit.cpp" />
-    <ClCompile Include="source\battle\effect\efct_other.cpp" />
-    <ClCompile Include="source\battle\effect\efct_sys.cpp" />
-    <ClCompile Include="source\battle\effect\efctlist.cpp" />
     <ClCompile Include="source\battle\subtask\task_loading.cpp" />
     <ClCompile Include="source\battle\subtask\task_pause.cpp" />
-    <ClCompile Include="source\battle\adaptor\a_action.cpp" />
-    <ClCompile Include="source\battle\adaptor\adapt_main.cpp" />
-    <ClCompile Include="source\battle\adaptor\adaptor.cpp" />
-    <ClCompile Include="source\battle\adaptor\mimikaki.cpp" />
-    <ClCompile Include="source\script\script_demo.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="source\script\script_loader.cpp" />
-    <ClCompile Include="source\script\script_story.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="..\common\aki3d.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </PrecompiledHeader>
@@ -316,7 +239,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="source\debug\debug_endurance.cpp" />
     <ClCompile Include="source\debug\debug_menu.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -327,47 +249,14 @@
     <ClInclude Include="source\app\system_cell.h" />
     <ClInclude Include="source\system\system.h" />
     <ClInclude Include="source\system\task.h" />
-    <ClInclude Include="source\global\battle_load_info.h" />
-    <ClInclude Include="source\global\bigface_cache.h" />
-    <ClInclude Include="source\global\export.h" />
     <ClInclude Include="source\global\global.h" />
     <ClInclude Include="source\global\log2file.h" />
-    <ClInclude Include="source\dataHandler\charlist.h" />
     <ClInclude Include="source\dataHandler\stagelist.h" />
-    <ClInclude Include="source\dataHandler\storylist.h" />
-    <ClInclude Include="source\task\task_demo.h" />
-    <ClInclude Include="source\task\task_fade.h" />
-    <ClInclude Include="source\task\task_items.h" />
     <ClInclude Include="source\task\task_opening.h" />
-    <ClInclude Include="source\task\task_optselecter.h" />
-    <ClInclude Include="source\task\task_select.h" />
-    <ClInclude Include="source\task\task_select_practice.h" />
-    <ClInclude Include="source\task\task_select_story.h" />
-    <ClInclude Include="source\task\task_simpleoptsel.h" />
     <ClInclude Include="source\task\task_staffroll.h" />
-    <ClInclude Include="source\task\task_storymode.h" />
     <ClInclude Include="source\task\task_title.h" />
-    <ClInclude Include="source\task\task_vsmode.h" />
-    <ClInclude Include="source\task\task_win.h" />
-    <ClInclude Include="source\battle\battleTaskBase.h" />
-    <ClInclude Include="source\battle\gauge.h" />
-    <ClInclude Include="source\battle\object.h" />
-    <ClInclude Include="source\battle\task_battle.h" />
-    <ClInclude Include="source\battle\task_battle_net.h" />
-    <ClInclude Include="source\battle\task_practice.h" />
-    <ClInclude Include="source\battle\effect\efct_hit.h" />
-    <ClInclude Include="source\battle\effect\efct_other.h" />
-    <ClInclude Include="source\battle\effect\efct_sys.h" />
-    <ClInclude Include="source\battle\effect\efctlist.h" />
     <ClInclude Include="source\battle\subtask\task_loading.h" />
     <ClInclude Include="source\battle\subtask\task_pause.h" />
-    <CustomBuildStep Include="source\battle\adaptor\adaptor.h" />
-    <CustomBuildStep Include="source\battle\adaptor\define_char.h" />
-    <CustomBuildStep Include="source\battle\adaptor\define_data.h" />
-    <CustomBuildStep Include="source\battle\adaptor\mimikaki.h" />
-    <ClInclude Include="source\script\script_loader.h" />
-    <ClInclude Include="source\script\script_story.h" />
-    <ClInclude Include="source\script\srcipt_demo.h" />
     <ClInclude Include="..\common\aki3d.h" />
     <ClInclude Include="..\common\aki3d_internal.h" />
     <ClInclude Include="..\common\config.h" />
@@ -379,7 +268,6 @@
     <ClInclude Include="..\common\directx\dx_input.h" />
     <ClInclude Include="..\common\directx\dx_play.h" />
     <ClInclude Include="..\common\directx\dx_sound.h" />
-    <ClInclude Include="source\debug\debug_endurance.h" />
     <ClInclude Include="source\debug\debug_menu.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="source\system\Name.h" />
@@ -387,7 +275,6 @@
     <ClInclude Include="NetMessage.h" />
     <ClInclude Include="source\system\NetState.h" />
     <ClInclude Include="source\battle\task_Bonus.h" />
-    <ClInclude Include="source\battle\task_demobattle.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="goluah.rgs" />

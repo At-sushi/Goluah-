@@ -2881,7 +2881,7 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCDで利用するビット�
                 //スケール：重心中心 回転：足元中心
                 D3DXMatrixTransformation(&matp,
                     &center,
-                    &quat,	// ←バグorやむを得ない処置だった可能性？とりあえずv1.00の挙動を再現
+                    NULL,
                     &D3DXVECTOR3(magx, magy, 1.0f),//拡大
                     NULL,
                     &quat,//回転
@@ -3831,7 +3831,7 @@ D3DXMATRIXA16 CDirectDraw::ResetParentMatrix()
 */
 void CDirectDraw::ResetTransformMatrix()
 {
-    D3DXMATRIX matw,matv,matp;
+    D3DXMATRIXA16 matw,matv,matp;
 
     D3DXMatrixLookAtRH(&matv,
         &D3DXVECTOR3(camera_x + camera_zurax,camera_y+camera_zuray,camera_z),

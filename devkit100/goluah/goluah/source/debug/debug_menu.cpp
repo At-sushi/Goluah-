@@ -8,15 +8,10 @@
 #include "global.h"
 
 #include "task_title.h"
-#include "task_select.h"
-#include "task_win.h"
 #include "task_staffroll.h"
-#include "task_battle_net.h"
 #include "..\resource.h"
 #include "Name.h"
 #include "NameC.h"
-
-#include "debug_endurance.h"
 
 /*------------------------------------------------------------
 	(生成)
@@ -97,42 +92,19 @@ BOOL CDebugMenu::Execute(DWORD time)
 		switch(m_selected%namelist.size())
 		{
 			case 0:g_system.AddTask( new CTitle );return FALSE;
-			case 1:g_system.AddTask( new CCharacterSelect );return FALSE;
 			case 2:
 				{
-					srand(timeGetTime());
-					UINT team = timeGetTime()%2;
-					UINT num = rand()%3+1;
-					for(UINT i=0;i<num;i++){
-						g_battleinfo.AddCharacter(
-							team,
-							rand()%g_charlist.GetCharacterCount(),
-							rand()%3+1,
-							FALSE,
-							0);
-					}
-					g_battleresult.Initialize(team);
-					g_system.AddTask( new CYouWin );
 					return FALSE;
 				}
 				break;
 			case 3:
 				{
-					CStoryElement_Staff *ele_staff = new CStoryElement_Staff;
-					ele_staff->FeedLine(_T("file staff.txt"));
-					CTStaffRoll *psr = new CTStaffRoll;
-					psr->SetKeyIndex(0);
-					psr->Setup( g_storylist.GetStoryDir(1) , ele_staff );
-					g_system.AddTask( psr );
-					delete ele_staff;
 					return FALSE;
 				}
 				break;
 			case 4:
-				g_system.AddTask( new CTEnduranceTest );
 				break;
 			case 5:
-				g_system.AddTask( new CTTaimanTest );
 				break;
 			case 6:
 				{
@@ -146,7 +118,6 @@ BOOL CDebugMenu::Execute(DWORD time)
 
 				g_play.Initialize(dialog.m_name, dialog.m_port);
 				g_play.Host();
-				g_system.AddTask( new CBattleTaskNet );
 				break;
 				}
 
@@ -159,7 +130,6 @@ BOOL CDebugMenu::Execute(DWORD time)
 
 				g_play.Initialize(dialog.m_name, dialog.m_port);
 				g_play.Connect(dialog.m_hostIP, atoi(dialog.m_hostPort));
-				g_system.AddTask( new CBattleTaskNet );
 				break;
 				}
 		}

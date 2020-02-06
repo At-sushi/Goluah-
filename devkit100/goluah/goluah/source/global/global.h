@@ -25,16 +25,14 @@
 #include "dx_sound.h"
 #include "dx_play.h"
 
+#include "define_macro.h"
 #include "system.h"
 
 class AkiGlobal;
 #include "config.h"
 #include "log2file.h"
-#include "export.h"
-#include "storylist.h"
 #include "stagelist.h"
-#include "charlist.h"
-#include "battle_load_info.h"
+#include "gobject.h"
 
 extern CDirectDraw			g_draw;			//!< 描画オブジェクト
 extern CDirectInput			g_input;		//!< 入力オブジェクト
@@ -46,11 +44,7 @@ extern CSystem				g_system;		//!< システムオブジェクト
 extern AkiGlobal			gbl;			//!< グローバル関数の入れ物
 extern CLog2File			g_log2file;		//!< ファイルへログ保存クラス
 extern CExport				g_exp;			//!< DLLへの関数提供クラス
-extern CStoryList			g_storylist;	//!< ストーリーリスト管理クラス
 extern CStageList			g_stagelist;	//!< ステージリスト管理クラス
-extern CCharacterList		g_charlist;		//!< キャラクターリスト管理クラス
-extern CBattleLoadInfo		g_battleinfo;	//!< 試合情報クラス
-extern CBattleResultInfo	g_battleresult;	//!< 試合結果情報クラス
 
 
 /*------------------------------------------------------------------------------
@@ -71,7 +65,6 @@ extern BOOL g_muki[MAXNUM_KEYI];//!< キー入力の向き
 class AkiGlobal;
 
 struct MY2DVECTOR;
-#include "bigface_cache.h"
 
 /*!
 *	@ingroup global

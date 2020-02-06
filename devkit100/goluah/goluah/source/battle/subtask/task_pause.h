@@ -21,12 +21,10 @@ public:
 	int GetDrawPriority(){return 500;}		//描画プライオリティ。低いほど手前に（後に）描画。マイナスならば表示しない
 
 	void Kill()	{m_kill_flag=TRUE;}
-	void ChangeInst(UINT i);
 
 protected:
 	LPDIRECT3DTEXTURE9 tex_fb;				//!< フロントバッファをコピーしたテクスチャ
 	LPDIRECT3DTEXTURE9 tex_pause;			//!< "Pause Press F7 Key" 表示用テクスチャ
-	MYSURFACE* ms_inst[2];					//!< 1P/2P インストbmp
 
 	UINT m_counter;
 	UINT m_face_counter[2];

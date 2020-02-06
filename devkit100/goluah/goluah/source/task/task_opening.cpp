@@ -25,8 +25,7 @@ void CTOpening::Initialize()
 	g_system.DisableRendering();
 
 	// フルスクリーン時対策
-	g_draw.d3dpp.SwapEffect = D3DSWAPEFFECT_COPY;
-	g_draw.UpdateD3DPP();
+	g_draw.d3ddev->SetDialogBoxMode(TRUE);
 
 	opok = g_sound.PlayVideo(_T(".\\system\\op.avi"));
 
@@ -35,8 +34,7 @@ void CTOpening::Initialize()
 
 void CTOpening::Terminate()
 {
-	g_draw.d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
-	g_draw.UpdateD3DPP();
+	g_draw.d3ddev->SetDialogBoxMode(FALSE);
 
 	g_system.EnableRendering();
 	g_sound.BGMStop();

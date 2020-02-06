@@ -3,17 +3,17 @@
 
 
 /*-----------------------------------------------------------------------------
-	以下、ネットでMACアドレス取得tipsを調べて出てきたサイトにあったコードをこぴぺした
+    以下、ネットでMACアドレス取得tipsを調べて出てきたサイトにあったコードをこぴぺした
 
-	2004.02.27 aki
+    2004.02.27 aki
 -------------------------------------------------------------------------------*/
 
 
 /******************************************************************************
-	Trick Library
-		ゼロクリアモジュールヘッダファイル
-			Copyright(C) 2000 Wraith.	All rights reserved.
-											Coded by Wraith in Jul 17, 2000.
+    Trick Library
+        ゼロクリアモジュールヘッダファイル
+            Copyright(C) 2000 Wraith.	All rights reserved.
+                                            Coded by Wraith in Jul 17, 2000.
 ******************************************************************************/
 
 //　Tab幅を４文字に設定して表示させてください。
@@ -43,20 +43,20 @@ inline T & TClear_Core(T &A) {
 #if			defined(__WIN32__) || defined(_WIN32)
     ZeroMemory((void *)&A, sizeof(T));
 #else
-	memset((void *)&A, 0, sizeof(T));
+    memset((void *)&A, 0, sizeof(T));
 #endif
-	return A;
+    return A;
 }
 
 template <class T>
 inline T & TClear(T &A) {
-	//
-	//	実装をユーザコーディングでカスタマイズしやすいように
-	//	ゼロクリアを行う本体(TClear_Core)をそとに出してます。
-	//	カスタマイズするときは必要に応じてTClear_Coreを利用
-	//	してください。
-	//
-	return TClear_Core(A);
+    //
+    //	実装をユーザコーディングでカスタマイズしやすいように
+    //	ゼロクリアを行う本体(TClear_Core)をそとに出してます。
+    //	カスタマイズするときは必要に応じてTClear_Coreを利用
+    //	してください。
+    //
+    return TClear_Core(A);
 }
 
 
@@ -70,10 +70,10 @@ inline T & TClear(T &A) {
 
 
 /******************************************************************************
-	Trick Library
-		ネットＢＩＯＳモジュールヘッダファイル
-			Copyright(C) 2000 Wraith.	All rights reserved.
-											Coded by Wraith in Aug 4, 2000.
+    Trick Library
+        ネットＢＩＯＳモジュールヘッダファイル
+            Copyright(C) 2000 Wraith.	All rights reserved.
+                                            Coded by Wraith in Aug 4, 2000.
 ******************************************************************************/
 
 //　Tab幅を４文字に設定して表示させてください。
@@ -109,51 +109,51 @@ inline T & TClear(T &A) {
 
 class TNetbios :public NCB {
 
-	public:
-	
-		UCHAR	ExecuteResult;
-	
-		//	コンストラクタ
+    public:
+    
+        UCHAR	ExecuteResult;
+    
+        //	コンストラクタ
 
-				TNetbios() {
-					//	ゼロクリア
-					TClear(*this);
-				}
+                TNetbios() {
+                    //	ゼロクリア
+                    TClear(*this);
+                }
 
-		//	メンバ関数
+        //	メンバ関数
 
 TNetbios &		Clear() {
-					return TClear(*this);
-				}
+                    return TClear(*this);
+                }
 TNetbios &		SetLanaNumber(const UCHAR &LanaNumber) {
-					ncb_lana_num = LanaNumber;
-					return *this;
-				}
+                    ncb_lana_num = LanaNumber;
+                    return *this;
+                }
 TNetbios &		SetCallName(const TCHAR *CallName) {
-					assert(strlen(CallName) < NCBNAMSZ);
-					_tcscpy((TCHAR *)ncb_callname, (const TCHAR *)CallName);
-					return *this;
-				}
+                    assert(strlen(CallName) < NCBNAMSZ);
+                    _tcscpy((TCHAR *)ncb_callname, (const TCHAR *)CallName);
+                    return *this;
+                }
 
 
 TNetbios &		SetBuffer(void *Buffer, const int &Size) {
-					ncb_buffer = (UCHAR *)Buffer;
-					ncb_length = (WORD)Size;
-					return *this;
-				}
+                    ncb_buffer = (UCHAR *)Buffer;
+                    ncb_length = (WORD)Size;
+                    return *this;
+                }
 TNetbios &		SetBuffer(PLANA_ENUM Buffer) {
-					return SetBuffer(Buffer, sizeof(*Buffer));
-				}
+                    return SetBuffer(Buffer, sizeof(*Buffer));
+                }
 
 
 TNetbios &		Execute(const UCHAR &Command) {
-					ncb_command = Command;
-					ExecuteResult = Netbios(this);
-					return *this;
-				}
+                    ncb_command = Command;
+                    ExecuteResult = Netbios(this);
+                    return *this;
+                }
 TNetbios &		PostCommand(const UCHAR &Command) {
-					return Execute(ASYNCH |Command);
-				}
+                    return Execute(ASYNCH |Command);
+                }
 
 };
 
@@ -163,8 +163,8 @@ TNetbios &		PostCommand(const UCHAR &Command) {
 #endif	//	__TrickLibrary_TNETBIOS_H__
 
 /******************************************************************************
-	□■□■ Wraith the Trickster ≫ http://mx1.tiki.ne.jp/~wraith/ □■□■
-	■□■□ ～I'll go with heaven's advantage and fool's wisdom.～ ■□■□
+    □■□■ Wraith the Trickster ≫ http://mx1.tiki.ne.jp/~wraith/ □■□■
+    ■□■□ ～I'll go with heaven's advantage and fool's wisdom.～ ■□■□
 ******************************************************************************/
 
 DWORD GetLimcutKey()
@@ -175,81 +175,81 @@ typedef struct _ASTAT_ {
     NAME_BUFFER    NameBuff [30];
 } ASTAT, * PASTAT;
 
-	ASTAT       Adapter;
-	LANA_ENUM   lenum;
-	TNetbios    NetbiosAgent;
+    ASTAT       Adapter;
+    LANA_ENUM   lenum;
+    TNetbios    NetbiosAgent;
 
 
-	//  LANA番号の列挙
+    //  LANA番号の列挙
 /*	_stprintf(tekito, _T("The NCBENUM return code is: 0x%x \n"),
-			NetbiosAgent
-				.Clear()
-				.SetBuffer(&lenum)
-				.Execute(NCBENUM).ExecuteResult);
-	OutputDebugString(tekito);*/
-	NetbiosAgent
-				.Clear()
-				.SetBuffer(&lenum)
-				.Execute(NCBENUM);
+            NetbiosAgent
+                .Clear()
+                .SetBuffer(&lenum)
+                .Execute(NCBENUM).ExecuteResult);
+    OutputDebugString(tekito);*/
+    NetbiosAgent
+                .Clear()
+                .SetBuffer(&lenum)
+                .Execute(NCBENUM);
 
-	//  全てのLANアダプタのステータスを表示
-	//for(int i = 0; i < lenum.length; i++) {
+    //  全てのLANアダプタのステータスを表示
+    //for(int i = 0; i < lenum.length; i++) {
 
-	//0番だけ
-	int i=0;
-	{
-		//  LANアダプタのリセット
-	/*	_stprintf(tekito, _T("The NCBRESET on LANA %d return code is: 0x%x \n"),
-				lenum.lana[i],
-				NetbiosAgent
-					.Clear()
-					.SetLanaNumber(lenum.lana[i])
-					.Execute(NCBRESET).ExecuteResult);
-		OutputDebugString(tekito);*/
-		NetbiosAgent
-					.Clear()
-					.SetLanaNumber(lenum.lana[i])
-					.Execute(NCBRESET);
+    //0番だけ
+    int i=0;
+    {
+        //  LANアダプタのリセット
+    /*	_stprintf(tekito, _T("The NCBRESET on LANA %d return code is: 0x%x \n"),
+                lenum.lana[i],
+                NetbiosAgent
+                    .Clear()
+                    .SetLanaNumber(lenum.lana[i])
+                    .Execute(NCBRESET).ExecuteResult);
+        OutputDebugString(tekito);*/
+        NetbiosAgent
+                    .Clear()
+                    .SetLanaNumber(lenum.lana[i])
+                    .Execute(NCBRESET);
 
-		//  LANアダプタのステータスを取得
-	/*	_stprintf(tekito, _T("The NCBASTAT on LANA %d return code is: 0x%x \n"),
-				lenum.lana[i],
-				NetbiosAgent
-					.Clear()
-					.SetLanaNumber(lenum.lana[i])
-					.SetCallName(_T("*"))
-					.SetBuffer(&Adapter, sizeof(Adapter))
-					.Execute(NCBASTAT).ExecuteResult);
-		OutputDebugString(tekito);*/
-		NetbiosAgent
-					.Clear()
-					.SetLanaNumber(lenum.lana[i])
-					.SetCallName(_T("*"))
-					.SetBuffer(&Adapter, sizeof(Adapter))
-					.Execute(NCBASTAT);
+        //  LANアダプタのステータスを取得
+    /*	_stprintf(tekito, _T("The NCBASTAT on LANA %d return code is: 0x%x \n"),
+                lenum.lana[i],
+                NetbiosAgent
+                    .Clear()
+                    .SetLanaNumber(lenum.lana[i])
+                    .SetCallName(_T("*"))
+                    .SetBuffer(&Adapter, sizeof(Adapter))
+                    .Execute(NCBASTAT).ExecuteResult);
+        OutputDebugString(tekito);*/
+        NetbiosAgent
+                    .Clear()
+                    .SetLanaNumber(lenum.lana[i])
+                    .SetCallName(_T("*"))
+                    .SetBuffer(&Adapter, sizeof(Adapter))
+                    .Execute(NCBASTAT);
 
-		if (NRC_GOODRET != NetbiosAgent.ExecuteResult) {
-			return 0;
-		}
-		//  ステータスを取得に成功...
-			//  MACアドレスの表示
-		/*	_stprintf(tekito, _T("The Ethernet Number on LANA %d is:")
-						_T("%02x%02x%02x%02x%02x%02x\n"),
-					lenum.lana[i],
-					Adapter.adapt.adapter_address[0],
-					Adapter.adapt.adapter_address[1],
-					Adapter.adapt.adapter_address[2],
-					Adapter.adapt.adapter_address[3],
-					Adapter.adapt.adapter_address[4],
-					Adapter.adapt.adapter_address[5]);
-			OutputDebugString(tekito);
-		}
-		else OutputDebugString(_T("The Ethernet Number on LANA %d is ...failed\n"));*/
-	}
+        if (NRC_GOODRET != NetbiosAgent.ExecuteResult) {
+            return 0;
+        }
+        //  ステータスを取得に成功...
+            //  MACアドレスの表示
+        /*	_stprintf(tekito, _T("The Ethernet Number on LANA %d is:")
+                        _T("%02x%02x%02x%02x%02x%02x\n"),
+                    lenum.lana[i],
+                    Adapter.adapt.adapter_address[0],
+                    Adapter.adapt.adapter_address[1],
+                    Adapter.adapt.adapter_address[2],
+                    Adapter.adapt.adapter_address[3],
+                    Adapter.adapt.adapter_address[4],
+                    Adapter.adapt.adapter_address[5]);
+            OutputDebugString(tekito);
+        }
+        else OutputDebugString(_T("The Ethernet Number on LANA %d is ...failed\n"));*/
+    }
 
-	DWORD ret1 = Adapter.adapt.adapter_address[0]<<8 | Adapter.adapt.adapter_address[1];
-	DWORD ret2 = Adapter.adapt.adapter_address[1]<<8 | Adapter.adapt.adapter_address[2];
-	DWORD ret3 = Adapter.adapt.adapter_address[3]<<8 | Adapter.adapt.adapter_address[4];
+    DWORD ret1 = Adapter.adapt.adapter_address[0]<<8 | Adapter.adapt.adapter_address[1];
+    DWORD ret2 = Adapter.adapt.adapter_address[1]<<8 | Adapter.adapt.adapter_address[2];
+    DWORD ret3 = Adapter.adapt.adapter_address[3]<<8 | Adapter.adapt.adapter_address[4];
 
-	return( ( ret1 | ret2<<24 ) ^ ret3 );
+    return( ( ret1 | ret2<<24 ) ^ ret3 );
 }

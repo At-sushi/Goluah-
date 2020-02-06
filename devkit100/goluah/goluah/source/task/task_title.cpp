@@ -7,11 +7,7 @@
 #include "define_macro.h"
 #include "global.h"
 #include "task_title.h"
-#include "task_vsmode.h"
-#include "task_select_story.h"
 #include "task_opening.h"
-#include "task_select_practice.h"
-#include "task_demobattle.h"		// 消失
 
 /*-----------------------------------------------------------
 	生成・破棄
@@ -69,7 +65,7 @@ BOOL CTitle::Execute(DWORD time)
 	else{
 		// デモ
 		if(counter == TIME_DEMOSTART){
-			BOOL demobattle = TRUE;
+			BOOL demobattle = FALSE;
 
 			if(!demomode)
 			{
@@ -78,15 +74,7 @@ BOOL CTitle::Execute(DWORD time)
 				// ムービー表示
 				demobattle = FALSE;
 				g_system.AddTask(pTask);
-				if( !pTask->IsOK() )
-					demobattle = TRUE; // ダメポ
 			}
-
-			if(demobattle){
-				// 対戦デモ
-				g_system.AddTask(new CBattleTaskDemo);
-			}
-			demomode = !demomode; // フラグ反転
 
 			return TRUE;
 		}
@@ -274,9 +262,6 @@ void CTitle::Draw()
 -------------------------------------------------------------*/
 void CTitle::MainMenu()
 {
-	CTaskVsMode *vsTask;
-	CTStorySelect *sselect;
-
 	DWORD keystate = g_input.GetAllKey();
 	UINT  dec_index;//決定キーを押したプレイヤー
 	for(int k=0;k<MAXNUM_KEYI;k++){
@@ -290,28 +275,17 @@ void CTitle::MainMenu()
 	if(keystate & KEYSTA_ANYKEY){
 		counter=0;
 		if(selectedgamemode==TITLE_STORY){//story mode
-			if(g_storylist.GetAllStoryNum()<=0){
-				g_system.PlaySystemSound(SYSTEMSOUND_GUARD);
-				return;
-			}
 			g_system.PlaySystemSound(SYSTEMSOUND_HIT3);
-			sselect = new CTStorySelect;
-			sselect->SetKeyIndex(dec_index);
-			g_system.AddTask(sselect);
 			return;
 		}
 		else if(selectedgamemode==TITLE_VS)//vs mode
 		{
 			g_system.PlaySystemSound(SYSTEMSOUND_HIT3);
-			vsTask = new CTaskVsMode;
-			g_system.AddTask( vsTask );
 			return;
 		}
 		else if(selectedgamemode==TITLE_PRACTICE)//practice
 		{
 			g_system.PlaySystemSound(SYSTEMSOUND_HIT3);
-			CCharacterSelectPractice* pmode = new CCharacterSelectPractice;
-			g_system.AddTask( pmode );
 			return;
 		}
 		else if(selectedgamemode==TITLE_SETTINGS){//settings
