@@ -1177,7 +1177,7 @@ BOOL CDirectDraw::CopyBB2TS(MYPALLET *pbb,
 *	@param dst 書き込み先
 *	@retuen 書き込んだバイト数(常に2)
 */
-DWORD CDirectDraw::CopyOne_R5G6B5(MYPALLET src,PBYTE dst)
+DWORD CDirectDraw::CopyOne_R5G6B5(const MYPALLET& src, PBYTE dst)
 {
     WORD *pdst;
     pdst = (PWORD)dst;
@@ -1211,7 +1211,7 @@ DWORD CDirectDraw::CopyOne_R5G6B5(MYPALLET src,PBYTE dst)
 *	@param dst 書き込み先
 *	@retuen 書き込んだバイト数(常に2)
 */
-DWORD CDirectDraw::CopyOne_A1R5G5B5(MYPALLET src,PBYTE dst)
+DWORD CDirectDraw::CopyOne_A1R5G5B5(const MYPALLET& src,PBYTE dst)
 {
     WORD *pdst;
     pdst = (PWORD)dst;
@@ -1249,7 +1249,7 @@ DWORD CDirectDraw::CopyOne_A1R5G5B5(MYPALLET src,PBYTE dst)
 *	@param dst 書き込み先
 *	@retuen 書き込んだバイト数(常に2)
 */
-DWORD CDirectDraw::CopyOne_A4R4G4B4(MYPALLET src,PBYTE dst)
+DWORD CDirectDraw::CopyOne_A4R4G4B4(const MYPALLET& src, PBYTE dst)
 {
     WORD *pdst;
     pdst = (PWORD)dst;
@@ -1287,7 +1287,7 @@ DWORD CDirectDraw::CopyOne_A4R4G4B4(MYPALLET src,PBYTE dst)
 *	@param dst 書き込み先
 *	@retuen 書き込んだバイト数(常に2)
 */
-DWORD CDirectDraw::CopyOne_A8R3G3B2(MYPALLET src,PBYTE dst)
+DWORD CDirectDraw::CopyOne_A8R3G3B2(const MYPALLET& src, PBYTE dst)
 {
     WORD *pdst;
     pdst = (PWORD)dst;
@@ -1324,7 +1324,7 @@ DWORD CDirectDraw::CopyOne_A8R3G3B2(MYPALLET src,PBYTE dst)
 *	@param dst 書き込み先
 *	@retuen 書き込んだバイト数(常に4)
 */
-DWORD CDirectDraw::CopyOne_A8R8G8B8(MYPALLET src,PBYTE dst)
+DWORD CDirectDraw::CopyOne_A8R8G8B8(const MYPALLET& src, PBYTE dst)
 {
     MYPALLET *pdst;
     pdst = (MYPALLET*)dst;

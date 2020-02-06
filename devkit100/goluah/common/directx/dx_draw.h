@@ -178,11 +178,11 @@ public:
 private:
 	//■ビットマップロード時内部関数
 	//テクスチャーフォーマット変換関数
-	DWORD CopyOne_R5G6B5(MYPALLET src,PBYTE dst);
-	DWORD CopyOne_A1R5G5B5(MYPALLET src,PBYTE dst);
-	DWORD CopyOne_A4R4G4B4(MYPALLET src,PBYTE dst);
-	DWORD CopyOne_A8R3G3B2(MYPALLET src,PBYTE dst);
-	DWORD CopyOne_A8R8G8B8(MYPALLET src,PBYTE dst);
+	DWORD CopyOne_R5G6B5(const MYPALLET& src, PBYTE dst);
+	DWORD CopyOne_A1R5G5B5(const MYPALLET& src, PBYTE dst);
+	DWORD CopyOne_A4R4G4B4(const MYPALLET& src, PBYTE dst);
+	DWORD CopyOne_A8R3G3B2(const MYPALLET& src, PBYTE dst);
+	DWORD CopyOne_A8R8G8B8(const MYPALLET& src, PBYTE dst);
 	//ビットマップロード時に分割テクスチャ数を計算
 	BOOL AssignTextureDiv(MYSURFACE *pmsf,DWORD width,DWORD height);
 	//256色ビットマップのイメージ部分をロードする
