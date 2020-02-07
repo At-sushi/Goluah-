@@ -466,11 +466,16 @@ BOOL CSystem::ShowInformation()
 	return(TRUE);
 }
 
-#define ADDLIST(x) SendMessage(GetDlgItem(hwndDlg,IDC_LIST1),LB_ADDSTRING,0,(LPARAM)(LPCTSTR)x)
 
 //! ゲーム開始直後のインフォメーションダイアログボックスのメッセージプロシージャ
 BOOL CALLBACK DialogProc(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 {
+	const auto ADDLIST = [hwndDlg](TCHAR* x) {
+		SendMessage(GetDlgItem(hwndDlg, IDC_LIST1), LB_ADDSTRING, 0, (LPARAM)(LPCTSTR)x);
+		if (g_config.log2file)
+			g_log2file.AddLog(x);
+	};
+
 	TCHAR *str;
 	int i;
 	BOOL cannot_start=FALSE;

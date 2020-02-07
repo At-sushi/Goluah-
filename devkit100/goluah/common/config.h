@@ -168,7 +168,6 @@ public:
 	BOOL		IsFullScreen()			{return full_screen ? TRUE : FALSE;}
 	D3DFORMAT	TexFormat();
 	D3DDEVTYPE	DeviceType();
-	BOOL		HardwereVP()			{return hardwear_vp ? TRUE : FALSE;}
 	BOOL		NoAlphaTest()			{return no_alpha_test ? TRUE : FALSE;}
 
 	//□ゲーム設定
@@ -178,12 +177,9 @@ public:
 	UINT		GetTimeLimit()			{return limit_time;}
 	DWORD		GetMaxPoint()			{return max_point+1;}
 	Config2_Difficulty GetDifficulty()	{return (Config2_Difficulty)difficulty;}
-	DWORD		GetStrikerCount()		{return striker;}
 	BOOL		IsLimiterCut()			{return limiter_cut ? TRUE : FALSE;}
 	Config2_GameSpeed GetGameSpeed()	{return (Config2_GameSpeed)game_speed;}
-	Config2_CameraMode GetCameraMode()	{ return (Config2_CameraMode)camera_mode; }
 	int GetGameSpeed2();	//fpsを返します
-	Config2_GaugeMode GetGaugeMode()	{ return (Config2_GaugeMode)gauge_mode; }
 
 	//□システム設定
 	BOOL		UseDInput()				{return no_dinput ? FALSE : TRUE;}
@@ -203,6 +199,7 @@ public:
 
 	//□削除された項目
 	BOOL		UsePointSprite()		{return TRUE;}
+	BOOL		HardwereVP()			{return TRUE;}
 
 	//■値の設定
 
@@ -211,7 +208,6 @@ public:
 	void SetFullScreen(BOOL b)			{full_screen = b ? 1:0;}
 	void SetTexFormat(D3DFORMAT tf);
 	void SetDeviceType(D3DDEVTYPE dt);
-	void SetHardwereVP(BOOL b)			{hardwear_vp = b ? 1:0;}
 	void SetNoAlphaTest(BOOL b)			{no_alpha_test = b ? 1:0;}
 
 	//□ゲーム設定
@@ -221,12 +217,9 @@ public:
 	void SetTimeLimit(UINT tl);
 	void SetMaxPoint(DWORD mp)			{max_point = mp-1;}
 	void SetDifficulty(Config2_Difficulty diff)	{difficulty=diff;}
-	void SetStrikerCount(DWORD sc)		{striker=sc;}
 	void SetLimiterCut(BOOL b);
 	void EnableLimiterCut()				{limiter_cut_enable=1;}
 	void SetGameSpeed(Config2_GameSpeed spd) { game_speed = spd; }
-	void SetCameraMode(Config2_CameraMode mode) { camera_mode = mode; }
-	void SetGaugeMode(Config2_GaugeMode b)		{ gauge_mode = b ? 1 : 0; }
 
 	//□システム設定
 	void SetUseDInput(BOOL b)			{no_dinput = b ? 0:1;}
@@ -264,7 +257,6 @@ public:
 			unsigned int full_screen		: 1;
 			unsigned int tex_format			: 2;//→enum
 			unsigned int device_type		: 2;//→enum
-			unsigned int hardwear_vp		: 1;
 			unsigned int no_alpha_test		: 1;
 
 			//ゲーム設定
@@ -274,12 +266,9 @@ public:
 			unsigned int limit_time			: 7;//20-99 , 0=∞
 			unsigned int max_point			: 2;//1-3
 			unsigned int difficulty			: 3;//→enum
-			unsigned int striker			: 3;//0-7
 			unsigned int limiter_cut		: 1;
 			unsigned int limiter_cut_enable : 1;
 			unsigned int game_speed			: 2;//→enum
-			unsigned int camera_mode		: 2;
-			unsigned int gauge_mode			: 1;
 
 			//システム設定
 			unsigned int no_dinput			: 1;

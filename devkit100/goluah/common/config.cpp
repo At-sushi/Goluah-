@@ -171,20 +171,17 @@ void CConfig::SetDefaultConfig2()
 	SetFullScreen( FALSE );
 	SetTexFormat( D3DFMT_A1R5G5B5 );
 	SetDeviceType(D3DDEVTYPE_HAL);
-	SetHardwereVP( FALSE );
 	SetNoAlphaTest( FALSE );
 
 	//□ゲーム設定
 	SetDebugMode( FALSE );
 	SetShowMovie( TRUE );
-	SetShowInfo( TRUE );
+	SetShowInfo( FALSE );
 	SetTimeLimit( 60 );
 	SetMaxPoint( 2 );
 	SetDifficulty( DIFF_NORMAL );
-	SetStrikerCount( 4 );
 	SetLimiterCut( FALSE );
 	SetGameSpeed( GSPEED_NEW );
-	SetGaugeMode( GAUGE_1220 );
 
 	//□システム設定
 	SetUseDInput( TRUE );

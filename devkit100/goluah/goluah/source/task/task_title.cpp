@@ -153,13 +153,6 @@ void CTitle::Draw()
 
 		top_y += step_y;
 
-		//op movie
-		if (selectedgamemode==TITLE_OPMOVIE)text_color = text1_color;
-		else text_color = text2_color;
-		g_system.DrawBMPText(320,top_y,0,_T("OPENING MOVIE"),text_color);
-
-		top_y += step_y;
-
 		//network
 		/*if (selectedgamemode==TITLE_NETWORK)text_color = text1_color;
 		else text_color = text2_color;
@@ -199,14 +192,6 @@ void CTitle::Draw()
 			g_draw.DrawBlueText(r,msg,-1,DT_CENTER,2);
 
 		r.top+=20;
-		_tcscpy(msg,_T("支援攻撃数："));
-		_stprintf(&msg[strlen(msg)],_T("%d"),g_config.GetStrikerCount());
-		if(selected_item==SETTINGS_NUMSTRIKER)
-			g_draw.DrawRedText(r,msg,-1,DT_CENTER,2);
-		else
-			g_draw.DrawBlueText(r,msg,-1,DT_CENTER,2);
-
-		r.top+=20;
 		_tcscpy(msg,_T("ゲーム速度："));
 		switch(g_config.GetGameSpeed()){
 		case GSPEED_SLOW	:_tcscpy(&msg[strlen(msg)],_T("遅い(40fps)"));break;
@@ -220,31 +205,6 @@ void CTitle::Draw()
 			g_draw.DrawRedText(r,msg,-1,DT_CENTER,2);
 		else
 			g_draw.DrawBlueText(r,msg,-1,DT_CENTER,2);
-
-		r.top += 20;
-		_tcscpy(msg, _T("カメラ上下："));
-		switch (g_config.GetCameraMode()){
-		case CAMERA_OLD:_tcscpy(&msg[strlen(msg)], _T("しない")); break;
-		case CAMERA_UPPER:_tcscpy(&msg[strlen(msg)], _T("上優先")); break;
-		case CAMERA_NEW:_tcscpy(&msg[strlen(msg)], _T("下優先")); break;
-		default:_tcscpy(&msg[strlen(msg)], _T("ﾜｶﾝﾈ"));
-		}
-		if (selected_item == SETTINGS_CAMERAMODE)
-			g_draw.DrawRedText(r, msg, -1, DT_CENTER, 2);
-		else
-			g_draw.DrawBlueText(r, msg, -1, DT_CENTER, 2);
-
-		r.top += 20;
-		_tcscpy(msg, _T("HPゲージ："));
-		switch (g_config.GetGaugeMode()){
-		case GAUGE_1000:_tcscpy(&msg[strlen(msg)], _T("細め(～1.21)")); break;
-		case GAUGE_1220:_tcscpy(&msg[strlen(msg)], _T("太め(1.22～)")); break;
-		default:_tcscpy(&msg[strlen(msg)], _T("ﾜｶﾝﾈ"));
-		}
-		if (selected_item == SETTINGS_GAUGEMODE)
-			g_draw.DrawRedText(r, msg, -1, DT_CENTER, 2);
-		else
-			g_draw.DrawBlueText(r, msg, -1, DT_CENTER, 2);
 
 		r.top += 30;
 
@@ -306,13 +266,13 @@ void CTitle::MainMenu()
 	//↓移動
 	if(keystate & KEYSTA_DOWN){
 		selectedgamemode++;
-		if(selectedgamemode>TITLE_OPMOVIE)selectedgamemode=0;
+		if(selectedgamemode>=TITLE_END)selectedgamemode=0;
 		g_system.PlaySystemSound(SYSTEMSOUND_HIT1);
 		counter = 0;
 	}
 	//↑移動
 	if(keystate & KEYSTA_UP){
-		if(selectedgamemode==0)selectedgamemode=TITLE_OPMOVIE;
+		if (selectedgamemode == 0)selectedgamemode = TITLE_END - 1;
 		else selectedgamemode--;
 		g_system.PlaySystemSound(SYSTEMSOUND_HIT1);
 		counter = 0;
@@ -330,10 +290,7 @@ void CTitle::Settings()
 	DWORD difficulty=g_config.GetDifficulty();
 	int timelimit_per_round = g_config.GetTimeLimit();
 	DWORD point_max=g_config.GetMaxPoint();
-	int num_striker = g_config.GetStrikerCount();
 	DWORD game_speed = g_config.GetGameSpeed();
-	DWORD camera_mode = g_config.GetCameraMode();
-	DWORD gauge_mode = g_config.GetGaugeMode();
 
 	if(g_input.GetKey(0,0) & KEYSTA_DOWN2 || g_input.GetKey(1,0) & KEYSTA_DOWN2){//移動
 		selected_item++;
@@ -369,17 +326,6 @@ void CTitle::Settings()
 		}
 		g_config.SetMaxPoint(point_max);
 		break;
-	case SETTINGS_NUMSTRIKER://ストライカー数
-		if(g_input.GetKey(0,0) & KEYSTA_ARIGHT2 || g_input.GetKey(1,0) & KEYSTA_ARIGHT2){//移動
-			num_striker++;
-			if(num_striker==9)num_striker=0;
-		}
-		if(g_input.GetKey(0,0) & KEYSTA_ALEFT2 || g_input.GetKey(1,0) & KEYSTA_ALEFT2){//移動
-			num_striker--;
-			if(num_striker==0)num_striker=8;
-		}
-		g_config.SetStrikerCount(num_striker);
-		break;
 	case SETTINGS_GAMESPEED://ゲーム速度
 		if(g_input.GetKey(0,0) & KEYSTA_ARIGHT2 || g_input.GetKey(1,0) & KEYSTA_ARIGHT2){//移動
 			game_speed++;
@@ -391,28 +337,6 @@ void CTitle::Settings()
 		}
 		g_config.SetGameSpeed((Config2_GameSpeed)game_speed);
 		g_system.UpdateFrameRate();
-		break;
-	case SETTINGS_CAMERAMODE://カメラモード
-		if (g_input.GetKey(0, 0) & KEYSTA_ARIGHT2 || g_input.GetKey(1, 0) & KEYSTA_ARIGHT2){//移動
-			camera_mode++;
-			if (camera_mode == 3)camera_mode = 0;
-		}
-		if (g_input.GetKey(0, 0) & KEYSTA_ALEFT2 || g_input.GetKey(1, 0) & KEYSTA_ALEFT2){//移動
-			camera_mode--;
-			if (camera_mode > 2)camera_mode = 2;
-		}
-		g_config.SetCameraMode((Config2_CameraMode)camera_mode);
-		break;
-	case SETTINGS_GAUGEMODE://HPゲージモード
-		if (g_input.GetKey(0, 0) & KEYSTA_ARIGHT2 || g_input.GetKey(1, 0) & KEYSTA_ARIGHT2){//移動
-			gauge_mode++;
-			if (gauge_mode == 2)gauge_mode = 0;
-		}
-		if (g_input.GetKey(0, 0) & KEYSTA_ALEFT2 || g_input.GetKey(1, 0) & KEYSTA_ALEFT2){//移動
-			gauge_mode--;
-			if (gauge_mode > 1)gauge_mode = 1;
-		}
-		g_config.SetGaugeMode((Config2_GaugeMode)gauge_mode);
 		break;
 	case SETTINGS_EXIT:
 		if((g_input.GetKey(0,0)|g_input.GetKey(1,0)) & (KEYSTA_RIGHT2|KEYSTA_LEFT2|KEYSTA_ANYKEY )){

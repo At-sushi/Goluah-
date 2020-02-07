@@ -9,6 +9,7 @@
 
 #include "task_title.h"
 #include "task_staffroll.h"
+#include "task_opening.h"
 #include "..\resource.h"
 #include "Name.h"
 #include "NameC.h"
@@ -37,7 +38,7 @@ void CDebugMenu::Activate(DWORD pid)
 	str = _T("耐久テスト");
 	namelist.push_back(str);
 
-	str = _T("耐久テスト2");
+	str = _T("OPムービー");
 	namelist.push_back(str);
 
 	if (!g_config.IsFullScreen())
@@ -105,6 +106,7 @@ BOOL CDebugMenu::Execute(DWORD time)
 			case 4:
 				break;
 			case 5:
+				g_system.AddTask(new CTOpening);
 				break;
 			case 6:
 				{
