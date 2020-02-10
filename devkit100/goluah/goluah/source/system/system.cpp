@@ -156,14 +156,13 @@ BOOL CSystem::GameStart()
 
 #ifdef _DEBUG
 	m_debug_menu_enabled = TRUE;
-#else
+#endif
 	if(/*g_config.IsDebugMode() && */GetKeyState(VK_SHIFT) & 0x8000)m_debug_menu_enabled = TRUE;
 
 	//ゲーム開始
 	//初期タスクの挿入
 	if(m_debug_menu_enabled)AddTask( new CDebugMenu );
 	else AddTask( new CTitle );
-#endif
 	return(TRUE);
 }
 
