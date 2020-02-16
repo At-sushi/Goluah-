@@ -892,6 +892,7 @@ MYSURFACE* CDirectDraw::CreateSurfaceFrom256BMP(TCHAR *filename,TCHAR *palname,B
     MYPALLET *bmpbits = nullptr;
     DWORD bmpwidth,bmpheight;
     LPBYTE bmpbits256 = nullptr;
+    MYPALLET pal[256];
     int rowbytes = 0;
 #ifdef GCD_EDITER
     bret = FALSE;	// 使えない、パス。
@@ -900,9 +901,9 @@ MYSURFACE* CDirectDraw::CreateSurfaceFrom256BMP(TCHAR *filename,TCHAR *palname,B
 #endif	// GCD_EDITER
     if (!bret)
     {
-        bret = Load256PNGbits(&bmpbits256, &bmpwidth, &bmpheight, filename, rowbytes, bmpbits, palname);
+        bret = Load256PNGbits(&bmpbits256, &bmpwidth, &bmpheight, filename, rowbytes, pal, palname);
         if(!bret){
-            bret = Load256Bitmapbits(&bmpbits256, &bmpwidth, &bmpheight, filename, rowbytes, bmpbits, palname);
+            bret = Load256Bitmapbits(&bmpbits256, &bmpwidth, &bmpheight, filename, rowbytes, pal, palname);
 
             if(!bret){
                 return(NULL);
@@ -951,7 +952,7 @@ MYSURFACE* CDirectDraw::CreateSurfaceFrom256BMP(TCHAR *filename,TCHAR *palname,B
             if(j==ms[e].xsufnum-1){damex=dameyox;}
             else damex=0;
             if (bmpbits256)
-                CopyBB2TS256(bmpbits, rowbytes,
+                CopyBB2TS256(pal, rowbytes,
                 ms[e].xsufindx[j], ms[e].ysufindx[i],
                 ms[e].pTex[(i*ms[e].xsufnum + j)], bmpbits256, damex, damey);
             else
@@ -962,13 +963,8 @@ MYSURFACE* CDirectDraw::CreateSurfaceFrom256BMP(TCHAR *filename,TCHAR *palname,B
     }
 
     //後始末
-    // 新旧の規格がいり混じって気持ち悪い
-    if (bmpbits256) {
-        free(bmpbits256);
-        delete[] bmpbits;
-    }
-    else
-        FREEMALM(bmpbits);
+    FREEMALM(bmpbits256);
+    FREEMALM(bmpbits);
     //成功
     ms[e].valid=TRUE;
 
@@ -1192,7 +1188,7 @@ BOOL CDirectDraw::CopyBB2TS(MYPALLET *pbb,
 *	@param damey コピーしちゃダメな部分（テクスチャサイズ > ビットマップの残りのコピー領域 のとき）
 *	@return TRUE:成功, FALSE:残念
 */
-BOOL CDirectDraw::CopyBB2TS256(const MYPALLET *pbb,
+BOOL CDirectDraw::CopyBB2TS256(const MYPALLET(&pbb)[256],
     DWORD bbpitch,
     DWORD offset_x,
     DWORD offset_y,
@@ -1539,20 +1535,17 @@ static BOOL GoluahReadFile(HANDLE hFile, LPBYTE bits, DWORD sizeimage, NowLoadin
 *	@param palfilename [in] 適用するパレットのファイル名
 *	@return TRUE:成功, FALSE:残念
 */
-BOOL CDirectDraw::Load256Bitmapbits(LPBYTE *pbits, DWORD *width, DWORD *height, TCHAR *bmpfilename, int& rowbytes, MYPALLET *&pal, TCHAR *palfilename)
+BOOL CDirectDraw::Load256Bitmapbits(LPBYTE *pbits, DWORD *width, DWORD *height, TCHAR *bmpfilename, int& rowbytes, MYPALLET (&pal)[256], TCHAR *palfilename)
 {
     BOOL ret2;
 
     //とりあえずパレットを確保
-    // vector型にしたい
-    pal = new MYPALLET[256];
     if(palfilename==NULL)palfilename=bmpfilename;
     ret2 = GetPallet(palfilename,pal);
     if(!ret2){
         ret2 = GetPalletPNG(palfilename,pal);
 
         if(!ret2){
-            DELETEARRAY(pal);
             return(FALSE);
         }
     }
@@ -1723,20 +1716,17 @@ static void png_read_row_callback_adam7(png_structp strPNG, png_uint_32 row, int
 *	@return TRUE:成功, FALSE:残念
 *	@sa Load256Bitmapbits
 */
-BOOL CDirectDraw::Load256PNGbits(LPBYTE *pbits, DWORD *width, DWORD *height, TCHAR *pngfilename, int& rowbytes, MYPALLET *&pal, TCHAR *palfilename)
+BOOL CDirectDraw::Load256PNGbits(LPBYTE *pbits, DWORD *width, DWORD *height, TCHAR *pngfilename, int& rowbytes, MYPALLET (&pal)[256], TCHAR *palfilename)
 {
     BOOL ret2;
 
     //とりあえずパレットを確保
-    // vector型にしたい
-    pal = new MYPALLET[256];
     if(palfilename==NULL)palfilename=pngfilename;
     ret2 = GetPalletPNG(palfilename,pal);
     if(!ret2){
         ret2 = GetPallet(palfilename,pal);
 
         if(!ret2){
-            DELETEARRAY(pal);
             return(FALSE);
         }
     }
