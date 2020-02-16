@@ -186,8 +186,8 @@ private:
 	//ビットマップロード時に分割テクスチャ数を計算
 	BOOL AssignTextureDiv(MYSURFACE *pmsf,DWORD width,DWORD height);
 	//256色ビットマップのイメージ部分をロードする
-	BOOL Load256Bitmapbits(MYPALLET **bits,DWORD *width,DWORD *height,TCHAR *bmpfilename,TCHAR *palfilename=NULL);
-	BOOL Load256PNGbits(MYPALLET **pbits,DWORD *width,DWORD *height,TCHAR *pngfilename,TCHAR *palfilename);//PNG版
+	BOOL Load256Bitmapbits(LPBYTE *bits, DWORD *width, DWORD *height, TCHAR *bmpfilename, int& rowbytes, MYPALLET *&pal, TCHAR *palfilename = NULL);
+	BOOL Load256PNGbits(LPBYTE *pbits, DWORD *width, DWORD *height, TCHAR *pngfilename, int& rowbytes, MYPALLET *&pal, TCHAR *palfilename);//PNG版
 	BOOL LoadJPEGbits(MYPALLET **pbits,DWORD *width,DWORD *height,TCHAR *jpegfilename);//JPEG版（フルカラー）
 	//256ビットマップのパレット部分をロードする
 	BOOL GetPallet(TCHAR *filename,MYPALLET *pal);//256ｂｍｐファイルから、パレットだけを取出
@@ -198,6 +198,7 @@ private:
 	//・・・そんな関数作ってたっけ?
 	//…違うと思われ、ビットマップをビットごとにテクスチャに貼り付けてるみたいです。
 	BOOL CopyBB2TS(MYPALLET *pbb,DWORD bbpitch,DWORD offset_x,DWORD offset_y,LPDIRECT3DTEXTURE9 ptex,DWORD damex=0,DWORD damey=0);
+	BOOL CopyBB2TS256(const MYPALLET *pbb, DWORD bbpitch, DWORD offset_x, DWORD offset_y, LPDIRECT3DTEXTURE9 ptex, const LPBYTE pbits, DWORD damex = 0, DWORD damey = 0);
 
 	//■生成破棄時内部関数
 	//Direct3Dを初期化する。関数名は昔の名残っぽい
