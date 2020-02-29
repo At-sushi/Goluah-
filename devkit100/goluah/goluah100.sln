@@ -11,23 +11,40 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
 		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{016B2A2D-A8D0-4F5C-A8C9-9D0E9DA8595C}.Debug|Win32.ActiveCfg = Debug|Win32
 		{016B2A2D-A8D0-4F5C-A8C9-9D0E9DA8595C}.Debug|Win32.Build.0 = Debug|Win32
+		{016B2A2D-A8D0-4F5C-A8C9-9D0E9DA8595C}.Debug|x64.ActiveCfg = Debug|x64
+		{016B2A2D-A8D0-4F5C-A8C9-9D0E9DA8595C}.Debug|x64.Build.0 = Debug|x64
 		{016B2A2D-A8D0-4F5C-A8C9-9D0E9DA8595C}.Release|Win32.ActiveCfg = Release|Win32
 		{016B2A2D-A8D0-4F5C-A8C9-9D0E9DA8595C}.Release|Win32.Build.0 = Release|Win32
+		{016B2A2D-A8D0-4F5C-A8C9-9D0E9DA8595C}.Release|x64.ActiveCfg = Release|x64
+		{016B2A2D-A8D0-4F5C-A8C9-9D0E9DA8595C}.Release|x64.Build.0 = Release|x64
 		{48959368-F6BF-40B3-B4B2-EAAC7EF66B99}.Debug|Win32.ActiveCfg = Debug|Win32
 		{48959368-F6BF-40B3-B4B2-EAAC7EF66B99}.Debug|Win32.Build.0 = Debug|Win32
+		{48959368-F6BF-40B3-B4B2-EAAC7EF66B99}.Debug|x64.ActiveCfg = Debug|x64
+		{48959368-F6BF-40B3-B4B2-EAAC7EF66B99}.Debug|x64.Build.0 = Debug|x64
 		{48959368-F6BF-40B3-B4B2-EAAC7EF66B99}.Release|Win32.ActiveCfg = Release|Win32
 		{48959368-F6BF-40B3-B4B2-EAAC7EF66B99}.Release|Win32.Build.0 = Release|Win32
+		{48959368-F6BF-40B3-B4B2-EAAC7EF66B99}.Release|x64.ActiveCfg = Release|x64
+		{48959368-F6BF-40B3-B4B2-EAAC7EF66B99}.Release|x64.Build.0 = Release|x64
 		{D3859D2E-72A0-4BCA-91B4-C2530AC836F2}.Debug|Win32.ActiveCfg = Debug|Win32
 		{D3859D2E-72A0-4BCA-91B4-C2530AC836F2}.Debug|Win32.Build.0 = Debug|Win32
+		{D3859D2E-72A0-4BCA-91B4-C2530AC836F2}.Debug|x64.ActiveCfg = Debug|x64
+		{D3859D2E-72A0-4BCA-91B4-C2530AC836F2}.Debug|x64.Build.0 = Debug|x64
 		{D3859D2E-72A0-4BCA-91B4-C2530AC836F2}.Release|Win32.ActiveCfg = Release|Win32
 		{D3859D2E-72A0-4BCA-91B4-C2530AC836F2}.Release|Win32.Build.0 = Release|Win32
+		{D3859D2E-72A0-4BCA-91B4-C2530AC836F2}.Release|x64.ActiveCfg = Release|x64
+		{D3859D2E-72A0-4BCA-91B4-C2530AC836F2}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

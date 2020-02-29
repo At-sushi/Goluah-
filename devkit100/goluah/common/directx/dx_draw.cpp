@@ -1132,20 +1132,19 @@ BOOL CDirectDraw::CopyBB2TS(MYPALLET *pbb,
     }
 
     //コピー
-    DWORD i,j;
-    PBYTE pline;
-    int onepixsize;
-    for(j=0;j<sh;j++){
-        pline =  (PBYTE)lr.pBits + lr.Pitch*j ;
-        for(i=0;i<sw;i++){
+    BOOL succeeded = TRUE;
+
+#pragma omp parallel for if (sh > 1024)
+    for(int j=0;j<sh;j++){
+        PBYTE pline =  (PBYTE)lr.pBits + lr.Pitch*j ;
+        int onepixsize = 0;
+        for(int i=0;i<sw;i++){
             switch(fmt){
             case D3DFMT_R5G6B5://これは多分使えない
                 onepixsize = CopyOne_R5G6B5(pbb[(j+offset_y)*bbpitch+i+offset_x],pline);
                 break;
             case D3DFMT_A8R8G8B8:
             case D3DFMT_X8R8G8B8:
-                i=i;
-                j=j;
                 onepixsize = CopyOne_A8R8G8B8(pbb[(j+offset_y)*bbpitch+i+offset_x],pline);
                 break;
             case D3DFMT_A1R5G5B5:
@@ -1160,10 +1159,7 @@ BOOL CDirectDraw::CopyBB2TS(MYPALLET *pbb,
                 onepixsize = CopyOne_A8R3G3B2(pbb[(j+offset_y)*bbpitch+i+offset_x],pline);
                 break;
             default:
-                ODS(_T("CopyBB2TS / このフォーマットはコピーできにゃい\n"));
-                psuf->UnlockRect();
-                RELEASE(psuf);
-                return(FALSE);
+                succeeded = FALSE;
             }
             pline += onepixsize;
         }
@@ -1172,7 +1168,7 @@ BOOL CDirectDraw::CopyBB2TS(MYPALLET *pbb,
     psuf->UnlockRect();	//サーフェイスのアンロック
     RELEASE(psuf);		//GetSurfaceLevelでサーフェイスを取得したときにリファレンスカウントが増えてるから
 
-    return(TRUE);
+    return(succeeded);
 }
 
 /*!
@@ -1231,19 +1227,19 @@ BOOL CDirectDraw::CopyBB2TS256(const MYPALLET(&pbb)[256],
     }
 
     //コピー
-    DWORD i, j;
-    for (j = 0; j<sh; j++){
+    BOOL succeeded = TRUE;
+
+#pragma omp parallel for if (sh > 1024)
+    for (int j = 0; j<sh; j++){
         PBYTE pline = (PBYTE)lr.pBits + lr.Pitch*j, pbitsline = pbits + (j + offset_y)*bbpitch + offset_x;
-        int onepixsize;
-        for (i = 0; i<sw; i++){
+        int onepixsize = 0;
+        for (int i = 0; i<sw; i++){
             switch (fmt){
             case D3DFMT_R5G6B5://これは多分使えない
                 onepixsize = CopyOne_R5G6B5(pbb[*pbitsline++], pline);
                 break;
             case D3DFMT_A8R8G8B8:
             case D3DFMT_X8R8G8B8:
-                i = i;
-                j = j;
                 onepixsize = CopyOne_A8R8G8B8(pbb[*pbitsline++], pline);
                 break;
             case D3DFMT_A1R5G5B5:
@@ -1258,10 +1254,7 @@ BOOL CDirectDraw::CopyBB2TS256(const MYPALLET(&pbb)[256],
                 onepixsize = CopyOne_A8R3G3B2(pbb[*pbitsline++], pline);
                 break;
             default:
-                ODS(_T("CopyBB2TS / このフォーマットはコピーできにゃい\n"));
-                psuf->UnlockRect();
-                RELEASE(psuf);
-                return(FALSE);
+                succeeded = FALSE;
             }
             pline += onepixsize;
         }
@@ -1270,7 +1263,7 @@ BOOL CDirectDraw::CopyBB2TS256(const MYPALLET(&pbb)[256],
     psuf->UnlockRect();	//サーフェイスのアンロック
     RELEASE(psuf);		//GetSurfaceLevelでサーフェイスを取得したときにリファレンスカウントが増えてるから
 
-    return(TRUE);
+    return(succeeded);
 }
 
 
