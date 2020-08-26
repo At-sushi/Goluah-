@@ -1916,8 +1916,8 @@ BOOL CBattleTask::Atari(DWORD a_id, DWORD k_id, MY2DVECTOR &kas_point)
         }
         switch(aif->hit & 0x0F000000){//ヒットストップ
         case 0:break;
-        case HITINFO_SIV1:HitStop( 6,k_id);break;
-        case HITINFO_SIV2:HitStop( 9,k_id);break;
+        case HITINFO_SIV1:HitStop( 9,k_id);break;
+        case HITINFO_SIV2:HitStop(12,k_id);break;
         case HITINFO_SIV3:HitStop(16,k_id);break;
         case HITINFO_STOP:HitStop(48,k_id);break;
         }
@@ -2045,6 +2045,8 @@ BOOL CBattleTask::Atari(DWORD a_id, DWORD k_id, MY2DVECTOR &kas_point)
         if(!(res & 0x40000000)){
             actidchanged = TRUE;
         }
+        //なぜこの関数がない
+        pdat->gauge = min(pdat->gauge + 0.01, (double)pdat->gaugemax);
         //攻撃が当たったことを攻撃したやつに通知
         attacker->Message(GOBJMSG_TOUCHB,TRUE);
     }
@@ -2054,8 +2056,8 @@ BOOL CBattleTask::Atari(DWORD a_id, DWORD k_id, MY2DVECTOR &kas_point)
         else AddEffect(EFCTID_MARKG2,(int)kas_point.x,(int)kas_point.y);
         switch(aif->guard & 0x0F000000){//ヒットストップ
         case 0:break;
-        case GUARDINFO_SIV1:HitStop( 6,k_id);break;
-        case GUARDINFO_SIV2:HitStop( 9,k_id);break;
+        case GUARDINFO_SIV1:HitStop( 9,k_id);break;
+        case GUARDINFO_SIV2:HitStop(12,k_id);break;
         case GUARDINFO_SIV3:HitStop(16,k_id);break;
         case GUARDINFO_STOP:HitStop(48,k_id);break;
         }
@@ -2115,6 +2117,8 @@ BOOL CBattleTask::Atari(DWORD a_id, DWORD k_id, MY2DVECTOR &kas_point)
             higaisya->ActionIDChanged(TRUE,TRUE);
             higaisya->Message(GOBJMSG_ACTION);
         }
+        //なぜこの関数がない
+        pdat->gauge = min(pdat->gauge + 0.005, (double)pdat->gaugemax);
         //攻撃が当たったことを攻撃したやつに通知
         attacker->Message(GOBJMSG_TOUCHB,FALSE);
     }

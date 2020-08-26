@@ -14,6 +14,8 @@
 
 #include <windows.h>
 #include <stdio.h>
+#define _USE_MATH_DEFINES
+#include <cmath>
 
 #ifdef USE_DIRECT3D_DIRECT
 #include "d3dx8.h"
@@ -219,6 +221,7 @@ CGoluahObject* CGoluahObject::pObjDeleting = NULL;
 					生成後に変更することはできません。
 */
 CGoluahObject::CGoluahObject(BOOL is_effect/* = FALSE */)
+: velocity(0)
 {
 	if(is_effect)
 	{
@@ -263,7 +266,19 @@ CGoluahObject::~CGoluahObject()
 DWORD CGoluahObject::Message(DWORD msg,LPVOID pd,DWORD prm)
 {
 	switch(msg){
-	case GOBJMSG_ACTION:	return(Action());
+	case GOBJMSG_ACTION: {
+		auto res = Action();
+
+		// movex処理
+		if (!(pdat->aid & ACTID_SYSTEM)) {
+			pdat->vx += (velocity - pdat->vx) * 0.25;
+			pdat->x += pdat->muki ? -pdat->vx : pdat->vx;
+			velocity = 0.0;
+		}
+
+		return(res);
+	}
+
 	case GOBJMSG_CNGAID:	ActionIDChanged();return(TRUE);
 	case GOBJMSG_COMMAND:	Command();return(TRUE);
 	case GOBJMSG_COMMANDCOM:return(CommandCOM(prm));
@@ -334,7 +349,9 @@ DWORD CGoluahObject::gMessageToObject(DWORD msg,LPVOID pd,DWORD prm)
 	基本的に1フレに1回呼び出されます。
 	継承して、このなか（のさらに分岐した関数）でキャラクターや飛び道具等のアニメーションを記述します。
 */
-DWORD CGoluahObject::Action(){return(TRUE);}
+DWORD CGoluahObject::Action(){
+	return(TRUE);
+}
 
 /*!
 	@brief GOBJMSG_COMMANDメッセージ処理関数
@@ -484,8 +501,7 @@ int CGoluahObject::zurex(int x)
 */
 void CGoluahObject::movex(double dx)
 {
-	if(pdat->muki)dx*=-1;
-	pdat->x += dx;
+	velocity += dx;
 }
 
 /*!
@@ -496,8 +512,7 @@ void CGoluahObject::movex(double dx)
 */
 void CGoluahObject::movex(int dx)
 {
-	if(pdat->muki)dx*=-1;
-	pdat->x += dx;
+	movex((double)dx);
 }
 
 /*!
@@ -1656,7 +1671,7 @@ DWORD CCharacterBase::Message(DWORD msg,LPVOID pd,DWORD prm)
 			DWORD result;
 
 			PreAction();
-			result = Action();
+			result = CGoluahObject::Message(msg, pd, prm);
 			PostAction();
 			return result;
 		}
@@ -1700,6 +1715,7 @@ DWORD CCharacterBase::Action()
 	case ACTID_JAMPF	:act_jampf();break;
 	case ACTID_JAMPB	:act_jampb();break;
 	case ACTID_RAKKA2	:act_rakka2();break;
+	case ACTID_TUKAMI:	// fallthrough
 	case ACTID_ATT_SA	:act_att_sa();ChainCombo(CHAIN_SA);break;//attack actions
 	case ACTID_ATT_SB	:act_att_sb();ChainCombo(CHAIN_SB);break;
 	case ACTID_ATT_SC	:act_att_sc();ChainCombo(CHAIN_SC);break;
@@ -1717,11 +1733,14 @@ DWORD CCharacterBase::Action()
 	case ACTID_TAIKICYU	:act_taikicyu();break;
 	case ACTID_STRIKERCOMEON:act_strikercomeon();break;
 	case ACTID_TIMEOVERLOSE	:act_timeoverlose();break;
+	case ACTID_GUARDS	:act_guards(); break;
+	case ACTID_GUARDC	:act_guardc(); break;
+	case ACTID_GUARDJ	:act_guardj(); break;
 	//case ACTID_SYORI2IN		:act_win2_in();break;
 	//case ACTID_SYORI2POSE	:act_win2_pose();break;
-	default:return(0);
+	default:	return(0);
 	}
-	return(TRUE);
+	return(CGoluahObject::Action());
 }
 
 
@@ -1988,21 +2007,48 @@ BOOL CCharacterBase::Command_OnNormal(DWORD keyinfo)
 {
 	GOBJECT* pdat = GetGObject();
 
-	if(pdat->aid & ACTID_KUCYU){//ジャンプ動作中
+
+	//オートガード処理。攻撃・喰らい中以外は無条件ガード
+	BOOL auto_guard = FALSE;
+	if (isAutoGuard)
+	{
+		if (IsCom())
+		{
+			auto_guard = (rand() % 2) ? TRUE : FALSE;
+		}
+		else
+		{
+			DWORD crnt_key = GetKey(0);
+			if ((crnt_key&KEYSTA_FOWORD) || (crnt_key&KEYSTA_UP))
+			{
+				auto_guard = FALSE;
+			}
+			else auto_guard = TRUE;
+		}
+	}
+
+	if (pdat->aid & ACTID_KUCYU){//ジャンプ動作中
 		if(keyinfo & 0x22220000){
 			if(keyinfo & KEYSTA_BC2){pdat->aid = ACTID_ATT_JC;return TRUE;}
 			else if(keyinfo & KEYSTA_BB2){pdat->aid = ACTID_ATT_JB;return TRUE;}
 			else if(keyinfo & KEYSTA_BA2){pdat->aid = ACTID_ATT_JA;return TRUE;}
 		}
+		else if ((auto_guard || keyinfo & KEYSTA_BACK) && GetInfo(pdat->eid)->aid & ACTID_ATTACK){//後ろ歩き
+			pdat->aid = ACTID_GUARDJ;
+			return TRUE;
+		}
 		return FALSE;
 	}
 
 	//地上動作中
-	if(keyinfo & 0x22220000){
 		if(keyinfo & KEYSTA_DOWN){
 			if(keyinfo & KEYSTA_BC2){pdat->aid = ACTID_ATT_CC;return TRUE;}
 			else if(keyinfo & KEYSTA_BB2){pdat->aid = ACTID_ATT_CB;return TRUE;}
 			else if(keyinfo & KEYSTA_BA2){pdat->aid = ACTID_ATT_CA;return TRUE;}
+			else if ((auto_guard || keyinfo & KEYSTA_BACK) && GetInfo(pdat->eid)->aid & ACTID_ATTACK){//後ろ歩き
+				pdat->aid = ACTID_GUARDC;
+				return TRUE;
+			}
 		}
 		else{
 			if(keyinfo & KEYSTA_BC2){
@@ -2014,8 +2060,11 @@ BOOL CCharacterBase::Command_OnNormal(DWORD keyinfo)
 			else if(keyinfo & KEYSTA_BA2){
 				pdat->aid = ACTID_ATT_SA;return TRUE;
 			}
+			else if ((auto_guard || keyinfo & KEYSTA_BACK) && GetInfo(pdat->eid)->aid & ACTID_ATTACK){//後ろ歩き
+				pdat->aid = ACTID_GUARDS;
+				return TRUE;
+			}
 		}
-	}
 
 	if(pdat->aid == ACTID_JAMPS){
 		if(keyinfo & KEYSTA_FOWORD){//前ジャンプ
@@ -2052,55 +2101,32 @@ DWORD CCharacterBase::TouchA(ATTACKINFO *info,DWORD ta_eid)
 		}
 	}
 
-	//オートガード処理。攻撃・喰らい中以外は無条件ガード
-	BOOL auto_guard = FALSE;
-	if(isAutoGuard)
-	{
-		if(IsCom())
-		{
-			auto_guard = (rand()%2) ? TRUE : FALSE;
+
+	//AQ防止?
+	if (pdat->aid == ACTID_DOWN2)return(TOUCHA_AVOID);
+	//喰らい、またはガード中
+	if (pdat->aid & ACTID_KURAI || pdat->aid & ACTID_GUARD){
+		if (pdat->aid & ACTID_KUCYU){////ジャンプ動作中
+			if (pdat->aid & ACTID_GUARD)return(TOUCHA_GUARDJ);
+			else return(TOUCHA_KURAIJ);
 		}
-		else
-		{
-			DWORD crnt_key = GetKey(0);
-			if((crnt_key&KEYSTA_FOWORD)||(crnt_key&KEYSTA_UP))
-			{
-				auto_guard = FALSE;
+		else if (pdat->aid & ACTID_SYAGAMI){//しゃがみ中
+			if (!(info->guard & GUARDINFO_XCROUCH)){
+				if (pdat->aid & ACTID_GUARD)return(TOUCHA_GUARDC);
+				else return(TOUCHA_KURAIC);
 			}
-			else auto_guard = TRUE;
+		}
+		else{//立ち
+			if (!(info->guard & GUARDINFO_XSTAND)){
+				if (pdat->aid & ACTID_GUARD)return(TOUCHA_GUARDS);
+				else return(TOUCHA_KURAIS);
+			}
 		}
 	}
 
-	if(auto_guard)
-	{
-		if(CANNOT_GUARD(info->guard) && (pdat->aid!=ACTID_RAKKA))return 0;//どのガードもできない場合はガードできない
-		if(pdat->aid & ACTID_ATTACK)return 0;
-		if(pdat->aid & ACTID_KURAI)return 0;
-		if(pdat->aid & ACTID_KUCYU)
-		{
-			//空中ガード
-			return (info->guard & GUARDINFO_XJAMP) ? 0 : TOUCHA_GUARDJ;
-		}
-		if((info->guard & GUARDINFO_XCROUCH) && (info->guard & GUARDINFO_XSTAND))
-		{
-			//地上ガード不可
-			return 0;
-		}
-		if(pdat->aid & ACTID_SYAGAMI)
-		{
-			//屈ガード
-			if(info->guard & GUARDINFO_XCROUCH)return TOUCHA_GUARDS;
-			return TOUCHA_GUARDC;
-		}
-		else
-		{
-			//立ちガード
-			if(info->guard & GUARDINFO_XSTAND)return TOUCHA_GUARDC;
-			return TOUCHA_GUARDS;
-		}
-	}
-
-	return CGoluahObject::TouchA(info,ta_eid);
+	if (pdat->aid & ACTID_KUCYU)return(TOUCHA_KURAIJ);
+	else if (pdat->aid & ACTID_SYAGAMI)return(TOUCHA_KURAIC);
+	else return(TOUCHA_KURAIS);
 }
 
 /*!
@@ -2524,7 +2550,10 @@ BOOL CCharacterBase::Furimuki()
 	else
 		pdat->muki = FALSE;
 
-	if(muki_prev!=pdat->muki)return(TRUE);
+	if (muki_prev != pdat->muki) {
+		pdat->vx *= -1;
+		return(TRUE);
+	}
 	else return(FALSE);
 }
 
@@ -3115,6 +3144,30 @@ void CCharacterBase::act_timeoverlose()
 	ChangeAction(ACTID_NEUTRAL);
 }
 
+void CCharacterBase::act_guards()//立ちガード(中)
+{
+	if (pdat->counter < 16){
+		pdat->cnow = DCELL_GUARDS1;
+	}
+	else pdat->aid = ACTID_NEUTRAL;
+}
+
+void CCharacterBase::act_guardc()//立ちガード(中)
+{
+	if (pdat->counter < 16){
+		pdat->cnow = DCELL_GUARDC1;
+	}
+	else pdat->aid = ACTID_NEUTRAL;
+}
+
+void CCharacterBase::act_guardj()//立ちガード(中)
+{
+	if (pdat->counter < 16){
+		pdat->cnow = DCELL_GUARDJ1;
+	}
+	else pdat->aid = ACTID_RAKKA;
+}
+
 /*!
 	@brief 仲間勝利時行動
 */
@@ -3518,7 +3571,7 @@ DWORD CBulletBase::Action()
 	case CBB_STATE_BOMB:	act_bomb();break;
 	case CBB_STATE_RUN2:	act_run2();break;
 	}
-	return(TRUE);
+	return(CGoluahObject::Action());
 }
 
 //!アイドル時処理

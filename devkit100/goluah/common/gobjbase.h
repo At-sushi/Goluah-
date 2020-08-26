@@ -282,6 +282,8 @@ private:
     DWORD oid;
     static CGoluahObject* pObjToDelete ;
     static CGoluahObject* pObjDeleting ;
+
+    double velocity;
 };
 
 inline DWORD CGoluahObject::GetObjectID(){return(oid);}
@@ -390,6 +392,9 @@ protected:
     virtual void act_rakka2();//落下
     //virtual void act_win2_in();//仲間が勝利　画面外から飛んでくる
     //virtual void act_win2_pose();//仲間が勝利　ポーズ
+    virtual void act_guards();//落下
+    virtual void act_guardc();//落下
+    virtual void act_guardj();//落下
     //通常.攻撃
     virtual void act_att_sa()=0;//立弱
     virtual void act_att_sb()=0;//立中
@@ -510,6 +515,7 @@ inline int CCharacterBase::SeekKey(int offset, int delay, DWORD keystate) {
 #define ACTID_ATT_SA	(ACTID_CHARACTERBASE | ACTID_ATTACK | 0x0009)
 #define ACTID_ATT_SB	(ACTID_CHARACTERBASE | ACTID_ATTACK | 0x000A)
 #define ACTID_ATT_SC	(ACTID_CHARACTERBASE | ACTID_ATTACK | 0x000B)
+#define ACTID_TUKAMI	(ACTID_CHARACTERBASE | ACTID_ATTACK | 0x000C)
 
 #define ACTID_ATT_CA	(ACTID_CHARACTERBASE | ACTID_ATTACK | ACTID_SYAGAMI | 0x000C)
 #define ACTID_ATT_CB	(ACTID_CHARACTERBASE | ACTID_ATTACK | ACTID_SYAGAMI | 0x000D)
@@ -530,6 +536,10 @@ inline int CCharacterBase::SeekKey(int offset, int delay, DWORD keystate) {
 
 #define ACTID_SYORI2IN		(ACTID_CHARACTERBASE | ACTID_INOUT | 0x0019)
 #define ACTID_SYORI2POSE	(ACTID_CHARACTERBASE | ACTID_INOUT | 0x001A)
+
+#define ACTID_GUARDS	(ACTID_CHARACTERBASE | ACTID_GUARD | 0x0001)
+#define ACTID_GUARDC	(ACTID_CHARACTERBASE | ACTID_GUARD | ACTID_SYAGAMI | 0x0001)
+#define ACTID_GUARDJ	(ACTID_CHARACTERBASE | ACTID_GUARD | ACTID_KUCYU | 0x0001)
 
 //chain combo
 #define CHAIN_SA	0x00010000

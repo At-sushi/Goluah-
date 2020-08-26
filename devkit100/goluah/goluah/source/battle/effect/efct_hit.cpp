@@ -28,16 +28,31 @@ void CFxHitmark1::Update()
 		pdat->color=0xFFFFFFFF - (((255/24) * pdat->counter)<<24);
 	}
 	else pdat->color=0x00FFFFFF;
+	pdat->alphamode = GBLEND_KASAN;
 }
 
-BOOL CFxHitmark1::Draw()
-{
-	UINT counter = pdat->counter * 1.5;
+static BOOL DrawHitmark(const GOBJECT* pdat) {
+	UINT counter = pdat->counter * 0.75;
 
 	if (counter < 15){//‰~
 		g_draw.SetAlphaMode(GBLEND_KASAN);
 		g_draw.DrawCircle((int)pdat->x, (int)pdat->y, (counter + 4) * 5,
-			30, 0, 0x00CC33FF + (((255 - counter*(255 / 15)) * 255 * 255 * 255) & 0xFF000000), TRUE);
+			30, 0, 0x00CC33FF + (((0xAA) * 255 * 255 * 255) & 0xFF000000), TRUE);
+		g_draw.SetAlphaMode(0);
+	}
+	if (counter >= 20)return(TRUE);
+
+	return FALSE;
+}
+
+BOOL CFxHitmark1::Draw()
+{
+	UINT counter = pdat->counter * 0.75;
+
+	if (counter < 12){//‰~
+		g_draw.SetAlphaMode(GBLEND_KASAN);
+		g_draw.DrawCircle((int)pdat->x, (int)pdat->y, (counter + 4) * 5,
+			30, 0, 0x00CC33FF + (((0xAA) * 255 * 255 * 255) & 0xFF000000), TRUE);
 		g_draw.SetAlphaMode(0);
 	}
 	return pdat->counter<12 ? FALSE : TRUE;
@@ -62,6 +77,7 @@ void CFxHitmark2::Update()
 		pdat->color=0xFFFFFFFF - ((BYTE)(255/30 * pdat->counter))*256*256*256;
 	}
 	else pdat->color=0x00FFFFFF;
+	pdat->alphamode = GBLEND_KASAN;
 }
 
 /*---------------------------------------------------------------
@@ -83,6 +99,7 @@ void CFxHitmark3::Update()
 		pdat->color=0xFFFFFFFF - (255/44 * pdat->counter)*256*256*256;
 	}
 	else pdat->color=0x00FFFFF;
+	pdat->alphamode = GBLEND_KASAN;
 }
 
 /*---------------------------------------------------------------
@@ -106,52 +123,23 @@ void CFxHitmark4::Update()
 	else {
 		pdat->color=0xFFFFFFFF - (255/40 * pdat->counter)*256*256*256;
 	}
+	pdat->alphamode = GBLEND_KASAN;
 }
 
 
 BOOL CFxHitmark2::Draw()
 {
-	UINT counter = pdat->counter * 1.25;
-
-	if (counter < 15){//‰~
-		g_draw.SetAlphaMode(GBLEND_KASAN);
-		g_draw.DrawCircle((int)pdat->x, (int)pdat->y, (counter + 4) * 5,
-			30, 0, 0x00CC33FF + (((255 - counter*(255 / 15)) * 255 * 255 * 255) & 0xFF000000), TRUE);
-		g_draw.SetAlphaMode(0);
-	}
-	if (counter >= 20)return(TRUE);
-
-	return FALSE;
+	return DrawHitmark(pdat);
 }
 
 BOOL CFxHitmark3::Draw()
 {
-	UINT counter = pdat->counter * 1.25;
-
-	if (counter < 15){//‰~
-		g_draw.SetAlphaMode(GBLEND_KASAN);
-		g_draw.DrawCircle((int)pdat->x, (int)pdat->y, (counter + 4) * 5,
-			30, 0, 0x00CC33FF + (((255 - counter*(255 / 15)) * 255 * 255 * 255) & 0xFF000000), TRUE);
-		g_draw.SetAlphaMode(0);
-	}
-	if (counter >= 20)return(TRUE);
-
-	return FALSE;
+	return DrawHitmark(pdat);
 }
 
 BOOL CFxHitmark4::Draw()
 {
-	UINT counter = pdat->counter * 1.25;
-
-	if(counter < 15){//‰~
-		g_draw.SetAlphaMode(GBLEND_KASAN);
-		g_draw.DrawCircle((int)pdat->x, (int)pdat->y, (counter + 4) * 5,
-			30,0,0x00CC33FF + (((255-counter*(255/15))*255*255*255)&0xFF000000),TRUE);
-		g_draw.SetAlphaMode(0);
-	}
-	if(counter>=20)return(TRUE);
-
-	return FALSE;
+	return DrawHitmark(pdat);
 }
 
 /*---------------------------------------------------------------
