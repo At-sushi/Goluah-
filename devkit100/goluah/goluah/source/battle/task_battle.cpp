@@ -9,7 +9,7 @@
 
     （ネットワーク非対応版）
 
-    Goluah!! Copyright (C) 2001-2004 aki, 2014-2015 logger, 2004-2020 At-sushi
+    Goluah!! Copyright (C) 2001-2004 aki, 2014-2015 logger, 2004-2018 At-sushi
 
     This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
@@ -26,7 +26,6 @@
 #include "task_battle.h"
 #include "task_loading.h"
 #include "gcdhandler.h"
-#include "CollisionDetectionTree.h"
 
 /*----------------------------------------------------------------------------
     構築
@@ -163,10 +162,6 @@ void CBattleTask::Initialize()
             }
         }
     }
-
-    // オブジェクトにバウンディングボックスを設定
-    for (auto k : p_objects)
-        if (k) k->ComputeBoundingBoxes();
 
     AfxGetApp()->DoWaitCursor(-1);
     g_system.RemoveTask('LOAD');//NowLoading 表示タスク除去
@@ -558,7 +553,7 @@ void CBattleTask::T_KasanariHantei()
 
     int i,j,k,l;
 
-    GOBJECT *pdat1 = NULL;
+    GOBJECT *pdat1 = NULL,*pdat2 = NULL;
     BOOL kas_yes = FALSE;
 
     GCD_CELL2  c_a,c_k;
@@ -566,10 +561,7 @@ void CBattleTask::T_KasanariHantei()
     BOOL revx1,revx2;
     UINT magmode1,magmode2;
 
-    static CollisionDetectionTree<GOBJECT*> collisionTree;
-    collisionTree.clear();
-
-    //判定するオブジェクトを登録
+    //重なり判定
     for(i=0;i<(int)p_objects.size();i++){
         if(p_objects[i]!=NULL){//オブジェクトが存在する
             pdat1 = &(p_objects[i]->data);
@@ -577,81 +569,90 @@ void CBattleTask::T_KasanariHantei()
                 if(pdat1->kasanari){//重なり判定ON
                     if(pdat1->phdat!=NULL){
                         if(pdat1->pcdat!=NULL){
-                            collisionTree.insert(
-                                p_objects[i]->GetBoundingHit(pdat1->cnow).left + pdat1->x,
-                                p_objects[i]->GetBoundingHit(pdat1->cnow).top + pdat1->y,
-                                p_objects[i]->GetBoundingHit(pdat1->cnow).right + pdat1->x,
-                                p_objects[i]->GetBoundingHit(pdat1->cnow).bottom + pdat1->y,
-                                pdat1);
+                            if( ((GCD_CELL2_070*)pdat1->pcdat)[0].cell[0].flag==700 ){
+                                magmode1 = 1;//重心中心
+                            }
+                            else{
+                                if(pdat1->pcdat[pdat1->cnow].flag & GCDCELL2_ROT_BASEPOINT){
+                                    magmode1 = 0;//足元中心
+                                }
+                                else magmode1=1;
+                            }
+                            // 変更：自分より後のみに対して判定（ちょっと軽くなるかな）
+                            for(j=i+1;j<(int)p_objects.size();j++){//** 他の全てのオブジェクトに対して **
+                                if(/*i!=j*/TRUE){//自分以外に
+                                    if(p_objects[j]!=NULL){
+                                        pdat2 = &(p_objects[j]->data);
+                                        if(pdat1->tid != pdat2->tid){
+                                            if(pdat2->objtype & GOBJFLG_KASANARI){//オブジェクトは攻撃を喰らう
+                                                if(pdat2->kasanari){//重なり判定ON
+                                                    if(pdat2->phdat!=NULL){
+                                                        if(pdat2->pcdat!=NULL)
+                                                        {
+                                                            if( ((GCD_CELL2_070*)pdat2->pcdat)[0].cell[0].flag==700 ){
+                                                                magmode2 = 1;//重心中心
+                                                            }
+                                                            else{
+                                                                if(pdat2->pcdat[pdat2->cnow].flag & GCDCELL2_ROT_BASEPOINT){
+                                                                    magmode2 = 0;//足元中心
+                                                                }
+                                                                else magmode2=1;
+                                                            }
+                                                            //当たり判定を行う
+                                                            kas_yes=FALSE;
+                                                            h_1 = (pdat1->phdat[ pdat1->cnow ]);
+                                                            h_2 = (pdat2->phdat[ pdat2->cnow ]);
+                                                            /*if ( ((GCD_CELL2_070*)pdat2->pcdat)[0].cell[0].flag==700 )
+                                                            {
+                                                                CGCDHandler::GCDConvCell_070_090( &( ((GCD_CELL2_070*)pdat1->pcdat)[ pdat1->cnow ]), &c_a);
+                                                                CGCDHandler::GCDConvCell_070_090( &( ((GCD_CELL2_070*)pdat2->pcdat)[ pdat2->cnow ]), &c_k);
+                                                            }
+                                                            else
+                                                            {*/
+                                                                c_a = (pdat1->pcdat[ pdat1->cnow ]);
+                                                                c_k = (pdat2->pcdat[ pdat2->cnow ]);
+                                                            /*}*/
+                                                            if(pdat1->muki && !pdat1->revx)revx1=TRUE;
+                                                            else if(!pdat1->muki && pdat1->revx)revx1=TRUE;
+                                                            else revx1=FALSE;
+                                                            if(pdat2->muki && !pdat2->revx)revx2=TRUE;
+                                                            else if(!pdat2->muki && pdat2->revx)revx2=TRUE;
+                                                            else revx2=FALSE;
+                                                            for(k=0;k<3;k++){
+                                                                for(l=0;l<3;l++){
+                                                                    if(gbl.Syototu2RECTs(h_1.kas[k],h_2.kas[l],NULL,
+                                                                        c_a.gcx,c_a.gcy,revx1,pdat1->revy,pdat1->rot,pdat1->x,pdat1->y,pdat1->magx,pdat1->magy,
+                                                                        c_k.gcx,c_k.gcy,revx2,pdat2->revy,pdat2->rot,pdat2->x,pdat2->y,pdat2->magx,pdat2->magy,magmode1,magmode2))
+                                                                    {
+                                                                        k=l=3;
+                                                                        kas_yes=TRUE;
+                                                                    }
+                                                                }
+                                                            }
+                                                            if(kas_yes){//一つ以上の矩形が衝突した
+                                                                if(pdat1->x > pdat2->x){
+                                                                    pdat1->x += 3;
+                                                                    pdat2->x -= 3;
+                                                                }
+                                                                else{
+                                                                    pdat1->x -= 3;
+                                                                    pdat2->x += 3;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
             }
         }
     }
-
-    // 衝突判定
-    collisionTree.collideAll([&](GOBJECT* pdat1, GOBJECT* pdat2) {
-        if (((GCD_CELL2_070*)pdat1->pcdat)[0].cell[0].flag == 700){
-            magmode1 = 1;//重心中心
-        }
-        else{
-            if (pdat1->pcdat[pdat1->cnow].flag & GCDCELL2_ROT_BASEPOINT){
-                magmode1 = 0;//足元中心
-            }
-            else magmode1 = 1;
-        }
-        if (((GCD_CELL2_070*)pdat2->pcdat)[0].cell[0].flag == 700){
-            magmode2 = 1;//重心中心
-        }
-        else{
-            if (pdat2->pcdat[pdat2->cnow].flag & GCDCELL2_ROT_BASEPOINT){
-                magmode2 = 0;//足元中心
-            }
-            else magmode2 = 1;
-        }
-        //当たり判定を行う
-        kas_yes = FALSE;
-        h_1 = (pdat1->phdat[pdat1->cnow]);
-        h_2 = (pdat2->phdat[pdat2->cnow]);
-        /*if ( ((GCD_CELL2_070*)pdat2->pcdat)[0].cell[0].flag==700 )
-        {
-        CGCDHandler::GCDConvCell_070_090( &( ((GCD_CELL2_070*)pdat1->pcdat)[ pdat1->cnow ]), &c_a);
-        CGCDHandler::GCDConvCell_070_090( &( ((GCD_CELL2_070*)pdat2->pcdat)[ pdat2->cnow ]), &c_k);
-        }
-        else
-        {*/
-        c_a = (pdat1->pcdat[pdat1->cnow]);
-        c_k = (pdat2->pcdat[pdat2->cnow]);
-        /*}*/
-        if (pdat1->muki && !pdat1->revx)revx1 = TRUE;
-        else if (!pdat1->muki && pdat1->revx)revx1 = TRUE;
-        else revx1 = FALSE;
-        if (pdat2->muki && !pdat2->revx)revx2 = TRUE;
-        else if (!pdat2->muki && pdat2->revx)revx2 = TRUE;
-        else revx2 = FALSE;
-        for (k = 0; k<3; k++){
-            for (l = 0; l<3; l++){
-                if (gbl.Syototu2RECTs(h_1.kas[k], h_2.kas[l], NULL,
-                    c_a.gcx, c_a.gcy, revx1, pdat1->revy, pdat1->rot, pdat1->x, pdat1->y, pdat1->magx, pdat1->magy,
-                    c_k.gcx, c_k.gcy, revx2, pdat2->revy, pdat2->rot, pdat2->x, pdat2->y, pdat2->magx, pdat2->magy, magmode1, magmode2))
-                {
-                    k = l = 3;
-                    kas_yes = TRUE;
-                }
-            }
-        }
-        if (kas_yes){//一つ以上の矩形が衝突した
-            if (pdat1->x > pdat2->x){
-                pdat1->x += 3;
-                pdat2->x -= 3;
-            }
-            else{
-                pdat1->x -= 3;
-                pdat2->x += 3;
-            }
-        }
-    });
 
     //画面中心を出す
     j=0;
@@ -726,39 +727,121 @@ void CBattleTask::T_AtariHantei()
 {
     g_system.PushSysTag(__FUNCTION__);
 
+    static BOOL hantaihantei=FALSE;
+    hantaihantei = !hantaihantei;
     static std::deque<DWORD> kurai_list;
 
     int num_kas;
     MY2DVECTOR kas_point[3*6],kas_point2;
 
-    GOBJECT *pdat1;
+    GOBJECT *pdat1,*pdat2;
     GCD_CELL2  c_a,c_k;
     GCD_HANTEI h_a,h_k;
     BOOL revx1,revx2;
     UINT magmode1,magmode2;
 
-    static CollisionDetectionTree<GOBJECT*> collisionTree;
-    collisionTree.clear();
-
     ASSERT(kurai_list.empty());
 
     int i, j, k, l;
-    for (auto i : p_objects){
-        if (i != NULL){//オブジェクトが存在する
-            pdat1 = &(i->data);
-            if((pdat1->tid==TEAM_PLAYER1 || pdat1->tid==TEAM_PLAYER2) && BATTLETASK_ISNOTFXOBJ(pdat1)){
-                if(pdat1->objtype & GOBJFLG_ATTACK){//オブジェクトは攻撃を行う
-                    if(pdat1->kougeki ||										//攻撃力ON
-                       ((pdat1->objtype & GOBJFLG_KURAI) && (!pdat1->muteki))){	//オブジェクトは攻撃を喰らう
-                        if(pdat1->phdat!=NULL){
-                            if(pdat1->pcdat!=NULL)
-                            {
-                                collisionTree.insert(
-                                    i->GetBoundingAttack(pdat1->cnow).left + pdat1->x,
-                                    i->GetBoundingAttack(pdat1->cnow).top + pdat1->y,
-                                    i->GetBoundingAttack(pdat1->cnow).right + pdat1->x,
-                                    i->GetBoundingAttack(pdat1->cnow).bottom + pdat1->y,
-                                    pdat1);
+    if(!hantaihantei){
+        for (auto i : p_objects){
+            if (i != NULL){//オブジェクトが存在する
+                pdat1 = &(i->data);
+                if((pdat1->tid==TEAM_PLAYER1 || pdat1->tid==TEAM_PLAYER2) && BATTLETASK_ISNOTFXOBJ(pdat1)){
+                    if(pdat1->objtype & GOBJFLG_ATTACK){//オブジェクトは攻撃を行う
+                        if(pdat1->kougeki){//攻撃力ON
+                            if(pdat1->phdat!=NULL){
+                                if(pdat1->pcdat!=NULL)
+                                {
+                                    if( ((GCD_CELL2_070*)pdat1->pcdat)[0].cell[0].flag==700 ){
+                                        magmode1 = 1;//重心中心
+                                    }
+                                    else{
+                                        if(pdat1->pcdat[pdat1->cnow].flag & GCDCELL2_ROT_BASEPOINT){
+                                            magmode1 = 0;//足元中心
+                                        }
+                                        else magmode1=1;
+                                    }
+                                    for (auto j : p_objects){//** 他の全てのオブジェクトに対して **
+                                        if(i!=j){//自分以外に
+                                            if(j!=NULL){
+                                                pdat2 = &(j->data);
+                                                if((pdat2->tid==TEAM_PLAYER1 || pdat2->tid==TEAM_PLAYER2)  && BATTLETASK_ISNOTFXOBJ(pdat2)){
+                                                    if(pdat1->tid != pdat2->tid){
+                                                        if(TRUE/*pdat2->counter!=0*/){
+                                                            if(pdat2->objtype & GOBJFLG_KURAI){//オブジェクトは攻撃を喰らう
+                                                                if(!pdat2->muteki){//無敵状態OFF
+                                                                    if(pdat2->phdat!=NULL){
+                                                                        if(pdat2->pcdat!=NULL)
+                                                                        {
+                                                                            if( ((GCD_CELL2_070*)pdat2->pcdat)[0].cell[0].flag==700 ){
+                                                                                magmode2 = 1;//重心中心
+                                                                                }
+                                                                                else{
+                                                                                    if(pdat2->pcdat[pdat2->cnow].flag & GCDCELL2_ROT_BASEPOINT){
+                                                                                        magmode2 = 0;//足元中心
+                                                                                    }
+                                                                                    else magmode2=1;
+                                                                            }
+                                                                            //当たり判定を行う
+                                                                            num_kas=0;
+                                                                            h_a = (pdat1->phdat[ pdat1->cnow ]);
+                                                                            h_k = (pdat2->phdat[ pdat2->cnow ]);
+                                                                            /*if ( ((GCD_CELL2_070*)pdat2->pcdat)[0].cell[0].flag==700 )
+                                                                            {
+                                                                                CGCDHandler::GCDConvCell_070_090( &( ((GCD_CELL2_070*)pdat1->pcdat)[ pdat1->cnow ]), &c_a);
+                                                                                CGCDHandler::GCDConvCell_070_090( &( ((GCD_CELL2_070*)pdat2->pcdat)[ pdat2->cnow ]), &c_k);
+                                                                            }
+                                                                            else
+                                                                            {*/
+                                                                                c_a = (pdat1->pcdat[ pdat1->cnow ]);
+                                                                                c_k = (pdat2->pcdat[ pdat2->cnow ]);
+                                                                            /*}*/
+                                                                            if(pdat1->muki && !pdat1->revx)revx1=TRUE;
+                                                                            else if(!pdat1->muki && pdat1->revx)revx1=TRUE;
+                                                                            else revx1=FALSE;
+                                                                            if(pdat2->muki && !pdat2->revx)revx2=TRUE;
+                                                                            else if(!pdat2->muki && pdat2->revx)revx2=TRUE;
+                                                                            else revx2=FALSE;
+                                                                            for(k=0;k<3;k++){
+                                                                                for(l=0;l<3;l++){
+                                                                                    if(gbl.Syototu2RECTs(h_a.attack[k],h_k.kas[l],&kas_point[num_kas],
+                                                                                        c_a.gcx,c_a.gcy,revx1,pdat1->revy,pdat1->rot,pdat1->x,pdat1->y,pdat1->magx,pdat1->magy,
+                                                                                        c_k.gcx,c_k.gcy,revx2,pdat2->revy,pdat2->rot,pdat2->x,pdat2->y,pdat2->magx,pdat2->magy,magmode1,magmode2))
+                                                                                    {
+                                                                                        num_kas++;
+                                                                                    }
+                                                                                    if(gbl.Syototu2RECTs(h_a.attack[k],h_k.kurai[l],&kas_point[num_kas],
+                                                                                        c_a.gcx,c_a.gcy,revx1,pdat1->revy,pdat1->rot,pdat1->x,pdat1->y,pdat1->magx,pdat1->magy,
+                                                                                        c_k.gcx,c_k.gcy,revx2,pdat2->revy,pdat2->rot,pdat2->x,pdat2->y,pdat2->magx,pdat2->magy,magmode1,magmode2))
+                                                                                    {
+                                                                                        num_kas++;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            if(num_kas>0){//一つ以上の矩形が衝突した
+                                                                                kas_point2.x=0;
+                                                                                kas_point2.y=0;
+                                                                                for(k=0;k<num_kas;k++){
+                                                                                    kas_point2.x += kas_point[k].x;
+                                                                                    kas_point2.y += kas_point[k].y;
+                                                                                }
+                                                                                kas_point2.x /= num_kas;
+                                                                                kas_point2.y /= num_kas;
+                                                                                if (Atari(i->data.id, j->data.id, kas_point2))
+                                                                                    kurai_list.push_back(pdat2->id);// 後でやる
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -766,88 +849,112 @@ void CBattleTask::T_AtariHantei()
             }
         }
     }
-
-    // 個別の判定用の関数
-    auto collide = [&](GOBJECT* pdat1, GOBJECT* pdat2) {
-        if (((GCD_CELL2_070*)pdat1->pcdat)[0].cell[0].flag == 700){
-            magmode1 = 1;//重心中心
-        }
-        else{
-            if (pdat1->pcdat[pdat1->cnow].flag & GCDCELL2_ROT_BASEPOINT){
-                magmode1 = 0;//足元中心
-            }
-            else magmode1 = 1;
-        }
-        if (((GCD_CELL2_070*)pdat2->pcdat)[0].cell[0].flag == 700){
-            magmode2 = 1;//重心中心
-        }
-        else{
-            if (pdat2->pcdat[pdat2->cnow].flag & GCDCELL2_ROT_BASEPOINT){
-                magmode2 = 0;//足元中心
-            }
-            else magmode2 = 1;
-        }
-        //当たり判定を行う
-        num_kas = 0;
-        h_a = (pdat1->phdat[pdat1->cnow]);
-        h_k = (pdat2->phdat[pdat2->cnow]);
-        /*if ( ((GCD_CELL2_070*)pdat2->pcdat)[0].cell[0].flag==700 )
-        {
-        CGCDHandler::GCDConvCell_070_090( &( ((GCD_CELL2_070*)pdat1->pcdat)[ pdat1->cnow ]), &c_a);
-        CGCDHandler::GCDConvCell_070_090( &( ((GCD_CELL2_070*)pdat2->pcdat)[ pdat2->cnow ]), &c_k);
-        }
-        else
-        {*/
-        c_a = (pdat1->pcdat[pdat1->cnow]);
-        c_k = (pdat2->pcdat[pdat2->cnow]);
-        /*}*/
-        if (pdat1->muki && !pdat1->revx)revx1 = TRUE;
-        else if (!pdat1->muki && pdat1->revx)revx1 = TRUE;
-        else revx1 = FALSE;
-        if (pdat2->muki && !pdat2->revx)revx2 = TRUE;
-        else if (!pdat2->muki && pdat2->revx)revx2 = TRUE;
-        else revx2 = FALSE;
-        for (k = 0; k<3; k++){
-            for (l = 0; l<3; l++){
-                if (gbl.Syototu2RECTs(h_a.attack[k], h_k.kas[l], &kas_point[num_kas],
-                    c_a.gcx, c_a.gcy, revx1, pdat1->revy, pdat1->rot, pdat1->x, pdat1->y, pdat1->magx, pdat1->magy,
-                    c_k.gcx, c_k.gcy, revx2, pdat2->revy, pdat2->rot, pdat2->x, pdat2->y, pdat2->magx, pdat2->magy, magmode1, magmode2))
-                {
-                    num_kas++;
+    else{//反対側から当たり判定をやる
+        for(i=(int)p_objects.size()-1;i>=0;i--){
+            if(p_objects[i]!=NULL){//オブジェクトが存在する
+                pdat1 = &(p_objects[i]->data);
+                if((pdat1->tid==TEAM_PLAYER1 || pdat1->tid==TEAM_PLAYER2) && BATTLETASK_ISNOTFXOBJ(pdat1)){
+                    if(pdat1->objtype & GOBJFLG_ATTACK){//オブジェクトは攻撃を行う
+                        if(pdat1->kougeki){//攻撃力ON
+                            if(pdat1->phdat!=NULL){
+                                if(pdat1->pcdat!=NULL)
+                                {
+                                    if( ((GCD_CELL2_070*)pdat1->pcdat)[0].cell[0].flag==700 ){
+                                        magmode1 = 1;//重心中心
+                                    }
+                                    else{
+                                        if(pdat1->pcdat[pdat1->cnow].flag & GCDCELL2_ROT_BASEPOINT){
+                                            magmode1 = 0;//足元中心
+                                        }
+                                        else magmode1=1;
+                                    }
+                                    for (auto j : p_objects){//** 他の全てのオブジェクトに対して **
+                                        if (p_objects[i] != j){//自分以外に
+                                            if (j != NULL){
+                                                pdat2 = &(j->data);
+                                                if ((pdat2->tid == TEAM_PLAYER1 || pdat2->tid == TEAM_PLAYER2) && BATTLETASK_ISNOTFXOBJ(pdat2)){
+                                                    if(pdat1->tid != pdat2->tid){
+                                                        if(TRUE/*pdat2->counter!=0*/){
+                                                            if(pdat2->objtype & GOBJFLG_KURAI){//オブジェクトは攻撃を喰らう
+                                                                if(!pdat2->muteki){//無敵状態OFF
+                                                                    if(pdat2->phdat!=NULL){
+                                                                        if(pdat2->pcdat!=NULL)
+                                                                        {
+                                                                            if( ((GCD_CELL2_070*)pdat2->pcdat)[0].cell[0].flag==700 ){
+                                                                                magmode2 = 1;//重心中心
+                                                                                }
+                                                                                else{
+                                                                                    if(pdat2->pcdat[pdat2->cnow].flag & GCDCELL2_ROT_BASEPOINT){
+                                                                                        magmode2 = 0;//足元中心
+                                                                                    }
+                                                                                    else magmode2=1;
+                                                                            }
+                                                                            //当たり判定を行う
+                                                                            num_kas=0;
+                                                                            h_a = (pdat1->phdat[ pdat1->cnow ]);
+                                                                            h_k = (pdat2->phdat[ pdat2->cnow ]);
+                                                                            /*if ( ((GCD_CELL2_070*)pdat2->pcdat)[0].cell[0].flag==700 )
+                                                                            {
+                                                                                CGCDHandler::GCDConvCell_070_090( &( ((GCD_CELL2_070*)pdat1->pcdat)[ pdat1->cnow ]), &c_a);
+                                                                                CGCDHandler::GCDConvCell_070_090( &( ((GCD_CELL2_070*)pdat2->pcdat)[ pdat2->cnow ]), &c_k);
+                                                                            }
+                                                                            else
+                                                                            {*/
+                                                                                c_a = (pdat1->pcdat[ pdat1->cnow ]);
+                                                                                c_k = (pdat2->pcdat[ pdat2->cnow ]);
+                                                                            /*}*/
+                                                                            if(pdat1->muki && !pdat1->revx)revx1=TRUE;
+                                                                            else if(!pdat1->muki && pdat1->revx)revx1=TRUE;
+                                                                            else revx1=FALSE;
+                                                                            if(pdat2->muki && !pdat2->revx)revx2=TRUE;
+                                                                            else if(!pdat2->muki && pdat2->revx)revx2=TRUE;
+                                                                            else revx2=FALSE;
+                                                                            for(k=0;k<3;k++){
+                                                                                for(l=0;l<3;l++){
+                                                                                    if(gbl.Syototu2RECTs(h_a.attack[k],h_k.kas[l],&kas_point[num_kas],
+                                                                                        c_a.gcx,c_a.gcy,revx1,pdat1->revy,pdat1->rot,pdat1->x,pdat1->y,pdat1->magx,pdat1->magy,
+                                                                                        c_k.gcx,c_k.gcy,revx2,pdat2->revy,pdat2->rot,pdat2->x,pdat2->y,pdat2->magx,pdat2->magy,magmode1,magmode2))
+                                                                                    {
+                                                                                        num_kas++;
+                                                                                    }
+                                                                                    if(gbl.Syototu2RECTs(h_a.attack[k],h_k.kurai[l],&kas_point[num_kas],
+                                                                                        c_a.gcx,c_a.gcy,revx1,pdat1->revy,pdat1->rot,pdat1->x,pdat1->y,pdat1->magx,pdat1->magy,
+                                                                                        c_k.gcx,c_k.gcy,revx2,pdat2->revy,pdat2->rot,pdat2->x,pdat2->y,pdat2->magx,pdat2->magy,magmode1,magmode2))
+                                                                                    {
+                                                                                        num_kas++;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            if(num_kas>0){//一つ以上の矩形が衝突した
+                                                                                kas_point2.x=0;
+                                                                                kas_point2.y=0;
+                                                                                for(k=0;k<num_kas;k++){
+                                                                                    kas_point2.x += kas_point[k].x;
+                                                                                    kas_point2.y += kas_point[k].y;
+                                                                                }
+                                                                                kas_point2.x /= num_kas;
+                                                                                kas_point2.y /= num_kas;
+                                                                                if (Atari(p_objects[i]->data.id, j->data.id, kas_point2))
+                                                                                    kurai_list.push_back(pdat2->id);// 後でやる
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-                if (gbl.Syototu2RECTs(h_a.attack[k], h_k.kurai[l], &kas_point[num_kas],
-                    c_a.gcx, c_a.gcy, revx1, pdat1->revy, pdat1->rot, pdat1->x, pdat1->y, pdat1->magx, pdat1->magy,
-                    c_k.gcx, c_k.gcy, revx2, pdat2->revy, pdat2->rot, pdat2->x, pdat2->y, pdat2->magx, pdat2->magy, magmode1, magmode2))
-                {
-                    num_kas++;
-                }
             }
         }
-        if (num_kas>0){//一つ以上の矩形が衝突した
-            kas_point2.x = 0;
-            kas_point2.y = 0;
-            for (k = 0; k<num_kas; k++){
-                kas_point2.x += kas_point[k].x;
-                kas_point2.y += kas_point[k].y;
-            }
-            kas_point2.x /= num_kas;
-            kas_point2.y /= num_kas;
-            if (Atari(pdat1->id, pdat2->id, kas_point2))
-                kurai_list.push_back(pdat2->id);// 後でやる
-        }
-    };
-
-    // 衝突判定
-    collisionTree.collideAll([&](GOBJECT* pdat1, GOBJECT* pdat2) {
-        if (pdat1->tid != pdat2->tid) {
-            if (pdat1->objtype & GOBJFLG_ATTACK && pdat1->kougeki &&		//オブジェクトは攻撃を行う
-                ((pdat2->objtype & GOBJFLG_KURAI) && (!pdat2->muteki)))
-                collide(pdat1, pdat2);
-            if (pdat2->objtype & GOBJFLG_ATTACK && pdat2->kougeki &&		//オブジェクトは攻撃を行う
-                ((pdat1->objtype & GOBJFLG_KURAI) && (!pdat1->muteki)))
-                collide(pdat2, pdat1);
-        }
-    });
+    }
 
     //喰らったとき、行動がストップして格好悪いので1回だけaction()させる
     CGObject* objkurai;
@@ -877,16 +984,12 @@ void CBattleTask::T_Sousai()
     int i,j,k,l;
     int num_kas;
     MY2DVECTOR kas_point[3*6];
-    GOBJECT *pdat1;
+    GOBJECT *pdat1,*pdat2;
     GCD_CELL2  c_a,c_k;
     GCD_HANTEI h_a,h_k;
     BOOL revx1,revx2;
     UINT magmode1,magmode2;
 
-    static CollisionDetectionTree<GOBJECT*> collisionTree;
-    collisionTree.clear();
-
-    // 判定するオブジェクトを登録
     for(i=1;i<(int)p_objects.size()-1;i++){
         if(p_objects[i]!=NULL){//オブジェクトが存在する
             pdat1 = &(p_objects[i]->data);
@@ -894,14 +997,78 @@ void CBattleTask::T_Sousai()
                 if(pdat1->objtype & GOBJFLG_ZBULLET){//オブジェクトは飛び道具属性を持つ
                     if(pdat1->kougeki){//攻撃力を失っていない
                         if(pdat1->phdat!=NULL){
-                            if (pdat1->pcdat != NULL)
+                            if(pdat1->pcdat!=NULL)
                             {
-                                collisionTree.insert(
-                                    p_objects[i]->GetBoundingAttack(pdat1->cnow).left + pdat1->x,
-                                    p_objects[i]->GetBoundingAttack(pdat1->cnow).top + pdat1->y,
-                                    p_objects[i]->GetBoundingAttack(pdat1->cnow).right + pdat1->x,
-                                    p_objects[i]->GetBoundingAttack(pdat1->cnow).bottom + pdat1->y,
-                                    pdat1);
+                                if( ((GCD_CELL2_070*)pdat1->pcdat)[0].cell[0].flag==700 ){
+                                    magmode1 = 1;//重心中心
+                                }
+                                else{
+                                    if(pdat1->pcdat[pdat1->cnow].flag & GCDCELL2_ROT_BASEPOINT){
+                                        magmode1 = 0;//足元中心
+                                    }
+                                    else magmode1=1;
+                                }
+                                for(j=i+1;j<(int)p_objects.size();j++){//** 他の全てのオブジェクトに対して **
+                                    if(p_objects[j]!=NULL){
+                                        pdat2 = &(p_objects[j]->data);
+                                        if((pdat2->tid==TEAM_PLAYER1 || pdat2->tid==TEAM_PLAYER2)  && BATTLETASK_ISNOTFXOBJ(pdat2)){
+                                            if(pdat1->tid != pdat2->tid){
+                                                if(pdat2->objtype & GOBJFLG_ZBULLET){//オブジェクトは飛び道具属性を持つ
+                                                    if(pdat2->kougeki ){//攻撃力を失っていない
+                                                        if(pdat2->phdat!=NULL){
+                                                            if(pdat2->pcdat!=NULL)
+                                                            {
+                                                                if( ((GCD_CELL2_070*)pdat2->pcdat)[0].cell[0].flag==700 ){
+                                                                    magmode2 = 1;//重心中心
+                                                                }
+                                                                else{
+                                                                    if(pdat2->pcdat[pdat2->cnow].flag & GCDCELL2_ROT_BASEPOINT){
+                                                                        magmode2 = 0;//足元中心
+                                                                    }
+                                                                    else magmode2=1;
+                                                                }
+                                                                //当たり判定を行う
+                                                                num_kas=0;
+                                                                h_a = (pdat1->phdat[ pdat1->cnow ]);
+                                                                h_k = (pdat2->phdat[ pdat2->cnow ]);
+                                                                /*if ( ((GCD_CELL2_070*)pdat2->pcdat)[0].cell[0].flag==700 )
+                                                                {
+                                                                    CGCDHandler::GCDConvCell_070_090( &( ((GCD_CELL2_070*)pdat1->pcdat)[ pdat1->cnow ]), &c_a);
+                                                                    CGCDHandler::GCDConvCell_070_090( &( ((GCD_CELL2_070*)pdat2->pcdat)[ pdat2->cnow ]), &c_k);
+                                                                }
+                                                                else
+                                                                {*/
+                                                                    c_a = (pdat1->pcdat[ pdat1->cnow ]);
+                                                                    c_k = (pdat2->pcdat[ pdat2->cnow ]);
+                                                                /*}*/
+                                                                if(pdat1->muki && !pdat1->revx)revx1=TRUE;
+                                                                else if(!pdat1->muki && pdat1->revx)revx1=TRUE;
+                                                                else revx1=FALSE;
+                                                                if(pdat2->muki && !pdat2->revx)revx2=TRUE;
+                                                                else if(!pdat2->muki && pdat2->revx)revx2=TRUE;
+                                                                else revx2=FALSE;
+                                                                for(k=0;k<3;k++){
+                                                                    for(l=0;l<3;l++){
+                                                                        if(gbl.Syototu2RECTs(h_a.attack[k],h_k.attack[l],&kas_point[num_kas],
+                                                                            c_a.gcx,c_a.gcy,revx1,pdat1->revy,pdat1->rot,pdat1->x,pdat1->y,pdat1->magx,pdat1->magy,
+                                                                            c_k.gcx,c_k.gcy,revx2,pdat2->revy,pdat2->rot,pdat2->x,pdat2->y,pdat2->magx,pdat2->magy,magmode1,magmode2))
+                                                                        {
+                                                                            num_kas++;
+                                                                        }
+                                                                    }
+                                                                }
+                                                                if(num_kas>0){//一つ以上の矩形が衝突した
+                                                                    p_objects[i]->Message(GOBJMSG_SOUSAI,0);
+                                                                    p_objects[j]->Message(GOBJMSG_SOUSAI,0);
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -909,62 +1076,6 @@ void CBattleTask::T_Sousai()
             }
         }
     }
-
-    // 衝突判定
-    collisionTree.collideAll([&](GOBJECT* pdat1, GOBJECT* pdat2) {
-        if (((GCD_CELL2_070*)pdat1->pcdat)[0].cell[0].flag == 700){
-            magmode1 = 1;//重心中心
-        }
-        else{
-            if (pdat1->pcdat[pdat1->cnow].flag & GCDCELL2_ROT_BASEPOINT){
-                magmode1 = 0;//足元中心
-            }
-            else magmode1 = 1;
-        }
-        if (((GCD_CELL2_070*)pdat2->pcdat)[0].cell[0].flag == 700){
-            magmode2 = 1;//重心中心
-        }
-        else{
-            if (pdat2->pcdat[pdat2->cnow].flag & GCDCELL2_ROT_BASEPOINT){
-                magmode2 = 0;//足元中心
-            }
-            else magmode2 = 1;
-        }
-        //当たり判定を行う
-        num_kas = 0;
-        h_a = (pdat1->phdat[pdat1->cnow]);
-        h_k = (pdat2->phdat[pdat2->cnow]);
-        /*if ( ((GCD_CELL2_070*)pdat2->pcdat)[0].cell[0].flag==700 )
-        {
-        CGCDHandler::GCDConvCell_070_090( &( ((GCD_CELL2_070*)pdat1->pcdat)[ pdat1->cnow ]), &c_a);
-        CGCDHandler::GCDConvCell_070_090( &( ((GCD_CELL2_070*)pdat2->pcdat)[ pdat2->cnow ]), &c_k);
-        }
-        else
-        {*/
-        c_a = (pdat1->pcdat[pdat1->cnow]);
-        c_k = (pdat2->pcdat[pdat2->cnow]);
-        /*}*/
-        if (pdat1->muki && !pdat1->revx)revx1 = TRUE;
-        else if (!pdat1->muki && pdat1->revx)revx1 = TRUE;
-        else revx1 = FALSE;
-        if (pdat2->muki && !pdat2->revx)revx2 = TRUE;
-        else if (!pdat2->muki && pdat2->revx)revx2 = TRUE;
-        else revx2 = FALSE;
-        for (k = 0; k<3; k++){
-            for (l = 0; l<3; l++){
-                if (gbl.Syototu2RECTs(h_a.attack[k], h_k.attack[l], &kas_point[num_kas],
-                    c_a.gcx, c_a.gcy, revx1, pdat1->revy, pdat1->rot, pdat1->x, pdat1->y, pdat1->magx, pdat1->magy,
-                    c_k.gcx, c_k.gcy, revx2, pdat2->revy, pdat2->rot, pdat2->x, pdat2->y, pdat2->magx, pdat2->magy, magmode1, magmode2))
-                {
-                    num_kas++;
-                }
-            }
-        }
-        if (num_kas>0){//一つ以上の矩形が衝突した
-            p_objects[pdat1->id]->Message(GOBJMSG_SOUSAI, 0);
-            p_objects[pdat2->id]->Message(GOBJMSG_SOUSAI, 0);
-        }
-    });
 
     g_system.PopSysTag();
 }
@@ -1683,7 +1794,6 @@ BOOL CBattleTask::Atari(DWORD a_id, DWORD k_id, MY2DVECTOR &kas_point)
     ATTACKINFO2 tmpatkinfo = higaisya->data.atk2;
     {
         //喰らったダメージ情報をコピー
-        assert(attacker->data.atk);
         higaisya->data.atk2.info1 = attacker->data.atk;
         higaisya->data.atk2.oid = a_id;
         //フラグ立
