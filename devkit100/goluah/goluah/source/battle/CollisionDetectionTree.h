@@ -77,18 +77,34 @@ public:
 
     // 全オブジェクト同士の当たり判定を実行
     template<typename F> void collideAll(F func_collide) {
-        for (const auto& i : segmentHeap) {
+        std::function<void(int)> searchHeap = [&](int node_current) {
+            assert(node_current < SIZE_HEAP);
+
+            // ノードの衝突判定
             // もうやってるので親ノードに対しては判定しない
-            for (auto it = i.origin.cbegin(); it != i.origin.cend(); ++it) {
+            for (auto it = segmentHeap[node_current].origin.cbegin(); it != segmentHeap[node_current].origin.cend(); ++it) {
                 // 他の同階層のオブジェクトに対して
-                for (auto ite = it + 1; ite != i.origin.cend(); ++ite)
+                for (auto ite = it + 1; ite != segmentHeap[node_current].origin.cend(); ++ite)
                     func_collide(*it, *ite);
 
                 // 子ノードのオブジェクトに対して
-                for (const auto& j : i.sub)
+                for (const auto& j : segmentHeap[node_current].sub)
                     func_collide(*it, j);
             }
-        }
+
+            // 下に衝突しそうなオブジェクトがある場合
+            if (segmentHeap[node_current].sub.size() > 1) {
+                const int node_next = node_current * 4;
+                // 子ノードを探索
+                searchHeap(node_next);
+                searchHeap(node_next + 1);
+                searchHeap(node_next + 2);
+                searchHeap(node_next + 3);
+            }
+        };
+
+        // ヒープ全体を探索
+        searchHeap(1);
     }
 
     template<typename F> void collideWithAABB(int left, int top, int right, int bottom, F func_collide) {
