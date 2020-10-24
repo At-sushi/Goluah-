@@ -47,6 +47,9 @@ private:
 	DWORD Defmsg_TouchA();
 	void Defmsg_Action();
 
+	//!< 当たり判定用バウンディングボックス
+	RECT boundingAttack[GCDMAX_RECTANGLES], boundingHit[GCDMAX_RECTANGLES], boundingKurai[GCDMAX_RECTANGLES];
+
 public:
 	static void dact_damages1(GOBJECT *pdat);
 	static void dact_damages2(GOBJECT *pdat);
@@ -88,6 +91,33 @@ public:
 	static void dact_tatakituke2b(GOBJECT *pdat);
 	static void dact_tatakituke(GOBJECT *pdat);
 	       void dact_kaitenfinish(GOBJECT *pdat);
+
+	//!< バウンディングボックス計算
+	void ComputeBoundingBoxes() {
+		const auto phdat = data.phdat;
+		if (phdat) {
+			for (int i = 0; i < GCDMAX_RECTANGLES; i++) {
+				boundingHit[i] = {0, 0, 0, 0};
+
+				// ものすごく久しぶりにWindowsのAPIを書いた
+				for (const auto& j : phdat[i].kas)
+					UnionRect(boundingHit + i, boundingHit + i, &j);
+
+				boundingKurai[i] = boundingHit[i];
+
+				for (const auto& j : phdat[i].kurai)
+					UnionRect(boundingKurai + i, boundingKurai + i, &j);
+
+				boundingAttack[i] = boundingKurai[i];
+				for (const auto& j : phdat[i].attack)
+					UnionRect(boundingAttack + i, boundingAttack + i, &j);
+			}
+		}
+	}
+
+	const RECT& GetBoundingAttack(int val) const { return boundingAttack[val]; }
+	const RECT& GetBoundingHit(int val) const { return boundingHit[val]; }
+	const RECT& GetBoundingKurai(int val) const { return boundingKurai[val]; }
 
 private:
 	void dact_userhit1();

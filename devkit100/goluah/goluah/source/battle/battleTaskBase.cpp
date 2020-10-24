@@ -16,6 +16,7 @@
 #include "global.h"
 #include "battleTaskBase.h"
 #include "task_loading.h"
+#include "CollisionDetectionTree.h"
 
 #include "adaptor\define_data.h"	// Á¸E•œŠˆ
 #include "adaptor\define_char.h"

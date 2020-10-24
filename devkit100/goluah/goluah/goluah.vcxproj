@@ -44,6 +44,7 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+    <Import Project="oldmfc.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -311,6 +312,7 @@
     <ClInclude Include="source\app\goluah.h" />
     <ClInclude Include="source\app\stdafx.h" />
     <ClInclude Include="source\app\system_cell.h" />
+    <ClInclude Include="source\battle\CollisionDetectionTree.h" />
     <ClInclude Include="source\script\script_story_new.h" />
     <ClInclude Include="source\system\system.h" />
     <ClInclude Include="source\system\task.h" />
