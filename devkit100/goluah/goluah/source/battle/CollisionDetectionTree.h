@@ -26,18 +26,16 @@ public:
 
     // セグメントツリーにオブジェクトを挿入
     void insert(int left, int top, int right, int bottom, const T& obj) {
-        static_assert(X_MIN < X_MAX, "object range is invalid");
-        static_assert(Y_MIN < Y_MAX, "object range is invalid");
         assert((left <= right) && (top <= bottom));
 
-        int node_current = 1, x1 = X_MIN, y1 = Y_MIN, x2 = X_MAX, y2 = Y_MAX;
+        int node_current = 0, x1 = X_MIN, y1 = Y_MIN, x2 = X_MAX, y2 = Y_MAX;
 
         for (;;) {
             assert((x1 < x2) && (y1 < y2));
             const int x_mid = (x2 - x1) / 2 + x1, y_mid = (y2 - y1) / 2 + y1;
 
             // 境界線をまたいでいるか判定
-            if ((node_current * 4 >= SIZE_HEAP) ||
+            if ((getFirstChildNode(node_current) >= SIZE_HEAP) ||
                 (left <= x_mid && x_mid <= right) ||
                 (top <= y_mid && y_mid <= bottom)) {
                 segmentHeap[node_current].origin.push_back(obj);
@@ -45,7 +43,7 @@ public:
             }
             else {
                 segmentHeap[node_current].sub.push_back(obj);
-                node_current *= 4;
+                node_current = getFirstChildNode(node_current);
 
                 // Z型に4分割する
                 if (x_mid < left) {
@@ -94,7 +92,7 @@ public:
 
             // 下に衝突しそうなオブジェクトがある場合
             if (segmentHeap[node_current].sub.size() > 1) {
-                const int node_next = node_current * 4;
+                const int node_next = getFirstChildNode(node_current);
                 // 子ノードを探索
                 searchHeap(node_next);
                 searchHeap(node_next + 1);
@@ -104,7 +102,7 @@ public:
         };
 
         // ヒープ全体を探索
-        searchHeap(1);
+        searchHeap(0);
     }
 
     template<typename F> void collideWithAABB(int left, int top, int right, int bottom, F func_collide) {
@@ -112,7 +110,7 @@ public:
         std::function<void(int,int,int,int,int)> searchHeap = [&](int node_current, int x1, int y1, int x2, int y2) {
             assert((x1 < x2) && (y1 < y2));
             assert(node_current < SIZE_HEAP);
-            const int node_next = node_current * 4;
+            const int node_next = getFirstChildNode(node_current);
             if ((node_next >= SIZE_HEAP) || ((left <= x1) && (top <= y1) && (right >= x2) && (bottom >= y2))) {
                 // AABBが区間を完全に含んでいる場合
                 for (const auto& i : segmentHeap[node_current].origin)
@@ -135,16 +133,22 @@ public:
             }
         };
 
-        searchHeap(1, X_MIN, Y_MIN, X_MAX, Y_MAX);
+        searchHeap(0, X_MIN, Y_MIN, X_MAX, Y_MAX);
     }
 
 private:
     enum {
-        SEGMENT_DEPTH = 4,					//! 4分木の階層数
-        SIZE_HEAP = 1 << SEGMENT_DEPTH * 2,	//! ヒープのサイズ
+        SEGMENT_DEPTH = 4,										//! 4分木の階層数
+        SIZE_HEAP = ((1 << SEGMENT_DEPTH * 2) - 1) / (4 - 1),	//! ヒープのサイズ
         X_MIN = -640, X_MAX = 640,
         Y_MIN = X_MIN, Y_MAX = X_MAX
     };
+    static_assert(X_MIN < X_MAX, "object range is invalid");
+    static_assert(Y_MIN < Y_MAX, "object range is invalid");
+
+    // 子ノードの最初のindexを取得
+    static int getFirstChildNode(int index) { return index * 4 + 1; }
+
     struct {
         // origin: レイヤー内のオブジェクトのリスト、sub: 下の方にあるオブジェクトのリスト
         ContainerHeap origin, sub;
