@@ -69,9 +69,12 @@ void CBattleTask::Initialize()
 
     char filename[256];
     int i,j;
+    HCURSOR cur = nullptr;
 
+    // 砂時計カーソルに変更
     if (!g_config.IsFullScreen())
-        AfxGetApp()->DoWaitCursor(1);
+        cur = SetCursor(LoadCursor(nullptr, IDC_WAIT));
+
     // 動的配列初期化
     p_objects.resize(OBJECTS_MEMINCRATE, nullptr);
     object_regno.resize(OBJECTS_MEMINCRATE);
@@ -163,7 +166,8 @@ void CBattleTask::Initialize()
         }
     }
 
-    AfxGetApp()->DoWaitCursor(-1);
+    if (cur)
+        SetCursor(cur);//カーソルを元に戻す
     g_system.RemoveTask('LOAD');//NowLoading 表示タスク除去
 }
 
@@ -740,7 +744,7 @@ void CBattleTask::T_AtariHantei()
     BOOL revx1,revx2;
     UINT magmode1,magmode2;
 
-    ASSERT(kurai_list.empty());
+    assert(kurai_list.empty());
 
     int i, j, k, l;
     if(!hantaihantei){

@@ -85,14 +85,6 @@ void CTaskManager::Execute(DWORD time)
 	std::deque<TaskList::iterator>::iterator idl,idl_ed;
 	CTaskBase *delTgt;
 
-	#ifdef ARRAYBOUNDARY_DEBUG
-	if(!AfxCheckMemory()){
-		g_system.LogErr("AfxCheckMemory() failed");
-		g_system.NotifyExcption();
-		return;
-	}
-	#endif
-
 	//í èÌÉ^ÉXÉNExecute
 	i = tasks.begin();
 	ied = tasks.end();

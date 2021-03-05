@@ -1,6 +1,5 @@
 #include "define_const.h"
 #include "..\resource.h"
-#include "NetState.h"
 
 /*!
 *	@file
@@ -39,7 +38,6 @@ protected:
 	IDirectPlay8Peer* pDPlay;
 	IDirectPlay8Address *pMyAddr, *pHostAddr;
 	IDirectPlay8ThreadPool* pThreadPool;
-	CNetState* m_pStateDlg;
 	BOOL m_isonline, m_ishost;
 	DPNHANDLE AHandle;
 	PFNDPNMESSAGEHANDLER pRemoteCallBack;

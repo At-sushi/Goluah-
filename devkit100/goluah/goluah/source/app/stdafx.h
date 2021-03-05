@@ -47,19 +47,15 @@ You should have received a copy of the GNU General Public License along with thi
 #define _WIN32_DCOM//? for CoInitializeEx
 
 #define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS	// 一部の CString コンストラクタは明示的です。
+#include <atlstr.h>
+#include <atlwin.h>
 
-// 一般的で無視しても安全な MFC の警告メッセージの一部の非表示を解除します。
-#define _AFX_ALL_WARNINGS
+// さすがに標準APIは使わないといけない
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
 
-#include <afxwin.h>         // MFC のコアおよび標準コンポーネント
-#include <afxext.h>         // MFC の拡張部分
 
 #include <mmsystem.h>
-
-#include <afxdtctl.h>		// MFC の Internet Explorer 4 コモン コントロール サポート
-#ifndef _AFX_NO_AFXCMN_SUPPORT
-#include <afxcmn.h>			// MFC の Windows コモン コントロール サポート
-#endif // _AFX_NO_AFXCMN_SUPPORT
 
 #ifndef MEMLEAK_CK_DEF
 #include "define_const.h"
@@ -69,8 +65,18 @@ You should have received a copy of the GNU General Public License along with thi
 //#define _ATL_NO_DEFAULT_LIBS//大丈夫かな･･･？//やっぱだめぽ?
 //#include <atlimage.h>
 
+
+// STLヘッダ読み込み
 #include <typeinfo>
 #include <algorithm>
+#include <list>
+#include <stack>
+#include <vector>
+#include <unordered_map>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <cassert>
 
 
 #pragma warning( disable : 4005 )
@@ -94,10 +100,6 @@ You should have received a copy of the GNU General Public License along with thi
 #define DOBASHI
 #endif // _DEBUG
 
-#include <list>
-#include <stack>
-#include <vector>
-#include <unordered_map>
 
 // 元に戻しとく
 #ifdef DOBASHI

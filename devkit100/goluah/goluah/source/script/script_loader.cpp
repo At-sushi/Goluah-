@@ -125,16 +125,20 @@ CString CScriptLoaderInstance::GetLineC(int index)
 -----------------------------------------------------------------*/
 BYTE* CScriptLoaderInstance::LoadWholeFile(CString* filename,UINT *size)
 {
-	CFile file;
+	std::ifstream file;
 
 	OutputDebugString(filename->GetBuffer());
-	if(!file.Open(filename->GetBuffer(),CFile::modeRead))return NULL;
+	file.open(filename->GetBuffer(), std::ios::binary);
+	if(!file.is_open())
+		return NULL;
 
-	*size = (UINT)file.GetLength();
+	file.seekg(0, std::ios::end);
+	*size = (UINT)file.tellg();
+	file.seekg(0, std::ios::beg);
 
 	BYTE *ret = new BYTE [ *size +1 ];
 	if(ret){
-		file.Read(ret,*size);
+		file.read((char*)ret,*size);
 		ret[*size] = '\0';
 	}
 

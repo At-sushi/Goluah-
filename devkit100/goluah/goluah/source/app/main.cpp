@@ -21,19 +21,16 @@ HWND CreateMyWindow(BOOL win);
 LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam );
 
 // ★ entry point ***************************************************************
-//INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
-
 /*!
 *	@ingroup Application
-*	@brief Win32プロジェクトだったときの旧WinMain
+*	@brief Win32プロジェクトだったときの旧WinMain（旧じゃなくなりました）
 *
 *	事実上のエントリーポイントです。
 *	現在はCgoluahAppのInitInstanceから呼ばれてますが、
 *	この関数を抜けたらアプリケーション終了です。
 *
-*	@return 意味ないみたい。常に0
 */
-INT gOldEntryPoint(HINSTANCE hInst)
+INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
 {
     #if TRUE
     if( CoInitializeEx(NULL, COINIT_MULTITHREADED) != S_OK ){

@@ -1015,12 +1015,13 @@ void CSystem::SaveScreenShot()
 		head2.biYPelsPerMeter = 2000;//適当でよい？
 
 		//ファイル開ける
-		CFile file;
-		if(file.Open(filename,CFile::modeWrite | CFile::modeCreate))
+		std::ofstream file;
+		file.open(filename, std::ios::out | std::ios::binary | std::ios::trunc);
+		if(file.is_open())
 		{
 			//ヘッダ書き込み
-			file.Write(&head ,sizeof(BITMAPFILEHEADER));
-			file.Write(&head2,sizeof(BITMAPINFOHEADER));
+			file.write((char*)&head ,sizeof(BITMAPFILEHEADER));
+			file.write((char*)&head2, sizeof(BITMAPINFOHEADER));
 			
 			#if 1
 			{
@@ -1031,8 +1032,8 @@ void CSystem::SaveScreenShot()
 				if (!cbuf)
 				{
 					gbl.ods2("CSystem::SaveScreenShot : 変換用バッファがないぽ\n");
-					file.Close();
-					CFile::Remove(filename);
+					file.close();
+					remove(filename);
 					goto SSHOT_FAILED;
 				}
 
@@ -1053,7 +1054,7 @@ void CSystem::SaveScreenShot()
 					}
 
 					//1ライン分書き込み
-					file.Write( cbuf , stride );
+					file.write( (char*)cbuf , stride );
 				}
 
 				DELETEARRAY(cbuf);
@@ -1066,7 +1067,7 @@ void CSystem::SaveScreenShot()
 				}
 			}
 			#endif
-			file.Close();
+			file.close();
 		}
 		else
 		{

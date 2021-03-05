@@ -131,7 +131,7 @@ protected:
 	LPDIRECT3DTEXTURE8 tex_fb;
 
 	//! リプレイ保存ファイルデータ
-	CFile RepFile;
+	std::ofstream RepFile;
 
 	/*■試合進行管理■ ------------------------------------------------------*/
 protected:

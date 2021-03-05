@@ -13,8 +13,6 @@
 #include "task_staffroll.h"
 #include "task_battle_net.h"
 #include "..\resource.h"
-#include "Name.h"
-#include "NameC.h"
 
 #include "debug_endurance.h"
 
@@ -47,9 +45,9 @@ void CDebugMenu::Activate(DWORD pid)
 
 	if (!g_config.IsFullScreen())
 	{
-		str = "ネット対戦モ－ド（ホスト）";
+		str = "ネット対戦モ－ド（ホスト）（現在使用不可）";
 		namelist.push_back(str);
-		str = "ネット対戦モ－ド（クライアント）";
+		str = "ネット対戦モ－ド（クライアント）（現在使用不可）";
 		namelist.push_back(str);
 	}
 
@@ -139,27 +137,11 @@ BOOL CDebugMenu::Execute(DWORD time)
 /*				if (g_play.IsConnected() || g_play.InitConnection())
 					g_system.AddTask( new CBattleTaskNet );
 					*/	
-				CName dialog;
-
-				if (dialog.DoModal() == IDCANCEL)
-					return TRUE;
-
-				g_play.Initialize(dialog.m_name, dialog.m_port);
-				g_play.Host();
-				g_system.AddTask( new CBattleTaskNet );
 				break;
 				}
 
 			case 7:
 				{
-				CNameC dialog;
-
-				if (dialog.DoModal() == IDCANCEL)
-					return TRUE;
-
-				g_play.Initialize(dialog.m_name, dialog.m_port);
-				g_play.Connect(dialog.m_hostIP, atoi(dialog.m_hostPort));
-				g_system.AddTask( new CBattleTaskNet );
 				break;
 				}
 		}

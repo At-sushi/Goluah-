@@ -22,7 +22,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <UseOfMfc>Dynamic</UseOfMfc>
+    <UseOfMfc>false</UseOfMfc>
     <UseOfAtl>false</UseOfAtl>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -30,7 +30,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <UseOfMfc>Dynamic</UseOfMfc>
+    <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v120_xp</PlatformToolset>
   </PropertyGroup>
@@ -48,7 +48,6 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-    <Import Project="oldmfc.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
@@ -146,11 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="source\system\Name.cpp" />
-    <ClCompile Include="source\system\NameC.cpp" />
-    <ClCompile Include="source\system\NetState.cpp" />
     <ClCompile Include="source\battle\task_demobattle.cpp" />
-    <ClCompile Include="source\app\goluah.cpp" />
     <ClCompile Include="source\app\main.cpp" />
     <ClCompile Include="source\app\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -308,9 +303,9 @@
   <ItemGroup>
     <ClInclude Include="source\app\define_const.h" />
     <ClInclude Include="source\app\define_macro.h" />
-    <ClInclude Include="source\app\goluah.h" />
     <ClInclude Include="source\app\stdafx.h" />
     <ClInclude Include="source\app\system_cell.h" />
+    <ClInclude Include="source\battle\CollisionDetectionTree.h" />
     <ClInclude Include="source\script\script_story_new.h" />
     <ClInclude Include="source\system\system.h" />
     <ClInclude Include="source\system\task.h" />
@@ -369,10 +364,7 @@
     <ClInclude Include="source\debug\debug_endurance.h" />
     <ClInclude Include="source\debug\debug_menu.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="source\system\Name.h" />
-    <ClInclude Include="source\system\NameC.h" />
     <ClInclude Include="NetMessage.h" />
-    <ClInclude Include="source\system\NetState.h" />
     <ClInclude Include="source\battle\task_Bonus.h" />
     <ClInclude Include="source\battle\task_demobattle.h" />
   </ItemGroup>

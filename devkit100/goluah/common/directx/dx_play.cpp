@@ -1,7 +1,6 @@
 #include "stdafx.h"
 
 #include "global.h"	//g_muki[g_muki],g_config が必要
-#include "goluah.h"
 #include "dx_play.h"
 
 /*!
@@ -28,7 +27,6 @@ CDirectPlay::CDirectPlay()
 	pMyAddr = NULL;
 	pHostAddr = NULL;
 	m_isonline = m_ishost = FALSE;
-	m_pStateDlg = NULL;
 }
 
 CDirectPlay::~CDirectPlay()
@@ -95,7 +93,6 @@ HRESULT CDirectPlay::Host(void)
 {
 	DPN_APPLICATION_DESC dpdesc;
 	HRESULT hr;
-	CWaitCursor wc;
 
 	ZeroMemory(&dpdesc, sizeof(dpdesc));
 
@@ -110,7 +107,6 @@ HRESULT CDirectPlay::Host(void)
 	{
 		m_isonline = TRUE;
 		m_ishost = TRUE;
-		m_pStateDlg = new CNetState(NULL, &m_pStateDlg);
 	}
 
 	return hr;
@@ -120,7 +116,6 @@ HRESULT CDirectPlay::Host(void)
 HRESULT CDirectPlay::Connect(const char* IP, DWORD Port)
 {
 	HRESULT hr;
-	CWaitCursor wc;
 
 	if ( FAILED(hr = CoCreateInstance(CLSID_DirectPlay8Address, NULL, CLSCTX_INPROC_SERVER,
 		 IID_IDirectPlay8Address, (void**)&pHostAddr)) )
@@ -143,7 +138,6 @@ HRESULT CDirectPlay::Connect(const char* IP, DWORD Port)
 	{
 		m_isonline = TRUE;
 		m_ishost = FALSE;
-		m_pStateDlg = new CNetState(NULL, &m_pStateDlg);
 	}
 	
 	return hr;
@@ -155,8 +149,6 @@ HRESULT CDirectPlay::Destroy()
 	HRESULT hr = S_OK;
 
 	m_isonline = FALSE;
-	if (m_pStateDlg)
-		m_pStateDlg->DestroyWindow();
 
 	if (pDPlay) hr = pDPlay->Close(0);
 	RELEASE(pHostAddr);
@@ -203,7 +195,6 @@ HRESULT CDirectPlay::OnMessage(PVOID UserCont, DWORD mtype, PVOID pmes)
 				data = name;
 				data += " ＞ ";
 				data += ((char*)pMsg->pReceiveData + 1);	// 最初に識別番号が入ってるので、抜く。
-				m_pStateDlg->WriteLog(data);
 			}
 			break;
 		}
