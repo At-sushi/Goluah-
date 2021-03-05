@@ -306,7 +306,6 @@
     <ClInclude Include="source\app\stdafx.h" />
     <ClInclude Include="source\app\system_cell.h" />
     <ClInclude Include="source\battle\CollisionDetectionTree.h" />
-    <ClInclude Include="source\script\script_story_new.h" />
     <ClInclude Include="source\system\system.h" />
     <ClInclude Include="source\system\task.h" />
     <ClInclude Include="source\global\battle_load_info.h" />
@@ -364,7 +363,6 @@
     <ClInclude Include="source\debug\debug_endurance.h" />
     <ClInclude Include="source\debug\debug_menu.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="NetMessage.h" />
     <ClInclude Include="source\battle\task_Bonus.h" />
     <ClInclude Include="source\battle\task_demobattle.h" />
   </ItemGroup>
