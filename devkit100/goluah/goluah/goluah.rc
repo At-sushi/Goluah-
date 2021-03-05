@@ -15,7 +15,6 @@
 /////////////////////////////////////////////////////////////////////////////
 // 日本語 (日本) resources
 
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
 LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
 #pragma code_page(932)
 
@@ -38,11 +37,9 @@ END
 
 3 TEXTINCLUDE 
 BEGIN
-    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)\r\n"
     "LANGUAGE 17, 1\r\n"
     "#pragma code_page(932)\r\n"
     "#include ""res\\goluah.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
-    "#endif\r\n"
     "\r\n"
     "1 TYPELIB ""goluah.tlb""\0"
 END
@@ -182,7 +179,6 @@ IDI_ICON1               ICON                    "goluah2.ico"
 //
 
 IDR_GOLUAH              REGISTRY                "goluah.rgs"
-#endif    // 日本語 (日本) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -192,11 +188,9 @@ IDR_GOLUAH              REGISTRY                "goluah.rgs"
 //
 // Generated from the TEXTINCLUDE 3 resource.
 //
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
 LANGUAGE 17, 1
 #pragma code_page(932)
 #include "res\goluah.rc2"  // non-Microsoft Visual C++ edited resources
-#endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
 
