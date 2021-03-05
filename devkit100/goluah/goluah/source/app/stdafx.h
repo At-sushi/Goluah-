@@ -95,4 +95,3 @@ You should have received a copy of the GNU General Public License along with thi
 #include <time.h>
 
 #pragma warning( disable:4995 )
-#pragma warning( disable:4996 )		// とりあえずsprintf_s警告を無視

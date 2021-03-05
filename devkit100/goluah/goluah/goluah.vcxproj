@@ -73,7 +73,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(ProjectDir)/source/app;$(ProjectDir)/source/battle/effect;$(ProjectDir)/source/battle/subtask;$(SolutionDir)/common/directx;$(SolutionDir)/common;$(ProjectDir)/source/battle;$(ProjectDir)/source/task;$(ProjectDir)/source/system;$(ProjectDir)/source/script;$(ProjectDir)/source/global;$(ProjectDir)/source/debug;$(ProjectDir)/source/dataHandler;$(ProjectDir)/source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -111,7 +111,7 @@
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>$(ProjectDir)/source/app;$(ProjectDir)/source/battle/effect;$(ProjectDir)/source/battle/subtask;$(SolutionDir)/common/directx;$(SolutionDir)/common;$(ProjectDir)/source/battle;$(ProjectDir)/source/task;$(ProjectDir)/source/system;$(ProjectDir)/source/script;$(ProjectDir)/source/global;$(ProjectDir)/source/debug;$(ProjectDir)/source/dataHandler;$(ProjectDir)/source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;GOLUAH_BODY;USE_GOLUAH_COMMON_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_WINDOWS;NDEBUG;GOLUAH_BODY;USE_GOLUAH_COMMON_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
