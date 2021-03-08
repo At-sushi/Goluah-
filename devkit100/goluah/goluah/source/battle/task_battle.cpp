@@ -747,19 +747,17 @@ void CBattleTask::T_AtariHantei()
         if (i != NULL){//オブジェクトが存在する
             pdat1 = &(i->data);
             if((pdat1->tid==TEAM_PLAYER1 || pdat1->tid==TEAM_PLAYER2) && BATTLETASK_ISNOTFXOBJ(pdat1)){
-                if(pdat1->objtype & GOBJFLG_ATTACK){//オブジェクトは攻撃を行う
-                    if(pdat1->kougeki ||										//攻撃力ON
-                       ((pdat1->objtype & GOBJFLG_KURAI) && (!pdat1->muteki))){	//オブジェクトは攻撃を喰らう
-                        if(pdat1->phdat!=NULL){
-                            if(pdat1->pcdat!=NULL)
-                            {
-                                collisionTree.insert(
-                                    i->GetBoundingAttack(pdat1->cnow).left + pdat1->x,
-                                    i->GetBoundingAttack(pdat1->cnow).top + pdat1->y,
-                                    i->GetBoundingAttack(pdat1->cnow).right + pdat1->x,
-                                    i->GetBoundingAttack(pdat1->cnow).bottom + pdat1->y,
-                                    pdat1);
-                            }
+                if((pdat1->objtype & GOBJFLG_ATTACK && pdat1->kougeki) ||		//オブジェクトは攻撃を行う
+                    ((pdat1->objtype & GOBJFLG_KURAI) && (!pdat1->muteki))){	//オブジェクトは攻撃を喰らう
+                    if(pdat1->phdat!=NULL){
+                        if(pdat1->pcdat!=NULL)
+                        {
+                            collisionTree.insert(
+                                i->GetBoundingAttack(pdat1->cnow).left + pdat1->x,
+                                i->GetBoundingAttack(pdat1->cnow).top + pdat1->y,
+                                i->GetBoundingAttack(pdat1->cnow).right + pdat1->x,
+                                i->GetBoundingAttack(pdat1->cnow).bottom + pdat1->y,
+                                pdat1);
                         }
                     }
                 }
