@@ -91,7 +91,7 @@ public:
             }
 
             // 下に衝突しそうなオブジェクトがある場合
-            if (segmentHeap[node_current].sub.size() > 1) {
+            if (segmentHeap[node_current].sub.size() >= 2) {
                 const int node_next = getFirstChildNode(node_current);
                 // 子ノードを探索
                 searchHeap(node_next);

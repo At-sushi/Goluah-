@@ -53,6 +53,12 @@ CGObject::CGObject(DWORD object_id)
 	userhit_attacker = 0;
 	userhit_id = 0;
 	ZeroMemory(&cy ,sizeof(cy));
+
+	for (int i = 0; i < GCDMAX_RECTANGLES; i++) {
+		boundingAttack[i] = { 0, 0, 0, 0 };
+		boundingHit[i] = { 0, 0, 0, 0 };
+		boundingKurai[i] = { 0, 0, 0, 0 };
+	}
 }
 
 CGObject::~CGObject()
