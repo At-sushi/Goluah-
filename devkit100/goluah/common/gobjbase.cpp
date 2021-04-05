@@ -3144,7 +3144,7 @@ void CCharacterBase::act_timeoverlose()
 	ChangeAction(ACTID_NEUTRAL);
 }
 
-void CCharacterBase::act_guards()//—§‚¿ƒK[ƒh(’†)
+void CCharacterBase::act_guards()    //—§‚¿ƒK[ƒh(’†)
 {
 	if (pdat->counter < 16){
 		pdat->cnow = DCELL_GUARDS1;
@@ -3152,7 +3152,7 @@ void CCharacterBase::act_guards()//—§‚¿ƒK[ƒh(’†)
 	else pdat->aid = ACTID_NEUTRAL;
 }
 
-void CCharacterBase::act_guardc()//—§‚¿ƒK[ƒh(’†)
+void CCharacterBase::act_guardc()    //‚µ‚á‚ª‚ÝƒK[ƒh(’†)
 {
 	if (pdat->counter < 16){
 		pdat->cnow = DCELL_GUARDC1;
@@ -3160,10 +3160,11 @@ void CCharacterBase::act_guardc()//—§‚¿ƒK[ƒh(’†)
 	else pdat->aid = ACTID_NEUTRAL;
 }
 
-void CCharacterBase::act_guardj()//—§‚¿ƒK[ƒh(’†)
+void CCharacterBase::act_guardj()    //‹ó’†ƒK[ƒh(’†)
 {
 	if (pdat->counter < 16){
-		pdat->cnow = DCELL_GUARDJ1;
+ 		pdat->cnow = DCELL_GUARDJ1;
+		JiyuuRakka(2, TRUE, ACTID_NEUTRAL);    // —Ž‰º
 	}
 	else pdat->aid = ACTID_RAKKA;
 }
