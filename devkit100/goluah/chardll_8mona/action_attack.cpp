@@ -361,7 +361,6 @@ void CCharacter::act_upper_jamp()
 	}
 
 	JiyuuRakka(1.2f,TRUE,ACTID_UPPER_LANDING);
-	movex(pdat->vx);
 }
 
 //アッパー(着地時隙)
