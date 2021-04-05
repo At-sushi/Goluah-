@@ -1,18 +1,18 @@
-
+ï»¿
 /*!
 *	@file
-*	@brief DirectSoundƒNƒ‰ƒX
+*	@brief DirectSoundã‚¯ãƒ©ã‚¹
 *
-*	EEE‚Æ‚¢‚¢‚Â‚ÂDirectShow‚àg—p
+*	ãƒ»ãƒ»ãƒ»ã¨ã„ã„ã¤ã¤DirectShowã‚‚ä½¿ç”¨
 *
-*	.wavƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ŞBŠJ•ú‚Í©•ª‚Å(ŒÄ‚Ño‚µ‘¤‚ª)‚â‚éB
-*	DirectShow‚ğg‚Á‚Ä .mid .mp3 .wma “™‚ÌÄ¶‚ğs‚¤B“®‰æ‚ÌÄ¶‚à‚Å‚«‚½‚è‚·‚éB
+*	.wavãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€ã€‚é–‹æ”¾ã¯è‡ªåˆ†ã§(å‘¼ã³å‡ºã—å´ãŒ)ã‚„ã‚‹ã€‚
+*	DirectShowã‚’ä½¿ã£ã¦ .mid .mp3 .wma ç­‰ã®å†ç”Ÿã‚’è¡Œã†ã€‚å‹•ç”»ã®å†ç”Ÿã‚‚ã§ããŸã‚Šã™ã‚‹ã€‚
 *
 */
 #include "stdafx.h"
 
-#include "global.h"			//configƒIƒuƒWƒFƒNƒg‚ª•K—v
-#include "task.h"			//ƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒ^ƒXƒN‚Ìì¬‚É•K—v
+#include "global.h"			//configã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒå¿…è¦
+#include "task.h"			//ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‚¿ã‚¹ã‚¯ã®ä½œæˆã«å¿…è¦
 #include "dx_sound.h"
 
 #ifndef RELEASE
@@ -25,11 +25,11 @@
 #define WM_GRAPHNOTIFY  WM_APP + 1
 
 /*!
-	@brief BGMƒ‹[ƒv—pƒEƒBƒ“ƒhƒEƒƒbƒZ[ƒWæ“¾ƒNƒ‰ƒX
+	@brief BGMãƒ«ãƒ¼ãƒ—ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—ã‚¯ãƒ©ã‚¹
 
-	BGM‚ğƒ‹[ƒv‚³‚¹‚é‚½‚ß‚ÉƒEƒCƒ“ƒhƒE‚ÌƒƒbƒZ[ƒW‚ğE‚¤•K—v‚ª‚ ‚é
-	‚»‚Ì‚½‚ß‚ÉƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒ^ƒXƒN‚Æ‚µ‚Ä“o˜^‚·‚éƒNƒ‰ƒX
-	ƒOƒ[ƒoƒ‹‚Ì g_sound ‚Ì OnWmgraphnotify() ‚ğƒR[ƒ‹‚·‚é
+	BGMã‚’ãƒ«ãƒ¼ãƒ—ã•ã›ã‚‹ãŸã‚ã«ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æ‹¾ã†å¿…è¦ãŒã‚ã‚‹
+	ãã®ãŸã‚ã«ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‚¿ã‚¹ã‚¯ã¨ã—ã¦ç™»éŒ²ã™ã‚‹ã‚¯ãƒ©ã‚¹
+	ã‚°ãƒ­ãƒ¼ãƒãƒ«ã® g_sound ã® OnWmgraphnotify() ã‚’ã‚³ãƒ¼ãƒ«ã™ã‚‹
 */
 class CBGMLoopMessageListener : public CBackgroundTaskBase
 {
@@ -45,8 +45,8 @@ public:
 
 
 
-//¶¬‚ÆÁ–Å========================================================
-//!¶¬
+//ç”Ÿæˆã¨æ¶ˆæ»…========================================================
+//!ç”Ÿæˆ
 CDirectSound::CDirectSound()
 {
 	ready=FALSE;
@@ -65,34 +65,34 @@ CDirectSound::CDirectSound()
 	lpds = NULL;
 }
 
-//!‰Šú‰»
+//!åˆæœŸåŒ–
 BOOL CDirectSound::Initialize(HWND hwnd)
 {
 	hwndmain = hwnd;
 
 	if(g_config.UseDSound()){
 		if(DirectSoundCreate(NULL,&lpds,NULL) != DS_OK){
-			CSystem::Log("DirectSoundCreate‚É¸”s",SYSLOG_ERROR);
+			CSystem::Log("DirectSoundCreateã«å¤±æ•—",SYSLOG_ERROR);
 			lpds=NULL;
 		}
 		if(lpds){
 			if(lpds->SetCooperativeLevel(hwnd,DSSCL_PRIORITY) != DS_OK){
-				CSystem::Log("DSound-SetCooperativeLevel‚É¸”s",SYSLOG_ERROR);
+				CSystem::Log("DSound-SetCooperativeLevelã«å¤±æ•—",SYSLOG_ERROR);
 				lpds->Release();
 				lpds=NULL;
 			}
 		}
 	}
-	else CSystem::Log("DirectSound (wavÄ¶) ”ñg—p",SYSLOG_INFO);
+	else CSystem::Log("DirectSound (wavå†ç”Ÿ) éä½¿ç”¨",SYSLOG_INFO);
 
 	//CoInitialize(NULL);
-	g_system.AddTask(new CBGMLoopMessageListener());//BGMƒ‹[ƒvƒƒbƒZ[ƒW‚Ìæ“¾ƒ^ƒXƒN
+	g_system.AddTask(new CBGMLoopMessageListener());//BGMãƒ«ãƒ¼ãƒ—ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å–å¾—ã‚¿ã‚¹ã‚¯
 
 	ready=TRUE;
 	return (lpds!=NULL);
 }
 
-//!”jŠü
+//!ç ´æ£„
 void CDirectSound::Destroy()
 {
 	BGMStop();
@@ -103,16 +103,16 @@ void CDirectSound::Destroy()
 }
 
 
-//‚»‚Ì‘¼=============================================================
+//ãã®ä»–=============================================================
 
 /*!
-*	wav‚ğ“Ç‚İ‚ñ‚ÅDirectSoundƒoƒbƒtƒ@[‚ğ•Ô‚·Bó‚¯æ‚Á‚½‚ç©•ª‚ÅRelease‚·‚é‚±‚ÆB
-*	wav‚ÌƒtƒH[ƒ}ƒbƒg‚ÍPCM‚Å‚È‚¢‚Æƒ_ƒ‚ç‚µ‚¢BADPCM‚Æ‚©ƒ_ƒ‚¾‚Á‚½B
-*	WindowsƒAƒNƒZƒTƒŠ‚ÌƒTƒEƒ“ƒhƒŒƒR[ƒ_‚Åwavƒtƒ@ƒCƒ‹‚ÌŒ`®‚ªŒ©‚ê‚é‚Ì‚ÅA‚»‚ê‚ğQl‚ÉB
-*	DirectX5‚Ì ‚É—Fl‚Ì‘‚¢‚½ƒR[ƒh‚ğƒRƒsƒy‚µ‚½Šo‚¦‚ª‚ ‚éB
+*	wavã‚’èª­ã¿è¾¼ã‚“ã§DirectSoundãƒãƒƒãƒ•ã‚¡ãƒ¼ã‚’è¿”ã™ã€‚å—ã‘å–ã£ãŸã‚‰è‡ªåˆ†ã§Releaseã™ã‚‹ã“ã¨ã€‚
+*	wavã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯PCMã§ãªã„ã¨ãƒ€ãƒ¡ã‚‰ã—ã„ã€‚ADPCMã¨ã‹ãƒ€ãƒ¡ã ã£ãŸã€‚
+*	Windowsã‚¢ã‚¯ã‚»ã‚µãƒªã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ¬ã‚³ãƒ¼ãƒ€ã§wavãƒ•ã‚¡ã‚¤ãƒ«ã®å½¢å¼ãŒè¦‹ã‚Œã‚‹ã®ã§ã€ãã‚Œã‚’å‚è€ƒã«ã€‚
+*	DirectX5ã®é ƒã«å‹äººã®æ›¸ã„ãŸã‚³ãƒ¼ãƒ‰ã‚’ã‚³ãƒ”ãƒšã—ãŸè¦šãˆãŒã‚ã‚‹ã€‚
 *
-*	@param filename wav‚Ìƒtƒ@ƒCƒ‹–¼
-*	@return ¸”s‚ÍNULL
+*	@param filename wavã®ãƒ•ã‚¡ã‚¤ãƒ«å
+*	@return å¤±æ•—ã¯NULL
 */
 LPDIRECTSOUNDBUFFER CDirectSound::CreateDSB(char *filename)
 {
@@ -124,7 +124,7 @@ LPDIRECTSOUNDBUFFER CDirectSound::CreateDSB(char *filename)
 	WAVEFORMATEX	wfmtx;
 	LPDIRECTSOUNDBUFFER lpDSBuffer=NULL;
 
-	//‚v‚`‚uƒtƒ@ƒCƒ‹‚ğƒ}ƒ‹ƒ`ƒƒfƒBƒA‚h/‚nŠÖ”‚ÅŠJ‚­
+	//ï¼·ï¼¡ï¼¶ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒãƒ«ãƒãƒ¡ãƒ‡ã‚£ã‚¢ï¼©/ï¼¯é–¢æ•°ã§é–‹ã
 	hmfr = mmioOpen(filename,NULL,MMIO_READ | MMIO_ALLOCBUF);
 	if(hmfr == NULL){
 		return(NULL);
@@ -149,13 +149,13 @@ LPDIRECTSOUNDBUFFER CDirectSound::CreateDSB(char *filename)
 		return(NULL);
 	}
 
-	//‚v‚`‚uƒtƒH[ƒ}ƒbƒgî•ñ‚ğ“Ç‚İ‚Ş
+	//ï¼·ï¼¡ï¼¶ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæƒ…å ±ã‚’èª­ã¿è¾¼ã‚€
 	if(mmioRead(hmfr,(char*)&wfmtx,sizeof(wfmtx)) != sizeof(wfmtx)){
 		mmioClose(hmfr,0);
 		return false;
 	}
 
-	//‚±‚Ìƒtƒ@ƒCƒ‹‚ª‚v‚`‚u‚©Šm”F
+	//ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ãŒï¼·ï¼¡ï¼¶ã‹ç¢ºèª
 	if(wfmtx.wFormatTag != WAVE_FORMAT_PCM){
 		mmioClose(hmfr,0);
 		return false;
@@ -166,14 +166,14 @@ LPDIRECTSOUNDBUFFER CDirectSound::CreateDSB(char *filename)
 		return false;
 	}
 
-	//ƒ`ƒƒƒ“ƒN‚ğ\‘¢‘Ì‚É“Ç‚İ‚Ş
+	//ãƒãƒ£ãƒ³ã‚¯ã‚’æ§‹é€ ä½“ã«èª­ã¿è¾¼ã‚€
 	child.ckid		= mmioFOURCC('d','a','t','a');
 	if(mmioDescend(hmfr,&child,&parent,MMIO_FINDCHUNK)){
 		mmioClose(hmfr,0);
 		return false;
 	}
 
-	//ƒƒ‚ƒŠŠ„‚è“–‚Ä@ƒf[ƒ^‚ğ“Ç‚İ‚Ş
+	//ãƒ¡ãƒ¢ãƒªå‰²ã‚Šå½“ã¦ã€€ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 	BYTE *pBuffer = new BYTE[child.cksize];
 	if((DWORD)mmioRead(hmfr,(char*)pBuffer,child.cksize) != child.cksize){
 		mmioClose(hmfr,0);
@@ -181,10 +181,10 @@ LPDIRECTSOUNDBUFFER CDirectSound::CreateDSB(char *filename)
 		return(FALSE);
 	}
 
-	//‚v‚`‚u‚dƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+	//ï¼·ï¼¡ï¼¶ï¼¥ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 	mmioClose(hmfr,0);
 
-	//DirectSoundƒoƒbƒtƒ@‚ğì¬‚·‚é
+	//DirectSoundãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆã™ã‚‹
 	DSBUFFERDESC	dsbdesc;
 	PCMWAVEFORMAT	pcmwf;
 
@@ -207,7 +207,7 @@ LPDIRECTSOUNDBUFFER CDirectSound::CreateDSB(char *filename)
 		return(NULL);
 	}
 
-	//‚v‚`‚u‚dƒtƒ@ƒCƒ‹‚Ìƒf[ƒ^‚ğƒoƒbƒtƒ@‚É“]‘—
+	//ï¼·ï¼¡ï¼¶ï¼¥ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒãƒ•ã‚¡ã«è»¢é€
 	LPVOID				written1,written2;
 	DWORD				length1,length2;
 
@@ -219,7 +219,7 @@ LPDIRECTSOUNDBUFFER CDirectSound::CreateDSB(char *filename)
 	if(written2 != NULL) CopyMemory(written2,pBuffer+length1,length2);
 	lpDSBuffer->Unlock(written1,length1,written2,length2);
 
-	//ì‹Æƒoƒbƒtƒ@‰ğ•ú
+	//ä½œæ¥­ãƒãƒƒãƒ•ã‚¡è§£æ”¾
 	delete []pBuffer;
 
 	return(lpDSBuffer);
@@ -228,37 +228,37 @@ LPDIRECTSOUNDBUFFER CDirectSound::CreateDSB(char *filename)
 char* GetDSErrCode(HRESULT ret)
 {
 	switch(ret){
-	case S_OK :							return "¬Œ÷";
-	case VFW_S_AUDIO_NOT_RENDERED :		return "ƒI[ƒfƒBƒI ƒXƒgƒŠ[ƒ€‚ğÄ¶‚Å‚«‚È‚¢B“KØ‚ÈƒŒƒ“ƒ_ƒ‰‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½B ";
-	case VFW_S_DUPLICATE_NAME :			return "–¼‘O‚ªd•¡‚µ‚Ä‚¢‚éƒtƒBƒ‹ƒ^‚Ì’Ç‰Á‚ªA•ÏXŒã‚Ì–¼‘O‚Å¬Œ÷‚µ‚½B ";
-	case VFW_S_PARTIAL_RENDER :			return "‚±‚Ìƒ€[ƒr[‚ÉƒTƒ|[ƒg‚³‚ê‚È‚¢ƒtƒH[ƒ}ƒbƒg‚ÌƒXƒgƒŠ[ƒ€‚ªŠÜ‚Ü‚ê‚Ä‚¢‚éB ";
-	case VFW_S_VIDEO_NOT_RENDERED :		return "ƒrƒfƒI ƒXƒgƒŠ[ƒ€‚ğÄ¶‚Å‚«‚È‚¢B“KØ‚ÈƒŒƒ“ƒ_ƒ‰‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½B ";
-	case E_ABORT :						return "‘€ì‚ª’†~‚³‚ê‚½B";
-	case E_FAIL :						return "¸”sB ";
-	case E_INVALIDARG :					return "ˆø”‚ª–³ŒøB ";
-	case E_OUTOFMEMORY :				return "ƒƒ‚ƒŠ•s‘«B ";
-	case E_POINTER :					return "NULL ƒ|ƒCƒ“ƒ^ˆø”B ";
-	case VFW_E_CANNOT_CONNECT :			return "Ú‘±‚ğŠm—§‚·‚é’†ŠÔƒtƒBƒ‹ƒ^‚Ì‘g‚İ‡‚í‚¹‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½B ";
-	case VFW_E_CANNOT_LOAD_SOURCE_FILTER :return "‚±‚Ìƒtƒ@ƒCƒ‹‚Ìƒ\[ƒX ƒtƒBƒ‹ƒ^‚ğƒ[ƒh‚Å‚«‚È‚¢B ";
-	case VFW_E_CANNOT_RENDER :			return "ƒXƒgƒŠ[ƒ€‚ğƒŒƒ“ƒ_ƒŠƒ“ƒO‚·‚éƒtƒBƒ‹ƒ^‚Ì‘g‚İ‡‚í‚¹‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½B ";
-	case VFW_E_INVALID_FILE_FORMAT :	return "ƒtƒ@ƒCƒ‹ ƒtƒH[ƒ}ƒbƒg‚ª–³ŒøB ";
-	case VFW_E_NOT_FOUND :				return "ƒIƒuƒWƒFƒNƒg‚Ü‚½‚Í–¼‘O‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½B ";
-	case VFW_E_NOT_IN_GRAPH :			return "ƒtƒBƒ‹ƒ^ ƒOƒ‰ƒt‚É‘¶İ‚µ‚È‚¢ƒIƒuƒWƒFƒNƒg‚É—v‹‚³‚ê‚½ŠÖ”‚ğÀs‚Å‚«‚È‚¢B";
-	case VFW_E_UNKNOWN_FILE_TYPE :		return "‚±‚Ìƒtƒ@ƒCƒ‹‚ÌƒƒfƒBƒA ƒ^ƒCƒv‚ª”F¯‚³‚ê‚È‚¢B ";
-	case VFW_E_UNSUPPORTED_STREAM :		return "ƒtƒ@ƒCƒ‹‚ğÄ¶‚Å‚«‚È‚¢BƒtƒH[ƒ}ƒbƒg‚ªƒTƒ|[ƒg‚³‚ê‚Ä‚¢‚È‚¢B";
-	default:return "•s–¾";
+	case S_OK :							return "æˆåŠŸ";
+	case VFW_S_AUDIO_NOT_RENDERED :		return "ã‚ªãƒ¼ãƒ‡ã‚£ã‚ª ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’å†ç”Ÿã§ããªã„ã€‚é©åˆ‡ãªãƒ¬ãƒ³ãƒ€ãƒ©ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã€‚ ";
+	case VFW_S_DUPLICATE_NAME :			return "åå‰ãŒé‡è¤‡ã—ã¦ã„ã‚‹ãƒ•ã‚£ãƒ«ã‚¿ã®è¿½åŠ ãŒã€å¤‰æ›´å¾Œã®åå‰ã§æˆåŠŸã—ãŸã€‚ ";
+	case VFW_S_PARTIAL_RENDER :			return "ã“ã®ãƒ ãƒ¼ãƒ“ãƒ¼ã«ã‚µãƒãƒ¼ãƒˆã•ã‚Œãªã„ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¹ãƒˆãƒªãƒ¼ãƒ ãŒå«ã¾ã‚Œã¦ã„ã‚‹ã€‚ ";
+	case VFW_S_VIDEO_NOT_RENDERED :		return "ãƒ“ãƒ‡ã‚ª ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’å†ç”Ÿã§ããªã„ã€‚é©åˆ‡ãªãƒ¬ãƒ³ãƒ€ãƒ©ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã€‚ ";
+	case E_ABORT :						return "æ“ä½œãŒä¸­æ­¢ã•ã‚ŒãŸã€‚";
+	case E_FAIL :						return "å¤±æ•—ã€‚ ";
+	case E_INVALIDARG :					return "å¼•æ•°ãŒç„¡åŠ¹ã€‚ ";
+	case E_OUTOFMEMORY :				return "ãƒ¡ãƒ¢ãƒªä¸è¶³ã€‚ ";
+	case E_POINTER :					return "NULL ãƒã‚¤ãƒ³ã‚¿å¼•æ•°ã€‚ ";
+	case VFW_E_CANNOT_CONNECT :			return "æ¥ç¶šã‚’ç¢ºç«‹ã™ã‚‹ä¸­é–“ãƒ•ã‚£ãƒ«ã‚¿ã®çµ„ã¿åˆã‚ã›ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã€‚ ";
+	case VFW_E_CANNOT_LOAD_SOURCE_FILTER :return "ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚½ãƒ¼ã‚¹ ãƒ•ã‚£ãƒ«ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã§ããªã„ã€‚ ";
+	case VFW_E_CANNOT_RENDER :			return "ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã™ã‚‹ãƒ•ã‚£ãƒ«ã‚¿ã®çµ„ã¿åˆã‚ã›ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã€‚ ";
+	case VFW_E_INVALID_FILE_FORMAT :	return "ãƒ•ã‚¡ã‚¤ãƒ« ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒç„¡åŠ¹ã€‚ ";
+	case VFW_E_NOT_FOUND :				return "ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¾ãŸã¯åå‰ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã€‚ ";
+	case VFW_E_NOT_IN_GRAPH :			return "ãƒ•ã‚£ãƒ«ã‚¿ ã‚°ãƒ©ãƒ•ã«å­˜åœ¨ã—ãªã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«è¦æ±‚ã•ã‚ŒãŸé–¢æ•°ã‚’å®Ÿè¡Œã§ããªã„ã€‚";
+	case VFW_E_UNKNOWN_FILE_TYPE :		return "ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ¡ãƒ‡ã‚£ã‚¢ ã‚¿ã‚¤ãƒ—ãŒèªè­˜ã•ã‚Œãªã„ã€‚ ";
+	case VFW_E_UNSUPPORTED_STREAM :		return "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å†ç”Ÿã§ããªã„ã€‚ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚µãƒãƒ¼ãƒˆã•ã‚Œã¦ã„ãªã„ã€‚";
+	default:return "ä¸æ˜";
 	}
 }
 
 /*!
-*	@brief “®‰æÄ¶
+*	@brief å‹•ç”»å†ç”Ÿ
 *
-*	DirectShow‚Éƒtƒ@ƒCƒ‹–¼‚ğ“n‚µ‚ÄÄ¶–½—ß‚ğ‚·‚é‚¾‚¯B
-*	“®‰æ‚ÌÄ¶’†‚ÍADirect3D‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO‚ğ”­¶‚³‚¹‚é‚Æ‚¿‚ç‚Â‚­‚Ì‚ÅA
-*	ƒƒCƒ“ƒ‹[ƒv‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒOŠJnEI—¹ˆ—‚ğ’â~‚µ‚Äs‚¤‚±‚ÆB
+*	DirectShowã«ãƒ•ã‚¡ã‚¤ãƒ«åã‚’æ¸¡ã—ã¦å†ç”Ÿå‘½ä»¤ã‚’ã™ã‚‹ã ã‘ã€‚
+*	å‹•ç”»ã®å†ç”Ÿä¸­ã¯ã€Direct3Dã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚’ç™ºç”Ÿã•ã›ã‚‹ã¨ã¡ã‚‰ã¤ãã®ã§ã€
+*	ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°é–‹å§‹ãƒ»çµ‚äº†å‡¦ç†ã‚’åœæ­¢ã—ã¦è¡Œã†ã“ã¨ã€‚
 *
-*	@param filename Ä¶ƒtƒ@ƒCƒ‹–¼
-*	@return FALSE‚Íc”O‚ÈŒ‹‰Ê‚ÉI‚í‚Á‚½
+*	@param filename å†ç”Ÿãƒ•ã‚¡ã‚¤ãƒ«å
+*	@return FALSEã¯æ®‹å¿µãªçµæœã«çµ‚ã‚ã£ãŸ
 */
 BOOL CDirectSound::PlayVideo(const char *filename)
 {
@@ -271,17 +271,17 @@ BOOL CDirectSound::PlayVideo(const char *filename)
 	videoon=TRUE;
 	bgmloop=FALSE;
 	
-	//Œ¾Œêİ’è‚ğƒVƒXƒeƒ€(?)‚Ì‚à‚Ì‚Éİ’è. mbstowcs‚É‰e‹¿
+	//è¨€èªè¨­å®šã‚’ã‚·ã‚¹ãƒ†ãƒ (?)ã®ã‚‚ã®ã«è¨­å®š. mbstowcsã«å½±éŸ¿
 	setlocale(LC_ALL,"");
 
-	//•¶š—ñ•ÏŠ·
+	//æ–‡å­—åˆ—å¤‰æ›
 	char bgmfilename[256];
 	wchar_t ubgmfilename[256];
 	sprintf(bgmfilename,"%s",filename);
 	mbstowcs( ubgmfilename, bgmfilename, strlen(bgmfilename)+1 );
-    // ƒOƒ‰ƒt‚ğ\’z‚·‚éB
+    // ã‚°ãƒ©ãƒ•ã‚’æ§‹ç¯‰ã™ã‚‹ã€‚
 	if(pGraph->RenderFile(ubgmfilename, NULL) != S_OK){
-		gbl.ods("CDSound::PlayVideo / RenderFile“ñ¸”s\n");
+		gbl.ods("CDSound::PlayVideo / RenderFileäºŒå¤±æ•—\n");
 		BGMStop();
 		return(FALSE);
 	}
@@ -298,15 +298,15 @@ BOOL CDirectSound::PlayVideo(const char *filename)
 }
 
 /*!
-*	@brief BGMÄ¶
+*	@brief BGMå†ç”Ÿ
 *
-*	DirectShow‚Éƒtƒ@ƒCƒ‹–¼‚ğ“n‚µ‚ÄÄ¶–½—ß‚ğ‚·‚é‚¾‚¯B
-*	“®‰æ‚ÌÄ¶’†‚ÍADirect3D‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO‚ğ”­¶‚³‚¹‚é‚Æ‚¿‚ç‚Â‚­‚Ì‚ÅA
-*	ƒƒCƒ“ƒ‹[ƒv‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒOŠJnEI—¹ˆ—‚ğ’â~‚µ‚Äs‚¤‚±‚ÆB
+*	DirectShowã«ãƒ•ã‚¡ã‚¤ãƒ«åã‚’æ¸¡ã—ã¦å†ç”Ÿå‘½ä»¤ã‚’ã™ã‚‹ã ã‘ã€‚
+*	å‹•ç”»ã®å†ç”Ÿä¸­ã¯ã€Direct3Dã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚’ç™ºç”Ÿã•ã›ã‚‹ã¨ã¡ã‚‰ã¤ãã®ã§ã€
+*	ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°é–‹å§‹ãƒ»çµ‚äº†å‡¦ç†ã‚’åœæ­¢ã—ã¦è¡Œã†ã“ã¨ã€‚
 *
-*	@param filename Ä¶ƒtƒ@ƒCƒ‹–¼
-*	@param loop TRUE‚È‚ç‚ÎAÄ¶I—¹Œã‚Éƒ‹[ƒv‚·‚é
-*	@return FALSE‚Íc”O‚ÈŒ‹‰Ê‚ÉI‚í‚Á‚½
+*	@param filename å†ç”Ÿãƒ•ã‚¡ã‚¤ãƒ«å
+*	@param loop TRUEãªã‚‰ã°ã€å†ç”Ÿçµ‚äº†å¾Œã«ãƒ«ãƒ¼ãƒ—ã™ã‚‹
+*	@return FALSEã¯æ®‹å¿µãªçµæœã«çµ‚ã‚ã£ãŸ
 */
 BOOL CDirectSound::BGMPlay(const char *filename,BOOL loop)
 {
@@ -319,7 +319,7 @@ BOOL CDirectSound::BGMPlay(const char *filename,BOOL loop)
 	videoon=FALSE;
 	bgmloop=loop;
 
-	//Œ¾Œêİ’è‚ğƒVƒXƒeƒ€(?)‚Ì‚à‚Ì‚Éİ’è. mbstowcs‚É‰e‹¿
+	//è¨€èªè¨­å®šã‚’ã‚·ã‚¹ãƒ†ãƒ (?)ã®ã‚‚ã®ã«è¨­å®š. mbstowcsã«å½±éŸ¿
 	setlocale(LC_ALL,"");
 
 	char *bgmfilename = new char[256];
@@ -331,7 +331,7 @@ BOOL CDirectSound::BGMPlay(const char *filename,BOOL loop)
 	mbstowcs( ubgmfilename, bgmfilename, strlen(bgmfilename)+1 );
 	if(S_OK == pGraph->RenderFile(ubgmfilename, NULL)){
 		pMediaControl->Run();
-		// ƒ{ƒŠƒ…[ƒ€‚ğ‰º‚°‚Ä‚¨‚­
+		// ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’ä¸‹ã’ã¦ãŠã
 		pAudio->put_Volume(-500);
 		delete [] bgmfilename;
 		delete [] ubgmfilename;
@@ -343,7 +343,7 @@ BOOL CDirectSound::BGMPlay(const char *filename,BOOL loop)
 	mbstowcs( ubgmfilename, bgmfilename, strlen(bgmfilename)+1 );
 	if(S_OK == pGraph->RenderFile(ubgmfilename, NULL)){
 		pMediaControl->Run();
-		// ƒ{ƒŠƒ…[ƒ€‚ğ‰º‚°‚Ä‚¨‚­
+		// ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’ä¸‹ã’ã¦ãŠã
 		pAudio->put_Volume(-500);
 		delete [] bgmfilename;
 		delete [] ubgmfilename;
@@ -355,7 +355,7 @@ BOOL CDirectSound::BGMPlay(const char *filename,BOOL loop)
 	mbstowcs( ubgmfilename, bgmfilename, strlen(bgmfilename)+1 );
 	if(S_OK == pGraph->RenderFile(ubgmfilename, NULL)){
 		pMediaControl->Run();
-		// ƒ{ƒŠƒ…[ƒ€‚ğ‰º‚°‚Ä‚¨‚­
+		// ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’ä¸‹ã’ã¦ãŠã
 		pAudio->put_Volume(-500);
 		delete [] bgmfilename;
 		delete [] ubgmfilename;
@@ -367,14 +367,14 @@ BOOL CDirectSound::BGMPlay(const char *filename,BOOL loop)
 	mbstowcs( ubgmfilename, bgmfilename, strlen(bgmfilename)+1 );
 	if(S_OK == pGraph->RenderFile(ubgmfilename, NULL)){
 		pMediaControl->Run();
-		// ƒ{ƒŠƒ…[ƒ€‚ğ‰º‚°‚Ä‚¨‚­
+		// ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’ä¸‹ã’ã¦ãŠã
 //		pAudio->put_Volume(-500);
 		delete [] bgmfilename;
 		delete [] ubgmfilename;
 		return(TRUE);
 	}
 
-	gbl.ods("CDirectSound::BGMPlay : %s Ä¶¸”s",filename);
+	gbl.ods("CDirectSound::BGMPlay : %s å†ç”Ÿå¤±æ•—",filename);
 
 	BGMStop();
 	delete [] bgmfilename;
@@ -383,10 +383,10 @@ BOOL CDirectSound::BGMPlay(const char *filename,BOOL loop)
 }
 
 /*!
-*	@brief BGMÄ¶I—¹ƒEƒCƒ“ƒhƒEƒƒbƒZ[ƒWæ“¾
+*	@brief BGMå†ç”Ÿçµ‚äº†ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—
 *
-*	DirectShow‚Íƒtƒ@ƒCƒ‹‚ÌÄ¶I—¹‚ÉƒEƒCƒ“ƒhƒE‚É‘Î‚µ‚ÄƒƒbƒZ[ƒW‚ğ‘—M‚·‚é‚æ‚¤‚É‚È‚Á‚Ä‚¢‚éB
-*	‚±‚ÌŠÖ”‚ÍBGM/“®‰æ Ä¶‚ªI—¹‚µ‚½‚Æ‚«‚ÌƒƒbƒZ[ƒW‚ğóM‚µ‚½‚Æ‚«‚ÉŒÄ‚Î‚êAƒ‹[ƒvˆ—‚È‚Ç‚ğs‚¤B
+*	DirectShowã¯ãƒ•ã‚¡ã‚¤ãƒ«ã®å†ç”Ÿçµ‚äº†æ™‚ã«ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã«å¯¾ã—ã¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ä¿¡ã™ã‚‹ã‚ˆã†ã«ãªã£ã¦ã„ã‚‹ã€‚
+*	ã“ã®é–¢æ•°ã¯BGM/å‹•ç”» å†ç”ŸãŒçµ‚äº†ã—ãŸã¨ãã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å—ä¿¡ã—ãŸã¨ãã«å‘¼ã°ã‚Œã€ãƒ«ãƒ¼ãƒ—å‡¦ç†ãªã©ã‚’è¡Œã†ã€‚
 */
 void CDirectSound::OnWmgraphnotify()
 {
@@ -427,10 +427,10 @@ void CDirectSound::OnWmgraphnotify()
 }
 
 /*!
-*	@brief DirectShow¶¬
+*	@brief DirectShowç”Ÿæˆ
 *
-*	DirectShow‚Ì¶¬E”jŠü‚ÍABGM‚â“®‰æ‚ÌÄ¶E’â~‚É–ˆ‰ñs‚Á‚Ä‚¢‚éB
-*	‚à‚µ‚©‚µ‚½‚çŒ‹\‚È–³‘Ê‚È‚Ì‚©‚à‚µ‚ê‚È‚¢B
+*	DirectShowã®ç”Ÿæˆãƒ»ç ´æ£„ã¯ã€BGMã‚„å‹•ç”»ã®å†ç”Ÿãƒ»åœæ­¢æ™‚ã«æ¯å›è¡Œã£ã¦ã„ã‚‹ã€‚
+*	ã‚‚ã—ã‹ã—ãŸã‚‰çµæ§‹ãªç„¡é§„ãªã®ã‹ã‚‚ã—ã‚Œãªã„ã€‚
 */
 BOOL CDirectSound::CreateDirectShow()
 {
@@ -449,7 +449,7 @@ BOOL CDirectSound::CreateDirectShow()
 }
 
 /*!
-*	@brief BGME“®‰æ ‚ÌÄ¶’â~
+*	@brief BGMãƒ»å‹•ç”» ã®å†ç”Ÿåœæ­¢
 */
 void CDirectSound::BGMStop()
 {
@@ -475,7 +475,7 @@ void CDirectSound::BGMStop()
 }
 
 /*!
-*	@brief BGME“®‰æ ‚ÌÄ¶ˆê’â~
+*	@brief BGMãƒ»å‹•ç”» ã®å†ç”Ÿä¸€æ™‚åœæ­¢
 */
 void CDirectSound::BGMPause()
 {
@@ -487,7 +487,7 @@ void CDirectSound::BGMPause()
 }
 
 /*!
-*	@brief BGME“®‰æ ‚Ìˆê’â~ÄŠJ
+*	@brief BGMãƒ»å‹•ç”» ã®ä¸€æ™‚åœæ­¢å†é–‹
 */
 void CDirectSound::BGMResume()
 {
@@ -499,9 +499,9 @@ void CDirectSound::BGMResume()
 }
 
 /*!
-*	@brief ŠJnˆÊ’u‚ğw’è‚µ‚ÄÄ¶
+*	@brief é–‹å§‹ä½ç½®ã‚’æŒ‡å®šã—ã¦å†ç”Ÿ
 *
-*	‚»‚Ì‚¤‚¿BGMPlay‚É“‡‚·‚é‚©‚à
+*	ãã®ã†ã¡BGMPlayã«çµ±åˆã™ã‚‹ã‹ã‚‚
 */
 BOOL CDirectSound::BGMSeekAndPlay(const char* filename, BOOL loop, double starttime)
 {

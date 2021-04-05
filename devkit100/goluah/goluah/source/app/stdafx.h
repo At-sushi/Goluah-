@@ -1,6 +1,6 @@
-// stdafx.h : •W€‚ÌƒVƒXƒeƒ€ ƒCƒ“ƒNƒ‹[ƒh ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh ƒtƒ@ƒCƒ‹A‚Ü‚½‚Í
-// QÆ‰ñ”‚ª‘½‚­A‚©‚Â‚ ‚Ü‚è•ÏX‚³‚ê‚È‚¢AƒvƒƒWƒFƒNƒgê—p‚ÌƒCƒ“ƒNƒ‹[ƒh ƒtƒ@ƒCƒ‹
-// ‚ğ‹Lq‚µ‚Ü‚·B
+ï»¿// stdafx.h : æ¨™æº–ã®ã‚·ã‚¹ãƒ†ãƒ  ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ãƒ•ã‚¡ã‚¤ãƒ«ã€ã¾ãŸã¯
+// å‚ç…§å›æ•°ãŒå¤šãã€ã‹ã¤ã‚ã¾ã‚Šå¤‰æ›´ã•ã‚Œãªã„ã€ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆå°‚ç”¨ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ãƒ•ã‚¡ã‚¤ãƒ«
+// ã‚’è¨˜è¿°ã—ã¾ã™ã€‚
 
 /*
 Goluah!!Copyright(C) 2001 - 2004 aki, 2014 - 2015 logger, 2004 - 2015 At - sushi
@@ -15,42 +15,42 @@ You should have received a copy of the GNU General Public License along with thi
 #pragma once
 
 #ifndef VC_EXTRALEAN
-#define VC_EXTRALEAN		// Windows ƒwƒbƒ_[‚©‚çg—p‚³‚ê‚Ä‚¢‚È‚¢•”•ª‚ğœŠO‚µ‚Ü‚·B
+#define VC_EXTRALEAN		// Windows ãƒ˜ãƒƒãƒ€ãƒ¼ã‹ã‚‰ä½¿ç”¨ã•ã‚Œã¦ã„ãªã„éƒ¨åˆ†ã‚’é™¤å¤–ã—ã¾ã™ã€‚
 #endif
 
-// ‰º‚Åw’è‚³‚ê‚½’è‹`‚Ì‘O‚É‘ÎÛƒvƒ‰ƒbƒgƒtƒH[ƒ€‚ğw’è‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢ê‡AˆÈ‰º‚Ì’è‹`‚ğ•ÏX‚µ‚Ä‚­‚¾‚³‚¢B
-// ˆÙ‚È‚éƒvƒ‰ƒbƒgƒtƒH[ƒ€‚É‘Î‰‚·‚é’l‚ÉŠÖ‚·‚éÅVî•ñ‚É‚Â‚¢‚Ä‚ÍAMSDN ‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
-#ifndef WINVER				// Windows 95 ‚¨‚æ‚Ñ Windows NT 4 ˆÈ~‚Ìƒo[ƒWƒ‡ƒ“‚ÉŒÅ—L‚Ì‹@”\‚Ìg—p‚ğ‹–‰Â‚µ‚Ü‚·B
+// ä¸‹ã§æŒ‡å®šã•ã‚ŒãŸå®šç¾©ã®å‰ã«å¯¾è±¡ãƒ—ãƒ©ãƒƒãƒˆãƒ•ã‚©ãƒ¼ãƒ ã‚’æŒ‡å®šã—ãªã‘ã‚Œã°ãªã‚‰ãªã„å ´åˆã€ä»¥ä¸‹ã®å®šç¾©ã‚’å¤‰æ›´ã—ã¦ãã ã•ã„ã€‚
+// ç•°ãªã‚‹ãƒ—ãƒ©ãƒƒãƒˆãƒ•ã‚©ãƒ¼ãƒ ã«å¯¾å¿œã™ã‚‹å€¤ã«é–¢ã™ã‚‹æœ€æ–°æƒ…å ±ã«ã¤ã„ã¦ã¯ã€MSDN ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚
+#ifndef WINVER				// Windows 95 ãŠã‚ˆã³ Windows NT 4 ä»¥é™ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«å›ºæœ‰ã®æ©Ÿèƒ½ã®ä½¿ç”¨ã‚’è¨±å¯ã—ã¾ã™ã€‚
 #if _MSC_VER >= 1500
-#define WINVER 0x0500		// VC2008ˆÈ~Œü‚¯
+#define WINVER 0x0500		// VC2008ä»¥é™å‘ã‘
 #else
-#define WINVER 0x0400		// ‚±‚ê‚ğ Windows 98 ‚¨‚æ‚Ñ Windows 2000 ‚Ü‚½‚Í‚»‚êˆÈ~‚Ìƒo[ƒWƒ‡ƒ“Œü‚¯‚É“KØ‚È’l‚É•ÏX‚µ‚Ä‚­‚¾‚³‚¢B
+#define WINVER 0x0400		// ã“ã‚Œã‚’ Windows 98 ãŠã‚ˆã³ Windows 2000 ã¾ãŸã¯ãã‚Œä»¥é™ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³å‘ã‘ã«é©åˆ‡ãªå€¤ã«å¤‰æ›´ã—ã¦ãã ã•ã„ã€‚
 #endif // _MSC_VER
 #endif
 
-#ifndef _WIN32_WINNT		// Windows NT 4 ˆÈ~‚Ìƒo[ƒWƒ‡ƒ“‚ÉŒÅ—L‚Ì‹@”\‚Ìg—p‚ğ‹–‰Â‚µ‚Ü‚·B
+#ifndef _WIN32_WINNT		// Windows NT 4 ä»¥é™ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«å›ºæœ‰ã®æ©Ÿèƒ½ã®ä½¿ç”¨ã‚’è¨±å¯ã—ã¾ã™ã€‚
 #if _MSC_VER >= 1500
-#define _WIN32_WINNT 0x0500		// VC2008ˆÈ~Œü‚¯
+#define _WIN32_WINNT 0x0500		// VC2008ä»¥é™å‘ã‘
 #else
-#define _WIN32_WINNT 0x0400		// ‚±‚ê‚ğ Windows 98 ‚¨‚æ‚Ñ Windows 2000 ‚Ü‚½‚Í‚»‚êˆÈ~‚Ìƒo[ƒWƒ‡ƒ“Œü‚¯‚É“KØ‚È’l‚É•ÏX‚µ‚Ä‚­‚¾‚³‚¢B
+#define _WIN32_WINNT 0x0400		// ã“ã‚Œã‚’ Windows 98 ãŠã‚ˆã³ Windows 2000 ã¾ãŸã¯ãã‚Œä»¥é™ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³å‘ã‘ã«é©åˆ‡ãªå€¤ã«å¤‰æ›´ã—ã¦ãã ã•ã„ã€‚
 #endif // _MSC_VER
 #endif						
 
-#ifndef _WIN32_WINDOWS		// Windows 98 ˆÈ~‚Ìƒo[ƒWƒ‡ƒ“‚ÉŒÅ—L‚Ì‹@”\‚Ìg—p‚ğ‹–‰Â‚µ‚Ü‚·B
-#define _WIN32_WINDOWS 0x0410 // ‚±‚ê‚ğ Windows Me ‚Ü‚½‚Í‚»‚êˆÈ~‚Ìƒo[ƒWƒ‡ƒ“Œü‚¯‚É“KØ‚È’l‚É•ÏX‚µ‚Ä‚­‚¾‚³‚¢B
+#ifndef _WIN32_WINDOWS		// Windows 98 ä»¥é™ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«å›ºæœ‰ã®æ©Ÿèƒ½ã®ä½¿ç”¨ã‚’è¨±å¯ã—ã¾ã™ã€‚
+#define _WIN32_WINDOWS 0x0410 // ã“ã‚Œã‚’ Windows Me ã¾ãŸã¯ãã‚Œä»¥é™ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³å‘ã‘ã«é©åˆ‡ãªå€¤ã«å¤‰æ›´ã—ã¦ãã ã•ã„ã€‚
 #endif
 
-#ifndef _WIN32_IE			// IE 4.0 ˆÈ~‚Ìƒo[ƒWƒ‡ƒ“‚ÉŒÅ—L‚Ì‹@”\‚Ìg—p‚ğ‹–‰Â‚µ‚Ü‚·B
-#define _WIN32_IE 0x0400	// ‚±‚ê‚ğ IE 5.0  ‚Ü‚½‚Í‚»‚êˆÈ~‚Ìƒo[ƒWƒ‡ƒ“Œü‚¯‚É“KØ‚È’l‚É•ÏX‚µ‚Ä‚­‚¾‚³‚¢B
+#ifndef _WIN32_IE			// IE 4.0 ä»¥é™ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«å›ºæœ‰ã®æ©Ÿèƒ½ã®ä½¿ç”¨ã‚’è¨±å¯ã—ã¾ã™ã€‚
+#define _WIN32_IE 0x0400	// ã“ã‚Œã‚’ IE 5.0  ã¾ãŸã¯ãã‚Œä»¥é™ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³å‘ã‘ã«é©åˆ‡ãªå€¤ã«å¤‰æ›´ã—ã¦ãã ã•ã„ã€‚
 #endif
 
 #define _WIN32_DCOM//? for CoInitializeEx
 
-#define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS	// ˆê•”‚Ì CString ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Í–¾¦“I‚Å‚·B
+#define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS	// ä¸€éƒ¨ã® CString ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¯æ˜ç¤ºçš„ã§ã™ã€‚
 #include <atlstr.h>
 #include <atlwin.h>
 
-// ‚³‚·‚ª‚É•W€API‚Íg‚í‚È‚¢‚Æ‚¢‚¯‚È‚¢
+// ã•ã™ãŒã«æ¨™æº–APIã¯ä½¿ã‚ãªã„ã¨ã„ã‘ãªã„
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
@@ -61,12 +61,12 @@ You should have received a copy of the GNU General Public License along with thi
 #include "define_const.h"
 #endif
 
-//ƒXƒNƒŠ[ƒ“ƒVƒ‡ƒbƒg‚Åg‚¤CImage—p
-//#define _ATL_NO_DEFAULT_LIBS//‘åä•v‚©‚È¥¥¥H//‚â‚Á‚Ï‚¾‚ß‚Û?
+//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚·ãƒ§ãƒƒãƒˆã§ä½¿ã†CImageç”¨
+//#define _ATL_NO_DEFAULT_LIBS//å¤§ä¸ˆå¤«ã‹ãªï½¥ï½¥ï½¥ï¼Ÿ//ã‚„ã£ã±ã ã‚ã½?
 //#include <atlimage.h>
 
 
-// STLƒwƒbƒ_“Ç‚İ‚İ
+// STLãƒ˜ãƒƒãƒ€èª­ã¿è¾¼ã¿
 #include <typeinfo>
 #include <algorithm>
 #include <list>
@@ -80,14 +80,14 @@ You should have received a copy of the GNU General Public License along with thi
 
 
 #pragma warning( disable : 4005 )
-#define DIRECTINPUT_VERSION 0x0800//warningÁ‚µ
+#define DIRECTINPUT_VERSION 0x0800//warningæ¶ˆã—
 
 #include <d3d8.h>
 #include <d3dx8.h>
 #include <dsound.h>
 #include <dshow.h>
 #include <dinput.h>
-#include <InitGuid.h>		// DirectPlay‚ªdxguid.lib‚É‚à‚¤‚È‚¢‚Ì‚Åb’è‘[’u
+#include <InitGuid.h>		// DirectPlayãŒdxguid.libã«ã‚‚ã†ãªã„ã®ã§æš«å®šæªç½®
 #include <dplay8.h>
 
 #include <stdio.h>
@@ -95,4 +95,4 @@ You should have received a copy of the GNU General Public License along with thi
 #include <time.h>
 
 #pragma warning( disable:4995 )
-#pragma warning( disable:4996 )		// ‚Æ‚è‚ ‚¦‚¸sprintf_sŒx‚ğ–³‹
+#pragma warning( disable:4996 )		// ã¨ã‚Šã‚ãˆãšsprintf_sè­¦å‘Šã‚’ç„¡è¦–

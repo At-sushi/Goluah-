@@ -1,4 +1,4 @@
-// CelleditDlg.cpp : ŽÀ‘•ƒtƒ@ƒCƒ‹
+ï»¿// CelleditDlg.cpp : å®Ÿè£…ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #include "stdafx.h"
@@ -12,7 +12,7 @@
 #include "DlgCellDisp.h"
 #include "DlgCPageTool.h"
 
-// CCelleditDlg ƒ_ƒCƒAƒƒO
+// CCelleditDlg ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 IMPLEMENT_DYNAMIC(CCelleditDlg, CMyDialogTab)
 CCelleditDlg::CCelleditDlg(CWnd* pParent /*=NULL*/)
@@ -40,29 +40,29 @@ BEGIN_MESSAGE_MAP(CCelleditDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CCelleditDlg ƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰
+// CCelleditDlg ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ©
 
 /*--------------------------------------------------------------------
-	ƒ_ƒCƒAƒƒO‰Šú‰»
+	ãƒ€ã‚¤ã‚¢ãƒ­ã‚°åˆæœŸåŒ–
 ----------------------------------------------------------------------*/
 BOOL CCelleditDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO :  ‚±‚±‚É‰Šú‰»‚ð’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢
+	// TODO :  ã“ã“ã«åˆæœŸåŒ–ã‚’è¿½åŠ ã—ã¦ãã ã•ã„
 
-	//¡ƒ^ƒuƒRƒ“ƒgƒ[ƒ‹‚Ì€–Ú¶¬
+	//â– ã‚¿ãƒ–ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®é …ç›®ç”Ÿæˆ
 	CTabCtrl* pTab = (CTabCtrl*)GetDlgItem(IDC_TAB_CELL);
-	pTab->InsertItem(0,"‘S”Ê");
-	pTab->InsertItem(1,"ƒ}ƒEƒX‘€ì");
-	pTab->InsertItem(2,"‹éŒ`‘€ì");
-	pTab->InsertItem(3,"•\Ž¦");
+	pTab->InsertItem(0,"å…¨èˆ¬");
+	pTab->InsertItem(1,"ãƒžã‚¦ã‚¹æ“ä½œ");
+	pTab->InsertItem(2,"çŸ©å½¢æ“ä½œ");
+	pTab->InsertItem(3,"è¡¨ç¤º");
 	pTab->InsertItem(4,"tools");
 
 	CDlgPage4 *pdlg4 = new CDlgPage4();
 	pdlg4->SetNParent(this);
 
-	//¡Šeƒ^ƒu‚Ìƒy[ƒW‚É‘Š“–‚·‚éƒ_ƒCƒAƒƒO‚ð¶¬
+	//â– å„ã‚¿ãƒ–ã®ãƒšãƒ¼ã‚¸ã«ç›¸å½“ã™ã‚‹ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’ç”Ÿæˆ
 	m_tab_pages[0] = new CDlgPage2();
 	m_tab_pages[0]->Create(IDD_DIALOG_TAB2,this);
 	m_tab_pages[1] = new CDlgPage3();
@@ -74,7 +74,7 @@ BOOL CCelleditDlg::OnInitDialog()
 	m_tab_pages[4] = new CDlgCPageTool();
 	m_tab_pages[4]->Create(IDD_DIALOG_CTAB_TOOLS,this);
 
-	//¡ƒEƒBƒ“ƒhƒE‚ðƒ^ƒu‚ÌˆÊ’u‚É‡‚¤‚æ‚¤‚ÉˆÚ“®
+	//â– ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ã‚¿ãƒ–ã®ä½ç½®ã«åˆã†ã‚ˆã†ã«ç§»å‹•
 	CRect r;
 	for(int i=0;i<MAX_TAB_PAGES_CELL;i++){
 		if(m_tab_pages[i]){
@@ -87,16 +87,16 @@ BOOL CCelleditDlg::OnInitDialog()
 	OnTcnSelchangeTab1(0,0);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// —áŠO : OCX ƒvƒƒpƒeƒB ƒy[ƒW‚Í•K‚¸ FALSE ‚ð•Ô‚µ‚Ü‚·B
+	// ä¾‹å¤– : OCX ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ ãƒšãƒ¼ã‚¸ã¯å¿…ãš FALSE ã‚’è¿”ã—ã¾ã™ã€‚
 }
 
 
 /*--------------------------------------------------------------------
-	ƒ^ƒuƒRƒ“ƒgƒ[ƒ‹‚Ì•ÏX
+	ã‚¿ãƒ–ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®å¤‰æ›´
 ----------------------------------------------------------------------*/
 void CCelleditDlg::OnTcnSelchangeTab1(NMHDR *pNMHDR, LRESULT *pResult)
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ð’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	if(pResult)
 		*pResult = 0;
 
@@ -114,13 +114,13 @@ void CCelleditDlg::OnTcnSelchangeTab1(NMHDR *pNMHDR, LRESULT *pResult)
 
 
 /*--------------------------------------------------------------------
-	Žq‹ŸƒEƒCƒ“ƒhƒE‚½‚¿‚Ì”jŠü
+	å­ä¾›ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŸã¡ã®ç ´æ£„
 ----------------------------------------------------------------------*/
 BOOL CCelleditDlg::DestroyWindow()
 {
-	// TODO : ‚±‚±‚É“Á’è‚ÈƒR[ƒh‚ð’Ç‰Á‚·‚é‚©A‚à‚µ‚­‚ÍŠî–{ƒNƒ‰ƒX‚ðŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢B
+	// TODO : ã“ã“ã«ç‰¹å®šãªã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã‹ã€ã‚‚ã—ãã¯åŸºæœ¬ã‚¯ãƒ©ã‚¹ã‚’å‘¼ã³å‡ºã—ã¦ãã ã•ã„ã€‚
 	
-	//ƒ^ƒuƒy[ƒW—pƒ_ƒCƒAƒƒO‚Ì”jŠü
+	//ã‚¿ãƒ–ãƒšãƒ¼ã‚¸ç”¨ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®ç ´æ£„
 	for(int i=0;i<MAX_TAB_PAGES_CELL;i++)
 	{
 		if(m_tab_pages[i]){
@@ -135,7 +135,7 @@ BOOL CCelleditDlg::DestroyWindow()
 
 
 /*--------------------------------------------------------------------
-	ƒ_ƒCƒAƒƒO“à•\Ž¦•¨‚ÌXV
+	ãƒ€ã‚¤ã‚¢ãƒ­ã‚°å†…è¡¨ç¤ºç‰©ã®æ›´æ–°
 ----------------------------------------------------------------------*/
 void CCelleditDlg::UpdateItems()
 {
@@ -148,7 +148,7 @@ void CCelleditDlg::UpdateItems()
 }
 
 /*--------------------------------------------------------------------
-	ƒ_ƒCƒAƒƒO“à•\Ž¦•¨‚ÌXV
+	ãƒ€ã‚¤ã‚¢ãƒ­ã‚°å†…è¡¨ç¤ºç‰©ã®æ›´æ–°
 ----------------------------------------------------------------------*/
 void CCelleditDlg::OnChangeRectIndex(UINT idx)
 {
@@ -157,7 +157,7 @@ void CCelleditDlg::OnChangeRectIndex(UINT idx)
 }
 
 /*--------------------------------------------------------------------
-	“ÁŽê‘€ì
+	ç‰¹æ®Šæ“ä½œ
 ----------------------------------------------------------------------*/
 void CCelleditDlg::BlankNext()
 {

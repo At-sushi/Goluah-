@@ -1,94 +1,94 @@
---------------------------------------------------------------------------------
+﻿--------------------------------------------------------------------------------
 	goluah!! VC7 solution
 
 	auther : aki
-	since  : 2003/08/�Y - ...
+	since  : 2003/08/忘 - ...
 
 ---------------------------------------------------------------------------------
 
-���e�v���W�F�N�g�T�v
+■各プロジェクト概要
 
-�Egoluah
-	�{��
+・goluah
+	本体
 
-�Echardll_*
-	�L�����N�^DLL
+・chardll_*
+	キャラクタDLL
 
-�Estagedll_*
-	�X�e�[�WDLL
+・stagedll_*
+	ステージDLL
 
-�Eare_editer
-	GCD�G�f�B�^�[�B���O�͂ǂ��ɂ����������ǁA�����̂��߂�ǂ����������
+・are_editer
+	GCDエディター。名前はどうにかしたいけど、直すのもめんどくさいし･･･
 	
-�Egoluah_config
-	�{�̐ݒ�ǂݏ����c�[��
+・goluah_config
+	本体設定読み書きツール
 
 
-������
+■説明
 
-�@�e�v���W�F�N�g�ŋ��ʂɎg�p����\�[�X�E�w�b�_�t�@�C���� common/ �ɂ͂����Ă��܂��B
-VC�ȊO�̓������Ŏg�p����ꍇ�͓K���Ƀp�X��ʂ����A�K�v�����ȃt�@�C�����e�v���W�F�N�g��
-�R�s�[���Ďg���Ă��������B
-�@
-�@���s���� execenv/�@�ł��B
-�r�b�g�}�b�v���K�v�ȃt�@�C���������ɔz�u���Ă��������B
-�܂��A�Q�[���Ɋ֌W����v���W�F�N�g�́A�����N���ɂ����Ƀt�@�C���𐶐����Ă��������B
+　各プロジェクトで共通に使用するソース・ヘッダファイルが common/ にはいっています。
+VC以外の統合環境で使用する場合は適当にパスを通すか、必要そうなファイルを各プロジェクトに
+コピーして使ってください。
+　
+　実行環境は execenv/　です。
+ビットマップ等必要なファイルをここに配置してください。
+また、ゲームに関係するプロジェクトは、リンク時にここにファイルを生成してください。
 
-�@���C�u�����t�@�C���� lib/ �ɐ������Ă��܂��B(VC�̏ꍇ)
-���ɂ����C�u�������ł��Ă����炱���ɒu���B
-
-
-������
-
-�@are_editer �̓v���v���Z�b�T�� GCD_EDITER ���`���Ȃ��ƃr���h�ʂ�܂���
-�@
-�@goluah�{�� �̓����^�C���^���(RTTI)��L���ɂ��ăr���h���Ă�������
-�@
-�@goluah_config �� are_editer���\�����[�V�����ɓ�������ԂŃ��\�[�X�G�f�B�^����
-�@�ϐ��̒ǉ����s���ƁA�ʃv���W�F�N�g�̓����̃t�@�C���ɊԈ���ăR�[�h���}������邱�Ƃ�
-�@������ۂ��ł��BVisualStudio�̃o�O�H
-
-��doxygen
-
-�@goluah/source�Acommon/���̃\�[�X��doxygen�ɑΉ������R�����g�����Ă��܂��B
-����Ă݂��爳�k���Ă�2MB���炢�������̂ō폜���Ă���܂��B�ǂ݂����l�͎����Ő������Ă��������B
-
-������
-
-�EVC�̕s��H
-
-config.exe �� are_editer �ŁA���\�[�X�G�f�B�^����
-�_�C�A���O�ɃC�x���g�n���h����ϐ���ǉ�����ƁA
-�����t�@�C�����̕ʃv���W�F�N�g��h/cpp�ɃR�[�h���ǉ�����Ă��܂����Ƃ�����݂����B
+　ライブラリファイルは lib/ に生成しています。(VCの場合)
+他にもライブラリができてきたらここに置く。
 
 
-�E���������[�N
+■注意
 
-�܂�������ƃ��[�N����݂����B
-���[�N�`�F�b�N�������Ă���ɂ͂��邯�ǁA�ǂ��ŋN���������킩��Ȃ��B
-Microsoft�̃h�L�������g�i�ǂ��̓z�����Y�ꂽ�j�ɂ́A�\�[�X�R�[�h�̏ꏊ�܂�
-�����Ă����Ƃ����q�̂������Ƃ������Ă����āA���ېV�K��MFC�v���W�F�N�g��
-�쐬�����Ƃ��ɂ͂����Ƌ����Ă��ꂽ���ǁA�Ȃ���Goluah�̃v���W�F�N�g�ł�
-�łĂ��Ȃ��B
+　are_editer はプリプロセッサで GCD_EDITER を定義しないとビルド通りません
+　
+　goluah本体 はランタイム型情報(RTTI)を有効にしてビルドしてください
+　
+　goluah_config と are_editerがソリューションに入った状態でリソースエディタから
+　変数の追加を行うと、別プロジェクトの同名のファイルに間違ってコードが挿入されることが
+　あるっぽいです。VisualStudioのバグ？
 
-�����L�����N�^�[��X�e�[�WDLL�̋N�������������[�N�͏�L�̃��|�[�g�ł͏o�Ă��Ȃ�����
-��Ӄe�X�g�ғ������疾�炩�Ƀ��[�N���Ă���̂��킩�����B
-�f�t�H���g�L�����݂̂œ��������烊�[�N���ĂȂ������̂ŁA
-�ǉ��L�����N�^�[�̂����ǂꂩ�����[�N���Ă�����ۂ��H�~
-�@�@��
-�����ł͂Ȃ��ADirectShow��BGM�Đ���L���ɂ��Ă���Ɓi���ۂɍĐ����s���Ȃ��Ă��j
-���[�N����炵���B
+■doxygen
 
-Direct3D���Ƃ��ǂ��I�����ɖ��J���̃I�u�W�F�N�g�����|�[�g���Ă���B
-�Q�[�����̂ǂ��ŏI��邩�Ɉˑ�����H�悤�Ȃ̂ŁA�ǂ����̏I�������ɂʂ�������̂�������Ȃ��B
+　goluah/source、common/下のソースはdoxygenに対応したコメントがついています。
+作ってみたら圧縮しても2MBぐらいあったので削除してあります。読みたい人は自分で生成してください。
 
-���v���W�F�N�g���ϗ���
+■メモ
 
-�@2001/10/�Y (aki)
-�@	�J�n
-�@
-�@2003/08/�Y (aki)
-�@	�v���W�F�N�g��VC7(VisualStudio.Net)�`���Ɉڍs
-�@	
-�@	
-�@	
+・VCの不具合？
+
+config.exe と are_editer で、リソースエディタから
+ダイアログにイベントハンドラや変数を追加すると、
+同じファイル名の別プロジェクトのh/cppにコードが追加されてしまうことがあるみたい。
+
+
+・メモリリーク
+
+まだちょっとリークするみたい。
+リークチェックが働いているにはいるけど、どこで起こったかわからない。
+Microsoftのドキュメント（どこの奴だか忘れた）には、ソースコードの場所まで
+教えてくれるとか調子のいいことが書いてあって、実際新規にMFCプロジェクトを
+作成したときにはちゃんと教えてくれたけど、なぜかGoluahのプロジェクトでは
+でてこない。
+
+既存キャラクターやステージDLLの起こすメモリリークは上記のレポートでは出てこないけど
+一晩テスト稼動したら明らかにリークしているのがわかった。
+デフォルトキャラのみで動かしたらリークしてなかったので、
+追加キャラクターのうちどれかがリークしているっぽい？×
+　　↓
+そうではなく、DirectShowのBGM再生を有効にしていると（実際に再生が行われなくても）
+リークするらしい。
+
+Direct3Dもときどき終了時に未開放のオブジェクトをレポートしてくる。
+ゲーム中のどこで終わるかに依存する？ようなので、どっかの終了処理にぬけがあるのかもしれない。
+
+■プロジェクト改変履歴
+
+　2001/10/忘 (aki)
+　	開始
+　
+　2003/08/忘 (aki)
+　	プロジェクトをVC7(VisualStudio.Net)形式に移行
+　	
+　	
+　	

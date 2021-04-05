@@ -1,9 +1,9 @@
-
+ï»¿
 /*!
 *	@file
-*   @brief config.dat , config2.dat ‚Ìƒf[ƒ^ŠÇ—’è‹`
+*   @brief config.dat , config2.dat ã®ãƒ‡ãƒ¼ã‚¿ç®¡ç†å®šç¾©
 *
-*	‚±‚Ìƒtƒ@ƒCƒ‹‚Ígoluah!!–{‘Ì‚Æconfig.exe‚ÌƒvƒƒWƒFƒNƒg‚©‚çQÆ‚³‚ê‚Ü‚·B
+*	ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯goluah!!æœ¬ä½“ã¨config.exeã®ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰å‚ç…§ã•ã‚Œã¾ã™ã€‚
 */
 #pragma once
 
@@ -12,7 +12,7 @@
 
 /*!
 *	@ingroup global
-*	@brief ƒL[ƒRƒ“ƒtƒBƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^
+*	@brief ã‚­ãƒ¼ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 */
 struct KEYCONFIG  //.\\system\\config.dat
 {
@@ -25,17 +25,17 @@ struct KEYCONFIG  //.\\system\\config.dat
 
 /*!
 *	@ingroup global
-*	@brief ƒpƒbƒhƒRƒ“ƒtƒBƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^
+*	@brief ãƒ‘ãƒƒãƒ‰ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 */
 struct PADCONFIG
 {
-	//!ƒ{ƒ^ƒ“‚ÌŠ„‚è“–‚Ä@[A-D][PAD]
+	//!ãƒœã‚¿ãƒ³ã®å‰²ã‚Šå½“ã¦ã€€[A-D][PAD]
 	int pad_button[4][NUM_PAD];
 };
 
 /*!
 *	@ingroup global
-*	@brief “ü—Í¨ƒvƒŒƒCƒ„[Š„‚è“–‚Äî•ñ
+*	@brief å…¥åŠ›â†’ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å‰²ã‚Šå½“ã¦æƒ…å ±
 */
 struct INPUT2PLAYER
 {
@@ -45,7 +45,7 @@ struct INPUT2PLAYER
 
 /*!
 *	@ingroup global
-*	@brief g—pƒeƒNƒXƒ`ƒƒƒtƒH[ƒ}ƒbƒgID
+*	@brief ä½¿ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆID
 */
 enum Config2_TexFormat
 {
@@ -57,7 +57,7 @@ enum Config2_TexFormat
 
 /*!
 *	@ingroup global
-*	@brief g—pD3DƒfƒoƒCƒXƒ^ƒCƒvID
+*	@brief ä½¿ç”¨D3Dãƒ‡ãƒã‚¤ã‚¹ã‚¿ã‚¤ãƒ—ID
 */
 enum Config2_DevType
 {
@@ -68,7 +68,7 @@ enum Config2_DevType
 
 /*!
 *	@ingroup global
-*	@brief §ŒÀŠÔID
+*	@brief åˆ¶é™æ™‚é–“ID
 */
 enum Config2_LimitTime
 {
@@ -79,7 +79,7 @@ enum Config2_LimitTime
 
 /*!
 *	@ingroup global
-*	@brief “ïˆÕ“xID
+*	@brief é›£æ˜“åº¦ID
 */
 enum Config2_Difficulty
 {
@@ -95,7 +95,7 @@ enum Config2_Difficulty
 
 /*!
 *	@ingroup global
-*	@brief ƒXƒNƒŠ[ƒ“ƒVƒ‡ƒbƒg•Û‘¶‚ÌƒtƒH[ƒ}ƒbƒg
+*	@brief ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚·ãƒ§ãƒƒãƒˆä¿å­˜æ™‚ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 */
 enum Config2_SShotFormat
 {
@@ -106,7 +106,7 @@ enum Config2_SShotFormat
 
 /*!
 *	@ingroup global
-*	@brief ƒQ[ƒ€‘¬“x
+*	@brief ã‚²ãƒ¼ãƒ é€Ÿåº¦
 */
 enum Config2_GameSpeed
 {
@@ -114,18 +114,18 @@ enum Config2_GameSpeed
 	GSPEED_OLD			= 1,
 	GSPEED_NEW			= 2,
 	GSPEED_30x2			= 3,
-//	GSPEED_25x2			= 4,	// ‚±‚ê‚ğ“ü‚ê‚é‚ÆÅ‘åƒTƒCƒY‚ğ’´‚¦‚é
+//	GSPEED_25x2			= 4,	// ã“ã‚Œã‚’å…¥ã‚Œã‚‹ã¨æœ€å¤§ã‚µã‚¤ã‚ºã‚’è¶…ãˆã‚‹
 };
 
 /*!
-*	@brief config.dat , config2.dat ‚Ìƒf[ƒ^ŠÇ—ƒNƒ‰ƒX
+*	@brief config.dat , config2.dat ã®ãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚¯ãƒ©ã‚¹
 *	@ingroup global
 *
-*	ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Å config.dat,config2.dat ‚ğ“Ç‚İ‚ŞB
-*	ƒfƒXƒgƒ‰ƒNƒ^‚Å‚Í config2.dat ‚Ì‚İ•Û‘¶‚ğs‚¤(config.dat‚Í–{‘ÌÀsƒtƒ@ƒCƒ‹‚Å‚Í•ÏX‚³‚ê‚È‚¢‚½‚ß)
+*	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã§ config.dat,config2.dat ã‚’èª­ã¿è¾¼ã‚€ã€‚
+*	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã§ã¯ config2.dat ã®ã¿ä¿å­˜ã‚’è¡Œã†(config.datã¯æœ¬ä½“å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«ã§ã¯å¤‰æ›´ã•ã‚Œãªã„ãŸã‚)
 *
-*	ƒOƒ[ƒoƒ‹‚Ì g_config ‚ğg—p‚µ‚Ä‚¢‚ê‚Î“Á‚É“Ç‚İ‚İ‚ğˆÓ¯‚µ‚È‚­‚Ä‚à
-*	İ’è‚ğæ“¾‚·‚é‚±‚Æ‚ª‚Å‚«‚éB
+*	ã‚°ãƒ­ãƒ¼ãƒãƒ«ã® g_config ã‚’ä½¿ç”¨ã—ã¦ã„ã‚Œã°ç‰¹ã«èª­ã¿è¾¼ã¿ã‚’æ„è­˜ã—ãªãã¦ã‚‚
+*	è¨­å®šã‚’å–å¾—ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚
 */
 class CConfig
 {
@@ -135,14 +135,14 @@ public:
 	BOOL SaveConfig();
 	BOOL SaveConfig2();
 	void ReInitialize();
-	void SetDefaultConfigKB();	//!< ƒL[ƒ{[ƒhEƒL[
-	void SetDefaultConfigPad();	//!< ƒpƒbƒhƒ{ƒ^ƒ“
-	void SetDefaultConfigAss();	//!< “ü—ÍŠ„‚è“–‚Ä
-	void SetDefaultConfig2();	//!< ƒVƒXƒeƒ€İ’è
+	void SetDefaultConfigKB();	//!< ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ»ã‚­ãƒ¼
+	void SetDefaultConfigPad();	//!< ãƒ‘ãƒƒãƒ‰ãƒœã‚¿ãƒ³
+	void SetDefaultConfigAss();	//!< å…¥åŠ›å‰²ã‚Šå½“ã¦
+	void SetDefaultConfig2();	//!< ã‚·ã‚¹ãƒ†ãƒ è¨­å®š
 
-	//¡’l‚Ìæ“¾
+	//â– å€¤ã®å–å¾—
 
-	// •`‰æŠÖŒW
+	//â–¡æç”»é–¢ä¿‚
 	BOOL		IsHalfMode()			{return halfmode ? TRUE : FALSE;}
 	BOOL		IsFullScreen()			{return full_screen ? TRUE : FALSE;}
 	D3DFORMAT	TexFormat();
@@ -150,7 +150,7 @@ public:
 	BOOL		HardwereVP()			{return hardwear_vp ? TRUE : FALSE;}
 	BOOL		NoAlphaTest()			{return no_alpha_test ? TRUE : FALSE;}
 
-	// ƒQ[ƒ€İ’è
+	//â–¡ã‚²ãƒ¼ãƒ è¨­å®š
 	BOOL		IsDebugMode()			{return debug_mode ? TRUE : FALSE;}
 	BOOL		SwShowMovieFirst()		{return show_movie_1st ? TRUE : FALSE;}
 	BOOL		SwShowInfo()			{return show_info_1st ? TRUE : FALSE;}
@@ -161,13 +161,13 @@ public:
 	BOOL		IsLimiterCut()			{return limiter_cut ? TRUE : FALSE;}
 	Config2_GameSpeed GetGameSpeed()	{return (Config2_GameSpeed)game_speed;}
 
-	// ƒVƒXƒeƒ€İ’è
+	//â–¡ã‚·ã‚¹ãƒ†ãƒ è¨­å®š
 	BOOL		UseDInput()				{return no_dinput ? FALSE : TRUE;}
 	BOOL		UseDSound()				{return no_dsound ? FALSE : TRUE;}
 	BOOL		UseDShow()				{return no_dshow ? FALSE : TRUE;}
 	BOOL		IgnoreExceptions()		{return ignore_exceptions ? TRUE : FALSE;}
 
-	// ƒƒO
+	//â–¡ãƒ­ã‚°
 	BOOL UseLog2File()					{return log2file ? TRUE : FALSE;}
 	BOOL UseLog_Info()					{return log_info ? TRUE : FALSE;}
 	BOOL UseLog_Warning()				{return log_warning ? TRUE : FALSE;}
@@ -177,12 +177,12 @@ public:
 										{return (Config2_SShotFormat)sshot_format;}
 	char* GetSShotFileTypeStr();
 
-	// íœ‚³‚ê‚½€–Ú
+	//â–¡å‰Šé™¤ã•ã‚ŒãŸé …ç›®
 	BOOL		UsePointSprite()		{return TRUE;}
 
-	//¡’l‚Ìİ’è
+	//â– å€¤ã®è¨­å®š
 
-	// •`‰æŠÖŒW
+	//â–¡æç”»é–¢ä¿‚
 	void SetHalfMode(BOOL b)			{halfmode = b ? 1:0;}
 	void SetFullScreen(BOOL b)			{full_screen = b ? 1:0;}
 	void SetTexFormat(D3DFORMAT tf);
@@ -190,7 +190,7 @@ public:
 	void SetHardwereVP(BOOL b)			{hardwear_vp = b ? 1:0;}
 	void SetNoAlphaTest(BOOL b)			{no_alpha_test = b ? 1:0;}
 
-	// ƒQ[ƒ€İ’è
+	//â–¡ã‚²ãƒ¼ãƒ è¨­å®š
 	void SetDebugMode(BOOL b)			{debug_mode= b ? 1:0;}
 	void SetShowMovie(BOOL b)			{show_movie_1st= b ? 1:0;}
 	void SetShowInfo(BOOL b)			{show_info_1st= b ? 1:0;}
@@ -202,13 +202,13 @@ public:
 	void EnableLimiterCut()				{limiter_cut_enable=1;}
 	void SetGameSpeed(Config2_GameSpeed spd) { game_speed = spd; }
 
-	// ƒVƒXƒeƒ€İ’è
+	//â–¡ã‚·ã‚¹ãƒ†ãƒ è¨­å®š
 	void SetUseDInput(BOOL b)			{no_dinput = b ? 0:1;}
 	void SetUseDSound(BOOL b)			{no_dsound = b ? 0:1;}
 	void SetUseDShow(BOOL b)			{no_dshow = b ? 0:1;}
 	void SetIgnoreExceptions(BOOL b)	{ignore_exceptions = b ? 1:0;}
 
-	// ƒƒO
+	//â–¡ãƒ­ã‚°
 	void SetUseLog2File(BOOL b)			{log2file = b ? 1:0;}
 	void SetUseLog_Info(BOOL b)			{log_info = b ? 1:0;}
 	void SetUseLog_Warning(BOOL b)		{log_warning = b ? 1:0;}
@@ -228,32 +228,32 @@ public:
 	char *filepath1;
 	char *filepath2;
 
-	//ƒf[ƒ^
+	//ãƒ‡ãƒ¼ã‚¿
 	union
 	{
 		struct
 		{
-			//•`‰æİ’è
+			//æç”»è¨­å®š
 			unsigned int halfmode			: 1;
 			unsigned int full_screen		: 1;
-			unsigned int tex_format			: 2;//¨enum
-			unsigned int device_type		: 2;//¨enum
+			unsigned int tex_format			: 2;//â†’enum
+			unsigned int device_type		: 2;//â†’enum
 			unsigned int hardwear_vp		: 1;
 			unsigned int no_alpha_test		: 1;
 
-			//ƒQ[ƒ€İ’è
+			//ã‚²ãƒ¼ãƒ è¨­å®š
 			unsigned int debug_mode			: 1;
 			unsigned int show_info_1st		: 1;
 			unsigned int show_movie_1st		: 1;
-			unsigned int limit_time			: 7;//20-99 , 0=‡
+			unsigned int limit_time			: 7;//20-99 , 0=âˆ
 			unsigned int max_point			: 2;//1-3
-			unsigned int difficulty			: 3;//¨enum
+			unsigned int difficulty			: 3;//â†’enum
 			unsigned int striker			: 3;//0-7
 			unsigned int limiter_cut		: 1;
 			unsigned int limiter_cut_enable : 1;
-			unsigned int game_speed			: 2;//¨enum
+			unsigned int game_speed			: 2;//â†’enum
 
-			//ƒVƒXƒeƒ€İ’è
+			//ã‚·ã‚¹ãƒ†ãƒ è¨­å®š
 			unsigned int no_dinput			: 1;
 			unsigned int no_dsound			: 1;
 			unsigned int no_dshow			: 1;
@@ -269,6 +269,6 @@ public:
 	BOOL  limcut_pass;
 };
 
-extern CConfig				g_config;		//ƒRƒ“ƒtƒBƒ“ƒO
+extern CConfig				g_config;		//ã‚³ãƒ³ãƒ•ã‚£ãƒ³ã‚°
 
 /*@}*/

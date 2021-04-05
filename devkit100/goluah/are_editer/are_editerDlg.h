@@ -1,4 +1,4 @@
-// are_editerDlg.h : ƒwƒbƒ_[ ƒtƒ@ƒCƒ‹
+ï»¿// are_editerDlg.h : ãƒ˜ãƒƒãƒ€ãƒ¼ ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #pragma once
@@ -7,24 +7,24 @@
 #define MAX_TAB_PAGES	(4)
 
 
-// CAre_editerDlg ƒ_ƒCƒAƒƒO
+// CAre_editerDlg ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 class CAre_editerDlg : public CMyDialogTab
 {
 	DECLARE_DYNAMIC(CAre_editerDlg)
 
-// ƒRƒ“ƒXƒgƒ‰ƒNƒVƒ‡ƒ“
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚·ãƒ§ãƒ³
 public:
-	CAre_editerDlg(CWnd* pParent = NULL);	// •W€ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	void UpdateItems();//•\¦•¨XV
+	CAre_editerDlg(CWnd* pParent = NULL);	// æ¨™æº–ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	void UpdateItems();//è¡¨ç¤ºç‰©æ›´æ–°
 	void SpecialCtrl(UINT key);
 
-// ƒ_ƒCƒAƒƒO ƒf[ƒ^
+// ãƒ€ã‚¤ã‚¢ãƒ­ã‚° ãƒ‡ãƒ¼ã‚¿
 	enum { IDD = IDD_ARE_EDITER_DIALOG };
 
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV ƒTƒ|[ƒg
+	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV ã‚µãƒãƒ¼ãƒˆ
 
-// À‘•
+// å®Ÿè£…
 public:
 	void SetStatus(CString str);
 	CString GetBMPFilename(UINT i);
@@ -33,10 +33,10 @@ public:
 protected:
 	HICON m_hIcon;
 
-	//Šeƒ^ƒuƒy[ƒW‚É‘Š“–‚·‚éƒ_ƒCƒAƒƒOƒNƒ‰ƒX
+	//å„ã‚¿ãƒ–ãƒšãƒ¼ã‚¸ã«ç›¸å½“ã™ã‚‹ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¯ãƒ©ã‚¹
 	CMyDialogTab *m_tab_pages[MAX_TAB_PAGES];
 
-	// ¶¬‚³‚ê‚½AƒƒbƒZ[ƒWŠ„‚è“–‚ÄŠÖ”
+	// ç”Ÿæˆã•ã‚ŒãŸã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‰²ã‚Šå½“ã¦é–¢æ•°
 	virtual BOOL OnInitDialog();
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();

@@ -1,4 +1,4 @@
-// goluah_configDlg.h : ƒwƒbƒ_[ ƒtƒ@ƒCƒ‹
+ï»¿// goluah_configDlg.h : ãƒ˜ãƒƒãƒ€ãƒ¼ ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #pragma once
@@ -6,27 +6,27 @@
 #define MAX_TAB_PAGES	(4)
 
 
-// Cgoluah_configDlg ƒ_ƒCƒAƒƒO
+// Cgoluah_configDlg ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 class Cgoluah_configDlg : public CDialog
 {
-// ƒRƒ“ƒXƒgƒ‰ƒNƒVƒ‡ƒ“
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚·ãƒ§ãƒ³
 public:
-	Cgoluah_configDlg(CWnd* pParent = NULL);	// •W€ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	Cgoluah_configDlg(CWnd* pParent = NULL);	// æ¨™æº–ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-// ƒ_ƒCƒAƒƒO ƒf[ƒ^
+// ãƒ€ã‚¤ã‚¢ãƒ­ã‚° ãƒ‡ãƒ¼ã‚¿
 	enum { IDD = IDD_GOLUAH_CONFIG_DIALOG };
 
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV ƒTƒ|[ƒg
+	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV ã‚µãƒãƒ¼ãƒˆ
 
 
-// À‘•
+// å®Ÿè£…
 protected:
 	HICON m_hIcon;
 
 	CCfgDialogBase* m_tab_pages[MAX_TAB_PAGES];
 
-	// ¶¬‚³‚ê‚½AƒƒbƒZ[ƒWŠ„‚è“–‚ÄŠÖ”
+	// ç”Ÿæˆã•ã‚ŒãŸã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‰²ã‚Šå½“ã¦é–¢æ•°
 	virtual BOOL OnInitDialog();
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();

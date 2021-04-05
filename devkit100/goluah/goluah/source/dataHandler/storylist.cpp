@@ -1,7 +1,7 @@
-
+ï»¿
 /*========================================================================
 
-	ƒXƒg[ƒŠ[ŠÇ—
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ç®¡ç†
 
 ==========================================================================*/
 
@@ -14,18 +14,18 @@ static char afo[] = "afo";
 
 /*************************************************************************
 
-	ƒXƒg[ƒŠ[ƒŠƒXƒgƒNƒ‰ƒX
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒªã‚¹ãƒˆã‚¯ãƒ©ã‚¹
 
 **************************************************************************/
 
 /*!
-*	‰Šú‰»
-*	ƒLƒƒƒ‰ƒNƒ^[‚âƒXƒe[ƒW‚Ì‘¶İƒ`ƒFƒbƒN‚ªs‚í‚ê‚é‚½‚ßA
-*	ƒLƒƒƒ‰ƒNƒ^[EƒXƒe[ƒW‚ÌƒŠƒXƒg‰Šú‰»‚ÌŒã‚ÉÀs‚·‚é‚±‚Æ
+*	åˆæœŸåŒ–
+*	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚„ã‚¹ãƒ†ãƒ¼ã‚¸ã®å­˜åœ¨ãƒã‚§ãƒƒã‚¯ãŒè¡Œã‚ã‚Œã‚‹ãŸã‚ã€
+*	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ»ã‚¹ãƒ†ãƒ¼ã‚¸ã®ãƒªã‚¹ãƒˆåˆæœŸåŒ–ã®å¾Œã«å®Ÿè¡Œã™ã‚‹ã“ã¨
 */
 void CStoryList::Initialize()
 {
-	//”O‚Ì‚½‚ßAƒŠƒXƒgƒNƒŠƒA
+	//å¿µã®ãŸã‚ã€ãƒªã‚¹ãƒˆã‚¯ãƒªã‚¢
 	list.clear();
 	dlist.clear();
 
@@ -34,13 +34,13 @@ void CStoryList::Initialize()
 	WIN32_FIND_DATA fd;
 
 
-	//ƒfƒBƒŒƒNƒgƒŠ‚Ìˆê——ì¬
+	//ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ä¸€è¦§ä½œæˆ
 	CStoryRingInfo ringitem;
 	hFind = FindFirstFile(".\\story\\*.*", &fd);
-	if(hFind != INVALID_HANDLE_VALUE) {//ƒfƒBƒŒƒNƒgƒŠ‚ª‘¶İ‚·‚éê‡
+	if(hFind != INVALID_HANDLE_VALUE) {//ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãŒå­˜åœ¨ã™ã‚‹å ´åˆ
 		do {
-			if(strcmp(fd.cFileName,".")==0 || strcmp(fd.cFileName,"..")==0);//ƒAƒŒ
-			else if(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) //ƒfƒBƒŒƒNƒgƒŠÊ¹°İ
+			if(strcmp(fd.cFileName,".")==0 || strcmp(fd.cFileName,"..")==0);//ã‚¢ãƒ¬
+			else if(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) //ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªï¾Šï½¹ï½°ï¾
 			{
 				sprintf(ringitem.dir,fd.cFileName);
 				rlist.push_back(ringitem);
@@ -49,7 +49,7 @@ void CStoryList::Initialize()
 		FindClose(hFind);
 	}
 
-	//ŠeƒfƒBƒŒƒNƒgƒŠ‚Ì’†‚ÌƒXƒg[ƒŠ[‚ğŒŸõ
+	//å„ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ä¸­ã®ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã‚’æ¤œç´¢
 	CStoryInfo sitem;
 	SScriptElementList scr_list;
 	char *filename= new char [MAX_PATH];
@@ -59,15 +59,15 @@ void CStoryList::Initialize()
 	{
 		sprintf(filename,"story\\%s\\*.*",i->dir);
 		hFind = FindFirstFile(filename, &fd);
-		if(hFind != INVALID_HANDLE_VALUE) {//ƒfƒBƒŒƒNƒgƒŠ‚ª‘¶İ‚·‚éê‡
+		if(hFind != INVALID_HANDLE_VALUE) {//ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãŒå­˜åœ¨ã™ã‚‹å ´åˆ
 			do {
-				if(strcmp(fd.cFileName,".")==0 || strcmp(fd.cFileName,"..")==0);//ƒAƒŒ
+				if(strcmp(fd.cFileName,".")==0 || strcmp(fd.cFileName,"..")==0);//ã‚¢ãƒ¬
 				else if(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) 
 				{
-					//ƒfƒBƒŒƒNƒgƒŠÊ¹°İ
+					//ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªï¾Šï½¹ï½°ï¾
 					sitem.SetDir(i->dir,fd.cFileName);
 					sprintf(filename,"story\\%s\\%s\\",i->dir,fd.cFileName);
-					if(CGoluahStoryScript::CreateScriptElementList(scr_list,filename))//“Ç‚İ‚İOK
+					if(CGoluahStoryScript::CreateScriptElementList(scr_list,filename))//èª­ã¿è¾¼ã¿OK
 					{
 						sitem.Setup( GetSettingsFromScriptList(scr_list), i->dir,fd.cFileName);
 						i->ring2serial.push_back(list.size());
@@ -88,50 +88,50 @@ void CStoryList::Initialize()
 
 
 /*------------------------------------------------------------------------
-	Get‚È‚ñ‚½‚çŒn
+	Getãªã‚“ãŸã‚‰ç³»
 --------------------------------------------------------------------------*/
 
-//‘SƒXƒg[ƒŠ[”‚ğæ“¾
+//å…¨ã‚¹ãƒˆãƒ¼ãƒªãƒ¼æ•°ã‚’å–å¾—
 UINT CStoryList::GetAllStoryNum()
 {
 	return list.size();
 }
 
-//w’èƒCƒ“ƒfƒbƒNƒX‚ÌƒXƒg[ƒŠ[‚ğŠJn‚·‚é
+//æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã‚’é–‹å§‹ã™ã‚‹
 void CStoryList::StartStory(UINT index)
 {
-	gbl.ods("šCStoryList::StartStory * ‚Ü‚¾\n");
+	gbl.ods("â˜…CStoryList::StartStory * ã¾ã \n");
 }
 
-//w’èƒCƒ“ƒfƒbƒNƒX‚ÌƒXƒg[ƒŠ[–¼‚ğæ“¾‚·‚é
+//æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚¹ãƒˆãƒ¼ãƒªãƒ¼åã‚’å–å¾—ã™ã‚‹
 char* CStoryList::GetStoryName(UINT index)
 {
 	if(index>=list.size())return afo;
 	return list[index].name;
 }
 
-//w’èƒCƒ“ƒfƒbƒNƒX‚ÌƒXƒg[ƒŠ[–¼‚ğæ“¾‚·‚é
+//æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚¹ãƒˆãƒ¼ãƒªãƒ¼åã‚’å–å¾—ã™ã‚‹
 char* CStoryList::GetStoryDir(UINT index)
 {
 	if(index>=list.size())return afo;
 	return list[index].dir;
 }
 
-//w’èƒCƒ“ƒfƒbƒNƒX‚ÌƒXƒg[ƒŠ[ŠT—v‚ğæ“¾‚·‚é
+//æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚¹ãƒˆãƒ¼ãƒªãƒ¼æ¦‚è¦ã‚’å–å¾—ã™ã‚‹
 char* CStoryList::GetStoryBrief(UINT index)
 {
 	if(index>=list.size())return afo;
 	return list[index].brief;
 }
 
-//w’èƒCƒ“ƒfƒbƒNƒX‚ÌƒXƒg[ƒŠ[î•ñ‚ğæ“¾‚·‚é
+//æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚¹ãƒˆãƒ¼ãƒªãƒ¼æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 CStoryList::CStoryInfo* CStoryList::GetStoryInfo(UINT index)
 {
 	if(index>=list.size())return NULL;
 	return &(list[index]);
 }
 
-//ƒfƒBƒŒƒNƒgƒŠƒCƒ“ƒfƒbƒNƒX+ƒfƒBƒŒƒNƒgƒŠ“àƒCƒ“ƒfƒbƒNƒX‚©‚çA‘S‘Ì’Ê‚µ”Ô†‚ğæ“¾
+//ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹+ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå†…ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰ã€å…¨ä½“é€šã—ç•ªå·ã‚’å–å¾—
 int CStoryList::Ring2Index(UINT ridx,UINT idx)
 {
 	if(ridx>=rlist.size())return 0;
@@ -140,33 +140,33 @@ int CStoryList::Ring2Index(UINT ridx,UINT idx)
 	return rlist[ridx].ring2serial[idx];
 }
 
-//ƒfƒBƒŒƒNƒgƒŠ”æ“¾
+//ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªæ•°å–å¾—
 UINT CStoryList::GetRingNum()
 {
 	return rlist.size();
 }
 
-//w’èƒCƒ“ƒfƒbƒNƒX‚ÌƒfƒBƒŒƒNƒgƒŠ“à‚É‚ ‚éƒXƒg[ƒŠ[”æ“¾
+//æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå†…ã«ã‚ã‚‹ã‚¹ãƒˆãƒ¼ãƒªãƒ¼æ•°å–å¾—
 int CStoryList::GetRingCount(UINT idx)
 {
 	if(idx>=rlist.size())return 0;
 	return rlist[idx].ring2serial.size();
 }
 
-//“Ç‚İ‚İ‚É¸”s‚µ‚½ƒXƒg[ƒŠ[”æ“¾
+//èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ãŸã‚¹ãƒˆãƒ¼ãƒªãƒ¼æ•°å–å¾—
 int   CStoryList::GetErrorCount()
 {
 	return dlist.size();
 }
 
-//“Ç‚İ‚İ¸”s——Ræ“¾
+//èª­ã¿è¾¼ã¿å¤±æ•—ç†ç”±å–å¾—
 char* CStoryList::GetErrorStr(UINT idx)
 {
 	if(idx>=dlist.size())return afo;
 	return dlist[idx].brief;
 }
 
-//“Ç‚İ‚İ¸”sƒfƒBƒŒƒNƒgƒŠ
+//èª­ã¿è¾¼ã¿å¤±æ•—ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
 char* CStoryList::GetErrorDir(UINT idx)
 {
 	if(idx>=dlist.size())return afo;
@@ -174,30 +174,30 @@ char* CStoryList::GetErrorDir(UINT idx)
 }
 
 /*------------------------------------------------------------------------
-	ƒXƒNƒŠƒvƒg—v‘fƒŠƒXƒg‚©‚çAŠeíî•ñæ“¾
+	ã‚¹ã‚¯ãƒªãƒ—ãƒˆè¦ç´ ãƒªã‚¹ãƒˆã‹ã‚‰ã€å„ç¨®æƒ…å ±å–å¾—
 --------------------------------------------------------------------------*/
-//–¼‘Oæ“¾
+//åå‰å–å¾—
 char* CStoryList::GetName(SScriptElementList& scr)
 {
 	CStoryElement_Settings* set = GetSettingsFromScriptList(scr);
 	return set->title;
 }
 
-//ŠT—væ“¾
+//æ¦‚è¦å–å¾—
 char* CStoryList::GetBrief(SScriptElementList& scr)
 {
 	CStoryElement_Settings* set = GetSettingsFromScriptList(scr);
 	return set->brief;
 }
 
-//ƒLƒƒƒ‰ƒNƒ^æ“¾
+//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å–å¾—
 int* CStoryList::GetCharacters(SScriptElementList& scr)
 {
 	CStoryElement_Settings* set = GetSettingsFromScriptList(scr);
 	return set->characters;
 }
 
-//ƒGƒ‰[•¶š—ñæ“¾
+//ã‚¨ãƒ©ãƒ¼æ–‡å­—åˆ—å–å¾—
 char* CStoryList::GetFirstError(SScriptElementList& scr)
 {
 	SScriptElementList::iterator i =scr.begin();
@@ -211,7 +211,7 @@ char* CStoryList::GetFirstError(SScriptElementList& scr)
 	return NULL;
 }
 
-//!settings—v‘fæ“¾
+//!settingsè¦ç´ å–å¾—
 CStoryElement_Settings* CStoryList::GetSettingsFromScriptList(SScriptElementList& scr)
 {
 	CStoryElement_Settings* ret;
@@ -225,12 +225,12 @@ CStoryElement_Settings* CStoryList::GetSettingsFromScriptList(SScriptElementList
 			return ret;
 		}
 	}
-	throw;//‚µ‚ç‚ñ
+	throw;//ã—ã‚‰ã‚“
 }
 
 
 /*!
-*	w’èƒCƒ“ƒfƒbƒNƒX‚ÌƒAƒCƒRƒ“ƒtƒ@ƒCƒ‹–¼‚ğæ“¾‚·‚é
+*	æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚¢ã‚¤ã‚³ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å–å¾—ã™ã‚‹
 */
 void CStoryList::GetStoryIconPath(UINT index,char* dst)
 {
@@ -244,7 +244,7 @@ void CStoryList::GetStoryIconPath(UINT index,char* dst)
 }
 
 /*!
-*	w’èƒCƒ“ƒfƒbƒNƒX‚ÌƒvƒŒƒrƒ…[ƒtƒ@ƒCƒ‹–¼‚ğæ“¾‚·‚é
+*	æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å–å¾—ã™ã‚‹
 */
 void CStoryList::GetStoryPreviewPath(UINT index,char* dst)
 {
@@ -259,7 +259,7 @@ void CStoryList::GetStoryPreviewPath(UINT index,char* dst)
 
 
 /*------------------------------------------------------------------------
-	ƒŠƒXƒg—v‘fƒƒ\ƒbƒh
+	ãƒªã‚¹ãƒˆè¦ç´ ãƒ¡ã‚½ãƒƒãƒ‰
 --------------------------------------------------------------------------*/
 void CStoryList::CStoryInfo::Clear()
 {

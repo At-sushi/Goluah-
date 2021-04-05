@@ -1,20 +1,20 @@
-
+ï»¿
 /*!	
 *	@file
 *	@brief CDirectInput
 *
-*	ƒL[“ü—ÍŠÇ—ƒNƒ‰ƒXB
-*	“ü—Í‚ÌƒƒO‚ğ‚Æ‚èAƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚Ä‚¢‚éE‚¢‚È‚¢‚Ì”»’f‚¾‚¯‚Å‚È‚­A
-*	‰Ÿ‚µ‚Á‚Ï‚È‚µ‚Ìó‘Ô‚È‚Ì‚©AŒ»İƒtƒŒ[ƒ€‚Å‰Ÿ‚³‚ê‚½‚à‚Ì‚È‚Ì‚©‚à”»’f‚Å‚«‚éB
+*	ã‚­ãƒ¼å…¥åŠ›ç®¡ç†ã‚¯ãƒ©ã‚¹ã€‚
+*	å…¥åŠ›ã®ãƒ­ã‚°ã‚’ã¨ã‚Šã€ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹ãƒ»ã„ãªã„ã®åˆ¤æ–­ã ã‘ã§ãªãã€
+*	æŠ¼ã—ã£ã±ãªã—ã®çŠ¶æ…‹ãªã®ã‹ã€ç¾åœ¨ãƒ•ãƒ¬ãƒ¼ãƒ ã§æŠ¼ã•ã‚ŒãŸã‚‚ã®ãªã®ã‹ã‚‚åˆ¤æ–­ã§ãã‚‹ã€‚
 *	
-*	ƒL[ƒ{[ƒh‚Ì“ü—Í‚ÆƒpƒbƒhiDirectX8ˆÈã‚ÌDirectInput‚ğg—pj‚Ì
-*	—¼•û‚Ì“ü—Í‚ğ“ü—Í‚ğ‡¬‚µ‚Äˆ—‚·‚éB
+*	ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å…¥åŠ›ã¨ãƒ‘ãƒƒãƒ‰ï¼ˆDirectX8ä»¥ä¸Šã®DirectInputã‚’ä½¿ç”¨ï¼‰ã®
+*	ä¸¡æ–¹ã®å…¥åŠ›ã‚’å…¥åŠ›ã‚’åˆæˆã—ã¦å‡¦ç†ã™ã‚‹ã€‚
 *
 */
 
 #include "stdafx.h"
 
-#include "global.h"	//g_muki[g_muki],g_config ‚ª•K—v
+#include "global.h"	//g_muki[g_muki],g_config ãŒå¿…è¦
 #include "dx_input.h"
 
 
@@ -23,27 +23,27 @@
 
 #define INPUT_RECOVER_TASK_ID 'iptR'
 /*!
-*	@brief CDirectInput—pƒCƒxƒ“ƒgæ“¾ƒNƒ‰ƒX
+*	@brief CDirectInputç”¨ã‚¤ãƒ™ãƒ³ãƒˆå–å¾—ã‚¯ãƒ©ã‚¹
 *	@ingroup DirectX
 *
-*	CDirectInputƒNƒ‰ƒX‚ªƒpƒbƒh‚Ì•œ‹Aˆ—‚ğs‚¤‚½‚ß‚ÉWM_ACTIVATEƒƒbƒZ[ƒW‚ğE‚¤•K—v‚ª‚ ‚é
-*	‚»‚Ì‚½‚ß‚ÉƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒ^ƒXƒN‚Æ‚µ‚Ä“o˜^‚·‚é
-*	•œ‹A‚ÌÛ‚ÉƒOƒ[ƒoƒ‹‚Ì g_input ‚Ì RecoverDirectInput() ‚ğƒR[ƒ‹‚·‚é
+*	CDirectInputã‚¯ãƒ©ã‚¹ãŒãƒ‘ãƒƒãƒ‰ã®å¾©å¸°å‡¦ç†ã‚’è¡Œã†ãŸã‚ã«WM_ACTIVATEãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æ‹¾ã†å¿…è¦ãŒã‚ã‚‹
+*	ãã®ãŸã‚ã«ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‚¿ã‚¹ã‚¯ã¨ã—ã¦ç™»éŒ²ã™ã‚‹
+*	å¾©å¸°ã®éš›ã«ã‚°ãƒ­ãƒ¼ãƒãƒ«ã® g_input ã® RecoverDirectInput() ã‚’ã‚³ãƒ¼ãƒ«ã™ã‚‹
 *
-*	‚Ü‚½A–ˆƒtƒŒ[ƒ€ g_input ‚Ì KeyLog() ‚ğƒR[ƒ‹‚µ‚ÄƒL[ó‘ÔƒƒO‚ğ¶¬‚³‚¹‚é
+*	ã¾ãŸã€æ¯ãƒ•ãƒ¬ãƒ¼ãƒ  g_input ã® KeyLog() ã‚’ã‚³ãƒ¼ãƒ«ã—ã¦ã‚­ãƒ¼çŠ¶æ…‹ãƒ­ã‚°ã‚’ç”Ÿæˆã•ã›ã‚‹
 */
 class CInputRecoverListener : public CBackgroundTaskBase
 {
 public:
     DWORD GetID(){return INPUT_RECOVER_TASK_ID;}
 
-    BOOL Execute(DWORD time)//ƒL[ó‘ÔƒƒO‚ğ¶¬
+    BOOL Execute(DWORD time)//ã‚­ãƒ¼çŠ¶æ…‹ãƒ­ã‚°ã‚’ç”Ÿæˆ
     {
         g_input.KeyLog();
         return TRUE;
     }
 
-    void WndMessage(HWND hWnd,UINT msg,WPARAM wparam, LPARAM lparam)//!<ƒpƒbƒh‚Ì•œ‹Aˆ—
+    void WndMessage(HWND hWnd,UINT msg,WPARAM wparam, LPARAM lparam)//!<ãƒ‘ãƒƒãƒ‰ã®å¾©å¸°å‡¦ç†
     {
         if(msg==WM_ACTIVATE){
             g_input.RecoverDirectInput(wparam,lparam);
@@ -56,7 +56,7 @@ public:
 
 
 /*!
-*	@brief \’z
+*	@brief æ§‹ç¯‰
 */
 CDirectInput::CDirectInput()
 {
@@ -73,11 +73,11 @@ CDirectInput::CDirectInput()
 
 
 /*!
-*	@brief ‰Šú‰»
+*	@brief åˆæœŸåŒ–
 *
-*	@param hwnd ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‹B
-*				ƒpƒbƒh‚Ì“ü—Í•œ‹A‚Ì‚½‚ß‚É•K—v
-*	@return TRUE:¬Œ÷, FALSE:c”O
+*	@param hwnd ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«ã€‚
+*				ãƒ‘ãƒƒãƒ‰ã®å…¥åŠ›å¾©å¸°ã®ãŸã‚ã«å¿…è¦
+*	@return TRUE:æˆåŠŸ, FALSE:æ®‹å¿µ
 */
 BOOL CDirectInput::Initialize(HWND hwndg)
 {
@@ -85,17 +85,17 @@ BOOL CDirectInput::Initialize(HWND hwndg)
 
     hwnd = hwndg;
 
-    //ƒpƒbƒh
+    //ãƒ‘ãƒƒãƒ‰
     jsnum = 0;
     pdi=NULL;
     for(int i=0;i<DINPUT_MAX_GAMEPAD;i++)pdidev[i] = NULL;
     pdidev_kb = NULL;
 
-    ZeroMemory(keylog,sizeof(keylog));//ƒL[“ü—ÍƒƒO‚ğƒNƒŠƒA
-    keylognow=0;//ƒL[“ü—ÍƒƒO‰ŠúˆÊ’u
+    ZeroMemory(keylog,sizeof(keylog));//ã‚­ãƒ¼å…¥åŠ›ãƒ­ã‚°ã‚’ã‚¯ãƒªã‚¢
+    keylognow=0;//ã‚­ãƒ¼å…¥åŠ›ãƒ­ã‚°åˆæœŸä½ç½®
     keylocked = FALSE;
 
-    //WM_ACTIVATEæ“¾E–ˆƒtƒŒ[ƒ€ƒƒO¶¬ƒ^ƒCƒ~ƒ“ƒOæ“¾ ƒ^ƒXƒN
+    //WM_ACTIVATEå–å¾—ãƒ»æ¯ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ­ã‚°ç”Ÿæˆã‚¿ã‚¤ãƒŸãƒ³ã‚°å–å¾— ã‚¿ã‚¹ã‚¯
     g_system.AddTask( new CInputRecoverListener() );
 
     input_sleep_time = 0;
@@ -104,11 +104,11 @@ BOOL CDirectInput::Initialize(HWND hwndg)
 }
 
 /*!
-*	@brief ”jŠü
+*	@brief ç ´æ£„
 */
 void CDirectInput::Destroy()
 {
-    //WM_ACTIVATEæ“¾ƒ^ƒXƒNœ‹
+    //WM_ACTIVATEå–å¾—ã‚¿ã‚¹ã‚¯é™¤å»
     g_system.RemoveTask(INPUT_RECOVER_TASK_ID);
 
     CleanDInput();
@@ -117,17 +117,17 @@ void CDirectInput::Destroy()
 
 
 /*!
-*	@brief ƒL[ó‘ÔƒƒO¶¬
+*	@brief ã‚­ãƒ¼çŠ¶æ…‹ãƒ­ã‚°ç”Ÿæˆ
 *
-*	1ƒtƒŒ•ª‚Ì“ü—Í‚ğˆ—‚µAƒƒO‚ÌˆÊ’u‚ğXV‚·‚éB
-*	‚Ç‚Ì“ü—Í‚ğ‚Ç‚ÌƒvƒŒƒCƒ„[‚ÉŠ„‚è“–‚Ä‚é‚©‚ğ’m‚é‚½‚ß‚ÉAƒOƒ[ƒoƒ‹‚Ìg_config‚ğQÆ‚·‚éB
+*	1ãƒ•ãƒ¬åˆ†ã®å…¥åŠ›ã‚’å‡¦ç†ã—ã€ãƒ­ã‚°ã®ä½ç½®ã‚’æ›´æ–°ã™ã‚‹ã€‚
+*	ã©ã®å…¥åŠ›ã‚’ã©ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«å‰²ã‚Šå½“ã¦ã‚‹ã‹ã‚’çŸ¥ã‚‹ãŸã‚ã«ã€ã‚°ãƒ­ãƒ¼ãƒãƒ«ã®g_configã‚’å‚ç…§ã™ã‚‹ã€‚
 */
 void CDirectInput::KeyLog()
 {
     BYTE KeyState[256];
     PBYTE pkbstate = NULL;
 
-    //ClearKeyLog’¼Œã‚Ì–³ŒøŠÔ
+    //ClearKeyLogç›´å¾Œã®ç„¡åŠ¹æ™‚é–“
     if(input_sleep_time>0){
         input_sleep_time--;
         return;
@@ -138,7 +138,7 @@ void CDirectInput::KeyLog()
 
     if (pdidev_kb)
     {
-        // ƒL[Š“¾
+        // ã‚­ãƒ¼æ‰€å¾—
         HRESULT ret = pdidev_kb->GetDeviceState(256, KeyState);
 
         if ( SUCCEEDED(ret) )
@@ -165,14 +165,14 @@ void CDirectInput::KeyLog()
         keylog[p][keylognow] = KeyLog2(p,kb,pad,pkbstate);
         keylog[p][keylognow+256] = keylog[p][keylognow];
 
-        // ƒlƒbƒgƒL[F‘OƒtƒŒ[ƒ€‚Ìƒf[ƒ^‚ğƒRƒs[‚·‚é
-        // d‘g‚İ‚ª•sˆÀ’è‚È‚Ì‚Å‰ü—Ç‚·‚él‚Í—v’ˆÓ
+        // ãƒãƒƒãƒˆã‚­ãƒ¼ï¼šå‰ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
+        // ä»•çµ„ã¿ãŒä¸å®‰å®šãªã®ã§æ”¹è‰¯ã™ã‚‹äººã¯è¦æ³¨æ„
         SetKeyNet(p, GetKeyNet(p, 1));
     }
 }
 
 /*!
-*	@brief ƒL[ó‘ÔƒƒO¶¬(1PLAYER•ª)
+*	@brief ã‚­ãƒ¼çŠ¶æ…‹ãƒ­ã‚°ç”Ÿæˆ(1PLAYERåˆ†)
 *	@sa KeyLog
 */
 DWORD CDirectInput::KeyLog2(DWORD cid,int kb,int pad, PBYTE KeyState /* = NULL */)
@@ -263,12 +263,12 @@ DWORD CDirectInput::KeyLog2(DWORD cid,int kb,int pad, PBYTE KeyState /* = NULL *
 
 
 /*!
-*	@brief ƒL[“ü—ÍƒƒO‚ğƒNƒŠƒA
+*	@brief ã‚­ãƒ¼å…¥åŠ›ãƒ­ã‚°ã‚’ã‚¯ãƒªã‚¢
 *
-*	ƒL[“ü—ÍƒƒO‚Ìƒoƒbƒtƒ@[‚ğƒ[ƒƒNƒŠƒA‚·‚éB
-*	ƒ^ƒXƒNØ‚è‘Ö‚í‚è’¼Œã‚ÌŒë“®ì‚ğ–h‚²‚¤‚Æv‚Á‚½‚¯‚ÇA‚©‚¦‚Á‚Ä‚»‚ê‚ª‚æ‚­‚È‚©‚Á‚½B
-*	(‚¨‚µ‚Á‚Ï‚È‚µ‚Å‚ ‚Á‚Ä‚àA‚±‚Ì’¼Œã‚Éu‰Ÿ‚µ‚½uŠÔvƒtƒ‰ƒO‚ª—§‚Â)
-*	¡‚Í‚»‚Ì‘Îô‚ğu‚¶‚Ä‚İ‚½B
+*	ã‚­ãƒ¼å…¥åŠ›ãƒ­ã‚°ã®ãƒãƒƒãƒ•ã‚¡ãƒ¼ã‚’ã‚¼ãƒ­ã‚¯ãƒªã‚¢ã™ã‚‹ã€‚
+*	ã‚¿ã‚¹ã‚¯åˆ‡ã‚Šæ›¿ã‚ã‚Šç›´å¾Œã®èª¤å‹•ä½œã‚’é˜²ã”ã†ã¨æ€ã£ãŸã‘ã©ã€ã‹ãˆã£ã¦ãã‚ŒãŒã‚ˆããªã‹ã£ãŸã€‚
+*	(ãŠã—ã£ã±ãªã—ã§ã‚ã£ã¦ã‚‚ã€ã“ã®ç›´å¾Œã«ã€ŒæŠ¼ã—ãŸç¬é–“ã€ãƒ•ãƒ©ã‚°ãŒç«‹ã¤)
+*	ä»Šã¯ãã®å¯¾ç­–ã‚’è¬›ã˜ã¦ã¿ãŸã€‚
 */
 void CDirectInput::ClearKeyLog()
 {
@@ -291,14 +291,14 @@ void CDirectInput::ClearKeyLog()
 }
 
 /*!
-*	@brief iŠO•”‚©‚ç‚ÌjƒL[ó‘Ô‚Ìæ“¾
+*	@brief ï¼ˆå¤–éƒ¨ã‹ã‚‰ã®ï¼‰ã‚­ãƒ¼çŠ¶æ…‹ã®å–å¾—
 *
-*	‚±‚ÌŠÖ”‚ÍKeyLock ‚Æ COMƒK[ƒhƒL[‚ğl—¶‚·‚éB
-*	¶‚Ì“ü—Í‚ğ’¼Úæ‚è‚½‚¢‚Æ‚«‚ÍGetKey‚ğ—˜—p‚·‚éB
+*	ã“ã®é–¢æ•°ã¯KeyLock ã¨ COMã‚¬ãƒ¼ãƒ‰ã‚­ãƒ¼ã‚’è€ƒæ…®ã™ã‚‹ã€‚
+*	ç”Ÿã®å…¥åŠ›ã‚’ç›´æ¥å–ã‚ŠãŸã„ã¨ãã¯GetKeyã‚’åˆ©ç”¨ã™ã‚‹ã€‚
 */
 DWORD CDirectInput::GetKeyEx(
-                            DWORD cid,	//!< ƒL[“ü—ÍƒCƒ“ƒfƒbƒNƒX(PLAYER)
-                            DWORD ofst)	//!< ‰½ƒtƒŒ‘O‚Ì“ü—Í‚ğæ“¾‚·‚é‚©
+                            DWORD cid,	//!< ã‚­ãƒ¼å…¥åŠ›ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹(PLAYER)
+                            DWORD ofst)	//!< ä½•ãƒ•ãƒ¬å‰ã®å…¥åŠ›ã‚’å–å¾—ã™ã‚‹ã‹
 {
     CExclusiveTaskBase* bt = g_system.GetCurrentMainTask();
 
@@ -307,7 +307,7 @@ DWORD CDirectInput::GetKeyEx(
         return com_grd_key;
     }
 
-    // b’èİ’u
+    // æš«å®šè¨­ç½®
     if (bt && bt->GetID() == 'BtlN' && g_play.IsHost())
         return (GetKeyNet(cid, ofst));
 
@@ -318,7 +318,7 @@ DWORD CDirectInput::SetKeyNet(DWORD index,DWORD key)
 {
     DWORD keyold = GetKeyNet(index, 1);
 
-    // î•ñ—‚¿‚µ‚Ä‚é‚©‚à’m‚ê‚È‚¢‚©‚ç**2ƒtƒ‰ƒO‚ğ•t‚¯‚é
+    // æƒ…å ±è½ã¡ã—ã¦ã‚‹ã‹ã‚‚çŸ¥ã‚Œãªã„ã‹ã‚‰**2ãƒ•ãƒ©ã‚°ã‚’ä»˜ã‘ã‚‹
     if (key & KEYSTA_UP && !(keyold & KEYSTA_UP))
         key |= KEYSTA_UP2;
     if (key & KEYSTA_DOWN && !(keyold & KEYSTA_DOWN))
@@ -340,7 +340,7 @@ DWORD CDirectInput::SetKeyNet(DWORD index,DWORD key)
 }
 
 /*!
-*	@brief ¶‚ÌƒL[“ü—Í‚ğæ“¾‚·‚é
+*	@brief ç”Ÿã®ã‚­ãƒ¼å…¥åŠ›ã‚’å–å¾—ã™ã‚‹
 *	@sa GetKeyEx
 */
 DWORD CDirectInput::GetKey(DWORD cid,DWORD ofst)
@@ -352,7 +352,7 @@ DWORD CDirectInput::GetKey(DWORD cid,DWORD ofst)
 }
 
 /*!
-*	@brief ¶‚ÌƒL[“ü—Í‚ğæ“¾‚·‚é
+*	@brief ç”Ÿã®ã‚­ãƒ¼å…¥åŠ›ã‚’å–å¾—ã™ã‚‹
 *	@sa GetKeyEx
 */
 DWORD CDirectInput::GetKeyNet(DWORD cid,DWORD ofst)
@@ -364,13 +364,13 @@ DWORD CDirectInput::GetKeyNet(DWORD cid,DWORD ofst)
 }
 
 /*!
-*	@brief w’èƒL[“ü—Í‚ğƒƒO‚Ì’†‚©‚ç’T‚·
-*	@return 0ˆÈãFŒ©‚Â‚©‚Á‚½ˆÊ’u, ƒ}ƒCƒiƒXFŒ©‚Â‚©‚ç‚È‚©‚Á‚½
+*	@brief æŒ‡å®šã‚­ãƒ¼å…¥åŠ›ã‚’ãƒ­ã‚°ã®ä¸­ã‹ã‚‰æ¢ã™
+*	@return 0ä»¥ä¸Šï¼šè¦‹ã¤ã‹ã£ãŸä½ç½®, ãƒã‚¤ãƒŠã‚¹ï¼šè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸ
 */
-int CDirectInput::SeekKeyEx(DWORD cid,		//!< “ü—ÍƒCƒ“ƒfƒbƒNƒX(PLAYER)
-                            int offset,		//!< ŒŸõŠJnˆÊ’u
-                            int num_seek,	//!< ŒŸõI—¹ˆÊ’u
-                            DWORD key		//!< ŒŸõƒL[
+int CDirectInput::SeekKeyEx(DWORD cid,		//!< å…¥åŠ›ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹(PLAYER)
+                            int offset,		//!< æ¤œç´¢é–‹å§‹ä½ç½®
+                            int num_seek,	//!< æ¤œç´¢çµ‚äº†ä½ç½®
+                            DWORD key		//!< æ¤œç´¢ã‚­ãƒ¼
                             )
 {
     CExclusiveTaskBase* bt = g_system.GetCurrentMainTask();
@@ -378,7 +378,7 @@ int CDirectInput::SeekKeyEx(DWORD cid,		//!< “ü—ÍƒCƒ“ƒfƒbƒNƒX(PLAYER)
     if(keylocked)return(-1);
     if(com_grd_enabled)return(-1);
 
-    // b’èİ’u
+    // æš«å®šè¨­ç½®
     if (bt && bt->GetID() == 'BtlN' && g_play.IsHost())
         return (SeekKeyNet(cid, offset, num_seek, key));
 
@@ -386,7 +386,7 @@ int CDirectInput::SeekKeyEx(DWORD cid,		//!< “ü—ÍƒCƒ“ƒfƒbƒNƒX(PLAYER)
 }
 
 /*!
-*	@brief w’èƒL[“ü—Í‚ğƒƒO‚Ì’†‚©‚ç’T‚·
+*	@brief æŒ‡å®šã‚­ãƒ¼å…¥åŠ›ã‚’ãƒ­ã‚°ã®ä¸­ã‹ã‚‰æ¢ã™
 *	@sa SeekKeyEx
 */
 int CDirectInput::SeekKey(DWORD cid,int offset,int num_seek,DWORD key)
@@ -400,13 +400,13 @@ int CDirectInput::SeekKey(DWORD cid,int offset,int num_seek,DWORD key)
 }
 
 /*!
-*	@brief w’èƒL[“ü—Í‚ğƒƒO‚Ì’†‚©‚ç’T‚·
+*	@brief æŒ‡å®šã‚­ãƒ¼å…¥åŠ›ã‚’ãƒ­ã‚°ã®ä¸­ã‹ã‚‰æ¢ã™
 *	@sa SeekKeyEx
 */
 int CDirectInput::SeekKeyNet(DWORD cid,int offset,int num_seek,DWORD key)
 {
     for(int i=offset;i<num_seek;i++){
-        if((GetKeyNet(cid,i)& ((i == 0) ? 0x00001111 : 0x00003333)) == key){	// b’è‘[’ui©“®ƒ_ƒbƒVƒ…‚æ‚¯j
+        if((GetKeyNet(cid,i)& ((i == 0) ? 0x00001111 : 0x00003333)) == key){	// æš«å®šæªç½®ï¼ˆè‡ªå‹•ãƒ€ãƒƒã‚·ãƒ¥ã‚ˆã‘ï¼‰
             return(i);
         }
     }
@@ -428,13 +428,13 @@ DWORD CDirectInput::GetAllKey()
 }
 
 //********************************************************************
-// Direct Input ‰Šú‰»
+// Direct Input åˆæœŸåŒ–
 //********************************************************************
 
 BOOL CDirectInput::InitializePad()
 {
     if(!g_config.UseDInput()){
-        CSystem::Log("DirectInput(ƒpƒbƒh) ”ñg—p",SYSLOG_INFO);
+        CSystem::Log("DirectInput(ãƒ‘ãƒƒãƒ‰) éä½¿ç”¨",SYSLOG_INFO);
         return TRUE;
     }
 
@@ -452,44 +452,44 @@ BOOL CDirectInput::InitializePad()
     DWORD jsnum_detected=0;
     BOOL isOK;
 
-    //DirectInput8ƒIƒuƒWƒFƒNƒg‚Ìì¬
+    //DirectInput8ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
     if(DI_OK != DirectInput8Create(GetModuleHandle(NULL),
         DIRECTINPUT_VERSION,IID_IDirectInput8,(void**)&pdi,NULL)){
-        if(IDYES == MessageBox(hwnd,"ƒQ[ƒ€ƒpƒbƒh‚ªg—p‚Å‚«‚Ü‚¹‚ñB\n‘±s‚µ‚Ü‚·‚©H",
-            "DirectInput8Create ¸”s",MB_YESNO))
+        if(IDYES == MessageBox(hwnd,"ã‚²ãƒ¼ãƒ ãƒ‘ãƒƒãƒ‰ãŒä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚\nç¶šè¡Œã—ã¾ã™ã‹ï¼Ÿ",
+            "DirectInput8Create å¤±æ•—",MB_YESNO))
             return(TRUE);
         return(FALSE);
     }
-    //ƒfƒoƒCƒX‚Ì—ñ‹“Eì¬
+    //ãƒ‡ãƒã‚¤ã‚¹ã®åˆ—æŒ™ãƒ»ä½œæˆ
     res = pdi->EnumDevices(DI8DEVCLASS_GAMECTRL,EnumGamePad,(LPVOID)&jsnum_detected,DIEDFL_ATTACHEDONLY);
     if(res!=DI_OK){
-        g_system.Log("£InitDirectInput:EnumDevice‚É¸”s\n",SYSLOG_ERROR);
+        g_system.Log("â–²InitDirectInput:EnumDeviceã«å¤±æ•—\n",SYSLOG_ERROR);
         isOK=FALSE;
     }
 
-    //ƒfƒoƒCƒX‚Ìİ’è
+    //ãƒ‡ãƒã‚¤ã‚¹ã®è¨­å®š
     for(DWORD i=0;i<jsnum_detected;){
         isOK = TRUE;
 
-        if(DI_OK!=pdidev[i]->SetDataFormat(&c_dfDIJoystick)){//ƒf[ƒ^ƒtƒH[ƒ}ƒbƒg
-            g_system.Log("£InitDirectInput:ƒf[ƒ^ƒtƒH[ƒ}ƒbƒgİ’è‚É¸”s\n",SYSLOG_ERROR);
+        if(DI_OK!=pdidev[i]->SetDataFormat(&c_dfDIJoystick)){//ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+            g_system.Log("â–²InitDirectInput:ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆè¨­å®šã«å¤±æ•—\n",SYSLOG_ERROR);
             isOK=FALSE;
         }
-        if(DI_OK!=pdidev[i]->SetCooperativeLevel(hwnd,DISCL_EXCLUSIVE | DISCL_FOREGROUND)){//‹¦’²
-            g_system.Log("£InitDirectInput:‹¦’²ƒŒƒxƒ‹İ’è‚É¸”s\n",SYSLOG_ERROR);
+        if(DI_OK!=pdidev[i]->SetCooperativeLevel(hwnd,DISCL_EXCLUSIVE | DISCL_FOREGROUND)){//å”èª¿
+            g_system.Log("â–²InitDirectInput:å”èª¿ãƒ¬ãƒ™ãƒ«è¨­å®šã«å¤±æ•—\n",SYSLOG_ERROR);
             isOK=FALSE;
         }
-        if(DI_OK!=pdidev[i]->SetProperty(DIPROP_AXISMODE,&dip.diph)){//²ƒ‚[ƒh‚Ìİ’è
-            g_system.Log("£InitDirectInput:²ƒ‚[ƒhİ’è‚É¸”s\n",SYSLOG_ERROR);
+        if(DI_OK!=pdidev[i]->SetProperty(DIPROP_AXISMODE,&dip.diph)){//è»¸ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
+            g_system.Log("â–²InitDirectInput:è»¸ãƒ¢ãƒ¼ãƒ‰è¨­å®šã«å¤±æ•—\n",SYSLOG_ERROR);
             isOK=FALSE;
         }
-        //²‚ğ—ñ‹“‚µ‚Ä’l‚Ì”ÍˆÍ‚ğİ’è‚·‚é
+        //è»¸ã‚’åˆ—æŒ™ã—ã¦å€¤ã®ç¯„å›²ã‚’è¨­å®šã™ã‚‹
         if(DI_OK!=pdidev[i]->EnumObjects(EnumAxis,pdidev[i],DIDFT_AXIS)){
-            g_system.Log("£InitDirectInput:²’l”ÍˆÍİ’è‚É¸”s\n",SYSLOG_ERROR);
+            g_system.Log("â–²InitDirectInput:è»¸å€¤ç¯„å›²è¨­å®šã«å¤±æ•—\n",SYSLOG_ERROR);
             isOK=FALSE;
         }
         if(!isOK){
-            //‰½‚©‚Ìİ’è‚É¸”s‚µ‚½‚ç‚»‚ê‚ÍŠJ•ú‚µ‚Ä‚µ‚Ü‚¤
+            //ä½•ã‹ã®è¨­å®šã«å¤±æ•—ã—ãŸã‚‰ãã‚Œã¯é–‹æ”¾ã—ã¦ã—ã¾ã†
             RELEASE(pdidev[i]);
             if(i!=jsnum_detected-1){
                 pdidev[i] = pdidev[i+1];
@@ -502,26 +502,26 @@ BOOL CDirectInput::InitializePad()
         }
     }
 
-    // ƒL[ƒ{[ƒhƒfƒoƒCƒXŠ“¾
+    // ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ‡ãƒã‚¤ã‚¹æ‰€å¾—
     if ( SUCCEEDED(pdi->CreateDevice(GUID_SysKeyboard, &pdidev_kb, NULL)) )
     {
         isOK = TRUE;
 
         if ( FAILED(pdidev_kb->SetDataFormat(&c_dfDIKeyboard)) )
         {
-            g_system.Log("£InitDirectInput:ƒf[ƒ^ƒtƒH[ƒ}ƒbƒgİ’è‚É¸”s\n",SYSLOG_ERROR);
+            g_system.Log("â–²InitDirectInput:ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆè¨­å®šã«å¤±æ•—\n",SYSLOG_ERROR);
             isOK=FALSE;
         }
 
         if ( FAILED(pdidev_kb->SetCooperativeLevel(hwnd, DISCL_NONEXCLUSIVE | DISCL_FOREGROUND)) )
         {
-            g_system.Log("£InitDirectInput:‹¦’²ƒŒƒxƒ‹İ’è‚É¸”s\n",SYSLOG_ERROR);
+            g_system.Log("â–²InitDirectInput:å”èª¿ãƒ¬ãƒ™ãƒ«è¨­å®šã«å¤±æ•—\n",SYSLOG_ERROR);
             isOK=FALSE;
         }
 
         if (isOK)
         {
-            // ƒL[İ’è‚ğ•ÏŠ·
+            // ã‚­ãƒ¼è¨­å®šã‚’å¤‰æ›
             for (int i = 0; i < 2; i++)
             {
                 DIKeyState.key_up[i] = VirtKeyToDInputKey(g_config.keycfg.key_up[i]);
@@ -543,7 +543,7 @@ BOOL CDirectInput::InitializePad()
     return(TRUE);
 }
 
-//ƒQ[ƒ€ƒpƒbƒh—ñ‹“ƒR[ƒ‹ƒoƒbƒNŠÖ”
+//ã‚²ãƒ¼ãƒ ãƒ‘ãƒƒãƒ‰åˆ—æŒ™ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 BOOL FAR CALLBACK CDirectInput::EnumGamePad(LPCDIDEVICEINSTANCE lpddi,LPVOID pvref)
 {
 /*	typedef struct _GUID
@@ -574,18 +574,18 @@ BOOL FAR CALLBACK CDirectInput::EnumGamePad(LPCDIDEVICEINSTANCE lpddi,LPVOID pvr
     if( DI_OK != g_input.pdi->CreateDevice(lpddi->guidInstance,&(g_input.pdidev[num]),NULL) )
         return(DIENUM_CONTINUE);
     else{
-        strcpy(g_input.gamepadname[num],lpddi->tszInstanceName);//–¼‘O‚ğ•Û‘¶‚µ‚Ä‚¨‚­
+        strcpy(g_input.gamepadname[num],lpddi->tszInstanceName);//åå‰ã‚’ä¿å­˜ã—ã¦ãŠã
         (*(DWORD*)pvref)++;
     }
 
     if(*(DWORD*)pvref >= DINPUT_MAX_GAMEPAD){
-        return(DIENUM_STOP);//•K—v‚È•ªŒ©‚Â‚©‚Á‚½‚ç‚¨‚µ‚Ü‚¢
+        return(DIENUM_STOP);//å¿…è¦ãªåˆ†è¦‹ã¤ã‹ã£ãŸã‚‰ãŠã—ã¾ã„
     }
 
     return(DIENUM_CONTINUE);
 }
 
-//²‚Ì—ñ‹“E’l”ÍˆÍİ’è
+//è»¸ã®åˆ—æŒ™ãƒ»å€¤ç¯„å›²è¨­å®š
 BOOL FAR CALLBACK CDirectInput::EnumAxis(LPCDIDEVICEOBJECTINSTANCE lpddoi,LPVOID pvref)
 {
     DIPROPRANGE dip;
@@ -602,7 +602,7 @@ BOOL FAR CALLBACK CDirectInput::EnumAxis(LPCDIDEVICEOBJECTINSTANCE lpddoi,LPVOID
 }
 
 //********************************************************************
-// Direct Input Œãn––
+// Direct Input å¾Œå§‹æœ«
 // *******************************************************************
 void CDirectInput::CleanDInput()
 {
@@ -625,7 +625,7 @@ void CDirectInput::CleanDInput()
 }
 
 //***************************************************************************
-//  ƒpƒbƒhƒf[ƒ^‚Ìæ“¾
+//  ãƒ‘ãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
 //*****************************************************************************
 DWORD CDirectInput::GetPadState(int cid)
 {
@@ -664,14 +664,14 @@ DWORD CDirectInput::GetPadState(int cid)
 }
 
 //********************************************************************
-//  WM_ACTIVATE@•œ‹Aˆ—
+//  WM_ACTIVATEã€€å¾©å¸°å‡¦ç†
 // *******************************************************************
 void CDirectInput::RecoverDirectInput(WPARAM wParam,LPARAM lParam)
 {
     int i;
 
     if(pdi != NULL){
-        if(wParam == WA_INACTIVE){//”ñƒAƒNƒeƒBƒ”ó‘Ô
+        if(wParam == WA_INACTIVE){//éã‚¢ã‚¯ãƒ†ã‚£ãƒ´çŠ¶æ…‹
             for(i=0;i<DINPUT_MAX_GAMEPAD;i++){
                 if( pdidev[i] != NULL ){
                     pdidev[i]->Unacquire();
@@ -679,7 +679,7 @@ void CDirectInput::RecoverDirectInput(WPARAM wParam,LPARAM lParam)
             }
             pdidev_kb->Unacquire();
         }
-        else{//ƒAƒNƒeƒBƒ”ó‘Ô
+        else{//ã‚¢ã‚¯ãƒ†ã‚£ãƒ´çŠ¶æ…‹
             for(i=0;i<DINPUT_MAX_GAMEPAD;i++){
                 if( pdidev[i] != NULL ){
                     pdidev[i]->Acquire();
@@ -691,35 +691,35 @@ void CDirectInput::RecoverDirectInput(WPARAM wParam,LPARAM lParam)
 }
 
 //********************************************************************
-// ‰¼‘zƒL[‚ğDirectInputƒL[‚É•ÏŠ·
+// ä»®æƒ³ã‚­ãƒ¼ã‚’DirectInputã‚­ãƒ¼ã«å¤‰æ›
 //********************************************************************
 BYTE CDirectInput::VirtKeyToDInputKey(int vKey)
 {
-    // ”šƒL[i‚P`‚Xj
+    // æ•°å­—ã‚­ãƒ¼ï¼ˆï¼‘ï½ï¼™ï¼‰
     if (vKey >= '1' && vKey <= '9')
         return vKey - '1' + DIK_1;
 
-    // ƒtƒ@ƒ“ƒNƒVƒ‡ƒ“ƒL[i‚e‚P`‚e‚P‚Oj
+    // ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ï¼ˆï¼¦ï¼‘ï½ï¼¦ï¼‘ï¼ï¼‰
     if (vKey >= VK_F1 && vKey <= VK_F10)
         return vKey - VK_F1 + DIK_F1;
 
-    // ƒtƒ@ƒ“ƒNƒVƒ‡ƒ“ƒL[i‚e‚P‚P`‚e‚P‚Tj
+    // ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ï¼ˆï¼¦ï¼‘ï¼‘ï½ï¼¦ï¼‘ï¼•ï¼‰
     if (vKey >= VK_F11 && vKey <= VK_F15)
         return vKey - VK_F11 + DIK_F11;
 
-    // ƒeƒ“ƒL[i‚P`‚Rj
+    // ãƒ†ãƒ³ã‚­ãƒ¼ï¼ˆï¼‘ï½ï¼“ï¼‰
     if (vKey >= VK_NUMPAD1 && vKey <= VK_NUMPAD3)
         return vKey - VK_NUMPAD1 + DIK_NUMPAD1;
 
-    // ƒeƒ“ƒL[i‚S`‚Uj
+    // ãƒ†ãƒ³ã‚­ãƒ¼ï¼ˆï¼”ï½ï¼–ï¼‰
     if (vKey >= VK_NUMPAD4 && vKey <= VK_NUMPAD6)
         return vKey - VK_NUMPAD4 + DIK_NUMPAD4;
 
-    // ƒeƒ“ƒL[i‚V`‚Xj
+    // ãƒ†ãƒ³ã‚­ãƒ¼ï¼ˆï¼—ï½ï¼™ï¼‰
     if (vKey >= VK_NUMPAD7 && vKey <= VK_NUMPAD9)
         return vKey - VK_NUMPAD7 + DIK_NUMPAD7;
 
-    // ƒ”ƒ@ƒ‰ƒ”ƒ@ƒ‰‚Ì‚â‚Â‚ğ‚³‚Î‚­
+    // ãƒ´ã‚¡ãƒ©ãƒ´ã‚¡ãƒ©ã®ã‚„ã¤ã‚’ã•ã°ã
     switch (vKey)
     {
     case VK_ESCAPE:
@@ -884,7 +884,7 @@ BYTE CDirectInput::VirtKeyToDInputKey(int vKey)
     case VK_SEPARATOR:
         return DIK_NUMPADENTER;
 
-    // ˆÈ‰ºAA-Z
+    // ä»¥ä¸‹ã€A-Z
 
     case 'Q':
         return DIK_Q;
@@ -965,7 +965,7 @@ BYTE CDirectInput::VirtKeyToDInputKey(int vKey)
         return DIK_M;
     }
 
-    return vKey;	// –³‚©‚Á‚½‚Ì‚Å‚Æ‚è‚ ‚¦‚¸‚»‚Ì‚Ü‚Ü‘—‚Á‚Ä‚İ‚éi‚¨‚¢jB
+    return vKey;	// ç„¡ã‹ã£ãŸã®ã§ã¨ã‚Šã‚ãˆãšãã®ã¾ã¾é€ã£ã¦ã¿ã‚‹ï¼ˆãŠã„ï¼‰ã€‚
 }
 
 void CDirectInput::InitializeEffects()
@@ -980,7 +980,7 @@ void CDirectInput::InitializeEffects()
 
     diEnvelope.dwSize = sizeof(diEnvelope);
 
-    // ('A`)ÏİÄŞ¸¾
+    // ('A`)ï¾ï¾ï¾„ï¾ï½¸ï½¾
     ZeroMemory(&diEffect, sizeof(diEffect));
     diEffect.dwSize = sizeof(diEffect);
     diEffect.dwFlags = DIEFF_CARTESIAN | DIEFF_OBJECTOFFSETS;
@@ -1006,7 +1006,7 @@ void CDirectInput::InitializeEffects()
             diEnvelope.dwFadeTime = (DWORD)(0.05 * DI_SECONDS);
             diEffect.dwDuration = (DWORD)(0.0625 * DI_SECONDS * pow(2.0, i));
 
-            // ì‚Á‚Æ‚±B
+            // ä½œã£ã¨ã“ã€‚
             pdidev[i]->CreateEffect(GUID_ConstantForce, &diEffect, &pdieffect[i][0], NULL);
             pdidev[i]->CreateEffect(GUID_ConstantForce, &diEffect, &pdieffect[i][1], NULL);
             pdidev[i]->CreateEffect(GUID_ConstantForce, &diEffect, &pdieffect[i][2], NULL);
@@ -1014,7 +1014,7 @@ void CDirectInput::InitializeEffects()
     }
 }
 
-// ƒtƒH[ƒX‚Ì—Í‚¾B
+// ãƒ•ã‚©ãƒ¼ã‚¹ã®åŠ›ã ã€‚
 void CDirectInput::StartForce(DWORD cid, DWORD num)
 {
     if(num>=3) return;

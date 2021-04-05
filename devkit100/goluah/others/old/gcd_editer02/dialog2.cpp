@@ -1,4 +1,4 @@
-#include <windows.h>
+Ôªø#include <windows.h>
 #include <stdio.h>
 #include <d3d8.h>
 #include <d3dx8.h>
@@ -51,7 +51,7 @@ BOOL CALLBACK DialogProc2(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 			ed_c[edit_now].cell[radio2].rot  = atoi(str);
 			EndDialog(hwndDlg,0);
 			break;
-		case IDCANCEL:EndDialog(hwndDlg,0);break;//ÉLÉÉÉìÉZÉãÇ≥ÇÍÇΩ
+		case IDCANCEL:EndDialog(hwndDlg,0);break;//„Ç≠„É£„É≥„Çª„É´„Åï„Çå„Åü
 		}
 	default:return(FALSE);
 	}

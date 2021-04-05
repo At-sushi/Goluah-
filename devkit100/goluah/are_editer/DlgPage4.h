@@ -1,9 +1,9 @@
-#pragma once
+ï»¿#pragma once
 
 #include "CelleditDlg.h"
 #include "afxwin.h"
 
-// CDlgPage4 ƒ_ƒCƒAƒƒO
+// CDlgPage4 ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 class CDlgPage4 : public CMyDialogTab
 {
@@ -12,18 +12,18 @@ class CDlgPage4 : public CMyDialogTab
 public:
 	static CDlgPage4 *m_pinstance;
 	
-	CDlgPage4(CWnd* pParent = NULL);   // •W€ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	CDlgPage4(CWnd* pParent = NULL);   // æ¨™æº–ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~CDlgPage4();
-	void UpdateItems();//•\¦•¨XV
+	void UpdateItems();//è¡¨ç¤ºç‰©æ›´æ–°
 
-// ƒ_ƒCƒAƒƒO ƒf[ƒ^
+// ãƒ€ã‚¤ã‚¢ãƒ­ã‚° ãƒ‡ãƒ¼ã‚¿
 	enum { IDD = IDD_DIALOG_TAB4 };
 
 	void SetNParent(CCelleditDlg* p){m_niseParent=p;}
 	CCelleditDlg *m_niseParent;
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ƒTƒ|[ƒg
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ã‚µãƒãƒ¼ãƒˆ
 
 	DECLARE_MESSAGE_MAP()
 public:

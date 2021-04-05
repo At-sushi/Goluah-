@@ -1,26 +1,26 @@
-#pragma once
+Ôªø#pragma once
 
 
-// CDlgPage1 É_ÉCÉAÉçÉO
+// CDlgPage1 „ÉÄ„Ç§„Ç¢„É≠„Ç∞
 
 class CDlgPage1 : public CCfgDialogBase
 {
 	DECLARE_DYNAMIC(CDlgPage1)
 
 public:
-	CDlgPage1(CWnd* pParent = NULL);   // ïWèÄÉRÉìÉXÉgÉâÉNÉ^
+	CDlgPage1(CWnd* pParent = NULL);   // Ê®ôÊ∫ñ„Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	virtual ~CDlgPage1();
 
 	virtual void Reset();
 
-// É_ÉCÉAÉçÉO ÉfÅ[É^
+// „ÉÄ„Ç§„Ç¢„É≠„Ç∞ „Éá„Éº„Çø
 	enum { IDD = IDD_DIALOG_PAGE1 };
 
 	void UpdateSettings();
 
 	DECLARE_MESSAGE_MAP()
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ÉTÉ|Å[Ég
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV „Çµ„Éù„Éº„Éà
 
 public:
 	virtual BOOL OnInitDialog();

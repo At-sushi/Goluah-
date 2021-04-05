@@ -1,19 +1,19 @@
-
+Ôªø
 /*==============================================================
 
-	îÚìπãÔÉNÉâÉXíËã`
+	È£õÈÅìÂÖ∑„ÇØ„É©„ÇπÂÆöÁæ©
 
 ================================================================*/
 #include "character.h"
 
 
 /***************************************************************
-	îÚìπãÔÇÃèâä˙âª(CCharacter)
+	È£õÈÅìÂÖ∑„ÅÆÂàùÊúüÂåñ(CCharacter)
 ****************************************************************/
 void CCharacter::InitBullets()
 {
-	// íçÅFîÚìπãÔÉNÉâÉXÇÕGOBJMSG_DELETEÉÅÉbÉZÅ[ÉWÇ≈ CGoluahObject ÇÃ
-	// gMessageToObjectä÷êîì‡Ç≈îjä¸Ç≥ÇÍÇÈÇÃÇ≈ÅAdeleteÇµÇƒÇÕÇ¢ÇØÇ»Ç¢ÅB
+	// Ê≥®ÔºöÈ£õÈÅìÂÖ∑„ÇØ„É©„Çπ„ÅØGOBJMSG_DELETE„É°„ÉÉ„Çª„Éº„Ç∏„Åß CGoluahObject „ÅÆ
+	// gMessageToObjectÈñ¢Êï∞ÂÜÖ„ÅßÁ†¥Ê£Ñ„Åï„Çå„Çã„ÅÆ„Åß„ÄÅdelete„Åó„Å¶„ÅØ„ÅÑ„Åë„Å™„ÅÑ„ÄÇ
 
 	pefe_re = new CReiku_Re(this);
 	pefe_i = new CReiku_I(this);
@@ -33,7 +33,7 @@ void CCharacter::InitBullets()
 
 
 /***************************************************************
-	ÅuÉåÉCÉNÅvï∂éöÉGÉtÉFÉNÉg
+	„Äå„É¨„Ç§„ÇØ„ÄçÊñáÂ≠ó„Ç®„Éï„Çß„ÇØ„Éà
 ****************************************************************/
 
 CReiku_Base::CReiku_Base(CCharacter *parent) : CBulletBase(parent)
@@ -56,26 +56,26 @@ void CReiku_Base::act_bomb()
 	ChangeAction(CBB_STATE_IDLE);
 }
 
-//Éå
+//„É¨
 CReiku_Re::CReiku_Re(CCharacter *parent) : CReiku_Base(parent)
 {
 	m_reiku_cell = CELL_REIKU_RE0;
 }
 
-//ÉC
+//„Ç§
 CReiku_I::CReiku_I(CCharacter *parent) : CReiku_Base(parent)
 {
 	m_reiku_cell = CELL_REIKU_I0;
 }
 
-//ÉN
+//„ÇØ
 CReiku_Ku::CReiku_Ku(CCharacter *parent) : CReiku_Base(parent)
 {
 	m_reiku_cell = CELL_REIKU_KU0;
 }
 
 /***************************************************************
-	É_ÉbÉVÉÖéûïóÉGÉtÉFÉNÉg
+	„ÉÄ„ÉÉ„Ç∑„É•ÊôÇÈ¢®„Ç®„Éï„Çß„ÇØ„Éà
 ****************************************************************/
 
 CDashWind::CDashWind(CCharacter *parent) : CBulletBase(parent)
@@ -102,7 +102,7 @@ void CDashWind::act_bomb()
 
 
 /***************************************************************
-	îgìÆåùÅiîÚÇŒÇ»Ç¢Åj
+	Ê≥¢ÂãïÊã≥ÔºàÈ£õ„Å∞„Å™„ÅÑÔºâ
 ****************************************************************/
 
 CHadouKenA::CHadouKenA(CCharacter *parent) : CHadouKen(parent)
@@ -132,7 +132,7 @@ void CHadouKenA::act_bomb()
 
 void CHadouKenA::act_base()
 {
-	float t = ((float)pdat->counter/m_duration) ;//0Å®1
+	float t = ((float)pdat->counter/m_duration) ;//0‚Üí1
 	if(t>1.0f){
 		ChangeAction(CBB_STATE_IDLE);
 		return;
@@ -153,7 +153,7 @@ void CHadouKenA::GoA(BOOL muki,double x,double y,float duration,ATTACKINFO *atk)
 }
 
 /***************************************************************
-	îgìÆåùÅiîÚÇ‘Åj
+	Ê≥¢ÂãïÊã≥ÔºàÈ£õ„Å∂Ôºâ
 ****************************************************************/
 
 CHadouKenB::CHadouKenB(CCharacter *parent) : CHadouKen(parent)
@@ -204,7 +204,7 @@ void CHadouKenB::Hit()
 
 
 /***************************************************************
-	ÉOÉbÉoÉCÅEÉtÉHÅ[ÉGÉoÅ[
+	„Ç∞„ÉÉ„Éê„Ç§„Éª„Éï„Ç©„Éº„Ç®„Éê„Éº
 ****************************************************************/
 CGoodbye::CGoodbye(CCharacter *parent) : CHadouKenA(parent)
 {
@@ -236,7 +236,7 @@ void CGoodbye::GoA(BOOL muki,double x,double y,float duration,ATTACKINFO *atk)
 }
 
 /*---------------------------------------------------------------
-	ÉçÉPÉbÉg?
+	„É≠„Ç±„ÉÉ„Éà?
 -----------------------------------------------------------------*/
 /*CRocket::CRocket(CCharacterBase* parent,ATTACKINFO& atk) : CBulletBase(parent)
 {
@@ -349,7 +349,7 @@ DWORD CRocket::Draw()
 
 
 /*---------------------------------------------------------------
-	ÉCÉåÉCÉTÅ["99"
+	„Ç§„É¨„Ç§„Çµ„Éº"99"
 -----------------------------------------------------------------*/
 
 /*CEraser99::CEraser99(CCharacterBase* parent,ATTACKINFO& atk) : CBulletBase(parent)

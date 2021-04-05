@@ -1,4 +1,4 @@
-#include <windows.h>
+ï»¿#include <windows.h>
 #include <stdio.h>
 #include <math.h>
 #include <d3d8.h>
@@ -134,20 +134,20 @@ void DrawLINE(HWND hwnd,int sx,int gx,int sy,int gy,DWORD type)
 HFONT SetMyFont(LPCTSTR face, int h,int fontwaight=FW_NORMAL)
 {
     HFONT hFont;
-    hFont = CreateFont(h,    //ƒtƒHƒ“ƒg‚‚³
-        0,                    //•¶Žš•
-        0,                    //ƒeƒLƒXƒg‚ÌŠp“x
-        0,                    //ƒx[ƒXƒ‰ƒCƒ“‚Æ‚˜Ž²‚Æ‚ÌŠp“x
-        fontwaight,            //ƒtƒHƒ“ƒg‚Ìd‚³i‘¾‚³j
-        FALSE,                //ƒCƒ^ƒŠƒbƒN‘Ì
-        FALSE,                //ƒAƒ“ƒ_[ƒ‰ƒCƒ“
-        FALSE,                //‘Å‚¿Á‚µü
-        SHIFTJIS_CHARSET,    //•¶ŽšƒZƒbƒg
-        OUT_DEFAULT_PRECIS,    //o—Í¸“x
-        CLIP_DEFAULT_PRECIS,//ƒNƒŠƒbƒsƒ“ƒO¸“x
-        PROOF_QUALITY,        //o—Í•iŽ¿
-        FIXED_PITCH | FF_MODERN,//ƒsƒbƒ`‚Æƒtƒ@ƒ~ƒŠ[
-        face);    //‘‘Ì–¼
+    hFont = CreateFont(h,    //ãƒ•ã‚©ãƒ³ãƒˆé«˜ã•
+        0,                    //æ–‡å­—å¹…
+        0,                    //ãƒ†ã‚­ã‚¹ãƒˆã®è§’åº¦
+        0,                    //ãƒ™ãƒ¼ã‚¹ãƒ©ã‚¤ãƒ³ã¨ï½˜è»¸ã¨ã®è§’åº¦
+        fontwaight,            //ãƒ•ã‚©ãƒ³ãƒˆã®é‡ã•ï¼ˆå¤ªã•ï¼‰
+        FALSE,                //ã‚¤ã‚¿ãƒªãƒƒã‚¯ä½“
+        FALSE,                //ã‚¢ãƒ³ãƒ€ãƒ¼ãƒ©ã‚¤ãƒ³
+        FALSE,                //æ‰“ã¡æ¶ˆã—ç·š
+        SHIFTJIS_CHARSET,    //æ–‡å­—ã‚»ãƒƒãƒˆ
+        OUT_DEFAULT_PRECIS,    //å‡ºåŠ›ç²¾åº¦
+        CLIP_DEFAULT_PRECIS,//ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ç²¾åº¦
+        PROOF_QUALITY,        //å‡ºåŠ›å“è³ª
+        FIXED_PITCH | FF_MODERN,//ãƒ”ãƒƒãƒã¨ãƒ•ã‚¡ãƒŸãƒªãƒ¼
+        face);    //æ›¸ä½“å
     return hFont;
 }
 
@@ -161,7 +161,7 @@ void DrawBlueText(HDC hdc,RECT r,char *text,int len,DWORD method,int hh)
 		r.bottom/=2;
 	}*/
 
-	HFONT hfont1 = SetMyFont("‚l‚r ‚oƒSƒVƒbƒN",hh);
+	HFONT hfont1 = SetMyFont("ï¼­ï¼³ ï¼°ã‚´ã‚·ãƒƒã‚¯",hh);
 	HFONT hfontold = (HFONT)SelectObject(hdc,hfont1);
 	int oldmode = SetBkMode(hdc,TRANSPARENT);
 

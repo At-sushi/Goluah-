@@ -1,9 +1,9 @@
-
+ï»¿
 /*=======================================================================================
 
-	•\¦Œnƒx[ƒX
+	è¡¨ç¤ºç³»ãƒ™ãƒ¼ã‚¹
 
-	‰æ–Êã•\¦•¨ƒx[ƒXƒNƒ‰ƒX
+	ç”»é¢ä¸Šè¡¨ç¤ºç‰©ãƒ™ãƒ¼ã‚¹ã‚¯ãƒ©ã‚¹
 
 =========================================================================================*/
 
@@ -16,16 +16,16 @@
 
 /*=======================================================================================
 
-	ƒŠƒ“ƒOóƒAƒCƒRƒ“•\¦&‘I‘ğƒNƒ‰ƒX
+	ãƒªãƒ³ã‚°çŠ¶ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º&é¸æŠã‚¯ãƒ©ã‚¹
 
 =========================================================================================*/
 
 /*-----------------------------------------------------------
-	‰Šú‰»
+	åˆæœŸåŒ–
 -------------------------------------------------------------*/
 void CTIconRingBase::Initialize()
 {
-	//ƒpƒ‰ƒ[ƒ^ƒŠƒZƒbƒg
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒªã‚»ãƒƒãƒˆ
 	m_counter = 0;
 	m_state = CTCRS_NotReady;
 	m_radius_base = 120;
@@ -37,7 +37,7 @@ void CTIconRingBase::Initialize()
 
 
 /*-----------------------------------------------------------
-	”jŠü
+	ç ´æ£„
 -------------------------------------------------------------*/
 void CTIconRingBase::Terminate()
 {
@@ -47,28 +47,28 @@ void CTIconRingBase::Terminate()
 
 
 /*-----------------------------------------------------------
-	‘€ìEÀs
+	æ“ä½œãƒ»å®Ÿè¡Œ
 -------------------------------------------------------------*/
 BOOL CTIconRingBase::Execute(DWORD time)
 {
 	CTIconRingState sta_prv = m_state;
 
 	switch(m_state){
-	case CTCRS_NotReady://oŒ»’†
+	case CTCRS_NotReady://å‡ºç¾ä¸­
 		Exec_NotReady();break;
-	case CTCRS_Ready://‘I‘ğ‰Â”\
+	case CTCRS_Ready://é¸æŠå¯èƒ½
 		Exec_Ready();break;
-	case CTCRS_RotateRight://‰E‰ñ“]’†
+	case CTCRS_RotateRight://å³å›è»¢ä¸­
 		Exec_RotateRight();break;
-	case CTCRS_RotateLeft://¶‰ñ“]’†
+	case CTCRS_RotateLeft://å·¦å›è»¢ä¸­
 		Exec_RotateLeft();break;
-	case CTCRS_ChangeUp://ƒŠƒ“ƒOã•ÏX’†
+	case CTCRS_ChangeUp://ãƒªãƒ³ã‚°ä¸Šå¤‰æ›´ä¸­
 		Exec_ChangeUp();break;
-	case CTCRS_ChangeDown://ƒŠƒ“ƒO‰º•ÏX’†
+	case CTCRS_ChangeDown://ãƒªãƒ³ã‚°ä¸‹å¤‰æ›´ä¸­
 		Exec_ChangeDown();break;
-	case CTCRS_Hide://Á¸ƒAƒjƒ[ƒVƒ‡ƒ“
+	case CTCRS_Hide://æ¶ˆå¤±ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
 		Exec_Hide();break;
-	case CTCRS_Restore://•œ‹AƒAƒjƒ[ƒVƒ‡ƒ“
+	case CTCRS_Restore://å¾©å¸°ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
 		Exec_Restore();break;
 	}
 
@@ -79,10 +79,10 @@ BOOL CTIconRingBase::Execute(DWORD time)
 	return TRUE;
 }
 
-//ŠJnƒAƒjƒ[ƒVƒ‡ƒ“
+//é–‹å§‹æ™‚ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
 void CTIconRingBase::Exec_NotReady()
 {
-	double tick = (m_counter - 30.0)/30.0 ;// -1 ¨ 0
+	double tick = (m_counter - 30.0)/30.0 ;// -1 â†’ 0
 
 	m_rotation2 = tick*400.0f;
 	m_alpha =  (BYTE)( (1.0+tick)* 255 );
@@ -93,22 +93,22 @@ void CTIconRingBase::Exec_NotReady()
 
 void CTIconRingBase::Exec_Ready()
 {
-	//ƒ[ƒe[ƒVƒ‡ƒ“Šm’è
+	//ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ç¢ºå®š
 	m_alpha = 255;
 	m_radius_ratio = 1;
 
-	//ƒL[ˆ—
+	//ã‚­ãƒ¼å‡¦ç†
 	if(m_keyindex>=0 && m_sleepCount==0){
 		DWORD keystate = g_input.GetKey(m_keyindex,0);
-		//ƒ{ƒ^ƒ“‰Ÿ‚³‚ê‚½
+		//ãƒœã‚¿ãƒ³æŠ¼ã•ã‚ŒãŸ
 		if(keystate & KEYSTA_BA2){OnButtonDown(KEYSTA_BA2);}
 		else if(keystate & KEYSTA_BD2){OnButtonDown(KEYSTA_BD2);}
 		else if(keystate & KEYSTA_BB2){OnButtonDown(KEYSTA_BB2);}
 		else if(keystate & KEYSTA_BC2){OnButtonDown(KEYSTA_BC2);}
-		//©E¨
+		//â†ãƒ»â†’
 		else if(keystate & KEYSTA_ARIGHT && g_input.SeekKey(m_keyindex, 1, 30, KEYSTA_ARIGHT2) < 0 &&
 				this->m_counter >= 5){
-			// •Ï‚ÈğŒ•ªŠò‚¾‚ªA—v‚·‚é‚ÉSeekKey‚Éˆø‚Á‚©‚©‚ç‚È‚¯‚ê‚Î^B
+			// å¤‰ãªæ¡ä»¶åˆ†å²ã ãŒã€è¦ã™ã‚‹ã«SeekKeyã«å¼•ã£ã‹ã‹ã‚‰ãªã‘ã‚Œã°çœŸã€‚
 			if(m_selected_index==0)m_selected_index =GetMaxIndex(m_selected_ring)-1;
 			else m_selected_index--;
 			m_state = CTCRS_RotateLeft;
@@ -118,7 +118,7 @@ void CTIconRingBase::Exec_Ready()
 		}
 		else if(keystate & KEYSTA_ALEFT && g_input.SeekKey(m_keyindex, 1, 30, KEYSTA_ALEFT2) < 0 &&
 				this->m_counter >= 5){
-			// •Ï‚ÈğŒ•ªŠò‚¾‚ªA—v‚·‚é‚ÉSeekKey‚Éˆø‚Á‚©‚©‚ç‚È‚¯‚ê‚Î^B
+			// å¤‰ãªæ¡ä»¶åˆ†å²ã ãŒã€è¦ã™ã‚‹ã«SeekKeyã«å¼•ã£ã‹ã‹ã‚‰ãªã‘ã‚Œã°çœŸã€‚
 			m_selected_index++;
 			if((int)m_selected_index >= GetMaxIndex(m_selected_ring))
 				m_selected_index=0;
@@ -127,7 +127,7 @@ void CTIconRingBase::Exec_Ready()
 			Exec_RotateRight();
 			OnChangeIndex();
 		}
-		//ªE«(ƒŠƒ“ƒO•ÏX)
+		//â†‘ãƒ»â†“(ãƒªãƒ³ã‚°å¤‰æ›´)
 		else if( keystate & KEYSTA_UP2 ){
 			m_previous_ring = m_selected_ring;
 			m_previous_index = m_selected_index;
@@ -185,13 +185,13 @@ void CTIconRingBase::Exec_RotateLeft()
 
 void CTIconRingBase::Exec_ChangeUp()
 {
-	double tick = m_counter/30.0;//0 ¨ 1
+	double tick = m_counter/30.0;//0 â†’ 1
 
 	m_rotation2 = (1.0-tick)*270.0f;
 	m_radius_ratio = 1 + 2*(1-tick);
 	m_radius_ratio2 = 1-tick;
 
-	//ƒ¿
+	//Î±
 	m_alpha  = (BYTE)(tick * 255);
 	m_alpha2 = 255 - m_alpha;
 
@@ -200,13 +200,13 @@ void CTIconRingBase::Exec_ChangeUp()
 
 void CTIconRingBase::Exec_ChangeDown()
 {
-	double tick = m_counter/30.0;//0 ¨ 1
+	double tick = m_counter/30.0;//0 â†’ 1
 
 	m_rotation2 = (1.0-tick)*270.0f;
 	m_radius_ratio = tick;
 	m_radius_ratio2 = 1 + 2*(tick);
 
-	//ƒ¿
+	//Î±
 	m_alpha  = (BYTE)(tick * 255);
 	m_alpha2 = 255 - m_alpha;
 
@@ -214,10 +214,10 @@ void CTIconRingBase::Exec_ChangeDown()
 }
 
 
-//I—¹ƒAƒjƒ[ƒVƒ‡ƒ“ŠJn
+//çµ‚äº†æ™‚ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹
 void CTIconRingBase::Exec_Hide()
 {
-	double tick = (30.0 - m_counter)/30.0 ;// 0 ¨ -1
+	double tick = (30.0 - m_counter)/30.0 ;// 0 â†’ -1
 
 	m_rotation2 = tick*400.0f;
 	m_alpha =  (BYTE)( (1.0+tick)* 255 );
@@ -226,10 +226,10 @@ void CTIconRingBase::Exec_Hide()
 	if(m_counter>=30)m_state = CTCRS_HideComplete;
 }
 
-//•œ‹A
+//å¾©å¸°
 void CTIconRingBase::Exec_Restore()
 {
-	double tick = (m_counter - 30.0)/30.0 ;// -1 ¨ 0
+	double tick = (m_counter - 30.0)/30.0 ;// -1 â†’ 0
 
 	m_rotation2 = (1.0-tick)*300.0f;
 	m_alpha =  (BYTE)( (1.0+tick)* 255 );
@@ -244,26 +244,26 @@ void CTIconRingBase::Exec_Restore()
 
 
 /*-----------------------------------------------------------
-	‘€ì
+	æ“ä½œ
 -------------------------------------------------------------*/
 
-//ƒL[“ü—Íƒ\[ƒXİ’è
+//ã‚­ãƒ¼å…¥åŠ›ã‚½ãƒ¼ã‚¹è¨­å®š
 void CTIconRingBase::SetKeyInputIndex(int i)
 {
 	m_keyindex=i;
-	m_sleepCount = 5;//•ÏX‚³‚ê‚½‚Æ‚«‚¢‚«‚È‚èŒˆ’è‚µ‚Ä‚µ‚Ü‚¤‚Ì‚ğ‰ñ”ğ
+	m_sleepCount = 5;//å¤‰æ›´ã•ã‚ŒãŸã¨ãã„ããªã‚Šæ±ºå®šã—ã¦ã—ã¾ã†ã®ã‚’å›é¿
 }
 
-//•œ‹A
+//å¾©å¸°
 void CTIconRingBase::Restore()
 {
-	m_sleepCount = 5;//•ÏX‚³‚ê‚½‚Æ‚«‚¢‚«‚È‚èŒˆ’è‚µ‚Ä‚µ‚Ü‚¤‚Ì‚ğ‰ñ”ğ
+	m_sleepCount = 5;//å¤‰æ›´ã•ã‚ŒãŸã¨ãã„ããªã‚Šæ±ºå®šã—ã¦ã—ã¾ã†ã®ã‚’å›é¿
 	m_state = CTCRS_Restore;
 	m_counter = 0;
 }
 
 /*-----------------------------------------------------------
-	•`‰æ
+	æç”»
 -------------------------------------------------------------*/
 void CTIconRingBase::Draw()
 {
@@ -294,21 +294,21 @@ void CTIconRingBase::Draw()
 	ring_y_len = m_height;
 	drot=360.0 / r_num;
 	rotbase = (360.0/r_num)*m_selected_index;
-	for(i=0;i<r_num;i++)//ƒƒCƒ“ƒŠƒ“ƒO•`‰æ
+	for(i=0;i<r_num;i++)//ãƒ¡ã‚¤ãƒ³ãƒªãƒ³ã‚°æç”»
 	{
-		//À•WZo
+		//åº§æ¨™ç®—å‡º
 		rot = (drot)*i - rotbase + m_rotation2 + 90 ;
-		rot = rot/180.0*3.1415;//rad‚É•ÏŠ·
+		rot = rot/180.0*3.1415;//radã«å¤‰æ›
 		x = ring_x_len*(cos(rot)) ;
 		y = ring_y_len*(sin(rot)) ;
 		z = y*-0.01;
 		if (i==m_selected_index)
-			z += -0.02;	// ‘I‘ğ‚³‚ê‚Ä‚é‚Ì‚¾‚¯‘O‚Éo‚·
-		//•â³
+			z += -0.02;	// é¸æŠã•ã‚Œã¦ã‚‹ã®ã ã‘å‰ã«å‡ºã™
+		//è£œæ­£
 		adj = (1.0+(z/camz));
 		x *= adj;
 		y *= adj;
-		//‘I‘ğ‚³‚ê‚Ä‚¢‚é‚â‚Â‚ğ‘å‚«‚­•\¦
+		//é¸æŠã•ã‚Œã¦ã„ã‚‹ã‚„ã¤ã‚’å¤§ããè¡¨ç¤º
 		adj_sel = (m_state==CTCRS_Ready ? (i==m_selected_index ? 1.2 : 1.0) : 1.0);
 		dds = GetIcon(m_selected_ring,i) ;
 		if(!dds)dds=gbl.GetBlankIcon();
@@ -321,7 +321,7 @@ void CTIconRingBase::Draw()
 			g_draw.MyBlt3D( dds,r_face,rdst,0,GetColor(m_selected_ring,i) | ((DWORD)m_alpha<<24) );
 		}
 	}
-	if(m_state==CTCRS_ChangeUp || m_state==CTCRS_ChangeDown)//Á¸ƒŠƒ“ƒO•`‰æ
+	if(m_state==CTCRS_ChangeUp || m_state==CTCRS_ChangeDown)//æ¶ˆå¤±ãƒªãƒ³ã‚°æç”»
 	{
 		r_num = GetMaxIndex(m_previous_ring);
 		ring_x_len = m_radius_base * m_radius_ratio2;
@@ -330,13 +330,13 @@ void CTIconRingBase::Draw()
 		rotbase = (360.0/r_num)*m_previous_index;
 		for(i=0;i<r_num;i++)
 		{
-			//À•WZo
+			//åº§æ¨™ç®—å‡º
 			rot = (drot)*i - rotbase - m_rotation2 + 90 ;
-			rot = rot/180.0*3.1415;//rad‚É•ÏŠ·
+			rot = rot/180.0*3.1415;//radã«å¤‰æ›
 			x = ring_x_len*(cos(rot)) ;
 			y = ring_y_len*(sin(rot)) ;
 			z = y*-0.01;
-			//•â³
+			//è£œæ­£
 			adj = (1.0+(z/camz));
 			x *= adj;
 			y *= adj;
@@ -357,7 +357,7 @@ void CTIconRingBase::Draw()
 
 
 /*-----------------------------------------------------------
-	I—¹E‘å‚«‚­‚µ‚ÄÁ‚·
+	çµ‚äº†ãƒ»å¤§ããã—ã¦æ¶ˆã™
 -------------------------------------------------------------*/
 void CTIconRingBase::Hide()
 {
@@ -369,14 +369,14 @@ void CTIconRingBase::Hide()
 
 /*=======================================================================================
 
-	ƒEƒBƒ“ƒhƒE•\¦Šî–{ƒNƒ‰ƒX
-	’P‚ÉƒvƒŠƒ~ƒeƒBƒu‚ÅlŠpŒ`•`‚­‚¾‚¯
+	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºåŸºæœ¬ã‚¯ãƒ©ã‚¹
+	å˜ã«ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã§å››è§’å½¢æãã ã‘
 
 =========================================================================================*/
 
 void CTWindowBase::Initialize()
 {
-	//ƒpƒ‰ƒ[ƒ^‰Šú’l
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸå€¤
 	m_ratio			= 0.0f;
 //	m_winwidth		= 100.0f;
 //	m_winheight		= 100.0f;
@@ -411,7 +411,7 @@ BOOL CTWindowBase::Execute(DWORD time)
 			if(m_ratio<0.0f)m_ratio=0.0f;
 		}break;
 	}
-	m_ratio = m_ratio * m_ratio; // 2æ
+	m_ratio = m_ratio * m_ratio; // 2ä¹—
 	m_counter++;
 
 	return TRUE;
@@ -478,13 +478,13 @@ void CTWindowBase::Close()
 
 
 /*------------------------------------------------------------------
-	ƒeƒLƒXƒg•`‰æBƒEƒCƒ“ƒhƒE‚ÌƒTƒCƒY‚É‡‚í‚¹‚Ä•`‰æ‚µ‚Ä‚­‚¾‚³‚éB
-	ˆø”‚ÍCSystem‚ÌDrawBMPText‚Æˆê‚¾‚¯‚ÇAˆÊ’u‚ÍƒEƒCƒ“ƒhƒE“à‚Å‚ÌˆÊ’u
+	ãƒ†ã‚­ã‚¹ãƒˆæç”»ã€‚ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºã«åˆã‚ã›ã¦æç”»ã—ã¦ãã ã•ã‚‹ã€‚
+	å¼•æ•°ã¯CSystemã®DrawBMPTextã¨ä¸€ç·’ã ã‘ã©ã€ä½ç½®ã¯ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…ã§ã®ä½ç½®
 --------------------------------------------------------------------*/
 void CTWindowBase::DrawText(float x,float y,float z,
 		char *str,DWORD col,float scaX,float scaY,DWORD flags)
 {
-	//ƒXƒP[ƒ‹‚·‚é
+	//ã‚¹ã‚±ãƒ¼ãƒ«ã™ã‚‹
 	x *= m_ratio;
 	y *= m_ratio;
 	scaX *= m_ratio;
@@ -500,11 +500,11 @@ void CTWindowBase::DrawText(float x,float y,float z,
 
 /*=======================================================================================
 
-	”wŒiƒIƒrŠî–{ƒNƒ‰ƒX
+	èƒŒæ™¯ã‚ªãƒ“åŸºæœ¬ã‚¯ãƒ©ã‚¹
 
 =========================================================================================*/
 
-//ƒpƒ‰ƒ[ƒ^ƒŠƒZƒbƒg
+//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒªã‚»ãƒƒãƒˆ
 CTBeltBase::CTBeltBase()
 {
 	strcpy(m_disp_str,"");
@@ -515,14 +515,14 @@ CTBeltBase::CTBeltBase()
 	m_ratio = 1.0f;
 }
 
-//m_top , m_bottomZo
+//m_top , m_bottomç®—å‡º
 void CTBeltBase::CalcTopBottom()
 {
 	m_top    = m_base_y - m_height_base * m_ratio*m_ratio *0.5f;
 	m_bottom = m_base_y + m_height_base * m_ratio*m_ratio *0.5f;
 }
 
-//•`‰æ
+//æç”»
 void CTBeltBase::Draw()
 {
 	if(m_ratio<0.02f)return;
@@ -545,7 +545,7 @@ void CTBeltBase::Draw()
 	vb[4].x = 640.0f / 240.0f;
 	vb[5].x = vb[4].x;
 
-	//ƒ¿İ’è€”õ
+	//Î±è¨­å®šæº–å‚™
 	DWORD alpha1,alpha2,alpha3;
 	switch(m_pos)
 	{
@@ -572,7 +572,7 @@ void CTBeltBase::Draw()
 
 	
 
-	//F‚Â‚«ƒ‰ƒCƒ“•`‰æ
+	//è‰²ã¤ããƒ©ã‚¤ãƒ³æç”»
 	if(m_lineWidth > 0.1f)
 	{
 
@@ -583,7 +583,7 @@ void CTBeltBase::Draw()
 		vb[4].color = m_lineCol | alpha3 ;
 		vb[5].color = m_lineCol | alpha3 ;
 
-		//F‚Â‚«Eã
+		//è‰²ã¤ããƒ»ä¸Š
 		vb[0].y = (m_top-m_lineWidth) / 240.0f;
 		vb[1].y = (m_top) / 240.0f;
 		vb[2].y = vb[0].y;
@@ -592,7 +592,7 @@ void CTBeltBase::Draw()
 		vb[5].y = vb[1].y;
 		g_draw.d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,4,vb,sizeof(MYVERTEX3D));
 
-		//F‚Â‚«E‰º
+		//è‰²ã¤ããƒ»ä¸‹
 		vb[0].y = (m_bottom) / 240.0f;
 		vb[1].y = (m_bottom+m_lineWidth) / 240.0f;
 		vb[2].y = vb[0].y;
@@ -603,7 +603,7 @@ void CTBeltBase::Draw()
 	}
 
 
-	//”’’n
+	//ç™½åœ°
 	vb[0].color = m_bodyCol | alpha1 ;
 	vb[1].color = m_bodyCol | alpha1 ;
 	vb[2].color = m_bodyCol | alpha2 ;
@@ -620,11 +620,11 @@ void CTBeltBase::Draw()
 	g_draw.d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,4,vb,sizeof(MYVERTEX3D));
 
 
-	//•¶š•`‰æ
+	//æ–‡å­—æç”»
 	if(m_show_text){
 		DWORD txtflg = SYSBMPTXT_PROP;
 		if(m_txtR2L)txtflg += SYSBMPTXT_R2L;
-		int txtZure = 3;//‰e‚Â‚¯‚¸‚ç‚µ—Ê
+		int txtZure = 3;//å½±ã¤ã‘ãšã‚‰ã—é‡
 		if(m_txtTop){
 			g_system.DrawBMPTextEx(m_txtLeft+txtZure,m_top+txtZure,0,m_disp_str,m_txtCol1,1.0f,m_ratio,txtflg);
 			g_system.DrawBMPTextEx(m_txtLeft+txtZure,m_top+33+txtZure,0,m_disp_str2,m_txtCol1,1.0f,m_ratio,txtflg);

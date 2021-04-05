@@ -1,10 +1,10 @@
-
+﻿
 /*!
 *	@file
-*	@brief GCD�`���f�[�^��舵����`
+*	@brief GCD形式データ取り扱い定義
 *
-*	Goluah!!�{�̂ƁA��`�G�f�B�^�iare_editer�j����Q�Ƃ���܂�
-*	GCD_EDITER�̒�`�̗L���ɂ���Đ؂�ւ��܂��B
+*	Goluah!!本体と、矩形エディタ（are_editer）から参照されます
+*	GCD_EDITERの定義の有無によって切り替えます。
 */
 #pragma once
 
@@ -18,15 +18,15 @@
 
 //---------------------------------------------------------------------
 /*!
-	@brief GCD�`���f�[�^��舵���N���X
+	@brief GCD形式データ取り扱いクラス
 
-	���static�ŕ��ʂ̊֐��Ƃ��Ďg�p����B
-	��`�G�f�B�^�̏ꍇ�͂��̃N���X�̃C���X�^���X���f�[�^�̃Z�b�g�Ƃ��Ĉ����B
+	主にstaticで普通の関数として使用する。
+	矩形エディタの場合はこのクラスのインスタンスをデータのセットとして扱う。
 */
 class CGCDHandler
 {
-// �X�^�e�B�b�N----------------------------------------------------------
-//���ǂݍ���
+// スタティック----------------------------------------------------------
+//■読み込み
 public:
 
 #ifdef GCD_EDITER
@@ -34,40 +34,40 @@ static BOOL GCDLoadDlg(GCD_CELL2 *pcdat,GCD_RECT *prdat,
 				GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames=NULL);
 #endif//GCD_EDITER
 
-//!GCD�t�@�C����ǂݍ���
-static int GCDLoad(char *filename,				//!< [in] �ǂݍ��ރt�@�C����
-				   LPVOID pcdat,				//!< [out] �Z���f�[�^�Ǎ���o�b�t�@
-				   LPVOID prdat,				//!< [out] �؂����`�f�[�^�Ǎ���o�b�t�@ 
-				   LPVOID phdat,				//!< [out] �����蔻���`�Ǎ���o�b�t�@
-				   LPVOID pfhnames=NULL,		//!< [out] �Z����`���Ǎ���o�b�t�@
-				   DWORD version=GCD_VERSION	//!< [in] �w�肳�ꂽ�Ǎ���o�b�t�@���ǂ̃o�[�W�����̍\���̂ŗp�ӂ���Ă��邩
+//!GCDファイルを読み込み
+static int GCDLoad(char *filename,				//!< [in] 読み込むファイル名
+				   LPVOID pcdat,				//!< [out] セルデータ読込先バッファ
+				   LPVOID prdat,				//!< [out] 切り取り矩形データ読込先バッファ 
+				   LPVOID phdat,				//!< [out] あたり判定矩形読込先バッファ
+				   LPVOID pfhnames=NULL,		//!< [out] セル定義名読込先バッファ
+				   DWORD version=GCD_VERSION	//!< [in] 指定された読込先バッファがどのバージョンの構造体で用意されているか
 				   );
-//!�o�[�W����0.70�̃t�@�C����ǂݍ���
-static int GCDLoad070(HANDLE hFile,				//!< [in] �ǂݍ��ރt�@�C��
-				  LPVOID pcdat,					//!< [out] �Z���f�[�^�Ǎ���o�b�t�@
-				   LPVOID prdat,				//!< [out] �؂����`�f�[�^�Ǎ���o�b�t�@ 
-				   LPVOID phdat,				//!< [out] �����蔻���`�Ǎ���o�b�t�@
-				   LPVOID pfhnames=NULL,		//!< [out] �Z����`���Ǎ���o�b�t�@
-				   DWORD version=GCD_VERSION	//!< [in] �w�肳�ꂽ�Ǎ���o�b�t�@���ǂ̃o�[�W�����̍\���̂ŗp�ӂ���Ă��邩
+//!バージョン0.70のファイルを読み込み
+static int GCDLoad070(HANDLE hFile,				//!< [in] 読み込むファイル
+				  LPVOID pcdat,					//!< [out] セルデータ読込先バッファ
+				   LPVOID prdat,				//!< [out] 切り取り矩形データ読込先バッファ 
+				   LPVOID phdat,				//!< [out] あたり判定矩形読込先バッファ
+				   LPVOID pfhnames=NULL,		//!< [out] セル定義名読込先バッファ
+				   DWORD version=GCD_VERSION	//!< [in] 指定された読込先バッファがどのバージョンの構造体で用意されているか
 				  );
-//!�o�[�W����0.90�̃t�@�C����ǂݍ���
+//!バージョン0.90のファイルを読み込み
 static int GCDLoad090(HANDLE hFile,
-				  LPVOID pcdat,					//!< [out] �Z���f�[�^�Ǎ���o�b�t�@
-				  LPVOID prdat,					//!< [out] �؂����`�f�[�^�Ǎ���o�b�t�@ 
-				  LPVOID phdat,					//!< [out] �����蔻���`�Ǎ���o�b�t�@
-				  LPVOID pfhnames=NULL,			//!< [out] �Z����`���Ǎ���o�b�t�@
-				  DWORD version=GCD_VERSION		//!< [in] �w�肳�ꂽ�Ǎ���o�b�t�@���ǂ̃o�[�W�����̍\���̂ŗp�ӂ���Ă��邩
+				  LPVOID pcdat,					//!< [out] セルデータ読込先バッファ
+				  LPVOID prdat,					//!< [out] 切り取り矩形データ読込先バッファ 
+				  LPVOID phdat,					//!< [out] あたり判定矩形読込先バッファ
+				  LPVOID pfhnames=NULL,			//!< [out] セル定義名読込先バッファ
+				  DWORD version=GCD_VERSION		//!< [in] 指定された読込先バッファがどのバージョンの構造体で用意されているか
 				  );
-//!���k�ς݃t�@�C����ǂݍ���
-static int GCDLoadCompressed(char *filename,		//!< [in] �ǂݍ��ރt�@�C����
-				   LPVOID pcdat,				//!< [out] �Z���f�[�^�Ǎ���o�b�t�@
-				   LPVOID prdat,				//!< [out] �؂����`�f�[�^�Ǎ���o�b�t�@ 
-				   LPVOID phdat,				//!< [out] �����蔻���`�Ǎ���o�b�t�@
-				   LPVOID pfhnames=NULL,		//!< [out] �Z����`���Ǎ���o�b�t�@
-				   DWORD version=GCD_VERSION	//!< [in] �w�肳�ꂽ�Ǎ���o�b�t�@���ǂ̃o�[�W�����̍\���̂ŗp�ӂ���Ă��邩
+//!圧縮済みファイルを読み込み
+static int GCDLoadCompressed(char *filename,		//!< [in] 読み込むファイル名
+				   LPVOID pcdat,				//!< [out] セルデータ読込先バッファ
+				   LPVOID prdat,				//!< [out] 切り取り矩形データ読込先バッファ 
+				   LPVOID phdat,				//!< [out] あたり判定矩形読込先バッファ
+				   LPVOID pfhnames=NULL,		//!< [out] セル定義名読込先バッファ
+				   DWORD version=GCD_VERSION	//!< [in] 指定された読込先バッファがどのバージョンの構造体で用意されているか
 				   );
 
-//���ۑ� �i�ۑ��ɓn���o�b�t�@�͏�ɍŐV�̃o�[�W�����ł��邱�Ƃ����肳���j
+//■保存 （保存に渡すバッファは常に最新のバージョンであることが仮定される）
 public:
 #ifdef GCD_EDITER
 static BOOL GCDSaveDlg(GCD_CELL2 *pcdat,GCD_RECT *prdat,
@@ -81,7 +81,7 @@ static int GCDSaveCompressed(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prdat,
 			 GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames=NULL);
 #endif//GCD_EDITER
 
-//�����̑����[�e�B���e�B
+//■その他ユーティリティ
 #ifdef GCD_EDITER
 static void GCDSetInitialData(GCD_CELL2 *pcdat,GCD_RECT *prdat,
 					   GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames);
@@ -94,7 +94,7 @@ static void GCDConvCell_070_090(GCD_CELL2_070 *src,GCD_CELL2 *dst);
 static void GCDConvCell_090_070(GCD_CELL2 *src,GCD_CELL2_070 *dst);
 
 
-// �_�C�i�~�b�N�i�H�j---------------------------------------------------
+// ダイナミック（？）---------------------------------------------------
 public:
 	CGCDHandler();
 	~CGCDHandler(){Destroy();}
@@ -115,10 +115,10 @@ public:
 	BOOL Save();
 	#endif//GCD_EDITER
 
-	GCD_CELL2		*m_cdat;	//!< �Z���f�[�^
-	GCD_RECT		*m_rdat;	//!< ��`�f�[�^
-	GCD_HANTEI		*m_hdat;	//!< �����蔻��f�[�^
-	GCD_CELLNAMES	*m_names;	//!< ��`��
+	GCD_CELL2		*m_cdat;	//!< セルデータ
+	GCD_RECT		*m_rdat;	//!< 矩形データ
+	GCD_HANTEI		*m_hdat;	//!< あたり判定データ
+	GCD_CELLNAMES	*m_names;	//!< 定義名
 };
 
 /*@}*/

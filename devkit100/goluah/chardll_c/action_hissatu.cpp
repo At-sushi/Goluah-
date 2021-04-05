@@ -1,17 +1,17 @@
-
+ï»¿
 /*==============================================================
 
-	•KE
+	å¿…æ®º
 
 ================================================================*/
 #include "character.h"
 
 
 /*----------------------------------------------------------------
-	ƒ|ƒC (Aƒ‹[ƒg)
+	ãƒã‚¤ (Aãƒ«ãƒ¼ãƒˆ)
 ------------------------------------------------------------------*/
 
-//‚¨’ƒ
+//ãŠèŒ¶
 void CCharacter::act_poi_ocya()
 {
 	if(ccounter==0)PlayMySound(wave_poi_1a);
@@ -27,7 +27,7 @@ void CCharacter::act_poi_ocya()
 	}
 }
 
-//ƒWƒGƒ“
+//ã‚¸ã‚¨ãƒ³
 void CCharacter::act_poi_jien()
 {
 	if(ccounter==0)PlayMySound(wave_poi_1b);
@@ -43,7 +43,7 @@ void CCharacter::act_poi_jien()
 	}
 }
 
-//ƒAƒƒGƒŠ[ƒi
+//ã‚¢ãƒ­ã‚¨ãƒªãƒ¼ãƒŠ
 void CCharacter::act_poi_aroe()
 {
 	if(ccounter==0)PlayMySound(wave_poi_1c);
@@ -59,7 +59,7 @@ void CCharacter::act_poi_aroe()
 	}
 }
 
-//ƒ‚ƒEƒRƒlƒGƒˆ
+//ãƒ¢ã‚¦ã‚³ãƒã‚¨ãƒ¨
 void CCharacter::act_poi_moukoneeyo()
 {
 	if(ccounter==0)PlayMySound(wave_poi_1d);
@@ -78,7 +78,7 @@ void CCharacter::act_poi_moukoneeyo()
 	}
 }
 
-//ƒ~ƒTƒCƒ‹i…•½j
+//ãƒŸã‚µã‚¤ãƒ«ï¼ˆæ°´å¹³ï¼‰
 void CCharacter::act_poi_missile_h()
 {
 	if(ccounter==0)PlayMySound(wave_poi_1e);
@@ -113,23 +113,23 @@ void CCharacter::act_poi_missile_h()
 	}
 }
 
-//ƒ~ƒTƒCƒ‹ˆêÄ”­Ë
+//ãƒŸã‚µã‚¤ãƒ«ä¸€æ–‰ç™ºå°„
 void CCharacter::act_poi_missileSP()
 {
 	if(ccounter==0)PlayMySound(wave_poi_1f);
 	if(ccounter < 50)
 	{
-		//…•½x4
+		//æ°´å¹³x4
 		act_poi_missile_h();
 	}
 	else if(ccounter < 50+40)
 	{
-		//‚’¼x4
+		//å‚ç›´x4
 		act_poi_missile_v2( ccounter%10 );
 	}
 	else if(ccounter < 50+40+50)
 	{
-		//…•½x4
+		//æ°´å¹³x4
 		pdat->counter -= 50+40;
 		act_poi_missile_h();
 		pdat->counter += 50+40;
@@ -139,10 +139,10 @@ void CCharacter::act_poi_missileSP()
 
 
 /*----------------------------------------------------------------
-	ƒ|ƒC (Bƒ‹[ƒg)
+	ãƒã‚¤ (Bãƒ«ãƒ¼ãƒˆ)
 ------------------------------------------------------------------*/
 
-//ƒnƒ“ƒhƒOƒŒƒl[ƒh
+//ãƒãƒ³ãƒ‰ã‚°ãƒ¬ãƒãƒ¼ãƒ‰
 void CCharacter::act_poi_handg()
 {
 	if(ccounter==0)PlayMySound(wave_poi_2a);
@@ -158,7 +158,7 @@ void CCharacter::act_poi_handg()
 	}
 }
 
-//ƒNƒŒƒCƒ‚ƒA
+//ã‚¯ãƒ¬ã‚¤ãƒ¢ã‚¢
 void CCharacter::act_poi_craymore()
 {
 	if(ccounter==0)PlayMySound(wave_poi_2b);
@@ -174,7 +174,7 @@ void CCharacter::act_poi_craymore()
 	}
 }
 
-//ƒWƒƒƒbƒNEƒ‰ƒ“ƒ^ƒ“
+//ã‚¸ãƒ£ãƒƒã‚¯ãƒ»ãƒ©ãƒ³ã‚¿ãƒ³
 void CCharacter::act_poi_lantern()
 {
 	if(ccounter==0)PlayMySound(wave_poi_2c);
@@ -193,7 +193,7 @@ void CCharacter::act_poi_lantern()
 	}
 }
 
-//‰Î‰Š•úË
+//ç«ç‚æ”¾å°„
 void CCharacter::act_poi_firethrow()
 {
 	if(ccounter==0)PlayMySound(wave_poi_2d);
@@ -218,7 +218,7 @@ void CCharacter::act_poi_firethrow()
 	}
 }
 
-//ƒwƒ‹ƒtƒ@ƒCƒA
+//ãƒ˜ãƒ«ãƒ•ã‚¡ã‚¤ã‚¢
 void CCharacter::act_poi_hellfire()
 {
 	if(ccounter==0)PlayMySound(wave_poi_2e);
@@ -254,10 +254,10 @@ void CCharacter::act_poi_hellfire()
 
 
 /*----------------------------------------------------------------
-	ƒ|ƒC (Cƒ‹[ƒg)
+	ãƒã‚¤ (Cãƒ«ãƒ¼ãƒˆ)
 ------------------------------------------------------------------*/
 
-//ƒVƒ‡ƒbƒgƒKƒ“
+//ã‚·ãƒ§ãƒƒãƒˆã‚¬ãƒ³
 void CCharacter::act_poi_shot()
 {
 	if(ccounter==0)PlayMySound(wave_poi_3a);
@@ -291,7 +291,7 @@ void CCharacter::act_poi_shot()
 	}
 }
 
-//ƒ‰ƒCƒtƒ‹(?)
+//ãƒ©ã‚¤ãƒ•ãƒ«(?)
 void CCharacter::act_poi_rifle()
 {
 	if(ccounter==0)PlayMySound(wave_poi_3b);
@@ -302,7 +302,7 @@ void CCharacter::act_poi_rifle()
 	else if(ccounter<4)cell(CELL_RIFLE2);
 	else if(ccounter<6)cell(CELL_RIFLE3);
 	else if(ccounter<8)cell(CELL_RIFLE4);
-	else if(ccounter<10+kamae)cell(CELL_RIFLE5);//\‚¦ , shot!!
+	else if(ccounter<10+kamae)cell(CELL_RIFLE5);//æ§‹ãˆ , shot!!
 	else if(ccounter<12+kamae+2)cell(CELL_RIFLE6);
 	else if(ccounter<12+kamae+4)cell(CELL_RIFLE7);
 	else if(ccounter<12+kamae+6)cell(CELL_RIFLE8);
@@ -319,7 +319,7 @@ void CCharacter::act_poi_rifle()
 	}
 }
 
-//–³”½“®–C(H)
+//ç„¡åå‹•ç ²(ï¼Ÿ)
 void CCharacter::act_poi_rocket()
 {
 	if(ccounter==0)PlayMySound(wave_poi_3c);
@@ -349,7 +349,7 @@ void CCharacter::act_poi_rocket()
 }
 
 
-//ƒ~ƒTƒCƒ‹i‚’¼j
+//ãƒŸã‚µã‚¤ãƒ«ï¼ˆå‚ç›´ï¼‰
 void CCharacter::act_poi_missile_v()
 {
 	act_poi_missile_v2( ccounter%15 );
@@ -386,7 +386,7 @@ void CCharacter::act_poi_missile_v2(UINT counter)
 	}
 }
 
-//http ƒŒ[ƒU[
+//http ãƒ¬ãƒ¼ã‚¶ãƒ¼
 void CCharacter::act_poi_httplaser()
 {
 	if(ccounter==0)PlayMySound(wave_poi_3e);
@@ -416,7 +416,7 @@ void CCharacter::act_poi_httplaser()
 	}
 }
 
-//ƒCƒŒƒCƒT[99
+//ã‚¤ãƒ¬ã‚¤ã‚µãƒ¼99
 void CCharacter::act_poi_eraser99()
 {
 	UINT spd = 2;
@@ -467,7 +467,7 @@ void CCharacter::act_poi_eraser99()
 
 
 /*----------------------------------------------------------------
-	‚à‚â‚à‚â
+	ã‚‚ã‚„ã‚‚ã‚„
 ------------------------------------------------------------------*/
 void CCharacter::act_moyamoya()
 {
@@ -500,7 +500,7 @@ void CCharacter::act_moyamoya3()
 }
 
 /*----------------------------------------------------------------
-	ƒuƒ‰ƒbƒfƒB[Eƒ_ƒbƒR
+	ãƒ–ãƒ©ãƒƒãƒ‡ã‚£ãƒ¼ãƒ»ãƒ€ãƒƒã‚³
 ------------------------------------------------------------------*/
 void CCharacter::act_dakko()
 {

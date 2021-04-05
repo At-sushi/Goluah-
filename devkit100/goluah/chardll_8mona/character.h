@@ -1,7 +1,7 @@
-
+ï»¿
 /*==============================================================
 
-	ƒLƒƒƒ‰ƒNƒ^[’è‹`ƒwƒbƒ_
+	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼å®šç¾©ãƒ˜ãƒƒãƒ€
 
 ================================================================*/
 #pragma once
@@ -10,7 +10,7 @@
 #include <stdio.h>
 
 #include "gobjbase.h"
-#include "cell.h"// ’ÊíAare_editer‚Å¶¬‚µ‚½ƒwƒbƒ_[ƒtƒ@ƒCƒ‹‚ğ‚±‚±‚Éinclude‚µ‚Ü‚·
+#include "cell.h"// é€šå¸¸ã€are_editerã§ç”Ÿæˆã—ãŸãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã“ã“ã«includeã—ã¾ã™
 
 class CHeart;
 class CDashWind;
@@ -21,7 +21,7 @@ class CDashWind;
 #define AIF_NUM			(32)
 
 /*--------------------------------------------------------------
-	ƒƒCƒ“ƒLƒƒƒ‰ƒNƒ^[ƒNƒ‰ƒX
+	ãƒ¡ã‚¤ãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚¯ãƒ©ã‚¹
 ----------------------------------------------------------------*/
 class CCharacter : public CCharacterBase
 {
@@ -31,7 +31,7 @@ public:
 
 protected:
 	//*********************************************
-	//  ƒI[ƒo[ƒ‰ƒCƒh‚·‚éŠÖ”
+	//  ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã™ã‚‹é–¢æ•°
 	//*********************************************
 
 	DWORD Message(DWORD msg,LPVOID pd,DWORD prm);
@@ -48,35 +48,35 @@ protected:
 	DWORD CmdCom_OnSystem(DWORD wid);
 	DWORD CmdCom_OnHissatuAttacking(DWORD wid);
 	DWORD CmdCom_OnNormal(DWORD wid);
-	void InitAttackInfo();//UŒ‚—Íî•ñ‚Ì‰Šú‰»
-	void InitWazInfo();//‹Zî•ñ‚Ì‰Šú‰»
-	void InitBullets();//”ò‚Ñ“¹‹ï‚Ì‰Šú‰»
+	void InitAttackInfo();//æ”»æ’ƒåŠ›æƒ…å ±ã®åˆæœŸåŒ–
+	void InitWazInfo();//æŠ€æƒ…å ±ã®åˆæœŸåŒ–
+	void InitBullets();//é£›ã³é“å…·ã®åˆæœŸåŒ–
 
-	//’Êí“®ì
-	void act_neutral();//ƒjƒ…[ƒgƒ‰ƒ‹
-	void act_crouch();//‚µ‚á‚ª‚İ
-	void act_rakka();//—‰º
-	void act_tojyo();//“oê
-	void act_win();//Ÿ—˜
-	void act_walkf();//‘Oi
-	void act_walkb();//Œã‘Ş
-	void act_jamps();//ƒWƒƒƒ“ƒv—\”õ“®ì
-	void act_jampc();//‚’¼ƒWƒƒƒ“ƒv
-	void act_jampf();//‘OƒWƒƒƒ“ƒv
-	void act_jampb();//ŒãƒWƒƒƒ“ƒv
-	void act_strikercomeon();//‚¢‚ç‚Á‚µ‚á[‚¢
-	void act_timeoverlose();//‚ª‚Á‚©‚èI
-	//’Êí.UŒ‚
-	void act_att_sa();//—§ã
-	void act_att_sb();//—§’†
-	void act_att_sc();//—§‹­
-	void act_att_ca();//‹üã
-	void act_att_cb();//‹ü’†
-	void act_att_cc();//‹ü‹­
-	void act_att_ja();//”òã
-	void act_att_jb();//”ò’†
-	void act_att_jc();//”ò‹­
-	//‚»‚Ì‘¼
+	//é€šå¸¸å‹•ä½œ
+	void act_neutral();//ãƒ‹ãƒ¥ãƒ¼ãƒˆãƒ©ãƒ«
+	void act_crouch();//ã—ã‚ƒãŒã¿
+	void act_rakka();//è½ä¸‹
+	void act_tojyo();//ç™»å ´
+	void act_win();//å‹åˆ©
+	void act_walkf();//å‰é€²
+	void act_walkb();//å¾Œé€€
+	void act_jamps();//ã‚¸ãƒ£ãƒ³ãƒ—äºˆå‚™å‹•ä½œ
+	void act_jampc();//å‚ç›´ã‚¸ãƒ£ãƒ³ãƒ—
+	void act_jampf();//å‰ã‚¸ãƒ£ãƒ³ãƒ—
+	void act_jampb();//å¾Œã‚¸ãƒ£ãƒ³ãƒ—
+	void act_strikercomeon();//ã„ã‚‰ã£ã—ã‚ƒãƒ¼ã„
+	void act_timeoverlose();//ãŒã£ã‹ã‚Šï¼
+	//é€šå¸¸.æ”»æ’ƒ
+	void act_att_sa();//ç«‹å¼±
+	void act_att_sb();//ç«‹ä¸­
+	void act_att_sc();//ç«‹å¼·
+	void act_att_ca();//å±ˆå¼±
+	void act_att_cb();//å±ˆä¸­
+	void act_att_cc();//å±ˆå¼·
+	void act_att_ja();//é£›å¼±
+	void act_att_jb();//é£›ä¸­
+	void act_att_jc();//é£›å¼·
+	//ãã®ä»–
 	void act_taiki();
 	void act_koutai_out();
 	void act_koutai_in();
@@ -84,15 +84,15 @@ protected:
 	void act_koutai2();
 
 	//*********************************************
-	//@CCharacterƒNƒ‰ƒX“Æ©‚ÌŠÖ”
+	//ã€€CCharacterã‚¯ãƒ©ã‚¹ç‹¬è‡ªã®é–¢æ•°
 	//*********************************************
 private:
-	void InitParameters();//ƒpƒ‰ƒ[ƒ^‰Šú‰»
+	void InitParameters();//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
 	void StartAttack(DWORD atk_info_id);
 	void EndAttack(){pdat->kougeki=FALSE;}
 	BOOL ComLevelCk(UINT level);
 
-	//’Ç‰Ás“®ŠÖ”
+	//è¿½åŠ è¡Œå‹•é–¢æ•°
 	void act_nage();
 	DWORD act_nagee(GOBJECT *pedat);
 	void act_sah1();
@@ -122,10 +122,10 @@ private:
 	void act_hkick();
 	void act_sah_landing();
 
-	//UŒ‚—Íî•ñ
+	//æ”»æ’ƒåŠ›æƒ…å ±
 	ATTACKINFO aif[AIF_NUM];
 	
-	//”ò‚Ñ“¹‹ï—Ş
+	//é£›ã³é“å…·é¡
 	CClassicalBullet *clabul_nak1;
 	CClassicalBullet *clabul_nak2;
 //	CClassicalBullet *clabul_wind;
@@ -141,20 +141,20 @@ private:
 	BULLETINFO_A fola[3],folb[3],folc[3],fold[3],fole[3];
 	BOOL EscapeOK();
 
-	//ƒIƒvƒVƒ‡ƒ“—Ş
+	//ã‚ªãƒ—ã‚·ãƒ§ãƒ³é¡
 	BOOL opt_gcancel;
 	BOOL opt_exattack;
 	BOOL opt_ikari;
 	BOOL opt_super_armer;
 	BOOL opt_exfriend;
 
-	//‚³‚Ÿ
+	//ã•ã
 	BOOL sah_sw;
 };
 
 extern LPTSTR CharDirectory;
 
-//s“®ID‚ğ‚±‚±‚É’Ç‰Á‚·‚é
+//è¡Œå‹•IDã‚’ã“ã“ã«è¿½åŠ ã™ã‚‹
 
 #define ACTID_NAGE1				(ACTID_ATTACK | ACTID_NAGE    | 0x0001)
 #define ACTID_SAH1				(ACTID_ATTACK | ACTID_HISSATU | ACTID_KUCYU | 0x0002)
@@ -171,10 +171,10 @@ extern LPTSTR CharDirectory;
 #define ACTID_DASHB				(0x000D)
 #define ACTID_IKARI				(ACTID_ATTACK | ACTID_HISSATU | ACTID_NAGE  | 0x000E)
 #define ACTID_ESCAPE			(ACTID_ATTACK | ACTID_HISSATU | 0x000F)
-#define ACTID_STRIKER1			(ACTID_INOUT  | 0x0010)//ƒXƒgƒ‰ƒCƒJ[UŒ‚
+#define ACTID_STRIKER1			(ACTID_INOUT  | 0x0010)//ã‚¹ãƒˆãƒ©ã‚¤ã‚«ãƒ¼æ”»æ’ƒ
 #define ACTID_STRIKER2			(ACTID_INOUT  | 0x0011)
 #define ACTID_STRIKER3			(ACTID_INOUT  | 0x0012)
-#define ACTID_STRIKER4			(ACTID_INOUT  | 0x0013)//‚·‚²‚·‚²‚Æ‹A‚Á‚Ä‚¢‚­
+#define ACTID_STRIKER4			(ACTID_INOUT  | 0x0013)//ã™ã”ã™ã”ã¨å¸°ã£ã¦ã„ã
 #define ACTID_BAT				(ACTID_ATTACK | 0x0014)
 #define ACTID_UPPER_STEP		(ACTID_ATTACK | 0x0015)
 #define ACTID_UPPER_JAMP		(ACTID_ATTACK | ACTID_KUCYU   | 0x0016)
@@ -183,7 +183,7 @@ extern LPTSTR CharDirectory;
 #define ACTID_HKICK				(ACTID_ATTACK | 0x0019)
 #define ACTID_SAH_LANDING		(ACTID_ATTACK | ACTID_HISSATU | 0x0020)
 
-//UŒ‚—Í”Ô†‚ğ‚±‚±‚É’è‹`‚·‚é
+//æ”»æ’ƒåŠ›ç•ªå·ã‚’ã“ã“ã«å®šç¾©ã™ã‚‹
 #define ATTACKINFO_STAND_A		0
 #define ATTACKINFO_STAND_B		1
 #define ATTACKINFO_STAND_C		2
@@ -214,7 +214,7 @@ extern LPTSTR CharDirectory;
 #define ATTACKINFO_GCANCEL2		27
 #define ATTACKINFO_GCANCEL3		28
 
-//UŒ‚IDi•K—v‚ª‚ ‚ê‚Î•ÏX‚·‚éj
+//æ”»æ’ƒIDï¼ˆå¿…è¦ãŒã‚ã‚Œã°å¤‰æ›´ã™ã‚‹ï¼‰
 #define ATTACK_WEAK				0x00000001
 #define ATTACK_MIDDLE			0x00000002
 #define ATTACK_STRONG			0x00000003
@@ -228,17 +228,17 @@ extern LPTSTR CharDirectory;
 #define ATTACK_SAH2				0x00050000
 #define ATTACK_BAT				0x00060000
 
-//’Ç‰Áƒ`ƒF[ƒ“ID
+//è¿½åŠ ãƒã‚§ãƒ¼ãƒ³ID
 #define CHAIN_HAND				(0x00000001)
 #define CHAIN_UPPER				(0x00000002)
 #define CHAIN_BAT				(0x00000004)
 #define CHAIN_HKICK				(0x00000008)
 
-//ƒ†[ƒU[’è‹`ƒƒbƒZ[ƒW
-#define GOBJMSG_NAGE			(GOBJMSG_USERDEFINE | 0x0001)	//“Š‚°—p
-#define GOBJMSG_IKARINAGE		(GOBJMSG_USERDEFINE | 0x0002)	//“Š‚°—p
+//ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+#define GOBJMSG_NAGE			(GOBJMSG_USERDEFINE | 0x0001)	//æŠ•ã’ç”¨
+#define GOBJMSG_IKARINAGE		(GOBJMSG_USERDEFINE | 0x0002)	//æŠ•ã’ç”¨
 
-//ƒIƒvƒVƒ‡ƒ“’è‹`
+//ã‚ªãƒ—ã‚·ãƒ§ãƒ³å®šç¾©
 #define OPTIONS_GUARD_CANCEL	0x00000001
 #define OPTIONS_EXTRA_ATTACK	0x00000002
 #define OPTIONS_IKARI			0x00000004
@@ -247,14 +247,14 @@ extern LPTSTR CharDirectory;
 
 #define YEAH					TRUE
 
-//ŠÔ‡‚¢
+//é–“åˆã„
 #define MAAI_SHORT				(70)
 #define MAAI_MIDDLE				(140)
 #define MAAI_LONG				(200)
 #define MAAI_NAGE				(20)
 #define MAAI_HNAGE				(40)
 
-//wave”Ô†
+//waveç•ªå·
 #define wave_tojyo				4
 #define wave_win				5
 #define wave_nage				6
@@ -267,7 +267,7 @@ extern LPTSTR CharDirectory;
 #define wave_break				13
 
 
-//ƒ}ƒNƒ’è‹`
+//ãƒã‚¯ãƒ­å®šç¾©
 #define cell(a)					pdat->cnow=a
 #define ccounter				pdat->counter
 #define ALLGUARDFLAG			(GUARDINFO_XSTAND | GUARDINFO_XCROUCH | GUARDINFO_XJAMP)
@@ -275,10 +275,10 @@ extern LPTSTR CharDirectory;
 #define SetDWAlpha(d,a)			d=(d&0x00FFFFFF)|(a<<24)
 
 /*-------------------------------------------------------------------
-	”ò“¹‹ï“™
+	é£›é“å…·ç­‰
 ---------------------------------------------------------------------*/
 
-//¡ƒ_ƒbƒVƒ…‚Ì•—
+//â– ãƒ€ãƒƒã‚·ãƒ¥æ™‚ã®é¢¨
 class CDashWind : public CBulletBase
 {
 public:
@@ -287,7 +287,7 @@ public:
 	void act_bomb();
 };
 
-//¡ƒn[ƒgƒ}[ƒN
+//â– ãƒãƒ¼ãƒˆãƒãƒ¼ã‚¯
 class CHeart : public CBulletBase
 {
 public:

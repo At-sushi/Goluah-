@@ -1,4 +1,4 @@
-
+ï»¿
 #ifndef GCD_EDITER
 #include "stdafx.h"
 #include "task_loading.h"
@@ -24,7 +24,7 @@ extern HWND ghwnd;
 #endif//GCD_EDITER
 
 
-// ƒVƒOƒlƒCƒ`ƒƒ
+// ã‚·ã‚°ãƒã‚¤ãƒãƒ£
 const BYTE cmp_sig[] = "GCDC";
 
 //**********************************************************************************
@@ -34,7 +34,7 @@ const BYTE cmp_sig[] = "GCDC";
 #ifdef GCD_EDITER
 
 /*!
-*	uƒtƒ@ƒCƒ‹‚ğŠJ‚­vƒ_ƒCƒAƒƒO‚ğ’ñ¦‚µ‚Äƒtƒ@ƒCƒ‹ƒ[ƒh
+*	ã€Œãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãã€ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’æç¤ºã—ã¦ãƒ•ã‚¡ã‚¤ãƒ«ãƒ­ãƒ¼ãƒ‰
 */
 BOOL CGCDHandler::GCDLoadDlg(GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames)
 {
@@ -44,20 +44,20 @@ BOOL CGCDHandler::GCDLoadDlg(GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,
 	ZeroMemory(&ofn,sizeof(OPENFILENAME));
 	ofn.lStructSize = sizeof(OPENFILENAME);
 	ofn.hwndOwner = ghwnd;
-	ofn.lpstrFilter = "ƒf[ƒ^(*.gcd)\0*.gcd\0‚·‚×‚Ä(*.*)\0*.*\0\0";
+	ofn.lpstrFilter = "ãƒ‡ãƒ¼ã‚¿(*.gcd)\0*.gcd\0ã™ã¹ã¦(*.*)\0*.*\0\0";
 	ofn.lpstrFile = filepath;
 	ofn.nMaxFile =256;
 	ofn.lpstrFileTitle = filename;
 	ofn.nMaxFileTitle = 64;
 	ofn.Flags = OFN_FILEMUSTEXIST;
-	ofn.lpstrTitle = "ŠJ‚­";
+	ofn.lpstrTitle = "é–‹ã";
 
 	if(!GetOpenFileName(&ofn))return(FALSE);
 
 	switch(GCDLoad(filepath,pcdat,prdat,phdat,pfhnames,GCD_VERSION)){
-	case 0://¬Œ÷
+	case 0://æˆåŠŸ
 		return(TRUE);
-	default:MessageBox(ghwnd,"“Ç‚É¸”s‚µ‚Ü‚µ‚½","",MB_OK);
+	default:MessageBox(ghwnd,"èª­è¾¼ã«å¤±æ•—ã—ã¾ã—ãŸ","",MB_OK);
 	}
 	
 	return(FALSE);
@@ -67,24 +67,24 @@ BOOL CGCDHandler::GCDLoadDlg(GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,
 
 
 /*-----------------------------------------------------------------------
-	“Ç‚İ‚İ
-	ƒtƒ@ƒCƒ‹‚Ìƒo[ƒWƒ‡ƒ“Eƒoƒbƒtƒ@‚Ìƒo[ƒWƒ‡ƒ“w’è‚ÉŠî‚Ã‚¢‚Ä‰Â”\‚ÈŒÀ‚è
-	“KØ‚È•ÏŠ·‚ğ{‚·ƒ[ƒhŠÖ”‚Éˆ—‚ğ‚Ü‚í‚·B
+	èª­ã¿è¾¼ã¿
+	ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒ»ãƒãƒƒãƒ•ã‚¡ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³æŒ‡å®šã«åŸºã¥ã„ã¦å¯èƒ½ãªé™ã‚Š
+	é©åˆ‡ãªå¤‰æ›ã‚’æ–½ã™ãƒ­ãƒ¼ãƒ‰é–¢æ•°ã«å‡¦ç†ã‚’ã¾ã‚ã™ã€‚
 
-	–ß0‚Å³íI—¹
+	æˆ»0ã§æ­£å¸¸çµ‚äº†
 -------------------------------------------------------------------------*/
 
 int CGCDHandler::GCDLoad(char *filename,LPVOID pcdat,LPVOID prdat,LPVOID phdat,LPVOID pfhnames,DWORD version)
 {
-	//ƒtƒ@ƒCƒ‹ƒI[ƒvƒ“
+	//ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 	HANDLE hFile = CreateFile(filename,
 		GENERIC_READ,FILE_SHARE_READ,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
 	if(hFile==INVALID_HANDLE_VALUE){
 		return(1);
 	}
 
-	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//ƒtƒ@ƒCƒ‹æ“ª‚ÉˆÚ“®
-	//ƒwƒbƒ_•”‚Ì“Ç‚İo‚µ
+	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//ãƒ•ã‚¡ã‚¤ãƒ«å…ˆé ­ã«ç§»å‹•
+	//ãƒ˜ãƒƒãƒ€éƒ¨ã®èª­ã¿å‡ºã—
 	DWORD br;
 	DWORD buff[2];
 	DWORD ret=ReadFile(hFile,buff,8,&br,NULL);
@@ -92,7 +92,7 @@ int CGCDHandler::GCDLoad(char *filename,LPVOID pcdat,LPVOID prdat,LPVOID phdat,L
 		CloseHandle(hFile);
 		return(2);
 	}
-	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//ƒtƒ@ƒCƒ‹æ“ª‚ÉˆÚ“®
+	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//ãƒ•ã‚¡ã‚¤ãƒ«å…ˆé ­ã«ç§»å‹•
 	
 	if (buff[0] != 8){
 		CloseHandle(hFile);
@@ -107,7 +107,7 @@ int CGCDHandler::GCDLoad(char *filename,LPVOID pcdat,LPVOID prdat,LPVOID phdat,L
 	}
 	CloseHandle(hFile);
 
-	//ƒo[ƒWƒ‡ƒ“î•ñ–„‚ß‚İ
+	//ãƒãƒ¼ã‚¸ãƒ§ãƒ³æƒ…å ±åŸ‹ã‚è¾¼ã¿
 	if(ret2==0){
 		switch(version){
 		case 900:
@@ -128,69 +128,69 @@ int CGCDHandler::GCDLoad(char *filename,LPVOID pcdat,LPVOID prdat,LPVOID phdat,L
 
 
 /*-----------------------------------------------------------------------
-	0.90 “Ç‚İ‚İ
-	ƒtƒ@ƒCƒ‹‚©‚ç‚Ì’¼Úƒ[ƒh‚Íƒeƒ“ƒ|ƒ‰ƒŠ‚Ìƒoƒbƒtƒ@‚Ös‚¢A
-	‘S‚Ä‚ÌƒvƒƒZƒX‚ªI—¹‚µ‚½‚çw’èƒoƒbƒtƒ@‚Ö‚ÌƒRƒs[‚ğs‚¤
+	0.90 èª­ã¿è¾¼ã¿
+	ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã®ç›´æ¥ãƒ­ãƒ¼ãƒ‰ã¯ãƒ†ãƒ³ãƒãƒ©ãƒªã®ãƒãƒƒãƒ•ã‚¡ã¸è¡Œã„ã€
+	å…¨ã¦ã®ãƒ—ãƒ­ã‚»ã‚¹ãŒçµ‚äº†ã—ãŸã‚‰æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã¸ã®ã‚³ãƒ”ãƒ¼ã‚’è¡Œã†
 
-	0.90ˆÈŠO‚Ìƒoƒbƒtƒ@‚Ö‚Ì•ÏŠ·‚Ís‚í‚È‚¢
+	0.90ä»¥å¤–ã®ãƒãƒƒãƒ•ã‚¡ã¸ã®å¤‰æ›ã¯è¡Œã‚ãªã„
 
-	–ß0‚Å³íI—¹
+	æˆ»0ã§æ­£å¸¸çµ‚äº†
 -------------------------------------------------------------------------*/
 int CGCDHandler::GCDLoad090(HANDLE hFile,LPVOID pcdat,LPVOID prdat,LPVOID phdat,LPVOID pfhnames,DWORD buff_version)
 {
 	if(buff_version<900)return 8;
 
-	//ƒeƒ“ƒ|ƒ‰ƒŠ—p
+	//ãƒ†ãƒ³ãƒãƒ©ãƒªç”¨
 	GCD_FILEHEADER_090	fhed;
 	GCD_CELLNAMES_090	fh_names;
 	GCD_RECT_090		*dm_rdat = new GCD_RECT_090[GCDMAX_RECTANGLES];
 	GCD_CELL2_090		*dm_cdat = new GCD_CELL2_090[GCDMAX_CELLS];
 	GCD_HANTEI_090		*dm_hdat = new GCD_HANTEI_090[GCDMAX_CELLS];
 
-	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//ƒtƒ@ƒCƒ‹æ“ª‚ÉˆÚ“®
+	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//ãƒ•ã‚¡ã‚¤ãƒ«å…ˆé ­ã«ç§»å‹•
 	DWORD ret = 0;
 
 	try{
-		//ƒwƒbƒ_•”‚Ì“Ç‚İo‚µ
+		//ãƒ˜ãƒƒãƒ€éƒ¨ã®èª­ã¿å‡ºã—
 		DWORD br;
 		DWORD ret=ReadFile(hFile,&fhed,sizeof(GCD_FILEHEADER_090),&br,NULL);
 		if(!ret || br!=sizeof(GCD_FILEHEADER_090)){
 			ret=2;throw;
 		}
 
-		//ƒZƒ‹–¼‚ğ“Ç‚İo‚µ
+		//ã‚»ãƒ«åã‚’èª­ã¿å‡ºã—
 		ret=ReadFile(hFile,&fh_names,sizeof(GCD_CELLNAMES_090),&br,NULL);
 		if(!ret || br!=sizeof(GCD_CELLNAMES_090)){
 			ret=4;throw;
 		}
 
-		//‹éŒ`
+		//çŸ©å½¢
 		ret=ReadFile(hFile,dm_rdat,sizeof(GCD_RECT_090)*GCDMAX_RECTANGLES,&br,NULL);
 		if(!ret || br!=sizeof(GCD_RECT_090)*GCDMAX_RECTANGLES){
 			ret=5;throw;
 		}
 #		ifndef GCD_EDITER
-			//isó‹µ•\¦
+			//é€²è¡ŒçŠ¶æ³è¡¨ç¤º
 			CTNowLoading* task = dynamic_cast<CTNowLoading*>( g_system.FindTask('LOAD') );
-			if(task)task->Progress(NowLoading_GCD, 0.5f);		/* —Ê‚Í“K“– */
+			if(task)task->Progress(NowLoading_GCD, 0.5f);		/* é‡ã¯é©å½“ */
 #		endif
-		//‚b‚d‚k‚k
+		//ï¼£ï¼¥ï¼¬ï¼¬
 		ret=ReadFile(hFile,dm_cdat,sizeof(GCD_CELL2_090)*GCDMAX_CELLS,&br,NULL);
 		if(!ret || br!=sizeof(GCD_CELL2_090)*GCDMAX_CELLS){
 			ret=6;throw;
 		}
-		//‚ ‚½‚è”»’è
+		//ã‚ãŸã‚Šåˆ¤å®š
 		ret=ReadFile(hFile,dm_hdat,sizeof(GCD_HANTEI_090)*GCDMAX_CELLS,&br,NULL);
 		if(!ret || br!=sizeof(GCD_HANTEI_090)*GCDMAX_CELLS){
 			ret=7;throw;
 		}
 	}
 	catch(...){
-		ODS(" GCDHandler : ver0.90 GCD load failed");
+		ODS("â–¡GCDHandler : ver0.90 GCD load failed");
 	}
 
 	if(ret==0){
-		//¬Œ÷E“n‚³‚ê‚½ƒoƒbƒtƒ@‚Öƒf[ƒ^‚ğƒRƒs[
+		//æˆåŠŸãƒ»æ¸¡ã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ã¸ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼
 		if(pfhnames!=NULL){
 			memcpy(pfhnames,&fh_names,sizeof(GCD_CELLNAMES));
 		}
@@ -198,75 +198,75 @@ int CGCDHandler::GCDLoad090(HANDLE hFile,LPVOID pcdat,LPVOID prdat,LPVOID phdat,
 		if(pcdat!=NULL)memcpy(pcdat,dm_cdat,sizeof(GCD_CELL2_090)*GCDMAX_CELLS);
 		if(phdat!=NULL)memcpy(phdat,dm_hdat,sizeof(GCD_HANTEI_090)*GCDMAX_CELLS);
 
-		ODS(" GCDHandler : ver0.90 GCD load comlete\n");
+		ODS("â–¡GCDHandler : ver0.90 GCD load comlete\n");
 	}
 	delete [] dm_rdat;
 	delete [] dm_cdat;
 	delete [] dm_hdat;
 
-	//ƒo[ƒWƒ‡ƒ“î•ñ–„‚ß‚İ
+	//ãƒãƒ¼ã‚¸ãƒ§ãƒ³æƒ…å ±åŸ‹ã‚è¾¼ã¿
 	if(pcdat != NULL) ((GCD_CELL2_090*)pcdat)[0].cell[0].flag = 900;
 	
 	return(0);
 }
 
 /*-----------------------------------------------------------------------
-	GCDver0.70“Ç‚İ‚İ
-	ƒtƒ@ƒCƒ‹‚©‚ç‚Ì’¼Úƒ[ƒh‚Íƒeƒ“ƒ|ƒ‰ƒŠ‚Ìƒoƒbƒtƒ@‚Ös‚¢A
-	‘S‚Ä‚ÌƒvƒƒZƒX‚ªI—¹‚µ‚½‚çw’èƒoƒbƒtƒ@‚Ö‚ÌƒRƒs[‚ğs‚¤
-	0.70‚Ü‚½‚Í0.90Œ`®‚Ìƒoƒbƒtƒ@‚É“Ç‚İ‚ß‚é
+	GCDver0.70èª­ã¿è¾¼ã¿
+	ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã®ç›´æ¥ãƒ­ãƒ¼ãƒ‰ã¯ãƒ†ãƒ³ãƒãƒ©ãƒªã®ãƒãƒƒãƒ•ã‚¡ã¸è¡Œã„ã€
+	å…¨ã¦ã®ãƒ—ãƒ­ã‚»ã‚¹ãŒçµ‚äº†ã—ãŸã‚‰æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã¸ã®ã‚³ãƒ”ãƒ¼ã‚’è¡Œã†
+	0.70ã¾ãŸã¯0.90å½¢å¼ã®ãƒãƒƒãƒ•ã‚¡ã«èª­ã¿è¾¼ã‚ã‚‹
 
-	–ß0‚Å³íI—¹
+	æˆ»0ã§æ­£å¸¸çµ‚äº†
 -------------------------------------------------------------------------*/
 int CGCDHandler::GCDLoad070(HANDLE hFile,LPVOID pcdat,LPVOID prdat,LPVOID phdat,LPVOID pfhnames,DWORD buff_version)
 {
 	if(buff_version<700)return 8;
 
-	//ƒeƒ“ƒ|ƒ‰ƒŠ—p
+	//ãƒ†ãƒ³ãƒãƒ©ãƒªç”¨
 	GCD_FILEHEADER_070	fhed;
 	GCD_CELLNAMES_070	fh_names;
 	GCD_RECT_070		*dm_rdat = new GCD_RECT_070[GCDMAX_RECTANGLES];
 	GCD_CELL2_070		*dm_cdat = new GCD_CELL2_070[GCDMAX_CELLS];
 	GCD_HANTEI_070		*dm_hdat = new GCD_HANTEI_070[GCDMAX_CELLS];
 
-	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//ƒtƒ@ƒCƒ‹æ“ª‚ÉˆÚ“®
+	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//ãƒ•ã‚¡ã‚¤ãƒ«å…ˆé ­ã«ç§»å‹•
 	DWORD ret = 0;
 
 	try{
-		//ƒwƒbƒ_•”‚Ì“Ç‚İo‚µ
+		//ãƒ˜ãƒƒãƒ€éƒ¨ã®èª­ã¿å‡ºã—
 		DWORD br;
 		DWORD ret=ReadFile(hFile,&fhed,sizeof(GCD_FILEHEADER_070),&br,NULL);
 		if(!ret || br!=sizeof(GCD_FILEHEADER_070)){
 			ret=2;throw;
 		}
 
-		//ƒZƒ‹–¼‚ğ“Ç‚İo‚µ
+		//ã‚»ãƒ«åã‚’èª­ã¿å‡ºã—
 		ret=ReadFile(hFile,&fh_names,sizeof(GCD_CELLNAMES_070),&br,NULL);
 		if(!ret || br!=sizeof(GCD_CELLNAMES_070)){
 			ret=4;throw;
 		}
 
-		//‹éŒ`
+		//çŸ©å½¢
 		ret=ReadFile(hFile,dm_rdat,sizeof(GCD_RECT_070)*GCDMAX_RECTANGLES,&br,NULL);
 		if(!ret || br!=sizeof(GCD_RECT_070)*GCDMAX_RECTANGLES){
 			ret=5;throw;
 		}
-		//‚b‚d‚k‚k
+		//ï¼£ï¼¥ï¼¬ï¼¬
 		ret=ReadFile(hFile,dm_cdat,sizeof(GCD_CELL2_070)*GCDMAX_CELLS,&br,NULL);
 		if(!ret || br!=sizeof(GCD_CELL2_070)*GCDMAX_CELLS){
 			ret=6;throw;
 		}
-		//‚ ‚½‚è”»’è
+		//ã‚ãŸã‚Šåˆ¤å®š
 		ret=ReadFile(hFile,dm_hdat,sizeof(GCD_HANTEI_070)*GCDMAX_CELLS,&br,NULL);
 		if(!ret || br!=sizeof(GCD_HANTEI_070)*GCDMAX_CELLS){
 			ret=7;throw;
 		}
 	}
 	catch(...){
-		ODS(" GCDHandler : ver0.70 GCD load failed\n");
+		ODS("â–¡GCDHandler : ver0.70 GCD load failed\n");
 	}
 
-	if(ret==0){//¬Œ÷E“n‚³‚ê‚½ƒoƒbƒtƒ@‚Öƒf[ƒ^‚ğƒRƒs[
+	if(ret==0){//æˆåŠŸãƒ»æ¸¡ã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ã¸ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼
 		switch(buff_version){
 			case 900:
 				{
@@ -281,9 +281,9 @@ int CGCDHandler::GCDLoad070(HANDLE hFile,LPVOID pcdat,LPVOID prdat,LPVOID phdat,
 						}
 					}
 					if(phdat!=NULL)memcpy(phdat,dm_hdat,sizeof(GCD_HANTEI_090)*GCDMAX_CELLS);
-					ODS(" GCDHandler : ver0.70¨ver0.90 GCD load comlete");
+					ODS("â–¡GCDHandler : ver0.70â†’ver0.90 GCD load comlete");
 
-					//ƒo[ƒWƒ‡ƒ“î•ñ–„‚ß‚İ
+					//ãƒãƒ¼ã‚¸ãƒ§ãƒ³æƒ…å ±åŸ‹ã‚è¾¼ã¿
 					if(pcdat != NULL) ((GCD_CELL2_090*)pcdat)[0].cell[0].flag = 900;
 				}break;
 			case 700:
@@ -294,9 +294,9 @@ int CGCDHandler::GCDLoad070(HANDLE hFile,LPVOID pcdat,LPVOID prdat,LPVOID phdat,
 					if(prdat!=NULL)memcpy(prdat,dm_rdat,sizeof(GCD_RECT_070)*GCDMAX_RECTANGLES);
 					if(pcdat!=NULL)memcpy(pcdat,dm_cdat,sizeof(GCD_CELL2_070)*GCDMAX_CELLS);
 					if(phdat!=NULL)memcpy(phdat,dm_hdat,sizeof(GCD_HANTEI_070)*GCDMAX_CELLS);
-					ODS(" GCDHandler : ver0.70 GCD load comlete\n");
+					ODS("â–¡GCDHandler : ver0.70 GCD load comlete\n");
 
-					//ƒo[ƒWƒ‡ƒ“î•ñ–„‚ß‚İ
+					//ãƒãƒ¼ã‚¸ãƒ§ãƒ³æƒ…å ±åŸ‹ã‚è¾¼ã¿
 					if(pcdat != NULL) ((GCD_CELL2_070*)pcdat)[0].cell[0].flag = 700;
 				}break;
 		}
@@ -309,11 +309,11 @@ int CGCDHandler::GCDLoad070(HANDLE hFile,LPVOID pcdat,LPVOID prdat,LPVOID phdat,
 }
 
 /*-----------------------------------------------------------------------
-	“Ç‚İ‚İ
-	ƒtƒ@ƒCƒ‹‚Ìƒo[ƒWƒ‡ƒ“Eƒoƒbƒtƒ@‚Ìƒo[ƒWƒ‡ƒ“w’è‚ÉŠî‚Ã‚¢‚Ä‰Â”\‚ÈŒÀ‚è
-	“KØ‚È•ÏŠ·‚ğ{‚·ƒ[ƒhŠÖ”‚Éˆ—‚ğ‚Ü‚í‚·B
+	èª­ã¿è¾¼ã¿
+	ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒ»ãƒãƒƒãƒ•ã‚¡ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³æŒ‡å®šã«åŸºã¥ã„ã¦å¯èƒ½ãªé™ã‚Š
+	é©åˆ‡ãªå¤‰æ›ã‚’æ–½ã™ãƒ­ãƒ¼ãƒ‰é–¢æ•°ã«å‡¦ç†ã‚’ã¾ã‚ã™ã€‚
 
-	–ß0‚Å³íI—¹
+	æˆ»0ã§æ­£å¸¸çµ‚äº†
 -------------------------------------------------------------------------*/
 int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVOID phdat,LPVOID pfhnames,DWORD version)
 {
@@ -325,16 +325,16 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 	DWORD CRCSum;
 #endif
 
-	//ƒtƒ@ƒCƒ‹ƒI[ƒvƒ“
+	//ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 	HANDLE hFile = CreateFile(filename,
 		GENERIC_READ,FILE_SHARE_READ,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
 	if(hFile==INVALID_HANDLE_VALUE){
 		return(1);
 	}
 
-	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//ƒtƒ@ƒCƒ‹æ“ª‚ÉˆÚ“®
+	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//ãƒ•ã‚¡ã‚¤ãƒ«å…ˆé ­ã«ç§»å‹•
 
-	//ƒwƒbƒ_•”‚Ì“Ç‚İo‚µ
+	//ãƒ˜ãƒƒãƒ€éƒ¨ã®èª­ã¿å‡ºã—
 	DWORD br;
 	DWORD ret=ReadFile(hFile,&fhead,sizeof(fhead),&br,NULL);
 	if(!ret || br!=sizeof(fhead)){
@@ -342,29 +342,29 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 		return(2);
 	}
 
-	// ƒwƒbƒ_ƒ`ƒFƒbƒN
+	// ãƒ˜ãƒƒãƒ€ãƒã‚§ãƒƒã‚¯
 	if ( memcmp(fhead.signature, cmp_sig, 4) != 0 || fhead.ver != version || fhead.flags & GCDFILE_COMP_USING_FILTER )
 	{
 		CloseHandle(hFile);
 		return 9;
 	}
 
-	// ƒZƒ‹–¼
+	// ã‚»ãƒ«å
 	if (pfhnames)
 	{
 		ZeroMemory(pfhnames, sizeof(GCD_CELLNAMES_090));
 
 		if (fhead.flags & GCDFILE_COMP_HAVE_CELLNAMES)
 		{
-			// ƒZƒ‹–¼‚ ‚è
-			// ƒf[ƒ^ƒwƒbƒ_“Ç‚İ‚İ
+			// ã‚»ãƒ«åã‚ã‚Š
+			// ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€èª­ã¿è¾¼ã¿
 			ret=ReadFile(hFile,&dhead,sizeof(dhead),&br,NULL);
 			if(!ret || br!=sizeof(dhead)){
 				CloseHandle(hFile);
 				return(4);
 			}
 
-			// “Ç‚İ‚İ
+			// èª­ã¿è¾¼ã¿
 			Buffer = (BYTE*)malloc(dhead.DataSize);
 			ret=ReadFile(hFile,Buffer,dhead.DataSize,&br,NULL);
 			if(!ret || br!=dhead.DataSize){
@@ -373,7 +373,7 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 				return(4);
 			}
 
-			// “WŠJ
+			// å±•é–‹
 			size = sizeof(GCD_CELLNAMES_090);
 			uncompress((BYTE*)pfhnames, &size, Buffer, dhead.DataSize);
 			if (Buffer) free(Buffer);
@@ -385,8 +385,8 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 
 			if (CRCSum != dhead.CRCCheckSum)
 			{
-				if ( MessageBox(NULL, "CRCƒGƒ‰[iƒZƒ‹’è‹`–¼jF\n‚±‚Ìƒf[ƒ^‚Í”j‘¹‚µ‚Ä‚¢‚é‰Â”\«‚ª‚ ‚è‚Ü‚·B\n\nˆ—‚ğ‘±s‚µ‚Ü‚·‚©H",
-							"–é–¶‚æ¡–é‚à‚ ‚è‚ª‚Æ‚¤", MB_YESNO | MB_ICONWARNING) == IDNO )
+				if ( MessageBox(NULL, "CRCã‚¨ãƒ©ãƒ¼ï¼ˆã‚»ãƒ«å®šç¾©åï¼‰ï¼š\nã“ã®ãƒ‡ãƒ¼ã‚¿ã¯ç ´æã—ã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚\n\nå‡¦ç†ã‚’ç¶šè¡Œã—ã¾ã™ã‹ï¼Ÿ",
+							"å¤œéœ§ã‚ˆä»Šå¤œã‚‚ã‚ã‚ŠãŒã¨ã†", MB_YESNO | MB_ICONWARNING) == IDNO )
 				{
 					CloseHandle(hFile);
 					return 4;
@@ -397,22 +397,22 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 	}
 	else if (fhead.flags & GCDFILE_COMP_HAVE_CELLNAMES)
 	{
-		// ƒZƒ‹–¼‚ ‚é‚¯‚Çƒf[ƒ^æ‚Á‚Ä‚È‚¢‚æ
-		// ƒf[ƒ^ƒwƒbƒ_“Ç‚İ‚İ
+		// ã‚»ãƒ«åã‚ã‚‹ã‘ã©ãƒ‡ãƒ¼ã‚¿å–ã£ã¦ãªã„ã‚ˆ
+		// ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€èª­ã¿è¾¼ã¿
 		ret=ReadFile(hFile,&dhead,sizeof(dhead),&br,NULL);
 		if(!ret || br!=sizeof(dhead)){
 			CloseHandle(hFile);
 			return(4);
 		}
 
-		// ‚·‚Á”ò‚Î‚·
+		// ã™ã£é£›ã°ã™
 		SetFilePointer(hFile, dhead.DataSize, NULL, FILE_CURRENT);
 	}
 
-	// ‹éŒ`
+	// çŸ©å½¢
 	ZeroMemory(prdat, sizeof(GCD_RECT_090) * GCDMAX_RECTANGLES);
 
-	// ƒf[ƒ^ƒwƒbƒ_“Ç‚İ‚İ
+	// ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€èª­ã¿è¾¼ã¿
 	ret=ReadFile(hFile,&dhead,sizeof(dhead),&br,NULL);
 	if(!ret || br!=sizeof(dhead)){
 		CloseHandle(hFile);
@@ -421,7 +421,7 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 
 	if (prdat)
 	{
-		// “Ç‚İ‚İ
+		// èª­ã¿è¾¼ã¿
 		Buffer = (BYTE*)malloc(dhead.DataSize);
 		ret=ReadFile(hFile,Buffer,dhead.DataSize,&br,NULL);
 		if(!ret || br!=dhead.DataSize){
@@ -430,7 +430,7 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 			return(5);
 		}
 
-		// “WŠJ
+		// å±•é–‹
 		size = sizeof(GCD_RECT_090) * GCDMAX_RECTANGLES;
 		uncompress((BYTE*)prdat, &size, Buffer, dhead.DataSize);
 		if (Buffer) free(Buffer);
@@ -439,8 +439,8 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 			CRCSum = crc32( crc32(0L, Z_NULL, 0), (BYTE*)prdat, sizeof(GCD_RECT_090) * GCDMAX_RECTANGLES );
 			if (CRCSum != dhead.CRCCheckSum)
 			{
-				if ( MessageBox(NULL, "CRCƒGƒ‰[i‹éŒ`ƒf[ƒ^jF\n‚±‚Ìƒf[ƒ^‚Í”j‘¹‚µ‚Ä‚¢‚é‰Â”\«‚ª‚ ‚è‚Ü‚·B\n\nˆ—‚ğ‘±s‚µ‚Ü‚·‚©H",
-							"–é–¶‚æ¡–é‚à‚ ‚è‚ª‚Æ‚¤", MB_YESNO | MB_ICONWARNING) == IDNO )
+				if ( MessageBox(NULL, "CRCã‚¨ãƒ©ãƒ¼ï¼ˆçŸ©å½¢ãƒ‡ãƒ¼ã‚¿ï¼‰ï¼š\nã“ã®ãƒ‡ãƒ¼ã‚¿ã¯ç ´æã—ã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚\n\nå‡¦ç†ã‚’ç¶šè¡Œã—ã¾ã™ã‹ï¼Ÿ",
+							"å¤œéœ§ã‚ˆä»Šå¤œã‚‚ã‚ã‚ŠãŒã¨ã†", MB_YESNO | MB_ICONWARNING) == IDNO )
 				{
 					CloseHandle(hFile);
 					return 5;
@@ -451,8 +451,8 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 	else
 		SetFilePointer(hFile, dhead.DataSize, NULL, FILE_CURRENT);
 
-	// ƒZƒ‹
-	// ‰½‚É‚à“ü‚Á‚Ä‚È‚¢ƒZƒ‹
+	// ã‚»ãƒ«
+	// ä½•ã«ã‚‚å…¥ã£ã¦ãªã„ã‚»ãƒ«
 	GCD_CELL cell_void[GCD_CELLGROUPNUM];
 	for (int i = 0; i < GCD_CELLGROUPNUM; i++)
 	{
@@ -474,7 +474,7 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 		for (int j = 0; j < GCD_CELLGROUPNUM; j++)
 			((GCD_CELL2_090*)pcdat)[i].cell[j] = cell_void[j];
 
-	// ƒf[ƒ^ƒwƒbƒ_“Ç‚İ‚İ
+	// ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€èª­ã¿è¾¼ã¿
 	ret=ReadFile(hFile,&dhead,sizeof(dhead),&br,NULL);
 	if(!ret || br!=sizeof(dhead)){
 		CloseHandle(hFile);
@@ -483,7 +483,7 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 
 	if (pcdat)
 	{
-		// “Ç‚İ‚İ
+		// èª­ã¿è¾¼ã¿
 		Buffer = (BYTE*)malloc(dhead.DataSize);
 		ret=ReadFile(hFile,Buffer,dhead.DataSize,&br,NULL);
 		if(!ret || br!=dhead.DataSize){
@@ -492,7 +492,7 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 			return(6);
 		}
 
-		// “WŠJ
+		// å±•é–‹
 		size = sizeof(GCD_CELL2_090) * GCDMAX_CELLS;
 		uncompress((BYTE*)pcdat, &size, Buffer, dhead.DataSize);
 		if (Buffer) free(Buffer);
@@ -501,8 +501,8 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 			CRCSum = crc32( crc32(0L, Z_NULL, 0), (BYTE*)pcdat, sizeof(GCD_CELL2_090) * GCDMAX_CELLS );
 			if (CRCSum != dhead.CRCCheckSum)
 			{
-				if ( MessageBox(NULL, "CRCƒGƒ‰[iƒZƒ‹ƒf[ƒ^jF\n‚±‚Ìƒf[ƒ^‚Í”j‘¹‚µ‚Ä‚¢‚é‰Â”\«‚ª‚ ‚è‚Ü‚·B\n\nˆ—‚ğ‘±s‚µ‚Ü‚·‚©H",
-							"–é–¶‚æ¡–é‚à‚ ‚è‚ª‚Æ‚¤", MB_YESNO | MB_ICONWARNING) == IDNO )
+				if ( MessageBox(NULL, "CRCã‚¨ãƒ©ãƒ¼ï¼ˆã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ï¼‰ï¼š\nã“ã®ãƒ‡ãƒ¼ã‚¿ã¯ç ´æã—ã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚\n\nå‡¦ç†ã‚’ç¶šè¡Œã—ã¾ã™ã‹ï¼Ÿ",
+							"å¤œéœ§ã‚ˆä»Šå¤œã‚‚ã‚ã‚ŠãŒã¨ã†", MB_YESNO | MB_ICONWARNING) == IDNO )
 				{
 					CloseHandle(hFile);
 					return 6;
@@ -513,10 +513,10 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 	else
 		SetFilePointer(hFile, dhead.DataSize, NULL, FILE_CURRENT);
 
-	// ‚ ‚½‚è”»’è
+	// ã‚ãŸã‚Šåˆ¤å®š
 	ZeroMemory(phdat, sizeof(GCD_HANTEI_090) * GCDMAX_CELLS);
 
-	// ƒf[ƒ^ƒwƒbƒ_“Ç‚İ‚İ
+	// ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€èª­ã¿è¾¼ã¿
 	ret=ReadFile(hFile,&dhead,sizeof(dhead),&br,NULL);
 	if(!ret || br!=sizeof(dhead)){
 		CloseHandle(hFile);
@@ -525,7 +525,7 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 
 	if (phdat)
 	{
-		// “Ç‚İ‚İ
+		// èª­ã¿è¾¼ã¿
 		Buffer = (BYTE*)malloc(dhead.DataSize);
 		ret=ReadFile(hFile,Buffer,dhead.DataSize,&br,NULL);
 		if(!ret || br!=dhead.DataSize){
@@ -534,7 +534,7 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 			return(7);
 		}
 
-		// “WŠJ
+		// å±•é–‹
 		size = sizeof(GCD_HANTEI_090) * GCDMAX_CELLS;
 		uncompress((BYTE*)phdat, &size, Buffer, dhead.DataSize);
 		if (Buffer) free(Buffer);
@@ -543,8 +543,8 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 			CRCSum = crc32( crc32(0L, Z_NULL, 0), (BYTE*)phdat, sizeof(GCD_HANTEI_090) * GCDMAX_CELLS );
 			if (CRCSum != dhead.CRCCheckSum)
 			{
-				if ( MessageBox(NULL, "CRCƒGƒ‰[i“–‚½‚è”»’èƒf[ƒ^jF\n‚±‚Ìƒf[ƒ^‚Í”j‘¹‚µ‚Ä‚¢‚é‰Â”\«‚ª‚ ‚è‚Ü‚·B\n\nˆ—‚ğ‘±s‚µ‚Ü‚·‚©H",
-							"–é–¶‚æ¡–é‚à‚ ‚è‚ª‚Æ‚¤", MB_YESNO | MB_ICONWARNING) == IDNO )
+				if ( MessageBox(NULL, "CRCã‚¨ãƒ©ãƒ¼ï¼ˆå½“ãŸã‚Šåˆ¤å®šãƒ‡ãƒ¼ã‚¿ï¼‰ï¼š\nã“ã®ãƒ‡ãƒ¼ã‚¿ã¯ç ´æã—ã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚\n\nå‡¦ç†ã‚’ç¶šè¡Œã—ã¾ã™ã‹ï¼Ÿ",
+							"å¤œéœ§ã‚ˆä»Šå¤œã‚‚ã‚ã‚ŠãŒã¨ã†", MB_YESNO | MB_ICONWARNING) == IDNO )
 				{
 					CloseHandle(hFile);
 					return 7;
@@ -555,7 +555,7 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 	else
 		SetFilePointer(hFile, dhead.DataSize, NULL, FILE_CURRENT);
 
-	//ƒo[ƒWƒ‡ƒ“î•ñ–„‚ß‚İ
+	//ãƒãƒ¼ã‚¸ãƒ§ãƒ³æƒ…å ±åŸ‹ã‚è¾¼ã¿
 	if(pcdat != NULL) ((GCD_CELL2_090*)pcdat)[0].cell[0].flag = version;
 	
 	CloseHandle(hFile);
@@ -572,7 +572,7 @@ int CGCDHandler::GCDLoadCompressed(char *filename,LPVOID pcdat,LPVOID prdat,LPVO
 
 
 /*-----------------------------------------------------------------------
-	uƒtƒ@ƒCƒ‹‚ğ•Û‘¶vƒ_ƒCƒAƒƒO‚ğ’ñ¦‚µ‚Äƒtƒ@ƒCƒ‹‚ğ•Û‘¶
+	ã€Œãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜ã€ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’æç¤ºã—ã¦ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜
 -------------------------------------------------------------------------*/
 BOOL CGCDHandler::GCDSaveDlg(GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames)
 {
@@ -582,23 +582,23 @@ BOOL CGCDHandler::GCDSaveDlg(GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,
 	ZeroMemory(&ofn,sizeof(OPENFILENAME));
 	ofn.lStructSize = sizeof(OPENFILENAME);
 	ofn.hwndOwner = ghwnd;
-	ofn.lpstrFilter = "GCD0.90Œ`®(*.gcd)\0*.gcd\0ˆ³kGCD0.90Œ`®(*.gcm)\0*.gcm\0GCD0.70Œ`®(*.gcd)\0*.gcd\0‚·‚×‚Ä‚Ìƒtƒ@ƒCƒ‹(*.*)\0*.*\0\0";
+	ofn.lpstrFilter = "GCD0.90å½¢å¼(*.gcd)\0*.gcd\0åœ§ç¸®GCD0.90å½¢å¼(*.gcm)\0*.gcm\0GCD0.70å½¢å¼(*.gcd)\0*.gcd\0ã™ã¹ã¦ã®ãƒ•ã‚¡ã‚¤ãƒ«(*.*)\0*.*\0\0";
 	ofn.lpstrDefExt = "gcd";
 	ofn.lpstrFile = filepath;
 	ofn.nMaxFile =256;
 	ofn.lpstrFileTitle = filename;
 	ofn.nMaxFileTitle = 64;
 	ofn.Flags = OFN_OVERWRITEPROMPT;
-	ofn.lpstrTitle = "•Û‘¶";
+	ofn.lpstrTitle = "ä¿å­˜";
 
 	if(!GetSaveFileName(&ofn))return(FALSE);
 
-	//•Û‘¶
+	//ä¿å­˜
 	int ret;
 	switch(ofn.nFilterIndex){
-	case 3://0.70ƒtƒH[ƒ}ƒbƒg‚Å•Û‘¶
+	case 3://0.70ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ä¿å­˜
 		ret = GCDSave070(filepath,pcdat,prdat,phdat,pfhnames);break;
-	case 2://ˆ³k‚µ‚Ä•Û‘¶
+	case 2://åœ§ç¸®ã—ã¦ä¿å­˜
 		if (strcmp(filepath + strlen(filepath) - 4, ".gcm") == 0)
 		{
 			ret = GCDSaveCompressed(filepath,pcdat,prdat,phdat,pfhnames);break;
@@ -607,23 +607,23 @@ BOOL CGCDHandler::GCDSaveDlg(GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,
 		ret = GCDSave(filepath,pcdat,prdat,phdat,pfhnames);
 	}
 
-	//ƒGƒ‰[ƒƒbƒZ[ƒW•\¦
+	//ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 	switch(ret){
 	case 0:return(TRUE);
-	case 1:MessageBox(ghwnd,"ƒtƒ@ƒCƒ‹ƒI[ƒvƒ“‚É¸”s","•Û‘¶‚É¸”s",MB_OK);break;
-	case 2:MessageBox(ghwnd,"‘‚«‚İ¸”s(2)","•Û‘¶‚É¸”s",MB_OK);break;
-	case 3:MessageBox(ghwnd,"‘‚«‚İ¸”s(3)","•Û‘¶‚É¸”s",MB_OK);break;
-	case 4:MessageBox(ghwnd,"‘‚«‚İ¸”s(4)","•Û‘¶‚É¸”s",MB_OK);break;
-	case 5:MessageBox(ghwnd,"‘‚«‚İ¸”s(5)","•Û‘¶‚É¸”s",MB_OK);break;
-	case 6:MessageBox(ghwnd,"‘‚«‚İ¸”s(6)","•Û‘¶‚É¸”s",MB_OK);break;
+	case 1:MessageBox(ghwnd,"ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³ã«å¤±æ•—","ä¿å­˜ã«å¤±æ•—",MB_OK);break;
+	case 2:MessageBox(ghwnd,"æ›¸ãè¾¼ã¿å¤±æ•—(2)","ä¿å­˜ã«å¤±æ•—",MB_OK);break;
+	case 3:MessageBox(ghwnd,"æ›¸ãè¾¼ã¿å¤±æ•—(3)","ä¿å­˜ã«å¤±æ•—",MB_OK);break;
+	case 4:MessageBox(ghwnd,"æ›¸ãè¾¼ã¿å¤±æ•—(4)","ä¿å­˜ã«å¤±æ•—",MB_OK);break;
+	case 5:MessageBox(ghwnd,"æ›¸ãè¾¼ã¿å¤±æ•—(5)","ä¿å­˜ã«å¤±æ•—",MB_OK);break;
+	case 6:MessageBox(ghwnd,"æ›¸ãè¾¼ã¿å¤±æ•—(6)","ä¿å­˜ã«å¤±æ•—",MB_OK);break;
 	}
 	return(FALSE);
 }
 
 
 /*-----------------------------------------------------------------------
-	w’èƒtƒ@ƒCƒ‹‚Öw’èƒoƒbƒtƒ@‚Ìƒf[ƒ^‚ğ•Û‘¶
-	–ß0‚ª³íI—¹
+	æŒ‡å®šãƒ•ã‚¡ã‚¤ãƒ«ã¸æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã®ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜
+	æˆ»0ãŒæ­£å¸¸çµ‚äº†
 -------------------------------------------------------------------------*/
 int CGCDHandler::GCDSave(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames)
 {
@@ -635,12 +635,12 @@ int CGCDHandler::GCDSave(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HAN
 	if(hFile==INVALID_HANDLE_VALUE){
 		return(1);
 	}
-	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//ƒtƒ@ƒCƒ‹æ“ª‚ÉˆÚ“®
+	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//ãƒ•ã‚¡ã‚¤ãƒ«å…ˆé ­ã«ç§»å‹•
 
-	//ƒtƒ@ƒCƒ‹ƒwƒbƒ_‚Ì€”õ
+	//ãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€ã®æº–å‚™
 	fhed.size = sizeof(GCD_FILEHEADER);
 	fhed.ver  = GCD_VERSION;
-	//ƒwƒbƒ_•”‚Ì‘‚«‚İ
+	//ãƒ˜ãƒƒãƒ€éƒ¨ã®æ›¸ãè¾¼ã¿
 	DWORD br;
 	DWORD ret=WriteFile(hFile,&fhed,sizeof(GCD_FILEHEADER),&br,NULL);
 	if(!ret || br!=sizeof(GCD_FILEHEADER)){
@@ -648,29 +648,29 @@ int CGCDHandler::GCDSave(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HAN
 		return(2);
 	}
 
-	//ƒZƒ‹–¼‚Ì€”õ
+	//ã‚»ãƒ«åã®æº–å‚™
 	if(pfhnames!=NULL)memcpy(&fh_names,pfhnames,sizeof(GCD_CELLNAMES));
 	else ZeroMemory(&fh_names,sizeof(GCD_CELLNAMES));
-	//ƒZƒ‹–¼‚Ì‘‚«‚İ
+	//ã‚»ãƒ«åã®æ›¸ãè¾¼ã¿
 	ret=WriteFile(hFile,&fh_names,sizeof(GCD_CELLNAMES),&br,NULL);
 	if(!ret || br!=sizeof(GCD_CELLNAMES)){
 		CloseHandle(hFile);
 		return(3);
 	}
 
-	//‹éŒ`
+	//çŸ©å½¢
 	ret=WriteFile(hFile,prdat,sizeof(GCD_RECT)*GCDMAX_RECTANGLES,&br,NULL);
 	if(!ret || br!=sizeof(GCD_RECT)*GCDMAX_RECTANGLES){
 		CloseHandle(hFile);
 		return(4);
 	}
-	//‚b‚d‚k‚k
+	//ï¼£ï¼¥ï¼¬ï¼¬
 	ret=WriteFile(hFile,pcdat,sizeof(GCD_CELL2)*GCDMAX_CELLS,&br,NULL);
 	if(!ret || br!=sizeof(GCD_CELL2)*GCDMAX_CELLS){
 		CloseHandle(hFile);
 		return(5);
 	}
-	//‚ ‚½‚è”»’è
+	//ã‚ãŸã‚Šåˆ¤å®š
 	ret=WriteFile(hFile,phdat,sizeof(GCD_HANTEI)*GCDMAX_CELLS,&br,NULL);
 	if(!ret || br!=sizeof(GCD_HANTEI)*GCDMAX_CELLS){
 		CloseHandle(hFile);
@@ -683,12 +683,12 @@ int CGCDHandler::GCDSave(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HAN
 }
 
 /*-----------------------------------------------------------------------
-	w’èƒtƒ@ƒCƒ‹‚Öw’èƒoƒbƒtƒ@‚Ìƒf[ƒ^‚ğver0.70Œ`®‚É•ÏŠ·‚µ‚Ä•Û‘¶
-	–ß0‚ª³íI—¹
+	æŒ‡å®šãƒ•ã‚¡ã‚¤ãƒ«ã¸æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã®ãƒ‡ãƒ¼ã‚¿ã‚’ver0.70å½¢å¼ã«å¤‰æ›ã—ã¦ä¿å­˜
+	æˆ»0ãŒæ­£å¸¸çµ‚äº†
 -------------------------------------------------------------------------*/
 int CGCDHandler::GCDSave070(char *filename,GCD_CELL2 *pcdat090,GCD_RECT *prdat,GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames)
 {
-	//Œ`®•ÏŠ·iCELLj
+	//å½¢å¼å¤‰æ›ï¼ˆCELLï¼‰
 	GCD_CELL2_070 *pcdat070 = new GCD_CELL2_070[GCDMAX_CELLS];
 	for(int i=0;i<GCDMAX_CELLS;i++){
 		GCDConvCell_090_070(&pcdat090[i],&pcdat070[i]);
@@ -703,12 +703,12 @@ int CGCDHandler::GCDSave070(char *filename,GCD_CELL2 *pcdat090,GCD_RECT *prdat,G
 		delete [] pcdat070;
 		return(1);
 	}
-	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//ƒtƒ@ƒCƒ‹æ“ª‚ÉˆÚ“®
+	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//ãƒ•ã‚¡ã‚¤ãƒ«å…ˆé ­ã«ç§»å‹•
 
-	//ƒtƒ@ƒCƒ‹ƒwƒbƒ_‚Ì€”õ
+	//ãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€ã®æº–å‚™
 	fhed.size = sizeof(GCD_FILEHEADER);
 	fhed.ver  = 700;
-	//ƒwƒbƒ_•”‚Ì‘‚«‚İ
+	//ãƒ˜ãƒƒãƒ€éƒ¨ã®æ›¸ãè¾¼ã¿
 	DWORD br;
 	DWORD ret=WriteFile(hFile,&fhed,sizeof(GCD_FILEHEADER),&br,NULL);
 	if(!ret || br!=sizeof(GCD_FILEHEADER)){
@@ -717,10 +717,10 @@ int CGCDHandler::GCDSave070(char *filename,GCD_CELL2 *pcdat090,GCD_RECT *prdat,G
 		return(2);
 	}
 
-	//ƒZƒ‹–¼‚Ì€”õ
+	//ã‚»ãƒ«åã®æº–å‚™
 	if(pfhnames!=NULL)memcpy(&fh_names,pfhnames,sizeof(GCD_CELLNAMES));
 	else ZeroMemory(&pfhnames,sizeof(GCD_CELLNAMES));
-	//ƒZƒ‹–¼‚Ì‘‚«‚İ
+	//ã‚»ãƒ«åã®æ›¸ãè¾¼ã¿
 	ret=WriteFile(hFile,&fh_names,sizeof(GCD_CELLNAMES),&br,NULL);
 	if(!ret || br!=sizeof(GCD_CELLNAMES)){
 		delete [] pcdat070;
@@ -728,21 +728,21 @@ int CGCDHandler::GCDSave070(char *filename,GCD_CELL2 *pcdat090,GCD_RECT *prdat,G
 		return(3);
 	}
 
-	//‹éŒ`
+	//çŸ©å½¢
 	ret=WriteFile(hFile,prdat,sizeof(GCD_RECT)*GCDMAX_RECTANGLES,&br,NULL);
 	if(!ret || br!=sizeof(GCD_RECT)*GCDMAX_RECTANGLES){
 		delete [] pcdat070;
 		CloseHandle(hFile);
 		return(4);
 	}
-	//‚b‚d‚k‚k
+	//ï¼£ï¼¥ï¼¬ï¼¬
 	ret=WriteFile(hFile,pcdat070,sizeof(GCD_CELL2_070)*GCDMAX_CELLS,&br,NULL);
 	if(!ret || br!=sizeof(GCD_CELL2_070)*GCDMAX_CELLS){
 		delete [] pcdat070;
 		CloseHandle(hFile);
 		return(5);
 	}
-	//‚ ‚½‚è”»’è
+	//ã‚ãŸã‚Šåˆ¤å®š
 	ret=WriteFile(hFile,phdat,sizeof(GCD_HANTEI)*GCDMAX_CELLS,&br,NULL);
 	if(!ret || br!=sizeof(GCD_HANTEI)*GCDMAX_CELLS){
 		delete [] pcdat070;
@@ -758,29 +758,29 @@ int CGCDHandler::GCDSave070(char *filename,GCD_CELL2 *pcdat090,GCD_RECT *prdat,G
 
 
 /*-----------------------------------------------------------------------
-	’è‹`–¼•Û‘¶
-	uƒtƒ@ƒCƒ‹‚ğ•Û‘¶vƒ_ƒCƒAƒƒO‚ğ’ñ¦‚µA‘I‘ğ‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Éƒf[ƒ^‚ğ•Û‘¶
+	å®šç¾©åä¿å­˜
+	ã€Œãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜ã€ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’æç¤ºã—ã€é¸æŠã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜
 -------------------------------------------------------------------------*/
 BOOL CGCDHandler::GCDSaveHeader(GCD_CELLNAMES *pfhnames)
 {
-	//•Û‘¶‚·‚éƒtƒ@ƒCƒ‹‚ğ‘I‘ğ‚³‚¹‚é
+	//ä¿å­˜ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é¸æŠã•ã›ã‚‹
 	char filepath[256]="";
 	char filename[64];
 	OPENFILENAME ofn;
 	ZeroMemory(&ofn,sizeof(OPENFILENAME));
 	ofn.lStructSize = sizeof(OPENFILENAME);
 	ofn.hwndOwner = ghwnd;
-	ofn.lpstrFilter = "C/C++ƒwƒbƒ_ƒtƒ@ƒCƒ‹(*.h)\0*.h\0‚·‚×‚Ä(*.*)\0*.*\0\0";
+	ofn.lpstrFilter = "C/C++ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«(*.h)\0*.h\0ã™ã¹ã¦(*.*)\0*.*\0\0";
 	ofn.lpstrFile = filepath;
 	ofn.nMaxFile =256;
 	ofn.lpstrFileTitle = filename;
 	ofn.nMaxFileTitle = 64;
 	ofn.Flags = 0;
-	ofn.lpstrTitle = "•Û‘¶";
+	ofn.lpstrTitle = "ä¿å­˜";
 
 	if(!GetOpenFileName(&ofn))return(FALSE);
 
-	//Šg’£q‚ğ–³—‚â‚è.h‚É
+	//æ‹¡å¼µå­ã‚’ç„¡ç†ã‚„ã‚Š.hã«
 	int len=(int)strlen(filepath);
 	if(len>4){
 		if(!( filepath[len-4]=='.' &&
@@ -791,11 +791,11 @@ BOOL CGCDHandler::GCDSaveHeader(GCD_CELLNAMES *pfhnames)
 		}
 	}
 
-	//•Û‘¶
+	//ä¿å­˜
 	HANDLE hFile = CreateFile(filepath,
 		GENERIC_WRITE,0,NULL,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);
 	if(hFile==INVALID_HANDLE_VALUE){
-		MessageBox(ghwnd,"Ì§²Ù‚ªŠJ‚¯‚È‚©‚Á‚½","SaveFile()",MB_OK);
+		MessageBox(ghwnd,"ï¾Œï½§ï½²ï¾™ãŒé–‹ã‘ãªã‹ã£ãŸ","SaveFile()",MB_OK);
 		return(FALSE);
 	}
 
@@ -814,8 +814,8 @@ BOOL CGCDHandler::GCDSaveHeader(GCD_CELLNAMES *pfhnames)
 }
 
 /*-----------------------------------------------------------------------
-	w’èƒtƒ@ƒCƒ‹‚Öw’èƒoƒbƒtƒ@‚Ìƒf[ƒ^‚ğˆ³k‚µ‚Ä•Û‘¶
-	–ß0‚ª³íI—¹
+	æŒ‡å®šãƒ•ã‚¡ã‚¤ãƒ«ã¸æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã®ãƒ‡ãƒ¼ã‚¿ã‚’åœ§ç¸®ã—ã¦ä¿å­˜
+	æˆ»0ãŒæ­£å¸¸çµ‚äº†
 -------------------------------------------------------------------------*/
 int CGCDHandler::GCDSaveCompressed(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames)
 {
@@ -831,13 +831,13 @@ int CGCDHandler::GCDSaveCompressed(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prd
 	if(hFile==INVALID_HANDLE_VALUE){
 		return(1);
 	}
-	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//ƒtƒ@ƒCƒ‹æ“ª‚ÉˆÚ“®
+	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//ãƒ•ã‚¡ã‚¤ãƒ«å…ˆé ­ã«ç§»å‹•
 
-	// ƒtƒ@ƒCƒ‹ƒwƒbƒ_‘‚«‚İ
+	// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€æ›¸ãè¾¼ã¿
 	memcpy(fhed.signature, cmp_sig, 4);
 	fhed.ver = GCD_VERSION;
 	fhed.flags = 0;
-	if (pfhnames) // ƒZƒ‹–¼‚ ‚è
+	if (pfhnames) // ã‚»ãƒ«åã‚ã‚Š
 		fhed.flags |= GCDFILE_COMP_HAVE_CELLNAMES;
 
 	DWORD br;
@@ -847,7 +847,7 @@ int CGCDHandler::GCDSaveCompressed(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prd
 		return(2);
 	}
 
-	// ƒZƒ‹–¼
+	// ã‚»ãƒ«å
 	if (pfhnames)
 	{
 		int num_names = GCDMAX_CELLS;
@@ -866,13 +866,13 @@ int CGCDHandler::GCDSaveCompressed(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prd
 
 		compress(Buffer, &BufSize, (BYTE*)pfhnames, size);
 
-		// CRC’lŒvZ
+		// CRCå€¤è¨ˆç®—
 		DWORD crc32_names = crc32(0L, Z_NULL, 0);
 
 		for (int i = 0; i < GCDMAX_CELLS; i++)
 			crc32_names = crc32(crc32_names, (BYTE*)pfhnames->name[i], strlen(pfhnames->name[i]) + 1);
 
-		// ƒf[ƒ^ƒwƒbƒ_—pˆÓ
+		// ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€ç”¨æ„
 		dhed.DataSize = BufSize;
 		dhed.CRCCheckSum = crc32_names;
 
@@ -893,7 +893,7 @@ int CGCDHandler::GCDSaveCompressed(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prd
 		if (Buffer) { free(Buffer); Buffer = NULL; }
 	}
 
-	// ‹éŒ`
+	// çŸ©å½¢
 	{
 		int num_rects = GCDMAX_RECTANGLES;
 
@@ -920,7 +920,7 @@ int CGCDHandler::GCDSaveCompressed(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prd
 
 		compress(Buffer, &BufSize, (BYTE*)prdat, size);
 
-		// ƒf[ƒ^ƒwƒbƒ_—pˆÓ
+		// ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€ç”¨æ„
 		dhed.DataSize = BufSize;
 		dhed.CRCCheckSum = crc32( crc32(0L, Z_NULL, 0), (BYTE*)prdat, sizeof(GCD_RECT) * GCDMAX_RECTANGLES );
 
@@ -941,12 +941,12 @@ int CGCDHandler::GCDSaveCompressed(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prd
 		if (Buffer) { free(Buffer); Buffer = NULL; }
 	}
 
-	// ‚b‚d‚k‚k
+	// ï¼£ï¼¥ï¼¬ï¼¬
 	{
 		int num_cells = GCDMAX_CELLS;
 		GCD_CELL cell_void[GCD_CELLGROUPNUM];
 
-		// ‰½‚É‚à“ü‚Á‚Ä‚È‚¢ƒZƒ‹
+		// ä½•ã«ã‚‚å…¥ã£ã¦ãªã„ã‚»ãƒ«
 		for (int i = 0; i < GCD_CELLGROUPNUM; i++)
 		{
 
@@ -987,7 +987,7 @@ int CGCDHandler::GCDSaveCompressed(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prd
 
 		compress(Buffer, &BufSize, (BYTE*)pcdat, size);
 
-		// ƒf[ƒ^ƒwƒbƒ_—pˆÓ
+		// ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€ç”¨æ„
 		dhed.DataSize = BufSize;
 		dhed.CRCCheckSum = crc32( crc32(0L, Z_NULL, 0), (BYTE*)pcdat, sizeof(GCD_CELL2) * GCDMAX_CELLS );
 
@@ -1008,7 +1008,7 @@ int CGCDHandler::GCDSaveCompressed(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prd
 		if (Buffer) { free(Buffer); Buffer = NULL; }
 	}
 
-	// ‚ ‚½‚è”»’è
+	// ã‚ãŸã‚Šåˆ¤å®š
 	{
 		int num_hantei = GCDMAX_CELLS;
 		const RECT hantei_void = { 0, 0, 0, 0 };
@@ -1038,7 +1038,7 @@ int CGCDHandler::GCDSaveCompressed(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prd
 
 		compress(Buffer, &BufSize, (BYTE*)phdat, size);
 
-		// ƒf[ƒ^ƒwƒbƒ_—pˆÓ
+		// ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€ç”¨æ„
 		dhed.DataSize = BufSize;
 		dhed.CRCCheckSum = crc32( crc32(0L, Z_NULL, 0), (BYTE*)phdat, sizeof(GCD_HANTEI) * GCDMAX_CELLS );
 
@@ -1069,12 +1069,12 @@ int CGCDHandler::GCDSaveCompressed(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prd
 //**********************************************************************************
 
 /*-----------------------------------------------------------------------
-	‰Šúƒf[ƒ^‚ğ“K—p
-	‘S•”0‚ª‰Šú’l‚Å‚Í‚È‚¢‚Ì‚Å‚â‚â‚±‚µ‚¢BŠg‘å—¦‚Ì‚İ1‚ª‰Šú’lB
+	åˆæœŸãƒ‡ãƒ¼ã‚¿ã‚’é©ç”¨
+	å…¨éƒ¨0ãŒåˆæœŸå€¤ã§ã¯ãªã„ã®ã§ã‚„ã‚„ã“ã—ã„ã€‚æ‹¡å¤§ç‡ã®ã¿1ãŒåˆæœŸå€¤ã€‚
 -------------------------------------------------------------------------*/
 void CGCDHandler::GCDSetInitialData(GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames)
 {
-	//ˆê’U‘S•”ƒNƒŠƒA
+	//ä¸€æ—¦å…¨éƒ¨ã‚¯ãƒªã‚¢
 	if(pfhnames!=NULL){
 		ZeroMemory(pfhnames,sizeof(GCD_CELLNAMES));
 	}
@@ -1082,7 +1082,7 @@ void CGCDHandler::GCDSetInitialData(GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI 
 	ZeroMemory(pcdat,sizeof(GCD_CELL2)*GCDMAX_CELLS);
 	ZeroMemory(phdat,sizeof(GCD_HANTEI)*GCDMAX_CELLS);
 
-	//Šg‘å—¦EF—¦ƒZƒbƒg
+	//æ‹¡å¤§ç‡ãƒ»è‰²ç‡ã‚»ãƒƒãƒˆ
 	int i,j;
 	for(i=0;i<GCDMAX_CELLS;i++){
 		for(j=0;j<8;j++){
@@ -1097,7 +1097,7 @@ void CGCDHandler::GCDSetInitialData(GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI 
 #endif
 
 /*-----------------------------------------------------------------------
-	w’èƒZƒ‹E”»’è@‚ª‚©‚ç‚Å‚ ‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+	æŒ‡å®šã‚»ãƒ«ãƒ»åˆ¤å®šã€€ãŒã‹ã‚‰ã§ã‚ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 -------------------------------------------------------------------------*/
 BOOL CGCDHandler::GCDIsEmptyCell2(GCD_CELL2& gcdc,GCD_HANTEI& gcdh)
 {
@@ -1140,7 +1140,7 @@ BOOL CGCDHandler::GCDIsEmptyCell2(GCD_CELL2& gcdc,GCD_HANTEI& gcdh)
 
 
 /*-----------------------------------------------------------------------
-	‹éŒ`‚ªu‹óv‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+	çŸ©å½¢ãŒã€Œç©ºã€ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 -------------------------------------------------------------------------*/
 BOOL CGCDHandler::GCDIsEmptyRect(GCD_RECT& gcdr)
 {
@@ -1156,7 +1156,7 @@ BOOL CGCDHandler::GCDIsEmptyRect(GCD_RECT& gcdr)
 
 
 /*-----------------------------------------------------------------------
-	ƒZƒ‹E”»’è@ƒf[ƒ^ƒNƒŠƒA
+	ã‚»ãƒ«ãƒ»åˆ¤å®šã€€ãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢
 -------------------------------------------------------------------------*/
 void CGCDHandler::GCDSetEmptyCell2(GCD_CELL2 *pgcdc,GCD_HANTEI *pgcdh)
 {
@@ -1181,7 +1181,7 @@ void CGCDHandler::GCDSetEmptyCell2(GCD_CELL2 *pgcdc,GCD_HANTEI *pgcdh)
 
 
 /*-----------------------------------------------------------------------
-	‹éŒ`ƒf[ƒ^ƒNƒŠƒA
+	çŸ©å½¢ãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢
 -------------------------------------------------------------------------*/
 void CGCDHandler::GCDSetEmptyRect(GCD_RECT *pgcdr)
 {
@@ -1193,7 +1193,7 @@ void CGCDHandler::GCDSetEmptyRect(GCD_RECT *pgcdr)
 
 
 /*-----------------------------------------------------------------------
-	ƒZƒ‹ƒf[ƒ^•ÏŠ· 0.70¨0.90
+	ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿å¤‰æ› 0.70â†’0.90
 -------------------------------------------------------------------------*/
 void CGCDHandler::GCDConvCell_070_090(GCD_CELL2_070 *src,GCD_CELL2 *dst)
 {
@@ -1228,7 +1228,7 @@ void CGCDHandler::GCDConvCell_070_090(GCD_CELL2_070 *src,GCD_CELL2 *dst)
 
 
 /*-----------------------------------------------------------------------
-	ƒZƒ‹ƒf[ƒ^•ÏŠ· 0.90¨0.70
+	ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿å¤‰æ› 0.90â†’0.70
 -------------------------------------------------------------------------*/
 void CGCDHandler::GCDConvCell_090_070(GCD_CELL2 *src,GCD_CELL2_070 *dst)
 {
@@ -1256,8 +1256,8 @@ void CGCDHandler::GCDConvCell_090_070(GCD_CELL2 *src,GCD_CELL2_070 *dst)
 
 
 /**********************************************************************************
-	‚±‚±‚æ‚èã‚Í‘S•” static ‚È‚Ì‚ÅƒCƒ“ƒXƒ^ƒ“ƒX‚ª‚È‚­‚Ä‚àg‚¦‚é
-	ˆÈ‰ºAƒf[ƒ^ŠÇ—•”
+	ã“ã“ã‚ˆã‚Šä¸Šã¯å…¨éƒ¨ static ãªã®ã§ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒãªãã¦ã‚‚ä½¿ãˆã‚‹
+	ä»¥ä¸‹ã€ãƒ‡ãƒ¼ã‚¿ç®¡ç†éƒ¨
 ************************************************************************************/
 
 #ifndef DELETE_ARRAY
@@ -1266,7 +1266,7 @@ void CGCDHandler::GCDConvCell_090_070(GCD_CELL2 *src,GCD_CELL2_070 *dst)
 #endif
 
 /*-----------------------------------------------------------------------
-	\’z
+	æ§‹ç¯‰
 -------------------------------------------------------------------------*/
 CGCDHandler::CGCDHandler()
 {
@@ -1287,8 +1287,8 @@ CGCDHandler::CGCDHandler()
 
 
 /*-----------------------------------------------------------------------
-	“Ç‚İ‚İ
-	0‚ª³íI—¹
+	èª­ã¿è¾¼ã¿
+	0ãŒæ­£å¸¸çµ‚äº†
 -------------------------------------------------------------------------*/
 int CGCDHandler::Load(char *filename,BOOL hload,BOOL nload)
 {
@@ -1300,10 +1300,10 @@ int CGCDHandler::Load(char *filename,BOOL hload,BOOL nload)
 	m_names = new GCD_CELLNAMES;
 
 	int ret = GCDLoadCompressed(filename,m_cdat,m_rdat,m_hdat,m_names);
-	if(ret!=0)	//¸”s¥¥¥
+	if(ret!=0)	//å¤±æ•—ï½¥ï½¥ï½¥
 	{
 		ret = GCDLoad(filename,m_cdat,m_rdat,m_hdat,m_names);
-		if(ret!=0)Destroy();	//@@‚Ü@@‚½@@¸@@”s@@‚©
+		if(ret!=0)Destroy();	//ã€€ã€€ã¾ã€€ã€€ãŸã€€ã€€å¤±ã€€ã€€æ•—ã€€ã€€ã‹
 	}
 
 	return ret;
@@ -1311,7 +1311,7 @@ int CGCDHandler::Load(char *filename,BOOL hload,BOOL nload)
 
 
 /*-----------------------------------------------------------------------
-	ƒf[ƒ^”jŠü
+	ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 -------------------------------------------------------------------------*/
 void CGCDHandler::Destroy()
 {
@@ -1323,24 +1323,24 @@ void CGCDHandler::Destroy()
 
 
 /*-----------------------------------------------------------------------
-	ƒf[ƒ^‚ğˆ³k‚·‚é
-	¥¥¥‚Æ‚¢‚Á‚Ä‚àŒã‚Ì•û‚É‚ ‚é‹ó‚Ìƒf[ƒ^‚ğí‚Á‚Äƒoƒbƒtƒ@‚ğ’Z‚­‚·‚é‚¾‚¯
+	ãƒ‡ãƒ¼ã‚¿ã‚’åœ§ç¸®ã™ã‚‹
+	ï½¥ï½¥ï½¥ã¨ã„ã£ã¦ã‚‚å¾Œã®æ–¹ã«ã‚ã‚‹ç©ºã®ãƒ‡ãƒ¼ã‚¿ã‚’å‰Šã£ã¦ãƒãƒƒãƒ•ã‚¡ã‚’çŸ­ãã™ã‚‹ã ã‘
 -------------------------------------------------------------------------*/
 void CGCDHandler::Diet()
 {
-	//‚Ü‚¾[
+	//ã¾ã ãƒ¼
 }
 
 
 
 /*-----------------------------------------------------------------------
-	ƒf[ƒ^•Û‘¶
+	ãƒ‡ãƒ¼ã‚¿ä¿å­˜
 -------------------------------------------------------------------------*/
 #ifdef GCD_EDITER
 BOOL CGCDHandler::Save()
 {
 	if(!valid()){
-		MessageBox(ghwnd,"ƒf[ƒ^‚ª“Ç‚İ‚Ü‚ê‚Ä‚È‚¢‚æ","",MB_OK);
+		MessageBox(ghwnd,"ãƒ‡ãƒ¼ã‚¿ãŒèª­ã¿è¾¼ã¾ã‚Œã¦ãªã„ã‚ˆ","",MB_OK);
 		return FALSE;
 	}
 

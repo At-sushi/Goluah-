@@ -1,18 +1,18 @@
-
+ï»¿
 /*==================================================================================
     
     l_directdraw.cpp
     
-    CDirectDrawƒNƒ‰ƒX‚ÌŠî–{“I‚È•”•ªB
-    å‚É‰Šú‰»‚â”jŠü“™‚Ì•”•ª‚ğ‹Lq
+    CDirectDrawã‚¯ãƒ©ã‚¹ã®åŸºæœ¬çš„ãªéƒ¨åˆ†ã€‚
+    ä¸»ã«åˆæœŸåŒ–ã‚„ç ´æ£„ç­‰ã®éƒ¨åˆ†ã‚’è¨˜è¿°
 
-    MFCƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Åg—p‚·‚éê‡‚ÍuƒvƒŠƒRƒ“ƒpƒCƒ‹ƒwƒbƒ_[‚ğg—p‚µ‚È‚¢v‚É‚·‚é
+    MFCã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã§ä½¿ç”¨ã™ã‚‹å ´åˆã¯ã€Œãƒ—ãƒªã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’ä½¿ç”¨ã—ãªã„ã€ã«ã™ã‚‹
 
 ====================================================================================*/
 
 
 #ifndef GCD_EDITER
-#include "stdafx.h"//–{‘Ì‚Ìê‡
+#include "stdafx.h"//æœ¬ä½“ã®å ´åˆ
 #include "jpeglib.h"
 #include "task_loading.h"
 #else
@@ -30,7 +30,7 @@ enum NowLoading_IconItem
 #define HALF_HEIGHT		(g_DISPLAYHEIGHT*0.5f)
 #define HALF_HEIGHT2	(240.0f)
 
-// ‚à‚¤‚¿‚å‚Á‚Æ‘‚­‘Î‰‚µ‚Ä—~‚µ‚©‚Á‚½c
+// ã‚‚ã†ã¡ã‚‡ã£ã¨æ—©ãå¯¾å¿œã—ã¦æ¬²ã—ã‹ã£ãŸâ€¦
 #if _MSC_VER < 1910
 #pragma push_macro("constexpr")
 #define constexpr const
@@ -38,9 +38,9 @@ enum NowLoading_IconItem
 #endif // _MSC_VER < 1910
 
 /*---------------------------------------------------------------------------------
-    ƒGƒfƒBƒ^[‚Ìê‡‚Ìİ’è
+    ã‚¨ãƒ‡ã‚£ã‚¿ãƒ¼ã®å ´åˆã®è¨­å®š
 -----------------------------------------------------------------------------------*/
-#ifdef GCD_EDITER//¡ƒGƒfƒBƒ^‚Ìê‡-------------------------------------------------
+#ifdef GCD_EDITER//â– ã‚¨ãƒ‡ã‚£ã‚¿ã®å ´åˆ-------------------------------------------------
 
 #ifndef RELEASE
 #define RELEASE(a)	if(a!=NULL){a->Release();a=NULL;}
@@ -61,11 +61,11 @@ CDummyCfg g_config;
 
 #define ODS(a)	OutputDebugString(a)
 
-#else//¡Goluah–{‘Ì‚Ìê‡-----------------------------------------------------------
+#else//â– Goluahæœ¬ä½“ã®å ´åˆ-----------------------------------------------------------
 
 #include "define_const.h"
 #include "define_macro.h"
-#include "global.h"//config‚ª•K—v
+#include "global.h"//configãŒå¿…è¦
 
 #ifdef _DEBUG
 #define ODS(a)	gbl.ods2(a)
@@ -76,12 +76,12 @@ CDummyCfg g_config;
 #endif
 
 /*!
-*	\’zB
-*	ƒpƒ‰ƒ[ƒ^‚ÌƒŠƒZƒbƒg‚ğs‚¤‚Ì‚İ
+*	æ§‹ç¯‰ã€‚
+*	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒªã‚»ãƒƒãƒˆã‚’è¡Œã†ã®ã¿
 */
 CDirectDraw::CDirectDraw()
 {
-    //ƒpƒ‰ƒ[ƒ^ƒŠƒZƒbƒg
+    //ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒªã‚»ãƒƒãƒˆ
     state = CDDSTATE_NOINITIALIZE;
     dd = NULL;
     d3ddev = NULL;
@@ -94,13 +94,13 @@ CDirectDraw::CDirectDraw()
 }
 
 /*!
-*	‰Šú‰»
-*	Direct3D‚Ì‰Šú‰»‚ğs‚¤B
-*	ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Ìê‡A‚±‚Ì“_‚Åƒtƒ‹ƒXƒNƒŠ[ƒ“ó‘Ô‚É‚È‚é
+*	åˆæœŸåŒ–
+*	Direct3Dã®åˆæœŸåŒ–ã‚’è¡Œã†ã€‚
+*	ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã€ã“ã®æ™‚ç‚¹ã§ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³çŠ¶æ…‹ã«ãªã‚‹
 *
-*	@param hwnd ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒƒCƒ“ƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‹
-*	@param win TRUE:ƒEƒCƒ“ƒhƒEƒ‚[ƒh, FALSE:ƒtƒ‹ƒXƒNƒŠ[ƒ“
-*	@return TRUE:¬Œ÷, FALSE:¸”s
+*	@param hwnd ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«
+*	@param win TRUE:ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰, FALSE:ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
+*	@return TRUE:æˆåŠŸ, FALSE:å¤±æ•—
 */
 BOOL CDirectDraw::Initialize(HWND hwnd,BOOL win)
 {
@@ -113,7 +113,7 @@ BOOL CDirectDraw::Initialize(HWND hwnd,BOOL win)
         return FALSE;
     }
 
-    //Å‘åƒeƒNƒXƒ`ƒƒƒTƒCƒYæ“¾
+    //æœ€å¤§ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚ºå–å¾—
     D3DCAPS8 cap8;
     if(dd->GetDeviceCaps(D3DADAPTER_DEFAULT,devtypenow,&cap8)!=D3D_OK){
         Destroy();
@@ -122,26 +122,26 @@ BOOL CDirectDraw::Initialize(HWND hwnd,BOOL win)
     maxtexturewidth = cap8.MaxTextureWidth;
     maxtextureheight = cap8.MaxTextureHeight;
 
-    // ƒXƒe[ƒg‰Šú‰»
+    // ã‚¹ãƒ†ãƒ¼ãƒˆåˆæœŸåŒ–
     InitStates();
 
-    //x,y•½–Ê‚Ìƒf[ƒ^ƒZƒbƒg
-    d3dxplane_x.a=-1.0f;//x•½–Ê (x=0)
+    //x,yå¹³é¢ã®ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
+    d3dxplane_x.a=-1.0f;//xå¹³é¢ (x=0)
     d3dxplane_x.b=0;
     d3dxplane_x.c=0;
     d3dxplane_x.d=0;
-    d3dxplane_y.a=0;//y•½–Ê (y=0)
+    d3dxplane_y.a=0;//yå¹³é¢ (y=0)
     d3dxplane_y.b=-1.0f;
     d3dxplane_y.c=0;
     d3dxplane_y.d=0;
 
-    //ƒeƒNƒXƒ`ƒƒ‚É—p‚¢‚éƒtƒH[ƒ}ƒbƒg
+    //ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«ç”¨ã„ã‚‹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
     if (devtypenow == D3DDEVTYPE_HAL)
         texformat=g_config.TexFormat();
     else
         texformat = d3dpp.BackBufferFormat;
 
-    //ƒtƒHƒ“ƒg‚Ìì¬
+    //ãƒ•ã‚©ãƒ³ãƒˆã®ä½œæˆ
     lpFont[0]=CreateMyFont( 8);
     lpFont[1]=CreateMyFont(16);
     lpFont[2]=CreateMyFont(22);
@@ -159,14 +159,14 @@ BOOL CDirectDraw::Initialize(HWND hwnd,BOOL win)
     camera_zuray=0;
     ResetTransformMatrix();
 
-    // ƒXƒvƒ‰ƒCƒg»‘¢
+    // ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆè£½é€ 
     /*if ( FAILED(D3DXCreateSprite(d3ddev, &pSprite)) )
     {
         Destroy();
         return FALSE;
     }*/
 
-    // •`‰æ—p‚Ì’¸“_ƒoƒbƒtƒ@
+    // æç”»ç”¨ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡
     if ( FAILED(d3ddev->CreateVertexBuffer(sizeof(MYVERTEX3D) * 4, D3DUSAGE_DYNAMIC | D3DUSAGE_WRITEONLY,
                                             FVF_3DVERTEX, D3DPOOL_DEFAULT, &pMyVertex)) )
     {
@@ -174,7 +174,7 @@ BOOL CDirectDraw::Initialize(HWND hwnd,BOOL win)
         return FALSE;
     }
 
-    // ƒKƒ“ƒ}ƒ‰ƒ“ƒv‚ğİ’è‚µ‚Ä‚İ‚é
+    // ã‚¬ãƒ³ãƒãƒ©ãƒ³ãƒ—ã‚’è¨­å®šã—ã¦ã¿ã‚‹
 /*	D3DGAMMARAMP gr;
 
     for (int i = 0; i < 256; i++)
@@ -190,26 +190,26 @@ BOOL CDirectDraw::Initialize(HWND hwnd,BOOL win)
 
 void CDirectDraw::InitStates()
 {
-    d3ddev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);//ƒJƒŠƒ“ƒO‚È‚µ
-    d3ddev->SetRenderState(D3DRS_LIGHTING, FALSE);//ƒ‰ƒCƒeƒBƒ“ƒO–³‚µ
+    d3ddev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);//ã‚«ãƒªãƒ³ã‚°ãªã—
+    d3ddev->SetRenderState(D3DRS_LIGHTING, FALSE);//ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ç„¡ã—
     if (devtypenow != D3DDEVTYPE_HAL)
     {
-        d3ddev->SetRenderState(D3DRS_FILLMODE, D3DFILL_POINT);//“_‚¾‚¯
-        d3ddev->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_FLAT);//ƒtƒ‰ƒbƒgƒVƒF[ƒfƒBƒ“ƒO
+        d3ddev->SetRenderState(D3DRS_FILLMODE, D3DFILL_POINT);//ç‚¹ã ã‘
+        d3ddev->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_FLAT);//ãƒ•ãƒ©ãƒƒãƒˆã‚·ã‚§ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°
     }
     else
     {
-        //ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒfƒBƒ“ƒO—LŒø
+        //ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°æœ‰åŠ¹
         d3ddev->SetRenderState(D3DRS_ALPHABLENDENABLE,TRUE);
         d3ddev->SetRenderState(D3DRS_SRCBLEND,D3DBLEND_SRCALPHA);
         d3ddev->SetRenderState(D3DRS_DESTBLEND,D3DBLEND_INVSRCALPHA);
 
-        //‚±‚ê‚ğ‚â‚ç‚È‚¢‚ÆƒfƒBƒtƒ…[ƒYF‚ª—LŒø‚É‚È‚ç‚È‚¢
+        //ã“ã‚Œã‚’ã‚„ã‚‰ãªã„ã¨ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºè‰²ãŒæœ‰åŠ¹ã«ãªã‚‰ãªã„
         d3ddev->SetTextureStageState( 0, D3DTSS_ALPHAOP, D3DTOP_MODULATE);
         d3ddev->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
         d3ddev->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
 
-        //ƒAƒ‹ƒtƒ@ƒeƒXƒg
+        //ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆ
         if(!g_config.NoAlphaTest()){
             if(d3ddev->SetRenderState( D3DRS_ALPHATESTENABLE, TRUE ) ==D3D_OK){
                 d3ddev->SetRenderState( D3DRS_ALPHAREF, 0x02 );
@@ -217,13 +217,13 @@ void CDirectDraw::InitStates()
             }
         }
 
-        //ƒ|ƒCƒ“ƒgƒXƒvƒ‰ƒCƒg
+        //ãƒã‚¤ãƒ³ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
         d3ddev->SetRenderState(D3DRS_POINTSPRITEENABLE,TRUE);
 
-        //ƒ}ƒ‹ƒ`
+        //ãƒãƒ«ãƒ
         //d3ddev->SetRenderState(D3DRS_MULTISAMPLEANTIALIAS, TRUE);
 
-        // ƒXƒeƒ“ƒVƒ‹
+        // ã‚¹ãƒ†ãƒ³ã‚·ãƒ«
         if (stencil_enable)
         {
             d3ddev->SetRenderState(D3DRS_STENCILENABLE, TRUE);
@@ -231,46 +231,46 @@ void CDirectDraw::InitStates()
         }
     }
 
-    d3ddev->SetVertexShader( FVF_3DVERTEX );//‚Æ‚è‚ ‚¦‚¸İ’è‚µ‚Æ‚­
+    d3ddev->SetVertexShader( FVF_3DVERTEX );//ã¨ã‚Šã‚ãˆãšè¨­å®šã—ã¨ã
 }
 
 
 /*!
-*	Direct3D‰Šú‰»•”•ª
+*	Direct3DåˆæœŸåŒ–éƒ¨åˆ†
 *
-*	Initialize‚Ì‚¤‚¿ADirect3DADirect3DDevice‚Ì¶¬•”
+*	Initializeã®ã†ã¡ã€Direct3Dã€Direct3DDeviceã®ç”Ÿæˆéƒ¨
 *
-*	@param hwnd ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒƒCƒ“ƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‹
-*	@param win TRUE:ƒEƒCƒ“ƒhƒEƒ‚[ƒh, FALSE:ƒtƒ‹ƒXƒNƒŠ[ƒ“
-*	@return TRUE:¬Œ÷, FALSE:¸”s
+*	@param hwnd ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«
+*	@param win TRUE:ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰, FALSE:ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
+*	@return TRUE:æˆåŠŸ, FALSE:å¤±æ•—
 */
 BOOL CDirectDraw::InitDirectDraw(HWND hwnd,BOOL win)
 {
-    // Direct3D ƒIƒuƒWƒFƒNƒg‚ğì¬
+    // Direct3D ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ
     dd = Direct3DCreate8(D3D_SDK_VERSION);
     if (NULL == dd){
-        MessageBox(hwnd,"Direct3DCreate8‚É¸”s\nDirectX‚Ìƒo[ƒWƒ‡ƒ“‚ªŒÃ‚¢‚Æv‚í‚ê","ƒGƒ‰[",MB_OK|MB_ICONSTOP);
+        MessageBox(hwnd,"Direct3DCreate8ã«å¤±æ•—\nDirectXã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãŒå¤ã„ã¨æ€ã‚ã‚Œ","ã‚¨ãƒ©ãƒ¼",MB_OK|MB_ICONSTOP);
         return(FALSE);
     }
 
-    // Direct3D ‰Šú‰»ƒpƒ‰ƒ[ƒ^‚Ìİ’è
+    // Direct3D åˆæœŸåŒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®è¨­å®š
     ZeroMemory(&d3dpp, sizeof(D3DPRESENT_PARAMETERS));
     d3dpp.EnableAutoDepthStencil = TRUE;
     d3dpp.AutoDepthStencilFormat = D3DFMT_D16;
 
-    // ƒfƒoƒCƒXƒ^ƒCƒvŠ“¾
+    // ãƒ‡ãƒã‚¤ã‚¹ã‚¿ã‚¤ãƒ—æ‰€å¾—
     devtypenow=g_config.DeviceType();
 
-    //ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Ìê‡‚Ì‰Šú‰»
+    //ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã®åˆæœŸåŒ–
     if(win){
-        // Œ»İ‚Ì‰æ–Êƒ‚[ƒh‚ğæ“¾
+        // ç¾åœ¨ã®ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—
         D3DDISPLAYMODE d3ddm;
         if( dd->GetAdapterDisplayMode( D3DADAPTER_DEFAULT, &d3ddm ) != D3D_OK ) {
-            MessageBox(hwnd,"GetAdapterDisplayMode‚É¸”s","ƒGƒ‰[",MB_OK|MB_ICONSTOP);
+            MessageBox(hwnd,"GetAdapterDisplayModeã«å¤±æ•—","ã‚¨ãƒ©ãƒ¼",MB_OK|MB_ICONSTOP);
             RELEASE(dd);
             return(FALSE);
         }
-        // ƒEƒCƒ“ƒhƒE : Œ»İ‚Ì‰æ–Êƒ‚[ƒh‚ğg—p
+        // ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ : ç¾åœ¨ã®ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‚’ä½¿ç”¨
         d3dpp.BackBufferFormat = d3ddm.Format;
         d3dpp.MultiSampleType = D3DMULTISAMPLE_NONE;
         d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
@@ -283,9 +283,9 @@ BOOL CDirectDraw::InitDirectDraw(HWND hwnd,BOOL win)
         m_desktop_width = d3ddm.Width;
         m_desktop_height = d3ddm.Height;
     }
-    //ƒtƒ‹ƒXƒNƒŠ[ƒ“‚Ìê‡‚Ì‰Šú‰»
+    //ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®å ´åˆã®åˆæœŸåŒ–
     else{
-        // g—p‰Â”\‚È‰æ–Êƒ‚[ƒh‚ğ’T‚µ‚Ä‘I‘ğ
+        // ä½¿ç”¨å¯èƒ½ãªç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‚’æ¢ã—ã¦é¸æŠ
         if( dd->CheckDeviceType(D3DADAPTER_DEFAULT, devtypenow, D3DFMT_X8R8G8B8,
                                 D3DFMT_X8R8G8B8, FALSE) == D3D_OK)
                                 d3dpp.BackBufferFormat = D3DFMT_X8R8G8B8;
@@ -295,7 +295,7 @@ BOOL CDirectDraw::InitDirectDraw(HWND hwnd,BOOL win)
         else if( dd->CheckDeviceType(D3DADAPTER_DEFAULT, devtypenow, D3DFMT_R5G6B5,
                                 D3DFMT_R5G6B5, FALSE) == D3D_OK)
                                 d3dpp.BackBufferFormat = D3DFMT_R5G6B5;
-        else { // ƒ_ƒ‚¾‚ŸI
+        else { // ãƒ€ãƒ¡ã ãï¼
             TraceCreateDeviceError(D3DERR_INVALIDCALL,hwnd);
             Destroy();
             return(FALSE);
@@ -312,16 +312,16 @@ BOOL CDirectDraw::InitDirectDraw(HWND hwnd,BOOL win)
         m_desktop_width = g_DISPLAYWIDTH;
         m_desktop_height = g_DISPLAYHEIGHT;
     }
-    // ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒŠƒ“ƒO
+    // ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°
     /*if ( SUCCEEDED(dd->CheckDeviceMultiSampleType(D3DADAPTER_DEFAULT,
                    D3DDEVTYPE_HAL, d3dpp.BackBufferFormat, d3dpp.Windowed,
                    D3DMULTISAMPLE_2_SAMPLES)) &&
         SUCCEEDED(dd->CheckDeviceMultiSampleType(D3DADAPTER_DEFAULT,
                    D3DDEVTYPE_HAL, D3DFMT_D16, d3dpp.Windowed,
                    D3DMULTISAMPLE_2_SAMPLES)) )
-        d3dpp.MultiSampleType = D3DMULTISAMPLE_2_SAMPLES;*/ // VRAM‚ğ”{‹ß‚­H‚¤‚İ‚½‚¢‚È‚Ì‚Å•Û—¯
+        d3dpp.MultiSampleType = D3DMULTISAMPLE_2_SAMPLES;*/ // VRAMã‚’å€è¿‘ãé£Ÿã†ã¿ãŸã„ãªã®ã§ä¿ç•™
 
-    // ƒXƒeƒ“ƒVƒ‹‚ªg‚¦‚»‚¤‚È‚çg‚¤
+    // ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãŒä½¿ãˆãã†ãªã‚‰ä½¿ã†
     if ( SUCCEEDED(dd->CheckDeviceFormat(D3DADAPTER_DEFAULT, devtypenow, d3dpp.BackBufferFormat,
                                          D3DUSAGE_DEPTHSTENCIL, D3DRTYPE_SURFACE, D3DFMT_D24S8)) )
     {
@@ -329,7 +329,7 @@ BOOL CDirectDraw::InitDirectDraw(HWND hwnd,BOOL win)
         d3dpp.AutoDepthStencilFormat = D3DFMT_D24S8;
     }
  
-    // ƒfƒoƒCƒX‚Ìì¬
+    // ãƒ‡ãƒã‚¤ã‚¹ã®ä½œæˆ
     DWORD vertexprocessmode=D3DCREATE_HARDWARE_VERTEXPROCESSING;
 
     if (devtypenow != D3DDEVTYPE_HAL)
@@ -338,20 +338,20 @@ BOOL CDirectDraw::InitDirectDraw(HWND hwnd,BOOL win)
     HRESULT ret_devcreate = dd->CreateDevice(D3DADAPTER_DEFAULT,devtypenow,
         hwnd,vertexprocessmode,&d3dpp,&d3ddev);
 
-    if(D3D_OK != ret_devcreate){//‚ ‚è‚á‚Ü
+    if(D3D_OK != ret_devcreate){//ã‚ã‚Šã‚ƒã¾
         vertexprocessmode=D3DCREATE_SOFTWARE_VERTEXPROCESSING;
         ret_devcreate = dd->CreateDevice(D3DADAPTER_DEFAULT,devtypenow,
-            hwnd,vertexprocessmode,&d3dpp,&d3ddev);// ƒ\ƒtƒg’¸“_ˆ—‚Å‚â‚è’¼‚µB
+            hwnd,vertexprocessmode,&d3dpp,&d3ddev);// ã‚½ãƒ•ãƒˆé ‚ç‚¹å‡¦ç†ã§ã‚„ã‚Šç›´ã—ã€‚
 
-        if(D3D_OK != ret_devcreate){//‚â‚Á‚Ï‚¾‚ß‚©B
-            // ‚Ü‚Æ‚à‚ÉƒQ[ƒ€o—ˆ‚ñ‚Ì‚Å••ˆó
+        if(D3D_OK != ret_devcreate){//ã‚„ã£ã±ã ã‚ã‹ã€‚
+            // ã¾ã¨ã‚‚ã«ã‚²ãƒ¼ãƒ å‡ºæ¥ã‚“ã®ã§å°å°
             /*devtypenow = D3DDEVTYPE_REF;
             d3dpp.Flags |= D3DPRESENTFLAG_LOCKABLE_BACKBUFFER;
 
             ret_devcreate = dd->CreateDevice(D3DADAPTER_DEFAULT,devtypenow,
-                hwnd,vertexprocessmode,&d3dpp,&d3ddev);// REFg—p*/
+                hwnd,vertexprocessmode,&d3dpp,&d3ddev);// REFä½¿ç”¨*/
 
-            if(D3D_OK != ret_devcreate){//‚»‚ê‚Å‚àƒ_ƒ‚Á‚Ä‚©H
+            if(D3D_OK != ret_devcreate){//ãã‚Œã§ã‚‚ãƒ€ãƒ¡ã£ã¦ã‹ï¼Ÿ
                 TraceCreateDeviceError(ret_devcreate,hwnd);
                 return(FALSE);
             }
@@ -362,19 +362,19 @@ BOOL CDirectDraw::InitDirectDraw(HWND hwnd,BOOL win)
 }
 
 /*!
-*	”jŠü
+*	ç ´æ£„
 */
 void CDirectDraw::Destroy()
 {
     int i=0;
     DWORD notrelcount = 0;
     
-    //ƒtƒHƒ“ƒg‚Ìíœ
+    //ãƒ•ã‚©ãƒ³ãƒˆã®å‰Šé™¤
     for(int i=0;i<AKIDX_FONTNUM;i++){
         RELEASE(lpFont[i]);
     }
 
-    //ƒeƒNƒXƒ`ƒƒ‚Ìíœ
+    //ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å‰Šé™¤
     for(int i=0;i<MAXNUMGOLUAHTEXTURES;i++){
         if(ms[i].valid)notrelcount++;
         RelSurface(&ms[i]);
@@ -393,11 +393,11 @@ void CDirectDraw::Destroy()
 
 
 /*!
-*	@brief •`‰æŠJn
-*	–ˆƒtƒŒ[ƒ€‚Ì•`‰æ‚ğŠJn‚·‚é‚Æ‚«‚É‚±‚Ì‘€ì‚ğs‚¤‚±‚ÆB
-*	‚ ‚ç‚ä‚é•`‰æˆ—‚ÍA‚±‚ÌŠÖ”‚ÆAEndDraw ‚ÌŠÔ‚És‚í‚È‚¯‚ê‚Î‚È‚ç‚È‚¢B
+*	@brief æç”»é–‹å§‹
+*	æ¯ãƒ•ãƒ¬ãƒ¼ãƒ ã®æç”»ã‚’é–‹å§‹ã™ã‚‹ã¨ãã«ã“ã®æ“ä½œã‚’è¡Œã†ã“ã¨ã€‚
+*	ã‚ã‚‰ã‚†ã‚‹æç”»å‡¦ç†ã¯ã€ã“ã®é–¢æ•°ã¨ã€EndDraw ã®é–“ã«è¡Œã‚ãªã‘ã‚Œã°ãªã‚‰ãªã„ã€‚
 *
-*	@param erbs TRUE:ˆÈ‘O‚Ì•`‰æ“à—e‚ğÁ‹‚·‚é
+*	@param erbs TRUE:ä»¥å‰ã®æç”»å†…å®¹ã‚’æ¶ˆå»ã™ã‚‹
 *	@sa clearbgcolor
 *	@sa EndDraw
 */
@@ -416,8 +416,8 @@ void CDirectDraw::StartDraw(BOOL erbs)
 }
 
 /*!
-*	ƒoƒbƒNƒoƒbƒtƒ@‚ÌƒNƒŠƒA
-*	Zƒoƒbƒtƒ@‚àƒNƒŠƒA‚³‚ê‚é
+*	ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚¯ãƒªã‚¢
+*	Zãƒãƒƒãƒ•ã‚¡ã‚‚ã‚¯ãƒªã‚¢ã•ã‚Œã‚‹
 */
 void CDirectDraw::ClearBackBuffer()
 {
@@ -425,8 +425,8 @@ void CDirectDraw::ClearBackBuffer()
 }
 
 /*!
-*	•`‰æI—¹iƒtƒŠƒbƒvj
-*	StartDraw ‚©‚ç‚±‚ÌŠÖ”‚ÌŒÄ‚Ño‚µ‚Ü‚Å‚É‚È‚³‚ê‚½•`‰æ“à—e‚ªÀÛ‚É•\¦‚³‚ê‚éB
+*	æç”»çµ‚äº†ï¼ˆãƒ•ãƒªãƒƒãƒ—ï¼‰
+*	StartDraw ã‹ã‚‰ã“ã®é–¢æ•°ã®å‘¼ã³å‡ºã—ã¾ã§ã«ãªã•ã‚ŒãŸæç”»å†…å®¹ãŒå®Ÿéš›ã«è¡¨ç¤ºã•ã‚Œã‚‹ã€‚
 *
 *	@sa StartDraw
 */
@@ -437,10 +437,10 @@ void CDirectDraw::EndDraw()
 
     if ( hr == D3DERR_DEVICELOST )
     {
-        // DirectDrawƒfƒoƒCƒXÄŠ“¾ˆ—
+        // DirectDrawãƒ‡ãƒã‚¤ã‚¹å†æ‰€å¾—å‡¦ç†
         while (1)
         {
-            // ‚±‚ñ‚È‚Æ‚±‚ë‚ÅƒEƒBƒ“ƒhƒEƒƒbƒZ[ƒWŠ“¾
+            // ã“ã‚“ãªã¨ã“ã‚ã§ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ‰€å¾—
             MSG msg;
 
             if(PeekMessage( &msg, NULL, 0, 0 ,PM_REMOVE)){//message loop
@@ -449,7 +449,7 @@ void CDirectDraw::EndDraw()
                 DispatchMessage( &msg );
             }
             
-            // ‚¿‚å‚Á‚Æ’·‚ß‚É
+            // ã¡ã‚‡ã£ã¨é•·ã‚ã«
             Sleep(100);
 
             hr = d3ddev->TestCooperativeLevel();
@@ -463,10 +463,10 @@ void CDirectDraw::EndDraw()
 }
 
 /*!
-*	ƒeƒLƒXƒg•`‰æ—pƒtƒHƒ“ƒg¶¬
+*	ãƒ†ã‚­ã‚¹ãƒˆæç”»ç”¨ãƒ•ã‚©ãƒ³ãƒˆç”Ÿæˆ
 *	
-*	@param h ƒtƒHƒ“ƒg‚ÌƒTƒCƒY
-*	@return ƒtƒHƒ“ƒg
+*	@param h ãƒ•ã‚©ãƒ³ãƒˆã®ã‚µã‚¤ã‚º
+*	@return ãƒ•ã‚©ãƒ³ãƒˆ
 */
 LPD3DXFONT CDirectDraw::CreateMyFont(DWORD h)
 {
@@ -483,7 +483,7 @@ LPD3DXFONT CDirectDraw::CreateMyFont(DWORD h)
                       CLIP_DEFAULT_PRECIS,
                       DEFAULT_QUALITY,
                       DEFAULT_PITCH,
-                      "‚l‚r ‚oƒSƒVƒbƒN"
+                      "ï¼­ï¼³ ï¼°ã‚´ã‚·ãƒƒã‚¯"
                       );
     if(!hFont) return(NULL);
     hOldFont = (HFONT)SelectObject(hTextDC, hFont);
@@ -519,7 +519,7 @@ void CDirectDraw::ResetDirectDraw()
             lpFont[i]->OnResetDevice();
 }
 
-// ƒEƒBƒ“ƒhƒEƒTƒCƒY•ÏXˆ—
+// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºå¤‰æ›´å‡¦ç†
 /*void CDirectDraw::OnWindowResized(int width, int height)
 {
     d3dpp.BackBufferWidth = width;
@@ -528,21 +528,21 @@ void CDirectDraw::ResetDirectDraw()
     ResetDirectDraw();
 }*/
 
-// ƒXƒNƒŠ[ƒ“ƒ‚[ƒh•ÏX
+// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´
 BOOL CDirectDraw::ChangeScreenMode(BOOL win)
 {
     if (win && d3dpp.Windowed == FALSE)
     {
-        // ƒEƒBƒ“ƒhƒEƒ‚[ƒh‚É•ÏX
+        // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã«å¤‰æ›´
 
-        // Œ»İ‚Ì‰æ–Êƒ‚[ƒh‚ğæ“¾
+        // ç¾åœ¨ã®ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—
         D3DDISPLAYMODE d3ddm;
         if( dd->GetAdapterDisplayMode( D3DADAPTER_DEFAULT, &d3ddm ) != D3D_OK ) {
-            MessageBox(d3dpp.hDeviceWindow,"GetAdapterDisplayMode‚É¸”s","ƒGƒ‰[",MB_OK|MB_ICONSTOP);
+            MessageBox(d3dpp.hDeviceWindow,"GetAdapterDisplayModeã«å¤±æ•—","ã‚¨ãƒ©ãƒ¼",MB_OK|MB_ICONSTOP);
             RELEASE(dd);
             return(FALSE);
         }
-        // ƒEƒCƒ“ƒhƒE : Œ»İ‚Ì‰æ–Êƒ‚[ƒh‚ğg—p
+        // ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ : ç¾åœ¨ã®ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‚’ä½¿ç”¨
         d3dpp.BackBufferFormat = d3ddm.Format;
         d3dpp.Windowed = TRUE;
 
@@ -551,10 +551,10 @@ BOOL CDirectDraw::ChangeScreenMode(BOOL win)
     }
     else if (!win && d3dpp.Windowed == TRUE)
     {
-        // ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚É•ÏX
+        // ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã«å¤‰æ›´
         SetWindowLong(d3dpp.hDeviceWindow, GWL_STYLE, WS_POPUP);
 
-        // g—p‰Â”\‚È‰æ–Êƒ‚[ƒh‚ğ’T‚µ‚Ä‘I‘ğ
+        // ä½¿ç”¨å¯èƒ½ãªç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‚’æ¢ã—ã¦é¸æŠ
         if( dd->CheckDeviceType(D3DADAPTER_DEFAULT, devtypenow, D3DFMT_X8R8G8B8,
                                 D3DFMT_X8R8G8B8, FALSE) == D3D_OK)
                                 d3dpp.BackBufferFormat = D3DFMT_X8R8G8B8;
@@ -564,7 +564,7 @@ BOOL CDirectDraw::ChangeScreenMode(BOOL win)
         else if( dd->CheckDeviceType(D3DADAPTER_DEFAULT, devtypenow, D3DFMT_R5G6B5,
                                 D3DFMT_R5G6B5, FALSE) == D3D_OK)
                                 d3dpp.BackBufferFormat = D3DFMT_R5G6B5;
-        else { // ƒ_ƒ‚¾‚ŸI
+        else { // ãƒ€ãƒ¡ã ãï¼
             TraceCreateDeviceError(D3DERR_INVALIDCALL,d3dpp.hDeviceWindow);
             Destroy();
             return(FALSE);
@@ -585,13 +585,13 @@ BOOL CDirectDraw::ChangeScreenMode(BOOL win)
 #endif//_GOBJECT_H_
 
 /*!
-*	ƒ¿ƒuƒŒƒ“ƒh‚Ìƒ‚[ƒh‚ğİ’è‚·‚é
-*	’Êí‚Ì‡¬A‰ÁZ‡¬A”½“] ‚ª‘I‚×‚é
+*	Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ã®ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+*	é€šå¸¸ã®åˆæˆã€åŠ ç®—åˆæˆã€åè»¢ ãŒé¸ã¹ã‚‹
 */
 void CDirectDraw::SetAlphaMode(DWORD alphamode)
 {
     switch(alphamode){
-    case GBLEND_KASAN://‰ÁZ‡¬
+    case GBLEND_KASAN://åŠ ç®—åˆæˆ
         d3ddev->SetRenderState(D3DRS_SRCBLEND,D3DBLEND_SRCALPHA);
         d3ddev->SetRenderState(D3DRS_DESTBLEND,D3DBLEND_ONE);
         break;
@@ -620,10 +620,10 @@ void CDirectDraw::SetAlphaMode(DWORD alphamode)
 }
 
 /*!
-*	ZƒeƒXƒgEƒ‰ƒCƒg‚Ì—LŒøE–³Œø‚ğİ’è
+*	Zãƒ†ã‚¹ãƒˆãƒ»ãƒ©ã‚¤ãƒˆã®æœ‰åŠ¹ãƒ»ç„¡åŠ¹ã‚’è¨­å®š
 *
-*	@param test TRUE:‚šƒeƒXƒg‚ğs‚¤
-*	@param write TRUE:‚šƒoƒbƒtƒ@[‚Ö‚Ì‘‚«‚İ‚ğs‚¤
+*	@param test TRUE:ï½šãƒ†ã‚¹ãƒˆã‚’è¡Œã†
+*	@param write TRUE:ï½šãƒãƒƒãƒ•ã‚¡ãƒ¼ã¸ã®æ›¸ãè¾¼ã¿ã‚’è¡Œã†
 */
 void CDirectDraw::EnableZ(BOOL test,BOOL write)
 {
@@ -636,13 +636,13 @@ void CDirectDraw::EnableZ(BOOL test,BOOL write)
 
 
 /*!
-*	CreateDevice‚É¸”s‚µ‚½——R‚ğMessageBox‚Å•\¦‚·‚é
+*	CreateDeviceã«å¤±æ•—ã—ãŸç†ç”±ã‚’MessageBoxã§è¡¨ç¤ºã™ã‚‹
 *
-*	D3D‚ÌCreateDevice‚ª•Ô‚µ‚½ƒŠƒ^[ƒ“ƒR[ƒh‚©‚çASDKƒwƒ‹ƒv‚Ì‰ğà‚ğƒRƒsƒy‚µ‚½‚à‚Ì‚É
-*	’¼‚µ‚ÄƒƒbƒZ[ƒWƒ{ƒbƒNƒX•\¦‚·‚éB
+*	D3Dã®CreateDeviceãŒè¿”ã—ãŸãƒªã‚¿ãƒ¼ãƒ³ã‚³ãƒ¼ãƒ‰ã‹ã‚‰ã€SDKãƒ˜ãƒ«ãƒ—ã®è§£èª¬ã‚’ã‚³ãƒ”ãƒšã—ãŸã‚‚ã®ã«
+*	ç›´ã—ã¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒœãƒƒã‚¯ã‚¹è¡¨ç¤ºã™ã‚‹ã€‚
 *
-*	@param ret CreateDevice‚ª•Ô‚µ‚½ƒŠƒ^[ƒ“ƒR[ƒh
-*	@param hwnd ƒƒbƒZ[ƒWƒ{ƒbƒNƒX‚Ìe‚É‚È‚éƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‹
+*	@param ret CreateDeviceãŒè¿”ã—ãŸãƒªã‚¿ãƒ¼ãƒ³ã‚³ãƒ¼ãƒ‰
+*	@param hwnd ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒœãƒƒã‚¯ã‚¹ã®è¦ªã«ãªã‚‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«
 */
 void CDirectDraw::TraceCreateDeviceError(HRESULT ret,HWND hwnd)
 {
@@ -653,34 +653,34 @@ void CDirectDraw::TraceCreateDeviceError(HRESULT ret,HWND hwnd)
     switch(ret){
     case D3DERR_INVALIDCALL:
         sprintf(&msg[strlen(msg)],"D3DERR_INVALIDCALL:");
-        sprintf(&msg[strlen(msg)],"ƒƒ\ƒbƒh‚ÌŒÄ‚Ño‚µ‚ª–³Œø‚Å‚ ‚éB\n");
-        sprintf(&msg[strlen(msg)],"@@‚½‚Æ‚¦‚ÎAƒƒ\ƒbƒh‚Ìƒpƒ‰ƒ[ƒ^‚É–³Œø‚È’l‚ªİ’è‚³‚ê‚Ä‚¢‚éê‡‚È‚ÇB");
-        sprintf(&msg[strlen(msg)],"\n\n¥¥¥‚¾‚»‚¤‚Å‚·B");
-        sprintf(&msg[strlen(msg)],"\nEƒfƒBƒXƒvƒŒƒC‚Ì•\¦F”‚ğ•ÏX‚µ‚Ä‚­‚¾‚³‚¢");
-        sprintf(&msg[strlen(msg)],"\nEƒfƒBƒXƒvƒŒƒC‚ÌƒvƒƒpƒeƒB/Ú×/‚Åƒn[ƒhƒEƒFƒAƒAƒNƒZƒ‰ƒŒ[ƒ^Å‘å‚É‚µ‚Ä‚­‚¾‚³‚¢");
-        sprintf(&msg[strlen(msg)],"\nEuƒtƒ@ƒCƒ‹–¼‚ğw’è‚µ‚ÄÀsv‚©‚çdxdiag.exe‚ğÀs‚µA");
-        sprintf(&msg[strlen(msg)],"\n\n@@uƒfƒBƒXƒvƒŒƒCvƒ^ƒu‚ÅDirect3DƒAƒNƒZƒ‰ƒŒ[ƒ^‚ªug—p‰Â”\v‚Å‚ ‚é‚±‚Æ‚ğŠm‚©‚ß‚Ä‚­‚¾‚³‚¢B");
-        sprintf(&msg[strlen(msg)],"\nEg_config.exe‚ÅuƒfƒoƒCƒXƒ^ƒCƒvv‚ğ•ÏX‚µ‚Ä‚­‚¾‚³‚¢");
+        sprintf(&msg[strlen(msg)],"ãƒ¡ã‚½ãƒƒãƒ‰ã®å‘¼ã³å‡ºã—ãŒç„¡åŠ¹ã§ã‚ã‚‹ã€‚\n");
+        sprintf(&msg[strlen(msg)],"ã€€ã€€ãŸã¨ãˆã°ã€ãƒ¡ã‚½ãƒƒãƒ‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«ç„¡åŠ¹ãªå€¤ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹å ´åˆãªã©ã€‚");
+        sprintf(&msg[strlen(msg)],"\n\nï½¥ï½¥ï½¥ã ãã†ã§ã™ã€‚");
+        sprintf(&msg[strlen(msg)],"\nãƒ»ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã®è¡¨ç¤ºè‰²æ•°ã‚’å¤‰æ›´ã—ã¦ãã ã•ã„");
+        sprintf(&msg[strlen(msg)],"\nãƒ»ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£/è©³ç´°/ã§ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿æœ€å¤§ã«ã—ã¦ãã ã•ã„");
+        sprintf(&msg[strlen(msg)],"\nãƒ»ã€Œãƒ•ã‚¡ã‚¤ãƒ«åã‚’æŒ‡å®šã—ã¦å®Ÿè¡Œã€ã‹ã‚‰dxdiag.exeã‚’å®Ÿè¡Œã—ã€");
+        sprintf(&msg[strlen(msg)],"\n\nã€€ã€€ã€Œãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã€ã‚¿ãƒ–ã§Direct3Dã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ãŒã€Œä½¿ç”¨å¯èƒ½ã€ã§ã‚ã‚‹ã“ã¨ã‚’ç¢ºã‹ã‚ã¦ãã ã•ã„ã€‚");
+        sprintf(&msg[strlen(msg)],"\nãƒ»g_config.exeã§ã€Œãƒ‡ãƒã‚¤ã‚¹ã‚¿ã‚¤ãƒ—ã€ã‚’å¤‰æ›´ã—ã¦ãã ã•ã„");
         break;
     case D3DERR_NOTAVAILABLE:
         sprintf(&msg[strlen(msg)],"D3DERR_NOTAVAILABLE:");
-        sprintf(&msg[strlen(msg)],"‚±‚ÌƒfƒoƒCƒX‚ÍAÆ‰ï‚³‚ê‚½ƒeƒNƒjƒbƒN‚ğƒTƒ|[ƒg‚µ‚Ä‚¢‚È‚¢B");
-        sprintf(&msg[strlen(msg)],"\n\n¥¥¥‚¾‚»‚¤‚Å‚·B");
-        sprintf(&msg[strlen(msg)],"\nƒOƒ‰ƒtƒBƒbƒNƒJ[ƒh‚ªŒü‚¢‚Ä‚È‚¢‚İ‚½‚¢‚È‚ñ‚ÅA”ƒ‚¢Š·‚¦‚Ü‚¹‚¤B");
+        sprintf(&msg[strlen(msg)],"ã“ã®ãƒ‡ãƒã‚¤ã‚¹ã¯ã€ç…§ä¼šã•ã‚ŒãŸãƒ†ã‚¯ãƒ‹ãƒƒã‚¯ã‚’ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ãªã„ã€‚");
+        sprintf(&msg[strlen(msg)],"\n\nï½¥ï½¥ï½¥ã ãã†ã§ã™ã€‚");
+        sprintf(&msg[strlen(msg)],"\nã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚«ãƒ¼ãƒ‰ãŒå‘ã„ã¦ãªã„ã¿ãŸã„ãªã‚“ã§ã€è²·ã„æ›ãˆã¾ã›ã†ã€‚");
         break;
     case D3DERR_OUTOFVIDEOMEMORY:
         sprintf(&msg[strlen(msg)],"D3DERR_OUTOFVIDEOMEMORY");
-        sprintf(&msg[strlen(msg)],"Direct3D ‚ªˆ—‚ğs‚¤‚Ì‚É\•ª‚ÈƒfƒBƒXƒvƒŒƒC ƒƒ‚ƒŠ‚ª‚È‚¢B");
-        sprintf(&msg[strlen(msg)],"\n\n¥¥¥‚¾‚»‚¤‚Å‚·B");
-        sprintf(&msg[strlen(msg)],"\nEƒfƒBƒXƒvƒŒƒC‚Ì‰ğ‘œ“x‚ÆF”‚ğ‚Å‚«‚é‚¾‚¯Œ¸‚ç‚µ‚Ä‚­‚¾‚³‚¢B");
-        sprintf(&msg[strlen(msg)],"\nEg_config.exe‚Å320x240ƒ‚[ƒh‚É‚µ‚Ä‚İ‚Ä‚­‚¾‚³‚¢");
-        sprintf(&msg[strlen(msg)],"\nEPC‚ğ”ƒ‚¢Š·‚¦‚Ä‚­‚¾‚³‚¢");
+        sprintf(&msg[strlen(msg)],"Direct3D ãŒå‡¦ç†ã‚’è¡Œã†ã®ã«ååˆ†ãªãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ ãƒ¡ãƒ¢ãƒªãŒãªã„ã€‚");
+        sprintf(&msg[strlen(msg)],"\n\nï½¥ï½¥ï½¥ã ãã†ã§ã™ã€‚");
+        sprintf(&msg[strlen(msg)],"\nãƒ»ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã®è§£åƒåº¦ã¨è‰²æ•°ã‚’ã§ãã‚‹ã ã‘æ¸›ã‚‰ã—ã¦ãã ã•ã„ã€‚");
+        sprintf(&msg[strlen(msg)],"\nãƒ»g_config.exeã§320x240ãƒ¢ãƒ¼ãƒ‰ã«ã—ã¦ã¿ã¦ãã ã•ã„");
+        sprintf(&msg[strlen(msg)],"\nãƒ»PCã‚’è²·ã„æ›ãˆã¦ãã ã•ã„");
         break;
     default:
-        sprintf(&msg[strlen(msg)],"ƒGƒ‰[‚ª“Á’è‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B");
+        sprintf(&msg[strlen(msg)],"ã‚¨ãƒ©ãƒ¼ãŒç‰¹å®šã§ãã¾ã›ã‚“ã§ã—ãŸã€‚");
     }
 
-    MessageBox(hwnd,msg,"‹N“®‚É¸”s",MB_OK);
+    MessageBox(hwnd,msg,"èµ·å‹•ã«å¤±æ•—",MB_OK);
     free(msg);
 }
 
@@ -696,7 +696,7 @@ void CDirectDraw::TraceCreateDeviceError(HRESULT ret,HWND hwnd)
     
 
 
-    ƒrƒbƒgƒ}ƒbƒv‚Ìƒ[ƒh/ƒAƒ“ƒ[ƒh
+    ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ãƒ­ãƒ¼ãƒ‰/ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰
 
 
 
@@ -705,27 +705,27 @@ void CDirectDraw::TraceCreateDeviceError(HRESULT ret,HWND hwnd)
 
 
 /*!
-*	256ƒrƒbƒgƒ}ƒbƒv‚ğ“Æ©Œ`®‚Åƒ[ƒh
+*	256ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’ç‹¬è‡ªå½¢å¼ã§ãƒ­ãƒ¼ãƒ‰
 *
-*	256F‚Å‚È‚¯‚ê‚Î‚È‚ç‚È‚¢‚Ì‚ÍAƒpƒŒƒbƒg‚Ì‘}‚°‘Ö‚¦‚ğs‚í‚È‚¯‚ê‚Î‚È‚ç‚È‚¢‚½‚ßB
-*	ƒrƒbƒgƒ}ƒbƒv‚ÌƒTƒCƒY‚©‚ç“KØ‚ÈƒeƒNƒXƒ`ƒƒƒTƒCƒY‚ğŒvZ‚µA•¡”‚É•ªŠ„‚µ‚Äƒ[ƒh‚·‚éB
-*	®A‚±‚ÌŠÖ”‚Å¶¬‚³‚ê‚½ƒCƒ“ƒ`ƒLƒT[ƒtƒFƒCƒX‚ÍCDirectDrawƒNƒ‰ƒX‚ªƒŠƒXƒgŠÇ—‚µA
-*	ƒNƒ‰ƒX‚Ì”jŠü‚ÉƒAƒ“ƒ[ƒh‚³‚ê‚Ä‚¢‚È‚¢ƒT[ƒtƒFƒCƒX‚ğ”jŠü‚·‚éiÅIè’ij
+*	256è‰²ã§ãªã‘ã‚Œã°ãªã‚‰ãªã„ã®ã¯ã€ãƒ‘ãƒ¬ãƒƒãƒˆã®æŒ¿ã’æ›¿ãˆã‚’è¡Œã‚ãªã‘ã‚Œã°ãªã‚‰ãªã„ãŸã‚ã€‚
+*	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ã‚µã‚¤ã‚ºã‹ã‚‰é©åˆ‡ãªãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚ºã‚’è¨ˆç®—ã—ã€è¤‡æ•°ã«åˆ†å‰²ã—ã¦ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã€‚
+*	å°šã€ã“ã®é–¢æ•°ã§ç”Ÿæˆã•ã‚ŒãŸã‚¤ãƒ³ãƒã‚­ã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã¯CDirectDrawã‚¯ãƒ©ã‚¹ãŒãƒªã‚¹ãƒˆç®¡ç†ã—ã€
+*	ã‚¯ãƒ©ã‚¹ã®ç ´æ£„æ™‚ã«ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã•ã‚Œã¦ã„ãªã„ã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã‚’ç ´æ£„ã™ã‚‹ï¼ˆæœ€çµ‚æ‰‹æ®µï¼‰
 *
-*	@param filename ƒCƒ[ƒW‚ğ“Ç‚İ‚Şƒrƒbƒgƒ}ƒbƒvƒtƒ@ƒCƒ‹‚Ìƒtƒ@ƒCƒ‹–¼B
-*					palname‚ªNULL‚Å‚È‚¢‚Æ‚«‚ÍA‚±‚Ìƒtƒ@ƒCƒ‹‚ÌƒpƒŒƒbƒg‚Í–³‹‚³‚ê‚é
-*	@param palname ƒpƒŒƒbƒg‚ğ“Ç‚İ‚Şƒrƒbƒgƒ}ƒbƒvƒtƒ@ƒCƒ‹–¼B
-*					NULL‚Ìê‡‚Ífilename‚Ìƒtƒ@ƒCƒ‹‚ÌƒpƒŒƒbƒg‚ª“K—p‚³‚ê‚é
-*	@param dmy –¢g—pB‚Ü‚¾DirectDraw‚ğg‚Á‚Ä‚¢‚½ AVRAM‚É“Ç‚Ş‚©ƒVƒXƒeƒ€ƒƒ‚ƒŠ‚É“Ç‚Ş‚©‚Ìƒtƒ‰ƒO‚¾‚Á‚½‚à‚ÌB
+*	@param filename ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’èª­ã¿è¾¼ã‚€ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ã‚¡ã‚¤ãƒ«åã€‚
+*					palnameãŒNULLã§ãªã„ã¨ãã¯ã€ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆã¯ç„¡è¦–ã•ã‚Œã‚‹
+*	@param palname ãƒ‘ãƒ¬ãƒƒãƒˆã‚’èª­ã¿è¾¼ã‚€ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«åã€‚
+*					NULLã®å ´åˆã¯filenameã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆãŒé©ç”¨ã•ã‚Œã‚‹
+*	@param dmy æœªä½¿ç”¨ã€‚ã¾ã DirectDrawã‚’ä½¿ã£ã¦ã„ãŸé ƒã€VRAMã«èª­ã‚€ã‹ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã«èª­ã‚€ã‹ã®ãƒ•ãƒ©ã‚°ã ã£ãŸã‚‚ã®ã€‚
 *
-*	@return “Æ©Œ`®ƒCƒ“ƒ`ƒLƒT[ƒtƒFƒCƒX‚Ìƒ|ƒCƒ“ƒ^B¸”s‚µ‚½ê‡‚ÍNULL
+*	@return ç‹¬è‡ªå½¢å¼ã‚¤ãƒ³ãƒã‚­ã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿ã€‚å¤±æ•—ã—ãŸå ´åˆã¯NULL
 */
 MYSURFACE* CDirectDraw::CreateSurfaceFrom256BMP(char *filename,char *palname,BOOL dmy)
 {
     BOOL bret;
     DWORD i,j;
 
-    //–¢g—p‚Ì‚à‚Ì‚ğ’T‚·
+    //æœªä½¿ç”¨ã®ã‚‚ã®ã‚’æ¢ã™
     int e=-1;
     for(i=0;i<MAXNUMGOLUAHTEXTURES;i++){
         if(!ms[i].valid){
@@ -734,15 +734,15 @@ MYSURFACE* CDirectDraw::CreateSurfaceFrom256BMP(char *filename,char *palname,BOO
         }
     }
     if(e<0){
-        ODS("warning:ƒeƒNƒXƒ`ƒƒ”‚ªMAX‚ğ’´‚¦‚Ä‚¢‚Ü‚·\n");
+        ODS("warning:ãƒ†ã‚¯ã‚¹ãƒãƒ£æ•°ãŒMAXã‚’è¶…ãˆã¦ã„ã¾ã™\n");
         return(NULL);
     }
 
-    //ƒrƒbƒgƒ}ƒbƒv‚Ìƒrƒbƒg‚ğ“Ç‚İ‚İ
+    //ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ãƒ“ãƒƒãƒˆã‚’èª­ã¿è¾¼ã¿
     MYPALLET *bmpbits;
     DWORD bmpwidth,bmpheight;
 #ifdef GCD_EDITER
-    bret = FALSE;	// g‚¦‚È‚¢AƒpƒXB
+    bret = FALSE;	// ä½¿ãˆãªã„ã€ãƒ‘ã‚¹ã€‚
 #else
     bret = LoadJPEGbits(&bmpbits, &bmpwidth, &bmpheight, filename);
 #endif	// GCD_EDITER
@@ -760,18 +760,18 @@ MYSURFACE* CDirectDraw::CreateSurfaceFrom256BMP(char *filename,char *palname,BOO
     ms[e].wg = (float)bmpwidth;
     ms[e].hg = (float)bmpheight;
 
-    //ƒrƒbƒgƒ}ƒbƒv‚Ì•ªŠ„‚Ìd•û‚ğŒˆ’è
+    //ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®åˆ†å‰²ã®ä»•æ–¹ã‚’æ±ºå®š
     bret = AssignTextureDiv(&ms[e],bmpwidth,bmpheight);
     if(!bret){
-        ODS("AssignTextureDiv‚É¸”s\n");
+        ODS("AssignTextureDivã«å¤±æ•—\n");
         return(NULL);
     }
 
-    //w’èƒTƒCƒY‚ÌƒeƒNƒXƒ`ƒƒ‚ğì¬
+    //æŒ‡å®šã‚µã‚¤ã‚ºã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½œæˆ
     LPVOID pointer;
     pointer = malloc( sizeof(LPDIRECT3DTEXTURE8)*(ms[e].xsufnum*ms[e].ysufnum+1));
     ZeroMemory(pointer,sizeof(LPDIRECT3DTEXTURE8)*(ms[e].xsufnum*ms[e].ysufnum+1));
-    ms[e].pTex = (LPDIRECT3DTEXTURE8*)pointer;//ƒ|ƒCƒ“ƒ^‚ğŠm•Û‚·‚é—Ìˆæ‚ğŠm•Û
+    ms[e].pTex = (LPDIRECT3DTEXTURE8*)pointer;//ãƒã‚¤ãƒ³ã‚¿ã‚’ç¢ºä¿ã™ã‚‹é ˜åŸŸã‚’ç¢ºä¿
     for(i=0;i<ms[e].ysufnum;i++){
         for(j=0;j<ms[e].xsufnum;j++){
             d3ddev->CreateTexture(
@@ -788,11 +788,11 @@ MYSURFACE* CDirectDraw::CreateSurfaceFrom256BMP(char *filename,char *palname,BOO
     DWORD dameyox = bmpwidth%MINIMUM_TEXSIZE;
     DWORD dameyoy = bmpheight%MINIMUM_TEXSIZE;
 
-    //ƒeƒNƒXƒ`ƒƒ‚Éƒrƒbƒgƒ}ƒbƒv‚ğƒRƒs[
+    //ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’ã‚³ãƒ”ãƒ¼
     DWORD damex,damey;
     for(i=0;i<ms[e].ysufnum;i++){//okasi?
         for(j=0;j<ms[e].xsufnum ;j++){
-            //ƒRƒs[Às
+            //ã‚³ãƒ”ãƒ¼å®Ÿè¡Œ
             if(i==ms[e].ysufnum-1){damey=dameyoy;}
             else damey=0;
             if(j==ms[e].xsufnum-1){damex=dameyox;}
@@ -803,9 +803,9 @@ MYSURFACE* CDirectDraw::CreateSurfaceFrom256BMP(char *filename,char *palname,BOO
         }
     }
 
-    //Œãn––
+    //å¾Œå§‹æœ«
     free(bmpbits);
-    //¬Œ÷
+    //æˆåŠŸ
     ms[e].valid=TRUE;
 
     if(g_config.IsHalfMode()){
@@ -817,19 +817,19 @@ MYSURFACE* CDirectDraw::CreateSurfaceFrom256BMP(char *filename,char *palname,BOO
 }
 
 /*!
-*	256F‰æ‘œ‚ğ“Æ©Œ`®‚Åƒ[ƒh
+*	256è‰²ç”»åƒã‚’ç‹¬è‡ªå½¢å¼ã§ãƒ­ãƒ¼ãƒ‰
 *
-*	PNG‘Î‰‚É”º‚¢A“Ç‚İ‚İˆ—‚É_“î«‚ğ‹‚ß‚é‚½‚ß‚Éì‚è‚Ü‚µ‚½B
-*	Šg’£q‚ğœ‚¢‚½ƒtƒ@ƒCƒ‹–¼‚©‚çA.png‚Æ.bmp‚Ì‚Qí—Ş‚Ìƒ^ƒCƒv‚©‚ç©“®‚Å“Ç‚İ‚İ‚Ü‚·(PNG—DæjB
-*	‚ ‚Æ‚ÍA‚Ù‚Æ‚ñ‚ÇCreateSurfaceFrom256BMP‚Æ•Ï‚í‚è‚Ü‚¹‚ñB
+*	PNGå¯¾å¿œã«ä¼´ã„ã€èª­ã¿è¾¼ã¿å‡¦ç†ã«æŸ”è»Ÿæ€§ã‚’æ±‚ã‚ã‚‹ãŸã‚ã«ä½œã‚Šã¾ã—ãŸã€‚
+*	æ‹¡å¼µå­ã‚’é™¤ã„ãŸãƒ•ã‚¡ã‚¤ãƒ«åã‹ã‚‰ã€.pngã¨.bmpã®ï¼’ç¨®é¡ã®ã‚¿ã‚¤ãƒ—ã‹ã‚‰è‡ªå‹•ã§èª­ã¿è¾¼ã¿ã¾ã™(PNGå„ªå…ˆï¼‰ã€‚
+*	ã‚ã¨ã¯ã€ã»ã¨ã‚“ã©CreateSurfaceFrom256BMPã¨å¤‰ã‚ã‚Šã¾ã›ã‚“ã€‚
 *
-*	@param filename ƒCƒ[ƒW‚ğ“Ç‚İ‚Şƒtƒ@ƒCƒ‹‚ÌAŠg’£q‚ğœ‚¢‚½ƒtƒ@ƒCƒ‹–¼B
-*					palname‚ªNULL‚Å‚È‚¢‚Æ‚«‚ÍA‚±‚Ìƒtƒ@ƒCƒ‹‚ÌƒpƒŒƒbƒg‚Í–³‹‚³‚ê‚é
-*	@param palname ƒpƒŒƒbƒg‚ğ“Ç‚İ‚Şƒtƒ@ƒCƒ‹‚ÌAŠg’£q‚ğœ‚¢‚½ƒtƒ@ƒCƒ‹–¼B
-*					NULL‚Ìê‡‚Ífilename‚Ìƒtƒ@ƒCƒ‹‚ÌƒpƒŒƒbƒg‚ª“K—p‚³‚ê‚é
-*	@param dmy –¢g—pB‚Ü‚¾DirectDraw‚ğg‚Á‚Ä‚¢‚½ AVRAM‚É“Ç‚Ş‚©ƒVƒXƒeƒ€ƒƒ‚ƒŠ‚É“Ç‚Ş‚©‚Ìƒtƒ‰ƒO‚¾‚Á‚½‚à‚ÌB
+*	@param filename ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’èª­ã¿è¾¼ã‚€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã€æ‹¡å¼µå­ã‚’é™¤ã„ãŸãƒ•ã‚¡ã‚¤ãƒ«åã€‚
+*					palnameãŒNULLã§ãªã„ã¨ãã¯ã€ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆã¯ç„¡è¦–ã•ã‚Œã‚‹
+*	@param palname ãƒ‘ãƒ¬ãƒƒãƒˆã‚’èª­ã¿è¾¼ã‚€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã€æ‹¡å¼µå­ã‚’é™¤ã„ãŸãƒ•ã‚¡ã‚¤ãƒ«åã€‚
+*					NULLã®å ´åˆã¯filenameã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆãŒé©ç”¨ã•ã‚Œã‚‹
+*	@param dmy æœªä½¿ç”¨ã€‚ã¾ã DirectDrawã‚’ä½¿ã£ã¦ã„ãŸé ƒã€VRAMã«èª­ã‚€ã‹ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã«èª­ã‚€ã‹ã®ãƒ•ãƒ©ã‚°ã ã£ãŸã‚‚ã®ã€‚
 *
-*	@return ƒT[ƒtƒFƒCƒX‚Ìƒ|ƒCƒ“ƒ^B¸”s‚µ‚½ê‡‚ÍNULL
+*	@return ã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿ã€‚å¤±æ•—ã—ãŸå ´åˆã¯NULL
 *
 *	@sa CreateSurfaceFrom256BMP
 */
@@ -847,58 +847,58 @@ MYSURFACE* CDirectDraw::CreateSurfaceFrom256Image(char *filename,char *pallet/*=
             if (pallet)
                 Buffer_pal = (char*)malloc( strlen(pallet) + (4 + 1));
 
-            // ‚Ü‚¸‚ÍPNGŒ`®‚ÅB
+            // ã¾ãšã¯PNGå½¢å¼ã§ã€‚
             sprintf(Buffer, "%s%s", filename, ".png");
             if (Buffer_pal) sprintf(Buffer_pal, "%s%s", pallet, ".png");
 
             if ( result = CreateSurfaceFrom256BMP(Buffer, Buffer_pal, dmy) )
             {
-                // ¬Œ÷
+                // æˆåŠŸ
                 if (Buffer_pal) free(Buffer_pal);
                 free(Buffer);
                 return result;
             }
             else
             {
-                // ƒpƒŒƒbƒg‚ğBMP‚ÉB
+                // ãƒ‘ãƒ¬ãƒƒãƒˆã‚’BMPã«ã€‚
                 if (Buffer_pal)
                 {
                     sprintf(Buffer_pal, "%s%s", pallet, ".bmp");
 
                     if ( result = CreateSurfaceFrom256BMP(Buffer, Buffer_pal, dmy) )
                     {
-                        // ¬Œ÷
+                        // æˆåŠŸ
                         if (Buffer_pal) free(Buffer_pal);
                         free(Buffer);
                         return result;
                     }
                 }
 
-                // JPEGŒ`®‚Å‚â‚Á‚Ä‚İ‚éB
+                // JPEGå½¢å¼ã§ã‚„ã£ã¦ã¿ã‚‹ã€‚
                 sprintf(Buffer, "%s%s", filename, ".jpg");
 
                 if ( result = CreateSurfaceFrom256BMP(Buffer, NULL, dmy) )
                 {
-                    // ¬Œ÷
+                    // æˆåŠŸ
                     if (Buffer_pal) free(Buffer_pal);
                     free(Buffer);
                     return result;
                 }
 
-                // ¸”s‚µ‚½‚çƒrƒbƒgƒ}ƒbƒvŒ`®‚ÅB
+                // å¤±æ•—ã—ãŸã‚‰ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—å½¢å¼ã§ã€‚
                 sprintf(Buffer, "%s%s", filename, ".bmp");
                 if (Buffer_pal) sprintf(Buffer_pal, "%s%s", pallet, ".png");
 
                 if ( result = CreateSurfaceFrom256BMP(Buffer, Buffer_pal, dmy) )
                 {
-                    // ¬Œ÷
+                    // æˆåŠŸ
                     if (Buffer_pal) free(Buffer_pal);
                     free(Buffer);
                     return result;
                 }
                 else
                 {
-                    // ƒpƒŒƒbƒg‚ğBMP‚ÉB
+                    // ãƒ‘ãƒ¬ãƒƒãƒˆã‚’BMPã«ã€‚
                     if (Buffer_pal)
                     {
                         sprintf(Buffer_pal, "%s%s", pallet, ".bmp");
@@ -918,17 +918,17 @@ MYSURFACE* CDirectDraw::CreateSurfaceFrom256Image(char *filename,char *pallet/*=
 }
 
 /*!
-*	ƒeƒNƒXƒ`ƒƒ‚ÌƒT[ƒtƒF[ƒX‚É‘‚«‚İ
-*	CreateSurfaceFrom256BMP‚Ì“à•”ŠÖ”‚ÅAƒeƒNƒXƒ`ƒƒ[‚ÌƒT[ƒtƒFƒCƒX‚É
-*	ƒrƒbƒgƒ}ƒbƒvƒtƒ@ƒCƒ‹‚ÌƒCƒ[ƒW‚ğƒRƒs[‚·‚éB
+*	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã«æ›¸ãè¾¼ã¿
+*	CreateSurfaceFrom256BMPã®å†…éƒ¨é–¢æ•°ã§ã€ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã«
+*	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹ã€‚
 *
-*	@param pbb “K—pƒpƒŒƒbƒg‚Ì”z—ñ
-*	@param bbpitch ƒ\[ƒX(ƒrƒbƒgƒ}ƒbƒv)‚Ìƒsƒbƒ`
-*	@param offset_x ƒ\[ƒX(ƒrƒbƒgƒ}ƒbƒv)‚ÌƒRƒs[ˆÊ’uXƒIƒtƒZƒbƒg
-*	@param offset_y ƒ\[ƒX(ƒrƒbƒgƒ}ƒbƒv)‚ÌƒRƒs[ˆÊ’uYƒIƒtƒZƒbƒg
-*	@param damex ƒRƒs[‚µ‚¿‚áƒ_ƒ‚È•”•ªiƒeƒNƒXƒ`ƒƒƒTƒCƒY > ƒrƒbƒgƒ}ƒbƒv‚Ìc‚è‚ÌƒRƒs[—Ìˆæ ‚Ì‚Æ‚«j
-*	@param damey ƒRƒs[‚µ‚¿‚áƒ_ƒ‚È•”•ªiƒeƒNƒXƒ`ƒƒƒTƒCƒY > ƒrƒbƒgƒ}ƒbƒv‚Ìc‚è‚ÌƒRƒs[—Ìˆæ ‚Ì‚Æ‚«j
-*	@return TRUE:¬Œ÷, FALSE:c”O
+*	@param pbb é©ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆã®é…åˆ—
+*	@param bbpitch ã‚½ãƒ¼ã‚¹(ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—)ã®ãƒ”ãƒƒãƒ
+*	@param offset_x ã‚½ãƒ¼ã‚¹(ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—)ã®ã‚³ãƒ”ãƒ¼ä½ç½®Xã‚ªãƒ•ã‚»ãƒƒãƒˆ
+*	@param offset_y ã‚½ãƒ¼ã‚¹(ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—)ã®ã‚³ãƒ”ãƒ¼ä½ç½®Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
+*	@param damex ã‚³ãƒ”ãƒ¼ã—ã¡ã‚ƒãƒ€ãƒ¡ãªéƒ¨åˆ†ï¼ˆãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º > ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®æ®‹ã‚Šã®ã‚³ãƒ”ãƒ¼é ˜åŸŸ ã®ã¨ãï¼‰
+*	@param damey ã‚³ãƒ”ãƒ¼ã—ã¡ã‚ƒãƒ€ãƒ¡ãªéƒ¨åˆ†ï¼ˆãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º > ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®æ®‹ã‚Šã®ã‚³ãƒ”ãƒ¼é ˜åŸŸ ã®ã¨ãï¼‰
+*	@return TRUE:æˆåŠŸ, FALSE:æ®‹å¿µ
 */
 BOOL CDirectDraw::CopyBB2TS(MYPALLET *pbb,
                             DWORD bbpitch,
@@ -943,16 +943,16 @@ BOOL CDirectDraw::CopyBB2TS(MYPALLET *pbb,
 
     LPDIRECT3DSURFACE8 psuf=NULL;
     if(D3D_OK != ptex->GetSurfaceLevel(0,&psuf)){
-        ODS("CopyBB2TS / GetSurfaceLevel‚É¸”s\n");
+        ODS("CopyBB2TS / GetSurfaceLevelã«å¤±æ•—\n");
         return(FALSE);
     }
 
-    //•‚Æ‚‚³AƒtƒH[ƒ}ƒbƒg‚ğæ“¾
+    //å¹…ã¨é«˜ã•ã€ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’å–å¾—
     D3DFORMAT fmt;
     DWORD sw,sh;
     D3DSURFACE_DESC dsc;
     if(D3D_OK != psuf->GetDesc(&dsc)){
-        ODS("CopyBB2TS / GetDesc‚É¸”s\n");
+        ODS("CopyBB2TS / GetDescã«å¤±æ•—\n");
         RELEASE(psuf);
         return(FALSE);
     }
@@ -963,15 +963,15 @@ BOOL CDirectDraw::CopyBB2TS(MYPALLET *pbb,
     if(damex!=0)sw=damex;
     if(damey!=0)sh=damey;
 
-    //ƒT[ƒtƒFƒCƒX‚ÌƒƒbƒN
+    //ã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã®ãƒ­ãƒƒã‚¯
     D3DLOCKED_RECT lr;
     if(D3D_OK != psuf->LockRect(&lr,NULL,0)){
-        ODS("CopyBB2TS / LockRect‚É¸”s\n");
+        ODS("CopyBB2TS / LockRectã«å¤±æ•—\n");
         RELEASE(psuf);
         return(FALSE);
     }
 
-    //ƒRƒs[
+    //ã‚³ãƒ”ãƒ¼
     DWORD i,j;
     PBYTE pline;
     int onepixsize;
@@ -979,7 +979,7 @@ BOOL CDirectDraw::CopyBB2TS(MYPALLET *pbb,
         pline =  (PBYTE)lr.pBits + lr.Pitch*j ;
         for(i=0;i<sw;i++){
             switch(fmt){
-            case D3DFMT_R5G6B5://‚±‚ê‚Í‘½•ªg‚¦‚È‚¢
+            case D3DFMT_R5G6B5://ã“ã‚Œã¯å¤šåˆ†ä½¿ãˆãªã„
                 onepixsize = CopyOne_R5G6B5(pbb[(j+offset_y)*bbpitch+i+offset_x],pline);
                 break;
             case D3DFMT_A8R8G8B8:
@@ -1000,7 +1000,7 @@ BOOL CDirectDraw::CopyBB2TS(MYPALLET *pbb,
                 onepixsize = CopyOne_A8R3G3B2(pbb[(j+offset_y)*bbpitch+i+offset_x],pline);
                 break;
             default:
-                ODS("CopyBB2TS / ‚±‚ÌƒtƒH[ƒ}ƒbƒg‚ÍƒRƒs[‚Å‚«‚É‚á‚¢\n");
+                ODS("CopyBB2TS / ã“ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ã‚³ãƒ”ãƒ¼ã§ãã«ã‚ƒã„\n");
                 psuf->UnlockRect();
                 RELEASE(psuf);
                 return(FALSE);
@@ -1009,22 +1009,22 @@ BOOL CDirectDraw::CopyBB2TS(MYPALLET *pbb,
         }
     }
 
-    psuf->UnlockRect();	//ƒT[ƒtƒFƒCƒX‚ÌƒAƒ“ƒƒbƒN
-    RELEASE(psuf);		//GetSurfaceLevel‚ÅƒT[ƒtƒFƒCƒX‚ğæ“¾‚µ‚½‚Æ‚«‚ÉƒŠƒtƒ@ƒŒƒ“ƒXƒJƒEƒ“ƒg‚ª‘‚¦‚Ä‚é‚©‚ç
+    psuf->UnlockRect();	//ã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã®ã‚¢ãƒ³ãƒ­ãƒƒã‚¯
+    RELEASE(psuf);		//GetSurfaceLevelã§ã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã‚’å–å¾—ã—ãŸã¨ãã«ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã‚«ã‚¦ãƒ³ãƒˆãŒå¢—ãˆã¦ã‚‹ã‹ã‚‰
 
     return(TRUE);
 }
 
 
 /*!
-*	ƒeƒNƒXƒ`ƒƒ‚ÌƒT[ƒtƒF[ƒX‚Ö‚Ì 1 ƒsƒNƒZƒ‹‚Ì‘‚«‚İˆ—
+*	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã¸ã® 1 ãƒ”ã‚¯ã‚»ãƒ«ã®æ›¸ãè¾¼ã¿å‡¦ç†
 *
-*	CopyBB2TS‚Ì“à•”ŠÖ”BƒpƒŒƒbƒg‚ÌF(ARGB=8888)‚ğAARGB=0565 ‚ÌŒ`®‚É
-*	•ÏŠ·‚µ‚ÄAw’èƒ|ƒCƒ“ƒ^ˆÊ’u‚É‘‚«‚ŞB
+*	CopyBB2TSã®å†…éƒ¨é–¢æ•°ã€‚ãƒ‘ãƒ¬ãƒƒãƒˆã®è‰²(ARGB=8888)ã‚’ã€ARGB=0565 ã®å½¢å¼ã«
+*	å¤‰æ›ã—ã¦ã€æŒ‡å®šãƒã‚¤ãƒ³ã‚¿ä½ç½®ã«æ›¸ãè¾¼ã‚€ã€‚
 *
-*	@param src w’èF
-*	@param dst ‘‚«‚İæ
-*	@retuen ‘‚«‚ñ‚¾ƒoƒCƒg”(í‚É2)
+*	@param src æŒ‡å®šè‰²
+*	@param dst æ›¸ãè¾¼ã¿å…ˆ
+*	@retuen æ›¸ãè¾¼ã‚“ã ãƒã‚¤ãƒˆæ•°(å¸¸ã«2)
 */
 DWORD CDirectDraw::CopyOne_R5G6B5(MYPALLET src,PBYTE dst)
 {
@@ -1051,14 +1051,14 @@ DWORD CDirectDraw::CopyOne_R5G6B5(MYPALLET src,PBYTE dst)
 }
 
 /*!
-*	ƒeƒNƒXƒ`ƒƒ‚ÌƒT[ƒtƒF[ƒX‚Ö‚Ì 1 ƒsƒNƒZƒ‹‚Ì‘‚«‚İˆ—
+*	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã¸ã® 1 ãƒ”ã‚¯ã‚»ãƒ«ã®æ›¸ãè¾¼ã¿å‡¦ç†
 *
-*	CopyBB2TS‚Ì“à•”ŠÖ”BƒpƒŒƒbƒg‚ÌF(ARGB=8888)‚ğAARGB=1555 ‚ÌŒ`®‚É
-*	•ÏŠ·‚µ‚ÄAw’èƒ|ƒCƒ“ƒ^ˆÊ’u‚É‘‚«‚ŞB
+*	CopyBB2TSã®å†…éƒ¨é–¢æ•°ã€‚ãƒ‘ãƒ¬ãƒƒãƒˆã®è‰²(ARGB=8888)ã‚’ã€ARGB=1555 ã®å½¢å¼ã«
+*	å¤‰æ›ã—ã¦ã€æŒ‡å®šãƒã‚¤ãƒ³ã‚¿ä½ç½®ã«æ›¸ãè¾¼ã‚€ã€‚
 *
-*	@param src w’èF
-*	@param dst ‘‚«‚İæ
-*	@retuen ‘‚«‚ñ‚¾ƒoƒCƒg”(í‚É2)
+*	@param src æŒ‡å®šè‰²
+*	@param dst æ›¸ãè¾¼ã¿å…ˆ
+*	@retuen æ›¸ãè¾¼ã‚“ã ãƒã‚¤ãƒˆæ•°(å¸¸ã«2)
 */
 DWORD CDirectDraw::CopyOne_A1R5G5B5(MYPALLET src,PBYTE dst)
 {
@@ -1089,14 +1089,14 @@ DWORD CDirectDraw::CopyOne_A1R5G5B5(MYPALLET src,PBYTE dst)
 }
 
 /*!
-*	ƒeƒNƒXƒ`ƒƒ‚ÌƒT[ƒtƒF[ƒX‚Ö‚Ì 1 ƒsƒNƒZƒ‹‚Ì‘‚«‚İˆ—
+*	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã¸ã® 1 ãƒ”ã‚¯ã‚»ãƒ«ã®æ›¸ãè¾¼ã¿å‡¦ç†
 *
-*	CopyBB2TS‚Ì“à•”ŠÖ”BƒpƒŒƒbƒg‚ÌF(ARGB=8888)‚ğAARGB=4444 ‚ÌŒ`®‚É
-*	•ÏŠ·‚µ‚ÄAw’èƒ|ƒCƒ“ƒ^ˆÊ’u‚É‘‚«‚ŞB
+*	CopyBB2TSã®å†…éƒ¨é–¢æ•°ã€‚ãƒ‘ãƒ¬ãƒƒãƒˆã®è‰²(ARGB=8888)ã‚’ã€ARGB=4444 ã®å½¢å¼ã«
+*	å¤‰æ›ã—ã¦ã€æŒ‡å®šãƒã‚¤ãƒ³ã‚¿ä½ç½®ã«æ›¸ãè¾¼ã‚€ã€‚
 *
-*	@param src w’èF
-*	@param dst ‘‚«‚İæ
-*	@retuen ‘‚«‚ñ‚¾ƒoƒCƒg”(í‚É2)
+*	@param src æŒ‡å®šè‰²
+*	@param dst æ›¸ãè¾¼ã¿å…ˆ
+*	@retuen æ›¸ãè¾¼ã‚“ã ãƒã‚¤ãƒˆæ•°(å¸¸ã«2)
 */
 DWORD CDirectDraw::CopyOne_A4R4G4B4(MYPALLET src,PBYTE dst)
 {
@@ -1127,14 +1127,14 @@ DWORD CDirectDraw::CopyOne_A4R4G4B4(MYPALLET src,PBYTE dst)
 }
 
 /*!
-*	ƒeƒNƒXƒ`ƒƒ‚ÌƒT[ƒtƒF[ƒX‚Ö‚Ì 1 ƒsƒNƒZƒ‹‚Ì‘‚«‚İˆ—
+*	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã¸ã® 1 ãƒ”ã‚¯ã‚»ãƒ«ã®æ›¸ãè¾¼ã¿å‡¦ç†
 *
-*	CopyBB2TS‚Ì“à•”ŠÖ”BƒpƒŒƒbƒg‚ÌF(ARGB=8888)‚ğAARGB=8332 ‚ÌŒ`®‚É
-*	•ÏŠ·‚µ‚ÄAw’èƒ|ƒCƒ“ƒ^ˆÊ’u‚É‘‚«‚ŞB
+*	CopyBB2TSã®å†…éƒ¨é–¢æ•°ã€‚ãƒ‘ãƒ¬ãƒƒãƒˆã®è‰²(ARGB=8888)ã‚’ã€ARGB=8332 ã®å½¢å¼ã«
+*	å¤‰æ›ã—ã¦ã€æŒ‡å®šãƒã‚¤ãƒ³ã‚¿ä½ç½®ã«æ›¸ãè¾¼ã‚€ã€‚
 *
-*	@param src w’èF
-*	@param dst ‘‚«‚İæ
-*	@retuen ‘‚«‚ñ‚¾ƒoƒCƒg”(í‚É2)
+*	@param src æŒ‡å®šè‰²
+*	@param dst æ›¸ãè¾¼ã¿å…ˆ
+*	@retuen æ›¸ãè¾¼ã‚“ã ãƒã‚¤ãƒˆæ•°(å¸¸ã«2)
 */
 DWORD CDirectDraw::CopyOne_A8R3G3B2(MYPALLET src,PBYTE dst)
 {
@@ -1164,14 +1164,14 @@ DWORD CDirectDraw::CopyOne_A8R3G3B2(MYPALLET src,PBYTE dst)
 }
 
 /*!
-*	ƒeƒNƒXƒ`ƒƒ‚ÌƒT[ƒtƒF[ƒX‚Ö‚Ì 1 ƒsƒNƒZƒ‹‚Ì‘‚«‚İˆ—
+*	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã¸ã® 1 ãƒ”ã‚¯ã‚»ãƒ«ã®æ›¸ãè¾¼ã¿å‡¦ç†
 *
-*	CopyBB2TS‚Ì“à•”ŠÖ”BƒpƒŒƒbƒg‚ÌF(ARGB=8888)‚ğAARGB=8888 ‚ÌŒ`®‚É
-*	•ÏŠ·‚µ‚ÄAw’èƒ|ƒCƒ“ƒ^ˆÊ’u‚É‘‚«‚ŞB
+*	CopyBB2TSã®å†…éƒ¨é–¢æ•°ã€‚ãƒ‘ãƒ¬ãƒƒãƒˆã®è‰²(ARGB=8888)ã‚’ã€ARGB=8888 ã®å½¢å¼ã«
+*	å¤‰æ›ã—ã¦ã€æŒ‡å®šãƒã‚¤ãƒ³ã‚¿ä½ç½®ã«æ›¸ãè¾¼ã‚€ã€‚
 *
-*	@param src w’èF
-*	@param dst ‘‚«‚İæ
-*	@retuen ‘‚«‚ñ‚¾ƒoƒCƒg”(í‚É4)
+*	@param src æŒ‡å®šè‰²
+*	@param dst æ›¸ãè¾¼ã¿å…ˆ
+*	@retuen æ›¸ãè¾¼ã‚“ã ãƒã‚¤ãƒˆæ•°(å¸¸ã«4)
 */
 DWORD CDirectDraw::CopyOne_A8R8G8B8(MYPALLET src,PBYTE dst)
 {
@@ -1185,15 +1185,15 @@ DWORD CDirectDraw::CopyOne_A8R8G8B8(MYPALLET src,PBYTE dst)
 
 
 /*!
-*	w’èƒTƒCƒY‚Ìƒrƒbƒgƒ}ƒbƒv‚Ì•ªŠ„•û–@Œˆ’è
+*	æŒ‡å®šã‚µã‚¤ã‚ºã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®åˆ†å‰²æ–¹æ³•æ±ºå®š
 *
-*	CreateSurfaceFrom256BMP‚Ì“à•”ŠÖ”B
-*	ƒrƒbƒgƒ}ƒbƒv‚Ìƒ^ƒeƒˆƒR‚ğ2‚Ì—İæ‚Å•ªŠ„‚·‚é‚½‚ß‚ÉA‚Ç‚¤‚¢‚¤ƒTƒCƒY‚Å•ªŠ„‚·‚é‚©‚ğŒvZ‚·‚éB
+*	CreateSurfaceFrom256BMPã®å†…éƒ¨é–¢æ•°ã€‚
+*	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ã‚¿ãƒ†ãƒ¨ã‚³ã‚’2ã®ç´¯ä¹—ã§åˆ†å‰²ã™ã‚‹ãŸã‚ã«ã€ã©ã†ã„ã†ã‚µã‚¤ã‚ºã§åˆ†å‰²ã™ã‚‹ã‹ã‚’è¨ˆç®—ã™ã‚‹ã€‚
 *
-*	@param pmsf [out]ƒCƒ“ƒ`ƒLƒT[ƒtƒFƒCƒX‚Ìƒ|ƒCƒ“ƒ^B•ªŠ„ƒTƒCƒY‚Ìƒpƒ‰ƒ[ƒ^‚ğ‘‚«‚ñ‚Å•Ô‚·
-*	@param width [in]Œ³‚Ìƒrƒbƒgƒ}ƒbƒv‚Ì•
-*	@param height [in]Œ³‚Ìƒrƒbƒgƒ}ƒbƒv‚Ì‚‚³
-*	@return TRUE:¬Œ÷, FALSE:c”O
+*	@param pmsf [out]ã‚¤ãƒ³ãƒã‚­ã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿ã€‚åˆ†å‰²ã‚µã‚¤ã‚ºã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚“ã§è¿”ã™
+*	@param width [in]å…ƒã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®å¹…
+*	@param height [in]å…ƒã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®é«˜ã•
+*	@return TRUE:æˆåŠŸ, FALSE:æ®‹å¿µ
 */
 BOOL CDirectDraw::AssignTextureDiv(MYSURFACE *pmsf,DWORD width,DWORD height)
 {
@@ -1202,7 +1202,7 @@ BOOL CDirectDraw::AssignTextureDiv(MYSURFACE *pmsf,DWORD width,DWORD height)
     DWORD ntx,nty,numsufx=0,numsufy=0;
     BOOL bloop;
     
-    //ƒˆƒR•ûŒü
+    //ãƒ¨ã‚³æ–¹å‘
     bloop=TRUE;
     DWORD bmpwidthr = width;
     DWORD asstexsize = maxtexturewidth;
@@ -1215,8 +1215,8 @@ BOOL CDirectDraw::AssignTextureDiv(MYSURFACE *pmsf,DWORD width,DWORD height)
             numsufx++;
             if(numsufx==MYSUF_MAXNUMTEX)return(FALSE);
         }
-        if(bmpwidthr==0)bloop=FALSE;//‚«‚Á‚¿‚èI‚í‚Á‚½‚ç‚»‚ê‚ÅI—¹
-        else if(asstexsize <= MINIMUM_TEXSIZE){//ÅŒã‚Í×‚©‚¢‚©‚çÈ—ª‚¾
+        if(bmpwidthr==0)bloop=FALSE;//ãã£ã¡ã‚Šçµ‚ã‚ã£ãŸã‚‰ãã‚Œã§çµ‚äº†
+        else if(asstexsize <= MINIMUM_TEXSIZE){//æœ€å¾Œã¯ç´°ã‹ã„ã‹ã‚‰çœç•¥ã 
             pmsf->xsufsize[numsufx]=asstexsize;
             numsufx++;
             bloop=FALSE;
@@ -1230,7 +1230,7 @@ BOOL CDirectDraw::AssignTextureDiv(MYSURFACE *pmsf,DWORD width,DWORD height)
         pmsf->xsufindx[i] = pmsf->xsufindx[i-1] + pmsf->xsufsize[i-1];
     }
 
-    //ƒ^ƒe•ûŒü
+    //ã‚¿ãƒ†æ–¹å‘
     bloop=TRUE;
     DWORD bmpheightr = height;
     asstexsize = maxtextureheight;
@@ -1243,8 +1243,8 @@ BOOL CDirectDraw::AssignTextureDiv(MYSURFACE *pmsf,DWORD width,DWORD height)
             numsufy++;
             if(numsufy==MYSUF_MAXNUMTEX)return(FALSE);
         }
-        if(bmpheightr==0)bloop=FALSE;//‚«‚Á‚¿‚èI‚í‚Á‚½‚ç‚»‚ê‚ÅI—¹
-        else if(asstexsize <= MINIMUM_TEXSIZE){//ÅŒã‚Í×‚©‚¢‚©‚çÈ—ª‚¾
+        if(bmpheightr==0)bloop=FALSE;//ãã£ã¡ã‚Šçµ‚ã‚ã£ãŸã‚‰ãã‚Œã§çµ‚äº†
+        else if(asstexsize <= MINIMUM_TEXSIZE){//æœ€å¾Œã¯ç´°ã‹ã„ã‹ã‚‰çœç•¥ã 
             pmsf->ysufsize[numsufy]=MINIMUM_TEXSIZE;
             numsufy++;
             bloop=FALSE;
@@ -1265,23 +1265,23 @@ BOOL CDirectDraw::AssignTextureDiv(MYSURFACE *pmsf,DWORD width,DWORD height)
 static BOOL GoluahReadFile(HANDLE hFile, LPBYTE bits, DWORD sizeimage, NowLoading_IconItem item, LPDWORD br);
 
 /*!
-*	@brief w’èƒtƒ@ƒCƒ‹–¼‚Ìƒrƒbƒgƒ}ƒbƒv‚©‚çA‰æ‘œƒrƒbƒg‚ğ“Ç‚İ‚İ
+*	@brief æŒ‡å®šãƒ•ã‚¡ã‚¤ãƒ«åã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‹ã‚‰ã€ç”»åƒãƒ“ãƒƒãƒˆã‚’èª­ã¿è¾¼ã¿
 *
-*	CreateSurfaceFrom256BMP‚Ì“à•”ŠÖ”B
-*	“Ç‚İ‚ñ‚Å¶¬‚µ‚½”z—ñ‚ÍmallocŠÖ”‚Åì‚ç‚ê‚Ä‚é‚İ‚½‚¢Bfree‚Ån––‚µ‚Ä‚­‚¾‚³‚¢B
+*	CreateSurfaceFrom256BMPã®å†…éƒ¨é–¢æ•°ã€‚
+*	èª­ã¿è¾¼ã‚“ã§ç”Ÿæˆã—ãŸé…åˆ—ã¯mallocé–¢æ•°ã§ä½œã‚‰ã‚Œã¦ã‚‹ã¿ãŸã„ã€‚freeã§å§‹æœ«ã—ã¦ãã ã•ã„ã€‚
 *
-*	@param pbits [out] “Ç‚İ‚İŒ‹‰Ê. ‚·‚Å‚ÉƒpƒŒƒbƒg(ARGB=8888)‚Ì”z—ñ‚É•ÏŠ·‚³‚ê‚Ä‚Ü‚·
-*	@param width [out] ƒrƒbƒgƒ}ƒbƒv‚Ì•
-*	@param height [out] ƒrƒbƒgƒ}ƒbƒv‚Ì‚‚³
-*	@param bmpfilename [in] ƒrƒbƒgƒ}ƒbƒv‚Ìƒtƒ@ƒCƒ‹–¼
-*	@param palfilename [in] “K—p‚·‚éƒpƒŒƒbƒg‚Ìƒtƒ@ƒCƒ‹–¼
-*	@return TRUE:¬Œ÷, FALSE:c”O
+*	@param pbits [out] èª­ã¿è¾¼ã¿çµæœ. ã™ã§ã«ãƒ‘ãƒ¬ãƒƒãƒˆ(ARGB=8888)ã®é…åˆ—ã«å¤‰æ›ã•ã‚Œã¦ã¾ã™
+*	@param width [out] ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®å¹…
+*	@param height [out] ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®é«˜ã•
+*	@param bmpfilename [in] ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ãƒ•ã‚¡ã‚¤ãƒ«å
+*	@param palfilename [in] é©ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ•ã‚¡ã‚¤ãƒ«å
+*	@return TRUE:æˆåŠŸ, FALSE:æ®‹å¿µ
 */
 BOOL CDirectDraw::Load256Bitmapbits(MYPALLET **pbits,DWORD *width,DWORD *height,char *bmpfilename,char *palfilename)
 {
     BOOL ret2;
 
-    //‚Æ‚è‚ ‚¦‚¸ƒpƒŒƒbƒg‚ğŠm•Û
+    //ã¨ã‚Šã‚ãˆãšãƒ‘ãƒ¬ãƒƒãƒˆã‚’ç¢ºä¿
     MYPALLET pal[256];
     if(palfilename==NULL)palfilename=bmpfilename;
     ret2 = GetPallet(palfilename,pal);
@@ -1293,31 +1293,31 @@ BOOL CDirectDraw::Load256Bitmapbits(MYPALLET **pbits,DWORD *width,DWORD *height,
         }
     }
 
-    //ƒrƒbƒgƒ}ƒbƒv‚Ìƒrƒbƒg‚ğæ“¾~
-    //ƒrƒbƒgƒ}ƒbƒv‚ğƒ[ƒh
+    //ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ãƒ“ãƒƒãƒˆã‚’å–å¾—~
+    //ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’ãƒ­ãƒ¼ãƒ‰
     HANDLE hFile;
     DWORD ret,br,err=FALSE;
 
     if(bmpfilename==NULL){
-        ODS("CDirectDraw::Load256Bitmapbits : ƒtƒ@ƒCƒ‹–¼‚ªNULL‚Æ‚Í‚Ç‚¤‚¢‚¤‚±‚Æ‚¾H\n");
+        ODS("CDirectDraw::Load256Bitmapbits : ãƒ•ã‚¡ã‚¤ãƒ«åãŒNULLã¨ã¯ã©ã†ã„ã†ã“ã¨ã ï¼Ÿ\n");
     }
 
-    //ƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“
+    //ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³
     hFile=CreateFile(bmpfilename,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
     if(hFile==INVALID_HANDLE_VALUE){
         return(NULL);
     }
-    SetFilePointer(hFile,0,NULL,FILE_BEGIN);//”O‚Ì‚½‚ßƒtƒ@ƒCƒ‹‚Ìæ“ª‚ÉˆÚ“®
+    SetFilePointer(hFile,0,NULL,FILE_BEGIN);//å¿µã®ãŸã‚ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã«ç§»å‹•
 
-    //Ì§²Ùƒwƒbƒ_‚Ì“Ç‚İo‚µ
+    //ï¾Œï½§ï½²ï¾™ãƒ˜ãƒƒãƒ€ã®èª­ã¿å‡ºã—
     BITMAPFILEHEADER fileheader;
     ret=ReadFile(hFile,&fileheader,sizeof(BITMAPFILEHEADER),&br,NULL);
     if(!ret || br!=sizeof(BITMAPFILEHEADER)){
-        ODS("CDirectDraw::Load256Bitmapbits : ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s(1)\n");
+        ODS("CDirectDraw::Load256Bitmapbits : ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—(1)\n");
         err=TRUE;
     }
     if(fileheader.bfType != 0x4d42){//"BM"
-        ODS("CDirectDraw::Load256Bitmapbits : ‚Â[‚©‚±‚Ìƒtƒ@ƒCƒ‹‚Íƒrƒbƒgƒ}ƒbƒv‚Å‚Í‚È‚¢\n");
+        ODS("CDirectDraw::Load256Bitmapbits : ã¤ãƒ¼ã‹ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã§ã¯ãªã„\n");
         err=TRUE;
     }
     if(err){
@@ -1325,51 +1325,51 @@ BOOL CDirectDraw::Load256Bitmapbits(MYPALLET **pbits,DWORD *width,DWORD *height,
         return(NULL);
     }
 
-    //BITMAPINFOHEADER‚Ì“Ç‚İ‚İ
+    //BITMAPINFOHEADERã®èª­ã¿è¾¼ã¿
     BITMAPINFOHEADER infohed;
     ret=ReadFile(hFile,&infohed,sizeof(BITMAPINFOHEADER),&br,NULL);
     if(!ret || br!=sizeof(BITMAPINFOHEADER)){
-        ODS("CDirectDraw::Load256Bitmapbits : ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s(2)\n");
+        ODS("CDirectDraw::Load256Bitmapbits : ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—(2)\n");
         err=TRUE;
     }
     if(infohed.biSize != sizeof(BITMAPINFOHEADER)){
-        ODS("CDirectDraw::Load256Bitmapbits : BITMAPINFOHEADER‚ÌƒTƒCƒY‚ª‡‚í‚È‚¢\n");
+        ODS("CDirectDraw::Load256Bitmapbits : BITMAPINFOHEADERã®ã‚µã‚¤ã‚ºãŒåˆã‚ãªã„\n");
         err=TRUE;
     }
     if(infohed.biBitCount != 8){
-        ODS("CDirectDraw::Load256Bitmapbits : ‚Â[‚©‚±‚Ìƒtƒ@ƒCƒ‹‚Í256‚Å‚Í‚È‚¢\n");
+        ODS("CDirectDraw::Load256Bitmapbits : ã¤ãƒ¼ã‹ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯256ã§ã¯ãªã„\n");
         err=TRUE;
     }
     if(infohed.biCompression != BI_RGB){
-        ODS("CDirectDraw::Load256Bitmapbits : ˆ³k‚ª‚©‚©‚Á‚Ä‚¢‚é‚ç‚µ‚¢\n");
+        ODS("CDirectDraw::Load256Bitmapbits : åœ§ç¸®ãŒã‹ã‹ã£ã¦ã„ã‚‹ã‚‰ã—ã„\n");
         err=TRUE;
     }
     if(err){
         CloseHandle(hFile);
         return(NULL);
     }
-    if(infohed.biClrUsed == 0){//0‚Ìê‡A256‚ğˆÓ–¡‚·‚é‚±‚Æ‚ª‚ ‚é‚ç‚µ‚¢
+    if(infohed.biClrUsed == 0){//0ã®å ´åˆã€256ã‚’æ„å‘³ã™ã‚‹ã“ã¨ãŒã‚ã‚‹ã‚‰ã—ã„
         infohed.biClrUsed=256;
     }
 
-    //ƒpƒŒƒbƒg‚Í“Ç‚İ‚Æ‚Î‚µ
+    //ãƒ‘ãƒ¬ãƒƒãƒˆã¯èª­ã¿ã¨ã°ã—
     SetFilePointer(hFile,sizeof(RGBQUAD)*infohed.biClrUsed,NULL,FILE_CURRENT);
 
-    //ƒrƒbƒgƒ}ƒbƒvƒrƒbƒg‚ÌƒTƒCƒY‚ğŒvZ‚·‚é(ƒrƒbƒgƒ}ƒbƒv‚Ì•‚Í4‚Ì”{”‚ÅŠi”[‚³‚ê‚Ä‚¢‚é‚ç‚µ‚¢)
+    //ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ“ãƒƒãƒˆã®ã‚µã‚¤ã‚ºã‚’è¨ˆç®—ã™ã‚‹(ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®å¹…ã¯4ã®å€æ•°ã§æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã‚‰ã—ã„)
     DWORD linesize = infohed.biWidth;
     if(infohed.biWidth%4 != 0)linesize +=  ( 4 - infohed.biWidth%4 );
     DWORD sizeimage = linesize * infohed.biHeight;
-    //ƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Äƒrƒbƒgƒ}ƒbƒvƒrƒbƒg‚ğ“Ç‚İ‚Ş
+    //ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ“ãƒƒãƒˆã‚’èª­ã¿è¾¼ã‚€
     LPBYTE bits = (LPBYTE)(malloc(sizeimage));
     ret=GoluahReadFile(hFile,bits,sizeimage,NowLoading_Image,&br);
     CloseHandle(hFile);
     if(!ret || br!=sizeimage){
-        OutputDebugString("CDirectDraw::Load256Bitmapbits : ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s(3)\n");
+        OutputDebugString("CDirectDraw::Load256Bitmapbits : ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—(3)\n");
         free(bits);
         return(NULL);
     }
 
-    //ƒrƒbƒgƒ}ƒbƒv‚Ì‘å‚«‚³‚É‚ ‚í‚¹‚ÄV‚½‚Éƒƒ‚ƒŠ—Ìˆæ‚ğì¬‚·‚é
+    //ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®å¤§ãã•ã«ã‚ã‚ã›ã¦æ–°ãŸã«ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ä½œæˆã™ã‚‹
     LPVOID pnewbits2;
     DWORD ishalf=1;
     if(g_config.IsHalfMode())ishalf=2;
@@ -1377,7 +1377,7 @@ BOOL CDirectDraw::Load256Bitmapbits(MYPALLET **pbits,DWORD *width,DWORD *height,
     MYPALLET *retbit;
     retbit = (MYPALLET*)pnewbits2;
 
-    //‚»‚±‚Éƒf[ƒ^‚ğƒRƒs[
+    //ãã“ã«ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼
     LONG i,j;
     PBYTE plinenow;
     DWORD halfcopy=0;
@@ -1385,7 +1385,7 @@ BOOL CDirectDraw::Load256Bitmapbits(MYPALLET **pbits,DWORD *width,DWORD *height,
         plinenow = bits;
         plinenow += linesize*i;
         for(j=0;j<infohed.biWidth;j++){
-            if(g_config.IsHalfMode()){//”¼•ª‚µ‚©ƒRƒs[‚µ‚È‚¢
+            if(g_config.IsHalfMode()){//åŠåˆ†ã—ã‹ã‚³ãƒ”ãƒ¼ã—ãªã„
                 if(i%2==0 && j%2==0 && j != infohed.biWidth - 1){
                     retbit[halfcopy] = pal[ plinenow[j] ];
                     halfcopy++;
@@ -1397,7 +1397,7 @@ BOOL CDirectDraw::Load256Bitmapbits(MYPALLET **pbits,DWORD *width,DWORD *height,
         }
     }
 
-    //Š®—¹
+    //å®Œäº†
     free(bits);
 
     if(g_config.IsHalfMode()){
@@ -1428,7 +1428,7 @@ static BOOL GoluahReadFile(HANDLE hFile, LPBYTE bits, DWORD sizeimage, NowLoadin
 
         *br += br2;
 #		ifndef GCD_EDITER
-            //isó‹µ•\¦
+            //é€²è¡ŒçŠ¶æ³è¡¨ç¤º
             CTNowLoading* task = dynamic_cast<CTNowLoading*>( g_system.FindTask('LOAD') );
             if(task)task->Progress(item, (float)((double)i / sizeimage));
 #		endif
@@ -1437,12 +1437,12 @@ static BOOL GoluahReadFile(HANDLE hFile, LPBYTE bits, DWORD sizeimage, NowLoadin
     return(ret);
 }
 
-// —áŠOˆ—‚ª2d‚È‚Ì‚ÅAê—p‚ÌƒWƒƒƒ“ƒvˆ—‚ğ—pˆÓB
+// ä¾‹å¤–å‡¦ç†ãŒ2é‡ãªã®ã§ã€å°‚ç”¨ã®ã‚¸ãƒ£ãƒ³ãƒ—å‡¦ç†ã‚’ç”¨æ„ã€‚
 jmp_buf PngErrJamp;
 void PngErrHandler(png_structp Png,png_const_charp message)
 {
 #ifndef GCD_EDITER
-    gbl.ods("PNG“Ç‚İ‚İƒGƒ‰[F%s", message);
+    gbl.ods("PNGèª­ã¿è¾¼ã¿ã‚¨ãƒ©ãƒ¼ï¼š%s", message);
 #endif // GCD_EDITER
 
 //	throw(0x46497743);
@@ -1451,49 +1451,49 @@ void PngErrHandler(png_structp Png,png_const_charp message)
 
 #ifndef GCD_EDITER
 
-// ƒvƒƒOƒŒƒX•\¦—p‚ÌƒR[ƒ‹ƒoƒbƒN
+// ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹è¡¨ç¤ºç”¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 static void png_read_row_callback(png_structp strPNG, png_uint_32 row, int pass)
 {
     if (row * strPNG->rowbytes % (524288 * 8) < strPNG->rowbytes)
     {
-            //isó‹µ•\¦
+            //é€²è¡ŒçŠ¶æ³è¡¨ç¤º
             CTNowLoading* task = dynamic_cast<CTNowLoading*>( g_system.FindTask('LOAD') );
             if(task)task->Progress(NowLoading_Image, (float)((double)row / strPNG->height));
     }
 }
 
-// ƒCƒ“ƒ^[ƒŒ[ƒX‚Ì‚ ‚é‰æ‘œ—p
+// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ¬ãƒ¼ã‚¹ã®ã‚ã‚‹ç”»åƒç”¨
 static void png_read_row_callback_adam7(png_structp strPNG, png_uint_32 row, int pass)
 {
     if (row == 0 && pass >= 3)
     {
-            //isó‹µ•\¦
+            //é€²è¡ŒçŠ¶æ³è¡¨ç¤º
             CTNowLoading* task = dynamic_cast<CTNowLoading*>( g_system.FindTask('LOAD') );
-            if(task)task->Progress(NowLoading_Image, (float)((double)pass*pass / (8*8)));			// Å‘åpass’l‚ÌŠ“¾•û–@‚ª‚È‚¢‚İ‚½‚¢‚È‚Ì‚Å¥¥¥
+            if(task)task->Progress(NowLoading_Image, (float)((double)pass*pass / (8*8)));			// æœ€å¤§passå€¤ã®æ‰€å¾—æ–¹æ³•ãŒãªã„ã¿ãŸã„ãªã®ã§ï½¥ï½¥ï½¥
     }
 }
 
 #endif	// GCD_EDITER
 
 /*!
-*	@brief w’èƒtƒ@ƒCƒ‹–¼‚ÌPNGƒtƒ@ƒCƒ‹‚©‚çA‰æ‘œƒrƒbƒg‚ğ“Ç‚İ‚İ
+*	@brief æŒ‡å®šãƒ•ã‚¡ã‚¤ãƒ«åã®PNGãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã€ç”»åƒãƒ“ãƒƒãƒˆã‚’èª­ã¿è¾¼ã¿
 *
-*	CreateSurfaceFrom256BMP‚Ì“à•”ŠÖ”ALoad256BitmapBits‚ÌPNG”ÅB
-*	Load256BitmapBits‚Æ“¯‚¶‚­Apbits‚Ífree‚Ån––‚µ‚Ä‚­‚¾‚³‚¢B
+*	CreateSurfaceFrom256BMPã®å†…éƒ¨é–¢æ•°ã€Load256BitmapBitsã®PNGç‰ˆã€‚
+*	Load256BitmapBitsã¨åŒã˜ãã€pbitsã¯freeã§å§‹æœ«ã—ã¦ãã ã•ã„ã€‚
 *
-*	@param pbits [out] “Ç‚İ‚İŒ‹‰Ê. ‚·‚Å‚ÉƒpƒŒƒbƒg(ARGB=8888)‚Ì”z—ñ‚É•ÏŠ·‚³‚ê‚Ä‚Ü‚·
-*	@param width [out] ƒrƒbƒgƒ}ƒbƒv‚Ì•
-*	@param height [out] ƒrƒbƒgƒ}ƒbƒv‚Ì‚‚³
-*	@param pngfilename [in] ƒrƒbƒgƒ}ƒbƒv‚Ìƒtƒ@ƒCƒ‹–¼
-*	@param palfilename [in] “K—p‚·‚éƒpƒŒƒbƒg‚Ìƒtƒ@ƒCƒ‹–¼
-*	@return TRUE:¬Œ÷, FALSE:c”O
+*	@param pbits [out] èª­ã¿è¾¼ã¿çµæœ. ã™ã§ã«ãƒ‘ãƒ¬ãƒƒãƒˆ(ARGB=8888)ã®é…åˆ—ã«å¤‰æ›ã•ã‚Œã¦ã¾ã™
+*	@param width [out] ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®å¹…
+*	@param height [out] ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®é«˜ã•
+*	@param pngfilename [in] ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ãƒ•ã‚¡ã‚¤ãƒ«å
+*	@param palfilename [in] é©ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ•ã‚¡ã‚¤ãƒ«å
+*	@return TRUE:æˆåŠŸ, FALSE:æ®‹å¿µ
 *	@sa Load256Bitmapbits
 */
 BOOL CDirectDraw::Load256PNGbits(MYPALLET **pbits,DWORD *width,DWORD *height,char *pngfilename,char *palfilename)
 {
     BOOL ret2;
 
-    //‚Æ‚è‚ ‚¦‚¸ƒpƒŒƒbƒg‚ğŠm•Û
+    //ã¨ã‚Šã‚ãˆãšãƒ‘ãƒ¬ãƒƒãƒˆã‚’ç¢ºä¿
     MYPALLET pal[256];
     if(palfilename==NULL)palfilename=pngfilename;
     ret2 = GetPalletPNG(palfilename,pal);
@@ -1505,32 +1505,32 @@ BOOL CDirectDraw::Load256PNGbits(MYPALLET **pbits,DWORD *width,DWORD *height,cha
         }
     }
 
-    //PNG‚ğ‚³‚Á‚­‚èƒ[ƒh
+    //PNGã‚’ã•ã£ãã‚Šãƒ­ãƒ¼ãƒ‰
     FILE* fp;
 
     if(pngfilename==NULL){
-        ODS("CDirectDraw::Load256PNGbits : ƒtƒ@ƒCƒ‹–¼‚ªNULL‚Æ‚Í‚Ç‚¤‚¢‚¤‚±‚Æ‚¾H\n");
+        ODS("CDirectDraw::Load256PNGbits : ãƒ•ã‚¡ã‚¤ãƒ«åãŒNULLã¨ã¯ã©ã†ã„ã†ã“ã¨ã ï¼Ÿ\n");
         return(FALSE);
     }
 
-    // PNG\‘¢‘ÌH
+    // PNGæ§‹é€ ä½“ï¼Ÿ
     png_structp strPNG = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, PngErrHandler, NULL);
     if (!strPNG)
     {
-        ODS("CDirectDraw::Load256PNGbits : PNG\‘¢‘ÌÃŞ·ÃÈ´Ö!!R(`„DL)É³Ü§§İ!!\n");
+        ODS("CDirectDraw::Load256PNGbits : PNGæ§‹é€ ä½“ï¾ƒï¾ï½·ï¾ƒï¾ˆï½´ï¾–!!ãƒ½(`Ğ”Â´)ï¾‰ï½³ï¾œï½§ï½§ï¾!!\n");
         return FALSE;
     }
 
-    // î•ñ\‘¢‘Ìc‚Á‚Ä‰½‚¶‚áB
+    // æƒ…å ±æ§‹é€ ä½“â€¦ã£ã¦ä½•ã˜ã‚ƒã€‚
     png_infop infoPNG = png_create_info_struct(strPNG);
     if (!infoPNG)
     {
-        ODS("CDirectDraw::Load256PNGbits : PNGî•ñ\‘¢‘ÌÃŞ·ÃÈ´Ö!!R(`„DL)É³Ü§§İ!!\n");
+        ODS("CDirectDraw::Load256PNGbits : PNGæƒ…å ±æ§‹é€ ä½“ï¾ƒï¾ï½·ï¾ƒï¾ˆï½´ï¾–!!ãƒ½(`Ğ”Â´)ï¾‰ï½³ï¾œï½§ï½§ï¾!!\n");
         png_destroy_read_struct(&strPNG, NULL, NULL);
         return FALSE;
     }
 
-    // “Ç‚İ‚Ş‚©B
+    // èª­ã¿è¾¼ã‚€ã‹ã€‚
     fp = fopen(pngfilename, "rb");
     if (!fp)
     {
@@ -1538,63 +1538,63 @@ BOOL CDirectDraw::Load256PNGbits(MYPALLET **pbits,DWORD *width,DWORD *height,cha
         return FALSE;
     }
 
-    // try‚ÌŠO‚Åg‚¤‚©‚ç
+    // tryã®å¤–ã§ä½¿ã†ã‹ã‚‰
     LONG i,j;
     BYTE** Image = NULL;
     MYPALLET *retbit = NULL;
 
 //	try {
     if (!setjmp(PngErrJamp)) {
-        // ‚ ‚Æ‚Íƒ‰ƒCƒuƒ‰ƒŠ‚É”C‚¹‚é
+        // ã‚ã¨ã¯ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«ä»»ã›ã‚‹
         png_init_io(strPNG, fp);
 
-        // ƒVƒOƒlƒ`ƒƒ‰ğÍ
+        // ã‚·ã‚°ãƒãƒãƒ£è§£æ
         BYTE sig[8];
         long pos = ftell(fp);
 
         int len = fread(sig, sizeof(BYTE), 8, fp);
         if ( png_sig_cmp(sig, 0, len) != 0 )
         {
-            //ODS("CDirectDraw::Load256PNGbits : ‚Â[‚©‚±‚Ìƒtƒ@ƒCƒ‹‚ÍPNG‚Å‚Í‚È‚¢B\n");
+            //ODS("CDirectDraw::Load256PNGbits : ã¤ãƒ¼ã‹ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯PNGã§ã¯ãªã„ã€‚\n");
             fclose(fp);
             png_destroy_read_struct(&strPNG, &infoPNG, NULL);
             return FALSE;
         }
 
-        // æ“ª‚É–ß‚·
+        // å…ˆé ­ã«æˆ»ã™
         fseek(fp, pos, SEEK_SET);
 
-        // PNGî•ñƒQƒbƒc
+        // PNGæƒ…å ±ã‚²ãƒƒãƒ„
         png_read_info(strPNG, infoPNG);
 
-        // ƒCƒ[ƒWƒwƒbƒ_Š“¾
+        // ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ˜ãƒƒãƒ€æ‰€å¾—
         int bit_depth = 0, color_type = 0;
 
         if ( !png_get_IHDR(strPNG, infoPNG, (UINT*)width, (UINT*)height, &bit_depth, &color_type, NULL, NULL, NULL) )
         {
-            ODS("CDirectDraw::Load256PNGbits : IHDR“Ç‚İ‚İ¸”s\n");
+            ODS("CDirectDraw::Load256PNGbits : IHDRèª­ã¿è¾¼ã¿å¤±æ•—\n");
             fclose(fp);
             png_destroy_read_struct(&strPNG, &infoPNG, NULL);
             return FALSE;
         }
 
-        // ƒpƒŒƒbƒg•t‚«‚Ì256F‚¶‚á‚È‚¢‚Æ‚¾‚ß‚Û
+        // ãƒ‘ãƒ¬ãƒƒãƒˆä»˜ãã®256è‰²ã˜ã‚ƒãªã„ã¨ã ã‚ã½
         if (color_type != 3)
         {
-            ODS("CDirectDraw::Load256PNGbits : ƒpƒŒƒbƒg‚ª‚È‚¢‚æB\n");
+            ODS("CDirectDraw::Load256PNGbits : ãƒ‘ãƒ¬ãƒƒãƒˆãŒãªã„ã‚ˆã€‚\n");
             fclose(fp);
             png_destroy_read_struct(&strPNG, &infoPNG, NULL);
             return FALSE;
         }
         if (bit_depth != 8)
         {
-            ODS("CDirectDraw::Load256PNGbits : ‚Â[‚©‚±‚Ìƒtƒ@ƒCƒ‹‚Í256‚Å‚Í‚È‚¢B\n");
+            ODS("CDirectDraw::Load256PNGbits : ã¤ãƒ¼ã‹ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯256ã§ã¯ãªã„ã€‚\n");
             fclose(fp);
             png_destroy_read_struct(&strPNG, &infoPNG, NULL);
             return FALSE;
         }
 
-        //ƒrƒbƒgƒ}ƒbƒv‚Ì‘å‚«‚³‚É‚ ‚í‚¹‚ÄV‚½‚Éƒƒ‚ƒŠ—Ìˆæ‚ğì¬‚·‚é
+        //ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®å¤§ãã•ã«ã‚ã‚ã›ã¦æ–°ãŸã«ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ä½œæˆã™ã‚‹
         Image = (BYTE**)malloc(*height * sizeof(BYTE**));
         LPVOID pnewbits2;
         DWORD ishalf=1;
@@ -1604,26 +1604,26 @@ BOOL CDirectDraw::Load256PNGbits(MYPALLET **pbits,DWORD *width,DWORD *height,cha
 
         DWORD halfcopy=0;
 
-        // ‚QŸŒ³“®“I”z—ñ
+        // ï¼’æ¬¡å…ƒå‹•çš„é…åˆ—
         for (i = 0; i < (LONG)*height; i++)
             Image[i] = (BYTE*)malloc(png_get_rowbytes(strPNG, infoPNG));
 
 #		ifndef GCD_EDITER
-            // ƒR[ƒ‹ƒoƒbƒNİ’è
+            // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯è¨­å®š
             if (png_get_interlace_type(strPNG, infoPNG) == PNG_INTERLACE_ADAM7)
                 png_set_read_status_fn(strPNG, png_read_row_callback_adam7);	// ADAM7
             else
-                png_set_read_status_fn(strPNG, png_read_row_callback);			// •W€iƒCƒ“ƒ^[ƒŒ[ƒX–³‚µj
+                png_set_read_status_fn(strPNG, png_read_row_callback);			// æ¨™æº–ï¼ˆã‚¤ãƒ³ã‚¿ãƒ¼ãƒ¬ãƒ¼ã‚¹ç„¡ã—ï¼‰
 #		endif	// GCD_EDITER
 
-        // ‰æ‘œ“Ç‚İ‚İ
+        // ç”»åƒèª­ã¿è¾¼ã¿
     
         png_read_image(strPNG, Image);
 
-        //‚»‚±‚Éƒf[ƒ^‚ğƒRƒs[
+        //ãã“ã«ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼
         for(i=0;i<(LONG)*height;i++){
             for(j=0;j<(LONG)*width;j++){
-                if(g_config.IsHalfMode()){//”¼•ª‚µ‚©ƒRƒs[‚µ‚È‚¢
+                if(g_config.IsHalfMode()){//åŠåˆ†ã—ã‹ã‚³ãƒ”ãƒ¼ã—ãªã„
                     if(i%2==0 && j%2==0 && j != *width - 1){
                         retbit[halfcopy] = pal[ Image[i][j] ];
                         halfcopy++;
@@ -1638,7 +1638,7 @@ BOOL CDirectDraw::Load256PNGbits(MYPALLET **pbits,DWORD *width,DWORD *height,cha
 //	catch (int)
     else
     {
-        // ƒPƒzƒpƒz”­¶
+        // ã‚±ãƒ›ãƒ‘ãƒ›ç™ºç”Ÿ
         BOOL ret = FALSE;
 
         if (retbit)
@@ -1647,10 +1647,10 @@ BOOL CDirectDraw::Load256PNGbits(MYPALLET **pbits,DWORD *width,DWORD *height,cha
             {
                 DWORD halfcopy=0;
 
-                // –³—–î—•Ô‚·
+                // ç„¡ç†çŸ¢ç†è¿”ã™
                 for(i=0;i<(LONG)*height;i++){
                     for(j=0;j<(LONG)*width;j++){
-                        if(g_config.IsHalfMode()){//”¼•ª‚µ‚©ƒRƒs[‚µ‚È‚¢
+                        if(g_config.IsHalfMode()){//åŠåˆ†ã—ã‹ã‚³ãƒ”ãƒ¼ã—ãªã„
                             if(i%2==0 && j%2==0 && j != *width - 1){
                                 retbit[halfcopy] = pal[ Image[i][j] ];
                                 halfcopy++;
@@ -1689,7 +1689,7 @@ BOOL CDirectDraw::Load256PNGbits(MYPALLET **pbits,DWORD *width,DWORD *height,cha
         return ret;
     }
 
-    //Š®—¹
+    //å®Œäº†
     for (i = 0; i < (LONG)*height; i++)
         free(Image[i]);
     free(Image);
@@ -1708,17 +1708,17 @@ BOOL CDirectDraw::Load256PNGbits(MYPALLET **pbits,DWORD *width,DWORD *height,cha
 }
 
 /*!
-*	@brief w’èƒtƒ@ƒCƒ‹–¼‚ÌJPEGƒtƒ@ƒCƒ‹‚©‚çA‰æ‘œƒrƒbƒg‚ğ“Ç‚İ‚İ
+*	@brief æŒ‡å®šãƒ•ã‚¡ã‚¤ãƒ«åã®JPEGãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã€ç”»åƒãƒ“ãƒƒãƒˆã‚’èª­ã¿è¾¼ã¿
 *
-*	CreateSurfaceFrom256BMP‚Ì“à•”ŠÖ”ALoad256BitmapBits‚ÌJPEG”ÅB
-*	Load256BitmapBits‚Æ“¯‚¶‚­Apbits‚Ífree‚Ån––‚µ‚Ä‚­‚¾‚³‚¢B
-*	‘¼‚ÌŠÖ”‚Æˆá‚¢AƒpƒŒƒbƒg‚ğg‚í‚¸ƒtƒ‹ƒJƒ‰[‚Å“Ç‚İ‚İ‚Ü‚·B“§–¾F‚Í‚È‚µB
+*	CreateSurfaceFrom256BMPã®å†…éƒ¨é–¢æ•°ã€Load256BitmapBitsã®JPEGç‰ˆã€‚
+*	Load256BitmapBitsã¨åŒã˜ãã€pbitsã¯freeã§å§‹æœ«ã—ã¦ãã ã•ã„ã€‚
+*	ä»–ã®é–¢æ•°ã¨é•ã„ã€ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ä½¿ã‚ãšãƒ•ãƒ«ã‚«ãƒ©ãƒ¼ã§èª­ã¿è¾¼ã¿ã¾ã™ã€‚é€æ˜è‰²ã¯ãªã—ã€‚
 *
-*	@param pbits [out] “Ç‚İ‚İŒ‹‰Ê. ‚·‚Å‚ÉƒpƒŒƒbƒg(ARGB=8888)‚Ì”z—ñ‚É•ÏŠ·‚³‚ê‚Ä‚Ü‚·
-*	@param width [out] ƒrƒbƒgƒ}ƒbƒv‚Ì•
-*	@param height [out] ƒrƒbƒgƒ}ƒbƒv‚Ì‚‚³
-*	@param jpegfilename [in] ƒrƒbƒgƒ}ƒbƒv‚Ìƒtƒ@ƒCƒ‹–¼
-*	@return TRUE:¬Œ÷, FALSE:c”O
+*	@param pbits [out] èª­ã¿è¾¼ã¿çµæœ. ã™ã§ã«ãƒ‘ãƒ¬ãƒƒãƒˆ(ARGB=8888)ã®é…åˆ—ã«å¤‰æ›ã•ã‚Œã¦ã¾ã™
+*	@param width [out] ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®å¹…
+*	@param height [out] ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®é«˜ã•
+*	@param jpegfilename [in] ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ãƒ•ã‚¡ã‚¤ãƒ«å
+*	@return TRUE:æˆåŠŸ, FALSE:æ®‹å¿µ
 *	@sa Load256Bitmapbits
 *	@sa Load256PNGbits
 */
@@ -1730,26 +1730,26 @@ BOOL CDirectDraw::LoadJPEGbits(MYPALLET **pbits,DWORD *width,DWORD *height,char 
     FILE* fp;
     int i,j;
 
-    // ‰Šú‰»
+    // åˆæœŸåŒ–
     ZeroMemory(&cinfo, sizeof(cinfo));
     ZeroMemory(&jerr, sizeof(jerr));
     cinfo.err = jpeg_std_error(&jerr);
     jpeg_create_decompress(&cinfo);
 
-    // ƒtƒ@ƒCƒ‹“Ç‚İ‚İ
+    // ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿
     fp = fopen(jpegfilename, "rb");
     if (!fp)
     {
         jpeg_destroy_decompress(&cinfo);
         return FALSE;
     }
-    // ƒVƒOƒlƒ`ƒƒ‰ğÍ
+    // ã‚·ã‚°ãƒãƒãƒ£è§£æ
     WORD startsig = 0;
     long pos = ftell(fp);
     int sigr = fread(&startsig, sizeof(WORD), 1, fp);
     if ((sigr != 1) || (startsig != 0xD8FF))
     {
-        // ˆá‚¤‚Á‚Û
+        // é•ã†ã£ã½
         jpeg_destroy_decompress(&cinfo);
         fclose(fp);
         return FALSE;
@@ -1758,33 +1758,33 @@ BOOL CDirectDraw::LoadJPEGbits(MYPALLET **pbits,DWORD *width,DWORD *height,char 
 
     jpeg_stdio_src(&cinfo, fp);
 
-    // ƒwƒbƒ_“Ç‚İ‚İ
+    // ãƒ˜ãƒƒãƒ€èª­ã¿è¾¼ã¿
     jpeg_read_header(&cinfo, TRUE);
     if (!cinfo.saw_JFIF_marker)
     {
-        ODS("CDirectDraw::LoadJPEGbits : JFIFƒ}[ƒJ[‚ª‚È‚¢B\n");
+        ODS("CDirectDraw::LoadJPEGbits : JFIFãƒãƒ¼ã‚«ãƒ¼ãŒãªã„ã€‚\n");
         jpeg_destroy_decompress(&cinfo);
         fclose(fp);
         return FALSE;
     }
 
-    // “WŠJŠJn
+    // å±•é–‹é–‹å§‹
     jpeg_start_decompress(&cinfo);
 
-    // î•ñ‚Æ‚©Š“¾
+    // æƒ…å ±ã¨ã‹æ‰€å¾—
     *width = cinfo.image_width;
     *height = cinfo.image_height;
 
     if (cinfo.out_color_components != 3)
     {
-        ODS("CDirectDraw::LoadJPEGbits : ‘Î‰‚µ‚Ä‚È‚¢Œ`®‚ªg‚í‚ê‚Ä‚¢‚éB\n");
+        ODS("CDirectDraw::LoadJPEGbits : å¯¾å¿œã—ã¦ãªã„å½¢å¼ãŒä½¿ã‚ã‚Œã¦ã„ã‚‹ã€‚\n");
         jpeg_destroy_decompress(&cinfo);
         fclose(fp);
         return FALSE;
     }
 
-    //ƒrƒbƒgƒ}ƒbƒv‚Ì‘å‚«‚³‚É‚ ‚í‚¹‚ÄV‚½‚Éƒƒ‚ƒŠ—Ìˆæ‚ğì¬‚·‚é
-    JSAMPROW Image;			// ˆês‚¾‚¯
+    //ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®å¤§ãã•ã«ã‚ã‚ã›ã¦æ–°ãŸã«ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ä½œæˆã™ã‚‹
+    JSAMPROW Image;			// ä¸€è¡Œã ã‘
     LPVOID pnewbits2;
     DWORD ishalf=1;
     if(g_config.IsHalfMode())ishalf=2;
@@ -1793,14 +1793,14 @@ BOOL CDirectDraw::LoadJPEGbits(MYPALLET **pbits,DWORD *width,DWORD *height,char 
 
     DWORD halfcopy=0;
 
-    // ‚QŸŒ³“®“I”z—ñ
+    // ï¼’æ¬¡å…ƒå‹•çš„é…åˆ—
     Image = (JSAMPROW)malloc(3 * *width);
 
-    //‚»‚±‚Éƒf[ƒ^‚ğƒRƒs[
+    //ãã“ã«ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼
     for(i=0;i<(LONG)*height;i++){
-        jpeg_read_scanlines(&cinfo, &Image, 1);		// ‰½ŒÌ‚©‚±‚ñ‚È”¼’[‚È‚Æ‚±‚ë‚Å“Ç‚İ‚İ
+        jpeg_read_scanlines(&cinfo, &Image, 1);		// ä½•æ•…ã‹ã“ã‚“ãªåŠç«¯ãªã¨ã“ã‚ã§èª­ã¿è¾¼ã¿
         for(j=0;j<(LONG)*width;j++){
-            if(g_config.IsHalfMode()){//”¼•ª‚µ‚©ƒRƒs[‚µ‚È‚¢
+            if(g_config.IsHalfMode()){//åŠåˆ†ã—ã‹ã‚³ãƒ”ãƒ¼ã—ãªã„
                 if(i%2==0 && j%2==0 && j != *width - 1){
                     retbit[halfcopy].red = Image[j*3];
                     retbit[halfcopy].green = Image[j*3+1];
@@ -1819,7 +1819,7 @@ BOOL CDirectDraw::LoadJPEGbits(MYPALLET **pbits,DWORD *width,DWORD *height,char 
         }
     }
 
-    // Š®—¹
+    // å®Œäº†
     free(Image);
 
     jpeg_finish_decompress(&cinfo);
@@ -1838,16 +1838,16 @@ BOOL CDirectDraw::LoadJPEGbits(MYPALLET **pbits,DWORD *width,DWORD *height,char 
 #endif // GCD_EDITER
 
 /*!
-*	@brief w’èƒtƒ@ƒCƒ‹–¼‚Ìƒrƒbƒgƒ}ƒbƒv‚©‚çAƒpƒŒƒbƒg‚¾‚¯‚ğ“Ç‚İ‚İ
+*	@brief æŒ‡å®šãƒ•ã‚¡ã‚¤ãƒ«åã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‹ã‚‰ã€ãƒ‘ãƒ¬ãƒƒãƒˆã ã‘ã‚’èª­ã¿è¾¼ã¿
 *
-*	CreateSurfaceFrom256BMP‚Ì“à•”‚ÅALoad256Bitmapbits‚©‚ç—˜—p‚³‚ê‚éB
-*	ƒ¿’l‚Ìİ’è‚Íƒrƒbƒgƒ}ƒbƒv‚É‚Í–{—ˆ‚È‚¢‚à‚Ì‚È‚Ì‚ÅA
-*	RGB‚Ì¬•ª‚ª‘S‚Ä0‚Ì‚à‚Ì‚Æ255”Ô–Ú‚ÌƒpƒŒƒbƒg‚Í ƒ¿=0
-*	‚»‚êˆÈŠO‚ÌƒpƒŒƒbƒg‚Í ƒ¿=255 ‚Éİ’è‚³‚ê‚Ä•Ô‚³‚ê‚Ü‚·B
+*	CreateSurfaceFrom256BMPã®å†…éƒ¨ã§ã€Load256Bitmapbitsã‹ã‚‰åˆ©ç”¨ã•ã‚Œã‚‹ã€‚
+*	Î±å€¤ã®è¨­å®šã¯ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã«ã¯æœ¬æ¥ãªã„ã‚‚ã®ãªã®ã§ã€
+*	RGBã®æˆåˆ†ãŒå…¨ã¦0ã®ã‚‚ã®ã¨255ç•ªç›®ã®ãƒ‘ãƒ¬ãƒƒãƒˆã¯ Î±=0
+*	ãã‚Œä»¥å¤–ã®ãƒ‘ãƒ¬ãƒƒãƒˆã¯ Î±=255 ã«è¨­å®šã•ã‚Œã¦è¿”ã•ã‚Œã¾ã™ã€‚
 *
-*	@param filename [in] ƒtƒ@ƒCƒ‹–¼
-*	@param pal [out] “Ç‚İ‚İŒ‹‰Ê‚ğ•Û‘¶‚·‚é‚½‚ß‚ÌƒpƒŒƒbƒg”z—ñi256ŒÂ•K—vj
-*	@return TRUE:¬Œ÷, FALSE:c”O
+*	@param filename [in] ãƒ•ã‚¡ã‚¤ãƒ«å
+*	@param pal [out] èª­ã¿è¾¼ã¿çµæœã‚’ä¿å­˜ã™ã‚‹ãŸã‚ã®ãƒ‘ãƒ¬ãƒƒãƒˆé…åˆ—ï¼ˆ256å€‹å¿…è¦ï¼‰
+*	@return TRUE:æˆåŠŸ, FALSE:æ®‹å¿µ
 */
 BOOL CDirectDraw::GetPallet(char *filename,MYPALLET *pal)
 {
@@ -1855,30 +1855,30 @@ BOOL CDirectDraw::GetPallet(char *filename,MYPALLET *pal)
     DWORD ret,br,err=FALSE;
 
     if(filename==NULL){
-        ODS("CDirectDraw::GetPallet : ƒtƒ@ƒCƒ‹–¼‚ªNULL‚Æ‚Í‚Ç‚¤‚¢‚¤‚±‚Æ‚¾H\n");
+        ODS("CDirectDraw::GetPallet : ãƒ•ã‚¡ã‚¤ãƒ«åãŒNULLã¨ã¯ã©ã†ã„ã†ã“ã¨ã ï¼Ÿ\n");
         return(FALSE);
     }
     if(pal==NULL){
-        ODS("CDirectDraw::GetPallet : ƒpƒŒƒbƒg‚ªNULL‚Æ‚Í‚Ç‚¤‚¢‚¤‚±‚Æ‚¾H\n");
+        ODS("CDirectDraw::GetPallet : ãƒ‘ãƒ¬ãƒƒãƒˆãŒNULLã¨ã¯ã©ã†ã„ã†ã“ã¨ã ï¼Ÿ\n");
         return(FALSE);
     }
 
-    //ƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“
+    //ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³
     hFile=CreateFile(filename,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
     if(hFile==INVALID_HANDLE_VALUE){
         return(NULL);
     }
-    SetFilePointer(hFile,0,NULL,FILE_BEGIN);//”O‚Ì‚½‚ßƒtƒ@ƒCƒ‹‚Ìæ“ª‚ÉˆÚ“®
+    SetFilePointer(hFile,0,NULL,FILE_BEGIN);//å¿µã®ãŸã‚ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã«ç§»å‹•
 
-    //Ì§²Ùƒwƒbƒ_‚Ì“Ç‚İo‚µ
+    //ï¾Œï½§ï½²ï¾™ãƒ˜ãƒƒãƒ€ã®èª­ã¿å‡ºã—
     BITMAPFILEHEADER fileheader;
     ret=ReadFile(hFile,&fileheader,sizeof(BITMAPFILEHEADER),&br,NULL);
     if(!ret || br!=sizeof(BITMAPFILEHEADER)){
-        ODS("CDirectDraw::GetPallet : ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s(1)\n");
+        ODS("CDirectDraw::GetPallet : ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—(1)\n");
         err=TRUE;
     }
     if(fileheader.bfType != 0x4d42){//"BM"
-        ODS("CDirectDraw::GetPallet : ‚Â[‚©‚±‚Ìƒtƒ@ƒCƒ‹‚Íƒrƒbƒgƒ}ƒbƒv‚Å‚Í‚È‚¢\n");
+        ODS("CDirectDraw::GetPallet : ã¤ãƒ¼ã‹ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã§ã¯ãªã„\n");
         err=TRUE;
     }
     if(err){
@@ -1886,23 +1886,23 @@ BOOL CDirectDraw::GetPallet(char *filename,MYPALLET *pal)
         return(FALSE);
     }
 
-    //BITMAPINFOHEADER‚Ì“Ç‚İ‚İ
+    //BITMAPINFOHEADERã®èª­ã¿è¾¼ã¿
     BITMAPINFOHEADER infohed;
     ret=ReadFile(hFile,&infohed,sizeof(BITMAPINFOHEADER),&br,NULL);
     if(!ret || br!=sizeof(BITMAPINFOHEADER)){
-        ODS("CDirectDraw::GetPallet : ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s(2)\n");
+        ODS("CDirectDraw::GetPallet : ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—(2)\n");
         err=TRUE;
     }
     if(infohed.biSize != sizeof(BITMAPINFOHEADER)){
-        ODS("CDirectDraw::GetPallet : BITMAPINFOHEADER‚ÌƒTƒCƒY‚ª‡‚í‚È‚¢\n");
+        ODS("CDirectDraw::GetPallet : BITMAPINFOHEADERã®ã‚µã‚¤ã‚ºãŒåˆã‚ãªã„\n");
         err=TRUE;
     }
     if(infohed.biBitCount != 8){
-        ODS("CDirectDraw::GetPallet : ‚Â[‚©‚±‚Ìƒtƒ@ƒCƒ‹‚Í256‚Å‚Í‚È‚¢\n");
+        ODS("CDirectDraw::GetPallet : ã¤ãƒ¼ã‹ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯256ã§ã¯ãªã„\n");
         err=TRUE;
     }
     if(infohed.biCompression != BI_RGB){
-        ODS("CDirectDraw::GetPallet : ˆ³k‚ª‚©‚©‚Á‚Ä‚¢‚é‚ç‚µ‚¢\n");
+        ODS("CDirectDraw::GetPallet : åœ§ç¸®ãŒã‹ã‹ã£ã¦ã„ã‚‹ã‚‰ã—ã„\n");
         err=TRUE;
     }
     if(infohed.biClrUsed == 0){
@@ -1913,23 +1913,23 @@ BOOL CDirectDraw::GetPallet(char *filename,MYPALLET *pal)
         return(FALSE);
     }
 
-    //‚¢‚æ‚¢‚æƒpƒŒƒbƒg‚Ì“Ç‚İ‚İ
+    //ã„ã‚ˆã„ã‚ˆãƒ‘ãƒ¬ãƒƒãƒˆã®èª­ã¿è¾¼ã¿
     RGBQUAD dpal[256];
     ZeroMemory(dpal,sizeof(RGBQUAD)*256);
     ret=ReadFile(hFile,dpal,sizeof(RGBQUAD)*infohed.biClrUsed,&br,NULL);
     CloseHandle(hFile);
     if(!ret || br!=sizeof(RGBQUAD)*infohed.biClrUsed){
-        ODS("CDirectDraw::GetPallet : ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s(3)\n");
+        ODS("CDirectDraw::GetPallet : ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—(3)\n");
         return(FALSE);
     }
-    //255”Ô–Ú‚ÌF‚Í‹­§“I‚É•i“§‰ßFj
+    //255ç•ªç›®ã®è‰²ã¯å¼·åˆ¶çš„ã«é»’ï¼ˆé€éè‰²ï¼‰
     dpal[255].rgbBlue  =0;
     dpal[255].rgbGreen =0;
     dpal[255].rgbRed   =0;
 
     for(int i=0;i<256;i++){
-        if(dpal[i].rgbRed==0 && dpal[i].rgbGreen==0 && dpal[i].rgbBlue==0)pal[i].alpha = 0;//“§–¾
-        else pal[i].alpha = 0xFF;//•s“§–¾
+        if(dpal[i].rgbRed==0 && dpal[i].rgbGreen==0 && dpal[i].rgbBlue==0)pal[i].alpha = 0;//é€æ˜
+        else pal[i].alpha = 0xFF;//ä¸é€æ˜
         pal[i].red = dpal[i].rgbRed;
         pal[i].green = dpal[i].rgbGreen;
         pal[i].blue = dpal[i].rgbBlue;
@@ -1939,14 +1939,14 @@ BOOL CDirectDraw::GetPallet(char *filename,MYPALLET *pal)
 }
 
 /*!
-*	@brief w’èƒtƒ@ƒCƒ‹–¼‚ÌPNGƒtƒ@ƒCƒ‹‚©‚çAƒpƒŒƒbƒg‚¾‚¯‚ğ“Ç‚İ‚İ
+*	@brief æŒ‡å®šãƒ•ã‚¡ã‚¤ãƒ«åã®PNGãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã€ãƒ‘ãƒ¬ãƒƒãƒˆã ã‘ã‚’èª­ã¿è¾¼ã¿
 *
-*	GetPallet‚ÌPNG”ÅB
-*	BMP‚Æˆá‚¢Aƒ¿’l‚Íƒtƒ@ƒCƒ‹‚©‚çƒ[ƒh‚µ‚Ü‚·B
+*	GetPalletã®PNGç‰ˆã€‚
+*	BMPã¨é•ã„ã€Î±å€¤ã¯ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™ã€‚
 *
-*	@param filename [in] ƒtƒ@ƒCƒ‹–¼
-*	@param pal [out] “Ç‚İ‚İŒ‹‰Ê‚ğ•Û‘¶‚·‚é‚½‚ß‚ÌƒpƒŒƒbƒg”z—ñi256ŒÂ•K—vj
-*	@return TRUE:¬Œ÷, FALSE:c”O
+*	@param filename [in] ãƒ•ã‚¡ã‚¤ãƒ«å
+*	@param pal [out] èª­ã¿è¾¼ã¿çµæœã‚’ä¿å­˜ã™ã‚‹ãŸã‚ã®ãƒ‘ãƒ¬ãƒƒãƒˆé…åˆ—ï¼ˆ256å€‹å¿…è¦ï¼‰
+*	@return TRUE:æˆåŠŸ, FALSE:æ®‹å¿µ
 *	@sa GetPallet 
 */
 BOOL CDirectDraw::GetPalletPNG(char *filename,MYPALLET *pal)
@@ -1954,32 +1954,32 @@ BOOL CDirectDraw::GetPalletPNG(char *filename,MYPALLET *pal)
     FILE* fp;
 
     if(filename==NULL){
-        ODS("CDirectDraw::GetPalletPNG : ƒtƒ@ƒCƒ‹–¼‚ªNULL‚Æ‚Í‚Ç‚¤‚¢‚¤‚±‚Æ‚¾H\n");
+        ODS("CDirectDraw::GetPalletPNG : ãƒ•ã‚¡ã‚¤ãƒ«åãŒNULLã¨ã¯ã©ã†ã„ã†ã“ã¨ã ï¼Ÿ\n");
         return(FALSE);
     }
     if(pal==NULL){
-        ODS("CDirectDraw::GetPalletPNG : ƒpƒŒƒbƒg‚ªNULL‚Æ‚Í‚Ç‚¤‚¢‚¤‚±‚Æ‚¾H\n");
+        ODS("CDirectDraw::GetPalletPNG : ãƒ‘ãƒ¬ãƒƒãƒˆãŒNULLã¨ã¯ã©ã†ã„ã†ã“ã¨ã ï¼Ÿ\n");
         return(FALSE);
     }
 
-    // PNG\‘¢‘ÌH
+    // PNGæ§‹é€ ä½“ï¼Ÿ
     png_structp strPNG = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
     if (!strPNG)
     {
-        ODS("CDirectDraw::GetPalletPNG : PNG\‘¢‘ÌÃŞ·ÃÈ´Ö!!R(`„DL)É³Ü§§İ!!\n");
+        ODS("CDirectDraw::GetPalletPNG : PNGæ§‹é€ ä½“ï¾ƒï¾ï½·ï¾ƒï¾ˆï½´ï¾–!!ãƒ½(`Ğ”Â´)ï¾‰ï½³ï¾œï½§ï½§ï¾!!\n");
         return FALSE;
     }
 
-    // î•ñ\‘¢‘Ìc‚Á‚Ä‰½‚¶‚áB
+    // æƒ…å ±æ§‹é€ ä½“â€¦ã£ã¦ä½•ã˜ã‚ƒã€‚
     png_infop infoPNG = png_create_info_struct(strPNG);
     if (!infoPNG)
     {
-        ODS("CDirectDraw::GetPalletPNG : PNGî•ñ\‘¢‘ÌÃŞ·ÃÈ´Ö!!R(`„DL)É³Ü§§İ!!\n");
+        ODS("CDirectDraw::GetPalletPNG : PNGæƒ…å ±æ§‹é€ ä½“ï¾ƒï¾ï½·ï¾ƒï¾ˆï½´ï¾–!!ãƒ½(`Ğ”Â´)ï¾‰ï½³ï¾œï½§ï½§ï¾!!\n");
         png_destroy_read_struct(&strPNG, NULL, NULL);
         return FALSE;
     }
     
-    // “Ç‚İ‚Ş‚©B
+    // èª­ã¿è¾¼ã‚€ã‹ã€‚
     fp = fopen(filename, "rb");
     if (!fp)
     {
@@ -1987,81 +1987,81 @@ BOOL CDirectDraw::GetPalletPNG(char *filename,MYPALLET *pal)
         return FALSE;
     }
 
-    // ƒ‰ƒCƒuƒ‰ƒŠ‚É”C‚¹‚é
+    // ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«ä»»ã›ã‚‹
     png_init_io(strPNG, fp);
 
-    // ƒVƒOƒlƒ`ƒƒ‰ğÍ
+    // ã‚·ã‚°ãƒãƒãƒ£è§£æ
     BYTE sig[8];
     long pos = ftell(fp);
 
     int len = fread(sig, sizeof(BYTE), 8, fp);
     if ( png_sig_cmp(sig, 0, len) != 0 )
     {
-        //ODS("CDirectDraw::GetPalletPNG : ‚Â[‚©‚±‚Ìƒtƒ@ƒCƒ‹‚ÍPNG‚Å‚Í‚È‚¢B\n");
+        //ODS("CDirectDraw::GetPalletPNG : ã¤ãƒ¼ã‹ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯PNGã§ã¯ãªã„ã€‚\n");
         fclose(fp);
         png_destroy_read_struct(&strPNG, &infoPNG, NULL);
         return FALSE;
     }
 
-    // æ“ª‚É–ß‚·
+    // å…ˆé ­ã«æˆ»ã™
     fseek(fp, pos, SEEK_SET);
 
-    // PNGî•ñƒQƒbƒc
+    // PNGæƒ…å ±ã‚²ãƒƒãƒ„
     png_read_info(strPNG, infoPNG);
 
-    // ƒAƒ“ƒh ƒ^[ƒ“
+    // ã‚¢ãƒ³ãƒ‰ ã‚¿ãƒ¼ãƒ³
     int bit_depth = 0, color_type = 0;
 
     bit_depth = png_get_bit_depth(strPNG, infoPNG);
     color_type = png_get_color_type(strPNG, infoPNG);
 
-    // ƒpƒŒƒbƒg•t‚«‚Ì256F‚¶‚á‚È‚¢‚Æ‚¾‚ß‚Û
+    // ãƒ‘ãƒ¬ãƒƒãƒˆä»˜ãã®256è‰²ã˜ã‚ƒãªã„ã¨ã ã‚ã½
     if (color_type != 3)
     {
-        ODS("CDirectDraw::GetPalletPNG : ƒpƒŒƒbƒg‚ª‚È‚¢‚æB\n");
+        ODS("CDirectDraw::GetPalletPNG : ãƒ‘ãƒ¬ãƒƒãƒˆãŒãªã„ã‚ˆã€‚\n");
         fclose(fp);
         png_destroy_read_struct(&strPNG, &infoPNG, NULL);
         return FALSE;
     }
     if (bit_depth != 8)
     {
-        ODS("CDirectDraw::GetPalletPNG : ‚Â[‚©‚±‚Ìƒtƒ@ƒCƒ‹‚Í256‚Å‚Í‚È‚¢B\n");
+        ODS("CDirectDraw::GetPalletPNG : ã¤ãƒ¼ã‹ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯256ã§ã¯ãªã„ã€‚\n");
         fclose(fp);
         png_destroy_read_struct(&strPNG, &infoPNG, NULL);
         return FALSE;
     }
 
-    // ‚¢‚æ‚¢‚æƒpƒŒƒbƒgŠ“¾
+    // ã„ã‚ˆã„ã‚ˆãƒ‘ãƒ¬ãƒƒãƒˆæ‰€å¾—
     png_colorp Palette;
     int num_palette = 0;
 
     png_get_PLTE(strPNG, infoPNG, &Palette, &num_palette);
 
-    // ƒ¿’lŠ“¾
+    // Î±å€¤æ‰€å¾—
     png_bytep trans;
     int num_trans = 0;
 
     png_get_tRNS(strPNG, infoPNG, &trans, &num_trans, NULL);
 
-    // İ’è¶²°¼
+    // è¨­å®šï½¶ï½²ï½°ï½¼
     for (int i = 0; i < 256; i++)
     {
         if (i < num_trans)
-            pal[i].alpha = trans[i];//“§–¾“xİ’è
+            pal[i].alpha = trans[i];//é€æ˜åº¦è¨­å®š
         else
-            pal[i].alpha = 0xFF;//İ’è‚ª‚È‚¢‚Ì‚Å•s“§–¾
+            pal[i].alpha = 0xFF;//è¨­å®šãŒãªã„ã®ã§ä¸é€æ˜
 
-        if (i < num_palette)	// Fİ’è
+        if (i < num_palette)	// è‰²è¨­å®š
         {
             pal[i].red = Palette[i].red;
             pal[i].green = Palette[i].green;
             pal[i].blue = Palette[i].blue;
         }
         else
-            pal[i].red = pal[i].green = pal[i].blue = 0;	// –³‚¢
+            pal[i].red = pal[i].green = pal[i].blue = 0;	// ç„¡ã„
     }
 
-    // I—¹ˆ—
+    // çµ‚äº†å‡¦ç†
     fclose(fp);
     png_destroy_read_struct(&strPNG, &infoPNG, NULL);
 
@@ -2071,9 +2071,9 @@ BOOL CDirectDraw::GetPalletPNG(char *filename,MYPALLET *pal)
 
 
 /*!
-*	ƒ[ƒh‚³‚ê‚½“Æ©Œ`®2DƒT[ƒtƒFƒCƒX‚ğŠJ•ú
+*	ãƒ­ãƒ¼ãƒ‰ã•ã‚ŒãŸç‹¬è‡ªå½¢å¼2Dã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã‚’é–‹æ”¾
 *
-*	@param s ŠJ•ú‚·‚éƒT[ƒtƒFƒCƒX
+*	@param s é–‹æ”¾ã™ã‚‹ã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
 */
 void CDirectDraw::RelSurface(MYSURFACE *s)
 {
@@ -2082,7 +2082,7 @@ void CDirectDraw::RelSurface(MYSURFACE *s)
     if(s < &ms[0] || s > &ms[MAXNUMGOLUAHTEXTURES-1])
     {
         #ifndef GCD_EDITER
-        g_system.Log("CDirectDraw::RelSurface Šm•Û‚µ‚Ä‚È‚¢ƒT[ƒtƒFƒCƒX‚ÌŠJ•úH",SYSLOG_WARNING);
+        g_system.Log("CDirectDraw::RelSurface ç¢ºä¿ã—ã¦ãªã„ã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã®é–‹æ”¾ï¼Ÿ",SYSLOG_WARNING);
         #endif
         return;
     }
@@ -2110,7 +2110,7 @@ void CDirectDraw::RelSurface(MYSURFACE *s)
     
 
     
-    2D•`‰æEƒ}ƒgƒŠƒNƒXŠÖ˜A
+    2Dæç”»ãƒ»ãƒãƒˆãƒªã‚¯ã‚¹é–¢é€£
 
 
 
@@ -2118,21 +2118,21 @@ void CDirectDraw::RelSurface(MYSURFACE *s)
 
 
 /*----------------------------------------------------------------------------------
-    “Æ©Œ`®2DƒT[ƒtƒFƒCƒX•`‰æ
+    ç‹¬è‡ªå½¢å¼2Dã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹æç”»
 ------------------------------------------------------------------------------------*/
 
 /*!
-*	@brief CheckBlt2 ˆø”È—ªŠÈˆÕ”Å
+*	@brief CheckBlt2 å¼•æ•°çœç•¥ç°¡æ˜“ç‰ˆ
 *
-*	@param dds	“]‘—Œ³ƒT[ƒtƒFƒCƒX
-*	@param x	“]‘—æXÀ•W
-*	@param y	“]‘—æYÀ•W
-*	@param r	“]‘—Œ³‹éŒ`
-*	@param revx X”½“]
-*	@param revy Y”½“]
-*	@param flag ‚»‚Ì‘¼“®ìƒtƒ‰ƒO
-*	@param z	“]‘—æZÀ•W
-*	@param color 32ƒrƒbƒgŒ`®’¸“_ƒJƒ‰[B’Êí 0xFFFFFFFF
+*	@param dds	è»¢é€å…ƒã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
+*	@param x	è»¢é€å…ˆXåº§æ¨™
+*	@param y	è»¢é€å…ˆYåº§æ¨™
+*	@param r	è»¢é€å…ƒçŸ©å½¢
+*	@param revx Xåè»¢
+*	@param revy Yåè»¢
+*	@param flag ãã®ä»–å‹•ä½œãƒ•ãƒ©ã‚°
+*	@param z	è»¢é€å…ˆZåº§æ¨™
+*	@param color 32ãƒ“ãƒƒãƒˆå½¢å¼é ‚ç‚¹ã‚«ãƒ©ãƒ¼ã€‚é€šå¸¸ 0xFFFFFFFF
 *
 *	@sa CheckBlt2
 */
@@ -2142,40 +2142,40 @@ void CDirectDraw::CheckBlt(MYSURFACE *dds,int x,int y,RECT r,BOOL revx,BOOL revy
 }
 
 /*!
-*	@brief ƒT[ƒtƒF[ƒX‚Ì‹éŒ`“]‘—(•`‰æ)
+*	@brief ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®çŸ©å½¢è»¢é€(æç”»)
 *
-*	“]‘—æ‚Í’ÊíAí‚ÉƒoƒbƒNƒoƒbƒtƒ@‚Å‚·Bi•`‰æƒ^[ƒQƒbƒg‚É‚æ‚éj
-*	DirectDraw‚Ì ‚ÌBltŠÖ”‚ğ‚»‚ê‚È‚è‚É“¥P‚µ‚ÄA‚¾‚ñ‚¾‚ñˆø”‚ª‘‚¦‚½‚èŒ¸‚Á‚½‚è‚µ‚Ä¡‚ÉŠ‚éB
-*	‚È‚ñ‚©‚»‚ñ‚ÈŠ´‚¶‚Ì—R³‚µ‚¢ŠÖ”‚Å‚·B‚æ‚ë‚µ‚­‚Ë‚ÁI
+*	è»¢é€å…ˆã¯é€šå¸¸ã€å¸¸ã«ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã§ã™ã€‚ï¼ˆæç”»ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ã‚ˆã‚‹ï¼‰
+*	DirectDrawã®é ƒã®Blté–¢æ•°ã‚’ãã‚Œãªã‚Šã«è¸è¥²ã—ã¦ã€ã ã‚“ã ã‚“å¼•æ•°ãŒå¢—ãˆãŸã‚Šæ¸›ã£ãŸã‚Šã—ã¦ä»Šã«è‡³ã‚‹ã€‚
+*	ãªã‚“ã‹ãã‚“ãªæ„Ÿã˜ã®ç”±ç·’æ­£ã—ã„é–¢æ•°ã§ã™ã€‚ã‚ˆã‚ã—ãã­ã£ï¼
 *
-*	@param dds	“]‘—Œ³ƒT[ƒtƒFƒCƒX
-*	@param x	“]‘—æXÀ•W
-*	@param y	“]‘—æYÀ•W
-*	@param r	“]‘—Œ³‹éŒ`
-*	@param magx XŠg‘å—¦
-*	@param magy YŠg‘å—¦
-*	@param revx X”½“]
-*	@param revy Y”½“]
-*	@param flag ‚»‚Ì‘¼“®ìƒtƒ‰ƒO
-*	@param z	“]‘—æZÀ•W
-*	@param color 32ƒrƒbƒgŒ`®’¸“_ƒJƒ‰[B’Êí 0xFFFFFFFF
+*	@param dds	è»¢é€å…ƒã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
+*	@param x	è»¢é€å…ˆXåº§æ¨™
+*	@param y	è»¢é€å…ˆYåº§æ¨™
+*	@param r	è»¢é€å…ƒçŸ©å½¢
+*	@param magx Xæ‹¡å¤§ç‡
+*	@param magy Yæ‹¡å¤§ç‡
+*	@param revx Xåè»¢
+*	@param revy Yåè»¢
+*	@param flag ãã®ä»–å‹•ä½œãƒ•ãƒ©ã‚°
+*	@param z	è»¢é€å…ˆZåº§æ¨™
+*	@param color 32ãƒ“ãƒƒãƒˆå½¢å¼é ‚ç‚¹ã‚«ãƒ©ãƒ¼ã€‚é€šå¸¸ 0xFFFFFFFF
 */
 void CDirectDraw::CheckBlt2(MYSURFACE *dds,int x,int y,RECT r,
                double magx,double magy,BOOL revx,BOOL revy,DWORD flag,float z,DWORD color, BOOL drawShadow)
 {
     DWORD i,j;
-    float cut_left,cut_right,cut_top,cut_bottom;//Ø‚ê‚Ä‚é’·‚³(ƒsƒNƒZƒ‹’PˆÊ)
-    float transx,transy;//ˆê“I‚Ég—p
+    float cut_left,cut_right,cut_top,cut_bottom;//åˆ‡ã‚Œã¦ã‚‹é•·ã•(ãƒ”ã‚¯ã‚»ãƒ«å˜ä½)
+    float transx,transy;//ä¸€æ™‚çš„ã«ä½¿ç”¨
 
     //if(dds==NULL){return;}
     if(dds < &ms[0] || dds > &ms[MAXNUMGOLUAHTEXTURES-1])return;
 
     #ifdef AKIDX_DEBUG
     if(magx==0 || magy==0){
-        ODS("™CDirectDraw::CheckBlt2() Warning-magx or magy ==0\n");
+        ODS("â˜†CDirectDraw::CheckBlt2() Warning-magx or magy ==0\n");
     }
     #endif
-    //‹éŒ`‚ğ³‚µ‚­İ’è
+    //çŸ©å½¢ã‚’æ­£ã—ãè¨­å®š
     int dmi;
     if(r.left > r.right){
         dmi = r.left;
@@ -2199,7 +2199,7 @@ void CDirectDraw::CheckBlt2(MYSURFACE *dds,int x,int y,RECT r,
         magy*=2;
     }
 
-    DWORD r_top,r_bottom,r_left,r_right;//warning‚ªƒEƒUƒC
+    DWORD r_top,r_bottom,r_left,r_right;//warningãŒã‚¦ã‚¶ã‚¤
     r_top=r.top;
     r_bottom=r.bottom;
     r_left=r.left;
@@ -2207,24 +2207,24 @@ void CDirectDraw::CheckBlt2(MYSURFACE *dds,int x,int y,RECT r,
 
     /*if (devtypenow != D3DDEVTYPE_HAL)
     {
-        // Œy—Ê‰»veri‚©‚È‚è“K“–A‚Â[‚©Á‚¦‚½Bj
+        // è»½é‡åŒ–verï¼ˆã‹ãªã‚Šé©å½“ã€ã¤ãƒ¼ã‹æ¶ˆãˆãŸã€‚ï¼‰
         MyBlt3DLite(dds, r, x, y, FALSE);
     }
     else*/
     {
-        //‘S‚Ä‚ÌƒeƒNƒXƒ`ƒƒ‚ÉŠÖ‚µ‚Ä•`‰æ‚·‚é‚©‚Ç‚¤‚©’²‚×‚Ä•`‰æ‚·‚é
-        float vl,vr,vt,vb;//Še’¸“_‚ÌÀ•W
-        float tumin,tumax,tvmin,tvmax;//u,vÀ•W‚Ì”ÍˆÍ
-        constexpr float ar = 640.0f/480.0f;//ƒAƒXƒyƒNƒg”ä
+        //å…¨ã¦ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«é–¢ã—ã¦æç”»ã™ã‚‹ã‹ã©ã†ã‹èª¿ã¹ã¦æç”»ã™ã‚‹
+        float vl,vr,vt,vb;//å„é ‚ç‚¹ã®åº§æ¨™
+        float tumin,tumax,tvmin,tvmax;//u,våº§æ¨™ã®ç¯„å›²
+        constexpr float ar = 640.0f/480.0f;//ã‚¢ã‚¹ãƒšã‚¯ãƒˆæ¯”
         constexpr float ar2 = 2.0f / 480.0f;
-        constexpr float centerx = (float)640.0f / 2.0f;//x•ûŒü‰æ–Ê’†S
-        MYVERTEX3D* vrtxarr;//’¸“_”z—ñ
-        D3DXMATRIXA16 matw;//ƒ[ƒ‹ƒhÀ•W•ÏŠ·s—ñ
-        D3DXMATRIXA16 tmpmat;//ƒeƒ“ƒ|ƒ‰ƒŠs—ñ
-        D3DXMATRIXA16 matpres;//ƒvƒŠƒZƒbƒg•ÏŠ·s—ñ
+        constexpr float centerx = (float)640.0f / 2.0f;//xæ–¹å‘ç”»é¢ä¸­å¿ƒ
+        MYVERTEX3D* vrtxarr;//é ‚ç‚¹é…åˆ—
+        D3DXMATRIXA16 matw;//ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™å¤‰æ›è¡Œåˆ—
+        D3DXMATRIXA16 tmpmat;//ãƒ†ãƒ³ãƒãƒ©ãƒªè¡Œåˆ—
+        D3DXMATRIXA16 matpres;//ãƒ—ãƒªã‚»ãƒƒãƒˆå¤‰æ›è¡Œåˆ—
 
-        // ƒvƒŠƒZƒbƒg€”õ
-        //”½“]ˆ—
+        // ãƒ—ãƒªã‚»ãƒƒãƒˆæº–å‚™
+        //åè»¢å‡¦ç†
         if(revx){
             d3dxplane_x.d=((float)r_right-(float)r_left)*ar2/2.0f;
             D3DXMatrixReflect(&matpres, &d3dxplane_x);
@@ -2239,16 +2239,16 @@ void CDirectDraw::CheckBlt2(MYSURFACE *dds,int x,int y,RECT r,
         }
 
         auto tempY = (float)y / HALF_HEIGHT;
-        if(flag & CKBLT_YUREY)//—h‚ê
+        if(flag & CKBLT_YUREY)//æºã‚Œ
             tempY += yurey*ar2;
 
         D3DXMatrixTransformation(&tmpmat,
             NULL, NULL,
-            &D3DXVECTOR3((float)magx, (float)magy, 1.0f),//Šg‘åk¬
+            &D3DXVECTOR3((float)magx, (float)magy, 1.0f),//æ‹¡å¤§ç¸®å°
             NULL, NULL,
-            &D3DXVECTOR3((float)x / HALF_HEIGHT, tempY,/*z*/0));//ˆÚ“®(À•W‚Ì’PˆÊ‚Ífloat•ÏŠ·Œã‚Ì‚à‚Ìj
+            &D3DXVECTOR3((float)x / HALF_HEIGHT, tempY,/*z*/0));//ç§»å‹•(åº§æ¨™ã®å˜ä½ã¯floatå¤‰æ›å¾Œã®ã‚‚ã®ï¼‰
         matpres *= tmpmat;
-        //İ’è‚³‚ê‚½e‚Ì•ÏŠ·‚Æ‡‚í‚¹‚é
+        //è¨­å®šã•ã‚ŒãŸè¦ªã®å¤‰æ›ã¨åˆã‚ã›ã‚‹
         matpres *= matparent;
 
         // pSprite->Begin();
@@ -2260,7 +2260,7 @@ void CDirectDraw::CheckBlt2(MYSURFACE *dds,int x,int y,RECT r,
                 else if(dds->ysufindx[j]+dds->ysufsize[j] < r_top)continue;
                 else if(dds->ysufindx[j] > r_bottom)continue;
                 else{
-                    //(0) ¶‰Eã‰ºA‚»‚ê‚¼‚ê“]‘—‚µ‚È‚¢•ª‚ğŒvZ
+                    //(0) å·¦å³ä¸Šä¸‹ã€ãã‚Œãã‚Œè»¢é€ã—ãªã„åˆ†ã‚’è¨ˆç®—
                     if(dds->xsufindx[i] < r_left)cut_left=(float)(r_left-dds->xsufindx[i]);
                     else cut_left=0;
                     if(dds->xsufindx[i]+dds->xsufsize[i] > r_right)
@@ -2273,50 +2273,50 @@ void CDirectDraw::CheckBlt2(MYSURFACE *dds,int x,int y,RECT r,
                         cut_bottom = (float)( dds->ysufindx[j]+dds->ysufsize[j] - r_bottom );
                     else cut_bottom=0;
 
-                    //(1) u,vÀ•W‚ÌŒvZ
+                    //(1) u,våº§æ¨™ã®è¨ˆç®—
                     tumin = cut_left / (float)dds->xsufsize[i];
                     tumax = 1.0f - cut_right/(float)dds->xsufsize[i];
                     tvmin = cut_top / (float)dds->ysufsize[j];
                     tvmax = 1.0f - cut_bottom/(float)dds->ysufsize[j];
 
-                    //(2) “]‘—À•W‚ÌŒvZ(ˆÈ~ƒƒ‚QÆ)
-                    //•‚Æ‚‚³‚ğ‚¾‚·iƒsƒNƒZƒ‹¨float•ÏŠ·ÏÀ•WŒnj
-                    //•
+                    //(2) è»¢é€åº§æ¨™ã®è¨ˆç®—(ä»¥é™ãƒ¡ãƒ¢å‚ç…§)
+                    //å¹…ã¨é«˜ã•ã‚’ã ã™ï¼ˆãƒ”ã‚¯ã‚»ãƒ«â†’floatå¤‰æ›æ¸ˆåº§æ¨™ç³»ï¼‰
+                    //å¹…
                     vl=0;
                     vr=dds->xsufsize[i] - (cut_left+cut_right);
                     vr= vr*ar2;// - ar;
-                    //‚‚³
+                    //é«˜ã•
                     vt=0;
                     vb=dds->ysufsize[j] - (cut_top+cut_bottom);
                     vb=vb*ar2;//-1.0f
-                    //(3) ’¸“_”z—ñ‚ÉÀ•W’l‚ğ‘ã“ü
+                    //(3) é ‚ç‚¹é…åˆ—ã«åº§æ¨™å€¤ã‚’ä»£å…¥
                     if ( !pMyVertex || FAILED(pMyVertex->Lock(0, 0, (BYTE**)&vrtxarr, D3DLOCK_DISCARD)) )
                         return;
 
-                    //¶ã
+                    //å·¦ä¸Š
                     vrtxarr[0].x = vl;
                     vrtxarr[0].y = vt;
                     vrtxarr[0].z = z;
-                    //¶‰º
+                    //å·¦ä¸‹
                     vrtxarr[1].x = vl;
                     vrtxarr[1].y = vb;
                     vrtxarr[1].z = z;
-                    //‰Eã
+                    //å³ä¸Š
                     vrtxarr[2].x = vr;
                     vrtxarr[2].y = vt;
                     vrtxarr[2].z = z;
-                    //‰E‰º
+                    //å³ä¸‹
                     vrtxarr[3].x = vr;
                     vrtxarr[3].y = vb;
                     vrtxarr[3].z = z;
 
-                    //’¸“_F
+                    //é ‚ç‚¹è‰²
                     vrtxarr[0].color = color;
                     vrtxarr[1].color = color;
                     vrtxarr[2].color = color;
                     vrtxarr[3].color = color;
 
-                    //(3.5) ƒeƒNƒXƒ`ƒƒÀ•Wİ’è
+                    //(3.5) ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™è¨­å®š
                     vrtxarr[0].tu = tumin;
                     vrtxarr[0].tv = tvmin;
                     vrtxarr[1].tu = tumin;
@@ -2328,14 +2328,14 @@ void CDirectDraw::CheckBlt2(MYSURFACE *dds,int x,int y,RECT r,
 
                     if (pMyVertex) pMyVertex->Unlock();
 
-                    //(4) ƒ[ƒ‹ƒhÀ•W•ÏŠ·s—ñ—pˆÓ
-                    //‹éŒ`“à•ÏŠ·(À•W‚Ì’PˆÊ‚Ífloat•ÏŠ·Œã‚Ì‚à‚Ì)
+                    //(4) ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™å¤‰æ›è¡Œåˆ—ç”¨æ„
+                    //çŸ©å½¢å†…å¤‰æ›(åº§æ¨™ã®å˜ä½ã¯floatå¤‰æ›å¾Œã®ã‚‚ã®)
                     if(r_left>dds->xsufindx[i])transx=0;
                     else transx = (float)( dds->xsufindx[i] - r_left );
                     if(r_top>dds->ysufindx[j])transy=0;
                     else transy = (float)( dds->ysufindx[j] - r_top );
                     D3DXMatrixTranslation(&matw,transx*ar2,transy*ar2,0);
-                    //ƒvƒŠƒZƒbƒg‚Ì‚â‚Â‚ğ‚©‚¯‚é
+                    //ãƒ—ãƒªã‚»ãƒƒãƒˆã®ã‚„ã¤ã‚’ã‹ã‘ã‚‹
                     matw *= matpres;
 
                     /*RECT r2;
@@ -2346,14 +2346,14 @@ void CDirectDraw::CheckBlt2(MYSURFACE *dds,int x,int y,RECT r,
                     r2.bottom = dds->ysufsize[j] - (LONG)cut_bottom;*/
 
                     // pSprite->DrawTransform(dds->pTex[j*dds->xsufnum+i], &r2, &matw, color);
-                    d3ddev->SetTransform(D3DTS_WORLD,&matw);//*İ’è*
-                    //(5) •`‰æ
-                    d3ddev->SetTexture(0,dds->pTex[j*dds->xsufnum+i]);//ƒeƒNƒXƒ`ƒƒİ’è
+                    d3ddev->SetTransform(D3DTS_WORLD,&matw);//*è¨­å®š*
+                    //(5) æç”»
+                    d3ddev->SetTexture(0,dds->pTex[j*dds->xsufnum+i]);//ãƒ†ã‚¯ã‚¹ãƒãƒ£è¨­å®š
                     d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSU,D3DTADDRESS_CLAMP);
                     d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSV,D3DTADDRESS_CLAMP);
                     d3ddev->SetStreamSource(0, pMyVertex, sizeof(MYVERTEX3D));
-                    d3ddev->SetVertexShader( FVF_3DVERTEX );//’¸“_‚ÌƒtƒH[ƒ}ƒbƒg‚ğw’è
-                    d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);//•`‰æ
+                    d3ddev->SetVertexShader( FVF_3DVERTEX );//é ‚ç‚¹ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æŒ‡å®š
+                    d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);//æç”»
                 }
             }
         }
@@ -2363,25 +2363,25 @@ void CDirectDraw::CheckBlt2(MYSURFACE *dds,int x,int y,RECT r,
 
 
 /*!
-*	@brief “Æ©Œ`®2DƒT[ƒtƒFƒCƒX•`‰æ@‚Q
+*	@brief ç‹¬è‡ªå½¢å¼2Dã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹æç”»ã€€ï¼’
 *
-*	“]‘—ˆÊ’u‚ğ3D‹óŠÔã‚Åw’è‚·‚é‚±‚Æ‚ª‚Å‚«‚éB“]‘—æ‚Í’ÊíAí‚ÉƒoƒbƒNƒoƒbƒtƒ@i•`‰æƒ^[ƒQƒbƒgj‚Å‚·B
-*	CheckBlt2‚æ‚è‚àˆø”‚ª­‚È‚¢‚¯‚ÇAMYRECT3D‚É‚¢‚ë‚¢‚ë‚ ‚Á‚Ä‚±‚Á‚¿‚Ì‚Ù‚¤‚ª©—R“x‚ª‚‚¢B‘½•ªB
+*	è»¢é€ä½ç½®ã‚’3Dç©ºé–“ä¸Šã§æŒ‡å®šã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚è»¢é€å…ˆã¯é€šå¸¸ã€å¸¸ã«ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ï¼ˆæç”»ã‚¿ãƒ¼ã‚²ãƒƒãƒˆï¼‰ã§ã™ã€‚
+*	CheckBlt2ã‚ˆã‚Šã‚‚å¼•æ•°ãŒå°‘ãªã„ã‘ã©ã€MYRECT3Dã«ã„ã‚ã„ã‚ã‚ã£ã¦ã“ã£ã¡ã®ã»ã†ãŒè‡ªç”±åº¦ãŒé«˜ã„ã€‚å¤šåˆ†ã€‚
 *
-*	@param dds “]‘—Œ³ƒT[ƒtƒFƒCƒX
-*	@param src “]‘—Œ³‹éŒ`
-*	@param dst “]‘—æ‹éŒ`
-*	@param flag ‚»‚Ì‘¼“®ìƒtƒ‰ƒO
-*	@param color 32ƒrƒbƒgŒ`®’¸“_ƒJƒ‰[B’Êí 0xFFFFFFFF
+*	@param dds è»¢é€å…ƒã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
+*	@param src è»¢é€å…ƒçŸ©å½¢
+*	@param dst è»¢é€å…ˆçŸ©å½¢
+*	@param flag ãã®ä»–å‹•ä½œãƒ•ãƒ©ã‚°
+*	@param color 32ãƒ“ãƒƒãƒˆå½¢å¼é ‚ç‚¹ã‚«ãƒ©ãƒ¼ã€‚é€šå¸¸ 0xFFFFFFFF
 */
 void CDirectDraw::MyBlt3D(MYSURFACE *dds,RECT src,MYRECT3D dst,DWORD flag,DWORD color)
 {
-    float cut_left,cut_right,cut_top,cut_bottom;//Ø‚ê‚Ä‚é’·‚³(ƒsƒNƒZƒ‹’PˆÊ)
-    float transx,transy,sclx,scly;//ˆê“I‚Ég—p
+    float cut_left,cut_right,cut_top,cut_bottom;//åˆ‡ã‚Œã¦ã‚‹é•·ã•(ãƒ”ã‚¯ã‚»ãƒ«å˜ä½)
+    float transx,transy,sclx,scly;//ä¸€æ™‚çš„ã«ä½¿ç”¨
 
     if(dds==NULL){return;}
 
-    //‹éŒ`‚ğ³‚µ‚­İ’è
+    //çŸ©å½¢ã‚’æ­£ã—ãè¨­å®š
     int dmi;
     if(src.left > src.right){
         dmi = src.left;
@@ -2403,7 +2403,7 @@ void CDirectDraw::MyBlt3D(MYSURFACE *dds,RECT src,MYRECT3D dst,DWORD flag,DWORD 
 
     DWORD i,j;	
 
-    DWORD r_top,r_bottom,r_left,r_right;//warning‚ªƒEƒUƒC
+    DWORD r_top,r_bottom,r_left,r_right;//warningãŒã‚¦ã‚¶ã‚¤
     r_top=src.top;
     r_bottom=src.bottom;
     r_left=src.left;
@@ -2411,42 +2411,42 @@ void CDirectDraw::MyBlt3D(MYSURFACE *dds,RECT src,MYRECT3D dst,DWORD flag,DWORD 
 
     /*if (devtypenow != D3DDEVTYPE_HAL)
     {
-        // Œy—Ê‰»veri‚©‚È‚è“K“–A‚Â[‚©Á‚¦‚½Bj
+        // è»½é‡åŒ–verï¼ˆã‹ãªã‚Šé©å½“ã€ã¤ãƒ¼ã‹æ¶ˆãˆãŸã€‚ï¼‰
         MyBlt3DLite(dds, src, (int)(dst.left * HALF_HEIGHT), (int)(dst.top * HALF_HEIGHT), TRUE);
     }
     else*/
     {
-        //‘S‚Ä‚ÌƒeƒNƒXƒ`ƒƒ‚ÉŠÖ‚µ‚Ä•`‰æ‚·‚é‚©‚Ç‚¤‚©’²‚×‚Ä•`‰æ‚·‚é
-        float vl,vr,vt,vb;//Še’¸“_‚ÌÀ•W
-        float tumin,tumax,tvmin,tvmax;//u,vÀ•W‚Ì”ÍˆÍ
-        constexpr float ar = 640.0f / 480.0f;//ƒAƒXƒyƒNƒg”ä
+        //å…¨ã¦ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«é–¢ã—ã¦æç”»ã™ã‚‹ã‹ã©ã†ã‹èª¿ã¹ã¦æç”»ã™ã‚‹
+        float vl,vr,vt,vb;//å„é ‚ç‚¹ã®åº§æ¨™
+        float tumin,tumax,tvmin,tvmax;//u,våº§æ¨™ã®ç¯„å›²
+        constexpr float ar = 640.0f / 480.0f;//ã‚¢ã‚¹ãƒšã‚¯ãƒˆæ¯”
         constexpr float ar2 = 2.0f / 480.0f;
-        constexpr float centerx = 640.0f / 2.0f;//x•ûŒü‰æ–Ê’†S
-        MYVERTEX3D* vrtxarr;//’¸“_”z—ñ
-        D3DXMATRIXA16 matw;//ƒ[ƒ‹ƒhÀ•W•ÏŠ·s—ñ
-        D3DXMATRIXA16 tmpmat;//ƒeƒ“ƒ|ƒ‰ƒŠs—ñ
-        D3DXMATRIXA16 matpres;//ƒvƒŠƒZƒbƒg•ÏŠ·s—ñ
+        constexpr float centerx = 640.0f / 2.0f;//xæ–¹å‘ç”»é¢ä¸­å¿ƒ
+        MYVERTEX3D* vrtxarr;//é ‚ç‚¹é…åˆ—
+        D3DXMATRIXA16 matw;//ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™å¤‰æ›è¡Œåˆ—
+        D3DXMATRIXA16 tmpmat;//ãƒ†ãƒ³ãƒãƒ©ãƒªè¡Œåˆ—
+        D3DXMATRIXA16 matpres;//ãƒ—ãƒªã‚»ãƒƒãƒˆå¤‰æ›è¡Œåˆ—
 
-        // ƒvƒŠƒZƒbƒg€”õ
+        // ãƒ—ãƒªã‚»ãƒƒãƒˆæº–å‚™
 
-        //(0,0)-(1,1)‚Ì”ÍˆÍ‚É“ü‚é‚æ‚¤‚Ék¬
+        //(0,0)-(1,1)ã®ç¯„å›²ã«å…¥ã‚‹ã‚ˆã†ã«ç¸®å°
         sclx = 1.0f / (float)(r_right - r_left);
         scly = 1.0f / (float)(r_bottom - r_top);
         
-        //w’è‚³‚ê‚½MYRECT3D‚Ü‚ÅŠg‘å&ˆÚ“®
+        //æŒ‡å®šã•ã‚ŒãŸMYRECT3Dã¾ã§æ‹¡å¤§&ç§»å‹•
         sclx*=dst.right/* * HALF_HEIGHT*/-dst.left/* * HALF_HEIGHT*/;
         scly*=dst.bottom/* * HALF_HEIGHT*/-dst.top/* * HALF_HEIGHT*/;
         
         auto tempY = dst.top/* * HALF_HEIGHT*/;
-        if (flag & CKBLT_YUREY)//—h‚ê
+        if (flag & CKBLT_YUREY)//æºã‚Œ
             tempY += yurey*ar2;
 
         D3DXMatrixTransformation(&matpres,
             NULL, NULL,
-            &D3DXVECTOR3(sclx, scly, 1.0f),//Šg‘åk¬
+            &D3DXVECTOR3(sclx, scly, 1.0f),//æ‹¡å¤§ç¸®å°
             NULL, NULL,
-            &D3DXVECTOR3(dst.left/* * HALF_HEIGHT*/, tempY,/*dst.z*/0));//ˆÚ“®
-        //İ’è‚³‚ê‚½e‚Ì•ÏŠ·‚Æ‡‚í‚¹‚é
+            &D3DXVECTOR3(dst.left/* * HALF_HEIGHT*/, tempY,/*dst.z*/0));//ç§»å‹•
+        //è¨­å®šã•ã‚ŒãŸè¦ªã®å¤‰æ›ã¨åˆã‚ã›ã‚‹
         matpres *= matparent;
 
         // pSprite->Begin();
@@ -2458,7 +2458,7 @@ void CDirectDraw::MyBlt3D(MYSURFACE *dds,RECT src,MYRECT3D dst,DWORD flag,DWORD 
                 else if(dds->ysufindx[j]+dds->ysufsize[j] < r_top);
                 else if(dds->ysufindx[j] > r_bottom);
                 else{
-                    //(0) ¶‰Eã‰ºA‚»‚ê‚¼‚ê“]‘—‚µ‚È‚¢•ª‚ğŒvZ(src‹éŒ`ã)
+                    //(0) å·¦å³ä¸Šä¸‹ã€ãã‚Œãã‚Œè»¢é€ã—ãªã„åˆ†ã‚’è¨ˆç®—(srcçŸ©å½¢ä¸Š)
                     if(dds->xsufindx[i] < r_left)cut_left=(float)(r_left-dds->xsufindx[i]);
                     else cut_left=0;
                     if(dds->xsufindx[i]+dds->xsufsize[i] > r_right)
@@ -2471,48 +2471,48 @@ void CDirectDraw::MyBlt3D(MYSURFACE *dds,RECT src,MYRECT3D dst,DWORD flag,DWORD 
                         cut_bottom = (float)( dds->ysufindx[j]+dds->ysufsize[j] - r_bottom );
                     else cut_bottom=0;
 
-                    //(1) u,vÀ•W‚ÌŒvZ
+                    //(1) u,våº§æ¨™ã®è¨ˆç®—
                     tumin = cut_left / (float)dds->xsufsize[i];
                     tumax = 1.0f - cut_right/(float)dds->xsufsize[i];
                     tvmin = cut_top / (float)dds->ysufsize[j];
                     tvmax = 1.0f - cut_bottom/(float)dds->ysufsize[j];
 
-                    //(2) “]‘—À•W‚ÌŒvZ
-                    //•‚Æ‚‚³‚ğ‚¾‚·iƒsƒNƒZƒ‹¨float•ÏŠ·ÏÀ•WŒnj
-                    //•
+                    //(2) è»¢é€åº§æ¨™ã®è¨ˆç®—
+                    //å¹…ã¨é«˜ã•ã‚’ã ã™ï¼ˆãƒ”ã‚¯ã‚»ãƒ«â†’floatå¤‰æ›æ¸ˆåº§æ¨™ç³»ï¼‰
+                    //å¹…
                     vl=0;
                     vr=dds->xsufsize[i] - (cut_left+cut_right);
-                    //‚‚³
+                    //é«˜ã•
                     vt=0;
                     vb=dds->ysufsize[j] - (cut_top+cut_bottom);
-                    //(3) ’¸“_”z—ñ‚ÉÀ•W’l‚ğ‘ã“ü
+                    //(3) é ‚ç‚¹é…åˆ—ã«åº§æ¨™å€¤ã‚’ä»£å…¥
                     if ( !pMyVertex || FAILED(pMyVertex->Lock(0, 0, (BYTE**)&vrtxarr, D3DLOCK_DISCARD)) )
                         return;
 
-                    //¶ã
+                    //å·¦ä¸Š
                     vrtxarr[0].x = vl;
                     vrtxarr[0].y = vt;
                     vrtxarr[0].z = dst.z;
-                    //¶‰º
+                    //å·¦ä¸‹
                     vrtxarr[1].x = vl;
                     vrtxarr[1].y = vb;
                     vrtxarr[1].z = dst.z;
-                    //‰Eã
+                    //å³ä¸Š
                     vrtxarr[2].x = vr;
                     vrtxarr[2].y = vt;
                     vrtxarr[2].z = dst.z;
-                    //‰E‰º
+                    //å³ä¸‹
                     vrtxarr[3].x = vr;
                     vrtxarr[3].y = vb;
                     vrtxarr[3].z = dst.z;
 
-                    //’¸“_F
+                    //é ‚ç‚¹è‰²
                     vrtxarr[0].color = color;
                     vrtxarr[1].color = color;
                     vrtxarr[2].color = color;
                     vrtxarr[3].color = color;
 
-                    //(3.5) ƒeƒNƒXƒ`ƒƒÀ•Wİ’è
+                    //(3.5) ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™è¨­å®š
                     vrtxarr[0].tu = tumin;
                     vrtxarr[0].tv = tvmin;
                     vrtxarr[1].tu = tumin;
@@ -2524,15 +2524,15 @@ void CDirectDraw::MyBlt3D(MYSURFACE *dds,RECT src,MYRECT3D dst,DWORD flag,DWORD 
 
                     if (pMyVertex) pMyVertex->Unlock();
 
-                    //(4) ƒ[ƒ‹ƒhÀ•W•ÏŠ·s—ñ—pˆÓ
-                    //‹éŒ`“à•ÏŠ·
+                    //(4) ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™å¤‰æ›è¡Œåˆ—ç”¨æ„
+                    //çŸ©å½¢å†…å¤‰æ›
                     if(r_left>dds->xsufindx[i])transx=0;
-                    else transx = (float)( dds->xsufindx[i] - r_left );//pixel’PˆÊ
+                    else transx = (float)( dds->xsufindx[i] - r_left );//pixelå˜ä½
                     if(r_top>dds->ysufindx[j])transy=0;
-                    else transy = (float)( dds->ysufindx[j] - r_top );//pixel’PˆÊ
+                    else transy = (float)( dds->ysufindx[j] - r_top );//pixelå˜ä½
                     D3DXMatrixTranslation(&matw,transx,transy,0);
 
-                    //ƒvƒŠƒZƒbƒg‚Ì‚â‚Â‚ğ‚©‚¯‚é
+                    //ãƒ—ãƒªã‚»ãƒƒãƒˆã®ã‚„ã¤ã‚’ã‹ã‘ã‚‹
                     matw *= matpres;
 
                     /*RECT r2;
@@ -2543,14 +2543,14 @@ void CDirectDraw::MyBlt3D(MYSURFACE *dds,RECT src,MYRECT3D dst,DWORD flag,DWORD 
                     r2.bottom = dds->ysufsize[j] - (LONG)cut_bottom;*/
 
                     // pSprite->DrawTransform(dds->pTex[j*dds->xsufnum+i], &r2, &matw, color);
-                    d3ddev->SetTransform(D3DTS_WORLD,&matw);//*İ’è*
-                    //(5) •`‰æ
-                    d3ddev->SetTexture(0,dds->pTex[j*dds->xsufnum+i]);//ƒeƒNƒXƒ`ƒƒİ’è
+                    d3ddev->SetTransform(D3DTS_WORLD,&matw);//*è¨­å®š*
+                    //(5) æç”»
+                    d3ddev->SetTexture(0,dds->pTex[j*dds->xsufnum+i]);//ãƒ†ã‚¯ã‚¹ãƒãƒ£è¨­å®š
                     d3ddev->SetStreamSource(0, pMyVertex, sizeof(MYVERTEX3D));
-                    d3ddev->SetVertexShader( FVF_3DVERTEX );//’¸“_‚ÌƒtƒH[ƒ}ƒbƒg‚ğw’è
+                    d3ddev->SetVertexShader( FVF_3DVERTEX );//é ‚ç‚¹ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æŒ‡å®š
                     d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSU,D3DTADDRESS_CLAMP);
                     d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSV,D3DTADDRESS_CLAMP);
-                    d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);//•`‰æ
+                    d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);//æç”»
                 }
             }
         }
@@ -2559,24 +2559,24 @@ void CDirectDraw::MyBlt3D(MYSURFACE *dds,RECT src,MYRECT3D dst,DWORD flag,DWORD 
 }
 
 /*!
-*	@brief Goluah GCD(ƒo[ƒWƒ‡ƒ“©“®”»•Ê)Œ`®ƒZƒ‹•`‰æ
+*	@brief Goluah GCD(ãƒãƒ¼ã‚¸ãƒ§ãƒ³è‡ªå‹•åˆ¤åˆ¥)å½¢å¼ã‚»ãƒ«æç”»
 *
-*	GCD‚Ì‚¤‚¿Aw’èƒCƒ“ƒfƒbƒNƒX‚ÌCELL‚ğ•`‰æ‚µ‚Ü‚·B
+*	GCDã®ã†ã¡ã€æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®CELLã‚’æç”»ã—ã¾ã™ã€‚
 */
-void CDirectDraw::CellDraw(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—ñ
-                           LPVOID pcdat,	//!< GCD,CELL (GCD_CELL2)”z—ñ
-                           LPVOID prdat,	//!< GCD,Ø‚èæ‚è‹éŒ` (GCD_RECT)”z—ñ
-                           DWORD cn,		//!< •`‰æ‚·‚éƒZƒ‹”Ô†
-                           int x,			//!< •`‰ææŠî€x
-                           int y,			//!< •`‰ææŠî€y
-                           float z,			//!< •`‰ææz
-                           int rot,			//!< ‘S‘Ì‰ñ“]Šp
-                           BOOL revx,		//!< ‘S‘Ì”½“]X
-                           BOOL revy,		//!< ‘S‘Ì”½“]Y
-                           DWORD color,		//!< ‘S‘ÌF
-                           float magx,		//!< ‘S‘ÌŠg‘å—¦X
-                           float magy,		//!< ‘S‘ÌŠg‘å—¦Y
-                           BOOL shadowed)	//!<‰e•t‚«
+void CDirectDraw::CellDraw(MYSURFACE **pbuf,//!< GCDã§åˆ©ç”¨ã™ã‚‹ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—é…åˆ—
+                           LPVOID pcdat,	//!< GCD,CELL (GCD_CELL2)é…åˆ—
+                           LPVOID prdat,	//!< GCD,åˆ‡ã‚Šå–ã‚ŠçŸ©å½¢ (GCD_RECT)é…åˆ—
+                           DWORD cn,		//!< æç”»ã™ã‚‹ã‚»ãƒ«ç•ªå·
+                           int x,			//!< æç”»å…ˆåŸºæº–x
+                           int y,			//!< æç”»å…ˆåŸºæº–y
+                           float z,			//!< æç”»å…ˆz
+                           int rot,			//!< å…¨ä½“å›è»¢è§’
+                           BOOL revx,		//!< å…¨ä½“åè»¢X
+                           BOOL revy,		//!< å…¨ä½“åè»¢Y
+                           DWORD color,		//!< å…¨ä½“è‰²
+                           float magx,		//!< å…¨ä½“æ‹¡å¤§ç‡X
+                           float magy,		//!< å…¨ä½“æ‹¡å¤§ç‡Y
+                           BOOL shadowed)	//!<å½±ä»˜ã
 {
     if(!pcdat || cn==0)return;
     GCD_CELL2_070* pc = (GCD_CELL2_070*)pcdat;
@@ -2624,31 +2624,31 @@ void CDirectDraw::CellDraw(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—ñ
 }
 
 /*!
-*	@brief Goluah GCD(090)Œ`®ƒZƒ‹•`‰æ
+*	@brief Goluah GCD(090)å½¢å¼ã‚»ãƒ«æç”»
 *
-*	CellDraw070‚ÆCellDraw090‚ÍA“à•”‚Å‚ÌÀ•W•ÏŠ·‚Ì‡”Ô‚ª”÷–­‚É“ü‚ê‘Ö‚í‚Á‚Ä‚¢‚é‚Ì‚Å’ˆÓ
+*	CellDraw070ã¨CellDraw090ã¯ã€å†…éƒ¨ã§ã®åº§æ¨™å¤‰æ›ã®é †ç•ªãŒå¾®å¦™ã«å…¥ã‚Œæ›¿ã‚ã£ã¦ã„ã‚‹ã®ã§æ³¨æ„
 */
-void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—ñ
-                           LPVOID pcdat,	//!< GCD,CELL (GCD_CELL2_090)”z—ñ
-                           LPVOID prdat,	//!< GCD,Ø‚èæ‚è‹éŒ` (GCD_RECT_090)”z—ñ
-                           DWORD cn,		//!< •`‰æ‚·‚éƒZƒ‹”Ô†
-                           int x,			//!< •`‰ææŠî€x
-                           int y,			//!< •`‰ææŠî€y
-                           float z,			//!< •`‰ææz
-                           int rot,			//!< ‘S‘Ì‰ñ“]Šp
-                           BOOL revx,		//!< ‘S‘Ì”½“]X
-                           BOOL revy,		//!< ‘S‘Ì”½“]Y
-                           DWORD color,		//!< ‘S‘ÌF
-                           float magx,		//!< ‘S‘ÌŠg‘å—¦X
-                           float magy,		//!< ‘S‘ÌŠg‘å—¦Y
-                           BOOL shadowed)	//!<‰e•t‚«
+void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCDã§åˆ©ç”¨ã™ã‚‹ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—é…åˆ—
+                           LPVOID pcdat,	//!< GCD,CELL (GCD_CELL2_090)é…åˆ—
+                           LPVOID prdat,	//!< GCD,åˆ‡ã‚Šå–ã‚ŠçŸ©å½¢ (GCD_RECT_090)é…åˆ—
+                           DWORD cn,		//!< æç”»ã™ã‚‹ã‚»ãƒ«ç•ªå·
+                           int x,			//!< æç”»å…ˆåŸºæº–x
+                           int y,			//!< æç”»å…ˆåŸºæº–y
+                           float z,			//!< æç”»å…ˆz
+                           int rot,			//!< å…¨ä½“å›è»¢è§’
+                           BOOL revx,		//!< å…¨ä½“åè»¢X
+                           BOOL revy,		//!< å…¨ä½“åè»¢Y
+                           DWORD color,		//!< å…¨ä½“è‰²
+                           float magx,		//!< å…¨ä½“æ‹¡å¤§ç‡X
+                           float magy,		//!< å…¨ä½“æ‹¡å¤§ç‡Y
+                           BOOL shadowed)	//!<å½±ä»˜ã
 {
     if(pbuf==NULL || pcdat==NULL || prdat==NULL)return;
     if(cn >= GCDMAX_CELLS)return;
 
     #ifdef AKIDX_DEBUG
     if(magx==0 || magy==0){
-        ODS("™CDirectDraw::CheckBlt2() Warning-magx or magy ==0\n");
+        ODS("â˜†CDirectDraw::CheckBlt2() Warning-magx or magy ==0\n");
     }
     #endif
 
@@ -2677,7 +2677,7 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—
                 x + cdat[cn].cell[i].dx,y + cdat[cn].cell[i].dy,rdat[rn].r,
                 revx,
                 revy,
-                0,z,color);//•`‰æ
+                0,z,color);//æç”»
         }
     }
     else
@@ -2686,7 +2686,7 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—
         D3DXQUATERNION quat;
         constexpr float ar2 = 2.0f / 480.0f;
 
-        //ZW/ZTƒtƒ‰ƒO‘€ì
+        //ZW/ZTãƒ•ãƒ©ã‚°æ“ä½œ
         if((cdat[cn].flag & GCDCELL2_DISABLE_ZT) || (cdat[cn].flag & GCDCELL2_DISABLE_ZW))
         {
             BOOL zt = (cdat[cn].flag & GCDCELL2_DISABLE_ZT);
@@ -2694,32 +2694,32 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—
             EnableZ(zt,zw);
         }
 
-        //ƒLƒƒƒ‰ƒNƒ^[‚Ì•ÏŠ·s—ñ
-        const auto center = D3DXVECTOR3((float)(cdat[cn].gcx)*ar2, (float)(cdat[cn].gcy)*ar2, 0);//dS
+        //ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®å¤‰æ›è¡Œåˆ—
+        const auto center = D3DXVECTOR3((float)(cdat[cn].gcx)*ar2, (float)(cdat[cn].gcy)*ar2, 0);//é‡å¿ƒ
         D3DXQuaternionRotationAxis(&quat, &D3DXVECTOR3(0, 0, 1), D3DXToRadian(rot));
 
         if(!(cdat[cn].flag & GCDCELL2_SCA_GCENTER))
         {	
             if(cdat[cn].flag & GCDCELL2_ROT_BASEPOINT)
             {
-                //ƒXƒP[ƒ‹F‘«Œ³’†S ‰ñ“]F‘«Œ³’†S
+                //ã‚¹ã‚±ãƒ¼ãƒ«ï¼šè¶³å…ƒä¸­å¿ƒ å›è»¢ï¼šè¶³å…ƒä¸­å¿ƒ
                 D3DXMatrixTransformation(&matp,
                     NULL,
                     NULL,
-                    &D3DXVECTOR3(magx, magy, 1.0f),//Šg‘å
+                    &D3DXVECTOR3(magx, magy, 1.0f),//æ‹¡å¤§
                     NULL,
-                    &quat,//‰ñ“]
+                    &quat,//å›è»¢
                     NULL
                     );
             }
             else{
-                //ƒXƒP[ƒ‹F‘«Œ³’†S ‰ñ“]FdS’†S
+                //ã‚¹ã‚±ãƒ¼ãƒ«ï¼šè¶³å…ƒä¸­å¿ƒ å›è»¢ï¼šé‡å¿ƒä¸­å¿ƒ
                 D3DXMatrixTransformation(&matp,
                     NULL,
                     NULL,
-                    &D3DXVECTOR3(magx, magy, 1.0f),//Šg‘å
+                    &D3DXVECTOR3(magx, magy, 1.0f),//æ‹¡å¤§
                     &center,
-                    &quat,//‰ñ“]
+                    &quat,//å›è»¢
                     NULL
                     );
             }
@@ -2728,47 +2728,47 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—
         {
             if(cdat[cn].flag & GCDCELL2_ROT_BASEPOINT)
             {
-                //ƒXƒP[ƒ‹FdS’†S ‰ñ“]F‘«Œ³’†S
+                //ã‚¹ã‚±ãƒ¼ãƒ«ï¼šé‡å¿ƒä¸­å¿ƒ å›è»¢ï¼šè¶³å…ƒä¸­å¿ƒ
                 D3DXMatrixTransformation(&matp,
                     &center,
-                    &quat,	// ©ƒoƒOor‚â‚Ş‚ğ“¾‚È‚¢ˆ’u‚¾‚Á‚½‰Â”\«H‚Æ‚è‚ ‚¦‚¸v1.00‚Ì‹““®‚ğÄŒ»
-                    &D3DXVECTOR3(magx, magy, 1.0f),//Šg‘å
+                    &quat,	// â†ãƒã‚°orã‚„ã‚€ã‚’å¾—ãªã„å‡¦ç½®ã ã£ãŸå¯èƒ½æ€§ï¼Ÿã¨ã‚Šã‚ãˆãšv1.00ã®æŒ™å‹•ã‚’å†ç¾
+                    &D3DXVECTOR3(magx, magy, 1.0f),//æ‹¡å¤§
                     NULL,
-                    &quat,//‰ñ“]
+                    &quat,//å›è»¢
                     NULL
                     );
             }
             else{
-                //ƒXƒP[ƒ‹FdS’†S ‰ñ“]FdS’†S
+                //ã‚¹ã‚±ãƒ¼ãƒ«ï¼šé‡å¿ƒä¸­å¿ƒ å›è»¢ï¼šé‡å¿ƒä¸­å¿ƒ
                 D3DXMatrixTransformation(&matp,
                     &center,
                     NULL,
-                    &D3DXVECTOR3(magx, magy, 1.0f),//Šg‘å
+                    &D3DXVECTOR3(magx, magy, 1.0f),//æ‹¡å¤§
                     &center,
-                    &quat,//‰ñ“]
+                    &quat,//å›è»¢
                     NULL
                     );
             }
         }
         if(revy){
-            D3DXMatrixTranslation(&tmt, (float)(cdat[cn].gcx)*ar2*(-1.0f), (float)(cdat[cn].gcy)*ar2*(-1.0f), 0);//dS‚ÉˆÚ“®
+            D3DXMatrixTranslation(&tmt, (float)(cdat[cn].gcx)*ar2*(-1.0f), (float)(cdat[cn].gcy)*ar2*(-1.0f), 0);//é‡å¿ƒã«ç§»å‹•
             matp *= tmt;
             d3dxplane_y.d = 0;
-            D3DXMatrixReflect(&tmt,&d3dxplane_y);//y”½“]
+            D3DXMatrixReflect(&tmt,&d3dxplane_y);//yåè»¢
             matp *= tmt;
-            D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);//dS‚É–ß‚·
+            D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);//é‡å¿ƒã«æˆ»ã™
             matp *= tmt;
         }
         if(revx){
             d3dxplane_x.d=0;
-            D3DXMatrixReflect(&tmt,&d3dxplane_x);//x”½“]
+            D3DXMatrixReflect(&tmt,&d3dxplane_x);//xåè»¢
             matp *= tmt;
         }
-        //•\¦ˆÊ’u‚Ö‚ÌˆÚ“®
+        //è¡¨ç¤ºä½ç½®ã¸ã®ç§»å‹•
         matp._41 += (float)x*ar2;
         matp._42 += (float)y*ar2;
 
-        matprv = SetParentMatrix(matp,FALSE,TRUE);//uev‚Ì•ÏŠ·s—ñ‚Æ‚µ‚Äİ’è
+        matprv = SetParentMatrix(matp,FALSE,TRUE);//ã€Œè¦ªã€ã®å¤‰æ›è¡Œåˆ—ã¨ã—ã¦è¨­å®š
 
         DWORD rn;
         BOOL c1revx,c1revy;
@@ -2776,16 +2776,16 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—
         for(int i=0;i<8;i++){
             rn = cdat[cn].cell[i].cdr;
             if(rn < GCDMAX_RECTANGLES && rn!=0 && rdat[rn].bmpno<GCDMAX_IMAGES){
-                //•ÏŠ·s—ñ‚ğŒvZ
-                const auto center = D3DXVECTOR3((float)(rdat[rn].center_x)*ar2, (float)(rdat[rn].center_y)*ar2, 0);//dS
+                //å¤‰æ›è¡Œåˆ—ã‚’è¨ˆç®—
+                const auto center = D3DXVECTOR3((float)(rdat[rn].center_x)*ar2, (float)(rdat[rn].center_y)*ar2, 0);//é‡å¿ƒ
 
                 D3DXMatrixTransformation(&mat,
                     &center,
                     NULL,
-                    &D3DXVECTOR3(cdat[cn].cell[i].magx, cdat[cn].cell[i].magy, 1.0f),//Šg‘å
+                    &D3DXVECTOR3(cdat[cn].cell[i].magx, cdat[cn].cell[i].magy, 1.0f),//æ‹¡å¤§
                     &center,
-                    D3DXQuaternionRotationAxis(&quat, &D3DXVECTOR3(0, 0, 1), D3DXToRadian(cdat[cn].cell[i].rot)),//‰ñ“]
-                    &D3DXVECTOR3((float)(cdat[cn].cell[i].dx)*ar2, (float)(cdat[cn].cell[i].dy)*ar2, 0)//•\¦ˆÊ’u‚Ö‚ÌˆÚ“®
+                    D3DXQuaternionRotationAxis(&quat, &D3DXVECTOR3(0, 0, 1), D3DXToRadian(cdat[cn].cell[i].rot)),//å›è»¢
+                    &D3DXVECTOR3((float)(cdat[cn].cell[i].dx)*ar2, (float)(cdat[cn].cell[i].dy)*ar2, 0)//è¡¨ç¤ºä½ç½®ã¸ã®ç§»å‹•
                     );
 
                 matprv2 = SetParentMatrix(mat,FALSE,TRUE);
@@ -2793,7 +2793,7 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—
                 c1revx = cdat[cn].cell[i].flag & GCDCELL_REVERSE_X;
                 c1revy = cdat[cn].cell[i].flag & GCDCELL_REVERSE_Y;
 
-                //F‚ğ•ÏX(090“Á—L)
+                //è‰²ã‚’å¤‰æ›´(090ç‰¹æœ‰)
                 DWORD rcolor_a = (color&0xFF000000)>>24;
                 DWORD rcolor_r = (color&0x00FF0000)>>16;
                 DWORD rcolor_g = (color&0x0000FF00)>>8;
@@ -2804,12 +2804,12 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—
                 rcolor_b = (DWORD)(rcolor_b*cdat[cn].cell[i].blue_ratio);
                 DWORD rcolor = (rcolor_a<<24) | (rcolor_r<<16) | (rcolor_g<<8) | rcolor_b;
 
-                //ƒuƒŒƒ“ƒfƒBƒ“ƒOƒ‚[ƒh•ÏX(090“Á—L)
+                //ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´(090ç‰¹æœ‰)
                 if(cdat[cn].cell[i].flag & GCDCELL_BLEND_ADD){
                     SetAlphaMode(GBLEND_KASAN);
                 }
 
-            /*	//ƒeƒNƒXƒ`ƒƒƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚ğŒˆ’è
+            /*	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã‚’æ±ºå®š
                 if( cdat[cn].cell[i].magx != 1.0f ||
                     cdat[cn].cell[i].magy != 1.0f || 
                     (cdat[cn].cell[i].rot + rot)%90 != 0)
@@ -2827,14 +2827,14 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—
                     0,0,rdat[rn].r,
                     c1revx,
                     c1revy,
-                    0,z,rcolor);//•`‰æ
+                    0,z,rcolor);//æç”»
 
-                //ƒuƒŒƒ“ƒfƒBƒ“ƒOƒ‚[ƒhƒŒƒXƒgƒA
+                //ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ãƒ¬ã‚¹ãƒˆã‚¢
                 if(cdat[cn].cell[i].flag & GCDCELL_BLEND_ADD){
                     SetAlphaMode(0);
                 }
 
-                // ‚Â‚¢‚Å‚¾‚©‚ç‰e‚à•`‚­‚º
+                // ã¤ã„ã§ã ã‹ã‚‰å½±ã‚‚æããœ
                 if (shadowed)
                 {
                     D3DXPLANE Plane = D3DXPLANE(0, -1, 0, -0.01);
@@ -2842,7 +2842,7 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—
 
                     if (stencil_enable)
                     {
-                        d3ddev->SetRenderState(D3DRS_STENCILPASS, D3DSTENCILCAPS_INCRSAT);	// ƒXƒeƒ“ƒVƒ‹‚É‘‚«‚Ş
+                        d3ddev->SetRenderState(D3DRS_STENCILPASS, D3DSTENCILCAPS_INCRSAT);	// ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã«æ›¸ãè¾¼ã‚€
                         d3ddev->SetRenderState( D3DRS_COLORWRITEENABLE,  FALSE );
                         d3ddev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
                     }
@@ -2854,9 +2854,9 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—
                         0,0,rdat[rn].r,
                         c1revx,
                         c1revy,
-                        0,z,0xAA000000);//‰e•`‰æ
+                        0,z,0xAA000000);//å½±æç”»
 
-                    d3ddev->SetRenderState(D3DRS_STENCILPASS, D3DSTENCILCAPS_KEEP);	// Œ³‚É
+                    d3ddev->SetRenderState(D3DRS_STENCILPASS, D3DSTENCILCAPS_KEEP);	// å…ƒã«
                     d3ddev->SetRenderState( D3DRS_COLORWRITEENABLE,  0xFF );
                     d3ddev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
                 }
@@ -2865,10 +2865,10 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—
             }
         }
 
-        SetParentMatrix(matprv,TRUE);//uev‚Ì•ÏŠ·s—ñ‚ğŒ³‚É–ß‚·
+        SetParentMatrix(matprv,TRUE);//ã€Œè¦ªã€ã®å¤‰æ›è¡Œåˆ—ã‚’å…ƒã«æˆ»ã™
         EnableZ();
 
-    /*	//ƒeƒNƒXƒ`ƒƒƒtƒBƒ‹ƒ^‚ğŒ³(?)‚É–ß‚·
+    /*	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚£ãƒ«ã‚¿ã‚’å…ƒ(?)ã«æˆ»ã™
         d3ddev->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_POINT );
         d3ddev->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_POINT );*/
     }
@@ -2890,32 +2890,32 @@ void CDirectDraw::CellDraw090(MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—
 
 
 /*!
-*	@brief Goluah GCD(070)Œ`®ƒZƒ‹•`‰æ
+*	@brief Goluah GCD(070)å½¢å¼ã‚»ãƒ«æç”»
 *
-*	CellDraw070‚ÆCellDraw090‚ÍA“à•”‚Å‚ÌÀ•W•ÏŠ·‚Ì‡”Ô‚ª”÷–­‚É“ü‚ê‘Ö‚í‚Á‚Ä‚¢‚é‚Ì‚Å’ˆÓ
+*	CellDraw070ã¨CellDraw090ã¯ã€å†…éƒ¨ã§ã®åº§æ¨™å¤‰æ›ã®é †ç•ªãŒå¾®å¦™ã«å…¥ã‚Œæ›¿ã‚ã£ã¦ã„ã‚‹ã®ã§æ³¨æ„
 */
 void CDirectDraw::CellDraw070(
-                           MYSURFACE **pbuf,//!< GCD‚Å—˜—p‚·‚éƒrƒbƒgƒ}ƒbƒv”z—ñ
-                           LPVOID pcdat,	//!< GCD,CELL (GCD_CELL2_070)”z—ñ
-                           LPVOID prdat,	//!< GCD,Ø‚èæ‚è‹éŒ` (GCD_RECT_070)”z—ñ
-                           DWORD cn,		//!< •`‰æ‚·‚éƒZƒ‹”Ô†
-                           int x,			//!< •`‰ææŠî€x
-                           int y,			//!< •`‰ææŠî€y
-                           float z,			//!< •`‰ææz
-                           int rot,			//!< ‘S‘Ì‰ñ“]Šp
-                           BOOL revx,		//!< ‘S‘Ì”½“]X
-                           BOOL revy,		//!< ‘S‘Ì”½“]Y
-                           DWORD color,		//!< ‘S‘ÌF
-                           float magx,		//!< ‘S‘ÌŠg‘å—¦X
-                           float magy,		//!< ‘S‘ÌŠg‘å—¦Y
-                           BOOL shadowed)	//!<‰e•t‚«
+                           MYSURFACE **pbuf,//!< GCDã§åˆ©ç”¨ã™ã‚‹ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—é…åˆ—
+                           LPVOID pcdat,	//!< GCD,CELL (GCD_CELL2_070)é…åˆ—
+                           LPVOID prdat,	//!< GCD,åˆ‡ã‚Šå–ã‚ŠçŸ©å½¢ (GCD_RECT_070)é…åˆ—
+                           DWORD cn,		//!< æç”»ã™ã‚‹ã‚»ãƒ«ç•ªå·
+                           int x,			//!< æç”»å…ˆåŸºæº–x
+                           int y,			//!< æç”»å…ˆåŸºæº–y
+                           float z,			//!< æç”»å…ˆz
+                           int rot,			//!< å…¨ä½“å›è»¢è§’
+                           BOOL revx,		//!< å…¨ä½“åè»¢X
+                           BOOL revy,		//!< å…¨ä½“åè»¢Y
+                           DWORD color,		//!< å…¨ä½“è‰²
+                           float magx,		//!< å…¨ä½“æ‹¡å¤§ç‡X
+                           float magy,		//!< å…¨ä½“æ‹¡å¤§ç‡Y
+                           BOOL shadowed)	//!<å½±ä»˜ã
 {
     if(pbuf==NULL || pcdat==NULL || prdat==NULL)return;
     if(cn >= GCDMAX_CELLS)return;
 
     #ifdef AKIDX_DEBUG
     if(magx==0 || magy==0){
-        ODS("™CDirectDraw::CheckBlt2() Warning-magx or magy ==0\n");
+        ODS("â˜†CDirectDraw::CheckBlt2() Warning-magx or magy ==0\n");
     }
     #endif
 
@@ -2944,7 +2944,7 @@ void CDirectDraw::CellDraw070(
                 x + cdat[cn].cell[i].dx,y + cdat[cn].cell[i].dy,rdat[rn].r,
                 revx,
                 revy,
-                0,z,color);//•`‰æ
+                0,z,color);//æç”»
         }
     }
     else
@@ -2953,36 +2953,36 @@ void CDirectDraw::CellDraw070(
         D3DXQUATERNION quat;
         constexpr float ar2 = 2.0f / 480.0f;
 
-        //ƒLƒƒƒ‰ƒNƒ^[‚Ì•ÏŠ·s—ñ
-        const auto center = D3DXVECTOR3((float)(cdat[cn].gcx)*ar2, (float)(cdat[cn].gcy)*ar2, 0);//dS
+        //ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®å¤‰æ›è¡Œåˆ—
+        const auto center = D3DXVECTOR3((float)(cdat[cn].gcx)*ar2, (float)(cdat[cn].gcy)*ar2, 0);//é‡å¿ƒ
 
         D3DXMatrixTransformation(&matp,
             &center,
             NULL,
-            &D3DXVECTOR3(magx, magy, 1.0f),//Šg‘å
+            &D3DXVECTOR3(magx, magy, 1.0f),//æ‹¡å¤§
             &center,
-            D3DXQuaternionRotationAxis(&quat, &D3DXVECTOR3(0, 0, 1), D3DXToRadian(rot)),//‰ñ“]
+            D3DXQuaternionRotationAxis(&quat, &D3DXVECTOR3(0, 0, 1), D3DXToRadian(rot)),//å›è»¢
             NULL
             );
         if(revy){
-            D3DXMatrixTranslation(&tmt, (float)(cdat[cn].gcx)*ar2*(-1.0f), (float)(cdat[cn].gcy)*ar2*(-1.0f), 0);//dS‚ÉˆÚ“®
+            D3DXMatrixTranslation(&tmt, (float)(cdat[cn].gcx)*ar2*(-1.0f), (float)(cdat[cn].gcy)*ar2*(-1.0f), 0);//é‡å¿ƒã«ç§»å‹•
             matp *= tmt;
             d3dxplane_y.d = 0;
-            D3DXMatrixReflect(&tmt,&d3dxplane_y);//y”½“]
+            D3DXMatrixReflect(&tmt,&d3dxplane_y);//yåè»¢
             matp *= tmt;
-            D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);//dS‚É–ß‚·
+            D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);//é‡å¿ƒã«æˆ»ã™
             matp *= tmt;
         }
         if(revx){
             d3dxplane_x.d=0;
-            D3DXMatrixReflect(&tmt,&d3dxplane_x);//x”½“]
+            D3DXMatrixReflect(&tmt,&d3dxplane_x);//xåè»¢
             matp *= tmt;
         }
-        //•\¦ˆÊ’u‚Ö‚ÌˆÚ“®
+        //è¡¨ç¤ºä½ç½®ã¸ã®ç§»å‹•
         matp._41 += (float)x*ar2;
         matp._42 += (float)y*ar2;
 
-        matprv = SetParentMatrix(matp,FALSE);//uev‚Ì•ÏŠ·s—ñ‚Æ‚µ‚Äİ’è
+        matprv = SetParentMatrix(matp,FALSE);//ã€Œè¦ªã€ã®å¤‰æ›è¡Œåˆ—ã¨ã—ã¦è¨­å®š
 
         DWORD rn;
         BOOL c1revx,c1revy;
@@ -2990,16 +2990,16 @@ void CDirectDraw::CellDraw070(
         for(int i=0;i<8;i++){
             rn = cdat[cn].cell[i].cdr;
             if(rn < GCDMAX_RECTANGLES && rn!=0 && rdat[rn].bmpno<GCDMAX_IMAGES){
-                //•ÏŠ·s—ñ‚ğŒvZ
-                const auto center = D3DXVECTOR3((float)(rdat[rn].center_x)*ar2, (float)(rdat[rn].center_y)*ar2, 0);//dS
+                //å¤‰æ›è¡Œåˆ—ã‚’è¨ˆç®—
+                const auto center = D3DXVECTOR3((float)(rdat[rn].center_x)*ar2, (float)(rdat[rn].center_y)*ar2, 0);//é‡å¿ƒ
 
                 D3DXMatrixTransformation(&mat,
                     &center,
                     NULL,
-                    &D3DXVECTOR3(cdat[cn].cell[i].magx, cdat[cn].cell[i].magy, 1.0f),//Šg‘å
+                    &D3DXVECTOR3(cdat[cn].cell[i].magx, cdat[cn].cell[i].magy, 1.0f),//æ‹¡å¤§
                     &center,
-                    D3DXQuaternionRotationAxis(&quat, &D3DXVECTOR3(0, 0, 1), D3DXToRadian(cdat[cn].cell[i].rot)),//‰ñ“]
-                    &D3DXVECTOR3((float)(cdat[cn].cell[i].dx)*ar2, (float)(cdat[cn].cell[i].dy)*ar2, 0)//•\¦ˆÊ’u‚Ö‚ÌˆÚ“®
+                    D3DXQuaternionRotationAxis(&quat, &D3DXVECTOR3(0, 0, 1), D3DXToRadian(cdat[cn].cell[i].rot)),//å›è»¢
+                    &D3DXVECTOR3((float)(cdat[cn].cell[i].dx)*ar2, (float)(cdat[cn].cell[i].dy)*ar2, 0)//è¡¨ç¤ºä½ç½®ã¸ã®ç§»å‹•
                     );
 
                 matprv2 = SetParentMatrix(mat,FALSE,TRUE);
@@ -3007,7 +3007,7 @@ void CDirectDraw::CellDraw070(
                 c1revx = cdat[cn].cell[i].flag & GCDCELL_REVERSE_X;
                 c1revy = cdat[cn].cell[i].flag & GCDCELL_REVERSE_Y;
 
-        /*		//ƒeƒNƒXƒ`ƒƒƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚ğŒˆ’è
+        /*		//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã‚’æ±ºå®š
                 if( cdat[cn].cell[i].magx != 1.0f ||
                     cdat[cn].cell[i].magy != 1.0f || 
                     (cdat[cn].cell[i].rot + rot)%90 != 0)
@@ -3025,9 +3025,9 @@ void CDirectDraw::CellDraw070(
                     0,0,rdat[rn].r,
                     c1revx,
                     c1revy,
-                    0,z,color);//•`‰æ
+                    0,z,color);//æç”»
 
-                // ‚Â‚¢‚Å‚¾‚©‚ç‰e‚à•`‚­‚º
+                // ã¤ã„ã§ã ã‹ã‚‰å½±ã‚‚æããœ
                 if (shadowed)
                 {
                     D3DXPLANE Plane = D3DXPLANE(0, -1, 0, -0.01);
@@ -3035,7 +3035,7 @@ void CDirectDraw::CellDraw070(
 
                     if (stencil_enable)
                     {
-                        d3ddev->SetRenderState(D3DRS_STENCILPASS, D3DSTENCILCAPS_INCRSAT);	// ƒXƒeƒ“ƒVƒ‹‚É‘‚«‚Ş
+                        d3ddev->SetRenderState(D3DRS_STENCILPASS, D3DSTENCILCAPS_INCRSAT);	// ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã«æ›¸ãè¾¼ã‚€
                         d3ddev->SetRenderState( D3DRS_COLORWRITEENABLE,  FALSE );
                         d3ddev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
                     }
@@ -3047,9 +3047,9 @@ void CDirectDraw::CellDraw070(
                         0,0,rdat[rn].r,
                         c1revx,
                         c1revy,
-                        0,z,0xAA000000);//‰e•`‰æ
+                        0,z,0xAA000000);//å½±æç”»
 
-                    d3ddev->SetRenderState(D3DRS_STENCILPASS, D3DSTENCILCAPS_KEEP);	// Œ³‚É
+                    d3ddev->SetRenderState(D3DRS_STENCILPASS, D3DSTENCILCAPS_KEEP);	// å…ƒã«
                     d3ddev->SetRenderState( D3DRS_COLORWRITEENABLE,  0xFF );
                     d3ddev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
                 }
@@ -3058,11 +3058,11 @@ void CDirectDraw::CellDraw070(
             }
         }
 
-        SetParentMatrix(matprv,TRUE);//uev‚Ì•ÏŠ·s—ñ‚ğŒ³‚É–ß‚·
+        SetParentMatrix(matprv,TRUE);//ã€Œè¦ªã€ã®å¤‰æ›è¡Œåˆ—ã‚’å…ƒã«æˆ»ã™
         EnableZ();
     }
 
-/*	//ƒeƒNƒXƒ`ƒƒ[ƒtƒBƒ‹ƒ^‚ğŒ³‚É–ß‚·
+/*	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ãƒ•ã‚£ãƒ«ã‚¿ã‚’å…ƒã«æˆ»ã™
     d3ddev->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_POINT );
     d3ddev->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_POINT );*/
 
@@ -3084,11 +3084,11 @@ void CDirectDraw::CellDraw070(
 
 #ifdef GCD_EDITER
 /*!
-*	@brief ‹éŒ`ƒGƒfƒBƒ^—pƒZƒ‹•`‰æ
+*	@brief çŸ©å½¢ã‚¨ãƒ‡ã‚£ã‚¿ç”¨ã‚»ãƒ«æç”»
 *
-*	CellDraw‚ÉAŒ»İ•ÒW’†‚Ì‹éŒ`‚ğ‹­’²•\¦‚µ‚½‚èAƒŠƒ“ƒNƒZƒ‹‚ğ‹t•ûŒü‚É
-*	‚³‚©‚Ì‚Ú‚Á‚½‚è‚µ‚Ä•`‰æ‚·‚é‹@”\‚ª’Ç‰Á‚³‚ê‚Ä‚¢‚éB
-*	Œ»İGCD(090)Œ`®‚Ì‚à‚Ì‚Ì‚İƒTƒ|[ƒgB
+*	CellDrawã«ã€ç¾åœ¨ç·¨é›†ä¸­ã®çŸ©å½¢ã‚’å¼·èª¿è¡¨ç¤ºã—ãŸã‚Šã€ãƒªãƒ³ã‚¯ã‚»ãƒ«ã‚’é€†æ–¹å‘ã«
+*	ã•ã‹ã®ã¼ã£ãŸã‚Šã—ã¦æç”»ã™ã‚‹æ©Ÿèƒ½ãŒè¿½åŠ ã•ã‚Œã¦ã„ã‚‹ã€‚
+*	ç¾åœ¨GCD(090)å½¢å¼ã®ã‚‚ã®ã®ã¿ã‚µãƒãƒ¼ãƒˆã€‚
 *
 *	@sa CellDraw
 */
@@ -3106,11 +3106,11 @@ void CDirectDraw::CellDrawED(
                            DWORD color,
                            float magx,
                            float magy,
-                           UINT ed_rect,			//!< •ÒW’†‚Ì‹éŒ`”Ô†
-                           BOOL color_modulat,		//!< ‹­’²•\¦‚ğs‚¤
-                           BOOL is_previous_cell,	//!< *‚³‚©‚Ì‚Ú‚Á‚Ä•`‰æ‚³‚ê‚½ƒZƒ‹‚©‚Ç‚¤‚©
-                           BOOL is_next_cell,		//!< *"Ÿ"ˆµ‚¢‚Å•`‰æ‚³‚ê‚½ƒZƒ‹‚©‚Ç‚¤‚©
-                           BOOL is_edit_cell)		//!< *Œ»İ•ÒW‚¿‚ã‚¤‚ÌƒZƒ‹‚©‚Ç‚¤‚©
+                           UINT ed_rect,			//!< ç·¨é›†ä¸­ã®çŸ©å½¢ç•ªå·
+                           BOOL color_modulat,		//!< å¼·èª¿è¡¨ç¤ºã‚’è¡Œã†
+                           BOOL is_previous_cell,	//!< *ã•ã‹ã®ã¼ã£ã¦æç”»ã•ã‚ŒãŸã‚»ãƒ«ã‹ã©ã†ã‹
+                           BOOL is_next_cell,		//!< *"æ¬¡"æ‰±ã„ã§æç”»ã•ã‚ŒãŸã‚»ãƒ«ã‹ã©ã†ã‹
+                           BOOL is_edit_cell)		//!< *ç¾åœ¨ç·¨é›†ã¡ã‚…ã†ã®ã‚»ãƒ«ã‹ã©ã†ã‹
 {
     if(pbuf==NULL || pcdat==NULL || prdat==NULL)return;
     if(cn >= GCDMAX_CELLS)return;
@@ -3118,12 +3118,12 @@ void CDirectDraw::CellDrawED(
     GCD_CELL2_090 *cdat=(GCD_CELL2_090*)pcdat;
     GCD_RECT_090  *rdat=(GCD_RECT_090*)prdat;
 
-    //‘OƒZƒ‹•`‰æ(ED“Á—L)--------------------------------------------------------------------------------
+    //å‰ã‚»ãƒ«æç”»(EDç‰¹æœ‰)--------------------------------------------------------------------------------
     if(cn>0 && !is_next_cell && (cdat[cn-1].flag & GCDCELL2_LINK)){
         CellDrawED(pbuf,pcdat,prdat,cn-1,x,y,z,rot,revx,revy,color,magx,magy,ed_rect,color_modulat,TRUE,FALSE,FALSE);
     }//------------------------------------------------------------------------------------------------
 
-    //F€”õ(ED“Á—L)------------------------------------------------------------------------------------
+    //è‰²æº–å‚™(EDç‰¹æœ‰)------------------------------------------------------------------------------------
     DWORD color1 = color;
     DWORD color2_a = (color&0xFF000000)>>24;
     DWORD color2_r = (color&0x00FF0000)>>16;
@@ -3145,7 +3145,7 @@ void CDirectDraw::CellDrawED(
     D3DXMATRIXA16 matp,mat,tmt,matprv,matprv2;
     float ar2 = 1.0f/HALF_HEIGHT;
     
-    //ZW/ZTƒtƒ‰ƒO‘€ì
+    //ZW/ZTãƒ•ãƒ©ã‚°æ“ä½œ
     if((cdat[cn].flag & GCDCELL2_DISABLE_ZT) || (cdat[cn].flag & GCDCELL2_DISABLE_ZW))
     {
         BOOL zt = (cdat[cn].flag & GCDCELL2_DISABLE_ZT);
@@ -3153,7 +3153,7 @@ void CDirectDraw::CellDrawED(
         EnableZ(zt,zw);
     }
 
-    //ƒLƒƒƒ‰ƒNƒ^[‚Ì•ÏŠ·s—ñ
+    //ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®å¤‰æ›è¡Œåˆ—
     D3DXMatrixIdentity(&matp);
     float gcx = (float)(cdat[cn].gcx)*ar2;
     float gcy = (float)(cdat[cn].gcy)*ar2;
@@ -3161,25 +3161,25 @@ void CDirectDraw::CellDrawED(
     {	
         if(cdat[cn].flag & GCDCELL2_ROT_BASEPOINT)
         {
-            //ƒXƒP[ƒ‹F‘«Œ³’†S ‰ñ“]F‘«Œ³’†S
-            D3DXMatrixScaling(&tmt,magx,magy,1.0f);//Šg‘å
+            //ã‚¹ã‚±ãƒ¼ãƒ«ï¼šè¶³å…ƒä¸­å¿ƒ å›è»¢ï¼šè¶³å…ƒä¸­å¿ƒ
+            D3DXMatrixScaling(&tmt,magx,magy,1.0f);//æ‹¡å¤§
             gcx *= magx;
             gcy *= magy;
             matp *= tmt;
-            D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//‰ñ“]
+            D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//å›è»¢
             matp *= tmt;
-            D3DXMatrixTranslation(&tmt,-gcx,-gcy,0);//dS‚ÉˆÚ“®
+            D3DXMatrixTranslation(&tmt,-gcx,-gcy,0);//é‡å¿ƒã«ç§»å‹•
             matp *= tmt;
         }
         else{
-            //ƒXƒP[ƒ‹F‘«Œ³’†S ‰ñ“]FdS’†S
-            D3DXMatrixScaling(&tmt,magx,magy,1.0f);//Šg‘å
+            //ã‚¹ã‚±ãƒ¼ãƒ«ï¼šè¶³å…ƒä¸­å¿ƒ å›è»¢ï¼šé‡å¿ƒä¸­å¿ƒ
+            D3DXMatrixScaling(&tmt,magx,magy,1.0f);//æ‹¡å¤§
             gcx *= magx;
             gcy *= magy;
             matp *= tmt;
-            D3DXMatrixTranslation(&tmt,-gcx,-gcy,0);//dS‚ÉˆÚ“®
+            D3DXMatrixTranslation(&tmt,-gcx,-gcy,0);//é‡å¿ƒã«ç§»å‹•
             matp *= tmt;
-            D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//‰ñ“]
+            D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//å›è»¢
             matp *= tmt;
         }
     }
@@ -3187,40 +3187,40 @@ void CDirectDraw::CellDrawED(
     {
         if(cdat[cn].flag & GCDCELL2_ROT_BASEPOINT)
         {
-            //ƒXƒP[ƒ‹FdS’†S ‰ñ“]F‘«Œ³’†S
-            D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//‰ñ“]
+            //ã‚¹ã‚±ãƒ¼ãƒ«ï¼šé‡å¿ƒä¸­å¿ƒ å›è»¢ï¼šè¶³å…ƒä¸­å¿ƒ
+            D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//å›è»¢
             matp *= tmt;
-            D3DXMatrixTranslation(&tmt,-gcx,-gcy,0);//dS‚ÉˆÚ“®
+            D3DXMatrixTranslation(&tmt,-gcx,-gcy,0);//é‡å¿ƒã«ç§»å‹•
             matp *= tmt;
-            D3DXMatrixScaling(&tmt,magx,magy,1.0f);//Šg‘å
+            D3DXMatrixScaling(&tmt,magx,magy,1.0f);//æ‹¡å¤§
             matp *= tmt;
         }
         else{
-            //ƒXƒP[ƒ‹FdS’†S ‰ñ“]FdS’†S
-            D3DXMatrixTranslation(&tmt,-gcx,-gcy,0);//dS‚ÉˆÚ“®
+            //ã‚¹ã‚±ãƒ¼ãƒ«ï¼šé‡å¿ƒä¸­å¿ƒ å›è»¢ï¼šé‡å¿ƒä¸­å¿ƒ
+            D3DXMatrixTranslation(&tmt,-gcx,-gcy,0);//é‡å¿ƒã«ç§»å‹•
             matp *= tmt;
-            D3DXMatrixScaling(&tmt,magx,magy,1.0f);//Šg‘å
+            D3DXMatrixScaling(&tmt,magx,magy,1.0f);//æ‹¡å¤§
             matp *= tmt;
-            D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//‰ñ“]
+            D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//å›è»¢
             matp *= tmt;
         }
     }
     if(revy){
         d3dxplane_y.d=0;
-        D3DXMatrixReflect(&tmt,&d3dxplane_y);//y”½“]
+        D3DXMatrixReflect(&tmt,&d3dxplane_y);//yåè»¢
         matp *= tmt;
     }
-    D3DXMatrixTranslation(&tmt,gcx,gcy,0);//dS‚É–ß‚·
+    D3DXMatrixTranslation(&tmt,gcx,gcy,0);//é‡å¿ƒã«æˆ»ã™
     matp *= tmt;
     if(revx){
         d3dxplane_x.d=0;
-        D3DXMatrixReflect(&tmt,&d3dxplane_x);//x”½“]
+        D3DXMatrixReflect(&tmt,&d3dxplane_x);//xåè»¢
         matp *= tmt;
     }
-    D3DXMatrixTranslation(&tmt,(float)x*ar2,(float)y*ar2,0);//•\¦ˆÊ’u‚Ö‚ÌˆÚ“®
+    D3DXMatrixTranslation(&tmt,(float)x*ar2,(float)y*ar2,0);//è¡¨ç¤ºä½ç½®ã¸ã®ç§»å‹•
     matp *= tmt;
 
-    matprv = SetParentMatrix(matp,FALSE,TRUE);//uev‚Ì•ÏŠ·s—ñ‚Æ‚µ‚Äİ’è
+    matprv = SetParentMatrix(matp,FALSE,TRUE);//ã€Œè¦ªã€ã®å¤‰æ›è¡Œåˆ—ã¨ã—ã¦è¨­å®š
 
     DWORD rn;
     BOOL c1revx,c1revy;
@@ -3228,17 +3228,17 @@ void CDirectDraw::CellDrawED(
     for(int i=0;i<8;i++){
         rn = cdat[cn].cell[i].cdr;
         if(rn < GCDMAX_RECTANGLES && rn!=0 && rdat[rn].bmpno<GCDMAX_IMAGES){
-            //•ÏŠ·s—ñ‚ğŒvZ
+            //å¤‰æ›è¡Œåˆ—ã‚’è¨ˆç®—
             D3DXMatrixIdentity(&mat);
-            D3DXMatrixTranslation(&tmt,(float)(rdat[rn].center_x)*ar2*(-1.0f),(float)(rdat[rn].center_y)*ar2*(-1.0f),0);//dS‚ÉˆÚ“®
+            D3DXMatrixTranslation(&tmt,(float)(rdat[rn].center_x)*ar2*(-1.0f),(float)(rdat[rn].center_y)*ar2*(-1.0f),0);//é‡å¿ƒã«ç§»å‹•
             mat *= tmt;
-            D3DXMatrixScaling(&tmt,cdat[cn].cell[i].magx,cdat[cn].cell[i].magy,1.0f);//Šg‘å
+            D3DXMatrixScaling(&tmt,cdat[cn].cell[i].magx,cdat[cn].cell[i].magy,1.0f);//æ‹¡å¤§
             mat *= tmt;
-            D3DXMatrixRotationZ(&tmt,D3DXToRadian(cdat[cn].cell[i].rot));//‰ñ“]
+            D3DXMatrixRotationZ(&tmt,D3DXToRadian(cdat[cn].cell[i].rot));//å›è»¢
             mat *= tmt;
-            D3DXMatrixTranslation(&tmt,(float)(rdat[rn].center_x)*ar2,(float)(rdat[rn].center_y)*ar2,0);//dS‚É–ß‚·
+            D3DXMatrixTranslation(&tmt,(float)(rdat[rn].center_x)*ar2,(float)(rdat[rn].center_y)*ar2,0);//é‡å¿ƒã«æˆ»ã™
             mat *= tmt;
-            D3DXMatrixTranslation(&tmt,(float)(cdat[cn].cell[i].dx)*ar2,(float)(cdat[cn].cell[i].dy)*ar2,0);//•\¦ˆÊ’u‚Ö‚ÌˆÚ“®
+            D3DXMatrixTranslation(&tmt,(float)(cdat[cn].cell[i].dx)*ar2,(float)(cdat[cn].cell[i].dy)*ar2,0);//è¡¨ç¤ºä½ç½®ã¸ã®ç§»å‹•
             mat *= tmt;
 
             matprv2 = SetParentMatrix(mat,FALSE,TRUE);
@@ -3246,7 +3246,7 @@ void CDirectDraw::CellDrawED(
             c1revx = cdat[cn].cell[i].flag & GCDCELL_REVERSE_X;
             c1revy = cdat[cn].cell[i].flag & GCDCELL_REVERSE_Y;
 
-            //F•ÏX(ED“Á—L)--------------------------------------------------------------------
+            //è‰²å¤‰æ›´(EDç‰¹æœ‰)--------------------------------------------------------------------
             if(color_modulat)
             {
                 if(is_edit_cell){
@@ -3257,7 +3257,7 @@ void CDirectDraw::CellDrawED(
             }
             //---------------------------------------------------------------------------------
 
-            //F‚ğ•ÏX(090“Á—L)
+            //è‰²ã‚’å¤‰æ›´(090ç‰¹æœ‰)
             DWORD rcolor_a = (color&0xFF000000)>>24;
             DWORD rcolor_r = (color&0x00FF0000)>>16;
             DWORD rcolor_g = (color&0x0000FF00)>>8;
@@ -3268,7 +3268,7 @@ void CDirectDraw::CellDrawED(
             rcolor_b = (DWORD)(rcolor_b*cdat[cn].cell[i].blue_ratio);
             DWORD rcolor = (rcolor_a<<24) | (rcolor_r<<16) | (rcolor_g<<8) | rcolor_b;
 
-            //ƒuƒŒƒ“ƒfƒBƒ“ƒOƒ‚[ƒh•ÏX(090“Á—L)
+            //ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´(090ç‰¹æœ‰)
             if(cdat[cn].cell[i].flag & GCDCELL_BLEND_ADD){
                 SetAlphaMode(GBLEND_KASAN);
             }
@@ -3277,9 +3277,9 @@ void CDirectDraw::CellDrawED(
                 0,0,rdat[rn].r,
                 c1revx,
                 c1revy,
-                0,z,rcolor);//•`‰æ
+                0,z,rcolor);//æç”»
 
-            //ƒuƒŒƒ“ƒfƒBƒ“ƒOƒ‚[ƒhƒŒƒXƒgƒA
+            //ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ãƒ¬ã‚¹ãƒˆã‚¢
             if(cdat[cn].cell[i].flag & GCDCELL_BLEND_ADD){
                 SetAlphaMode(0);
             }
@@ -3288,7 +3288,7 @@ void CDirectDraw::CellDrawED(
         }
     }
 
-    SetParentMatrix(matprv,TRUE);//uev‚Ì•ÏŠ·s—ñ‚ğŒ³‚É–ß‚·
+    SetParentMatrix(matprv,TRUE);//ã€Œè¦ªã€ã®å¤‰æ›è¡Œåˆ—ã‚’å…ƒã«æˆ»ã™
 
     if(!is_previous_cell){
         color = color1;
@@ -3306,14 +3306,14 @@ void CDirectDraw::CellDrawED(
 
 
 /*!
-*	@brief Goluah GCDŒ`®‚ ‚½‚è”»’è‹éŒ`•`‰æ
+*	@brief Goluah GCDå½¢å¼ã‚ãŸã‚Šåˆ¤å®šçŸ©å½¢æç”»
 *
-*	‚ ‚½‚è”»’è‚ÌlŠpŒ`‚ğ•`‰æ‚·‚éB”¼“§–¾‚ÌlŠpŒ`‚É‚æ‚Á‚Ä•`‰æ‚³‚ê‚éB
-*	ˆø”‚ÍŠî–{“I‚ÉCellDraw‚Æ‚¨‚ñ‚È‚¶‚à‚ñ‚Å‚ ‚é
+*	ã‚ãŸã‚Šåˆ¤å®šã®å››è§’å½¢ã‚’æç”»ã™ã‚‹ã€‚åŠé€æ˜ã®å››è§’å½¢ã«ã‚ˆã£ã¦æç”»ã•ã‚Œã‚‹ã€‚
+*	å¼•æ•°ã¯åŸºæœ¬çš„ã«CellDrawã¨ãŠã‚“ãªã˜ã‚‚ã‚“ã§ã‚ã‚‹
 */
 void CDirectDraw::HanteiDraw(
                         LPVOID pcdat,
-                        LPVOID phdat,	//!< GCD”»’è‹éŒ`(GCD_HANTEI)”z—ñ
+                        LPVOID phdat,	//!< GCDåˆ¤å®šçŸ©å½¢(GCD_HANTEI)é…åˆ—
                         DWORD cn,
                         BOOL b_atr,
                         BOOL b_kas,
@@ -3336,27 +3336,27 @@ void CDirectDraw::HanteiDraw(
     D3DXMATRIXA16 matp,mat,tmt,matprv,matprv2;
     float ar2 = 2.0f/480.0f;
 
-    //ƒLƒƒƒ‰ƒNƒ^[‚Ì•ÏŠ·s—ñ
+    //ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®å¤‰æ›è¡Œåˆ—
     D3DXMatrixIdentity(&matp);
-    D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//dS‚ÉˆÚ“®
+    D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//é‡å¿ƒã«ç§»å‹•
     matp *= tmt;
-    D3DXMatrixScaling(&tmt,magx,magy,1.0f);//Šg‘å
+    D3DXMatrixScaling(&tmt,magx,magy,1.0f);//æ‹¡å¤§
     matp *= tmt;
-    D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//‰ñ“]
+    D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//å›è»¢
     matp *= tmt;
     if(revy){
         d3dxplane_y.d=0;
-        D3DXMatrixReflect(&tmt,&d3dxplane_y);//y”½“]
+        D3DXMatrixReflect(&tmt,&d3dxplane_y);//yåè»¢
         matp *= tmt;
     }
-    D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);//dS‚É–ß‚·
+    D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);//é‡å¿ƒã«æˆ»ã™
     matp *= tmt;
     if(revx){
         d3dxplane_x.d=0;
-        D3DXMatrixReflect(&tmt,&d3dxplane_x);//x”½“]
+        D3DXMatrixReflect(&tmt,&d3dxplane_x);//xåè»¢
         matp *= tmt;
     }
-    D3DXMatrixTranslation(&tmt,(float)x*ar2,(float)y*ar2,0);//•\¦ˆÊ’u‚Ö‚ÌˆÚ“®
+    D3DXMatrixTranslation(&tmt,(float)x*ar2,(float)y*ar2,0);//è¡¨ç¤ºä½ç½®ã¸ã®ç§»å‹•
     matp *= tmt;
 
     int i;
@@ -3370,9 +3370,9 @@ void CDirectDraw::HanteiDraw(
     d3ddev->SetTexture(0,NULL);
     d3ddev->SetTransform(D3DTS_WORLD,&matp);
 
-    if(b_atr){//“–‚½‚è”»’èi‰©Fj‚Ì•`‰æ
+    if(b_atr){//å½“ãŸã‚Šåˆ¤å®šï¼ˆé»„è‰²ï¼‰ã®æç”»
         for(i=0;i<3;i++){
-            //À•W’lƒZƒbƒg
+            //åº§æ¨™å€¤ã‚»ãƒƒãƒˆ
             vb[0].x = hdat[cn].kurai[i].left / HALF_HEIGHT;
             vb[0].y = hdat[cn].kurai[i].top / HALF_HEIGHT;
             vb[1].x = hdat[cn].kurai[i].right / HALF_HEIGHT;
@@ -3385,14 +3385,14 @@ void CDirectDraw::HanteiDraw(
                 vb[1].color=
                 vb[2].color=
                 vb[3].color=0x77FFFF00;
-            //•`‰æ
+            //æç”»
             d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vb,sizeof(MYVERTEX3D));
         }
     }
 
-    if(b_kas){//d‚È‚è”»’èi‚ ‚©j‚Ì•`‰æ
+    if(b_kas){//é‡ãªã‚Šåˆ¤å®šï¼ˆã‚ã‹ï¼‰ã®æç”»
         for(i=0;i<3;i++){
-            //À•W’lƒZƒbƒg
+            //åº§æ¨™å€¤ã‚»ãƒƒãƒˆ
             vb[0].x = hdat[cn].kas[i].left / HALF_HEIGHT;
             vb[0].y = hdat[cn].kas[i].top / HALF_HEIGHT;
             vb[1].x = hdat[cn].kas[i].right / HALF_HEIGHT;
@@ -3405,14 +3405,14 @@ void CDirectDraw::HanteiDraw(
                 vb[1].color=
                 vb[2].color=
                 vb[3].color=0x77FF0000;
-            //•`‰æ
+            //æç”»
             d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vb,sizeof(MYVERTEX3D));
         }
     }
 
-    if(b_atk){//UŒ‚”»’èi‚ ‚¨j‚Ì•`‰æ
+    if(b_atk){//æ”»æ’ƒåˆ¤å®šï¼ˆã‚ãŠï¼‰ã®æç”»
         for(i=0;i<3;i++){
-            //À•W’lƒZƒbƒg
+            //åº§æ¨™å€¤ã‚»ãƒƒãƒˆ
             vb[0].x = hdat[cn].attack[i].left / HALF_HEIGHT;
             vb[0].y = hdat[cn].attack[i].top / HALF_HEIGHT;
             vb[1].x = hdat[cn].attack[i].right / HALF_HEIGHT;
@@ -3425,7 +3425,7 @@ void CDirectDraw::HanteiDraw(
                 vb[1].color=
                 vb[2].color=
                 vb[3].color=0x770000FF;
-            //•`‰æ
+            //æç”»
             d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vb,sizeof(MYVERTEX3D));
         }
     }
@@ -3435,14 +3435,14 @@ void CDirectDraw::HanteiDraw(
 
 
 /*!
-*	@brief ’Pƒü•`‰æ
+*	@brief å˜ç´”ç·šæç”»
 */
 void CDirectDraw::DrawLine(
-                           int sx,		//!< n“_x 
-                           int sy,		//!< n“_y
-                           int gx,		//!< I“_x
-                           int gy,		//!< I“_y	
-                           DWORD col	//!< •`‰æF
+                           int sx,		//!< å§‹ç‚¹x 
+                           int sy,		//!< å§‹ç‚¹y
+                           int gx,		//!< çµ‚ç‚¹x
+                           int gy,		//!< çµ‚ç‚¹y	
+                           DWORD col	//!< æç”»è‰²
                            )
 {
     MYVERTEX3D vb[2];
@@ -3463,9 +3463,9 @@ void CDirectDraw::DrawLine(
 }
 
 /*!
-*	@brief GCD‚ ‚½‚è”»’è‹éŒ`•`‰æ
+*	@brief GCDã‚ãŸã‚Šåˆ¤å®šçŸ©å½¢æç”»
 *
-*	ƒ‰ƒCƒ“‚É‚æ‚è•`‰æ‚³‚ê‚é
+*	ãƒ©ã‚¤ãƒ³ã«ã‚ˆã‚Šæç”»ã•ã‚Œã‚‹
 *	@sa HanteiDraw
 *	@sa CellDraw
 */
@@ -3490,44 +3490,44 @@ void CDirectDraw::HRectDraw(LPVOID pcdat,
     D3DXMATRIXA16 matp,mat,tmt,matprv,matprv2;
     float ar2 = 2.0f/480.0f;
 
-    //ƒLƒƒƒ‰ƒNƒ^[‚Ì•ÏŠ·s—ñ
+    //ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®å¤‰æ›è¡Œåˆ—
     D3DXMatrixIdentity(&matp);
-    D3DXMatrixTranslation(&tmt,0,0,0);//dS‚ÉˆÚ“®
+    D3DXMatrixTranslation(&tmt,0,0,0);//é‡å¿ƒã«ç§»å‹•
     matp *= tmt;
     /*if (cdat[cn].flag & GCDCELL2_SCA_GCENTER)
     {
-        D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//dS‚ÉˆÚ“®
+        D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2*(-1.0f),(float)(cdat[cn].gcy)*ar2*(-1.0f),0);//é‡å¿ƒã«ç§»å‹•
         matp *= tmt;
     }*/
-    D3DXMatrixScaling(&tmt,magx,magy,1.0f);//Šg‘å
+    D3DXMatrixScaling(&tmt,magx,magy,1.0f);//æ‹¡å¤§
     matp *= tmt;
     /*if (cdat[cn].flag & GCDCELL2_SCA_GCENTER)
     {
-        //dS‚©‚ç–ß‚·
+        //é‡å¿ƒã‹ã‚‰æˆ»ã™
         D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);
         matp *= tmt;
     }*/
-    D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx*magx)*ar2*(-1.0f),(float)(cdat[cn].gcy*magy)*ar2*(-1.0f),0);//dS‚ÉˆÚ“®
+    D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx*magx)*ar2*(-1.0f),(float)(cdat[cn].gcy*magy)*ar2*(-1.0f),0);//é‡å¿ƒã«ç§»å‹•
     matp *= tmt;
-    D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//‰ñ“]
+    D3DXMatrixRotationZ(&tmt,D3DXToRadian(rot));//å›è»¢
     matp *= tmt;
-    //dS‚É–ß‚·
+    //é‡å¿ƒã«æˆ»ã™
     D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx*magx)*ar2,(float)(cdat[cn].gcy*magy)*ar2,0);
     matp *= tmt;
     if(revy){
         d3dxplane_y.d=0;
-        D3DXMatrixReflect(&tmt,&d3dxplane_y);//y”½“]
+        D3DXMatrixReflect(&tmt,&d3dxplane_y);//yåè»¢
         matp *= tmt;
     }
     if(revx){
         d3dxplane_x.d=0;
-        D3DXMatrixReflect(&tmt,&d3dxplane_x);//x”½“]
+        D3DXMatrixReflect(&tmt,&d3dxplane_x);//xåè»¢
         matp *= tmt;
     }
-    D3DXMatrixTranslation(&tmt,(float)x*ar2,(float)y*ar2,0);//•\¦ˆÊ’u‚Ö‚ÌˆÚ“®
+    D3DXMatrixTranslation(&tmt,(float)x*ar2,(float)y*ar2,0);//è¡¨ç¤ºä½ç½®ã¸ã®ç§»å‹•
     matp *= tmt;
 
-    matprv = SetParentMatrix(matp,FALSE);//uev‚Ì•ÏŠ·s—ñ‚Æ‚µ‚Äİ’è
+    matprv = SetParentMatrix(matp,FALSE);//ã€Œè¦ªã€ã®å¤‰æ›è¡Œåˆ—ã¨ã—ã¦è¨­å®š
 
 //	DWORD color;
     RECT r;
@@ -3550,12 +3550,12 @@ void CDirectDraw::HRectDraw(LPVOID pcdat,
         DrawLine(r.left,r.bottom,r.right,r.bottom,0xFF0000FF);
     }
 
-    SetParentMatrix(matprv,TRUE);//uev‚Ì•ÏŠ·s—ñ‚ğŒ³‚É–ß‚·
+    SetParentMatrix(matprv,TRUE);//ã€Œè¦ªã€ã®å¤‰æ›è¡Œåˆ—ã‚’å…ƒã«æˆ»ã™
 }
 
 
 /*!
-*	@brief Goluah GCDŒ`®dSˆÊ’uƒ}[ƒJ[•`‰æ
+*	@brief Goluah GCDå½¢å¼é‡å¿ƒä½ç½®ãƒãƒ¼ã‚«ãƒ¼æç”»
 *
 *	@sa CellDraw
 */
@@ -3579,21 +3579,21 @@ void CDirectDraw::GCenterDraw(
     D3DXMATRIXA16 matp,mat,tmt,matprv,matprv2;
     float ar2 = 2.0f/480.0f;
 
-    //ƒLƒƒƒ‰ƒNƒ^[‚Ì•ÏŠ·s—ñ
+    //ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®å¤‰æ›è¡Œåˆ—
     D3DXMatrixIdentity(&matp);
     if(revx){
         d3dxplane_x.d=0;
-        D3DXMatrixReflect(&tmt,&d3dxplane_x);//x”½“]
+        D3DXMatrixReflect(&tmt,&d3dxplane_x);//xåè»¢
         matp *= tmt;
     }
-    //dSˆÊ’u‚Ö‚ÌˆÚ“®
+    //é‡å¿ƒä½ç½®ã¸ã®ç§»å‹•
     D3DXMatrixTranslation(&tmt,(float)(cdat[cn].gcx)*ar2,(float)(cdat[cn].gcy)*ar2,0);
     matp *= tmt;
-    //•\¦ˆÊ’u‚Ö‚ÌˆÚ“®
+    //è¡¨ç¤ºä½ç½®ã¸ã®ç§»å‹•
     D3DXMatrixTranslation(&tmt,(float)cdat[cn].gcx*ar2*magx+(x-cdat[cn].gcx)*ar2,(float)cdat[cn].gcy*ar2*magy+(y-cdat[cn].gcy)*ar2,0);
     matp *= tmt;
 
-    matprv = SetParentMatrix(matp,FALSE);//uev‚Ì•ÏŠ·s—ñ‚Æ‚µ‚Äİ’è
+    matprv = SetParentMatrix(matp,FALSE);//ã€Œè¦ªã€ã®å¤‰æ›è¡Œåˆ—ã¨ã—ã¦è¨­å®š
 
     //Draw
     DrawLine(-20,0,20,0,0xFF00FF00);
@@ -3603,28 +3603,28 @@ void CDirectDraw::GCenterDraw(
     DrawLine( 20,-20, 20, 20,0xFF00FF00);
     DrawLine(-20,-20,-20, 20,0xFF00FF00);
 
-    SetParentMatrix(matprv,TRUE);//uev‚Ì•ÏŠ·s—ñ‚ğŒ³‚É–ß‚·
+    SetParentMatrix(matprv,TRUE);//ã€Œè¦ªã€ã®å¤‰æ›è¡Œåˆ—ã‚’å…ƒã«æˆ»ã™
 }
 
 //*******************************************************************************
-//@•ÏŠ·s—ñİ’èŠÖ˜A
+//ã€€å¤‰æ›è¡Œåˆ—è¨­å®šé–¢é€£
 //*******************************************************************************
 
 
 /*!
-*	@brief uevƒ}ƒgƒŠƒNƒX‚ğİ’è
+*	@brief ã€Œè¦ªã€ãƒãƒˆãƒªã‚¯ã‚¹ã‚’è¨­å®š
 *
-*	CDirectDraw‚Ì‚Ù‚Æ‚ñ‚Ç‚Ì•`‰æŠÖ”‚ÍA‚±‚±‚Åİ’è‚³‚ê‚½ƒ}ƒgƒŠƒNƒX‚Ì‰e‹¿‚ğó‚¯‚éB
-*	‚±‚Ìƒ}ƒgƒŠƒNƒX‚ÍAƒ[ƒJƒ‹ ¨ ƒ[ƒ‹ƒh ¨ ƒJƒƒ‰ ¨ ƒrƒ…[ •ÏŠ·‚Ì‚¤‚¿A
-*	ƒ[ƒ‹ƒh¨ƒ[ƒJƒ‹ •ÏŠ·‚É‘}“ü‚³‚ê‚é‚à‚ñ‚Å‚ ‚éB
+*	CDirectDrawã®ã»ã¨ã‚“ã©ã®æç”»é–¢æ•°ã¯ã€ã“ã“ã§è¨­å®šã•ã‚ŒãŸãƒãƒˆãƒªã‚¯ã‚¹ã®å½±éŸ¿ã‚’å—ã‘ã‚‹ã€‚
+*	ã“ã®ãƒãƒˆãƒªã‚¯ã‚¹ã¯ã€ãƒ­ãƒ¼ã‚«ãƒ« â†’ ãƒ¯ãƒ¼ãƒ«ãƒ‰ â†’ ã‚«ãƒ¡ãƒ© â†’ ãƒ“ãƒ¥ãƒ¼ å¤‰æ›ã®ã†ã¡ã€
+*	ãƒ¯ãƒ¼ãƒ«ãƒ‰â†’ãƒ­ãƒ¼ã‚«ãƒ« å¤‰æ›ã«æŒ¿å…¥ã•ã‚Œã‚‹ã‚‚ã‚“ã§ã‚ã‚‹ã€‚
 *
-*	’Êí‚Í’PˆÊs—ñ‚ªw’è‚³‚ê‚Ä‚¢‚éB
-*	‚Ü‚½A•ÏX‚µ‚½ê‡‚É‚ÍA•`‰æŒã‚ÉŒ³‚Ì•ÏŠ·s—ñ‚É–ß‚µ‚Ä‚¨‚­‚±‚ÆB
+*	é€šå¸¸ã¯å˜ä½è¡Œåˆ—ãŒæŒ‡å®šã•ã‚Œã¦ã„ã‚‹ã€‚
+*	ã¾ãŸã€å¤‰æ›´ã—ãŸå ´åˆã«ã¯ã€æç”»å¾Œã«å…ƒã®å¤‰æ›è¡Œåˆ—ã«æˆ»ã—ã¦ãŠãã“ã¨ã€‚
 *
-*	@param mat V‹K‚Éİ’è‚·‚é•ÏŠ·ƒ}ƒgƒŠƒNƒX
-*	@param root FALSE‚Ìê‡Aİ’è‚³‚ê‚éƒ}ƒgƒŠƒNƒX‚ÍA‹Œƒ}ƒgƒŠƒNƒX*Vƒ}ƒgƒŠƒNƒX@‚ÌŠ|‚¯Z‚ğ‚µ‚½‚à‚ñ‚Å‚ ‚é
-*	@param insert TRUE‚Ìê‡Aİ’è‚³‚ê‚éƒ}ƒgƒŠƒNƒX‚ÍAVƒ}ƒgƒŠƒNƒX*‹Œƒ}ƒgƒŠƒNƒX@‚ÌŠ|‚¯Z‚ğ‚µ‚½‚à‚ñ‚Å‚ ‚é
-*	@return ŠÖ”‚ÌÀs‘O‚Éİ’è‚³‚ê‚Ä‚¢‚½ŒÃ‚¢ƒ}ƒgƒŠƒNƒX
+*	@param mat æ–°è¦ã«è¨­å®šã™ã‚‹å¤‰æ›ãƒãƒˆãƒªã‚¯ã‚¹
+*	@param root FALSEã®å ´åˆã€è¨­å®šã•ã‚Œã‚‹ãƒãƒˆãƒªã‚¯ã‚¹ã¯ã€æ—§ãƒãƒˆãƒªã‚¯ã‚¹*æ–°ãƒãƒˆãƒªã‚¯ã‚¹ã€€ã®æ›ã‘ç®—ã‚’ã—ãŸã‚‚ã‚“ã§ã‚ã‚‹
+*	@param insert TRUEã®å ´åˆã€è¨­å®šã•ã‚Œã‚‹ãƒãƒˆãƒªã‚¯ã‚¹ã¯ã€æ–°ãƒãƒˆãƒªã‚¯ã‚¹*æ—§ãƒãƒˆãƒªã‚¯ã‚¹ã€€ã®æ›ã‘ç®—ã‚’ã—ãŸã‚‚ã‚“ã§ã‚ã‚‹
+*	@return é–¢æ•°ã®å®Ÿè¡Œå‰ã«è¨­å®šã•ã‚Œã¦ã„ãŸå¤ã„ãƒãƒˆãƒªã‚¯ã‚¹
 */
 D3DXMATRIXA16 CDirectDraw::SetParentMatrix(D3DXMATRIX& mat,BOOL root,BOOL insert)
 {
@@ -3640,9 +3640,9 @@ D3DXMATRIXA16 CDirectDraw::SetParentMatrix(D3DXMATRIX& mat,BOOL root,BOOL insert
 
 
 /*!
-*	@brief uevƒ}ƒgƒŠƒNƒX‚ğİ’è
+*	@brief ã€Œè¦ªã€ãƒãƒˆãƒªã‚¯ã‚¹ã‚’è¨­å®š
 *
-*	SetParentMatrix‚Æ‚È‚É‚ª‚¿‚ª‚¤‚Ì‚©‚ÈH–Y‚ê‚¿‚á‚¢‚Ü‚µ‚½B
+*	SetParentMatrixã¨ãªã«ãŒã¡ãŒã†ã®ã‹ãªï¼Ÿå¿˜ã‚Œã¡ã‚ƒã„ã¾ã—ãŸã€‚
 */
 void CDirectDraw::SetParentMatrix2(D3DXMATRIX *mat,BOOL root,D3DXMATRIX *matprv)
 {
@@ -3655,7 +3655,7 @@ void CDirectDraw::SetParentMatrix2(D3DXMATRIX *mat,BOOL root,D3DXMATRIX *matprv)
 
 
 /*!
-*	@brief uevƒ}ƒgƒŠƒNƒX‚É’PˆÊs—ñ‚ğİ’è‚·‚é
+*	@brief ã€Œè¦ªã€ãƒãƒˆãƒªã‚¯ã‚¹ã«å˜ä½è¡Œåˆ—ã‚’è¨­å®šã™ã‚‹
 *	@sa SetParentMatrix
 */
 D3DXMATRIXA16 CDirectDraw::ResetParentMatrix()
@@ -3668,10 +3668,10 @@ D3DXMATRIXA16 CDirectDraw::ResetParentMatrix()
 
 // view & projection ------------------------------------------------------------
 /*!
-*	@brief ƒ[ƒ‹ƒh¨ƒfƒBƒXƒvƒŒƒCÀ•W•ÏŠ·ƒ}ƒgƒŠƒNƒXİ’è
+*	@brief ãƒ¯ãƒ¼ãƒ«ãƒ‰â†’ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤åº§æ¨™å¤‰æ›ãƒãƒˆãƒªã‚¯ã‚¹è¨­å®š
 *
-*	ƒJƒƒ‰‚Æƒrƒ…[‚ÌÀ•W•ÏŠ·ƒ}ƒgƒŠƒNƒX‚ğƒŠƒZƒbƒg‚·‚é
-*	D3DTS_VIEW ‚ÆAD3DTS_PROJECTION ‚Ìƒ}ƒgƒŠƒNƒX‚ªİ’è‚³‚ê‚é
+*	ã‚«ãƒ¡ãƒ©ã¨ãƒ“ãƒ¥ãƒ¼ã®åº§æ¨™å¤‰æ›ãƒãƒˆãƒªã‚¯ã‚¹ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
+*	D3DTS_VIEW ã¨ã€D3DTS_PROJECTION ã®ãƒãƒˆãƒªã‚¯ã‚¹ãŒè¨­å®šã•ã‚Œã‚‹
 *
 *	@sa camera_x
 *	@sa camera_zurax
@@ -3701,16 +3701,16 @@ void CDirectDraw::ResetTransformMatrix()
 
 
 /*!
-*	@brief ƒJƒƒ‰Aƒrƒ…[@ƒ}ƒgƒŠƒbƒNƒX‚Ìİ’è
+*	@brief ã‚«ãƒ¡ãƒ©ã€ãƒ“ãƒ¥ãƒ¼ã€€ãƒãƒˆãƒªãƒƒã‚¯ã‚¹ã®è¨­å®š
 *
-*	‡‚Ì‚Æ‚«‚É•`‰æˆÊ’u‚ªƒLƒƒƒ‰ƒNƒ^[‚ÌˆÊ’u‚É‚æ‚Á‚ÄˆÚ“®‚·‚é‚¯‚ÇA
-*	‚»‚ê‚ğl—¶‚µ‚Ä•`‰æ‚·‚é‚©‚Ç‚¤‚©B
-*	D3DTS_VIEW ‚ÆAD3DTS_PROJECTION ‚ª‰e‹¿‚ğó‚¯‚Ü‚·B
+*	è©¦åˆã®ã¨ãã«æç”»ä½ç½®ãŒã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ä½ç½®ã«ã‚ˆã£ã¦ç§»å‹•ã™ã‚‹ã‘ã©ã€
+*	ãã‚Œã‚’è€ƒæ…®ã—ã¦æç”»ã™ã‚‹ã‹ã©ã†ã‹ã€‚
+*	D3DTS_VIEW ã¨ã€D3DTS_PROJECTION ãŒå½±éŸ¿ã‚’å—ã‘ã¾ã™ã€‚
 *	@sa ResetTransformMatrix
 *
-*	@param b ƒJƒƒ‰‚ÌˆÊ’u‚ğl—¶‚·‚é‚©”Û‚©‚İ‚½‚¢‚È‚à‚Ì
-*			FALSE ‚Ìê‡Ax:0-640 , y:0-480 ‚ÌƒfƒBƒXƒvƒŒƒCÀ•WŒn‚Åw’è‚µ‚Ä2D•`‰æ‚·‚é‚ÆA
-*			‚»‚Ì‚Ü‚ñ‚Ü‚É•\¦‚³‚ê‚é‚æ‚¤‚É‚È‚éB‚Í‚¸
+*	@param b ã‚«ãƒ¡ãƒ©ã®ä½ç½®ã‚’è€ƒæ…®ã™ã‚‹ã‹å¦ã‹ã¿ãŸã„ãªã‚‚ã®
+*			FALSE ã®å ´åˆã€x:0-640 , y:0-480 ã®ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤åº§æ¨™ç³»ã§æŒ‡å®šã—ã¦2Dæç”»ã™ã‚‹ã¨ã€
+*			ãã®ã¾ã‚“ã¾ã«è¡¨ç¤ºã•ã‚Œã‚‹ã‚ˆã†ã«ãªã‚‹ã€‚ã¯ãš
 */
 void CDirectDraw::SetTransform(BOOL b)
 {
@@ -3731,10 +3731,10 @@ void CDirectDraw::SetTransform(BOOL b)
 }
 
 /*!
-*	@brief ƒ[ƒ‹ƒh•ÏŠ·ƒ}ƒgƒŠƒNƒX‚ğw’è
+*	@brief ãƒ¯ãƒ¼ãƒ«ãƒ‰å¤‰æ›ãƒãƒˆãƒªã‚¯ã‚¹ã‚’æŒ‡å®š
 *
-*	D3DTS_WORLD‚Éw’èƒ}ƒgƒŠƒbƒNƒX‚ğİ’è‚µ‚Ü‚·B
-*	‚½‚Ô‚ñAuD3DTS_WORLDv‚Á‚Ä’Ô‚è‚ğŠo‚¦‚Ä‚È‚©‚Á‚½‚©‚ç‚±‚ÌŠÖ”‚ª¶‚Ü‚ê‚½‚ñ‚¾‚Æv‚í‚ê‚éB
+*	D3DTS_WORLDã«æŒ‡å®šãƒãƒˆãƒªãƒƒã‚¯ã‚¹ã‚’è¨­å®šã—ã¾ã™ã€‚
+*	ãŸã¶ã‚“ã€ã€ŒD3DTS_WORLDã€ã£ã¦ç¶´ã‚Šã‚’è¦šãˆã¦ãªã‹ã£ãŸã‹ã‚‰ã“ã®é–¢æ•°ãŒç”Ÿã¾ã‚ŒãŸã‚“ã ã¨æ€ã‚ã‚Œã‚‹ã€‚
 */
 void CDirectDraw::SetWorldMatrix(D3DXMATRIX *pmat)
 {
@@ -3744,21 +3744,21 @@ void CDirectDraw::SetWorldMatrix(D3DXMATRIX *pmat)
 
 
 
-#define NUMCIRCLEDIVIDE	40//u‰~v‚ğ‚¢‚­‚Â‚Ì‘½ŠpŒ`‚Å•\Œ»‚·‚é‚©B
+#define NUMCIRCLEDIVIDE	40//ã€Œå††ã€ã‚’ã„ãã¤ã®å¤šè§’å½¢ã§è¡¨ç¾ã™ã‚‹ã‹ã€‚
 
 /*!
-*	@brief ‰~‚Ì•`‰æ
+*	@brief å††ã®æç”»
 */
-void CDirectDraw::DrawCircle(int x,			//!< ‰~‚Ì’†SˆÊ’ux
-                             int y,			//!< ‰~‚Ì’†SˆÊ’uy
-                             int rad,		//!< ‰~‚Ì”¼Œa
-                             int w,			//!< ü‚Ì‚Ó‚Æ‚³
-                             float z,		//!< ‰~‚ÌzˆÊ’u
-                             DWORD color,	//!< ‰~‚ÌF
-                             BOOL toumei,	//!< ü‚Ì“à‘¤‚ğ“§–¾‰»‚·‚é‚©
-                             float rot,		//!< ‰~‚Ì‰ñ“]Šp
-                             BOOL rot_y,	//!< TRUE:Y²‚ğ²‚Æ‚µ‚Ä‰ñ“]‚·‚é,FALSE:X²‚ğ²‚Æ‚µ‚Ä‰ñ“]‚·‚é
-                             BOOL hosei		//!< •â³‚ğ‚¢‚ê‚é‚©‚Ç‚¤‚©(‚È‚ñ‚Ì?)
+void CDirectDraw::DrawCircle(int x,			//!< å††ã®ä¸­å¿ƒä½ç½®x
+                             int y,			//!< å††ã®ä¸­å¿ƒä½ç½®y
+                             int rad,		//!< å††ã®åŠå¾„
+                             int w,			//!< ç·šã®ãµã¨ã•
+                             float z,		//!< å††ã®zä½ç½®
+                             DWORD color,	//!< å††ã®è‰²
+                             BOOL toumei,	//!< ç·šã®å†…å´ã‚’é€æ˜åŒ–ã™ã‚‹ã‹
+                             float rot,		//!< å††ã®å›è»¢è§’
+                             BOOL rot_y,	//!< TRUE:Yè»¸ã‚’è»¸ã¨ã—ã¦å›è»¢ã™ã‚‹,FALSE:Xè»¸ã‚’è»¸ã¨ã—ã¦å›è»¢ã™ã‚‹
+                             BOOL hosei		//!< è£œæ­£ã‚’ã„ã‚Œã‚‹ã‹ã©ã†ã‹(ãªã‚“ã®?)
                              )
 {
     float kakudo;
@@ -3808,17 +3808,17 @@ void CDirectDraw::DrawCircle(int x,			//!< ‰~‚Ì’†SˆÊ’ux
 
 
 /*!
-*	@brief ƒeƒLƒXƒg•`‰æ
+*	@brief ãƒ†ã‚­ã‚¹ãƒˆæç”»
 *
-*	ƒtƒHƒ“ƒg‚ğg‚Á‚Ä•`‰æ‚µ‚Ü‚·BŒ‹\d‚¢‚Á‚Û‚¢B
-*	F‚Íƒuƒ‹[ŒÅ’è‚ç‚µ‚¢Bi‚È‚ñ‚ÅHj
+*	ãƒ•ã‚©ãƒ³ãƒˆã‚’ä½¿ã£ã¦æç”»ã—ã¾ã™ã€‚çµæ§‹é‡ã„ã£ã½ã„ã€‚
+*	è‰²ã¯ãƒ–ãƒ«ãƒ¼å›ºå®šã‚‰ã—ã„ã€‚ï¼ˆãªã‚“ã§ï¼Ÿï¼‰
 */
 void CDirectDraw::DrawBlueText(
-                            RECT& r,		//!< •`‰æ‚·‚é‹éŒ`—Ìˆæ
-                            char *text,		//!< ƒeƒLƒXƒg•¶š—ñ
-                            int len,		//!< ƒeƒLƒXƒg•¶š”
-                            DWORD method,	//!< Win32API‚ÌDrawTextQÆBDT_LEFT‚Æ‚©‚»‚¤‚¢‚¤‚Ì
-                            DWORD size)		//!< •`‰æƒTƒCƒYB1`(AKIDX_FONTNUM-1)
+                            RECT& r,		//!< æç”»ã™ã‚‹çŸ©å½¢é ˜åŸŸ
+                            char *text,		//!< ãƒ†ã‚­ã‚¹ãƒˆæ–‡å­—åˆ—
+                            int len,		//!< ãƒ†ã‚­ã‚¹ãƒˆæ–‡å­—æ•°
+                            DWORD method,	//!< Win32APIã®DrawTextå‚ç…§ã€‚DT_LEFTã¨ã‹ãã†ã„ã†ã®
+                            DWORD size)		//!< æç”»ã‚µã‚¤ã‚ºã€‚1ï½(AKIDX_FONTNUM-1)
 {
     if(size<1)return;
     if(size>AKIDX_FONTNUM-1)return;
@@ -3860,13 +3860,13 @@ void CDirectDraw::ReduceColor(DWORD alpha, bool isShadow /* = false */)
     float ar = 320.0f/240.0f;
 
     if (alpha == 0xFF)
-        return;		// ²×È
+        return;		// ï½²ï¾—ï¾ˆ
 
-    // alpha’l‚ÅˆÃ‚­‚·‚é‚ç‚µ‚¢
+    // alphaå€¤ã§æš—ãã™ã‚‹ã‚‰ã—ã„
     d3ddev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_ZERO);
     d3ddev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_SRCALPHA);
 
-    // ƒXƒNƒŠ[ƒ“‘S‘Ì‚ğ•¢‚¤ƒ|ƒŠƒSƒ“
+    // ã‚¹ã‚¯ãƒªãƒ¼ãƒ³å…¨ä½“ã‚’è¦†ã†ãƒãƒªã‚´ãƒ³
     if ( !pMyVertex || FAILED(pMyVertex->Lock(0, 0, (BYTE**)&vb, D3DLOCK_DISCARD)) )
         return;
     vb[0].color = alpha << 24;
@@ -3902,7 +3902,7 @@ void CDirectDraw::ReduceColor(DWORD alpha, bool isShadow /* = false */)
     d3ddev->SetVertexShader( FVF_3DVERTEX );
     d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP, 0, 2);
 
-    // Œ³‚É–ß‚·
+    // å…ƒã«æˆ»ã™
     EnableZ();
     SetAlphaMode(GBLEND_HANTOUMEI);
 }
@@ -3910,36 +3910,36 @@ void CDirectDraw::ReduceColor(DWORD alpha, bool isShadow /* = false */)
 
 
 /*----------------------------------------------------------------------------------
-    ƒtƒƒ“ƒgƒoƒbƒtƒ@ƒRƒs[
+    ãƒ•ãƒ­ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ã‚³ãƒ”ãƒ¼
 ------------------------------------------------------------------------------------*/
 #ifndef GCD_EDITER
 
 extern RECT g_rcClient;
 
 /*!
-*	Œ»İ‚Ìƒtƒƒ“ƒgƒoƒbƒtƒ@[‚Ì“à—e‚ğƒRƒs[‚µ‚Ä•Ô‚·B
-*	ƒeƒNƒXƒ`ƒƒ[‚ÍŒÄ‚Ño‚µ‘¤‚ÅRelease‚·‚é‚±‚ÆB
-*	ƒEƒBƒ“ƒhƒEƒ‚[ƒh‚Ìê‡A•Ê‚ÈƒEƒCƒ“ƒhƒE‚ª×–‚‚µ‚Ä‚é‚Æ‚»‚ê‚àÊ‚è‚±‚ŞB
-*	–ß‚³‚ê‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒtƒH[ƒ}ƒbƒg‚ÍA1R5G5B5B
+*	ç¾åœ¨ã®ãƒ•ãƒ­ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ãƒ¼ã®å†…å®¹ã‚’ã‚³ãƒ”ãƒ¼ã—ã¦è¿”ã™ã€‚
+*	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã¯å‘¼ã³å‡ºã—å´ã§Releaseã™ã‚‹ã“ã¨ã€‚
+*	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã€åˆ¥ãªã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒé‚ªé­”ã—ã¦ã‚‹ã¨ãã‚Œã‚‚å†™ã‚Šã“ã‚€ã€‚
+*	æˆ»ã•ã‚Œã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯A1R5G5B5ã€‚
 *
-*	@return ¸”s‚µ‚½‚çNULL
+*	@return å¤±æ•—ã—ãŸã‚‰NULL
 */
 LPDIRECT3DTEXTURE8 CDirectDraw::GetFrontBufferCopy()
 {
-    //¶¬‚·‚éƒeƒNƒXƒ`ƒƒ[ƒTƒCƒY‚ğŒˆ’è
+    //ç”Ÿæˆã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚µã‚¤ã‚ºã‚’æ±ºå®š
     UINT tex_width = m_desktop_width;//g_DISPLAYWIDTH;
     UINT tex_height = m_desktop_height;//g_DISPLAYHEIGHT;
 
-    //ƒRƒs[—pƒeƒNƒXƒ`ƒƒ¶¬
+    //ã‚³ãƒ”ãƒ¼ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”Ÿæˆ
     LPDIRECT3DTEXTURE8 ret=NULL;
     if(D3D_OK!=d3ddev->CreateTexture(          
                             tex_width,	//UINT Width,
                             tex_height,	//UINT Height,
                             1,			//UINT Levels(mipmap),
                             0,			//DWORD Usage,
-                            D3DFMT_A8R8G8B8,	//D3DFORMAT Format,ƒRƒs[‚·‚é‚Æ‚«‚Í‚±‚ÌƒtƒH[ƒ}ƒbƒg‚¶‚á‚È‚«‚áƒ_ƒ‚ç‚µ‚¢
-//							d3dpp.BackBufferFormat,	//D3DFORMAT Format,‚Ğ‚å‚Á‚Æ‚µ‚½‚ç‚±‚Á‚¿‚©‚à‚µ‚ê‚È‚¢‚Ì‚Å‚µ‚É·‚µ‘Ö‚¦‚Ä‚İ‚½
-                            D3DPOOL_SYSTEMMEM ,//D3DPOOL Pool,ƒRƒs[‚·‚é‚Æ‚«‚ÍƒVƒXƒeƒ€ƒƒ‚ƒŠ‚¶‚á‚È‚«‚áƒ_ƒ‚ç‚µ‚¢
+                            D3DFMT_A8R8G8B8,	//D3DFORMAT Format,ã‚³ãƒ”ãƒ¼ã™ã‚‹ã¨ãã¯ã“ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã˜ã‚ƒãªãã‚ƒãƒ€ãƒ¡ã‚‰ã—ã„
+//							d3dpp.BackBufferFormat,	//D3DFORMAT Format,ã²ã‚‡ã£ã¨ã—ãŸã‚‰ã“ã£ã¡ã‹ã‚‚ã—ã‚Œãªã„ã®ã§è©¦ã—ã«å·®ã—æ›¿ãˆã¦ã¿ãŸ
+                            D3DPOOL_SYSTEMMEM ,//D3DPOOL Pool,ã‚³ãƒ”ãƒ¼ã™ã‚‹ã¨ãã¯ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã˜ã‚ƒãªãã‚ƒãƒ€ãƒ¡ã‚‰ã—ã„
                             &ret		//IDirect3DTexture9** ppTexture
                             ))
     {
@@ -3947,8 +3947,8 @@ LPDIRECT3DTEXTURE8 CDirectDraw::GetFrontBufferCopy()
     }
     if(!ret)return NULL;
 
-    //ƒeƒNƒXƒ`ƒƒ[‚©‚çƒT[ƒtƒF[ƒX‚ğæ“¾‚·‚é
-    //ƒŠƒtƒ@ƒŒƒ“ƒXƒJƒEƒ“ƒg‚ª‘‚¦‚é‚©‚çARelease‚·‚é‚±‚Æ
+    //ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‹ã‚‰ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å–å¾—ã™ã‚‹
+    //ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã‚«ã‚¦ãƒ³ãƒˆãŒå¢—ãˆã‚‹ã‹ã‚‰ã€Releaseã™ã‚‹ã“ã¨
     LPDIRECT3DSURFACE8 surface = NULL;
     if(D3D_OK!=ret->GetSurfaceLevel(0,&surface))
     {
@@ -3962,7 +3962,7 @@ LPDIRECT3DTEXTURE8 CDirectDraw::GetFrontBufferCopy()
     sprintf(tekito,"surface %d,%d\n",suf_desc.Width,suf_desc.Height);
     OutputDebugString(tekito);
 
-    //ƒRƒs[
+    //ã‚³ãƒ”ãƒ¼
     if(D3D_OK!=d3ddev->GetFrontBuffer(surface))//Data(0,surface))
     {
         ret->Release();
@@ -3970,13 +3970,13 @@ LPDIRECT3DTEXTURE8 CDirectDraw::GetFrontBufferCopy()
         return NULL;
     }
 
-    //ˆê’U•ÊƒeƒNƒXƒ`ƒƒ‚ÉƒRƒs[‚µ‚É‚á‚È‚ç‚ñB‚ß‚ñ‚Ç‚­‚¹[
+    //ä¸€æ—¦åˆ¥ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«ã‚³ãƒ”ãƒ¼ã—ã«ã‚ƒãªã‚‰ã‚“ã€‚ã‚ã‚“ã©ãã›ãƒ¼
     LPDIRECT3DTEXTURE8 ret2=NULL;
     LPDIRECT3DSURFACE8 surface2 = NULL;
     do
     {
-        //ƒEƒBƒ“ƒhƒEƒ‚[ƒh‚Ìê‡AƒfƒXƒNƒgƒbƒv‘S‘Ì‚ÌƒRƒs[‚ª
-        //ì‚ç‚ê‚Ä‚µ‚Ü‚¤‚Ì‚ÅAƒIƒtƒZƒbƒg‚·‚é•K—v‚ª‚ ‚é
+        //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã€ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—å…¨ä½“ã®ã‚³ãƒ”ãƒ¼ãŒ
+        //ä½œã‚‰ã‚Œã¦ã—ã¾ã†ã®ã§ã€ã‚ªãƒ•ã‚»ãƒƒãƒˆã™ã‚‹å¿…è¦ãŒã‚ã‚‹
         UINT offset_x = 0;
         UINT offset_y = 0;
         if(m_is_win)
@@ -3988,15 +3988,15 @@ LPDIRECT3DTEXTURE8 CDirectDraw::GetFrontBufferCopy()
 
         tex_width = g_DISPLAYWIDTH;
         tex_height = g_DISPLAYHEIGHT;
-        //ƒRƒs[—pƒeƒNƒXƒ`ƒƒ¶¬
+        //ã‚³ãƒ”ãƒ¼ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”Ÿæˆ
         
         /*if(D3D_OK!=d3ddev->CreateTexture(          
                                 tex_width,	//UINT Width,
                                 tex_height,	//UINT Height,
                                 1,			//UINT Levels(mipmap),
                                 0,			//DWORD Usage,
-                                D3DFMT_A8R8G8B8,	//D3DFORMAT Format,ƒRƒs[‚µ‚½ƒtƒH[ƒ}ƒbƒg‚Æ“¯‚¶‚Ì
-                                D3DPOOL_MANAGED ,//D3DPOOL Pool,•`‰æ‚·‚é‚Æ‚«‚ÍƒVƒXƒeƒ€ƒƒ‚ƒŠ‚¶‚áƒ_ƒ‚ç‚µ‚¢
+                                D3DFMT_A8R8G8B8,	//D3DFORMAT Format,ã‚³ãƒ”ãƒ¼ã—ãŸãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¨åŒã˜ã®
+                                D3DPOOL_MANAGED ,//D3DPOOL Pool,æç”»ã™ã‚‹ã¨ãã¯ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã˜ã‚ƒãƒ€ãƒ¡ã‚‰ã—ã„
                                 &ret2		//IDirect3DTexture9** ppTexture
                                 ))*/
         if(D3D_OK!=d3ddev->CreateTexture(          
@@ -4004,22 +4004,22 @@ LPDIRECT3DTEXTURE8 CDirectDraw::GetFrontBufferCopy()
                                 tex_height,	//UINT Height,
                                 1,			//UINT Levels(mipmap),
                                 0,			//DWORD Usage,
-                                D3DFMT_A1R5G5B5,	//D3DFORMAT Format,ƒRƒs[‚µ‚½ƒtƒH[ƒ}ƒbƒg‚Æ“¯‚¶‚Ì
-                                D3DPOOL_MANAGED ,//D3DPOOL Pool,•`‰æ‚·‚é‚Æ‚«‚ÍƒVƒXƒeƒ€ƒƒ‚ƒŠ‚¶‚áƒ_ƒ‚ç‚µ‚¢
+                                D3DFMT_A1R5G5B5,	//D3DFORMAT Format,ã‚³ãƒ”ãƒ¼ã—ãŸãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¨åŒã˜ã®
+                                D3DPOOL_MANAGED ,//D3DPOOL Pool,æç”»ã™ã‚‹ã¨ãã¯ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã˜ã‚ƒãƒ€ãƒ¡ã‚‰ã—ã„
                                 &ret2		//IDirect3DTexture9** ppTexture
                                 ))
         {
             break;
         }
 
-        //ƒeƒNƒXƒ`ƒƒ[‚©‚çƒT[ƒtƒF[ƒX‚ğæ“¾‚·‚é
-        //ƒŠƒtƒ@ƒŒƒ“ƒXƒJƒEƒ“ƒg‚ª‘‚¦‚é‚©‚çARelease‚·‚é‚±‚Æ
+        //ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‹ã‚‰ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å–å¾—ã™ã‚‹
+        //ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã‚«ã‚¦ãƒ³ãƒˆãŒå¢—ãˆã‚‹ã‹ã‚‰ã€Releaseã™ã‚‹ã“ã¨
         if(D3D_OK!=ret2->GetSurfaceLevel(0,&surface2))
         {
             break;
         }
 
-        //2ƒeƒNƒXƒ`ƒƒ‚ğƒƒbƒNB
+        //2ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ãƒ­ãƒƒã‚¯ã€‚
         D3DLOCKED_RECT lr , lr2;
         if(D3D_OK != surface->LockRect(&lr,NULL,0))
         {
@@ -4031,10 +4031,10 @@ LPDIRECT3DTEXTURE8 CDirectDraw::GetFrontBufferCopy()
             break;
         }
 
-        //ƒRƒs[i1ƒsƒNƒZƒ‹‚Í32ƒrƒbƒgj
+        //ã‚³ãƒ”ãƒ¼ï¼ˆ1ãƒ”ã‚¯ã‚»ãƒ«ã¯32ãƒ“ãƒƒãƒˆï¼‰
         for(UINT y=0;y<tex_height;y++)
         {
-            //A8R8G8B8¨A8R8G8B8
+            //A8R8G8B8â†’A8R8G8B8
         /*	if(y+offset_y>=m_desktop_height)break;
             DWORD *src = (DWORD*)((BYTE*)lr.pBits + lr.Pitch*(y+offset_y) + offset_x*4);
             DWORD *dst = (DWORD*)((BYTE*)lr2.pBits + lr2.Pitch*y);
@@ -4042,12 +4042,12 @@ LPDIRECT3DTEXTURE8 CDirectDraw::GetFrontBufferCopy()
             {
                 if(x+offset_x>=m_desktop_width)break;
                 (*dst) = (*src);
-                *dst|=0xFF000000;//‚Â‚¢‚Å‚Éƒ¿’l‚àÅ‘å‚É‚µ‚È‚«‚á‚¾‚ß‚İ‚½‚¢‚Å‚·‚æH
+                *dst|=0xFF000000;//ã¤ã„ã§ã«Î±å€¤ã‚‚æœ€å¤§ã«ã—ãªãã‚ƒã ã‚ã¿ãŸã„ã§ã™ã‚ˆï¼Ÿ
                 dst++;
                 src++;
             }*/
 
-            //A8R8G8B8¨A1R5G5B5
+            //A8R8G8B8â†’A1R5G5B5
             if(y+offset_y>=m_desktop_height)break;
             DWORD *src = (DWORD*)((BYTE*)lr.pBits + lr.Pitch*(y+offset_y) + offset_x*4);
             WORD *dst = (WORD*)((BYTE*)lr2.pBits + lr2.Pitch*y);
@@ -4068,13 +4068,13 @@ LPDIRECT3DTEXTURE8 CDirectDraw::GetFrontBufferCopy()
 
         }
 
-        //ƒeƒNƒXƒ`ƒƒˆÄƒƒbƒN
+        //ãƒ†ã‚¯ã‚¹ãƒãƒ£æ¡ˆãƒ­ãƒƒã‚¯
         surface->UnlockRect();
         surface2->UnlockRect();
     }
     while(0);
 
-    //‚¨‚Á‚¯`H
+    //ãŠã£ã‘ï½ï¼Ÿ
     surface->Release();
     ret->Release();
 
@@ -4083,30 +4083,30 @@ LPDIRECT3DTEXTURE8 CDirectDraw::GetFrontBufferCopy()
 }
 
 /*!
-*	Œ»İ‚Ìƒtƒƒ“ƒgƒoƒbƒtƒ@[‚Ì“à—e‚ğƒRƒs[‚µ‚Ä•Ô‚·B
-*	ƒXƒNƒŠ[ƒ“ƒVƒ‡ƒbƒg—pB
-*	–ß‚³‚ê‚½ƒ|ƒCƒ“ƒ^‚ÍŒÄ‚Ño‚µ‘¤‚Ådelete‚·‚é‚±‚ÆB
+*	ç¾åœ¨ã®ãƒ•ãƒ­ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ãƒ¼ã®å†…å®¹ã‚’ã‚³ãƒ”ãƒ¼ã—ã¦è¿”ã™ã€‚
+*	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚·ãƒ§ãƒƒãƒˆç”¨ã€‚
+*	æˆ»ã•ã‚ŒãŸãƒã‚¤ãƒ³ã‚¿ã¯å‘¼ã³å‡ºã—å´ã§deleteã™ã‚‹ã“ã¨ã€‚
 *
-*	@param wdt [out]ƒRƒs[‚µ‚½ƒCƒ[ƒW‚Ì•
-*	@param hgt [out]ƒRƒs[‚µ‚½ƒCƒ[ƒW‚Ì‚‚³
-*	@return 32ƒrƒbƒg”z—ñB¸”s‚ÍNULLB
+*	@param wdt [out]ã‚³ãƒ”ãƒ¼ã—ãŸã‚¤ãƒ¡ãƒ¼ã‚¸ã®å¹…
+*	@param hgt [out]ã‚³ãƒ”ãƒ¼ã—ãŸã‚¤ãƒ¡ãƒ¼ã‚¸ã®é«˜ã•
+*	@return 32ãƒ“ãƒƒãƒˆé…åˆ—ã€‚å¤±æ•—ã¯NULLã€‚
 */
 DWORD* CDirectDraw::GetFrontBufferCopyRaw(UINT *wdt,UINT *hgt)
 {
-    //¶¬‚·‚éƒeƒNƒXƒ`ƒƒ[ƒTƒCƒY‚ğŒˆ’è
+    //ç”Ÿæˆã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚µã‚¤ã‚ºã‚’æ±ºå®š
     UINT tex_width = m_desktop_width;//g_DISPLAYWIDTH;
     UINT tex_height = m_desktop_height;//g_DISPLAYHEIGHT;
 
-    //ƒRƒs[—pƒeƒNƒXƒ`ƒƒ¶¬
+    //ã‚³ãƒ”ãƒ¼ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”Ÿæˆ
     LPDIRECT3DTEXTURE8 ret=NULL;
     if(D3D_OK!=d3ddev->CreateTexture(          
                             tex_width,	//UINT Width,
                             tex_height,	//UINT Height,
                             1,			//UINT Levels(mipmap),
                             0,			//DWORD Usage,
-                            D3DFMT_A8R8G8B8,	//D3DFORMAT Format,ƒRƒs[‚·‚é‚Æ‚«‚Í‚±‚ÌƒtƒH[ƒ}ƒbƒg‚¶‚á‚È‚«‚áƒ_ƒ‚ç‚µ‚¢
-//							d3dpp.BackBufferFormat,	//D3DFORMAT Format,‚Ğ‚å‚Á‚Æ‚µ‚½‚ç‚±‚Á‚¿‚©‚à‚µ‚ê‚È‚¢‚Ì‚Å‚µ‚É·‚µ‘Ö‚¦‚Ä‚İ‚½
-                            D3DPOOL_SYSTEMMEM ,//D3DPOOL Pool,ƒRƒs[‚·‚é‚Æ‚«‚ÍƒVƒXƒeƒ€ƒƒ‚ƒŠ‚¶‚á‚È‚«‚áƒ_ƒ‚ç‚µ‚¢
+                            D3DFMT_A8R8G8B8,	//D3DFORMAT Format,ã‚³ãƒ”ãƒ¼ã™ã‚‹ã¨ãã¯ã“ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã˜ã‚ƒãªãã‚ƒãƒ€ãƒ¡ã‚‰ã—ã„
+//							d3dpp.BackBufferFormat,	//D3DFORMAT Format,ã²ã‚‡ã£ã¨ã—ãŸã‚‰ã“ã£ã¡ã‹ã‚‚ã—ã‚Œãªã„ã®ã§è©¦ã—ã«å·®ã—æ›¿ãˆã¦ã¿ãŸ
+                            D3DPOOL_SYSTEMMEM ,//D3DPOOL Pool,ã‚³ãƒ”ãƒ¼ã™ã‚‹ã¨ãã¯ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã˜ã‚ƒãªãã‚ƒãƒ€ãƒ¡ã‚‰ã—ã„
                             &ret		//IDirect3DTexture9** ppTexture
                             ))
     {
@@ -4114,8 +4114,8 @@ DWORD* CDirectDraw::GetFrontBufferCopyRaw(UINT *wdt,UINT *hgt)
     }
     if(!ret)return NULL;
 
-    //ƒeƒNƒXƒ`ƒƒ[‚©‚çƒT[ƒtƒF[ƒX‚ğæ“¾‚·‚é
-    //ƒŠƒtƒ@ƒŒƒ“ƒXƒJƒEƒ“ƒg‚ª‘‚¦‚é‚©‚çARelease‚·‚é‚±‚Æ
+    //ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‹ã‚‰ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å–å¾—ã™ã‚‹
+    //ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã‚«ã‚¦ãƒ³ãƒˆãŒå¢—ãˆã‚‹ã‹ã‚‰ã€Releaseã™ã‚‹ã“ã¨
     LPDIRECT3DSURFACE8 surface = NULL;
     if(D3D_OK!=ret->GetSurfaceLevel(0,&surface))
     {
@@ -4129,7 +4129,7 @@ DWORD* CDirectDraw::GetFrontBufferCopyRaw(UINT *wdt,UINT *hgt)
     sprintf(tekito,"surface %d,%d\n",suf_desc.Width,suf_desc.Height);
     OutputDebugString(tekito);
 
-    //ƒRƒs[
+    //ã‚³ãƒ”ãƒ¼
     if(D3D_OK!=d3ddev->GetFrontBuffer(surface))//Data(0,surface))
     {
         ret->Release();
@@ -4137,13 +4137,13 @@ DWORD* CDirectDraw::GetFrontBufferCopyRaw(UINT *wdt,UINT *hgt)
         return NULL;
     }
 
-    //ƒRƒs[
+    //ã‚³ãƒ”ãƒ¼
     DWORD *rret = NULL;
     BOOL fail = TRUE;
     do
     {
-        //ƒEƒBƒ“ƒhƒEƒ‚[ƒh‚Ìê‡AƒfƒXƒNƒgƒbƒv‘S‘Ì‚ÌƒRƒs[‚ª
-        //ì‚ç‚ê‚Ä‚µ‚Ü‚¤‚Ì‚ÅAƒIƒtƒZƒbƒg‚·‚é•K—v‚ª‚ ‚é
+        //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã€ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—å…¨ä½“ã®ã‚³ãƒ”ãƒ¼ãŒ
+        //ä½œã‚‰ã‚Œã¦ã—ã¾ã†ã®ã§ã€ã‚ªãƒ•ã‚»ãƒƒãƒˆã™ã‚‹å¿…è¦ãŒã‚ã‚‹
         UINT offset_x = 0;
         UINT offset_y = 0;
         if(m_is_win)
@@ -4159,20 +4159,20 @@ DWORD* CDirectDraw::GetFrontBufferCopyRaw(UINT *wdt,UINT *hgt)
         *wdt = g_DISPLAYWIDTH;
         *hgt = g_DISPLAYHEIGHT;
 
-        //ƒRƒs[—pƒƒ‚ƒŠŠm•Û
+        //ã‚³ãƒ”ãƒ¼ç”¨ãƒ¡ãƒ¢ãƒªç¢ºä¿
         rret = new DWORD [ tex_width*tex_height ];
 
-        //2ƒeƒNƒXƒ`ƒƒ‚ğƒƒbƒNB
+        //2ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ãƒ­ãƒƒã‚¯ã€‚
         D3DLOCKED_RECT lr ;
         if(D3D_OK != surface->LockRect(&lr,NULL,0))
         {
             break;
         }
 
-        //ƒRƒs[i1ƒsƒNƒZƒ‹‚Í32ƒrƒbƒgj
+        //ã‚³ãƒ”ãƒ¼ï¼ˆ1ãƒ”ã‚¯ã‚»ãƒ«ã¯32ãƒ“ãƒƒãƒˆï¼‰
         for(UINT y=0;y<tex_height;y++)
         {
-            //A8R8G8B8¨DWORD
+            //A8R8G8B8â†’DWORD
             if(y+offset_y>=m_desktop_height)break;
             DWORD *src = (DWORD*)((BYTE*)lr.pBits + lr.Pitch*(y+offset_y) + offset_x*4);
             DWORD *dst = (DWORD*)(rret + y*tex_width);
@@ -4180,21 +4180,21 @@ DWORD* CDirectDraw::GetFrontBufferCopyRaw(UINT *wdt,UINT *hgt)
             {
                 if(x+offset_x>=m_desktop_width)break;
                 (*dst) = (*src);
-                *dst|=0x00000000;//ƒ¿’lHFlagH
+                *dst|=0x00000000;//Î±å€¤ï¼ŸFlagï¼Ÿ
                 dst++;
                 src++;
             }
 
         }
 
-        //ƒeƒNƒXƒ`ƒƒˆÄƒƒbƒN
+        //ãƒ†ã‚¯ã‚¹ãƒãƒ£æ¡ˆãƒ­ãƒƒã‚¯
         surface->UnlockRect();
 
         fail = FALSE;
     }
     while(0);
 
-    //‚¨‚Á‚¯`H
+    //ãŠã£ã‘ï½ï¼Ÿ
     surface->Release();
     ret->Release();
 

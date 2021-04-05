@@ -1,4 +1,4 @@
-
+﻿
 void InitializeJien();
 void CleanupJien();
 

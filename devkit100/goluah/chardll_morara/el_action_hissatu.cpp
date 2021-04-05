@@ -1,7 +1,7 @@
-
+ï»¿
 /*==============================================================
 
-	s“®ŠÖ”(•KE‹Z)
+	è¡Œå‹•é–¢æ•°(å¿…æ®ºæŠ€)
 
 ================================================================*/
 #include "el_character.h"
@@ -11,7 +11,7 @@
 #endif
 
 /*--------------------------------------------------------------
-	ƒGƒiƒW[ƒAƒ[i‰¼j
+	ã‚¨ãƒŠã‚¸ãƒ¼ã‚¢ãƒ­ãƒ¼ï¼ˆä»®ï¼‰
 ----------------------------------------------------------------*/
 void CCharacterEL::act_earrow1()
 {
@@ -66,7 +66,7 @@ void CCharacterEL::act_earrow3()
 }
 
 /*--------------------------------------------------------------
-	ƒGƒiƒW[ƒAƒ[i‰¼j‹ó’†”Å
+	ã‚¨ãƒŠã‚¸ãƒ¼ã‚¢ãƒ­ãƒ¼ï¼ˆä»®ï¼‰ç©ºä¸­ç‰ˆ
 ----------------------------------------------------------------*/
 void CCharacterEL::act_earrow1j()
 {
@@ -123,7 +123,7 @@ void CCharacterEL::act_earrow3j()
 
 
 /*--------------------------------------------------------------
-	ƒ\[ƒhEƒIƒuEƒWƒƒƒXƒeƒBƒX(‹¤’Ê)
+	ã‚½ãƒ¼ãƒ‰ãƒ»ã‚ªãƒ–ãƒ»ã‚¸ãƒ£ã‚¹ãƒ†ã‚£ã‚¹(å…±é€š)
 ----------------------------------------------------------------*/
 BOOL CCharacterEL::act_swordRealize()
 {
@@ -145,16 +145,16 @@ BOOL CCharacterEL::act_swordRealize()
 }
 
 /*--------------------------------------------------------------
-	ƒ\[ƒhEƒIƒuEƒWƒƒƒXƒeƒBƒX(ã)
+	ã‚½ãƒ¼ãƒ‰ãƒ»ã‚ªãƒ–ãƒ»ã‚¸ãƒ£ã‚¹ãƒ†ã‚£ã‚¹(å¼±)
 ----------------------------------------------------------------*/
 
-//‹ïŒ»‰»
+//å…·ç¾åŒ–
 void CCharacterEL::act_sword1r()
 {
 	if(act_swordRealize())ChangeAction( ACTID_SWORD1A );
 }
 
-//UŒ‚
+//æ”»æ’ƒ
 void CCharacterEL::act_sword1a()
 {
 	if(ccounter==0)PlayMySound(wave_sword1);
@@ -183,7 +183,7 @@ void CCharacterEL::act_sword1a()
 	else ChangeAction(ACTID_SWORD1D );
 }
 
-//Á¸
+//æ¶ˆå¤±
 void CCharacterEL::act_sword1d()
 {
 	const UINT anmspd = m_event_sw ? 2 : 4;
@@ -200,16 +200,16 @@ void CCharacterEL::act_sword1d()
 }
 
 /*--------------------------------------------------------------
-	ƒ\[ƒhEƒIƒuEƒWƒƒƒXƒeƒBƒX(’†)
+	ã‚½ãƒ¼ãƒ‰ãƒ»ã‚ªãƒ–ãƒ»ã‚¸ãƒ£ã‚¹ãƒ†ã‚£ã‚¹(ä¸­)
 ----------------------------------------------------------------*/
 
-//‹ïŒ»‰»
+//å…·ç¾åŒ–
 void CCharacterEL::act_sword2r()
 {
 	if(act_swordRealize())ChangeAction( ACTID_SWORD2A );
 }
 
-//UŒ‚
+//æ”»æ’ƒ
 void CCharacterEL::act_sword2a()
 {
 	if(ccounter==0)PlayMySound(wave_sword2);
@@ -238,23 +238,23 @@ void CCharacterEL::act_sword2a()
 	else ChangeAction(ACTID_SWORD2D );
 }
 
-//Á¸
+//æ¶ˆå¤±
 void CCharacterEL::act_sword2d()
 {
-	act_sword1d();//ã‚Æ“¯‚¶Á‚¦•û
+	act_sword1d();//å¼±ã¨åŒã˜æ¶ˆãˆæ–¹
 }
 
 /*--------------------------------------------------------------
-	ƒ\[ƒhEƒIƒuEƒWƒƒƒXƒeƒBƒX(‹­)
+	ã‚½ãƒ¼ãƒ‰ãƒ»ã‚ªãƒ–ãƒ»ã‚¸ãƒ£ã‚¹ãƒ†ã‚£ã‚¹(å¼·)
 ----------------------------------------------------------------*/
 
-//‹ïŒ»‰»
+//å…·ç¾åŒ–
 void CCharacterEL::act_sword3r()
 {
 	if(act_swordRealize())ChangeAction( ACTID_SWORD3A );
 }
 
-//UŒ‚
+//æ”»æ’ƒ
 void CCharacterEL::act_sword3a()
 {
 	if(ccounter==0)PlayMySound(wave_sword3);
@@ -283,7 +283,7 @@ void CCharacterEL::act_sword3a()
 	else ChangeAction(ACTID_SWORD3D );
 }
 
-//Á¸
+//æ¶ˆå¤±
 void CCharacterEL::act_sword3d()
 {
 	const UINT anmspd = m_event_sw ? 2 : 4;
@@ -299,7 +299,7 @@ void CCharacterEL::act_sword3d()
 }
 
 /*--------------------------------------------------------------
-	ƒWƒƒƒbƒWƒƒ“ƒg
+	ã‚¸ãƒ£ãƒƒã‚¸ãƒ¡ãƒ³ãƒˆ
 ----------------------------------------------------------------*/
 void CCharacterEL::act_judgement()
 {

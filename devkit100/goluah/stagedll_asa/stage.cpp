@@ -1,4 +1,4 @@
-
+ï»¿
 
 #include "stage.h"
 #include <math.h>
@@ -18,7 +18,7 @@ DI_FUNCTIONS_D *funcd = NULL;
 #endif // USE_GOLUAH_COMMON_DLL
 
 /*!
-*	@brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+*	@brief ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 */
 CStage::CStage(SDI_STAGEINFO2 *info)
 			: CStageBase(info)
@@ -40,7 +40,7 @@ CStage::CStage(SDI_STAGEINFO2 *info)
 }
 
 /*!
-*	@brief ƒfƒXƒgƒ‰ƒNƒ^
+*	@brief ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 */
 CStage::~CStage()
 {
@@ -50,14 +50,14 @@ CStage::~CStage()
 }
 
 /*!
-*	@brief ‰Šú‰»
+*	@brief åˆæœŸåŒ–
 */
 void CStage::InitializeStage()
 {
 	d3ddev = GetD3DDevice();
 
-	LoadTextures();//ƒeƒNƒXƒ`ƒƒ“Ç‚İ
-	InitVrtx();//’¸“_À•W‰Šú‰»
+	LoadTextures();//ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­è¾¼ã¿
+	InitVrtx();//é ‚ç‚¹åº§æ¨™åˆæœŸåŒ–
 
 	InitializeJien();
 
@@ -70,7 +70,7 @@ void CStage::InitializeStage()
 	}
 }
 
-void CStage::InitVrtx()//’¸“_À•W‚Ì‰Šú‰»
+void CStage::InitVrtx()//é ‚ç‚¹åº§æ¨™ã®åˆæœŸåŒ–
 {
 	MYVERTEX3D* pv = NULL;
 
@@ -89,7 +89,7 @@ void CStage::InitVrtx()//’¸“_À•W‚Ì‰Šú‰»
 		pv[1].z = -1.0f;
 		pv[3].x =  dst.right;
 		pv[3].z =  dst.z;
-		pv[0].tu=0;//ƒeƒNƒXƒ`ƒƒÀ•W
+		pv[0].tu=0;//ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™
 		pv[0].tv=0;
 		pv[1].tu=0;
 		pv[1].tv=3;
@@ -103,7 +103,7 @@ void CStage::InitVrtx()//’¸“_À•W‚Ì‰Šú‰»
 	}
 }
 
-void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ‚Ì“Ç‚İ‚İ
+void CStage::LoadTextures()//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®èª­ã¿è¾¼ã¿
 {
 	char fn[256];
 
@@ -117,12 +117,12 @@ void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ‚Ì“Ç‚İ‚İ
 		D3DXCreateTextureFromFile(d3ddev,fn,&ptex_jimen);
 	}
 
-	//“]‘—Œ³Eƒrƒbƒgƒ}ƒbƒv‘S‘Ì
+	//è»¢é€å…ƒãƒ»ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—å…¨ä½“
 	src.left = src.top = 0;
 	src.right = (long)pms_back->wg;
 	src.bottom= (long)pms_back->hg;
 
-	//“]‘—æ
+	//è»¢é€å…ˆ
 	if(pms_back->wg!=640)
 		dst.z = (float)(960.0*4.0-3.0*pms_back->wg)/(float)(pms_back->wg-640.0);
 	dst.z += 0.03f;
@@ -134,11 +134,11 @@ void CStage::LoadTextures()//ƒeƒNƒXƒ`ƒƒ‚Ì“Ç‚İ‚İ
 
 
 /*!
-*	@brief •`‰æ
+*	@brief æç”»
 */
 DWORD CStage::DrawBack()
 {
-	//”wŒi-------------------------------------------------------------
+	//èƒŒæ™¯-------------------------------------------------------------
 
 	SetTransform(TRUE);
 
@@ -148,7 +148,7 @@ DWORD CStage::DrawBack()
 	SetTransform(TRUE);
 	Blt3D(pms_back,src,dst,pdat->color);
 
-	//’n–Ê---------------------------------------------------------------
+	//åœ°é¢---------------------------------------------------------------
 	if(ptex_jimen!=NULL){
 		D3DXMatrixIdentity(&mat);
 		d3ddev->SetTransform(D3DTS_WORLD,&mat);
@@ -158,18 +158,18 @@ DWORD CStage::DrawBack()
 		d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSU,D3DTADDRESS_MIRROR);
 		d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSV,D3DTADDRESS_MIRROR);
 		d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);
-		d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSU,D3DTADDRESS_CLAMP);//Œ³‚É–ß‚µ‚Æ‚­
-		d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSV,D3DTADDRESS_CLAMP);//Œ³‚É–ß‚µ‚Æ‚­
+		d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSU,D3DTADDRESS_CLAMP);//å…ƒã«æˆ»ã—ã¨ã
+		d3ddev->SetTextureStageState(0,D3DTSS_ADDRESSV,D3DTADDRESS_CLAMP);//å…ƒã«æˆ»ã—ã¨ã
 	}
 
-	//‚à‚â---------------------------------------------------------
+	//ã‚‚ã‚„---------------------------------------------------------
 	aki3d.EnableZ(FALSE,FALSE);
 	aki3d.SetBlend_Add();
 	moya->Render(NULL);
 	aki3d.SetBlend_Normal();
 	aki3d.EnableZ();
 
-	return FALSE;//’ÊíAƒfƒtƒHƒ‹ƒg•`‰æ‚Ís‚í‚È‚¢
+	return FALSE;//é€šå¸¸ã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæç”»ã¯è¡Œã‚ãªã„
 }
 
 

@@ -1,6 +1,6 @@
-/*=======================================================================================
+ï»¿/*=======================================================================================
 
-	ƒXƒg[ƒŠ[ƒZƒŒƒNƒg
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã‚»ãƒ¬ã‚¯ãƒˆ
 
 =========================================================================================*/
 
@@ -12,12 +12,12 @@
 
 /*=======================================================================================
 
-	ƒXƒg[ƒŠ[‘I‘ğƒ^ƒXƒN
-	–{‘Ì
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼é¸æŠã‚¿ã‚¹ã‚¯
+	æœ¬ä½“
 
 =========================================================================================*/
 
-//•`‰æƒvƒ‰ƒCƒIƒŠƒeƒB’è”
+//æç”»ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£å®šæ•°
 int CTStorySelect::m_pri_ring		=1050;
 int CTStorySelect::m_pri_paramwin	=1057;
 int CTStorySelect::m_pri_brief		=1055;
@@ -27,27 +27,27 @@ int CTStorySelect::m_pri_bg			=2000;
 
 
 /*-----------------------------------------------------------------------
-	‰Šú‰»
+	åˆæœŸåŒ–
 -------------------------------------------------------------------------*/
 void CTStorySelect::Initialize()
 {
-	//¡ƒŠƒ“ƒOƒNƒ‰ƒX“o˜^
+	//â– ãƒªãƒ³ã‚°ã‚¯ãƒ©ã‚¹ç™»éŒ²
 	m_ring = new CTStorySelecterRing;
 	m_ring->SetPriority(m_pri_ring);
 	m_ring->SetKeyInputIndex(m_keyindex);
 	g_system.AddTask(m_ring);
 
-	//¡”wŒi•`‰æƒNƒ‰ƒX“o˜^
+	//â– èƒŒæ™¯æç”»ã‚¯ãƒ©ã‚¹ç™»éŒ²
 	m_bg = new CTStorySelectBG();
 	m_bg->SetPriority(m_pri_bg);
 	g_system.AddTask(m_bg);
 
-	//¡ƒfƒJŠç•\¦ƒNƒ‰ƒX“o˜^
+	//â– ãƒ‡ã‚«é¡”è¡¨ç¤ºã‚¯ãƒ©ã‚¹ç™»éŒ²
 	m_face = new CTStoryBigFace;
 	m_face->SetPriority(m_pri_bigface);
 	g_system.AddTask(m_face);
 
-	//¡ƒvƒŒƒrƒ…[•\¦ƒNƒ‰ƒX“o˜^
+	//â– ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼è¡¨ç¤ºã‚¯ãƒ©ã‚¹ç™»éŒ²
 	m_pv = new CTStorySelectPreview;
 	m_pv->SetPriority(m_pri_preview,m_pri_brief);
 	g_system.AddTask(m_pv);
@@ -63,7 +63,7 @@ void CTStorySelect::Initialize()
 }
 
 /*-----------------------------------------------------------------------
-	Às
+	å®Ÿè¡Œ
 -------------------------------------------------------------------------*/
 BOOL CTStorySelect::Execute(DWORD time)
 {
@@ -73,7 +73,7 @@ BOOL CTStorySelect::Execute(DWORD time)
 	{
 		m_first_update = FALSE;
 
-		//ƒfƒJŠçƒNƒ‰ƒX‚Éİ’è
+		//ãƒ‡ã‚«é¡”ã‚¯ãƒ©ã‚¹ã«è¨­å®š
 		CStoryList::CStoryInfo* sinfo = g_storylist.GetStoryInfo( m_ring->GetSelected() );
 		if(sinfo)
 		{
@@ -85,7 +85,7 @@ BOOL CTStorySelect::Execute(DWORD time)
 			m_face->Setup(sinfo->characters,sinfo->color,m_alts,sinfo->cnum);
 		}
 
-		//ƒvƒŒƒrƒ…[ƒNƒ‰ƒXİ’è
+		//ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼ã‚¯ãƒ©ã‚¹è¨­å®š
 		m_pv->Change( m_ring->GetSelected() );
 	}
 
@@ -102,11 +102,11 @@ BOOL CTStorySelect::Execute(DWORD time)
 		m_face->SetDisplayMode(FALSE);
 	}
 
-	//‘I‘ğŠ®—¹Œã‚ÌƒEƒFƒCƒg
+	//é¸æŠå®Œäº†å¾Œã®ã‚¦ã‚§ã‚¤ãƒˆ
 	if(m_complete_flag){
 		if(++m_complete_counter>45 || g_input.GetKey(m_keyindex,0)&KEYSTA_ANYKEY)
 		{
-			//ƒXƒg[ƒŠ[ƒ‚[ƒhƒ^ƒXƒN‹N“®
+			//ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒ¢ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯èµ·å‹•
 			CTaskStoryMode *tsm = new CTaskStoryMode;
 			tsm->Setup(m_selected_story_index,m_keyindex,m_sinfo);
 			g_system.AddTask( tsm );
@@ -118,7 +118,7 @@ BOOL CTStorySelect::Execute(DWORD time)
 }
 
 /*-----------------------------------------------------------------------
-	”jŠü
+	ç ´æ£„
 -------------------------------------------------------------------------*/
 void CTStorySelect::Terminate()
 {
@@ -127,7 +127,7 @@ void CTStorySelect::Terminate()
 }
 
 /*-----------------------------------------------------------------------
-	ƒXƒg[ƒŠ[‘I‘ğˆ—
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼é¸æŠæ™‚å‡¦ç†
 -------------------------------------------------------------------------*/
 void CTStorySelect::OnSelect(CTStorySelecterRing *ring)
 {
@@ -136,7 +136,7 @@ void CTStorySelect::OnSelect(CTStorySelecterRing *ring)
 
 	m_selected_story_index = m_ring->GetSelected();
 
-	//settingî•ñ‚ğ•¡»
+	//settingæƒ…å ±ã‚’è¤‡è£½
 	CStoryList::CStoryInfo* sinfo = g_storylist.GetStoryInfo( m_selected_story_index );
 	if(sinfo){
 		m_sinfo = sinfo->Clone();
@@ -144,12 +144,12 @@ void CTStorySelect::OnSelect(CTStorySelecterRing *ring)
 	else g_system.ReturnTitle();
 
 	if(m_sinfo->cnum==0){
-		//ƒpƒ‰ƒ[ƒ^‘I‘ğ‚Ì•K—v‚È‚µ
+		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é¸æŠã®å¿…è¦ãªã—
 		OnParamSelectComplete();
 		return;
 	}
 
-	//¡ƒpƒ‰ƒ[ƒ^İ’èƒEƒCƒ“ƒhƒE“o˜^
+	//â– ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®šã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç™»éŒ²
 	m_paramwin = new CTStoryParamWindow;
 	m_paramwin->SetPriority(m_pri_paramwin);
 	m_paramwin->SetKeyIndex(m_keyindex);
@@ -160,7 +160,7 @@ void CTStorySelect::OnSelect(CTStorySelecterRing *ring)
 
 
 /*-----------------------------------------------------------------------
-	ƒpƒ‰ƒ[ƒ^‘I‘ğ‚ªI—¹
+	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é¸æŠãŒçµ‚äº†
 -------------------------------------------------------------------------*/
 void CTStorySelect::OnParamSelectComplete()
 {
@@ -174,7 +174,7 @@ void CTStorySelect::OnParamSelectComplete()
 
 
 /*-----------------------------------------------------------------------
-	ƒXƒg[ƒŠ[•ÏXˆ—
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼å¤‰æ›´æ™‚å‡¦ç†
 -------------------------------------------------------------------------*/
 void CTStorySelect::OnChange(CTStorySelecterRing *ring)
 {
@@ -183,7 +183,7 @@ void CTStorySelect::OnChange(CTStorySelecterRing *ring)
 	m_pv->Change( sindex );
 
 	CStoryList::CStoryInfo* sinfo = g_storylist.GetStoryInfo( sindex );
-	if(!sinfo)return;//‚¾‚ß‚Û
+	if(!sinfo)return;//ã ã‚ã½
 
 	m_face->Setup(sinfo->characters,sinfo->color,m_alts,sinfo->cnum);
 }
@@ -213,7 +213,7 @@ void CTStorySelect::OnCancel()
 
 
 /*-----------------------------------------------------------------------
-	ƒXƒg[ƒŠ[‘I‘ğŒã‚Ìƒpƒ‰ƒ[ƒ^•ÏX
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼é¸æŠå¾Œã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¤‰æ›´
 -------------------------------------------------------------------------*/
 void CTStorySelect::SelectChangeCharacter(UINT idx,int cindex)
 {
@@ -239,13 +239,13 @@ void CTStorySelect::SelectChangeOption(UINT idx,DWORD opt)
 
 /*=======================================================================================
 
-	ƒXƒg[ƒŠ[‘I‘ğƒŠƒ“ƒO
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼é¸æŠãƒªãƒ³ã‚°
 
 =========================================================================================*/
 
 
 /*-----------------------------------------------------------------------
-	ƒŠƒ“ƒO”Ô†+ƒCƒ“ƒfƒbƒNƒX ‚©‚çA‘S‘Ì‚Å‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
+	ãƒªãƒ³ã‚°ç•ªå·+ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ã‹ã‚‰ã€å…¨ä½“ã§ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
 -------------------------------------------------------------------------*/
 UINT CTStorySelecterRing::GetSelected()
 {
@@ -253,11 +253,11 @@ UINT CTStorySelecterRing::GetSelected()
 }
 
 /*-----------------------------------------------------------------------
-	Initialize‚©‚çƒR[ƒ‹‚³‚ê‚é
+	Initializeã‹ã‚‰ã‚³ãƒ¼ãƒ«ã•ã‚Œã‚‹
 -------------------------------------------------------------------------*/
 void CTStorySelecterRing::InitializeSub()
 {
-	//ƒpƒ‰ƒ[ƒ^ƒŠƒZƒbƒg
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒªã‚»ãƒƒãƒˆ
 	m_selected_ring = 0;
 	m_selected_index = 0;
 	m_counter = 0;
@@ -279,17 +279,17 @@ void CTStorySelecterRing::InitializeSub()
 
 
 /*-----------------------------------------------------------------------
-	XVBI‚í‚Á‚Ä‚½‚çI—¹‚·‚é
+	æ›´æ–°ã€‚çµ‚ã‚ã£ã¦ãŸã‚‰çµ‚äº†ã™ã‚‹
 -------------------------------------------------------------------------*/
 BOOL CTStorySelecterRing::Execute(DWORD time)
 {
-	if(GetDrawPriority()<0)return FALSE;//I—¹
+	if(GetDrawPriority()<0)return FALSE;//çµ‚äº†
 	return CTIconRingBase::Execute(time);
 }
 
 
 /*-----------------------------------------------------------------------
-	•\¦‚·‚éƒAƒCƒRƒ“‰æ‘œ‚ğ€”õ‚·‚é
+	è¡¨ç¤ºã™ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ç”»åƒã‚’æº–å‚™ã™ã‚‹
 -------------------------------------------------------------------------*/
 void CTStorySelecterRing::InitializeIcons()
 {
@@ -308,7 +308,7 @@ void CTStorySelecterRing::InitializeIcons()
 }
 
 /*-----------------------------------------------------------------------
-	•\¦‚·‚éƒAƒCƒRƒ“‰æ‘œ‚ğ”jŠü‚·‚é
+	è¡¨ç¤ºã™ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ç”»åƒã‚’ç ´æ£„ã™ã‚‹
 -------------------------------------------------------------------------*/
 void CTStorySelecterRing::DestroyIcons()
 {
@@ -322,7 +322,7 @@ void CTStorySelecterRing::DestroyIcons()
 }
 
 /*-----------------------------------------------------------------------
-	•\¦‚·‚éƒAƒCƒRƒ“‰æ‘œ‚ğæ“¾iDraw‚©‚çƒR[ƒ‹j
+	è¡¨ç¤ºã™ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ç”»åƒã‚’å–å¾—ï¼ˆDrawã‹ã‚‰ã‚³ãƒ¼ãƒ«ï¼‰
 -------------------------------------------------------------------------*/
 MYSURFACE* CTStorySelecterRing::GetIcon(UINT ridx,UINT idx)
 {
@@ -333,7 +333,7 @@ MYSURFACE* CTStorySelecterRing::GetIcon(UINT ridx,UINT idx)
 }
 
 /*-----------------------------------------------------------------------
-	ƒAƒCƒRƒ“•`‰æ‚Ì’¸“_F‚ğw’è‚·‚é(Draw‚©‚çƒR[ƒ‹,ƒ¿‚Í0‚Ì‚±‚Æ)
+	ã‚¢ã‚¤ã‚³ãƒ³æç”»æ™‚ã®é ‚ç‚¹è‰²ã‚’æŒ‡å®šã™ã‚‹(Drawã‹ã‚‰ã‚³ãƒ¼ãƒ«,Î±ã¯0ã®ã“ã¨)
 -------------------------------------------------------------------------*/
 DWORD CTStorySelecterRing::GetColor(UINT ridx,UINT idx)
 {
@@ -342,11 +342,11 @@ DWORD CTStorySelecterRing::GetColor(UINT ridx,UINT idx)
 
 
 /*-----------------------------------------------------------------------
-	ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚Ìˆ—
+	ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã¨ãã®å‡¦ç†
 -------------------------------------------------------------------------*/
 void CTStorySelecterRing::OnButtonDown(DWORD key)
 {
-	//SELECTƒ^ƒXƒNƒQƒbƒg
+	//SELECTã‚¿ã‚¹ã‚¯ã‚²ãƒƒãƒˆ
 	CTStorySelect* csselect = dynamic_cast<CTStorySelect*>(g_system.GetCurrentMainTask());
 	if(!csselect)return;
 
@@ -359,13 +359,13 @@ void CTStorySelecterRing::OnButtonDown(DWORD key)
 }
 
 /*-----------------------------------------------------------------------
-	ƒŠƒ“ƒO‚ª‚Ü‚í‚³‚ê‚ÄƒCƒ“ƒfƒbƒNƒX‚ª•Ï‰»‚µ‚½‚Æ‚«‚Ìˆ—
+	ãƒªãƒ³ã‚°ãŒã¾ã‚ã•ã‚Œã¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒå¤‰åŒ–ã—ãŸã¨ãã®å‡¦ç†
 -------------------------------------------------------------------------*/
 void CTStorySelecterRing::OnChangeIndex()
 {
 	m_belt->SetRing( GetSelected() ,FALSE);
 
-	//SELECTƒ^ƒXƒNƒQƒbƒg
+	//SELECTã‚¿ã‚¹ã‚¯ã‚²ãƒƒãƒˆ
 	CTStorySelect* csselect = dynamic_cast<CTStorySelect*>(g_system.GetCurrentMainTask());
 	if(!csselect)return;
 
@@ -373,13 +373,13 @@ void CTStorySelecterRing::OnChangeIndex()
 }
 
 /*-----------------------------------------------------------------------
-	ƒŠƒ“ƒO‚ª•ÏX‚³‚ê‚½‚Æ‚«‚Ìˆ—
+	ãƒªãƒ³ã‚°ãŒå¤‰æ›´ã•ã‚ŒãŸã¨ãã®å‡¦ç†
 -------------------------------------------------------------------------*/
 void CTStorySelecterRing::OnChangeRing()
 {
 	m_belt->SetRing( GetSelected() ,TRUE);
 	
-	//SELECTƒ^ƒXƒNƒQƒbƒg
+	//SELECTã‚¿ã‚¹ã‚¯ã‚²ãƒƒãƒˆ
 	CTStorySelect* csselect = dynamic_cast<CTStorySelect*>(g_system.GetCurrentMainTask());
 	if(!csselect)return;
 
@@ -387,7 +387,7 @@ void CTStorySelecterRing::OnChangeRing()
 }
 
 /*-----------------------------------------------------------------------
-	ƒŠƒ“ƒO‚Ì‘”‚ğæ“¾‚·‚é
+	ãƒªãƒ³ã‚°ã®ç·æ•°ã‚’å–å¾—ã™ã‚‹
 -------------------------------------------------------------------------*/
 UINT CTStorySelecterRing::GetMaxRing()
 {
@@ -395,7 +395,7 @@ UINT CTStorySelecterRing::GetMaxRing()
 }
 
 /*-----------------------------------------------------------------------
-	w’èƒŠƒ“ƒO‚ª‚Á‚Ä‚¢‚éƒAƒCƒRƒ“‚Ì”‚ğæ“¾
+	æŒ‡å®šãƒªãƒ³ã‚°ãŒæŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ã®æ•°ã‚’å–å¾—
 -------------------------------------------------------------------------*/
 UINT CTStorySelecterRing::GetMaxIndex(UINT ridx)
 {
@@ -404,17 +404,17 @@ UINT CTStorySelecterRing::GetMaxIndex(UINT ridx)
 }
 
 /*-----------------------------------------------------------------------
-	Á‚·
+	æ¶ˆã™
 -------------------------------------------------------------------------*/
 void CTStorySelecterRing::Hide()
 {
 	CTIconRingBase::Hide();
-	m_belt->Show(FALSE);//ƒIƒr‚àÁ‚·
+	m_belt->Show(FALSE);//ã‚ªãƒ“ã‚‚æ¶ˆã™
 }
 
 
 /*-----------------------------------------------------------------------
-	ƒXƒg[ƒŠ[ƒŠƒ“ƒO“àƒIƒrƒNƒ‰ƒX
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒªãƒ³ã‚°å†…ã‚ªãƒ“ã‚¯ãƒ©ã‚¹
 -------------------------------------------------------------------------*/
 void CTStorySelecterRing::CTStorySelectBelt::Initialize()
 {
@@ -437,11 +437,11 @@ void CTStorySelecterRing::CTStorySelectBelt::SetRing( UINT idx ,BOOL real_change
 
 void CTStorySelecterRing::CTStorySelectBelt::UpdateText()
 {
-	//m_ringIndex‚ÍAƒXƒg[ƒŠ[ƒŠƒ“ƒO”Ô†‚Å‚Í‚È‚­‘S‘Ì‚Ì’Ê‚µ”Ô†‚Æ‚µ‚Äg—p
+	//m_ringIndexã¯ã€ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒªãƒ³ã‚°ç•ªå·ã§ã¯ãªãå…¨ä½“ã®é€šã—ç•ªå·ã¨ã—ã¦ä½¿ç”¨
 	sprintf(m_disp_str,"%s",g_storylist.GetStoryDir(m_ringIndex));
 	for(UINT i=0;i<strlen(m_disp_str);i++){
 		if(m_disp_str[i]=='\\'){
-			m_disp_str[i]='/';//‚±‚Á‚¿‚Ì‚Ù‚¤‚ª‚©‚Á‚±‚æ‚³‚°
+			m_disp_str[i]='/';//ã“ã£ã¡ã®ã»ã†ãŒã‹ã£ã“ã‚ˆã•ã’
 		}
 	}}
 
@@ -449,14 +449,14 @@ void CTStorySelecterRing::CTStorySelectBelt::UpdateText()
 
 /*=======================================================================================
 
-	ƒfƒJŠç•\¦ƒNƒ‰ƒX
+	ãƒ‡ã‚«é¡”è¡¨ç¤ºã‚¯ãƒ©ã‚¹
 
 =========================================================================================*/
 
-#define CTStoryBigFace_AppearInterval (10)//oŒ»ƒCƒ“ƒ^[ƒoƒ‹
+#define CTStoryBigFace_AppearInterval (10)//å‡ºç¾ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«
 
 /*-----------------------------------------------------------------------
-	‰Šúİ’è
+	åˆæœŸè¨­å®š
 -------------------------------------------------------------------------*/
 void CTStoryBigFace::Initialize()
 {
@@ -476,7 +476,7 @@ void CTStoryBigFace::Initialize()
 }
 
 /*-----------------------------------------------------------------------
-	Às
+	å®Ÿè¡Œ
 -------------------------------------------------------------------------*/
 BOOL CTStoryBigFace::Execute(DWORD time)
 {
@@ -485,12 +485,12 @@ BOOL CTStoryBigFace::Execute(DWORD time)
 		m_appear_counter --;
 		if(m_appear_counter%CTStoryBigFace_AppearInterval==0)
 		{
-			//’è’…
+			//å®šç€
 			CTCharacterBigFace::Set(
 						m_cindex[m_selected_num],
 						m_color [m_selected_num],
 						m_alt[m_selected_num]);
-			//ƒeƒ“ƒ|ƒ‰ƒŠ[‚ÉoŒ»
+			//ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¼ã«å‡ºç¾
 			m_appear_cnt ++;
 			if(m_appear_cnt<=m_num){	
 				SetTemporary(m_characters[m_num-m_appear_cnt],m_colors[m_num-m_appear_cnt],m_alt[m_num-m_appear_cnt]);
@@ -502,11 +502,11 @@ BOOL CTStoryBigFace::Execute(DWORD time)
 }
 
 /*-----------------------------------------------------------------------
-	ƒLƒƒƒ‰ˆêŠ‡w’è
+	ã‚­ãƒ£ãƒ©ä¸€æ‹¬æŒ‡å®š
 -------------------------------------------------------------------------*/
 void CTStoryBigFace::Setup(int *chars,int *colors,int *alts,int num)
 {
-//	CTCharacterBigFace::Initialize();//ƒpƒ‰ƒ[ƒ^ƒŠƒZƒbƒg
+//	CTCharacterBigFace::Initialize();//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒªã‚»ãƒƒãƒˆ
 	m_selected_num = 0;
 
 	m_num = num;
@@ -526,7 +526,7 @@ void CTStoryBigFace::Setup(int *chars,int *colors,int *alts,int num)
 }
 
 /*-----------------------------------------------------------------------
-	Šù‘¶ƒLƒƒƒ‰F•ÏX
+	æ—¢å­˜ã‚­ãƒ£ãƒ©è‰²å¤‰æ›´
 -------------------------------------------------------------------------*/
 void CTStoryBigFace::ChangeCharacter(int cindex,int idx)
 {
@@ -534,7 +534,7 @@ void CTStoryBigFace::ChangeCharacter(int cindex,int idx)
 }
 
 /*-----------------------------------------------------------------------
-	Šù‘¶ƒLƒƒƒ‰•ÏX
+	æ—¢å­˜ã‚­ãƒ£ãƒ©å¤‰æ›´
 -------------------------------------------------------------------------*/
 void CTStoryBigFace::ChangeColor(int color,int idx)
 {
@@ -542,7 +542,7 @@ void CTStoryBigFace::ChangeColor(int color,int idx)
 }
 
 /*-----------------------------------------------------------------------
-	Šù‘¶ƒLƒƒƒ‰FaceAlt•ÏX
+	æ—¢å­˜ã‚­ãƒ£ãƒ©FaceAltå¤‰æ›´
 -------------------------------------------------------------------------*/
 void CTStoryBigFace::ChangeAlt(int alt,int idx)
 {
@@ -550,7 +550,7 @@ void CTStoryBigFace::ChangeAlt(int alt,int idx)
 }
 
 /*-----------------------------------------------------------------------
-	dark=TRUE ‚Å ‘I‘ğƒLƒƒƒ‰ˆÈŠO‚ğˆÃ‚­•\¦
+	dark=TRUE ã§ é¸æŠã‚­ãƒ£ãƒ©ä»¥å¤–ã‚’æš—ãè¡¨ç¤º
 -------------------------------------------------------------------------*/
 void CTStoryBigFace::SetDisplayMode(BOOL dark)
 {
@@ -558,7 +558,7 @@ void CTStoryBigFace::SetDisplayMode(BOOL dark)
 }
 
 /*-----------------------------------------------------------------------
-	dark=TRUE ‚É–¾‚é‚­•\¦‚·‚éƒLƒƒƒ‰‚ğw’è
+	dark=TRUE æ™‚ã«æ˜ã‚‹ãè¡¨ç¤ºã™ã‚‹ã‚­ãƒ£ãƒ©ã‚’æŒ‡å®š
 -------------------------------------------------------------------------*/
 void CTStoryBigFace::SetLightIndex(int idx)
 {
@@ -566,7 +566,7 @@ void CTStoryBigFace::SetLightIndex(int idx)
 }
 
 /*-----------------------------------------------------------------------
-	•`‰æ‚Ì•\¦Fw’è
+	æç”»æ™‚ã®è¡¨ç¤ºè‰²æŒ‡å®š
 -------------------------------------------------------------------------*/
 DWORD CTStoryBigFace::GetDispColor(UINT idx)
 {
@@ -579,18 +579,18 @@ DWORD CTStoryBigFace::GetDispColor(UINT idx)
 
 /*=======================================================================================
 
-	ƒXƒg[ƒŠ[ƒvƒŒƒrƒ…[•\¦ƒNƒ‰ƒX
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼è¡¨ç¤ºã‚¯ãƒ©ã‚¹
 
 =========================================================================================*/
 
 #define CTStorySelectPreview_Anim (40)
 
 /*-----------------------------------------------------------------------
-	‰Šú‰»
+	åˆæœŸåŒ–
 -------------------------------------------------------------------------*/
 void CTStorySelectPreview::Initialize()
 {
-	//ƒpƒ‰ƒ[ƒ^ƒŠƒZƒbƒg
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒªã‚»ãƒƒãƒˆ
 	m_counter		= 0;
 	m_crnt_sindex	=-1;
 	m_prev_sindex	=-1;
@@ -598,7 +598,7 @@ void CTStorySelectPreview::Initialize()
 	m_pv_prev		=NULL;
 
 	
-	//ŠT—vƒeƒLƒXƒg•`‰æƒNƒ‰ƒX‚ğ•Êƒ^ƒXƒN‚Æ‚µ‚Ä‹N“®
+	//æ¦‚è¦ãƒ†ã‚­ã‚¹ãƒˆæç”»ã‚¯ãƒ©ã‚¹ã‚’åˆ¥ã‚¿ã‚¹ã‚¯ã¨ã—ã¦èµ·å‹•
 	m_brief = new CTStoryBrief;
 	m_brief->SetPriority(m_txt_draw_priority);
 	g_system.AddTask(m_brief);
@@ -609,7 +609,7 @@ void CTStorySelectPreview::Initialize()
 }
 
 /*-----------------------------------------------------------------------
-	Às
+	å®Ÿè¡Œ
 -------------------------------------------------------------------------*/
 BOOL CTStorySelectPreview::Execute(DWORD time)
 {
@@ -623,7 +623,7 @@ BOOL CTStorySelectPreview::Execute(DWORD time)
 }
 
 /*-----------------------------------------------------------------------
-	”jŠü
+	ç ´æ£„
 -------------------------------------------------------------------------*/
 void CTStorySelectPreview::Terminate()
 {
@@ -632,7 +632,7 @@ void CTStorySelectPreview::Terminate()
 }
 
 /*-----------------------------------------------------------------------
-	•`‰æ
+	æç”»
 -------------------------------------------------------------------------*/
 void CTStorySelectPreview::Draw()
 {
@@ -646,11 +646,11 @@ void CTStorySelectPreview::Draw()
 
 	const float ybase = y_pos/240.0f;
 	const float hgt   = m_height/240.0f;
-	const float inv_ratio = 1.0f - m_ratio;//0¨1
+	const float inv_ratio = 1.0f - m_ratio;//0â†’1
 	const float xmgn = 0.1f;
 
 	if(m_counter && m_pv_prev){
-		//"‘O‚Ì"ƒvƒŒƒrƒ…[•`‰æ
+		//"å‰ã®"ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼æç”»
 		rsrc.right =(LONG)m_pv_prev->wg;
 		rsrc.bottom=(LONG)m_pv_prev->hg;
 
@@ -673,7 +673,7 @@ void CTStorySelectPreview::Draw()
 
 	if(m_pv)
 	{
-		//ƒvƒŒƒrƒ…[•`‰æ
+		//ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼æç”»
 		rsrc.right =(LONG)m_pv->wg;
 		rsrc.bottom=(LONG)m_pv->hg;
 
@@ -690,7 +690,7 @@ void CTStorySelectPreview::Draw()
 }
 
 /*-----------------------------------------------------------------------
-	•ÏX
+	å¤‰æ›´
 -------------------------------------------------------------------------*/
 void CTStorySelectPreview::Change(UINT sindex)
 {
@@ -708,7 +708,7 @@ void CTStorySelectPreview::Change(UINT sindex)
 }
 
 /*-----------------------------------------------------------------------
-	Á‹
+	æ¶ˆå»
 -------------------------------------------------------------------------*/
 void CTStorySelectPreview::HidePreview()
 {
@@ -722,8 +722,8 @@ void CTStorySelectPreview::HidePreview()
 
 
 /*-----------------------------------------------------------------------
-	ƒXƒg[ƒŠ[ƒvƒŒƒrƒ…[::ŠT—vƒeƒLƒXƒg
-	‰Šú‰»
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼::æ¦‚è¦ãƒ†ã‚­ã‚¹ãƒˆ
+	åˆæœŸåŒ–
 -------------------------------------------------------------------------*/
 void CTStorySelectPreview::CTStoryBrief::Initialize()
 {
@@ -735,8 +735,8 @@ void CTStorySelectPreview::CTStoryBrief::Initialize()
 }
 
 /*-----------------------------------------------------------------------
-	ƒXƒg[ƒŠ[ƒvƒŒƒrƒ…[::ŠT—vƒeƒLƒXƒg
-	Às
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼::æ¦‚è¦ãƒ†ã‚­ã‚¹ãƒˆ
+	å®Ÿè¡Œ
 -------------------------------------------------------------------------*/
 BOOL CTStorySelectPreview::CTStoryBrief::Execute(DWORD time)
 {
@@ -744,7 +744,7 @@ BOOL CTStorySelectPreview::CTStoryBrief::Execute(DWORD time)
 
 	char *str = g_storylist.GetStoryBrief(m_sindex);
 
-	//1•¶š‘‚â‚·
+	//1æ–‡å­—å¢—ã‚„ã™
 	if(disp_len < (int)strlen(str))
 	{
 		int len = (str[disp_len]&0x80) ? 2 : 1;
@@ -755,7 +755,7 @@ BOOL CTStorySelectPreview::CTStoryBrief::Execute(DWORD time)
 		disp_txt[disp_len] = '\0';
 	}
 
-	//‰B‚·‚Æ‚«ˆ—
+	//éš ã™ã¨ãå‡¦ç†
 	if(m_hideFlag){
 		m_hideMove+=9.0f;
 	}
@@ -763,7 +763,7 @@ BOOL CTStorySelectPreview::CTStoryBrief::Execute(DWORD time)
 	return TRUE;
 }
 
-//w’èƒCƒ“ƒfƒbƒNƒX‚ÌƒXƒg[ƒŠ[ŠT—v‚Ì•`‰æ‚ğŠJn‚·‚é
+//æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚¹ãƒˆãƒ¼ãƒªãƒ¼æ¦‚è¦ã®æç”»ã‚’é–‹å§‹ã™ã‚‹
 void CTStorySelectPreview::CTStoryBrief::Set(UINT sindex)
 {
 	m_sindex = sindex;
@@ -777,14 +777,14 @@ void CTStorySelectPreview::CTStoryBrief::Set(UINT sindex)
 	disp_len=0;
 }
 
-//ƒeƒLƒXƒg‚ğƒNƒŠƒA‚µA•`‰æ‚ğs‚í‚È‚­‚·‚é
+//ãƒ†ã‚­ã‚¹ãƒˆã‚’ã‚¯ãƒªã‚¢ã—ã€æç”»ã‚’è¡Œã‚ãªãã™ã‚‹
 void CTStorySelectPreview::CTStoryBrief::Clear()
 {
 	m_sindex = -1;
 	DELETEARRAY(disp_txt);
 }
 
-//‰B‚·
+//éš ã™
 void CTStorySelectPreview::CTStoryBrief::Hide()
 {
 	m_hideFlag=TRUE;
@@ -792,8 +792,8 @@ void CTStorySelectPreview::CTStoryBrief::Hide()
 }
 
 /*-----------------------------------------------------------------------
-	ƒXƒg[ƒŠ[ƒvƒŒƒrƒ…[::ŠT—vƒeƒLƒXƒg
-	”jŠü
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼::æ¦‚è¦ãƒ†ã‚­ã‚¹ãƒˆ
+	ç ´æ£„
 -------------------------------------------------------------------------*/
 void CTStorySelectPreview::CTStoryBrief::Terminate()
 {
@@ -801,8 +801,8 @@ void CTStorySelectPreview::CTStoryBrief::Terminate()
 }
 
 /*-----------------------------------------------------------------------
-	ƒXƒg[ƒŠ[ƒvƒŒƒrƒ…[::ŠT—vƒeƒLƒXƒg
-	•`‰æ
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼::æ¦‚è¦ãƒ†ã‚­ã‚¹ãƒˆ
+	æç”»
 -------------------------------------------------------------------------*/
 void CTStorySelectPreview::CTStoryBrief::Draw()
 {
@@ -819,7 +819,7 @@ void CTStorySelectPreview::CTStoryBrief::Draw()
 							);
 	}
 
-	//ƒeƒLƒXƒg
+	//ãƒ†ã‚­ã‚¹ãƒˆ
 	char* title = g_storylist.GetStoryName(m_sindex);
 	if(title){
 		g_system.DrawBMPTextEx( 
@@ -838,14 +838,14 @@ void CTStorySelectPreview::CTStoryBrief::Draw()
 
 /*=======================================================================================
 
-	ƒXƒg[ƒŠ[‘I‘ğŒãAƒpƒ‰ƒ[ƒ^’²®ƒEƒCƒ“ƒhƒE
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼é¸æŠå¾Œã€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿èª¿æ•´ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
 
 =========================================================================================*/
 
 CTStoryParamWindow* CTStoryParamWindow::m_instance = NULL;
 
 /*--------------------------------------------------------------------------------------
-	‰Šú‰»
+	åˆæœŸåŒ–
 ----------------------------------------------------------------------------------------*/
 void CTStoryParamWindow::Initialize()
 {
@@ -854,14 +854,14 @@ void CTStoryParamWindow::Initialize()
 
 	CTWindowBase::Initialize();
 
-	//ƒEƒCƒ“ƒhƒEƒpƒ‰ƒ[ƒ^‰Šú‰»
+	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
 	m_winwidth		= 620.0f;
 	m_winheight		= 180.0f;
 	m_winleft		= 10.0f;
 	m_wintop		= 270.0f;
 	m_wincolor		= 0xBBFFFFFF;
 
-	//ƒ~ƒjŠç‚Ì“Ç‚İ‚İ(ƒLƒƒƒ‰‘I‘ğ—p)
+	//ãƒŸãƒ‹é¡”ã®èª­ã¿è¾¼ã¿(ã‚­ãƒ£ãƒ©é¸æŠç”¨)
 	char *filepath = new char [MAX_PATH];
 	m_miniface = new MYSURFACE* [g_charlist.GetCharacterCount()];
 	for(i=0;i<g_charlist.GetCharacterCount();i++){
@@ -871,8 +871,8 @@ void CTStoryParamWindow::Initialize()
 	}
 	delete [] filepath;
 
-	//ƒLƒƒƒ‰ƒNƒ^”•ƒXƒg[ƒŠ[î•ñæ“¾
-	//SELECTƒ^ƒXƒNƒQƒbƒg
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿æ•°ï¼†ã‚¹ãƒˆãƒ¼ãƒªãƒ¼æƒ…å ±å–å¾—
+	//SELECTã‚¿ã‚¹ã‚¯ã‚²ãƒƒãƒˆ
 	CTStorySelect* csselect = dynamic_cast<CTStorySelect*>(g_system.GetCurrentMainTask());
 	if(!csselect){
 		g_system.ReturnTitle();
@@ -885,7 +885,7 @@ void CTStoryParamWindow::Initialize()
 	}
 	m_num = (*m_sinfo)->cnum;
 
-	//Lockƒtƒ‰ƒO¶¬
+	//Lockãƒ•ãƒ©ã‚°ç”Ÿæˆ
 	for(UINT i=0;i<m_num;i++){
 		m_lock[i][0] = ((*m_sinfo)->characters[i] < 0) ? FALSE : TRUE;
 		if(m_lock[i][0])
@@ -899,7 +899,7 @@ void CTStoryParamWindow::Initialize()
 		}
 	}
 	
-	//ƒpƒ‰ƒ[ƒ^ƒŠƒZƒbƒg
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒªã‚»ãƒƒãƒˆ
 	m_crnt_cindex = 0;
 	m_crnt_param = 0;
 	m_state = state_start;
@@ -908,7 +908,7 @@ void CTStoryParamWindow::Initialize()
 }
 
 /*--------------------------------------------------------------------------------------
-	Às
+	å®Ÿè¡Œ
 ----------------------------------------------------------------------------------------*/
 BOOL CTStoryParamWindow::Execute(DWORD time)
 {
@@ -924,20 +924,20 @@ BOOL CTStoryParamWindow::Execute(DWORD time)
 	return TRUE;
 }
 
-//oŒ»ˆ—
+//å‡ºç¾æ™‚å‡¦ç†
 void CTStoryParamWindow::Exec_Start()
 {
 	if(m_ratio==1.0f)m_state = state_exec;
 }
 
-//•½íˆ—
+//å¹³å¸¸æ™‚å‡¦ç†
 void CTStoryParamWindow::Exec_Exec()
 {
 	DWORD keysta = g_input.GetKey(m_keyindex,0);
 	
 	if(keysta & KEYSTA_BA2){
 		switch(m_crnt_param){
-		case 0://ƒLƒƒƒ‰ƒNƒ^‘I‘ğ‚Ö
+		case 0://ã‚­ãƒ£ãƒ©ã‚¯ã‚¿é¸æŠã¸
 			{
 				if(!(m_lock[m_crnt_cindex][m_crnt_param])){
 					CCharSelecter* pchsel = new CCharSelecter;
@@ -947,7 +947,7 @@ void CTStoryParamWindow::Exec_Exec()
 					pchsel->m_miniface = m_miniface;
 					for(UINT i=0;i<m_num;i++)
 					{
-						//‚·‚Å‚É‘I‘ğ‚³‚ê‚Ä‚¢‚éƒLƒƒƒ‰ƒNƒ^‚ğ‘I‘ğ‚Å‚«‚È‚­‚·‚é
+						//ã™ã§ã«é¸æŠã•ã‚Œã¦ã„ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’é¸æŠã§ããªãã™ã‚‹
 						if(i!=m_crnt_cindex && (*m_sinfo)->characters[i]>=0){
 							pchsel->AddSelected( (*m_sinfo)->characters[i] );
 						}
@@ -960,10 +960,10 @@ void CTStoryParamWindow::Exec_Exec()
 				}
 				return;
 			}break;
-		case 1://ƒJƒ‰[‘I‘ğ‚Ö
+		case 1://ã‚«ãƒ©ãƒ¼é¸æŠã¸
 			{
 				if(!(m_lock[m_crnt_cindex][m_crnt_param])
-						&& (*m_sinfo)->characters[m_crnt_cindex]>=0)//ƒLƒƒƒ‰ƒNƒ^‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í‘I‘ğ‚³‚¹‚È‚¢
+						&& (*m_sinfo)->characters[m_crnt_cindex]>=0)//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãŒé¸æŠã•ã‚Œã¦ã„ãªã„å ´åˆã¯é¸æŠã•ã›ãªã„
 				{
 					CColorSelecter* pcosel = new CColorSelecter;
 					pcosel->SetPriority( m_draw_priority -1);
@@ -978,10 +978,10 @@ void CTStoryParamWindow::Exec_Exec()
 				}
 				return;
 			}break;
-		case 2://ƒIƒvƒVƒ‡ƒ“‘I‘ğ‚Ö
+		case 2://ã‚ªãƒ—ã‚·ãƒ§ãƒ³é¸æŠã¸
 			{
 				if(!(m_lock[m_crnt_cindex][m_crnt_param])
-						&& (*m_sinfo)->characters[m_crnt_cindex]>=0)//ƒLƒƒƒ‰ƒNƒ^‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í‘I‘ğ‚³‚¹‚È‚¢
+						&& (*m_sinfo)->characters[m_crnt_cindex]>=0)//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãŒé¸æŠã•ã‚Œã¦ã„ãªã„å ´åˆã¯é¸æŠã•ã›ãªã„
 				{
 					COptionSelecter* popsel = new COptionSelecter;
 					popsel->SetPriority( m_draw_priority -1);
@@ -996,10 +996,10 @@ void CTStoryParamWindow::Exec_Exec()
 				}
 				return;
 			}break;
-		case 3://OKƒ{ƒ^ƒ“
+		case 3://OKãƒœã‚¿ãƒ³
 			{
 				if(m_ok){
-					//SELECTƒ^ƒXƒNƒQƒbƒg
+					//SELECTã‚¿ã‚¹ã‚¯ã‚²ãƒƒãƒˆ
 					CTStorySelect* csselect = dynamic_cast<CTStorySelect*>(g_system.GetCurrentMainTask());
 					if(!csselect)return;
 					csselect->OnParamSelectComplete();
@@ -1011,19 +1011,19 @@ void CTStoryParamWindow::Exec_Exec()
 		return;
 	}
 
-	if(keysta & KEYSTA_ALEFT2){			//©
+	if(keysta & KEYSTA_ALEFT2){			//â†
 		if(m_crnt_cindex==0)m_crnt_cindex=m_num-1;
 		else m_crnt_cindex--;
 	}
-	else if(keysta & KEYSTA_ARIGHT2){	//¨
+	else if(keysta & KEYSTA_ARIGHT2){	//â†’
 		m_crnt_cindex++;
 		if(m_crnt_cindex==m_num)m_crnt_cindex=0;
 	}
-	else if(keysta & KEYSTA_UP2){		//ª
+	else if(keysta & KEYSTA_UP2){		//â†‘
 		if(m_crnt_param==0)m_crnt_param=3;
 		else m_crnt_param--;
 	}
-	else if(keysta & KEYSTA_DOWN2){		//«
+	else if(keysta & KEYSTA_DOWN2){		//â†“
 		m_crnt_param++;
 		if(m_crnt_param==4)m_crnt_param=0;
 	}
@@ -1032,13 +1032,13 @@ void CTStoryParamWindow::Exec_Exec()
 	OkCheck();
 }
 
-//‘Ò‹@ˆ—
+//å¾…æ©Ÿæ™‚å‡¦ç†
 void CTStoryParamWindow::Exec_Wait()
 {
-	//‚È‚ñ‚à‚È‚µH
+	//ãªã‚“ã‚‚ãªã—ï¼Ÿ
 }
 
-//Á¸ˆ—
+//æ¶ˆå¤±æ™‚å‡¦ç†
 BOOL CTStoryParamWindow::Exec_Hide()
 {
 	return (GetDrawPriority()<0) ? FALSE : TRUE;
@@ -1050,11 +1050,11 @@ void CTStoryParamWindow::ToWaitMode()
 }
 
 /*--------------------------------------------------------------------------------------
-	Œãn––
+	å¾Œå§‹æœ«
 ----------------------------------------------------------------------------------------*/
 void CTStoryParamWindow::Terminate()
 {
-	//ƒ~ƒjŠç‚Ì”jŠü
+	//ãƒŸãƒ‹é¡”ã®ç ´æ£„
 	for(int i=0;i<g_charlist.GetCharacterCount();i++){
 		RELSURFACE(m_miniface[i]);
 	}
@@ -1066,15 +1066,15 @@ void CTStoryParamWindow::Terminate()
 }
 
 /*--------------------------------------------------------------------------------------
-	•`‰æ
+	æç”»
 ----------------------------------------------------------------------------------------*/
 void CTStoryParamWindow::Draw()
 {
-	//‰º’n•`‰æ
+	//ä¸‹åœ°æç”»
 	CTWindowBase::CalcDrawParameters();
 	CTWindowBase::Draw();
 
-	//ƒeƒLƒXƒg•`‰æ
+	//ãƒ†ã‚­ã‚¹ãƒˆæç”»
 	float x = 10;
 	float xstep = 150;
 	float ymgn = 20.0f;
@@ -1101,7 +1101,7 @@ void CTStoryParamWindow::Draw()
 	int j;
 	for(UINT i=0;i<m_num;i++)
 	{
-		//ƒLƒƒƒ‰ƒNƒ^ƒCƒ“ƒfƒbƒNƒX
+		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 		j=0;
 		if((*m_sinfo)->characters[i]<0){
 			DrawText(x,y[j],0.0f,"Not Selected",GetDrawColor(i,j),0.6f,1.0f,SYSBMPTXT_PROP);
@@ -1110,7 +1110,7 @@ void CTStoryParamWindow::Draw()
 			sprintf(tmp,"<%d>",(*m_sinfo)->characters[i]);
 			DrawText(x,y[j],0.0f,tmp,GetDrawColor(i,j),1.0f,1.0f,SYSBMPTXT_PROP);
 		}
-		//ƒLƒƒƒ‰ƒNƒ^ƒJƒ‰[
+		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚«ãƒ©ãƒ¼
 		j=1;
 		if((*m_sinfo)->color[i]<0){
 			DrawText(x,y[j],0.0f,"Not Selected",GetDrawColor(i,j),0.6f,1.0f,SYSBMPTXT_PROP);
@@ -1119,7 +1119,7 @@ void CTStoryParamWindow::Draw()
 			sprintf(tmp,"<%d>",(*m_sinfo)->color[i]);
 			DrawText(x,y[j],0.0f,tmp,GetDrawColor(i,j),1.0f,1.0f,SYSBMPTXT_PROP);
 		}
-		//ƒLƒƒƒ‰ƒNƒ^ƒIƒvƒVƒ‡ƒ“
+		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 		j=2;
 		switch((*m_sinfo)->opttype[i]){
 		case Opt_Random:
@@ -1151,7 +1151,7 @@ void CTStoryParamWindow::Draw()
 			);
 }
 
-//•`‰æƒeƒLƒXƒgƒJƒ‰[æ“¾
+//æç”»æ™‚ãƒ†ã‚­ã‚¹ãƒˆã‚«ãƒ©ãƒ¼å–å¾—
 DWORD CTStoryParamWindow::GetDrawColor(UINT cidx,UINT param_idx)
 {
 	const DWORD lok1 = 0xFFFF0000;
@@ -1179,16 +1179,16 @@ DWORD CTStoryParamWindow::GetDrawColor(UINT cidx,UINT param_idx)
 
 
 /*--------------------------------------------------------------------------------------
-	‘I‘ğI—¹‚µ‚ÄOK‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+	é¸æŠçµ‚äº†ã—ã¦OKã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
 ----------------------------------------------------------------------------------------*/
 void CTStoryParamWindow::OkCheck()
 {
-	m_ok = TRUE;//š
+	m_ok = TRUE;//â˜…
 }
 
 
 /*--------------------------------------------------------------------------------------
-	ƒTƒuƒ^ƒXƒNI—¹•œ‹Aˆ—
+	ã‚µãƒ–ã‚¿ã‚¹ã‚¯çµ‚äº†æ™‚å¾©å¸°å‡¦ç†
 ----------------------------------------------------------------------------------------*/
 void CTStoryParamWindow::EndSub()
 {
@@ -1199,14 +1199,14 @@ void CTStoryParamWindow::EndSub()
 
 /*=======================================================================================
 
-	ƒXƒg[ƒŠ[‘I‘ğŒãAƒpƒ‰ƒ[ƒ^’²®ƒEƒCƒ“ƒhƒE@-@ƒLƒƒƒ‰‘I‘ğƒTƒuƒ^ƒXƒN
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼é¸æŠå¾Œã€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿èª¿æ•´ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã€€-ã€€ã‚­ãƒ£ãƒ©é¸æŠã‚µãƒ–ã‚¿ã‚¹ã‚¯
 
 =========================================================================================*/
 
 void CTStoryParamWindow::CCharSelecter::Terminate()
 {
 	CTCharacterRing::Terminate();
-	CTStoryParamWindow::EndSub();//eƒ^ƒXƒN•œ‹A
+	CTStoryParamWindow::EndSub();//è¦ªã‚¿ã‚¹ã‚¯å¾©å¸°
 }
 
 BOOL CTStoryParamWindow::CCharSelecter::Execute(DWORD time)
@@ -1216,12 +1216,12 @@ BOOL CTStoryParamWindow::CCharSelecter::Execute(DWORD time)
 }
 
 /*--------------------------------------------------------------------------------------
-	ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚Ìˆ—
+	ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã¨ãã®å‡¦ç†
 ----------------------------------------------------------------------------------------*/
 void CTStoryParamWindow::CCharSelecter::OnButtonDown(DWORD key)
 {
-	//Œˆ’è
-	if(key & KEYSTA_BA2){//uAvŒˆ’è
+	//æ±ºå®š
+	if(key & KEYSTA_BA2){//ã€ŒAã€æ±ºå®š
 		if(!IsSelected(GetSelected())){
 			Hide();
 		}
@@ -1230,26 +1230,26 @@ void CTStoryParamWindow::CCharSelecter::OnButtonDown(DWORD key)
 
 
 /*--------------------------------------------------------------------------------------
-	‘I‘ğ•ÏXˆ—
+	é¸æŠå¤‰æ›´æ™‚å‡¦ç†
 ----------------------------------------------------------------------------------------*/
 void CTStoryParamWindow::CCharSelecter::Notify()
 {
-	//SELECTƒ^ƒXƒNƒQƒbƒg
+	//SELECTã‚¿ã‚¹ã‚¯ã‚²ãƒƒãƒˆ
 	CTStorySelect* csselect = dynamic_cast<CTStorySelect*>(g_system.GetCurrentMainTask());
 	if(!csselect){
 		return;
 	}
 
-	//•ÏX‚ğ’Ê’m
+	//å¤‰æ›´ã‚’é€šçŸ¥
 	csselect->SelectChangeCharacter(cidx,GetSelected());
 }
 
 /*--------------------------------------------------------------------------------------
-	•\¦‚·‚éƒAƒCƒRƒ“‰æ‘œ‚ğæ“¾iDraw‚©‚çƒR[ƒ‹j
+	è¡¨ç¤ºã™ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ç”»åƒã‚’å–å¾—ï¼ˆDrawã‹ã‚‰ã‚³ãƒ¼ãƒ«ï¼‰
 ----------------------------------------------------------------------------------------*/
 MYSURFACE* CTStoryParamWindow::CCharSelecter::GetIcon(UINT ridx,UINT idx)
 {
-	if(!m_miniface)return NULL;//ƒ_ƒ‚Û
+	if(!m_miniface)return NULL;//ãƒ€ãƒ¡ã½
 
 	int sidx = g_charlist.RingIndex2SerialIndex(ridx,idx);
 	if(sidx>g_charlist.GetCharacterCount())return NULL;
@@ -1257,8 +1257,8 @@ MYSURFACE* CTStoryParamWindow::CCharSelecter::GetIcon(UINT ridx,UINT idx)
 }
 
 /*--------------------------------------------------------------------------------------
-	‰Šú’lİ’èB
-	“n‚³‚ê‚é‚Ì‚Í‘S‘Ì‚Å‚Ì’Ê‚µ”Ô†‚È‚Ì‚ÅŒ‹\‚ß‚ñ‚Ç‚­‚³‚¢
+	åˆæœŸå€¤è¨­å®šã€‚
+	æ¸¡ã•ã‚Œã‚‹ã®ã¯å…¨ä½“ã§ã®é€šã—ç•ªå·ãªã®ã§çµæ§‹ã‚ã‚“ã©ãã•ã„
 ----------------------------------------------------------------------------------------*/
 void CTStoryParamWindow::CCharSelecter::SetInitialValue(int chr)
 {
@@ -1285,7 +1285,7 @@ void CTStoryParamWindow::CCharSelecter::SetInitialValue(int chr)
 
 /*=======================================================================================
 
-	ƒXƒg[ƒŠ[‘I‘ğŒãAƒpƒ‰ƒ[ƒ^’²®ƒEƒCƒ“ƒhƒE@-@ƒJƒ‰[‘I‘ğƒTƒuƒ^ƒXƒN
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼é¸æŠå¾Œã€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿èª¿æ•´ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã€€-ã€€ã‚«ãƒ©ãƒ¼é¸æŠã‚µãƒ–ã‚¿ã‚¹ã‚¯
 
 =========================================================================================*/
 void CTStoryParamWindow::CColorSelecter::Initialize()
@@ -1331,12 +1331,12 @@ BOOL CTStoryParamWindow::CColorSelecter::Execute(DWORD time)
 void CTStoryParamWindow::CColorSelecter::Terminate()
 {
 	CTWindowBase::Terminate();
-	CTStoryParamWindow::EndSub();//eƒ^ƒXƒN•œ‹A
+	CTStoryParamWindow::EndSub();//è¦ªã‚¿ã‚¹ã‚¯å¾©å¸°
 }
 
 void CTStoryParamWindow::CColorSelecter::Draw()
 {
-	//‰º’n•`‰æ
+	//ä¸‹åœ°æç”»
 	CTWindowBase::CalcDrawParameters();
 	CTWindowBase::Draw();
 
@@ -1365,51 +1365,51 @@ void CTStoryParamWindow::CColorSelecter::SetInitialValue(int col)
 
 void CTStoryParamWindow::CColorSelecter::Notify()
 {
-	//SELECTƒ^ƒXƒNƒQƒbƒg
+	//SELECTã‚¿ã‚¹ã‚¯ã‚²ãƒƒãƒˆ
 	CTStorySelect* csselect = dynamic_cast<CTStorySelect*>(g_system.GetCurrentMainTask());
 	if(!csselect){
 		return;
 	}
 
-	//•ÏX‚ğ’Ê’m
+	//å¤‰æ›´ã‚’é€šçŸ¥
 	csselect->SelectChangeColor(cidx,color);
 }
 
 /*=======================================================================================
 
-	ƒXƒg[ƒŠ[‘I‘ğŒãAƒpƒ‰ƒ[ƒ^’²®ƒEƒCƒ“ƒhƒE@-@ƒIƒvƒVƒ‡ƒ“‘I‘ğƒTƒuƒ^ƒXƒN
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼é¸æŠå¾Œã€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿èª¿æ•´ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã€€-ã€€ã‚ªãƒ—ã‚·ãƒ§ãƒ³é¸æŠã‚µãƒ–ã‚¿ã‚¹ã‚¯
 
 =========================================================================================*/
 
 void CTStoryParamWindow::COptionSelecter::EndSelect()
 {
-	// Œp³‚Å‚È‚ñ‚Æ‚©‚µ‚½‚¢
+	// ç¶™æ‰¿ã§ãªã‚“ã¨ã‹ã—ãŸã„
 	if (GetSelecter()->GetFavorite() == 0 && GetSelecter()->GetState() != 0xFFFFFFFF && !custom_mode){
-		// CUSTOM‚ª‘I‚Î‚ê‚½‚Ì‚ÅAm_customselect‚Ìˆ—ƒ‚[ƒh‚ÉˆÚs
+		// CUSTOMãŒé¸ã°ã‚ŒãŸã®ã§ã€m_customselectã®å‡¦ç†ãƒ¢ãƒ¼ãƒ‰ã«ç§»è¡Œ
 		m_customselect.SetAndShow(m_cindex, m_keyIndex);
 		m_customselect.SetPos(offset_x, m_top);
 		custom_mode = TRUE;
 	}
 	else{
-		//SELECTƒ^ƒXƒNƒQƒbƒg
+		//SELECTã‚¿ã‚¹ã‚¯ã‚²ãƒƒãƒˆ
 		CTStorySelect* csselect = dynamic_cast<CTStorySelect*>(g_system.GetCurrentMainTask());
 		if(!csselect){
 			return;
 		}
 
-		//•ÏX‚ğ’Ê’m
+		//å¤‰æ›´ã‚’é€šçŸ¥
 		if (custom_mode)
 			csselect->SelectChangeOption(m_cindex2,m_customselect.GetSelecter()->GetSettings());
 		else
 			csselect->SelectChangeOption(m_cindex2,m_selecter->GetSettings());
 
-		CTStoryParamWindow::EndSub();//eƒ^ƒXƒN•œ‹A
+		CTStoryParamWindow::EndSub();//è¦ªã‚¿ã‚¹ã‚¯å¾©å¸°
 	}
 }
 
 void CTStoryParamWindow::COptionSelecter::Draw()
 {
-	//‰º’n•`‰æF
+	//ä¸‹åœ°æç”»è‰²
 	DWORD color ;
 	color = (DWORD)(m_tick*240);
 	color &= 0x000000FF;
@@ -1459,17 +1459,17 @@ BOOL CTStoryParamWindow::COptionSelecter::Execute(DWORD time)
 {
 	float anmSpd = 0.08f;
 
-	// ˆÈ‰º–³—–î—‹C–¡A‚æ‚¢q‚Íƒ}ƒl‚µ‚È‚¢B
+	// ä»¥ä¸‹ç„¡ç†çŸ¢ç†æ°—å‘³ã€ã‚ˆã„å­ã¯ãƒãƒã—ãªã„ã€‚
 	if (m_customselect.State() == CTOPTSS_Ready)
-		customend = false;	// «‚Ìˆ—‚ªI‚í‚Á‚½uŠÔ‚É—§‚Ä‚é‚½‚ß‚Ìƒtƒ‰ƒO
+		customend = false;	// â†“ã®å‡¦ç†ãŒçµ‚ã‚ã£ãŸç¬é–“ã«ç«‹ã¦ã‚‹ãŸã‚ã®ãƒ•ãƒ©ã‚°
 
-	if (custom_mode && m_customselect.State() == CTOPTSS_Hide){		// CUSTOM‘I‘ğ‚ªI‚í‚Á‚½‚Æ‚«
+	if (custom_mode && m_customselect.State() == CTOPTSS_Hide){		// CUSTOMé¸æŠãŒçµ‚ã‚ã£ãŸã¨ã
 		if(!customend){
 			customend = true;
 			EndSelect();
 		}
 
-		// –³—–î—”wŒi‚ğÁ‚·
+		// ç„¡ç†çŸ¢ç†èƒŒæ™¯ã‚’æ¶ˆã™
 		m_tick -= anmSpd;
 		if(m_tick<0){
 			m_tick = 0;

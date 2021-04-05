@@ -1,4 +1,4 @@
-// goluah_config.h : PROJECT_NAME ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒƒCƒ“ ƒwƒbƒ_[ ƒtƒ@ƒCƒ‹‚Å‚·B
+ï»¿// goluah_config.h : PROJECT_NAME ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ¡ã‚¤ãƒ³ ãƒ˜ãƒƒãƒ€ãƒ¼ ãƒ•ã‚¡ã‚¤ãƒ«ã§ã™ã€‚
 //
 
 #pragma once
@@ -7,11 +7,11 @@
 	#error include 'stdafx.h' before including this file for PCH
 #endif
 
-#include "resource.h"		// ƒƒCƒ“ ƒVƒ“ƒ{ƒ‹
+#include "resource.h"		// ãƒ¡ã‚¤ãƒ³ ã‚·ãƒ³ãƒœãƒ«
 
 
 // Cgoluah_configApp:
-// ‚±‚ÌƒNƒ‰ƒX‚ÌÀ‘•‚É‚Â‚¢‚Ä‚ÍAgoluah_config.cpp ‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+// ã“ã®ã‚¯ãƒ©ã‚¹ã®å®Ÿè£…ã«ã¤ã„ã¦ã¯ã€goluah_config.cpp ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚
 //
 
 class Cgoluah_configApp : public CWinApp
@@ -19,11 +19,11 @@ class Cgoluah_configApp : public CWinApp
 public:
 	Cgoluah_configApp();
 
-// ƒI[ƒo[ƒ‰ƒCƒh
+// ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
 	public:
 	virtual BOOL InitInstance();
 
-// À‘•
+// å®Ÿè£…
 
 	DECLARE_MESSAGE_MAP()
 };

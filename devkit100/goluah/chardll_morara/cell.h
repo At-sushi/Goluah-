@@ -1,4 +1,4 @@
-#define CELL_NEUTRAL 101
+﻿#define CELL_NEUTRAL 101
 #define CELL_CROUCH 102
 #define CELL_WIN1 103
 #define CELL_WIN2 104

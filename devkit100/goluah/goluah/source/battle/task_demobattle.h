@@ -1,11 +1,11 @@
-#include "task_battle.h"
+ï»¿#include "task_battle.h"
 
 /*!
-*	@brief	ƒfƒ‚‰æ–Ê—pí“¬ƒ^ƒXƒN
+*	@brief	ãƒ‡ãƒ¢ç”»é¢ç”¨æˆ¦é—˜ã‚¿ã‚¹ã‚¯
 *	@ingroup Battle
 *
-*	ƒ^ƒCƒgƒ‹‰æ–Ê‚Å‚µ‚Î‚ç‚­•ú‚Á‚Ä‚¨‚­‚Æn‚Ü‚éƒfƒ‚‰æ–Ê‚Ìƒ^ƒXƒNB
-*	d‚³‘Îô‚Ì‚½‚ßA‚Pƒ`[ƒ€‚ÌƒLƒƒƒ‰”‚ğ­‚µ§ŒÀ‚µ‚Ä‚Ü‚·B
+*	ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã§ã—ã°ã‚‰ãæ”¾ã£ã¦ãŠãã¨å§‹ã¾ã‚‹ãƒ‡ãƒ¢ç”»é¢ã®ã‚¿ã‚¹ã‚¯ã€‚
+*	é‡ã•å¯¾ç­–ã®ãŸã‚ã€ï¼‘ãƒãƒ¼ãƒ ã®ã‚­ãƒ£ãƒ©æ•°ã‚’å°‘ã—åˆ¶é™ã—ã¦ã¾ã™ã€‚
 */
 class CBattleTaskDemo :
 	public CBattleTask
@@ -17,16 +17,16 @@ public:
 	virtual BOOL Execute(DWORD time);
 
 protected:
-	virtual void Setting_BattleType();			//!< ‘ÎíŒ`®‚ğİ’è
-	virtual void Setting_Characters();			//!< ƒLƒƒƒ‰ƒNƒ^[‚ğİ’è
-	virtual void Setting_Stage();				//!< ƒXƒe[ƒW‚ğİ’è
-	virtual void Setting_Other();				//!< ‚»‚Ì‘¼HŠÔ‚Æ‚©B
+	virtual void Setting_BattleType();			//!< å¯¾æˆ¦å½¢å¼ã‚’è¨­å®š
+	virtual void Setting_Characters();			//!< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚’è¨­å®š
+	virtual void Setting_Stage();				//!< ã‚¹ãƒ†ãƒ¼ã‚¸ã‚’è¨­å®š
+	virtual void Setting_Other();				//!< ãã®ä»–ï¼Ÿæ™‚é–“ã¨ã‹ã€‚
 
 	enum{
-		DEMOBATTLE_MAXTEAM = 2,					//!< ƒ`[ƒ€‚²‚Æ‚ÌÅ‘ål”
-		DEMOBATTLE_LIMITTIME = 3000				//!< ƒfƒ‚‚ªI‚í‚é‚Ü‚Å‚ÌŠÔ
+		DEMOBATTLE_MAXTEAM = 2,					//!< ãƒãƒ¼ãƒ ã”ã¨ã®æœ€å¤§äººæ•°
+		DEMOBATTLE_LIMITTIME = 3000				//!< ãƒ‡ãƒ¢ãŒçµ‚ã‚ã‚‹ã¾ã§ã®æ™‚é–“
 	};
 
-	void InitRandomCharacters();				//!< m_randchar ‚É“KØ‚È’l‚ğ‘I‘ğ‚·‚é
-	UINT m_randchar[2][DEMOBATTLE_MAXTEAM];		//!< (‚È‚é‚×‚­)d•¡‚µ‚È‚¢‚æ‚¤‚É‘I‘ğ‚µ‚½ƒ‰ƒ“ƒ_ƒ€ƒLƒƒƒ‰
+	void InitRandomCharacters();				//!< m_randchar ã«é©åˆ‡ãªå€¤ã‚’é¸æŠã™ã‚‹
+	UINT m_randchar[2][DEMOBATTLE_MAXTEAM];		//!< (ãªã‚‹ã¹ã)é‡è¤‡ã—ãªã„ã‚ˆã†ã«é¸æŠã—ãŸãƒ©ãƒ³ãƒ€ãƒ ã‚­ãƒ£ãƒ©
 };

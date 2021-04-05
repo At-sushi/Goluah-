@@ -1,126 +1,126 @@
-
+﻿
 /*=============================================================================
 
-	GOLUAH �L�����N�^�[�E�X�e�[�WDLL �̃r���h�ɕK�v�Ȋe��\���̂̒�`
+	GOLUAH キャラクター・ステージDLL のビルドに必要な各種構造体の定義
 
 ===============================================================================*/
 #ifndef _GOBJECT_H_
 #define _GOBJECT_H_
 
-//GCD�t�H�[�}�b�g��`���K�v
+//GCDフォーマット定義が必要
 #ifndef _DEFINE_GCD_H_
 #include "define_gcd.h"
 #endif
 
 //******************************************************************************
-//�@�@�U���͏��
+//　　攻撃力情報
 //******************************************************************************
 struct ATTACKINFO
 {
-	DWORD hit;		//�q�b�g���B���̃t���O(HITINFO_�`)�̘_���a���w��
-	DWORD guard;	//�K�[�h���B���̃t���O(GUARDINFO_�`)�̘_���a���w��
-	DWORD id;		//�L�����N�^���ŏ���ɒ�`����
+	DWORD hit;		//ヒット情報。下のフラグ(HITINFO_～)の論理和を指定
+	DWORD guard;	//ガード情報。下のフラグ(GUARDINFO_～)の論理和を指艇
+	DWORD id;		//キャラクタ側で勝手に定義して
 
-	DWORD damage;	//�_���[�W
-	DWORD kezuri;	//���
+	DWORD damage;	//ダメージ
+	DWORD kezuri;	//削り
 
-	BOOL muki;//���肪�̂��������(FALSE�Ȃ�΁A�����������Ă�������Ɠ���)
+	BOOL muki;//相手がのけぞる向き(FALSEならば、自分が向いている方向と同じ)
 };
 
 //hit
-#define HITINFO_REACT1		0x00000001//���ʂ̎�̂�����
-#define HITINFO_REACT2		0x00000002//���ʂ̒��̂�����
-#define HITINFO_REACT3		0x00000003//���ʂ̋��̂�����
-#define HITINFO_DOWN		0x00000004//�_�E�\����i�]�ԁj
-#define HITINFO_FUTTOBI		0x00000005//�������
-#define HITINFO_FUTTOBI2	0x00000006//������ԁi������Ə�̂ق��ցj
-#define HITINFO_REACT1A		0x00000007//��A�̂�����Ȃ�
-#define HITINFO_REACT2A		0x00000008//���A�̂�����Ȃ�
-#define HITINFO_REACT3A		0x00000009//���A�̂�����Ȃ�
-#define HITINFO_TATAKI1A	0x0000000A//�^���@�����o�E���h�L��
-#define HITINFO_TATAKI2A	0x0000000B//�^���@�����o�E���h�Ȃ�
-#define HITINFO_TATAKI1B	0x0000000C//�΂ߒ@�����o�E���h�L��
-#define HITINFO_TATAKI2B	0x0000000D//�΂ߒ@�����o�E���h�Ȃ�
+#define HITINFO_REACT1		0x00000001//普通の弱のけぞり
+#define HITINFO_REACT2		0x00000002//普通の中のけぞり
+#define HITINFO_REACT3		0x00000003//普通の強のけぞり
+#define HITINFO_DOWN		0x00000004//ダウソする（転ぶ）
+#define HITINFO_FUTTOBI		0x00000005//吹っ飛ぶ
+#define HITINFO_FUTTOBI2	0x00000006//吹っ飛ぶ（ちょっと上のほうへ）
+#define HITINFO_REACT1A		0x00000007//弱、のけぞりなし
+#define HITINFO_REACT2A		0x00000008//中、のけぞりなし
+#define HITINFO_REACT3A		0x00000009//強、のけぞりなし
+#define HITINFO_TATAKI1A	0x0000000A//真下叩きつけバウンド有り
+#define HITINFO_TATAKI2A	0x0000000B//真下叩きつけバウンドなし
+#define HITINFO_TATAKI1B	0x0000000C//斜め叩きつけバウンド有り
+#define HITINFO_TATAKI2B	0x0000000D//斜め叩きつけバウンドなし
 
-#define HITINFO_MARK1		0x00010000//�q�b�g�����Ƃ��ɂ������Ⴂ�}�[�N��\�����܂�
-#define HITINFO_MARK2		0x00020000//�q�b�g�����Ƃ��ɒ����炢�̃}�[�N��\�����܂�
-#define HITINFO_MARK3		0x00030000//�q�b�g�����Ƃ��ɂł������}�[�N��\�����܂�
-#define HITINFO_MARK4		0x00040000//�q�b�g�����Ƃ��ɂ���ɂł������}�[�N��\�����܂�
+#define HITINFO_MARK1		0x00010000//ヒットしたときにちっちゃいマークを表示します
+#define HITINFO_MARK2		0x00020000//ヒットしたときに中ぐらいのマークを表示します
+#define HITINFO_MARK3		0x00030000//ヒットしたときにでっかいマークを表示します
+#define HITINFO_MARK4		0x00040000//ヒットしたときにさらにでっかいマークを表示します
 
-#define HITINFO_SNDHIT1		0x00100000//�q�b�g����
-#define HITINFO_SNDHIT2		0x00200000//�q�b�g����
-#define HITINFO_SNDHIT3		0x00300000//�q�b�g����
-#define HITINFO_SNDSHK1		0x00400000//�d����1
-#define HITINFO_SNDSHK2		0x00500000//�d����2
+#define HITINFO_SNDHIT1		0x00100000//ヒット音弱
+#define HITINFO_SNDHIT2		0x00200000//ヒット音中
+#define HITINFO_SNDHIT3		0x00300000//ヒット音強
+#define HITINFO_SNDSHK1		0x00400000//電撃音1
+#define HITINFO_SNDSHK2		0x00500000//電撃音2
 
-#define HITINFO_SIV1		0x01000000//�q�b�g�X�g�b�v�A�Z��
-#define HITINFO_SIV2		0x02000000//�q�b�g�X�g�b�v�A�ӂ�
-#define HITINFO_SIV3		0x03000000//�q�b�g�X�g�b�v�A����
-#define HITINFO_STOP		0x04000000//�q�b�g�X�g�b�v�A�߂��ᒷ
+#define HITINFO_SIV1		0x01000000//ヒットストップ、短い
+#define HITINFO_SIV2		0x02000000//ヒットストップ、ふつう
+#define HITINFO_SIV3		0x03000000//ヒットストップ、長い
+#define HITINFO_STOP		0x04000000//ヒットストップ、めちゃ長
 
-#define HITINFO_EFCTSINDO	0x00001000//�U�������������Ƃ��A�n�ʂ�U��������
-#define HITINFO_EFCTBURN	0x00002000//�U������炤�ƃL�����N�^�[���R���o��
+#define HITINFO_EFCTSINDO	0x00001000//攻撃が当たったとき、地面を振動させる
+#define HITINFO_EFCTBURN	0x00002000//攻撃を喰らうとキャラクターが燃え出す
 
 //guard
-#define GUARDINFO_XSTAND	0x10000000//�����K�[�h�ł��܂���
-#define GUARDINFO_XCROUCH	0x20000000//���Ⴊ�݃K�[�h�ł��܂���
-#define GUARDINFO_XJAMP		0x40000000//�󒆃K�[�h�ł��܂���
-#define GUARDINFO_XAUTO		0x80000000//�I�[�g�K�[�h�ł��Ȃ�
+#define GUARDINFO_XSTAND	0x10000000//立ちガードできません
+#define GUARDINFO_XCROUCH	0x20000000//しゃがみガードできません
+#define GUARDINFO_XJAMP		0x40000000//空中ガードできません
+#define GUARDINFO_XAUTO		0x80000000//オートガードできない
 
-#define GUARDINFO_REACT1	0x00000001//��K�[�h
-#define GUARDINFO_REACT2	0x00000002//���K�[�h
-#define GUARDINFO_REACT3	0x00000003//���K�[�h
+#define GUARDINFO_REACT1	0x00000001//弱ガード
+#define GUARDINFO_REACT2	0x00000002//中ガード
+#define GUARDINFO_REACT3	0x00000003//強ガード
 
-#define GUARDINFO_SIV1		0x01000000//�q�b�g�X�g�b�v�A�Z��
-#define GUARDINFO_SIV2		0x02000000//�q�b�g�X�g�b�v�A�ӂ�
-#define GUARDINFO_SIV3		0x03000000//�q�b�g�X�g�b�v�A����
-#define GUARDINFO_STOP		0x04000000//�q�b�g�X�g�b�v�A�߂��ᒷ
+#define GUARDINFO_SIV1		0x01000000//ヒットストップ、短い
+#define GUARDINFO_SIV2		0x02000000//ヒットストップ、ふつう
+#define GUARDINFO_SIV3		0x03000000//ヒットストップ、長い
+#define GUARDINFO_STOP		0x04000000//ヒットストップ、めちゃ長
 
-#define GUARDINFO_EFCTSINDO	0x00001000//�U�������������Ƃ��A�n�ʂ�U��������
+#define GUARDINFO_EFCTSINDO	0x00001000//攻撃が当たったとき、地面を振動させる
 
 
 struct ATTACKINFO2
 {
 	ATTACKINFO *info1;
-	DWORD oid;//�U�����s�������c�̃I�u�W�F�N�gID�B��ʒ[�ł̂��������Ƃ��A����������߂��̂Ɏg�p�B
-	DWORD flags;//���Ɏ����t���O
+	DWORD oid;//攻撃を行ったヤツのオブジェクトID。画面端でのけぞったとき、相手を押し戻すのに使用。
+	DWORD flags;//下に示すフラグ
 };
 
-#define ATKINFO2_RIGHTBACK		0x00000001//�E���ɂ̂�����
-#define ATKINFO2_ATTACKERBACK	0x00000002//��ʒ[�܂œ��B������U��������������߂����������Ȃ���΂Ȃ�Ȃ�
+#define ATKINFO2_RIGHTBACK		0x00000001//右側にのけぞる
+#define ATKINFO2_ATTACKERBACK	0x00000002//画面端まで到達したら攻撃したやつを押し戻す処理をしなければならない
 
 //**************************************************************************************
-//�@�R���s���[�^���쎞�Ɏg�p����\����
+//　コンピュータ動作時に使用する構造体
 //**************************************************************************************
 struct WAZAINFO
 {
-	DWORD walkf;//�O�i
-	DWORD walkb;//���
-	DWORD jampf;//�܂�W�����v
-	DWORD jampb;//���W�����v
-	DWORD dashf;//�܂�_�b�V��
-	DWORD dashb;//���_�b�V��
+	DWORD walkf;//前進
+	DWORD walkb;//後退
+	DWORD jampf;//まゑジャンプ
+	DWORD jampb;//裏ジャンプ
+	DWORD dashf;//まゑダッシュ
+	DWORD dashb;//裏ダッシュ
 
-	DWORD att_short[6];//�Z���[�`�U��
-	DWORD att_middle[6];//�����[�`�U��
-	DWORD att_long[6];//�����[�`�U��
-	DWORD att_jamp[6];//�󒆂ŏo���U��
-	DWORD att_tai[6];//�΋�Ɏg����U��
-	DWORD att_bullet[6];//��ѓ���Ȃ�
+	DWORD att_short[6];//短リーチ攻撃
+	DWORD att_middle[6];//中リーチ攻撃
+	DWORD att_long[6];//長リーチ攻撃
+	DWORD att_jamp[6];//空中で出す攻撃
+	DWORD att_tai[6];//対空に使える攻撃
+	DWORD att_bullet[6];//飛び道具など
 
-	DWORD nageid[6];	//�����s��ID
+	DWORD nageid[6];	//投げ行動ID
 
-	//����������
-	//�n�ォ��n�܂�A���Z
-	int renzoku_maai[8];		//���̘A���Z�ɓK�����ԍ���
-	DWORD renzoku[8][16][2];	//�A���Z [#][�Z][0:�s��ID�i�Ȃ��ꍇ��0�j/1:���̍s���Ɉڂ�܂ł̎���]
-	//�󒆂���n�܂�A���Z
-	int arenzoku_maai[8];		//���̘A���Z�ɓK�����ԍ���
-	DWORD arenzoku[8][16][2];	//�A���Z [#][�Z][0:�s��ID�i�Ȃ��ꍇ��0�j/1:���̍s���Ɉڂ�܂ł̎���]
+	//＜未実装＞
+	//地上から始まる連続技
+	int renzoku_maai[8];		//↓の連続技に適した間合い
+	DWORD renzoku[8][16][2];	//連続技 [#][技][0:行動ID（ない場合は0）/1:次の行動に移るまでの時間]
+	//空中から始まる連続技
+	int arenzoku_maai[8];		//↓の連続技に適した間合い
+	DWORD arenzoku[8][16][2];	//連続技 [#][技][0:行動ID（ない場合は0）/1:次の行動に移るまでの時間]
 };
 
 //ACTION ID===============================================================================
-//�s��ID�́A�����ɒ�`���Ă���l�Ƃ��Ԃ�Ȃ��悤�ɐݒ肷�邱��
+//行動IDは、ここに定義している値とかぶらないように設定すること
 //						          //xxxx 0000 00xx 0xxx | xxxx xxxx xxxx xxxx
 #define ACTID_KUCYU		0x00010000//0000 0000 0000 0001 | 0000 0000 0000 0000
 #define ACTID_SYAGAMI	0x00020000//0000 0000 0000 0010 | 0000 0000 0000 0000
@@ -132,144 +132,144 @@ struct WAZAINFO
 #define ACTID_NAGE		0x00040000//0000 0000 0000 0100
 #define ACTID_INOUT		0x10000000//0001 0000 0000 0000
 
-#define ACTID_NEUTRAL	1				//�j���[�g�����|�[�Y
-#define ACTID_TOJYO		2				//�o��
-#define ACTID_SYORI		3				//����
-#define ACTID_CROUCH	ACTID_SYAGAMI	//���Ⴊ�݃|�[�Y
-#define ACTID_RAKKA		ACTID_KUCYU		//����
+#define ACTID_NEUTRAL	1				//ニュートラルポーズ
+#define ACTID_TOJYO		2				//登場
+#define ACTID_SYORI		3				//勝利
+#define ACTID_CROUCH	ACTID_SYAGAMI	//しゃがみポーズ
+#define ACTID_RAKKA		ACTID_KUCYU		//落下
 
-//default action id�@=======================================================================
-#define ACTID_DAMAGE1		(ACTID_SYSTEM | ACTID_KURAI | 0x0001)				 //������炢�i���j
-#define ACTID_DAMAGE2		(ACTID_SYSTEM | ACTID_KURAI | 0x0002)				 //������炢�i���j
-#define ACTID_DAMAGE3		(ACTID_SYSTEM | ACTID_KURAI | 0x0003)				 //������炢�i��j
-#define ACTID_DAMAGEC1		(ACTID_SYSTEM | ACTID_KURAI | ACTID_SYAGAMI | 0x0001)//���Ⴊ�݋�炢�i���j
-#define ACTID_DAMAGEC2		(ACTID_SYSTEM | ACTID_KURAI | ACTID_SYAGAMI | 0x0002)//���Ⴊ�݋�炢�i���j
-#define ACTID_DAMAGEC3		(ACTID_SYSTEM | ACTID_KURAI | ACTID_SYAGAMI | 0x0003)//���Ⴊ�݋�炢�i��j
-#define ACTID_DAMAGEJ1		(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU   | 0x0001)//�󒆋�炢�i���j
-#define ACTID_DAMAGEJ2		(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU   | 0x0002)//�󒆋�炢�i���j
-#define ACTID_DAMAGEJ3		(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU   | 0x0003)//�󒆋�炢�i��j
-#define ACTID_DOWN			(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU	| 0x0004)//�������œ]��
-#define ACTID_DOWN2			(ACTID_SYSTEM | ACTID_KURAI | 0x0004)				 //�_�E�\
-#define ACTID_OKIAGARI		(ACTID_SYSTEM | 0x0001)								 //����������
-#define ACTID_FINALDOWN		(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU	| 0x0005)//��
-#define ACTID_FUTTOBI		(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU	| 0x0006)//�ӂ��Ƃ�
-#define ACTID_BOUND			(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU	| 0x0007)//�o�E���h
-#define ACTID_FINALBOUND	(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU	| 0x0008)//�o�E���h(���S)
-#define ACTID_FINALDOWN2	(ACTID_SYSTEM | ACTID_KURAI | 0x0005)				 //��
-#define ACTID_FUTTOBI2		(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU	| 0x0009)//�ӂ��Ƃ�2
-#define ACTID_NAGERARE		(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | ACTID_NAGE | 0x0001)//������ꒆ
-#define ACTID_DAMAGE1A		(ACTID_SYSTEM | ACTID_KURAI | 0x0006)				 //������炢�i���j�A�̂�����Ȃ�
-#define ACTID_DAMAGE2A		(ACTID_SYSTEM | ACTID_KURAI | 0x0007)				 //������炢�i���j�A�̂�����Ȃ�
-#define ACTID_DAMAGE3A		(ACTID_SYSTEM | ACTID_KURAI | 0x0008)				 //������炢�i���j�A�̂�����Ȃ�
-#define ACTID_DAMAGEC1A		(ACTID_SYSTEM | ACTID_KURAI | ACTID_SYAGAMI | 0x0004)//���Ⴊ�݋�炢�i���j�A�̂�����Ȃ�
-#define ACTID_DAMAGEC2A		(ACTID_SYSTEM | ACTID_KURAI | ACTID_SYAGAMI | 0x0005)//���Ⴊ�݋�炢�i���j�A�̂�����Ȃ�
-#define ACTID_DAMAGEC3A		(ACTID_SYSTEM | ACTID_KURAI | ACTID_SYAGAMI | 0x0006)//���Ⴊ�݋�炢�i��j�A�̂�����Ȃ�
-#define ACTID_TATAKITUKE1A	(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x000A)  //�^���@����������(�o�E���h�L��)
-#define ACTID_TATAKITUKE2A	(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x000B)  //�^���@����������(�o�E���h����)
-#define ACTID_TATAKITUKE1B	(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x000C)  //�΂ߒ@����������(�o�E���h�L��)
-#define ACTID_TATAKITUKE2B	(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x000D)  //�΂ߒ@����������(�o�E���h����)
-#define ACTID_KAITENFINISH	(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x000E)  //��]���ĉ�ʊO�ɐ������ł���
+//default action id　=======================================================================
+#define ACTID_DAMAGE1		(ACTID_SYSTEM | ACTID_KURAI | 0x0001)				 //立ち喰らい（小）
+#define ACTID_DAMAGE2		(ACTID_SYSTEM | ACTID_KURAI | 0x0002)				 //立ち喰らい（中）
+#define ACTID_DAMAGE3		(ACTID_SYSTEM | ACTID_KURAI | 0x0003)				 //立ち喰らい（大）
+#define ACTID_DAMAGEC1		(ACTID_SYSTEM | ACTID_KURAI | ACTID_SYAGAMI | 0x0001)//しゃがみ喰らい（小）
+#define ACTID_DAMAGEC2		(ACTID_SYSTEM | ACTID_KURAI | ACTID_SYAGAMI | 0x0002)//しゃがみ喰らい（中）
+#define ACTID_DAMAGEC3		(ACTID_SYSTEM | ACTID_KURAI | ACTID_SYAGAMI | 0x0003)//しゃがみ喰らい（大）
+#define ACTID_DAMAGEJ1		(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU   | 0x0001)//空中喰らい（小）
+#define ACTID_DAMAGEJ2		(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU   | 0x0002)//空中喰らい（中）
+#define ACTID_DAMAGEJ3		(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU   | 0x0003)//空中喰らい（大）
+#define ACTID_DOWN			(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU	| 0x0004)//足払いで転び
+#define ACTID_DOWN2			(ACTID_SYSTEM | ACTID_KURAI | 0x0004)				 //ダウソ
+#define ACTID_OKIAGARI		(ACTID_SYSTEM | 0x0001)								 //おきあがり
+#define ACTID_FINALDOWN		(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU	| 0x0005)//死
+#define ACTID_FUTTOBI		(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU	| 0x0006)//ふっとび
+#define ACTID_BOUND			(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU	| 0x0007)//バウンド
+#define ACTID_FINALBOUND	(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU	| 0x0008)//バウンド(死亡)
+#define ACTID_FINALDOWN2	(ACTID_SYSTEM | ACTID_KURAI | 0x0005)				 //氏
+#define ACTID_FUTTOBI2		(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU	| 0x0009)//ふっとび2
+#define ACTID_NAGERARE		(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | ACTID_NAGE | 0x0001)//投げられ中
+#define ACTID_DAMAGE1A		(ACTID_SYSTEM | ACTID_KURAI | 0x0006)				 //立ち喰らい（小）、のけぞりなし
+#define ACTID_DAMAGE2A		(ACTID_SYSTEM | ACTID_KURAI | 0x0007)				 //立ち喰らい（小）、のけぞりなし
+#define ACTID_DAMAGE3A		(ACTID_SYSTEM | ACTID_KURAI | 0x0008)				 //立ち喰らい（小）、のけぞりなし
+#define ACTID_DAMAGEC1A		(ACTID_SYSTEM | ACTID_KURAI | ACTID_SYAGAMI | 0x0004)//しゃがみ喰らい（小）、のけぞりなし
+#define ACTID_DAMAGEC2A		(ACTID_SYSTEM | ACTID_KURAI | ACTID_SYAGAMI | 0x0005)//しゃがみ喰らい（中）、のけぞりなし
+#define ACTID_DAMAGEC3A		(ACTID_SYSTEM | ACTID_KURAI | ACTID_SYAGAMI | 0x0006)//しゃがみ喰らい（大）、のけぞりなし
+#define ACTID_TATAKITUKE1A	(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x000A)  //真下叩きつけ落下中(バウンド有り)
+#define ACTID_TATAKITUKE2A	(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x000B)  //真下叩きつけ落下中(バウンド無し)
+#define ACTID_TATAKITUKE1B	(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x000C)  //斜め叩きつけ落下中(バウンド有り)
+#define ACTID_TATAKITUKE2B	(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x000D)  //斜め叩きつけ落下中(バウンド無し)
+#define ACTID_KAITENFINISH	(ACTID_SYSTEM | ACTID_KURAI | ACTID_KUCYU | 0x000E)  //回転して画面外に吹っ飛んでいく
 
-#define ACTID_GUARD1	(ACTID_SYSTEM | ACTID_GUARD | 0x0001)				 //�����K�[�h�i���j
-#define ACTID_GUARD2	(ACTID_SYSTEM | ACTID_GUARD | 0x0002)				 //�����K�[�h�i���j
-#define ACTID_GUARD3	(ACTID_SYSTEM | ACTID_GUARD | 0x0003)				 //�����K�[�h�i��j
-#define ACTID_GUARDC1	(ACTID_SYSTEM | ACTID_GUARD | ACTID_SYAGAMI | 0x0001)//���Ⴊ�݃K�[�h�i���j
-#define ACTID_GUARDC2	(ACTID_SYSTEM | ACTID_GUARD | ACTID_SYAGAMI | 0x0002)//���Ⴊ�݃K�[�h�i���j
-#define ACTID_GUARDC3	(ACTID_SYSTEM | ACTID_GUARD | ACTID_SYAGAMI | 0x0003)//���Ⴊ�݃K�[�h�i��j
-#define ACTID_GUARDJ1	(ACTID_SYSTEM | ACTID_GUARD | ACTID_KUCYU   | 0x0001)//�󒆃K�[�h�i���j
-#define ACTID_GUARDJ2	(ACTID_SYSTEM | ACTID_GUARD | ACTID_KUCYU   | 0x0002)//�󒆃K�[�h�i���j
-#define ACTID_GUARDJ3	(ACTID_SYSTEM | ACTID_GUARD | ACTID_KUCYU   | 0x0003)//�󒆃K�[�h�i��j
+#define ACTID_GUARD1	(ACTID_SYSTEM | ACTID_GUARD | 0x0001)				 //立ちガード（小）
+#define ACTID_GUARD2	(ACTID_SYSTEM | ACTID_GUARD | 0x0002)				 //立ちガード（中）
+#define ACTID_GUARD3	(ACTID_SYSTEM | ACTID_GUARD | 0x0003)				 //立ちガード（大）
+#define ACTID_GUARDC1	(ACTID_SYSTEM | ACTID_GUARD | ACTID_SYAGAMI | 0x0001)//しゃがみガード（小）
+#define ACTID_GUARDC2	(ACTID_SYSTEM | ACTID_GUARD | ACTID_SYAGAMI | 0x0002)//しゃがみガード（中）
+#define ACTID_GUARDC3	(ACTID_SYSTEM | ACTID_GUARD | ACTID_SYAGAMI | 0x0003)//しゃがみガード（大）
+#define ACTID_GUARDJ1	(ACTID_SYSTEM | ACTID_GUARD | ACTID_KUCYU   | 0x0001)//空中ガード（小）
+#define ACTID_GUARDJ2	(ACTID_SYSTEM | ACTID_GUARD | ACTID_KUCYU   | 0x0002)//空中ガード（中）
+#define ACTID_GUARDJ3	(ACTID_SYSTEM | ACTID_GUARD | ACTID_KUCYU   | 0x0003)//空中ガード（大）
 
-//�f�t�H���gcell id=====================================================================
-#define DCELL_DAMAGES1		1//������炢�|�[�Y
+//デフォルトcell id=====================================================================
+#define DCELL_DAMAGES1		1//立ち喰らいポーズ
 #define DCELL_DAMAGES2		2
 #define DCELL_DAMAGES3		3
 #define DCELL_DAMAGES4		4
-#define DCELL_DAMAGEC1		5//���Ⴊ�݋�炢�|�[�Y
+#define DCELL_DAMAGEC1		5//しゃがみ喰らいポーズ
 #define DCELL_DAMAGEC2		6
 #define DCELL_DAMAGEC3		7
 #define DCELL_DAMAGEC4		8
-#define DCELL_GUARDS1		9//�����K�[�h�|�[�Y
+#define DCELL_GUARDS1		9//立ちガードポーズ
 #define DCELL_GUARDS2		10
 #define DCELL_GUARDS3		11
 #define DCELL_GUARDS4		12
-#define DCELL_GUARDC1		13//���Ⴊ�݃K�[�h�|�[�Y
+#define DCELL_GUARDC1		13//しゃがみガードポーズ
 #define DCELL_GUARDC2		14
 #define DCELL_GUARDC3		15
 #define DCELL_GUARDC4		16
-#define DCELL_DAMAGEJ		17//�󒆋�炢�|�[�Y
-#define DCELL_RAKKA1		18//����1
-#define DCELL_RAKKA2		19//����2
-#define DCELL_GUARDJ1		20//�󒆃K�[�h�|�[�Y
+#define DCELL_DAMAGEJ		17//空中喰らいポーズ
+#define DCELL_RAKKA1		18//落下1
+#define DCELL_RAKKA2		19//落下2
+#define DCELL_GUARDJ1		20//空中ガードポーズ
 #define DCELL_GUARDJ2		21
 #define DCELL_GUARDJ3		22
-#define DCELL_BOUND			23//�������ăo�E���h
-#define DCELL_DOWN			24//�_�E��
-#define DCELL_OKIAGARI1		25//�N���オ�胂�[�V����
+#define DCELL_BOUND			23//落下してバウンド
+#define DCELL_DOWN			24//ダウン
+#define DCELL_OKIAGARI1		25//起き上がりモーション
 #define DCELL_OKIAGARI2		26
 #define DCELL_OKIAGARI3		27
 #define DCELL_OKIAGARI4		28
 #define DCELL_OKIAGARI5		29
-#define DCELL_NAGERARE1		30//�d�S���L��
-#define DCELL_KAITENFUTTOBI	31//��]������сA�d�S���L��
+#define DCELL_NAGERARE1		30//重心が有効
+#define DCELL_KAITENFUTTOBI	31//回転吹っ飛び、重心が有効
 
 
 //******************************************************************************
-//�@�@�I�u�W�F�N�g�f�[�^
+//　　オブジェクトデータ
 //******************************************************************************
 
 typedef DWORD (*PFOBJ_MSGHANDLER)(DWORD,LPVOID,DWORD);
-//����1:���b�Z�[�WID�i���Q�Ɓj
-//����2:�I�u�W�F�N�g�̃f�[�^(GOBJECT�̃|�C���^)
-//����3:�e���b�Z�[�W�ɂ��Ӗ����قȂ�i�قƂ�ǎg���ĂȂ��j
-//�߂�l�F�e���b�Z�[�W�ɂ��Ӗ����قȂ�B0���ƃf�t�H���g�������s���B
+//引数1:メッセージID（下参照）
+//引数2:オブジェクトのデータ(GOBJECTのポインタ)
+//引数3:各メッセージにより意味が異なる（ほとんど使ってない）
+//戻り値：各メッセージにより意味が異なる。0だとデフォルト処理を行う。
 
 struct GOBJECT
 {
-	DWORD id;			//�I�u�W�F�N�gid
-	DWORD uid;			//���[�U�[�����蓖�Ă�id
-	DWORD tid;			//�`�[��id
-	DWORD eid;			//�G��id
-	PFOBJ_MSGHANDLER msghandler;//���b�Z�[�W�����֐�
-	DWORD objtype;		//�I�u�W�F�N�g�̎�����
+	DWORD id;			//オブジェクトid
+	DWORD uid;			//ユーザーが割り当てるid
+	DWORD tid;			//チームid
+	DWORD eid;			//敵のid
+	PFOBJ_MSGHANDLER msghandler;//メッセージ処理関数
+	DWORD objtype;		//オブジェクトの持つ性質
 	
-	double x,y;			//�ʒu
-	double vx,vy;		//���x
-	double ax,ay;		//�����x
+	double x,y;			//位置
+	double vx,vy;		//速度
+	double ax,ay;		//加速度
 	
-	DWORD counter;		//�J�E���^
-	DWORD aid;			//�s��ID
-	DWORD cnow;			//�\���Z��
-	int hp;				//�̗�
-	DWORD hpmax;		//�̗͂̍ő�l�B�f�t�H���g��1024
-	double gauge;		//�Q�[�W
-	DWORD gaugemax;		//�Q�[�W�̃}�b�N�X�l 1-9�̒l���w��B�^�C�v2�̃Q�[�W�͊֌W�Ȃ�
-	DWORD gaugetype;	//�ǂ̃p���[�Q�[�W���g�p���邩�B���̃t���O�B�f�t�H���g�̓Q�[�W����
+	DWORD counter;		//カウンタ
+	DWORD aid;			//行動ID
+	DWORD cnow;			//表示セル
+	int hp;				//体力
+	DWORD hpmax;		//体力の最大値。デフォルトは1024
+	double gauge;		//ゲージ
+	DWORD gaugemax;		//ゲージのマックス値 1-9の値を指定。タイプ2のゲージは関係なし
+	DWORD gaugetype;	//どのパワーゲージを使用するか。下のフラグ。デフォルトはゲージ無し
 
-	BOOL muki;			//�����iFALSE�͉E�����j
-	BOOL revx;			//x���]
-	BOOL revy;			//y���]
-	int rot;			//��]
-	float magx,magy;	//�g�嗦
-	float z;			//z���W
-	DWORD color;		//�F�i���O�`��̏ꍇ�����̐F�ŕ`�悵�Ă��������j
-	DWORD alphamode;	//�������@�iGBLEND_�`�j�t���O
+	BOOL muki;			//向き（FALSEは右向き）
+	BOOL revx;			//x反転
+	BOOL revy;			//y反転
+	int rot;			//回転
+	float magx,magy;	//拡大率
+	float z;			//z座標
+	DWORD color;		//色（自前描画の場合もこの色で描画してください）
+	DWORD alphamode;	//合成方法（GBLEND_～）フラグ
 
-	BOOL kougeki;		//�U����on/off
-	BOOL kasanari;		//�d�Ȃ蔻��on/off
-	BOOL muteki;		//���Gon/off
-	BOOL nagerare;		//������ꔻ��on/off
+	BOOL kougeki;		//攻撃力on/off
+	BOOL kasanari;		//重なり判定on/off
+	BOOL muteki;		//無敵on/off
+	BOOL nagerare;		//投げられ判定on/off
 
-	MYSURFACE **pmsarr; //�r�b�g�}�b�v�̔z��
-	GCD_RECT *prdat;	//��`���z��
-	GCD_CELL2 *pcdat;	//�Z�����z��
-	GCD_HANTEI *phdat;	//�d�Ȃ�E������E��炢����z��
+	MYSURFACE **pmsarr; //ビットマップの配列
+	GCD_RECT *prdat;	//矩形情報配列
+	GCD_CELL2 *pcdat;	//セル情報配列
+	GCD_HANTEI *phdat;	//重なり・当たり・喰らい判定配列
 
-	ATTACKINFO *atk;	//���܎����������Ă���U�����
-	ATTACKINFO2 atk2;	//���̃I�u�W�F�N�g����������U�����
-	WAZAINFO  *winfo;	//�R���s���[�^�p�Z���
+	ATTACKINFO *atk;	//いま自分が持っている攻撃情報
+	ATTACKINFO2 atk2;	//他のオブジェクトから喰らった攻撃情報
+	WAZAINFO  *winfo;	//コンピュータ用技情報
 
-	LPVOID pobjdat_u;	//���[�U�[��`�f�[�^
+	LPVOID pobjdat_u;	//ユーザー定義データ
 };
 
 //team id
@@ -279,126 +279,126 @@ struct GOBJECT
 #define TEAM_SYSTEM			3
 
 //objtype						0xF1000FEF
-#define GOBJFLG_KURAI			0x00000001//�U������炤
-#define GOBJFLG_NAGERARE		0x00000002//��������
-#define GOBJFLG_ATTACK			0x00000004//�U�����s��
-#define GOBJFLG_KASANARI		0x00000008//�d�Ȃ蔻������
-#define GOBJFLG_TOBETARGET		0x10000000//�^�[�Q�b�g�ɂȂ邱�Ƃ��ł���B
-#define GOBJFLG_NEEDTARGET		0x20000000//�^�[�Q�b�g(eid)���K�v�ł���B
-#define GOBJFLG_COMPUTER		0x40000000//�R���s���[�^�ɐ��䂳����B�ʏ�̃L�����N�^�[�ɂ̓V�X�e���ɂ���Ă��̃t���O���t�������
-#define GOBJFLG_ZCHARACTER		0x80000000//�L�����N�^�[�u�����v - ���̂Ƃ�����Ɏg���Ă��Ȃ�
-#define GOBJFLG_ZBULLET			0x01000000//��ѓ���u�����v- ���̔�ѓ���Ƒ��E��������
-#define GOBJFLG_DISPZAHYO		0x00000020//���W�w��̓f�B�X�v���C��̍��W�ł���A�X�e�[�W��̕\���ʒu�ɍ��E����Ȃ�
-#define GOBJFLG_DONOTSTOP		0x00000040//���K����stop�G�t�F�N�g���������Ă��Ă�GOBJMSG_ACTION���ʒm�����
-#define GOBJFLG_HANSAYOU		0x00000080//�U�������I�u�W�F�N�g����ʒ[�܂œ��B����Ɖ����߂����i���b�Z�[�W���󂯎�邱�Ƃ��ł���j
-#define GOBJFLG_CLIPX			0x00000100//�I�u�W�F�N�g��x�����Ɋւ��ăX�e�[�W(-640�`640)�O�ɍs�����Ƃ͂ł��Ȃ�
-#define GOBJFLG_CLIPX2			0x00000200//�I�u�W�F�N�g��x�����Ɋւ��ĉ�ʊO�ɏo�邱�Ƃ͂��Ȃ�
-#define GOBJFLG_DISPLAYME		0x00000400//�X�e�[�W��Ńf�B�X�v���C���S���Z�o����Ƃ��ɂ��̃L�����N�^�[�̍��W���Q�Ƃ���
-#define GOBJFLG_TAIKI			0x00000800//�L�����N�^�[�͑ҋ@���ł���
+#define GOBJFLG_KURAI			0x00000001//攻撃を喰らう
+#define GOBJFLG_NAGERARE		0x00000002//投げられる
+#define GOBJFLG_ATTACK			0x00000004//攻撃を行う
+#define GOBJFLG_KASANARI		0x00000008//重なり判定をやる
+#define GOBJFLG_TOBETARGET		0x10000000//ターゲットになることができる。
+#define GOBJFLG_NEEDTARGET		0x20000000//ターゲット(eid)が必要である。
+#define GOBJFLG_COMPUTER		0x40000000//コンピュータに制御させる。通常のキャラクターにはシステムによってこのフラグが付加される
+#define GOBJFLG_ZCHARACTER		0x80000000//キャラクター「属性」 - 今のところ特に使っていない
+#define GOBJFLG_ZBULLET			0x01000000//飛び道具「属性」- 他の飛び道具と相殺処理する
+#define GOBJFLG_DISPZAHYO		0x00000020//座標指定はディスプレイ上の座標であり、ステージ上の表示位置に左右されない
+#define GOBJFLG_DONOTSTOP		0x00000040//超必等でstopエフェクトがかかっていてもGOBJMSG_ACTIONが通知される
+#define GOBJFLG_HANSAYOU		0x00000080//攻撃したオブジェクトが画面端まで到達すると押し戻される（メッセージを受け取ることができる）
+#define GOBJFLG_CLIPX			0x00000100//オブジェクトはx方向に関してステージ(-640～640)外に行くことはできない
+#define GOBJFLG_CLIPX2			0x00000200//オブジェクトはx方向に関して画面外に出ることはしない
+#define GOBJFLG_DISPLAYME		0x00000400//ステージ上でディスプレイ中心を算出するときにこのキャラクターの座標を参照する
+#define GOBJFLG_TAIKI			0x00000800//キャラクターは待機中である
 
-//�W���I�ȃL�����N�^�[�����t���O
+//標準的なキャラクターが持つフラグ
 #define GOBJTYPE_CHARACTER2	( GOBJFLG_KURAI | GOBJFLG_NAGERARE | GOBJFLG_ATTACK | GOBJFLG_KASANARI | GOBJFLG_CLIPX | GOBJFLG_CLIPX2 | GOBJFLG_DISPLAYME)
 #define GOBJTYPE_CHARACTER	( GOBJTYPE_CHARACTER2 | GOBJFLG_TOBETARGET | GOBJFLG_NEEDTARGET | GOBJFLG_ZCHARACTER | GOBJFLG_HANSAYOU | GOBJFLG_CLIPX)
 
-//�W���I�Ȕ�ѓ���̃t���O
+//標準的な飛び道具のフラグ
 #define GOBJTYPE_BULLET		(GOBJFLG_ATTACK | GOBJFLG_ZBULLET)
 
-//���̑�
+//その他
 #define GOBJTYPE_DISPLAY	( GOBJFLG_CLIPX | GOBJFLG_CLIPX2 | GOBJFLG_DISPLAYME )
 #define GOBJTYPE_NODISPLAY	( ~( GOBJFLG_CLIPX | GOBJFLG_CLIPX2 | GOBJFLG_DISPLAYME ) )
 #define GOBJTYPE_DEAD		( ~(GOBJFLG_TOBETARGET | GOBJFLG_NEEDTARGET | GOBJFLG_CLIPX | GOBJFLG_CLIPX2 | GOBJFLG_DISPLAYME) )
 
 //gaugetype
-#define GOBJFLGA_POWGAUGE1	0x00000001//9�܂ŃX�g�b�N�\�ȃQ�[�W
-#define GOBJFLGA_POWGAUGE2	0x00000002//�X�g�b�N�ł��Ȃ��Q�[�W
+#define GOBJFLGA_POWGAUGE1	0x00000001//9個までストック可能なゲージ
+#define GOBJFLGA_POWGAUGE2	0x00000002//ストックできないゲージ
 
-//�������̏ꍇ�̍������@
-#define GBLEND_HANTOUMEI		(0)//�f�t�H���g
+//半透明の場合の合成方法
+#define GBLEND_HANTOUMEI		(0)//デフォルト
 #define GBLEND_KASAN			(1)
 #define GBLEND_INV				(3)
 
-//  �`���b�Z�[�W�`  ======================================================================
-//msghandler �̑�2�����̈Ӗ�===================================================================
-//��ȃ��b�Z�[�W
-#define GOBJMSG_DELETE			   1//�I�u�W�F�N�g���V�X�e���̐���𗣂��Ƃ��ɌĂ΂��
-#define GOBJMSG_ACTION			   2//1�t���[����1��Ă΂��
-#define GOBJMSG_COMMAND			   3//�R�}���h���������K�v������Ƃ��ɌĂ΂��
-#define GOBJMSG_COMMANDCOM		   4//�R���s���[�^�R�}���h���������Ƃ��ɌĂ΂��
-#define GOBJMSG_TOUCHA			   5//�U�����������Ƃ��ɌĂ΂��B
-#define GOBJMSG_TOUCHB			   6//�����̍U��������ɓ����������ɌĂ΂��B
-#define GOBJMSG_TOUCHC			   7//�����̍U��������ɓ��������Ƃ� (����̏�Ԃ��ω�����O�ɌĂ΂��)�B
-#define GOBJMSG_CNGAID			   8//�s��ID���ω������Ƃ��ɌĂ΂��
-//�`��n���b�Z�[�W
-#define GOBJMSG_DRAW			 101//�`����s���ۂɌĂ΂��
-#define GOBJMSG_DRAWBACK		 102//�w�i�X�e�[�W�ɕ`��
-#define GOBJMSG_DRAWFRONT		 103//�O�i�X�e�[�W�ɕ`��
-//�o��E���Ȃǃ��b�Z�[�W
-#define GOBJMSG_DOTOJYO			 201//�o��|�[�Y�Ɉڍs���A�I�������MSGOBJ2SYS_TOJYOEND���b�Z�[�W��Ԃ�
-#define GOBJMSG_DOTIMEOVERLOSE	 202//�^�C���I�[�o�[�ŕ�����
-#define GOBJMSG_DOYOUWIN		 203//�����|�[�Y�Ɉڍs���A�I�������MSGOBJ2SYS_WINPOSEEND���b�Z�[�W��Ԃ�
-#define GOBJMSG_TAIKI			 204//��ʊO�ɑҋ@���Ă��Ă�������
-#define GOBJMSG_KOUTAI			 205//�I����B��ʂ̌�����������ł��Ă��������B�i�_���ȂƂ���0��Ԃ��j
-#define GOBJMSG_KOUTAI2			 206//�I����B��ʂ̌�����������ł��Ă��������B�I�������MSGOBJ2SYS_KOUTAIEND���b�Z�[�W��Ԃ�
-#define GOBJMSG_STRIKER			 207//�X�g���C�J�[�U������炩���Ă��������i�_���ȂƂ���0��Ԃ��j
-#define GOBJMSG_DOYOUWIN2		 208//�ҋ@���A���Ԃ̏����ɂ���ă`�[������������
-#define GOBJMSG_STRIKERREADY	 209//�X�g���C�J�[�U�����ł��邩�ǂ�����Ԃ�
-//���W����n���b�Z�[�W
-#define GOBJMSG_KNOCKBACK		 301//�U�������I�u�W�F�N�g����ʒ[�ɒB����
-#define GOBJMSG_CLIPX			 302//���W����ʊO�ɐ����Ă��܂��Ă����
-//�I�u�W�F�N�g�ԑ��ݍ�p�E���̑�
-#define GOBJMSG_CNGTARGET		 401//�^�[�Q�b�g���ς�����Ƃ��ɌĂ΂��
-#define GOBJMSG_SOUSAI			 402//����ѓ���ƐڐG
-//�Q�[���i�s
-#define GOBJMSG_CNGROUND		 502//���E���h���ς�����Ƃ��ɌĂ΂��
+//  ～メッセージ～  ======================================================================
+//msghandler の第2引数の意味===================================================================
+//主なメッセージ
+#define GOBJMSG_DELETE			   1//オブジェクトがシステムの制御を離れるときに呼ばれる
+#define GOBJMSG_ACTION			   2//1フレームに1回呼ばれる
+#define GOBJMSG_COMMAND			   3//コマンド判定をする必要があるときに呼ばれる
+#define GOBJMSG_COMMANDCOM		   4//コンピュータコマンド判定をするときに呼ばれる
+#define GOBJMSG_TOUCHA			   5//攻撃を喰らったときに呼ばれる。
+#define GOBJMSG_TOUCHB			   6//自分の攻撃が相手に当たった時に呼ばれる。
+#define GOBJMSG_TOUCHC			   7//自分の攻撃が相手に当たったとき (相手の状態が変化する前に呼ばれる)。
+#define GOBJMSG_CNGAID			   8//行動IDが変化したときに呼ばれる
+//描画系メッセージ
+#define GOBJMSG_DRAW			 101//描画を行う際に呼ばれる
+#define GOBJMSG_DRAWBACK		 102//背景ステージに描画
+#define GOBJMSG_DRAWFRONT		 103//前景ステージに描画
+//登場・交代などメッセージ
+#define GOBJMSG_DOTOJYO			 201//登場ポーズに移行し、終わったらMSGOBJ2SYS_TOJYOENDメッセージを返せ
+#define GOBJMSG_DOTIMEOVERLOSE	 202//タイムオーバーで負けた
+#define GOBJMSG_DOYOUWIN		 203//勝利ポーズに移行し、終わったらMSGOBJ2SYS_WINPOSEENDメッセージを返せ
+#define GOBJMSG_TAIKI			 204//画面外に待機していてください
+#define GOBJMSG_KOUTAI			 205//選手交代。画面の向こうから飛んできてください。（ダメなときは0を返す）
+#define GOBJMSG_KOUTAI2			 206//選手交代。画面の向こうから飛んできてください。終わったらMSGOBJ2SYS_KOUTAIENDメッセージを返せ
+#define GOBJMSG_STRIKER			 207//ストライカー攻撃をやらかしてください（ダメなときは0を返す）
+#define GOBJMSG_DOYOUWIN2		 208//待機中、仲間の勝利によってチームが勝利した
+#define GOBJMSG_STRIKERREADY	 209//ストライカー攻撃ができるかどうかを返せ
+//座標操作系メッセージ
+#define GOBJMSG_KNOCKBACK		 301//攻撃したオブジェクトが画面端に達した
+#define GOBJMSG_CLIPX			 302//座標が画面外に逝ってしまっているよ
+//オブジェクト間相互作用・その他
+#define GOBJMSG_CNGTARGET		 401//ターゲットが変わったときに呼ばれる
+#define GOBJMSG_SOUSAI			 402//他飛び道具と接触
+//ゲーム進行
+#define GOBJMSG_CNGROUND		 502//ラウンドが変わったときに呼ばれる
 
-//�l�b�g���[�N
-#define GOBJMSG_SYNC			 601//�������b�Z�[�W
+//ネットワーク
+#define GOBJMSG_SYNC			 601//同期メッセージ
 
-//���̑�
-#define GOBJMSG_USERDEFINE		0x80000000//���[�U�[��`���b�Z�[�W�쐬�p�t���O
+//その他
+#define GOBJMSG_USERDEFINE		0x80000000//ユーザー定義メッセージ作成用フラグ
 
-//GOBJMSG_TOUCHA ���b�Z�[�W�ɑ΂���߂�l-------------------------------------------------
-//0��Ԃ��Ə���ɔ��f���܂�
-#define TOUCHA_KURAIS	0x10000001//������炢
-#define TOUCHA_KURAIC	0x10000002//����炢
-#define TOUCHA_KURAIJ	0x10000003//�󒆋�炢
-#define TOUCHA_GUARDS	0x20000001//�����K�[�h
-#define TOUCHA_GUARDC	0x20000002//���K�[�h
-#define TOUCHA_GUARDJ	0x20000003//�󒆃K�[�h
-#define TOUCHA_MUSI		0x50000000//�U���͋��������ǁA��炢������s��Ȃ��i0x40000000�������t���O�j
-#define TOUCHA_MUSI2	0x60000000//�U�����K�[�h�������ǁA��炢������s��Ȃ��i0x40000000�������t���O�j
-#define TOUCHA_AVOID	0x80000000//�U���������Ȃ�����
+//GOBJMSG_TOUCHA メッセージに対する戻り値-------------------------------------------------
+//0を返すと勝手に判断します
+#define TOUCHA_KURAIS	0x10000001//立ち喰らい
+#define TOUCHA_KURAIC	0x10000002//屈喰らい
+#define TOUCHA_KURAIJ	0x10000003//空中喰らい
+#define TOUCHA_GUARDS	0x20000001//立ちガード
+#define TOUCHA_GUARDC	0x20000002//屈ガード
+#define TOUCHA_GUARDJ	0x20000003//空中ガード
+#define TOUCHA_MUSI		0x50000000//攻撃は喰らったけど、喰らい動作を行わない（0x40000000が無視フラグ）
+#define TOUCHA_MUSI2	0x60000000//攻撃をガードしたけど、喰らい動作を行わない（0x40000000が無視フラグ）
+#define TOUCHA_AVOID	0x80000000//攻撃をうけなかった
 
-//GOBJMSG_TOUCHC ���b�Z�[�W�ɑ΂���߂�l-------------------------------------------------------
-#define TOUCHC_OK		0x00000000//�������܂���B���܂܂Œʂ菈�����i�s���܂��B
-#define TOUCHC_CANCEL	0x00000001//��`�Փ˂��Ȃ��������Ƃɂ��܂��B����ȍ~�̏����͂Ȃ���܂���B
+//GOBJMSG_TOUCHC メッセージに対する戻り値-------------------------------------------------------
+#define TOUCHC_OK		0x00000000//何もしません。いままで通り処理が進行します。
+#define TOUCHC_CANCEL	0x00000001//矩形衝突をなかったことにします。それ以降の処理はなされません。
 
-//GOBJMSG_STRIKERREADY���b�Z�[�W�ɑ΂���߂�l ���邢�́�DI_FUNCTIONS_S.strikerok�̖߂�l-------
-#define STRIKERREADY_UNKNOWN		(0)//�s��
-#define STRIKERREADY_OK				(1)//�����I�b�P�[
-#define STRIKERREADY_NOTREADY		(2)//�ł��Ȃ�
-#define STRIKERREADY_NOTSUPPORTED	(3)//�[���A���Ƃ��Ƃ��Ȃ�
-#define STRIKERREADY_NOPOINT		(4)//(sys)�X�g���C�J�[�̃|�C���g������Ȃ�
+//GOBJMSG_STRIKERREADYメッセージに対する戻り値 あるいは↓DI_FUNCTIONS_S.strikerokの戻り値-------
+#define STRIKERREADY_UNKNOWN		(0)//不明
+#define STRIKERREADY_OK				(1)//準備オッケー
+#define STRIKERREADY_NOTREADY		(2)//できない
+#define STRIKERREADY_NOTSUPPORTED	(3)//つーか、もともとしない
+#define STRIKERREADY_NOPOINT		(4)//(sys)ストライカーのポイントが足りない
 
 //**************************************************************************
-// �V�X�e���֘A�̊֐��̒�`
+// システム関連の関数の定義
 //**************************************************************************
-typedef DWORD  (*PFUNCS_GETKEY)(DWORD,DWORD);			//�L�[����get
-typedef int    (*PFUNCS_SEEKKEY)(DWORD,int,int,DWORD);	//�L�[����get(2)
-typedef void   (*PFUNCS_SETKATISERIF)(DWORD,char*);		//�����䎌�ݒ�
-typedef void   (*PFUNCS_ADDEFFECT)(DWORD,int,int,DWORD);//�G�t�F�N�g����
-typedef void   (*PFUNCS_PLAYSYSSOUND)(DWORD);			//wav�Đ�
-typedef LPVOID (*PFUNCS_LOADMYSOUND)(char*);			//wav�ǂݍ���
-typedef void   (*PFUNCS_PLAYMYSOUND)(LPVOID);			//wav�Đ�
-typedef void   (*PFUNCS_KILLMYSOUND)(LPVOID);			//wav����
-typedef DWORD  (*PFUNCS_MESSAGE2SYSTEM)(DWORD,DWORD,DWORD);	//���b�Z�[�W
-typedef char*  (*PFUNCS_GETENEMYNAME)(DWORD);			//"�G"�̖��O���擾����
-typedef double (*PFUNCS_GETDISPCENTERX)();				//���݂̉�ʒ��S�𓾂�
-typedef double (*PFUNCS_GETDISPCENTERY)();				//���݂̉�ʒ��S�𓾂�
+typedef DWORD  (*PFUNCS_GETKEY)(DWORD,DWORD);			//キー入力get
+typedef int    (*PFUNCS_SEEKKEY)(DWORD,int,int,DWORD);	//キー入力get(2)
+typedef void   (*PFUNCS_SETKATISERIF)(DWORD,char*);		//勝ち台詞設定
+typedef void   (*PFUNCS_ADDEFFECT)(DWORD,int,int,DWORD);//エフェクト発生
+typedef void   (*PFUNCS_PLAYSYSSOUND)(DWORD);			//wav再生
+typedef LPVOID (*PFUNCS_LOADMYSOUND)(char*);			//wav読み込み
+typedef void   (*PFUNCS_PLAYMYSOUND)(LPVOID);			//wav再生
+typedef void   (*PFUNCS_KILLMYSOUND)(LPVOID);			//wav消去
+typedef DWORD  (*PFUNCS_MESSAGE2SYSTEM)(DWORD,DWORD,DWORD);	//メッセージ
+typedef char*  (*PFUNCS_GETENEMYNAME)(DWORD);			//"敵"の名前を取得する
+typedef double (*PFUNCS_GETDISPCENTERX)();				//現在の画面中心を得る
+typedef double (*PFUNCS_GETDISPCENTERY)();				//現在の画面中心を得る
 
-typedef DWORD  (*PFUNCS_GETTEAMNUM)();					//���Ή������Q�b�g
-typedef DWORD  (*PFUNCS_GETTAISENKEISIKI)();			//�ΐ�`�����Q�g
-typedef DWORD  (*PFUNCS_STRIKEROK)(DWORD tid,DWORD oid,BOOL next);//�X�g���C�J�[�U�����\���ǂ�����₢�l�߂�
+typedef DWORD  (*PFUNCS_GETTEAMNUM)();					//何対何かをゲット
+typedef DWORD  (*PFUNCS_GETTAISENKEISIKI)();			//対戦形式をゲト
+typedef DWORD  (*PFUNCS_STRIKEROK)(DWORD tid,DWORD oid,BOOL next);//ストライカー攻撃が可能かどうかを問い詰める
 
 struct DI_FUNCTIONS_S
 {
@@ -420,12 +420,12 @@ struct DI_FUNCTIONS_S
 //	PFUNCS_STRIKEROK		strikerok;
 };
 
-//�L�[���͒�`===========================================================================
+//キー入力定義===========================================================================
 
 #define KEYINPUT_PLAYER1	(0)
 #define KEYINPUT_PLAYER2	(1)
 
-//����͂��܂�g��Ȃ��łق�����
+//これはあまり使わないでほしい↓
 #define KEYSTA_LEFT		(0x00000100)
 #define KEYSTA_LEFT2	(0x00000200)
 #define KEYSTA_RIGHT	(0x00001000)
@@ -434,7 +434,7 @@ struct DI_FUNCTIONS_S
 #define KEYSTA_ALEFT2	(0x00000800)
 #define KEYSTA_ARIGHT	(0x00004000)
 #define KEYSTA_ARIGHT2	(0x00008000)
-//����������g�p�\
+//↓ここから使用可能
 #define KEYSTA_UP		(0x00000001)
 #define KEYSTA_UP2		(0x00000002)
 #define KEYSTA_DOWN		(0x00000010)
@@ -443,13 +443,13 @@ struct DI_FUNCTIONS_S
 #define KEYSTA_FOWORD2	KEYSTA_RIGHT2
 #define KEYSTA_BACK		KEYSTA_LEFT
 #define KEYSTA_BACK2	KEYSTA_LEFT2
-#define KEYSTA_BA		(0x00010000)//�{�^��1��������Ă�����
-#define KEYSTA_BA2		(0x00020000)//�{�^��1���������ꂽ�Ƃ���
-#define KEYSTA_BB		(0x00100000)//�{�^��2
+#define KEYSTA_BA		(0x00010000)//ボタン1が押されている状態
+#define KEYSTA_BA2		(0x00020000)//ボタン1が今押されたところ
+#define KEYSTA_BB		(0x00100000)//ボタン2
 #define KEYSTA_BB2		(0x00200000)
-#define KEYSTA_BC		(0x01000000)//�{�^��3
+#define KEYSTA_BC		(0x01000000)//ボタン3
 #define KEYSTA_BC2		(0x02000000)
-#define KEYSTA_BD		(0x10000000)//�{�^��4
+#define KEYSTA_BD		(0x10000000)//ボタン4
 #define KEYSTA_BD2		(0x20000000)
 
 #define KEYSTA_ANYKEY	(0x22220000)
@@ -457,85 +457,85 @@ struct DI_FUNCTIONS_S
 
 
 //Message Id============================================================================
-//�V�X�e�����ւ̃��b�Z�[�W
-#define MSGOBJ2SYS_TOJYOEND			1//�o��f�����I������
-#define MSGOBJ2SYS_FINALDOWNEND		2//�ŏI�_�E�����I������
-#define MSGOBJ2SYS_WINPOSEEND		3//�����f�����I������
-#define MSGOBJ2SYS_KOUTAI1			4//���v��(�L�����N�^�[1)
-#define MSGOBJ2SYS_KOUTAI2			5//���v��(�L�����N�^�[2)
-#define MSGOBJ2SYS_STRIKER1			6//�X�g���C�J�[�v��(�L�����N�^�[1)
-#define MSGOBJ2SYS_STRIKER2			7//�X�g���C�J�[�v��(�L�����N�^�[2)
-#define MSGOBJ2SYS_KOUTAIEND		8//���I���B�퓬�ł����Ԃł�
+//システム側へのメッセージ
+#define MSGOBJ2SYS_TOJYOEND			1//登場デモが終了した
+#define MSGOBJ2SYS_FINALDOWNEND		2//最終ダウンが終了した
+#define MSGOBJ2SYS_WINPOSEEND		3//勝利デモが終了した
+#define MSGOBJ2SYS_KOUTAI1			4//交代要請(キャラクター1)
+#define MSGOBJ2SYS_KOUTAI2			5//交代要請(キャラクター2)
+#define MSGOBJ2SYS_STRIKER1			6//ストライカー要請(キャラクター1)
+#define MSGOBJ2SYS_STRIKER2			7//ストライカー要請(キャラクター2)
+#define MSGOBJ2SYS_KOUTAIEND		8//交代終了。戦闘できる状態です
 
 //Effect Id ============================================================================
-//addeffect�̑������Ɏg����萔�B�������ȍ~�̈Ӗ��̓G�t�F�N�gID�ɂ��قȂ�
-							 //�����̈Ӗ�  /�R�����g
-#define EFCTID_MARK1		1//x,y,��
-#define EFCTID_MARK2		2//x,y,��
-#define EFCTID_MARK3		3//x,y,��
-#define EFCTID_MARK4		4//x,y,��
-#define EFCTID_MARKG		5//x,y,��
-#define EFCTID_MARKG2		6//x,y,��
+//addeffectの第一引数に使える定数。第二引数以降の意味はエフェクトIDにより異なる
+							 //引数の意味  /コメント
+#define EFCTID_MARK1		1//x,y,向
+#define EFCTID_MARK2		2//x,y,向
+#define EFCTID_MARK3		3//x,y,向
+#define EFCTID_MARK4		4//x,y,向
+#define EFCTID_MARKG		5//x,y,向
+#define EFCTID_MARKG2		6//x,y,向
 #define EFCTID_HIKARI		7//x,y,-
-#define EFCTID_STOP			8//�X�g�b�v���Ă鎞��,-,-
-#define EFCTID_DARK			9//�Â��Ȃ��Ă鎞��,-,-  
-#define EFCTID_MARKC		10//x,y,-  /�����͂񂾂Ƃ��̃}�[�N
-#define EFCTID_GNDCIR		11//x,y,-  /�n�ʂɊۂ��Ռ��g
-#define EFCTID_SINDO		12//�U��,��������,-  /�U�����N����
-#define EFCTID_NOBG			13//��������,-,-  �w�i�̕`��𖳂��ɂ���
-#define EFCTID_CYOHI		14//x,y,�d������ /���K�G�t�F�N�g
-#define EFCTID_TUBUTUBU		15//x,y,���̂ق�  /�p�[�e�B�N���U��
-#define EFCTID_TUBUTUBU2	16//x,y, ��Ɠ��� /�ł������p�[�e�B�N���U��
-#define EFCTID_COMEON		17//x,y,���� /come on my brother
-#define EFCTID_BURN			18//-,-,�I�u�W�F�N�gID /�w��I�u�W�F�N�g���R����
+#define EFCTID_STOP			8//ストップしてる時間,-,-
+#define EFCTID_DARK			9//暗くなってる時間,-,-  
+#define EFCTID_MARKC		10//x,y,-  /相手を掴んだときのマーク
+#define EFCTID_GNDCIR		11//x,y,-  /地面に丸い衝撃波
+#define EFCTID_SINDO		12//振幅,持続時間,-  /振動が起こる
+#define EFCTID_NOBG			13//持続時間,-,-  背景の描画を無しにする
+#define EFCTID_CYOHI		14//x,y,硬化時間 /超必エフェクト
+#define EFCTID_TUBUTUBU		15//x,y,↓のほう  /パーティクル散乱
+#define EFCTID_TUBUTUBU2	16//x,y, 上と同じ /でっかいパーティクル散乱
+#define EFCTID_COMEON		17//x,y,向き /come on my brother
+#define EFCTID_BURN			18//-,-,オブジェクトID /指定オブジェクトが燃える
 
-//�Ԃԃp�����[�^���͗p�}�N��
+//つぶつぶパラメータ入力用マクロ
 #define TUBUTUBUPRM(a,b,c,d,e,f,g,h)	((DWORD)(a*256*256*256)*16+(b*256*256*256)+(c*256*256*16)+(d*256*256)+(e*256*16)+(f*256)+(g*16)+h)
-//a:���̐�(0�`15)
-//b;���̑��x
-//c:���̑��x�̂΂��
-//d:�Œᑬ�x
-//e:�����ʒu�̂΂��
-//f:�����̂΂��
-//g:���̍ŒZ����
-#define TUBUTUBU_GOUP		0x00000001//������ɕ΂������x����������
-#define TUBUTUBU_GODOWN		0x00000002//�����ɕ΂������x����������
-#define TUBUTUBU_GOLEFT		0x00000004//��������
-#define TUBUTUBU_GORIGHT	0x00000008//�E
+//a:粒の数(0～15)
+//b;粒の速度
+//c:粒の速度のばらつき
+//d:最低速度
+//e:初期位置のばらつき
+//f:寿命のばらつき
+//g:粒の最短寿命
+#define TUBUTUBU_GOUP		0x00000001//上方向に偏った速度を持たせる
+#define TUBUTUBU_GODOWN		0x00000002//下向に偏った速度を持たせる
+#define TUBUTUBU_GOLEFT		0x00000004//左方向に
+#define TUBUTUBU_GORIGHT	0x00000008//右
 
 //Sound ID =============================================================================
-//pf_playsyssound�Ɏg����萔�B�V�X�e�����Ŏ����Ă�����ʉ��𗘗p�ł���
+//pf_playsyssoundに使える定数。システム側で持っている効果音を利用できる
 
-#define SYSTEMSOUND_HIT1	0//hit1.wav �q�b�g��
+#define SYSTEMSOUND_HIT1	0//hit1.wav ヒット音
 #define SYSTEMSOUND_HIT2	1//hit2.wav
 #define SYSTEMSOUND_HIT3	2//hit3.wav
-#define SYSTEMSOUND_SHOCK1	3//shock1.wav �g�����Ǝv���Ύg���邪�A���g�p
-#define SYSTEMSOUND_SHOCK2	4//shock2.wav �g�����Ǝv���Ύg���邪�A���g�p
-#define SYSTEMSOUND_GUARD	5//guard.wav �K�[�h��
-#define SYSTEMSOUND_CATCH	6//catch.wav �͂݉�
-#define SYSTEMSOUND_CYOHI	7//cyohi.wav ���K�������̌��ʉ�
-#define SYSTEMSOUND_CHARGE	8//charge.wav �Q�[�W��1�{���܂����Ƃ��̌��ʉ�
+#define SYSTEMSOUND_SHOCK1	3//shock1.wav 使おうと思えば使えるが、未使用
+#define SYSTEMSOUND_SHOCK2	4//shock2.wav 使おうと思えば使えるが、未使用
+#define SYSTEMSOUND_GUARD	5//guard.wav ガード音
+#define SYSTEMSOUND_CATCH	6//catch.wav 掴み音
+#define SYSTEMSOUND_CYOHI	7//cyohi.wav 超必発動時の効果音
+#define SYSTEMSOUND_CHARGE	8//charge.wav ゲージが1本溜まったときの効果音
 
-//�ΐ�`�� PFUNCS_GETTAISENKEISIKI�̖߂�l
+//対戦形式 PFUNCS_GETTAISENKEISIKIの戻り値
 #define TAISENKEISIKI_GOCYAMAZE		1
 #define TAISENKEISIKI_KOUTAI		2
 #define TAISENKEISIKI_JYUNBAN		3
 
 //**************************************************************************
-//�@�I�u�W�F�N�g�֘A�̊֐��̒�`
+//　オブジェクト関連の関数の定義
 //**************************************************************************
-typedef DWORD  (*PFUNCO_CREATE)();						//�I�u�W�F�N�g����
-typedef void   (*PFUNCO_DELETE)(DWORD);					//�I�u�W�F�N�g����
-typedef BOOL   (*PFUNCO_CATCH)(DWORD,LPVOID);			//�����Ƃ��ő��������
-typedef LPVOID (*PFUNCO_GETINFO)(DWORD);				//���
-typedef void   (*PFUNCO_ADDDAMAGE)(DWORD,DWORD,int x,int y);//(��ɓ����̂Ƃ�)�����I�Ƀ_���[�W��^����
-typedef void   (*PFUNCO_ACTIDCHANGED)(DWORD);			//�s��ID���ω������Ƃ��̏����𖾎��I�ɍs��
-typedef void*  (*PFUNCO_GETACTIVECHARACTER)(DWORD);		//���݃A�N�e�B�u�ȃL�����N�^�[�̏��
-typedef void   (*PFUNCO_SUICIDE)(DWORD);				//�I�u�W�F�N�g����
-typedef DWORD  (*PFUNCO_GETMAAI_H)(DWORD oid,DWORD eoid);//�ԍ�����get(����)
-typedef DWORD  (*PFUNCO_GETMAAI_V)(DWORD oid,DWORD eoid);//�ԍ�����get(����)
+typedef DWORD  (*PFUNCO_CREATE)();						//オブジェクト生成
+typedef void   (*PFUNCO_DELETE)(DWORD);					//オブジェクト消滅
+typedef BOOL   (*PFUNCO_CATCH)(DWORD,LPVOID);			//投げとかで相手をつかむ
+typedef LPVOID (*PFUNCO_GETINFO)(DWORD);				//情報
+typedef void   (*PFUNCO_ADDDAMAGE)(DWORD,DWORD,int x,int y);//(主に投げのとき)強制的にダメージを与える
+typedef void   (*PFUNCO_ACTIDCHANGED)(DWORD);			//行動IDが変化したときの処理を明示的に行う
+typedef void*  (*PFUNCO_GETACTIVECHARACTER)(DWORD);		//現在アクティブなキャラクターの情報
+typedef void   (*PFUNCO_SUICIDE)(DWORD);				//オブジェクト消滅
+typedef DWORD  (*PFUNCO_GETMAAI_H)(DWORD oid,DWORD eoid);//間合いをget(水平)
+typedef DWORD  (*PFUNCO_GETMAAI_V)(DWORD oid,DWORD eoid);//間合いをget(垂直)
 
-typedef DWORD  (*PFUNCO_GETCHARACTERID)(DWORD tid,DWORD index);//�L�����N�^�[�̃I�u�W�F�N�gID
+typedef DWORD  (*PFUNCO_GETCHARACTERID)(DWORD tid,DWORD index);//キャラクターのオブジェクトID
 
 struct DI_FUNCTIONS_O
 {
@@ -553,34 +553,34 @@ struct DI_FUNCTIONS_O
 	PFUNCO_GETCHARACTERID	getcharid;
 };
 
-//�@��������ށ@========================================================
-//catch ��CATCHYOU�\���̂̃|�C���^�����Ď��s���ATRUE���Ԃ�Γ����J�n
-//�n�����֐��� ����̍s���֐��ɂȂ�B�\���Z���ɂ̓f�t�H���g�Z���𗘗p����
+//　相手をつかむ　========================================================
+//catch にCATCHYOU構造体のポインタを入れて実行し、TRUEが返れば投げ開始
+//渡した関数が 相手の行動関数になる。表示セルにはデフォルトセルを利用する
 
 struct CATCHYOU
 {
-	DWORD oid;//�͂ރI�u�W�F�N�g
-	DWORD actmsg;//�͂񂾃I�u�W�F�N�g���A���܂ꂽ�I�u�W�F�N�g�𑀍삷�邽�߂Ɏg�����b�Z�[�W
+	DWORD oid;//掴むオブジェクト
+	DWORD actmsg;//掴んだオブジェクトが、つかまれたオブジェクトを操作するために使うメッセージ
 };
 
 //**************************************************************************
-//�@�`��֘A�̊֐��̒�`
+//　描画関連の関数の定義
 //**************************************************************************
 
-//*�`��n�֐�*
-typedef LPVOID (*PFUNCD_GETD3D)();							//IDirect3D* �̎擾
-typedef LPVOID (*PFUNCD_GETD3DD)();							//IDirect3DDevice* �̎擾
-typedef void   (*PFUNCD_LOADCELLDAT)(char*,LPVOID,LPVOID,LPVOID);//�Z���f�[�^�ǂݍ��݊֐�
-typedef LPVOID (*PFUNCD_LOADBMP)(char*,char*);				//�r�b�g�}�b�v�ǂݍ��݊֐�
-typedef void   (*PFUNCD_UNLOADBMP)(LPVOID);					//�r�b�g�}�b�v��n���֐�
-typedef void   (*PFUNCD_CELLDRAW)(LPVOID*,LPVOID,LPVOID,DWORD,int,int,float,int,BOOL,BOOL,DWORD,float,float);//�Z���`��֐�
+//*描画系関数*
+typedef LPVOID (*PFUNCD_GETD3D)();							//IDirect3D* の取得
+typedef LPVOID (*PFUNCD_GETD3DD)();							//IDirect3DDevice* の取得
+typedef void   (*PFUNCD_LOADCELLDAT)(char*,LPVOID,LPVOID,LPVOID);//セルデータ読み込み関数
+typedef LPVOID (*PFUNCD_LOADBMP)(char*,char*);				//ビットマップ読み込み関数
+typedef void   (*PFUNCD_UNLOADBMP)(LPVOID);					//ビットマップ後始末関数
+typedef void   (*PFUNCD_CELLDRAW)(LPVOID*,LPVOID,LPVOID,DWORD,int,int,float,int,BOOL,BOOL,DWORD,float,float);//セル描画関数
 typedef void   (*PFUNCD_CKBLT)(void*,int,int,RECT,double,double,BOOL,BOOL,float,DWORD);//Blt2
 typedef void   (*PFUNCD_BLT3D)(void*,RECT,MYRECT3D,DWORD);	//Blt3
-typedef void   (*PFUNCD_SETTRANSFORM)(BOOL);				//�ϊ��s��ݒ�
-typedef void   (*PFUNCD_SETBLEND)(DWORD);					//�u�����h�̎d����ύX
-typedef void   (*PFUNCD_SETPARENTMATRIX)(LPVOID,BOOL,LPVOID);//�u�e�v�̕ϊ��s��ݒ�
-typedef DWORD  (*PFUNCD_CREATEGCDDAT)(char* filename,LPVOID *cdat,LPVOID *rdat,LPVOID *hdat);//�Z���f�[�^�ǂݍ��݁Bver0.90�ȍ~�ł�LoadCellDat���炱����ɕύX����ׂ�
-typedef void   (*PFUNCD_DESTROYGCDDAT)(LPVOID *cdat,LPVOID *rdat,LPVOID *hdat);//CreateCellDat�Ő������ꂽ�o�b�t�@���N���A
+typedef void   (*PFUNCD_SETTRANSFORM)(BOOL);				//変換行列設定
+typedef void   (*PFUNCD_SETBLEND)(DWORD);					//ブレンドの仕方を変更
+typedef void   (*PFUNCD_SETPARENTMATRIX)(LPVOID,BOOL,LPVOID);//「親」の変換行列設定
+typedef DWORD  (*PFUNCD_CREATEGCDDAT)(char* filename,LPVOID *cdat,LPVOID *rdat,LPVOID *hdat);//セルデータ読み込み。ver0.90以降ではLoadCellDatからこちらに変更するべき
+typedef void   (*PFUNCD_DESTROYGCDDAT)(LPVOID *cdat,LPVOID *rdat,LPVOID *hdat);//CreateCellDatで生成されたバッファをクリア
 
 struct DI_FUNCTIONS_D
 {
@@ -602,7 +602,7 @@ struct DI_FUNCTIONS_D
 
 
 //**************************************************************************
-//�@�l�b�g���[�N�֘A�̊֐��̒�`
+//　ネットワーク関連の関数の定義
 //**************************************************************************
 typedef DWORD (*PFUNCN_REGISTER_OBJECT)(BYTE dllID,BYTE userID,BYTE userNo);
 typedef void (*PFUNCN_SENDSYNCMESSAGE)(DWORD objid,DWORD size,LPVOID dat);
@@ -612,7 +612,7 @@ typedef void (*PFUNCN_SET_SYNCRONIZE)(DWORD objid,BOOL enabled);
 
 struct DI_FUNCTIONS_N
 {
-	PFUNCN_REGISTER_OBJECT obj_regist;			//��o.objcreate
+	PFUNCN_REGISTER_OBJECT obj_regist;			//→o.objcreate
 	PFUNCN_SENDSYNCMESSAGE send_syncmsg;		//out of order now
 	PFUNCN_SET_SYNCRONIZE set_syncronize;
 //	PFUNCN_REGIST_EFFECT  regist_usereffect;
@@ -620,7 +620,7 @@ struct DI_FUNCTIONS_N
 };
 
 //*************************************************************************
-//  �W���I��z���W�̒l
+//  標準的なz座標の値
 //*************************************************************************
 #define ZZAHYO_CHARACTER	(0.00f)
 #define ZZAHYO_CHARACTER_B	(0.02f)
@@ -635,75 +635,75 @@ struct DI_FUNCTIONS_N
 
 
 //**************************************************************************
-//  �L�����N�^DLL�̃o�[�W����
+//  キャラクタDLLのバージョン
 //**************************************************************************
 #define CDI_VERSION 920
 
 //********************************************************************************
-//�@�L�����N�^�[�I�v�V��������`
+//　キャラクターオプション情報定義
 //********************************************************************************
 
 struct CHARACTER_LOAD_OPTION
 {
-	DWORD flag;			//�I�v�V������ON�̏ꍇ�ɗ��t���O
-	DWORD exclusive;	//�����Ɏw��ł��Ȃ��ق��̃I�v�V����
-	DWORD depends;		//�����Ɏw�肳��Ă��Ȃ���΂Ȃ�Ȃ��ق��̃I�v�V����
-	char name[64];		//�I�v�V������
-	char point;			//�I�v�V��������|�C���g
+	DWORD flag;			//オプションがONの場合に立つフラグ
+	DWORD exclusive;	//同時に指定できないほかのオプション
+	DWORD depends;		//同時に指定されていなければならないほかのオプション
+	char name[64];		//オプション名
+	char point;			//オプション消費ポイント
 };
 
 //**************************************************************************
-// CharacterInfo�֐��œn�����\����
+// CharacterInfo関数で渡される構造体
 //**************************************************************************
 
 typedef DWORD (*PFUNC_CHARACTERINFO)(LPVOID);
 struct CDI_CHARACTERINFO
 {
-	DWORD system_version;		//�V�X�e���̃o�[�W�����B�iver0.9�ȑO��0���͂����Ă�Ƃ����܂��j
+	DWORD system_version;		//システムのバージョン。（ver0.9以前は0がはいってるとおもます）
 	char dummy[28];
-	char name[32];				//�R�R�ɖ��O���R�s�[���邱��
-	DWORD caps;					//�����ɏ���ݒ�iver0.9�ȍ~�j
+	char name[32];				//ココに名前をコピーすること
+	DWORD caps;					//ここに情報を設定（ver0.9以降）
 	LPVOID dummy2[3];
-	DWORD ver;					//�R�R�Ƀo�[�W�������R�s�[���邱��
-	//ver0.9�ȍ~�Œǉ�
-	CHARACTER_LOAD_OPTION options[32];	//�L�����I�����ɐݒ�\�ȃI�v�V����
-	DWORD max_option_point;		//�I�v�V�����̍ő�l
+	DWORD ver;					//ココにバージョンをコピーすること
+	//ver0.9以降で追加
+	CHARACTER_LOAD_OPTION options[32];	//キャラ選択時に設定可能なオプション
+	DWORD max_option_point;		//オプションの最大値
 };
 
-//caps�ɐݒ肷��t���O
-#define CHARACTER_CAPS_NET		0x00000001//�l�b�g���[�N�ΐ�Ŏg�p�\
-#define CHARACTER_CAPS_OFFLINE	0x00000002//�����I�t���C�����[�h�ł��g�p�\
+//capsに設定するフラグ
+#define CHARACTER_CAPS_NET		0x00000001//ネットワーク対戦で使用可能
+#define CHARACTER_CAPS_OFFLINE	0x00000002//↑かつオフラインモードでも使用可能
 
 
 //********************************************************************************
-//�@CreateCharacter �̈����ɓn�����\����
+//　CreateCharacter の引数に渡される構造体
 //********************************************************************************
 typedef DWORD (*PFUNC_CREATECHARACTER)(LPVOID);
 struct CDI_CHARACTERINFO2
 {
-	char dir[64];//dll������f�B���N�g��
-	DWORD tid;//�`�[��ID(0:1P���A1:2P��)
-	DWORD color;//�ǂ̐F�ɂ��邩�ipal?.bmp�j
-	DWORD keyinput;//�ǂ�������͂��󂯎�邩
+	char dir[64];//dllがあるディレクトリ
+	DWORD tid;//チームID(0:1P側、1:2P側)
+	DWORD color;//どの色にするか（pal?.bmp）
+	DWORD keyinput;//どこから入力を受け取るか
 	DI_FUNCTIONS_S *funcs;
 	DI_FUNCTIONS_O *funco;
 	DI_FUNCTIONS_D *funcd;
-	//ver0.9�ȍ~�Œǉ�
-	BOOL isRemote;			//�����[�g���䂩�ǂ���
+	//ver0.9以降で追加
+	BOOL isRemote;			//リモート制御かどうか
 	BYTE dllid;
-	DI_FUNCTIONS_N *funcn;	//���[�J�����[�h�ł�NULL
-	DWORD options_flag;		//�I�����ꂽ�I�v�V�����t���O
+	DI_FUNCTIONS_N *funcn;	//ローカルモードではNULL
+	DWORD options_flag;		//選択されたオプションフラグ
 };
 
 //**************************************************************************
-// �X�e�[�WDLL�̃o�[�W����
+// ステージDLLのバージョン
 //**************************************************************************
 
 #define SDI_VERSION 750
 
 
 //**************************************************************************
-// StageInfo�֐��œn�����\����
+// StageInfo関数で渡される構造体
 //**************************************************************************
 
 typedef DWORD (*PFUNC_STAGEINFO)(LPVOID);
@@ -714,14 +714,14 @@ struct SDI_STAGEINFO
 };
 
 //**************************************************************************
-// CreateStage�֐��œn�����\����
+// CreateStage関数で渡される構造体
 //**************************************************************************
 
 typedef DWORD (*PFUNC_CREATESTAGE)(LPVOID);
 struct SDI_STAGEINFO2
 {
-	char dir[64];//dll������f�B���N�g��
-	DWORD tid;//�`�[��ID(���2(�X�e�[�W))
+	char dir[64];//dllがあるディレクトリ
+	DWORD tid;//チームID(常に2(ステージ))
 	DI_FUNCTIONS_S *funcs;
 	DI_FUNCTIONS_O *funco;
 	DI_FUNCTIONS_D *funcd;

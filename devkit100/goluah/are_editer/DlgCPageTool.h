@@ -1,22 +1,22 @@
-#pragma once
+ï»¿#pragma once
 
 
-// CDlgCPageTool ƒ_ƒCƒAƒƒO
+// CDlgCPageTool ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 class CDlgCPageTool : public CMyDialogTab
 {
 	DECLARE_DYNAMIC(CDlgCPageTool)
 
 public:
-	CDlgCPageTool(CWnd* pParent = NULL);   // •W€ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	CDlgCPageTool(CWnd* pParent = NULL);   // æ¨™æº–ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~CDlgCPageTool();
-	void UpdateItems(){}//•\¦•¨XV
+	void UpdateItems(){}//è¡¨ç¤ºç‰©æ›´æ–°
 
-// ƒ_ƒCƒAƒƒO ƒf[ƒ^
+// ãƒ€ã‚¤ã‚¢ãƒ­ã‚° ãƒ‡ãƒ¼ã‚¿
 	enum { IDD = IDD_DIALOG_CTAB_TOOLS };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ƒTƒ|[ƒg
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ã‚µãƒãƒ¼ãƒˆ
 
 	DECLARE_MESSAGE_MAP()
 public:
@@ -29,7 +29,7 @@ public:
 	afx_msg void OnBnClickedButtonRflip6();
 	afx_msg void OnBnClickedButtonRflip7();
 	afx_msg void OnBnClickedButtonRflip8();
-	// ‹óƒZƒ‹‘}“üˆÊ’u
+	// ç©ºã‚»ãƒ«æŒ¿å…¥ä½ç½®
 	DWORD m_insEmptyCellIndex;
 	afx_msg void OnBnClickedButton6();
 	afx_msg void OnBnClickedButton5();

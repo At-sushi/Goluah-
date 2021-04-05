@@ -1,7 +1,7 @@
-#pragma once
+ï»¿#pragma once
 
 
-// CRecteditDlg ƒ_ƒCƒAƒƒO
+// CRecteditDlg ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 #define MAX_TAB_PAGES_RECT 2
 
@@ -10,20 +10,20 @@ class CRecteditDlg : public CMyDialogTab
 	DECLARE_DYNAMIC(CRecteditDlg)
 
 public:
-	CRecteditDlg(CWnd* pParent = NULL);   // •W€ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	CRecteditDlg(CWnd* pParent = NULL);   // æ¨™æº–ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~CRecteditDlg();
-	void UpdateItems();//•\¦•¨XV
+	void UpdateItems();//è¡¨ç¤ºç‰©æ›´æ–°
 	void BlankNext();
 
-// ƒ_ƒCƒAƒƒO ƒf[ƒ^
+// ãƒ€ã‚¤ã‚¢ãƒ­ã‚° ãƒ‡ãƒ¼ã‚¿
 	enum { IDD = IDD_DIALOG_SUBTAB_RECT };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ƒTƒ|[ƒg
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ã‚µãƒãƒ¼ãƒˆ
 
 	DECLARE_MESSAGE_MAP()
 public:
-	//Šeƒ^ƒuƒy[ƒW‚É‘Š“–‚·‚éƒ_ƒCƒAƒƒOƒNƒ‰ƒX
+	//å„ã‚¿ãƒ–ãƒšãƒ¼ã‚¸ã«ç›¸å½“ã™ã‚‹ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¯ãƒ©ã‚¹
 	CMyDialogTab *m_tab_pages[MAX_TAB_PAGES_RECT];
 
 	afx_msg void OnTcnSelchangeTabRect(NMHDR *pNMHDR, LRESULT *pResult);

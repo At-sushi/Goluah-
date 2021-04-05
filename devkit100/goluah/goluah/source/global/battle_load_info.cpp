@@ -1,15 +1,15 @@
-
+ï»¿
 /*==================================================================
 
 	Battle Load Information
 
-	í“¬ƒ^ƒXƒNŠJn‚É•K—v‚ÈŠeíî•ñ
-	‚Â‚¢‚Å‚ÉAí“¬ƒ^ƒXƒNI—¹‚Ìî•ñ
+	æˆ¦é—˜ã‚¿ã‚¹ã‚¯é–‹å§‹ã«å¿…è¦ãªå„ç¨®æƒ…å ±
+	ã¤ã„ã§ã«ã€æˆ¦é—˜ã‚¿ã‚¹ã‚¯çµ‚äº†æ™‚ã®æƒ…å ±
 
 ====================================================================*/
 
 #include "stdafx.h"
-#include "gobject.h"			//‘ÎíŒ`®‚Ìdefine‚ª•K—v
+#include "gobject.h"			//å¯¾æˆ¦å½¢å¼ã®defineãŒå¿…è¦
 #include "global.h"
 #include "battle_load_info.h"
 
@@ -19,33 +19,33 @@
 //
 //******************************************************************
 
-//‘S€–Ú‚ğw’è–³‚µ‚Éİ’è‚·‚é
+//å…¨é …ç›®ã‚’æŒ‡å®šç„¡ã—ã«è¨­å®šã™ã‚‹
 void CBattleLoadInfo::Initialize()
 {
-	m_limittime = -1;							//§ŒÀŠÔ : –³§ŒÀ
-	m_type = TAISENKEISIKI_GOCYAMAZE;			//‘ÎíŒ`® : ‚²‚¿‚á‚Ü‚º
-	m_num_team[0] = m_num_team[1] = 0;			//1ƒ`[ƒ€‰½l‚© : 0
+	m_limittime = -1;							//åˆ¶é™æ™‚é–“ : ç„¡åˆ¶é™
+	m_type = TAISENKEISIKI_GOCYAMAZE;			//å¯¾æˆ¦å½¢å¼ : ã”ã¡ã‚ƒã¾ãœ
+	m_num_team[0] = m_num_team[1] = 0;			//1ãƒãƒ¼ãƒ ä½•äººã‹ : 0
 
 	for(int i=0;i<2;i++){
 		for(int j=0;j<3;j++){
-			m_char[i][j] = BLI_NOT_SELECTED;	//‘I‘ğ‚³‚ê‚½ƒLƒƒƒ‰ƒNƒ^[ : –¢‘I‘ğ
-			m_options[i][j] = 0;				//‘I‘ğ‚³‚ê‚½ƒIƒvƒVƒ‡ƒ“İ’è : 0(‚È‚µ)
-			m_color[i][j] = 0;					//‘I‘ğ‚³‚ê‚½ƒLƒƒƒ‰ƒNƒ^[F : 0
-			m_key_assign[i][j] = CASSIGN_NONE;	//ƒL[ƒAƒTƒCƒ“E‚È‚µ
-			m_com_level[i][j] = g_config.GetDifficulty();//“ïˆÕ“x : ƒRƒ“ƒtƒBƒO‚©‚çæ“¾
+			m_char[i][j] = BLI_NOT_SELECTED;	//é¸æŠã•ã‚ŒãŸã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ : æœªé¸æŠ
+			m_options[i][j] = 0;				//é¸æŠã•ã‚ŒãŸã‚ªãƒ—ã‚·ãƒ§ãƒ³è¨­å®š : 0(ãªã—)
+			m_color[i][j] = 0;					//é¸æŠã•ã‚ŒãŸã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼è‰² : 0
+			m_key_assign[i][j] = CASSIGN_NONE;	//ã‚­ãƒ¼ã‚¢ã‚µã‚¤ãƒ³ãƒ»ãªã—
+			m_com_level[i][j] = g_config.GetDifficulty();//é›£æ˜“åº¦ : ã‚³ãƒ³ãƒ•ã‚£ã‚°ã‹ã‚‰å–å¾—
 		}
 	}
-	m_stage = BLI_NOT_SELECTED;					//‘I‘ğ‚³‚ê‚½ƒXƒe[ƒW : –¢‘I‘ğ
-	strcpy(m_storybgm,"");						//ƒXƒg[ƒŠ[‚©‚çw’è‚³‚ê‚½BGM : ‚È‚µ
+	m_stage = BLI_NOT_SELECTED;					//é¸æŠã•ã‚ŒãŸã‚¹ãƒ†ãƒ¼ã‚¸ : æœªé¸æŠ
+	strcpy(m_storybgm,"");						//ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã‹ã‚‰æŒ‡å®šã•ã‚ŒãŸBGM : ãªã—
 
-	g_battleresult.SetKatiSerif(0,"(‘äŒ‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ)");
-	g_battleresult.SetKatiSerif(1,"(‘äŒ‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ)");
+	g_battleresult.SetKatiSerif(0,"(å°è©ãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“)");
+	g_battleresult.SetKatiSerif(1,"(å°è©ãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“)");
 }
 
-//w’è–³‚µ€–Ú‚ğƒ‰ƒ“ƒ_ƒ€w’è‚Æ‚İ‚È‚µA—LŒø‚È’l‚ğŠ„‚è“–‚Ä‚é
+//æŒ‡å®šç„¡ã—é …ç›®ã‚’ãƒ©ãƒ³ãƒ€ãƒ æŒ‡å®šã¨ã¿ãªã—ã€æœ‰åŠ¹ãªå€¤ã‚’å‰²ã‚Šå½“ã¦ã‚‹
 void CBattleLoadInfo::ResolveRandom()
 {
-	//ƒLƒƒƒ‰ƒNƒ^[
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼
 	for(int i=0;i<2;i++){
 		for(DWORD j=0;j<GetNumTeam(i);j++){
 			if(m_char[i][j]==BLI_NOT_SELECTED){
@@ -55,19 +55,19 @@ void CBattleLoadInfo::ResolveRandom()
 		}
 	}
 
-	//ƒXƒe[ƒW
+	//ã‚¹ãƒ†ãƒ¼ã‚¸
 	if(m_stage == BLI_NOT_SELECTED){
 		m_stage = rand()%g_stagelist.GetStageCount();
 	}
 }
 
 //*******************************************************************
-//	Set`
+//	Setï½
 //*******************************************************************
 
 /*!
-*	‘ÎíŒ`®‚ğw’è
-*	@param type ‘ÎíŒ`®(TAISENKEISIKI_`’l)
+*	å¯¾æˆ¦å½¢å¼ã‚’æŒ‡å®š
+*	@param type å¯¾æˆ¦å½¢å¼(TAISENKEISIKI_ï½å€¤)
 */
 void CBattleLoadInfo::SetBattleType(BYTE type)
 {
@@ -75,40 +75,40 @@ void CBattleLoadInfo::SetBattleType(BYTE type)
 }
 
 /*!
-*	§ŒÀŠÔİ’è
-*	@param val İ’è’lBƒ}ƒCƒiƒX‚Í§ŒÀ‚È‚µ‚ğ•\‚·B
+*	åˆ¶é™æ™‚é–“è¨­å®š
+*	@param val è¨­å®šå€¤ã€‚ãƒã‚¤ãƒŠã‚¹ã¯åˆ¶é™ãªã—ã‚’è¡¨ã™ã€‚
 */
 void CBattleLoadInfo::SetLimitTime(int val)
 {
 	m_limittime = val;
 }
 
-/*/1ƒ`[ƒ€‚Ìl”‚ğw’è
+/*/1ãƒãƒ¼ãƒ ã®äººæ•°ã‚’æŒ‡å®š
 void CBattleLoadInfo::SetNumTeam(DWORD num)
 {m_num_team = num;}
-//ƒLƒƒƒ‰ƒNƒ^‚ğİ’è
+//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’è¨­å®š
 void CBattleLoadInfo::SetCharacter(DWORD team,DWORD member_index,DWORD character_index)
 {m_char[team][member_index] = character_index;}
-//ƒRƒ“ƒsƒ…[ƒ^‚©‚Ç‚¤‚©‚ğİ’è
+//ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿ã‹ã©ã†ã‹ã‚’è¨­å®š
 void CBattleLoadInfo::SetCharacterIsCOM(DWORD team,DWORD member_index,BOOL val)
 {m_is_com[team][member_index] = val;}
-//ƒJƒ‰[‚ğİ’è
+//ã‚«ãƒ©ãƒ¼ã‚’è¨­å®š
 void CBattleLoadInfo::SetColor(DWORD team,DWORD member_index,DWORD color)
 {m_color[team][member_index] = color;}
-//ƒIƒvƒVƒ‡ƒ“‚ğw’è
+//ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’æŒ‡å®š
 void CBattleLoadInfo::SetCharacterOption(DWORD team,DWORD member_index,DWORD optval)
 {m_options[team][member_index] = optval;}
 */
 
 /*!
-*	Q‰ÁƒLƒƒƒ‰ƒNƒ^w’è
-*	ŒÄ‚Ño‚µ‚½‰ñ”‚Åƒ`[ƒ€‚Ìl”‚ªŒˆ‚Ü‚è‚Ü‚·B
+*	å‚åŠ ã‚­ãƒ£ãƒ©ã‚¯ã‚¿æŒ‡å®š
+*	å‘¼ã³å‡ºã—ãŸå›æ•°ã§ãƒãƒ¼ãƒ ã®äººæ•°ãŒæ±ºã¾ã‚Šã¾ã™ã€‚
 *
-*	@param team TEAM_PLAYER1/TEAM_PLAYER2 , ‚Æ‚¢‚¤‚©A0/1
-*	@param cindex İ’èƒLƒƒƒ‰ƒNƒ^[ƒCƒ“ƒfƒbƒNƒX
-*	@param color İ’èF”Ô†
-*	@param key g—pƒL[“ü—Í”Ô†.‚Ü‚½‚ÍACASSIGN_COM(ƒRƒ“ƒsƒ…[ƒ^§Œä)
-*	@param option İ’èƒIƒvƒVƒ‡ƒ“
+*	@param team TEAM_PLAYER1/TEAM_PLAYER2 , ã¨ã„ã†ã‹ã€0/1
+*	@param cindex è¨­å®šã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+*	@param color è¨­å®šè‰²ç•ªå·
+*	@param key ä½¿ç”¨ã‚­ãƒ¼å…¥åŠ›ç•ªå·.ã¾ãŸã¯ã€CASSIGN_COM(ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿åˆ¶å¾¡)
+*	@param option è¨­å®šã‚ªãƒ—ã‚·ãƒ§ãƒ³
 */
 void CBattleLoadInfo::AddCharacter( 
 						DWORD team,
@@ -129,13 +129,13 @@ void CBattleLoadInfo::AddCharacter(
 }
 
 
-//!ƒXƒe[ƒW‚ğİ’è
+//!ã‚¹ãƒ†ãƒ¼ã‚¸ã‚’è¨­å®š
 void CBattleLoadInfo::SetStage(DWORD stage_index)
 {
 	m_stage = stage_index;
 }
 
-//!ƒXƒg[ƒŠ[‚©‚çw’è‚³‚ê‚½BGM
+//!ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã‹ã‚‰æŒ‡å®šã•ã‚ŒãŸBGM
 void CBattleLoadInfo::SetStoryBGM(char *filepath)
 {
 	if(filepath==NULL)return;
@@ -143,12 +143,12 @@ void CBattleLoadInfo::SetStoryBGM(char *filepath)
 }
 
 /*!
-*	COMƒŒƒxƒ‹İ’è
+*	COMãƒ¬ãƒ™ãƒ«è¨­å®š
 *
-*	@param team ƒ`[ƒ€
-*	@param cindex ƒ`[ƒ€“à‚Ì‰½l–Ú‚É‘Î‚µ‚Äİ’è‚·‚é‚©(0`)
-*	@param level İ’èƒŒƒxƒ‹
-*	@param is_related TRUE‚Ìê‡AƒRƒ“ƒtƒBƒO‚©‚ç‚Ì‘Š‘Îiƒ}ƒCƒiƒX’l‚àƒAƒŠj
+*	@param team ãƒãƒ¼ãƒ 
+*	@param cindex ãƒãƒ¼ãƒ å†…ã®ä½•äººç›®ã«å¯¾ã—ã¦è¨­å®šã™ã‚‹ã‹(0ï½)
+*	@param level è¨­å®šãƒ¬ãƒ™ãƒ«
+*	@param is_related TRUEã®å ´åˆã€ã‚³ãƒ³ãƒ•ã‚£ã‚°ã‹ã‚‰ã®ç›¸å¯¾ï¼ˆãƒã‚¤ãƒŠã‚¹å€¤ã‚‚ã‚¢ãƒªï¼‰
 */
 void CBattleLoadInfo::SetComLevel(DWORD team,DWORD cindex,int level,BOOL is_related)
 {
@@ -173,71 +173,71 @@ void CBattleLoadInfo::SetComLevel(DWORD team,DWORD cindex,int level,BOOL is_rela
 }
 
 //*******************************************************************
-//	Get`
+//	Getï½
 //*******************************************************************
 
-//‘ÎíŒ`®‚ğæ“¾
+//å¯¾æˆ¦å½¢å¼ã‚’å–å¾—
 DWORD CBattleLoadInfo::GetBattleType()
 {
 	return m_type;
 }
 
-//§ŒÀŠÔæ“¾
+//åˆ¶é™æ™‚é–“å–å¾—
 int   CBattleLoadInfo::GetLimitTime()
 {
 	return m_limittime;
 }
 
-//1ƒ`[ƒ€‚Ìl”‚ğæ“¾
+//1ãƒãƒ¼ãƒ ã®äººæ•°ã‚’å–å¾—
 DWORD CBattleLoadInfo::GetNumTeam(DWORD team)
 {
 	return m_num_team[team];
 }
 
-//ƒLƒƒƒ‰ƒNƒ^‚ğæ“¾
+//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’å–å¾—
 DWORD CBattleLoadInfo::GetCharacter(DWORD team,DWORD member_index)
 {
 	return m_char[team][member_index];
 }
 
-//ƒRƒ“ƒsƒ…[ƒ^‚©‚Ç‚¤‚©‚ğæ“¾
+//ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿ã‹ã©ã†ã‹ã‚’å–å¾—
 BYTE CBattleLoadInfo::GetKeyAssign(DWORD team,DWORD member_index)
 {
 	return m_key_assign[team][member_index];
 }
 
 
-//ƒRƒ“ƒsƒ…[ƒ^‚©‚Ç‚¤‚©‚ğæ“¾
+//ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿ã‹ã©ã†ã‹ã‚’å–å¾—
 BOOL CBattleLoadInfo::GetCharacterIsCOM(DWORD team,DWORD member_index)
 {
 	return m_key_assign[team][member_index] == CASSIGN_COM;
 }
 
-//ƒJƒ‰[‚ğæ“¾
+//ã‚«ãƒ©ãƒ¼ã‚’å–å¾—
 DWORD CBattleLoadInfo::GetColor(DWORD team,DWORD member_index)
 {
 	return m_color[team][member_index];
 }
 
-//ƒIƒvƒVƒ‡ƒ“‚ğæ“¾
+//ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’å–å¾—
 DWORD CBattleLoadInfo::GetCharacterOption(DWORD team,DWORD member_index)
 {
 	return m_options[team][member_index];
 }
 
-//COMƒŒƒxƒ‹æ“¾
+//COMãƒ¬ãƒ™ãƒ«å–å¾—
 Config2_Difficulty CBattleLoadInfo::GetComLevel(DWORD team,DWORD member_idx)
 {
 	return m_com_level[team][member_idx];
 }
 
-//ƒXƒe[ƒW‚ğæ“¾
+//ã‚¹ãƒ†ãƒ¼ã‚¸ã‚’å–å¾—
 DWORD CBattleLoadInfo::GetStage()
 {
 	return m_stage;
 }
 
-//ƒXƒg[ƒŠ[‚Åw’è‚³‚ê‚½BGMæ“¾iİ’è‚³‚ê‚Ä‚¢‚È‚¢ê‡NULLj
+//ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã§æŒ‡å®šã•ã‚ŒãŸBGMå–å¾—ï¼ˆè¨­å®šã•ã‚Œã¦ã„ãªã„å ´åˆNULLï¼‰
 char* CBattleLoadInfo::GetStoryBGM()
 {
 	if(strlen(m_storybgm)==0)return NULL;
@@ -279,8 +279,8 @@ DWORD CBattleLoadInfo::GetAllKey()
 
 CBattleResultInfo::CBattleResultInfo()
 {
-	sprintf(m_serif[0],"(‘äŒ‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ)");
-	sprintf(m_serif[1],"(‘äŒ‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ)");
+	sprintf(m_serif[0],"(å°è©ãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“)");
+	sprintf(m_serif[1],"(å°è©ãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“)");
 }
 
 void CBattleResultInfo::Initialize(BYTE wteam)
@@ -297,7 +297,7 @@ void CBattleResultInfo::Initialize(BYTE wteam)
 
 
 //*******************************************************************
-//	Set`
+//	Setï½
 //*******************************************************************
 
 void  CBattleResultInfo::SetKatiSerif(DWORD team,char *str)
@@ -307,7 +307,7 @@ void  CBattleResultInfo::SetKatiSerif(DWORD team,char *str)
 
 
 //*******************************************************************
-//	Get`
+//	Getï½
 //*******************************************************************
 BOOL  CBattleResultInfo::GetWinner()
 {

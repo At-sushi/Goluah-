@@ -1,5 +1,5 @@
-#include "..\goluah_config\dlgother.h"
-// DlgOther.cpp : À‘•ƒtƒ@ƒCƒ‹
+ï»¿#include "..\goluah_config\dlgother.h"
+// DlgOther.cpp : å®Ÿè£…ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #include "stdafx.h"
@@ -10,7 +10,7 @@
 
 extern CDirectDraw g_draw;
 
-// CDlgOther ƒ_ƒCƒAƒƒO
+// CDlgOther ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 IMPLEMENT_DYNAMIC(CDlgOther, CMyDialogTab)
 CDlgOther::CDlgOther(CWnd* pParent /*=NULL*/)
@@ -44,17 +44,17 @@ BEGIN_MESSAGE_MAP(CDlgOther, CDialog)
 END_MESSAGE_MAP()
 
 
-// CDlgOther ƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰
+// CDlgOther ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ©
 
 
 /*-------------------------------------------------------------------
-	ƒ_ƒCƒAƒƒO‰Šú‰»
+	ãƒ€ã‚¤ã‚¢ãƒ­ã‚°åˆæœŸåŒ–
 ---------------------------------------------------------------------*/
 BOOL CDlgOther::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO :  ‚±‚±‚É‰Šú‰»‚ğ’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢
+	// TODO :  ã“ã“ã«åˆæœŸåŒ–ã‚’è¿½åŠ ã—ã¦ãã ã•ã„
 	DWORD red = (m_color&0x00FF0000) >> 16;
 	DWORD green = (m_color&0x0000FF00) >> 8;
 	DWORD blue = (m_color&0x000000FF) ;
@@ -71,16 +71,16 @@ BOOL CDlgOther::OnInitDialog()
 	sl->SetPos(blue);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// —áŠO : OCX ƒvƒƒpƒeƒB ƒy[ƒW‚Í•K‚¸ FALSE ‚ğ•Ô‚µ‚Ü‚·B
+	// ä¾‹å¤– : OCX ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ ãƒšãƒ¼ã‚¸ã¯å¿…ãš FALSE ã‚’è¿”ã—ã¾ã™ã€‚
 }
 
 /*-------------------------------------------------------------------
-	”wŒiFw’è
+	èƒŒæ™¯è‰²æŒ‡å®š
 ---------------------------------------------------------------------*/
 void CDlgOther::OnNMCustomdrawSlider1(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	*pResult = 0;
 
 	UpdateBGColor();
@@ -89,7 +89,7 @@ void CDlgOther::OnNMCustomdrawSlider1(NMHDR *pNMHDR, LRESULT *pResult)
 void CDlgOther::OnNMCustomdrawSlider2(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	*pResult = 0;
 
 	UpdateBGColor();
@@ -98,7 +98,7 @@ void CDlgOther::OnNMCustomdrawSlider2(NMHDR *pNMHDR, LRESULT *pResult)
 void CDlgOther::OnNMCustomdrawSlider3(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ğ’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	*pResult = 0;
 	
 	UpdateBGColor();
@@ -131,11 +131,11 @@ void CDlgOther::UpdateBGColor()
 }
 
 /*-------------------------------------------------------------------
-	”wŒiFİ’è•Û‘¶
+	èƒŒæ™¯è‰²è¨­å®šä¿å­˜
 ---------------------------------------------------------------------*/
 BOOL CDlgOther::DestroyWindow()
 {
-	// TODO : ‚±‚±‚É“Á’è‚ÈƒR[ƒh‚ğ’Ç‰Á‚·‚é‚©A‚à‚µ‚­‚ÍŠî–{ƒNƒ‰ƒX‚ğŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢B
+	// TODO : ã“ã“ã«ç‰¹å®šãªã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã‹ã€ã‚‚ã—ãã¯åŸºæœ¬ã‚¯ãƒ©ã‚¹ã‚’å‘¼ã³å‡ºã—ã¦ãã ã•ã„ã€‚
 
 	CFile file;
 	if( file.Open("are_editer.ini",CFile::modeCreate | CFile::modeWrite) )

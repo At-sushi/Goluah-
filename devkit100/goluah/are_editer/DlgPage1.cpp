@@ -1,5 +1,5 @@
-#include "..\goluah_config\dlgpage1.h"
-// DlgPage1.cpp : ŽÀ‘•ƒtƒ@ƒCƒ‹
+ï»¿#include "..\goluah_config\dlgpage1.h"
+// DlgPage1.cpp : å®Ÿè£…ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include "DlgPage1.h"
 
 
-// CDlgPage1 ƒ_ƒCƒAƒƒO
+// CDlgPage1 ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 IMPLEMENT_DYNAMIC(CDlgPage1, CMyDialogTab)
 CDlgPage1::CDlgPage1(CWnd* pParent /*=NULL*/)
@@ -79,36 +79,36 @@ BEGIN_MESSAGE_MAP(CDlgPage1, CDialog)
 END_MESSAGE_MAP()
 
 
-// CDlgPage1 ƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰
+// CDlgPage1 ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ©
 
 void CDlgPage1::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
-	// TODO : ‚±‚±‚ÉƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰ ƒR[ƒh‚ð’Ç‰Á‚µ‚Ü‚·B
-	// •`‰æƒƒbƒZ[ƒW‚Å CDialog::OnPaint() ‚ðŒÄ‚Ño‚³‚È‚¢‚Å‚­‚¾‚³‚¢B
+	// TODO : ã“ã“ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
+	// æç”»ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã§ CDialog::OnPaint() ã‚’å‘¼ã³å‡ºã•ãªã„ã§ãã ã•ã„ã€‚
 }
 
 /*---------------------------------------------------------
-	‰Šú‰»
+	åˆæœŸåŒ–
 -----------------------------------------------------------*/
 BOOL CDlgPage1::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO :  ‚±‚±‚É‰Šú‰»‚ð’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢
+	// TODO :  ã“ã“ã«åˆæœŸåŒ–ã‚’è¿½åŠ ã—ã¦ãã ã•ã„
 
 	m_bDefaltBMP = TRUE;
-	UpdateData(FALSE);//ƒƒ“ƒo•Ï”‚Ì’l‚ðƒRƒ“ƒgƒ[ƒ‹‚É’Ê’m
+	UpdateData(FALSE);//ãƒ¡ãƒ³ãƒå¤‰æ•°ã®å€¤ã‚’ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã«é€šçŸ¥
 
-	OnBnClickedCheck1();//ƒGƒfƒBƒbƒgƒ{ƒbƒNƒXEŽQÆƒ{ƒ^ƒ“–³Œø‰»
-	GetDlgItem(IDC_CHECK1)->EnableWindow(FALSE);//šŽb’è
+	OnBnClickedCheck1();//ã‚¨ãƒ‡ã‚£ãƒƒãƒˆãƒœãƒƒã‚¯ã‚¹ãƒ»å‚ç…§ãƒœã‚¿ãƒ³ç„¡åŠ¹åŒ–
+	GetDlgItem(IDC_CHECK1)->EnableWindow(FALSE);//â˜…æš«å®š
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// —áŠO : OCX ƒvƒƒpƒeƒB ƒy[ƒW‚Í•K‚¸ FALSE ‚ð•Ô‚µ‚Ü‚·B
+	// ä¾‹å¤– : OCX ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ ãƒšãƒ¼ã‚¸ã¯å¿…ãš FALSE ã‚’è¿”ã—ã¾ã™ã€‚
 }
 
 /*----------------------------------------------------------
-	imageƒtƒ@ƒCƒ‹ŽQÆiƒ{ƒ^ƒ“j
+	imageãƒ•ã‚¡ã‚¤ãƒ«å‚ç…§ï¼ˆãƒœã‚¿ãƒ³ï¼‰
 ------------------------------------------------------------*/
 void CDlgPage1::OnBnClickedButtonRef1()
 {
@@ -170,18 +170,18 @@ void CDlgPage1::OnBnClickedButtonRef12()
 	OnBnClickedButtonRef(11);
 }
 
-//ªƒ{ƒ^ƒ“‚Ìˆ—–{‘Ì
+//â†‘ãƒœã‚¿ãƒ³ã®å‡¦ç†æœ¬ä½“
 void CDlgPage1::OnBnClickedButtonRef(UINT idx)
 {
 }
 
 
 /*----------------------------------------------------------
-	uƒfƒtƒHƒ‹ƒg‚Ìƒtƒ@ƒCƒ‹–¼‚ðŽg—pvƒ`ƒFƒbƒNƒ{ƒbƒNƒX•ÏXŽžˆ—
+	ã€Œãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ•ã‚¡ã‚¤ãƒ«åã‚’ä½¿ç”¨ã€ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹å¤‰æ›´æ™‚å‡¦ç†
 ------------------------------------------------------------*/
 void CDlgPage1::OnBnClickedCheck1()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ð’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	UpdateData(TRUE);
 
 	BOOL b = m_bDefaltBMP ? FALSE : TRUE;
@@ -215,36 +215,36 @@ void CDlgPage1::OnBnClickedCheck1()
 
 
 /*---------------------------------------------------------
-	ƒtƒ@ƒCƒ‹‚Ìƒ[ƒhiƒ{ƒ^ƒ“j
+	ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ­ãƒ¼ãƒ‰ï¼ˆãƒœã‚¿ãƒ³ï¼‰
 -----------------------------------------------------------*/
 void CDlgPage1::OnBnClickedButtonLoad()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ð’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	CFileDialog dlg( TRUE, "gcd", "*.gcd; *.gcm", 
-        OFN_FILEMUSTEXIST,"GCDƒtƒ@ƒCƒ‹ (*.gcd, *.gcm)|*.gcd; *.gcm|‚·‚×‚Ä(*.*)|*.*||",  this);
+        OFN_FILEMUSTEXIST,"GCDãƒ•ã‚¡ã‚¤ãƒ« (*.gcd, *.gcm)|*.gcd; *.gcm|ã™ã¹ã¦(*.*)|*.*||",  this);
 
     if( dlg.DoModal() == IDOK)
     {
 		theApp.LoadGCD( dlg.GetPathName() );
     }
-	else theApp.SetStatus("•Û‘¶ˆ—ƒLƒƒƒ“ƒZƒ‹");
+	else theApp.SetStatus("ä¿å­˜å‡¦ç†ã‚­ãƒ£ãƒ³ã‚»ãƒ«");
 }
 
 /*----------------------------------------------------------
-	.h ƒtƒ@ƒCƒ‹‚Ìƒ[ƒh
+	.h ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ­ãƒ¼ãƒ‰
 ------------------------------------------------------------*/
 void CDlgPage1::OnBnClickedButtonLoadHeader()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ð’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	CFileDialog dlg( TRUE, "h", "*.h", 
-        OFN_FILEMUSTEXIST,"C/C++ƒwƒbƒ_[ƒtƒ@ƒCƒ‹ (*.h)|*.h|‚·‚×‚Ä‚Ìƒtƒ@ƒCƒ‹(*.*)|*.*||",  this);
+        OFN_FILEMUSTEXIST,"C/C++ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ« (*.h)|*.h|ã™ã¹ã¦ã®ãƒ•ã‚¡ã‚¤ãƒ«(*.*)|*.*||",  this);
 	if( dlg.DoModal() != IDOK)return;
 
 	CString str;
 
 	CFile file;
 	if(!file.Open( dlg.GetPathName() ,CFile::modeRead )){
-		str.Format(".h ƒtƒ@ƒCƒ‹ƒI[ƒvƒ“‚ÉŽ¸”s (%s)",dlg.GetPathName());
+		str.Format(".h ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³ã«å¤±æ•— (%s)",dlg.GetPathName());
 		theApp.SetStatus(str);
 		return;
 	}
@@ -263,7 +263,7 @@ void CDlgPage1::OnBnClickedButtonLoadHeader()
 	int newnum = 0;
 	int errnum = 0;
 
-	//Œ»Ý‚Ì’è‹`–¼‚ðƒNƒŠƒA
+	//ç¾åœ¨ã®å®šç¾©åã‚’ã‚¯ãƒªã‚¢
 	CGCDHandler *gcd = theApp.GetGCD();
 	for(UINT i=0;i<GCDMAX_CELLS;i++)
 	{
@@ -274,7 +274,7 @@ void CDlgPage1::OnBnClickedButtonLoadHeader()
 		}
 	}
 
-	//Žæ‚èž‚Ý...
+	//å–ã‚Šè¾¼ã¿...
 	while(s < send)
 	{
 		if(*s=='#')
@@ -296,21 +296,21 @@ void CDlgPage1::OnBnClickedButtonLoadHeader()
 	delete [] buff; 
 
 	if(errnum==0){
-		str.Format("’è‹`–¼”:%d¨%d",oldnum,newnum);
+		str.Format("å®šç¾©åæ•°:%dâ†’%d",oldnum,newnum);
 	}
-	else str.Format("’è‹`–¼”:%d¨%d , ƒGƒ‰[”:%d",oldnum,newnum,errnum);
+	else str.Format("å®šç¾©åæ•°:%dâ†’%d , ã‚¨ãƒ©ãƒ¼æ•°:%d",oldnum,newnum,errnum);
 
 	theApp.SetStatus(str);
 }
 
 /*----------------------------------------------------------
-	.h ƒtƒ@ƒCƒ‹‚Ì•Û‘¶
+	.h ãƒ•ã‚¡ã‚¤ãƒ«ã®ä¿å­˜
 ------------------------------------------------------------*/
 void CDlgPage1::OnBnClickedButtonSaveHeader()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ð’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	CFileDialog dlg( FALSE, "h", "*.h", 
-        OFN_OVERWRITEPROMPT,"C/C++ƒwƒbƒ_[ƒtƒ@ƒCƒ‹ (*.h)|*.h|‚·‚×‚Ä‚Ìƒtƒ@ƒCƒ‹(*.*)|*.*||",  this);
+        OFN_OVERWRITEPROMPT,"C/C++ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ« (*.h)|*.h|ã™ã¹ã¦ã®ãƒ•ã‚¡ã‚¤ãƒ«(*.*)|*.*||",  this);
 
 	CString str;
 
@@ -318,7 +318,7 @@ void CDlgPage1::OnBnClickedButtonSaveHeader()
     {
 		CFile file;
 		if(!file.Open( dlg.GetPathName() ,CFile::modeCreate | CFile::modeWrite )){
-			str.Format(".h •Û‘¶ˆ—: ƒtƒ@ƒCƒ‹ƒI[ƒvƒ“‚ÉŽ¸”s (%s)",dlg.GetPathName());
+			str.Format(".h ä¿å­˜å‡¦ç†: ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³ã«å¤±æ•— (%s)",dlg.GetPathName());
 			theApp.SetStatus(str);
 			return;
 		}
@@ -339,34 +339,34 @@ void CDlgPage1::OnBnClickedButtonSaveHeader()
 			}
 		}
 		file.Close();
-		str.Format(".h •Û‘¶ˆ—Š®—¹. ’è‹`” %d",rnum);
+		str.Format(".h ä¿å­˜å‡¦ç†å®Œäº†. å®šç¾©æ•° %d",rnum);
 		theApp.SetStatus(str);
 	}
-	else theApp.SetStatus(".h •Û‘¶ˆ—ƒLƒƒƒ“ƒZƒ‹");
+	else theApp.SetStatus(".h ä¿å­˜å‡¦ç†ã‚­ãƒ£ãƒ³ã‚»ãƒ«");
 }
 
 
 /*----------------------------------------------------------
-	ƒtƒ@ƒCƒ‹‚ÌƒZ[ƒuiƒ{ƒ^ƒ“j
+	ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚»ãƒ¼ãƒ–ï¼ˆãƒœã‚¿ãƒ³ï¼‰
 ------------------------------------------------------------*/
 void CDlgPage1::OnBnClickedButtonSave()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ð’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	if(! theApp.GetGCD()->Save() ){
-		theApp.SetStatus("ƒtƒ@ƒCƒ‹•Û‘¶Ž¸”sH");
+		theApp.SetStatus("ãƒ•ã‚¡ã‚¤ãƒ«ä¿å­˜å¤±æ•—ï¼Ÿ");
 	}
 	else{
-		theApp.SetStatus("ƒtƒ@ƒCƒ‹‚ð•Û‘¶‚µ‚Ü‚µ‚½");
+		theApp.SetStatus("ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜ã—ã¾ã—ãŸ");
 	}
 }
 
 
 void CDlgPage1::OnEnChangeEdit1()
 {
-	// TODO :  ‚±‚ê‚ª RICHEDIT ƒRƒ“ƒgƒ[ƒ‹‚Ìê‡A‚Ü‚¸ACMyDialogTab::OnInitDialog() ŠÖ”‚ðƒI[ƒo[ƒ‰ƒCƒh‚µ‚ÄA
-	// OR ó‘Ô‚Ì ENM_CORRECTTEXT ƒtƒ‰ƒO‚ðƒ}ƒXƒN‚É“ü‚ê‚ÄA
-	// CRichEditCtrl().SetEventMask() ‚ðŒÄ‚Ño‚³‚È‚¢ŒÀ‚èA
-	// ƒRƒ“ƒgƒ[ƒ‹‚ÍA‚±‚Ì’Ê’m‚ð‘—M‚µ‚Ü‚¹‚ñB
+	// TODO :  ã“ã‚ŒãŒ RICHEDIT ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®å ´åˆã€ã¾ãšã€CMyDialogTab::OnInitDialog() é–¢æ•°ã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã—ã¦ã€
+	// OR çŠ¶æ…‹ã® ENM_CORRECTTEXT ãƒ•ãƒ©ã‚°ã‚’ãƒžã‚¹ã‚¯ã«å…¥ã‚Œã¦ã€
+	// CRichEditCtrl().SetEventMask() ã‚’å‘¼ã³å‡ºã•ãªã„é™ã‚Šã€
+	// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã¯ã€ã“ã®é€šçŸ¥ã‚’é€ä¿¡ã—ã¾ã›ã‚“ã€‚
 
-	// TODO :  ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ð’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+	// TODO :  ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 }

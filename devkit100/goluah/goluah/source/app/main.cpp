@@ -1,10 +1,10 @@
-
+ï»¿
 /*=============================================================================
 
     main.cpp
 
-    ƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒgEƒƒCƒ“ƒEƒCƒ“ƒhƒE‚Ì¶¬‚ÆƒƒbƒZ[ƒWƒnƒ“ƒhƒ‰
-    ƒEƒCƒ“ƒhƒEƒƒbƒZ[ƒWAƒƒCƒ“ƒ‹[ƒvˆ—‚ðCSystemƒNƒ‰ƒX‚É“Š‚°‚é
+    ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆãƒ»ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ç”Ÿæˆã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ©
+    ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—å‡¦ç†ã‚’CSystemã‚¯ãƒ©ã‚¹ã«æŠ•ã’ã‚‹
 
 ===============================================================================*/
 
@@ -20,14 +20,14 @@
 HWND CreateMyWindow(BOOL win);
 LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam );
 
-// š entry point ***************************************************************
+// â˜… entry point ***************************************************************
 /*!
 *	@ingroup Application
-*	@brief Win32ƒvƒƒWƒFƒNƒg‚¾‚Á‚½‚Æ‚«‚Ì‹ŒWinMaini‹Œ‚¶‚á‚È‚­‚È‚è‚Ü‚µ‚½j
+*	@brief Win32ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã ã£ãŸã¨ãã®æ—§WinMainï¼ˆæ—§ã˜ã‚ƒãªããªã‚Šã¾ã—ãŸï¼‰
 *
-*	Ž–ŽÀã‚ÌƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg‚Å‚·B
-*	Œ»Ý‚ÍCgoluahApp‚ÌInitInstance‚©‚çŒÄ‚Î‚ê‚Ä‚Ü‚·‚ªA
-*	‚±‚ÌŠÖ”‚ð”²‚¯‚½‚çƒAƒvƒŠƒP[ƒVƒ‡ƒ“I—¹‚Å‚·B
+*	äº‹å®Ÿä¸Šã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆã§ã™ã€‚
+*	ç¾åœ¨ã¯CgoluahAppã®InitInstanceã‹ã‚‰å‘¼ã°ã‚Œã¦ã¾ã™ãŒã€
+*	ã“ã®é–¢æ•°ã‚’æŠœã‘ãŸã‚‰ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†ã§ã™ã€‚
 *
 */
 INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
@@ -35,12 +35,12 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
     #if TRUE
     if( CoInitializeEx(NULL, COINIT_MULTITHREADED) != S_OK ){
         if( CoInitializeEx(NULL, NULL) != S_OK ){
-            MessageBox(NULL,"CoInitialize‚ÉŽ¸”s","H",MB_OK);
+            MessageBox(NULL,"CoInitializeã«å¤±æ•—","ï¼Ÿ",MB_OK);
         }
     }
     #else
     if( CoInitialize(NULL) != S_OK ){
-        MessageBox(NULL,"CoInitialize‚ÉŽ¸”s","H",MB_OK);
+        MessageBox(NULL,"CoInitializeã«å¤±æ•—","ï¼Ÿ",MB_OK);
     }
     #endif
 
@@ -51,13 +51,13 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
 
     BOOL isWindowMode = ! g_config.IsFullScreen() ;
 
-    //window¶¬
+    //windowç”Ÿæˆ
     HWND hwnd = CreateMyWindow(isWindowMode);
     gbl.SetWinCenter(hwnd);
     ShowWindow( hwnd, SW_SHOWDEFAULT );
     UpdateWindow( hwnd );
 
-    //ƒVƒXƒeƒ€ƒNƒ‰ƒX‰Šú‰»
+    //ã‚·ã‚¹ãƒ†ãƒ ã‚¯ãƒ©ã‚¹åˆæœŸåŒ–
     if(!g_system.Initialize(hwnd)){
         UnregisterClass( AppName , hInst );
         CoUninitialize();
@@ -66,7 +66,7 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
 
     timeBeginPeriod(1);
 
-    //ƒQ[ƒ€ƒXƒ^[ƒgEƒƒCƒ“ƒ‹[ƒv
+    //ã‚²ãƒ¼ãƒ ã‚¹ã‚¿ãƒ¼ãƒˆãƒ»ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—
     if(g_system.GameStart()){
         MSG msg;
         while(!g_programexit){
@@ -90,11 +90,11 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
 
 
 /*!
-*	@brief ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒEƒCƒ“ƒhƒEƒƒbƒZ[ƒWƒnƒ“ƒhƒ‰
+*	@brief ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ©
 *
-*	ƒEƒCƒ“ƒhƒEƒƒbƒZ[ƒW‚ðˆ—B
-*	ƒQ[ƒ€’†‚ÅƒEƒCƒ“ƒhƒEƒƒbƒZ[ƒW‚ðE‚¢‚½‚¢ê‡ACTaskBase‚ðŒp³‚µ‚½ƒNƒ‰ƒX‚Å‚ ‚ê‚Î
-*	WndMessage‚ðƒI[ƒo[ƒ‰ƒCƒh‚·‚é‚±‚Æ‚É‚æ‚Á‚Ä‚±‚±‚Æ“¯‚¶ƒƒbƒZ[ƒW‚ªE‚¦‚Ü‚·B
+*	ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡¦ç†ã€‚
+*	ã‚²ãƒ¼ãƒ ä¸­ã§ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æ‹¾ã„ãŸã„å ´åˆã€CTaskBaseã‚’ç¶™æ‰¿ã—ãŸã‚¯ãƒ©ã‚¹ã§ã‚ã‚Œã°
+*	WndMessageã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã™ã‚‹ã“ã¨ã«ã‚ˆã£ã¦ã“ã“ã¨åŒã˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæ‹¾ãˆã¾ã™ã€‚
 */
 LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wparam, LPARAM lparam )
 {
@@ -126,7 +126,7 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wparam, LPARAM lparam )
         break;
 
     case WM_SETCURSOR:
-        // ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚ÌŽž‚ÍƒJ[ƒ\ƒ‹‚ðÁ‚·
+        // ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®æ™‚ã¯ã‚«ãƒ¼ã‚½ãƒ«ã‚’æ¶ˆã™
         if (g_config.IsFullScreen())
             SetCursor(NULL);
         break;
@@ -150,15 +150,15 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wparam, LPARAM lparam )
 
 
 /*!
-*	@brief ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚Ì¶¬
+*	@brief ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ç”Ÿæˆ
 *	@ingroup Application
 *
-*	ƒtƒ‹ƒXƒNƒŠ[ƒ“‚Å‚ ‚Á‚Ä‚àƒEƒCƒ“ƒhƒE‚Í•K—v‚È‚Ì‚ÅAƒEƒCƒ“ƒhƒE‚Íì‚ç‚ê‚Ü‚·B
-*	‚ªA‚È‚ñ‚©–Y‚ê‚½‚¯‚ÇŽ–î‚ª‚ ‚Á‚ÄAƒEƒCƒ“ƒhƒEƒXƒ^ƒCƒ‹‚ð˜gƒiƒV‚ÉÝ’è‚µ‚È‚¯‚ê‚Î
-*	‚¢‚¯‚È‚©‚Á‚½Šo‚¦‚ªB
-*	‚»‚Ì‚½‚ßAˆø”‚ÉƒEƒBƒ“ƒhƒEƒ‚[ƒh‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ð‚Æ‚è‚Ü‚·
+*	ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã§ã‚ã£ã¦ã‚‚ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã¯å¿…è¦ãªã®ã§ã€ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã¯ä½œã‚‰ã‚Œã¾ã™ã€‚
+*	ãŒã€ãªã‚“ã‹å¿˜ã‚ŒãŸã‘ã©äº‹æƒ…ãŒã‚ã£ã¦ã€ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¿ã‚¤ãƒ«ã‚’æž ãƒŠã‚·ã«è¨­å®šã—ãªã‘ã‚Œã°
+*	ã„ã‘ãªã‹ã£ãŸè¦šãˆãŒã€‚
+*	ãã®ãŸã‚ã€å¼•æ•°ã«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã¨ã‚Šã¾ã™
 *
-*	@param win TRUE:ƒEƒBƒ“ƒhƒEƒ‚[ƒh, FALSE:ƒtƒ‹ƒXƒNƒŠ[ƒ“
+*	@param win TRUE:ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰, FALSE:ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 */
 HWND CreateMyWindow(BOOL win)
 {

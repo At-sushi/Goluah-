@@ -1,4 +1,4 @@
-// goluah_config.cpp : ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒNƒ‰ƒX“®ì‚ð’è‹`‚µ‚Ü‚·B
+ï»¿// goluah_config.cpp : ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚¯ãƒ©ã‚¹å‹•ä½œã‚’å®šç¾©ã—ã¾ã™ã€‚
 //
 
 #include "stdafx.h"
@@ -17,27 +17,27 @@ BEGIN_MESSAGE_MAP(Cgoluah_configApp, CWinApp)
 END_MESSAGE_MAP()
 
 
-// Cgoluah_configApp ƒRƒ“ƒXƒgƒ‰ƒNƒVƒ‡ƒ“
+// Cgoluah_configApp ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚·ãƒ§ãƒ³
 
 Cgoluah_configApp::Cgoluah_configApp()
 {
-	// TODO: ‚±‚ÌˆÊ’u‚É\’z—pƒR[ƒh‚ð’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
-	// ‚±‚±‚É InitInstance ’†‚Ìd—v‚È‰Šú‰»ˆ—‚ð‚·‚×‚Ä‹Lq‚µ‚Ä‚­‚¾‚³‚¢B
+	// TODO: ã“ã®ä½ç½®ã«æ§‹ç¯‰ç”¨ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
+	// ã“ã“ã« InitInstance ä¸­ã®é‡è¦ãªåˆæœŸåŒ–å‡¦ç†ã‚’ã™ã¹ã¦è¨˜è¿°ã—ã¦ãã ã•ã„ã€‚
 }
 
 
-// —Bˆê‚Ì Cgoluah_configApp ƒIƒuƒWƒFƒNƒg‚Å‚·B
+// å”¯ä¸€ã® Cgoluah_configApp ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã§ã™ã€‚
 
 Cgoluah_configApp theApp;
 
 
-// Cgoluah_configApp ‰Šú‰»
+// Cgoluah_configApp åˆæœŸåŒ–
 
 BOOL Cgoluah_configApp::InitInstance()
 {
-	// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“@ƒ}ƒjƒtƒFƒXƒg‚ª@visual ƒXƒ^ƒCƒ‹‚ð—LŒø‚É‚·‚é‚½‚ß‚ÉA
-	// ComCtl32.dll ƒo[ƒWƒ‡ƒ“ 6@ˆÈ~‚ÌŽg—p‚ðŽw’è‚·‚éê‡‚ÍA
-	// Windows XP ‚É@InitCommonControls() ‚ª•K—v‚Å‚·B‚³‚à‚È‚¯‚ê‚ÎAƒEƒBƒ“ƒhƒEì¬‚Í‚·‚×‚ÄŽ¸”s‚µ‚Ü‚·B
+	// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã€€ãƒžãƒ‹ãƒ•ã‚§ã‚¹ãƒˆãŒã€€visual ã‚¹ã‚¿ã‚¤ãƒ«ã‚’æœ‰åŠ¹ã«ã™ã‚‹ãŸã‚ã«ã€
+	// ComCtl32.dll ãƒãƒ¼ã‚¸ãƒ§ãƒ³ 6ã€€ä»¥é™ã®ä½¿ç”¨ã‚’æŒ‡å®šã™ã‚‹å ´åˆã¯ã€
+	// Windows XP ã«ã€€InitCommonControls() ãŒå¿…è¦ã§ã™ã€‚ã•ã‚‚ãªã‘ã‚Œã°ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆã¯ã™ã¹ã¦å¤±æ•—ã—ã¾ã™ã€‚
 	InitCommonControls();
 
 	CWinApp::InitInstance();
@@ -50,16 +50,16 @@ BOOL Cgoluah_configApp::InitInstance()
 	INT_PTR nResponse = dlg.DoModal();
 	if (nResponse == IDOK)
 	{
-		// TODO: ƒ_ƒCƒAƒƒO‚ª <OK> ‚ÅÁ‚³‚ê‚½Žž‚ÌƒR[ƒh‚ð
-		//       ‹Lq‚µ‚Ä‚­‚¾‚³‚¢B
+		// TODO: ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãŒ <OK> ã§æ¶ˆã•ã‚ŒãŸæ™‚ã®ã‚³ãƒ¼ãƒ‰ã‚’
+		//       è¨˜è¿°ã—ã¦ãã ã•ã„ã€‚
 	}
 	else if (nResponse == IDCANCEL)
 	{
-		// TODO: ƒ_ƒCƒAƒƒO‚ª <ƒLƒƒƒ“ƒZƒ‹> ‚ÅÁ‚³‚ê‚½Žž‚ÌƒR[ƒh‚ð
-		//       ‹Lq‚µ‚Ä‚­‚¾‚³‚¢B
+		// TODO: ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãŒ <ã‚­ãƒ£ãƒ³ã‚»ãƒ«> ã§æ¶ˆã•ã‚ŒãŸæ™‚ã®ã‚³ãƒ¼ãƒ‰ã‚’
+		//       è¨˜è¿°ã—ã¦ãã ã•ã„ã€‚
 	}
 
-	// ƒ_ƒCƒAƒƒO‚Í•Â‚¶‚ç‚ê‚Ü‚µ‚½BƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒƒbƒZ[ƒW ƒ|ƒ“ƒv‚ðŠJŽn‚µ‚È‚¢‚Å
-	// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ðI—¹‚·‚é‚½‚ß‚É FALSE ‚ð•Ô‚µ‚Ä‚­‚¾‚³‚¢B
+	// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã¯é–‰ã˜ã‚‰ã‚Œã¾ã—ãŸã€‚ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ—ã‚’é–‹å§‹ã—ãªã„ã§
+	// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚’çµ‚äº†ã™ã‚‹ãŸã‚ã« FALSE ã‚’è¿”ã—ã¦ãã ã•ã„ã€‚
 	return FALSE;
 }

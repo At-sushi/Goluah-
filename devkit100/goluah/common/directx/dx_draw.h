@@ -1,9 +1,9 @@
-
+ï»¿
 /*!
 *	@file
-*	@brief DX•`‰æŒn
+*	@brief DXæç”»ç³»
 *
-*	ÀÛ‚É‚ÍDirectDraw‚Å‚Í‚È‚­Direct3D‚Å‚·B
+*	å®Ÿéš›ã«ã¯DirectDrawã§ã¯ãªãDirect3Dã§ã™ã€‚
 */
 /*!
 *	@defgroup DirectX
@@ -15,16 +15,16 @@
 #include <d3d8.h>
 #include <d3dx8.h>
 #endif
-#include "define_gcd.h"	//GCDƒtƒH[ƒ}ƒbƒg‚ª•K—v
+#include "define_gcd.h"	//GCDãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒå¿…è¦
 
-#define MAXNUMGOLUAHTEXTURES (1024)		//!<“Æ©Œ`®‹UƒeƒNƒXƒ`ƒƒ[Å‘åŠÇ—”
-#define MINIMUM_TEXSIZE	(64)			//!<Å¬ƒeƒNƒXƒ`ƒƒ[ƒTƒCƒYBƒRƒŒˆÈ‰º‚ÌƒTƒCƒY‚ÌƒeƒNƒXƒ`ƒƒ‚µ‚©ì‚ê‚È‚¢‚æ‚¤‚ÈŠÂ‹«‚Í’m‚ç‚ñB
+#define MAXNUMGOLUAHTEXTURES (1024)		//!<ç‹¬è‡ªå½¢å¼å½ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼æœ€å¤§ç®¡ç†æ•°
+#define MINIMUM_TEXSIZE	(64)			//!<æœ€å°ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚µã‚¤ã‚ºã€‚ã‚³ãƒ¬ä»¥ä¸‹ã®ã‚µã‚¤ã‚ºã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã—ã‹ä½œã‚Œãªã„ã‚ˆã†ãªç’°å¢ƒã¯çŸ¥ã‚‰ã‚“ã€‚
 
 #define AKIDX_FONTNUM	(4)
 
 /*!
 *	@ingroup DirectX
-*	@brief ‰æ‘œƒrƒbƒg•ÏŠ·—˜—p\‘¢‘Ì
+*	@brief ç”»åƒãƒ“ãƒƒãƒˆå¤‰æ›æ™‚åˆ©ç”¨æ§‹é€ ä½“
 */
 struct MYPALLET
 {
@@ -34,28 +34,28 @@ struct MYPALLET
 	BYTE alpha;
 };
 
-//!CDirectDrawƒNƒ‰ƒX‚Ìó‘ÔH
+//!CDirectDrawã‚¯ãƒ©ã‚¹ã®çŠ¶æ…‹ï¼Ÿ
 enum CDIRECTDRAW_STATE
 {
-	CDDSTATE_NOINITIALIZE,		//!<‚Ü‚¾‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢
-	CDDSTATE_READY,				//!<€”õ‚ªŠ®—¹‚µ‚Ä‚¢‚é
-	CDDSTATE_ERROR				//!<ƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éB—˜—p‚Å‚«‚È‚¢B
+	CDDSTATE_NOINITIALIZE,		//!<ã¾ã åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„
+	CDDSTATE_READY,				//!<æº–å‚™ãŒå®Œäº†ã—ã¦ã„ã‚‹
+	CDDSTATE_ERROR				//!<ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹ã€‚åˆ©ç”¨ã§ããªã„ã€‚
 };
 
 /*!
 *	@ingroup DirectX
-*	@brief •`‰æŠÇ—ƒNƒ‰ƒXB
+*	@brief æç”»ç®¡ç†ã‚¯ãƒ©ã‚¹ã€‚
 *	
-*	Œ»İ‚ÍDirectX8ˆÈã‚ÌDirect3D‚ğg—p‚·‚é‚ªAˆÈ‘O‚ÍDirectDraw‚ğg‚Á‚Ä‚¢‚½‚Ì‚Å‚±‚ñ‚È–¼‘OB
-*	—R³‚µ‚¢ŒÃŠ”ƒNƒ‰ƒXB
+*	ç¾åœ¨ã¯DirectX8ä»¥ä¸Šã®Direct3Dã‚’ä½¿ç”¨ã™ã‚‹ãŒã€ä»¥å‰ã¯DirectDrawã‚’ä½¿ã£ã¦ã„ãŸã®ã§ã“ã‚“ãªåå‰ã€‚
+*	ç”±ç·’æ­£ã—ã„å¤æ ªã‚¯ãƒ©ã‚¹ã€‚
 *
-*	2D•`‰æF
-*	”CˆÓƒTƒCƒY‚Ìƒrƒbƒgƒ}ƒbƒv‚ğÅ‘åƒeƒNƒXƒ`ƒƒƒTƒCƒY‚Å•ªŠ„‚µ‚½“Æ©Œ`®‚ÌƒjƒZƒT[ƒtƒFƒCƒX‚ğ
-*	g—p‚·‚é‚±‚Æ‚É‚æ‚Á‚ÄADirectDraw‚Ì‚Æ‚«‚Æ“¯‚¶‚æ‚¤‚ÈŠ´‚¶‚Å•`‰æ‚ğs‚¤‚±‚Æ‚ª‚Å‚«‚éB
-*	i2‚Ì—İæˆÈŠO‚ÌƒTƒCƒY‚Ìƒrƒbƒgƒ}ƒbƒv‚ğg‚Á‚Ä‚àƒ{ƒP‚½‚è‚µ‚È‚¢j
+*	2Dæç”»ï¼š
+*	ä»»æ„ã‚µã‚¤ã‚ºã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’æœ€å¤§ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚ºã§åˆ†å‰²ã—ãŸç‹¬è‡ªå½¢å¼ã®ãƒ‹ã‚»ã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã‚’
+*	ä½¿ç”¨ã™ã‚‹ã“ã¨ã«ã‚ˆã£ã¦ã€DirectDrawã®ã¨ãã¨åŒã˜ã‚ˆã†ãªæ„Ÿã˜ã§æç”»ã‚’è¡Œã†ã“ã¨ãŒã§ãã‚‹ã€‚
+*	ï¼ˆ2ã®ç´¯ä¹—ä»¥å¤–ã®ã‚µã‚¤ã‚ºã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’ä½¿ã£ã¦ã‚‚ãƒœã‚±ãŸã‚Šã—ãªã„ï¼‰
 *
-*	3D•`‰æF
-*	Direct3DDeviceƒIƒuƒWƒFƒNƒg‚ğ“n‚·‚©‚ç‚ ‚Æ‚ÍDX‚ÌAPI©•ª‚Å‚½‚½‚¢‚Ä‚È‚ñ‚Æ‚©‚µ‚Ä‚¨‚­‚êH
+*	3Dæç”»ï¼š
+*	Direct3DDeviceã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ¸¡ã™ã‹ã‚‰ã‚ã¨ã¯DXã®APIè‡ªåˆ†ã§ãŸãŸã„ã¦ãªã‚“ã¨ã‹ã—ã¦ãŠãã‚Œï¼Ÿ
 */
 class CDirectDraw
 {
@@ -63,43 +63,43 @@ public:
 	CDirectDraw();
 	~CDirectDraw(){Destroy();}
 
-	//¡‰Šú‰»‚Æ”jŠü
+	//â– åˆæœŸåŒ–ã¨ç ´æ£„
 	BOOL Initialize(HWND hwnd,BOOL win);
 	void Destroy();
 
-	//¡•`‰æ‚ÌŠJn‚ÆI—¹
-	void StartDraw(BOOL erbs);//•`‰æ‚ğŠJn‚·‚é‘O‚É‚±‚ÌŠÖ”‚ğƒR[ƒ‹‚·‚é•K—v‚ª‚ ‚é
-	void EndDraw();//•`‰æ‚ğI—¹‚µAFLIP“®ì‚ğs‚¤
+	//â– æç”»ã®é–‹å§‹ã¨çµ‚äº†
+	void StartDraw(BOOL erbs);//æç”»ã‚’é–‹å§‹ã™ã‚‹å‰ã«ã“ã®é–¢æ•°ã‚’ã‚³ãƒ¼ãƒ«ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
+	void EndDraw();//æç”»ã‚’çµ‚äº†ã—ã€FLIPå‹•ä½œã‚’è¡Œã†
 
-	//¡ƒtƒ@ƒCƒ‹ƒ[ƒhEƒAƒ“ƒ[ƒhŠÖ˜A
-	//256F‚Ìƒrƒbƒgƒ}ƒbƒv‚©‚ç“Æ©Œ`®ƒT[ƒtƒFƒCƒX‚ğì¬
+	//â– ãƒ•ã‚¡ã‚¤ãƒ«ãƒ­ãƒ¼ãƒ‰ãƒ»ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰é–¢é€£
+	//256è‰²ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‹ã‚‰ç‹¬è‡ªå½¢å¼ã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã‚’ä½œæˆ
 	MYSURFACE* CreateSurfaceFrom256BMP(char *filename,char *pallet=NULL,BOOL dmy=TRUE);
-	void RelSurface(MYSURFACE *s);//ƒeƒNƒXƒ`ƒƒŠJ•ú
+	void RelSurface(MYSURFACE *s);//ãƒ†ã‚¯ã‚¹ãƒãƒ£é–‹æ”¾
 
-	//!ŠeíŒ`®‚Ì‰æ‘œ‚ğ“Ç‚İ‚ŞBPNG‚Æ‡‚í‚¹‚é‚½‚ß‚É’Ç‰ÁB
+	//!å„ç¨®å½¢å¼ã®ç”»åƒã‚’èª­ã¿è¾¼ã‚€ã€‚PNGã¨åˆã‚ã›ã‚‹ãŸã‚ã«è¿½åŠ ã€‚
 	MYSURFACE* CreateSurfaceFrom256Image(char *filename,char *pallet=NULL,BOOL dmy=TRUE);
 
-	//¡2DŠî–{•`‰æ
-	//“Æ©Œ`®ƒT[ƒtƒFƒCƒX“]‘—B“]‘—ˆÊ’u‚ğ3D‹óŠÔã‚Åw’è‚Å‚«‚é
+	//â– 2DåŸºæœ¬æç”»
+	//ç‹¬è‡ªå½¢å¼ã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹è»¢é€ã€‚è»¢é€ä½ç½®ã‚’3Dç©ºé–“ä¸Šã§æŒ‡å®šã§ãã‚‹
 	void MyBlt3D(MYSURFACE *dds,RECT src,MYRECT3D dst,DWORD flag=0,DWORD color=0xFFFFFFFF);
-	//”ÍˆÍƒ`ƒFƒbƒN“]‘—
-	//DirectDraw‚Ì‚Æ‚«‚ÌƒR[ƒh‚Æ‚ÌŒİŠ·‚Ì‚½‚ß‚Éì¬‚³‚ê‚½‚æ‚¤‚È‚«‚ª‚·‚é
+	//ç¯„å›²ãƒã‚§ãƒƒã‚¯è»¢é€
+	//DirectDrawã®ã¨ãã®ã‚³ãƒ¼ãƒ‰ã¨ã®äº’æ›ã®ãŸã‚ã«ä½œæˆã•ã‚ŒãŸã‚ˆã†ãªããŒã™ã‚‹
 	void CheckBlt(MYSURFACE *dds,int x,int y,RECT r,
 		BOOL revx=FALSE,BOOL revy=FALSE,DWORD flag=0,float z=0.0f,DWORD color=0xFFFFFFFF, BOOL drawShadow = FALSE);
-	//ª‚ÌŠÈˆÕ”Å
+	//â†‘ã®ç°¡æ˜“ç‰ˆ
 	void CheckBlt2(MYSURFACE *dds,int x,int y,RECT r,
 		double magx=1.0,double magy=1.0,BOOL revx=FALSE,BOOL revy=FALSE,DWORD flag=0,float z=0.0f,DWORD color=0xFFFFFFFF, BOOL drawShadow = FALSE);
 
-	//¡ƒtƒƒ“ƒgƒoƒbƒtƒ@‚ÌƒRƒs[
-	//Œ»İ‚Ìƒtƒƒ“ƒgƒoƒbƒtƒ@‚Ì“à—e‚ğƒRƒs[‚µ‚½ƒeƒNƒXƒ`ƒƒ[‚ğ¶¬‚µ‚Ä•Ô‚·B
-	//D3D‚Ìƒwƒ‹ƒv‚É‚æ‚é‚ÆAˆ—ƒRƒXƒg‚ÍƒfƒJƒC‚ç‚µ‚¢
+	//â– ãƒ•ãƒ­ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ã®ã‚³ãƒ”ãƒ¼
+	//ç¾åœ¨ã®ãƒ•ãƒ­ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ã®å†…å®¹ã‚’ã‚³ãƒ”ãƒ¼ã—ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’ç”Ÿæˆã—ã¦è¿”ã™ã€‚
+	//D3Dã®ãƒ˜ãƒ«ãƒ—ã«ã‚ˆã‚‹ã¨ã€å‡¦ç†ã‚³ã‚¹ãƒˆã¯ãƒ‡ã‚«ã‚¤ã‚‰ã—ã„
 	#ifndef GCD_EDITER
 	LPDIRECT3DTEXTURE8 GetFrontBufferCopy();
 	DWORD* GetFrontBufferCopyRaw(UINT *wdt,UINT *hgt);
 	#endif
 
-	//¡Goluah“Á‰»•`‰æŠÖ”
-	//GCDŒ`®ƒZƒ‹•`‰æ
+	//â– Goluahç‰¹åŒ–æç”»é–¢æ•°
+	//GCDå½¢å¼ã‚»ãƒ«æç”»
 	void CellDraw(MYSURFACE **psuf,LPVOID pcdat,LPVOID prdat,DWORD cn,
 		int x,int y,float z,int rot,BOOL revx=FALSE,BOOL revy=FALSE,DWORD color=0xFFFFFFFF,float magx=1.0f,float magy=1.0f, BOOL shadowed=FALSE);
 	void CellDraw090(MYSURFACE **psuf,LPVOID pcdat,LPVOID prdat,DWORD cn,
@@ -107,49 +107,49 @@ public:
 	void CellDraw070(MYSURFACE **psuf,LPVOID pcdat,LPVOID prdat,DWORD cn,
 		int x,int y,float z,int rot,BOOL revx=FALSE,BOOL revy=FALSE,DWORD color=0xFFFFFFFF,float magx=1.0f,float magy=1.0f, BOOL shadowed=FALSE);
 #ifdef GCD_EDITER
-	//w’è‹éŒ`‚ğ‹­’²‚µ‚Ä•`‰æ
+	//æŒ‡å®šçŸ©å½¢ã‚’å¼·èª¿ã—ã¦æç”»
 	void CellDrawED(MYSURFACE **psuf,LPVOID pcdat,LPVOID prdat,DWORD cn,
 		int x,int y,float z,int rot,BOOL revx,BOOL revy,DWORD color,float magx,float magy,
-		UINT ed_rect,					//•ÒW’†‚Ì‹éŒ`”Ô†
-		BOOL color_modulat,				//‹­’²•\¦‚ğs‚¤
-		BOOL is_previous_cell=FALSE,	//*‚³‚©‚Ì‚Ú‚Á‚Ä•`‰æ‚³‚ê‚½ƒZƒ‹‚©‚Ç‚¤‚©
-		BOOL is_next_cell=FALSE,		//*"Ÿ"ˆµ‚¢‚Å•`‰æ‚³‚ê‚½ƒZƒ‹‚©‚Ç‚¤‚©
-		BOOL is_edit_cell=TRUE);		//*Œ»İ•ÒW‚¿‚ã‚¤‚ÌƒZƒ‹‚©‚Ç‚¤‚©);
+		UINT ed_rect,					//ç·¨é›†ä¸­ã®çŸ©å½¢ç•ªå·
+		BOOL color_modulat,				//å¼·èª¿è¡¨ç¤ºã‚’è¡Œã†
+		BOOL is_previous_cell=FALSE,	//*ã•ã‹ã®ã¼ã£ã¦æç”»ã•ã‚ŒãŸã‚»ãƒ«ã‹ã©ã†ã‹
+		BOOL is_next_cell=FALSE,		//*"æ¬¡"æ‰±ã„ã§æç”»ã•ã‚ŒãŸã‚»ãƒ«ã‹ã©ã†ã‹
+		BOOL is_edit_cell=TRUE);		//*ç¾åœ¨ç·¨é›†ã¡ã‚…ã†ã®ã‚»ãƒ«ã‹ã©ã†ã‹);
 #endif
 
-	//‚ ‚½‚è”»’è•`‰æ
+	//ã‚ãŸã‚Šåˆ¤å®šæç”»
 	void HanteiDraw(LPVOID pcdat,LPVOID phdat,DWORD cn,BOOL b_atr,BOOL b_kas,BOOL b_atk,
 		int x,int y,float z,int rot,BOOL revx=FALSE,BOOL revy=FALSE,float magx=1.0f,float magy=1.0f);
-	//‹éŒ`•`‰æ
+	//çŸ©å½¢æç”»
 	void HRectDraw(LPVOID cdat,LPVOID phdat,DWORD cn,
 		int x,int y,float z,int rot,BOOL revx=FALSE,BOOL revy=FALSE,float magx=1.0f,float magy=1.0f);
-	//dS•`‰æ
+	//é‡å¿ƒæç”»
 	void GCenterDraw(LPVOID cdat,DWORD cn,
 		int x,int y,float z,int rot,BOOL revx=FALSE,BOOL revy=FALSE,float magx=1.0f,float magy=1.0f);
 
-	//¡‚»‚Ì‘¼•`‰æ
-	//ƒ‰ƒCƒ“•`‰æ
+	//â– ãã®ä»–æç”»
+	//ãƒ©ã‚¤ãƒ³æç”»
 	void DrawLine(int sx,int sy,int gx,int gy,DWORD col);
-	//ƒoƒbƒNƒoƒbƒtƒ@‚ÌƒNƒŠƒA
+	//ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚¯ãƒªã‚¢
 	void ClearBackBuffer();
-	//‰~‚Ì•`‰æ
+	//å††ã®æç”»
 	void DrawCircle(int x,int y,int rad,int w,
 		float z=0,DWORD color=0xFF55AAFF,BOOL toumei=FALSE,float rot=0,BOOL rot_y=TRUE,BOOL hosei=TRUE);
-	//‚È‚É‚±‚êH
+	//ãªã«ã“ã‚Œï¼Ÿ
 	void Draw3DText();
-	//ƒeƒLƒXƒg•`‰æ
+	//ãƒ†ã‚­ã‚¹ãƒˆæç”»
 	void DrawBlueText(RECT& r,char *text,int len,DWORD method,DWORD size);
 	void DrawRedText(RECT& r,char *text,int len,DWORD method,DWORD size);
-	// “Æ©•`‰æŒy—Ê‰»”Å
+	// ç‹¬è‡ªæç”»è»½é‡åŒ–ç‰ˆ
 //	void MyBlt3DLite(MYSURFACE* dds, RECT& r, int x, int y, BOOL noAlpha);
-	// ƒT[ƒtƒFƒX‚É’¼Ú‘‚«‚İ
+	// ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã«ç›´æ¥æ›¸ãè¾¼ã¿
 //	void Kakikomi(LPDIRECT3DSURFACE8 SouShin, RECT& r2, LPDIRECT3DSURFACE8 BackBuffer, POINT& point, BOOL revx);
 
-	//¡•Ö—˜ŠÖ”H
-	void SetAlphaMode(DWORD alphamode);//ƒ¿ƒuƒŒƒ“ƒh‚Ìƒ‚[ƒh‚ğİ’è
-	void EnableZ(BOOL test=TRUE,BOOL write=TRUE);//ZƒeƒXƒgEƒ‰ƒCƒg‚Ì—LŒøE–³Œø‚ğİ’è
+	//â– ä¾¿åˆ©é–¢æ•°ï¼Ÿ
+	void SetAlphaMode(DWORD alphamode);//Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ã®ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®š
+	void EnableZ(BOOL test=TRUE,BOOL write=TRUE);//Zãƒ†ã‚¹ãƒˆãƒ»ãƒ©ã‚¤ãƒˆã®æœ‰åŠ¹ãƒ»ç„¡åŠ¹ã‚’è¨­å®š
 
-	//¡À•W•ÏŠ·ƒ}ƒgƒŠƒNƒXŠÖ˜A
+	//â– åº§æ¨™å¤‰æ›ãƒãƒˆãƒªã‚¯ã‚¹é–¢é€£
 	//for directx8
 	void ResetTransformMatrix();//view & projection
 	void SetTransform(BOOL b);
@@ -159,104 +159,104 @@ public:
 	D3DXMATRIXA16 ResetParentMatrix();
 	void SetParentMatrix2(D3DXMATRIX *mat,BOOL root,D3DXMATRIX *matprv);
 
-	//¡ƒfƒoƒbƒO—pŠÖ”
-	//D3DƒGƒ‰[‚ÌƒgƒŒ[ƒX
+	//â– ãƒ‡ãƒãƒƒã‚°ç”¨é–¢æ•°
+	//D3Dã‚¨ãƒ©ãƒ¼ã®ãƒˆãƒ¬ãƒ¼ã‚¹
 	void TraceCreateDeviceError(HRESULT ret,HWND hwnd);
 
-	//! ƒEƒBƒ“ƒhƒEƒTƒCƒY•ÏXˆ—
+	//! ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºå¤‰æ›´å‡¦ç†
 	void OnWindowResized(int width, int height);
 
-	//! ƒXƒNƒŠ[ƒ“ƒ‚[ƒh•ÏX
+	//! ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´
 	BOOL ChangeScreenMode(BOOL win);
-	void ReduceColor(DWORD alpha, bool isShadow = false);//!<‰æ–Ê‚ğˆÃ‚­‚·‚éƒGƒtƒFƒNƒgA–¢Š®¬B
+	void ReduceColor(DWORD alpha, bool isShadow = false);//!<ç”»é¢ã‚’æš—ãã™ã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€æœªå®Œæˆã€‚
 	bool StencilEnable()	{ return stencil_enable; }
 	void UpdateD3DPP()		{ ResetDirectDraw(); }
 
 private:
-	//¡ƒrƒbƒgƒ}ƒbƒvƒ[ƒh“à•”ŠÖ”
-	//ƒeƒNƒXƒ`ƒƒ[ƒtƒH[ƒ}ƒbƒg•ÏŠ·ŠÖ”
+	//â– ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰æ™‚å†…éƒ¨é–¢æ•°
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆå¤‰æ›é–¢æ•°
 	DWORD CopyOne_R5G6B5(MYPALLET src,PBYTE dst);
 	DWORD CopyOne_A1R5G5B5(MYPALLET src,PBYTE dst);
 	DWORD CopyOne_A4R4G4B4(MYPALLET src,PBYTE dst);
 	DWORD CopyOne_A8R3G3B2(MYPALLET src,PBYTE dst);
 	DWORD CopyOne_A8R8G8B8(MYPALLET src,PBYTE dst);
-	//ƒrƒbƒgƒ}ƒbƒvƒ[ƒh‚É•ªŠ„ƒeƒNƒXƒ`ƒƒ”‚ğŒvZ
+	//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰æ™‚ã«åˆ†å‰²ãƒ†ã‚¯ã‚¹ãƒãƒ£æ•°ã‚’è¨ˆç®—
 	BOOL AssignTextureDiv(MYSURFACE *pmsf,DWORD width,DWORD height);
-	//256Fƒrƒbƒgƒ}ƒbƒv‚ÌƒCƒ[ƒW•”•ª‚ğƒ[ƒh‚·‚é
+	//256è‰²ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ã‚¤ãƒ¡ãƒ¼ã‚¸éƒ¨åˆ†ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
 	BOOL Load256Bitmapbits(MYPALLET **bits,DWORD *width,DWORD *height,char *bmpfilename,char *palfilename=NULL);
-	BOOL Load256PNGbits(MYPALLET **pbits,DWORD *width,DWORD *height,char *pngfilename,char *palfilename);//PNG”Å
-	BOOL LoadJPEGbits(MYPALLET **pbits,DWORD *width,DWORD *height,char *jpegfilename);//JPEG”Åiƒtƒ‹ƒJƒ‰[j
-	//256ƒrƒbƒgƒ}ƒbƒv‚ÌƒpƒŒƒbƒg•”•ª‚ğƒ[ƒh‚·‚é
-	BOOL GetPallet(char *filename,MYPALLET *pal);//256‚‚‚‚ƒtƒ@ƒCƒ‹‚©‚çAƒpƒŒƒbƒg‚¾‚¯‚ğæo
-	BOOL GetPalletPNG(char *filename,MYPALLET *pal);//256PNGƒtƒ@ƒCƒ‹‚©‚çAƒpƒŒƒbƒg‚¾‚¯‚ğæo
+	BOOL Load256PNGbits(MYPALLET **pbits,DWORD *width,DWORD *height,char *pngfilename,char *palfilename);//PNGç‰ˆ
+	BOOL LoadJPEGbits(MYPALLET **pbits,DWORD *width,DWORD *height,char *jpegfilename);//JPEGç‰ˆï¼ˆãƒ•ãƒ«ã‚«ãƒ©ãƒ¼ï¼‰
+	//256ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ãƒ‘ãƒ¬ãƒƒãƒˆéƒ¨åˆ†ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
+	BOOL GetPallet(char *filename,MYPALLET *pal);//256ï½‚ï½ï½ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã€ãƒ‘ãƒ¬ãƒƒãƒˆã ã‘ã‚’å–å‡º
+	BOOL GetPalletPNG(char *filename,MYPALLET *pal);//256PNGãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã€ãƒ‘ãƒ¬ãƒƒãƒˆã ã‘ã‚’å–å‡º
 
-	//¡•Ö—˜ŠÖ”H
-	//ƒoƒbƒNƒoƒbƒtƒ@‚©‚çƒeƒNƒXƒ`ƒƒ‚Ö‚Ì“]‘—
-	//EEE‚»‚ñ‚ÈŠÖ”ì‚Á‚Ä‚½‚Á‚¯?
-	//cˆá‚¤‚Æv‚í‚êAƒrƒbƒgƒ}ƒbƒv‚ğƒrƒbƒg‚²‚Æ‚ÉƒeƒNƒXƒ`ƒƒ‚É“\‚è•t‚¯‚Ä‚é‚İ‚½‚¢‚Å‚·B
+	//â– ä¾¿åˆ©é–¢æ•°ï¼Ÿ
+	//ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¸ã®è»¢é€
+	//ãƒ»ãƒ»ãƒ»ãã‚“ãªé–¢æ•°ä½œã£ã¦ãŸã£ã‘?
+	//â€¦é•ã†ã¨æ€ã‚ã‚Œã€ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’ãƒ“ãƒƒãƒˆã”ã¨ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«è²¼ã‚Šä»˜ã‘ã¦ã‚‹ã¿ãŸã„ã§ã™ã€‚
 	BOOL CopyBB2TS(MYPALLET *pbb,DWORD bbpitch,DWORD offset_x,DWORD offset_y,LPDIRECT3DTEXTURE8 ptex,DWORD damex=0,DWORD damey=0);
 
-	//¡¶¬”jŠü“à•”ŠÖ”
-	//Direct3D‚ğ‰Šú‰»‚·‚éBŠÖ”–¼‚ÍÌ‚Ì–¼c‚Á‚Û‚¢
+	//â– ç”Ÿæˆç ´æ£„æ™‚å†…éƒ¨é–¢æ•°
+	//Direct3Dã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚é–¢æ•°åã¯æ˜”ã®åæ®‹ã£ã½ã„
 	BOOL InitDirectDraw(HWND hwnd,BOOL win);
-	//ƒeƒLƒXƒg•`‰æ—p‚ÌƒtƒHƒ“ƒg‚ğ¶¬‚·‚é
+	//ãƒ†ã‚­ã‚¹ãƒˆæç”»ç”¨ã®ãƒ•ã‚©ãƒ³ãƒˆã‚’ç”Ÿæˆã™ã‚‹
 	LPD3DXFONT CreateMyFont(DWORD h);
-	//Direct3DŒãn––ŠÖ”
+	//Direct3Då¾Œå§‹æœ«é–¢æ•°
 	void CleanDirectDraw();
-	//ƒŒƒ“ƒ_ƒŠƒ“ƒOƒXƒe[ƒgİ’è
+	//ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¹ãƒ†ãƒ¼ãƒˆè¨­å®š
 	void InitStates();
-	//! ƒŠƒZƒbƒg—pADirectDrawƒfƒoƒCƒX‚ªÁ‚¦‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚Ü‚·B
+	//! ãƒªã‚»ãƒƒãƒˆç”¨ã€DirectDrawãƒ‡ãƒã‚¤ã‚¹ãŒæ¶ˆãˆãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚
 	void ResetDirectDraw();
 
-	//¡ƒf[ƒ^ƒƒ“ƒo
+	//â– ãƒ‡ãƒ¼ã‚¿ãƒ¡ãƒ³ãƒ
 public:
-	CDIRECTDRAW_STATE state;			//!<ƒNƒ‰ƒX‚Ìó‘Ô
-	LPDIRECT3D8 dd;						//!<[d—v]Direct3DƒIƒuƒWƒFƒNƒg
-	LPDIRECT3DDEVICE8 d3ddev;			//!<[d—v]Direct3DƒfƒoƒCƒXƒIƒuƒWƒFƒNƒg
-	D3DPRESENT_PARAMETERS d3dpp;		//!<‚È‚ñ‚¾‚Á‚¯H‚±‚êB
-	D3DDEVTYPE devtypenow;				//!<Œ»İ‚ÌƒfƒoƒCƒXƒ^ƒCƒvBHAL‚Æ‚©SW‚Æ‚©A‚»‚¤‚¢‚¤‚Ì
+	CDIRECTDRAW_STATE state;			//!<ã‚¯ãƒ©ã‚¹ã®çŠ¶æ…‹
+	LPDIRECT3D8 dd;						//!<[é‡è¦]Direct3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	LPDIRECT3DDEVICE8 d3ddev;			//!<[é‡è¦]Direct3Dãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	D3DPRESENT_PARAMETERS d3dpp;		//!<ãªã‚“ã ã£ã‘ï¼Ÿã“ã‚Œã€‚
+	D3DDEVTYPE devtypenow;				//!<ç¾åœ¨ã®ãƒ‡ãƒã‚¤ã‚¹ã‚¿ã‚¤ãƒ—ã€‚HALã¨ã‹SWã¨ã‹ã€ãã†ã„ã†ã®
 	DWORD maxtexturewidth,
-					maxtextureheight;	//!<ƒfƒoƒCƒX‚Å‹K’è‚³‚ê‚éƒeƒNƒXƒ`ƒƒ‚ÌÅ‘åƒTƒCƒY
-	D3DFORMAT texformat,dispformat;		//!<g—p‚·‚é‰æ‘œƒtƒH[ƒ}ƒbƒg
+					maxtextureheight;	//!<ãƒ‡ãƒã‚¤ã‚¹ã§è¦å®šã•ã‚Œã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æœ€å¤§ã‚µã‚¤ã‚º
+	D3DFORMAT texformat,dispformat;		//!<ä½¿ç”¨ã™ã‚‹ç”»åƒãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 
-	D3DXMATRIXA16 matparent;			//!<2D•`‰æŠÖ”ƒ}ƒgƒŠƒbƒNƒX
-	MYSURFACE ms[MAXNUMGOLUAHTEXTURES];	//!<“Æ©Œ`®ƒT[ƒtƒFƒCƒXŠÇ—
+	D3DXMATRIXA16 matparent;			//!<2Dæç”»é–¢æ•°ãƒãƒˆãƒªãƒƒã‚¯ã‚¹
+	MYSURFACE ms[MAXNUMGOLUAHTEXTURES];	//!<ç‹¬è‡ªå½¢å¼ã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ç®¡ç†
 
-	float yurey;						//!<‰æ–Ê—h‚êƒGƒtƒFƒNƒg‚Ég—p‚·‚éY•ûŒü‚Ì‚¸‚ç‚µ—Ê
-	float center_x;						//2!<D•`‰æÀ•WŒn’†SX
-	float camera_x,camera_y,camera_z;	//!<ƒJƒƒ‰‚ÌˆÊ’u
-	float camera_zurax,camera_zuray;	//!<ƒJƒƒ‰‚¸‚ç‚µH‚æ‚­•ª‚©‚ç‚ñ
-	DWORD clearbgcolor;					//!<ƒoƒbƒNƒoƒbƒtƒ@ƒNƒŠƒA‚Ég—p‚·‚é“h‚è‚Â‚Ô‚µF
-	LPD3DXFONT lpFont[AKIDX_FONTNUM];	//!<ƒeƒLƒXƒg•`‰æ‚Ég—p‚·‚éƒtƒHƒ“ƒg
-	//LPD3DXSPRITE pSprite;				//!<ƒXƒvƒ‰ƒCƒg(ß„tß)³Ï°
-	LPDIRECT3DVERTEXBUFFER8 pMyVertex;	//!<’¸“_ƒoƒbƒtƒ@Aˆê‰ì‚Á‚Ä‚İ‚½B
+	float yurey;						//!<ç”»é¢æºã‚Œã‚¨ãƒ•ã‚§ã‚¯ãƒˆã«ä½¿ç”¨ã™ã‚‹Yæ–¹å‘ã®ãšã‚‰ã—é‡
+	float center_x;						//2!<Dæç”»åº§æ¨™ç³»ä¸­å¿ƒX
+	float camera_x,camera_y,camera_z;	//!<ã‚«ãƒ¡ãƒ©ã®ä½ç½®
+	float camera_zurax,camera_zuray;	//!<ã‚«ãƒ¡ãƒ©ãšã‚‰ã—ï¼Ÿã‚ˆãåˆ†ã‹ã‚‰ã‚“
+	DWORD clearbgcolor;					//!<ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢æ™‚ã«ä½¿ç”¨ã™ã‚‹å¡—ã‚Šã¤ã¶ã—è‰²
+	LPD3DXFONT lpFont[AKIDX_FONTNUM];	//!<ãƒ†ã‚­ã‚¹ãƒˆæç”»ã«ä½¿ç”¨ã™ã‚‹ãƒ•ã‚©ãƒ³ãƒˆ
+	//LPD3DXSPRITE pSprite;				//!<ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ(ï¾ŸĞ´ï¾Ÿ)ï½³ï¾ï½°
+	LPDIRECT3DVERTEXBUFFER8 pMyVertex;	//!<é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã€ä¸€å¿œä½œã£ã¦ã¿ãŸã€‚
 private:
-	D3DXPLANE d3dxplane_x,d3dxplane_y;	//!<ƒ}ƒgƒŠƒNƒX‰ñ“]‚Ég—p‚·‚é X,Y •½–Ê
-	BOOL m_is_win;						//!<ƒEƒBƒ“ƒhƒEƒ‚[ƒh‚Å‚Ì‹N“®‚©‚Ç‚¤‚©
-	UINT m_desktop_width;				//!<ƒEƒBƒ“ƒhƒEƒ‚[ƒh‚Ìê‡AƒfƒXƒNƒgƒbƒv‚Ì•
-	UINT m_desktop_height;				//!<ƒEƒBƒ“ƒhƒEƒ‚[ƒh‚Ìê‡AƒfƒXƒNƒgƒbƒv‚Ì‚‚³
-	bool stencil_enable;				//!<ƒXƒeƒ“ƒVƒ‹‚ªg‚¦‚é‚©‚Ç‚¤‚©
+	D3DXPLANE d3dxplane_x,d3dxplane_y;	//!<ãƒãƒˆãƒªã‚¯ã‚¹å›è»¢ã«ä½¿ç”¨ã™ã‚‹ X,Y å¹³é¢
+	BOOL m_is_win;						//!<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã§ã®èµ·å‹•ã‹ã©ã†ã‹
+	UINT m_desktop_width;				//!<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã€ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®å¹…
+	UINT m_desktop_height;				//!<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã€ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®é«˜ã•
+	bool stencil_enable;				//!<ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹
 };
 
 
 
-//bltŒnŠÖ”‚Ìƒtƒ‰ƒO
-#define CKBLT_YUREY			(0x00000001)//!<—h‚ê‚ğ—^‚¦‚é
+//bltç³»é–¢æ•°ã®ãƒ•ãƒ©ã‚°
+#define CKBLT_YUREY			(0x00000001)//!<æºã‚Œã‚’ä¸ãˆã‚‹
 
 // Flexible Vertex Format -----------------------------------------------------
-// g—p‚·‚éDirect3D’¸“_ƒtƒH[ƒ}ƒbƒg
+// ä½¿ç”¨ã™ã‚‹Direct3Dé ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 #ifndef FVF_3DVERTEX
 #define FVF_3DVERTEX	(D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1 )
 
 /*!
 *	@ingroup DirectX
-*	@brief D3D•`‰æ‚Åg—p‚·‚é’¸“_ƒtƒH[ƒ}ƒbƒg
+*	@brief D3Dæç”»ã§ä½¿ç”¨ã™ã‚‹é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 */
 struct MYVERTEX3D
 {
-	float x,y,z;//!< À•W
-	DWORD color;//!< ’¸“_F
-	float tu,tv;//!< ƒeƒNƒXƒ`ƒƒÀ•W
+	float x,y,z;//!< åº§æ¨™
+	DWORD color;//!< é ‚ç‚¹è‰²
+	float tu,tv;//!< ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™
 };
 #endif//FVF_3DVERTEX
 

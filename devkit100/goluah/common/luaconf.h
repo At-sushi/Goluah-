@@ -1,4 +1,4 @@
-/*
+﻿/*
 ** $Id: luaconf.h,v 1.172 2012/05/11 14:14:42 roberto Exp $
 ** Configuration file for Lua
 ** See Copyright Notice in lua.h

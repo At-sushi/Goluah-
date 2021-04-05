@@ -1,67 +1,67 @@
-================================================================================
-    MICROSOFT FOUNDATION CLASS ���C�u���� : goluah �v���W�F�N�g�̊T�v
+﻿================================================================================
+    MICROSOFT FOUNDATION CLASS ライブラリ : goluah プロジェクトの概要
 ===============================================================================
 
 
 
-    �A�v���P�[�V���� �E�B�U�[�h���쐬���� goluah �ɂ� Microsoft 
-    Foundation Classes �̊�{�I�Ȏg������������Ă��܂��B�A�v���P�[�V�����쐬�̂ЂȌ^�Ƃ��Ă��g��
-    ���������B
-    ���̃t�@�C���ɂ� goluah �A�v���P�[�V�������\�����Ă���e�t�@�C���̊T�v��������
-    �܂�Ă��܂��B
+    アプリケーション ウィザードが作成した goluah には Microsoft 
+    Foundation Classes の基本的な使い方が示されています。アプリケーション作成のひな型としてお使い
+    ください。
+    このファイルには goluah アプリケーションを構成している各ファイルの概要説明が含
+    まれています。
 
 goluah.vcproj
-    ����̓A�v���P�[�V���� �E�B�U�[�h�Ő������ꂽ VC++ �v���W�F�N�g�̃��C�� �v���W�F�N�g �t�@�C	    ���ł��B�t�@�C�����������ꂽ Visual C++ �̃o�[�W������񂪊܂܂�Ă��܂��B�܂��A�A�v���P�[�V	    ���� �E�B�U�[�h�őI�������v���b�g�t�H�[���A�\������уv���W�F�N�g�@�\�Ɋւ�������܂܂�		    �Ă��܂��B
+    これはアプリケーション ウィザードで生成された VC++ プロジェクトのメイン プロジェクト ファイ	    ルです。ファイルが生成された Visual C++ のバージョン情報が含まれています。また、アプリケーシ	    ョン ウィザードで選択したプラットフォーム、構成およびプロジェクト機能に関する情報も含まれ		    ています。
 
 
 goluah.h
-    ���̃t�@�C���̓A�v���P�[�V�����̒��S�ƂȂ�w�b�_�[ �t�@�C���ł��B���̃t�@�C���ɂ́AResource.h 
-    ���܂݁A���̃v���W�F�N�g����̃w�b�_���܂܂�Ă��āACgoluahApp �A�v���P�[�V���� �N���X
-    �̐錾�����܂��B
+    このファイルはアプリケーションの中心となるヘッダー ファイルです。このファイルには、Resource.h 
+    も含み、他のプロジェクト特定のヘッダが含まれていて、CgoluahApp アプリケーション クラス
+    の宣言をします。
 
 goluah.cpp
-    ���̃t�@�C���� CgoluahApp �A�v���P�[�V�����N���X���܂ރA�v���P�[�V�����̒��S�ƂȂ�\�[
-    �X�t�@�C���ł��B
+    このファイルは CgoluahApp アプリケーションクラスを含むアプリケーションの中心となるソー
+    スファイルです。
 
 goluah.rc
-    ���̃t�@�C���̓v���O�������g�p���� Microsoft Windows �̃��\�[�X��񋓂��܂��B���̃t�@�C���� RES 
-    �T�u�f�B���N�g���ɕۑ�����Ă���A�C�R���A�r�b�g�}�b�v�A�J�[�\�����܂݂܂��B���̃t�@�C���́A
-    Microsoft Visual C++ �Œ��ڕҏW�\�ł��B�v���W�F�N�g ���\�[�X�� 1041 �ɂ���܂��B
+    このファイルはプログラムが使用する Microsoft Windows のリソースを列挙します。このファイルは RES 
+    サブディレクトリに保存されているアイコン、ビットマップ、カーソルを含みます。このファイルは、
+    Microsoft Visual C++ で直接編集可能です。プロジェクト リソースは 1041 にあります。
 
 res\goluah.ico
-    ���̃t�@�C���́A�A�v���P�[�V�����̃A�C�R���Ƃ��Ďg�p�����A�C�R���t�@�C���ł��B���̃A�C�R����
-    ���\�[�X �t�@�C�� goluah.rc �ɂ���ăC���N���[�h����܂��B
+    このファイルは、アプリケーションのアイコンとして使用されるアイコンファイルです。このアイコンは
+    リソース ファイル goluah.rc によってインクルードされます。
 
 res\goluah.rc2
-    ���̃t�@�C���� Microsoft Visual C++ �ɂ���ĕҏW����Ȃ����\�[�X���܂�ł��܂��B���̃t�@�C����
-    ���\�[�X �G�f�B�^�ŕҏW����Ȃ����ׂẴ��\�[�X���L�q���Ă��������B
+    このファイルは Microsoft Visual C++ によって編集されないリソースを含んでいます。このファイルに
+    リソース エディタで編集されないすべてのリソースを記述してください。
 /////////////////////////////////////////////////////////////////////////////
 
-���C�� �t���[�� �E�B���h�E :
-    �v���W�F�N�g�͕W���� MFC �C���^�[�t�F�[�X���܂݂܂��B
+メイン フレーム ウィンドウ :
+    プロジェクトは標準の MFC インターフェースを含みます。
 MainFrm.h, MainFrm.cpp
-    �����̃t�@�C���́A    CFrameWnd �ŁA���ׂĂ� MDI �t���[���@�\�𐧌䂵�܂��B
+    これらのファイルは、    CFrameWnd で、すべての MDI フレーム機能を制御します。
 /////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////
 
-���̑��̕W���t�@�C�� :
+その他の標準ファイル :
 
 StdAfx.h, StdAfx.cpp
-    �����̃t�@�C���͊��ɃR���p�C�����ꂽ�w�b�_�[ �t�@�C�� (PCH) goluah.pch ����ɃR�� 
-    �p�C�����ꂽ�^�̃t�@�C�� StdAfx.obj ���r���h���邽�߂Ɏg����t�@�C���ł��B
+    これらのファイルは既にコンパイルされたヘッダー ファイル (PCH) goluah.pch や既にコン 
+    パイルされた型のファイル StdAfx.obj をビルドするために使われるファイルです。
 
 Resource.h
-    ���̃t�@�C���͐V�K���\�[�X ID ���`����W���w�b�_�[ �t�@�C���ł��BMicrosoft Visual C++ �͂��� 
-    �t�@�C���̓ǂݍ��ƍX�V���s���܂��B
+    このファイルは新規リソース ID を定義する標準ヘッダー ファイルです。Microsoft Visual C++ はこの 
+    ファイルの読み込と更新を行います。
 
 /////////////////////////////////////////////////////////////////////////////
 
-���̑��̒��� :
+その他の注意 :
 
-�A�v���P�[�V���� �E�B�U�[�h�� "TODO:" �Ŏn�܂�R�����g���g�p���āA�ǉ�������J�X�^�C�Y�̕K�v�� 
-    �\�[�X �R�[�h�̕����������܂��B
+アプリケーション ウィザードは "TODO:" で始まるコメントを使用して、追加したりカスタイズの必要な 
+    ソース コードの部分を示します。
 
-�A�v���P�[�V�����ŋ��L DLL ���� MFC ���g�p����ꍇ��A�A�v���P�[�V�������I�y���[�e�B���O �V�X�e���Ō��ݎg�p���Ă��錾��ȊO�̌�����g�p���Ă���ꍇ�́AWin\System �f�B���N�g���ɂ��� Microsoft Visual C++ CD-ROM ����A���[�J���C�Y���ꂽ���\�[�X�ɑΉ����� MFC70XXX.DLL �� system �܂��� system32 �f�B���N�g���ɃR�s�[���āA�t�@�C������ MFCLOC.DLL �ɂ���K�v������܂��B("XXX" �͌���̏ȗ��`�������܂��B�Ⴆ�΁AMFC70JPN.DLL �͓��{��ɖ|�󂳂ꂽ���\�[�X���܂݂܂��B) ���̗�𖳎�����ƃA�v���P�[�V�������̂������� UI �v�f�̓I�y���[�e�B���O �V�X�e���̌���̂܂܎c��܂��B
+アプリケーションで共有 DLL 内で MFC を使用する場合や、アプリケーションがオペレーティング システムで現在使用している言語以外の言語を使用している場合は、Win\System ディレクトリにある Microsoft Visual C++ CD-ROM から、ローカライズされたリソースに対応する MFC70XXX.DLL を system または system32 ディレクトリにコピーして、ファイル名を MFCLOC.DLL にする必要があります。("XXX" は言語の省略形を示します。例えば、MFC70JPN.DLL は日本語に翻訳されたリソースを含みます。) この例を無視するとアプリケーション内のいくつかの UI 要素はオペレーティング システムの言語のまま残ります。
 
 /////////////////////////////////////////////////////////////////////////////

@@ -1,4 +1,4 @@
-// are_editerDlg.cpp : �����t�@�C��
+﻿// are_editerDlg.cpp : 実装ファイル
 //
 
 #include "stdafx.h"
@@ -24,13 +24,13 @@ CDirectDraw g_draw;
 int g_DISPLAYWIDTH = 640;
 int g_DISPLAYHEIGHT = 480;
 
-HWND ghwnd;//gcdhandler���g�p����
+HWND ghwnd;//gcdhandlerが使用する
 
 IMPLEMENT_DYNAMIC(CAre_editerDlg, CMyDialogTab)
 
 
 /*----------------------------------------------------------------------
-	�\�z
+	構築
 ------------------------------------------------------------------------*/
 CAre_editerDlg::CAre_editerDlg(CWnd* pParent /*=NULL*/)
 	: CMyDialogTab(CAre_editerDlg::IDD, pParent)
@@ -54,7 +54,7 @@ void CAre_editerDlg::DoDataExchange(CDataExchange* pDX)
 
 
 /*----------------------------------------------------------------------
-	���b�Z�[�W�}�b�v
+	メッセージマップ
 ------------------------------------------------------------------------*/
 BEGIN_MESSAGE_MAP(CAre_editerDlg, CDialog)
 	ON_WM_PAINT()
@@ -67,28 +67,28 @@ END_MESSAGE_MAP()
 
 
 /*----------------------------------------------------------------------
-	������
+	初期化
 ------------------------------------------------------------------------*/
 BOOL CAre_editerDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// ���̃_�C�A���O�̃A�C�R����ݒ肵�܂��B�A�v���P�[�V�����̃��C�� �E�B���h�E���_�C�A���O�łȂ��ꍇ�A
-	//  Framework �́A���̐ݒ�������I�ɍs���܂��B
-	SetIcon(m_hIcon, TRUE);			// �傫���A�C�R���̐ݒ�
-	SetIcon(m_hIcon, FALSE);		// �������A�C�R���̐ݒ�
+	// このダイアログのアイコンを設定します。アプリケーションのメイン ウィンドウがダイアログでない場合、
+	//  Framework は、この設定を自動的に行います。
+	SetIcon(m_hIcon, TRUE);			// 大きいアイコンの設定
+	SetIcon(m_hIcon, FALSE);		// 小さいアイコンの設定
 
-	// TODO: �������������ɒǉ����܂��B
+	// TODO: 初期化をここに追加します。
 	ghwnd = m_hWnd;
 
-	//���^�u�R���g���[���̍��ڐ���
+	//■タブコントロールの項目生成
 	CTabCtrl* pTab = (CTabCtrl*)GetDlgItem(IDC_TAB1);
-	pTab->InsertItem(0,"�t�@�C��");
-	pTab->InsertItem(1,"��`�ҏW");
-	pTab->InsertItem(2,"CELL�ҏW");
-	pTab->InsertItem(3,"���̑�");
+	pTab->InsertItem(0,"ファイル");
+	pTab->InsertItem(1,"矩形編集");
+	pTab->InsertItem(2,"CELL編集");
+	pTab->InsertItem(3,"その他");
 
-	//���e�^�u�̃y�[�W�ɑ�������_�C�A���O�𐶐�
+	//■各タブのページに相当するダイアログを生成
 	m_tab_pages[0] = new CDlgPage1();
 	m_tab_pages[0]->Create(IDD_DIALOG_TAB1,this);
 	m_tab_pages[1] = new CRecteditDlg();
@@ -98,7 +98,7 @@ BOOL CAre_editerDlg::OnInitDialog()
 	m_tab_pages[3] = new CDlgOther();
 	m_tab_pages[3]->Create(IDD_DIALOG_SUBTAB_OTHER,this);
 
-	//���E�B���h�E���^�u�̈ʒu�ɍ����悤�Ɉړ�
+	//■ウィンドウをタブの位置に合うように移動
 	CRect r;
 	for(int i=0;i<MAX_TAB_PAGES;i++){
 		if(m_tab_pages[i]){
@@ -108,7 +108,7 @@ BOOL CAre_editerDlg::OnInitDialog()
 		}
 	}
 
-	//���q�E�C���h�E�𐶐�
+	//■子ウインドウを生成
 	RECT rect = {10,10,10+g_DISPLAYWIDTH,10+g_DISPLAYHEIGHT};
 	g_childwnd.Create(
 					NULL,
@@ -116,38 +116,38 @@ BOOL CAre_editerDlg::OnInitDialog()
 					WS_CHILD | WS_VSCROLL | WS_HSCROLL,
 					rect,
 					this,
-					1234	//ID �Ȃ�ł������́H
+					1234	//ID なんでもいいの？
 					);
 	g_childwnd.ShowWindow(TRUE);
 
-	//��Direct3D	������
+	//■Direct3D	初期化
 	g_draw.Initialize(g_childwnd.m_hWnd,TRUE);
 
 	OnTcnSelchangeTab1(0,0);
 
-	//���R���{�{�b�N�X�̒l�Ƃ���������
+	//■コンボボックスの値とかを初期化
 	UpdateItems();
 	
-	return TRUE;  // �t�H�[�J�X���R���g���[���ɐݒ肵���ꍇ�������ATRUE ��Ԃ��܂��B
+	return TRUE;  // フォーカスをコントロールに設定した場合を除き、TRUE を返します。
 }
 
 
 
 /*----------------------------------------------------------------------
-// �_�C�A���O�ɍŏ����{�^����ǉ�����ꍇ�A�A�C�R����`�悷�邽�߂�
-//  ���̃R�[�h���K�v�ł��B�h�L�������g/�r���[ ���f�����g�� MFC �A�v���P�[�V�����̏ꍇ�A
-//  ����́AFramework �ɂ���Ď����I�ɐݒ肳��܂��B
-	�E�E�E���Ƃ�
+// ダイアログに最小化ボタンを追加する場合、アイコンを描画するための
+//  下のコードが必要です。ドキュメント/ビュー モデルを使う MFC アプリケーションの場合、
+//  これは、Framework によって自動的に設定されます。
+	・・・だとさ
 ------------------------------------------------------------------------*/
 void CAre_editerDlg::OnPaint() 
 {
 	if (IsIconic())
 	{
-		CPaintDC dc(this); // �`��̃f�o�C�X �R���e�L�X�g
+		CPaintDC dc(this); // 描画のデバイス コンテキスト
 
 		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
 
-		// �N���C�A���g�̎l�p�`�̈���̒���
+		// クライアントの四角形領域内の中央
 		int cxIcon = GetSystemMetrics(SM_CXICON);
 		int cyIcon = GetSystemMetrics(SM_CYICON);
 		CRect rect;
@@ -155,7 +155,7 @@ void CAre_editerDlg::OnPaint()
 		int x = (rect.Width() - cxIcon + 1) / 2;
 		int y = (rect.Height() - cyIcon + 1) / 2;
 
-		// �A�C�R���̕`��
+		// アイコンの描画
 		dc.DrawIcon(x, y, m_hIcon);
 	}
 	else
@@ -166,9 +166,9 @@ void CAre_editerDlg::OnPaint()
 
 
 /*----------------------------------------------------------------------
-	//���[�U�[���ŏ��������E�B���h�E���h���b�O���Ă���Ƃ��ɕ\������J�[�\�����擾���邽�߂ɁA
-	//  �V�X�e�������̊֐����Ăяo���܂��B
-	�E�E�E���Ƃ�
+	//ユーザーが最小化したウィンドウをドラッグしているときに表示するカーソルを取得するために、
+	//  システムがこの関数を呼び出します。
+	・・・だとさ
 ------------------------------------------------------------------------*/
 HCURSOR CAre_editerDlg::OnQueryDragIcon()
 {
@@ -176,11 +176,11 @@ HCURSOR CAre_editerDlg::OnQueryDragIcon()
 }
 
 /*-----------------------------------------------------------------------
-	�^�u�R���g���[���̕ύX
+	タブコントロールの変更
 -------------------------------------------------------------------------*/
 void CAre_editerDlg::OnTcnSelchangeTab1(NMHDR *pNMHDR, LRESULT *pResult)
 {
-	// TODO : �����ɃR���g���[���ʒm�n���h�� �R�[�h��ǉ����܂��B
+	// TODO : ここにコントロール通知ハンドラ コードを追加します。
 	if(pResult)
 		*pResult = 0;
 
@@ -194,23 +194,23 @@ void CAre_editerDlg::OnTcnSelchangeTab1(NMHDR *pNMHDR, LRESULT *pResult)
 	}
 
 	if(i==1){
-		g_childwnd.ChangeEditMode(FALSE);//��`�ҏW���[�h�ɕύX
-		SetStatus("��`�ҏW���[�h");
+		g_childwnd.ChangeEditMode(FALSE);//矩形編集モードに変更
+		SetStatus("矩形編集モード");
 	}
 	if(i==2){
-		g_childwnd.ChangeEditMode(TRUE);//�Z���ҏW���[�h�ɕύX
-		SetStatus("�Z���ҏW���[�h");
+		g_childwnd.ChangeEditMode(TRUE);//セル編集モードに変更
+		SetStatus("セル編集モード");
 	}
 }
 
 /*-----------------------------------------------------------------------
-	�E�C���h�E�j��
+	ウインドウ破棄
 -------------------------------------------------------------------------*/
 BOOL CAre_editerDlg::DestroyWindow()
 {
-	// TODO : �����ɓ���ȃR�[�h��ǉ����邩�A�������͊�{�N���X���Ăяo���Ă��������B
+	// TODO : ここに特定なコードを追加するか、もしくは基本クラスを呼び出してください。
 	
-	//�^�u�y�[�W�p�_�C�A���O�̔j��
+	//タブページ用ダイアログの破棄
 	for(int i=0;i<MAX_TAB_PAGES;i++)
 	{
 		if(m_tab_pages[i]){
@@ -219,14 +219,14 @@ BOOL CAre_editerDlg::DestroyWindow()
 			m_tab_pages[i] = NULL;
 		}
 	}
-	//�q�E�C���h�E�̔j��
+	//子ウインドウの破棄
 	g_childwnd.DestroyWindow();
 
 	return CDialog::DestroyWindow();
 }
 
 /*-----------------------------------------------------------------------
-	���̂ق��ɂłĂ�G�Z�X�e�[�^�X�̕�����X�V
+	下のほうにでてるエセステータスの文字列更新
 -------------------------------------------------------------------------*/
 void CAre_editerDlg::SetStatus(CString str)
 {
@@ -236,7 +236,7 @@ void CAre_editerDlg::SetStatus(CString str)
 
 
 /*-----------------------------------------------------------------------
-	�r�b�g�}�b�v�t�@�C�����擾
+	ビットマップファイル名取得
 -------------------------------------------------------------------------*/
 CString CAre_editerDlg::GetBMPFilename(UINT i)
 {
@@ -245,7 +245,7 @@ CString CAre_editerDlg::GetBMPFilename(UINT i)
 
 
 /*-----------------------------------------------------------------------
-	���w�^�u�R���g���[���ɏ��̍X�V��v��
+	下層タブコントロールに情報の更新を要求
 -------------------------------------------------------------------------*/
 void CAre_editerDlg::UpdateItems()
 {
@@ -258,7 +258,7 @@ void CAre_editerDlg::UpdateItems()
 }
 
 /*----------------------------------------------------------------------
-	�t�@�C���h���b�v
+	ファイルドロップ
 ------------------------------------------------------------------------*/
 void CAre_editerDlg::OnDropFiles(HDROP hDropInfo)
 {
@@ -269,7 +269,7 @@ void CAre_editerDlg::OnDropFiles(HDROP hDropInfo)
 					MAX_PATH);
 
 	CString str;
-	str.Format("%s\n��ǂݍ��݂܂����H",pBuf);
+	str.Format("%s\nを読み込みますか？",pBuf);
 
 	if(IDYES!=MessageBox(str,"",MB_YESNO)){
 		delete [] pBuf;
@@ -282,7 +282,7 @@ void CAre_editerDlg::OnDropFiles(HDROP hDropInfo)
 
 
 /*----------------------------------------------------------------------
-	�t�@�C���h���b�v
+	ファイルドロップ
 ------------------------------------------------------------------------*/
 void CAre_editerDlg::SpecialCtrl(UINT key)
 {
@@ -306,8 +306,8 @@ void CAre_editerDlg::SpecialCtrl(UINT key)
 
 void CAre_editerDlg::OnClose()
 {
-	// TODO : �����Ƀ��b�Z�[�W �n���h�� �R�[�h��ǉ����邩�A����̏������Ăяo���܂��B
+	// TODO : ここにメッセージ ハンドラ コードを追加するか、既定の処理を呼び出します。
 
-	if (AfxMessageBox("�I������Ƃł����H", MB_YESNO | MB_ICONQUESTION, NULL) == IDYES)
+	if (AfxMessageBox("終了するとですか？", MB_YESNO | MB_ICONQUESTION, NULL) == IDYES)
 		CMyDialogTab::OnClose();
 }

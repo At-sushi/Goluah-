@@ -1,28 +1,28 @@
-#pragma once
+Ôªø#pragma once
 
 
-// CDlgPage2 É_ÉCÉAÉçÉO
+// CDlgPage2 „ÉÄ„Ç§„Ç¢„É≠„Ç∞
 
 class CDlgPage2 : public CMyDialogTab
 {
 	DECLARE_DYNCREATE(CDlgPage2)
 
 public:
-	CDlgPage2(CWnd* pParent = NULL);   // ïWèÄÉRÉìÉXÉgÉâÉNÉ^
+	CDlgPage2(CWnd* pParent = NULL);   // Ê®ôÊ∫ñ„Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	virtual ~CDlgPage2();
-	void UpdateItems();//ï\é¶ï®çXêV
+	void UpdateItems();//Ë°®Á§∫Áâ©Êõ¥Êñ∞
 
 protected:
 	void OnChangeIndex();
 
-// É_ÉCÉAÉçÉO ÉfÅ[É^
+// „ÉÄ„Ç§„Ç¢„É≠„Ç∞ „Éá„Éº„Çø
 	enum { IDD = IDD_DIALOG_TAB2 };
 
 	GCD_CELL2 m_CopiedCell;
 	GCD_HANTEI m_CopiedHantei;
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ÉTÉ|Å[Ég
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV „Çµ„Éù„Éº„Éà
 	virtual BOOL OnInitDialog();
 
 	DECLARE_MESSAGE_MAP()

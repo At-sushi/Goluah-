@@ -1,7 +1,7 @@
-
+ï»¿
 /*==============================================================
 
-	”ò‚Ñ“¹‹ï’è‹`
+	é£›ã³é“å…·å®šç¾©
 
 ================================================================*/
 #include "character.h"
@@ -39,7 +39,7 @@ void CCharacter::InitBullets()
 	pbul_blood =		new CBlood(this);
 
 	
-	pbul_moyaA->Quick();	// •›’á
+	pbul_moyaA->Quick();	// å‰¯ä½
 	pbul_moyaB->Quick();
 	pbul_moyaC->Quick();
 	if(m_opt_quickA)	pbul_moyaA->Quick();
@@ -95,7 +95,7 @@ void CCharacter::ArekoreRelease()
 
 
 /*---------------------------------------------------------------
-	‚¨’ƒ
+	ãŠèŒ¶
 -----------------------------------------------------------------*/
 
 COcya::COcya(CCharacterBase *parent,ATTACKINFO& atk)
@@ -132,7 +132,7 @@ void COcya::act_bomb()
 
 
 /*---------------------------------------------------------------
-	ƒWƒTƒNƒWƒGƒ“
+	ã‚¸ã‚µã‚¯ã‚¸ã‚¨ãƒ³
 -----------------------------------------------------------------*/
 
 CJien::CJien(CCharacterBase *parent,ATTACKINFO& atk)
@@ -178,7 +178,7 @@ void CJien::act_bomb()
 }
 
 /*---------------------------------------------------------------
-	ƒAƒƒGƒŠ[ƒi
+	ã‚¢ãƒ­ã‚¨ãƒªãƒ¼ãƒŠ
 -----------------------------------------------------------------*/
 
 CAroe::CAroe(CCharacterBase *parent,ATTACKINFO& atk)
@@ -214,7 +214,7 @@ void CAroe::act_bomb()
 }
 
 /*---------------------------------------------------------------
-	ƒ‚ƒEƒRƒlƒGƒˆ
+	ãƒ¢ã‚¦ã‚³ãƒã‚¨ãƒ¨
 -----------------------------------------------------------------*/
 CMoukoneeyo::CMoukoneeyo(CCharacterBase* parent,ATTACKINFO& atk) : CBulletBase(parent)
 {
@@ -283,7 +283,7 @@ DWORD CMoukoneeyo::Draw()
 }
 
 /*---------------------------------------------------------------
-	ƒ~ƒTƒCƒ‹
+	ãƒŸã‚µã‚¤ãƒ«
 -----------------------------------------------------------------*/
 CMissile::CMissile(CCharacterBase *parent,ATTACKINFO& atk)
 				: CBulletBase(parent)
@@ -361,7 +361,7 @@ void CMissile::act_bomb()
 }
 
 /*---------------------------------------------------------------
-	ƒnƒ“ƒhƒOƒŒƒl[ƒh
+	ãƒãƒ³ãƒ‰ã‚°ãƒ¬ãƒãƒ¼ãƒ‰
 -----------------------------------------------------------------*/
 CHandg::CHandg(CCharacterBase* parent,ATTACKINFO& atk) : CBulletBase(parent)
 {
@@ -579,7 +579,7 @@ void CHandg::HandgInfo2::Update()
 
 
 /*---------------------------------------------------------------
-	ƒNƒŒƒCƒ‚ƒAwŒü«‘ÎAA’n—‹
+	ã‚¯ãƒ¬ã‚¤ãƒ¢ã‚¢æŒ‡å‘æ€§å¯¾AAåœ°é›·
 -----------------------------------------------------------------*/
 CCraymore::CCraymore(CCharacterBase* parent,ATTACKINFO& atk) : CBulletBase(parent)
 {
@@ -748,7 +748,7 @@ DWORD CCraymore::Sousai(DWORD prm)
 
 
 /*---------------------------------------------------------------
-	ƒVƒ‡ƒbƒgƒKƒ“
+	ã‚·ãƒ§ãƒƒãƒˆã‚¬ãƒ³
 -----------------------------------------------------------------*/
 CShotgun::CShotgun(CCharacterBase* parent,ATTACKINFO& atk) : CBulletBase(parent)
 {
@@ -829,7 +829,7 @@ void CShotgun::ParticleInfo::Update()
 
 
 /*---------------------------------------------------------------
-	ƒ‰ƒCƒtƒ‹
+	ãƒ©ã‚¤ãƒ•ãƒ«
 -----------------------------------------------------------------*/
 CRifle::CRifle(CCharacterBase* parent,ATTACKINFO& atk) : CBulletBase(parent)
 {
@@ -954,7 +954,7 @@ void CRifle::ForceStop()
 
 
 /*---------------------------------------------------------------
-	‰Î‰Š•úËŠí
+	ç«ç‚æ”¾å°„å™¨
 -----------------------------------------------------------------*/
 
 CFireThrower::CFireThrower(CCharacterBase* parent,ATTACKINFO& atk)
@@ -1078,7 +1078,7 @@ void CFireThrower::ParticleInfo::Reset(double posdelta)
 {
 	pos = Zero;
 
-	vel.x = 20.0f + 20.0f*aki3d.RandomOne() ;//+ (float)posdelta;//‚È‚ñ‚©ƒwƒ“
+	vel.x = 20.0f + 20.0f*aki3d.RandomOne() ;//+ (float)posdelta;//ãªã‚“ã‹ãƒ˜ãƒ³
 	vel.y = 3.0f*aki3d.RandomOne();
 	vel.z = 3.0f*aki3d.RandomOne();
 
@@ -1128,7 +1128,7 @@ DWORD CFireThrower::Draw()
 }
 
 /*---------------------------------------------------------------
-	ƒƒPƒbƒg?
+	ãƒ­ã‚±ãƒƒãƒˆ?
 -----------------------------------------------------------------*/
 CRocket::CRocket(CCharacterBase* parent,ATTACKINFO& atk) : CBulletBase(parent)
 {
@@ -1241,7 +1241,7 @@ DWORD CRocket::Draw()
 
 
 /*---------------------------------------------------------------
-	ƒAƒM
+	ã‚¢ã‚®
 -----------------------------------------------------------------*/
 CAgi::CAgi(CCharacterBase* parent,ATTACKINFO& atk) : CBulletBase(parent)
 {
@@ -1358,7 +1358,7 @@ void CAgi::ParticleInfo::Update(GOBJECT *parent, BOOL recreate)
 }
 
 /*---------------------------------------------------------------
-	ƒ‰ƒ“ƒ^ƒ“
+	ãƒ©ãƒ³ã‚¿ãƒ³
 -----------------------------------------------------------------*/
 CLantern::CLantern(CCharacterBase* parent,ATTACKINFO& atk) : CBulletBase(parent)
 {
@@ -1567,7 +1567,7 @@ void CComeon::act_bomb()
 }
 
 /*---------------------------------------------------------------
-	HTTPƒŒ[ƒU[
+	HTTPãƒ¬ãƒ¼ã‚¶ãƒ¼
 -----------------------------------------------------------------*/
 CHttpLaser::CHttpLaser(CCharacterBase* parent,ATTACKINFO& atk) : CBulletBase(parent)
 {
@@ -1611,7 +1611,7 @@ DWORD CHttpLaser::TouchC( ATTACKINFO *info,DWORD tc_eid )
 
 
 /*---------------------------------------------------------------
-	‚à‚â‚à‚â
+	ã‚‚ã‚„ã‚‚ã‚„
 -----------------------------------------------------------------*/
 
 #define MOYA_CH_VAL		(0.90f)
@@ -1764,7 +1764,7 @@ DWORD CMoyamoya::Type2Cell(MoyaType type)
 }
 
 
-//Aƒ‹[ƒgó‘Ô‘JˆÚ
+//Aãƒ«ãƒ¼ãƒˆçŠ¶æ…‹é·ç§»
 MoyaType CMoyamoyaA::GetNextType()
 {
 	switch(crnt_type)
@@ -1791,7 +1791,7 @@ MoyaType CMoyamoyaA::GetNextType()
 	return Moya_Invalid;
 }
 
-//Bƒ‹[ƒgó‘Ô‘JˆÚ
+//Bãƒ«ãƒ¼ãƒˆçŠ¶æ…‹é·ç§»
 MoyaType CMoyamoyaB::GetNextType()
 {
 	switch(crnt_type)
@@ -1816,7 +1816,7 @@ MoyaType CMoyamoyaB::GetNextType()
 	return Moya_Invalid;
 }
 
-//Cƒ‹[ƒgó‘Ô‘JˆÚ
+//Cãƒ«ãƒ¼ãƒˆçŠ¶æ…‹é·ç§»
 MoyaType CMoyamoyaC::GetNextType()
 {
 	switch(crnt_type)
@@ -1845,7 +1845,7 @@ MoyaType CMoyamoyaC::GetNextType()
 
 
 /*---------------------------------------------------------------
-	ƒCƒŒƒCƒT["99"
+	ã‚¤ãƒ¬ã‚¤ã‚µãƒ¼"99"
 -----------------------------------------------------------------*/
 
 CEraser99::CEraser99(CCharacterBase* parent,ATTACKINFO& atk) : CBulletBase(parent)
@@ -2065,7 +2065,7 @@ void CEraser99::RayPartInfo::Update(float pt)
 
 
 /*---------------------------------------------------------------
-	ƒ_ƒbƒREŒŒ
+	ãƒ€ãƒƒã‚³ãƒ»è¡€
 -----------------------------------------------------------------*/
 
 CBlood::CBlood(CCharacterBase* parent) : CBulletBase(parent)

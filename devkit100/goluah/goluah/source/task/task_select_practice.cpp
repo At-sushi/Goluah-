@@ -1,6 +1,6 @@
-/*=======================================================================================
+ï»¿/*=======================================================================================
 
-	—ûKƒ‚[ƒh ƒLƒƒƒ‰ƒZƒŒ
+	ç·´ç¿’ãƒ¢ãƒ¼ãƒ‰ ã‚­ãƒ£ãƒ©ã‚»ãƒ¬
 
 =========================================================================================*/
 
@@ -11,7 +11,7 @@
 
 void CCharacterSelectPractice::Initialize()
 {
-	//ƒpƒ‰ƒ[ƒ^ƒŠƒZƒbƒg
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒªã‚»ãƒƒãƒˆ
 	charsel_ok[0]=charsel_ok[1]=FALSE;
 	stgsel_ok = FALSE;
 	num_selected[0]=num_selected[1]=0;
@@ -23,15 +23,15 @@ void CCharacterSelectPractice::Initialize()
 		}
 	}
 
-	//BGMÄ¶
+	//BGMå†ç”Ÿ
 	g_sound.BGMPlay(".\\system\\bgm\\choice");
 
-	//¡ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒZƒŒƒNƒ^[“o˜^
+	//â– ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚»ãƒ¬ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	CTConditionSelecter *csel = new CTConditionSelecterPractice;
 	csel->SetPriority( m_pri_firstSetting );
 	g_system.AddTask(csel);
 
-	//¡”qŒ[•`‰æƒNƒ‰ƒX“o˜^
+	//â– æ‹å•“æç”»ã‚¯ãƒ©ã‚¹ç™»éŒ²
 	m_bg = new CTCharacterSelectBG();
 	m_bg->SetPriority(m_pri_background);
 	g_system.AddTask(m_bg);
@@ -45,7 +45,7 @@ void CCharacterSelectPractice::CreateNextTask()
 
 
 /*!
-*	b’è.
+*	æš«å®š.
 */
 
 const int CTConditionSelecterPractice::m_hp_ratio[5] = {80,100,10,30,50};
@@ -57,7 +57,7 @@ void CTConditionSelecterPractice::Initialize()
 	for(int j=0;j<2;j++){
 		for(int i=0;i<MAXNUM_TEAM;i++)
 		{
-			// b’è‘[’u
+			// æš«å®šæªç½®
 			if (m_assign[j][i] == CASSIGN_COM)
 				m_assign[j][i] = CASSIGN_STABLE;
 		}
@@ -66,10 +66,10 @@ void CTConditionSelecterPractice::Initialize()
 
 BOOL CTConditionSelecterPractice::Execute(DWORD time)
 {
-/*	static BYTE m_type;						//gobject.h , TAISENKEISIKI_`QÆ BYTE‚Å‘«‚è‚é
-	static BYTE m_assign[2][MAXNUM_TEAM];	//Š„‚è“–‚Ä
-	static int m_limit_time_index;			//«‚ÌƒCƒ“ƒfƒbƒNƒX
-	static int m_limit_time[5];				//45,60,99,120,‡  ,  const	
+/*	static BYTE m_type;						//gobject.h , TAISENKEISIKI_ï½å‚ç…§ BYTEã§è¶³ã‚Šã‚‹
+	static BYTE m_assign[2][MAXNUM_TEAM];	//å‰²ã‚Šå½“ã¦
+	static int m_limit_time_index;			//â†“ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	static int m_limit_time[5];				//45,60,99,120,âˆ  ,  const	
 
 	m_limit_time_index = 4;
 	m_type = TAISENKEISIKI_GOCYAMAZE;
@@ -83,7 +83,7 @@ BOOL CTConditionSelecterPractice::Execute(DWORD time)
 	CCharacterSelect* ccselect = dynamic_cast<CCharacterSelect*>(g_system.GetCurrentMainTask());
 	ccselect->OnConditionDecided(this);*/
 
-	// ã‘‚«
+	// ä¸Šæ›¸ã
 	if (m_state == CTCoS_Hide && m_counter == 0){
 		g_battleinfo.SetLimitTime(m_hp_ratio[m_limit_time_index]);
 
@@ -94,19 +94,19 @@ BOOL CTConditionSelecterPractice::Execute(DWORD time)
 
 
 /*---------------------------------------------------------------------------------------
-	•`‰æ
+	æç”»
 -----------------------------------------------------------------------------------------*/
 void CTConditionSelecterPractice::Draw()
 {
 	CTBeltBase::CalcTopBottom();
-	CTBeltBase::Draw();//ƒIƒrEƒ^ƒCƒgƒ‹•`‰æ
+	CTBeltBase::Draw();//ã‚ªãƒ“ãƒ»ã‚¿ã‚¤ãƒˆãƒ«æç”»
 
-	const float x=40.0f;					//•\¦¶ˆÊ’u
-	const float txt_xr=1.00f;			//ƒeƒLƒXƒgEyŠg‘å—¦
-	const float txt_yr=1.00f*m_ratio;	//ƒeƒLƒXƒgExŠg‘å—¦
+	const float x=40.0f;					//è¡¨ç¤ºå·¦ä½ç½®
+	const float txt_xr=1.00f;			//ãƒ†ã‚­ã‚¹ãƒˆãƒ»yæ‹¡å¤§ç‡
+	const float txt_yr=1.00f*m_ratio;	//ãƒ†ã‚­ã‚¹ãƒˆãƒ»xæ‹¡å¤§ç‡
 	float y = 100.0f;
 	const float ystep = 35.0f;
-	float shiftX=0.0f;	//TEAM2‰üs—p
+	float shiftX=0.0f;	//TEAM2æ”¹è¡Œç”¨
 
 	int i,j;
 
@@ -114,7 +114,7 @@ void CTConditionSelecterPractice::Draw()
 
 	char *tstr = new char[64];
 
-	//‘ÎíŒ`®
+	//å¯¾æˆ¦å½¢å¼
 	char *typenames[]={
 		"Cooperation",
 		"Changeable",
@@ -125,7 +125,7 @@ void CTConditionSelecterPractice::Draw()
 				tstr,
 				TxtCol(0),txt_xr,txt_yr,SYSBMPTXT_PROP);
 
-	//HPŠ„‡
+	//HPå‰²åˆ
 	sprintf(tstr,"HP : %d%%",m_hp_ratio[m_limit_time_index]);
 	g_system.DrawBMPTextEx(x+300,y,0.0f,
 				tstr,
@@ -139,12 +139,12 @@ void CTConditionSelecterPractice::Draw()
 	g_system.DrawBMPTextEx(x+300.0f,y,0.0f,tstr,0xFFFF3752,txt_xr,txt_yr,SYSBMPTXT_PROP);
 	y += ystep;
 
-	//TEAM*-x : `
+	//TEAM*-x : ï½
 	for(j=0;j<2;j++){
 		for(i=0;i<MAXNUM_TEAM;i++)
 		{
 			sprintf(tstr,"%d : ",i+1);
-			if(m_assign[j][i]&CASSIGN_SPECIFIC)//“Á•Ê
+			if(m_assign[j][i]&CASSIGN_SPECIFIC)//ç‰¹åˆ¥
 			{
 				switch(m_assign[j][i]){
 				case CASSIGN_COM:	sprintf(&tstr[strlen(tstr)],"Computer");break;
@@ -170,7 +170,7 @@ void CTConditionSelecterPractice::Draw()
 		y += ystep;
 	}
 
-	//"OK"•`‰æ
+	//"OK"æç”»
 	g_system.DrawBMPTextEx(640.0f-x,y,0.0f,
 				m_ok ? "OK" : m_str_error,
 				TxtCol(2*MAXNUM_TEAM+2),txt_xr,txt_yr,SYSBMPTXT_PROP|SYSBMPTXT_R2L);
@@ -190,7 +190,7 @@ void CTConditionSelecterPractice::Change(BOOL key)
 		int sel1 = (m_selected-2)/MAXNUM_TEAM;
 		int sel2 = (m_selected-2)%MAXNUM_TEAM;
 
-		// Stable‘®«‚ªg—p‰Â
+		// Stableå±æ€§ãŒä½¿ç”¨å¯
 		if(m_assign[sel1][sel2]&CASSIGN_SPECIFIC){
 			switch(m_assign[sel1][sel2]){
 			case CASSIGN_COM:
@@ -208,6 +208,6 @@ void CTConditionSelecterPractice::Change(BOOL key)
 		}
 	}
 
-	// ã‹L•ÏX‚ğ‚µ‚È‚©‚Á‚½ê‡
+	// ä¸Šè¨˜å¤‰æ›´ã‚’ã—ãªã‹ã£ãŸå ´åˆ
 	CTConditionSelecter::Change(key);
 }

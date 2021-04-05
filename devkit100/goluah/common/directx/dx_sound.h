@@ -1,4 +1,4 @@
-
+﻿
 /*!
 *	@file
 *	@brief DirectSound/DirectShow
@@ -8,15 +8,15 @@
 
 
 /*!
-*	@brief DirectSound/DirectShow�N���X
+*	@brief DirectSound/DirectShowクラス
 *	@ingroup DirectX
 *
-*	.wav�t�@�C����ǂݍ��ށB�J���͌Ăяo�����ł�邱�ƁB
-*	DirectShow���g���� .mid .mp3 .wma ���̍Đ����s���B����̍Đ����ł����肷��B
+*	.wavファイルを読み込む。開放は呼び出し側でやること。
+*	DirectShowを使って .mid .mp3 .wma 等の再生を行う。動画の再生もできたりする。
 *
-*	wav�ǂݍ��݂̊֐��͐��N�O�ɗF�l�̂��R�s�y�����̂ŉ��ɂ��悭�킩��܂���B
-*	DirectShow�̓T���v���R�[�h���R�s�y�����̂ŉ��ɂ��悭�킩��܂���B
-*	�Ȃ񂾁A�킩��Ȃ����Ƃ΂��肶��Ȃ����E�E�E
+*	wav読み込みの関数は数年前に友人のをコピペしたので俺にもよくわかりません。
+*	DirectShowはサンプルコードをコピペしたので俺にもよくわかりません。
+*	なんだ、わからないことばかりじゃないか・・・
 */
 class CDirectSound
 {
@@ -50,7 +50,7 @@ public:
 	char bgmfilename[256];
 	LPDIRECTSOUNDBUFFER dsb_bgm;
 
-	//bgm�n
+	//bgm系
 	IGraphBuilder *pGraph;
 	IMediaControl *pMediaControl;
 	IMediaEventEx *pEvent;

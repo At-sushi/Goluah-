@@ -1,4 +1,4 @@
-<html>
+Ôªø<html>
 <head>
 <link rel="stylesheet" type="text/css" href="style.css">
 
@@ -8,8 +8,8 @@
 
 <body>
 
-HTMLì_ÉvÉå
+HTMLÁÇπ„Éó„É¨
 
 
-<hr><p align="center"><a href="../index.html">Ç‡Ç«ÇÈ</a></p>
+<hr><p align="center"><a href="../index.html">„ÇÇ„Å©„Çã</a></p>
 </body>

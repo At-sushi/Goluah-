@@ -1,4 +1,4 @@
-
+ï»¿
 #include <windows.h>
 #include <stdio.h>
 #include "define.h"
@@ -23,7 +23,7 @@ extern DWORD bmp_loaded[GCDMAX_IMAGES];
 extern BMPINFO256 bmp_info[GCDMAX_IMAGES];
 extern PBYTE bmp_bits[GCDMAX_IMAGES];
 
-SCROLLINFO si_y,si_x;//ƒXƒNƒ[ƒ‹
+SCROLLINFO si_y,si_x;//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 HWND hwc;
 
 BOOL mousedown=FALSE;
@@ -68,7 +68,7 @@ RECT GetRECTNow()
 }
 
 //*****************************************************************************************
-// window•`‰æ 
+// windowæç”» 
 //*****************************************************************************************
 
 void CldDraw(HWND hwnd)
@@ -85,45 +85,45 @@ void CldDraw(HWND hwnd)
 	DWORD bltw,blth;
 	int ofsty;
 
-	//”O‚Ì‚½‚ßƒ‰ƒWƒIƒ{ƒ^ƒ“‚Ì’l‚ğƒ`ƒFƒbƒN
+	//å¿µã®ãŸã‚ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³ã®å€¤ã‚’ãƒã‚§ãƒƒã‚¯
 	if(radio<0 || radio>=GCDMAX_IMAGES){
-		sprintf(msgout,"ERROR , ƒ‰ƒWƒIƒ{ƒ^ƒ“‚Ì’l‚ªˆÙí‚Å‚·");
+		sprintf(msgout,"ERROR , ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³ã®å€¤ãŒç•°å¸¸ã§ã™");
 		TextOut(hdc,0,0,msgout,strlen(msgout));
 	}
-	//ƒrƒbƒgƒ}ƒbƒv‚ª“Ç‚İ‚Ü‚ê‚Ä‚¢‚È‚¢‚Æ‚«‚ÍƒƒbƒZ[ƒW‚ğ•\¦B
+	//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãŒèª­ã¿è¾¼ã¾ã‚Œã¦ã„ãªã„ã¨ãã¯ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã€‚
 	else if(bmp_loaded[radio] != 0){
 		switch(bmp_loaded[radio]){
 		case 1:
-			sprintf(msgout,"‚Ü‚¾ƒrƒbƒgƒ}ƒbƒv‚ª“Ç‚İ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñ\n");
+			sprintf(msgout,"ã¾ã ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãŒèª­ã¿è¾¼ã¾ã‚Œã¦ã„ã¾ã›ã‚“\n");
 			DrawText(hdc,msgout,-1,&r,DT_LEFT);
 			break;
 		case 2:
-			sprintf(msgout,"ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚È‚¢‚©A‚Ü‚½‚ÍŠJ‚¯‚Ü‚¹‚ñ‚Å‚µ‚½\n");
+			sprintf(msgout,"ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ãªã„ã‹ã€ã¾ãŸã¯é–‹ã‘ã¾ã›ã‚“ã§ã—ãŸ\n");
 			DrawText(hdc,msgout,-1,&r,DT_LEFT);
 			break;
 		case 3:
-			sprintf(msgout,"ƒtƒ@ƒCƒ‹“Ç‚İ‚İ’†‚É‚È‚É‚©ƒGƒ‰[‚ª‹N‚«‚Ü‚µ‚½\n");
+			sprintf(msgout,"ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ä¸­ã«ãªã«ã‹ã‚¨ãƒ©ãƒ¼ãŒèµ·ãã¾ã—ãŸ\n");
 			DrawText(hdc,msgout,-1,&r,DT_LEFT);
 			break;
 		case 4:
-			sprintf(msgout,"‚Â[‚©‚±‚Ìƒtƒ@ƒCƒ‹‚Íƒrƒbƒgƒ}ƒbƒv‚Å‚Í‚È‚¢‚¾‚ëHºŞÙ§\n");
+			sprintf(msgout,"ã¤ãƒ¼ã‹ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã§ã¯ãªã„ã ã‚ï¼Ÿï½ºï¾ï¾™ï½§\n");
 			DrawText(hdc,msgout,-1,&r,DT_LEFT);
 			break;
 		case 5:
-			sprintf(msgout,"ƒrƒbƒgƒ}ƒbƒvƒwƒbƒ_‚Å‰½‚ç‚©‚Ì•s“s‡‚ª‚ ‚è‚Ü‚µ‚½\n");
+			sprintf(msgout,"ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ˜ãƒƒãƒ€ã§ä½•ã‚‰ã‹ã®ä¸éƒ½åˆãŒã‚ã‚Šã¾ã—ãŸ\n");
 			DrawText(hdc,msgout,-1,&r,DT_LEFT);
 			break;
 		default:
-			sprintf(msgout,"ƒGƒ‰[‚ğ“Á’è‚Å‚«‚Ü‚¹‚ñ\n");
+			sprintf(msgout,"ã‚¨ãƒ©ãƒ¼ã‚’ç‰¹å®šã§ãã¾ã›ã‚“\n");
 			DrawText(hdc,msgout,-1,&r,DT_LEFT);
 			break;
 		}
 	}
-	//ƒXƒNƒ[ƒ‹ˆÊ’u‚É‚ ‚í‚¹‚Äƒrƒbƒgƒ}ƒbƒv‚ğ“]‘—
+	//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ä½ç½®ã«ã‚ã‚ã›ã¦ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’è»¢é€
 	else{
-		if(r.right-r.left < bmp_info[radio].hed.biWidth)bltw=r.right-r.left;//ƒrƒbƒgƒ}ƒbƒv‚Ì•
+		if(r.right-r.left < bmp_info[radio].hed.biWidth)bltw=r.right-r.left;//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®å¹…
 		else bltw=bmp_info[radio].hed.biWidth;
-		if(r.bottom-r.top < bmp_info[radio].hed.biHeight)blth=r.bottom-r.top;//ƒrƒbƒgƒ}ƒbƒv‚Ì‚‚³
+		if(r.bottom-r.top < bmp_info[radio].hed.biHeight)blth=r.bottom-r.top;//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®é«˜ã•
 		else blth=bmp_info[radio].hed.biHeight;
 
 		ofsty=(bmp_info[radio].hed.biHeight)-si_y.nPos-(r.bottom - r.top);
@@ -135,15 +135,15 @@ void CldDraw(HWND hwnd)
 			bmp_bits[radio],(BITMAPINFO*)&bmp_info[radio],DIB_RGB_COLORS,SRCCOPY);
 	}
 
-	if((DWORD)radio==ed_r[edit_now].bmpno){//‚±‚Ìƒrƒbƒgƒ}ƒbƒv# ‚É‹éŒ`‚ª‚ ‚é
-		//‹éŒ`•\¦
+	if((DWORD)radio==ed_r[edit_now].bmpno){//ã“ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—# ã«çŸ©å½¢ãŒã‚ã‚‹
+		//çŸ©å½¢è¡¨ç¤º
 		DrawRECT2(hdc,
 			ed_r[edit_now].r.left -si_x.nPos,
 			ed_r[edit_now].r.right-si_x.nPos,
 			ed_r[edit_now].r.top   -si_y.nPos,
 			ed_r[edit_now].r.bottom-si_y.nPos,
 			2);
-		//’†S•\¦
+		//ä¸­å¿ƒè¡¨ç¤º
 		DrawPos(hdc,
 			ed_r[edit_now].r.left -si_x.nPos + ed_r[edit_now].center_x,
 			ed_r[edit_now].r.top  -si_y.nPos + ed_r[edit_now].center_y,
@@ -168,7 +168,7 @@ LRESULT WINAPI CldMsgProc( HWND hWnd, UINT msg, WPARAM wparam, LPARAM lparam )
 		}
 		else if(ed_r[edit_now].bmpno != 0
 					|| ed_r[edit_now].r.left!=ed_r[edit_now].r.right
-					|| ed_r[edit_now].r.top!=ed_r[edit_now].r.bottom){//‚»‚Ì‹éŒ`‚ª‹ó‚Å‚È‚¢ê‡‚Ì‚İ
+					|| ed_r[edit_now].r.top!=ed_r[edit_now].r.bottom){//ãã®çŸ©å½¢ãŒç©ºã§ãªã„å ´åˆã®ã¿
 			ed_r[edit_now].center_x = LOWORD(lparam) - (ed_r[edit_now].r.left -si_x.nPos);
 			ed_r[edit_now].center_y = HIWORD(lparam) - (ed_r[edit_now].r.top  -si_y.nPos);
 			InvalidateRect(hWnd,NULL,TRUE);
@@ -217,7 +217,7 @@ LRESULT WINAPI CldMsgProc( HWND hWnd, UINT msg, WPARAM wparam, LPARAM lparam )
 }
 
 //*****************************************************************************************
-//@ƒXƒNƒ[ƒ‹‚¨‚æ‚ÑƒEƒCƒ“ƒhƒE¶¬B‹°‚ç‚­‚à‚¤‚¢‚¶‚ç‚È‚¢‚Ù‚¤‚ª‚¢‚¢
+//ã€€ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãŠã‚ˆã³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç”Ÿæˆã€‚æã‚‰ãã‚‚ã†ã„ã˜ã‚‰ãªã„ã»ã†ãŒã„ã„
 //*****************************************************************************************
 
 // set scroll info -----------------------------------------------------------
@@ -254,7 +254,7 @@ void MakeScrollInfo(HWND hWnd)
     SetScrollInfo(hWnd, SB_HORZ, &si_x, TRUE);
 
 /*	char msg[256];
-	sprintf(msg,"‚‚³F%d/•F%d",bmp_info[radio].hed.biHeight,bmp_info[radio].hed.biWidth);
+	sprintf(msg,"é«˜ã•ï¼š%d/å¹…ï¼š%d",bmp_info[radio].hed.biHeight,bmp_info[radio].hed.biWidth);
 	MessageBox(ghwnd,msg,"",MB_OK);*/
 }
 
@@ -270,12 +270,12 @@ void WMScroll(HWND hwnd,UINT msg,DWORD wp,DWORD lp)
 
 //----------------------------------------------------------------
 /*	switch (LOWORD(wp)) {
-                case SB_LINEUP:			MessageBox(ghwnd,"SB_LINEUP","",MB_OK);break;//‚¿‚Á‚¿‚á‚¢ƒ{ƒ^ƒ“iãj
-                case SB_LINEDOWN:		MessageBox(ghwnd,"SB_LINEDOWN","",MB_OK);break;//‚¿‚Á‚¿‚á‚¢ƒ{ƒ^ƒ“i‰ºj
-                case SB_PAGEUP:			MessageBox(ghwnd,"SB_PAGEUP","",MB_OK);break;//‹ó”’•”•ªiãj
-                case SB_PAGEDOWN:		MessageBox(ghwnd,"SB_PAGEDOWN","",MB_OK);break;//‹ó”’•”•ªi‰ºj
-                case SB_THUMBTRACK:		MessageBox(ghwnd,"SB_THUMBTRACK","",MB_OK);break;//ƒhƒ‰ƒbƒOi“®‚©‚µ’†j
-				case SB_THUMBPOSITION:	MessageBox(ghwnd,"SB_THUMBPOSITION","",MB_OK);break;//ƒhƒ‰ƒbƒOiƒ{ƒ^ƒ“—£‚µ‚½j
+                case SB_LINEUP:			MessageBox(ghwnd,"SB_LINEUP","",MB_OK);break;//ã¡ã£ã¡ã‚ƒã„ãƒœã‚¿ãƒ³ï¼ˆä¸Šï¼‰
+                case SB_LINEDOWN:		MessageBox(ghwnd,"SB_LINEDOWN","",MB_OK);break;//ã¡ã£ã¡ã‚ƒã„ãƒœã‚¿ãƒ³ï¼ˆä¸‹ï¼‰
+                case SB_PAGEUP:			MessageBox(ghwnd,"SB_PAGEUP","",MB_OK);break;//ç©ºç™½éƒ¨åˆ†ï¼ˆä¸Šï¼‰
+                case SB_PAGEDOWN:		MessageBox(ghwnd,"SB_PAGEDOWN","",MB_OK);break;//ç©ºç™½éƒ¨åˆ†ï¼ˆä¸‹ï¼‰
+                case SB_THUMBTRACK:		MessageBox(ghwnd,"SB_THUMBTRACK","",MB_OK);break;//ãƒ‰ãƒ©ãƒƒã‚°ï¼ˆå‹•ã‹ã—ä¸­ï¼‰
+				case SB_THUMBPOSITION:	MessageBox(ghwnd,"SB_THUMBPOSITION","",MB_OK);break;//ãƒ‰ãƒ©ãƒƒã‚°ï¼ˆãƒœã‚¿ãƒ³é›¢ã—ãŸï¼‰
                 default:dy = 0;break;
             }*/
 //----------------------------------------------------------------
@@ -306,9 +306,9 @@ void WMScroll(HWND hwnd,UINT msg,DWORD wp,DWORD lp)
 	case WM_HSCROLL:
 		switch (LOWORD(wp)) {
                 case SB_LINEUP:	 dx = -1 * ddd;break;
-                case SB_LINEDOWN:dx =  1 * ddd;break;//ƒRƒR
+                case SB_LINEDOWN:dx =  1 * ddd;break;//ã‚³ã‚³
                 case SB_PAGEUP:  dx = -1 * si_x.nPage;break;
-                case SB_PAGEDOWN:dx =      si_x.nPage;break;//ƒRƒR
+                case SB_PAGEDOWN:dx =      si_x.nPage;break;//ã‚³ã‚³
 				case SB_THUMBPOSITION:dx = HIWORD(wp) - si_x.nPos;break;
                 default:dx = 0;break;
             }
@@ -332,7 +332,7 @@ void WMScroll(HWND hwnd,UINT msg,DWORD wp,DWORD lp)
 	MessageBox(ghwnd,cmsg,"",MB_OK);*/
 }
 
-// window ¶¬----------------------------------------------------------------------------
+// window ç”Ÿæˆ----------------------------------------------------------------------------
 
 HWND CreateChildWindow(HWND hdlg)
 {

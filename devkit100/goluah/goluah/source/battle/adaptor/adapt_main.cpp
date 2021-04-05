@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #define LPDIRECT3DTEXTURE8 LPVOID
 
 // #define EXPORT extern "C" __declspec(dllexport) 
@@ -16,32 +16,32 @@
 // #include "CharacterList.h"
 
 
-char *g_chardir=NULL;		// —v‘Î‰
+char *g_chardir=NULL;		// è¦å¯¾å¿œ
 DI_FUNCTIONS_O *funco=NULL;
 DI_FUNCTIONS_S *funcs=NULL;
 DI_FUNCTIONS_D *funcd=NULL;
 FUNCTIONPACK oldfunc;
 // CCharAdaptorList clist;
-// –{‘Ì‚Ö‚Ì“‡‚É”º‚¢ƒNƒ‰ƒX‚©‚çã‘‚«‚·‚é•û®‚É•ÏX
-GOBJECT *pchar[2] = {NULL, NULL};	// ‚»‚ê‚¼‚ê‚Ìƒ`[ƒ€‚Ì—§ê‚Å‚ÌA–¡•ûB
-DWORD pnagerare[2];					// “Š‚°‚ç‚ê‚Ä‚é‹ïti“Gj‚Ì‚h‚c
-extern WAZAINFO waz;		// —v‘Î‰
+// æœ¬ä½“ã¸ã®çµ±åˆã«ä¼´ã„ã‚¯ãƒ©ã‚¹ã‹ã‚‰éšæ™‚ä¸Šæ›¸ãã™ã‚‹æ–¹å¼ã«å¤‰æ›´
+GOBJECT *pchar[2] = {NULL, NULL};	// ãã‚Œãã‚Œã®ãƒãƒ¼ãƒ ã®ç«‹å ´ã§ã®ã€å‘³æ–¹ã€‚
+DWORD pnagerare[2];					// æŠ•ã’ã‚‰ã‚Œã¦ã‚‹é¦™å…·å¸«ï¼ˆæ•µï¼‰ã®ï¼©ï¼¤
+extern WAZAINFO waz;		// è¦å¯¾å¿œ
 extern DWORD ObjID[];
 
 //===========================================================
-// char charactername[32] = "(±ÀŞÌßÀ°g—p)";
+// char charactername[32] = "(ï½±ï¾€ï¾ï¾Œï¾Ÿï¾€ï½°ä½¿ç”¨)";
 
 //===========================================================
-// ƒLƒƒƒ‰ƒAƒ_ƒvƒ^[‚Å‚ÌID‚Ìˆµ‚¢F
-// ‰ºˆÊƒ[ƒh‚É‹Œƒo[ƒWƒ‡ƒ“‚Å‚Ì‚h‚ci‚O‚©‚Pj‚ªŠ„‚èU‚ç‚ê‚Ä‚¢‚é
-// ©•ª‚Æ“¯‚¶‘¤‚È‚ç©•ª©gAˆá‚¤‘¤‚Ì”Ô†‚¾‚Á‚½‚ç“GA‚ÆŒ¾‚¤Š´‚¶B
-// ãˆÊƒ[ƒh‚ªON‚Ìê‡‚Í“Š‚°‚ç‚ê‚Ä‚é‘Šè‚ğw‚·‚İ‚½‚¢
+// ã‚­ãƒ£ãƒ©ã‚¢ãƒ€ãƒ—ã‚¿ãƒ¼ã§ã®IDã®æ‰±ã„ï¼š
+// ä¸‹ä½ãƒ¯ãƒ¼ãƒ‰ã«æ—§ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§ã®ï¼©ï¼¤ï¼ˆï¼ã‹ï¼‘ï¼‰ãŒå‰²ã‚ŠæŒ¯ã‚‰ã‚Œã¦ã„ã‚‹
+// è‡ªåˆ†ã¨åŒã˜å´ãªã‚‰è‡ªåˆ†è‡ªèº«ã€é•ã†å´ã®ç•ªå·ã ã£ãŸã‚‰æ•µã€ã¨è¨€ã†æ„Ÿã˜ã€‚
+// ä¸Šä½ãƒ¯ãƒ¼ãƒ‰ãŒONã®å ´åˆã¯æŠ•ã’ã‚‰ã‚Œã¦ã‚‹ç›¸æ‰‹ã‚’æŒ‡ã™ã¿ãŸã„
 
 #define GETOBJ(id)		(HIWORD(id) ? ((GOBJECT*)funco->getinfo(pnagerare[LOWORD(id)])) :\
 	(pchar[id] ? pchar[id] : ((GOBJECT*)funco->getinfo(pchar[!id]->eid))))
-#define GETCLASS(id)	((CCharAdaptor*)GETOBJ(LOWORD(id))->pobjdat_u) // “Gƒf[ƒ^‚Ì‚Íg‚í‚È‚¢‚±‚Æ
+#define GETCLASS(id)	((CCharAdaptor*)GETOBJ(LOWORD(id))->pobjdat_u) // æ•µãƒ‡ãƒ¼ã‚¿ã®æ™‚ã¯ä½¿ã‚ãªã„ã“ã¨
 
-// FUNCTIONPACK—pŠÖ”
+// FUNCTIONPACKç”¨é–¢æ•°
 DWORD GetKey(DWORD id,DWORD nanka) {
 	if (HIWORD(id)) return 0;
 	return funcs->getkey(GETCLASS(id)->keynumber, nanka);}
@@ -90,7 +90,7 @@ BOOL DoCatchEnemy(DWORD id, LPVOID ufocatcher) {
 }
 void Enemyname(DWORD id, char* buff) {
 	lstrcpy(buff, funco->getcharname(GETOBJ(id)->eid));
-	if (lstrcmp(buff, "8“ªg") == 0) wsprintf(buff, "‚W“ªg");
+	if (lstrcmp(buff, "8é ­èº«") == 0) wsprintf(buff, "ï¼˜é ­èº«");
 }
 void GetEnemyDat(DWORD id, LPVOID pdat) {
 	CHARACTERINFO2& old = *(CHARACTERINFO2*)pdat;
@@ -158,14 +158,14 @@ DWORD gMessage(DWORD msg,LPVOID dat,DWORD prm1)
 }
 
 //===========================================================
-//‹N“®‚ÉŒÄ‚Ño‚³‚ê‚éB
-//iKKj²×È
+//èµ·å‹•æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã€‚
+//ï¼ˆã‚œã‚œï¼‰ï½²ï¾—ï¾ˆ
 /*EXPORT BOOL CharacterInfo(LPVOID info)
 {
 	CDI_CHARACTERINFO *pif = (CDI_CHARACTERINFO*)info;
 
 	wsprintf(pif->name, g_charlist.GetCharacterName);
-	pif->ver=CDI_VERSION;//ƒo[ƒWƒ‡ƒ“
+	pif->ver=CDI_VERSION;//ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 	return(TRUE);
 }*/
 
@@ -178,7 +178,7 @@ DWORD CCharAdaptor::CreateCharacter(PVOID info)
 	char buffer[256];
 //	CHARACTERINFO cinfo;
 
-	//•K—v‚Èî•ñ‚ğƒOƒ[ƒoƒ‹‚ÉŠi”[
+	//å¿…è¦ãªæƒ…å ±ã‚’ã‚°ãƒ­ãƒ¼ãƒãƒ«ã«æ ¼ç´
 	funco = info2->funco;
 	funcs = info2->funcs;
 	funcd = info2->funcd;
@@ -212,7 +212,7 @@ DWORD CCharAdaptor::CreateCharacter(PVOID info)
 	{
 		wsprintf(buffer, "%s\\action", info2->dir);
 		hAction2 = LoadLibrary(buffer);
-		if(hAction2 == NULL) // ¸”s
+		if(hAction2 == NULL) // å¤±æ•—
 			return 0;
 
 /*		pCharInfo = (BOOL (*)(LPVOID))
@@ -226,8 +226,8 @@ DWORD CCharAdaptor::CreateCharacter(PVOID info)
 		cinfo.storyindex = cinfo.storynum = 0;
 		if (!pCharInfo(&cinfo)) return FALSE;
 */ //		if (strlen(cinfo.name) + strlen(charactername) <= 31)
-//			strcat(cinfo.name, charactername);//–¼‘O
-//		if (cinfo.ver < 400 || cinfo.ver >= 600) verold = true;		// ’è‹`Ï‚İ
+//			strcat(cinfo.name, charactername);//åå‰
+//		if (cinfo.ver < 400 || cinfo.ver >= 600) verold = true;		// å®šç¾©æ¸ˆã¿
 	}
 
 //	if (verold) return 0;

@@ -1,4 +1,4 @@
-// DlgLogSetting.cpp : À‘•ƒtƒ@ƒCƒ‹
+ï»¿// DlgLogSetting.cpp : å®Ÿè£…ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "DlgLogSetting.h"
 
 
-// CDlgLogSetting ƒ_ƒCƒAƒƒO
+// CDlgLogSetting ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 IMPLEMENT_DYNAMIC(CDlgLogSetting, CDialog)
 CDlgLogSetting::CDlgLogSetting(CWnd* pParent /*=NULL*/)
@@ -28,4 +28,4 @@ BEGIN_MESSAGE_MAP(CDlgLogSetting, CDialog)
 END_MESSAGE_MAP()
 
 
-// CDlgLogSetting ƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰
+// CDlgLogSetting ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ©

@@ -1,4 +1,4 @@
-#define CELL_HITMARK1_2 0
+﻿#define CELL_HITMARK1_2 0
 #define CELL_HITMARK1_3 1
 #define CELL_HITMARK1_4 2
 #define CELL_HITMARK4_1 3

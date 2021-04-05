@@ -1,4 +1,4 @@
-// RecteditDlg.cpp : ŽÀ‘•ƒtƒ@ƒCƒ‹
+ï»¿// RecteditDlg.cpp : å®Ÿè£…ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #include "stdafx.h"
@@ -8,7 +8,7 @@
 #include "DlgRPage1.h"
 #include "DlgTPage2.h"
 
-// CRecteditDlg ƒ_ƒCƒAƒƒO
+// CRecteditDlg ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 IMPLEMENT_DYNAMIC(CRecteditDlg, CMyDialogTab)
 CRecteditDlg::CRecteditDlg(CWnd* pParent /*=NULL*/)
@@ -34,28 +34,28 @@ BEGIN_MESSAGE_MAP(CRecteditDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CRecteditDlg ƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰
+// CRecteditDlg ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ©
 
 /*--------------------------------------------------------------------
-	ƒ_ƒCƒAƒƒO‰Šú‰»
+	ãƒ€ã‚¤ã‚¢ãƒ­ã‚°åˆæœŸåŒ–
 ----------------------------------------------------------------------*/
 BOOL CRecteditDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO :  ‚±‚±‚É‰Šú‰»‚ð’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢
-	//¡ƒ^ƒuƒRƒ“ƒgƒ[ƒ‹‚Ì€–Ú¶¬
+	// TODO :  ã“ã“ã«åˆæœŸåŒ–ã‚’è¿½åŠ ã—ã¦ãã ã•ã„
+	//â– ã‚¿ãƒ–ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®é …ç›®ç”Ÿæˆ
 	CTabCtrl* pTab = (CTabCtrl*)GetDlgItem(IDC_TAB_RECT);
-	pTab->InsertItem(0,"‘S”Ê");
+	pTab->InsertItem(0,"å…¨èˆ¬");
 	pTab->InsertItem(1,"tools");
 
-	//¡Šeƒ^ƒu‚Ìƒy[ƒW‚É‘Š“–‚·‚éƒ_ƒCƒAƒƒO‚ð¶¬
+	//â– å„ã‚¿ãƒ–ã®ãƒšãƒ¼ã‚¸ã«ç›¸å½“ã™ã‚‹ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’ç”Ÿæˆ
 	m_tab_pages[0] = new CDlgRPage1();
 	m_tab_pages[0]->Create(IDD_DIALOG_RTAB1,this);
 	m_tab_pages[1] = new CDlgTPage2();
 	m_tab_pages[1]->Create(IDD_DIALOG_RTAB2,this);
 
-	//¡ƒEƒBƒ“ƒhƒE‚ðƒ^ƒu‚ÌˆÊ’u‚É‡‚¤‚æ‚¤‚ÉˆÚ“®
+	//â– ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ã‚¿ãƒ–ã®ä½ç½®ã«åˆã†ã‚ˆã†ã«ç§»å‹•
 	CRect r;
 	for(int i=0;i<MAX_TAB_PAGES_RECT;i++){
 		if(m_tab_pages[i]){
@@ -68,15 +68,15 @@ BOOL CRecteditDlg::OnInitDialog()
 	OnTcnSelchangeTabRect(0,0);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// —áŠO : OCX ƒvƒƒpƒeƒB ƒy[ƒW‚Í•K‚¸ FALSE ‚ð•Ô‚µ‚Ü‚·B
+	// ä¾‹å¤– : OCX ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ ãƒšãƒ¼ã‚¸ã¯å¿…ãš FALSE ã‚’è¿”ã—ã¾ã™ã€‚
 }
 
 /*--------------------------------------------------------------------
-	ƒ^ƒuƒRƒ“ƒgƒ[ƒ‹‚Ì•ÏX
+	ã‚¿ãƒ–ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®å¤‰æ›´
 ----------------------------------------------------------------------*/
 void CRecteditDlg::OnTcnSelchangeTabRect(NMHDR *pNMHDR, LRESULT *pResult)
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ð’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	if(pResult)
 		*pResult = 0;
 
@@ -93,13 +93,13 @@ void CRecteditDlg::OnTcnSelchangeTabRect(NMHDR *pNMHDR, LRESULT *pResult)
 
 
 /*--------------------------------------------------------------------
-	Žq‹ŸƒEƒCƒ“ƒhƒE‚½‚¿‚Ì”jŠü
+	å­ä¾›ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŸã¡ã®ç ´æ£„
 ----------------------------------------------------------------------*/
 BOOL CRecteditDlg::DestroyWindow()
 {
-	// TODO : ‚±‚±‚É“Á’è‚ÈƒR[ƒh‚ð’Ç‰Á‚·‚é‚©A‚à‚µ‚­‚ÍŠî–{ƒNƒ‰ƒX‚ðŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢B
+	// TODO : ã“ã“ã«ç‰¹å®šãªã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã‹ã€ã‚‚ã—ãã¯åŸºæœ¬ã‚¯ãƒ©ã‚¹ã‚’å‘¼ã³å‡ºã—ã¦ãã ã•ã„ã€‚
 
-	//ƒ^ƒuƒy[ƒW—pƒ_ƒCƒAƒƒO‚Ì”jŠü
+	//ã‚¿ãƒ–ãƒšãƒ¼ã‚¸ç”¨ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®ç ´æ£„
 	for(int i=0;i<MAX_TAB_PAGES_RECT;i++)
 	{
 		if(m_tab_pages[i]){
@@ -114,7 +114,7 @@ BOOL CRecteditDlg::DestroyWindow()
 
 
 /*--------------------------------------------------------------------
-	•\Ž¦•¨XV
+	è¡¨ç¤ºç‰©æ›´æ–°
 ----------------------------------------------------------------------*/
 void CRecteditDlg::UpdateItems()
 {
@@ -127,7 +127,7 @@ void CRecteditDlg::UpdateItems()
 }
 
 /*--------------------------------------------------------------------
-	“ÁŽê‘€ì
+	ç‰¹æ®Šæ“ä½œ
 ----------------------------------------------------------------------*/
 void CRecteditDlg::BlankNext()
 {

@@ -1,7 +1,7 @@
-
+ï»¿
 /*===============================================================
 
-	ƒXƒg[ƒŠ[ƒ‚[ƒhƒ^ƒXƒN
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒ¢ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯
 
 =================================================================*/
 #pragma once
@@ -9,17 +9,17 @@
 #include "task.h"
 #include "script_story.h"
 
-class CTaskStoryMode;	//ƒXƒg[ƒŠ[ƒ‚[ƒh–{‘Ì
-class CTStoryContinue;	//ƒRƒ“ƒeƒBƒjƒ…[ƒ^ƒXƒN
-class CTStoryGameOver;	//ƒQ[ƒ€ƒI[ƒo[ƒ^ƒXƒN
+class CTaskStoryMode;	//ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒ¢ãƒ¼ãƒ‰æœ¬ä½“
+class CTStoryContinue;	//ã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼ã‚¿ã‚¹ã‚¯
+class CTStoryGameOver;	//ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ã‚¿ã‚¹ã‚¯
 
 
 /*!
-*	@brief ƒXƒg[ƒŠ[ƒ‚[ƒh–{‘Ì
+*	@brief ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒ¢ãƒ¼ãƒ‰æœ¬ä½“
 *	@ingroup Tasks
 *
-*	Activate‚É‘Oƒ^ƒXƒN‚âAƒXƒg[ƒŠ[ƒNƒ‰ƒX‚Ìî•ñ‚©‚ç
-*	”»’f‚µ‚Ä“KØ‚ÈŸ‚Ìƒ^ƒXƒN‚ğ‹N“®‚·‚éB
+*	Activateæ™‚ã«å‰ã‚¿ã‚¹ã‚¯ã‚„ã€ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã‚¯ãƒ©ã‚¹ã®æƒ…å ±ã‹ã‚‰
+*	åˆ¤æ–­ã—ã¦é©åˆ‡ãªæ¬¡ã®ã‚¿ã‚¹ã‚¯ã‚’èµ·å‹•ã™ã‚‹ã€‚
 */
 class CTaskStoryMode : public CExclusiveTaskBase
 {
@@ -38,38 +38,38 @@ public:
 	BOOL Inactivate(DWORD nextTaskID){return TRUE;}
 
 protected:
-	UINT m_story_index;					//!<ƒXƒg[ƒŠ[”Ô†
-	UINT m_keyindex;					//!<ƒvƒŒƒCƒ„[‚ÌƒL[“ü—Í”Ô†
-	CStoryList::CStoryInfo* m_setting;	//!<ƒXƒg[ƒŠ[‰Šúİ’è
-	SScriptElementList scr_list;		//!<ƒXƒNƒŠƒvƒgƒŠƒXƒg
-	SScriptElementList::iterator scr_i;	//!<Œ»İ‚ÌƒXƒNƒŠƒvƒgƒuƒƒbƒN
-	int m_continue_num;					//!<ƒRƒ“ƒeƒBƒjƒ…[‰ñ”
+	UINT m_story_index;					//!<ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ç•ªå·
+	UINT m_keyindex;					//!<ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚­ãƒ¼å…¥åŠ›ç•ªå·
+	CStoryList::CStoryInfo* m_setting;	//!<ã‚¹ãƒˆãƒ¼ãƒªãƒ¼åˆæœŸè¨­å®š
+	SScriptElementList scr_list;		//!<ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒªã‚¹ãƒˆ
+	SScriptElementList::iterator scr_i;	//!<ç¾åœ¨ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ–ãƒ­ãƒƒã‚¯
+	int m_continue_num;					//!<ã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼å›æ•°
 
-	DWORD m_prev_task_id;				//!<‘O‰ñƒ^ƒXƒNID
-	int selectflag;						//!<‘I‘ğˆƒtƒ‰ƒO
-	bool in_select;						//!<select•ªŠòŒã‚©‚Ç‚¤‚©
+	DWORD m_prev_task_id;				//!<å‰å›ã‚¿ã‚¹ã‚¯ID
+	int selectflag;						//!<é¸æŠè‚¢ãƒ•ãƒ©ã‚°
+	bool in_select;						//!<selectåˆ†å²å¾Œã‹ã©ã†ã‹
 
-	//ƒ^ƒXƒN‹N“®
-	void StartNextTask();				//!<Ÿ‚ÌƒXƒg[ƒŠ[—v‘f‚ÌŠJn
-	void StartVSTask();					//!<‡
-	void StartDemoTask();				//!<ƒfƒ‚
-	void StartStaffTask();				//!<ƒXƒ^ƒbƒtƒ[ƒ‹
-	void StartContinueTask();			//!<ƒRƒ“ƒeƒBƒjƒ…[
+	//ã‚¿ã‚¹ã‚¯èµ·å‹•
+	void StartNextTask();				//!<æ¬¡ã®ã‚¹ãƒˆãƒ¼ãƒªãƒ¼è¦ç´ ã®é–‹å§‹
+	void StartVSTask();					//!<è©¦åˆ
+	void StartDemoTask();				//!<ãƒ‡ãƒ¢
+	void StartStaffTask();				//!<ã‚¹ã‚¿ãƒƒãƒ•ãƒ­ãƒ¼ãƒ«
+	void StartContinueTask();			//!<ã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼
 
 	/*!
-	*	@brief ƒ‰ƒ“ƒ_ƒ€ƒLƒƒƒ‰ƒNƒ^[æ“¾ƒNƒ‰ƒX
+	*	@brief ãƒ©ãƒ³ãƒ€ãƒ ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼å–å¾—ã‚¯ãƒ©ã‚¹
 	*	@ingroup Tasks
 	*
-	*	ƒXƒg[ƒŠ[’†‚Å‚È‚é‚×‚­“¯‚¶ƒLƒƒƒ‰ƒNƒ^[‚ªo‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚Ég—pB
+	*	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ä¸­ã§ãªã‚‹ã¹ãåŒã˜ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãŒå‡ºãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã«ä½¿ç”¨ã€‚
 	*/
 	class CRandomCharacterGetter
 	{
 	public:
 		void Initialize(SScriptElementList& scr_list);
-		void Req(UINT num);	//!< Ÿ‚Ì‡‚Å,w’è‚µ‚½”‚Ìƒ‰ƒ“ƒ_ƒ€ƒLƒƒƒ‰ƒNƒ^[‚ª•K—vB‘«‚è‚È‚¢ê‡‚ÍƒVƒƒƒbƒtƒ‹‚µ‚È‚¨‚·
-		UINT GetNext();		//!< Ÿ‚Ìƒ‰ƒ“ƒ_ƒ€ƒLƒƒƒ‰ƒNƒ^[‚ğæ“¾‚·‚é
+		void Req(UINT num);	//!< æ¬¡ã®è©¦åˆã§,æŒ‡å®šã—ãŸæ•°ã®ãƒ©ãƒ³ãƒ€ãƒ ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãŒå¿…è¦ã€‚è¶³ã‚Šãªã„å ´åˆã¯ã‚·ãƒ£ãƒƒãƒ•ãƒ«ã—ãªãŠã™
+		UINT GetNext();		//!< æ¬¡ã®ãƒ©ãƒ³ãƒ€ãƒ ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚’å–å¾—ã™ã‚‹
 
-		int chars[MAXNUM_TEAM];//!< settingsƒuƒƒbƒN‚Åw’è‚³‚ê‚½ƒLƒƒƒ‰ƒNƒ^[
+		int chars[MAXNUM_TEAM];//!< settingsãƒ–ãƒ­ãƒƒã‚¯ã§æŒ‡å®šã•ã‚ŒãŸã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼
 
 	protected:
 		void EraseFromAllList(UINT n);
@@ -80,16 +80,16 @@ protected:
 	CRandomCharacterGetter m_RandomCharacterGetter;
 
 	/*!
-	*	@brief ƒ‰ƒ“ƒ_ƒ€ƒXƒe[ƒWæ“¾ƒNƒ‰ƒX
+	*	@brief ãƒ©ãƒ³ãƒ€ãƒ ã‚¹ãƒ†ãƒ¼ã‚¸å–å¾—ã‚¯ãƒ©ã‚¹
 	*	@ingroup Tasks
 	*
-	*	ƒXƒg[ƒŠ[’†‚Å‚È‚é‚×‚­“¯‚¶ƒXƒe[ƒW‚ªo‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚ÌƒNƒ‰ƒXB
+	*	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ä¸­ã§ãªã‚‹ã¹ãåŒã˜ã‚¹ãƒ†ãƒ¼ã‚¸ãŒå‡ºãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã®ã‚¯ãƒ©ã‚¹ã€‚
 	*/
 	class CRandomStageGetter
 	{
 	public:
 		void Initialize(SScriptElementList& scr_list);
-		UINT GetNext();		//!< Ÿ‚Ìƒ‰ƒ“ƒ_ƒ€ƒXƒe[ƒW‚ğæ“¾‚·‚é
+		UINT GetNext();		//!< æ¬¡ã®ãƒ©ãƒ³ãƒ€ãƒ ã‚¹ãƒ†ãƒ¼ã‚¸ã‚’å–å¾—ã™ã‚‹
 
 	protected:
 		void EraseFromAllList(UINT n);
@@ -105,7 +105,7 @@ protected:
 
 
 /*!
-*	@brief ƒXƒg[ƒŠ[ƒ‚[ƒhEƒRƒ“ƒeƒBƒjƒ…[
+*	@brief ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒ¢ãƒ¼ãƒ‰æ™‚ãƒ»ã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼
 *	@ingroup Tasks
 */
 class CTStoryContinue : public CExclusiveTaskBase
@@ -129,7 +129,7 @@ protected:
 
 
 /*!
-*	@brief ƒXƒg[ƒŠ[ƒ‚[ƒhEƒQ[ƒ€ƒI[ƒo[
+*	@brief ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒ¢ãƒ¼ãƒ‰æ™‚ãƒ»ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼
 *	@ingroup Tasks
 */
 class CTStoryGameOver : public CTStoryContinue

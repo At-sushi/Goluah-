@@ -1,4 +1,4 @@
-// are_editer.cpp : ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒNƒ‰ƒX“®ì‚ğ’è‹`‚µ‚Ü‚·B
+ï»¿// are_editer.cpp : ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚¯ãƒ©ã‚¹å‹•ä½œã‚’å®šç¾©ã—ã¾ã™ã€‚
 //
 
 #include "stdafx.h"
@@ -12,7 +12,7 @@
 #define new DEBUG_NEW
 #endif
 
-// —Bˆê‚Ì CAre_editerApp ƒIƒuƒWƒFƒNƒg‚Å‚·B
+// å”¯ä¸€ã® CAre_editerApp ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã§ã™ã€‚
 CAre_editerApp theApp;
 
 extern CDirectDraw g_draw;
@@ -20,12 +20,12 @@ extern CDirectDraw g_draw;
 struct CHAR64{char name[64];};
 
 /*-------------------------------------------------------------------
-// CAre_editerApp ƒRƒ“ƒXƒgƒ‰ƒNƒVƒ‡ƒ“
+// CAre_editerApp ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚·ãƒ§ãƒ³
 ---------------------------------------------------------------------*/
 CAre_editerApp::CAre_editerApp()
 {
-	// TODO: ‚±‚ÌˆÊ’u‚É\’z—pƒR[ƒh‚ğ’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
-	// ‚±‚±‚É InitInstance ’†‚Ìd—v‚È‰Šú‰»ˆ—‚ğ‚·‚×‚Ä‹Lq‚µ‚Ä‚­‚¾‚³‚¢B
+	// TODO: ã“ã®ä½ç½®ã«æ§‹ç¯‰ç”¨ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
+	// ã“ã“ã« InitInstance ä¸­ã®é‡è¦ãªåˆæœŸåŒ–å‡¦ç†ã‚’ã™ã¹ã¦è¨˜è¿°ã—ã¦ãã ã•ã„ã€‚
 	UINT i;
 
 	for(i=0;i<GCDMAX_IMAGES;i++){
@@ -37,14 +37,14 @@ CAre_editerApp::CAre_editerApp()
 
 
 /*-------------------------------------------------------------------
-	ƒƒbƒZ[ƒWƒ}ƒbƒv
+	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ—
 ---------------------------------------------------------------------*/
 BEGIN_MESSAGE_MAP(CAre_editerApp, CWinApp)
 	ON_COMMAND(ID_HELP, CWinApp::OnHelp)
 END_MESSAGE_MAP()
 
 /*-------------------------------------------------------------------
-// CAre_editerApp ‰Šú‰»
+// CAre_editerApp åˆæœŸåŒ–
 ---------------------------------------------------------------------*/
 BOOL CAre_editerApp::InitInstance()
 {
@@ -58,23 +58,23 @@ BOOL CAre_editerApp::InitInstance()
 	INT_PTR nResponse = dlg.DoModal();
 	if (nResponse == IDOK)
 	{
-		// TODO: ƒ_ƒCƒAƒƒO‚ª <OK> ‚ÅÁ‚³‚ê‚½‚ÌƒR[ƒh‚ğ
-		//       ‹Lq‚µ‚Ä‚­‚¾‚³‚¢B
+		// TODO: ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãŒ <OK> ã§æ¶ˆã•ã‚ŒãŸæ™‚ã®ã‚³ãƒ¼ãƒ‰ã‚’
+		//       è¨˜è¿°ã—ã¦ãã ã•ã„ã€‚
 	}
 	else if (nResponse == IDCANCEL)
 	{
-		// TODO: ƒ_ƒCƒAƒƒO‚ª <ƒLƒƒƒ“ƒZƒ‹> ‚ÅÁ‚³‚ê‚½‚ÌƒR[ƒh‚ğ
-		//       ‹Lq‚µ‚Ä‚­‚¾‚³‚¢B
+		// TODO: ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãŒ <ã‚­ãƒ£ãƒ³ã‚»ãƒ«> ã§æ¶ˆã•ã‚ŒãŸæ™‚ã®ã‚³ãƒ¼ãƒ‰ã‚’
+		//       è¨˜è¿°ã—ã¦ãã ã•ã„ã€‚
 	}
 
-	// ƒ_ƒCƒAƒƒO‚Í•Â‚¶‚ç‚ê‚Ü‚µ‚½BƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒƒbƒZ[ƒW ƒ|ƒ“ƒv‚ğŠJn‚µ‚È‚¢‚Å
-	// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ğI—¹‚·‚é‚½‚ß‚É FALSE ‚ğ•Ô‚µ‚Ä‚­‚¾‚³‚¢B
+	// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã¯é–‰ã˜ã‚‰ã‚Œã¾ã—ãŸã€‚ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ—ã‚’é–‹å§‹ã—ãªã„ã§
+	// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚’çµ‚äº†ã™ã‚‹ãŸã‚ã« FALSE ã‚’è¿”ã—ã¦ãã ã•ã„ã€‚
 	return FALSE;
 }
 
 
 /*-------------------------------------------------------------------------
-	‹¤’Êƒ_ƒCƒAƒƒOƒx[ƒX
+	å…±é€šãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒ™ãƒ¼ã‚¹
 ---------------------------------------------------------------------------*/
 IMPLEMENT_DYNAMIC(CMyDialogTab,CDialog)
 CMyDialogTab::CMyDialogTab(UINT nIDTemplate,CWnd* pParentWnd)
@@ -83,24 +83,24 @@ CMyDialogTab::CMyDialogTab(UINT nIDTemplate,CWnd* pParentWnd)
 }
 
 /*-------------------------------------------------------------------
-	GCDƒtƒ@ƒCƒ‹‚Ìƒ[ƒh 0.70/0.90©“®”»•Ê
+	GCDãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ­ãƒ¼ãƒ‰ 0.70/0.90è‡ªå‹•åˆ¤åˆ¥
 ---------------------------------------------------------------------*/
 void CAre_editerApp::LoadGCD(CString filename)
 {
 	CString sta;
 
-	//uŒ»İƒfƒBƒŒƒNƒgƒŠv‚ÌXV
+	//ã€Œç¾åœ¨ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã€ã®æ›´æ–°
 	m_current_dir = filename.Left( filename.ReverseFind('\\')+1 );
-	sta += m_current_dir + CString(" ‚ÉƒfƒBƒŒƒNƒgƒŠˆÚ“®B");
+	sta += m_current_dir + CString(" ã«ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªç§»å‹•ã€‚");
 
-	//GCDƒtƒ@ƒCƒ‹ƒ[ƒh
+	//GCDãƒ•ã‚¡ã‚¤ãƒ«ãƒ­ãƒ¼ãƒ‰
 	if( 0!= m_gcd.Load(filename.GetBuffer(),TRUE,TRUE)){
-		sta = "GCDƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s";
+		sta = "GCDãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—";
 	}
 	else {
-		int rnum = ReloadBitmaps();//ƒrƒbƒgƒ}ƒbƒvXV
+		int rnum = ReloadBitmaps();//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—æ›´æ–°
 		CString sta2;
-		sta2.Format(" , %d ‚Ìƒrƒbƒgƒ}ƒbƒv‚ğƒ[ƒh.",rnum);
+		sta2.Format(" , %d ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’ãƒ­ãƒ¼ãƒ‰.",rnum);
 		sta += sta2;
 	}
 
@@ -109,7 +109,7 @@ void CAre_editerApp::LoadGCD(CString filename)
 }
 
 /*-------------------------------------------------------------------
-	ƒrƒbƒgƒ}ƒbƒvƒtƒ@ƒCƒ‹‚ÌÄƒ[ƒh
+	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ã®å†ãƒ­ãƒ¼ãƒ‰
 ---------------------------------------------------------------------*/
 int CAre_editerApp::ReloadBitmaps()
 {
@@ -119,17 +119,17 @@ int CAre_editerApp::ReloadBitmaps()
 	ASSERT( m_pMainWnd->IsKindOf(RUNTIME_CLASS(CAre_editerDlg)) );
 	CDlgPage1* Dlg1 = ((CDlgPage1*)((CAre_editerDlg*)m_pMainWnd)->GetDialogTab(0));
 
-	//Œ»İ‚Ìƒrƒbƒgƒ}ƒbƒv‚ğ”jŠü
+	//ç¾åœ¨ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’ç ´æ£„
 	for(i=0;i<GCDMAX_IMAGES;i++){
 		g_draw.RelSurface( m_bmps[i] );
 		m_images[i].Destroy();
 	}
 
-	// ‰Šú’lÄİ’è
+	// åˆæœŸå€¤å†è¨­å®š
 	Dlg1->SetupDefaultFilenames();
 	Dlg1->UpdateData(FALSE);
 
-	//ƒrƒbƒgƒ}ƒbƒv‚ğƒ[ƒh
+	//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’ãƒ­ãƒ¼ãƒ‰
 	CString filename;
 	for(i=0;i<GCDMAX_IMAGES;i++){
 		filename = m_current_dir + GetBMPFilename(i);
@@ -147,7 +147,7 @@ int CAre_editerApp::ReloadBitmaps()
 
 				if ( lstrcmp(nganga + lstrlen(nganga) - 4, _T(".png")) == 0)
 				{
-					// bmp‚É•Ï‚¦‚Ä“Ç‚İ’¼‚µ
+					// bmpã«å¤‰ãˆã¦èª­ã¿ç›´ã—
 					lstrcpy( nganga + lstrlen(nganga) - 4, _T(".bmp") );
 					Dlg1->m_str_image[i].ReleaseBuffer();
 
@@ -167,7 +167,7 @@ int CAre_editerApp::ReloadBitmaps()
 
 
 /*-------------------------------------------------------------------
-	Ä•`‰æ‚ª•K—v
+	å†æç”»ãŒå¿…è¦
 ---------------------------------------------------------------------*/
 void CAre_editerApp::InvalidateAll()
 {
@@ -176,7 +176,7 @@ void CAre_editerApp::InvalidateAll()
 }
 
 /*-------------------------------------------------------------------
-	Œ»İ•ÒW’†‚ÌCELLƒQƒbƒg
+	ç¾åœ¨ç·¨é›†ä¸­ã®CELLã‚²ãƒƒãƒˆ
 ---------------------------------------------------------------------*/
 GCD_RECT* CAre_editerApp::GetCurrentRect()
 {
@@ -186,7 +186,7 @@ GCD_RECT* CAre_editerApp::GetCurrentRect()
 
 
 /*-------------------------------------------------------------------
-	Œ»İ•ÒW’†‚ÌCELL/”»’è‹éŒ`ƒQƒbƒg
+	ç¾åœ¨ç·¨é›†ä¸­ã®CELL/åˆ¤å®šçŸ©å½¢ã‚²ãƒƒãƒˆ
 ---------------------------------------------------------------------*/
 GCD_CELL2* CAre_editerApp::GetCurrentCell()
 {
@@ -202,7 +202,7 @@ GCD_HANTEI* CAre_editerApp::GetCurrentHantei()
 
 
 /*-------------------------------------------------------------------
-	ƒrƒbƒgƒ}ƒbƒv‚Ìƒtƒ@ƒCƒ‹–¼ƒQƒbƒg
+	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ãƒ•ã‚¡ã‚¤ãƒ«åã‚²ãƒƒãƒˆ
 ---------------------------------------------------------------------*/
 CString CAre_editerApp::GetBMPFilename(UINT n)
 {
@@ -211,7 +211,7 @@ CString CAre_editerApp::GetBMPFilename(UINT n)
 
 
 /*-------------------------------------------------------------------
-	ƒrƒbƒgƒ}ƒbƒv‚Ìƒtƒ@ƒCƒ‹–¼ƒQƒbƒg
+	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ãƒ•ã‚¡ã‚¤ãƒ«åã‚²ãƒƒãƒˆ
 ---------------------------------------------------------------------*/
 void CAre_editerApp::SetStatus(CString str)
 {
@@ -220,7 +220,7 @@ void CAre_editerApp::SetStatus(CString str)
 
 
 /*-------------------------------------------------------------------
-	“Áê‘€ì
+	ç‰¹æ®Šæ“ä½œ
 ---------------------------------------------------------------------*/
 void CAre_editerApp::SpecialCtrl(UINT key)
 {
@@ -229,16 +229,16 @@ void CAre_editerApp::SpecialCtrl(UINT key)
 
 
 /*-------------------------------------------------------------
-	‹óƒZƒ‹‘}“üˆ—
+	ç©ºã‚»ãƒ«æŒ¿å…¥å‡¦ç†
 ---------------------------------------------------------------*/
 void CAre_editerApp::InsertEmptyCell(UINT index)
 {
 	if(!m_gcd.valid()){
-		m_pMainWnd->MessageBox("ƒtƒ@ƒCƒ‹“Ç‚İ‚Ü‚ê‚Ä‚È‚¢‚æ","",MB_OK);
+		m_pMainWnd->MessageBox("ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¾ã‚Œã¦ãªã„ã‚ˆ","",MB_OK);
 		return ;
 	}
 
-	//indexˆÈ~‚ğ‘S‚Ä‚¸‚ç‚·
+	//indexä»¥é™ã‚’å…¨ã¦ãšã‚‰ã™
 	for(UINT i=GCDMAX_CELLS-1;i>index;i--){
 		*m_gcd.GetCell(i) = *m_gcd.GetCell(i-1);
 		*m_gcd.GetHantei(i) = *m_gcd.GetHantei(i-1);
@@ -250,17 +250,17 @@ void CAre_editerApp::InsertEmptyCell(UINT index)
 
 	InvalidateAll();
 
-	SetStatus("‹óƒZƒ‹‘}“üˆ—-OK");
+	SetStatus("ç©ºã‚»ãƒ«æŒ¿å…¥å‡¦ç†-OK");
 	return ;
 }
 
 /*-------------------------------------------------------------
-	•s³—Ìˆæ‚ğQÆ‚µ‚Ä‚¢‚é‹éŒ`‚ğÁ‹
+	ä¸æ­£é ˜åŸŸã‚’å‚ç…§ã—ã¦ã„ã‚‹çŸ©å½¢ã‚’æ¶ˆå»
 ---------------------------------------------------------------*/
 void CAre_editerApp::DeleteInvalidRect()
 {
 	if(!m_gcd.valid()){
-		m_pMainWnd->MessageBox("ƒtƒ@ƒCƒ‹“Ç‚İ‚Ü‚ê‚Ä‚È‚¢‚æ","",MB_OK);
+		m_pMainWnd->MessageBox("ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¾ã‚Œã¦ãªã„ã‚ˆ","",MB_OK);
 		return;
 	}
 
@@ -278,11 +278,11 @@ void CAre_editerApp::DeleteInvalidRect()
 			pr = m_gcd.GetRect(i);
 			if(!m_images[pr->bmpno].IsNull() )
 			{
-				//ƒrƒbƒgƒ}ƒbƒv‚Ì”ÍˆÍŠO‚ğQÆ‚µ‚Ä‚¢‚éê‡‚Í‹ó‚Æ‚İ‚È‚·
-				//š
+				//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ç¯„å›²å¤–ã‚’å‚ç…§ã—ã¦ã„ã‚‹å ´åˆã¯ç©ºã¨ã¿ãªã™
+				//â˜…
 
-				//ƒrƒbƒgƒ}ƒbƒv‚ğ’²‚×‚éB‘S•”“¯‚¶F‚¾‚Á‚½‚ç‹ó‚Æ‚İ‚È‚·B
-				col = m_images[pr->bmpno].GetPixel( pr->r.left,pr->r.top );//¶ã‚ÌFBƒRƒŒ‚Æ”äŠr‚·‚é
+				//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’èª¿ã¹ã‚‹ã€‚å…¨éƒ¨åŒã˜è‰²ã ã£ãŸã‚‰ç©ºã¨ã¿ãªã™ã€‚
+				col = m_images[pr->bmpno].GetPixel( pr->r.left,pr->r.top );//å·¦ä¸Šã®è‰²ã€‚ã‚³ãƒ¬ã¨æ¯”è¼ƒã™ã‚‹
 				for(int j=pr->r.top;j<pr->r.bottom;j++){
 					for(int k=pr->r.left;k<pr->r.right;k++)
 					{
@@ -302,30 +302,30 @@ void CAre_editerApp::DeleteInvalidRect()
 	}
 
 	CString str_ret;
-	str_ret.Format("%dŒÂ‚Ì‹éŒ`‚ªíœ‚³‚ê‚Ü‚µ‚½",deletenum);
+	str_ret.Format("%då€‹ã®çŸ©å½¢ãŒå‰Šé™¤ã•ã‚Œã¾ã—ãŸ",deletenum);
 	m_pMainWnd->MessageBox(str_ret);
 }
 
 /*-------------------------------------------------------------
-	–ÊÏ0‚Ì‹éŒ`‚ğÁ‹‚µ‚Ä”Ô†‚ğ‹l‚ß‚é
+	é¢ç©0ã®çŸ©å½¢ã‚’æ¶ˆå»ã—ã¦ç•ªå·ã‚’è©°ã‚ã‚‹
 ---------------------------------------------------------------*/
 void CAre_editerApp::DeleteEmptyRect()
 {
 	if(!m_gcd.valid()){
-		m_pMainWnd->MessageBox("ƒtƒ@ƒCƒ‹“Ç‚İ‚Ü‚ê‚Ä‚È‚¢‚æ","",MB_OK);
+		m_pMainWnd->MessageBox("ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¾ã‚Œã¦ãªã„ã‚ˆ","",MB_OK);
 		return;
 	}
 
-	GCD_RECT empty_rect;				//u‹óv‚Ì‹éŒ`ƒf[ƒ^
+	GCD_RECT empty_rect;				//ã€Œç©ºã€ã®çŸ©å½¢ãƒ‡ãƒ¼ã‚¿
 	m_gcd.GCDSetEmptyRect(&empty_rect);
 
-	DWORD org_ref[GCDMAX_RECTANGLES];	//Œ³‚Ì”Ô†‚Æƒ\[ƒgŒã‚Ì”Ô†‚Ì‘Î‰
-	std::vector<GCD_RECT> array;		//Ä”z—ñŒã‚Ìƒf[ƒ^
+	DWORD org_ref[GCDMAX_RECTANGLES];	//å…ƒã®ç•ªå·ã¨ã‚½ãƒ¼ãƒˆå¾Œã®ç•ªå·ã®å¯¾å¿œ
+	std::vector<GCD_RECT> array;		//å†é…åˆ—å¾Œã®ãƒ‡ãƒ¼ã‚¿
 
 	int i;
 	
-	//Ä”z—ñƒf[ƒ^\’z
-	array.push_back(*m_gcd.GetRect(0));//0”Ô‚Íu‹ó‹éŒ`vˆµ‚¢‚Å—\–ñÏ‚İ
+	//å†é…åˆ—ãƒ‡ãƒ¼ã‚¿æ§‹ç¯‰
+	array.push_back(*m_gcd.GetRect(0));//0ç•ªã¯ã€Œç©ºçŸ©å½¢ã€æ‰±ã„ã§äºˆç´„æ¸ˆã¿
 	org_ref[0] = 0;
 	for(i=1;i<GCDMAX_RECTANGLES;i++)
 	{
@@ -336,7 +336,7 @@ void CAre_editerApp::DeleteEmptyRect()
 		else org_ref[i] = 0;
 	}
 
-	//Ä”z—ñƒf[ƒ^‚ğ“K—p
+	//å†é…åˆ—ãƒ‡ãƒ¼ã‚¿ã‚’é©ç”¨
 	for(i=0;i<(int)array.size();i++)
 	{
 		*m_gcd.GetRect(i) = array[i];
@@ -347,7 +347,7 @@ void CAre_editerApp::DeleteEmptyRect()
 	}
 
 
-	//ƒZƒ‹ƒf[ƒ^‚Ì‹éŒ`”Ô†‚ğXV
+	//ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ã®çŸ©å½¢ç•ªå·ã‚’æ›´æ–°
 	GCD_CELL2 *pc;
 	for(i=0;i<GCDMAX_CELLS;i++){
 		pc = m_gcd.GetCell(i);
@@ -356,16 +356,16 @@ void CAre_editerApp::DeleteEmptyRect()
 		}
 	}
 
-	m_pMainWnd->MessageBox("‹éŒ`•À‚×‘Ö‚¦ˆ—Š®—¹");
+	m_pMainWnd->MessageBox("çŸ©å½¢ä¸¦ã¹æ›¿ãˆå‡¦ç†å®Œäº†");
 }
 
 /*-------------------------------------------------------------
-	‹ó‹éŒ`‚Ì‚İ‚ğQÆ‚µ‚Ä‚¢‚éƒZƒ‹‚ğÁ‹
+	ç©ºçŸ©å½¢ã®ã¿ã‚’å‚ç…§ã—ã¦ã„ã‚‹ã‚»ãƒ«ã‚’æ¶ˆå»
 ---------------------------------------------------------------*/
 void CAre_editerApp::DeleteInvalidCell()
 {
 	if(!m_gcd.valid()){
-		m_pMainWnd->MessageBox("ƒtƒ@ƒCƒ‹“Ç‚İ‚Ü‚ê‚Ä‚È‚¢‚æ","",MB_OK);
+		m_pMainWnd->MessageBox("ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¾ã‚Œã¦ãªã„ã‚ˆ","",MB_OK);
 		return;
 	}
 
@@ -394,38 +394,38 @@ void CAre_editerApp::DeleteInvalidCell()
 	}
 
 	CString str_ret;
-	str_ret.Format("%dŒÂ‚ÌƒZƒ‹‚ªíœ‚³‚ê‚Ü‚µ‚½",deletenum);
+	str_ret.Format("%då€‹ã®ã‚»ãƒ«ãŒå‰Šé™¤ã•ã‚Œã¾ã—ãŸ",deletenum);
 	m_pMainWnd->MessageBox(str_ret);
 }
 
 
 /*-------------------------------------------------------------
-	‹ó‹éŒ`‚Ì‚İ‚ğQÆ‚µ‚Ä‚¢‚éƒZƒ‹‚ğÁ‹
+	ç©ºçŸ©å½¢ã®ã¿ã‚’å‚ç…§ã—ã¦ã„ã‚‹ã‚»ãƒ«ã‚’æ¶ˆå»
 ---------------------------------------------------------------*/
 void CAre_editerApp::DeleteEmptyCell(BOOL over100)
 {
 	if(!m_gcd.valid()){
-		m_pMainWnd->MessageBox("ƒtƒ@ƒCƒ‹“Ç‚İ‚Ü‚ê‚Ä‚È‚¢‚æ","",MB_OK);
+		m_pMainWnd->MessageBox("ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¾ã‚Œã¦ãªã„ã‚ˆ","",MB_OK);
 		return;
 	}
 	
-	GCD_CELL2 empty_cell;			//u‹óv‚ÌƒZƒ‹ƒf[ƒ^
-	GCD_HANTEI empty_hantei;		//u‹óv‚Ì”»’èƒf[ƒ^
+	GCD_CELL2 empty_cell;			//ã€Œç©ºã€ã®ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿
+	GCD_HANTEI empty_hantei;		//ã€Œç©ºã€ã®åˆ¤å®šãƒ‡ãƒ¼ã‚¿
 	m_gcd.GCDSetEmptyCell2(&empty_cell,&empty_hantei);
-	//u‹óv‚Ì’è‹`–¼
+	//ã€Œç©ºã€ã®å®šç¾©å
 	CHAR64 empty_name;
 	ZeroMemory(&empty_name,sizeof(CHAR64));
 
-	std::vector<GCD_CELL2> array;		//Ä”z—ñŒã‚Ìƒf[ƒ^(cell)
-	std::vector<GCD_HANTEI> array2;		//Ä”z—ñŒã‚Ìƒf[ƒ^(”»’è)
-	std::vector<CHAR64> array3;			//Ä”z—ñŒã‚Ìƒf[ƒ^(’è‹`–¼)
+	std::vector<GCD_CELL2> array;		//å†é…åˆ—å¾Œã®ãƒ‡ãƒ¼ã‚¿(cell)
+	std::vector<GCD_HANTEI> array2;		//å†é…åˆ—å¾Œã®ãƒ‡ãƒ¼ã‚¿(åˆ¤å®š)
+	std::vector<CHAR64> array3;			//å†é…åˆ—å¾Œã®ãƒ‡ãƒ¼ã‚¿(å®šç¾©å)
 
 	int i;
 	BOOL displace = FALSE;
 	int start_index = over100 ? 100 : 0;
 	CHAR64 tmpname;
 
-	//Ä”z—ñƒf[ƒ^\’z
+	//å†é…åˆ—ãƒ‡ãƒ¼ã‚¿æ§‹ç¯‰
 	for(i=0;i<start_index;i++){
 		array.push_back( *m_gcd.GetCell(i) );
 		array2.push_back( *m_gcd.GetHantei(i) );
@@ -443,7 +443,7 @@ void CAre_editerApp::DeleteEmptyCell(BOOL over100)
 		}
 	}
 
-	//Ä”z—ñƒf[ƒ^‚ğ“K—p
+	//å†é…åˆ—ãƒ‡ãƒ¼ã‚¿ã‚’é©ç”¨
 	for(i=0;i<(int)array.size();i++)
 	{
 		*m_gcd.GetCell(i) = array[i];
@@ -457,5 +457,5 @@ void CAre_editerApp::DeleteEmptyCell(BOOL over100)
 		memcpy(m_gcd.GetName(i),&empty_name,64);
 	}
 
-	m_pMainWnd->MessageBox("ƒZƒ‹•À‚×‘Ö‚¦ˆ—Š®—¹");
+	m_pMainWnd->MessageBox("ã‚»ãƒ«ä¸¦ã¹æ›¿ãˆå‡¦ç†å®Œäº†");
 }

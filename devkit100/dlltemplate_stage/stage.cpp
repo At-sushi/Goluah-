@@ -1,4 +1,4 @@
-
+ï»¿
 
 #include "stage.h"
 #include <math.h>
@@ -8,36 +8,36 @@ SET_STAGEINFO_VERCHK(CStage, STB_VERSION)
 
 
 /*!
-*	@brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+*	@brief ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 */
 CStage::CStage(SDI_STAGEINFO2 *info)
 			: CStageBase(info)
 {
-	//•Ï”’l‚Ì‰Šú‰»“™
+	//å¤‰æ•°å€¤ã®åˆæœŸåŒ–ç­‰
 }
 
 /*!
-*	@brief ƒfƒXƒgƒ‰ƒNƒ^
+*	@brief ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 */
 CStage::~CStage()
 {
-	//“®“IŠm•ÛƒIƒuƒWƒFƒNƒg‚Ì”jŠüˆ—“™
+	//å‹•çš„ç¢ºä¿ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç ´æ£„å‡¦ç†ç­‰
 }
 
 /*!
-*	@brief ‰Šú‰»
+*	@brief åˆæœŸåŒ–
 */
 void CStage::InitializeStage()
 {
-	//ƒCƒ[ƒW‚Ìƒ[ƒh“™A‰Šú‰»ˆ—‘S”Ê
+	//ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ãƒ­ãƒ¼ãƒ‰ç­‰ã€åˆæœŸåŒ–å‡¦ç†å…¨èˆ¬
 }
 
 /*!
-*	@brief •`‰æ
+*	@brief æç”»
 */
 DWORD CStage::DrawBack()
 {
-	//•`‰æˆ—
+	//æç”»å‡¦ç†
 
-	return FALSE;//’ÊíAƒfƒtƒHƒ‹ƒg•`‰æ‚Ís‚í‚È‚¢
+	return FALSE;//é€šå¸¸ã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæç”»ã¯è¡Œã‚ãªã„
 }

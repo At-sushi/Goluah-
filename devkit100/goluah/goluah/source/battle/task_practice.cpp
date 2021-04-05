@@ -1,4 +1,4 @@
-
+ï»¿
 #include "stdafx.h"
 #include "global.h"
 #include "task_practice.h"
@@ -16,14 +16,14 @@ void CBattlePractice::T_Command()
 	for(i=0;i<(int)p_objects.size();i++){
 		if(p_objects[i]!=NULL)
 		{
-			if(p_objects[i]->data.tid != 1 || //“GƒLƒƒƒ‰‚Å‚È‚¢
-				!(p_objects[i]->data.objtype&GOBJFLG_COMPUTER))//ƒRƒ“ƒsƒ…[ƒ^§Œä‚Å‚È‚¢
+			if(p_objects[i]->data.tid != 1 || //æ•µã‚­ãƒ£ãƒ©ã§ãªã„
+				!(p_objects[i]->data.objtype&GOBJFLG_COMPUTER))//ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿åˆ¶å¾¡ã§ãªã„
 			{
 				p_objects[i]->Message(GOBJMSG_COMMAND);
 			}
 		}
 	}*/
-	CBattleTask::T_Command();	// •’Ê‚Ìˆ—‚Å—Ç‚­‚È‚Á‚½‚İ‚½‚¢
+	CBattleTask::T_Command();	// æ™®é€šã®å‡¦ç†ã§è‰¯ããªã£ãŸã¿ãŸã„
 }
 
 void CBattlePractice::StartRound()

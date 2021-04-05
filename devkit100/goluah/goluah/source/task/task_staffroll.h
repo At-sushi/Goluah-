@@ -1,7 +1,7 @@
-
+ï»¿
 /*===============================================================
 
-	ƒXƒ^ƒbƒtƒ[ƒ‹@ƒ^ƒXƒN
+	ã‚¹ã‚¿ãƒƒãƒ•ãƒ­ãƒ¼ãƒ«ã€€ã‚¿ã‚¹ã‚¯
 
 =================================================================*/
 #pragma once
@@ -10,12 +10,12 @@
 #include "script_story.h"
 
 /*!
-*	@brief ƒXƒ^ƒbƒtƒ[ƒ‹
+*	@brief ã‚¹ã‚¿ãƒƒãƒ•ãƒ­ãƒ¼ãƒ«
 *	@ingroup Tasks
 */
 class CTStaffRoll : public CExclusiveTaskBase
 {
-//ŠÖ”
+//é–¢æ•°
 public:
 	CTStaffRoll();
 	~CTStaffRoll(){CleanUp();}
@@ -33,13 +33,13 @@ private:
 	int Get1Gyo(char *str);
 	void SetTextPath(char *path);
 
-//•Ï”
+//å¤‰æ•°
 public:
 private:
 	DWORD counter;
 	DWORD fsize;
-	MYSURFACE *ms;//!<”wŒi
-	char *credits;//!<—¬‚ê‚é•¶š—ñ
+	MYSURFACE *ms;//!<èƒŒæ™¯
+	char *credits;//!<æµã‚Œã‚‹æ–‡å­—åˆ—
 	char *txtpath;
 	UINT m_keyindex;
 

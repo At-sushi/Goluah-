@@ -1,21 +1,21 @@
-#pragma once
+Ôªø#pragma once
 
 
-// CDlgLogSetting É_ÉCÉAÉçÉO
+// CDlgLogSetting „ÉÄ„Ç§„Ç¢„É≠„Ç∞
 
 class CDlgLogSetting : public CDialog
 {
 	DECLARE_DYNAMIC(CDlgLogSetting)
 
 public:
-	CDlgLogSetting(CWnd* pParent = NULL);   // ïWèÄÉRÉìÉXÉgÉâÉNÉ^
+	CDlgLogSetting(CWnd* pParent = NULL);   // Ê®ôÊ∫ñ„Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	virtual ~CDlgLogSetting();
 
-// É_ÉCÉAÉçÉO ÉfÅ[É^
+// „ÉÄ„Ç§„Ç¢„É≠„Ç∞ „Éá„Éº„Çø
 	enum { IDD = IDD_DIALOG_LOGSETTING };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ÉTÉ|Å[Ég
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV „Çµ„Éù„Éº„Éà
 
 	DECLARE_MESSAGE_MAP()
 };

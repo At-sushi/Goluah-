@@ -1,28 +1,28 @@
-#pragma once
+ï»¿#pragma once
 
 
 #include "define.h"
 
-// CDlgPage1 ƒ_ƒCƒAƒƒO
-// ‘S‘Ìƒ^ƒu - ƒtƒ@ƒCƒ‹‘€ì
+// CDlgPage1 ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
+// å…¨ä½“ã‚¿ãƒ– - ãƒ•ã‚¡ã‚¤ãƒ«æ“ä½œ
 
 class CDlgPage1 : public CMyDialogTab
 {
 	DECLARE_DYNAMIC(CDlgPage1)
 
 public:
-	CDlgPage1(CWnd* pParent = NULL);   // •W€ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	CDlgPage1(CWnd* pParent = NULL);   // æ¨™æº–ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~CDlgPage1();
-	void UpdateItems(){}//•\¦•¨XVA“Á‚É‚â‚é‚±‚Æ‚È‚µH
+	void UpdateItems(){}//è¡¨ç¤ºç‰©æ›´æ–°ã€ç‰¹ã«ã‚„ã‚‹ã“ã¨ãªã—ï¼Ÿ
 
-// ƒ_ƒCƒAƒƒO ƒf[ƒ^
+// ãƒ€ã‚¤ã‚¢ãƒ­ã‚° ãƒ‡ãƒ¼ã‚¿
 	enum { IDD = IDD_DIALOG_TAB1 };
 
 public:
 	CString GetBMPFilename(UINT i){return m_str_image[i];}
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ƒTƒ|[ƒg
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ã‚µãƒãƒ¼ãƒˆ
 
 	DECLARE_MESSAGE_MAP()
 public:
@@ -43,8 +43,8 @@ public:
 	afx_msg void OnBnClickedButtonRef12();
 	void OnBnClickedButtonRef(UINT idx);
 	
-	BOOL m_bDefaltBMP;						//"ƒfƒtƒHƒ‹ƒgƒtƒ@ƒCƒ‹–¼‚ğg—p‚·‚é"ƒ`ƒFƒbƒN
-	CString m_str_image[MAX_IMAGES];		//Šeƒrƒbƒgƒ}ƒbƒvƒtƒ@ƒCƒ‹–¼•¶š—ñ
+	BOOL m_bDefaltBMP;						//"ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ•ã‚¡ã‚¤ãƒ«åã‚’ä½¿ç”¨ã™ã‚‹"ãƒã‚§ãƒƒã‚¯
+	CString m_str_image[MAX_IMAGES];		//å„ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«åæ–‡å­—åˆ—
 
 	void SetupDefaultFilenames();
 	afx_msg void OnBnClickedButtonLoadHeader();

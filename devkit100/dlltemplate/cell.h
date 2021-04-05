@@ -1,1 +1,1 @@
-//‚±‚Ìƒtƒ@ƒCƒ‹‚ð are_editer ‚Å¶¬‚µ‚½ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚Å’uŠ·‚µ‚Ä‚­‚¾‚³‚¢
+ï»¿//ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ are_editer ã§ç”Ÿæˆã—ãŸãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã§ç½®æ›ã—ã¦ãã ã•ã„

@@ -1,4 +1,4 @@
-
+﻿
 //load
 #ifdef ___GCDEDITER
 BOOL GCDLoadDlg(GCD_CELL2 *pcdat,GCD_RECT *prdat,

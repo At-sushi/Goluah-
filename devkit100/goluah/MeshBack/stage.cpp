@@ -1,4 +1,4 @@
-
+ï»¿
 
 #include "stage.h"
 #include <math.h>
@@ -9,40 +9,40 @@ SET_STAGEINFO(CStage)
 
 
 /*!
-*	@brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+*	@brief ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 */
 CStage::CStage(SDI_STAGEINFO2 *info)
 			: CStageBase(info)
 {
-	//•Ï”’l‚Ì‰Šú‰»“™
+	//å¤‰æ•°å€¤ã®åˆæœŸåŒ–ç­‰
 	aki3d.Initialize(GetD3DDevice(), info->dir);
 	back = NULL;
 }
 
 /*!
-*	@brief ƒfƒXƒgƒ‰ƒNƒ^
+*	@brief ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 */
 CStage::~CStage()
 {
-	//“®“IŠm•ÛƒIƒuƒWƒFƒNƒg‚Ì”jŠüˆ—“™
+	//å‹•çš„ç¢ºä¿ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç ´æ£„å‡¦ç†ç­‰
 }
 
 /*!
-*	@brief ‰Šú‰»
+*	@brief åˆæœŸåŒ–
 */
 void CStage::InitializeStage()
 {
-	//ƒCƒ[ƒW‚Ìƒ[ƒh“™A‰Šú‰»ˆ—‘S”Ê
-	// ƒƒbƒXì‚é
+	//ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ãƒ­ãƒ¼ãƒ‰ç­‰ã€åˆæœŸåŒ–å‡¦ç†å…¨èˆ¬
+	// ãƒ¡ãƒƒã‚¹ä½œã‚‹
 	back = aki3d.CreateMeshObject();
 
-	// back.x‚ğƒ[ƒh
+	// back.xã‚’ãƒ­ãƒ¼ãƒ‰
 	char buf[256], buf2[16];
 
 	sprintf(buf, "%s\\back.x", this->GetCharDir());
 	back->Create(buf);
 
-	// İ’è“Ç‚İ‚İ
+	// è¨­å®šèª­ã¿è¾¼ã¿
 	union {
 		int amb;
 		BOOL spec;
@@ -63,13 +63,13 @@ void CStage::InitializeStage()
 }
 
 /*!
-*	@brief •`‰æ
+*	@brief æç”»
 */
 DWORD CStage::DrawBack()
 {
-	//•`‰æˆ—
-	// ƒƒbƒVƒ…•`‰æ
+	//æç”»å‡¦ç†
+	// ãƒ¡ãƒƒã‚·ãƒ¥æç”»
 	back->Render();
 
-	return FALSE;//’ÊíAƒfƒtƒHƒ‹ƒg•`‰æ‚Ís‚í‚È‚¢
+	return FALSE;//é€šå¸¸ã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæç”»ã¯è¡Œã‚ãªã„
 }

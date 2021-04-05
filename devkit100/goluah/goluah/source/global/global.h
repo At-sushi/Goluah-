@@ -1,22 +1,22 @@
-
+ï»¿
 /*!
 *	@file
-*	@brief ƒOƒ[ƒoƒ‹ŠÖ” ƒOƒ[ƒoƒ‹•Ï”@‚È‚Ç
+*	@brief ã‚°ãƒ­ãƒ¼ãƒãƒ«é–¢æ•° ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã€€ãªã©
 *
-*	ŽÀ‘Ì‚Í global.cpp ‚É‚Ä’è‹`‚·‚é
+*	å®Ÿä½“ã¯ global.cpp ã«ã¦å®šç¾©ã™ã‚‹
 */
 #pragma once
 
 /*!
 *	@defgroup global
-*	@brief ƒOƒ[ƒoƒ‹‚ÈŠÖ”‚Æ‚©•Ï”‚Æ‚©
+*	@brief ã‚°ãƒ­ãƒ¼ãƒãƒ«ãªé–¢æ•°ã¨ã‹å¤‰æ•°ã¨ã‹
 *
-*	Žå‚È‚à‚Ì‚ÍƒLƒƒƒ‰ƒNƒ^[‚ÌƒŠƒXƒgAƒXƒe[ƒW‚ÌƒŠƒXƒgAƒXƒg[ƒŠ[‚ÌƒŠƒXƒgA
-*	config.exe‚ÌÝ’èAŽŽ‡ŠJŽn‘OŒã‚ÌÝ’è‚È‚ÇB
+*	ä¸»ãªã‚‚ã®ã¯ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ãƒªã‚¹ãƒˆã€ã‚¹ãƒ†ãƒ¼ã‚¸ã®ãƒªã‚¹ãƒˆã€ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã®ãƒªã‚¹ãƒˆã€
+*	config.exeã®è¨­å®šã€è©¦åˆé–‹å§‹å‰å¾Œã®è¨­å®šãªã©ã€‚
 */
 
 /*------------------------------------------------------------------------------
-	ƒOƒ[ƒoƒ‹ƒIƒuƒWƒFƒNƒg(ƒNƒ‰ƒX)
+	ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ(ã‚¯ãƒ©ã‚¹)
 --------------------------------------------------------------------------------*/
 
 #include "stdafx.h"
@@ -36,36 +36,36 @@ class AkiGlobal;
 #include "charlist.h"
 #include "battle_load_info.h"
 
-extern CDirectDraw			g_draw;			//!< •`‰æƒIƒuƒWƒFƒNƒg
-extern CDirectInput			g_input;		//!< “ü—ÍƒIƒuƒWƒFƒNƒg
-extern CDirectSound			g_sound;		//!< ‰¹ŒnƒIƒuƒWƒFƒNƒg
-extern CDirectPlay			g_play;			//!< ’ÊMƒIƒuƒWƒFƒNƒg@Á–Å
+extern CDirectDraw			g_draw;			//!< æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+extern CDirectInput			g_input;		//!< å…¥åŠ›ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+extern CDirectSound			g_sound;		//!< éŸ³ç³»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+extern CDirectPlay			g_play;			//!< é€šä¿¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€€æ¶ˆæ»…
 
-extern CSystem				g_system;		//!< ƒVƒXƒeƒ€ƒIƒuƒWƒFƒNƒg
+extern CSystem				g_system;		//!< ã‚·ã‚¹ãƒ†ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 
-extern AkiGlobal			gbl;			//!< ƒOƒ[ƒoƒ‹ŠÖ”‚Ì“ü‚ê•¨
-extern CLog2File			g_log2file;		//!< ƒtƒ@ƒCƒ‹‚ÖƒƒO•Û‘¶ƒNƒ‰ƒX
-extern CExport				g_exp;			//!< DLL‚Ö‚ÌŠÖ”’ñ‹ŸƒNƒ‰ƒX
-extern CStoryList			g_storylist;	//!< ƒXƒg[ƒŠ[ƒŠƒXƒgŠÇ—ƒNƒ‰ƒX
-extern CStageList			g_stagelist;	//!< ƒXƒe[ƒWƒŠƒXƒgŠÇ—ƒNƒ‰ƒX
-extern CCharacterList		g_charlist;		//!< ƒLƒƒƒ‰ƒNƒ^[ƒŠƒXƒgŠÇ—ƒNƒ‰ƒX
-extern CBattleLoadInfo		g_battleinfo;	//!< ŽŽ‡î•ñƒNƒ‰ƒX
-extern CBattleResultInfo	g_battleresult;	//!< ŽŽ‡Œ‹‰Êî•ñƒNƒ‰ƒX
+extern AkiGlobal			gbl;			//!< ã‚°ãƒ­ãƒ¼ãƒãƒ«é–¢æ•°ã®å…¥ã‚Œç‰©
+extern CLog2File			g_log2file;		//!< ãƒ•ã‚¡ã‚¤ãƒ«ã¸ãƒ­ã‚°ä¿å­˜ã‚¯ãƒ©ã‚¹
+extern CExport				g_exp;			//!< DLLã¸ã®é–¢æ•°æä¾›ã‚¯ãƒ©ã‚¹
+extern CStoryList			g_storylist;	//!< ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒªã‚¹ãƒˆç®¡ç†ã‚¯ãƒ©ã‚¹
+extern CStageList			g_stagelist;	//!< ã‚¹ãƒ†ãƒ¼ã‚¸ãƒªã‚¹ãƒˆç®¡ç†ã‚¯ãƒ©ã‚¹
+extern CCharacterList		g_charlist;		//!< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒªã‚¹ãƒˆç®¡ç†ã‚¯ãƒ©ã‚¹
+extern CBattleLoadInfo		g_battleinfo;	//!< è©¦åˆæƒ…å ±ã‚¯ãƒ©ã‚¹
+extern CBattleResultInfo	g_battleresult;	//!< è©¦åˆçµæžœæƒ…å ±ã‚¯ãƒ©ã‚¹
 
 
 /*------------------------------------------------------------------------------
-	ƒOƒ[ƒoƒ‹•Ï” externéŒ¾
+	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° externå®£è¨€
 --------------------------------------------------------------------------------*/
-extern char AppName[];			//!< ƒAƒvƒŠƒP[ƒVƒ‡ƒ“–¼
-extern BOOL g_programexit;		//!< ƒƒCƒ“ƒ‹[ƒvI—¹ƒtƒ‰ƒO
-extern RECT g_rcClient;			//!< window mode‚Ì‚Æ‚«‚É•K—v(?)
-extern int g_DISPLAYWIDTH;		//!< ¶¬ƒEƒCƒ“ƒhƒEƒTƒCƒYi•j
-extern int g_DISPLAYHEIGHT;		//!< ¶¬ƒEƒCƒ“ƒhƒEƒTƒCƒYi‚‚³j
-extern BOOL g_muki[MAXNUM_KEYI];//!< ƒL[“ü—Í‚ÌŒü‚«
+extern char AppName[];			//!< ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³å
+extern BOOL g_programexit;		//!< ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—çµ‚äº†ãƒ•ãƒ©ã‚°
+extern RECT g_rcClient;			//!< window modeã®ã¨ãã«å¿…è¦(?)
+extern int g_DISPLAYWIDTH;		//!< ç”Ÿæˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºï¼ˆå¹…ï¼‰
+extern int g_DISPLAYHEIGHT;		//!< ç”Ÿæˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºï¼ˆé«˜ã•ï¼‰
+extern BOOL g_muki[MAXNUM_KEYI];//!< ã‚­ãƒ¼å…¥åŠ›ã®å‘ã
 
 
 /*------------------------------------------------------------------------------
-	ƒOƒ[ƒoƒ‹ŠÖ”
+	ã‚°ãƒ­ãƒ¼ãƒãƒ«é–¢æ•°
 --------------------------------------------------------------------------------*/
 
 class AkiGlobal;
@@ -75,27 +75,27 @@ struct MY2DVECTOR;
 
 /*!
 *	@ingroup global
-*	@brief ŽG—p‚¢‚ë‚¢‚ëƒNƒ‰ƒX
+*	@brief é›‘ç”¨ã„ã‚ã„ã‚ã‚¯ãƒ©ã‚¹
 *
-*	CSystem“¯—lAŽG—p‚ªŽå‚ÈŽdŽ–‚Å‚·B
-*	ƒOƒ[ƒoƒ‹ŠÖ”‚Å‚à‚¢‚¢‚¯‚ÇAVC‚ÌƒR[ƒh•âŠ®‚ª‚¤‚Ü‚¢‹ï‡‚É“®‚©‚È‚¢‚Ì‚Å
-*	‚±‚±‚É“ü‚ê‚Ä‚¢‚é‚Æ‚¢‚¤‚Ì‚à‚ ‚éBgbl. ‚Æ‘Å‚Á‚½‚çƒR[ƒh•âŠ®”­“®B
+*	CSystemåŒæ§˜ã€é›‘ç”¨ãŒä¸»ãªä»•äº‹ã§ã™ã€‚
+*	ã‚°ãƒ­ãƒ¼ãƒãƒ«é–¢æ•°ã§ã‚‚ã„ã„ã‘ã©ã€VCã®ã‚³ãƒ¼ãƒ‰è£œå®ŒãŒã†ã¾ã„å…·åˆã«å‹•ã‹ãªã„ã®ã§
+*	ã“ã“ã«å…¥ã‚Œã¦ã„ã‚‹ã¨ã„ã†ã®ã‚‚ã‚ã‚‹ã€‚gbl. ã¨æ‰“ã£ãŸã‚‰ã‚³ãƒ¼ãƒ‰è£œå®Œç™ºå‹•ã€‚
 */
 class AkiGlobal{
 public:
 	AkiGlobal();
 	~AkiGlobal();
 
-	//!Žw’èƒEƒCƒ“ƒhƒE‚ðƒfƒBƒXƒvƒŒƒC‚Ì’†S‚ÖŽ‚Á‚Ä‚¢‚­
+	//!æŒ‡å®šã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã®ä¸­å¿ƒã¸æŒã£ã¦ã„ã
 	static int SetWinCenter(HWND hWnd);
 
-	//!ƒtƒ@ƒCƒ‹‚ª‚ ‚é‚©‚Ç‚¤‚©‚ð’²‚×‚é
+	//!ãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 	static BOOL FileExist(char *path);
 
 	/*!
-		@brief ‹éŒ`‚ÌÕ“Ë”»’è
-		‰ñ“]‚ª‚ ‚éê‡ŽžX0œŽZ‚ðs‚¤‚Ý‚½‚¢B
-		‚ ‚ñ‚Ü‚è‚¿‚á‚ñ‚Æ“®ìŠm”F‚µ‚Ä‚Ü‚¹‚ñ
+		@brief çŸ©å½¢ã®è¡çªåˆ¤å®š
+		å›žè»¢ãŒã‚ã‚‹å ´åˆæ™‚ã€…0é™¤ç®—ã‚’è¡Œã†ã¿ãŸã„ã€‚
+		ã‚ã‚“ã¾ã‚Šã¡ã‚ƒã‚“ã¨å‹•ä½œç¢ºèªã—ã¦ã¾ã›ã‚“
 	*/
 	static BOOL Syototu2RECTs(RECT r1,RECT r2,MY2DVECTOR *point,
 			int gx1,int gy1,BOOL rx1,BOOL ry1,int rot1,double tx1,double ty1,double mx1,double my1,
@@ -103,41 +103,41 @@ public:
 			UINT magmode1,UINT magmode2);
 
 	/*!
-		@brief 2•¶Žš—ñ‚ðŒ‹‡‚µ‚ÄV‚µ‚¢ƒoƒbƒtƒ@‚ð•Ô‚·
-		–ß‚è’l‚Ínew[]‚ÅŠm•Û‚µ‚½ƒoƒbƒtƒ@Bstr1‚Ídelete[]‚³‚ê‚Ü‚·B
+		@brief 2æ–‡å­—åˆ—ã‚’çµåˆã—ã¦æ–°ã—ã„ãƒãƒƒãƒ•ã‚¡ã‚’è¿”ã™
+		æˆ»ã‚Šå€¤ã¯new[]ã§ç¢ºä¿ã—ãŸãƒãƒƒãƒ•ã‚¡ã€‚str1ã¯delete[]ã•ã‚Œã¾ã™ã€‚
 	*/
 	static char* MergeString(char* str1,const char* str2);
 
 	/*!
-		@brief ƒ_ƒ~[—pcharƒoƒbƒtƒ@‚ðŽæ“¾B
-		Žå‚ÉƒXƒNƒŠƒvƒgƒeƒLƒXƒg‚Ìƒ[ƒhŽž‚ÉŽg‚í‚ê‚Ä‚¢‚Ü‚·B‰ö‚µ‚¢‹@”\B
+		@brief ãƒ€ãƒŸãƒ¼ç”¨charãƒãƒƒãƒ•ã‚¡ã‚’å–å¾—ã€‚
+		ä¸»ã«ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ã‚­ã‚¹ãƒˆã®ãƒ­ãƒ¼ãƒ‰æ™‚ã«ä½¿ã‚ã‚Œã¦ã„ã¾ã™ã€‚æ€ªã—ã„æ©Ÿèƒ½ã€‚
 	*/
 	char*  GetDummyString();
 
-	char** CreateTemporaryStrBuff(UINT num,UINT max_len=128);	//!< ƒeƒ“ƒ|ƒ‰ƒŠ•¶Žš—ñ”z—ñ‚Ì”jŠü
-	void   DeleteTemporaryStrBuff(char** buf);					//!< ƒeƒ“ƒ|ƒ‰ƒŠ•¶Žš—ñ”z—ñ‚Ì”jŠü
+	char** CreateTemporaryStrBuff(UINT num,UINT max_len=128);	//!< ãƒ†ãƒ³ãƒãƒ©ãƒªæ–‡å­—åˆ—é…åˆ—ã®ç ´æ£„
+	void   DeleteTemporaryStrBuff(char** buf);					//!< ãƒ†ãƒ³ãƒãƒ©ãƒªæ–‡å­—åˆ—é…åˆ—ã®ç ´æ£„
 
-	//!Žw’èƒoƒbƒtƒ@‚Ìæ“ª‚ÉAŽw’è•¶Žš—ñ‚ª“ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+	//!æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã®å…ˆé ­ã«ã€æŒ‡å®šæ–‡å­—åˆ—ãŒå…¥ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
 	BOOL strcheck(const char* buf,const char* str);
 
-	//!ƒfƒJŠçƒCƒ[ƒW(face2.bmp)Žæ“¾
+	//!ãƒ‡ã‚«é¡”ã‚¤ãƒ¡ãƒ¼ã‚¸(face2.bmp)å–å¾—
 	MYSURFACE* GetBigFace(int cindex,int col,int alt);
 
-	//!ƒuƒ‰ƒ“ƒNƒAƒCƒRƒ“Žæ“¾
+	//!ãƒ–ãƒ©ãƒ³ã‚¯ã‚¢ã‚¤ã‚³ãƒ³å–å¾—
 	MYSURFACE* GetBlankIcon();
 
-	//!ŽÀ”ƒ‰ƒ“ƒ_ƒ€(0`1)
+	//!å®Ÿæ•°ãƒ©ãƒ³ãƒ€ãƒ (0ï½ž1)
 	float RandomOne();
 
-	//!Žw’èƒfƒBƒŒƒNƒgƒŠ‰º‚©‚çƒ‰ƒ“ƒ_ƒ€‚ÈBGMÄ¶
+	//!æŒ‡å®šãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªä¸‹ã‹ã‚‰ãƒ©ãƒ³ãƒ€ãƒ ãªBGMå†ç”Ÿ
 	void PlayRandomBGM(char *dir);
 
 	
-	void ods(const char *format, ...);	//!OpuputDebugString‚·‚éB‰üs‚ð•t‰Á
-	void ods2(const char *format, ...);	//!OpuputDebugString‚·‚éB‰üs‚ð•t‰Á‚µ‚È‚¢
+	void ods(const char *format, ...);	//!OpuputDebugStringã™ã‚‹ã€‚æ”¹è¡Œã‚’ä»˜åŠ 
+	void ods2(const char *format, ...);	//!OpuputDebugStringã™ã‚‹ã€‚æ”¹è¡Œã‚’ä»˜åŠ ã—ãªã„
 
 protected:
-	//•¶Žš—ñŠÖŒW
+	//æ–‡å­—åˆ—é–¢ä¿‚
 	char** m_dummybuf;
 	UINT m_dummy_next;
 
@@ -148,20 +148,20 @@ protected:
 
 	char *m_ods_buffer;
 
-	//!ƒuƒ‰ƒ“ƒNƒAƒCƒRƒ“
+	//!ãƒ–ãƒ©ãƒ³ã‚¯ã‚¢ã‚¤ã‚³ãƒ³
 	MYSURFACE* m_blankIcon;
 };
 
-//!2DƒxƒNƒgƒ‹\‘¢‘ÌB‹éŒ`Õ“Ë”»’èŠÖ”‚ÅŽg—p
+//!2Dãƒ™ã‚¯ãƒˆãƒ«æ§‹é€ ä½“ã€‚çŸ©å½¢è¡çªåˆ¤å®šé–¢æ•°ã§ä½¿ç”¨
 struct MY2DVECTOR {double x;double y;};
 
 
 /*!
 *	@ingroup global
-*	@brief ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXŽx‰‡ƒNƒ‰ƒXH
+*	@brief ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹æ”¯æ´ã‚¯ãƒ©ã‚¹ï¼Ÿ
 *
-*	ƒtƒ@ƒCƒ‹‚Ö‚ÌƒAƒNƒZƒX‚ðŠÈ—ª‰»‚µ‚½‚­‚Äì‚Á‚½ƒNƒ‰ƒXB
-*	‚ ‚Æ‚©‚çì‚Á‚½‚Ì‚Å‚ ‚ñ‚Ü‚èŽg‚í‚ê‚Ä‚¢‚È‚¢‚µA‚Þ‚µ‚ëMFC‚ÌCFile‚ðŽg‚Á‚½‚Ù‚¤‚ª—Ç‚¢B
+*	ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã‚’ç°¡ç•¥åŒ–ã—ãŸãã¦ä½œã£ãŸã‚¯ãƒ©ã‚¹ã€‚
+*	ã‚ã¨ã‹ã‚‰ä½œã£ãŸã®ã§ã‚ã‚“ã¾ã‚Šä½¿ã‚ã‚Œã¦ã„ãªã„ã—ã€ã‚€ã—ã‚MFCã®CFileã‚’ä½¿ã£ãŸã»ã†ãŒè‰¯ã„ã€‚
 */
 class AkiFile
 {
@@ -177,12 +177,12 @@ public:
 	BYTE*	m_buffer;
 
 protected:
-	void Destroy();//!< SetŽž‚Ì‹Œƒƒ‚ƒŠ”jŠü,ƒfƒXƒgƒ‰ƒNƒ^@‹¤’Ê‘€ì
+	void Destroy();//!< Setæ™‚ã®æ—§ãƒ¡ãƒ¢ãƒªç ´æ£„,ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€€å…±é€šæ“ä½œ
 };
 
 
 #ifndef _aki3d_h_
-//!ARGB ©¨ DWORD •ÏŠ·ƒNƒ‰ƒX
+//!ARGB â†â†’ DWORD å¤‰æ›ã‚¯ãƒ©ã‚¹
 struct ARGB
 {
 	union

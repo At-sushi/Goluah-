@@ -1,4 +1,4 @@
-// DlgPadConfig.cpp : ŽÀ‘•ƒtƒ@ƒCƒ‹
+ï»¿// DlgPadConfig.cpp : å®Ÿè£…ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "DlgPadConfig.h"
 
 
-// CDlgPadConfig ƒ_ƒCƒAƒƒO
+// CDlgPadConfig ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 IMPLEMENT_DYNAMIC(CDlgPadConfig, CDialog)
 CDlgPadConfig::CDlgPadConfig(CWnd* pParent /*=NULL*/)
@@ -39,24 +39,24 @@ BEGIN_MESSAGE_MAP(CDlgPadConfig, CDialog)
 END_MESSAGE_MAP()
 
 
-// CDlgPadConfig ƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰
+// CDlgPadConfig ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ©
 
 /*---------------------------------------------------------------
-	‰Šú‰»
+	åˆæœŸåŒ–
 -----------------------------------------------------------------*/
 BOOL CDlgPadConfig::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO :  ‚±‚±‚É‰Šú‰»‚ð’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢
+	// TODO :  ã“ã“ã«åˆæœŸåŒ–ã‚’è¿½åŠ ã—ã¦ãã ã•ã„
 	m_cfg = g_config.padcfg;
 
-	//ƒRƒ“ƒ{ƒ{ƒbƒNƒX‚É€–Ú“Ë‚Áž‚Ý
+	//ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã«é …ç›®çªã£è¾¼ã¿
 	CComboBox* combo;
 	RECT r;
 	int i;
 
-	//ƒpƒbƒhƒCƒ“ƒfƒbƒNƒX
+	//ãƒ‘ãƒƒãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	combo = (CComboBox*)GetDlgItem(IDC_COMBO_PADINDEX);
 	if(!combo){
 		throw;
@@ -69,12 +69,12 @@ BOOL CDlgPadConfig::OnInitDialog()
 	char padname[16];
 	for(i=0;i<NUM_PAD;i++)
 	{
-		sprintf(padname,"ƒpƒbƒh%d",i+1);
+		sprintf(padname,"ãƒ‘ãƒƒãƒ‰%d",i+1);
 		combo->InsertString(i, padname );
 	}
 	combo->SetCurSel(0);
 
-	//ƒ{ƒ^ƒ“
+	//ãƒœã‚¿ãƒ³
 	int comboid[] ={
 		IDC_COMBO_PADBUTTON_A,
 		IDC_COMBO_PADBUTTON_B,
@@ -92,18 +92,18 @@ BOOL CDlgPadConfig::OnInitDialog()
 		r.right	= r.left+100;
 		r.bottom= r.top +300;
 		combo->MoveWindow(&r,FALSE);
-		combo->InsertString(0, "ƒ{ƒ^ƒ“1" );
-		combo->InsertString(1, "ƒ{ƒ^ƒ“2" );
-		combo->InsertString(2, "ƒ{ƒ^ƒ“3" );
-		combo->InsertString(3, "ƒ{ƒ^ƒ“4" );
-		combo->InsertString(4, "ƒ{ƒ^ƒ“5" );
-		combo->InsertString(5, "ƒ{ƒ^ƒ“6" );
-		combo->InsertString(6, "ƒ{ƒ^ƒ“7" );
-		combo->InsertString(7, "ƒ{ƒ^ƒ“8" );
-		combo->InsertString(8, "ƒ{ƒ^ƒ“9" );
-		combo->InsertString(9, "ƒ{ƒ^ƒ“10" );
-		combo->InsertString(10, "ƒ{ƒ^ƒ“11" );
-		combo->InsertString(11, "ƒ{ƒ^ƒ“12" );
+		combo->InsertString(0, "ãƒœã‚¿ãƒ³1" );
+		combo->InsertString(1, "ãƒœã‚¿ãƒ³2" );
+		combo->InsertString(2, "ãƒœã‚¿ãƒ³3" );
+		combo->InsertString(3, "ãƒœã‚¿ãƒ³4" );
+		combo->InsertString(4, "ãƒœã‚¿ãƒ³5" );
+		combo->InsertString(5, "ãƒœã‚¿ãƒ³6" );
+		combo->InsertString(6, "ãƒœã‚¿ãƒ³7" );
+		combo->InsertString(7, "ãƒœã‚¿ãƒ³8" );
+		combo->InsertString(8, "ãƒœã‚¿ãƒ³9" );
+		combo->InsertString(9, "ãƒœã‚¿ãƒ³10" );
+		combo->InsertString(10, "ãƒœã‚¿ãƒ³11" );
+		combo->InsertString(11, "ãƒœã‚¿ãƒ³12" );
 		combo->SetCurSel(0);
 	}
 
@@ -115,15 +115,15 @@ BOOL CDlgPadConfig::OnInitDialog()
 	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// —áŠO : OCX ƒvƒƒpƒeƒB ƒy[ƒW‚Í•K‚¸ FALSE ‚ð•Ô‚µ‚Ü‚·B
+	// ä¾‹å¤– : OCX ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ ãƒšãƒ¼ã‚¸ã¯å¿…ãš FALSE ã‚’è¿”ã—ã¾ã™ã€‚
 }
 
 /*---------------------------------------------------------------
-	I—¹ˆ—
+	çµ‚äº†å‡¦ç†
 -----------------------------------------------------------------*/
 void CDlgPadConfig::OnOK()
 {
-	// TODO : ‚±‚±‚É“Á’è‚ÈƒR[ƒh‚ð’Ç‰Á‚·‚é‚©A‚à‚µ‚­‚ÍŠî–{ƒNƒ‰ƒX‚ðŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢B
+	// TODO : ã“ã“ã«ç‰¹å®šãªã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã‹ã€ã‚‚ã—ãã¯åŸºæœ¬ã‚¯ãƒ©ã‚¹ã‚’å‘¼ã³å‡ºã—ã¦ãã ã•ã„ã€‚
 
 	UpdateData(TRUE);
 	m_cfg.pad_button[0][m_crnt_pad] = m_buttonA;
@@ -137,11 +137,11 @@ void CDlgPadConfig::OnOK()
 }
 
 /*---------------------------------------------------------------
-	ƒpƒbƒh•ÏXŽžˆ—
+	ãƒ‘ãƒƒãƒ‰å¤‰æ›´æ™‚å‡¦ç†
 -----------------------------------------------------------------*/
 void CDlgPadConfig::OnCbnSelchangeComboPadindex()
 {
-	// TODO : ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰ ƒR[ƒh‚ð’Ç‰Á‚µ‚Ü‚·B
+	// TODO : ã“ã“ã«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é€šçŸ¥ãƒãƒ³ãƒ‰ãƒ© ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 	UpdateData(TRUE);
 
 	m_cfg.pad_button[0][m_crnt_pad] = m_buttonA;
@@ -160,7 +160,7 @@ void CDlgPadConfig::OnCbnSelchangeComboPadindex()
 
 void CDlgPadConfig::OnCancel()
 {
-	// TODO : ‚±‚±‚É“Á’è‚ÈƒR[ƒh‚ð’Ç‰Á‚·‚é‚©A‚à‚µ‚­‚ÍŠî–{ƒNƒ‰ƒX‚ðŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢B
+	// TODO : ã“ã“ã«ç‰¹å®šãªã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã‹ã€ã‚‚ã—ãã¯åŸºæœ¬ã‚¯ãƒ©ã‚¹ã‚’å‘¼ã³å‡ºã—ã¦ãã ã•ã„ã€‚
 	OnOK();
 //	CDialog::OnCancel();
 }

@@ -1,33 +1,33 @@
-
+ï»¿
 /*==============================================================
 
-	’Êí“®ì
+	é€šå¸¸å‹•ä½œ
 
 ================================================================*/
 #include "character.h"
 
 //*********************************************************
-//@@’Êí“®ì
+//ã€€ã€€é€šå¸¸å‹•ä½œ
 //*********************************************************
 
-void CCharacter::act_neutral()//ƒjƒ…[ƒgƒ‰ƒ‹
+void CCharacter::act_neutral()//ãƒ‹ãƒ¥ãƒ¼ãƒˆãƒ©ãƒ«
 {
 	pdat->cnow = CELL_NEUTRAL;
 }
 
-void CCharacter::act_crouch()//‚µ‚á‚ª‚İ
+void CCharacter::act_crouch()//ã—ã‚ƒãŒã¿
 {
 	pdat->cnow = CELL_CROUCH;
 }
 
-void CCharacter::act_rakka()//—‰º
+void CCharacter::act_rakka()//è½ä¸‹
 {
 	JiyuuRakka(2, TRUE, ACTID_NEUTRAL);
 
 	pdat->cnow = CELL_JAMP;
 }
 
-void CCharacter::act_tojyo()//“oê
+void CCharacter::act_tojyo()//ç™»å ´
 {
 	if(ccounter==0)PlayMySound(wave_tojyo);
 	if(pdat->counter==0)PlayMySound(4);
@@ -43,7 +43,7 @@ void CCharacter::act_tojyo()//“oê
 	}
 }
 
-void CCharacter::act_win()//Ÿ—˜
+void CCharacter::act_win()//å‹åˆ©
 {
 	if(ccounter==0)PlayMySound(wave_win);
 	if(pdat->counter==0){
@@ -63,7 +63,7 @@ void CCharacter::act_win()//Ÿ—˜
 		Message2System(MSGOBJ2SYS_WINPOSEEND,0);
 }
 
-void CCharacter::act_timeoverlose()//ƒ^ƒCƒ€ƒI[ƒo[
+void CCharacter::act_timeoverlose()//ã‚¿ã‚¤ãƒ ã‚ªãƒ¼ãƒãƒ¼
 {
 	if(pdat->counter < 10)pdat->cnow=CELL_WIN1;
 	else if(pdat->counter < 30)pdat->cnow=CELL_WIN2;
@@ -73,13 +73,13 @@ void CCharacter::act_timeoverlose()//ƒ^ƒCƒ€ƒI[ƒo[
 	else pdat->cnow=CELL_WIN7;
 }
 
-void CCharacter::act_walkf()//‘Oi
+void CCharacter::act_walkf()//å‰é€²
 {
 	pdat->cnow = CELL_WALK1+(pdat->counter/3)%6;
 	movex(3);
 }
 
-void CCharacter::act_walkb()//Œã‘Ş
+void CCharacter::act_walkb()//å¾Œé€€
 {
 	pdat->revx = TRUE;
 
@@ -87,13 +87,13 @@ void CCharacter::act_walkb()//Œã‘Ş
 	movex(-3);
 }
 
-void CCharacter::act_jamps()//ƒWƒƒƒ“ƒv—\”õ“®ì
+void CCharacter::act_jamps()//ã‚¸ãƒ£ãƒ³ãƒ—äºˆå‚™å‹•ä½œ
 {
 	if(pdat->counter >2)pdat->aid = ACTID_JAMPC;
 	pdat->cnow = CELL_JAMP;
 }
 
-void CCharacter::act_jampc()//‚’¼ƒWƒƒƒ“ƒv
+void CCharacter::act_jampc()//å‚ç›´ã‚¸ãƒ£ãƒ³ãƒ—
 {
 	if(pdat->counter == 0){pdat->vy=-30;pdat->vx=0;}
 
@@ -101,7 +101,7 @@ void CCharacter::act_jampc()//‚’¼ƒWƒƒƒ“ƒv
 	JiyuuRakka(2, TRUE);
 }
 
-void CCharacter::act_jampf()//‘OƒWƒƒƒ“ƒv
+void CCharacter::act_jampf()//å‰ã‚¸ãƒ£ãƒ³ãƒ—
 {
 	if(pdat->counter == 0){pdat->vy=-30;pdat->vx=6;}
 
@@ -109,7 +109,7 @@ void CCharacter::act_jampf()//‘OƒWƒƒƒ“ƒv
 	JiyuuRakka(2, TRUE);
 }
 
-void CCharacter::act_jampb()//ŒãƒWƒƒƒ“ƒv
+void CCharacter::act_jampb()//å¾Œã‚¸ãƒ£ãƒ³ãƒ—
 {
 	if(pdat->counter == 0){pdat->vy=-30;pdat->vx=-6;}
 
@@ -119,26 +119,26 @@ void CCharacter::act_jampb()//ŒãƒWƒƒƒ“ƒv
 
 
 //*********************************************************
-//@‚»‚Ì‘¼
+//ã€€ãã®ä»–
 //*********************************************************
 void CCharacter::act_taiki()
 {
 //	if(pdat->counter<2)pdat->cnow=CELL_;
 //	else pdat->cnow= CELL_;
-	CCharacterBase::act_taiki();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
+	CCharacterBase::act_taiki();//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åŸºæœ¬ã‚¯ãƒ©ã‚¹ã®å‹•ä½œã‚’æµç”¨
 }
 
 void CCharacter::act_koutai_out()
 {
 //	if(pdat->counter<2)pdat->cnow=CELL_;
 //	else pdat->cnow= CELL_;
-	CCharacterBase::act_koutai_out();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
+	CCharacterBase::act_koutai_out();//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åŸºæœ¬ã‚¯ãƒ©ã‚¹ã®å‹•ä½œã‚’æµç”¨
 }
 
 void CCharacter::act_koutai_in()
 {
 //	pdat->cnow= CELL_;
-	CCharacterBase::act_koutai_in();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
+	CCharacterBase::act_koutai_in();//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åŸºæœ¬ã‚¯ãƒ©ã‚¹ã®å‹•ä½œã‚’æµç”¨
 }
 
 void CCharacter::act_koutai()
@@ -146,21 +146,21 @@ void CCharacter::act_koutai()
 //	GOBJECT* pdat = GetGObject();
 
 //	pdat->cnow= CELL_;
-	CCharacterBase::act_koutai();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
+	CCharacterBase::act_koutai();//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åŸºæœ¬ã‚¯ãƒ©ã‚¹ã®å‹•ä½œã‚’æµç”¨
 }
 
 void CCharacter::act_koutai2()
 {
-/*	{//s“®‚ÌÅŒã‚É‚Í‚±‚ê‚ğs‚¤‚±‚Æ
+/*	{//è¡Œå‹•ã®æœ€å¾Œã«ã¯ã“ã‚Œã‚’è¡Œã†ã“ã¨
 		pdat->aid = ACTID_NEUTRAL;
 		Message2System(MSGOBJ2SYS_KOUTAIEND,0);
 	}*/	
-	CCharacterBase::act_koutai2();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
+	CCharacterBase::act_koutai2();//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åŸºæœ¬ã‚¯ãƒ©ã‚¹ã®å‹•ä½œã‚’æµç”¨
 }
 
 
 /*---------------------------------------------------------------------
-	ƒ_ƒbƒVƒ…
+	ãƒ€ãƒƒã‚·ãƒ¥
 -----------------------------------------------------------------------*/
 
 void CCharacter::act_dashf()
@@ -186,7 +186,7 @@ void CCharacter::act_dashb()
 
 
 /*---------------------------------------------------------------------
-	2’iƒWƒƒƒ“ƒv
+	2æ®µã‚¸ãƒ£ãƒ³ãƒ—
 -----------------------------------------------------------------------*/
 
 void CCharacter::act_2danjamps()

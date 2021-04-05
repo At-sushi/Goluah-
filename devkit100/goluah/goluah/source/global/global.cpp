@@ -1,8 +1,8 @@
-
+ï»¿
 /*==============================================================================
 
-    ƒOƒ[ƒoƒ‹ŠÖ”
-    ƒOƒ[ƒoƒ‹•Ï”@‚È‚Ç
+    ã‚°ãƒ­ãƒ¼ãƒãƒ«é–¢æ•°
+    ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã€€ãªã©
 
 ================================================================================*/
 
@@ -11,51 +11,51 @@
 #include "bigface_cache.h"
 
 /*------------------------------------------------------------------------------
-    ƒOƒ[ƒoƒ‹ƒIƒuƒWƒFƒNƒg(ƒNƒ‰ƒX)
+    ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ(ã‚¯ãƒ©ã‚¹)
 --------------------------------------------------------------------------------*/
 
-CDirectDraw				g_draw;			//•`‰æƒIƒuƒWƒFƒNƒg
-CDirectInput			g_input;		//“ü—ÍƒIƒuƒWƒFƒNƒg
-CDirectSound			g_sound;		//‰¹ŒnƒIƒuƒWƒFƒNƒg
-CDirectPlay				g_play;			//’ÊMƒIƒuƒWƒFƒNƒg
+CDirectDraw				g_draw;			//æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+CDirectInput			g_input;		//å…¥åŠ›ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+CDirectSound			g_sound;		//éŸ³ç³»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+CDirectPlay				g_play;			//é€šä¿¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
     
-CSystem					g_system;		//ƒVƒXƒeƒ€ƒIƒuƒWƒFƒNƒg
+CSystem					g_system;		//ã‚·ã‚¹ãƒ†ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 
-AkiGlobal				gbl;			//ƒOƒ[ƒoƒ‹ŠÖ”‚Ì“ü‚ê•¨
-CLog2File				g_log2file;		//ƒtƒ@ƒCƒ‹‚ÖƒƒO•Û‘¶ƒNƒ‰ƒX
-CExport					g_exp;			//DLL‚Ö‚ÌŠÖ”’ñ‹ŸƒNƒ‰ƒX
-CStoryList				g_storylist;	//ƒXƒg[ƒŠ[ŠÇ—ƒNƒ‰ƒX
-CStageList				g_stagelist;	//ƒXƒe[ƒWƒŠƒXƒgŠÇ—ƒNƒ‰ƒX
-CCharacterList			g_charlist;		//ƒLƒƒƒ‰ƒNƒ^[ƒŠƒXƒgŠÇ—ƒNƒ‰ƒX
-CBattleLoadInfo			g_battleinfo;	//‡î•ñƒNƒ‰ƒX
-CBattleResultInfo		g_battleresult;	//‡Œ‹‰Êî•ñƒNƒ‰ƒX
+AkiGlobal				gbl;			//ã‚°ãƒ­ãƒ¼ãƒãƒ«é–¢æ•°ã®å…¥ã‚Œç‰©
+CLog2File				g_log2file;		//ãƒ•ã‚¡ã‚¤ãƒ«ã¸ãƒ­ã‚°ä¿å­˜ã‚¯ãƒ©ã‚¹
+CExport					g_exp;			//DLLã¸ã®é–¢æ•°æä¾›ã‚¯ãƒ©ã‚¹
+CStoryList				g_storylist;	//ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ç®¡ç†ã‚¯ãƒ©ã‚¹
+CStageList				g_stagelist;	//ã‚¹ãƒ†ãƒ¼ã‚¸ãƒªã‚¹ãƒˆç®¡ç†ã‚¯ãƒ©ã‚¹
+CCharacterList			g_charlist;		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒªã‚¹ãƒˆç®¡ç†ã‚¯ãƒ©ã‚¹
+CBattleLoadInfo			g_battleinfo;	//è©¦åˆæƒ…å ±ã‚¯ãƒ©ã‚¹
+CBattleResultInfo		g_battleresult;	//è©¦åˆçµæœæƒ…å ±ã‚¯ãƒ©ã‚¹
 
 /*------------------------------------------------------------------------------
-    ƒOƒ[ƒoƒ‹•Ï”
+    ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 --------------------------------------------------------------------------------*/
-char AppName[]="Goluah!! (ß„Dß)";		//ƒAƒvƒŠƒP[ƒVƒ‡ƒ“–¼
-BOOL g_programexit=FALSE;				//ƒƒCƒ“ƒ‹[ƒvI—¹ƒtƒ‰ƒO
-RECT g_rcClient;						//window mode‚Ì‚Æ‚«‚É•K—v(?)
-int g_DISPLAYWIDTH=640;					//¶¬ƒEƒCƒ“ƒhƒEƒTƒCƒYi•j
-int g_DISPLAYHEIGHT=480;				//¶¬ƒEƒCƒ“ƒhƒEƒTƒCƒYi‚‚³j
-BOOL g_muki[MAXNUM_KEYI];				//ƒL[“ü—Í‚ÌŒü‚«
+char AppName[]="Goluah!! (ï¾ŸĞ”ï¾Ÿ)";		//ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³å
+BOOL g_programexit=FALSE;				//ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—çµ‚äº†ãƒ•ãƒ©ã‚°
+RECT g_rcClient;						//window modeã®ã¨ãã«å¿…è¦(?)
+int g_DISPLAYWIDTH=640;					//ç”Ÿæˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºï¼ˆå¹…ï¼‰
+int g_DISPLAYHEIGHT=480;				//ç”Ÿæˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºï¼ˆé«˜ã•ï¼‰
+BOOL g_muki[MAXNUM_KEYI];				//ã‚­ãƒ¼å…¥åŠ›ã®å‘ã
 
 
 
 
 /*==============================================================================
 
-    ƒOƒ[ƒoƒ‹ŠÖ”@(gbl.`)
+    ã‚°ãƒ­ãƒ¼ãƒãƒ«é–¢æ•°ã€€(gbl.ï½)
 
 ================================================================================*/
 
 
 /*
-    ƒEƒCƒ“ƒhƒE‚ğƒfƒBƒXƒvƒŒƒC’†S‚É‚à‚Á‚Ä‚¢‚­B
-    ƒ\[ƒX‚Íweb‚Å’²‚×‚Ä‚Ç‚Á‚©‚©‚çƒRƒs‚Á‚½‹L‰¯‚ª‚ ‚éB””N‘O‚ÉB
+    ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ä¸­å¿ƒã«ã‚‚ã£ã¦ã„ãã€‚
+    ã‚½ãƒ¼ã‚¹ã¯webã§èª¿ã¹ã¦ã©ã£ã‹ã‹ã‚‰ã‚³ãƒ”ã£ãŸè¨˜æ†¶ãŒã‚ã‚‹ã€‚æ•°å¹´å‰ã«ã€‚
 
-    @param hWnd ‘€ì‘ÎÛ‚ÌƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‹
-    @return ˆÓ–¡‚È‚¢‚İ‚½‚¢Bí‚É0B
+    @param hWnd æ“ä½œå¯¾è±¡ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«
+    @return æ„å‘³ãªã„ã¿ãŸã„ã€‚å¸¸ã«0ã€‚
 */
 int AkiGlobal::SetWinCenter(HWND hWnd)
 {
@@ -75,10 +75,10 @@ int AkiGlobal::SetWinCenter(HWND hWnd)
 
 
 /*
-    w’èƒtƒ@ƒCƒ‹‚ª‚ ‚é‚©‚Ç‚¤‚©’²‚×‚é
+    æŒ‡å®šãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã‚‹ã‹ã©ã†ã‹èª¿ã¹ã‚‹
 
-    @param path –{‘ÌÀsƒtƒ@ƒCƒ‹‚ğŠî€‚Æ‚µ‚½‘Š‘ÎƒpƒXB‚½‚Ô‚ñB
-    @return TRUE:‚ ‚é‚æ , FALSE:‚È‚¢‚æ
+    @param path æœ¬ä½“å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«ã‚’åŸºæº–ã¨ã—ãŸç›¸å¯¾ãƒ‘ã‚¹ã€‚ãŸã¶ã‚“ã€‚
+    @return TRUE:ã‚ã‚‹ã‚ˆ , FALSE:ãªã„ã‚ˆ
 */
 BOOL AkiGlobal::FileExist(char *path)
 {
@@ -97,89 +97,89 @@ BOOL AkiGlobal::FileExist(char *path)
 
 
 /*------------------------------------------------------------------------------
-    ‹éŒ`‚ÌÕ“ËŒŸo
+    çŸ©å½¢ã®è¡çªæ¤œå‡º
 
-    Syototu2RECTs	: ŠÖ”–{‘Ì
-    Syototu2RECTsA	: ‰ñ“]–³‚µ‚Ìê‡‚Ì‹éŒ`‚ÌÕ“ËŒŸo
-    Syototu2RECTsB	: ‰ñ“]‚Ì‚ ‚éê‡‚Ì‹éŒ`‚ÌÕ“ËŒŸo
-    getmiddle		: 4‚Â‚Ì’l‚Ì‚¤‚¿’†ŠÔ‚Ì“ñ‚Â‚ğŒ©‚Â‚¯‚é
-    GetKas_LINEvsRECT: ü‚Æ‹éŒ`‚ÌÕ“ËŒŸo
-    g2dt_rot , g2dt_tns , g2dt_mag , g2dt_rvx , g2dt_rvy : 2DÀ•W•ÏŠ·
+    Syototu2RECTs	: é–¢æ•°æœ¬ä½“
+    Syototu2RECTsA	: å›è»¢ç„¡ã—ã®å ´åˆã®çŸ©å½¢ã®è¡çªæ¤œå‡º
+    Syototu2RECTsB	: å›è»¢ã®ã‚ã‚‹å ´åˆã®çŸ©å½¢ã®è¡çªæ¤œå‡º
+    getmiddle		: 4ã¤ã®å€¤ã®ã†ã¡ä¸­é–“ã®äºŒã¤ã‚’è¦‹ã¤ã‘ã‚‹
+    GetKas_LINEvsRECT: ç·šã¨çŸ©å½¢ã®è¡çªæ¤œå‡º
+    g2dt_rot , g2dt_tns , g2dt_mag , g2dt_rvx , g2dt_rvy : 2Dåº§æ¨™å¤‰æ›
 
 --------------------------------------------------------------------------------*/
 
-//!2DÀ•W•ÏŠ·
-inline void g2dt_rot(MY2DVECTOR *v,int rot)//‰ñ“]
+//!2Dåº§æ¨™å¤‰æ›
+inline void g2dt_rot(MY2DVECTOR *v,int rot)//å›è»¢
 {
     double ox = v->x;
     double oy = v->y;
     v->x = ox*cos(D3DXToRadian(rot)) - oy*sin(D3DXToRadian(rot));
     v->y = oy*cos(D3DXToRadian(rot)) + ox*sin(D3DXToRadian(rot));
 }
-inline void g2dt_tns(MY2DVECTOR *v,double tx,double ty)//!< •½sˆÚ“®
+inline void g2dt_tns(MY2DVECTOR *v,double tx,double ty)//!< å¹³è¡Œç§»å‹•
     {v->x += tx;v->y += ty;}
-inline void g2dt_mag(MY2DVECTOR *v,double mx,double my)//!< Šg‘å
+inline void g2dt_mag(MY2DVECTOR *v,double mx,double my)//!< æ‹¡å¤§
     {v->x *= mx;v->y *= my;}
 inline void g2dt_rvx(MY2DVECTOR *v){v->x *= (-1);}
 inline void g2dt_rvy(MY2DVECTOR *v){v->y *= (-1);}
 
 /*!
-    @brief ‰ñ“]–³‚µ‚Ìê‡‚Ì‹éŒ`‚ÌÕ“ËŒŸo
+    @brief å›è»¢ç„¡ã—ã®å ´åˆã®çŸ©å½¢ã®è¡çªæ¤œå‡º
     @sa AkiGlobal::Syototu2RECTs
-    @param r1 1P‘¤”»’è‹éŒ`
-    @param r2 2P‘¤”»’è‹éŒ`
-    @param point [out] Õ“Ëƒ|ƒCƒ“ƒg‚ğó‚¯æ‚é‚½‚ß‚Ìƒ|ƒCƒ“ƒ^
-    @param gx1 1P‘¤dS(x)
-    @param gy1 1P‘¤dS(y)
-    @param rx1 1P‘¤X”½“]ƒtƒ‰ƒO
-    @param ry1 1P‘¤Y”½“]ƒtƒ‰ƒO
-    @param tx1 1P‘¤•½sˆÚ“®—ÊX
-    @param ty1 1P‘¤•½sˆÚ“®—ÊY
-    @param mx1 1P‘¤XŠg‘å—¦
-    @param my1 1P‘¤YŠg‘å—¦
-    @param gx2 2P‘¤dS(x)
-    @param gy2 2P‘¤dS(y)
-    @param rx2 2P‘¤X”½“]ƒtƒ‰ƒO
-    @param ry2 2P‘¤Y”½“]ƒtƒ‰ƒO
-    @param tx2 2P‘¤•½sˆÚ“®—ÊX
-    @param ty2 2P‘¤•½sˆÚ“®—ÊY
-    @param mx2 2P‘¤XŠg‘å—¦
-    @param my2 2P‘¤YŠg‘å—¦
-    @param magmode1 1P‘¤Šg‘åƒ‚[ƒh
-    @param magmode2 2P‘¤Šg‘åƒ‚[ƒh
+    @param r1 1På´åˆ¤å®šçŸ©å½¢
+    @param r2 2På´åˆ¤å®šçŸ©å½¢
+    @param point [out] è¡çªãƒã‚¤ãƒ³ãƒˆã‚’å—ã‘å–ã‚‹ãŸã‚ã®ãƒã‚¤ãƒ³ã‚¿
+    @param gx1 1På´é‡å¿ƒ(x)
+    @param gy1 1På´é‡å¿ƒ(y)
+    @param rx1 1På´Xåè»¢ãƒ•ãƒ©ã‚°
+    @param ry1 1På´Yåè»¢ãƒ•ãƒ©ã‚°
+    @param tx1 1På´å¹³è¡Œç§»å‹•é‡X
+    @param ty1 1På´å¹³è¡Œç§»å‹•é‡Y
+    @param mx1 1På´Xæ‹¡å¤§ç‡
+    @param my1 1På´Yæ‹¡å¤§ç‡
+    @param gx2 2På´é‡å¿ƒ(x)
+    @param gy2 2På´é‡å¿ƒ(y)
+    @param rx2 2På´Xåè»¢ãƒ•ãƒ©ã‚°
+    @param ry2 2På´Yåè»¢ãƒ•ãƒ©ã‚°
+    @param tx2 2På´å¹³è¡Œç§»å‹•é‡X
+    @param ty2 2På´å¹³è¡Œç§»å‹•é‡Y
+    @param mx2 2På´Xæ‹¡å¤§ç‡
+    @param my2 2På´Yæ‹¡å¤§ç‡
+    @param magmode1 1På´æ‹¡å¤§ãƒ¢ãƒ¼ãƒ‰
+    @param magmode2 2På´æ‹¡å¤§ãƒ¢ãƒ¼ãƒ‰
 */
 BOOL Syototu2RECTsA(RECT r1,RECT r2,MY2DVECTOR *point,
         int gx1,int gy1,BOOL rx1,BOOL ry1,double tx1,double ty1,double mx1,double my1,
         int gx2,int gy2,BOOL rx2,BOOL ry2,double tx2,double ty2,double mx2,double my2,UINT magmode1,UINT magmode2);
 
 /*!
-    @brief ‰ñ“]–³‚µ‚Ìê‡‚Ì‹éŒ`‚ÌÕ“ËŒŸo
-    ‹éŒ`–ÊÏ‚ª1P‘¤<2P‘¤‚É‚È‚é‚æ‚¤‚É‚·‚é‚±‚Æ
+    @brief å›è»¢ç„¡ã—ã®å ´åˆã®çŸ©å½¢ã®è¡çªæ¤œå‡º
+    çŸ©å½¢é¢ç©ãŒ1På´<2På´ã«ãªã‚‹ã‚ˆã†ã«ã™ã‚‹ã“ã¨
 
     @sa AkiGlobal::Syototu2RECTs
-    @param r1 1P‘¤”»’è‹éŒ`
-    @param r2 2P‘¤”»’è‹éŒ`
-    @param point [out] Õ“Ëƒ|ƒCƒ“ƒg‚ğó‚¯æ‚é‚½‚ß‚Ìƒ|ƒCƒ“ƒ^
-    @param gx1 1P‘¤dS(x)
-    @param gy1 1P‘¤dS(y)
-    @param rx1 1P‘¤X”½“]ƒtƒ‰ƒO
-    @param ry1 1P‘¤Y”½“]ƒtƒ‰ƒO
-    @param rot1 1P‘¤‰ñ“]Šp(degree)
-    @param tx1 1P‘¤•½sˆÚ“®—ÊX
-    @param ty1 1P‘¤•½sˆÚ“®—ÊY
-    @param mx1 1P‘¤XŠg‘å—¦
-    @param my1 1P‘¤YŠg‘å—¦
-    @param gx2 2P‘¤dS(x)
-    @param gy2 2P‘¤dS(y)
-    @param rx2 2P‘¤X”½“]ƒtƒ‰ƒO
-    @param ry2 2P‘¤Y”½“]ƒtƒ‰ƒO
-    @param rot2 2P‘¤‰ñ“]Šp(degree)
-    @param tx2 2P‘¤•½sˆÚ“®—ÊX
-    @param ty2 2P‘¤•½sˆÚ“®—ÊY
-    @param mx2 2P‘¤XŠg‘å—¦
-    @param my2 2P‘¤YŠg‘å—¦
-    @param magmode1 1P‘¤Šg‘åƒ‚[ƒh
-    @param magmode2 2P‘¤Šg‘åƒ‚[ƒh
+    @param r1 1På´åˆ¤å®šçŸ©å½¢
+    @param r2 2På´åˆ¤å®šçŸ©å½¢
+    @param point [out] è¡çªãƒã‚¤ãƒ³ãƒˆã‚’å—ã‘å–ã‚‹ãŸã‚ã®ãƒã‚¤ãƒ³ã‚¿
+    @param gx1 1På´é‡å¿ƒ(x)
+    @param gy1 1På´é‡å¿ƒ(y)
+    @param rx1 1På´Xåè»¢ãƒ•ãƒ©ã‚°
+    @param ry1 1På´Yåè»¢ãƒ•ãƒ©ã‚°
+    @param rot1 1På´å›è»¢è§’(degree)
+    @param tx1 1På´å¹³è¡Œç§»å‹•é‡X
+    @param ty1 1På´å¹³è¡Œç§»å‹•é‡Y
+    @param mx1 1På´Xæ‹¡å¤§ç‡
+    @param my1 1På´Yæ‹¡å¤§ç‡
+    @param gx2 2På´é‡å¿ƒ(x)
+    @param gy2 2På´é‡å¿ƒ(y)
+    @param rx2 2På´Xåè»¢ãƒ•ãƒ©ã‚°
+    @param ry2 2På´Yåè»¢ãƒ•ãƒ©ã‚°
+    @param rot2 2På´å›è»¢è§’(degree)
+    @param tx2 2På´å¹³è¡Œç§»å‹•é‡X
+    @param ty2 2På´å¹³è¡Œç§»å‹•é‡Y
+    @param mx2 2På´Xæ‹¡å¤§ç‡
+    @param my2 2På´Yæ‹¡å¤§ç‡
+    @param magmode1 1På´æ‹¡å¤§ãƒ¢ãƒ¼ãƒ‰
+    @param magmode2 2På´æ‹¡å¤§ãƒ¢ãƒ¼ãƒ‰
 */
 BOOL Syototu2RECTsB(RECT r1,RECT r2,MY2DVECTOR *point,
         int gx1,int gy1,BOOL rx1,BOOL ry1,int rot1,double tx1,double ty1,double mx1,double my1,
@@ -188,34 +188,34 @@ void getmiddle(int a,int b,int c,int d,long *m1,long *m2);
 DWORD GetKas_LINEvsRECT(MY2DVECTOR *kaspoint,MY2DVECTOR &line_start,MY2DVECTOR &line_end,MY2DVECTOR rect_pos[4]);
 
 /*!
-    @brief ‹éŒ`‚ÌÕ“ËŒŸo
+    @brief çŸ©å½¢ã®è¡çªæ¤œå‡º
 
-    ÀÛ‚Ìˆ—‚Í‰ñ“]‚Ì—L–³‚Å Syototu2RECTsA ‚Æ Syototu2RECTsB ‚ÉU‚Á‚Ä‚¢‚éB
+    å®Ÿéš›ã®å‡¦ç†ã¯å›è»¢ã®æœ‰ç„¡ã§ Syototu2RECTsA ã¨ Syototu2RECTsB ã«æŒ¯ã£ã¦ã„ã‚‹ã€‚
 
     @sa AkiGlobal::Syototu2RECTs
-    @param r1 1P‘¤”»’è‹éŒ`
-    @param r2 2P‘¤”»’è‹éŒ`
-    @param point [out] Õ“Ëƒ|ƒCƒ“ƒg‚ğó‚¯æ‚é‚½‚ß‚Ìƒ|ƒCƒ“ƒ^
-    @param gx1 1P‘¤dS(x)
-    @param gy1 1P‘¤dS(y)
-    @param rx1 1P‘¤X”½“]ƒtƒ‰ƒO
-    @param ry1 1P‘¤Y”½“]ƒtƒ‰ƒO
-    @param rot1 1P‘¤‰ñ“]Šp(degree)
-    @param tx1 1P‘¤•½sˆÚ“®—ÊX
-    @param ty1 1P‘¤•½sˆÚ“®—ÊY
-    @param mx1 1P‘¤XŠg‘å—¦
-    @param my1 1P‘¤YŠg‘å—¦
-    @param gx2 2P‘¤dS(x)
-    @param gy2 2P‘¤dS(y)
-    @param rx2 2P‘¤X”½“]ƒtƒ‰ƒO
-    @param ry2 2P‘¤Y”½“]ƒtƒ‰ƒO
-    @param rot2 2P‘¤‰ñ“]Šp(degree)
-    @param tx2 2P‘¤•½sˆÚ“®—ÊX
-    @param ty2 2P‘¤•½sˆÚ“®—ÊY
-    @param mx2 2P‘¤XŠg‘å—¦
-    @param my2 2P‘¤YŠg‘å—¦
-    @param magmode1 1P‘¤Šg‘åƒ‚[ƒh
-    @param magmode2 2P‘¤Šg‘åƒ‚[ƒh
+    @param r1 1På´åˆ¤å®šçŸ©å½¢
+    @param r2 2På´åˆ¤å®šçŸ©å½¢
+    @param point [out] è¡çªãƒã‚¤ãƒ³ãƒˆã‚’å—ã‘å–ã‚‹ãŸã‚ã®ãƒã‚¤ãƒ³ã‚¿
+    @param gx1 1På´é‡å¿ƒ(x)
+    @param gy1 1På´é‡å¿ƒ(y)
+    @param rx1 1På´Xåè»¢ãƒ•ãƒ©ã‚°
+    @param ry1 1På´Yåè»¢ãƒ•ãƒ©ã‚°
+    @param rot1 1På´å›è»¢è§’(degree)
+    @param tx1 1På´å¹³è¡Œç§»å‹•é‡X
+    @param ty1 1På´å¹³è¡Œç§»å‹•é‡Y
+    @param mx1 1På´Xæ‹¡å¤§ç‡
+    @param my1 1På´Yæ‹¡å¤§ç‡
+    @param gx2 2På´é‡å¿ƒ(x)
+    @param gy2 2På´é‡å¿ƒ(y)
+    @param rx2 2På´Xåè»¢ãƒ•ãƒ©ã‚°
+    @param ry2 2På´Yåè»¢ãƒ•ãƒ©ã‚°
+    @param rot2 2På´å›è»¢è§’(degree)
+    @param tx2 2På´å¹³è¡Œç§»å‹•é‡X
+    @param ty2 2På´å¹³è¡Œç§»å‹•é‡Y
+    @param mx2 2På´Xæ‹¡å¤§ç‡
+    @param my2 2På´Yæ‹¡å¤§ç‡
+    @param magmode1 1På´æ‹¡å¤§ãƒ¢ãƒ¼ãƒ‰
+    @param magmode2 2På´æ‹¡å¤§ãƒ¢ãƒ¼ãƒ‰
 */
 BOOL AkiGlobal::Syototu2RECTs(RECT r1,RECT r2,MY2DVECTOR *point,
         int gx1,int gy1,BOOL rx1,BOOL ry1,int rot1,double tx1,double ty1,double mx1,double my1,
@@ -223,12 +223,12 @@ BOOL AkiGlobal::Syototu2RECTs(RECT r1,RECT r2,MY2DVECTOR *point,
         UINT magmode1,UINT magmode2
         )
 {
-    //–ÊÏ‚ª0‚È‚ç–å‘O•¥‚¢
+    //é¢ç©ãŒ0ãªã‚‰é–€å‰æ‰•ã„
     if(r1.left==r1.right || r1.top==r1.bottom)return(FALSE);
     if(r2.left==r2.right || r2.top==r2.bottom)return(FALSE);
     if(mx1==0 || my1==0 || mx2==0 || my2==0)return(FALSE);
 
-    try{//‚½‚Ü‚É0œZ—áŠO‚ğ‹N‚±‚·‚ç‚µ‚¢
+    try{//ãŸã¾ã«0é™¤ç®—ä¾‹å¤–ã‚’èµ·ã“ã™ã‚‰ã—ã„
 
         double menseki[2];
 
@@ -236,9 +236,9 @@ BOOL AkiGlobal::Syototu2RECTs(RECT r1,RECT r2,MY2DVECTOR *point,
             return(Syototu2RECTsA(r1,r2,point,gx2,gy2,rx1,ry1,tx1,ty1,mx1,my1,gx2,gy2,rx2,ry2,tx2,ty2,mx2,my2,magmode1,magmode2));
         }
         else{
-            //‚X‚O“x‚É‚È‚Á‚Ä‚µ‚Ü‚¤‚Æ‚¢‚ë‚¢‚ë‚Ü‚¸‚¢‚Ì‚ÅA­‚µ‚²‚Ü‚©‚·
+            //ï¼™ï¼åº¦ã«ãªã£ã¦ã—ã¾ã†ã¨ã„ã‚ã„ã‚ã¾ãšã„ã®ã§ã€å°‘ã—ã”ã¾ã‹ã™
             if((rot1+rot2)%90==0)rot1+=1;
-            //–ÊÏ”äŠr
+            //é¢ç©æ¯”è¼ƒ
             menseki[0]=(r1.right - r1.left)*(r1.bottom - r1.top);
             menseki[0]= menseki[0]*menseki[0];
             menseki[1]=(r2.right - r2.left)*(r2.bottom - r2.top);
@@ -253,7 +253,7 @@ BOOL AkiGlobal::Syototu2RECTs(RECT r1,RECT r2,MY2DVECTOR *point,
     }
 }
 
-//‰ñ“]‚ª‚È‚¢ê‡A2‚Â‚Ì‹éŒ`‚ÌÕ“Ë‚ğŒŸo‚·‚é
+//å›è»¢ãŒãªã„å ´åˆã€2ã¤ã®çŸ©å½¢ã®è¡çªã‚’æ¤œå‡ºã™ã‚‹
 BOOL Syototu2RECTsA(RECT r1,RECT r2,MY2DVECTOR *point,
         int gx1,int gy1,BOOL rx1,BOOL ry1,double tx1,double ty1,double mx1,double my1,
         int gx2,int gy2,BOOL rx2,BOOL ry2,double tx2,double ty2,double mx2,double my2,
@@ -261,7 +261,7 @@ BOOL Syototu2RECTsA(RECT r1,RECT r2,MY2DVECTOR *point,
 {
     if(magmode1==1)
     {
-        // x/yŠg‘å
+        // x/yæ‹¡å¤§
         r1.left		=(long)(r1.left  *mx1);
         r1.right	=(long)(r1.right *mx1);
         r1.top		=(long)(r1.top   *my1);
@@ -275,7 +275,7 @@ BOOL Syototu2RECTsA(RECT r1,RECT r2,MY2DVECTOR *point,
         r2.bottom	=(long)(r2.bottom*my2);
     }
 
-    //dS‚É‚Á‚Ä‚¢‚­
+    //é‡å¿ƒã«æŒã£ã¦ã„ã
     r1.left		-= gx1;
     r1.right	-= gx1;
     r1.top		-= gy1;
@@ -285,7 +285,7 @@ BOOL Syototu2RECTsA(RECT r1,RECT r2,MY2DVECTOR *point,
     r2.top		-= gy2;
     r2.bottom	-= gy2;
 
-    //y”½“]
+    //yåè»¢
     if(ry1){
         r1.top*=-1;
         r1.bottom*=-1;
@@ -298,7 +298,7 @@ BOOL Syototu2RECTsA(RECT r1,RECT r2,MY2DVECTOR *point,
     
     if(magmode1==0)
     {
-        // x/yŠg‘å
+        // x/yæ‹¡å¤§
         r1.left		=(long)(r1.left  *mx1);
         r1.right	=(long)(r1.right *mx1);
         r1.top		=(long)(r1.top   *my1);
@@ -312,7 +312,7 @@ BOOL Syototu2RECTsA(RECT r1,RECT r2,MY2DVECTOR *point,
         r2.bottom	=(long)(r2.bottom*my2);
     }
 
-    //dS‚©‚çŒ³‚É–ß‚·
+    //é‡å¿ƒã‹ã‚‰å…ƒã«æˆ»ã™
     r1.left		+= gx1;
     r1.right	+= gx1;
     r1.top		+= gy1;
@@ -322,7 +322,7 @@ BOOL Syototu2RECTsA(RECT r1,RECT r2,MY2DVECTOR *point,
     r2.top		+= gy2;
     r2.bottom	+= gy2;
 
-    // x”½“]
+    // xåè»¢
     if(rx1){
         r1.left*=-1;
         r1.right*=-1;
@@ -332,7 +332,7 @@ BOOL Syototu2RECTsA(RECT r1,RECT r2,MY2DVECTOR *point,
         r2.right*=-1;
     }
 
-    //ˆÚ“®
+    //ç§»å‹•
     r1.left		= (long)(r1.left  +tx1);
     r1.right	= (long)(r1.right +tx1);
     r1.top		= (long)(r1.top   +ty1);
@@ -342,7 +342,7 @@ BOOL Syototu2RECTsA(RECT r1,RECT r2,MY2DVECTOR *point,
     r2.top		= (long)(r2.top   +ty2);
     r2.bottom	= (long)(r2.bottom+ty2);
 
-    //’l‚ğ³‚µ‚­‚·‚é
+    //å€¤ã‚’æ­£ã—ãã™ã‚‹
     int tmp;
     if(r1.left > r1.right){tmp=r1.left;r1.left=r1.right;r1.right=tmp;}
     if(r2.left > r2.right){tmp=r2.left;r2.left=r2.right;r2.right=tmp;}
@@ -366,67 +366,67 @@ BOOL Syototu2RECTsA(RECT r1,RECT r2,MY2DVECTOR *point,
     return(TRUE);
 }
 
-void getmiddle(int a,int b,int c,int d,long *m1,long *m2)//!< 4‚Â‚Ì’l‚Ì‚¤‚¿’†ŠÔ‚Ì“ñ‚Â‚ğŒ©‚Â‚¯‚é
+void getmiddle(int a,int b,int c,int d,long *m1,long *m2)//!< 4ã¤ã®å€¤ã®ã†ã¡ä¸­é–“ã®äºŒã¤ã‚’è¦‹ã¤ã‘ã‚‹
 {
-    if(a>b && a>c && a>d){//a‚ªÅ‘å
-        if(b<c && b<d){//b‚ªÅ¬
+    if(a>b && a>c && a>d){//aãŒæœ€å¤§
+        if(b<c && b<d){//bãŒæœ€å°
             if(c<d){*m1=c;*m2=d;}
             else{*m1=d;*m2=c;}
         }
-        else if(c<d){//c‚ªÅ¬
+        else if(c<d){//cãŒæœ€å°
             if(b<d){*m1=b;*m2=d;}
             else{*m1=d;*m2=b;}
         }
-        else{//d‚ªÅ¬
+        else{//dãŒæœ€å°
             if(b<c){*m1=b;*m2=c;}
             else{*m1=c;*m2=b;}
         }
     }
-    else if(b>c && b>d){//b‚ªÅ‘å
-        if(a<c && a<d){//a‚ªÅ¬
+    else if(b>c && b>d){//bãŒæœ€å¤§
+        if(a<c && a<d){//aãŒæœ€å°
             if(c<d){*m1=c;*m2=d;}
             else{*m1=d;*m2=c;}
         }
-        else if(c<d){//c‚ªÅ¬
+        else if(c<d){//cãŒæœ€å°
             if(a<d){*m1=a;*m2=d;}
             else{*m1=d;*m2=a;}
         }
-        else{//d‚ªÅ¬
+        else{//dãŒæœ€å°
             if(a<c){*m1=a;*m2=c;}
             else{*m1=c;*m2=a;}
         }
     }
-    else if(c>d){//c‚ªÅ‘å
-        if(b<a && b<d){//b‚ªÅ¬
+    else if(c>d){//cãŒæœ€å¤§
+        if(b<a && b<d){//bãŒæœ€å°
             if(a<d){*m1=a;*m2=d;}
             else{*m1=d;*m2=a;}
         }
-        else if(a<d){//a‚ªÅ¬
+        else if(a<d){//aãŒæœ€å°
             if(b<d){*m1=b;*m2=d;}
             else{*m1=d;*m2=b;}
         }
-        else{//d‚ªÅ¬
+        else{//dãŒæœ€å°
             if(b<a){*m1=b;*m2=a;}
             else{*m1=a;*m2=b;}
         }
     }
-    else {//d‚ªÅ‘å
-        if(b<c && b<a){//b‚ªÅ¬
+    else {//dãŒæœ€å¤§
+        if(b<c && b<a){//bãŒæœ€å°
             if(c<d){*m1=c;*m2=a;}
             else{*m1=a;*m2=c;}
         }
-        else if(c<a){//c‚ªÅ¬
+        else if(c<a){//cãŒæœ€å°
             if(b<a){*m1=b;*m2=a;}
             else{*m1=a;*m2=b;}
         }
-        else{//a‚ªÅ¬
+        else{//aãŒæœ€å°
             if(b<c){*m1=b;*m2=c;}
             else{*m1=c;*m2=b;}
         }
     }
 }
 
-//‰ñ“]‚à‚¿‚á‚ñ‚Æl—¶‚µ‚Ä‹éŒ`‚ÌÕ“Ë‚ğ”»’è‚·‚é / r1‚Ì‚Ù‚¤‚ªr2‚æ‚è‚¿‚¢‚³‚¢
+//å›è»¢ã‚‚ã¡ã‚ƒã‚“ã¨è€ƒæ…®ã—ã¦çŸ©å½¢ã®è¡çªã‚’åˆ¤å®šã™ã‚‹ / r1ã®ã»ã†ãŒr2ã‚ˆã‚Šã¡ã„ã•ã„
 BOOL Syototu2RECTsB(RECT r1,RECT r2,MY2DVECTOR *point,
         int gx1,int gy1,BOOL rx1,BOOL ry1,int rot1,double tx1,double ty1,double mx1,double my1,
         int gx2,int gy2,BOOL rx2,BOOL ry2,int rot2,double tx2,double ty2,double mx2,double my2,
@@ -434,68 +434,68 @@ BOOL Syototu2RECTsB(RECT r1,RECT r2,MY2DVECTOR *point,
 {
     if (!point) return FALSE;
     
-    //top<bottom , left<right‚ğ•ÛØ
+    //top<bottom , left<rightã‚’ä¿è¨¼
     int tmp;
     if(r2.left > r2.right){tmp=r2.left;r2.left=r2.right;r2.right=tmp;}
     if(r2.top > r2.bottom){tmp=r2.top;r2.top=r2.bottom;r2.bottom=tmp;}
 
     MY2DVECTOR mv[2][4];
-    //¶ã
+    //å·¦ä¸Š
     mv[0][0].x = r1.left;
     mv[0][0].y = r1.top;
     mv[1][0].x = r2.left;
     mv[1][0].y = r2.top;
-    //‰Eã
+    //å³ä¸Š
     mv[0][1].x = r1.right;
     mv[0][1].y = r1.top;
     mv[1][1].x = r2.right;
     mv[1][1].y = r2.top;
-    //¶‰º
+    //å·¦ä¸‹
     mv[0][2].x = r1.left;
     mv[0][2].y = r1.bottom;
     mv[1][2].x = r2.left;
     mv[1][2].y = r2.bottom;
-    //‰E‰º
+    //å³ä¸‹
     mv[0][3].x = r1.right;
     mv[0][3].y = r1.bottom;
     mv[1][3].x = r2.right;
     mv[1][3].y = r2.bottom;
 
-    //r1‚ğr2‚ÌÀ•WŒn‚É•ÏŠ·‚·‚é
+    //r1ã‚’r2ã®åº§æ¨™ç³»ã«å¤‰æ›ã™ã‚‹
     int i;
     for(i=0;i<4;i++){
         if(magmode1==1){
-            g2dt_mag(&mv[0][i],mx1,my1);//Šg‘åi‘«Œ³’†Sj
+            g2dt_mag(&mv[0][i],mx1,my1);//æ‹¡å¤§ï¼ˆè¶³å…ƒä¸­å¿ƒï¼‰
         }
-        g2dt_tns(&mv[0][i],gx1,gx1);//dSÀ•W‚É‚Á‚Ä‚¢‚­
-        if(ry1)g2dt_rvy(&mv[0][i]);//y”½“]
+        g2dt_tns(&mv[0][i],gx1,gx1);//é‡å¿ƒåº§æ¨™ã«æŒã£ã¦ã„ã
+        if(ry1)g2dt_rvy(&mv[0][i]);//yåè»¢
         if(magmode1==0){
-            g2dt_mag(&mv[0][i],mx1,my1);//Šg‘åidS’†Sj
+            g2dt_mag(&mv[0][i],mx1,my1);//æ‹¡å¤§ï¼ˆé‡å¿ƒä¸­å¿ƒï¼‰
         }
-        g2dt_rot(&mv[0][i],rot1);//‰ñ“]
-        g2dt_tns(&mv[0][i],-gx1,-gx1);//dS–ß‚µ
-        if(rx1)g2dt_rvx(&mv[0][i]);//x”½“]
+        g2dt_rot(&mv[0][i],rot1);//å›è»¢
+        g2dt_tns(&mv[0][i],-gx1,-gx1);//é‡å¿ƒæˆ»ã—
+        if(rx1)g2dt_rvx(&mv[0][i]);//xåè»¢
         g2dt_tns(&mv[0][i],tx1,ty1);
 
         //here , the world
         
         g2dt_tns(&mv[0][i],-tx2,-ty2);
-        if(rx2)g2dt_rvx(&mv[0][i]);//x”½“]
-        g2dt_tns(&mv[0][i],gx2,gx2);//dS–ß‚µ
-        g2dt_rot(&mv[0][i],-rot2);//‰ñ“]
+        if(rx2)g2dt_rvx(&mv[0][i]);//xåè»¢
+        g2dt_tns(&mv[0][i],gx2,gx2);//é‡å¿ƒæˆ»ã—
+        g2dt_rot(&mv[0][i],-rot2);//å›è»¢
         if(magmode2==0){
-            g2dt_mag(&mv[0][i],1.0/mx2,1.0/my2);//Šg‘å(dS’†S)
+            g2dt_mag(&mv[0][i],1.0/mx2,1.0/my2);//æ‹¡å¤§(é‡å¿ƒä¸­å¿ƒ)
         }
-        if(ry2)g2dt_rvy(&mv[0][i]);//y”½“]
-        g2dt_tns(&mv[0][i],-gx2,-gx2);//dSÀ•W‚É‚Á‚Ä‚¢‚­
+        if(ry2)g2dt_rvy(&mv[0][i]);//yåè»¢
+        g2dt_tns(&mv[0][i],-gx2,-gx2);//é‡å¿ƒåº§æ¨™ã«æŒã£ã¦ã„ã
         if(magmode2==1){
-            g2dt_mag(&mv[0][i],1.0/mx2,1.0/my2);//Šg‘å
+            g2dt_mag(&mv[0][i],1.0/mx2,1.0/my2);//æ‹¡å¤§
         }
     }
 
-    int num_kas_line=0;//Œğ‚í‚Á‚½ƒ‰ƒCƒ“‚Ì”
-    MY2DVECTOR kas_points[8];//Œğ‚í‚Á‚½“_‚ÌƒŠƒXƒgB‘½•ªÅ‘å8“_
-    //4•Ó“¯m‚ÌŒğ‚í‚è‚ğo‚·ƒbI
+    int num_kas_line=0;//äº¤ã‚ã£ãŸãƒ©ã‚¤ãƒ³ã®æ•°
+    MY2DVECTOR kas_points[8];//äº¤ã‚ã£ãŸç‚¹ã®ãƒªã‚¹ãƒˆã€‚å¤šåˆ†æœ€å¤§8ç‚¹
+    //4è¾ºåŒå£«ã®äº¤ã‚ã‚Šã‚’å‡ºã™ãƒƒï¼
     num_kas_line+=GetKas_LINEvsRECT(
         &kas_points[num_kas_line],
         mv[0][0],mv[0][1],
@@ -517,7 +517,7 @@ BOOL Syototu2RECTsB(RECT r1,RECT r2,MY2DVECTOR *point,
         mv[1]
         );
 
-    if(num_kas_line >0){//Œğ‚í‚Á‚Ä‚éƒDƒDƒDƒDƒEƒD
+    if(num_kas_line >0){//äº¤ã‚ã£ã¦ã‚‹ã‚¥ã‚¥ã‚¥ã‚¥ã‚¦ã‚¥
         point->x =0;
         point->y =0;
         for(tmp=0;tmp<num_kas_line;tmp++){
@@ -526,20 +526,20 @@ BOOL Syototu2RECTsB(RECT r1,RECT r2,MY2DVECTOR *point,
         }
         point->x /= num_kas_line;
         point->y /= num_kas_line;
-        //Õ“Ë‚µ‚½“_‚ğƒ[ƒ‹ƒhÀ•WŒn‚É•ÏŠ·‚·‚é
+        //è¡çªã—ãŸç‚¹ã‚’ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ã«å¤‰æ›ã™ã‚‹
         //here , the world
-        g2dt_tns(point,gx2,gx2);//dSÀ•W‚É‚Á‚Ä‚¢‚­
-        if(ry2)g2dt_rvy(point);//y”½“]
-        g2dt_mag(point,mx2,my2);//Šg‘å
-        g2dt_rot(point,rot2);//‰ñ“]
-        g2dt_tns(point,-gx2,-gx2);//dS–ß‚µ
-        if(rx2)g2dt_rvx(point);//x”½“]
+        g2dt_tns(point,gx2,gx2);//é‡å¿ƒåº§æ¨™ã«æŒã£ã¦ã„ã
+        if(ry2)g2dt_rvy(point);//yåè»¢
+        g2dt_mag(point,mx2,my2);//æ‹¡å¤§
+        g2dt_rot(point,rot2);//å›è»¢
+        g2dt_tns(point,-gx2,-gx2);//é‡å¿ƒæˆ»ã—
+        if(rx2)g2dt_rvx(point);//xåè»¢
         g2dt_tns(point,tx2,ty2);
 
         return(TRUE);
     }
 
-    //ˆê•û‚Ì‹éŒ`‚ª‚à‚¤ˆê•û‚Ì‹éŒ`‚Ì“à•”‚É‚ ‚é‚©H
+    //ä¸€æ–¹ã®çŸ©å½¢ãŒã‚‚ã†ä¸€æ–¹ã®çŸ©å½¢ã®å†…éƒ¨ã«ã‚ã‚‹ã‹ï¼Ÿ
     if( mv[0][0].x > mv[1][2].x && mv[0][0].x < mv[1][1].x ){
         if( mv[0][0].y > mv[1][1].y && mv[0][0].y < mv[1][2].y ){
             if( mv[0][1].x > mv[1][2].x && mv[0][1].x < mv[1][1].x ){
@@ -548,7 +548,7 @@ BOOL Syototu2RECTsB(RECT r1,RECT r2,MY2DVECTOR *point,
                         if( mv[0][2].y > mv[1][1].y && mv[0][2].y < mv[1][2].y ){
                             if( mv[0][3].x > mv[1][2].x && mv[0][3].x < mv[1][1].x ){
                                 if( mv[0][3].y > mv[1][1].y && mv[0][3].y < mv[1][2].y ){
-                                    //“à•”‚É‚ ‚éƒDƒDƒDƒDƒDƒbƒDƒDƒDƒD
+                                    //å†…éƒ¨ã«ã‚ã‚‹ã‚¥ã‚¥ã‚¥ã‚¥ã‚¥ãƒƒã‚¥ã‚¥ã‚¥ã‚¥
                                     point->x=0;
                                     point->y=0;
                                     for(tmp=0;tmp<4;tmp++){
@@ -557,13 +557,13 @@ BOOL Syototu2RECTsB(RECT r1,RECT r2,MY2DVECTOR *point,
                                     }
                                     point->x/=4;
                                     point->y/=4;
-                                    //Õ“Ë‚µ‚½“_‚ğƒ[ƒ‹ƒhÀ•WŒn‚É•ÏŠ·‚·‚é
-                                    g2dt_tns(point,gx2,gx2);//dSÀ•W‚É‚Á‚Ä‚¢‚­
-                                    if(ry2)g2dt_rvy(point);//y”½“]
-                                    g2dt_mag(point,mx2,my2);//Šg‘å
-                                    g2dt_rot(point,rot2);//‰ñ“]
-                                    g2dt_tns(point,-gx2,-gx2);//dS–ß‚µ
-                                    if(rx2)g2dt_rvx(point);//x”½“]
+                                    //è¡çªã—ãŸç‚¹ã‚’ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ã«å¤‰æ›ã™ã‚‹
+                                    g2dt_tns(point,gx2,gx2);//é‡å¿ƒåº§æ¨™ã«æŒã£ã¦ã„ã
+                                    if(ry2)g2dt_rvy(point);//yåè»¢
+                                    g2dt_mag(point,mx2,my2);//æ‹¡å¤§
+                                    g2dt_rot(point,rot2);//å›è»¢
+                                    g2dt_tns(point,-gx2,-gx2);//é‡å¿ƒæˆ»ã—
+                                    if(rx2)g2dt_rvx(point);//xåè»¢
                                     g2dt_tns(point,tx2,ty2);
 
                                     return(TRUE);
@@ -576,32 +576,32 @@ BOOL Syototu2RECTsB(RECT r1,RECT r2,MY2DVECTOR *point,
         }
     }
     
-    return(FALSE);//Õ“Ë‚Í‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½
+    return(FALSE);//è¡çªã¯ã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ
 }
 
 
-//!’¼ü‚Æ‹éŒ`‚ÌŠe•Ó‚Æ‚ÌŒğ‚í‚è‚ğ’²‚×‚é
+//!ç›´ç·šã¨çŸ©å½¢ã®å„è¾ºã¨ã®äº¤ã‚ã‚Šã‚’èª¿ã¹ã‚‹
 DWORD GetKas_LINEvsRECT(MY2DVECTOR *kaspoint,
                         MY2DVECTOR &line_start,MY2DVECTOR &line_end,
                         MY2DVECTOR rect_pos[4])
 {
-    double a,b;//’¼ü‚Ì•û’ö® ax+by+1=0
-    double xmin,xmax,ymin,ymax;//’¼ü‚ÆŠe•Ó‚ªŒğ‚í‚é‰Â”\«‚ª‚ ‚é”ÍˆÍ
-    double x[7],y[7];//‚Ä‚ñ‚Û‚ç‚è
+    double a,b;//ç›´ç·šã®æ–¹ç¨‹å¼ ax+by+1=0
+    double xmin,xmax,ymin,ymax;//ç›´ç·šã¨å„è¾ºãŒäº¤ã‚ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ç¯„å›²
+    double x[7],y[7];//ã¦ã‚“ã½ã‚‰ã‚Š
     DWORD num_kas=0;
 
-    //‚Ü‚¸‚Í’¼ü‚Ì•û’ö®‚ğ‹‚ß‚é
+    //ã¾ãšã¯ç›´ç·šã®æ–¹ç¨‹å¼ã‚’æ±‚ã‚ã‚‹
     x[3]=line_start.x;
     y[3]=line_start.y;
     x[4]=line_end.x;
     y[4]=line_end.y;
-    if(x[3]==0 || x[4]*y[3]-x[3]*y[4]==0)return(0);//0‚Å‚ÌœZ‚Í‚Å‚«‚È‚¢‚Ì
+    if(x[3]==0 || x[4]*y[3]-x[3]*y[4]==0)return(0);//0ã§ã®é™¤ç®—ã¯ã§ããªã„ã®
     b = (x[3]-x[4])/(x[4]*y[3]-x[3]*y[4]);
     a = (-1.0/x[3])*(1.0 + b*y[3] );
 
-    if(a==0 || b==0)return(0);//‚©‚È‚è–Ê“|‚È‚Ì‚Å¥¥¥
+    if(a==0 || b==0)return(0);//ã‹ãªã‚Šé¢å€’ãªã®ã§ï½¥ï½¥ï½¥
 
-    //ƒˆƒRü‚Æ‚Ì‚Ü‚¶‚í‚è
+    //ãƒ¨ã‚³ç·šã¨ã®ã¾ã˜ã‚ã‚Š
     xmin = __min(x[3],x[4]);
     xmax = __max(x[3],x[4]);
     if(xmin<rect_pos[1].x){
@@ -611,8 +611,8 @@ DWORD GetKas_LINEvsRECT(MY2DVECTOR *kaspoint,
             y[5] = -(a/b)*x[5] - 1.0/b ;
             y[6] = -(a/b)*x[6] - 1.0/b ;
             y[1] = rect_pos[1].y;
-            if( (y[5]-y[1])*(y[6]-y[1]) <0 ){//Œğ‚í‚é
-                //Œğ‚í‚Á‚½“_‚ÌŒvZ
+            if( (y[5]-y[1])*(y[6]-y[1]) <0 ){//äº¤ã‚ã‚‹
+                //äº¤ã‚ã£ãŸç‚¹ã®è¨ˆç®—
                 y[0]=y[1];
                 x[0]=-(b*y[0]+1)/a;
                 kaspoint[num_kas].x=x[0];
@@ -620,8 +620,8 @@ DWORD GetKas_LINEvsRECT(MY2DVECTOR *kaspoint,
                 num_kas++;
             }
             y[1] = rect_pos[2].y;
-            if( (y[5]-y[1])*(y[6]-y[1]) <0 ){//Œğ‚í‚é
-                //Œğ‚í‚Á‚½“_‚ÌŒvZ
+            if( (y[5]-y[1])*(y[6]-y[1]) <0 ){//äº¤ã‚ã‚‹
+                //äº¤ã‚ã£ãŸç‚¹ã®è¨ˆç®—
                 y[0]=y[1];
                 x[0]=-(b*y[0]+1)/a;
                 kaspoint[num_kas].x=x[0];
@@ -631,7 +631,7 @@ DWORD GetKas_LINEvsRECT(MY2DVECTOR *kaspoint,
         }
     }
 
-    //ƒ^ƒeü‚Æ‚ÌŒğ‚í‚è
+    //ã‚¿ãƒ†ç·šã¨ã®äº¤ã‚ã‚Š
     ymin = __min(y[3],y[4]);
     ymax = __max(y[3],y[4]);
     if(ymin<rect_pos[2].y){
@@ -641,8 +641,8 @@ DWORD GetKas_LINEvsRECT(MY2DVECTOR *kaspoint,
             x[5] = -(b*y[5]+1.0)/a ;
             x[6] = -(b*y[6]+1.0)/a ;
             x[1] = rect_pos[1].x;
-            if( (x[5]-x[1])*(x[6]-x[1]) <0 ){//Œğ‚í‚é
-                //Œğ‚í‚Á‚½“_‚ÌŒvZ
+            if( (x[5]-x[1])*(x[6]-x[1]) <0 ){//äº¤ã‚ã‚‹
+                //äº¤ã‚ã£ãŸç‚¹ã®è¨ˆç®—
                 x[0]=x[1];
                 y[0]= -(a*x[0]+1.0)/b ;
                 kaspoint[num_kas].x=x[0];
@@ -650,8 +650,8 @@ DWORD GetKas_LINEvsRECT(MY2DVECTOR *kaspoint,
                 num_kas++;
             }
             x[1] = rect_pos[2].x;
-            if( (x[5]-x[1])*(x[6]-x[1]) <0 ){//Œğ‚í‚é
-                //Œğ‚í‚Á‚½“_‚ÌŒvZ
+            if( (x[5]-x[1])*(x[6]-x[1]) <0 ){//äº¤ã‚ã‚‹
+                //äº¤ã‚ã£ãŸç‚¹ã®è¨ˆç®—
                 x[0]=x[1];
                 y[0]= -(a*x[0]+1.0)/b ;
                 kaspoint[num_kas].x=x[0];
@@ -665,8 +665,8 @@ DWORD GetKas_LINEvsRECT(MY2DVECTOR *kaspoint,
 }
 
 
-//2•¶š—ñ‚ğ‘«‚µ‚ÄV‚µ‚¢ƒoƒbƒtƒ@‚ğ•Ô‚·
-//–ß‚è’l‚Ínew[]‚ÅŠm•Û‚µ‚½ƒoƒbƒtƒ@Bstr1‚Ídelete[]‚³‚ê‚Ü‚·B
+//2æ–‡å­—åˆ—ã‚’è¶³ã—ã¦æ–°ã—ã„ãƒãƒƒãƒ•ã‚¡ã‚’è¿”ã™
+//æˆ»ã‚Šå€¤ã¯new[]ã§ç¢ºä¿ã—ãŸãƒãƒƒãƒ•ã‚¡ã€‚str1ã¯delete[]ã•ã‚Œã¾ã™ã€‚
 char* AkiGlobal::MergeString(char* str1,const char* str2)
 {
     UINT len=0;
@@ -695,27 +695,27 @@ char* AkiGlobal::MergeString(char* str1,const char* str2)
 
 
 /*
-    @brief w’èƒfƒBƒŒƒNƒgƒŠ‰º‚©‚çƒ‰ƒ“ƒ_ƒ€‚ÈBGM‚ğ‘I‘ğ‚µ‚ÄÄ¶
-    @param dir w’èƒfƒBƒŒƒNƒgƒŠB–{‘ÌÀsƒtƒ@ƒCƒ‹‘Š‘Î
+    @brief æŒ‡å®šãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªä¸‹ã‹ã‚‰ãƒ©ãƒ³ãƒ€ãƒ ãªBGMã‚’é¸æŠã—ã¦å†ç”Ÿ
+    @param dir æŒ‡å®šãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã€‚æœ¬ä½“å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«ç›¸å¯¾
 */
 void AkiGlobal::PlayRandomBGM(char *dir)
 {
     if(!g_config.UseDShow())return;
 
-    //ƒtƒ@ƒCƒ‹–¼ƒŠƒXƒg
+    //ãƒ•ã‚¡ã‚¤ãƒ«åãƒªã‚¹ãƒˆ
     std::vector<char*> filelist;
     std::vector<char*>::iterator ite;
     std::vector<char*>::iterator itee;
 
-    int numstr;	//•¶š”
-    char filepath[MAX_PATH];//ƒeƒ“ƒ|ƒ‰ƒŠƒpƒX
+    int numstr;	//æ–‡å­—æ•°
+    char filepath[MAX_PATH];//ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ‘ã‚¹
 
-    //w’èƒfƒBƒŒƒNƒgƒŠ‰º‚Ìƒtƒ@ƒCƒ‹–¼‚ğƒŠƒXƒg‚ÉûWiŠg’£q‚Ê‚«j
+    //æŒ‡å®šãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªä¸‹ã®ãƒ•ã‚¡ã‚¤ãƒ«åã‚’ãƒªã‚¹ãƒˆã«åé›†ï¼ˆæ‹¡å¼µå­ã¬ãï¼‰
     HANDLE hFind;
     WIN32_FIND_DATA fd;
     sprintf(filepath,"%s\\*.*",dir);
     hFind = FindFirstFile( filepath , &fd);
-    if(hFind == INVALID_HANDLE_VALUE)return;//¸”s
+    if(hFind == INVALID_HANDLE_VALUE)return;//å¤±æ•—
     do {
         if(strcmp(fd.cFileName,".")==0 || strcmp(fd.cFileName,"..")==0 );
         else if(!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
@@ -724,14 +724,14 @@ void AkiGlobal::PlayRandomBGM(char *dir)
             char *str = new char [numstr+1];
             str[numstr]='\0';
 
-            //‚Ó‚Ÿ‚¢‚é‚ß‚¢‚±‚Ò[
+            //ãµãã„ã‚‹ã‚ã„ã“ã´ãƒ¼
             while(numstr>0)
             {
                 numstr--;
                 str[numstr] = fd.cFileName[numstr];
             }
 
-            //Šg’£qíœ
+            //æ‹¡å¼µå­å‰Šé™¤
             numstr = strlen( fd.cFileName );
             while(numstr>0)
             {
@@ -748,18 +748,18 @@ void AkiGlobal::PlayRandomBGM(char *dir)
     } while(FindNextFile(hFind, &fd));
     FindClose(hFind);
 
-    //ƒtƒ@ƒCƒ‹‚ª‚Ğ‚Æ‚Â‚à‚È‚¢
+    //ãƒ•ã‚¡ã‚¤ãƒ«ãŒã²ã¨ã¤ã‚‚ãªã„
     if(filelist.size()==0){
         gbl.ods("AkiGlobal::PlayRandomBGM : no files\n");
         return;
     }
 
-    //ƒVƒƒƒbƒtƒ‹
+    //ã‚·ãƒ£ãƒƒãƒ•ãƒ«
     ite = filelist.begin();
     itee= filelist.end();
     std::random_shuffle(ite,itee);
 
-    //Ä¶‚ğ‚İ‚é
+    //å†ç”Ÿã‚’è©¦ã¿ã‚‹
     ite = filelist.begin();
     itee= filelist.end();
     for(;ite!=itee;ite++)
@@ -767,13 +767,13 @@ void AkiGlobal::PlayRandomBGM(char *dir)
         sprintf( filepath, "%s\\%s",dir,*ite);
         if(g_sound.BGMPlay( filepath ))
         {
-            break;//Ä¶‚É¬Œ÷‚µ‚½‚çI—¹
+            break;//å†ç”Ÿã«æˆåŠŸã—ãŸã‚‰çµ‚äº†
         }
         gbl.ods2("AkiGlobal::PlayRandomBGM : %s ...failed",filepath);
     }
 //	delete [] filepath;
 
-    //ƒtƒ@ƒCƒ‹–¼‚ÌƒŠƒXƒg‚ğ”jŠü
+    //ãƒ•ã‚¡ã‚¤ãƒ«åã®ãƒªã‚¹ãƒˆã‚’ç ´æ£„
     ite = filelist.begin();
     itee= filelist.end();
     for(;ite!=itee;ite++)
@@ -783,12 +783,12 @@ void AkiGlobal::PlayRandomBGM(char *dir)
 }
 
 /*=========================================================================
-    ”ñstatic
+    éstatic
 ===========================================================================*/
 
 #define MAX_DUMMY_STRING	16
 
-//Šm•Û
+//ç¢ºä¿
 AkiGlobal::AkiGlobal()
 {
     m_dummybuf = CreateStringArray(MAX_DUMMY_STRING,128);
@@ -800,11 +800,11 @@ AkiGlobal::AkiGlobal()
     m_ods_buffer = new char [1024*8];
 }
 
-//ŠJ•ú
+//é–‹æ”¾
 AkiGlobal::~AkiGlobal()
 {
     DeleteStringArray(m_dummybuf);
-    //RELSURFACE(m_blankIcon);//g_draw”jŠü‚É©“®“I‚ÉÁ‚¦‚é‚©‚ç‚¢‚¢‚â
+    //RELSURFACE(m_blankIcon);//g_drawç ´æ£„æ™‚ã«è‡ªå‹•çš„ã«æ¶ˆãˆã‚‹ã‹ã‚‰ã„ã„ã‚„
 
     DELETEARRAY(m_ods_buffer);
 }
@@ -812,10 +812,10 @@ AkiGlobal::~AkiGlobal()
 
 
 /*----------------------------------------------------------------
-    •¶š—ñƒ†[ƒeƒBƒŠƒeƒB
+    æ–‡å­—åˆ—ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£
 ------------------------------------------------------------------*/
 
-//ƒXƒNƒŠƒvƒg“Ç‚İ‚İsscanf‚Åg‚¤ƒ_ƒ~[—pcharƒoƒbƒtƒ@‚ğæ“¾B
+//ã‚¹ã‚¯ãƒªãƒ—ãƒˆèª­ã¿è¾¼ã¿sscanfã§ä½¿ã†ãƒ€ãƒŸãƒ¼ç”¨charãƒãƒƒãƒ•ã‚¡ã‚’å–å¾—ã€‚
 char*  AkiGlobal::GetDummyString()
 {
     m_dummy_next++;
@@ -823,7 +823,7 @@ char*  AkiGlobal::GetDummyString()
 }
 
 
-//ƒeƒ“ƒ|ƒ‰ƒŠ•¶š—ñ”z—ñ‚Ì¶¬E”jŠü
+//ãƒ†ãƒ³ãƒãƒ©ãƒªæ–‡å­—åˆ—é…åˆ—ã®ç”Ÿæˆãƒ»ç ´æ£„
 char** AkiGlobal::CreateTemporaryStrBuff(UINT num,UINT max_len)
 {
     return CreateStringArray(num,max_len);
@@ -835,7 +835,7 @@ void   AkiGlobal::DeleteTemporaryStrBuff(char** buf)
 }
 
 
-//w’èƒoƒbƒtƒ@‚Ìæ“ª‚ÉAw’è•¶š—ñ‚ª“ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+//æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã®å…ˆé ­ã«ã€æŒ‡å®šæ–‡å­—åˆ—ãŒå…¥ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
 BOOL AkiGlobal::strcheck(const char* buf,const char* str)
 {
     int len = strlen(str);
@@ -848,7 +848,7 @@ BOOL AkiGlobal::strcheck(const char* buf,const char* str)
     return TRUE;
 }
 
-//2ŸŒ³char”z—ñŠm•Û
+//2æ¬¡å…ƒcharé…åˆ—ç¢ºä¿
 char** AkiGlobal::CreateStringArray(UINT num,UINT max_len)
 {
     if(num==0 || max_len==0)return NULL;
@@ -863,7 +863,7 @@ char** AkiGlobal::CreateStringArray(UINT num,UINT max_len)
     return ret;
 }
 
-//2ŸŒ³char”z—ñ”jŠü
+//2æ¬¡å…ƒcharé…åˆ—ç ´æ£„
 void   AkiGlobal::DeleteStringArray(char** pstrarr)
 {
     if(!pstrarr)return;
@@ -880,7 +880,7 @@ void   AkiGlobal::DeleteStringArray(char** pstrarr)
 
 
 /*----------------------------------------------------------------
-    ƒfƒJŠçƒCƒ[ƒWæ“¾
+    ãƒ‡ã‚«é¡”ã‚¤ãƒ¡ãƒ¼ã‚¸å–å¾—
 ------------------------------------------------------------------*/
 MYSURFACE* AkiGlobal::GetBigFace(int cindex,int col,int alt)
 {
@@ -893,11 +893,11 @@ MYSURFACE* AkiGlobal::GetBigFace(int cindex,int col,int alt)
 
 
 /*----------------------------------------------------------------
-    ƒuƒ‰ƒ“ƒN—pƒAƒCƒRƒ“æ“¾
+    ãƒ–ãƒ©ãƒ³ã‚¯ç”¨ã‚¢ã‚¤ã‚³ãƒ³å–å¾—
 ------------------------------------------------------------------*/
 MYSURFACE* AkiGlobal::GetBlankIcon()
 {
-    if(m_blankIcon==(MYSURFACE*)0xFFFFFFFF){//‚·‚Å‚Éˆê“x“Ç‚İ‚İ‚É¸”s‚µ‚½
+    if(m_blankIcon==(MYSURFACE*)0xFFFFFFFF){//ã™ã§ã«ä¸€åº¦èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ãŸ
         return NULL;
     }
 
@@ -913,7 +913,7 @@ MYSURFACE* AkiGlobal::GetBlankIcon()
 }
 
 /*----------------------------------------------------------------
-    À” 0`1 ƒ‰ƒ“ƒ_ƒ€
+    å®Ÿæ•° 0ï½1 ãƒ©ãƒ³ãƒ€ãƒ 
 ------------------------------------------------------------------*/
 float AkiGlobal::RandomOne()
 {
@@ -923,7 +923,7 @@ float AkiGlobal::RandomOne()
 }
 
 /*----------------------------------------------------------------
-    ƒtƒ@ƒCƒ‹ŠÛ‚²‚Æ“Ç‚İ‚İ
+    ãƒ•ã‚¡ã‚¤ãƒ«ä¸¸ã”ã¨èª­ã¿è¾¼ã¿
 ------------------------------------------------------------------*/
 
 AkiFile::AkiFile()
@@ -943,19 +943,19 @@ BOOL AkiFile::Load(char *filename)
     Destroy();
     if(!filename)return FALSE;
 
-    //ƒI[ƒvƒ\
+    //ã‚ªãƒ¼ãƒ—ã‚½
     HANDLE hFile = CreateFile(filename,
         GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
     if(hFile==INVALID_HANDLE_VALUE){
         return(FALSE);
     }
 
-    //ƒtƒ@ƒCƒ‹ƒTƒCƒYæ“¾Eƒƒ‚ƒŠŠm•Û
+    //ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºå–å¾—ãƒ»ãƒ¡ãƒ¢ãƒªç¢ºä¿
     DWORD size = GetFileSize(hFile,NULL);
     if(size==0)return FALSE;
     m_buffer = new BYTE [size+1] ;
 
-    //“Ç‚İ‚İ
+    //èª­ã¿è¾¼ã¿
     DWORD br;
     DWORD ret=ReadFile(hFile,m_buffer,size,&br,NULL);
     CloseHandle(hFile);
@@ -965,7 +965,7 @@ BOOL AkiFile::Load(char *filename)
         return(FALSE);
     }
 
-    m_buffer[size] = '\0';//•¶š—ñ‚Æ‚µ‚Äˆµ‚¤‚Æ‚«‚Ì‚½‚ß‚Ì•Ö‹X
+    m_buffer[size] = '\0';//æ–‡å­—åˆ—ã¨ã—ã¦æ‰±ã†ã¨ãã®ãŸã‚ã®ä¾¿å®œ
 
     m_size = size;
     return TRUE;
@@ -978,14 +978,14 @@ BOOL AkiFile::Save(char *filename)
     if(!m_buffer)return FALSE;
     if(m_size==0)return FALSE;
 
-    //ƒI[ƒvƒ\
+    //ã‚ªãƒ¼ãƒ—ã‚½
     HANDLE hFile = CreateFile(filename,
         GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
     if(hFile==INVALID_HANDLE_VALUE){
         return(FALSE);
     }
 
-    //‘‚«‚İ
+    //æ›¸ãè¾¼ã¿
     DWORD br;
     DWORD ret=ReadFile(hFile,m_buffer,m_size,&br,NULL);
     CloseHandle(hFile);

@@ -1,8 +1,8 @@
-
+ï»¿
 
 /*============================================================================
 
-	ƒ^ƒXƒNŠÇ—(?)
+	ã‚¿ã‚¹ã‚¯ç®¡ç†(?)
 
 ==============================================================================*/
 
@@ -19,7 +19,7 @@ void CTaskManager::Destroy()
 {
 	TaskList::iterator i,ied;
 
-	//’Êíƒ^ƒXƒNTerminate
+	//é€šå¸¸ã‚¿ã‚¹ã‚¯Terminate
 	i = tasks.begin();
 	ied = tasks.end();
 	for(;i!=ied;i++){
@@ -28,7 +28,7 @@ void CTaskManager::Destroy()
 	}
 	tasks.clear();
 
-	//ƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒ^ƒXƒNTerminate
+	//ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‚¿ã‚¹ã‚¯Terminate
 	i = bg_tasks.begin();
 	ied = bg_tasks.end();
 	for(;i!=ied;i++){
@@ -37,7 +37,7 @@ void CTaskManager::Destroy()
 	}
 	bg_tasks.clear();
 
-	//”r‘¼ƒ^ƒXƒNTerminate
+	//æ’ä»–ã‚¿ã‚¹ã‚¯Terminate
 	while(ex_stack.size()!=0){
 		ex_stack.top()->Terminate();
 		delete(ex_stack.top());
@@ -54,7 +54,7 @@ void CTaskManager::AddTask(CTaskBase *newTask)
 
 	CBackgroundTaskBase *pbgt = dynamic_cast<CBackgroundTaskBase*>(newTask);
 	if(pbgt){
-		//í’“ƒ^ƒXƒN‚Æ‚µ‚ÄAdd
+		//å¸¸é§ã‚¿ã‚¹ã‚¯ã¨ã—ã¦Add
 		bg_tasks.push_back(pbgt);
 		pbgt->Initialize();
 		return;
@@ -62,20 +62,20 @@ void CTaskManager::AddTask(CTaskBase *newTask)
 
 	CExclusiveTaskBase *pext = dynamic_cast<CExclusiveTaskBase*>(newTask);
 	if(!pext){
-		//’Êíƒ^ƒXƒN‚Æ‚µ‚ÄAdd
+		//é€šå¸¸ã‚¿ã‚¹ã‚¯ã¨ã—ã¦Add
 		tasks.push_back(newTask);
 		newTask->Initialize();
 		return;
 	}
 
-	//”r‘¼ƒ^ƒXƒN‚Æ‚µ‚ÄAdd
-	//Execute’†‚©‚à‚µ‚ê‚È‚¢‚Ì‚ÅAƒ|ƒCƒ“ƒ^•Û‘¶‚Ì‚İ
+	//æ’ä»–ã‚¿ã‚¹ã‚¯ã¨ã—ã¦Add
+	//Executeä¸­ã‹ã‚‚ã—ã‚Œãªã„ã®ã§ã€ãƒã‚¤ãƒ³ã‚¿ä¿å­˜ã®ã¿
 	if(exNext){
-		gbl.ods("¡ALERT¡ ”r‘¼ƒ^ƒXƒN‚ª2‚ÂˆÈãAdd‚³‚ê‚½ : %s / %s",
+		gbl.ods("â– ALERTâ–  æ’ä»–ã‚¿ã‚¹ã‚¯ãŒ2ã¤ä»¥ä¸ŠAddã•ã‚ŒãŸ : %s / %s",
 			typeid(*exNext).name() , typeid(*newTask).name());
 	}
 	exNext = pext;
-	g_log2file.Flush();//ƒƒO‘‚«o‚µ
+	g_log2file.Flush();//ãƒ­ã‚°æ›¸ãå‡ºã—
 }
 
 void CTaskManager::Execute(DWORD time)
@@ -85,7 +85,7 @@ void CTaskManager::Execute(DWORD time)
 	std::deque<TaskList::iterator>::iterator idl,idl_ed;
 	CTaskBase *delTgt;
 
-	//’Êíƒ^ƒXƒNExecute
+	//é€šå¸¸ã‚¿ã‚¹ã‚¯Execute
 	i = tasks.begin();
 	ied = tasks.end();
 	for(;i!=ied;i++){
@@ -105,7 +105,7 @@ void CTaskManager::Execute(DWORD time)
 		}
 		#endif
 	}
-	//’Êíƒ^ƒXƒN‚ÅFALSE‚ğ•Ô‚µ‚½‚à‚Ì‚ğÁ‚·
+	//é€šå¸¸ã‚¿ã‚¹ã‚¯ã§FALSEã‚’è¿”ã—ãŸã‚‚ã®ã‚’æ¶ˆã™
 	if(deleteList.size()!=0){
 		idl = deleteList.begin();
 		idl_ed = deleteList.end();
@@ -119,7 +119,7 @@ void CTaskManager::Execute(DWORD time)
 		deleteList.clear();
 	}
 
-	//í’“ƒ^ƒXƒNExecute
+	//å¸¸é§ã‚¿ã‚¹ã‚¯Execute
 	i = bg_tasks.begin();
 	ied = bg_tasks.end();
 	for(;i!=ied;i++)
@@ -138,7 +138,7 @@ void CTaskManager::Execute(DWORD time)
 		}
 		#endif
 	}
-	//í’“ƒ^ƒXƒN‚ÅFALSE‚ğ•Ô‚µ‚½‚à‚Ì‚ğÁ‚·
+	//å¸¸é§ã‚¿ã‚¹ã‚¯ã§FALSEã‚’è¿”ã—ãŸã‚‚ã®ã‚’æ¶ˆã™
 	if(deleteList.size()!=0){
 		idl = deleteList.begin();
 		idl_ed = deleteList.end();
@@ -156,7 +156,7 @@ void CTaskManager::Execute(DWORD time)
 
 	BOOL ex_ret;
 
-	//”r‘¼ƒ^ƒXƒNAtop‚Ì‚İExecute
+	//æ’ä»–ã‚¿ã‚¹ã‚¯ã€topã®ã¿Execute
 	if(ex_stack.size()!=0){
 		exTsk = ex_stack.top();
 		#ifdef _CATCH_WHILE_EXEC
@@ -174,18 +174,18 @@ void CTaskManager::Execute(DWORD time)
 
 		if(!ex_ret)
 		{	
-			g_log2file.Flush();//ƒƒO‘‚«o‚µ
+			g_log2file.Flush();//ãƒ­ã‚°æ›¸ãå‡ºã—
 			if(!exNext){
-				//Œ»İ”r‘¼ƒ^ƒXƒN‚Ì•ÏX
+				//ç¾åœ¨æ’ä»–ã‚¿ã‚¹ã‚¯ã®å¤‰æ›´
 
-				//ƒL[ƒƒOƒNƒŠƒA
+				//ã‚­ãƒ¼ãƒ­ã‚°ã‚¯ãƒªã‚¢
 				g_input.ClearKeyLog();
 
 				#ifdef _CATCH_WHILE_EXEC
 				try{
 				#endif
 
-				//’Êíƒ^ƒXƒN‚ğ‘S‚Ä”jŠü‚·‚é
+				//é€šå¸¸ã‚¿ã‚¹ã‚¯ã‚’å…¨ã¦ç ´æ£„ã™ã‚‹
 				i = tasks.begin();
 				ied = tasks.end();
 				for(;i!=ied;i++){
@@ -209,7 +209,7 @@ void CTaskManager::Execute(DWORD time)
 				try{
 				#endif
 
-				//Œ»İ”r‘¼ƒ^ƒXƒN‚Ì”jŠü
+				//ç¾åœ¨æ’ä»–ã‚¿ã‚¹ã‚¯ã®ç ´æ£„
 				prvID = exTsk->GetID();
 				exTsk->Terminate();
 				delete exTsk;
@@ -229,7 +229,7 @@ void CTaskManager::Execute(DWORD time)
 				try{
 				#endif
 
-				//Ÿ‚Ì”r‘¼ƒ^ƒXƒN‚ğActivate‚·‚é
+				//æ¬¡ã®æ’ä»–ã‚¿ã‚¹ã‚¯ã‚’Activateã™ã‚‹
 				if(ex_stack.size()==0)return;
 				exTsk = ex_stack.top();
 				exTsk->Activate(prvID);
@@ -249,13 +249,13 @@ void CTaskManager::Execute(DWORD time)
 	}
 
 	if(exNext){
-		//ƒL[ƒƒOƒNƒŠƒA
+		//ã‚­ãƒ¼ãƒ­ã‚°ã‚¯ãƒªã‚¢
 		g_input.ClearKeyLog();
 
-		//’Êíƒ^ƒXƒN‚ğ‘S‚Ä”jŠü‚·‚é
+		//é€šå¸¸ã‚¿ã‚¹ã‚¯ã‚’å…¨ã¦ç ´æ£„ã™ã‚‹
 		CleanupAllSubTasks();
 
-		//Œ»İ”r‘¼ƒ^ƒXƒN‚ÌInactivate
+		//ç¾åœ¨æ’ä»–ã‚¿ã‚¹ã‚¯ã®Inactivate
 		if(ex_stack.size()!=0){
 			exTsk = ex_stack.top();
 			if(! exTsk->Inactivate(exNext->GetID()) ){
@@ -265,7 +265,7 @@ void CTaskManager::Execute(DWORD time)
 			}
 		}
 
-		//Add‚³‚ê‚½ƒ^ƒXƒN‚ğInitialize‚µ‚Ä“Ë‚Á‚Ş
+		//Addã•ã‚ŒãŸã‚¿ã‚¹ã‚¯ã‚’Initializeã—ã¦çªã£è¾¼ã‚€
 		ex_stack.push(exNext);
 		exNext->Initialize();
 
@@ -279,7 +279,7 @@ void CTaskManager::Draw()
 	std::vector<CTaskBase*> tmplist;
 	TaskList::iterator i,ied;
 
-	//’Êíƒ^ƒXƒNDraw
+	//é€šå¸¸ã‚¿ã‚¹ã‚¯Draw
 	i = tasks.begin();
 	ied = tasks.end();
 	for(;i!=ied;i++){
@@ -288,7 +288,7 @@ void CTaskManager::Draw()
 		}
 	}
 
-	//ƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒ^ƒXƒNDraw
+	//ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‚¿ã‚¹ã‚¯Draw
 	i = bg_tasks.begin();
 	ied = bg_tasks.end();
 	for(;i!=ied;i++){
@@ -297,16 +297,16 @@ void CTaskManager::Draw()
 		}
 	}
 
-	//”r‘¼ƒ^ƒXƒNDraw
+	//æ’ä»–ã‚¿ã‚¹ã‚¯Draw
 	if(ex_stack.size()!=0){
 		if(ex_stack.top()->GetDrawPriority() >= 0){
 			tmplist.push_back( ex_stack.top() );
 		}
 	}
 
-	std::sort( tmplist.begin() , tmplist.end() , CTaskBase::CompByDrawPriority );//•`‰æƒvƒ‰ƒCƒIƒŠƒeƒB‡‚Éƒ\[ƒg
+	std::sort( tmplist.begin() , tmplist.end() , CTaskBase::CompByDrawPriority );//æç”»ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£é †ã«ã‚½ãƒ¼ãƒˆ
 
-	//•`‰æ
+	//æç”»
 	std::vector<CTaskBase*>::iterator iv = tmplist.begin();
 	std::vector<CTaskBase*>::iterator iedv = tmplist.end();
 	for(;iv!=iedv;iv++)
@@ -329,21 +329,21 @@ void CTaskManager::WndMessage(HWND hWnd,UINT msg, WPARAM wparam, LPARAM lparam)
 {
 	TaskList::iterator i,ied;
 
-	//’Êíƒ^ƒXƒN
+	//é€šå¸¸ã‚¿ã‚¹ã‚¯
 	i = tasks.begin();
 	ied = tasks.end();
 	for(;i!=ied;i++){
 		(*i)->WndMessage(hWnd,msg,wparam,lparam);
 	}
 
-	//ƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒ^ƒXƒN
+	//ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‚¿ã‚¹ã‚¯
 	i = bg_tasks.begin();
 	ied = bg_tasks.end();
 	for(;i!=ied;i++){
 		(*i)->WndMessage(hWnd,msg,wparam,lparam);
 	}
 
-	//”r‘¼ƒ^ƒXƒNa
+	//æ’ä»–ã‚¿ã‚¹ã‚¯a
 	if(ex_stack.size()==0)return;
 	ex_stack.top()->WndMessage(hWnd,msg,wparam,lparam);
 }
@@ -352,7 +352,7 @@ void CTaskManager::RemoveTaskByID(DWORD id)
 {
 	TaskList::iterator i,ied;
 
-	//’Êíƒ^ƒXƒN‚ğƒ`ƒFƒbƒN
+	//é€šå¸¸ã‚¿ã‚¹ã‚¯ã‚’ãƒã‚§ãƒƒã‚¯
 	if (!tasks.empty())
 	{
 		i = tasks.begin();
@@ -367,7 +367,7 @@ void CTaskManager::RemoveTaskByID(DWORD id)
 		}
 	}
 
-	//ƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒ^ƒXƒNTerminate
+	//ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‚¿ã‚¹ã‚¯Terminate
 	if (!bg_tasks.empty())
 	{
 		i = bg_tasks.begin();
@@ -384,14 +384,14 @@ void CTaskManager::RemoveTaskByID(DWORD id)
 }
 
 
-//ÅãˆÊ‚É‚ ‚éƒGƒNƒXƒNƒ‹[ƒVƒuƒ^ƒXƒN‚ğƒQƒg
+//æœ€ä¸Šä½ã«ã‚ã‚‹ã‚¨ã‚¯ã‚¹ã‚¯ãƒ«ãƒ¼ã‚·ãƒ–ã‚¿ã‚¹ã‚¯ã‚’ã‚²ãƒˆ
 CExclusiveTaskBase* CTaskManager::GetTopExclusiveTask()
 {
 	if(ex_stack.size()==0)return NULL;
 	return ex_stack.top();
 }
 
-//w’èID‚Ì”r‘¼ƒ^ƒXƒN‚Ü‚ÅTerminate/pop‚·‚é
+//æŒ‡å®šIDã®æ’ä»–ã‚¿ã‚¹ã‚¯ã¾ã§Terminate/popã™ã‚‹
 void CTaskManager::ReturnExclusiveTaskByID(DWORD id)
 {
 	BOOL act = FALSE;
@@ -416,7 +416,7 @@ void CTaskManager::ReturnExclusiveTaskByID(DWORD id)
 	}
 }
 
-//’Êíƒ^ƒXƒN‚ğ‘S‚Ä”jŠü‚·‚é
+//é€šå¸¸ã‚¿ã‚¹ã‚¯ã‚’å…¨ã¦ç ´æ£„ã™ã‚‹
 void CTaskManager::CleanupAllSubTasks()
 {
 	CTaskBase *delTgt;
@@ -433,43 +433,43 @@ void CTaskManager::CleanupAllSubTasks()
 }
 
 
-//ƒfƒoƒbƒOEƒ^ƒXƒNˆê——•\¦
+//ãƒ‡ãƒãƒƒã‚°ãƒ»ã‚¿ã‚¹ã‚¯ä¸€è¦§è¡¨ç¤º
 void CTaskManager::DebugOutputTaskList()
 {
-	gbl.ods("\n\n¡CTaskManager::DebugOutputTaskList() - start");
+	gbl.ods("\n\nâ– CTaskManager::DebugOutputTaskList() - start");
 
 	TaskList::iterator i,ied;
 
-	gbl.ods(" ’Êíƒ^ƒXƒNˆê—— ");
-	//’Êíƒ^ƒXƒN
+	gbl.ods("â–¡é€šå¸¸ã‚¿ã‚¹ã‚¯ä¸€è¦§â–¡");
+	//é€šå¸¸ã‚¿ã‚¹ã‚¯
 	i = tasks.begin();
 	ied = tasks.end();
 	for(;i!=ied;i++){
 		gbl.ods(typeid(**i).name());
 	}
 
-	gbl.ods(" í’“ƒ^ƒXƒNˆê—— ");
-	//ƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒ^ƒXƒN
+	gbl.ods("â–¡å¸¸é§ã‚¿ã‚¹ã‚¯ä¸€è¦§â–¡");
+	//ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‚¿ã‚¹ã‚¯
 	i = bg_tasks.begin();
 	ied = bg_tasks.end();
 	for(;i!=ied;i++){
 		gbl.ods(typeid(**i).name());
 	}
 
-	//”r‘¼ƒ^ƒXƒN	
+	//æ’ä»–ã‚¿ã‚¹ã‚¯	
 	gbl.ods("\n");
-	gbl.ods(" Œ»İ‚Ìƒ^ƒXƒNF");
+	gbl.ods("â–¡ç¾åœ¨ã®ã‚¿ã‚¹ã‚¯ï¼š");
 	if(ex_stack.empty())
-		gbl.ods("‚È‚µ");
+		gbl.ods("ãªã—");
 	else
 		gbl.ods(typeid(*ex_stack.top()).name());
 
 
-	gbl.ods("\n\n¡CTaskManager::DebugOutputTaskList() - end\n\n");
+	gbl.ods("\n\nâ– CTaskManager::DebugOutputTaskList() - end\n\n");
 }
 
 
-//w’èID‚Ìí’“ƒ^ƒXƒNæ“¾
+//æŒ‡å®šIDã®å¸¸é§ã‚¿ã‚¹ã‚¯å–å¾—
 CBackgroundTaskBase* CTaskManager::FindBGTask(DWORD id)
 {
 	TaskList::iterator i,ied;
@@ -477,14 +477,14 @@ CBackgroundTaskBase* CTaskManager::FindBGTask(DWORD id)
 	i = bg_tasks.begin();
 	ied = bg_tasks.end();
 	for(;i!=ied;i++){
-		if((*i)->GetID()==id){//ƒnƒP[ƒ\
+		if((*i)->GetID()==id){//ãƒã‚±ãƒ¼ã‚½
 			return dynamic_cast<CBackgroundTaskBase*>( *i );
 		}
 	}
 	return NULL;
 }
 
-//w’èID‚Ì’Êíƒ^ƒXƒNæ“¾
+//æŒ‡å®šIDã®é€šå¸¸ã‚¿ã‚¹ã‚¯å–å¾—
 CTaskBase* CTaskManager::FindTask(DWORD id)
 {
 	TaskList::iterator i,ied;
@@ -492,14 +492,14 @@ CTaskBase* CTaskManager::FindTask(DWORD id)
 	i = tasks.begin();
 	ied = tasks.end();
 	for(;i!=ied;i++){
-		if((*i)->GetID()==id){//ƒnƒP[ƒ\
+		if((*i)->GetID()==id){//ãƒã‚±ãƒ¼ã‚½
 			return ( *i );
 		}
 	}
 	return NULL;
 }
 
-//‘S•”‚È‚­‚È‚Á‚¿‚á‚Á‚½‚çA‚â‚Î‚¢‚Á‚µ‚å
+//å…¨éƒ¨ãªããªã£ã¡ã‚ƒã£ãŸã‚‰ã€ã‚„ã°ã„ã£ã—ã‚‡
 BOOL CTaskManager::ExEmpty()
 {
 	return (ex_stack.size()==0) ? TRUE : FALSE;
