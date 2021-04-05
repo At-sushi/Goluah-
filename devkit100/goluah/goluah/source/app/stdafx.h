@@ -94,18 +94,5 @@ You should have received a copy of the GNU General Public License along with thi
 #include <string.h>
 #include <time.h>
 
-// デバッグ機能は重いので
-#ifdef _DEBUG
-#undef _DEBUG
-#define DOBASHI
-#endif // _DEBUG
-
-
-// 元に戻しとく
-#ifdef DOBASHI
-#undef DOBASHI
-#define _DEBUG
-#endif // DOBASHI
-
 #pragma warning( disable:4995 )
 #pragma warning( disable:4996 )		// とりあえずsprintf_s警告を無視
