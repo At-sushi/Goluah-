@@ -17,7 +17,7 @@
 
 // 当たり判定用4分割セグメントツリー
 // キャメルケースとスネークケースがごっちゃになってる
-template<class T, class ContainerHeap = typename std::deque<T>> class CollisionDetectionTree
+template<class T, class ContainerHeap = std::deque<T>> class CollisionDetectionTree
 {
 public:
     CollisionDetectionTree()
