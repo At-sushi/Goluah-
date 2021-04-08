@@ -1,4 +1,4 @@
-/*============================================================================
+ï»¿/*============================================================================
 
     Goluah!! Copyright (C) 2001-2004 aki, 2014-2015 logger, 2004-2020 At-sushi
 
@@ -15,8 +15,8 @@
 #include <cassert>
 #include <functional>
 
-// “–‚½‚è”»’è—p4•ªŠ„ƒZƒOƒƒ“ƒgƒcƒŠ[
-// ƒLƒƒƒƒ‹ƒP[ƒX‚ÆƒXƒl[ƒNƒP[ƒX‚ª‚²‚Á‚¿‚á‚É‚È‚Á‚Ä‚é
+// å½“ãŸã‚Šåˆ¤å®šç”¨4åˆ†å‰²ã‚»ã‚°ãƒ¡ãƒ³ãƒˆãƒ„ãƒªãƒ¼
+// ã‚­ãƒ£ãƒ¡ãƒ«ã‚±ãƒ¼ã‚¹ã¨ã‚¹ãƒãƒ¼ã‚¯ã‚±ãƒ¼ã‚¹ãŒã”ã£ã¡ã‚ƒã«ãªã£ã¦ã‚‹
 template<class T, class ContainerHeap = typename std::deque<T>> class CollisionDetectionTree
 {
 public:
@@ -24,7 +24,7 @@ public:
     {
     }
 
-    // ƒZƒOƒƒ“ƒgƒcƒŠ[‚ÉƒIƒuƒWƒFƒNƒg‚ğ‘}“ü
+    // ã‚»ã‚°ãƒ¡ãƒ³ãƒˆãƒ„ãƒªãƒ¼ã«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ¿å…¥
     void insert(int left, int top, int right, int bottom, const T& obj) {
         assert((left <= right) && (top <= bottom));
 
@@ -34,7 +34,7 @@ public:
             assert((x1 < x2) && (y1 < y2));
             const int x_mid = (x2 - x1) / 2 + x1, y_mid = (y2 - y1) / 2 + y1;
 
-            // ‹«ŠEü‚ğ‚Ü‚½‚¢‚Å‚¢‚é‚©”»’è
+            // å¢ƒç•Œç·šã‚’ã¾ãŸã„ã§ã„ã‚‹ã‹åˆ¤å®š
             if ((getFirstChildNode(node_current) >= SIZE_HEAP) ||
                 (left <= x_mid && x_mid <= right) ||
                 (top <= y_mid && y_mid <= bottom)) {
@@ -45,7 +45,7 @@ public:
                 segmentHeap[node_current].sub.push_back(obj);
                 node_current = getFirstChildNode(node_current);
 
-                // ZŒ^‚É4•ªŠ„‚·‚é
+                // Zå‹ã«4åˆ†å‰²ã™ã‚‹
                 if (x_mid < left) {
                     node_current += 1;
                     x1 = x_mid;
@@ -65,7 +65,7 @@ public:
         }
     }
 
-    // ‘SÁ‹
+    // å…¨æ¶ˆå»
     void clear() {
         for (auto&& i : segmentHeap) {
             i.origin.clear();
@@ -73,27 +73,27 @@ public:
         }
     }
 
-    // ‘SƒIƒuƒWƒFƒNƒg“¯m‚Ì“–‚½‚è”»’è‚ğÀs
+    // å…¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåŒå£«ã®å½“ãŸã‚Šåˆ¤å®šã‚’å®Ÿè¡Œ
     template<typename F> void collideAll(F func_collide) {
         std::function<void(int)> searchHeap = [&](int node_current) {
             assert(node_current < SIZE_HEAP);
 
-            // ƒm[ƒh‚ÌÕ“Ë”»’è
-            // ‚à‚¤‚â‚Á‚Ä‚é‚Ì‚Åeƒm[ƒh‚É‘Î‚µ‚Ä‚Í”»’è‚µ‚È‚¢
+            // ãƒãƒ¼ãƒ‰ã®è¡çªåˆ¤å®š
+            // ã‚‚ã†ã‚„ã£ã¦ã‚‹ã®ã§è¦ªãƒãƒ¼ãƒ‰ã«å¯¾ã—ã¦ã¯åˆ¤å®šã—ãªã„
             for (auto it = segmentHeap[node_current].origin.cbegin(); it != segmentHeap[node_current].origin.cend(); ++it) {
-                // ‘¼‚Ì“¯ŠK‘w‚ÌƒIƒuƒWƒFƒNƒg‚É‘Î‚µ‚Ä
+                // ä»–ã®åŒéšå±¤ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¯¾ã—ã¦
                 for (auto ite = it + 1; ite != segmentHeap[node_current].origin.cend(); ++ite)
                     func_collide(*it, *ite);
 
-                // qƒm[ƒh‚ÌƒIƒuƒWƒFƒNƒg‚É‘Î‚µ‚Ä
+                // å­ãƒãƒ¼ãƒ‰ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¯¾ã—ã¦
                 for (const auto& j : segmentHeap[node_current].sub)
                     func_collide(*it, j);
             }
 
-            // ‰º‚ÉÕ“Ë‚µ‚»‚¤‚ÈƒIƒuƒWƒFƒNƒg‚ª‚ ‚éê‡
+            // ä¸‹ã«è¡çªã—ãã†ãªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒã‚ã‚‹å ´åˆ
             if (segmentHeap[node_current].sub.size() >= 2) {
                 const int node_next = getFirstChildNode(node_current);
-                // qƒm[ƒh‚ğ’Tõ
+                // å­ãƒãƒ¼ãƒ‰ã‚’æ¢ç´¢
                 searchHeap(node_next);
                 searchHeap(node_next + 1);
                 searchHeap(node_next + 2);
@@ -101,7 +101,7 @@ public:
             }
         };
 
-        // ƒq[ƒv‘S‘Ì‚ğ’Tõ
+        // ãƒ’ãƒ¼ãƒ—å…¨ä½“ã‚’æ¢ç´¢
         searchHeap(0);
     }
 
@@ -112,20 +112,20 @@ public:
             assert(node_current < SIZE_HEAP);
             const int node_next = getFirstChildNode(node_current);
             if ((node_next >= SIZE_HEAP) || ((left <= x1) && (top <= y1) && (right >= x2) && (bottom >= y2))) {
-                // AABB‚ª‹æŠÔ‚ğŠ®‘S‚ÉŠÜ‚ñ‚Å‚¢‚éê‡
+                // AABBãŒåŒºé–“ã‚’å®Œå…¨ã«å«ã‚“ã§ã„ã‚‹å ´åˆ
                 for (const auto& i : segmentHeap[node_current].origin)
                     func_collide(i);
                 for (const auto& i : segmentHeap[node_current].sub)
                     func_collide(i);
             }
             else if ((left <= x2) && (top <= y2) && (right >= x1) && (bottom >= y1)) {
-                // AABB‚ª‹æŠÔ‚Ìˆê•”‚ğŠÜ‚ñ‚Å‚¢‚éê‡
+                // AABBãŒåŒºé–“ã®ä¸€éƒ¨ã‚’å«ã‚“ã§ã„ã‚‹å ´åˆ
                 const int x_mid = (x2 - x1) / 2 + x1, y_mid = (y2 - y1) / 2 + y1;
 
                 for (const auto& i : segmentHeap[node_current].origin)
                     func_collide(i);
 
-                // qƒm[ƒh‚ğ’Tõ
+                // å­ãƒãƒ¼ãƒ‰ã‚’æ¢ç´¢
                 searchHeap(node_next, x1, y1, x_mid, y_mid);
                 searchHeap(node_next + 1, x_mid, y1, x2, y_mid);
                 searchHeap(node_next + 2, x1, y_mid, x_mid, y2);
@@ -138,19 +138,19 @@ public:
 
 private:
     enum {
-        SEGMENT_DEPTH = 4,										//! 4•ª–Ø‚ÌŠK‘w”
-        SIZE_HEAP = ((1 << SEGMENT_DEPTH * 2) - 1) / (4 - 1),	//! ƒq[ƒv‚ÌƒTƒCƒY
+        SEGMENT_DEPTH = 4,										//! 4åˆ†æœ¨ã®éšå±¤æ•°
+        SIZE_HEAP = ((1 << SEGMENT_DEPTH * 2) - 1) / (4 - 1),	//! ãƒ’ãƒ¼ãƒ—ã®ã‚µã‚¤ã‚º
         X_MIN = -640, X_MAX = 640,
         Y_MIN = X_MIN, Y_MAX = X_MAX
     };
     static_assert(X_MIN < X_MAX, "object range is invalid");
     static_assert(Y_MIN < Y_MAX, "object range is invalid");
 
-    // qƒm[ƒh‚ÌÅ‰‚Ìindex‚ğæ“¾
+    // å­ãƒãƒ¼ãƒ‰ã®æœ€åˆã®indexã‚’å–å¾—
     static int getFirstChildNode(int index) { return index * 4 + 1; }
 
     struct {
-        // origin: ƒŒƒCƒ„[“à‚ÌƒIƒuƒWƒFƒNƒg‚ÌƒŠƒXƒgAsub: ‰º‚Ì•û‚É‚ ‚éƒIƒuƒWƒFƒNƒg‚ÌƒŠƒXƒg
+        // origin: ãƒ¬ã‚¤ãƒ¤ãƒ¼å†…ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒªã‚¹ãƒˆã€sub: ä¸‹ã®æ–¹ã«ã‚ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒªã‚¹ãƒˆ
         ContainerHeap origin, sub;
     } segmentHeap[SIZE_HEAP];
 };

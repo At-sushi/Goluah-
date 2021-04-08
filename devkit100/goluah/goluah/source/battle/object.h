@@ -1,8 +1,8 @@
-
+ï»¿
 /*============================================================================
 
-	GOBJECT “à•”ˆ—ƒNƒ‰ƒX
-	ƒƒbƒZ[ƒW‘—M‚ÆAƒƒbƒZ[ƒW‚ÌƒfƒtƒHƒ‹ƒgˆ—
+	GOBJECT å†…éƒ¨å‡¦ç†ã‚¯ãƒ©ã‚¹
+	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡ã¨ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå‡¦ç†
 
 ==============================================================================*/
 #pragma once
@@ -12,21 +12,21 @@
 class CBattleTaskBase;
 
 /*!
-*	@brief GOBJECT“à•”ˆ—ƒNƒ‰ƒX
+*	@brief GOBJECTå†…éƒ¨å‡¦ç†ã‚¯ãƒ©ã‚¹
 *	@ingroup Battle
 *
-*	DLL‚©‚çƒIƒuƒWƒFƒNƒg‚Ì¶¬—v‹‚ª‚ ‚Á‚½‚Æ‚«‚É“à•”‚Å‚Í‚±‚ÌƒNƒ‰ƒX‚ªì‚ç‚êA
-*	‚±‚ÌƒNƒ‰ƒX‚ÌGOBJECT\‘¢‘Ì‚ª•Ô‚³‚ê‚éB
-*	GOBJECT‚ğˆµ‚¢‚â‚·‚­ƒ‰ƒbƒv‚·‚é‚±‚Æ‚ÆAŠeƒIƒuƒWƒFƒNƒgƒƒbƒZ[ƒW‚ÌƒfƒtƒHƒ‹ƒg“®ì‚ğÀ‘•‚·‚é‚Ì‚ª–Ú“IB
-*	ˆê•”‚ÌƒfƒtƒHƒ‹ƒgs“®ŠÖ”‚ÍAstatic‚ÅDLL‘¤‚ÉŒöŠJ‚³‚ê‚éB
+*	DLLã‹ã‚‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç”Ÿæˆè¦æ±‚ãŒã‚ã£ãŸã¨ãã«å†…éƒ¨ã§ã¯ã“ã®ã‚¯ãƒ©ã‚¹ãŒä½œã‚‰ã‚Œã€
+*	ã“ã®ã‚¯ãƒ©ã‚¹ã®GOBJECTæ§‹é€ ä½“ãŒè¿”ã•ã‚Œã‚‹ã€‚
+*	GOBJECTã‚’æ‰±ã„ã‚„ã™ããƒ©ãƒƒãƒ—ã™ã‚‹ã“ã¨ã¨ã€å„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå‹•ä½œã‚’å®Ÿè£…ã™ã‚‹ã®ãŒç›®çš„ã€‚
+*	ä¸€éƒ¨ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆè¡Œå‹•é–¢æ•°ã¯ã€staticã§DLLå´ã«å…¬é–‹ã•ã‚Œã‚‹ã€‚
 *
-*	ƒNƒ‰ƒX‚Ì¶¬‚ÉACBattleTaskBase‚©‚ç"Œ»İ‚ÌDLL-ID"‚ğæ“¾‚·‚éB
-*	‚Ü‚½ADLL‘¤‚ÌŠÖ”‚ÌŒÄ‚Ño‚µ‘O‚ÉCBattleTaskBase‚Ì"Œ»İ‚ÌDLL-ID"‚ğA©•ª‚ÌID‚Éİ’è‚·‚éB
-*	‚±‚ê‚É‚æ‚èAŠî–{“I‚É‚Í‚Ç‚ÌƒIƒuƒWƒFƒNƒg‚ª‚Ç‚ÌDLL‚Åì‚ç‚ê‚½‚©‚ª‚í‚©‚éB
-*	(thisƒ|ƒCƒ“ƒ^‚²‚Æ“n‚µ‚Ä‚¨‚¢‚½‚Ù‚¤‚ª‚¢‚ë‚¢‚ë‚Å‚«‚Ä‚¢‚¢‚©‚à)
+*	ã‚¯ãƒ©ã‚¹ã®ç”Ÿæˆæ™‚ã«ã€CBattleTaskBaseã‹ã‚‰"ç¾åœ¨ã®DLL-ID"ã‚’å–å¾—ã™ã‚‹ã€‚
+*	ã¾ãŸã€DLLå´ã®é–¢æ•°ã®å‘¼ã³å‡ºã—å‰ã«CBattleTaskBaseã®"ç¾åœ¨ã®DLL-ID"ã‚’ã€è‡ªåˆ†ã®IDã«è¨­å®šã™ã‚‹ã€‚
+*	ã“ã‚Œã«ã‚ˆã‚Šã€åŸºæœ¬çš„ã«ã¯ã©ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒã©ã®DLLã§ä½œã‚‰ã‚ŒãŸã‹ãŒã‚ã‹ã‚‹ã€‚
+*	(thisãƒã‚¤ãƒ³ã‚¿ã”ã¨æ¸¡ã—ã¦ãŠã„ãŸã»ã†ãŒã„ã‚ã„ã‚ã§ãã¦ã„ã„ã‹ã‚‚)
 *
-*	“¯—l‚ÉAƒNƒ‰ƒX‚Ì¶¬‚É CBattleTaskBase‚©‚çƒRƒ“ƒsƒ…[ƒ^ƒŒƒxƒ‹’l(ƒQ[ƒ€“ïˆÕ“x)‚ğæ“¾‚·‚éB
-*	‚±‚ê‚É‚æ‚èAƒRƒ“ƒsƒ…[ƒ^ƒŒƒxƒ‹‚ªƒLƒƒƒ‰ƒNƒ^[‚²‚Æ‚Éİ’è‚Å‚«‚é‚æ‚¤‚É‚È‚Á‚½B
+*	åŒæ§˜ã«ã€ã‚¯ãƒ©ã‚¹ã®ç”Ÿæˆæ™‚ã« CBattleTaskBaseã‹ã‚‰ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿ãƒ¬ãƒ™ãƒ«å€¤(ã‚²ãƒ¼ãƒ é›£æ˜“åº¦)ã‚’å–å¾—ã™ã‚‹ã€‚
+*	ã“ã‚Œã«ã‚ˆã‚Šã€ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿ãƒ¬ãƒ™ãƒ«ãŒã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã”ã¨ã«è¨­å®šã§ãã‚‹ã‚ˆã†ã«ãªã£ãŸã€‚
 */
 class CGObject
 {
@@ -42,12 +42,12 @@ public:
 	static bool ZCompare(CGObject *obj1,CGObject *obj2){return obj1->data.z > obj2->data.z;}
 
 private:
-	//ƒfƒtƒHƒ‹ƒg“®ì
+	//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå‹•ä½œ
 	void Defmsg_Draw();
 	DWORD Defmsg_TouchA();
 	void Defmsg_Action();
 
-	//!< “–‚½‚è”»’è—pƒoƒEƒ“ƒfƒBƒ“ƒOƒ{ƒbƒNƒX
+	//!< å½“ãŸã‚Šåˆ¤å®šç”¨ãƒã‚¦ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒœãƒƒã‚¯ã‚¹
 	RECT boundingAttack[GCDMAX_RECTANGLES], boundingHit[GCDMAX_RECTANGLES], boundingKurai[GCDMAX_RECTANGLES];
 
 public:
@@ -92,14 +92,14 @@ public:
 	static void dact_tatakituke(GOBJECT *pdat);
 	       void dact_kaitenfinish(GOBJECT *pdat);
 
-	//!< ƒoƒEƒ“ƒfƒBƒ“ƒOƒ{ƒbƒNƒXŒvZ
+	//!< ãƒã‚¦ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒœãƒƒã‚¯ã‚¹è¨ˆç®—
 	void ComputeBoundingBoxes() {
 		const auto phdat = data.phdat;
 		if (phdat) {
 			for (int i = 0; i < GCDMAX_RECTANGLES; i++) {
 				boundingHit[i] = {0, 0, 0, 0};
 
-				// ‚à‚Ì‚·‚²‚­‹v‚µ‚Ô‚è‚ÉWindows‚ÌAPI‚ğ‘‚¢‚½
+				// ã‚‚ã®ã™ã”ãä¹…ã—ã¶ã‚Šã«Windowsã®APIã‚’æ›¸ã„ãŸ
 				for (const auto& j : phdat[i].kas)
 					UnionRect(boundingHit + i, boundingHit + i, &j);
 
@@ -125,41 +125,41 @@ private:
 	void dact_userguard1();
 	void dact_userguard2();
 	
-	void ComCommand();								//!< ƒRƒ“ƒsƒ…[ƒ^ƒRƒ}ƒ“ƒhˆ—
-	static void DmgMovex(GOBJECT *pdat,double mx);	//!< ƒ_ƒ[ƒW‹ò‚ç‚¢ˆÊ’uˆÚ“®
-	static void Furimuki(GOBJECT *pdat);			//!< U‚èŒü‚«“®ì
+	void ComCommand();								//!< ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿ã‚³ãƒãƒ³ãƒ‰å‡¦ç†
+	static void DmgMovex(GOBJECT *pdat,double mx);	//!< ãƒ€ãƒ¡ãƒ¼ã‚¸å–°ã‚‰ã„æ™‚ä½ç½®ç§»å‹•
+	static void Furimuki(GOBJECT *pdat);			//!< æŒ¯ã‚Šå‘ãå‹•ä½œ
 
-//•Ï”
+//å¤‰æ•°
 public:
-	GOBJECT		data;				//!< ƒf[ƒ^
-	double		comguard;			//!< ƒRƒ“ƒsƒ…[ƒ^ƒK[ƒhŠm—¦
-	int			siver;				//!< ƒ_ƒ[ƒWH‚ç‚Á‚½‚Æ‚«‚Ì‚µ‚Ñ‚êi‚Ì‚±‚è‘±ŠÔj
-	CATCHYOU	cy;					//!< “Š‚°‚ç‚êî•ñ
-	DWORD		hitcount;			//!< ˜A‘±‹Zƒqƒbƒg”
-	DWORD		sexydamage;			//!< ˜A‘±‹Z’~Ïƒ_ƒ[ƒW
-	DWORD		sexydamage_anim;	//!< ˜A‘±‹Z’~Ïƒ_ƒ[ƒWi‰æ–Ê•\¦—pj
-	DWORD		sexydamage_haba;	//!< ˜A‘±‹Z’~Ïƒ_ƒ[ƒWi‰æ–Ê•\¦—p‚Ì‘Œ¸•j
+	GOBJECT		data;				//!< ãƒ‡ãƒ¼ã‚¿
+	double		comguard;			//!< ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿ã‚¬ãƒ¼ãƒ‰ç¢ºç‡
+	int			siver;				//!< ãƒ€ãƒ¡ãƒ¼ã‚¸é£Ÿã‚‰ã£ãŸã¨ãã®ã—ã³ã‚Œï¼ˆã®ã“ã‚ŠæŒç¶šæ™‚é–“ï¼‰
+	CATCHYOU	cy;					//!< æŠ•ã’ã‚‰ã‚Œæƒ…å ±
+	DWORD		hitcount;			//!< é€£ç¶šæŠ€ãƒ’ãƒƒãƒˆæ•°
+	DWORD		sexydamage;			//!< é€£ç¶šæŠ€è“„ç©ãƒ€ãƒ¡ãƒ¼ã‚¸
+	DWORD		sexydamage_anim;	//!< é€£ç¶šæŠ€è“„ç©ãƒ€ãƒ¡ãƒ¼ã‚¸ï¼ˆç”»é¢è¡¨ç¤ºç”¨ï¼‰
+	DWORD		sexydamage_haba;	//!< é€£ç¶šæŠ€è“„ç©ãƒ€ãƒ¡ãƒ¼ã‚¸ï¼ˆç”»é¢è¡¨ç¤ºç”¨ã®å¢—æ¸›å¹…ï¼‰
 	
-	DWORD		userhit_attacker;	//!< ƒ†[ƒU[’è‹`‹ò‚ç‚¢‚Ìê‡AUŒ‚Ò
-	DWORD		userhit_id;			//!< ƒ†[ƒU[’è‹`‹ò‚ç‚¢‚Ìê‡AID
+	DWORD		userhit_attacker;	//!< ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©å–°ã‚‰ã„ã®å ´åˆã€æ”»æ’ƒè€…
+	DWORD		userhit_id;			//!< ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©å–°ã‚‰ã„ã®å ´åˆã€ID
 
-	int			comreach[3];		//!< ƒŠ[ƒ`. ’Z’†’·
-	DWORD		comhint_aid;		//!< DLL‚©‚ç‚Ìs“®‘JˆÚ–½—ß.s“®ID
-	int			comhint_delay;		//!< DLL‚©‚ç‚Ìs“®‘JˆÚ–½—ß.ƒfƒBƒŒƒC(ƒ}ƒCƒiƒX’l‚Í–³Œø)
+	int			comreach[3];		//!< ãƒªãƒ¼ãƒ. çŸ­ä¸­é•·
+	DWORD		comhint_aid;		//!< DLLã‹ã‚‰ã®è¡Œå‹•é·ç§»å‘½ä»¤.è¡Œå‹•ID
+	int			comhint_delay;		//!< DLLã‹ã‚‰ã®è¡Œå‹•é·ç§»å‘½ä»¤.ãƒ‡ã‚£ãƒ¬ã‚¤(ãƒã‚¤ãƒŠã‚¹å€¤ã¯ç„¡åŠ¹)
 
-	Config2_Difficulty	com_level;	//!< ƒRƒ“ƒsƒ…[ƒ^‚ÌƒŒƒxƒ‹(“ïˆÕ“x)
+	Config2_Difficulty	com_level;	//!< ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿ã®ãƒ¬ãƒ™ãƒ«(é›£æ˜“åº¦)
 	BYTE		dll_id;				//!< DLLID
-	BYTE		nage_muteki_cnt;	//!< ‹N‚«ã‚ª‚èAƒK[ƒhŒã“Š‚°–³“GƒJƒEƒ“ƒ^
+	BYTE		nage_muteki_cnt;	//!< èµ·ãä¸ŠãŒã‚Šã€ã‚¬ãƒ¼ãƒ‰å¾ŒæŠ•ã’ç„¡æ•µã‚«ã‚¦ãƒ³ã‚¿
 
-	DWORD		object_id_original;	//!< ƒIƒuƒWƒFƒNƒgIDiƒ`ƒFƒbƒN—pj
-	DWORD		comrange;			//!< COM‚ÌŠî–{ŠÔ‡‚¢
+	DWORD		object_id_original;	//!< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆIDï¼ˆãƒã‚§ãƒƒã‚¯ç”¨ï¼‰
+	DWORD		comrange;			//!< COMã®åŸºæœ¬é–“åˆã„
 
 protected:
-	int comcounter;					//!< ƒRƒ“ƒsƒ…[ƒ^“®ì—pƒJƒEƒ“ƒ^
-	DWORD actid_prv;				//!< ‘O‰ñs“®ID
-	CBattleTaskBase *battleTask;	//!< í“¬ƒ^ƒXƒN
-	int actloop_count;				//!< s“®ID‚Ìƒ‹[ƒv‰ñ”
+	int comcounter;					//!< ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿å‹•ä½œç”¨ã‚«ã‚¦ãƒ³ã‚¿
+	DWORD actid_prv;				//!< å‰å›è¡Œå‹•ID
+	CBattleTaskBase *battleTask;	//!< æˆ¦é—˜ã‚¿ã‚¹ã‚¯
+	int actloop_count;				//!< è¡Œå‹•IDã®ãƒ«ãƒ¼ãƒ—å›æ•°
 
-	DWORD	comhint_counterprev;	//!< ‘O‰ñ‚ÌƒJƒEƒ“ƒ^[A”äŠr—pB
+	DWORD	comhint_counterprev;	//!< å‰å›ã®ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã€æ¯”è¼ƒç”¨ã€‚
 	int		comhint_capacity;
 };
