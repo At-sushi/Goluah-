@@ -9,7 +9,7 @@
 
     （ネットワーク非対応版）
 
-    Goluah!! Copyright (C) 2001-2004 aki, 2014-2015 logger, 2004-2020 At-sushi
+    Goluah!! Copyright (C) 2001-2004 aki, 2014-2015 logger, 2004-2018 At-sushi
 
     This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
@@ -70,9 +70,12 @@ void CBattleTask::Initialize()
 
     char filename[256];
     int i,j;
+    HCURSOR cur = nullptr;
 
+    // 砂時計カーソルに変更
     if (!g_config.IsFullScreen())
-        AfxGetApp()->DoWaitCursor(1);
+        cur = SetCursor(LoadCursor(nullptr, IDC_WAIT));
+
     // 動的配列初期化
     p_objects.resize(OBJECTS_MEMINCRATE, nullptr);
     object_regno.resize(OBJECTS_MEMINCRATE);
@@ -164,11 +167,13 @@ void CBattleTask::Initialize()
         }
     }
 
+    if (cur)
+        SetCursor(cur);//カーソルを元に戻す
+
     // オブジェクトにバウンディングボックスを設定
     for (auto k : p_objects)
         if (k) k->ComputeBoundingBoxes();
 
-    AfxGetApp()->DoWaitCursor(-1);
     g_system.RemoveTask('LOAD');//NowLoading 表示タスク除去
 }
 
@@ -558,7 +563,7 @@ void CBattleTask::T_KasanariHantei()
 
     int i,j,k,l;
 
-    GOBJECT *pdat1 = NULL;
+    GOBJECT *pdat1 = NULL,*pdat2 = NULL;
     BOOL kas_yes = FALSE;
 
     GCD_CELL2  c_a,c_k;
@@ -577,12 +582,10 @@ void CBattleTask::T_KasanariHantei()
                 if(pdat1->kasanari){//重なり判定ON
                     if(pdat1->phdat!=NULL){
                         if(pdat1->pcdat!=NULL){
-                            collisionTree.insert(
-                                p_objects[i]->GetBoundingHit(pdat1->cnow).left + pdat1->x,
-                                p_objects[i]->GetBoundingHit(pdat1->cnow).top + pdat1->y,
-                                p_objects[i]->GetBoundingHit(pdat1->cnow).right + pdat1->x,
-                                p_objects[i]->GetBoundingHit(pdat1->cnow).bottom + pdat1->y,
-                                pdat1);
+                            // 判定矩形を登録する
+                            const auto rect = p_objects[i]->GetBoundingHit(pdat1->cnow);
+
+                            collisionTree.insert(rect.left, rect.top, rect.right, rect.bottom, pdat1);
                         }
                     }
                 }
@@ -983,7 +986,7 @@ void CBattleTask::T_Sousai()
     int i,j,k,l;
     int num_kas;
     MY2DVECTOR kas_point[3*6];
-    GOBJECT *pdat1;
+    GOBJECT *pdat1,*pdat2;
     GCD_CELL2  c_a,c_k;
     GCD_HANTEI h_a,h_k;
     BOOL revx1,revx2;
@@ -1000,14 +1003,12 @@ void CBattleTask::T_Sousai()
                 if(pdat1->objtype & GOBJFLG_ZBULLET){//オブジェクトは飛び道具属性を持つ
                     if(pdat1->kougeki){//攻撃力を失っていない
                         if(pdat1->phdat!=NULL){
-                            if (pdat1->pcdat != NULL)
+                            if(pdat1->pcdat!=NULL)
                             {
-                                collisionTree.insert(
-                                    p_objects[i]->GetBoundingAttack(pdat1->cnow).left + pdat1->x,
-                                    p_objects[i]->GetBoundingAttack(pdat1->cnow).top + pdat1->y,
-                                    p_objects[i]->GetBoundingAttack(pdat1->cnow).right + pdat1->x,
-                                    p_objects[i]->GetBoundingAttack(pdat1->cnow).bottom + pdat1->y,
-                                    pdat1);
+                                // 判定矩形を登録する
+                                const auto rect = p_objects[i]->GetBoundingAttack(pdat1->cnow);
+
+                                collisionTree.insert(rect.left, rect.top, rect.right, rect.bottom, pdat1);
                             }
                         }
                     }
