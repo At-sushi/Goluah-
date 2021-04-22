@@ -32,12 +32,13 @@ void CFxHitmark1::Update()
 }
 
 static BOOL DrawHitmark(const GOBJECT* pdat) {
-	UINT counter = pdat->counter * 0.75;
+	// なぜここだけUINTなのか
+	UINT counter = static_cast<UINT>(pdat->counter * 0.75);
 
 	if (counter < 15){//円
 		g_draw.SetAlphaMode(GBLEND_KASAN);
 		g_draw.DrawCircle((int)pdat->x, (int)pdat->y, (counter + 4) * 5,
-			30, 0, 0x00CC33FF + (((0xAA) * 255 * 255 * 255) & 0xFF000000), TRUE);
+			30, 0, 0xAACC33FF, TRUE);
 		g_draw.SetAlphaMode(0);
 	}
 	if (counter >= 20)return(TRUE);
@@ -47,12 +48,12 @@ static BOOL DrawHitmark(const GOBJECT* pdat) {
 
 BOOL CFxHitmark1::Draw()
 {
-	UINT counter = pdat->counter * 0.75;
+	UINT counter = static_cast<UINT>(pdat->counter * 0.75);
 
 	if (counter < 12){//円
 		g_draw.SetAlphaMode(GBLEND_KASAN);
 		g_draw.DrawCircle((int)pdat->x, (int)pdat->y, (counter + 4) * 5,
-			30, 0, 0x00CC33FF + (((0xAA) * 255 * 255 * 255) & 0xFF000000), TRUE);
+			30, 0, 0xAACC33FF, TRUE);
 		g_draw.SetAlphaMode(0);
 	}
 	return pdat->counter<12 ? FALSE : TRUE;
@@ -153,7 +154,7 @@ void CFxGuardmark1::Update()
 
 BOOL CFxGuardmark1::Draw()
 {
-	DWORD counter = pdat->counter * 1.25;
+	DWORD counter = static_cast<DWORD>(pdat->counter * 1.25);
 	if(counter<12){
 		if(pdat->muki){
 			g_draw.DrawCircle((int)pdat->x,(int)pdat->y,(counter+3)*5,
@@ -172,7 +173,7 @@ BOOL CFxGuardmark1::Draw()
 -----------------------------------------------------------------*/
 BOOL CFxGuardmark2::Draw()
 {
-	DWORD counter = pdat->counter * 1.25;
+	DWORD counter = static_cast<DWORD>(pdat->counter * 1.25);
 	if(counter<12){
 		if(pdat->muki){
 			g_draw.DrawCircle((int)pdat->x,(int)pdat->y,(counter+3)*5,

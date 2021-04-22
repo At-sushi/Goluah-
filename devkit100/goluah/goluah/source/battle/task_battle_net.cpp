@@ -44,7 +44,7 @@ CBattleTaskNet::~CBattleTaskNet(void)
 =============================================================================*/
 void CBattleTaskNet::Initialize()
 {
-	int i,j;
+	int i;
 
 	// 動的配列初期化
 	p_objects.resize(OBJECTS_MEMINCRATE);
@@ -163,7 +163,6 @@ void CBattleTaskNet::StartRound()
 {
 	int i,j;
 	round++;
-	char filename[256];
 	BOOL call_round=TRUE;
 
 	//キャラクターの状態を設定する
@@ -269,9 +268,6 @@ BOOL CBattleTaskNet::Execute(DWORD time)
 		return FALSE;
 	}
 
-	//local vals
-	int i;
-	
 	act_stop=FALSE;
 	g_input.KeyLock( bf_state==BFSTATE_FIGHTING ? FALSE : TRUE );
 
@@ -324,7 +320,7 @@ BOOL CBattleTaskNet::Execute(DWORD time)
 				s2m.msgid = GNETMSG_SYNC2;
 				s2m.pid = i*MAXNUM_TEAM;
 				s2m.hp = GetCharacterInfo(i, 0)->hp;
-				s2m.gauge = GetCharacterInfo(i, 0)->gauge;
+				s2m.gauge = static_cast<float>(GetCharacterInfo(i, 0)->gauge);
 				g_play.SendMsg(DPNID_ALL_PLAYERS_GROUP, s2m, sizeof(s2m), 200,
 								DPNSEND_NOLOOPBACK | DPNSEND_NONSEQUENTIAL);
 			}
@@ -424,8 +420,8 @@ void CBattleTaskNet::T_Action(BOOL stop)
 
 					tsm.msgid = GNETMSG_TESTSYNC;
 					tsm.id = p_objects[i]->data.id;
-					tsm.x = p_objects[i]->data.x;
-					tsm.y = p_objects[i]->data.y;
+					tsm.x = static_cast<float>(p_objects[i]->data.x);
+					tsm.y = static_cast<float>(p_objects[i]->data.y);
 					tsm.aid = p_objects[i]->data.aid;
 					// tsm.cnow = p_objects[i]->data.cnow;
 					tsm.counter = p_objects[i]->data.counter;
@@ -1726,7 +1722,7 @@ BOOL CBattleTaskNet::Atari(DWORD a_id, DWORD k_id, MY2DVECTOR &kas_point)
 	ATTACKINFO  *aif = attacker->data.atk;
 
 	// 削りでやられそうなら喰らわせる
-	if (res & 0x20000000 && bf_state==BFSTATE_FIGHTING && aif->kezuri >= pdat->hp)
+	if (res & 0x20000000 && bf_state==BFSTATE_FIGHTING && static_cast<int>(aif->kezuri) >= pdat->hp)
 		res |= 0x10000000;
 
 	double dmkanwa;
@@ -1925,8 +1921,8 @@ BOOL CBattleTaskNet::Atari(DWORD a_id, DWORD k_id, MY2DVECTOR &kas_point)
 
 					tsm.msgid = GNETMSG_TESTSYNC;
 					tsm.id = higaisya->data.id;
-					tsm.x = higaisya->data.x;
-					tsm.y = higaisya->data.y;
+					tsm.x = static_cast<float>(higaisya->data.x);
+					tsm.y = static_cast<float>(higaisya->data.y);
 					tsm.aid = higaisya->data.aid;
 					tsm.counter = higaisya->data.counter;
 					tsm.muki = higaisya->data.muki ? true : false;
@@ -2017,8 +2013,8 @@ BOOL CBattleTaskNet::Atari(DWORD a_id, DWORD k_id, MY2DVECTOR &kas_point)
 
 					tsm.msgid = GNETMSG_TESTSYNC;
 					tsm.id = higaisya->data.id;
-					tsm.x = higaisya->data.x;
-					tsm.y = higaisya->data.y;
+					tsm.x = static_cast<float>(higaisya->data.x);
+					tsm.y = static_cast<float>(higaisya->data.y);
 					tsm.aid = higaisya->data.aid;
 					tsm.counter = higaisya->data.counter;
 					tsm.muki = higaisya->data.muki ? true : false;

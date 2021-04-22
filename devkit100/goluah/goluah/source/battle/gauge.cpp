@@ -1044,13 +1044,13 @@ void CGauge::DrawHPG1(){	//coop
 		if(pdat!=NULL){
 			//体力
 			if(pdat->hpmax!=0){
-				gauge_prv2[0][j] -= (gauge_prv2[0][j] - pdat->hp) / 2.718282;
+				gauge_prv2[0][j] -= static_cast<int>((gauge_prv2[0][j] - pdat->hp) / 2.718282);
 				if(gauge_prv2[0][j] < pdat->hp)gauge_prv2[0][j] = pdat->hp;
 				hiritu = (double)gauge_prv2[0][j] / (double)pdat->hpmax;
 				if(hiritu<0)hiritu=0;
 				RECT hpg;
 				hpg.right=203;
-				hpg.left=hpg.right-200*hiritu;
+				hpg.left = hpg.right - static_cast<LONG>(200 * hiritu);
 				switch(g_battleinfo.GetNumTeam(0)){
 					case 2:
 						y=30+16*j;
@@ -1067,7 +1067,7 @@ void CGauge::DrawHPG1(){	//coop
 						hpg.top=3;
 						hpg.bottom=hpg.top+19;
 				}
-				g_draw.CheckBlt(g_system.GetSystemGraphicSurface()[2],272-200*hiritu,y,hpg,FALSE,FALSE,0,-0.05f,0xFFFFFFFF);
+				g_draw.CheckBlt(g_system.GetSystemGraphicSurface()[2], 272 - static_cast<int>(200 * hiritu), y, hpg, FALSE, FALSE, 0, -0.05f, 0xFFFFFFFF);
 			}
 			else{
 				gauge_prv[0][j] = 0;
@@ -1081,13 +1081,13 @@ void CGauge::DrawHPG1(){	//coop
 		if(pdat!=NULL){
 			//体力
 			if(pdat->hpmax!=0){
-				gauge_prv2[1][j] -= (gauge_prv2[1][j] - pdat->hp) / 2.718282;
+				gauge_prv2[1][j] -= static_cast<int>((gauge_prv2[1][j] - pdat->hp) / 2.718282);
 				if(gauge_prv2[1][j] < pdat->hp)gauge_prv2[1][j] = pdat->hp;
 				hiritu = (double)gauge_prv2[1][j] / (double)pdat->hpmax;
 				if(hiritu<0)hiritu=0;
 				RECT hpg;
 				hpg.left=206;
-				hpg.right=hpg.left+200*hiritu;
+				hpg.right = hpg.left + static_cast<LONG>(200 * hiritu);
 				switch(g_battleinfo.GetNumTeam(1)){
 					case 2:
 						y=30+16*j;
@@ -1233,7 +1233,7 @@ void CGauge::DrawHPG2(){	//marvel kof
 				if(hiritu<0)hiritu=0;
 				RECT hpg;
 				hpg.right=203;
-				hpg.left=hpg.right-200*hiritu;
+				hpg.left = hpg.right - static_cast<LONG>(200 * hiritu);
 				switch(g_battleinfo.GetNumTeam(0)){
 					case 2:
 						if(j==battleTask->GetActiveCharacterID(0)){
@@ -1260,8 +1260,8 @@ void CGauge::DrawHPG2(){	//marvel kof
 								y=40;
 							else{
 								switch(battleTask->GetActiveCharacterID(0)){
-									case 0:y=40+14*(j-1);break;
-									case 1:y=40+7*(-j+2);break;
+								case 0:y = 40 + 14 * (static_cast<int>(j) - 1); break;
+								case 1:y = 40 + 7 * (-static_cast<int>(j) + 2); break;
 									default:y=40+14*j;
 								}
 							}
@@ -1272,7 +1272,7 @@ void CGauge::DrawHPG2(){	//marvel kof
 						hpg.top=102;
 						hpg.bottom=hpg.top+19;
 				}
-				g_draw.CheckBlt(g_system.GetSystemGraphicSurface()[2],272-200*hiritu,y,hpg,FALSE,FALSE,0,-0.05f,0xFFFFFFFF);
+				g_draw.CheckBlt(g_system.GetSystemGraphicSurface()[2], 272 - static_cast<int>(200 * hiritu), y, hpg, FALSE, FALSE, 0, -0.05f, 0xFFFFFFFF);
 			}
 			else{
 				gauge_prv[0][j] = 0;
@@ -1292,7 +1292,7 @@ void CGauge::DrawHPG2(){	//marvel kof
 				if(hiritu<0)hiritu=0;
 				RECT hpg;
 				hpg.left=206;
-				hpg.right=hpg.left+200*hiritu;
+				hpg.right = hpg.left + static_cast<LONG>(200 * hiritu);
 				switch(g_battleinfo.GetNumTeam(1)){
 					case 2:
 						if(j==battleTask->GetActiveCharacterID(1)){
@@ -1319,8 +1319,8 @@ void CGauge::DrawHPG2(){	//marvel kof
 								y=40;
 							else{
 								switch(battleTask->GetActiveCharacterID(1)){
-									case 0:y=40+14*(j-1);break;
-									case 1:y=40+7*(-j+2);break;
+								case 0:y = 40 + 14 * (static_cast<int>(j) - 1); break;
+								case 1:y = 40 + 7 * (-static_cast<int>(j) + 2); break;
 									default:y=40+14*j;
 								}
 							}

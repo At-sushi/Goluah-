@@ -24,13 +24,13 @@ BOOL CFxRoundBase::DrawF()
 
 	float t2;
 	if(pdat->counter < 20 * 1.5){
-		t2 = 10.0f - pdat->counter/(2.0f * 1.5);
+		t2 = 10.0f - pdat->counter/(2.0f * 1.5f);
 	}
 	else if(pdat->counter < 40 * 1.5){
 		t2 = 1.0f;
 	}
 	else{
-		t2 = 1.0f - (pdat->counter-40 * 1.5)/(12.0f * 1.5);
+		t2 = 1.0f - (pdat->counter-40 * 1.5f)/(12.0f * 1.5f);
 	}
 
 	char str[] = "ROUND";

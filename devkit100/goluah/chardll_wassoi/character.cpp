@@ -421,8 +421,8 @@ void CCharacter::PreAction()
 
 	// ブラー追加
 	m_blur[m_blur_target].cnum = pdat->cnow;
-	m_blur[m_blur_target].x = pdat->x;
-	m_blur[m_blur_target].y = pdat->y;
+	m_blur[m_blur_target].x = static_cast<int>(pdat->x);
+	m_blur[m_blur_target].y = static_cast<int>(pdat->y);
 	m_blur[m_blur_target].z = pdat->z;
 	m_blur[m_blur_target].rot = pdat->rot;
 	m_blur[m_blur_target].revx = pdat->revx != pdat->muki;

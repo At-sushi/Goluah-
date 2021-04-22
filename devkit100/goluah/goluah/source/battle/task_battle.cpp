@@ -429,9 +429,6 @@ BOOL CBattleTask::Execute(DWORD time)
         return TRUE;
     }
 
-    //local vals
-    int i;
-    
     act_stop=FALSE;
     g_input.KeyLock( bf_state==BFSTATE_FIGHTING ? FALSE : TRUE );
 
@@ -529,7 +526,6 @@ void CBattleTask::T_Action(BOOL stop)
 {
     g_system.PushSysTag(__FUNCTION__);
 
-    int i;
     for(auto i : p_objects){
         if (i != NULL){
             if(!stop)
@@ -746,7 +742,7 @@ void CBattleTask::T_AtariHantei()
 
     assert(kurai_list.empty());
 
-    int i, j, k, l;
+    int i, k, l;
     if(!hantaihantei){
         for (auto i : p_objects){
             if (i != NULL){//オブジェクトが存在する
@@ -1600,7 +1596,7 @@ DWORD CBattleTask::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
                 //交代メッセージ送信
                 if (pdat->Message(GOBJMSG_KOUTAI, charobjid[team][cidx]))
                 {
-                    hprecratio[team][cidx] *= 1.8;		//HP回復インターバル増
+					hprecratio[team][cidx] *= static_cast<DWORD>(1.8);		//HP回復インターバル増
                     active_character[team] = next_act;//"アクティブ" キャラクター更新
                     g_system.PopSysTag();
                     return(TRUE);					//成功
@@ -1858,7 +1854,7 @@ BOOL CBattleTask::Atari(DWORD a_id, DWORD k_id, MY2DVECTOR &kas_point)
     ATTACKINFO  *aif = attacker->data.atk;
 
     // 削りでやられそうなら喰らわせる
-    if (res & 0x20000000 && bf_state==BFSTATE_FIGHTING && aif->kezuri >= pdat->hp)
+	if (res & 0x20000000 && bf_state == BFSTATE_FIGHTING && static_cast<int>(aif->kezuri) >= pdat->hp)
         res |= 0x10000000;
 
     double dmkanwa;
@@ -2647,7 +2643,7 @@ void CBattleTask::T_UpdateStatus_Fighting()
                                     //本来はシステムメッセージを発行すべきかもしれないが･･･
                                     if(pobj3->Message(GOBJMSG_KOUTAI,charobjid[j][active_character[j]]))
                                     {
-                                        hprecratio[j][active_character[j]]*=1.8;		//HP回復インターバル増
+										hprecratio[j][active_character[j]] *= static_cast<DWORD>(1.8);		//HP回復インターバル増
                                         active_character[j]=k;
                                         pobj->Message(GOBJMSG_TAIKI,0);
                                     }
