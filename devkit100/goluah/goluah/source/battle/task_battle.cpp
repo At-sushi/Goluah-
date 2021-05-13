@@ -1596,7 +1596,7 @@ DWORD CBattleTask::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
                 //交代メッセージ送信
                 if (pdat->Message(GOBJMSG_KOUTAI, charobjid[team][cidx]))
                 {
-					hprecratio[team][cidx] *= static_cast<DWORD>(1.8);		//HP回復インターバル増
+					hprecratio[team][cidx] = static_cast<DWORD>(hprecratio[team][cidx] * 1.8);		//HP回復インターバル増
                     active_character[team] = next_act;//"アクティブ" キャラクター更新
                     g_system.PopSysTag();
                     return(TRUE);					//成功
@@ -2643,7 +2643,7 @@ void CBattleTask::T_UpdateStatus_Fighting()
                                     //本来はシステムメッセージを発行すべきかもしれないが･･･
                                     if(pobj3->Message(GOBJMSG_KOUTAI,charobjid[j][active_character[j]]))
                                     {
-										hprecratio[j][active_character[j]] *= static_cast<DWORD>(1.8);		//HP回復インターバル増
+										hprecratio[j][active_character[j]] = static_cast<DWORD>(hprecratio[j][active_character[j]] * 1.8);		//HP回復インターバル増
                                         active_character[j]=k;
                                         pobj->Message(GOBJMSG_TAIKI,0);
                                     }
