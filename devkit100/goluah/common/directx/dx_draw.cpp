@@ -3626,7 +3626,7 @@ void CDirectDraw::GCenterDraw(
 *	@param insert TRUEの場合、設定されるマトリクスは、新マトリクス*旧マトリクス　の掛け算をしたもんである
 *	@return 関数の実行前に設定されていた古いマトリクス
 */
-D3DXMATRIXA16 CDirectDraw::SetParentMatrix(D3DXMATRIX& mat,BOOL root,BOOL insert)
+D3DXMATRIX CDirectDraw::SetParentMatrix(D3DXMATRIX& mat,BOOL root,BOOL insert)
 {
     D3DXMATRIXA16 matprv=matparent;
 
@@ -3658,7 +3658,7 @@ void CDirectDraw::SetParentMatrix2(D3DXMATRIX *mat,BOOL root,D3DXMATRIX *matprv)
 *	@brief 「親」マトリクスに単位行列を設定する
 *	@sa SetParentMatrix
 */
-D3DXMATRIXA16 CDirectDraw::ResetParentMatrix()
+D3DXMATRIX CDirectDraw::ResetParentMatrix()
 {
     D3DXMATRIXA16 matprv=matparent;
     D3DXMatrixIdentity(&matparent);

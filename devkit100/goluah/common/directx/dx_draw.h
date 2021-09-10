@@ -155,8 +155,8 @@ public:
 	void SetTransform(BOOL b);
 	void SetWorldMatrix(D3DXMATRIX *pmat);
 	//world
-	D3DXMATRIXA16 SetParentMatrix(D3DXMATRIX& mat,BOOL root=TRUE,BOOL insert=FALSE);
-	D3DXMATRIXA16 ResetParentMatrix();
+	D3DXMATRIX SetParentMatrix(D3DXMATRIX& mat,BOOL root=TRUE,BOOL insert=FALSE);
+	D3DXMATRIX ResetParentMatrix();
 	void SetParentMatrix2(D3DXMATRIX *mat,BOOL root,D3DXMATRIX *matprv);
 
 	//■デバッグ用関数
