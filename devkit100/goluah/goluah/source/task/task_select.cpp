@@ -1343,7 +1343,7 @@ void CTCharacterSelectBelt::UpdateText()
 			sprintf(m_disp_str,"COM/Player%d",m_current_key+1);
 		}
 		else{
-			sprintf(m_disp_str,"COM/Wait",m_current_key+1);
+			sprintf(m_disp_str,"COM/Wait");
 		}
 	}
 	else{
