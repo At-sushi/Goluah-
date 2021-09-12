@@ -1,4 +1,4 @@
-akiさん製作の２ちゃんねる格闘ゲーム「Goluah!!」の独自拡張版です。
+﻿akiさん製作の２ちゃんねる格闘ゲーム「Goluah!!」の独自拡張版です。
 ソースコードの置き場所として良さそうなので、
 ここを間借りしてキャラ・本体まとめて置くことにいたしました。
 内部の構成について、詳しくはdevkit100/readme.txt(Shift_JIS形式です)をお読みください。
@@ -23,3 +23,5 @@ This program is free software; you can redistribute it and/or modify it under th
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+2021/09/12追記： MFCは必要なくなりました
