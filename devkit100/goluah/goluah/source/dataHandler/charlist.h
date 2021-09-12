@@ -1,8 +1,8 @@
-
+ï»¿
 /*!
 *	@file
-*	@brief ƒLƒƒƒ‰ƒNƒ^[ŠÇ—
-*	ƒfƒBƒŒƒNƒgƒŠ‚©‚çƒLƒƒƒ‰ƒNƒ^[‚ÌƒŠƒXƒg‚ğì¬‚µ‚ÄŠÇ—‚·‚éB
+*	@brief ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ç®¡ç†
+*	ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‹ã‚‰ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ãƒªã‚¹ãƒˆã‚’ä½œæˆã—ã¦ç®¡ç†ã™ã‚‹ã€‚
 */
 
 #pragma once
@@ -14,37 +14,37 @@
 */
 /*@{*/
 
-typedef std::vector<CHARACTER_LOAD_OPTION> CharOptionList;	//!< ƒLƒƒƒ‰ƒNƒ^[ƒIƒvƒVƒ‡ƒ“”z—ñ(STL)
+typedef std::vector<CHARACTER_LOAD_OPTION> CharOptionList;	//!< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚ªãƒ—ã‚·ãƒ§ãƒ³é…åˆ—(STL)
 
 
 /*!
-*	@brief ƒLƒƒƒ‰ƒNƒ^[‚Ìoptset.txtî•ñ
+*	@brief ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®optset.txtæƒ…å ±
 */
 struct FAVORITE_OPTION
 {
-	char name[32];	//!< ƒIƒvƒVƒ‡ƒ“–¼
-	DWORD opt;		//!< ƒIƒvƒVƒ‡ƒ“’l
+	char name[32];	//!< ã‚ªãƒ—ã‚·ãƒ§ãƒ³å
+	DWORD opt;		//!< ã‚ªãƒ—ã‚·ãƒ§ãƒ³å€¤
 };
-typedef std::vector<FAVORITE_OPTION> FavoriteOptionList;	//!< ƒLƒƒƒ‰ƒNƒ^[ƒIƒvƒVƒ‡ƒ“ƒZƒbƒg”z—ñ(STL)
+typedef std::vector<FAVORITE_OPTION> FavoriteOptionList;	//!< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆé…åˆ—(STL)
 
-/*! @brief ƒLƒƒƒ‰ƒNƒ^[‚Ìî•ñ */
+/*! @brief ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®æƒ…å ± */
 struct CCL_CHARACTERINFO
 {
-	char dir[64];				//!< ‚Ç‚ÌƒfƒBƒŒƒNƒgƒŠ‚É‚ ‚é‚©
-	char name[32];				//!< –¼‘O‚Í‚È‚ñ‚Æ‚¢‚¤‚Ì‚©
-	DWORD ver;					//!< dll‚Ìƒo[ƒWƒ‡ƒ“
+	char dir[64];				//!< ã©ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«ã‚ã‚‹ã‹
+	char name[32];				//!< åå‰ã¯ãªã‚“ã¨ã„ã†ã®ã‹
+	DWORD ver;					//!< dllã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 
-	DWORD caps;					//!< ƒLƒƒƒ‰ƒNƒ^[‚Ì”\—ÍiƒXƒg[ƒŠ[‰Â/•s‰ÂAƒlƒbƒgƒ[ƒN‘Î‰/”ñ‘Î‰“™j
+	DWORD caps;					//!< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®èƒ½åŠ›ï¼ˆã‚¹ãƒˆãƒ¼ãƒªãƒ¼å¯/ä¸å¯ã€ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯å¯¾å¿œ/éå¯¾å¿œç­‰ï¼‰
 	
-	//DWORD byteCheck;			//ƒlƒbƒgƒ[ƒN‘Îí‚Ìƒ`ƒFƒbƒN
-	CharOptionList options;		//!< ƒIƒvƒVƒ‡ƒ“€–Ú
-	DWORD maxpoint;				//!< ƒIƒvƒVƒ‡ƒ“ƒ|ƒCƒ“ƒgÅ‘å’l
-	DWORD previous_option;		//!< ‘O‰ñ‘I‘ğ‚³‚ê‚½ƒIƒvƒVƒ‡ƒ“
-	FavoriteOptionList fav_opts;//!< ƒIƒvƒVƒ‡ƒ“ƒZƒbƒg(optset.txt‚©‚çæ“¾)
-	UINT  previous_favorite;	//!< ‘O‰ñ‘I‘ğƒIƒvƒVƒ‡ƒ“? –¢g—p‚Á‚Û‚¢
+	//DWORD byteCheck;			//ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯å¯¾æˆ¦æ™‚ã®ãƒã‚§ãƒƒã‚¯
+	CharOptionList options;		//!< ã‚ªãƒ—ã‚·ãƒ§ãƒ³é …ç›®
+	DWORD maxpoint;				//!< ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãƒã‚¤ãƒ³ãƒˆæœ€å¤§å€¤
+	DWORD previous_option;		//!< å‰å›é¸æŠã•ã‚ŒãŸã‚ªãƒ—ã‚·ãƒ§ãƒ³
+	FavoriteOptionList fav_opts;//!< ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ(optset.txtã‹ã‚‰å–å¾—)
+	UINT  previous_favorite;	//!< å‰å›é¸æŠã‚ªãƒ—ã‚·ãƒ§ãƒ³? æœªä½¿ç”¨ã£ã½ã„
 
 	CCL_CHARACTERINFO(){previous_option=0;previous_favorite=0;}
-	//! ƒGƒ‰[‘Îô
+	//! ã‚¨ãƒ©ãƒ¼å¯¾ç­–
 	CCL_CHARACTERINFO(const CCL_CHARACTERINFO& par){
 		strcpy_s(dir, par.dir);
 		strcpy_s(name, par.name);
@@ -57,41 +57,41 @@ struct CCL_CHARACTERINFO
 		previous_favorite = par.previous_favorite;
 	}
 };
-typedef std::vector<CCL_CHARACTERINFO> CCLCharacterInfoList;	//!< ƒLƒƒƒ‰ƒNƒ^[î•ñ”z—ñ(STL)
+typedef std::vector<CCL_CHARACTERINFO> CCLCharacterInfoList;	//!< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æƒ…å ±é…åˆ—(STL)
 
 
-/*!	@brief ”F¯¸”sƒLƒƒƒ‰ƒNƒ^[‚Ìî•ñ */
+/*!	@brief èªè­˜å¤±æ•—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®æƒ…å ± */
 struct CCL_DAMEINFO
 {
-	char dir[64];				//!< ‚Ç‚ÌƒfƒBƒŒƒNƒgƒŠ‚É‚ ‚é‚©
-	char name[32];				//!< –¼‘O‚Í‚È‚ñ‚Æ‚¢‚¤‚Ì‚©
-	DWORD dame;					//!< ‘Ê–Ú‚È——R
-	DWORD ver;					//!< dll‚Ìƒo[ƒWƒ‡ƒ“
+	char dir[64];				//!< ã©ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«ã‚ã‚‹ã‹
+	char name[32];				//!< åå‰ã¯ãªã‚“ã¨ã„ã†ã®ã‹
+	DWORD dame;					//!< é§„ç›®ãªç†ç”±
+	DWORD ver;					//!< dllã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 };
-typedef std::vector<CCL_DAMEINFO> CCLDameInfoList;	//!< ”F¯¸”sƒLƒƒƒ‰ƒNƒ^[”z—ñ(STL)
+typedef std::vector<CCL_DAMEINFO> CCLDameInfoList;	//!< èªè­˜å¤±æ•—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼é…åˆ—(STL)
 
-#define CCL_DAME_NODLL		1//!< ƒLƒƒƒ‰ƒNƒ^[”F¯¸”s——RID , action.dll‚Ì“Ç‚İ‚İ‚É¸”s
-#define CCL_DAME_CANTGETFP	2//!< ƒLƒƒƒ‰ƒNƒ^[”F¯¸”s——RID , ŠÖ”ƒ|ƒCƒ“ƒ^æ“¾‚É¸”s
-#define CCL_DAME_FFAIL		3//!< ƒLƒƒƒ‰ƒNƒ^[”F¯¸”s——RID , ŠÖ”‚ªFALSE‚ğ•Ô‚µ‚Ä‚«‚½
-#define CCL_DAME_OLDDLL		4//!< ƒLƒƒƒ‰ƒNƒ^[”F¯¸”s——RID , ƒo[ƒWƒ‡ƒ“ƒ`ƒFƒbƒN‚É¸”s
-#define CCL_DAME_NEWDLL		5//!< ƒLƒƒƒ‰ƒNƒ^[”F¯¸”s——RID , ƒo[ƒWƒ‡ƒ“ƒ`ƒFƒbƒN‚É¸”s(2)
+#define CCL_DAME_NODLL		1//!< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼èªè­˜å¤±æ•—ç†ç”±ID , action.dllã®èª­ã¿è¾¼ã¿ã«å¤±æ•—
+#define CCL_DAME_CANTGETFP	2//!< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼èªè­˜å¤±æ•—ç†ç”±ID , é–¢æ•°ãƒã‚¤ãƒ³ã‚¿å–å¾—ã«å¤±æ•—
+#define CCL_DAME_FFAIL		3//!< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼èªè­˜å¤±æ•—ç†ç”±ID , é–¢æ•°ãŒFALSEã‚’è¿”ã—ã¦ããŸ
+#define CCL_DAME_OLDDLL		4//!< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼èªè­˜å¤±æ•—ç†ç”±ID , ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒã‚§ãƒƒã‚¯ã«å¤±æ•—
+#define CCL_DAME_NEWDLL		5//!< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼èªè­˜å¤±æ•—ç†ç”±ID , ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒã‚§ãƒƒã‚¯ã«å¤±æ•—(2)
 
 
 
-/*! @brief ƒŠƒ“ƒOiƒLƒƒƒ‰ƒNƒ^[ƒfƒBƒŒƒNƒgƒŠjî•ñ */
+/*! @brief ãƒªãƒ³ã‚°ï¼ˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªï¼‰æƒ…å ± */
 struct CCL_RINGINFO
 {
-	char name[64];							//!< –¼‘O=ƒfƒBƒŒƒNƒgƒŠ–¼
-	std::vector<DWORD> ring2serialIndex;	//!< ’¼—ñ‚É•À‚ñ‚¾‡”Ô‚Å‚ÌƒCƒ“ƒfƒbƒNƒX‚É•ÏŠ·
+	char name[64];							//!< åå‰=ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå
+	std::vector<DWORD> ring2serialIndex;	//!< ç›´åˆ—ã«ä¸¦ã‚“ã é †ç•ªã§ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«å¤‰æ›
 };
-typedef std::vector<CCL_RINGINFO> CCLRingInfoList;	//!< ƒLƒƒƒ‰ƒNƒ^[ƒŠƒ“ƒOƒŠƒXƒg(STL)
+typedef std::vector<CCL_RINGINFO> CCLRingInfoList;	//!< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒªãƒ³ã‚°ãƒªã‚¹ãƒˆ(STL)
 
 
 
 class CCOptionSelecter;
 class CCSimpleOptionSelecter;
 
-/*! @brief ƒLƒƒƒ‰ƒNƒ^[ƒŠƒXƒgŠÇ—ƒNƒ‰ƒX */
+/*! @brief ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒªã‚¹ãƒˆç®¡ç†ã‚¯ãƒ©ã‚¹ */
 class CCharacterList
 {
 public:
@@ -101,29 +101,29 @@ public:
 	void Initialize();
 	void Destroy();
 
-	//ƒLƒƒƒ‰ƒNƒ^‚Ìî•ñæ“¾Œn
-	int GetCharacterCount();				//!< ŒŸõ‚³‚ê‚½‘SƒLƒƒƒ‰ƒNƒ^[”‚ğ•Ô‚·B
-	char* GetCharacterDir(UINT index);		//!< ƒLƒƒƒ‰ƒNƒ^[‚ÌƒfƒBƒŒƒNƒgƒŠƒpƒX‚ğ•Ô‚·
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®æƒ…å ±å–å¾—ç³»
+	int GetCharacterCount();				//!< æ¤œç´¢ã•ã‚ŒãŸå…¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æ•°ã‚’è¿”ã™ã€‚
+	char* GetCharacterDir(UINT index);		//!< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹ã‚’è¿”ã™
 	char* GetCharacterDir(UINT index,int ring);
-	char* GetCharacterName(UINT index);		//!< ƒLƒƒƒ‰ƒNƒ^[‚Ì–¼‘O‚ğ•Ô‚·
-	DWORD GetCharacterVer(UINT index);		//!< ƒLƒƒƒ‰ƒNƒ^[‚Ìƒo[ƒWƒ‡ƒ“‚ğ•Ô‚·
-	int   FindCharacter(char *name);		//!< –¼‘O‚ÅŒŸõi‚È‚©‚Á‚½ê‡-1j
-	DWORD GetCaps(UINT index);				//!< ƒLƒƒƒ‰ƒNƒ^[‚ÌcapsƒtƒB[ƒ‹ƒh‚ğæ“¾‚·‚é
+	char* GetCharacterName(UINT index);		//!< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®åå‰ã‚’è¿”ã™
+	DWORD GetCharacterVer(UINT index);		//!< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’è¿”ã™
+	int   FindCharacter(char *name);		//!< åå‰ã§æ¤œç´¢ï¼ˆãªã‹ã£ãŸå ´åˆ-1ï¼‰
+	DWORD GetCaps(UINT index);				//!< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®capsãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’å–å¾—ã™ã‚‹
 
-	//ƒŠƒ“ƒOî•ñæ“¾Œn
-	int GetRingNum();						//!< ƒŠƒ“ƒO‚Ì”‚ğ•Ô‚·
-	char* GetRingName(UINT index);			//!< ƒŠƒ“ƒO‚Ì–¼‘OiƒfƒBƒŒƒNƒgƒŠ–¼j‚ğ•Ô‚·
-	int GetCharacterCountRing(UINT index);	//!< w’èƒCƒ“ƒfƒbƒNƒX‚ÌƒŠƒ“ƒO‚ÅŒŸõ‚³‚ê‚½ƒLƒƒƒ‰ƒNƒ^[”‚ğ•Ô‚·
-	DWORD RingIndex2SerialIndex(UINT ring,UINT index);//!< ƒŠƒ“ƒO“à‚Å‚ÌƒCƒ“ƒfƒbƒNƒX‚ğA‘S‘Ì‚Å‚ÌƒCƒ“ƒfƒbƒNƒX‚É•ÏŠ·‚·‚é
+	//ãƒªãƒ³ã‚°æƒ…å ±å–å¾—ç³»
+	int GetRingNum();						//!< ãƒªãƒ³ã‚°ã®æ•°ã‚’è¿”ã™
+	char* GetRingName(UINT index);			//!< ãƒªãƒ³ã‚°ã®åå‰ï¼ˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªåï¼‰ã‚’è¿”ã™
+	int GetCharacterCountRing(UINT index);	//!< æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ãƒªãƒ³ã‚°ã§æ¤œç´¢ã•ã‚ŒãŸã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æ•°ã‚’è¿”ã™
+	DWORD RingIndex2SerialIndex(UINT ring,UINT index);//!< ãƒªãƒ³ã‚°å†…ã§ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ã€å…¨ä½“ã§ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«å¤‰æ›ã™ã‚‹
 
-	//”F¯¸”sƒLƒƒƒ‰ƒNƒ^[‚Ìî•ñ
-	int GetDameCharCount();					//!< ”F¯¸”sƒLƒƒƒ‰ƒNƒ^[‚Ì”‚ğ•Ô‚·
-	char* GetDameCharDir(UINT index);		//!< ”F¯¸”sƒLƒƒƒ‰ƒNƒ^[‚ÌƒfƒBƒŒƒNƒgƒŠ‚ğ•Ô‚·
-	char* GetDameCharName(UINT index);		//!< ”F¯¸”sƒLƒƒƒ‰ƒNƒ^[‚Ì–¼‘O‚ğ•Ô‚·
-	DWORD GetDameCharReas(UINT index);		//!< ”F¯¸”sƒLƒƒƒ‰ƒNƒ^[‚Ì”F¯¸”s——R‚ğ•Ô‚·
-	DWORD GetDameCharVer(UINT index);		//!< ”F¯¸”sƒLƒƒƒ‰ƒNƒ^[‚Ìƒo[ƒWƒ‡ƒ“‚ğ•Ô‚·
+	//èªè­˜å¤±æ•—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®æƒ…å ±
+	int GetDameCharCount();					//!< èªè­˜å¤±æ•—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™
+	char* GetDameCharDir(UINT index);		//!< èªè­˜å¤±æ•—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’è¿”ã™
+	char* GetDameCharName(UINT index);		//!< èªè­˜å¤±æ•—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®åå‰ã‚’è¿”ã™
+	DWORD GetDameCharReas(UINT index);		//!< èªè­˜å¤±æ•—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®èªè­˜å¤±æ•—ç†ç”±ã‚’è¿”ã™
+	DWORD GetDameCharVer(UINT index);		//!< èªè­˜å¤±æ•—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’è¿”ã™
 
-/*	//ƒlƒgƒ[ƒNŠÖŒW
+/*	//ãƒãƒˆãƒ¯ãƒ¼ã‚¯é–¢ä¿‚
 	BOOL GetNetCharacterInfo(NETMESSAGE_INDICATE_CONNECT *dat);
 	BOOL CheckNetCharacterList(NETMESSAGE_INDICATE_CONNECT *dat);
 	void InitializeNetCharacterIDList();
@@ -133,7 +133,7 @@ public:
 	DWORD GetByteCheck(DWORD index){return(infolist[index].byteCheck);}
 	DWORD GetNetIDFromIndex(DWORD index);*/
 
-	//ƒIƒvƒVƒ‡ƒ“ŠÖŒW
+	//ã‚ªãƒ—ã‚·ãƒ§ãƒ³é–¢ä¿‚
 	CCOptionSelecter* GetOptionSelecter(DWORD cindex);
 	void SetPreviousOption(DWORD index,DWORD opt){infolist[index].previous_option=opt;}
 	DWORD GetRandomOption(DWORD index);
@@ -142,28 +142,28 @@ public:
 	CCSimpleOptionSelecter* GetSimpleOptionSelecter(DWORD cindex);
 
 private:
-	//Initialize‚©‚çg—p‚³‚ê‚é
-	void InitializeRingList();				//!< ƒfƒBƒŒƒNƒgƒŠ‚ğŒŸõ‚µAƒŠƒ“ƒO‚ÌƒfƒBƒŒƒNƒgƒŠ–¼ƒŠƒXƒg‚ğ\’z‚·‚é
-	void InitializeRing(DWORD ringindex);	//!< ƒfƒBƒŒƒNƒgƒŠ‚ğŒŸõ‚·‚éj
-	BOOL VerifyCharacterDir(char *dir,DWORD ringindex);//!< ƒLƒƒƒ‰ƒNƒ^ƒfƒBƒŒƒNƒgƒŠ‚Ì³“–«‚ğŒŸØ‚·‚é
+	//Initializeã‹ã‚‰ä½¿ç”¨ã•ã‚Œã‚‹
+	void InitializeRingList();				//!< ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’æ¤œç´¢ã—ã€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªåãƒªã‚¹ãƒˆã‚’æ§‹ç¯‰ã™ã‚‹
+	void InitializeRing(DWORD ringindex);	//!< ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’æ¤œç´¢ã™ã‚‹ï¼‰
+	BOOL VerifyCharacterDir(char *dir,DWORD ringindex);//!< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®æ­£å½“æ€§ã‚’æ¤œè¨¼ã™ã‚‹
 
 private:
-	CCLCharacterInfoList infolist;	//!< ƒLƒƒƒ‰ƒNƒ^ƒŠƒXƒg
-	CCLRingInfoList ringlist;		//!< ƒŠƒ“ƒOƒŠƒXƒg
-	CCLDameInfoList damelist;		//!< ƒfƒBƒŒƒNƒgƒŠ‚Í‚ ‚Á‚½‚¯‚Çverify‚É¸”s‚µ‚½ƒŠƒXƒg
+	CCLCharacterInfoList infolist;	//!< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚¹ãƒˆ
+	CCLRingInfoList ringlist;		//!< ãƒªãƒ³ã‚°ãƒªã‚¹ãƒˆ
+	CCLDameInfoList damelist;		//!< ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã¯ã‚ã£ãŸã‘ã©verifyã«å¤±æ•—ã—ãŸãƒªã‚¹ãƒˆ
 };
 
 
 
-class CTOptionSelecterBase;	//!< ƒIƒvƒVƒ‡ƒ“‘I‘ğƒx[ƒXƒNƒ‰ƒX
-class CTOptionSelecter;		//!< ƒIƒvƒVƒ‡ƒ“‘I‘ğƒNƒ‰ƒXiVSƒ‚[ƒhj
-class COptionSelecter;		//!< ƒIƒvƒVƒ‡ƒ“‘I‘ğƒNƒ‰ƒXiƒXƒg[ƒŠ[ƒ‚[ƒhj
+class CTOptionSelecterBase;	//!< ã‚ªãƒ—ã‚·ãƒ§ãƒ³é¸æŠãƒ™ãƒ¼ã‚¹ã‚¯ãƒ©ã‚¹
+class CTOptionSelecter;		//!< ã‚ªãƒ—ã‚·ãƒ§ãƒ³é¸æŠã‚¯ãƒ©ã‚¹ï¼ˆVSãƒ¢ãƒ¼ãƒ‰æ™‚ï¼‰
+class COptionSelecter;		//!< ã‚ªãƒ—ã‚·ãƒ§ãƒ³é¸æŠã‚¯ãƒ©ã‚¹ï¼ˆã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒ¢ãƒ¼ãƒ‰æ™‚ï¼‰
 
 /*!
-*	@brief ƒIƒvƒVƒ‡ƒ“‘I‘ğƒf[ƒ^ŠÇ—ƒNƒ‰ƒX
+*	@brief ã‚ªãƒ—ã‚·ãƒ§ãƒ³é¸æŠãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚¯ãƒ©ã‚¹
 *	@sa CTOptionSelecter
 *
-*	ver0.90x ‚Åg‚Á‚Ä‚½ŒÃ‚¢ƒNƒ‰ƒXBCTOptionSelecter‚Í‚±‚¢‚Â‚ğ“à•”‚É‚à‚ÂB
+*	ver0.90x ã§ä½¿ã£ã¦ãŸå¤ã„ã‚¯ãƒ©ã‚¹ã€‚CTOptionSelecterã¯ã“ã„ã¤ã‚’å†…éƒ¨ã«ã‚‚ã¤ã€‚
 */
 class CCOptionSelecter
 {
@@ -181,35 +181,35 @@ public:
 	void SetOffset(int val){offset_x=val;}
 	void SetZ(float val){z=val;}
 
-	char* GetCurrentSetName();						//!< 0:"Free" , 0`:favoriteİ’è–¼
-	void ApplyToPreviousSelect();					//!< ‘O‰ñ‘I‘ğƒtƒ‰ƒO‚Éİ’è‚·‚é
+	char* GetCurrentSetName();						//!< 0:"Free" , 0ï½:favoriteè¨­å®šå
+	void ApplyToPreviousSelect();					//!< å‰å›é¸æŠãƒ•ãƒ©ã‚°ã«è¨­å®šã™ã‚‹
 
 protected:
-	void TurnOffDependFlags( DWORD flag );			//!< flag‚ÉˆË‘¶‚·‚éƒtƒ‰ƒO‚ğ‘S‚ÄOFF
-	void TurnOffExclisiveFlags( DWORD ex_flag );	//!< flag‚Æ‹£‡‚·‚éƒtƒ‰ƒO‚ğ‘S‚ÄOFF
-	void SetRandom();								//!< ƒ‰ƒ“ƒ_ƒ€ƒZƒbƒg
+	void TurnOffDependFlags( DWORD flag );			//!< flagã«ä¾å­˜ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’å…¨ã¦OFF
+	void TurnOffExclisiveFlags( DWORD ex_flag );	//!< flagã¨ç«¶åˆã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’å…¨ã¦OFF
+	void SetRandom();								//!< ãƒ©ãƒ³ãƒ€ãƒ ã‚»ãƒƒãƒˆ
 
-	DWORD counter;					//!< •`‰æ—pƒJƒEƒ“ƒ^H
-	DWORD state;					//!< ó‘Ô
-	CharOptionList* list;			//!< ƒIƒvƒVƒ‡ƒ“ƒŠƒXƒg
-	DWORD current_selected;			//!< ‘I‘ğ’†‚Ì€–Ú
-	int current_point;				//!< Œ»İc‚èƒ|ƒCƒ“ƒg
-	BOOL enabled[32];				//!< ŠeƒIƒvƒVƒ‡ƒ“ON/OFFƒtƒ‰ƒO
-	BOOL commit_enabled;			//!< Œˆ’è‰Â”\ƒtƒ‰ƒO
-	DWORD maxpoint;					//!< ƒ|ƒCƒ“ƒgŒÀŠE’l
-	int offset_x;					//!< •`‰æXƒIƒtƒZƒbƒg’l
-	float z;						//!< •`‰æZ’l
+	DWORD counter;					//!< æç”»ç”¨ã‚«ã‚¦ãƒ³ã‚¿ï¼Ÿ
+	DWORD state;					//!< çŠ¶æ…‹
+	CharOptionList* list;			//!< ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãƒªã‚¹ãƒˆ
+	DWORD current_selected;			//!< é¸æŠä¸­ã®é …ç›®
+	int current_point;				//!< ç¾åœ¨æ®‹ã‚Šãƒã‚¤ãƒ³ãƒˆ
+	BOOL enabled[32];				//!< å„ã‚ªãƒ—ã‚·ãƒ§ãƒ³ON/OFFãƒ•ãƒ©ã‚°
+	BOOL commit_enabled;			//!< æ±ºå®šå¯èƒ½ãƒ•ãƒ©ã‚°
+	DWORD maxpoint;					//!< ãƒã‚¤ãƒ³ãƒˆé™ç•Œå€¤
+	int offset_x;					//!< æç”»Xã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
+	float z;						//!< æç”»Zå€¤
 
-	CCL_CHARACTERINFO *m_ref_cinfo;	//!< ƒLƒƒƒ‰ƒNƒ^î•ñ(QÆ)
-	DWORD m_current_favorite;		//!< Œ»İ‚Ìİ’èA0:Free , 1`:favolite0`
+	CCL_CHARACTERINFO *m_ref_cinfo;	//!< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿æƒ…å ±(å‚ç…§)
+	DWORD m_current_favorite;		//!< ç¾åœ¨ã®è¨­å®šã€0:Free , 1ï½:favolite0ï½
 };
 
 /*!
-*	@brief ’Pƒ‰»”Å—pƒIƒvƒVƒ‡ƒ“‘I‘ğƒf[ƒ^ŠÇ—ƒNƒ‰ƒX
+*	@brief å˜ç´”åŒ–ç‰ˆç”¨ã‚ªãƒ—ã‚·ãƒ§ãƒ³é¸æŠãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚¯ãƒ©ã‚¹
 *	@sa CTSimpleOptionSelecter
 *
-*	CTSimpleOptionSelecter“à•”‚Åg—p
-*	CCOptionSelecter‚Æ‚Ù‚Ú“¯‚¶‚Å‚·‚ªA‘€ìŒn‚ªˆê•”•Ï‚í‚Á‚Ä‚¢‚Ü‚·B
+*	CTSimpleOptionSelecterå†…éƒ¨ã§ä½¿ç”¨
+*	CCOptionSelecterã¨ã»ã¼åŒã˜ã§ã™ãŒã€æ“ä½œç³»ãŒä¸€éƒ¨å¤‰ã‚ã£ã¦ã„ã¾ã™ã€‚
 */
 class CCSimpleOptionSelecter : public CCOptionSelecter
 {

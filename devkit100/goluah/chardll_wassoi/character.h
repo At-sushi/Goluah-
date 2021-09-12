@@ -1,7 +1,7 @@
-
+ï»¿
 /*==============================================================
 
-	ƒLƒƒƒ‰ƒNƒ^[’è‹`ƒwƒbƒ_
+	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼å®šç¾©ãƒ˜ãƒƒãƒ€
 
 	Goluah!! Copyright (C) 2001-2004 aki, 2014-2015 logger, 2004-2015 At-sushi
 
@@ -21,9 +21,9 @@
 #include <d3dx8.h>
 
 #include "gobjbase.h"
-#include "cell.h"// ’ÊíAare_editer‚Å¶¬‚µ‚½ƒwƒbƒ_[ƒtƒ@ƒCƒ‹‚ğ‚±‚±‚Éinclude‚µ‚Ü‚·
+#include "cell.h"// é€šå¸¸ã€are_editerã§ç”Ÿæˆã—ãŸãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã“ã“ã«includeã—ã¾ã™
 
-//ƒIƒvƒVƒ‡ƒ“’è‹`
+//ã‚ªãƒ—ã‚·ãƒ§ãƒ³å®šç¾©
 #define OPTIONS_HEAVY_HIT		0x00000001
 #define OPTIONS_AUTO_GUARD		0x00000002
 #define OPTIONS_GUARD_CANCEL	0x00000004
@@ -39,7 +39,7 @@
 class CWassoiLight;
 
 /*--------------------------------------------------------------
-	ƒƒCƒ“ƒLƒƒƒ‰ƒNƒ^[ƒNƒ‰ƒX
+	ãƒ¡ã‚¤ãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚¯ãƒ©ã‚¹
 ----------------------------------------------------------------*/
 class CCharacter : public CCharacterBase
 {
@@ -49,7 +49,7 @@ public:
 
 protected:
 	//*********************************************
-	//  ƒI[ƒo[ƒ‰ƒCƒh‚·‚éŠÖ”
+	//  ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã™ã‚‹é–¢æ•°
 	//*********************************************
 
 	DWORD Message(DWORD msg,LPVOID pd,DWORD prm);
@@ -65,51 +65,51 @@ protected:
 	DWORD CommandCOM(DWORD wid);
 	DWORD CmdCom_OnSystem(DWORD wid);
 	DWORD CmdCom_OnNormal(DWORD wid);
-	void InitAttackInfo();//UŒ‚—Íî•ñ‚Ì‰Šú‰»
-	void InitWazInfo();//‹Zî•ñ‚Ì‰Šú‰»
+	void InitAttackInfo();//æ”»æ’ƒåŠ›æƒ…å ±ã®åˆæœŸåŒ–
+	void InitWazInfo();//æŠ€æƒ…å ±ã®åˆæœŸåŒ–
 	void InitBullets();
 	DWORD ComThink();
 	DWORD Draw();
 
-	//’Êí“®ì
-	void act_neutral();//ƒjƒ…[ƒgƒ‰ƒ‹
-	void act_crouch();//‚µ‚á‚ª‚İ
-	void act_rakka();//—‰º
-	void act_tojyo();//“oê
-	void act_win();//Ÿ—˜
-	void act_walkf();//‘Oi
-	void act_walkb();//Œã‘Ş
-	void act_jamps();//ƒWƒƒƒ“ƒv—\”õ“®ì
-	void act_jampc();//‚’¼ƒWƒƒƒ“ƒv
-	void act_jampf();//‘OƒWƒƒƒ“ƒv
-	void act_jampb();//ŒãƒWƒƒƒ“ƒv
-	//’Êí.UŒ‚
-	void act_att_sa();//—§ã
-	void act_att_sb();//—§’†
-	void act_att_sc();//—§‹­
-	void act_att_ca();//‹üã
-	void act_att_cb();//‹ü’†
-	void act_att_cc();//‹ü‹­
-	void act_att_ja();//”òã
-	void act_att_jb();//”ò’†
-	void act_att_jc();//”ò‹­
-	//‚»‚Ì‘¼
+	//é€šå¸¸å‹•ä½œ
+	void act_neutral();//ãƒ‹ãƒ¥ãƒ¼ãƒˆãƒ©ãƒ«
+	void act_crouch();//ã—ã‚ƒãŒã¿
+	void act_rakka();//è½ä¸‹
+	void act_tojyo();//ç™»å ´
+	void act_win();//å‹åˆ©
+	void act_walkf();//å‰é€²
+	void act_walkb();//å¾Œé€€
+	void act_jamps();//ã‚¸ãƒ£ãƒ³ãƒ—äºˆå‚™å‹•ä½œ
+	void act_jampc();//å‚ç›´ã‚¸ãƒ£ãƒ³ãƒ—
+	void act_jampf();//å‰ã‚¸ãƒ£ãƒ³ãƒ—
+	void act_jampb();//å¾Œã‚¸ãƒ£ãƒ³ãƒ—
+	//é€šå¸¸.æ”»æ’ƒ
+	void act_att_sa();//ç«‹å¼±
+	void act_att_sb();//ç«‹ä¸­
+	void act_att_sc();//ç«‹å¼·
+	void act_att_ca();//å±ˆå¼±
+	void act_att_cb();//å±ˆä¸­
+	void act_att_cc();//å±ˆå¼·
+	void act_att_ja();//é£›å¼±
+	void act_att_jb();//é£›ä¸­
+	void act_att_jc();//é£›å¼·
+	//ãã®ä»–
 	void act_taiki();
 	void act_koutai_out();
 	void act_koutai_in();
 	void act_koutai();
 	void act_koutai2();
 
-	void act_timeoverlose();//ƒ^ƒCƒ€ƒI[ƒo[
+	void act_timeoverlose();//ã‚¿ã‚¤ãƒ ã‚ªãƒ¼ãƒãƒ¼
 
 	//*********************************************
-	//@CCharacterƒNƒ‰ƒX“Æ©‚ÌŠÖ”
+	//ã€€CCharacterã‚¯ãƒ©ã‚¹ç‹¬è‡ªã®é–¢æ•°
 	//*********************************************
 private:
-	void InitParameters();//ƒpƒ‰ƒ[ƒ^‰Šú‰»
+	void InitParameters();//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
 	void StartAttack(DWORD atk_info_id);
 
-	//’Ç‰Ás“®ŠÖ”
+	//è¿½åŠ è¡Œå‹•é–¢æ•°
 	void act_dashf();
 	void act_dashb();
 	void act_att_smc();
@@ -141,10 +141,10 @@ private:
 	void act_striker3();
 	void act_striker4();
 
-	//UŒ‚—Íî•ñ
+	//æ”»æ’ƒåŠ›æƒ…å ±
 	ATTACKINFO aif[AIF_NUM];
 	
-	//”ò“¹‹ï
+	//é£›é“å…·
 	CClassicalBullet	*b_nori;
 	CClassicalBullet	*b_nori2;
 	CWassoiLight		*b_wlight;
@@ -158,7 +158,7 @@ private:
 
 	DWORD hp_to_regenerate;
 
-	// ƒuƒ‰[
+	// ãƒ–ãƒ©ãƒ¼
 	struct BLUR {
 		DWORD cnum;
 		int x, y;
@@ -173,7 +173,7 @@ private:
 
 extern LPTSTR CharDirectory;
 
-//s“®ID
+//è¡Œå‹•ID
 #define ACTID_ATT_SMC			(ACTID_ATTACK | 0x0001)
 #define ACTID_WASSYORYUKEN1		(ACTID_ATTACK | ACTID_HISSATU | ACTID_KUCYU | 0x0002)
 #define ACTID_WASSYORYUKEN2		(ACTID_ATTACK | ACTID_HISSATU | ACTID_KUCYU | 0x0003)
@@ -204,7 +204,7 @@ extern LPTSTR CharDirectory;
 #define ACTID_STRIKER3			(ACTID_INOUT  | 0x001C)
 #define ACTID_STRIKER4			(ACTID_INOUT  | 0x001D)
 
-//UŒ‚—Í”Ô†
+//æ”»æ’ƒåŠ›ç•ªå·
 #define ATTACKINFO_STAND_A		0
 #define ATTACKINFO_STAND_B		1
 #define ATTACKINFO_STAND_C		2
@@ -226,7 +226,7 @@ extern LPTSTR CharDirectory;
 #define ATTACKINFO_FESTA_F		18
 #define ATTACKINFO_NAGE			19
 
-//UŒ‚IDi•K—v‚ª‚ ‚ê‚Î•ÏX‚·‚éj
+//æ”»æ’ƒIDï¼ˆå¿…è¦ãŒã‚ã‚Œã°å¤‰æ›´ã™ã‚‹ï¼‰
 #define ATTACK_WEAK				1
 #define ATTACK_MIDDLE			2
 #define ATTACK_STRONG			3
@@ -234,17 +234,17 @@ extern LPTSTR CharDirectory;
 #define ATTACK_CYOHI			5
 #define ATTACK_SCDASH			6
 
-//ƒ†[ƒU[’è‹`ƒƒbƒZ[ƒW
-#define GOBJMSG_NAGE				(GOBJMSG_USERDEFINE | 0x0001)	//“Š‚°—p
-#define GOBJMSG_FESTIVAL_NORI_HIT	(GOBJMSG_USERDEFINE | 0x0002)	//ŠC‘Ûƒqƒbƒg
+//ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+#define GOBJMSG_NAGE				(GOBJMSG_USERDEFINE | 0x0001)	//æŠ•ã’ç”¨
+#define GOBJMSG_FESTIVAL_NORI_HIT	(GOBJMSG_USERDEFINE | 0x0002)	//æµ·è‹”ãƒ’ãƒƒãƒˆ
 
-//ŠÔ‡‚¢
+//é–“åˆã„
 #define MAAI_SHORT				(50)
 #define MAAI_MIDDLE				(120)
 #define MAAI_LONG				(220)
 #define MAAI_NAGE				(20)
 
-//waveƒiƒ“ƒo[
+//waveãƒŠãƒ³ãƒãƒ¼
 #define wave_tojyo				4
 #define wave_win				5
 #define wave_nage				6
@@ -259,7 +259,7 @@ extern LPTSTR CharDirectory;
 #define CHAIN_SMC				0x00000001
 
 
-//Œõ‚ ‚ê
+//å…‰ã‚ã‚Œ
 #define WLIGHT_NUM	16
 class CWassoiLight : public CBulletBase
 {

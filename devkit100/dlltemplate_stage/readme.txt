@@ -1,6 +1,6 @@
-ƒXƒe[ƒWDLLƒeƒ“ƒvƒŒ[ƒg
+ï»¿ã‚¹ãƒ†ãƒ¼ã‚¸DLLãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
 
-‚³‚ç‚ÉƒLƒƒƒ‰ƒNƒ^[DLL—p‚Ìƒeƒ“ƒvƒŒ[ƒg‚©‚çˆÈ‰º‚Ìƒtƒ@ƒCƒ‹‚ð’Ç‰Á‚·‚é‚±‚Æ
+ã•ã‚‰ã«ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼DLLç”¨ã®ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‹ã‚‰ä»¥ä¸‹ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¿½åŠ ã™ã‚‹ã“ã¨
 gobject.h
 define_gcd.h
 gobjbase.h

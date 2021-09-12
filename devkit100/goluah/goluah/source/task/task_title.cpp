@@ -1,6 +1,6 @@
-/*===========================================================
+ï»¿/*===========================================================
 
-	ƒ^ƒCƒgƒ‹‰æ–Ê
+	ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢
 
 =============================================================*/
 #include "define_const.h"
@@ -11,10 +11,10 @@
 #include "task_select_story.h"
 #include "task_opening.h"
 #include "task_select_practice.h"
-#include "task_demobattle.h"		// Á¸
+#include "task_demobattle.h"		// æ¶ˆå¤±
 
 /*-----------------------------------------------------------
-	¶¬E”jŠü
+	ç”Ÿæˆãƒ»ç ´æ£„
 -------------------------------------------------------------*/
 CTitle::CTitle()
 {
@@ -32,22 +32,22 @@ CTitle::~CTitle()
 
 /*==========================================================
 
-	ƒ^ƒXƒNŠÖŒW
+	ã‚¿ã‚¹ã‚¯é–¢ä¿‚
 
 ============================================================*/
 void CTitle::Activate(DWORD taskId)
 {
 	g_sound.BGMStop();
 
-	//•Ï”‚Ì‰Šú‰»
+	//å¤‰æ•°ã®åˆæœŸåŒ–
 	counter=0;
 	selected_item=0;
 	setting_now=FALSE;
 
-	//“Ç‚İ‚İ‚Æ‚©‚È‚ñ‚©‚»‚¤‚¢‚¤‚à‚Ì
+	//èª­ã¿è¾¼ã¿ã¨ã‹ãªã‚“ã‹ãã†ã„ã†ã‚‚ã®
 	dds_back = g_draw.CreateSurfaceFrom256Image(".\\system\\logo");
 
-	//BGMÄ¶
+	//BGMå†ç”Ÿ
 	g_sound.BGMPlay(".\\system\\bgm\\title");
 }
 
@@ -61,13 +61,13 @@ BOOL CTitle::Inactivate(DWORD taskId)
 BOOL CTitle::Execute(DWORD time)
 {
 	counter++;
-	if(counter < 20)return TRUE;//ƒCƒLƒiƒŠŒˆ’è‚³‚ê‚Ä‚µ‚Ü‚¤‚Ì‚ğ–h~
+	if(counter < 20)return TRUE;//ã‚¤ã‚­ãƒŠãƒªæ±ºå®šã•ã‚Œã¦ã—ã¾ã†ã®ã‚’é˜²æ­¢
 
 	if(setting_now){
 		Settings();
 	}
 	else{
-		// ƒfƒ‚
+		// ãƒ‡ãƒ¢
 		if(counter == TIME_DEMOSTART){
 			BOOL demobattle = TRUE;
 
@@ -75,18 +75,18 @@ BOOL CTitle::Execute(DWORD time)
 			{
 				CTOpening* pTask = new CTOpening;
 
-				// ƒ€[ƒr[•\¦
+				// ãƒ ãƒ¼ãƒ“ãƒ¼è¡¨ç¤º
 				demobattle = FALSE;
 				g_system.AddTask(pTask);
 				if( !pTask->IsOK() )
-					demobattle = TRUE; // ƒ_ƒƒ|
+					demobattle = TRUE; // ãƒ€ãƒ¡ãƒ
 			}
 
 			if(demobattle){
-				// ‘Îíƒfƒ‚
+				// å¯¾æˆ¦ãƒ‡ãƒ¢
 				g_system.AddTask(new CBattleTaskDemo);
 			}
-			demomode = !demomode; // ƒtƒ‰ƒO”½“]
+			demomode = !demomode; // ãƒ•ãƒ©ã‚°åè»¢
 
 			return TRUE;
 		}
@@ -101,7 +101,7 @@ BOOL CTitle::Execute(DWORD time)
 
 
 /*-----------------------------------------------------------
-	•`‰æˆ—
+	æç”»å‡¦ç†
 -------------------------------------------------------------*/
 
 #define CELLDRAW1(x,y,id) g_draw.CellDraw(g_system.GetSystemGraphicSurface(),g_system.GetSystemGraphicCell(),g_system.GetSystemGraphicRect(),id,x,y,-0.02f,0,FALSE,FALSE,0xFF8888FF);
@@ -125,8 +125,8 @@ void CTitle::Draw()
 	char msg[128];
 
 	DWORD text_color;
-	DWORD text1_color = 0xFF4455AA;//‘I‘ğ‚³‚ê‚Ä‚¢‚é‚Æ‚«‚ÌF
-	DWORD text2_color = 0xFF99AADD;//‘I‘ğ‚³‚ê‚Ä‚¢‚È‚¢‚Æ‚«‚ÌF
+	DWORD text1_color = 0xFF4455AA;//é¸æŠã•ã‚Œã¦ã„ã‚‹ã¨ãã®è‰²
+	DWORD text2_color = 0xFF99AADD;//é¸æŠã•ã‚Œã¦ã„ãªã„ã¨ãã®è‰²
 
 	if(!setting_now){
 		g_draw.CheckBlt(dds_back,0,0,r,FALSE,FALSE,0,0,/*g_system.IsErrorTitle() ? 0xFFFF8888 : */0xFFFFFFFF);//logo
@@ -134,7 +134,7 @@ void CTitle::Draw()
 		if (g_system.IsErrorTitle())
 		{
 			r.top=20;
-			g_draw.DrawRedText(r, "ƒGƒ‰[”­¶ƒQ[ƒ€’†~A½Ï¿B", -1, DT_CENTER, 2);
+			g_draw.DrawRedText(r, "ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿã‚²ãƒ¼ãƒ ä¸­æ­¢ã€ï½½ï¾ï½¿ã€‚", -1, DT_CENTER, 2);
 		}
 
 		//storymode
@@ -185,17 +185,17 @@ void CTitle::Draw()
 		
 		r.top+=30;
 
-		strcpy(msg,"“ïˆÕ“xF");
+		strcpy(msg,"é›£æ˜“åº¦ï¼š");
 		switch(g_config.GetDifficulty()){
-		case DIFF_VERYEASY	:strcpy(&msg[strlen(msg)],"‹ø’èH");break;
-		case DIFF_EASY		:strcpy(&msg[strlen(msg)],"150‰~ˆø‚«");break;
-		case DIFF_NORMAL	:strcpy(&msg[strlen(msg)],"•W€");break;
-		case DIFF_HARD		:strcpy(&msg[strlen(msg)],"ƒpƒp“Á·‚è");break;
-		case DIFF_VERYHARD	:strcpy(&msg[strlen(msg)],"‘fl‚É‚Í‚¨Š©‚ß‚Å‚«‚È‚¢");break;
-		case DIFF_SUPERHARD	:strcpy(&msg[strlen(msg)],"E”°");break;
-		case DIFF_ULTRAHARD	:strcpy(&msg[strlen(msg)],"h‚·‚©h‚³‚ê‚é‚©");break;
-		case DIFF_LIMITERCUT:strcpy(&msg[strlen(msg)],"‚Ô‚¿Ø‚ê");break;
-		default:strcpy(&msg[strlen(msg)],"–¢’m‚Ì“ïˆÕ“xH");
+		case DIFF_VERYEASY	:strcpy(&msg[strlen(msg)],"ç‰›é®­å®šé£Ÿ");break;
+		case DIFF_EASY		:strcpy(&msg[strlen(msg)],"150å††å¼•ã");break;
+		case DIFF_NORMAL	:strcpy(&msg[strlen(msg)],"æ¨™æº–");break;
+		case DIFF_HARD		:strcpy(&msg[strlen(msg)],"ãƒ‘ãƒ‘ç‰¹ç››ã‚Š");break;
+		case DIFF_VERYHARD	:strcpy(&msg[strlen(msg)],"ç´ äººã«ã¯ãŠå‹§ã‚ã§ããªã„");break;
+		case DIFF_SUPERHARD	:strcpy(&msg[strlen(msg)],"æ®ºä¼");break;
+		case DIFF_ULTRAHARD	:strcpy(&msg[strlen(msg)],"åˆºã™ã‹åˆºã•ã‚Œã‚‹ã‹");break;
+		case DIFF_LIMITERCUT:strcpy(&msg[strlen(msg)],"ã¶ã¡åˆ‡ã‚Œ");break;
+		default:strcpy(&msg[strlen(msg)],"æœªçŸ¥ã®é›£æ˜“åº¦ï¼Ÿ");
 		}
 		if(selected_item==SETTINGS_DIFFICULTY)
 			g_draw.DrawRedText(r,msg,-1,DT_CENTER,1);
@@ -203,7 +203,7 @@ void CTitle::Draw()
 			g_draw.DrawBlueText(r,msg,-1,DT_CENTER,1);
 
 		r.top+=20;
-		strcpy(msg,"ææƒ|ƒCƒ“ƒg”F");
+		strcpy(msg,"å…ˆå–ãƒã‚¤ãƒ³ãƒˆæ•°ï¼š");
 		sprintf(&msg[strlen(msg)],"%d",g_config.GetMaxPoint());
 		if(selected_item==SETTINGS_1V1_NUMPOINT)
 			g_draw.DrawRedText(r,msg,-1,DT_CENTER,1);
@@ -211,7 +211,7 @@ void CTitle::Draw()
 			g_draw.DrawBlueText(r,msg,-1,DT_CENTER,1);
 
 		r.top+=20;
-		strcpy(msg,"x‰‡UŒ‚”F");
+		strcpy(msg,"æ”¯æ´æ”»æ’ƒæ•°ï¼š");
 		sprintf(&msg[strlen(msg)],"%d",g_config.GetStrikerCount());
 		if(selected_item==SETTINGS_NUMSTRIKER)
 			g_draw.DrawRedText(r,msg,-1,DT_CENTER,1);
@@ -219,14 +219,14 @@ void CTitle::Draw()
 			g_draw.DrawBlueText(r,msg,-1,DT_CENTER,1);
 
 		r.top+=20;
-		strcpy(msg,"ƒQ[ƒ€‘¬“xF");
+		strcpy(msg,"ã‚²ãƒ¼ãƒ é€Ÿåº¦ï¼š");
 		switch(g_config.GetGameSpeed()){
-		case GSPEED_SLOW	:strcpy(&msg[strlen(msg)],"’x‚¢(40fps)");break;
-		case GSPEED_OLD		:strcpy(&msg[strlen(msg)],"•W€(50fps)");break;
-		case GSPEED_NEW		:strcpy(&msg[strlen(msg)],"‚¿‚å‚Á‚Æ‘¬‚¢(60fps)");break;
-		case GSPEED_30x2	:strcpy(&msg[strlen(msg)],"ƒRƒ}”ò‚Î‚µ(30fpsA2”{)");break;
-//		case GSPEED_25x2	:strcpy(&msg[strlen(msg)],"ƒRƒ}”ò‚Î‚µ|•W€(25fpsA2”{)");break;
-		default:strcpy(&msg[strlen(msg)],"Ü¶İÈi‚Æ‚è‚ ‚¦‚¸50fps‚Å“®ì‚µ‚Ü‚·j");
+		case GSPEED_SLOW	:strcpy(&msg[strlen(msg)],"é…ã„(40fps)");break;
+		case GSPEED_OLD		:strcpy(&msg[strlen(msg)],"æ¨™æº–(50fps)");break;
+		case GSPEED_NEW		:strcpy(&msg[strlen(msg)],"ã¡ã‚‡ã£ã¨é€Ÿã„(60fps)");break;
+		case GSPEED_30x2	:strcpy(&msg[strlen(msg)],"ã‚³ãƒé£›ã°ã—(30fpsã€2å€)");break;
+//		case GSPEED_25x2	:strcpy(&msg[strlen(msg)],"ã‚³ãƒé£›ã°ã—ï¼æ¨™æº–(25fpsã€2å€)");break;
+		default:strcpy(&msg[strlen(msg)],"ï¾œï½¶ï¾ï¾ˆï¼ˆã¨ã‚Šã‚ãˆãš50fpsã§å‹•ä½œã—ã¾ã™ï¼‰");
 		}
 		if(selected_item==SETTINGS_GAMESPEED)
 			g_draw.DrawRedText(r,msg,-1,DT_CENTER,1);
@@ -245,7 +245,7 @@ void CTitle::Draw()
 
 
 /*-----------------------------------------------------------
-	ƒƒCƒ“ƒƒjƒ…[
+	ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 -------------------------------------------------------------*/
 void CTitle::MainMenu()
 {
@@ -253,7 +253,7 @@ void CTitle::MainMenu()
 	CTStorySelect *sselect;
 
 	DWORD keystate = g_input.GetAllKey();
-	UINT  dec_index;//Œˆ’èƒL[‚ğ‰Ÿ‚µ‚½ƒvƒŒƒCƒ„[
+	UINT  dec_index;//æ±ºå®šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 	for(int k=0;k<MAXNUM_KEYI;k++){
 		if(g_input.GetKey(k,0) & KEYSTA_ANYKEY){
 			dec_index = k;
@@ -261,7 +261,7 @@ void CTitle::MainMenu()
 		}
 	}
 
-	//ƒPƒe[ƒC
+	//ã‚±ãƒ†ãƒ¼ã‚¤
 	if(keystate & KEYSTA_ANYKEY){
 		counter=0;
 		if(selectedgamemode==TITLE_STORY){//story mode
@@ -304,14 +304,14 @@ void CTitle::MainMenu()
 		}
 	}
 
-	//«ˆÚ“®
+	//â†“ç§»å‹•
 	if(keystate & KEYSTA_DOWN){
 		selectedgamemode++;
 		if(selectedgamemode>TITLE_OPMOVIE)selectedgamemode=0;
 		g_system.PlaySystemSound(SYSTEMSOUND_HIT1);
 		counter = 0;
 	}
-	//ªˆÚ“®
+	//â†‘ç§»å‹•
 	if(keystate & KEYSTA_UP){
 		if(selectedgamemode==0)selectedgamemode=TITLE_OPMOVIE;
 		else selectedgamemode--;
@@ -323,7 +323,7 @@ void CTitle::MainMenu()
 
 
 /*-----------------------------------------------------------
-	uSETTINGSv
+	ã€ŒSETTINGSã€
 -------------------------------------------------------------*/
 void CTitle::Settings()
 {
@@ -334,57 +334,57 @@ void CTitle::Settings()
 	int num_striker = g_config.GetStrikerCount();
 	DWORD game_speed = g_config.GetGameSpeed();
 
-	if(g_input.GetKey(0,0) & KEYSTA_DOWN2 || g_input.GetKey(1,0) & KEYSTA_DOWN2){//ˆÚ“®
+	if(g_input.GetKey(0,0) & KEYSTA_DOWN2 || g_input.GetKey(1,0) & KEYSTA_DOWN2){//ç§»å‹•
 		selected_item++;
 		if(selected_item>SETTINGS_EXIT)selected_item=0;
 		g_system.PlaySystemSound(SYSTEMSOUND_HIT1);
 	}
-	if(g_input.GetKey(0,0) & KEYSTA_UP2 || g_input.GetKey(1,0) & KEYSTA_UP2){//ˆÚ“®
+	if(g_input.GetKey(0,0) & KEYSTA_UP2 || g_input.GetKey(1,0) & KEYSTA_UP2){//ç§»å‹•
 		if(selected_item==0)selected_item=SETTINGS_EXIT;
 		else selected_item--;
 		g_system.PlaySystemSound(SYSTEMSOUND_HIT1);
 	}
 
 	switch(selected_item){
-	case SETTINGS_DIFFICULTY://“ïˆÕ“x•ÏX
-		if(g_input.GetKey(0,0) & KEYSTA_ALEFT2 || g_input.GetKey(1,0) & KEYSTA_ALEFT2){//ˆÚ“®
+	case SETTINGS_DIFFICULTY://é›£æ˜“åº¦å¤‰æ›´
+		if(g_input.GetKey(0,0) & KEYSTA_ALEFT2 || g_input.GetKey(1,0) & KEYSTA_ALEFT2){//ç§»å‹•
 			difficulty--;
 			//if(difficulty>DIFF_END)difficulty=0;
 		}
-		if(g_input.GetKey(0,0) & KEYSTA_ARIGHT2 || g_input.GetKey(1,0) & KEYSTA_ARIGHT2){//ˆÚ“®
+		if(g_input.GetKey(0,0) & KEYSTA_ARIGHT2 || g_input.GetKey(1,0) & KEYSTA_ARIGHT2){//ç§»å‹•
 			difficulty++;
 			//if(difficulty==DIFF_END)difficulty--;
 		}
 		g_config.SetDifficulty((Config2_Difficulty)(difficulty%8));
 		break;
-	case SETTINGS_1V1_NUMPOINT://•K—vƒ|ƒCƒ“ƒgææ”
-		if(g_input.GetKey(0,0) & KEYSTA_ARIGHT2 || g_input.GetKey(1,0) & KEYSTA_ARIGHT2){//ˆÚ“®
+	case SETTINGS_1V1_NUMPOINT://å¿…è¦ãƒã‚¤ãƒ³ãƒˆå…ˆå–æ•°
+		if(g_input.GetKey(0,0) & KEYSTA_ARIGHT2 || g_input.GetKey(1,0) & KEYSTA_ARIGHT2){//ç§»å‹•
 			point_max++;
 			if(point_max==4)point_max=1;
 		}
-		if(g_input.GetKey(0,0) & KEYSTA_ALEFT2 || g_input.GetKey(1,0) & KEYSTA_ALEFT2){//ˆÚ“®
+		if(g_input.GetKey(0,0) & KEYSTA_ALEFT2 || g_input.GetKey(1,0) & KEYSTA_ALEFT2){//ç§»å‹•
 			point_max--;
 			if(point_max==0)point_max=3;
 		}
 		g_config.SetMaxPoint(point_max);
 		break;
-	case SETTINGS_NUMSTRIKER://ƒXƒgƒ‰ƒCƒJ[”
-		if(g_input.GetKey(0,0) & KEYSTA_ARIGHT2 || g_input.GetKey(1,0) & KEYSTA_ARIGHT2){//ˆÚ“®
+	case SETTINGS_NUMSTRIKER://ã‚¹ãƒˆãƒ©ã‚¤ã‚«ãƒ¼æ•°
+		if(g_input.GetKey(0,0) & KEYSTA_ARIGHT2 || g_input.GetKey(1,0) & KEYSTA_ARIGHT2){//ç§»å‹•
 			num_striker++;
 			if(num_striker==9)num_striker=0;
 		}
-		if(g_input.GetKey(0,0) & KEYSTA_ALEFT2 || g_input.GetKey(1,0) & KEYSTA_ALEFT2){//ˆÚ“®
+		if(g_input.GetKey(0,0) & KEYSTA_ALEFT2 || g_input.GetKey(1,0) & KEYSTA_ALEFT2){//ç§»å‹•
 			num_striker--;
 			if(num_striker==0)num_striker=8;
 		}
 		g_config.SetStrikerCount(num_striker);
 		break;
-	case SETTINGS_GAMESPEED://ƒQ[ƒ€‘¬“x
-		if(g_input.GetKey(0,0) & KEYSTA_ARIGHT2 || g_input.GetKey(1,0) & KEYSTA_ARIGHT2){//ˆÚ“®
+	case SETTINGS_GAMESPEED://ã‚²ãƒ¼ãƒ é€Ÿåº¦
+		if(g_input.GetKey(0,0) & KEYSTA_ARIGHT2 || g_input.GetKey(1,0) & KEYSTA_ARIGHT2){//ç§»å‹•
 			game_speed++;
 			if(game_speed==4)game_speed=0;
 		}
-		if(g_input.GetKey(0,0) & KEYSTA_ALEFT2 || g_input.GetKey(1,0) & KEYSTA_ALEFT2){//ˆÚ“®
+		if(g_input.GetKey(0,0) & KEYSTA_ALEFT2 || g_input.GetKey(1,0) & KEYSTA_ALEFT2){//ç§»å‹•
 			game_speed--;
 			if(game_speed>3)game_speed=3;
 		}

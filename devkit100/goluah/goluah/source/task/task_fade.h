@@ -1,17 +1,17 @@
-#pragma once
+ï»¿#pragma once
 
 #include "task.h"
 
 /*!
-* ‚±‚ÌƒNƒ‰ƒX‚ÍA‚Ü‚¾‚Ù‚Æ‚ñ‚Çè‚Â‚©‚¸B
-* ‰æ–Ê‚ÌƒtƒF[ƒhƒAƒEƒg^ƒtƒF[ƒhƒCƒ“‚Ég‚¤—\’è‚Å‚·B
+* ã“ã®ã‚¯ãƒ©ã‚¹ã¯ã€ã¾ã ã»ã¨ã‚“ã©æ‰‹ã¤ã‹ãšã€‚
+* ç”»é¢ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆï¼ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã«ä½¿ã†äºˆå®šã§ã™ã€‚
 */
 class CFade : public CBackgroundTaskBase
 {
 public:
 	CFade(void);
 
-	//ƒ^ƒXƒNŠÖ”
+	//ã‚¿ã‚¹ã‚¯é–¢æ•°
 	virtual void Initialize();
 	virtual BOOL Execute(DWORD time);
 	virtual void Draw();

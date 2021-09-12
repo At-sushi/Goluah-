@@ -1,7 +1,7 @@
-
+ï»¿
 /*==============================================================
 
-	ƒLƒƒƒ‰ƒNƒ^[’è‹`ƒwƒbƒ_
+	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼å®šç¾©ãƒ˜ãƒƒãƒ€
 
 ================================================================*/
 #pragma once 
@@ -18,7 +18,7 @@
 
 #include "opt.h"
 
-//”ò“¹‹ïƒNƒ‰ƒXˆê——
+//é£›é“å…·ã‚¯ãƒ©ã‚¹ä¸€è¦§
 class CChibasiri;
 class CTrack;
 class CMiniGunE;
@@ -30,7 +30,7 @@ class CMiniGunB;
 #define NEEDGAUGE_GC	(0.3)
 
 /*--------------------------------------------------------------
-	ƒƒCƒ“ƒLƒƒƒ‰ƒNƒ^[ƒNƒ‰ƒX
+	ãƒ¡ã‚¤ãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚¯ãƒ©ã‚¹
 ----------------------------------------------------------------*/
 class CCharacter : public CCharacterBase
 {
@@ -40,7 +40,7 @@ public:
 
 protected:
 	//*********************************************
-	//  ƒI[ƒo[ƒ‰ƒCƒh‚·‚éŠÖ”
+	//  ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã™ã‚‹é–¢æ•°
 	//*********************************************
 
 	DWORD Message(DWORD msg,LPVOID pd,DWORD prm);
@@ -57,38 +57,38 @@ protected:
 	DWORD TouchB(ATTACKINFO *info,BOOL hit);
 	DWORD TouchC(ATTACKINFO *info,DWORD tc_eid);
 
-	//‰Šú‰»ˆ—
-	void InitParameters();		//ƒpƒ‰ƒ[ƒ^‰Šú‰»
-	void InitAnalyzeOptions();	//ƒIƒvƒVƒ‡ƒ“ƒtƒ‰ƒO•ªŠ„
-	void InitBullets();			//”ò“¹‹ï‰Šú‰»ˆ—
-	void InitAttackInfo();		//UŒ‚—Íî•ñ‚Ì‰Šú‰»
-	void InitWazInfo();			//‹Zî•ñ‚Ì‰Šú‰»
+	//åˆæœŸåŒ–å‡¦ç†
+	void InitParameters();		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
+	void InitAnalyzeOptions();	//ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãƒ•ãƒ©ã‚°åˆ†å‰²
+	void InitBullets();			//é£›é“å…·åˆæœŸåŒ–å‡¦ç†
+	void InitAttackInfo();		//æ”»æ’ƒåŠ›æƒ…å ±ã®åˆæœŸåŒ–
+	void InitWazInfo();			//æŠ€æƒ…å ±ã®åˆæœŸåŒ–
 
-	//’Êí“®ì
-	void act_neutral();	//ƒjƒ…[ƒgƒ‰ƒ‹
-	void act_crouch();	//‚µ‚á‚ª‚İ
-	void act_rakka();	//—‰º
-	void act_tojyo();	//“oê
-	void act_win();		//Ÿ—˜
-	void act_walkf();	//‘Oi
-	void act_walkb();	//Œã‘Ş
-	void act_jamps();	//ƒWƒƒƒ“ƒv—\”õ“®ì
-	void act_jampc();	//‚’¼ƒWƒƒƒ“ƒv
-	void act_jampf();	//‘OƒWƒƒƒ“ƒv
-	void act_jampb();	//ŒãƒWƒƒƒ“ƒv
-	void act_strikercomeon();//ƒJƒ‚!
-	void act_timeoverlose();//ƒ^ƒCƒ€ƒI[ƒo[
-	//’Êí.UŒ‚
-	void act_att_sa();	//—§ã
-	void act_att_sb();	//—§’†
-	void act_att_sc();	//—§‹­
-	void act_att_ca();	//‹üã
-	void act_att_cb();	//‹ü’†
-	void act_att_cc();	//‹ü‹­
-	void act_att_ja();	//”òã
-	void act_att_jb();	//”ò’†
-	void act_att_jc();	//”ò‹­
-	//‚»‚Ì‘¼
+	//é€šå¸¸å‹•ä½œ
+	void act_neutral();	//ãƒ‹ãƒ¥ãƒ¼ãƒˆãƒ©ãƒ«
+	void act_crouch();	//ã—ã‚ƒãŒã¿
+	void act_rakka();	//è½ä¸‹
+	void act_tojyo();	//ç™»å ´
+	void act_win();		//å‹åˆ©
+	void act_walkf();	//å‰é€²
+	void act_walkb();	//å¾Œé€€
+	void act_jamps();	//ã‚¸ãƒ£ãƒ³ãƒ—äºˆå‚™å‹•ä½œ
+	void act_jampc();	//å‚ç›´ã‚¸ãƒ£ãƒ³ãƒ—
+	void act_jampf();	//å‰ã‚¸ãƒ£ãƒ³ãƒ—
+	void act_jampb();	//å¾Œã‚¸ãƒ£ãƒ³ãƒ—
+	void act_strikercomeon();//ã‚«ãƒ¢!
+	void act_timeoverlose();//ã‚¿ã‚¤ãƒ ã‚ªãƒ¼ãƒãƒ¼
+	//é€šå¸¸.æ”»æ’ƒ
+	void act_att_sa();	//ç«‹å¼±
+	void act_att_sb();	//ç«‹ä¸­
+	void act_att_sc();	//ç«‹å¼·
+	void act_att_ca();	//å±ˆå¼±
+	void act_att_cb();	//å±ˆä¸­
+	void act_att_cc();	//å±ˆå¼·
+	void act_att_ja();	//é£›å¼±
+	void act_att_jb();	//é£›ä¸­
+	void act_att_jc();	//é£›å¼·
+	//ãã®ä»–
 	void act_taiki();
 	void act_koutai_out();
 	void act_koutai_in();
@@ -96,14 +96,14 @@ protected:
 	void act_koutai2();
 
 	//*********************************************
-	//@CCharacterƒNƒ‰ƒX“Æ©‚ÌŠÖ”
+	//ã€€CCharacterã‚¯ãƒ©ã‚¹ç‹¬è‡ªã®é–¢æ•°
 	//*********************************************
 private:
 
 	void StartAttack(DWORD atk_info_id);
 	BOOL ComLevelCk(UINT level);
 
-	//’Ç‰Ás“®ŠÖ”
+	//è¿½åŠ è¡Œå‹•é–¢æ•°
 	void act_att_sb2();
 	void act_att_sc2();
 	void act_att_sc3();
@@ -134,19 +134,19 @@ private:
 	void act_striker_atk2();
 	void act_striker_out();
 	
-	//“G‘¤s“®
+	//æ•µå´è¡Œå‹•
 	DWORD eact_nage(GOBJECT *pedat);
 
-	//UŒ‚—Íî•ñ
+	//æ”»æ’ƒåŠ›æƒ…å ±
 	ATTACKINFO aif[32];
 
-	//”ò“¹‹ï
+	//é£›é“å…·
 	CChibasiri *bul_chiba;
 	CTrack *efe_track;
 	CMiniGunB *bul_minigun[NUM_MINIGUN];
 	CMiniGunE *efe_minigun;
 
-	//ƒIƒvƒVƒ‡ƒ“ƒtƒ‰ƒO
+	//ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãƒ•ãƒ©ã‚°
 	BOOL m_opt_ExtraAttack;
 	BOOL m_opt_GuardCancel;
 	BOOL m_opt_GCutterPlus;
@@ -155,45 +155,45 @@ private:
 	BOOL m_opt_StockableGauge;
 	BOOL m_opt_minigunReloaded;
 
-	//“à•”“®ìƒtƒ‰ƒO
+	//å†…éƒ¨å‹•ä½œãƒ•ãƒ©ã‚°
 	BOOL m_2nd_step_flag;
 };
 
 extern LPTSTR CharDirectory;
 
-//s“®ID‚ğ‚±‚±‚É’Ç‰Á‚·‚é
-#define ACTID_LANDING		(ACTID_HISSATU | 0x0001)								//’…’n‚ÌŒ„(s“®‚Å‚«‚È‚¢‚æ‚¤‚ÉA•KE‹Zˆµ‚¢)
-#define ACTID_ATT_SB2		(ACTID_ATTACK | 0x0002)									//—§’†A’Ç‰Á“ü—Í‹Z
-#define ACTID_ATT_SC2		(ACTID_ATTACK | ACTID_KUCYU | 0x0003)					//—§‹­A’Ç‰Á“ü—Í‹Z
-#define ACTID_ATT_SC3		(ACTID_ATTACK | 0x0004)									//—§‹­AƒŒƒo[‘O“ü‚ê
-#define ACTID_GENOCIDE1G	(ACTID_ATTACK | ACTID_HISSATU | 0x0005)					//ƒWƒFƒmƒTƒCƒhã’nã
-#define ACTID_GENOCIDE1J	(ACTID_ATTACK | ACTID_HISSATU | ACTID_KUCYU | 0x0006)	//ƒWƒFƒmƒTƒCƒhã‹ó’†
-#define ACTID_GENOCIDE2G	(ACTID_ATTACK | ACTID_HISSATU | 0x0007)					//ƒWƒFƒmƒTƒCƒh’†’nã
-#define ACTID_GENOCIDE2J	(ACTID_ATTACK | ACTID_HISSATU | ACTID_KUCYU | 0x0008)	//ƒWƒFƒmƒTƒCƒh’†‹ó’†
-#define ACTID_GENOCIDE3G	(ACTID_ATTACK | ACTID_HISSATU | 0x0009)					//ƒWƒFƒmƒTƒCƒh‹­’nã
-#define ACTID_GENOCIDE3J	(ACTID_ATTACK | ACTID_HISSATU | ACTID_KUCYU | 0x000A)	//ƒWƒFƒmƒTƒCƒh‹­‹ó’†
-#define ACTID_LANDINGG		(ACTID_HISSATU | 0x000B)								//ƒWƒFƒmƒTƒCƒh’…’n‚ÌŒ„
-#define ACTID_DASHF			(0x000C)												//ƒ_ƒbƒVƒ…i‘Oj
-#define ACTID_DASHB			(ACTID_KUCYU |0x000D)									//ƒ_ƒbƒVƒ…iŒãj
-#define ACTID_CHIBA1		(ACTID_ATTACK | ACTID_HISSATU | 0x000E)					//’n‘–‚èEã
-#define ACTID_CHIBA2		(ACTID_ATTACK | ACTID_HISSATU | 0x000F)					//’n‘–‚èE~
-#define ACTID_CHIBA3		(ACTID_ATTACK | ACTID_HISSATU | 0x0010)					//’n‘–‚èE‹­
-#define ACTID_MINIGUN		(ACTID_ATTACK | ACTID_HISSATU | 0x0011)					//ƒ~ƒjƒKƒ“
-#define ACTID_MINIGUN2		(ACTID_ATTACK | ACTID_HISSATU | 0x0012)					//ƒ~ƒjƒKƒ“EŒ„
-#define ACTID_GCANCEL1		(ACTID_ATTACK | ACTID_HISSATU | 0x0013)					//ƒK[ƒhƒLƒƒƒ“ƒZƒ‹”­“®Eã
-#define ACTID_GCANCEL2		(ACTID_ATTACK | ACTID_HISSATU | 0x0014)					//ƒK[ƒhƒLƒƒƒ“ƒZƒ‹”­“®E’†
-#define ACTID_GCANCEL3		(ACTID_ATTACK | ACTID_HISSATU | 0x0015)					//ƒK[ƒhƒLƒƒƒ“ƒZƒ‹”­“®E‹­
-#define ACTID_2ND_STEP		(ACTID_KUCYU |0x0016)									//2’iƒWƒƒƒ“ƒv”­“®
-#define ACTID_GENOCIDE_UP	(ACTID_ATTACK | ACTID_HISSATU | ACTID_KUCYU | 0x0017)	//ƒWƒFƒmƒTƒCƒh’Ç‰Á“ü—Íª
-#define ACTID_GENOCIDE_DOWN	(ACTID_ATTACK | ACTID_HISSATU | ACTID_KUCYU | 0x0018)	//ƒWƒFƒmƒTƒCƒh’Ç‰Á“ü—Í«
-#define ACTID_NAGE1			(ACTID_ATTACK | ACTID_NAGE | 0x0019)					//“Š‚°
+//è¡Œå‹•IDã‚’ã“ã“ã«è¿½åŠ ã™ã‚‹
+#define ACTID_LANDING		(ACTID_HISSATU | 0x0001)								//ç€åœ°æ™‚ã®éš™(è¡Œå‹•ã§ããªã„ã‚ˆã†ã«ã€å¿…æ®ºæŠ€æ‰±ã„)
+#define ACTID_ATT_SB2		(ACTID_ATTACK | 0x0002)									//ç«‹ä¸­ã€è¿½åŠ å…¥åŠ›æŠ€
+#define ACTID_ATT_SC2		(ACTID_ATTACK | ACTID_KUCYU | 0x0003)					//ç«‹å¼·ã€è¿½åŠ å…¥åŠ›æŠ€
+#define ACTID_ATT_SC3		(ACTID_ATTACK | 0x0004)									//ç«‹å¼·ã€ãƒ¬ãƒãƒ¼å‰å…¥ã‚Œ
+#define ACTID_GENOCIDE1G	(ACTID_ATTACK | ACTID_HISSATU | 0x0005)					//ã‚¸ã‚§ãƒã‚µã‚¤ãƒ‰å¼±åœ°ä¸Š
+#define ACTID_GENOCIDE1J	(ACTID_ATTACK | ACTID_HISSATU | ACTID_KUCYU | 0x0006)	//ã‚¸ã‚§ãƒã‚µã‚¤ãƒ‰å¼±ç©ºä¸­
+#define ACTID_GENOCIDE2G	(ACTID_ATTACK | ACTID_HISSATU | 0x0007)					//ã‚¸ã‚§ãƒã‚µã‚¤ãƒ‰ä¸­åœ°ä¸Š
+#define ACTID_GENOCIDE2J	(ACTID_ATTACK | ACTID_HISSATU | ACTID_KUCYU | 0x0008)	//ã‚¸ã‚§ãƒã‚µã‚¤ãƒ‰ä¸­ç©ºä¸­
+#define ACTID_GENOCIDE3G	(ACTID_ATTACK | ACTID_HISSATU | 0x0009)					//ã‚¸ã‚§ãƒã‚µã‚¤ãƒ‰å¼·åœ°ä¸Š
+#define ACTID_GENOCIDE3J	(ACTID_ATTACK | ACTID_HISSATU | ACTID_KUCYU | 0x000A)	//ã‚¸ã‚§ãƒã‚µã‚¤ãƒ‰å¼·ç©ºä¸­
+#define ACTID_LANDINGG		(ACTID_HISSATU | 0x000B)								//ã‚¸ã‚§ãƒã‚µã‚¤ãƒ‰ç€åœ°æ™‚ã®éš™
+#define ACTID_DASHF			(0x000C)												//ãƒ€ãƒƒã‚·ãƒ¥ï¼ˆå‰ï¼‰
+#define ACTID_DASHB			(ACTID_KUCYU |0x000D)									//ãƒ€ãƒƒã‚·ãƒ¥ï¼ˆå¾Œï¼‰
+#define ACTID_CHIBA1		(ACTID_ATTACK | ACTID_HISSATU | 0x000E)					//åœ°èµ°ã‚Šãƒ»å¼±
+#define ACTID_CHIBA2		(ACTID_ATTACK | ACTID_HISSATU | 0x000F)					//åœ°èµ°ã‚Šãƒ»å¨
+#define ACTID_CHIBA3		(ACTID_ATTACK | ACTID_HISSATU | 0x0010)					//åœ°èµ°ã‚Šãƒ»å¼·
+#define ACTID_MINIGUN		(ACTID_ATTACK | ACTID_HISSATU | 0x0011)					//ãƒŸãƒ‹ã‚¬ãƒ³
+#define ACTID_MINIGUN2		(ACTID_ATTACK | ACTID_HISSATU | 0x0012)					//ãƒŸãƒ‹ã‚¬ãƒ³ãƒ»éš™
+#define ACTID_GCANCEL1		(ACTID_ATTACK | ACTID_HISSATU | 0x0013)					//ã‚¬ãƒ¼ãƒ‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«ç™ºå‹•ãƒ»å¼±
+#define ACTID_GCANCEL2		(ACTID_ATTACK | ACTID_HISSATU | 0x0014)					//ã‚¬ãƒ¼ãƒ‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«ç™ºå‹•ãƒ»ä¸­
+#define ACTID_GCANCEL3		(ACTID_ATTACK | ACTID_HISSATU | 0x0015)					//ã‚¬ãƒ¼ãƒ‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«ç™ºå‹•ãƒ»å¼·
+#define ACTID_2ND_STEP		(ACTID_KUCYU |0x0016)									//2æ®µã‚¸ãƒ£ãƒ³ãƒ—ç™ºå‹•
+#define ACTID_GENOCIDE_UP	(ACTID_ATTACK | ACTID_HISSATU | ACTID_KUCYU | 0x0017)	//ã‚¸ã‚§ãƒã‚µã‚¤ãƒ‰è¿½åŠ å…¥åŠ›â†‘
+#define ACTID_GENOCIDE_DOWN	(ACTID_ATTACK | ACTID_HISSATU | ACTID_KUCYU | 0x0018)	//ã‚¸ã‚§ãƒã‚µã‚¤ãƒ‰è¿½åŠ å…¥åŠ›â†“
+#define ACTID_NAGE1			(ACTID_ATTACK | ACTID_NAGE | 0x0019)					//æŠ•ã’
 #define ACTID_STRIKER_IN	(ACTID_INOUT  | 0x001A)
 #define ACTID_STRIKER_ATK1	(ACTID_INOUT  | 0x001B)
 #define ACTID_STRIKER_ATK2	(ACTID_INOUT  | 0x001C)
 #define ACTID_STRIKER_OUT	(ACTID_INOUT  | 0x001D)
 
-//UŒ‚—Í”Ô†‚ğ‚±‚±‚É’è‹`‚·‚é
-#define ATTACKINFO_STAND_A		0	//’Êí‹ZFX
+//æ”»æ’ƒåŠ›ç•ªå·ã‚’ã“ã“ã«å®šç¾©ã™ã‚‹
+#define ATTACKINFO_STAND_A		0	//é€šå¸¸æŠ€è‰²ã€…
 #define ATTACKINFO_STAND_B		1
 #define ATTACKINFO_STAND_C		2
 #define ATTACKINFO_CROUCH_A		3
@@ -202,53 +202,53 @@ extern LPTSTR CharDirectory;
 #define ATTACKINFO_JAMP_A		6
 #define ATTACKINFO_JAMP_B		7
 #define ATTACKINFO_JAMP_C		8
-#define ATTACKINFO_STAND_B2		9	//—§‚¿’†’Ç‰Á“ü—Í‹Z
-#define ATTACKINFO_STAND_C2		10	//—§‚¿‹­’Ç‰Á“ü—Í‹Z
-#define ATTACKINFO_STAND_C3		11	//—§‚¿‹­“Áê“ü—Í‹Z
-#define ATTACKINFO_GENOCIDE1	12	//ƒWƒFƒmƒTƒCƒhEã
-#define ATTACKINFO_GENOCIDE2	13	//ƒWƒFƒmƒTƒCƒhE~
-#define ATTACKINFO_GENOCIDE3	14	//ƒWƒFƒmƒTƒCƒhE‹­
-#define ATTACKINFO_CHIBA1		15	//’n‘–‚èEã
-#define ATTACKINFO_CHIBA2		16	//’n‘–‚èE~
-#define ATTACKINFO_CHIBA3		17	//’n‘–‚èE‹­
-#define ATTACKINFO_MINIGUN		18	//ƒ~ƒjƒKƒ“
-#define ATTACKINFO_GENOCIDE_UP	19	//ƒWƒFƒmƒTƒCƒhE’Ç‰Áª
-#define ATTACKINFO_GENOCIDE_DOWN 20	//ƒWƒFƒmƒTƒCƒhE’Ç‰Á«
-#define ATTACKINFO_NAGE			21	//“Š‚°
-#define ATTACKINFO_STRIKER1		22	//ƒXƒgƒ‰ƒCƒJ[—p1
-#define ATTACKINFO_STRIKER2		23	//ƒXƒgƒ‰ƒCƒJ[—p2
+#define ATTACKINFO_STAND_B2		9	//ç«‹ã¡ä¸­è¿½åŠ å…¥åŠ›æŠ€
+#define ATTACKINFO_STAND_C2		10	//ç«‹ã¡å¼·è¿½åŠ å…¥åŠ›æŠ€
+#define ATTACKINFO_STAND_C3		11	//ç«‹ã¡å¼·ç‰¹æ®Šå…¥åŠ›æŠ€
+#define ATTACKINFO_GENOCIDE1	12	//ã‚¸ã‚§ãƒã‚µã‚¤ãƒ‰ãƒ»å¼±
+#define ATTACKINFO_GENOCIDE2	13	//ã‚¸ã‚§ãƒã‚µã‚¤ãƒ‰ãƒ»å¨
+#define ATTACKINFO_GENOCIDE3	14	//ã‚¸ã‚§ãƒã‚µã‚¤ãƒ‰ãƒ»å¼·
+#define ATTACKINFO_CHIBA1		15	//åœ°èµ°ã‚Šãƒ»å¼±
+#define ATTACKINFO_CHIBA2		16	//åœ°èµ°ã‚Šãƒ»å¨
+#define ATTACKINFO_CHIBA3		17	//åœ°èµ°ã‚Šãƒ»å¼·
+#define ATTACKINFO_MINIGUN		18	//ãƒŸãƒ‹ã‚¬ãƒ³
+#define ATTACKINFO_GENOCIDE_UP	19	//ã‚¸ã‚§ãƒã‚µã‚¤ãƒ‰ãƒ»è¿½åŠ â†‘
+#define ATTACKINFO_GENOCIDE_DOWN 20	//ã‚¸ã‚§ãƒã‚µã‚¤ãƒ‰ãƒ»è¿½åŠ â†“
+#define ATTACKINFO_NAGE			21	//æŠ•ã’
+#define ATTACKINFO_STRIKER1		22	//ã‚¹ãƒˆãƒ©ã‚¤ã‚«ãƒ¼ç”¨1
+#define ATTACKINFO_STRIKER2		23	//ã‚¹ãƒˆãƒ©ã‚¤ã‚«ãƒ¼ç”¨2
 
-//UŒ‚IDi•K—v‚ª‚ ‚ê‚Î•ÏX‚·‚éj
+//æ”»æ’ƒIDï¼ˆå¿…è¦ãŒã‚ã‚Œã°å¤‰æ›´ã™ã‚‹ï¼‰
 #define ATTACK_WEAK				1
 #define ATTACK_MIDDLE			2
 #define ATTACK_STRONG			3
 #define ATTACK_HISSATU			4
 
-//ƒ`ƒF[ƒ“ƒRƒ“ƒ{ƒtƒ‰ƒO
-//#define CHAIN_SA	0x00010000 ƒx[ƒX‚Å’è‹`
+//ãƒã‚§ãƒ¼ãƒ³ã‚³ãƒ³ãƒœãƒ•ãƒ©ã‚°
+//#define CHAIN_SA	0x00010000 ãƒ™ãƒ¼ã‚¹ã§å®šç¾©
 //#define CHAIN_SB	0x00020000
 //#define CHAIN_SC	0x00040000
 //#define CHAIN_CA	0x00080000
 //#define CHAIN_CB	0x00100000
 //#define CHAIN_CC	0x00200000
-#define CHAIN_SC3	0x00000001//’Ç‰Á•ª
+#define CHAIN_SC3	0x00000001//è¿½åŠ åˆ†
 
-//ƒ†[ƒU[ƒqƒbƒgID
+//ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ’ãƒƒãƒˆID
 #define USERHIT_GCUTTERUP		0x81
 
-//ƒ†[ƒU[’è‹`ƒƒbƒZ[ƒW
-#define GOBJMSG_NAGE			(GOBJMSG_USERDEFINE | 0x0001)				//“Š‚°—p
-#define GOBJMSG_CHIBAHIT		(GOBJMSG_USERDEFINE | 0x0002)				//’n‘–‚èƒqƒbƒg
-#define GOBJMSG_CHIBAGUARD		(GOBJMSG_USERDEFINE | 0x0003)				//’n‘–‚èƒK[ƒh
-#define GOBJMSG_GCUTTERUP		(GOBJMSG_USERDEFINE | USERHIT_GCUTTERUP)	//GƒJƒbƒ^[(ã)Eƒqƒbƒg
+//ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+#define GOBJMSG_NAGE			(GOBJMSG_USERDEFINE | 0x0001)				//æŠ•ã’ç”¨
+#define GOBJMSG_CHIBAHIT		(GOBJMSG_USERDEFINE | 0x0002)				//åœ°èµ°ã‚Šãƒ’ãƒƒãƒˆ
+#define GOBJMSG_CHIBAGUARD		(GOBJMSG_USERDEFINE | 0x0003)				//åœ°èµ°ã‚Šã‚¬ãƒ¼ãƒ‰
+#define GOBJMSG_GCUTTERUP		(GOBJMSG_USERDEFINE | USERHIT_GCUTTERUP)	//Gã‚«ãƒƒã‚¿ãƒ¼(ä¸Š)ãƒ»ãƒ’ãƒƒãƒˆ
 
-//aki—pƒ}ƒNƒ’è‹`
+//akiç”¨ãƒã‚¯ãƒ­å®šç¾©
 #define cell(a)					pdat->cnow=a
 #define ccounter				pdat->counter
 #define PI						(3.14159265f)
-#define WAIT_A_SEC				TRUE//‚Ü‚Á‚Ä‚ëA¡À‚­
+#define WAIT_A_SEC				TRUE//ã¾ã£ã¦ã‚ã€ä»Šé€ã
 
-//ŠÔ‡‚¢
+//é–“åˆã„
 #define MAAI_NAGE				(20)
 #define MAAI_SHORT				(50)
 #define MAAI_MIDDLE				(120)
@@ -270,7 +270,7 @@ extern LPTSTR CharDirectory;
 #define wave_striker_call		17
 
 /*--------------------------------------------------------------
-	’n‘–‚è
+	åœ°èµ°ã‚Š
 ----------------------------------------------------------------*/
 class CChibasiri : public CBulletBase
 {
@@ -294,7 +294,7 @@ protected:
 
 
 /*--------------------------------------------------------------
-	‹OÕ
+	è»Œè·¡
 ----------------------------------------------------------------*/
 class CTrack : public CBulletBase
 {
@@ -326,14 +326,14 @@ public:
 	float parentY(){ return (float)GetParentObj()->y; }
 
 protected:
-	void act_run();	//ÀÛ‚É‚Í‰½‚à‚µ‚È‚¢
-	void act_bomb();//ÀÛ‚É‚Í‰½‚à‚µ‚È‚¢
+	void act_run();	//å®Ÿéš›ã«ã¯ä½•ã‚‚ã—ãªã„
+	void act_bomb();//å®Ÿéš›ã«ã¯ä½•ã‚‚ã—ãªã„
 
-	void PosUpdate();//V‹K’¸“_’Ç‰Á
+	void PosUpdate();//æ–°è¦é ‚ç‚¹è¿½åŠ 
 
 	CTristrip* m_ts;
 
-	//ƒpƒ‰ƒ[ƒ^
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	float m_width;
 	ARGB m_color;
 	float m_inirot;
@@ -345,7 +345,7 @@ protected:
 	DWORD m_duration;
 	DWORD m_stopcount;
 
-	//“à•”ƒpƒ‰ƒ[ƒ^
+	//å†…éƒ¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	float m_rot;
 	UINT m_num,m_step;
 	V2d  m_ppos,m_pvec;
@@ -356,9 +356,9 @@ protected:
 
 
 /*--------------------------------------------------------------
-	ƒ~ƒjƒKƒ“
+	ãƒŸãƒ‹ã‚¬ãƒ³
 ----------------------------------------------------------------*/
-//’e
+//å¼¾
 class CMiniGunB : public CBulletBase
 {
 public:
@@ -373,7 +373,7 @@ protected:
 	void act_bomb();
 };
 
-//ƒGƒtƒFƒNƒg
+//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 class CMiniGunE : public CBulletBase
 {
 public:

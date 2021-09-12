@@ -1,9 +1,9 @@
-
+ï»¿
 /*============================================================================
 
-	í“¬ƒ^ƒXƒNƒNƒ‰ƒX
+	æˆ¦é—˜ã‚¿ã‚¹ã‚¯ã‚¯ãƒ©ã‚¹
 
-	iƒlƒbƒgƒ[ƒN”ñ‘Î‰”Åj
+	ï¼ˆãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯éå¯¾å¿œç‰ˆï¼‰
 
 	Goluah!! Copyright (C) 2001-2004 aki, 2014-2015 logger, 2004-2015 At-sushi
 
@@ -24,20 +24,20 @@
 
 #define MAXEFCT_SIVER 16
 #define DEBUGMSGBUFFERSIZE	(1024*4)
-#define OBJECTS_MEMINCRATE	1024//!< ƒIƒuƒWƒFƒNƒg”z—ñAƒƒ‚ƒŠ‘•ª’l
+#define OBJECTS_MEMINCRATE	1024//!< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆé…åˆ—ã€ãƒ¡ãƒ¢ãƒªå¢—åˆ†å€¤
 
 
 /*!
-*	@brief ’Êí”Åí“¬ƒ^ƒXƒN
+*	@brief é€šå¸¸ç‰ˆæˆ¦é—˜ã‚¿ã‚¹ã‚¯
 *	@ingroup Battle
 *
-*	ƒIƒuƒWƒFƒNƒg‚ÌŠÇ—F
-*	ƒIƒuƒWƒFƒNƒg‚ÌID‚ÍA”z—ñ‚ÌƒCƒ“ƒfƒbƒNƒX + ‚»‚ÌƒCƒ“ƒfƒbƒNƒX‚Å‚Ì¶¬”Ô† + ƒGƒtƒFƒNƒgƒIƒuƒWƒFƒNƒgƒtƒ‰ƒO@
-*	‚É‚æ‚è¶¬‚³‚ê‚éBID‚©‚çƒCƒ“ƒfƒbƒNƒX‚ª•ª‚©‚é‚Ì‚ÅAID‚©‚ç‚ÌƒIƒuƒWƒFƒNƒg‚Ìæ“¾‚ª
-*	”äŠr“I‚‘¬‚Éˆ—‚Å‚«‚éEEE‚Æv‚¤B@‚Ü‚½A¶¬”Ô†‚ğ•‰Á‚·‚é‚±‚Æ‚É‚æ‚è
-*	‘Š“–‡‚ª’·ˆø‚©‚È‚¢ŒÀ‚è“¯‚¶ID‚ğ‚à‚ÂƒIƒuƒWƒFƒNƒg‚ª¶¬‚³‚ê‚é‚±‚Æ‚Í‚È‚¢B
+*	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç®¡ç†ï¼š
+*	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®IDã¯ã€é…åˆ—ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ + ãã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã§ã®ç”Ÿæˆç•ªå· + ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ãƒ©ã‚°ã€€
+*	ã«ã‚ˆã‚Šç”Ÿæˆã•ã‚Œã‚‹ã€‚IDã‹ã‚‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒåˆ†ã‹ã‚‹ã®ã§ã€IDã‹ã‚‰ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å–å¾—ãŒ
+*	æ¯”è¼ƒçš„é«˜é€Ÿã«å‡¦ç†ã§ãã‚‹ãƒ»ãƒ»ãƒ»ã¨æ€ã†ã€‚ã€€ã¾ãŸã€ç”Ÿæˆç•ªå·ã‚’é™„åŠ ã™ã‚‹ã“ã¨ã«ã‚ˆã‚Š
+*	ç›¸å½“è©¦åˆãŒé•·å¼•ã‹ãªã„é™ã‚ŠåŒã˜IDã‚’ã‚‚ã¤ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒç”Ÿæˆã•ã‚Œã‚‹ã“ã¨ã¯ãªã„ã€‚
 *
-*	ƒGƒtƒFƒNƒgƒIƒuƒWƒFƒNƒgƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éê‡‚Í‚ ‚½‚è”»’è‚È‚Ç‚ğs‚í‚È‚¢
+*	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹å ´åˆã¯ã‚ãŸã‚Šåˆ¤å®šãªã©ã‚’è¡Œã‚ãªã„
 */
 class CBattleTask : public CBattleTaskBase
 {
@@ -45,13 +45,13 @@ public:
 	CBattleTask();
 	virtual ~CBattleTask();
 
-	//ƒ^ƒXƒNŠÖ”
+	//ã‚¿ã‚¹ã‚¯é–¢æ•°
 	virtual void Initialize();
 	virtual BOOL Execute(DWORD time);
 	virtual void Draw();
-	virtual void WndMessage(HWND hWnd,UINT msg,WPARAM wparam, LPARAM lparam);//!< F7‚Åƒ|[ƒY
+	virtual void WndMessage(HWND hWnd,UINT msg,WPARAM wparam, LPARAM lparam);//!< F7ã§ãƒãƒ¼ã‚º
 
-	//î•ñæ“¾Œn
+	//æƒ…å ±å–å¾—ç³»
 	virtual double GetDisplayCenterX(){return disp_center_x;}
 	virtual double GetDisplayCenterY(){return disp_center_y;}
 	virtual BOOL   IsNetwork(){return FALSE;}
@@ -68,108 +68,108 @@ public:
 
 
 protected:
-	//Initialize‚©‚çƒR[ƒ‹
+	//Initializeã‹ã‚‰ã‚³ãƒ¼ãƒ«
 	virtual void InitializeObjectList();
 	virtual void InitializeSubTasks();
 	virtual void InitializeParameters();
 
-	//Terminate‚©‚çƒR[ƒ‹
+	//Terminateã‹ã‚‰ã‚³ãƒ¼ãƒ«
 	virtual void TerminateObjectList();
 	virtual void TerminateDestroySubTasks();
 
-	//Execute•”•ªˆ—
-	virtual void T_Command();			//!< COMMAND ƒƒbƒZ[ƒW‚ğ‘—M‚·‚é
-	virtual void T_Action(BOOL stop);	//!< Action ƒƒbƒZ[ƒW‚ğ‘—M‚·‚é
-	virtual void T_Sousai();			//!< ”ò“¹‹ï‘ŠE—p ‹éŒ`‚ ‚½‚è”»’èˆ—
-	virtual void T_AtariHantei();		//!< UŒ‚—p@@@ ‹éŒ`‚ ‚½‚è”»’èˆ—
-	virtual void T_KasanariHantei();	//!< d‚È‚è”»’è—p ‹éŒ`‚ ‚½‚è”»’èˆ—
-//	virtual void T_Draw();				//!< DRAW ƒƒbƒZ[ƒW‚ğ‘—M‚·‚é
-	virtual void T_ChangeTarget();		//!< ƒIƒuƒWƒFƒNƒgƒ^[ƒQƒbƒg•ÏXˆ—
-	virtual void T_UpdateStatus();		//!< ‡‚Ìó‘ÔXV
+	//Executeéƒ¨åˆ†å‡¦ç†
+	virtual void T_Command();			//!< COMMAND ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ä¿¡ã™ã‚‹
+	virtual void T_Action(BOOL stop);	//!< Action ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ä¿¡ã™ã‚‹
+	virtual void T_Sousai();			//!< é£›é“å…·ç›¸æ®ºç”¨ çŸ©å½¢ã‚ãŸã‚Šåˆ¤å®šå‡¦ç†
+	virtual void T_AtariHantei();		//!< æ”»æ’ƒç”¨ã€€ã€€ã€€ çŸ©å½¢ã‚ãŸã‚Šåˆ¤å®šå‡¦ç†
+	virtual void T_KasanariHantei();	//!< é‡ãªã‚Šåˆ¤å®šç”¨ çŸ©å½¢ã‚ãŸã‚Šåˆ¤å®šå‡¦ç†
+//	virtual void T_Draw();				//!< DRAW ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ä¿¡ã™ã‚‹
+	virtual void T_ChangeTarget();		//!< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚¿ãƒ¼ã‚²ãƒƒãƒˆå¤‰æ›´å‡¦ç†
+	virtual void T_UpdateStatus();		//!< è©¦åˆã®çŠ¶æ…‹æ›´æ–°
 
 	virtual void StartRound();
 	virtual void UpdateKeyInputDirections();
 
-	//ƒfƒoƒbƒO—p ó‘Ô•\¦
+	//ãƒ‡ãƒãƒƒã‚°ç”¨ çŠ¶æ…‹è¡¨ç¤º
 	virtual void DrawState();
 	virtual void DrawObjectList();
 	virtual void DrawCharacterState();
 	virtual void DrawCharacterState2();
 
 protected:
-	//‘S‘ÌƒGƒtƒFƒNƒgŠÖ˜A
+	//å…¨ä½“ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–¢é€£
 	int efct_slowdown,efct_stop,efct_darkbg,efct_nobg;
 	int efct_sindo,efct_sindom;
 	int efct_hitstop;
 	int efct_fadein;
 	int efct_flash;
 
-	//ó‘Ô
-	DWORD hprecratio[2][MAXNUM_TEAM];	//!<©—RŒğ‘ã§‚Ì‚Æ‚«‚Ì‘Ì—Í‰ñ•œ—¦
-	BOOL  battle_end;		//!<ƒ^ƒXƒN‚ğƒk‚¯‚é‚Ì‚Ég—p
+	//çŠ¶æ…‹
+	DWORD hprecratio[2][MAXNUM_TEAM];	//!<è‡ªç”±äº¤ä»£åˆ¶ã®ã¨ãã®ä½“åŠ›å›å¾©ç‡
+	BOOL  battle_end;		//!<ã‚¿ã‚¹ã‚¯ã‚’ãƒŒã‘ã‚‹ã®ã«ä½¿ç”¨
 
-	//!ƒfƒoƒbƒOƒeƒLƒXƒg•\¦—pƒoƒbƒtƒ@
+	//!ãƒ‡ãƒãƒƒã‚°ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¤ºç”¨ãƒãƒƒãƒ•ã‚¡
 	char *debugmsgbuff;
 
-	//!•\¦’†S
+	//!è¡¨ç¤ºä¸­å¿ƒ
 	double disp_center_x,disp_center_y;
 
-	//ƒNƒ‰ƒX
+	//ã‚¯ãƒ©ã‚¹
 	CGauge		*cp_gauge;
 	CEffectList	*cp_efctlist;
-	DWORD score[2];			//!< ƒXƒRƒŒ
+	DWORD score[2];			//!< ã‚¹ã‚³ãƒ¬
 
-	//ŠÖ”‚ğ•ªŠ„‚µ‚½‚Ì‚Åƒ[ƒJƒ‹‚¶‚á‚¢‚¯‚È‚­‚È‚Á‚½‚à‚Ì
+	//é–¢æ•°ã‚’åˆ†å‰²ã—ãŸã®ã§ãƒ­ãƒ¼ã‚«ãƒ«ã˜ã‚ƒã„ã‘ãªããªã£ãŸã‚‚ã®
 	BOOL act_stop;
 
-	//!ƒ|[ƒY‚Ì•`‰æE‘€ì
+	//!ãƒãƒ¼ã‚ºæ™‚ã®æç”»ãƒ»æ“ä½œ
 	CTBattlePause* m_pause_task;
 
-	//!x‰‡UŒ‚—v¿—pƒJƒEƒ“ƒ^
+	//!æ”¯æ´æ”»æ’ƒè¦è«‹ç”¨ã‚«ã‚¦ãƒ³ã‚¿
 	UINT strikercall_counter[2];
 
 	LPDIRECT3DTEXTURE8 tex_fb;
 
-	//! ƒŠƒvƒŒƒC•Û‘¶ƒtƒ@ƒCƒ‹ƒf[ƒ^
-	CFile RepFile;
+	//! ãƒªãƒ—ãƒ¬ã‚¤ä¿å­˜ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
+	std::ofstream RepFile;
 
-	/*¡‡isŠÇ—¡ ------------------------------------------------------*/
+	/*â– è©¦åˆé€²è¡Œç®¡ç†â–  ------------------------------------------------------*/
 protected:
-	//T_UpdateStatus‚ğ‚³‚ç‚É•ªŠ„
-	virtual void T_UpdateStatus_WaitForEndPose();	//!< ‡isŠÇ—E“oêƒ|[ƒYI—¹‘Ò‚¿
-	virtual void T_UpdateStatus_RoundCall();		//!< ‡isŠÇ—Eƒ‰ƒEƒ“ƒhƒR[ƒ‹I—¹‘Ò‚¿
-	virtual void T_UpdateStatus_Fighting();			//!< ‡isŠÇ—Eí“¬ó‘Ô
-	virtual void T_UpdateStatus_Finished();			//!< ‡isŠÇ—EKOAƒLƒƒƒ‰ƒNƒ^‚ÌÅIƒ_ƒEƒ“I—¹‘Ò‚¿
-	virtual void T_UpdateStatus_WaitForEndWin();	//!< ‡isŠÇ—EŸ—˜ƒ|[ƒYI—¹‘Ò‚¿
-	virtual void T_UpdateStatus_DoubleKO();			//!< ‡isŠÇ—Eƒ_ƒuƒ‹KO•\¦I—¹‘Ò‚¿
-	virtual void T_UpdateStatus_TimeOver();			//!< ‡isŠÇ—Eƒ^ƒCƒ€ƒI[ƒo[•\¦I—¹‘Ò‚¿
+	//T_UpdateStatusã‚’ã•ã‚‰ã«åˆ†å‰²
+	virtual void T_UpdateStatus_WaitForEndPose();	//!< è©¦åˆé€²è¡Œç®¡ç†ãƒ»ç™»å ´ãƒãƒ¼ã‚ºçµ‚äº†å¾…ã¡
+	virtual void T_UpdateStatus_RoundCall();		//!< è©¦åˆé€²è¡Œç®¡ç†ãƒ»ãƒ©ã‚¦ãƒ³ãƒ‰ã‚³ãƒ¼ãƒ«çµ‚äº†å¾…ã¡
+	virtual void T_UpdateStatus_Fighting();			//!< è©¦åˆé€²è¡Œç®¡ç†ãƒ»æˆ¦é—˜çŠ¶æ…‹
+	virtual void T_UpdateStatus_Finished();			//!< è©¦åˆé€²è¡Œç®¡ç†ãƒ»KOã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®æœ€çµ‚ãƒ€ã‚¦ãƒ³çµ‚äº†å¾…ã¡
+	virtual void T_UpdateStatus_WaitForEndWin();	//!< è©¦åˆé€²è¡Œç®¡ç†ãƒ»å‹åˆ©ãƒãƒ¼ã‚ºçµ‚äº†å¾…ã¡
+	virtual void T_UpdateStatus_DoubleKO();			//!< è©¦åˆé€²è¡Œç®¡ç†ãƒ»ãƒ€ãƒ–ãƒ«KOè¡¨ç¤ºçµ‚äº†å¾…ã¡
+	virtual void T_UpdateStatus_TimeOver();			//!< è©¦åˆé€²è¡Œç®¡ç†ãƒ»ã‚¿ã‚¤ãƒ ã‚ªãƒ¼ãƒãƒ¼è¡¨ç¤ºçµ‚äº†å¾…ã¡
 
-	virtual void Update_DeadFlag();					//!< €–Sƒtƒ‰ƒOXV
+	virtual void Update_DeadFlag();					//!< æ­»äº¡ãƒ•ãƒ©ã‚°æ›´æ–°
 
-	//‡isŠÇ—ƒtƒ‰ƒO
-	DWORD winner_oid;								//!< Ÿ—˜ƒ|[ƒYI—¹‘Ò‚¿‘ÎÛ
-	BOOL m_winpose_end;								//!< Ÿ—˜ƒ|[ƒYI—¹Eªˆêl•ª‚µ‚©Œ©‚Ä‚È‚¢
-	BOOL m_finaldown_end[2];						//!< ƒ_ƒEƒ“Š®—¹ƒtƒ‰ƒO
-	BOOL m_tojyo_end[2][MAXNUM_TEAM];				//!< “oêƒ|[ƒYI—¹ƒtƒ‰ƒOBKOFLike‚ÌƒEƒFƒCƒg‚É‚àg—p
-	BOOL m_all_dead[2];								//!< €–Sƒtƒ‰ƒO
-	BOOL m_dead_one[2][MAXNUM_TEAM];				//!< €–Sƒtƒ‰ƒO
-	BOOL m_active_dead[2];							//!< €–Sƒtƒ‰ƒO
-	BYTE m_round_winner;							//!<  0/1:Ÿ—˜ƒ`[ƒ€ , 2:ƒ_ƒuƒ‹KO
+	//è©¦åˆé€²è¡Œç®¡ç†ãƒ•ãƒ©ã‚°
+	DWORD winner_oid;								//!< å‹åˆ©ãƒãƒ¼ã‚ºçµ‚äº†å¾…ã¡å¯¾è±¡
+	BOOL m_winpose_end;								//!< å‹åˆ©ãƒãƒ¼ã‚ºçµ‚äº†ãƒ»â†‘ä¸€äººåˆ†ã—ã‹è¦‹ã¦ãªã„
+	BOOL m_finaldown_end[2];						//!< ãƒ€ã‚¦ãƒ³å®Œäº†ãƒ•ãƒ©ã‚°
+	BOOL m_tojyo_end[2][MAXNUM_TEAM];				//!< ç™»å ´ãƒãƒ¼ã‚ºçµ‚äº†ãƒ•ãƒ©ã‚°ã€‚KOFLikeæ™‚ã®ã‚¦ã‚§ã‚¤ãƒˆã«ã‚‚ä½¿ç”¨
+	BOOL m_all_dead[2];								//!< æ­»äº¡ãƒ•ãƒ©ã‚°
+	BOOL m_dead_one[2][MAXNUM_TEAM];				//!< æ­»äº¡ãƒ•ãƒ©ã‚°
+	BOOL m_active_dead[2];							//!< æ­»äº¡ãƒ•ãƒ©ã‚°
+	BYTE m_round_winner;							//!<  0/1:å‹åˆ©ãƒãƒ¼ãƒ  , 2:ãƒ€ãƒ–ãƒ«KO
 
 
-	/*¡ƒIƒuƒWƒFƒNƒgŠÇ—¡-----------------------------------------------------*/
+	/*â– ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç®¡ç†â– -----------------------------------------------------*/
 public:
-	CGObject* GetGObject(DWORD id);					//!< w’èIDƒIƒuƒWƒFƒNƒgæ“¾
-	DWORD CreateGObject();							//!< ƒIƒuƒWƒFƒNƒg¶¬
-	DWORD CreateGObjectFx();						//!< ƒIƒuƒWƒFƒNƒg¶¬(ƒGƒtƒFƒNƒg)
-	void DeleteGObject(DWORD oid);					//!< ƒIƒuƒWƒFƒNƒg”jŠü
-	void SuicideGObject(DWORD oid);					//!< ƒIƒuƒWƒFƒNƒg”jŠü—\–ñ
-	CGObject* GetCharacterObject(DWORD j,DWORD i);	//!< ƒLƒƒƒ‰ƒNƒ^[‚ÌƒIƒuƒWƒFƒNƒgæ“¾iƒQ[ƒW“™‚Å•K—vj
+	CGObject* GetGObject(DWORD id);					//!< æŒ‡å®šIDã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå–å¾—
+	DWORD CreateGObject();							//!< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
+	DWORD CreateGObjectFx();						//!< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ(ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ)
+	void DeleteGObject(DWORD oid);					//!< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„
+	void SuicideGObject(DWORD oid);					//!< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„äºˆç´„
+	CGObject* GetCharacterObject(DWORD j,DWORD i);	//!< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå–å¾—ï¼ˆã‚²ãƒ¼ã‚¸ç­‰ã§å¿…è¦ï¼‰
 protected:
-	std::vector< CGObject* > p_objects;				//!< ƒIƒuƒWƒFƒNƒg‘€ìƒNƒ‰ƒX‚Ìƒ|ƒCƒ“ƒ^
-	DWORD object_regindex;							//!< Ÿ‚É¶¬‚·‚éƒIƒuƒWƒFƒNƒg‚ÌƒCƒ“ƒfƒbƒNƒX
-	std::vector< WORD > object_regno;				//!< ‚»‚ÌƒCƒ“ƒfƒbƒNƒX‚Å‚¢‚­‚Â‚ÌƒIƒuƒWƒFƒNƒg‚ª¶¬‚³‚ê‚Ä‚«‚½‚©
-	std::deque< DWORD > suicide_list;				//!< Á–ÅƒIƒuƒWƒFƒNƒgƒŠƒXƒg
+	std::vector< CGObject* > p_objects;				//!< ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ“ä½œã‚¯ãƒ©ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿
+	DWORD object_regindex;							//!< æ¬¡ã«ç”Ÿæˆã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	std::vector< WORD > object_regno;				//!< ãã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã§ã„ãã¤ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒç”Ÿæˆã•ã‚Œã¦ããŸã‹
+	std::deque< DWORD > suicide_list;				//!< æ¶ˆæ»…ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆ
 };
 
 #define BATTLETASK_FXOBJFLAG		0x80000000

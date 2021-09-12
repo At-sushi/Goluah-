@@ -1,6 +1,6 @@
-/*!
+﻿/*!
 *	@file
-*	@brief �f�o�b�O���j�E
+*	@brief デバッグメニウ
 */
 #pragma once
 
@@ -8,15 +8,15 @@
 
 /*!
 *	@defgroup Debug
-*	@brief �f�o�b�O�p���낢��H
+*	@brief デバッグ用いろいろ？
 */
 
 /*!
-*	@brief �f�o�b�O�p�ȈՃ^�C�g�����
+*	@brief デバッグ用簡易タイトル画面
 *	@ingroup Debug
 *
-*	�f�o�b�O�r���h�̏ꍇ�A�^�C�g����ʂ̑���ɂ��ꂪ�o�܂�
-*	�^�C�g����ʖ߂�̑��������ɖ߂�܂��B
+*	デバッグビルドの場合、タイトル画面の代わりにこれが出ます
+*	タイトル画面戻りの操作もこれに戻ります。
 */
 class CDebugMenu : public CExclusiveTaskBase
 {

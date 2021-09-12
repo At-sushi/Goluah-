@@ -1,11 +1,11 @@
-/*==============================================================
+ï»¿/*==============================================================
 
-	s“®ŠÖ”i•KEj
+	è¡Œå‹•é–¢æ•°ï¼ˆå¿…æ®ºï¼‰
 
 ================================================================*/
 #include "character.h"
 
-//•KE“Š‚°------------------------------------------------------------------
+//å¿…æ®ºæŠ•ã’------------------------------------------------------------------
 
 BOOL nageend;
 
@@ -90,7 +90,7 @@ DWORD CCharacter::act_hnagee(GOBJECT *pedat)
 		AddDamage(pedat->id,(int)pedat->x,0);
 		return(ACTID_FUTTOBI);
 	}
-	else if(pedat->counter >= 300){ // ‹­§”­Ë
+	else if(pedat->counter >= 300){ // å¼·åˆ¶ç™ºå°„
 		pedat->muki = !(pdat->muki);
 		pedat->y=0;
 		nageend = TRUE;
@@ -101,7 +101,7 @@ DWORD CCharacter::act_hnagee(GOBJECT *pedat)
 	return(0);
 }
 
-//u‘Ì“–‚½‚èv======================================================================
+//ã€Œä½“å½“ãŸã‚Šã€======================================================================
 
 void CCharacter::act_tetu1()
 {
@@ -191,7 +191,7 @@ void CCharacter::act_tetu3()
 	}
 }
 
-//’´•K“Š‚°-------------------------------------------------------------------
+//è¶…å¿…æŠ•ã’-------------------------------------------------------------------
 
 void CCharacter::act_snage()
 {
@@ -220,43 +220,43 @@ void CCharacter::act_snage()
 		f_end=e_end + f_spd*5,
 		g_end=f_end + g_spd*5;
 
-		//a part ©
+		//a part â†
 		if(pdat->counter < a_spd*1){pdat->revx=FALSE;pdat->cnow = CELL_SNAGE2;}
 		else if(pdat->counter < a_spd*2){pdat->revx=FALSE;pdat->cnow = CELL_SNAGE1;}
 		else if(pdat->counter < a_spd*3){pdat->revx=TRUE;pdat->cnow = CELL_SNAGE1;}
 		else if(pdat->counter < a_spd*4){pdat->revx=TRUE;pdat->cnow = CELL_SNAGE2;}
 		else if(pdat->counter < a_spd*5){pdat->revx=TRUE;pdat->cnow = CELL_SNAGE3;}
-		//b part ¨
+		//b part â†’
 		else if(pdat->counter < a_end + b_spd*1){pdat->revx=TRUE;pdat->cnow = CELL_SNAGE2;}
 		else if(pdat->counter < a_end + b_spd*2){pdat->revx=TRUE;pdat->cnow = CELL_SNAGE1;}
 		else if(pdat->counter < a_end + b_spd*3){pdat->revx=FALSE;pdat->cnow = CELL_SNAGE1;}
 		else if(pdat->counter < a_end + b_spd*4){pdat->revx=FALSE;pdat->cnow = CELL_SNAGE2;}
 		else if(pdat->counter < a_end + b_spd*5){pdat->revx=FALSE;pdat->cnow = CELL_SNAGE3;}
-		//c part ©
+		//c part â†
 		else if(pdat->counter < b_end + c_spd*1){pdat->revx=FALSE;pdat->cnow = CELL_SNAGE2;}
 		else if(pdat->counter < b_end + c_spd*2){pdat->revx=FALSE;pdat->cnow = CELL_SNAGE1;}
 		else if(pdat->counter < b_end + c_spd*3){pdat->revx=TRUE;pdat->cnow = CELL_SNAGE1;}
 		else if(pdat->counter < b_end + c_spd*4){pdat->revx=TRUE;pdat->cnow = CELL_SNAGE2;}
 		else if(pdat->counter < b_end + c_spd*5){pdat->revx=TRUE;pdat->cnow = CELL_SNAGE3;}
-		//d part ¨
+		//d part â†’
 		else if(pdat->counter < c_end + d_spd*1){pdat->revx=TRUE;pdat->cnow = CELL_SNAGE2;}
 		else if(pdat->counter < c_end + d_spd*2){pdat->revx=TRUE;pdat->cnow = CELL_SNAGE1;}
 		else if(pdat->counter < c_end + d_spd*3){pdat->revx=FALSE;pdat->cnow = CELL_SNAGE1;}
 		else if(pdat->counter < c_end + d_spd*4){pdat->revx=FALSE;pdat->cnow = CELL_SNAGE2;}
 		else if(pdat->counter < c_end + d_spd*5){pdat->revx=FALSE;pdat->cnow = CELL_SNAGE3;}
-		//e part ©
+		//e part â†
 		else if(pdat->counter < d_end + e_spd*1){pdat->revx=FALSE;pdat->cnow = CELL_SNAGE2;}
 		else if(pdat->counter < d_end + e_spd*2){pdat->revx=FALSE;pdat->cnow = CELL_SNAGE1;}
 		else if(pdat->counter < d_end + e_spd*3){pdat->revx=TRUE;pdat->cnow = CELL_SNAGE1;}
 		else if(pdat->counter < d_end + e_spd*4){pdat->revx=TRUE;pdat->cnow = CELL_SNAGE2;}
 		else if(pdat->counter < d_end + e_spd*5){pdat->revx=TRUE;pdat->cnow = CELL_SNAGE3;}
-		//f part ¨
+		//f part â†’
 		else if(pdat->counter < e_end + f_spd*1){pdat->revx=TRUE;pdat->cnow = CELL_SNAGE2;}
 		else if(pdat->counter < e_end + f_spd*2){pdat->revx=TRUE;pdat->cnow = CELL_SNAGE1;}
 		else if(pdat->counter < e_end + f_spd*3){pdat->revx=FALSE;pdat->cnow = CELL_SNAGE1;}
 		else if(pdat->counter < e_end + f_spd*4){pdat->revx=FALSE;pdat->cnow = CELL_SNAGE2;}
 		else if(pdat->counter < e_end + f_spd*5){pdat->revx=FALSE;pdat->cnow = CELL_SNAGE3;}
-		//g part ©
+		//g part â†
 		else if(pdat->counter < f_end + g_spd*1){pdat->revx=FALSE;pdat->cnow = CELL_SNAGE2;}
 		else if(pdat->counter < f_end + g_spd*2){pdat->revx=FALSE;pdat->cnow = CELL_SNAGE1;}
 		else if(pdat->counter < f_end + g_spd*3){pdat->revx=TRUE;pdat->cnow = CELL_SNAGE1;}
@@ -325,43 +325,43 @@ DWORD CCharacter::act_snagee(GOBJECT *pedat)
 	}
 
 
-		//a part ©
+		//a part â†
 		if(pedat->counter < a_spd*1){pedat->revx=FALSE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=90;pedat->x=pdat->x+zurex(zurex1);pedat->y=zurey1;}
 		else if(pedat->counter < a_spd*2){pedat->revx=FALSE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=135;pedat->x=pdat->x+zurex(zurex2);pedat->y=zurey2;}
 		else if(pedat->counter < a_spd*3){pedat->revx=TRUE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=135;pedat->x=pdat->x+zurex(zurex2*(-1));pedat->y=zurey2;}
 		else if(pedat->counter < a_spd*4){pedat->revx=TRUE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=90;pedat->x=pdat->x+zurex(zurex2*(-1));pedat->y=zurey1;}
 		else if(pedat->counter < a_spd*5){pedat->revx=TRUE;pedat->cnow = DCELL_DOWN;pedat->x=pdat->x+zurex(zurex3*(-1));pedat->y=0;}
-		//b part ¨
+		//b part â†’
 		else if(pedat->counter < a_end + b_spd*1){pedat->revx=TRUE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=90;pedat->x=pdat->x+zurex(zurex1*(-1));pedat->y=zurey1;}
 		else if(pedat->counter < a_end + b_spd*2){pedat->revx=TRUE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=135;pedat->x=pdat->x+zurex(zurex2*(-1));pedat->y=zurey2;}
 		else if(pedat->counter < a_end + b_spd*3){pedat->revx=FALSE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=135;pedat->x=pdat->x+zurex(zurex2);pedat->y=zurey2;}
 		else if(pedat->counter < a_end + b_spd*4){pedat->revx=FALSE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=90;pedat->x=pdat->x+zurex(zurex1);pedat->y=zurey1;}
 		else if(pedat->counter < a_end + b_spd*5){pedat->revx=FALSE;pedat->cnow = DCELL_DOWN;pedat->x=pdat->x+zurex(zurex3);pedat->y=0;}
-		//c part ©
+		//c part â†
 		else if(pedat->counter < b_end + c_spd*1){pedat->revx=FALSE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=90;pedat->x=pdat->x+zurex(zurex1);pedat->y=zurey1;}
 		else if(pedat->counter < b_end + c_spd*2){pedat->revx=FALSE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=135;pedat->x=pdat->x+zurex(zurex2);pedat->y=zurey2;}
 		else if(pedat->counter < b_end + c_spd*3){pedat->revx=TRUE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=135;pedat->x=pdat->x+zurex(zurex2*(-1));pedat->y=zurey2;}
 		else if(pedat->counter < b_end + c_spd*4){pedat->revx=TRUE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=90;pedat->x=pdat->x+zurex(zurex2*(-1));pedat->y=zurey1;}
 		else if(pedat->counter < b_end + c_spd*5){pedat->revx=TRUE;pedat->cnow = DCELL_DOWN;pedat->x=pdat->x+zurex(zurex3*(-1));pedat->y=0;}
-		//d part ¨
+		//d part â†’
 		else if(pedat->counter < c_end + d_spd*1){pedat->revx=TRUE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=90;pedat->x=pdat->x+zurex(zurex1*(-1));pedat->y=zurey1;}
 		else if(pedat->counter < c_end + d_spd*2){pedat->revx=TRUE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=135;pedat->x=pdat->x+zurex(zurex2*(-1));pedat->y=zurey2;}
 		else if(pedat->counter < c_end + d_spd*3){pedat->revx=FALSE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=135;pedat->x=pdat->x+zurex(zurex2);pedat->y=zurey2;}
 		else if(pedat->counter < c_end + d_spd*4){pedat->revx=FALSE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=90;pedat->x=pdat->x+zurex(zurex1);pedat->y=zurey1;}
 		else if(pedat->counter < c_end + d_spd*5){pedat->revx=FALSE;pedat->cnow = DCELL_DOWN;pedat->x=pdat->x+zurex(zurex3);pedat->y=0;}
-		//e part ©
+		//e part â†
 		else if(pedat->counter < d_end + e_spd*1){pedat->revx=FALSE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=90;pedat->x=pdat->x+zurex(zurex1);pedat->y=zurey1;}
 		else if(pedat->counter < d_end + e_spd*2){pedat->revx=FALSE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=135;pedat->x=pdat->x+zurex(zurex2);pedat->y=zurey2;}
 		else if(pedat->counter < d_end + e_spd*3){pedat->revx=TRUE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=135;pedat->x=pdat->x+zurex(zurex2*(-1));pedat->y=zurey2;}
 		else if(pedat->counter < d_end + e_spd*4){pedat->revx=TRUE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=90;pedat->x=pdat->x+zurex(zurex2*(-1));pedat->y=zurey1;}
 		else if(pedat->counter < d_end + e_spd*5){pedat->revx=TRUE;pedat->cnow = DCELL_DOWN;pedat->x=pdat->x+zurex(zurex3*(-1));pedat->y=0;}
-		//f part ¨
+		//f part â†’
 		else if(pedat->counter < e_end + f_spd*1){pedat->revx=TRUE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=90;pedat->x=pdat->x+zurex(zurex1*(-1));pedat->y=zurey1;}
 		else if(pedat->counter < e_end + f_spd*2){pedat->revx=TRUE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=135;pedat->x=pdat->x+zurex(zurex2*(-1));pedat->y=zurey2;}
 		else if(pedat->counter < e_end + f_spd*3){pedat->revx=FALSE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=135;pedat->x=pdat->x+zurex(zurex2);pedat->y=zurey2;}
 		else if(pedat->counter < e_end + f_spd*4){pedat->revx=FALSE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=90;pedat->x=pdat->x+zurex(zurex1);pedat->y=zurey1;}
 		else if(pedat->counter < e_end + f_spd*5){pedat->revx=FALSE;pedat->cnow = DCELL_DOWN;pedat->x=pdat->x+zurex(zurex3);pedat->y=0;}
-		//g part ©
+		//g part â†
 		else if(pedat->counter < f_end + g_spd*1){pedat->revx=FALSE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=90;pedat->x=pdat->x+zurex(zurex1);pedat->y=zurey1;}
 		else if(pedat->counter < f_end + g_spd*2){pedat->revx=FALSE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=135;pedat->x=pdat->x+zurex(zurex2);pedat->y=zurey2;}
 		else if(pedat->counter < f_end + g_spd*3){pedat->revx=TRUE;pedat->cnow = DCELL_NAGERARE1;pedat->rot=135;pedat->x=pdat->x+zurex(zurex2*(-1));pedat->y=zurey2;}

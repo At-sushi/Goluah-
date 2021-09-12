@@ -1,7 +1,7 @@
-
+ï»¿
 /*===========================================================
 
-	Ÿ—˜‰æ–Ê
+	å‹åˆ©ç”»é¢
 
 =============================================================*/
 #pragma once
@@ -9,11 +9,11 @@
 #include "task.h"
 
 /*!
-*	@brief Ÿ—˜‰æ–Êƒ^ƒXƒN
+*	@brief å‹åˆ©ç”»é¢ã‚¿ã‚¹ã‚¯
 *	@ingroup Tasks
 *
-*	VSƒ‚[ƒhƒ^ƒXƒN‚âAƒXƒg[ƒŠ[ƒ‚[ƒhƒ^ƒXƒN‚ª‚±‚ê‚ğ‹N“®‚·‚éB
-*	Ÿ—˜‘äŒ‚â–Êq‚È‚Ç‚ÍƒOƒ[ƒoƒ‹‚Ìg_battleinfo‚âg_battleresult‚©‚çæ“¾
+*	VSãƒ¢ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯ã‚„ã€ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒ¢ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯ãŒã“ã‚Œã‚’èµ·å‹•ã™ã‚‹ã€‚
+*	å‹åˆ©å°è©ã‚„é¢å­ãªã©ã¯ã‚°ãƒ­ãƒ¼ãƒãƒ«ã®g_battleinfoã‚„g_battleresultã‹ã‚‰å–å¾—
 */
 class CYouWin : public CExclusiveTaskBase
 {
@@ -34,22 +34,22 @@ public:
 protected:
 	void CleanUp();
 
-//•Ï”
+//å¤‰æ•°
 protected:
-	DWORD counter;				//!< Execute—pƒJƒEƒ“ƒ^
-	BOOL  m_end_flag;			//!< I—¹ƒtƒ‰ƒO
-	UINT  m_textlen;			//!< •\¦ƒeƒLƒXƒg’·
-	DWORD wt;					//!< Ÿ‚Á‚½•û‚Ìƒ`[ƒ€
-	MYSURFACE *dds_face[3];		//!< •\¦Šç
+	DWORD counter;				//!< Executeç”¨ã‚«ã‚¦ãƒ³ã‚¿
+	BOOL  m_end_flag;			//!< çµ‚äº†ãƒ•ãƒ©ã‚°
+	UINT  m_textlen;			//!< è¡¨ç¤ºãƒ†ã‚­ã‚¹ãƒˆé•·
+	DWORD wt;					//!< å‹ã£ãŸæ–¹ã®ãƒãƒ¼ãƒ 
+	MYSURFACE *dds_face[3];		//!< è¡¨ç¤ºé¡”
 
-	LPDIRECT3DTEXTURE8 tex_fb;	//!< ‡I—¹‚Ìƒtƒƒ“ƒgƒoƒbƒtƒ@‚ÌƒRƒs[
+	LPDIRECT3DTEXTURE8 tex_fb;	//!< è©¦åˆçµ‚äº†æ™‚ã®ãƒ•ãƒ­ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ã®ã‚³ãƒ”ãƒ¼
 
-	int f_x[3];					//!< face2‚Ì•\¦ˆÊ’u
-	float f_z[3];				//!< face2‚Ì•\¦ˆÊ’u
-	BOOL show_text;				//!< ƒeƒLƒXƒg•\¦‚·‚é‚©‚Ç‚¤‚©
-	DWORD jun[3];				//!< •\¦‚Ì‡”Ô
+	int f_x[3];					//!< face2ã®è¡¨ç¤ºä½ç½®
+	float f_z[3];				//!< face2ã®è¡¨ç¤ºä½ç½®
+	BOOL show_text;				//!< ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹
+	DWORD jun[3];				//!< è¡¨ç¤ºã®é †ç•ª
 
-	char *m_text_from_story;	//!< ƒXƒg[ƒŠ[‘¤‚©‚çw’è‚³‚ê‚½ƒeƒLƒXƒg
-	char *m_text;				//!< m_text_from_story‚Ü‚½‚Íg_battleresult‚©‚çæ“¾‚µ‚½ƒeƒLƒXƒg‚Ì‚¤‚¿AÀÛ‚É•\¦‚·‚é‚Ù‚¤B
+	char *m_text_from_story;	//!< ã‚¹ãƒˆãƒ¼ãƒªãƒ¼å´ã‹ã‚‰æŒ‡å®šã•ã‚ŒãŸãƒ†ã‚­ã‚¹ãƒˆ
+	char *m_text;				//!< m_text_from_storyã¾ãŸã¯g_battleresultã‹ã‚‰å–å¾—ã—ãŸãƒ†ã‚­ã‚¹ãƒˆã®ã†ã¡ã€å®Ÿéš›ã«è¡¨ç¤ºã™ã‚‹ã»ã†ã€‚
 };
 

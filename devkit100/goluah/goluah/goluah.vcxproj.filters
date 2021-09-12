@@ -50,21 +50,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\system\Name.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="source\system\NameC.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="source\system\NetState.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="source\battle\task_demobattle.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="source\app\goluah.cpp">
-      <Filter>source\app</Filter>
-    </ClCompile>
     <ClCompile Include="source\app\main.cpp">
       <Filter>source\app</Filter>
     </ClCompile>
@@ -236,15 +221,15 @@
     <ClCompile Include="source\debug\debug_menu.cpp">
       <Filter>source\debug</Filter>
     </ClCompile>
+    <ClCompile Include="source\battle\task_demobattle.cpp">
+      <Filter>source\battle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\app\define_const.h">
       <Filter>source\app</Filter>
     </ClInclude>
     <ClInclude Include="source\app\define_macro.h">
-      <Filter>source\app</Filter>
-    </ClInclude>
-    <ClInclude Include="source\app\goluah.h">
       <Filter>source\app</Filter>
     </ClInclude>
     <ClInclude Include="source\app\stdafx.h">
@@ -412,14 +397,13 @@
     <ClInclude Include="Resource.h">
       <Filter>リソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="source\system\Name.h" />
-    <ClInclude Include="source\system\NameC.h" />
-    <ClInclude Include="NetMessage.h" />
-    <ClInclude Include="source\system\NetState.h" />
-    <ClInclude Include="source\battle\task_Bonus.h" />
-    <ClInclude Include="source\battle\task_demobattle.h" />
-    <ClInclude Include="source\script\script_story_new.h" />
     <ClInclude Include="source\battle\CollisionDetectionTree.h">
+      <Filter>source\battle</Filter>
+    </ClInclude>
+    <ClInclude Include="source\battle\task_Bonus.h">
+      <Filter>source\task</Filter>
+    </ClInclude>
+    <ClInclude Include="source\battle\task_demobattle.h">
       <Filter>source\battle</Filter>
     </ClInclude>
   </ItemGroup>

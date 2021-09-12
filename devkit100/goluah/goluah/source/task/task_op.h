@@ -1,14 +1,14 @@
-
+ï»¿
 /*===========================================================
 
-	op.aviÄ¶
+	op.aviå†ç”Ÿ
 
 =============================================================*/
 #pragma once
 
 #include "task.h"
 /*!
-	@brief ‚È‚ÉH‚±‚êH
+	@brief ãªã«ï¼Ÿã“ã‚Œï¼Ÿ
 */
 class COpeningMovie : public CExclusiveTaskBase
 {
@@ -29,21 +29,21 @@ public:
 protected:
 	void CleanUp();
 
-//•Ï”
+//å¤‰æ•°
 protected:
-	DWORD counter;				//ƒJƒEƒ“ƒ^
-	BOOL  m_end_flag;			//I—¹ƒtƒ‰ƒO
-	UINT  m_textlen;			//•\¦ƒeƒLƒXƒg’·
-	DWORD wt;					//Ÿ‚Á‚½•û‚Ìƒ`[ƒ€
-	MYSURFACE *dds_face[3];		//•\¦Šç
+	DWORD counter;				//ã‚«ã‚¦ãƒ³ã‚¿
+	BOOL  m_end_flag;			//çµ‚äº†ãƒ•ãƒ©ã‚°
+	UINT  m_textlen;			//è¡¨ç¤ºãƒ†ã‚­ã‚¹ãƒˆé•·
+	DWORD wt;					//å‹ã£ãŸæ–¹ã®ãƒãƒ¼ãƒ 
+	MYSURFACE *dds_face[3];		//è¡¨ç¤ºé¡”
 
-	LPDIRECT3DTEXTURE8 tex_fb;	//‡I—¹‚Ìƒtƒƒ“ƒgƒoƒbƒtƒ@‚ÌƒRƒs[
+	LPDIRECT3DTEXTURE8 tex_fb;	//è©¦åˆçµ‚äº†æ™‚ã®ãƒ•ãƒ­ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ã®ã‚³ãƒ”ãƒ¼
 
-	int f_x[3];					//face2‚Ì•\¦ˆÊ’u
-	float f_z[3];				//face2‚Ì•\¦ˆÊ’u
-	BOOL show_text;				//ƒeƒLƒXƒg•\¦‚·‚é‚©‚Ç‚¤‚©
-	DWORD jun[3];				//•\¦‚Ì‡”Ô
+	int f_x[3];					//face2ã®è¡¨ç¤ºä½ç½®
+	float f_z[3];				//face2ã®è¡¨ç¤ºä½ç½®
+	BOOL show_text;				//ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹
+	DWORD jun[3];				//è¡¨ç¤ºã®é †ç•ª
 
-	char *m_text_from_story;	//ƒXƒg[ƒŠ[‘¤‚©‚çw’è‚³‚ê‚½ƒeƒLƒXƒg
-	char *m_text;				//ª‚Ü‚½‚Íg_battleresult‚©‚çæ“¾‚µ‚½ƒeƒLƒXƒgBdelete‚Ì•K—v‚È‚µB
+	char *m_text_from_story;	//ã‚¹ãƒˆãƒ¼ãƒªãƒ¼å´ã‹ã‚‰æŒ‡å®šã•ã‚ŒãŸãƒ†ã‚­ã‚¹ãƒˆ
+	char *m_text;				//â†‘ã¾ãŸã¯g_battleresultã‹ã‚‰å–å¾—ã—ãŸãƒ†ã‚­ã‚¹ãƒˆã€‚deleteã®å¿…è¦ãªã—ã€‚
 };

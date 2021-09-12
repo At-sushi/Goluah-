@@ -1,6 +1,6 @@
-/*===========================================================
+ï»¿/*===========================================================
 
-	ƒ^ƒCƒgƒ‹‰æ–Ê
+	ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢
 
 =============================================================*/
 #pragma once
@@ -8,7 +8,7 @@
 
 
 /*!
-*	@brief ƒ^ƒCƒgƒ‹‰æ–Ê
+*	@brief ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢
 *	@ingroup Tasks
 */
 class CTitle : public CExclusiveTaskBase
@@ -29,32 +29,32 @@ private:
 	void MainMenu();
 	void Settings();
 
-//•Ï”
+//å¤‰æ•°
 public:
-	BOOL  is_error;			//!< ƒGƒ‰[‚ª‹N‚±‚Á‚Äƒ^ƒCƒgƒ‹‚É–ß‚Á‚½
+	BOOL  is_error;			//!< ã‚¨ãƒ©ãƒ¼ãŒèµ·ã“ã£ã¦ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã£ãŸ
 private:
 	DWORD counter;
 	MYSURFACE *dds_back;
 	DWORD selectedgamemode;
-	DWORD selected_item;	//!< settings ‚Å‘I‘ğ‚³‚ê‚Ä‚¢‚é€–Ú
-	BOOL  setting_now;		//!< İ’èƒ‚[ƒh‚Å‚ ‚é
-	BOOL  demomode;			//!< ƒfƒ‚Ø‚è‘Ö‚¦ƒXƒCƒbƒ`iƒ€[ƒr[^ƒQ[ƒ€j
+	DWORD selected_item;	//!< settings ã§é¸æŠã•ã‚Œã¦ã„ã‚‹é …ç›®
+	BOOL  setting_now;		//!< è¨­å®šãƒ¢ãƒ¼ãƒ‰ã§ã‚ã‚‹
+	BOOL  demomode;			//!< ãƒ‡ãƒ¢åˆ‡ã‚Šæ›¿ãˆã‚¹ã‚¤ãƒƒãƒï¼ˆãƒ ãƒ¼ãƒ“ãƒ¼ï¼ã‚²ãƒ¼ãƒ ï¼‰
 
 	enum {
-		TIME_DEMOSTART = 1200//!< ƒfƒ‚‚ªn‚Ü‚é‚Ü‚Å‚ÌŠÔ
+		TIME_DEMOSTART = 1200//!< ãƒ‡ãƒ¢ãŒå§‹ã¾ã‚‹ã¾ã§ã®æ™‚é–“
 	};
 };
 
 
-//selectedgamemode‚Ì€–Ú
+//selectedgamemodeã®é …ç›®
 #define TITLE_STORY				0
 #define TITLE_VS				1
 #define TITLE_PRACTICE			2
 #define TITLE_SETTINGS			3
 #define TITLE_OPMOVIE			4
-#define TITLE_NETWORK			5//!< ‚±‚ê‚ğ€–Ú‚ÌÅŒã‚Æ‚İ‚È‚µ‚Ä‚¢‚é
+#define TITLE_NETWORK			5//!< ã“ã‚Œã‚’é …ç›®ã®æœ€å¾Œã¨ã¿ãªã—ã¦ã„ã‚‹
 
-//setting‚Ì€–Ú
+//settingã®é …ç›®
 #define SETTINGS_DIFFICULTY		0
 //#define SETTINGS_TLPERROUND	1
 #define SETTINGS_1V1_NUMPOINT	1
@@ -62,5 +62,5 @@ private:
 //#define SETTINGS_2V2_TYPE		4
 //#define SETTINGS_3V3_TYPE		5
 #define SETTINGS_GAMESPEED		3
-#define SETTINGS_EXIT			4//!< ‚±‚ê‚ğ€–Ú‚ÌÅŒã‚Æ‚İ‚È‚µ‚Ä‚¢‚é
+#define SETTINGS_EXIT			4//!< ã“ã‚Œã‚’é …ç›®ã®æœ€å¾Œã¨ã¿ãªã—ã¦ã„ã‚‹
 

@@ -1,7 +1,7 @@
-
+ï»¿
 /*=====================================================================================
 
-	ƒLƒƒƒ‰ƒNƒ^[’è‹`
+	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼å®šç¾©
 
 	Goluah!! Copyright (C) 2001-2004 aki, 2014-2015 logger, 2004-2015 At-sushi
 
@@ -16,12 +16,12 @@
 
 //**************************************************************************************
 //  Option Settings
-//@‚±‚±‚ÉAƒLƒƒƒ‰ƒNƒ^[‚ÉÝ’è‚Å‚«‚éƒIƒvƒVƒ‡ƒ“‚ðŽw’è‚µ‚Ü‚·
+//ã€€ã“ã“ã«ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã«è¨­å®šã§ãã‚‹ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’æŒ‡å®šã—ã¾ã™
 //**************************************************************************************
 
 CHARACTER_LOAD_OPTION option[] = {
 
-	// @{ ƒtƒ‰ƒO, ‹£‡‚·‚éµÌß¼®Ý,ˆË‘¶‚·‚éµÌß¼®Ý, ƒIƒvƒVƒ‡ƒ“–¼, Á”ïƒ|ƒCƒ“ƒg }
+	// ã€€{ ãƒ•ãƒ©ã‚°, ç«¶åˆã™ã‚‹ï½µï¾Œï¾Ÿï½¼ï½®ï¾,ä¾å­˜ã™ã‚‹ï½µï¾Œï¾Ÿï½¼ï½®ï¾, ã‚ªãƒ—ã‚·ãƒ§ãƒ³å, æ¶ˆè²»ãƒã‚¤ãƒ³ãƒˆ }
 	{ OPTIONS_EXTRA_ATTACK,		0, 0,	"Extra Attacks"	, 6 } ,
 	{ OPTIONS_EXTRA_FRIENDS,	0, 0,	"Extra Friends"	, 6 } ,
 };
@@ -29,43 +29,43 @@ CHARACTER_LOAD_OPTION option[] = {
 
 //**************************************************************************************
 //  Character Information
-//@‚±‚±‚ÉƒLƒƒƒ‰ƒNƒ^[‚Ì–¼‘O‚ð‹Lq‚µ‚Ü‚·
+//ã€€ã“ã“ã«ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®åå‰ã‚’è¨˜è¿°ã—ã¾ã™
 //**************************************************************************************
 
-CCharacterInfo CharInfo("8“ªgƒ‚ƒi[",		// ƒLƒƒƒ‰ƒNƒ^[‚Ì–¼‘OiÅ‘å31ƒoƒCƒgj
-						CDI_VERSION,		// ƒLƒƒƒ‰ƒNƒ^[DLLƒCƒ“ƒ^[ƒtƒFƒCƒX‚Ìƒo[ƒWƒ‡ƒ“
-						option,				// ƒIƒvƒVƒ‡ƒ“\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-						sizeof(option) / sizeof(CHARACTER_LOAD_OPTION), // ƒIƒvƒVƒ‡ƒ“‚Ì”
-						8,					// ƒIƒvƒVƒ‡ƒ“Å‘åƒ|ƒCƒ“ƒg”
-						FALSE);				// ƒlƒbƒg‘Îí‘Î‰ž‚©‚Ç‚¤‚© «—ˆ‚ÌŠg’£‚Ì‚½‚ß‚É—pˆÓ‚³‚ê‚Ä‚¢‚éBŒ»Ý‚Í0‚ð“n‚³‚È‚¯‚ê‚Î‚È‚ç‚È‚¢iÎj
+CCharacterInfo CharInfo("8é ­èº«ãƒ¢ãƒŠãƒ¼",		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®åå‰ï¼ˆæœ€å¤§31ãƒã‚¤ãƒˆï¼‰
+						CDI_VERSION,		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼DLLã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+						option,				// ã‚ªãƒ—ã‚·ãƒ§ãƒ³æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+						sizeof(option) / sizeof(CHARACTER_LOAD_OPTION), // ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®æ•°
+						8,					// ã‚ªãƒ—ã‚·ãƒ§ãƒ³æœ€å¤§ãƒã‚¤ãƒ³ãƒˆæ•°
+						FALSE);				// ãƒãƒƒãƒˆå¯¾æˆ¦å¯¾å¿œã‹ã©ã†ã‹ å°†æ¥ã®æ‹¡å¼µã®ãŸã‚ã«ç”¨æ„ã•ã‚Œã¦ã„ã‚‹ã€‚ç¾åœ¨ã¯0ã‚’æ¸¡ã•ãªã‘ã‚Œã°ãªã‚‰ãªã„ï¼ˆç¬‘ï¼‰
 
 char* CharDirectory = NULL;
 
-//Ý’èƒ}ƒNƒBCCharacterInfo•Ï”–¼ª‚ÆAƒLƒƒƒ‰ƒNƒ^[ƒNƒ‰ƒX–¼‚ðŽw’è‚µ‚Ü‚·
+//è¨­å®šãƒžã‚¯ãƒ­ã€‚CCharacterInfoå¤‰æ•°åâ†‘ã¨ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚¯ãƒ©ã‚¹åã‚’æŒ‡å®šã—ã¾ã™
 SET_CHARACTERINFO(CharInfo, CCharacter)
 
 
 /*--------------------------------------------------------------------------------------
-	ƒLƒƒƒ‰ƒNƒ^[¶¬ˆ
-	’ÊíA‚¢‚¶‚é•K—v‚ ‚è‚Ü‚¹‚ñ
+	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ç”Ÿæˆå‡¦
+	é€šå¸¸ã€ã„ã˜ã‚‹å¿…è¦ã‚ã‚Šã¾ã›ã‚“
 ----------------------------------------------------------------------------------------*/
 
 CCharacter::CCharacter(CDI_CHARACTERINFO2 *info) : CCharacterBase(info)
 {
-	CharDirectory = info->dir;	// ƒLƒƒƒ‰ƒNƒ^[‚ÌƒtƒHƒ‹ƒ_‚ðŠ“¾
+	CharDirectory = info->dir;	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ãƒ•ã‚©ãƒ«ãƒ€ã‚’æ‰€å¾—
 }
 
 /*--------------------------------------------------------------------------------------
-	ƒLƒƒƒ‰ƒNƒ^[”jŠüˆ—
-	’ÊíA‚¢‚¶‚é•K—v‚ ‚è‚Ü‚¹‚ñ
+	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ç ´æ£„å‡¦ç†
+	é€šå¸¸ã€ã„ã˜ã‚‹å¿…è¦ã‚ã‚Šã¾ã›ã‚“
 ----------------------------------------------------------------------------------------*/
 CCharacter::~CCharacter()
 {
 }
 
 /*--------------------------------------------------------------------------------------
-	ƒpƒ‰ƒ[ƒ^‰Šú‰»
-	‚±‚±‚ÉAŠeŽíƒpƒ‰ƒ[ƒ^‚Ì‰Šú‰»ˆ—‚ð’Ç‰Á‚µ‚Ü‚·
+	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
+	ã“ã“ã«ã€å„ç¨®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®åˆæœŸåŒ–å‡¦ç†ã‚’è¿½åŠ ã—ã¾ã™
 ----------------------------------------------------------------------------------------*/
 void CCharacter::InitParameters()
 {
@@ -75,22 +75,22 @@ void CCharacter::InitParameters()
 	opt_super_armer	= FALSE;
 	opt_exfriend	= (option_flags&OPTIONS_EXTRA_FRIENDS) ? TRUE : FALSE;
 
-	pdat->hpmax			= 850;					//Å‘å‘Ì—Í’l
-	pdat->gaugemax		= 1;					//Å‘åƒQ[ƒW
-	pdat->gaugetype		= GOBJFLGA_POWGAUGE2;	//ƒQ[ƒWƒ^ƒCƒv
+	pdat->hpmax			= 850;					//æœ€å¤§ä½“åŠ›å€¤
+	pdat->gaugemax		= 1;					//æœ€å¤§ã‚²ãƒ¼ã‚¸
+	pdat->gaugetype		= GOBJFLGA_POWGAUGE2;	//ã‚²ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—
 }
 
 
 /*--------------------------------------------------------------------------------------
-	ƒƒbƒZ[ƒWˆ—
-	ƒx[ƒXƒNƒ‰ƒX‚ÅE‚Á‚Ä‚¢‚È‚¢ƒƒbƒZ[ƒW‚ðE‚¢‚½‚¢ê‡‚ÍAƒRƒR‚Éˆ—‚ð’Ç‰Á‚µ‚Ü‚·
+	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†
+	ãƒ™ãƒ¼ã‚¹ã‚¯ãƒ©ã‚¹ã§æ‹¾ã£ã¦ã„ãªã„ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æ‹¾ã„ãŸã„å ´åˆã¯ã€ã‚³ã‚³ã«å‡¦ç†ã‚’è¿½åŠ ã—ã¾ã™
 ----------------------------------------------------------------------------------------*/
 DWORD CCharacter::Message(DWORD msg,LPVOID dat,DWORD prm)
 {
 	GOBJECT* pobjdat;
 
 	switch(msg){
-	case GOBJMSG_NAGE://“Š‚°A“G‘¤“®ì
+	case GOBJMSG_NAGE://æŠ•ã’ã€æ•µå´å‹•ä½œ
 		{
 			pobjdat = GetInfo(prm);
 			if(pobjdat==NULL)return(0);
@@ -104,34 +104,34 @@ DWORD CCharacter::Message(DWORD msg,LPVOID dat,DWORD prm)
 			return(act_ikarie(pobjdat));
 		}
 		break;
-	case GOBJMSG_STRIKER://Žx‰‡UŒ‚—v¿
+	case GOBJMSG_STRIKER://æ”¯æ´æ”»æ’ƒè¦è«‹
 		if(pdat->aid == ACTID_TAIKICYU){
-			pdat->objtype &= ~GOBJFLG_TOBETARGET;//ƒ^[ƒQƒbƒg‚É‚Í‚È‚ç‚È‚¢
+			pdat->objtype &= ~GOBJFLG_TOBETARGET;//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ã¯ãªã‚‰ãªã„
 			ChangeAction( ACTID_STRIKER1);
 			return(YEAH);
 		}
 		return(0);
 	default:
-		return(CCharacterBase::Message(msg,dat,prm));//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Éˆ—‚ð”C‚¹‚é
+		return(CCharacterBase::Message(msg,dat,prm));//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åŸºæœ¬ã‚¯ãƒ©ã‚¹ã«å‡¦ç†ã‚’ä»»ã›ã‚‹
 	}
 	return(TRUE);
 }
 
 
 /*--------------------------------------------------------------------------------------
-	ƒRƒ}ƒ“ƒh”»’è ˆ—
-	GOBJMSG_COMMAND ƒƒbƒZ[ƒW‚É‘Î‰ž‚µ‚Ü‚·BŒ»Ý‚Ìs“®‚É‚æ‚Á‚Ä•¡”‚ÌŠÖ”‚É
-	ˆ—‚ª•ª‚©‚ê‚Ä‚¢‚Ü‚·B“KØ‚È‚Æ‚±‚ë‚É”»’èˆ—‚ð’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B
+	ã‚³ãƒžãƒ³ãƒ‰åˆ¤å®š å‡¦ç†
+	GOBJMSG_COMMAND ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«å¯¾å¿œã—ã¾ã™ã€‚ç¾åœ¨ã®è¡Œå‹•ã«ã‚ˆã£ã¦è¤‡æ•°ã®é–¢æ•°ã«
+	å‡¦ç†ãŒåˆ†ã‹ã‚Œã¦ã„ã¾ã™ã€‚é©åˆ‡ãªã¨ã“ã‚ã«åˆ¤å®šå‡¦ç†ã‚’è¿½åŠ ã—ã¦ãã ã•ã„ã€‚
 ----------------------------------------------------------------------------------------*/
 
-//‹ò‚ç‚¢EƒK[ƒh’†
+//å–°ã‚‰ã„ãƒ»ã‚¬ãƒ¼ãƒ‰ä¸­
 BOOL CCharacter::Command_OnSystem(DWORD key)
 {
 	if((pdat->aid & ACTID_GUARD) && opt_gcancel){
 		if(!(pdat->aid & ACTID_KUCYU))
 		{
-			//’nãƒK[ƒh’†
-			//ƒK[ƒhƒLƒƒƒ“ƒZƒ‹
+			//åœ°ä¸Šã‚¬ãƒ¼ãƒ‰ä¸­
+			//ã‚¬ãƒ¼ãƒ‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			if(pdat->gauge>NEEDGAUGE_GC){
 				if(key & KEYSTA_BC2){pdat->aid = ACTID_GCANCEL3;return TRUE;}
 				else if(key & KEYSTA_BB2){pdat->aid = ACTID_GCANCEL2;return TRUE;}
@@ -145,7 +145,7 @@ BOOL CCharacter::Command_OnSystem(DWORD key)
 
 BOOL CCharacter::Command_Hissatu(DWORD key)
 {
-	//•KŽE‹ZƒRƒ}ƒ“ƒh”»’è
+	//å¿…æ®ºæŠ€ã‚³ãƒžãƒ³ãƒ‰åˆ¤å®š
 	if(pdat->aid & ACTID_KUCYU){
 	}
 	else{
@@ -179,12 +179,12 @@ BOOL CCharacter::Command_Hissatu(DWORD key)
 
 BOOL CCharacter::Command_Normal(DWORD key)
 {
-	//ƒ_ƒbƒVƒ…
+	//ãƒ€ãƒƒã‚·ãƒ¥
 	if(com66i(30)){pdat->aid=ACTID_DASHF;return TRUE;}
 	if(com44i(30)){pdat->aid=ACTID_DASHB;return TRUE;}
 
 
-	//Šî–{’Êí“®ì
+	//åŸºæœ¬é€šå¸¸å‹•ä½œ
 	if(key & KEYSTA_UP){
 		pdat->aid = ACTID_JAMPS;
 		return TRUE;
@@ -193,16 +193,16 @@ BOOL CCharacter::Command_Normal(DWORD key)
 		return TRUE;
 	}
 
-	if(key & KEYSTA_DOWN){//‚µ‚á‚ª‚Ý
+	if(key & KEYSTA_DOWN){//ã—ã‚ƒãŒã¿
 		pdat->aid = ACTID_CROUCH;
 	}
-	else if(key & KEYSTA_FOWORD){//‘O•à‚«
+	else if(key & KEYSTA_FOWORD){//å‰æ­©ã
 		pdat->aid = ACTID_WALKF;
 	}
-	else if(key & KEYSTA_BACK){//Œã‚ë•à‚«
+	else if(key & KEYSTA_BACK){//å¾Œã‚æ­©ã
 		pdat->aid = ACTID_WALKB;
 	}
-	else{//ƒjƒ…[ƒgƒ‰ƒ‹ƒ|[ƒY
+	else{//ãƒ‹ãƒ¥ãƒ¼ãƒˆãƒ©ãƒ«ãƒãƒ¼ã‚º
 		pdat->aid = ACTID_NEUTRAL;
 	}
 	return FALSE;
@@ -212,36 +212,36 @@ BOOL CCharacter::Command_OnNormal(DWORD keyinfo)
 {
 	GOBJECT* pdat = GetGObject();
 
-	if(pdat->aid & ACTID_KUCYU){////ƒWƒƒƒ“ƒv“®ì’†
+	if(pdat->aid & ACTID_KUCYU){////ã‚¸ãƒ£ãƒ³ãƒ—å‹•ä½œä¸­
 	}
-	else{//’nã“®ì’†
-		//“Š‚°
+	else{//åœ°ä¸Šå‹•ä½œä¸­
+		//æŠ•ã’
 		if (keyinfo & KEYSTA_FOWORD && keyinfo & KEYSTA_BC2 &&
 			NageHantei(MAAI_NAGE) && ObjCatch(pdat->eid, GOBJMSG_NAGE)) {
 				pdat->aid = ACTID_NAGE1;
 				return TRUE;
 		}
 
-		//’Ç‰Á‹Z
+		//è¿½åŠ æŠ€
 		if(opt_exattack)
 		{
 			DWORD key = keyinfo;
 
-			// _+C
+			// ï¼¼+C
 			if((key & KEYSTA_BC2) && (key & KEYSTA_FOWORD) && (key & KEYSTA_DOWN)){
 				ChangeAction(  ACTID_HKICK );return TRUE;
 			}
 
-			// ¨+C
+			// â†’+C
 			else if((key & KEYSTA_BC2) && (key & KEYSTA_FOWORD)){
 				ChangeAction(  ACTID_HAND );return TRUE;
 			}
 
-			// _+B
+			// ï¼¼+B
 			else if((key & KEYSTA_BB2) && (key & KEYSTA_FOWORD) && (key & KEYSTA_DOWN)){
 				ChangeAction(  ACTID_UPPER_STEP );return TRUE;
 			}
-			// ¨+B
+			// â†’+B
 			else if((key & KEYSTA_BB2) && (key & KEYSTA_FOWORD)){
 				ChangeAction(  ACTID_BAT );return TRUE;
 			}
@@ -258,26 +258,26 @@ BOOL CCharacter::Command_OnAttacking(DWORD key)
 	}
 	else
 	{
-		//’Ç‰Áƒ`ƒF[ƒ“
+		//è¿½åŠ ãƒã‚§ãƒ¼ãƒ³
 		if(opt_exattack)
 		{
-			// _+C
+			// ï¼¼+C
 			if((key & KEYSTA_BC2) && (key & KEYSTA_FOWORD) && (key & KEYSTA_DOWN) && ChainCombo(CHAIN_HKICK)){
 				ChangeAction(  ACTID_HKICK );
 				return TRUE;
 			}
 
-			// ¨+C
+			// â†’+C
 			else if((key & KEYSTA_BC2) && (key & KEYSTA_FOWORD) && ChainCombo(CHAIN_HAND)){
 				ChangeAction(  ACTID_HAND );return TRUE;
 			}
 
-			// _+B
+			// ï¼¼+B
 			else if((key & KEYSTA_BB2) && (key & KEYSTA_FOWORD) && (key & KEYSTA_DOWN) && ChainCombo(CHAIN_UPPER)){
 				ChangeAction(  ACTID_UPPER_STEP );
 				return TRUE;
 			}
-			// ¨+B
+			// â†’+B
 			else if((key & KEYSTA_BB2) && (key & KEYSTA_FOWORD) && ChainCombo(CHAIN_BAT)){
 				ChangeAction(  ACTID_BAT );
 				return TRUE;
@@ -289,12 +289,12 @@ BOOL CCharacter::Command_OnAttacking(DWORD key)
 }
 
 /*--------------------------------------------------------------------------------------
-	ƒRƒ}ƒ“ƒh”»’è ˆ—(COM)
+	ã‚³ãƒžãƒ³ãƒ‰åˆ¤å®š å‡¦ç†(COM)
 ----------------------------------------------------------------------------------------*/
 
 DWORD CCharacter::CommandCOM(DWORD wid)
 {
-	//ƒQ[ƒWƒ`ƒFƒbƒN
+	//ã‚²ãƒ¼ã‚¸ãƒã‚§ãƒƒã‚¯
 	if(wid==ACTID_ESCAPE && (pdat->gauge<1.0f || !EscapeOK()) ){
 		return FALSE;
 	}
@@ -309,7 +309,7 @@ DWORD CCharacter::CommandCOM(DWORD wid)
 
 DWORD CCharacter::CmdCom_OnSystem(DWORD wid)
 {
-	//ƒK[ƒLƒƒƒ“
+	//ã‚¬ãƒ¼ã‚­ãƒ£ãƒ³
 	if(wid==ACTID_GCANCEL1 || wid==ACTID_GCANCEL2 || wid==ACTID_GCANCEL3)
 	{
 		if(pdat->aid&ACTID_KUCYU)
@@ -329,7 +329,7 @@ DWORD CCharacter::CmdCom_OnHissatuAttacking(DWORD wid)
 
 DWORD CCharacter::CmdCom_OnNormal(DWORD wid)
 {
-	//“Š‚°
+	//æŠ•ã’
 	if (wid==ACTID_NAGE1)
 	{
 		if(!(pdat->aid&ACTID_KUCYU) && !(pdat->aid&ACTID_ATTACK))
@@ -342,7 +342,7 @@ DWORD CCharacter::CmdCom_OnNormal(DWORD wid)
 			else return FALSE;
 		}
 	}
-	//•KŽE“Š‚°
+	//å¿…æ®ºæŠ•ã’
 	if(wid==ACTID_IKARI)
 	{
 		if(!(pdat->aid&ACTID_KUCYU) && !(pdat->aid&ACTID_ATTACK))
@@ -358,7 +358,7 @@ DWORD CCharacter::CmdCom_OnNormal(DWORD wid)
 
 	if(!(pdat->aid&ACTID_KUCYU) && (opt_exattack))
 	{
-		//ƒ`ƒF[ƒ“ƒRƒ“ƒ{”»’è(’Ç‰Á)
+		//ãƒã‚§ãƒ¼ãƒ³ã‚³ãƒ³ãƒœåˆ¤å®š(è¿½åŠ )
 		if(GetGObject()->aid & ACTID_ATTACK)
 		{
 			switch(wid)
@@ -451,7 +451,7 @@ DWORD CCharacter::CmdCom_OnNormal(DWORD wid)
 }
 
 /*--------------------------------------------------------------------------------------
-	GOBJMSG_TOUCHB(UŒ‚‚ ‚½‚è)
+	GOBJMSG_TOUCHB(æ”»æ’ƒã‚ãŸã‚Š)
 ----------------------------------------------------------------------------------------*/
 DWORD CCharacter::TouchB(ATTACKINFO *info,BOOL hit)
 {
@@ -471,11 +471,11 @@ DWORD CCharacter::TouchB(ATTACKINFO *info,BOOL hit)
 
 
 /*--------------------------------------------------------------------------------------
-	GOBJMSG_TOUCHA(UŒ‚‹ò‚ç‚¢)
+	GOBJMSG_TOUCHA(æ”»æ’ƒå–°ã‚‰ã„)
 ----------------------------------------------------------------------------------------*/
 DWORD CCharacter::TouchA(ATTACKINFO *info,DWORD ta_eid)
 {
-	//ƒX[ƒp[ƒA[ƒ}[
+	//ã‚¹ãƒ¼ãƒ‘ãƒ¼ã‚¢ãƒ¼ãƒžãƒ¼
 	BOOL sa = FALSE;
 	if(opt_super_armer && (pdat->gauge>=NEEDGAUGE_SA))
 	{
@@ -524,7 +524,7 @@ DWORD CCharacter::TouchA(ATTACKINFO *info,DWORD ta_eid)
 ----------------------------------------------------------------------------------------*/
 DWORD CCharacter::TouchC(ATTACKINFO *info,DWORD tc_eid)
 {
-	if(TRUE)//info->id & 0xFFFF0000)//‘Å‚¿ã‚°Œn‚Ì‚`‚p‰ñ”ð
+	if(TRUE)//info->id & 0xFFFF0000)//æ‰“ã¡ä¸Šã’ç³»ã®ï¼¡ï¼±å›žé¿
 	{
 		GOBJECT* pedat = GetInfo(tc_eid);
 		if(!pedat){
@@ -611,9 +611,9 @@ DWORD CCharacter::TouchC(ATTACKINFO *info,DWORD tc_eid)
 }
 
 /*--------------------------------------------------------------------------------------
-	GOBJMSG_ACTION ƒƒbƒZ[ƒW ˆ—
-	V‚µ‚¢s“®‚ð’Ç‰Á‚µ‚½ê‡‚ÍA‚±‚±‚Éˆ—‚ð’Ç‰Á‚µ‚Ü‚·B
-	s“®‚Ì‘OŒã‚É‹¤’Êˆ—‚ð“ü‚ê‚½‚¢ê‡‚Í PreAction(),PostAction() ‚ðƒI[ƒo[ƒ‰ƒCƒh‚µ‚Ä‚­‚¾‚³‚¢
+	GOBJMSG_ACTION ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ å‡¦ç†
+	æ–°ã—ã„è¡Œå‹•ã‚’è¿½åŠ ã—ãŸå ´åˆã¯ã€ã“ã“ã«å‡¦ç†ã‚’è¿½åŠ ã—ã¾ã™ã€‚
+	è¡Œå‹•ã®å‰å¾Œã«å…±é€šå‡¦ç†ã‚’å…¥ã‚ŒãŸã„å ´åˆã¯ PreAction(),PostAction() ã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã—ã¦ãã ã•ã„
 ----------------------------------------------------------------------------------------*/
 DWORD CCharacter::Action()
 {
@@ -644,7 +644,7 @@ DWORD CCharacter::Action()
 	case ACTID_HAND			:act_hand();	ChainCombo(CHAIN_HAND);	break;
 	case ACTID_HKICK		:act_hkick();	ChainCombo(CHAIN_HKICK);break;
 	case ACTID_SAH_LANDING	:act_sah_landing();	break;
-	default://‚»‚êˆÈŠO‚ÍƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚É”C‚¹‚é
+	default://ãã‚Œä»¥å¤–ã¯ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åŸºæœ¬ã‚¯ãƒ©ã‚¹ã«ä»»ã›ã‚‹
 		return CCharacterBase::Action();
 	}
 
@@ -652,231 +652,231 @@ DWORD CCharacter::Action()
 }
 
 /*--------------------------------------------------------------------------------------
-	UŒ‚—Íî•ñ‰Šú‰»
+	æ”»æ’ƒåŠ›æƒ…å ±åˆæœŸåŒ–
 ----------------------------------------------------------------------------------------*/
 void CCharacter::InitAttackInfo()
 {
 	ZeroMemory(aif,sizeof(aif));
 
-	//Ý’è—á
+	//è¨­å®šä¾‹
 
 	int i;
 
-	//ESUŒ‚
+	//ãƒ»Sæ”»æ’ƒ
 
-	i=ATTACKINFO_STAND_A;//—§‚¿ŽãUŒ‚
-	aif[i].hit		=HITINFO_MARK1 | HITINFO_REACT1 | HITINFO_SNDHIT1 | HITINFO_SIV1 ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT1 | GUARDINFO_SIV1 | GUARDINFO_XJAMP;//ƒK[ƒhî•ñ
-	aif[i].id		=ATTACK_WEAK;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=30;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=0;//í‚è
+	i=ATTACKINFO_STAND_A;//ç«‹ã¡å¼±æ”»æ’ƒ
+	aif[i].hit		=HITINFO_MARK1 | HITINFO_REACT1 | HITINFO_SNDHIT1 | HITINFO_SIV1 ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT1 | GUARDINFO_SIV1 | GUARDINFO_XJAMP;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=ATTACK_WEAK;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=30;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=0;//å‰Šã‚Š
 
-	i=ATTACKINFO_STAND_B;//—§‚¿’†UŒ‚
-	aif[i].hit		=HITINFO_MARK2 | HITINFO_REACT2 | HITINFO_SNDHIT2 | HITINFO_SIV2 ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT2 | GUARDINFO_SIV2 | GUARDINFO_XJAMP;//ƒK[ƒhî•ñ
-	aif[i].id		=ATTACK_MIDDLE;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=40;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=0;//í‚è
+	i=ATTACKINFO_STAND_B;//ç«‹ã¡ä¸­æ”»æ’ƒ
+	aif[i].hit		=HITINFO_MARK2 | HITINFO_REACT2 | HITINFO_SNDHIT2 | HITINFO_SIV2 ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT2 | GUARDINFO_SIV2 | GUARDINFO_XJAMP;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=ATTACK_MIDDLE;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=40;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=0;//å‰Šã‚Š
 
-	i=ATTACKINFO_STAND_C;//—§‚¿‹­UŒ‚
-	aif[i].hit		=HITINFO_MARK3 | HITINFO_REACT2 | HITINFO_SNDHIT3 | HITINFO_SIV2;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP;//ƒK[ƒhî•ñ
-	aif[i].id		=ATTACK_STRONG;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=50;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=0;//í‚è
+	i=ATTACKINFO_STAND_C;//ç«‹ã¡å¼·æ”»æ’ƒ
+	aif[i].hit		=HITINFO_MARK3 | HITINFO_REACT2 | HITINFO_SNDHIT3 | HITINFO_SIV2;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=ATTACK_STRONG;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=50;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=0;//å‰Šã‚Š
 
-	//ECUŒ‚
+	//ãƒ»Cæ”»æ’ƒ
 
-	i=ATTACKINFO_CROUCH_A;//‚µ‚á‚ª‚ÝŽãUŒ‚
-	aif[i].hit		=HITINFO_MARK1 | HITINFO_REACT1 | HITINFO_SNDHIT1 | HITINFO_SIV1 ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT1 | GUARDINFO_SIV1 | GUARDINFO_XJAMP;//ƒK[ƒhî•ñ
-	aif[i].id		=ATTACK_WEAK;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=30;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=0;//í‚è
+	i=ATTACKINFO_CROUCH_A;//ã—ã‚ƒãŒã¿å¼±æ”»æ’ƒ
+	aif[i].hit		=HITINFO_MARK1 | HITINFO_REACT1 | HITINFO_SNDHIT1 | HITINFO_SIV1 ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT1 | GUARDINFO_SIV1 | GUARDINFO_XJAMP;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=ATTACK_WEAK;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=30;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=0;//å‰Šã‚Š
 
-	i=ATTACKINFO_CROUCH_B;//‚µ‚á‚ª‚Ý’†UŒ‚
-	aif[i].hit		=HITINFO_MARK2 | HITINFO_REACT2 | HITINFO_SNDHIT2 | HITINFO_SIV2 ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT2 | GUARDINFO_SIV2 | GUARDINFO_XJAMP;//ƒK[ƒhî•ñ
-	aif[i].id		=ATTACK_MIDDLE;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=40;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=0;//í‚è
+	i=ATTACKINFO_CROUCH_B;//ã—ã‚ƒãŒã¿ä¸­æ”»æ’ƒ
+	aif[i].hit		=HITINFO_MARK2 | HITINFO_REACT2 | HITINFO_SNDHIT2 | HITINFO_SIV2 ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT2 | GUARDINFO_SIV2 | GUARDINFO_XJAMP;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=ATTACK_MIDDLE;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=40;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=0;//å‰Šã‚Š
 
-	i=ATTACKINFO_CROUCH_C;//‚µ‚á‚ª‚Ý‹­UŒ‚
-	aif[i].hit		=HITINFO_MARK3 | HITINFO_REACT3 | HITINFO_SNDHIT3 | HITINFO_SIV3 ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP | GUARDINFO_XSTAND;//ƒK[ƒhî•ñ
-	aif[i].id		=ATTACK_STRONG ;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=50;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=0;//í‚è
+	i=ATTACKINFO_CROUCH_C;//ã—ã‚ƒãŒã¿å¼·æ”»æ’ƒ
+	aif[i].hit		=HITINFO_MARK3 | HITINFO_REACT3 | HITINFO_SNDHIT3 | HITINFO_SIV3 ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP | GUARDINFO_XSTAND;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=ATTACK_STRONG ;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=50;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=0;//å‰Šã‚Š
 
-	//EJUŒ‚
+	//ãƒ»Jæ”»æ’ƒ
 
-	i=ATTACKINFO_JAMP_A;//ƒWƒƒƒ“ƒvŽãUŒ‚
-	aif[i].hit		=HITINFO_MARK1 | HITINFO_REACT1 | HITINFO_SNDHIT1 | HITINFO_SIV1 ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT1 | GUARDINFO_SIV1 | GUARDINFO_XCROUCH;//ƒK[ƒhî•ñ
-	aif[i].id		=ATTACK_WEAK;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=30;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=0;//í‚è
+	i=ATTACKINFO_JAMP_A;//ã‚¸ãƒ£ãƒ³ãƒ—å¼±æ”»æ’ƒ
+	aif[i].hit		=HITINFO_MARK1 | HITINFO_REACT1 | HITINFO_SNDHIT1 | HITINFO_SIV1 ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT1 | GUARDINFO_SIV1 | GUARDINFO_XCROUCH;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=ATTACK_WEAK;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=30;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=0;//å‰Šã‚Š
 
-	i=ATTACKINFO_JAMP_B;//ƒWƒƒƒ“ƒv’†UŒ‚
-	aif[i].hit		=HITINFO_MARK2 | HITINFO_REACT2 | HITINFO_SNDHIT2 | HITINFO_SIV2 ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT2 | GUARDINFO_SIV2 | GUARDINFO_XCROUCH;//ƒK[ƒhî•ñ
-	aif[i].id		=ATTACK_MIDDLE;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=40;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=0;//í‚è
+	i=ATTACKINFO_JAMP_B;//ã‚¸ãƒ£ãƒ³ãƒ—ä¸­æ”»æ’ƒ
+	aif[i].hit		=HITINFO_MARK2 | HITINFO_REACT2 | HITINFO_SNDHIT2 | HITINFO_SIV2 ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT2 | GUARDINFO_SIV2 | GUARDINFO_XCROUCH;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=ATTACK_MIDDLE;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=40;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=0;//å‰Šã‚Š
 
-	i=ATTACKINFO_JAMP_C;//ƒWƒƒƒ“ƒv‹­UŒ‚
-	aif[i].hit		=HITINFO_MARK3 | HITINFO_REACT3 | HITINFO_SNDHIT3 | HITINFO_SIV3 ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XCROUCH;//ƒK[ƒhî•ñ
-	aif[i].id		=ATTACK_STRONG;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=50;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=0;//í‚è
+	i=ATTACKINFO_JAMP_C;//ã‚¸ãƒ£ãƒ³ãƒ—å¼·æ”»æ’ƒ
+	aif[i].hit		=HITINFO_MARK3 | HITINFO_REACT3 | HITINFO_SNDHIT3 | HITINFO_SIV3 ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XCROUCH;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=ATTACK_STRONG;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=50;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=0;//å‰Šã‚Š
 	
-	//E‚»‚Ì‘¼
+	//ãƒ»ãã®ä»–
 
-	i=ATTACKINFO_STRIKER;//Žx‰‡UŒ‚
-	aif[i].hit		=HITINFO_MARK4 | HITINFO_TATAKI2A | HITINFO_SNDHIT3 | HITINFO_SIV3 ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP;//ƒK[ƒhî•ñ
-	aif[i].id		=ATTACK_STRONG;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=70;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=0;//í‚è
+	i=ATTACKINFO_STRIKER;//æ”¯æ´æ”»æ’ƒ
+	aif[i].hit		=HITINFO_MARK4 | HITINFO_TATAKI2A | HITINFO_SNDHIT3 | HITINFO_SIV3 ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=ATTACK_STRONG;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=70;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=0;//å‰Šã‚Š
 
-	i=ATTACKINFO_NAGE;//“Š‚°
-	aif[i].hit		=0;//ƒqƒbƒgî•ñ
-	aif[i].id		=ATTACK_STRONG;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=60;//ƒ_ƒ[ƒW
-	aif[i].muki		= TRUE;//”½‘Î
+	i=ATTACKINFO_NAGE;//æŠ•ã’
+	aif[i].hit		=0;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].id		=ATTACK_STRONG;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=60;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].muki		= TRUE;//åå¯¾
 
-	//E•KŽE
+	//ãƒ»å¿…æ®º
 
-	i=ATTACKINFO_SAH1A;//‚P‚³[‚ñ
-	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI2 | HITINFO_SNDHIT3 | HITINFO_SIV1 ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV1 | GUARDINFO_XCROUCH;//ƒK[ƒhî•ñ
-	aif[i].id		=ATTACK_STRONG | ATTACK_SAH1;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=30;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=3;//í‚è
+	i=ATTACKINFO_SAH1A;//ï¼‘ã•ãƒ¼ã‚“
+	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI2 | HITINFO_SNDHIT3 | HITINFO_SIV1 ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV1 | GUARDINFO_XCROUCH;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=ATTACK_STRONG | ATTACK_SAH1;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=30;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=3;//å‰Šã‚Š
 	
-	i=ATTACKINFO_SAH1B;//‚P‚³[‚ñ
-	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI2 | HITINFO_SNDHIT3 | HITINFO_SIV1 ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV1 | GUARDINFO_XCROUCH;//ƒK[ƒhî•ñ
-	aif[i].id		=ATTACK_STRONG | ATTACK_SAH1;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=30;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=3;//í‚è
+	i=ATTACKINFO_SAH1B;//ï¼‘ã•ãƒ¼ã‚“
+	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI2 | HITINFO_SNDHIT3 | HITINFO_SIV1 ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV1 | GUARDINFO_XCROUCH;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=ATTACK_STRONG | ATTACK_SAH1;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=30;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=3;//å‰Šã‚Š
 	
-	i=ATTACKINFO_SAH1C;//‚P‚³[‚ñ
-	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI2 | HITINFO_SNDHIT3 | HITINFO_SIV1 ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV1 | GUARDINFO_XCROUCH;//ƒK[ƒhî•ñ
-	aif[i].id		=ATTACK_STRONG | ATTACK_SAH1;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=30;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=3;//í‚è
+	i=ATTACKINFO_SAH1C;//ï¼‘ã•ãƒ¼ã‚“
+	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI2 | HITINFO_SNDHIT3 | HITINFO_SIV1 ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV1 | GUARDINFO_XCROUCH;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=ATTACK_STRONG | ATTACK_SAH1;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=30;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=3;//å‰Šã‚Š
 
-	i=ATTACKINFO_SAH2A;//‚P‚³[‚ñ
-	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI2 | HITINFO_SNDHIT3 | HITINFO_SIV1 ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV1 | GUARDINFO_XCROUCH;//ƒK[ƒhî•ñ
-	aif[i].id		=ATTACK_STRONG | ATTACK_SAH2;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=30;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=3;//í‚è
+	i=ATTACKINFO_SAH2A;//ï¼‘ã•ãƒ¼ã‚“
+	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI2 | HITINFO_SNDHIT3 | HITINFO_SIV1 ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV1 | GUARDINFO_XCROUCH;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=ATTACK_STRONG | ATTACK_SAH2;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=30;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=3;//å‰Šã‚Š
 	
-	i=ATTACKINFO_SAH2B;//‚P‚³[‚ñ
-	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI2 | HITINFO_SNDHIT3 | HITINFO_SIV1 ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV1 | GUARDINFO_XCROUCH;//ƒK[ƒhî•ñ
-	aif[i].id		=ATTACK_STRONG | ATTACK_SAH2;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=30;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=3;//í‚è
+	i=ATTACKINFO_SAH2B;//ï¼‘ã•ãƒ¼ã‚“
+	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI2 | HITINFO_SNDHIT3 | HITINFO_SIV1 ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV1 | GUARDINFO_XCROUCH;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=ATTACK_STRONG | ATTACK_SAH2;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=30;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=3;//å‰Šã‚Š
 	
-	i=ATTACKINFO_SAH2C;//‚P‚³[‚ñ
-	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI2 | HITINFO_SNDHIT3 | HITINFO_SIV1 ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV1 | GUARDINFO_XCROUCH;//ƒK[ƒhî•ñ
-	aif[i].id		=ATTACK_STRONG | ATTACK_SAH2;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=30;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=3;//í‚è
+	i=ATTACKINFO_SAH2C;//ï¼‘ã•ãƒ¼ã‚“
+	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI2 | HITINFO_SNDHIT3 | HITINFO_SIV1 ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV1 | GUARDINFO_XCROUCH;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=ATTACK_STRONG | ATTACK_SAH2;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=30;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=3;//å‰Šã‚Š
 
-	i=ATTACKINFO_FIG;//ƒAƒCƒmƒJƒ^ƒ`
-	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI | HITINFO_SNDHIT3 | HITINFO_SIV2 ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP;//ƒK[ƒhî•ñ
-	aif[i].id		=ATTACK_HISSATU;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=80;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=10;//í‚è
+	i=ATTACKINFO_FIG;//ã‚¢ã‚¤ãƒŽã‚«ã‚¿ãƒ
+	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI | HITINFO_SNDHIT3 | HITINFO_SIV2 ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=ATTACK_HISSATU;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=80;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=10;//å‰Šã‚Š
 
-	i=ATTACKINFO_IKARI1;//“{‚è‚ð‚Ô‚Â‚¯‚é“Š‚°
-	aif[i].hit		=HITINFO_MARK2 | HITINFO_SNDHIT2;//ƒqƒbƒgî•ñ
-	aif[i].id		=ATTACK_HISSATU;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=65;//ƒ_ƒ[ƒW
+	i=ATTACKINFO_IKARI1;//æ€’ã‚Šã‚’ã¶ã¤ã‘ã‚‹æŠ•ã’
+	aif[i].hit		=HITINFO_MARK2 | HITINFO_SNDHIT2;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].id		=ATTACK_HISSATU;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=65;//ãƒ€ãƒ¡ãƒ¼ã‚¸
 
-	i=ATTACKINFO_IKARI2;//“{‚è‚ð‚Ô‚Â‚¯‚é“Š‚°
-	aif[i].hit		=HITINFO_MARK3 | HITINFO_SNDHIT3;//ƒqƒbƒgî•ñ
-	aif[i].id		=ATTACK_HISSATU;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=65;//ƒ_ƒ[ƒW
+	i=ATTACKINFO_IKARI2;//æ€’ã‚Šã‚’ã¶ã¤ã‘ã‚‹æŠ•ã’
+	aif[i].hit		=HITINFO_MARK3 | HITINFO_SNDHIT3;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].id		=ATTACK_HISSATU;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=65;//ãƒ€ãƒ¡ãƒ¼ã‚¸
 
-	i=ATTACKINFO_ACCHI;//‚ ‚Á‚¿I
-	aif[i].hit		=HITINFO_MARK4 | HITINFO_REACT1 | HITINFO_SNDHIT3 | GUARDINFO_EFCTSINDO;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT1 ;//ƒK[ƒhî•ñ
-	aif[i].id		=ATTACK_FRIENDS;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=20;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=0;//í‚è
+	i=ATTACKINFO_ACCHI;//ã‚ã£ã¡ï¼
+	aif[i].hit		=HITINFO_MARK4 | HITINFO_REACT1 | HITINFO_SNDHIT3 | GUARDINFO_EFCTSINDO;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT1 ;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=ATTACK_FRIENDS;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=20;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=0;//å‰Šã‚Š
 
-	//EEx Attacks
+	//ãƒ»Ex Attacks
 
 	i= ATTACKINFO_BAT;
-	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI | HITINFO_SNDHIT3 | HITINFO_SIV2 ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP;//ƒK[ƒhî•ñ
-	aif[i].id		=ATTACK_STRONG | ATTACK_BAT;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=60;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=0;//í‚è
+	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI | HITINFO_SNDHIT3 | HITINFO_SIV2 ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=ATTACK_STRONG | ATTACK_BAT;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=60;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=0;//å‰Šã‚Š
 
 	i= ATTACKINFO_UPPER;
-	aif[i].hit		=HITINFO_MARK3 | HITINFO_FUTTOBI2 | HITINFO_SNDHIT3 | HITINFO_SIV3 ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT2 | GUARDINFO_SIV3 | GUARDINFO_XSTAND;//ƒK[ƒhî•ñ
-	aif[i].id		=ATTACK_STRONG | ATTACK_UPPER;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=60;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=0;//í‚è
+	aif[i].hit		=HITINFO_MARK3 | HITINFO_FUTTOBI2 | HITINFO_SNDHIT3 | HITINFO_SIV3 ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT2 | GUARDINFO_SIV3 | GUARDINFO_XSTAND;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=ATTACK_STRONG | ATTACK_UPPER;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=60;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=0;//å‰Šã‚Š
 
 	i= ATTACKINFO_HAND;
-	aif[i].hit		=HITINFO_MARK2 | HITINFO_REACT2 | HITINFO_SNDHIT3 | HITINFO_SIV1 ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT2 | GUARDINFO_SIV1 | GUARDINFO_XCROUCH;//ƒK[ƒhî•ñ
-	aif[i].id		=ATTACK_MIDDLE;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=20;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=0;//í‚è
+	aif[i].hit		=HITINFO_MARK2 | HITINFO_REACT2 | HITINFO_SNDHIT3 | HITINFO_SIV1 ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT2 | GUARDINFO_SIV1 | GUARDINFO_XCROUCH;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=ATTACK_MIDDLE;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=20;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=0;//å‰Šã‚Š
 
 	i= ATTACKINFO_HKICK1;
-	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI | HITINFO_SNDHIT3 | HITINFO_SIV2 ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP;//ƒK[ƒhî•ñ
-	aif[i].id		=ATTACK_STRONG | ATTACK_HKICK1;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=60;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=0;//í‚è
+	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI | HITINFO_SNDHIT3 | HITINFO_SIV2 ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=ATTACK_STRONG | ATTACK_HKICK1;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=60;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=0;//å‰Šã‚Š
 	
 	i= ATTACKINFO_HKICK2;
-	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI | HITINFO_SNDHIT3 | HITINFO_SIV2 ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP;//ƒK[ƒhî•ñ
-	aif[i].id		=ATTACK_STRONG | ATTACK_HKICK2;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=60;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=0;//í‚è
+	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI | HITINFO_SNDHIT3 | HITINFO_SIV2 ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=ATTACK_STRONG | ATTACK_HKICK2;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=60;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=0;//å‰Šã‚Š
 
-	//EƒK[ƒhƒLƒƒƒ“ƒZƒ‹
+	//ãƒ»ã‚¬ãƒ¼ãƒ‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 
 	i= ATTACKINFO_GCANCEL1;
-	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI | HITINFO_SNDHIT3 | HITINFO_STOP ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP;//ƒK[ƒhî•ñ
-	aif[i].id		=0;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=60;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=0;//í‚è
+	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI | HITINFO_SNDHIT3 | HITINFO_STOP ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=0;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=60;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=0;//å‰Šã‚Š
 	
 	i= ATTACKINFO_GCANCEL2;
-	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI | HITINFO_SNDHIT3 | HITINFO_STOP ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP;//ƒK[ƒhî•ñ
-	aif[i].id		=0;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=80;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=0;//í‚è
+	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI | HITINFO_SNDHIT3 | HITINFO_STOP ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=0;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=80;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=0;//å‰Šã‚Š
 
 	i= ATTACKINFO_GCANCEL3;
-	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI | HITINFO_SNDHIT3 | HITINFO_STOP ;//ƒqƒbƒgî•ñ
-	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP;//ƒK[ƒhî•ñ
-	aif[i].id		=0;//ƒQ[ƒW‘‰ÁŽž‚ÉŽg—p‚·‚éID
-	aif[i].damage	=100;//ƒ_ƒ[ƒW
-	aif[i].kezuri	=0;//í‚è
+	aif[i].hit		=HITINFO_MARK4 | HITINFO_FUTTOBI | HITINFO_SNDHIT3 | HITINFO_STOP ;//ãƒ’ãƒƒãƒˆæƒ…å ±
+	aif[i].guard	=GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP;//ã‚¬ãƒ¼ãƒ‰æƒ…å ±
+	aif[i].id		=0;//ã‚²ãƒ¼ã‚¸å¢—åŠ æ™‚ã«ä½¿ç”¨ã™ã‚‹ID
+	aif[i].damage	=100;//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	aif[i].kezuri	=0;//å‰Šã‚Š
 }
 
 /*--------------------------------------------------------------------------------------
-	UŒ‚ŠJŽnˆ—i’ÊíA‘‚«Š·‚¦‚é•K—v‚Í‚ ‚è‚Ü‚¹‚ñj
+	æ”»æ’ƒé–‹å§‹å‡¦ç†ï¼ˆé€šå¸¸ã€æ›¸ãæ›ãˆã‚‹å¿…è¦ã¯ã‚ã‚Šã¾ã›ã‚“ï¼‰
 ----------------------------------------------------------------------------------------*/
 void CCharacter::StartAttack(DWORD atk_info_id)
 {
@@ -885,48 +885,48 @@ void CCharacter::StartAttack(DWORD atk_info_id)
 }
 
 /*--------------------------------------------------------------------------------------
-	COMs“®—p ‹Zî•ñ ‰Šú‰»
+	COMè¡Œå‹•ç”¨ æŠ€æƒ…å ± åˆæœŸåŒ–
 ----------------------------------------------------------------------------------------*/
-void CCharacter::InitWazInfo()//ƒRƒ“ƒsƒ…[ƒ^—p‹Zî•ñ‚ÌÝ’è
+void CCharacter::InitWazInfo()//ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿ç”¨æŠ€æƒ…å ±ã®è¨­å®š
 {
 	CCharacterBase::InitWazInfo();
 
 	waz.dashf = ACTID_DASHF;
 	waz.dashb = ACTID_DASHB;
 
-	waz.att_short[0] = ACTID_FIG1;//’ZƒŠ[ƒ`UŒ‚
+	waz.att_short[0] = ACTID_FIG1;//çŸ­ãƒªãƒ¼ãƒæ”»æ’ƒ
 	waz.att_short[1] = ACTID_ATT_CA;
 	waz.att_short[2] = ACTID_ATT_CB;
 	waz.att_short[3] = ACTID_GCANCEL1;
-	waz.att_middle[0] = ACTID_ATT_SB;//’†ƒŠ[ƒ`UŒ‚
+	waz.att_middle[0] = ACTID_ATT_SB;//ä¸­ãƒªãƒ¼ãƒæ”»æ’ƒ
 	waz.att_middle[1] = ACTID_ATT_CC;
 	waz.att_middle[2] = ACTID_FIG2;
 	waz.att_middle[3] = ACTID_ESCAPE;
 	waz.att_middle[4] = ACTID_UPPER_STEP;
-	waz.att_long[0] = ACTID_ATT_SC;//’·ƒŠ[ƒ`UŒ‚
+	waz.att_long[0] = ACTID_ATT_SC;//é•·ãƒªãƒ¼ãƒæ”»æ’ƒ
 	waz.att_long[1] = ACTID_ATT_SB;
 	waz.att_long[2] = ACTID_ATT_CC;
 	waz.att_long[3] = ACTID_BAT;
 	waz.att_long[4] = ACTID_HAND;
 	waz.att_long[5] = ACTID_UPPER_STEP;
 
-	waz.att_jamp[0] = ACTID_ATT_JC;//ƒWƒƒƒ“ƒvUŒ‚
+	waz.att_jamp[0] = ACTID_ATT_JC;//ã‚¸ãƒ£ãƒ³ãƒ—æ”»æ’ƒ
 	waz.att_jamp[1] = ACTID_ATT_JB;
 	waz.att_jamp[2] = ACTID_ATT_JA;
 
-	waz.att_tai[0] = ACTID_SAH3;//‘Î‹ó
+	waz.att_tai[0] = ACTID_SAH3;//å¯¾ç©º
 	waz.att_tai[1] = ACTID_SAH2;
 	waz.att_tai[2] = ACTID_HKICK;
 	waz.att_tai[3] = ACTID_UPPER_STEP;
 	
 	waz.att_tai[1] = ACTID_FIG1;
-	waz.nageid[0] = ACTID_NAGE1;//“Š‚°
-	waz.nageid[1] = ACTID_IKARI;//“Š‚°
+	waz.nageid[0] = ACTID_NAGE1;//æŠ•ã’
+	waz.nageid[1] = ACTID_IKARI;//æŠ•ã’
 }
 
 
 /*--------------------------------------------------------------------------------------
-	COMƒŒƒxƒ‹”»’è
+	COMãƒ¬ãƒ™ãƒ«åˆ¤å®š
 ----------------------------------------------------------------------------------------*/
 BOOL CCharacter::ComLevelCk(UINT level)
 {

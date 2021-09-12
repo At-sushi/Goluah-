@@ -1,17 +1,17 @@
-
+ï»¿
 /*==============================================================
 
-	s“®ŠÖ”
+	è¡Œå‹•é–¢æ•°
 
 ================================================================*/
 #include "character.h"
 
 
 //*********************************************************
-//’Êí.UŒ‚
+//é€šå¸¸.æ”»æ’ƒ
 //*********************************************************
 
-void CCharacter::act_att_sa()//—§ã
+void CCharacter::act_att_sa()//ç«‹å¼±
 {
 	if(pdat->counter < 3)pdat->cnow = CELL_SA1;
 	else if(pdat->counter < 9)pdat->cnow = CELL_SA3;
@@ -26,7 +26,7 @@ void CCharacter::act_att_sa()//—§ã
 	}
 }
 
-void CCharacter::act_att_sb()//—§’†
+void CCharacter::act_att_sb()//ç«‹ä¸­
 {
 	if(pdat->counter == 1){
 		StartAttack(ATTACKINFO_STAND_B);
@@ -40,7 +40,7 @@ void CCharacter::act_att_sb()//—§’†
 	}
 }
 
-void CCharacter::act_att_sc()//—§‹­
+void CCharacter::act_att_sc()//ç«‹å¼·
 {
 	DrawFront();
 
@@ -54,7 +54,7 @@ void CCharacter::act_att_sc()//—§‹­
 	StartAttack(ATTACKINFO_STAND_C);
 }
 
-void CCharacter::act_att_ca()//‹üã
+void CCharacter::act_att_ca()//å±ˆå¼±
 {
 	if(pdat->counter == 1){
 		StartAttack(ATTACKINFO_CROUCH_A);
@@ -69,7 +69,7 @@ void CCharacter::act_att_ca()//‹üã
 	}
 }
 
-void CCharacter::act_att_cb()//‹ü’†
+void CCharacter::act_att_cb()//å±ˆä¸­
 {
 	if(pdat->counter == 1){
 		StartAttack(ATTACKINFO_CROUCH_B);
@@ -90,7 +90,7 @@ void CCharacter::act_att_cb()//‹ü’†
 	}
 }
 
-void CCharacter::act_att_cc()//‹ü‹­
+void CCharacter::act_att_cc()//å±ˆå¼·
 {
 	if(pdat->counter == 1){
 		StartAttack(ATTACKINFO_CROUCH_C);
@@ -108,7 +108,7 @@ void CCharacter::act_att_cc()//‹ü‹­
 	}
 }
 
-void CCharacter::act_att_ja()//”òã
+void CCharacter::act_att_ja()//é£›å¼±
 {
 	if(pdat->counter == 1){
 		StartAttack(ATTACKINFO_JAMP_A);
@@ -126,7 +126,7 @@ void CCharacter::act_att_ja()//”òã
 	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
 }
 
-void CCharacter::act_att_jb()//”ò’†
+void CCharacter::act_att_jb()//é£›ä¸­
 {
 	if(pdat->counter == 1){
 		StartAttack(ATTACKINFO_JAMP_B);
@@ -141,7 +141,7 @@ void CCharacter::act_att_jb()//”ò’†
 	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
 }
 
-void CCharacter::act_att_jc()//”ò‹­
+void CCharacter::act_att_jc()//é£›å¼·
 {
 	if(pdat->counter == 1){
 		StartAttack(ATTACKINFO_JAMP_C);
@@ -153,14 +153,14 @@ void CCharacter::act_att_jc()//”ò‹­
 	JiyuuRakka(1, TRUE, ACTID_NEUTRAL);
 }
 
-//x‰‡UŒ‚=========================================================
+//æ”¯æ´æ”»æ’ƒ=========================================================
 
-void CCharacter::act_striker1()//”ò‚ñ‚Å‚­‚é‚ÆƒR
+void CCharacter::act_striker1()//é£›ã‚“ã§ãã‚‹ã¨ã‚³
 {
 	pdat->kasanari=FALSE;
 
 	if(pdat->counter==0){
-		pdat->objtype |= GOBJTYPE_DISPLAY;//‰æ–Ê“à‚É‚¢‚é
+		pdat->objtype |= GOBJTYPE_DISPLAY;//ç”»é¢å†…ã«ã„ã‚‹
 	}
 
 	GOBJECT *pedat;
@@ -199,7 +199,7 @@ void CCharacter::act_striker1()//”ò‚ñ‚Å‚­‚é‚ÆƒR
 	}
 }
 
-void CCharacter::act_striker2()//UŒ‚(1)
+void CCharacter::act_striker2()//æ”»æ’ƒ(1)
 {
 	DrawFront();
 
@@ -215,7 +215,7 @@ void CCharacter::act_striker2()//UŒ‚(1)
 	}
 }
 
-void CCharacter::act_striker3()//UŒ‚(2)
+void CCharacter::act_striker3()//æ”»æ’ƒ(2)
 {
 }
 
@@ -224,8 +224,8 @@ void CCharacter::act_striker4()
 	pdat->kasanari=FALSE;
 
 	if(pdat->counter==0){
-		pdat->objtype &= GOBJTYPE_NODISPLAY;//‰æ–ÊŠO‚Ö‚¢‚¯‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­
-		pdat->objtype |= GOBJFLG_TAIKI;//‘Ò‹@ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		pdat->objtype &= GOBJTYPE_NODISPLAY;//ç”»é¢å¤–ã¸ã„ã‘ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã
+		pdat->objtype |= GOBJFLG_TAIKI;//å¾…æ©Ÿãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	}
 
 	if(pdat->counter < 2){
@@ -244,12 +244,12 @@ void CCharacter::act_striker4()
 			pdat->aid = ACTID_TAIKICYU;
 			pdat->x = 2000;
 			pdat->y = -2000;
-			pdat->objtype |= GOBJFLG_TOBETARGET;//ƒ^[ƒQƒbƒg‚É‚È‚é
+			pdat->objtype |= GOBJFLG_TOBETARGET;//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ãªã‚‹
 		}
 	}
 }
 
-//“Š‚°======================================================================
+//æŠ•ã’======================================================================
 
 void CCharacter::act_nage()
 {

@@ -26,7 +26,6 @@
 #include "task_battle.h"
 #include "task_loading.h"
 #include "gcdhandler.h"
-#include "CollisionDetectionTree.h"
 
 /*----------------------------------------------------------------------------
     構築
@@ -435,9 +434,6 @@ BOOL CBattleTask::Execute(DWORD time)
         return TRUE;
     }
 
-    //local vals
-    int i;
-    
     act_stop=FALSE;
     g_input.KeyLock( bf_state==BFSTATE_FIGHTING ? FALSE : TRUE );
 
@@ -535,7 +531,6 @@ void CBattleTask::T_Action(BOOL stop)
 {
     g_system.PushSysTag(__FUNCTION__);
 
-    int i;
     for(auto i : p_objects){
         if (i != NULL){
             if(!stop)
@@ -571,10 +566,7 @@ void CBattleTask::T_KasanariHantei()
     BOOL revx1,revx2;
     UINT magmode1,magmode2;
 
-    static CollisionDetectionTree<GOBJECT*> collisionTree;
-    collisionTree.clear();
-
-    //判定するオブジェクトを登録
+    //重なり判定
     for(i=0;i<(int)p_objects.size();i++){
         if(p_objects[i]!=NULL){//オブジェクトが存在する
             pdat1 = &(p_objects[i]->data);
@@ -744,87 +736,87 @@ void CBattleTask::T_AtariHantei()
 
     assert(kurai_list.empty());
 
-    int i, j, k, l;
-    if (!hantaihantei){
+    int i, k, l;
+    if(!hantaihantei){
         for (auto i : p_objects){
             if (i != NULL){//オブジェクトが存在する
                 pdat1 = &(i->data);
-                if ((pdat1->tid == TEAM_PLAYER1 || pdat1->tid == TEAM_PLAYER2) && BATTLETASK_ISNOTFXOBJ(pdat1)){
-                    if (pdat1->objtype & GOBJFLG_ATTACK){//オブジェクトは攻撃を行う
-                        if (pdat1->kougeki){//攻撃力ON
-                            if (pdat1->phdat != NULL){
-                                if (pdat1->pcdat != NULL)
+                if((pdat1->tid==TEAM_PLAYER1 || pdat1->tid==TEAM_PLAYER2) && BATTLETASK_ISNOTFXOBJ(pdat1)){
+                    if(pdat1->objtype & GOBJFLG_ATTACK){//オブジェクトは攻撃を行う
+                        if(pdat1->kougeki){//攻撃力ON
+                            if(pdat1->phdat!=NULL){
+                                if(pdat1->pcdat!=NULL)
                                 {
-                                    if (((GCD_CELL2_070*)pdat1->pcdat)[0].cell[0].flag == 700){
+                                    if( ((GCD_CELL2_070*)pdat1->pcdat)[0].cell[0].flag==700 ){
                                         magmode1 = 1;//重心中心
                                     }
                                     else{
-                                        if (pdat1->pcdat[pdat1->cnow].flag & GCDCELL2_ROT_BASEPOINT){
+                                        if(pdat1->pcdat[pdat1->cnow].flag & GCDCELL2_ROT_BASEPOINT){
                                             magmode1 = 0;//足元中心
                                         }
-                                        else magmode1 = 1;
+                                        else magmode1=1;
                                     }
                                     for (auto j : p_objects){//** 他の全てのオブジェクトに対して **
-                                        if (i != j){//自分以外に
-                                            if (j != NULL){
+                                        if(i!=j){//自分以外に
+                                            if(j!=NULL){
                                                 pdat2 = &(j->data);
-                                                if ((pdat2->tid == TEAM_PLAYER1 || pdat2->tid == TEAM_PLAYER2) && BATTLETASK_ISNOTFXOBJ(pdat2)){
-                                                    if (pdat1->tid != pdat2->tid){
-                                                        if (TRUE/*pdat2->counter!=0*/){
-                                                            if (pdat2->objtype & GOBJFLG_KURAI){//オブジェクトは攻撃を喰らう
-                                                                if (!pdat2->muteki){//無敵状態OFF
-                                                                    if (pdat2->phdat != NULL){
-                                                                        if (pdat2->pcdat != NULL)
+                                                if((pdat2->tid==TEAM_PLAYER1 || pdat2->tid==TEAM_PLAYER2)  && BATTLETASK_ISNOTFXOBJ(pdat2)){
+                                                    if(pdat1->tid != pdat2->tid){
+                                                        if(TRUE/*pdat2->counter!=0*/){
+                                                            if(pdat2->objtype & GOBJFLG_KURAI){//オブジェクトは攻撃を喰らう
+                                                                if(!pdat2->muteki){//無敵状態OFF
+                                                                    if(pdat2->phdat!=NULL){
+                                                                        if(pdat2->pcdat!=NULL)
                                                                         {
-                                                                            if (((GCD_CELL2_070*)pdat2->pcdat)[0].cell[0].flag == 700){
+                                                                            if( ((GCD_CELL2_070*)pdat2->pcdat)[0].cell[0].flag==700 ){
                                                                                 magmode2 = 1;//重心中心
-                                                                            }
-                                                                            else{
-                                                                                if (pdat2->pcdat[pdat2->cnow].flag & GCDCELL2_ROT_BASEPOINT){
-                                                                                    magmode2 = 0;//足元中心
                                                                                 }
-                                                                                else magmode2 = 1;
+                                                                                else{
+                                                                                    if(pdat2->pcdat[pdat2->cnow].flag & GCDCELL2_ROT_BASEPOINT){
+                                                                                        magmode2 = 0;//足元中心
+                                                                                    }
+                                                                                    else magmode2=1;
                                                                             }
                                                                             //当たり判定を行う
-                                                                            num_kas = 0;
-                                                                            h_a = (pdat1->phdat[pdat1->cnow]);
-                                                                            h_k = (pdat2->phdat[pdat2->cnow]);
+                                                                            num_kas=0;
+                                                                            h_a = (pdat1->phdat[ pdat1->cnow ]);
+                                                                            h_k = (pdat2->phdat[ pdat2->cnow ]);
                                                                             /*if ( ((GCD_CELL2_070*)pdat2->pcdat)[0].cell[0].flag==700 )
                                                                             {
-                                                                            CGCDHandler::GCDConvCell_070_090( &( ((GCD_CELL2_070*)pdat1->pcdat)[ pdat1->cnow ]), &c_a);
-                                                                            CGCDHandler::GCDConvCell_070_090( &( ((GCD_CELL2_070*)pdat2->pcdat)[ pdat2->cnow ]), &c_k);
+                                                                                CGCDHandler::GCDConvCell_070_090( &( ((GCD_CELL2_070*)pdat1->pcdat)[ pdat1->cnow ]), &c_a);
+                                                                                CGCDHandler::GCDConvCell_070_090( &( ((GCD_CELL2_070*)pdat2->pcdat)[ pdat2->cnow ]), &c_k);
                                                                             }
                                                                             else
                                                                             {*/
-                                                                            c_a = (pdat1->pcdat[pdat1->cnow]);
-                                                                            c_k = (pdat2->pcdat[pdat2->cnow]);
+                                                                                c_a = (pdat1->pcdat[ pdat1->cnow ]);
+                                                                                c_k = (pdat2->pcdat[ pdat2->cnow ]);
                                                                             /*}*/
-                                                                            if (pdat1->muki && !pdat1->revx)revx1 = TRUE;
-                                                                            else if (!pdat1->muki && pdat1->revx)revx1 = TRUE;
-                                                                            else revx1 = FALSE;
-                                                                            if (pdat2->muki && !pdat2->revx)revx2 = TRUE;
-                                                                            else if (!pdat2->muki && pdat2->revx)revx2 = TRUE;
-                                                                            else revx2 = FALSE;
-                                                                            for (k = 0; k<3; k++){
-                                                                                for (l = 0; l<3; l++){
-                                                                                    if (gbl.Syototu2RECTs(h_a.attack[k], h_k.kas[l], &kas_point[num_kas],
-                                                                                        c_a.gcx, c_a.gcy, revx1, pdat1->revy, pdat1->rot, pdat1->x, pdat1->y, pdat1->magx, pdat1->magy,
-                                                                                        c_k.gcx, c_k.gcy, revx2, pdat2->revy, pdat2->rot, pdat2->x, pdat2->y, pdat2->magx, pdat2->magy, magmode1, magmode2))
+                                                                            if(pdat1->muki && !pdat1->revx)revx1=TRUE;
+                                                                            else if(!pdat1->muki && pdat1->revx)revx1=TRUE;
+                                                                            else revx1=FALSE;
+                                                                            if(pdat2->muki && !pdat2->revx)revx2=TRUE;
+                                                                            else if(!pdat2->muki && pdat2->revx)revx2=TRUE;
+                                                                            else revx2=FALSE;
+                                                                            for(k=0;k<3;k++){
+                                                                                for(l=0;l<3;l++){
+                                                                                    if(gbl.Syototu2RECTs(h_a.attack[k],h_k.kas[l],&kas_point[num_kas],
+                                                                                        c_a.gcx,c_a.gcy,revx1,pdat1->revy,pdat1->rot,pdat1->x,pdat1->y,pdat1->magx,pdat1->magy,
+                                                                                        c_k.gcx,c_k.gcy,revx2,pdat2->revy,pdat2->rot,pdat2->x,pdat2->y,pdat2->magx,pdat2->magy,magmode1,magmode2))
                                                                                     {
                                                                                         num_kas++;
                                                                                     }
-                                                                                    if (gbl.Syototu2RECTs(h_a.attack[k], h_k.kurai[l], &kas_point[num_kas],
-                                                                                        c_a.gcx, c_a.gcy, revx1, pdat1->revy, pdat1->rot, pdat1->x, pdat1->y, pdat1->magx, pdat1->magy,
-                                                                                        c_k.gcx, c_k.gcy, revx2, pdat2->revy, pdat2->rot, pdat2->x, pdat2->y, pdat2->magx, pdat2->magy, magmode1, magmode2))
+                                                                                    if(gbl.Syototu2RECTs(h_a.attack[k],h_k.kurai[l],&kas_point[num_kas],
+                                                                                        c_a.gcx,c_a.gcy,revx1,pdat1->revy,pdat1->rot,pdat1->x,pdat1->y,pdat1->magx,pdat1->magy,
+                                                                                        c_k.gcx,c_k.gcy,revx2,pdat2->revy,pdat2->rot,pdat2->x,pdat2->y,pdat2->magx,pdat2->magy,magmode1,magmode2))
                                                                                     {
                                                                                         num_kas++;
                                                                                     }
                                                                                 }
                                                                             }
-                                                                            if (num_kas>0){//一つ以上の矩形が衝突した
-                                                                                kas_point2.x = 0;
-                                                                                kas_point2.y = 0;
-                                                                                for (k = 0; k<num_kas; k++){
+                                                                            if(num_kas>0){//一つ以上の矩形が衝突した
+                                                                                kas_point2.x=0;
+                                                                                kas_point2.y=0;
+                                                                                for(k=0;k<num_kas;k++){
                                                                                     kas_point2.x += kas_point[k].x;
                                                                                     kas_point2.y += kas_point[k].y;
                                                                                 }
@@ -992,10 +984,6 @@ void CBattleTask::T_Sousai()
     BOOL revx1,revx2;
     UINT magmode1,magmode2;
 
-    static CollisionDetectionTree<GOBJECT*> collisionTree;
-    collisionTree.clear();
-
-    // 判定するオブジェクトを登録
     for(i=1;i<(int)p_objects.size()-1;i++){
         if(p_objects[i]!=NULL){//オブジェクトが存在する
             pdat1 = &(p_objects[i]->data);
@@ -1592,7 +1580,7 @@ DWORD CBattleTask::MessageFromObject(DWORD oid,DWORD msg,DWORD prm)
                 //交代メッセージ送信
                 if (pdat->Message(GOBJMSG_KOUTAI, charobjid[team][cidx]))
                 {
-                    hprecratio[team][cidx] *= 1.8;		//HP回復インターバル増
+					hprecratio[team][cidx] = static_cast<DWORD>(hprecratio[team][cidx] * 1.8);		//HP回復インターバル増
                     active_character[team] = next_act;//"アクティブ" キャラクター更新
                     g_system.PopSysTag();
                     return(TRUE);					//成功
@@ -1790,7 +1778,6 @@ BOOL CBattleTask::Atari(DWORD a_id, DWORD k_id, MY2DVECTOR &kas_point)
     ATTACKINFO2 tmpatkinfo = higaisya->data.atk2;
     {
         //喰らったダメージ情報をコピー
-        assert(attacker->data.atk);
         higaisya->data.atk2.info1 = attacker->data.atk;
         higaisya->data.atk2.oid = a_id;
         //フラグ立
@@ -1851,7 +1838,7 @@ BOOL CBattleTask::Atari(DWORD a_id, DWORD k_id, MY2DVECTOR &kas_point)
     ATTACKINFO  *aif = attacker->data.atk;
 
     // 削りでやられそうなら喰らわせる
-    if (res & 0x20000000 && bf_state==BFSTATE_FIGHTING && aif->kezuri >= pdat->hp)
+	if (res & 0x20000000 && bf_state == BFSTATE_FIGHTING && static_cast<int>(aif->kezuri) >= pdat->hp)
         res |= 0x10000000;
 
     double dmkanwa;
@@ -2640,7 +2627,7 @@ void CBattleTask::T_UpdateStatus_Fighting()
                                     //本来はシステムメッセージを発行すべきかもしれないが･･･
                                     if(pobj3->Message(GOBJMSG_KOUTAI,charobjid[j][active_character[j]]))
                                     {
-                                        hprecratio[j][active_character[j]]*=1.8;		//HP回復インターバル増
+										hprecratio[j][active_character[j]] = static_cast<DWORD>(hprecratio[j][active_character[j]] * 1.8);		//HP回復インターバル増
                                         active_character[j]=k;
                                         pobj->Message(GOBJMSG_TAIKI,0);
                                     }

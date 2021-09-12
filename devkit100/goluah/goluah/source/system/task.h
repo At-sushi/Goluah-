@@ -1,6 +1,6 @@
-/*!
+﻿/*!
 *	@file
-*	@brief �^�X�N(?)�Ǘ��E��`
+*	@brief タスク(?)管理・定義
 */
 #pragma once
 
@@ -9,70 +9,70 @@
 
 /*!
 *	@defgroup Tasks
-*	@brief �^�X�N? =�Q�[���̃V�[���ƍl���Ă��������B
+*	@brief タスク? =ゲームのシーンと考えてください。
 *
-*	CTaskBase���p�������N���X�́A���C�����[�v����Ă΂��X�V�E�`�揈���֐��������Ă��܂��B
-*	�V�X�e���͂��̃N���X�̃��X�g�������Ă��܂��B
-*	�^�C�g���E�L�����Z���E���� �Ȃǂ̃Q�[���̏�Ԃ̕ύX�́A
-*	�����^�X�N�N���X�̐؂�ւ��ɂ���čs���܂��B
+*	CTaskBaseを継承したクラスは、メインループから呼ばれる更新・描画処理関数を持っています。
+*	システムはこのクラスのリストを持っています。
+*	タイトル・キャラセレ・試合 などのゲームの状態の変更は、
+*	これらタスククラスの切り替えによって行われます。
 */
 
 /*! 
 *	@ingroup Tasks
-*	@brief	��{�^�X�N
+*	@brief	基本タスク
 *
-*	�EExecute��FALSE��Ԃ��Ɣj�������
-*	�E�r���^�X�N���ύX���ꂽ�Ƃ��A�j�������
+*	・ExecuteでFALSEを返すと破棄される
+*	・排他タスクが変更されたとき、破棄される
 */
 class CTaskBase
 {
 public:
 	virtual ~CTaskBase(){}
-	virtual void Initialize(){}					//!< Execute�܂���Draw���R�[�������O��1�x�����R�[�������
+	virtual void Initialize(){}					//!< ExecuteまたはDrawがコールされる前に1度だけコールされる
 	virtual BOOL Execute(DWORD time)
-						{return(TRUE);}			//!< ���t���[���R�[�������
-	virtual void Terminate(){}					//!< �^�X�N�̃��X�g����O�����Ƃ��ɃR�[�������i���̒���Adelete�����j
-	virtual void Draw(){}						//!< �`�掞�ɃR�[�������
-	virtual void WndMessage(					//!< ���C���E�C���h�E�̃��b�Z�[�W�Ɠ������m���󂯎�邱�Ƃ��ł���
+						{return(TRUE);}			//!< 毎フレームコールされる
+	virtual void Terminate(){}					//!< タスクのリストから外されるときにコールされる（その直後、deleteされる）
+	virtual void Draw(){}						//!< 描画時にコールされる
+	virtual void WndMessage(					//!< メインウインドウのメッセージと同じモノを受け取ることができる
 					HWND hWnd,
 					UINT msg, 
 					WPARAM wparam, 
 					LPARAM lparam){}
-	virtual DWORD GetID(){return 0;}			//!< 0�ȊO��Ԃ��悤�ɂ����ꍇ�A�}�l�[�W���ɓ���ID�����^�X�N��Add���ꂽ�Ƃ��j�������
-	virtual int GetDrawPriority(){return -1;}	//!< �`��v���C�I���e�B�B�Ⴂ�قǎ�O�Ɂi��Ɂj�`��B�}�C�i�X�Ȃ�Ε\�����Ȃ�
+	virtual DWORD GetID(){return 0;}			//!< 0以外を返すようにした場合、マネージャに同じIDを持つタスクがAddされたとき破棄される
+	virtual int GetDrawPriority(){return -1;}	//!< 描画プライオリティ。低いほど手前に（後に）描画。マイナスならば表示しない
 
-	static bool CompByDrawPriority(CTaskBase* arg1,CTaskBase* arg2)	//!< �`��v���C�I���e�B�Ń\�[�g���邽�߂̔�r���Z
+	static bool CompByDrawPriority(CTaskBase* arg1,CTaskBase* arg2)	//!< 描画プライオリティでソートするための比較演算
 		{return arg1->GetDrawPriority() > arg2->GetDrawPriority() ;}
 };
 
 
 /*! 
 *	@ingroup Tasks
-*	@brief �r���^�X�N
+*	@brief 排他タスク
 *
-*	�E���̔r���^�X�N�ƈꏏ�ɂ͓���(Execute)���Ȃ�
-*	�E���̔r���^�X�N���ǉ����ꂽ�ꍇ�AInactivate���R�[������A������FALSE��Ԃ���
-*		�j�������BTRUE��Ԃ���Execute�AWndMessage���R�[������Ȃ���ԂɂȂ�A
-*		�V�K�̔r���^�X�N���S�Ĕj�����ꂽ�Ƃ���Activate���Ă΂�A�������ĊJ����B
+*	・他の排他タスクと一緒には動作(Execute)しない
+*	・他の排他タスクが追加された場合、Inactivateがコールされ、そこでFALSEを返すと
+*		破棄される。TRUEを返すとExecute、WndMessageがコールされない状態になり、
+*		新規の排他タスクが全て破棄されたときにActivateが呼ばれ、処理が再開する。
 */
 class CExclusiveTaskBase : public CTaskBase
 {
 public:
 	virtual ~CExclusiveTaskBase(){}
-	virtual void Activate(DWORD prvTaskID){}				//!< Execute���ĊJ�����Ƃ��ɌĂ΂��
-	virtual BOOL Inactivate(DWORD nextTaskID){return FALSE;}//!< ���̔r���^�X�N���J�n�����Ƃ��ɌĂ΂��
+	virtual void Activate(DWORD prvTaskID){}				//!< Executeが再開されるときに呼ばれる
+	virtual BOOL Inactivate(DWORD nextTaskID){return FALSE;}//!< 他の排他タスクが開始したときに呼ばれる
 	
-	virtual int GetDrawPriority(){return 0;}				//!< �`��v���C�I���e�B�擾���\�b�h
+	virtual int GetDrawPriority(){return 0;}				//!< 描画プライオリティ取得メソッド
 };
 
 
 
 /*!
 *	@ingroup Tasks
-*	@brief �풓�^�X�N
+*	@brief 常駐タスク
 *
-*	�E��{�^�X�N�ƈႢ�A�r���^�X�N���ύX����Ă��j������Ȃ�
-*	�EEnabled�łȂ��Ƃ��ɂ� Execute , WndMessage ���R�[�����Ȃ�
+*	・基本タスクと違い、排他タスクが変更されても破棄されない
+*	・Enabledでないときには Execute , WndMessage をコールしない
 */
 class CBackgroundTaskBase : public CTaskBase
 {
@@ -93,14 +93,14 @@ protected:
 
 /*!
 *	@ingroup System
-*	@brief �^�X�N�Ǘ��N���X
+*	@brief タスク管理クラス
 *
-*	CSystem�̓����ɕێ������BCSystem�ȊO����͂���ɃA�N�Z�X����K�v�͂Ȃ��͂�
-*	�^�X�N�p���N���X�̃��X�g���Ǘ����A�`��A�X�V�A�E�B���h�E���b�Z�[�W���̔z�M���s���B
+*	CSystemの内部に保持される。CSystem以外からはこれにアクセスする必要はないはず
+*	タスク継承クラスのリストを管理し、描画、更新、ウィンドウメッセージ等の配信を行う。
 *
-*	���s���ɗ�O���N�������Ƃ��A�ǂ̃N���X����O���N�������̂������O�ɓf���o���B
-*	���̍ۂɎ��s���^��񂩂�N���X�����擾���Ă���̂ŁA�R���p�C���̍ۂɂ�
-*	���s���^���(RTTI�ƕ\�L�����ꍇ������)��ON�ɂ��邱�ƁB
+*	実行中に例外が起こったとき、どのクラスが例外を起こしたのかをログに吐き出す。
+*	その際に実行時型情報からクラス名を取得しているので、コンパイルの際には
+*	実行時型情報(RTTIと表記される場合もある)をONにすること。
 */
 
 typedef std::list<CTaskBase*> TaskList;
@@ -114,34 +114,34 @@ public:
 
 	void Destroy();
 
-	void AddTask(CTaskBase *newTask);			//!< �^�X�N�ǉ�
-	void RemoveTaskByID(DWORD id);				//!< �w��ID�����^�X�N�̏����@�����FExclusive�^�X�N�̓`�F�b�N���Ȃ�
-	void ReturnExclusiveTaskByID(DWORD id);		//!< �w��ID�̔r���^�X�N�܂�Terminate/pop����
-	CExclusiveTaskBase* GetTopExclusiveTask();	//!< �ŏ�ʂɂ���G�N�X�N���[�V�u�^�X�N���Q�g
-	CBackgroundTaskBase* FindBGTask(DWORD id);	//!< �w��ID�����풓�^�X�N�Q�b�g
-	CTaskBase* FindTask(DWORD id);				//!< �w��ID�����ʏ�^�X�N�Q�b�g
+	void AddTask(CTaskBase *newTask);			//!< タスク追加
+	void RemoveTaskByID(DWORD id);				//!< 指定IDを持つタスクの除去　※注：Exclusiveタスクはチェックしない
+	void ReturnExclusiveTaskByID(DWORD id);		//!< 指定IDの排他タスクまでTerminate/popする
+	CExclusiveTaskBase* GetTopExclusiveTask();	//!< 最上位にあるエクスクルーシブタスクをゲト
+	CBackgroundTaskBase* FindBGTask(DWORD id);	//!< 指定IDをもつ常駐タスクゲット
+	CTaskBase* FindTask(DWORD id);				//!< 指定IDをもつ通常タスクゲット
 
-	void Execute(DWORD time);					//!< CSystem����R�[������A�e�^�X�N�̓��֐����R�[������
-	void Draw();								//!< CSystem����R�[������A�e�^�X�N���v���C�I���e�B���ɕ`�悷��
-	void WndMessage(							//!< CSystem����R�[������A�e�^�X�N�̓��֐����R�[������
+	void Execute(DWORD time);					//!< CSystemからコールされ、各タスクの同関数をコールする
+	void Draw();								//!< CSystemからコールされ、各タスクをプライオリティ順に描画する
+	void WndMessage(							//!< CSystemからコールされ、各タスクの同関数をコールする
 			HWND hWnd,
 			UINT msg,
 			WPARAM wparam,
 			LPARAM lparam);
-	BOOL ExEmpty();								//!< �r���^�X�N���S���Ȃ��Ȃ�����������ǂ���
+	BOOL ExEmpty();								//!< 排他タスクが全部なくなっちゃったかどうか
 
-	//�f�o�b�O
-	void DebugOutputTaskList();					//!< ���݃��X�g�ɕێ�����Ă���N���X�̃N���X�����f�o�b�O�o�͂���
+	//デバッグ
+	void DebugOutputTaskList();					//!< 現在リストに保持されているクラスのクラス名をデバッグ出力する
 
 protected:
-	void CleanupAllSubTasks();					//!< �ʏ�^�X�N��S��Terminate , delete����
-	void SortTask(TaskList *ptgt);				//!< �^�X�N��`��v���C�I���e�B���ɕ��ׂ�
+	void CleanupAllSubTasks();					//!< 通常タスクを全てTerminate , deleteする
+	void SortTask(TaskList *ptgt);				//!< タスクを描画プライオリティ順に並べる
 
-	TaskList tasks;								//!< ���ݓ��삿�イ�̃^�X�N���X�g
-	TaskList bg_tasks;							//!< �풓�^�X�N���X�g
-	ExTaskStack ex_stack;						//!< �r���^�X�N�̃X�^�b�N�Btop�������s���Ȃ�
+	TaskList tasks;								//!< 現在動作ちゅうのタスクリスト
+	TaskList bg_tasks;							//!< 常駐タスクリスト
+	ExTaskStack ex_stack;						//!< 排他タスクのスタック。topしか実行しない
 
-	CExclusiveTaskBase* exNext;					//!< ���݃t���[����Add���ꂽ�r���^�X�N
+	CExclusiveTaskBase* exNext;					//!< 現在フレームでAddされた排他タスク
 };
 
 

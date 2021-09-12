@@ -1,6 +1,6 @@
-/*!
+ï»¿/*!
 *	@file
-*	@brief ƒXƒg[ƒŠ[ƒXƒNƒŠƒvƒg‘€ì
+*	@brief ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã‚¹ã‚¯ãƒªãƒ—ãƒˆæ“ä½œ
 */
 /*!
 *	@ingroup Script
@@ -16,7 +16,7 @@ class CStoryScriptElement;
 typedef std::vector<CStoryScriptElement*> SScriptElementList;
 
 /*!
-*	@brief ƒXƒg[ƒŠ[ƒXƒNƒŠƒvƒg“Ç‚İ‚İ“Ç‚İ‚İ
+*	@brief ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã‚¹ã‚¯ãƒªãƒ—ãƒˆèª­ã¿è¾¼ã¿èª­ã¿è¾¼ã¿
 *	@ingroup Script
 */
 class CGoluahStoryScript
@@ -28,7 +28,7 @@ public:
 
 
 /*!
-*	@brief ƒXƒg[ƒŠ[—v‘fƒx[ƒX
+*	@brief ã‚¹ãƒˆãƒ¼ãƒªãƒ¼è¦ç´ ãƒ™ãƒ¼ã‚¹
 *	@ingroup Script
 */
 class CStoryScriptElement
@@ -47,21 +47,21 @@ public:
 		GSE_ST_SELECT	,
 	};
 
-	virtual CStoryElement_Types GetType()=0;	//!<dynamic_cast‚·‚ê‚Î‚¢‚¢‚¾‚¯‚©‚àƒl
-	virtual void FeedLine(char *str)=0;			//!<Ÿ‚Ì’è‹`‚ªŒ©‚Â‚©‚Á‚½‚çFALSE
-	virtual BOOL Close(){return TRUE;}			//!<Ÿ‚Ì#‚ªŒ©‚Â‚©‚Á‚½‚çƒR[ƒ‹
-	virtual char* GetError(){return m_error;}	//!<ƒGƒ‰[æ“¾
+	virtual CStoryElement_Types GetType()=0;	//!<dynamic_castã™ã‚Œã°ã„ã„ã ã‘ã‹ã‚‚ãƒ
+	virtual void FeedLine(char *str)=0;			//!<æ¬¡ã®å®šç¾©ãŒè¦‹ã¤ã‹ã£ãŸã‚‰FALSE
+	virtual BOOL Close(){return TRUE;}			//!<æ¬¡ã®#ãŒè¦‹ã¤ã‹ã£ãŸã‚‰ã‚³ãƒ¼ãƒ«
+	virtual char* GetError(){return m_error;}	//!<ã‚¨ãƒ©ãƒ¼å–å¾—
 
 protected:
 	char *m_error;
 	void Error(char *str);
-	void ErrorF(char *str,char *name);	//!<•›•¶š—ñw’è
-	void ErrorF(char *str,int i);		//!<®”w’è
+	void ErrorF(char *str,char *name);	//!<å‰¯æ–‡å­—åˆ—æŒ‡å®š
+	void ErrorF(char *str,int i);		//!<æ•´æ•°æŒ‡å®š
 };
 
 
 /*!
-*	@brief ƒuƒƒbƒNŠOƒGƒ‰[—v‘f
+*	@brief ãƒ–ãƒ­ãƒƒã‚¯å¤–ã‚¨ãƒ©ãƒ¼è¦ç´ 
 *	@ingroup Script
 */
 class CStoryElement_Error : public CStoryScriptElement
@@ -76,7 +76,7 @@ public:
 
 
 /*!
-*	@brief #settings—v‘f
+*	@brief #settingsè¦ç´ 
 *	@ingroup Script
 */
 class CStoryElement_Settings : public CStoryScriptElement
@@ -90,22 +90,22 @@ public:
 	BOOL Close();
 
 public:
-	//‘S”Ê
-	float ver;						//!<ƒXƒNƒŠƒvƒg‚Ìƒo[ƒWƒ‡ƒ“i-1:–¢İ’èj
-	char* title;					//!<ƒXƒg[ƒŠ[ƒ^ƒCƒgƒ‹
-	char* brief;					//!<ƒXƒg[ƒŠ[ŠT—v
-	char* icon;						//!<ƒAƒCƒRƒ“ƒtƒ@ƒCƒ‹–¼
-	char* preview;					//!<ƒvƒŒƒrƒ…[ƒtƒ@ƒCƒ‹–¼
-	int continue_num;				//!<ƒRƒ“ƒeƒBƒjƒ…[‰Â”\‰ñ”(ƒ}ƒCƒiƒX‚Å‡)
-	int result_send;				//!<‡Œ‹‰Ê‘—M‘ÎÛ(ƒ}ƒCƒiƒX‚Å‘ÎÛ–³‚µ)
-	int result_key;					//!<‡Œ‹‰Ê‘—M‚É•t‘®‚³‚¹‚éƒL[”Ô†
+	//å…¨èˆ¬
+	float ver;						//!<ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼ˆ-1:æœªè¨­å®šï¼‰
+	char* title;					//!<ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã‚¿ã‚¤ãƒˆãƒ«
+	char* brief;					//!<ã‚¹ãƒˆãƒ¼ãƒªãƒ¼æ¦‚è¦
+	char* icon;						//!<ã‚¢ã‚¤ã‚³ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«å
+	char* preview;					//!<ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«å
+	int continue_num;				//!<ã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼å¯èƒ½å›æ•°(ãƒã‚¤ãƒŠã‚¹ã§âˆ)
+	int result_send;				//!<è©¦åˆçµæœé€ä¿¡å¯¾è±¡(ãƒã‚¤ãƒŠã‚¹ã§å¯¾è±¡ç„¡ã—)
+	int result_key;					//!<è©¦åˆçµæœé€ä¿¡æ™‚ã«ä»˜å±ã•ã›ã‚‹ã‚­ãƒ¼ç•ªå·
 
-	//ƒLƒƒƒ‰ƒNƒ^’è‹`
-	int cnum;						//!<charw’è”
-	int characters[MAXNUM_TEAM];	//!<charw’è@(-1:userselect -2:w’è‚È‚µ)
-	int color[MAXNUM_TEAM];			//!<Fw’è
-	DWORD option[MAXNUM_TEAM];		//!<ƒIƒvƒVƒ‡ƒ“’¼Úw’è(userselectˆÈŠO‚Å—LŒø)
-	StoryOptType opttype[MAXNUM_TEAM];	//!<ƒIƒvƒVƒ‡ƒ“w’è‚Ìí—Ş(userselectˆÈŠO‚Å—LŒø)
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å®šç¾©
+	int cnum;						//!<charæŒ‡å®šæ•°
+	int characters[MAXNUM_TEAM];	//!<charæŒ‡å®šã€€(-1:userselect -2:æŒ‡å®šãªã—)
+	int color[MAXNUM_TEAM];			//!<è‰²æŒ‡å®š
+	DWORD option[MAXNUM_TEAM];		//!<ã‚ªãƒ—ã‚·ãƒ§ãƒ³ç›´æ¥æŒ‡å®š(userselectä»¥å¤–ã§æœ‰åŠ¹)
+	StoryOptType opttype[MAXNUM_TEAM];	//!<ã‚ªãƒ—ã‚·ãƒ§ãƒ³æŒ‡å®šã®ç¨®é¡(userselectä»¥å¤–ã§æœ‰åŠ¹)
 
 protected:
 	void Read_char(char *str);
@@ -114,7 +114,7 @@ protected:
 
 
 /*!
-*	@brief #staff—v‘f
+*	@brief #staffè¦ç´ 
 *	@ingroup Script
 */
 class CStoryElement_Staff : public CStoryScriptElement
@@ -127,12 +127,12 @@ public:
 	void FeedLine(char *str);
 
 public:
-	char *m_filename;				//!<NULL‚Ìê‡ system/staff.txt
+	char *m_filename;				//!<NULLã®å ´åˆ system/staff.txt
 };
 
 
 /*!
-*	@brief #vs—v
+*	@brief #vsè¦
 *	@ingroup Script
 */
 class CStoryElement_VS : public CStoryScriptElement
@@ -148,44 +148,44 @@ public:
 //	void  SetupBattleInfo();
 
 public:
-	//ƒLƒƒƒ‰ƒNƒ^ŠÖ˜A
-	int num[2];							//!<2ƒ`[ƒ€‚ÌƒLƒƒƒ‰ƒNƒ^”
-	int characters[2][MAXNUM_TEAM];		//!<-1:ƒ‰ƒ“ƒ_ƒ€ -2:char1 -3:char2 -4:char3 -5>none
-	int color[2][MAXNUM_TEAM];			//!<-1:ƒ‰ƒ“ƒ_ƒ€
-	DWORD option[2][MAXNUM_TEAM];		//!<ƒIƒvƒVƒ‡ƒ“’¼Úw’è
-	BOOL is_random_opt[2][MAXNUM_TEAM];	//!<ƒ‰ƒ“ƒ_ƒ€w’èƒtƒ‰ƒO
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿é–¢é€£
+	int num[2];							//!<2ãƒãƒ¼ãƒ ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿æ•°
+	int characters[2][MAXNUM_TEAM];		//!<-1:ãƒ©ãƒ³ãƒ€ãƒ  -2:char1 -3:char2 -4:char3 -5>none
+	int color[2][MAXNUM_TEAM];			//!<-1:ãƒ©ãƒ³ãƒ€ãƒ 
+	DWORD option[2][MAXNUM_TEAM];		//!<ã‚ªãƒ—ã‚·ãƒ§ãƒ³ç›´æ¥æŒ‡å®š
+	BOOL is_random_opt[2][MAXNUM_TEAM];	//!<ãƒ©ãƒ³ãƒ€ãƒ æŒ‡å®šãƒ•ãƒ©ã‚°
 
-	//COMƒŒƒxƒ‹ŠÖ˜A
-	int level[2][MAXNUM_TEAM];				//!<ƒŒƒxƒ‹w’è
-	BOOL is_related_level[2][MAXNUM_TEAM];	//!<‘Š‘ÎƒŒƒxƒ‹w’èƒtƒ‰ƒO
+	//COMãƒ¬ãƒ™ãƒ«é–¢é€£
+	int level[2][MAXNUM_TEAM];				//!<ãƒ¬ãƒ™ãƒ«æŒ‡å®š
+	BOOL is_related_level[2][MAXNUM_TEAM];	//!<ç›¸å¯¾ãƒ¬ãƒ™ãƒ«æŒ‡å®šãƒ•ãƒ©ã‚°
 
-	//ƒXƒe[ƒWE‡ğŒ“™
-	int type;						//!<‡Œ`®
-	int stage;						//!<ƒXƒe[ƒW -1:ƒ‰ƒ“ƒ_ƒ€
-	int limit_time;					//!<§ŒÀŠÔ(ƒ}ƒCƒiƒX‚ÅSETINGS’lŒp³)
-	char *bgm_filename;				//!<BGMw’è(NULL‚Åw’è–³‚µ)
-	int bgm_startpos;				//!<BGMÄ¶ŠJnˆÊ’u(0‚Å’ÊíÄ¶)
+	//ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ»è©¦åˆæ¡ä»¶ç­‰
+	int type;						//!<è©¦åˆå½¢å¼
+	int stage;						//!<ã‚¹ãƒ†ãƒ¼ã‚¸ -1:ãƒ©ãƒ³ãƒ€ãƒ 
+	int limit_time;					//!<åˆ¶é™æ™‚é–“(ãƒã‚¤ãƒŠã‚¹ã§SETINGSå€¤ç¶™æ‰¿)
+	char *bgm_filename;				//!<BGMæŒ‡å®š(NULLã§æŒ‡å®šç„¡ã—)
+	int bgm_startpos;				//!<BGMå†ç”Ÿé–‹å§‹ä½ç½®(0ã§é€šå¸¸å†ç”Ÿ)
 
-	//‡Œãİ’è
-	char *text_win;					//!<Ÿ—˜‘äŒw’è
-	char *text_lose;				//!<•‰‚¯‚½‚Æ‚«‚ÌA“G‚ÌŸ—˜‘äŒw’è
-	BOOL show_win;					//!<Ÿ—˜‰æ–Ê‚ÉˆÚs‚·‚é‚©H
-	BOOL nogameover;				//!<•‰‚¯‚Ä‚àƒQ[ƒ€ƒI[ƒo[‚µ‚È‚¢
-	int sel_shift;					//!<nogameoverA‘I‘ğ•Ï”‚ÌƒVƒtƒg—Ê
+	//è©¦åˆå¾Œè¨­å®š
+	char *text_win;					//!<å‹åˆ©å°è©æŒ‡å®š
+	char *text_lose;				//!<è² ã‘ãŸã¨ãã®ã€æ•µã®å‹åˆ©å°è©æŒ‡å®š
+	BOOL show_win;					//!<å‹åˆ©ç”»é¢ã«ç§»è¡Œã™ã‚‹ã‹ï¼Ÿ
+	BOOL nogameover;				//!<è² ã‘ã¦ã‚‚ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ã—ãªã„
+	int sel_shift;					//!<nogameoveræ™‚ã€é¸æŠå¤‰æ•°ã®ã‚·ãƒ•ãƒˆé‡
 
 protected:
 	void Read_friend(char *str,int team=0);
 	void Read_enemy(char *str);
 	void Read_stage(char *str);
 
-	//ƒXƒNƒŠƒvƒg‰ğß’†‚Ég—p
-	CStoryElement_Settings* m_sets;	//!<#settings€–Ú %char1-3g—p‚É’è‹`‚ª‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN‚·‚é‚½‚ß
-	UINT multiline_flag;			//!<•¡”sƒtƒ‰ƒOB 0:–³Œø 1:text_win‚É’Ç‰Á‚·‚é 2:text_lose‚É’Ç‰Á‚·‚é
+	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆè§£é‡ˆä¸­ã«ä½¿ç”¨
+	CStoryElement_Settings* m_sets;	//!<#settingsé …ç›® %char1-3ä½¿ç”¨æ™‚ã«å®šç¾©ãŒã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãŸã‚
+	UINT multiline_flag;			//!<è¤‡æ•°è¡Œãƒ•ãƒ©ã‚°ã€‚ 0:ç„¡åŠ¹ 1:text_winã«è¿½åŠ ã™ã‚‹ 2:text_loseã«è¿½åŠ ã™ã‚‹
 };
 
 
 /*!
-*	@brief #demo—v‘f
+*	@brief #demoè¦ç´ 
 *	@ingroup Script
 */
 class CStoryElement_Demo : public CStoryScriptElement
@@ -199,10 +199,10 @@ public:
 	BOOL Close();
 
 public:
-	char *m_filename;		//!<NULL¨–¢İ’è¨ƒGƒ‰[
+	char *m_filename;		//!<NULLâ†’æœªè¨­å®šâ†’ã‚¨ãƒ©ãƒ¼
 
 	/*
-	//ˆø”ƒŠƒXƒg•ÛŠÇEæ“¾
+	//å¼•æ•°ãƒªã‚¹ãƒˆä¿ç®¡ãƒ»å–å¾—
 	struct STRING_PEAR{char *str,*alias;};
 	typedef std::list<STRING_PEAR> aliaslist;
 	aliaslist args;
@@ -212,7 +212,7 @@ public:
 
 
 /*!
-*	@brief #sselect—v‘f
+*	@brief #sselectè¦ç´ 
 *	@ingroup Script
 */
 class CStoryElement_Select : public CStoryScriptElement
@@ -229,7 +229,7 @@ public:
 	int m_selectnum;
 
 	/*
-	//ˆø”ƒŠƒXƒg•ÛŠÇEæ“¾
+	//å¼•æ•°ãƒªã‚¹ãƒˆä¿ç®¡ãƒ»å–å¾—
 	struct STRING_PEAR{char *str,*alias;};
 	typedef std::list<STRING_PEAR> aliaslist;
 	aliaslist args;

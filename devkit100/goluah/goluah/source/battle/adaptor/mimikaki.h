@@ -1,9 +1,9 @@
-
-// ‹Œƒo[ƒWƒ‡ƒ“‚ÆVƒo[ƒWƒ‡ƒ“‚Ìî•ñŒðŠ·
+ï»¿
+// æ—§ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã¨æ–°ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®æƒ…å ±äº¤æ›
 void Exchange(GOBJECT* pNew, CHARACTERINFO2* pOld, BOOL isOldToNew);
 
 //***************************************************
-//@”pŽ~‚³‚ê‚½ŠÖ”‚Ì‘ã‚í‚è
+//ã€€å»ƒæ­¢ã•ã‚ŒãŸé–¢æ•°ã®ä»£ã‚ã‚Š
 //***************************************************
 
 void Furimuki(DWORD oid);
@@ -16,20 +16,20 @@ void AddPowerGauge(GOBJECT *pdat,double plus);
 void InitializeGCDandBMP(GOBJECT *pdat,DWORD color);
 void UnloadMyBitmaps(GOBJECT *pdat);
 
-#define MAXMYSOUND 32//sound31.wav‚Ü‚Å‚ð“Ç‚Ý‚±‚Þ
+#define MAXMYSOUND 32//sound31.wavã¾ã§ã‚’èª­ã¿ã“ã‚€
 /*
 struct MYATTACKINFO
 {
-	DWORD hit;		//ƒqƒbƒgî•ñB‰º‚Ìƒtƒ‰ƒO(HITINFO_`)‚Ì˜_—˜a‚ðŽw’è
-	DWORD guard;	//ƒK[ƒhî•ñB‰º‚Ìƒtƒ‰ƒO(GUARDINFO_`)‚Ì˜_—˜a‚ðŽw’ø
-	DWORD objid;	//UŒ‚‚ðs‚Á‚½ƒIƒuƒWƒFƒNƒg‚ÌID
-	DWORD id;		//ƒLƒƒƒ‰ƒNƒ^‘¤‚ÅŸŽè‚É’è‹`‚µ‚Ä
-	double pg_hit;	//UŒ‚ƒqƒbƒgŽž‚ÌƒQ[ƒW‘‰Á—Ê
-	double pg_guard;//UŒ‚ƒK[ƒh‚³‚ê‚½‚Æ‚«‚ÌƒQ[ƒW‘‰Á—Ê
-	DWORD damage;	//ƒ_ƒ[ƒW
-	DWORD kezuri;	//í‚è
-	BOOL muki;		//‘ŠŽè‚ª‚Ì‚¯‚¼‚éŒü‚«
-	//ªATTACKINFO‚Æ‘S‚­“¯‚¶ «”pŽ~‚³‚ê‚½ƒƒ“ƒo
+	DWORD hit;		//ãƒ’ãƒƒãƒˆæƒ…å ±ã€‚ä¸‹ã®ãƒ•ãƒ©ã‚°(HITINFO_ï½ž)ã®è«–ç†å’Œã‚’æŒ‡å®š
+	DWORD guard;	//ã‚¬ãƒ¼ãƒ‰æƒ…å ±ã€‚ä¸‹ã®ãƒ•ãƒ©ã‚°(GUARDINFO_ï½ž)ã®è«–ç†å’Œã‚’æŒ‡è‰‡
+	DWORD objid;	//æ”»æ’ƒã‚’è¡Œã£ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ID
+	DWORD id;		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å´ã§å‹æ‰‹ã«å®šç¾©ã—ã¦
+	double pg_hit;	//æ”»æ’ƒãƒ’ãƒƒãƒˆæ™‚ã®ã‚²ãƒ¼ã‚¸å¢—åŠ é‡
+	double pg_guard;//æ”»æ’ƒã‚¬ãƒ¼ãƒ‰ã•ã‚ŒãŸã¨ãã®ã‚²ãƒ¼ã‚¸å¢—åŠ é‡
+	DWORD damage;	//ãƒ€ãƒ¡ãƒ¼ã‚¸
+	DWORD kezuri;	//å‰Šã‚Š
+	BOOL muki;		//ç›¸æ‰‹ãŒã®ã‘ãžã‚‹å‘ã
+	//â†‘ATTACKINFOã¨å…¨ãåŒã˜ â†“å»ƒæ­¢ã•ã‚ŒãŸãƒ¡ãƒ³ãƒ
 	DWORD dur;
 };*/
 void StartAttack(DWORD oid,MYATTACKINFO *ainfo);
@@ -39,7 +39,7 @@ void GetMyAttackInfo(DWORD oid, const ATTACKINFO *ainfo,
 							 MYATTACKINFO* mainfo, BOOL IsMyObject);
 
 //***************************************************
-//  Ž©“®”ò‚Ñ“¹‹ï
+//  è‡ªå‹•é£›ã³é“å…·
 //***************************************************
 /*
 struct BULLETINFO_A
@@ -48,9 +48,9 @@ struct BULLETINFO_A
 	double y;
 	BOOL muki;
 	MYATTACKINFO atk;
-	int dur;//Ž‘±ŽžŠÔ
+	int dur;//æŒç¶šæ™‚é–“
 
-	DWORD type;//‰º‚É‚ ‚éƒtƒ‰ƒO‚ðŽw’è
+	DWORD type;//ä¸‹ã«ã‚ã‚‹ãƒ•ãƒ©ã‚°ã‚’æŒ‡å®š
 	int *cell_run;
 	int *cell_dis;
 	DWORD spd_run;
@@ -60,28 +60,28 @@ struct BULLETINFO_A
 	double ax;
 	double ay;
 
-	DWORD state;//ó‘ÔB‚±‚±‚ª0‚¾‚ÆÁ–Å
+	DWORD state;//çŠ¶æ…‹ã€‚ã“ã“ãŒ0ã ã¨æ¶ˆæ»…
 	DWORD cid;
 
 	LPVOID info_b;
 };
 */
-#define BULLETA_VSHUMAN		0x00000001//“GƒLƒƒƒ‰ƒNƒ^[‚É“–‚½‚é
-#define BULLETA_VSBULLET	0x00000002//“G”ò‚Ñ“¹‹ï‚Æ‘ŠŽE‚·‚é
-#define BULLETA_DONOTDIE	0x00000004//Õ“ËŒã‚àÁ–Å‚µ‚È‚¢‚Å”ò‚ñ‚Å‚¢‚­
-#define BULLETA_DRAWBACK	0x00000008//l•¨‚æ‚è‚àŒã‚ë‚É•`‰æ‚·‚é
-#define BULLETA_DRAWMIDDLE	0x00000040//ƒLƒƒƒ‰ƒNƒ^[Eƒqƒbƒgƒ}[ƒNŠÔ‚É•`‰æ
-#define BULLETA_XJIMENN		0x00010000//’n–Ê‚É—Ž‚Á‚±‚¿‚é‚ÆÁ–Å‚·‚é
-#define BULLETA_XGAMENGAI	0x00020000//‰æ–ÊŠO‚É’B‚·‚é‚ÆÁ–Å
-#define BULLETA_JIMAESYORI	0x10000000//info_bƒƒ“ƒo‚ª—LŒø‚Å‚ ‚èAˆ—‚ðŽ©‘O‚Ås‚¤
-#define BULLETA_DISPZAHYO	0x00000010//À•WŽw’è‚ÍƒfƒBƒXƒvƒŒƒCã‚ÌÀ•WBƒXƒe[ƒWã‚Ì•\Ž¦ˆÊ’u‚É¶‰E‚³‚ê‚È‚¢
-#define BULLETA_DONOTSTOP	0x00000020//’´•K“™‚ÅstopƒGƒtƒFƒNƒg‚ª‚©‚©‚Á‚Ä‚¢‚Ä‚à•`‰æ‚ªŽ~‚Ü‚ç‚È‚¢
+#define BULLETA_VSHUMAN		0x00000001//æ•µã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã«å½“ãŸã‚‹
+#define BULLETA_VSBULLET	0x00000002//æ•µé£›ã³é“å…·ã¨ç›¸æ®ºã™ã‚‹
+#define BULLETA_DONOTDIE	0x00000004//è¡çªå¾Œã‚‚æ¶ˆæ»…ã—ãªã„ã§é£›ã‚“ã§ã„ã
+#define BULLETA_DRAWBACK	0x00000008//äººç‰©ã‚ˆã‚Šã‚‚å¾Œã‚ã«æç”»ã™ã‚‹
+#define BULLETA_DRAWMIDDLE	0x00000040//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ»ãƒ’ãƒƒãƒˆãƒžãƒ¼ã‚¯é–“ã«æç”»
+#define BULLETA_XJIMENN		0x00010000//åœ°é¢ã«è½ã£ã“ã¡ã‚‹ã¨æ¶ˆæ»…ã™ã‚‹
+#define BULLETA_XGAMENGAI	0x00020000//ç”»é¢å¤–ã«é”ã™ã‚‹ã¨æ¶ˆæ»…
+#define BULLETA_JIMAESYORI	0x10000000//info_bãƒ¡ãƒ³ãƒãŒæœ‰åŠ¹ã§ã‚ã‚Šã€å‡¦ç†ã‚’è‡ªå‰ã§è¡Œã†
+#define BULLETA_DISPZAHYO	0x00000010//åº§æ¨™æŒ‡å®šã¯ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ä¸Šã®åº§æ¨™ã€‚ã‚¹ãƒ†ãƒ¼ã‚¸ä¸Šã®è¡¨ç¤ºä½ç½®ã«å·¦å³ã•ã‚Œãªã„
+#define BULLETA_DONOTSTOP	0x00000020//è¶…å¿…ç­‰ã§stopã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒã‹ã‹ã£ã¦ã„ã¦ã‚‚æç”»ãŒæ­¢ã¾ã‚‰ãªã„
 
-void GoBulletA(GOBJECT *pdat,BULLETINFO_A *bulinfo);//Ž©“®”ò‚Ñ“¹‹ï”­ŽË
-DWORD BulletACallBack(DWORD msg,LPVOID dat,DWORD prm);//Ž©“®”ò‚Ñ“¹‹ï‚ÌƒƒbƒZ[ƒWˆ—ŠÖ”
-DWORD JimaeBulletACallBack(DWORD msg,LPVOID dat,DWORD prm);//Ž©“®”ò‚Ñ“¹‹ïiŽ©—§s“®ƒ^ƒCƒvj‚ÌƒƒbƒZ[ƒWˆ—ŠÖ”
+void GoBulletA(GOBJECT *pdat,BULLETINFO_A *bulinfo);//è‡ªå‹•é£›ã³é“å…·ç™ºå°„
+DWORD BulletACallBack(DWORD msg,LPVOID dat,DWORD prm);//è‡ªå‹•é£›ã³é“å…·ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†é–¢æ•°
+DWORD JimaeBulletACallBack(DWORD msg,LPVOID dat,DWORD prm);//è‡ªå‹•é£›ã³é“å…·ï¼ˆè‡ªç«‹è¡Œå‹•ã‚¿ã‚¤ãƒ—ï¼‰ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†é–¢æ•°
 
-struct STRUCT_BULLETA//Ž©“®”ò‚Ñ“¹‹ï—pƒf[ƒ^
+struct STRUCT_BULLETA//è‡ªå‹•é£›ã³é“å…·ç”¨ãƒ‡ãƒ¼ã‚¿
 {
 	int *cell_run;
 	int *cell_dis;
@@ -89,19 +89,19 @@ struct STRUCT_BULLETA//Ž©“®”ò‚Ñ“¹‹ï—pƒf[ƒ^
 	int num_dis;
 	DWORD spd_run;
 	DWORD spd_dis;
-	int dur;//Ž‘±ŽžŠÔ
-	BULLETINFO_A *pbinfo_a;//Á–Å‚µ‚½‚çstate‚ð0‚É‚·‚é
-	DWORD poid;//”­ŽËŒ³ƒIƒuƒWƒFƒNƒg
-	DWORD flags;//Žw’è‚³‚ê‚½ƒtƒ‰ƒO
+	int dur;//æŒç¶šæ™‚é–“
+	BULLETINFO_A *pbinfo_a;//æ¶ˆæ»…ã—ãŸã‚‰stateã‚’0ã«ã™ã‚‹
+	DWORD poid;//ç™ºå°„å…ƒã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	DWORD flags;//æŒ‡å®šã•ã‚ŒãŸãƒ•ãƒ©ã‚°
 	WORD ObjectID;
 };
 
-//”ò‚Ñ“¹‹ï‚Ìó‘Ô
-#define BULLETASTATE_RUN	1//”òãÄ’†
-#define BULLETASTATE_RUN2	2//UŒ‚—Í‚ðŽ‚½‚È‚¢”òãÄ’†
-#define BULLETASTATE_DIS	3//Á–Å’†
+//é£›ã³é“å…·ã®çŠ¶æ…‹
+#define BULLETASTATE_RUN	1//é£›ç¿”ä¸­
+#define BULLETASTATE_RUN2	2//æ”»æ’ƒåŠ›ã‚’æŒãŸãªã„é£›ç¿”ä¸­
+#define BULLETASTATE_DIS	3//æ¶ˆæ»…ä¸­
 
-#define MYGOBJMSG_BULLETHIT	(GOBJMSG_USERDEFINE | 0xB1E0)//”ò‚Ñ“¹‹ïƒqƒbƒg‚µ‚½‚æƒƒbƒZ[ƒW
+#define MYGOBJMSG_BULLETHIT	(GOBJMSG_USERDEFINE | 0xB1E0)//é£›ã³é“å…·ãƒ’ãƒƒãƒˆã—ãŸã‚ˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 
 typedef struct tagBULLETATKINFO
 {

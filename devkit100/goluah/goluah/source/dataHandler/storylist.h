@@ -1,7 +1,7 @@
-
+ï»¿
 /*========================================================================
 
-	ƒXƒg[ƒŠ[ŠÇ—
+	ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ç®¡ç†
 
 ==========================================================================*/
 #pragma once
@@ -17,8 +17,8 @@ class CStoryElement_Settings;
 /*@{*/
 
 /*!
-*	@brief ƒXƒg[ƒŠ[ƒŠƒXƒg•Û
-*	Initialize‚ÍƒLƒƒƒ‰ƒNƒ^[ƒŠƒXƒgEƒXƒe[ƒWƒŠƒXƒg‚ª\’z‚³‚ê‚½Œã‚És‚¤‚±‚Æ
+*	@brief ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒªã‚¹ãƒˆä¿æŒ
+*	Initializeã¯ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒªã‚¹ãƒˆãƒ»ã‚¹ãƒ†ãƒ¼ã‚¸ãƒªã‚¹ãƒˆãŒæ§‹ç¯‰ã•ã‚ŒãŸå¾Œã«è¡Œã†ã“ã¨
 */
 class CStoryList
 {
@@ -27,41 +27,41 @@ public:
 
 	void Initialize();
 
-	UINT  GetAllStoryNum();							//!< ‘SƒXƒg[ƒŠ[”‚ğæ“¾
-	void  StartStory(UINT index);					//!< w’èƒCƒ“ƒfƒbƒNƒX‚ÌƒXƒg[ƒŠ[‚ğŠJn‚·‚é
-	char* GetStoryName(UINT index);					//!< w’èƒCƒ“ƒfƒbƒNƒX‚ÌƒXƒg[ƒŠ[–¼‚ğæ“¾‚·‚é
-	char* GetStoryBrief(UINT index);				//!< w’èƒCƒ“ƒfƒbƒNƒX‚ÌƒXƒg[ƒŠ[ŠT—v‚ğæ“¾‚·‚é
-	char* GetStoryDir(UINT index);					//!< w’èƒCƒ“ƒfƒbƒNƒX‚ÌƒXƒg[ƒŠ[ƒfƒBƒŒƒNƒgƒŠ‚ğæ“¾‚·‚é
-	void GetStoryIconPath(UINT index,char* dst);	//!< w’èƒCƒ“ƒfƒbƒNƒX‚ÌƒXƒg[ƒŠ[ƒAƒCƒRƒ“ƒtƒ@ƒCƒ‹–¼‚ğæ“¾‚·‚é
-	void GetStoryPreviewPath(UINT index,char* dst);	//!< w’èƒCƒ“ƒfƒbƒNƒX‚ÌƒXƒg[ƒŠ[ƒvƒŒƒrƒ…[ƒtƒ@ƒCƒ‹–¼‚ğæ“¾‚·‚é
-	CStoryInfo* GetStoryInfo(UINT index);			//!< w’èƒCƒ“ƒfƒbƒNƒX‚ÌƒXƒg[ƒŠ[î•ñ‚ğæ“¾
+	UINT  GetAllStoryNum();							//!< å…¨ã‚¹ãƒˆãƒ¼ãƒªãƒ¼æ•°ã‚’å–å¾—
+	void  StartStory(UINT index);					//!< æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã‚’é–‹å§‹ã™ã‚‹
+	char* GetStoryName(UINT index);					//!< æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚¹ãƒˆãƒ¼ãƒªãƒ¼åã‚’å–å¾—ã™ã‚‹
+	char* GetStoryBrief(UINT index);				//!< æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚¹ãƒˆãƒ¼ãƒªãƒ¼æ¦‚è¦ã‚’å–å¾—ã™ã‚‹
+	char* GetStoryDir(UINT index);					//!< æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’å–å¾—ã™ã‚‹
+	void GetStoryIconPath(UINT index,char* dst);	//!< æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã‚¢ã‚¤ã‚³ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å–å¾—ã™ã‚‹
+	void GetStoryPreviewPath(UINT index,char* dst);	//!< æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å–å¾—ã™ã‚‹
+	CStoryInfo* GetStoryInfo(UINT index);			//!< æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚¹ãƒˆãƒ¼ãƒªãƒ¼æƒ…å ±ã‚’å–å¾—
 
-	int   Ring2Index(UINT ridx,UINT idx);			//!< ƒfƒBƒŒƒNƒgƒŠƒCƒ“ƒfƒbƒNƒX+ƒfƒBƒŒƒNƒgƒŠ“àƒCƒ“ƒfƒbƒNƒX‚©‚çA‘S‘Ì’Ê‚µ”Ô†‚ğæ“¾
-	UINT  GetRingNum();								//!< ƒfƒBƒŒƒNƒgƒŠ”æ“¾
-	int   GetRingCount(UINT idx);					//!< w’èƒCƒ“ƒfƒbƒNƒX‚ÌƒfƒBƒŒƒNƒgƒŠ“à‚É‚ ‚éƒXƒg[ƒŠ[”æ“¾
+	int   Ring2Index(UINT ridx,UINT idx);			//!< ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹+ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå†…ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰ã€å…¨ä½“é€šã—ç•ªå·ã‚’å–å¾—
+	UINT  GetRingNum();								//!< ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªæ•°å–å¾—
+	int   GetRingCount(UINT idx);					//!< æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå†…ã«ã‚ã‚‹ã‚¹ãƒˆãƒ¼ãƒªãƒ¼æ•°å–å¾—
 
-	int   GetErrorCount();							//!< “Ç‚İ‚İ‚É¸”s‚µ‚½ƒXƒg[ƒŠ[”æ“¾
-	char* GetErrorStr(UINT idx);					//!< “Ç‚İ‚İ¸”s——Ræ“¾
-	char* GetErrorDir(UINT idx);					//!< “Ç‚İ‚İ¸”sƒfƒBƒŒƒNƒgƒŠ
+	int   GetErrorCount();							//!< èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ãŸã‚¹ãƒˆãƒ¼ãƒªãƒ¼æ•°å–å¾—
+	char* GetErrorStr(UINT idx);					//!< èª­ã¿è¾¼ã¿å¤±æ•—ç†ç”±å–å¾—
+	char* GetErrorDir(UINT idx);					//!< èª­ã¿è¾¼ã¿å¤±æ•—ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
 
 
 	/*
-		@brief ƒXƒg[ƒŠ[ƒŠƒXƒg—v‘f’è‹`
+		@brief ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ãƒªã‚¹ãƒˆè¦ç´ å®šç¾©
 	*/
 	struct CStoryInfo
 	{
-		char dir[128];					//!< Àsƒtƒ@ƒCƒ‹‚©‚ç‚Ì‘Š‘ÎƒpƒX
+		char dir[128];					//!< å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã®ç›¸å¯¾ãƒ‘ã‚¹
 		char name[64];
 		char icon[64];
 		char preview[64];
 		char brief[512];
 
-		//ƒLƒƒƒ‰ƒNƒ^’è‹`
-		int cnum;						//!< charw’è”
-		int characters[MAXNUM_TEAM];	//!< charw’è@(-1:userselect -2:w’è‚È‚µ)
-		int color[MAXNUM_TEAM];			//!< Fw’è
-		DWORD option[MAXNUM_TEAM];		//!< ƒIƒvƒVƒ‡ƒ“’¼Úw’è(userselectˆÈŠO‚Å—LŒø)
-		StoryOptType opttype[MAXNUM_TEAM];//!< ƒIƒvƒVƒ‡ƒ“w’èƒtƒ‰ƒO(userselectˆÈŠO‚Å—LŒø)
+		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å®šç¾©
+		int cnum;						//!< charæŒ‡å®šæ•°
+		int characters[MAXNUM_TEAM];	//!< charæŒ‡å®šã€€(-1:userselect -2:æŒ‡å®šãªã—)
+		int color[MAXNUM_TEAM];			//!< è‰²æŒ‡å®š
+		DWORD option[MAXNUM_TEAM];		//!< ã‚ªãƒ—ã‚·ãƒ§ãƒ³ç›´æ¥æŒ‡å®š(userselectä»¥å¤–ã§æœ‰åŠ¹)
+		StoryOptType opttype[MAXNUM_TEAM];//!< ã‚ªãƒ—ã‚·ãƒ§ãƒ³æŒ‡å®šãƒ•ãƒ©ã‚°(userselectä»¥å¤–ã§æœ‰åŠ¹)
 
 		void Clear();
 		void Setup(CStoryElement_Settings* settings,char* dir1,char* dir2);
@@ -76,22 +76,22 @@ public:
 	typedef std::vector<CStoryInfo> CStoryInfoList;
 
 protected:
-	//!ƒfƒBƒŒƒNƒgƒŠƒŠƒXƒg—v‘f
+	//!ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒªã‚¹ãƒˆè¦ç´ 
 	struct CStoryRingInfo
 	{
 		char dir[64];
-		std::vector<DWORD> ring2serial;//!< ƒŠƒ“ƒO“à‚Å‚ÌƒCƒ“ƒfƒbƒNƒX¨‘S‘Ì’Ê‚µ”Ô†ƒCƒ“ƒfƒbƒNƒX•ÏŠ·
+		std::vector<DWORD> ring2serial;//!< ãƒªãƒ³ã‚°å†…ã§ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹â†’å…¨ä½“é€šã—ç•ªå·ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å¤‰æ›
 	};
 	typedef std::vector<CStoryRingInfo> CStoryRingInfoList;
 
 
 	CStoryInfoList     list;
-	CStoryInfoList     dlist;//!< ŒŸØ¸”sƒŠƒXƒgBbrief ‚Éƒ_ƒ——R‚ğ“ü‚ê‚éB
+	CStoryInfoList     dlist;//!< æ¤œè¨¼å¤±æ•—ãƒªã‚¹ãƒˆã€‚brief ã«ãƒ€ãƒ¡ç†ç”±ã‚’å…¥ã‚Œã‚‹ã€‚
 	CStoryRingInfoList rlist;
 
 protected:
 
-	//ƒXƒNƒŠƒvƒg‰ğßŒã‚Ì—v‘fƒŠƒXƒg‚©‚ç‚ÌŠeíî•ñæ‚èo‚µ
+	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆè§£é‡ˆå¾Œã®è¦ç´ ãƒªã‚¹ãƒˆã‹ã‚‰ã®å„ç¨®æƒ…å ±å–ã‚Šå‡ºã—
 	static char* GetName(SScriptElementList& scr);
 	static char* GetBrief(SScriptElementList& scr);
 	static int*  GetCharacters(SScriptElementList& scr);

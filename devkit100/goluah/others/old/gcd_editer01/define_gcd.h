@@ -1,4 +1,4 @@
-
+﻿
 #define GCD_VERSION			(700)//for ver0.7
 #define GCDMAX_RECTANGLES	(1024)
 #define GCDMAX_CELLS		(1024)

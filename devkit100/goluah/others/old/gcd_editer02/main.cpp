@@ -1,4 +1,4 @@
-#include <windows.h>
+ï»¿#include <windows.h>
 #include <stdio.h>
 #include <math.h>
 #include <d3d8.h>
@@ -15,13 +15,13 @@
 HWND hwcld=NULL;
 HWND ghwnd=NULL;
 
-int radio =0;//ƒGƒfƒBƒbƒgƒ‚[ƒhiƒIƒtƒZƒbƒg/”»’èj
-int radio2=0;//ƒZƒ‹#2
+int radio =0;//ã‚¨ãƒ‡ã‚£ãƒƒãƒˆãƒ¢ãƒ¼ãƒ‰ï¼ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ/åˆ¤å®šï¼‰
+int radio2=0;//ã‚»ãƒ«#2
 int edit_now;
 int radioview=-1;
 
 CDirectDraw *pddraw;
-BOOL testmirrorx=FALSE,testmirrory=FALSE;//¶‰E”½“]ƒeƒXƒg
+BOOL testmirrorx=FALSE,testmirrory=FALSE;//å·¦å³åè»¢ãƒ†ã‚¹ãƒˆ
 BOOL tobasilink=FALSE;
 
 // edit data ===================================================================
@@ -30,7 +30,7 @@ GCD_RECT	ed_r[GCDMAX_RECTANGLES];
 GCD_CELL2	ed_c[GCDMAX_CELLS];
 GCD_HANTEI	ed_h[GCDMAX_CELLS];
 
-GCD_CELL2 ed_copy;//ƒRƒs[‚Ì‚½‚ß‚Ìˆêƒf[ƒ^’u‚«ê
+GCD_CELL2 ed_copy;//ã‚³ãƒ”ãƒ¼ã®ãŸã‚ã®ä¸€æ™‚ãƒ‡ãƒ¼ã‚¿ç½®ãå ´
 GCD_HANTEI ed_copy2;
 
 // function ====================================================================
@@ -86,7 +86,7 @@ BOOL CALLBACK DialogProc(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 		SendMessage(GetDlgItem(ghwnd,IDC_RADIO1), BM_SETCHECK, BST_CHECKED, 0);
 		SendMessage(GetDlgItem(ghwnd,IDC_RADIOSEL1), BM_SETCHECK, BST_CHECKED, 0);
 		SendMessage(GetDlgItem(ghwnd,IDC_RADIO_VIEW4), BM_SETCHECK, BST_CHECKED, 0);
-		pddraw->clearbgcolor = 0xFFF0F0F0;//‚Å‚Ó‚§‚Ì”wŒiF
+		pddraw->clearbgcolor = 0xFFF0F0F0;//ã§ãµã‰ã®èƒŒæ™¯è‰²
 		SendMessage(GetDlgItem(ghwnd,IDC_RADIO_BG1), BM_SETCHECK, BST_CHECKED, 0);
 		RadioChanged();
 		EditChanged();
@@ -121,7 +121,7 @@ BOOL DlgCommand(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 	case IDC_BUTTON_SAVE:GCDSaveDlg(ed_c,ed_r,ed_h,&ed_hed);break;
 	case IDC_BUTTON_SAVE2:GCDSaveHeader(&ed_hed);break;
 
-	//edit_nowˆÚ“®
+	//edit_nowç§»å‹•
 	case IDC_BUTTON_P:
 		if(edit_now==1 || edit_now==0){
 			edit_now=0;
@@ -165,7 +165,7 @@ BOOL DlgCommand(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 		FindFind(FALSE);EditChanged();
 		break;
 
-	//cell# •ÏX
+	//cell# å¤‰æ›´
 	case IDC_RADIO1:
 	case IDC_RADIO2:
 	case IDC_RADIO3:
@@ -188,33 +188,33 @@ BOOL DlgCommand(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 	case IDC_RADIO_VIEW6:
 		RadioChanged();break;
 
-	//”»’èƒZƒbƒgƒ{ƒ^ƒ“
-	case IDC_BUTTON_KASANARI0://d‚È‚è”»’è
+	//åˆ¤å®šã‚»ãƒƒãƒˆãƒœã‚¿ãƒ³
+	case IDC_BUTTON_KASANARI0://é‡ãªã‚Šåˆ¤å®š
 		SetKasanari(0);break;
 	case IDC_BUTTON_KASANARI1:
 		SetKasanari(1);break;
 	case IDC_BUTTON_KASANARI2:
 		SetKasanari(2);break;
-	case IDC_BUTTON_KURAI0://‹ò‚ç‚¢”»’è
+	case IDC_BUTTON_KURAI0://å–°ã‚‰ã„åˆ¤å®š
 		SetKurai(0);break;
 	case IDC_BUTTON_KURAI1:
 		SetKurai(1);break;
 	case IDC_BUTTON_KURAI2:
 		SetKurai(2);break;
-	case IDC_BUTTON_KOUGEKI0://UŒ‚”»’è
+	case IDC_BUTTON_KOUGEKI0://æ”»æ’ƒåˆ¤å®š
 		SetKougeki(0);break;
 	case IDC_BUTTON_KOUGEKI1:
 		SetKougeki(1);break;
 	case IDC_BUTTON_KOUGEKI2:
 		SetKougeki(2);break;
 
-	//edit_now#’¼Úw’è / ƒZƒ‹’è‹`–¼•ÏX
+	//edit_now#ç›´æ¥æŒ‡å®š / ã‚»ãƒ«å®šç¾©åå¤‰æ›´
 	case IDC_EDIT1:
 		EditChanged2();break;
 	case IDC_EDIT2:
 		Edit2Changed2();break;
 
-	//ƒZƒ‹“ü‚ê‘Ö‚¦ˆ—
+	//ã‚»ãƒ«å…¥ã‚Œæ›¿ãˆå‡¦ç†
 	case IDC_BUTTONFLIP1:
 		fcell = ed_c[edit_now].cell[0];
 		ed_c[edit_now].cell[0] = ed_c[edit_now].cell[1];
@@ -258,7 +258,7 @@ BOOL DlgCommand(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 		CldRedraw();
 		break;
 
-	//ƒ`ƒFƒbƒNƒ{ƒbƒNƒX•ÏXˆ—
+	//ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹å¤‰æ›´å‡¦ç†
 	case IDC_CHECK1:
 	case IDC_CHECK2:
 	case IDC_TESTCHECK1:
@@ -267,51 +267,51 @@ BOOL DlgCommand(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 	case IDC_TOBASILINK:
 		CheckChanged();break;
 
-	//”wŒiFw’è
+	//èƒŒæ™¯è‰²æŒ‡å®š
 	case IDC_RADIO_BG1:pddraw->clearbgcolor = 0xFFF0F0F0;CldRedraw();break;
 	case IDC_RADIO_BG2:pddraw->clearbgcolor = 0xFF0F0F0F;CldRedraw();break;
 	case IDC_RADIO_BG3:pddraw->clearbgcolor = 0xFFF000F0;CldRedraw();break;
 	case IDC_RADIO_BG4:pddraw->clearbgcolor = 0xFF00F0F0;CldRedraw();break;
 
-	//‹éŒ`”Ô†•ÏXˆ—
+	//çŸ©å½¢ç•ªå·å¤‰æ›´å‡¦ç†
 	case IDC_BUTTON_BN  :if(FindRect(TRUE , 1))DlgRedraw();break;
 	case IDC_BUTTON_BN10:if(FindRect(TRUE ,10))DlgRedraw();break;
 	case IDC_BUTTON_BP  :if(FindRect(FALSE, 1))DlgRedraw();break;
 	case IDC_BUTTON_BP10:if(FindRect(FALSE,10))DlgRedraw();break;
 
-	//uÁ‹vƒ{ƒ^ƒ“
+	//ã€Œæ¶ˆå»ã€ãƒœã‚¿ãƒ³
 	case IDC_BUTTON_ERASE:
-		sprintf(msgout,"%d”Ô‚Ìƒf[ƒ^‚ğÁ‹‚µ‚Ü‚·B\nƒCƒCƒfƒXƒJH",edit_now);
-		if(MessageBox(hwndDlg,msgout,"ƒf[ƒ^Á‹",MB_YESNO)==IDYES){
+		sprintf(msgout,"%dç•ªã®ãƒ‡ãƒ¼ã‚¿ã‚’æ¶ˆå»ã—ã¾ã™ã€‚\nã‚¤ã‚¤ãƒ‡ã‚¹ã‚«ï¼Ÿ",edit_now);
+		if(MessageBox(hwndDlg,msgout,"ãƒ‡ãƒ¼ã‚¿æ¶ˆå»",MB_YESNO)==IDYES){
 			GCDSetEmptyCell2(&ed_c[edit_now],&ed_h[edit_now]);
 			DlgRedraw();
 		}break;
 
-	//uƒRƒs[vu“\‚è•t‚¯vƒ{ƒ^ƒ“
+	//ã€Œã‚³ãƒ”ãƒ¼ã€ã€Œè²¼ã‚Šä»˜ã‘ã€ãƒœã‚¿ãƒ³
 	case IDC_BUTTON_COPY:
 		ed_copy = ed_c[edit_now];
 		ed_copy2 = ed_h[edit_now];
-//		MessageBox(hwndDlg,"ƒRƒs[","‚µ‚Ü‚·‚½",MB_OK);
+//		MessageBox(hwndDlg,"ã‚³ãƒ”ãƒ¼","ã—ã¾ã™ãŸ",MB_OK);
 		break;
 	case IDC_BUTTON_PASTE:
-		if(MessageBox(hwndDlg,"ƒRƒs[‚µ‚½ƒf[ƒ^‚ğ“\‚è•t‚¯‚Ü‚·B\nƒCƒCƒfƒXƒJH",
+		if(MessageBox(hwndDlg,"ã‚³ãƒ”ãƒ¼ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’è²¼ã‚Šä»˜ã‘ã¾ã™ã€‚\nã‚¤ã‚¤ãƒ‡ã‚¹ã‚«ï¼Ÿ",
 													"paste",MB_YESNO)==IDYES){
 			ed_c[edit_now] = ed_copy;
 			ed_h[edit_now] = ed_copy2;
 			DlgRedraw();
-//			MessageBox(hwndDlg,"ƒRƒs[","Às‚µ‚Ü‚·‚½",MB_OK);
+//			MessageBox(hwndDlg,"ã‚³ãƒ”ãƒ¼","å®Ÿè¡Œã—ã¾ã™ãŸ",MB_OK);
 		}
 		break;
 
-	//”»’è‹éŒ`‚ÌƒŠƒZƒbƒg
+	//åˆ¤å®šçŸ©å½¢ã®ãƒªã‚»ãƒƒãƒˆ
 	case IDC_BUTTON_RESETHANTEI:
-		if(MessageBox(hwndDlg,"”»’è‚Ì‹éŒ`‚ğ‘S•”ƒNƒŠƒA‚µ‚Ü‚·B\nOK?","Šm”F",MB_YESNO)==IDYES){
+		if(MessageBox(hwndDlg,"åˆ¤å®šã®çŸ©å½¢ã‚’å…¨éƒ¨ã‚¯ãƒªã‚¢ã—ã¾ã™ã€‚\nOK?","ç¢ºèª",MB_YESNO)==IDYES){
 			ZeroMemory(&ed_h[edit_now],sizeof(GCD_HANTEI));
 			CldRedraw();
 		}
 		break;
 
-	case IDC_BUTTON_MAG://‰ñ“]Šp‚ÆŠg‘å—¦‚Ì”’lw’è
+	case IDC_BUTTON_MAG://å›è»¢è§’ã¨æ‹¡å¤§ç‡ã®æ•°å€¤æŒ‡å®š
 		DialogBox(GetModuleHandle(NULL),
 			MAKEINTRESOURCE(IDD_DIALOG2),
 			hwndDlg,
@@ -325,7 +325,7 @@ BOOL DlgCommand(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 	return(TRUE);
 }
 
-void FindBlank(BOOL pre)//‹ó‚Á‚Û‚Ìƒf[ƒ^‚ğ’T‚·
+void FindBlank(BOOL pre)//ç©ºã£ã½ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ¢ã™
 {
 	int tmp = edit_now;
 
@@ -336,16 +336,16 @@ void FindBlank(BOOL pre)//‹ó‚Á‚Û‚Ìƒf[ƒ^‚ğ’T‚·
 	tmp+=a;
 
 	while(tmp < GCDMAX_RECTANGLES && tmp>=0){
-		if(GCDIsEmptyCell2(ed_c[tmp],ed_h[tmp])){//Œ©‚Â‚©‚Á‚½
+		if(GCDIsEmptyCell2(ed_c[tmp],ed_h[tmp])){//è¦‹ã¤ã‹ã£ãŸ
 			edit_now=tmp;
 			return;
 		}
 		else tmp+=a;
 	}
-	MessageBox(ghwnd,"‚ ‚è‚Ü‚¹‚ñ","FindBlank()",MB_OK);
+	MessageBox(ghwnd,"ã‚ã‚Šã¾ã›ã‚“","FindBlank()",MB_OK);
 }
 
-void FindFind(BOOL pre)//‹ó‚Á‚Û‚Å‚Í‚È‚¢ƒf[ƒ^‚ğ’T‚·
+void FindFind(BOOL pre)//ç©ºã£ã½ã§ã¯ãªã„ãƒ‡ãƒ¼ã‚¿ã‚’æ¢ã™
 {
 	int tmp = edit_now;
 
@@ -356,23 +356,23 @@ void FindFind(BOOL pre)//‹ó‚Á‚Û‚Å‚Í‚È‚¢ƒf[ƒ^‚ğ’T‚·
 	tmp+=a;
 
 	while(tmp < GCDMAX_RECTANGLES && tmp>=0){
-		if(!GCDIsEmptyCell2(ed_c[tmp],ed_h[tmp])){//Œ©‚Â‚©‚Á‚½
+		if(!GCDIsEmptyCell2(ed_c[tmp],ed_h[tmp])){//è¦‹ã¤ã‹ã£ãŸ
 			edit_now=tmp;
 			return;
 		}
 		else tmp+=a;
 	}
-	MessageBox(ghwnd,"‚ ‚è‚Ü‚¹‚ñ","FindFind()",MB_OK);
+	MessageBox(ghwnd,"ã‚ã‚Šã¾ã›ã‚“","FindFind()",MB_OK);
 }
 
 void RadioChanged()
 {
-	if(SendMessage(GetDlgItem(ghwnd,IDC_RADIO1), BM_GETCHECK, 0L, 0L)==BST_CHECKED)radio=0;//ˆÚ“®
-	if(SendMessage(GetDlgItem(ghwnd,IDC_RADIO2), BM_GETCHECK, 0L, 0L)==BST_CHECKED)radio=1;//”»’è‹éŒ`
-	if(SendMessage(GetDlgItem(ghwnd,IDC_RADIO3), BM_GETCHECK, 0L, 0L)==BST_CHECKED)radio=2;//dSİ’è
-	if(SendMessage(GetDlgItem(ghwnd,IDC_RADIO4), BM_GETCHECK, 0L, 0L)==BST_CHECKED)radio=3;//‰ñ“]
-	if(SendMessage(GetDlgItem(ghwnd,IDC_RADIO5), BM_GETCHECK, 0L, 0L)==BST_CHECKED)radio=4;//Šg‘åk¬x
-	if(SendMessage(GetDlgItem(ghwnd,IDC_RADIO6), BM_GETCHECK, 0L, 0L)==BST_CHECKED)radio=5;//Šg‘åk¬y
+	if(SendMessage(GetDlgItem(ghwnd,IDC_RADIO1), BM_GETCHECK, 0L, 0L)==BST_CHECKED)radio=0;//ç§»å‹•
+	if(SendMessage(GetDlgItem(ghwnd,IDC_RADIO2), BM_GETCHECK, 0L, 0L)==BST_CHECKED)radio=1;//åˆ¤å®šçŸ©å½¢
+	if(SendMessage(GetDlgItem(ghwnd,IDC_RADIO3), BM_GETCHECK, 0L, 0L)==BST_CHECKED)radio=2;//é‡å¿ƒè¨­å®š
+	if(SendMessage(GetDlgItem(ghwnd,IDC_RADIO4), BM_GETCHECK, 0L, 0L)==BST_CHECKED)radio=3;//å›è»¢
+	if(SendMessage(GetDlgItem(ghwnd,IDC_RADIO5), BM_GETCHECK, 0L, 0L)==BST_CHECKED)radio=4;//æ‹¡å¤§ç¸®å°x
+	if(SendMessage(GetDlgItem(ghwnd,IDC_RADIO6), BM_GETCHECK, 0L, 0L)==BST_CHECKED)radio=5;//æ‹¡å¤§ç¸®å°y
 
 	if(radio!=1){ 
 		EnableWindow(GetDlgItem(ghwnd,IDC_BUTTON_KASANARI0),FALSE);
@@ -471,7 +471,7 @@ BOOL FindRect(BOOL fwd,int num)
 			ed_c[edit_now].cell[radio2].cdr=0;
 			return(TRUE);
 		}
-		if(!GCDIsEmptyRect(ed_r[tmp])){//Œ©‚Â‚©‚Á‚½
+		if(!GCDIsEmptyRect(ed_r[tmp])){//è¦‹ã¤ã‹ã£ãŸ
 			found++;
 			if(num==found){
 				ed_c[edit_now].cell[radio2].cdr=tmp;
@@ -548,12 +548,12 @@ void SetKougeki(DWORD n)
 
 void CheckChanged()
 {
-	//x•ûŒü”½“]
+	//xæ–¹å‘åè»¢
 	if(SendMessage(GetDlgItem(ghwnd,IDC_CHECK1), BM_GETCHECK, 0L, 0L)==BST_CHECKED)
 		ed_c[edit_now].cell[radio2].flag |= 0x00000001;
 	else
 		ed_c[edit_now].cell[radio2].flag &= 0xFFFFFFFE;
-	//y•ûŒü”½“]
+	//yæ–¹å‘åè»¢
 	if(SendMessage(GetDlgItem(ghwnd,IDC_CHECK2), BM_GETCHECK, 0L, 0L)==BST_CHECKED)
 		ed_c[edit_now].cell[radio2].flag |= 0x00000002;
 	else
@@ -577,7 +577,7 @@ void CheckChanged()
 	else
 		ed_c[edit_now].flag &= (!GCDCELL2_LINK);
 
-	//ƒŠƒ“ƒNƒZƒ‹”ò‚Î‚µ
+	//ãƒªãƒ³ã‚¯ã‚»ãƒ«é£›ã°ã—
 	if(SendMessage(GetDlgItem(ghwnd,IDC_TOBASILINK), BM_GETCHECK, 0L, 0L)==BST_CHECKED)
 		tobasilink=TRUE;
 	else
@@ -614,12 +614,12 @@ void DlgRedraw()
 	InvalidateRect(ghwnd,&r,TRUE);
 	CldRedraw();
 
-	//x•ûŒü”½“]
+	//xæ–¹å‘åè»¢
 	if(ed_c[edit_now].cell[radio2].flag & 0x00000001)
 		SendMessage(GetDlgItem(ghwnd,IDC_CHECK1), BM_SETCHECK, BST_CHECKED, 0L);
 	else
 		SendMessage(GetDlgItem(ghwnd,IDC_CHECK1), BM_SETCHECK, BST_UNCHECKED, 0L);
-	//‚™•ûŒü”½“]
+	//ï½™æ–¹å‘åè»¢
 	if(ed_c[edit_now].cell[radio2].flag & 0x00000002)
 		SendMessage(GetDlgItem(ghwnd,IDC_CHECK2), BM_SETCHECK, BST_CHECKED, 0L);
 	else

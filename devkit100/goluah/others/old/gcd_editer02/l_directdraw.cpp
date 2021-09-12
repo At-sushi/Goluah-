@@ -1,6 +1,6 @@
-
+ï»¿
 //*******************************************************************************
-//  l_directdraw.cpp  CDirectDrawƒNƒ‰ƒX‚ÌŠî–{“I‚È•”•ª
+//  l_directdraw.cpp  CDirectDrawã‚¯ãƒ©ã‚¹ã®åŸºæœ¬çš„ãªéƒ¨åˆ†
 //*******************************************************************************
 
 #include <windows.h>
@@ -22,7 +22,7 @@ extern int g_DISPLAYWIDTH;
 extern int g_DISPLAYHEIGHT;
 
 
-//‰Šú‰»************************************************************
+//åˆæœŸåŒ–************************************************************
 
 CDirectDraw::CDirectDraw(HWND hwnd,BOOL win)
 {
@@ -33,16 +33,16 @@ CDirectDraw::CDirectDraw(HWND hwnd,BOOL win)
 	ZeroMemory(ms,sizeof(ms));
 
 	if(!InitDirectDraw(hwnd,win)){
-		MessageBox(hwnd,"•`‰æŒn‚Ì‰Šú‰»‚É¸”s","",MB_OK);
+		MessageBox(hwnd,"æç”»ç³»ã®åˆæœŸåŒ–ã«å¤±æ•—","",MB_OK);
 		return;
 	}
 
 	lpFont[0]=lpFont[1]=lpFont[2]=NULL;
 
-	//Å‘åƒeƒNƒXƒ`ƒƒƒTƒCƒYæ“¾
+	//æœ€å¤§ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚ºå–å¾—
 	D3DCAPS8 cap8;
 	if(dd->GetDeviceCaps(D3DADAPTER_DEFAULT,devtypenow,&cap8)!=D3D_OK){
-		MessageBox(hwnd,"GetDeviceCaps‚É¸”s","",MB_OK);
+		MessageBox(hwnd,"GetDeviceCapsã«å¤±æ•—","",MB_OK);
 		return;
 	}
 	maxtexturewidth = cap8.MaxTextureWidth;
@@ -50,48 +50,48 @@ CDirectDraw::CDirectDraw(HWND hwnd,BOOL win)
 
 #ifdef _DEBUG
 	char msg[128];
-	sprintf(msg,"¡ max texture size : %d x %d \n",maxtexturewidth,maxtextureheight);
+	sprintf(msg,"â–  max texture size : %d x %d \n",maxtexturewidth,maxtextureheight);
 	OutputDebugString(msg);
 
 	OutputDebugString("D3DPCMPCAPS_ALWAYS...");
-	if(cap8.AlphaCmpCaps & D3DPCMPCAPS_ALWAYS)OutputDebugString("›\n");
-	else OutputDebugString("~\n");
+	if(cap8.AlphaCmpCaps & D3DPCMPCAPS_ALWAYS)OutputDebugString("â—‹\n");
+	else OutputDebugString("Ã—\n");
 	OutputDebugString("D3DPCMPCAPS_EQUAL...");
-	if(cap8.AlphaCmpCaps & D3DPCMPCAPS_EQUAL)OutputDebugString("›\n");
-	else OutputDebugString("~\n");
+	if(cap8.AlphaCmpCaps & D3DPCMPCAPS_EQUAL)OutputDebugString("â—‹\n");
+	else OutputDebugString("Ã—\n");
 	OutputDebugString("D3DPCMPCAPS_GREATER ...");
-	if(cap8.AlphaCmpCaps & D3DPCMPCAPS_GREATER )OutputDebugString("›\n");
-	else OutputDebugString("~\n");
+	if(cap8.AlphaCmpCaps & D3DPCMPCAPS_GREATER )OutputDebugString("â—‹\n");
+	else OutputDebugString("Ã—\n");
 	OutputDebugString("D3DPCMPCAPS_GREATEREQUAL...");
-	if(cap8.AlphaCmpCaps & D3DPCMPCAPS_GREATEREQUAL)OutputDebugString("›\n");
-	else OutputDebugString("~\n");
+	if(cap8.AlphaCmpCaps & D3DPCMPCAPS_GREATEREQUAL)OutputDebugString("â—‹\n");
+	else OutputDebugString("Ã—\n");
 	OutputDebugString("D3DPCMPCAPS_GREATEREQUAL...");//
-	if(cap8.AlphaCmpCaps & D3DPCMPCAPS_GREATEREQUAL)OutputDebugString("›\n");
-	else OutputDebugString("~\n");
+	if(cap8.AlphaCmpCaps & D3DPCMPCAPS_GREATEREQUAL)OutputDebugString("â—‹\n");
+	else OutputDebugString("Ã—\n");
 	OutputDebugString("D3DPCMPCAPS_LESS...");
-	if(cap8.AlphaCmpCaps & D3DPCMPCAPS_LESS)OutputDebugString("›\n");
-	else OutputDebugString("~\n");
+	if(cap8.AlphaCmpCaps & D3DPCMPCAPS_LESS)OutputDebugString("â—‹\n");
+	else OutputDebugString("Ã—\n");
 	OutputDebugString("D3DPCMPCAPS_LESSEQUAL...");
-	if(cap8.AlphaCmpCaps & D3DPCMPCAPS_LESSEQUAL)OutputDebugString("›\n");
-	else OutputDebugString("~\n");
+	if(cap8.AlphaCmpCaps & D3DPCMPCAPS_LESSEQUAL)OutputDebugString("â—‹\n");
+	else OutputDebugString("Ã—\n");
 	OutputDebugString("D3DPCMPCAPS_NEVER...");
-	if(cap8.AlphaCmpCaps & D3DPCMPCAPS_NEVER)OutputDebugString("›\n");
-	else OutputDebugString("~\n");
+	if(cap8.AlphaCmpCaps & D3DPCMPCAPS_NEVER)OutputDebugString("â—‹\n");
+	else OutputDebugString("Ã—\n");
 	OutputDebugString("D3DPCMPCAPS_NOTEQUAL...");
-	if(cap8.AlphaCmpCaps & D3DPCMPCAPS_NOTEQUAL)OutputDebugString("›\n");
-	else OutputDebugString("~\n");
+	if(cap8.AlphaCmpCaps & D3DPCMPCAPS_NOTEQUAL)OutputDebugString("â—‹\n");
+	else OutputDebugString("Ã—\n");
 
 #endif
 
-	d3ddev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);//ƒJƒŠƒ“ƒO‚È‚µ
-    d3ddev->SetRenderState(D3DRS_LIGHTING, FALSE);//ƒ‰ƒCƒeƒBƒ“ƒO–³‚µ
-	//ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒfƒBƒ“ƒO—LŒø
+	d3ddev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);//ã‚«ãƒªãƒ³ã‚°ãªã—
+    d3ddev->SetRenderState(D3DRS_LIGHTING, FALSE);//ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ç„¡ã—
+	//ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°æœ‰åŠ¹
 	d3ddev->SetRenderState(D3DRS_ALPHABLENDENABLE,TRUE);
 	d3ddev->SetRenderState(D3DRS_SRCBLEND,D3DBLEND_SRCALPHA);
 	d3ddev->SetRenderState(D3DRS_DESTBLEND,D3DBLEND_INVSRCALPHA);
-	//ƒAƒ‹ƒtƒ@ƒeƒXƒg *ahyahya*
+	//ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆ *ahyahya*
 /*	if(d3ddev->SetRenderState( D3DRS_ALPHATESTENABLE, TRUE ) !=D3D_OK)
-		OutputDebugString("¡ƒAƒ‹ƒtƒ@ƒeƒXƒg—FD‰»‚É¸”s\n");
+		OutputDebugString("â– ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆå‹å¥½åŒ–ã«å¤±æ•—\n");
 	else {
 		d3ddev->SetRenderState( D3DRS_ALPHAREF, 0x50 );
 		d3ddev->SetRenderState( D3DRS_ALPHAFUNC, D3DCMP_GREATER );
@@ -102,24 +102,24 @@ CDirectDraw::CDirectDraw(HWND hwnd,BOOL win)
 //	d3ddev->SetTextureStageState(0,D3DTSS_MINFILTER,D3DTEXF_GAUSSIANCUBIC);//D3DTEXF_POINT);
 
 
-	//x,y•½–Ê‚Ìƒf[ƒ^ƒZƒbƒg
-	d3dxplane_x.a=-1.0f;//x•½–Ê (x=0)
+	//x,yå¹³é¢ã®ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
+	d3dxplane_x.a=-1.0f;//xå¹³é¢ (x=0)
 	d3dxplane_x.b=0;
 	d3dxplane_x.c=0;
 	d3dxplane_x.d=0;
-	d3dxplane_y.a=0;//y•½–Ê (y=0)
+	d3dxplane_y.a=0;//yå¹³é¢ (y=0)
 	d3dxplane_y.b=-1.0f;
 	d3dxplane_y.c=0;
 	d3dxplane_y.d=0;
 
-	//ƒeƒNƒXƒ`ƒƒ‚É—p‚¢‚éƒtƒH[ƒ}ƒbƒg
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«ç”¨ã„ã‚‹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 	switch(config2.flag & 0xF0000000){
 	case CONFIG2_USETEXFMT_A4R4G4B4:texformat=D3DFMT_A4R4G4B4;break;
 	case CONFIG2_USETEXFMT_A8R3G3B2:texformat=D3DFMT_A8R3G3B2;break;
 	case CONFIG2_USETEXFMT_A8R8G8B8:texformat=D3DFMT_A8R8G8B8;break;
 	default:texformat=D3DFMT_A1R5G5B5;break;
 	}
-	//ƒtƒHƒ“ƒg‚Ìì¬
+	//ãƒ•ã‚©ãƒ³ãƒˆã®ä½œæˆ
 	lpFont[0]=CreateMyFont( 8);
 	lpFont[1]=CreateMyFont(16);
 	lpFont[2]=CreateMyFont(32);
@@ -139,28 +139,28 @@ CDirectDraw::CDirectDraw(HWND hwnd,BOOL win)
 
 BOOL CDirectDraw::InitDirectDraw(HWND hwnd,BOOL win)
 {
-	// Direct3D ƒIƒuƒWƒFƒNƒg‚ğì¬
+	// Direct3D ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ
 	dd = Direct3DCreate8(D3D_SDK_VERSION);
     if (NULL == dd){
-        MessageBox(hwnd,"Direct3DCreate8‚É¸”s","",MB_OK|MB_ICONSTOP);
+        MessageBox(hwnd,"Direct3DCreate8ã«å¤±æ•—","",MB_OK|MB_ICONSTOP);
         return(FALSE);
     }
 
-	// Direct3D ‰Šú‰»ƒpƒ‰ƒ[ƒ^‚Ìİ’è
+	// Direct3D åˆæœŸåŒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®è¨­å®š
     ZeroMemory(&d3dpp, sizeof(D3DPRESENT_PARAMETERS));
 	d3dpp.BackBufferCount = 1;
 	d3dpp.EnableAutoDepthStencil = TRUE;
     d3dpp.AutoDepthStencilFormat = D3DFMT_D16;
 
 	if(win){
-	    // Œ»İ‚Ì‰æ–Êƒ‚[ƒh‚ğæ“¾
+	    // ç¾åœ¨ã®ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—
 	    D3DDISPLAYMODE d3ddm;
 		if( dd->GetAdapterDisplayMode( D3DADAPTER_DEFAULT, &d3ddm ) != D3D_OK ) {
-			MessageBox(hwnd,"GetAdapterDisplayMode‚É¸”s","",MB_OK|MB_ICONSTOP);
+			MessageBox(hwnd,"GetAdapterDisplayModeã«å¤±æ•—","",MB_OK|MB_ICONSTOP);
 			RELEASE(dd);
 			return(FALSE);
 		}
-		// ƒEƒCƒ“ƒhƒE : Œ»İ‚Ì‰æ–Êƒ‚[ƒh‚ğg—p
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ : ç¾åœ¨ã®ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‚’ä½¿ç”¨
 	    d3dpp.BackBufferFormat = d3ddm.Format;
 	    d3dpp.MultiSampleType = D3DMULTISAMPLE_NONE;
 	    d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
@@ -179,7 +179,7 @@ BOOL CDirectDraw::InitDirectDraw(HWND hwnd,BOOL win)
         d3dpp.BackBufferHeight = g_DISPLAYHEIGHT;
     }
  
-    // ƒfƒoƒCƒX‚Ìì¬
+    // ãƒ‡ãƒã‚¤ã‚¹ã®ä½œæˆ
 	switch(config2.flag & 0x0F000000){
 	case CONFIG2_DEVICE_REF:devtypenow=D3DDEVTYPE_REF;break;
 	case CONFIG2_DEVICE_SW:devtypenow=D3DDEVTYPE_SW;break;
@@ -196,7 +196,7 @@ BOOL CDirectDraw::InitDirectDraw(HWND hwnd,BOOL win)
 	return(TRUE);
 }
 
-// Œãn–– *****************************************************************
+// å¾Œå§‹æœ« *****************************************************************
 
 CDirectDraw::~CDirectDraw()
 {
@@ -247,7 +247,7 @@ LPD3DXFONT CDirectDraw::CreateMyFont(DWORD h)
                       CLIP_DEFAULT_PRECIS,
                       DEFAULT_QUALITY,
                       DEFAULT_PITCH,
-                      "‚l‚r ‚oƒSƒVƒbƒN"
+                      "ï¼­ï¼³ ï¼°ã‚´ã‚·ãƒƒã‚¯"
                       );
     if(!hFont) return(NULL);
     hOldFont = (HFONT)SelectObject(hTextDC, hFont);

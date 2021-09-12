@@ -1,8 +1,8 @@
-/*===============================================================
+ï»¿/*===============================================================
 
-	VSƒ‚[ƒhƒ^ƒXƒN
+	VSãƒ¢ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯
 	
-	Activate‚³‚ê‚é‚½‚Ñ‚ÉƒLƒƒƒ‰ƒNƒ^[‘I‘ðƒ^ƒXƒNorŸ—˜‰æ–Êƒ^ƒXƒN‚ð‹N“®‚·‚é
+	Activateã•ã‚Œã‚‹ãŸã³ã«ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼é¸æŠžã‚¿ã‚¹ã‚¯orå‹åˆ©ç”»é¢ã‚¿ã‚¹ã‚¯ã‚’èµ·å‹•ã™ã‚‹
 
 =================================================================*/
 #pragma once
@@ -10,10 +10,10 @@
 #include "task.h"
 
 /*!
-*	@brief VSƒ‚[ƒh
+*	@brief VSãƒ¢ãƒ¼ãƒ‰
 *	@ingroup Tasks
 *
-*	Activate‚³‚ê‚é‚½‚Ñ‚ÉƒLƒƒƒ‰ƒNƒ^[‘I‘ðƒ^ƒXƒNorŸ—˜‰æ–Êƒ^ƒXƒN‚ð‹N“®‚·‚é
+*	Activateã•ã‚Œã‚‹ãŸã³ã«ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼é¸æŠžã‚¿ã‚¹ã‚¯orå‹åˆ©ç”»é¢ã‚¿ã‚¹ã‚¯ã‚’èµ·å‹•ã™ã‚‹
 */
 class CTaskVsMode : public CExclusiveTaskBase
 {

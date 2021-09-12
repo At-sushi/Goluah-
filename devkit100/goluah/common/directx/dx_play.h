@@ -1,6 +1,5 @@
-#include "define_const.h"
+ï»¿#include "define_const.h"
 #include "..\resource.h"
-#include "NetState.h"
 
 /*!
 *	@file
@@ -9,12 +8,12 @@
 #pragma once
 
 /*!
-*	@brief DirectPlayƒNƒ‰ƒX
+*	@brief DirectPlayã‚¯ãƒ©ã‚¹
 *	@ingroup DirectX
 *
-*	aki‚³‚ñ‚ÌDirectXƒNƒ‰ƒX‚É‚ ‚â‚©‚Á‚Äì‚Á‚Ä‚İ‚½
-*	Q‰Áƒƒ“ƒo[‚ÌŠÇ—‚ª‚Ü‚¾‚Å‚«‚Ä‚È‚¢‚Å‚·B
-*	NetStateˆË‘¶‚È‚Ì‚ÅAcommon‚È‚Ì‚É–{‘ÌˆÈŠO‚Åg‚¦‚È‚¢c
+*	akiã•ã‚“ã®DirectXã‚¯ãƒ©ã‚¹ã«ã‚ã‚„ã‹ã£ã¦ä½œã£ã¦ã¿ãŸ
+*	å‚åŠ ãƒ¡ãƒ³ãƒãƒ¼ã®ç®¡ç†ãŒã¾ã ã§ãã¦ãªã„ã§ã™ã€‚
+*	NetStateä¾å­˜ãªã®ã§ã€commonãªã®ã«æœ¬ä½“ä»¥å¤–ã§ä½¿ãˆãªã„â€¦
 */
 class CDirectPlay
 {
@@ -22,32 +21,31 @@ public:
 	CDirectPlay();
 	virtual ~CDirectPlay();
 
-	HRESULT Initialize(const char* Name, const char* Port);//!<‰Šú‰»
-	HRESULT Destroy();//!<‚ ‚Ú‚ñ‚Ê
+	HRESULT Initialize(const char* Name, const char* Port);//!<åˆæœŸåŒ–
+	HRESULT Destroy();//!<ã‚ã¼ã‚“ã¬
 	BOOL IsReady()	{ return pDPlay != 0; }
 	HRESULT Do(DWORD time)	{ return pThreadPool ? pThreadPool->DoWork(time, 0) : S_FALSE; }
-	HRESULT SendMsg(DPNID dpnid, BYTE* pData, DWORD size, DWORD timeout, DWORD flags);//!<‘Šè‚Öƒf[ƒ^‘—M
-	BOOL IsOnline()	{ return m_isonline; }//!<Ú‘±’†‚©‚Ç‚¤‚©
-	BOOL IsHost()	{ return m_ishost; }//!<ƒzƒXƒg‚Æ‚µ‚ÄQ‰Á‚µ‚Ä‚é‚©‚Ç‚¤‚©
+	HRESULT SendMsg(DPNID dpnid, BYTE* pData, DWORD size, DWORD timeout, DWORD flags);//!<ç›¸æ‰‹ã¸ãƒ‡ãƒ¼ã‚¿é€ä¿¡
+	BOOL IsOnline()	{ return m_isonline; }//!<æ¥ç¶šä¸­ã‹ã©ã†ã‹
+	BOOL IsHost()	{ return m_ishost; }//!<ãƒ›ã‚¹ãƒˆã¨ã—ã¦å‚åŠ ã—ã¦ã‚‹ã‹ã©ã†ã‹
 	void SetCallBack(PFNDPNMESSAGEHANDLER pCallBack)	{ pRemoteCallBack = pCallBack; }
 
 protected:
-	HRESULT OnMessage(PVOID UserCont, DWORD mtype, PVOID pmes);//!<DirectPlayƒƒbƒZ[ƒWˆ—
+	HRESULT OnMessage(PVOID UserCont, DWORD mtype, PVOID pmes);//!<DirectPlayãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†
 	static HRESULT CALLBACK G_OnMessage(PVOID UserCont, DWORD mtype, PVOID pmes);
-	wchar_t* GetName(DPNID dpnid, wchar_t* pBuffer);//!<w’è‚µ‚½ƒvƒŒƒCƒ„[‚Ì–¼‘O‚ğŠ“¾
+	wchar_t* GetName(DPNID dpnid, wchar_t* pBuffer);//!<æŒ‡å®šã—ãŸãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®åå‰ã‚’æ‰€å¾—
 
 	IDirectPlay8Peer* pDPlay;
 	IDirectPlay8Address *pMyAddr, *pHostAddr;
 	IDirectPlay8ThreadPool* pThreadPool;
-	CNetState* m_pStateDlg;
 	BOOL m_isonline, m_ishost;
 	DPNHANDLE AHandle;
 	PFNDPNMESSAGEHANDLER pRemoteCallBack;
 
 public:
-	//! Š±‚·
+	//! å¹²ã™
 	HRESULT Host(void);
-	//! ‚Â‚È‚®
+	//! ã¤ãªã
 	HRESULT Connect(const char* IP, DWORD Port);
 };
 

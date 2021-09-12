@@ -1,6 +1,6 @@
-/*------------------------------------------------------------
+ï»¿/*------------------------------------------------------------
 
-	ƒfƒoƒbƒOƒƒjƒE
+	ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ã‚¦
 
 --------------------------------------------------------------*/
 #include "stdafx.h"
@@ -13,13 +13,11 @@
 #include "task_staffroll.h"
 #include "task_battle_net.h"
 #include "..\resource.h"
-#include "Name.h"
-#include "NameC.h"
 
 #include "debug_endurance.h"
 
 /*------------------------------------------------------------
-	(¶¬)
+	(ç”Ÿæˆ)
 --------------------------------------------------------------*/
 void CDebugMenu::Activate(DWORD pid)
 {
@@ -27,29 +25,29 @@ void CDebugMenu::Activate(DWORD pid)
 
 	g_sound.BGMStop();
 
-	str = "ƒ^ƒCƒgƒ‹‰æ–Ê‚Ö";
+	str = "ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã¸";
 	namelist.push_back(str);
 
-	str = "ƒLƒƒƒ‰ƒZƒŒ";
+	str = "ã‚­ãƒ£ãƒ©ã‚»ãƒ¬";
 	namelist.push_back(str);
 
-	str = "Ÿ—˜‰æ–Ê";
+	str = "å‹åˆ©ç”»é¢";
 	namelist.push_back(str);
 	
-	str = "ƒXƒ^ƒbƒtƒ[ƒ‹";
+	str = "ã‚¹ã‚¿ãƒƒãƒ•ãƒ­ãƒ¼ãƒ«";
 	namelist.push_back(str);
 
-	str = "‘Ï‹vƒeƒXƒg";
+	str = "è€ä¹…ãƒ†ã‚¹ãƒˆ";
 	namelist.push_back(str);
 
-	str = "‘Ï‹vƒeƒXƒg2";
+	str = "è€ä¹…ãƒ†ã‚¹ãƒˆ2";
 	namelist.push_back(str);
 
 	if (!g_config.IsFullScreen())
 	{
-		str = "ƒlƒbƒg‘Îíƒ‚|ƒhiƒzƒXƒgj";
+		str = "ãƒãƒƒãƒˆå¯¾æˆ¦ãƒ¢ï¼ãƒ‰ï¼ˆãƒ›ã‚¹ãƒˆï¼‰ï¼ˆç¾åœ¨ä½¿ç”¨ä¸å¯ï¼‰";
 		namelist.push_back(str);
-		str = "ƒlƒbƒg‘Îíƒ‚|ƒhiƒNƒ‰ƒCƒAƒ“ƒgj";
+		str = "ãƒãƒƒãƒˆå¯¾æˆ¦ãƒ¢ï¼ãƒ‰ï¼ˆã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆï¼‰ï¼ˆç¾åœ¨ä½¿ç”¨ä¸å¯ï¼‰";
 		namelist.push_back(str);
 	}
 
@@ -60,7 +58,7 @@ void CDebugMenu::Activate(DWORD pid)
 
 
 /*------------------------------------------------------------
-	(”jŠü)
+	(ç ´æ£„)
 --------------------------------------------------------------*/
 BOOL CDebugMenu::Inactivate(DWORD nid)
 {
@@ -70,14 +68,14 @@ BOOL CDebugMenu::Inactivate(DWORD nid)
 
 
 /*------------------------------------------------------------
-	XV
+	æ›´æ–°
 --------------------------------------------------------------*/
 BOOL CDebugMenu::Execute(DWORD time)
 {
 	DWORD keysta = g_input.GetKey(0,0);
 	if(m_cnt++ < 10)return TRUE;
 
-	//˜A‘±Às
+	//é€£ç¶šå®Ÿè¡Œ
 	if(m_loop_exec){
 		keysta |= KEYSTA_BA2;
 		m_selected = m_last_selected;
@@ -139,27 +137,11 @@ BOOL CDebugMenu::Execute(DWORD time)
 /*				if (g_play.IsConnected() || g_play.InitConnection())
 					g_system.AddTask( new CBattleTaskNet );
 					*/	
-				CName dialog;
-
-				if (dialog.DoModal() == IDCANCEL)
-					return TRUE;
-
-				g_play.Initialize(dialog.m_name, dialog.m_port);
-				g_play.Host();
-				g_system.AddTask( new CBattleTaskNet );
 				break;
 				}
 
 			case 7:
 				{
-				CNameC dialog;
-
-				if (dialog.DoModal() == IDCANCEL)
-					return TRUE;
-
-				g_play.Initialize(dialog.m_name, dialog.m_port);
-				g_play.Connect(dialog.m_hostIP, atoi(dialog.m_hostPort));
-				g_system.AddTask( new CBattleTaskNet );
 				break;
 				}
 		}
@@ -170,7 +152,7 @@ BOOL CDebugMenu::Execute(DWORD time)
 
 
 /*------------------------------------------------------------
-	•`‰æ
+	æç”»
 --------------------------------------------------------------*/
 void CDebugMenu::Draw()
 {
@@ -194,14 +176,14 @@ void CDebugMenu::Draw()
 		DWORD ipt = g_input.GetKey(i,0);
 		sprintf(str_ipt,"%d : %s %s %s %s %s %s %s %s",
 			i,
-			(ipt&KEYSTA_UP)		? "ª" : "@",
-			(ipt&KEYSTA_DOWN)	? "«" : "@",
-			(ipt&KEYSTA_ALEFT)	? "©" : "@",
-			(ipt&KEYSTA_ARIGHT)	? "¨" : "@",
-			(ipt&KEYSTA_BA)		? "‚`" : "@",
-			(ipt&KEYSTA_BB)		? "‚a" : "@",
-			(ipt&KEYSTA_BC)		? "‚b" : "@",
-			(ipt&KEYSTA_BD)		? "‚c" : "@"
+			(ipt&KEYSTA_UP)		? "â†‘" : "ã€€",
+			(ipt&KEYSTA_DOWN)	? "â†“" : "ã€€",
+			(ipt&KEYSTA_ALEFT)	? "â†" : "ã€€",
+			(ipt&KEYSTA_ARIGHT)	? "â†’" : "ã€€",
+			(ipt&KEYSTA_BA)		? "ï¼¡" : "ã€€",
+			(ipt&KEYSTA_BB)		? "ï¼¢" : "ã€€",
+			(ipt&KEYSTA_BC)		? "ï¼£" : "ã€€",
+			(ipt&KEYSTA_BD)		? "ï¼¤" : "ã€€"
 			);
 		g_draw.DrawBlueText(r,str_ipt,strlen(str_ipt),DT_LEFT,1);
 		r.top += 24;

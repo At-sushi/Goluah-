@@ -1,4 +1,4 @@
-// gcd_tool03.h : PROJECT_NAME ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒƒCƒ“ ƒwƒbƒ_[ ƒtƒ@ƒCƒ‹‚Å‚·B
+ï»¿// gcd_tool03.h : PROJECT_NAME ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ¡ã‚¤ãƒ³ ãƒ˜ãƒƒãƒ€ãƒ¼ ãƒ•ã‚¡ã‚¤ãƒ«ã§ã™ã€‚
 //
 
 #pragma once
@@ -8,12 +8,12 @@
 #endif
 
 #include <atlimage.h>
-#include "resource.h"		// ƒƒCƒ“ ƒVƒ“ƒ{ƒ‹
+#include "resource.h"		// ãƒ¡ã‚¤ãƒ³ ã‚·ãƒ³ãƒœãƒ«
 #include "gcdhandler.h"
 
 
 // Cgcd_tool03App:
-// ‚±‚ÌƒNƒ‰ƒX‚ÌŽÀ‘•‚É‚Â‚¢‚Ä‚ÍAgcd_tool03.cpp ‚ðŽQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+// ã“ã®ã‚¯ãƒ©ã‚¹ã®å®Ÿè£…ã«ã¤ã„ã¦ã¯ã€gcd_tool03.cpp ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚
 //
 
 class Cgcd_tool03App : public CWinApp
@@ -21,11 +21,11 @@ class Cgcd_tool03App : public CWinApp
 public:
 	Cgcd_tool03App();
 
-// ƒI[ƒo[ƒ‰ƒCƒh
+// ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰
 	public:
 	virtual BOOL InitInstance();
 
-// ŽÀ‘•
+// å®Ÿè£…
 	DECLARE_MESSAGE_MAP()
 
 

@@ -1,54 +1,54 @@
-
+﻿
 /*============================================================================
 
-	�t�@�C���ւ̃��O�ۑ��N���X
+	ファイルへのログ保存クラス
 
 ==============================================================================*/
 
 #include "stdafx.h"
 
-#include "global.h"		//config , FileExist ���K�v
+#include "global.h"		//config , FileExist が必要
 #include "log2file.h"
 
-//�o�b�t�@�T�C�Y
+//バッファサイズ
 #define LOG2FILE_BUFFERSIZE (1024*16)		//16KB buffer
-#define LOG2FILE_DIR		"system\\log"	//�ۑ��f�B���N�g��
-#define LOG2FILE_PREFIX		""				//�t�@�C���̐ړ��q
+#define LOG2FILE_DIR		"system\\log"	//保存ディレクトリ
+#define LOG2FILE_PREFIX		""				//ファイルの接頭子
 
 
 /*!
-*	�\�z
+*	構築
 */
 CLog2File::CLog2File()
 {
-	//�o�b�t�@����
+	//バッファ生成
 	buf = new char[LOG2FILE_BUFFERSIZE];
 	ZeroMemory(buf,LOG2FILE_BUFFERSIZE);
 	p = buf;
 	filename = new char[256];
 
-	//�ۑ��t�@�C����������
+	//保存ファイル名を決定
 	time_t crnt_time;
 	time(&crnt_time);
 	struct tm* crnt_time_l = localtime(&crnt_time);
 	sprintf(filename,"%s\\%s%d%s%d%s%d%s%d%s%d%s%d.txt",
-		LOG2FILE_DIR,LOG2FILE_PREFIX,				//�v���t�B�b�N�X
-		crnt_time_l->tm_year + 1900,				//�N
+		LOG2FILE_DIR,LOG2FILE_PREFIX,				//プレフィックス
+		crnt_time_l->tm_year + 1900,				//年
 		(crnt_time_l->tm_mon + 1)<10 ? "0" : "",
-		crnt_time_l->tm_mon + 1,					//��
+		crnt_time_l->tm_mon + 1,					//月
 		crnt_time_l->tm_mday<10 ? "0" : "",
-		crnt_time_l->tm_mday,						//��
+		crnt_time_l->tm_mday,						//日
 		crnt_time_l->tm_hour<10 ? "0" : "",
-		crnt_time_l->tm_hour,						//��
+		crnt_time_l->tm_hour,						//時
 		crnt_time_l->tm_min<10 ? "0" : "",
-		crnt_time_l->tm_min,						//��
+		crnt_time_l->tm_min,						//分
 		crnt_time_l->tm_sec<10 ? "0" : "",
-		crnt_time_l->tm_sec							//�b
+		crnt_time_l->tm_sec							//秒
 	);
 }
 
 /*!
-*	�j��
+*	破棄
 */
 CLog2File::~CLog2File()
 {
@@ -62,7 +62,7 @@ CLog2File::~CLog2File()
 
 		CloseHandle(hFile);
 
-		// ����ۂ������炠�ڂ��
+		// 空っぽだったらあぼんぬ
 		if (fsize == 0)
 			DeleteFile(filename);
 	}
@@ -73,9 +73,9 @@ CLog2File::~CLog2File()
 
 
 /*!
-*	�o�b�t�@���e���t�@�C���֏�������
-*	�ʏ�̓o�b�t�@���S���ƂȂ��Ȃ��Ă����Ƃ��Ɏ����I�ɍs����B
-*	�d�v�ȃ��O��f�����ꍇ�͖����I�ɍs���B
+*	バッファ内容をファイルへ書き込み
+*	通常はバッファが心もとなくなってきたときに自動的に行われる。
+*	重要なログを吐いた場合は明示的に行う。
 */
 void CLog2File::Flush()
 {
@@ -86,10 +86,10 @@ void CLog2File::Flush()
 	if(hFile==INVALID_HANDLE_VALUE){
 		return;
 	}
-	//�t�@�C���ʒu���t�@�C���I�[�Ɉړ�
+	//ファイル位置をファイル終端に移動
 	SetFilePointer(hFile,0,NULL,FILE_END);
 
-	//��������
+	//書き込み
 	DWORD wsize = p - buf;
 	DWORD br;
 	DWORD ret=WriteFile(hFile,buf,wsize,&br,NULL);
@@ -104,11 +104,11 @@ void CLog2File::Flush()
 
 
 /*!
-*	���O�ǉ�
-*	�o�b�t�@������̂ŁA���ڃt�@�C���֍s�����Ⴄ�킯�ł͂Ȃ��B
-*	�K�v�������Flush�𖾎��I�Ɏ��s���邱�ƁB
+*	ログ追加
+*	バッファがあるので、直接ファイルへ行っちゃうわけではない。
+*	必要があればFlushを明示的に実行すること。
 *
-*	@param str �f���o��������B�����ɉ��s�������t������̂Œ��ӁB
+*	@param str 吐き出す文字列。末尾に改行を自動付加するので注意。
 */
 void CLog2File::AddLog(char *str)
 {
@@ -118,7 +118,7 @@ void CLog2File::AddLog(char *str)
 	size_t strsize = strlen(str);
 	memcpy(p,str,strsize);
 	p+= strsize;
-	//window ���s�R�[�h�}��
+	//window 改行コード挿入
 	*p++ = 13;
 	*p++ = 10;
 }

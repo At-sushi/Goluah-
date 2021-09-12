@@ -1,7 +1,7 @@
-#pragma once
+ï»¿#pragma once
 #include "task_battle.h"
 
-//!ƒ{[ƒiƒXƒXƒe[ƒW‚Ìì‚è‚©‚¯c‚İ‚½‚¢
+//!ãƒœãƒ¼ãƒŠã‚¹ã‚¹ãƒ†ãƒ¼ã‚¸ã®ä½œã‚Šã‹ã‘â€¦ã¿ãŸã„
 class CBonusTask :
 	public CBattleTask
 {

@@ -1,9 +1,9 @@
-
+ï»¿
 /*========================================================================
 
-	ƒLƒƒƒ‰ƒNƒ^[ŠÇ—
+	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ç®¡ç†
 
-	ƒfƒBƒŒƒNƒgƒŠ‚©‚çƒLƒƒƒ‰ƒNƒ^[‚ÌƒŠƒXƒg‚ğì¬‚µ‚ÄŠÇ—‚·‚éB
+	ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‹ã‚‰ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ãƒªã‚¹ãƒˆã‚’ä½œæˆã—ã¦ç®¡ç†ã™ã‚‹ã€‚
 
 ==========================================================================*/
 
@@ -16,7 +16,7 @@
 
 
 /*-------------------------------------------------------------------------
-	\’z
+	æ§‹ç¯‰
 ---------------------------------------------------------------------------*/
 CCharacterList::CCharacterList()
 {
@@ -24,7 +24,7 @@ CCharacterList::CCharacterList()
 
 
 /*-------------------------------------------------------------------------
-	”jŠü
+	ç ´æ£„
 ---------------------------------------------------------------------------*/
 void CCharacterList::Destroy()
 {
@@ -36,13 +36,13 @@ void CCharacterList::Destroy()
 
 /*-------------------------------------------------------------------------
 
-	‰Šú‰»
+	åˆæœŸåŒ–
 
-	1) "ƒŠƒ“ƒO" ‚É‘Š“–‚·‚éƒfƒBƒŒƒNƒgƒŠ‚Ìˆê——‚ğ¶¬
-	2) ŠeƒfƒBƒŒƒNƒgƒŠ‚ÉŠÖ‚µ‚ÄƒLƒƒƒ‰ƒNƒ^[‚ğŒŸõ
-		2.5) ŒŸõ‚µ‚½ŠeƒLƒƒƒ‰ƒNƒ^[ƒfƒBƒŒƒNƒgƒŠ‚Ì³“–«‚ğŒŸØ
-	3) ƒLƒƒƒ‰ƒNƒ^‚ª1‘Ì‚àŒ©‚Â‚©‚ç‚È‚©‚Á‚½ƒŠƒ“ƒO‚ÍƒŠƒXƒg‚©‚çíœ
-	4) FavoriteƒIƒvƒVƒ‡ƒ“‚Ì•s³‚ğ³‚·
+	1) "ãƒªãƒ³ã‚°" ã«ç›¸å½“ã™ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ä¸€è¦§ã‚’ç”Ÿæˆ
+	2) å„ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«é–¢ã—ã¦ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚’æ¤œç´¢
+		2.5) æ¤œç´¢ã—ãŸå„ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®æ­£å½“æ€§ã‚’æ¤œè¨¼
+	3) ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãŒ1ä½“ã‚‚è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸãƒªãƒ³ã‚°ã¯ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤
+	4) Favoriteã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®ä¸æ­£ã‚’æ­£ã™
 
 ---------------------------------------------------------------------------*/
 void CCharacterList::Initialize()
@@ -80,7 +80,7 @@ void CCharacterList::Initialize()
 	}
 }
 
-//ƒŠƒ“ƒOƒfƒBƒŒƒNƒgƒŠˆê——‚Ì¶¬
+//ãƒªãƒ³ã‚°ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªä¸€è¦§ã®ç”Ÿæˆ
 void CCharacterList::InitializeRingList()
 {
 	HANDLE hFind;
@@ -89,10 +89,10 @@ void CCharacterList::InitializeRingList()
 	hFind = FindFirstFile(".\\char\\*.*", &fd);
 	CCL_RINGINFO ringitem;
 
-	if(hFind != INVALID_HANDLE_VALUE) {//ƒfƒBƒŒƒNƒgƒŠ‚ª‘¶İ‚·‚éê‡
+	if(hFind != INVALID_HANDLE_VALUE) {//ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãŒå­˜åœ¨ã™ã‚‹å ´åˆ
 		do {
-			if(strcmp(fd.cFileName,".")==0 || strcmp(fd.cFileName,"..")==0);//ƒAƒŒ
-			else if(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) //ƒfƒBƒŒƒNƒgƒŠÊ¹°İ
+			if(strcmp(fd.cFileName,".")==0 || strcmp(fd.cFileName,"..")==0);//ã‚¢ãƒ¬
+			else if(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) //ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªï¾Šï½¹ï½°ï¾
 			{
 				strcpy(ringitem.name,fd.cFileName);
 				ringlist.push_back(ringitem);
@@ -102,7 +102,7 @@ void CCharacterList::InitializeRingList()
 	}
 }
 
-//w’èƒCƒ“ƒfƒbƒNƒX‚ÌƒŠƒ“ƒO“à‚ğŒŸõ
+//æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ãƒªãƒ³ã‚°å†…ã‚’æ¤œç´¢
 void CCharacterList::InitializeRing(DWORD index)
 {
 	HANDLE hFind;
@@ -114,20 +114,20 @@ void CCharacterList::InitializeRing(DWORD index)
 	hFind = FindFirstFile(ringdir, &fd);
 	sprintf(ringdir,"char\\%s\\",ringlist.at(index).name);
 
-	if(hFind != INVALID_HANDLE_VALUE) {//ƒfƒBƒŒƒNƒgƒŠ‚ª‘¶İ‚·‚éê‡
+	if(hFind != INVALID_HANDLE_VALUE) {//ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãŒå­˜åœ¨ã™ã‚‹å ´åˆ
 		do {
-			if(strcmp(fd.cFileName,".")==0 || strcmp(fd.cFileName,"..")==0);//ƒAƒŒ
-			else if(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) //ƒfƒBƒŒƒNƒgƒŠÊ¹°İ
+			if(strcmp(fd.cFileName,".")==0 || strcmp(fd.cFileName,"..")==0);//ã‚¢ãƒ¬
+			else if(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) //ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªï¾Šï½¹ï½°ï¾
 			{
 				sprintf(chardir,"%s%s",ringdir,fd.cFileName);
-				VerifyCharacterDir(chardir,index);//ŒŸØ
+				VerifyCharacterDir(chardir,index);//æ¤œè¨¼
 			}
 		} while(FindNextFile(hFind, &fd));
 		FindClose(hFind);
 	}
 }
 
-//ƒLƒƒƒ‰ƒNƒ^[ƒfƒBƒŒƒNƒgƒŠ‚ÌŒŸØ
+//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®æ¤œè¨¼
 BOOL CCharacterList::VerifyCharacterDir(char *dir,DWORD ringindex)
 {
 	char path[256];
@@ -141,7 +141,7 @@ BOOL CCharacterList::VerifyCharacterDir(char *dir,DWORD ringindex)
 	sprintf(dameinfo.name,"");
 
 	HINSTANCE hLib = LoadLibrary(path);
-	if(hLib == NULL){		//DLL“Ç‚İ‚İ¸”s
+	if(hLib == NULL){		//DLLèª­ã¿è¾¼ã¿å¤±æ•—
 		strcpy(dameinfo.dir,dir);
 		dameinfo.dame = CCL_DAME_NODLL;
 		damelist.push_back(dameinfo);
@@ -149,14 +149,14 @@ BOOL CCharacterList::VerifyCharacterDir(char *dir,DWORD ringindex)
 	}
 	PFUNC_CHARACTERINFO pfunc;
 	pfunc = (PFUNC_CHARACTERINFO)GetProcAddress(hLib, "CharacterInfo");
-	if(pfunc==NULL){		//ŠÖ”ƒ|ƒCƒ“ƒ^æ“¾¸”s
+	if(pfunc==NULL){		//é–¢æ•°ãƒã‚¤ãƒ³ã‚¿å–å¾—å¤±æ•—
 		FreeLibrary(hLib);
 		strcpy(dameinfo.dir,dir);
 		dameinfo.dame = CCL_DAME_CANTGETFP;
 		damelist.push_back(dameinfo);
 		return(FALSE);
 	}
-	if(!(*pfunc)(&info)){	//CharacterInfo‚ªFALSE‚ğ•Ô‚µ‚½‚çƒ_ƒ
+	if(!(*pfunc)(&info)){	//CharacterInfoãŒFALSEã‚’è¿”ã—ãŸã‚‰ãƒ€ãƒ¡
 		FreeLibrary(hLib);
 		strcpy(dameinfo.dir,dir);
 		dameinfo.dame = CCL_DAME_FFAIL;
@@ -164,7 +164,7 @@ BOOL CCharacterList::VerifyCharacterDir(char *dir,DWORD ringindex)
 		return(FALSE);
 	}
 	if((info.ver > 800 && info.ver<1000) ||
-	   info.ver < 400 /*680*/){		//ƒo[ƒWƒ‡ƒ“‚Ìƒ`ƒFƒbƒNiŒÃ‚¢‚Ù‚¤j
+	   info.ver < 400 /*680*/){		//ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®ãƒã‚§ãƒƒã‚¯ï¼ˆå¤ã„ã»ã†ï¼‰
 		strcpy(dameinfo.dir,dir);
 		strcpy(dameinfo.name,info.name);
 		dameinfo.dame = CCL_DAME_OLDDLL;
@@ -173,7 +173,7 @@ BOOL CCharacterList::VerifyCharacterDir(char *dir,DWORD ringindex)
 		FreeLibrary(hLib);
 		return(FALSE);
 	}
-	if(info.ver > CDI_VERSION){//ƒo[ƒWƒ‡ƒ“‚Ìƒ`ƒFƒbƒNiV‚µ‚¢‚Ù‚¤j
+	if(info.ver > CDI_VERSION){//ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®ãƒã‚§ãƒƒã‚¯ï¼ˆæ–°ã—ã„ã»ã†ï¼‰
 		strcpy(dameinfo.dir,dir);
 		strcpy(dameinfo.name,info.name);
 		dameinfo.dame = CCL_DAME_NEWDLL;
@@ -183,15 +183,15 @@ BOOL CCharacterList::VerifyCharacterDir(char *dir,DWORD ringindex)
 		return(FALSE);
 	}
 	FreeLibrary(hLib);
-	//\‘¢‘Ì‚Öƒf[ƒ^ƒRƒs[
+	//æ§‹é€ ä½“ã¸ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
 	CCL_CHARACTERINFO newitem;
 	ZeroMemory(&newitem,sizeof(CCL_CHARACTERINFO));
-	strcpy_s(newitem.dir  , dir);						// ‚±‚±‚¾‚¯strcpy_s‘Î‰A‚Á‚Äc
+	strcpy_s(newitem.dir  , dir);						// ã“ã“ã ã‘strcpy_så¯¾å¿œã€ã£ã¦â€¦
 	strcpy(newitem.name , info.name);
 	newitem.ver = info.ver;
 	newitem.caps = info.caps;
 
-	//ƒIƒvƒVƒ‡ƒ“€–Ú‚ğƒRƒs[‚·‚é
+	//ã‚ªãƒ—ã‚·ãƒ§ãƒ³é …ç›®ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	CHARACTER_LOAD_OPTION opt;
 	for(DWORD i=0;i<32;i++){
 		if(strlen(info.options[i].name)!=0){
@@ -201,18 +201,18 @@ BOOL CCharacterList::VerifyCharacterDir(char *dir,DWORD ringindex)
 	}
 	newitem.maxpoint = info.max_option_point;
 
-	//favoriteopt.txt ‚ğ“Ç‚İ‚İ
+	//favoriteopt.txt ã‚’èª­ã¿è¾¼ã¿
 	LoadFavoriteOptions( dir , newitem.fav_opts );
 
-	//ƒŠƒXƒg‚É’Ç‰Á‚·‚é
-	ringlist.at(ringindex).ring2serialIndex.push_back(infolist.size());//w’èƒŠƒ“ƒO‚ÉƒCƒ“ƒfƒbƒNƒX’Ç‰Á
-	infolist.push_back(newitem);//ˆê——‚É’Ç‰Á
+	//ãƒªã‚¹ãƒˆã«è¿½åŠ ã™ã‚‹
+	ringlist.at(ringindex).ring2serialIndex.push_back(infolist.size());//æŒ‡å®šãƒªãƒ³ã‚°ã«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹è¿½åŠ 
+	infolist.push_back(newitem);//ä¸€è¦§ã«è¿½åŠ 
 
 	return(YEAH);
 }
 
 //********************************************************************
-// Get`Œn
+// Getï½ç³»
 //********************************************************************
 
 int CCharacterList::GetCharacterCount()
@@ -223,7 +223,7 @@ int CCharacterList::GetCharacterCount()
 int CCharacterList::GetCharacterCountRing(UINT ring)
 {
 	if(ringlist.size()-1 < ring){
-		g_system.LogWarning("%s index•s³(%d/%d)",__FUNCTION__,ring,ringlist.size());
+		g_system.LogWarning("%s indexä¸æ­£(%d/%d)",__FUNCTION__,ring,ringlist.size());
 		return 0;
 	}
 
@@ -234,7 +234,7 @@ char* CCharacterList::GetCharacterDir(UINT index)
 {
 	static char *error_return = "error";
 	if(index>=infolist.size()){
-		g_system.LogWarning("%s index•s³(%d/%d)",__FUNCTION__,index,infolist.size());
+		g_system.LogWarning("%s indexä¸æ­£(%d/%d)",__FUNCTION__,index,infolist.size());
 		return error_return;
 	}
 
@@ -252,7 +252,7 @@ char* CCharacterList::GetCharacterName(UINT index)
 {
 	static char *error_return = "error";
 	if(index>=infolist.size()){
-		g_system.LogWarning("%s index•s³(%d/%d)",__FUNCTION__,index,infolist.size());
+		g_system.LogWarning("%s indexä¸æ­£(%d/%d)",__FUNCTION__,index,infolist.size());
 		return error_return;
 	}
 
@@ -262,7 +262,7 @@ char* CCharacterList::GetCharacterName(UINT index)
 DWORD CCharacterList::GetCharacterVer(UINT index)
 {
 	if(index>=infolist.size()){
-		g_system.LogWarning("%s index•s³(%d/%d)",__FUNCTION__,index,infolist.size());
+		g_system.LogWarning("%s indexä¸æ­£(%d/%d)",__FUNCTION__,index,infolist.size());
 		return 0;
 	}
 	return  infolist.at(index).ver;
@@ -292,11 +292,11 @@ DWORD CCharacterList::GetDameCharVer(UINT index)
 DWORD CCharacterList::RingIndex2SerialIndex(UINT ring,UINT index)
 {
 	if(ring > ringlist.size()-1){
-		g_system.LogWarning("%s ring•s³(%d/%d)",__FUNCTION__,ring,ringlist.size());
+		g_system.LogWarning("%s ringä¸æ­£(%d/%d)",__FUNCTION__,ring,ringlist.size());
 		return 0;
 	}
 	if(ringlist.at(ring).ring2serialIndex.size()<=index){
-		g_system.LogWarning("%s index•s³(%d/%d)",__FUNCTION__,index,infolist.size());
+		g_system.LogWarning("%s indexä¸æ­£(%d/%d)",__FUNCTION__,index,infolist.size());
 		return 0;
 	}
 
@@ -315,11 +315,11 @@ int CCharacterList::FindCharacter(char *name)
 
 
 
-/*````````````````````````````````````
+/*ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½
 
-						ƒIƒvƒVƒ‡ƒ“ŒnH
+						ã‚ªãƒ—ã‚·ãƒ§ãƒ³ç³»ï¼Ÿ
 
-  ````````````````````````````````````*/
+  ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½*/
 CCOptionSelecter* CCharacterList::GetOptionSelecter(DWORD cindex)
 {
 	if(cindex>infolist.size())return(NULL);
@@ -329,11 +329,11 @@ CCOptionSelecter* CCharacterList::GetOptionSelecter(DWORD cindex)
 }
 
 
-/*````````````````````````````````````
+/*ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½
 
-						ƒIƒvƒVƒ‡ƒ“ŒnH
+						ã‚ªãƒ—ã‚·ãƒ§ãƒ³ç³»ï¼Ÿ
 
-  ````````````````````````````````````*/
+  ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½ï½*/
 CCSimpleOptionSelecter* CCharacterList::GetSimpleOptionSelecter(DWORD cindex)
 {
 	if(cindex>infolist.size())return(NULL);
@@ -360,16 +360,16 @@ DWORD CCharacterList::GetRandomOption(DWORD index)
 	DWORD breaker=0;
 	while( point_now!=0 && dlist.size()!=0){
 		for(i=dlist.begin();i!=dlist.end();i++){
-			if(i->point > (int)point_now){//ƒ|ƒCƒ“ƒgƒ`ƒFƒbƒN
+			if(i->point > (int)point_now){//ãƒã‚¤ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
 				dlist.erase(i);
 				break;
 			}
-			else if(ret & i->exclusive){//‹£‡ƒ`ƒFƒbƒN
+			else if(ret & i->exclusive){//ç«¶åˆãƒã‚§ãƒƒã‚¯
 				dlist.erase(i);
 				break;
 			}
 			else if(rand()%4==0){
-				if( (i->depends&ret)==i->depends ){//ˆË‘¶ƒ`ƒFƒbƒN
+				if( (i->depends&ret)==i->depends ){//ä¾å­˜ãƒã‚§ãƒƒã‚¯
 					point_now -= i->point;
 					ret |= i->flag;
 					dlist.erase(i);
@@ -394,7 +394,7 @@ int CCharacterList::GetRingNum()
 	return ringlist.size();
 }
 
-//•s³‚ÈƒIƒvƒVƒ‡ƒ“‚ğœŠO‚·‚é
+//ä¸æ­£ãªã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’é™¤å¤–ã™ã‚‹
 void CCharacterList::CorrectOption(UINT cindex,DWORD *opt_org)
 {
 	if(cindex >= infolist.size()){
@@ -420,7 +420,7 @@ void CCharacterList::CorrectOption(UINT cindex,DWORD *opt_org)
 			if(ret&crnt_flag)
 			{
 				fail=FALSE;
-				//‘¶İƒ`ƒFƒbƒN
+				//å­˜åœ¨ãƒã‚§ãƒƒã‚¯
 				{
 					fail = TRUE;
 					i =optlist->begin();
@@ -434,13 +434,13 @@ void CCharacterList::CorrectOption(UINT cindex,DWORD *opt_org)
 						}
 					}
 				}
-				//ˆË‘¶ƒ`ƒFƒbƒN
+				//ä¾å­˜ãƒã‚§ãƒƒã‚¯
 				if(!fail){
 					if((ret&crnt_depend) != crnt_depend){
 						fail=TRUE;
 					}
 				}
-				//”r‘¼ƒ`ƒFƒbƒN
+				//æ’ä»–ãƒã‚§ãƒƒã‚¯
 				if(!fail){
 					if(ret&crnt_exclusive){
 						fail=TRUE;
@@ -452,7 +452,7 @@ void CCharacterList::CorrectOption(UINT cindex,DWORD *opt_org)
 					changed = TRUE;
 				}
 			}
-			crnt_flag <<= 1;//1ƒrƒbƒgƒVƒtƒg
+			crnt_flag <<= 1;//1ãƒ“ãƒƒãƒˆã‚·ãƒ•ãƒˆ
 		}
 	}
 
@@ -461,7 +461,7 @@ void CCharacterList::CorrectOption(UINT cindex,DWORD *opt_org)
 
 
 /*----------------------------------------------------------------
-	optset.txt ‚Ì“Ç‚İ‚İ
+	optset.txt ã®èª­ã¿è¾¼ã¿
 ------------------------------------------------------------------*/
 void CCharacterList::LoadFavoriteOptions(char* dir,FavoriteOptionList& list)
 {
@@ -494,7 +494,7 @@ void CCharacterList::LoadFavoriteOptions(char* dir,FavoriteOptionList& list)
 						opt.opt |= 0x00000001;
 					}
 					else if(optstr[b]!='0'){
-						gbl.ods("2i”ƒIƒvƒVƒ‡ƒ“w’è“Ç‚İ‚İƒGƒ‰[(%s)",optstr);
+						gbl.ods("2é€²æ•°ã‚ªãƒ—ã‚·ãƒ§ãƒ³æŒ‡å®šèª­ã¿è¾¼ã¿ã‚¨ãƒ©ãƒ¼(%s)",optstr);
 						break;
 					}
 					if(b!=31)opt.opt <<= 1;
@@ -514,7 +514,7 @@ void CCharacterList::LoadFavoriteOptions(char* dir,FavoriteOptionList& list)
 
 
 /*****************************************************************
-	ƒLƒƒƒ‰‘I‘ğƒIƒvƒVƒ‡ƒ“ƒZƒŒƒNƒ^[
+	ã‚­ãƒ£ãƒ©é¸æŠã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚»ãƒ¬ã‚¯ã‚¿ãƒ¼
 ******************************************************************/
 
 CCOptionSelecter::CCOptionSelecter(CCL_CHARACTERINFO *cinfo,DWORD maxp)
@@ -543,7 +543,7 @@ CCOptionSelecter::CCOptionSelecter(CCL_CHARACTERINFO *cinfo,DWORD maxp)
 	m_current_favorite = cinfo->previous_favorite;
 }
 
-//w’è’l‚ğ‰Šú’l‚Æ‚µ‚Äİ’è‚·‚é
+//æŒ‡å®šå€¤ã‚’åˆæœŸå€¤ã¨ã—ã¦è¨­å®šã™ã‚‹
 void CCOptionSelecter::Initialize(DWORD ini_opt)
 {
 	current_point = maxpoint;
@@ -551,7 +551,7 @@ void CCOptionSelecter::Initialize(DWORD ini_opt)
 		enabled[i] = FALSE;
 	}
 
-	//‰Šú’lİ’è
+	//åˆæœŸå€¤è¨­å®š
 	DWORD k=0;
 	for(CharOptionList::iterator ite=list->begin();ite!=list->end();ite++,k++){
 		if(ite->flag & ini_opt)
@@ -565,7 +565,7 @@ void CCOptionSelecter::Initialize(DWORD ini_opt)
 	m_current_favorite = 0;//free
 }
 
-//ƒpƒbƒh“ü—Í‚ğˆ—‚·‚é
+//ãƒ‘ãƒƒãƒ‰å…¥åŠ›ã‚’å‡¦ç†ã™ã‚‹
 BOOL CCOptionSelecter::HandlePad(DWORD inputIndex)
 {
 	counter++;
@@ -573,7 +573,7 @@ BOOL CCOptionSelecter::HandlePad(DWORD inputIndex)
 
 	DWORD input = g_input.GetKey(inputIndex,0);
 
-	//ª«“ü—Íˆ—
+	//â†‘â†“å…¥åŠ›å‡¦ç†
 	if(input & KEYSTA_UP2){
 		current_selected--;
 		if(current_selected>list->size())current_selected = list->size();
@@ -585,14 +585,14 @@ BOOL CCOptionSelecter::HandlePad(DWORD inputIndex)
 
 	DWORD curr_flag = GetSettings();
 
-	//©E¨‚·‚±‚µ‰Ÿ‚µ‚Á‚Ï‚Å”½‰‚·‚é‚æ‚¤‚É‚·‚é
+	//â†ãƒ»â†’ã™ã“ã—æŠ¼ã—ã£ã±ã§åå¿œã™ã‚‹ã‚ˆã†ã«ã™ã‚‹
 	DWORD key1 = g_input.GetKey(inputIndex,1);
 	DWORD key2 = g_input.GetKey(inputIndex,2);
 	DWORD key3 = g_input.GetKey(inputIndex,3);
 	BOOL leftON  = (input&KEYSTA_ALEFT) && (key1&KEYSTA_ALEFT) && (key2&KEYSTA_ALEFT) && (key3&KEYSTA_ALEFT2);
 	BOOL rightON = (input&KEYSTA_ARIGHT) && (key1&KEYSTA_ARIGHT) && (key2&KEYSTA_ARIGHT) && (key3&KEYSTA_ARIGHT2);
 
-	//B“ü—Íˆ—(optset•ÏX)
+	//Bå…¥åŠ›å‡¦ç†(optsetå¤‰æ›´)
 	if(input & KEYSTA_BB2)
 	{
 		m_current_favorite++;
@@ -611,12 +611,12 @@ BOOL CCOptionSelecter::HandlePad(DWORD inputIndex)
 		else
 			commit_enabled=TRUE;
 
-		//FreeˆÈŠO‚Ìê‡‚Í‚n‚j‚ÖƒJ[ƒ\ƒ‹ˆÚ“®
+		//Freeä»¥å¤–ã®å ´åˆã¯ï¼¯ï¼«ã¸ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 		if(m_current_favorite!=0){
 			current_selected = list->size();
 		}
 	}
-	//optsetİ’è‚©‚çã‰ºƒL[‚ª“ü‚Á‚½‚çFree
+	//optsetè¨­å®šã‹ã‚‰ä¸Šä¸‹ã‚­ãƒ¼ãŒå…¥ã£ãŸã‚‰Free
 	if(m_current_favorite!=0){
 		if(current_selected != list->size())
 		{
@@ -624,7 +624,7 @@ BOOL CCOptionSelecter::HandlePad(DWORD inputIndex)
 		}
 	}
 
-	//C“ü—Íˆ—(ƒ‰ƒ“ƒ_ƒ€)
+	//Cå…¥åŠ›å‡¦ç†(ãƒ©ãƒ³ãƒ€ãƒ )
 	if( input&(KEYSTA_BC2) )
 	{
 		SetRandom();
@@ -633,7 +633,7 @@ BOOL CCOptionSelecter::HandlePad(DWORD inputIndex)
 			commit_enabled=FALSE;
 		else
 			commit_enabled=TRUE;
-		current_selected = list->size();//OKˆÊ’u‚ÉƒJ[ƒ\ƒ‹ˆÚ“®
+		current_selected = list->size();//OKä½ç½®ã«ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 	}
 
 	// ON/OFF
@@ -641,7 +641,7 @@ BOOL CCOptionSelecter::HandlePad(DWORD inputIndex)
 	{
 		if(current_selected==list->size())
 		{
-			if((commit_enabled||g_config.IsLimiterCut()) && input&(KEYSTA_BA2)){//A“ü—Íˆ—(Œˆ’è)
+			if((commit_enabled||g_config.IsLimiterCut()) && input&(KEYSTA_BA2)){//Aå…¥åŠ›å‡¦ç†(æ±ºå®š)
 				state=1;
 				counter=0;
 				return TRUE;
@@ -676,7 +676,7 @@ BOOL CCOptionSelecter::HandlePad(DWORD inputIndex)
 	return FALSE;
 }
 
-//flag‚ÉˆË‘¶‚·‚éƒtƒ‰ƒO‚ğ‘S‚ÄOFF
+//flagã«ä¾å­˜ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’å…¨ã¦OFF
 void CCOptionSelecter::TurnOffDependFlags( DWORD flag )
 {
 	DWORD next_flag=0;
@@ -693,7 +693,7 @@ void CCOptionSelecter::TurnOffDependFlags( DWORD flag )
 	if(next_flag)TurnOffDependFlags( next_flag );
 }
 
-//flag‚Æ‹£‡‚·‚éƒtƒ‰ƒO‚ğ‘S‚ÄOFF
+//flagã¨ç«¶åˆã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’å…¨ã¦OFF
 void CCOptionSelecter::TurnOffExclisiveFlags( DWORD ex_flag )
 {
 	DWORD k=0;
@@ -710,7 +710,7 @@ void CCOptionSelecter::TurnOffExclisiveFlags( DWORD ex_flag )
 	if(next_flag)TurnOffDependFlags( next_flag );
 }
 
-//•`‰æ‚·‚éBStartDraw‚ª‚©‚©‚Á‚Ä‚éó‘Ô‚ÅŒÄ‚Ño‚·‚±‚Æ
+//æç”»ã™ã‚‹ã€‚StartDrawãŒã‹ã‹ã£ã¦ã‚‹çŠ¶æ…‹ã§å‘¼ã³å‡ºã™ã“ã¨
 void CCOptionSelecter::Draw()
 {
 	int y = 240-list->size()*16;
@@ -740,32 +740,32 @@ void CCOptionSelecter::Draw()
 	BOOL not_available;
 	for(ite=list->begin();ite!=list->end();ite++){
 		not_available = FALSE;
-		//F‚Í‰½FH
-		if(ite->flag & ex_flag){//‹£‡ƒtƒ‰ƒOƒAƒŠ
+		//è‰²ã¯ä½•è‰²ï¼Ÿ
+		if(ite->flag & ex_flag){//ç«¶åˆãƒ•ãƒ©ã‚°ã‚¢ãƒª
 			if(k!=current_selected)color=0xFFBBBB00;
 			else color=0xFFFFFF00;
 			not_available = TRUE;
 		}
-		else if(enabled[k]){//—LŒøó‘Ô
+		else if(enabled[k]){//æœ‰åŠ¹çŠ¶æ…‹
 			if(k!=current_selected)color=0xFF0000BB;
 			else color=0xFF0000FF;
 		}
-		else {//–³Œøó‘Ô
-			if((ite->depends&setting_now)!=ite->depends){//dependsƒtƒ‰ƒO‚ª‘«‚è‚È‚¢
+		else {//ç„¡åŠ¹çŠ¶æ…‹
+			if((ite->depends&setting_now)!=ite->depends){//dependsãƒ•ãƒ©ã‚°ãŒè¶³ã‚Šãªã„
 				if(k!=current_selected)color=0xFFBBBB00;
 				else color=0xFFFFFF00;
 				not_available = TRUE;
 			}
-			else if(current_point<0 || current_point < ite->point){//ON‚É‚·‚é‚Æƒ|ƒCƒ“ƒg‘«‚è‚È‚¢
+			else if(current_point<0 || current_point < ite->point){//ONã«ã™ã‚‹ã¨ãƒã‚¤ãƒ³ãƒˆè¶³ã‚Šãªã„
 				if(k!=current_selected)color=0xFFBB0000;
 				else color=0xFFFF0000;
 			}
-			else{//ON‚É‚µ‚Ä‚àƒ|ƒCƒ“ƒg‚Í‘«‚è‚é
+			else{//ONã«ã—ã¦ã‚‚ãƒã‚¤ãƒ³ãƒˆã¯è¶³ã‚Šã‚‹
 				if(k!=current_selected)color=0xFFBBBBBB;
 				else color=0xFFFFFFFF;
 			}
 		}
-		//•`‰æ
+		//æç”»
 		g_system.DrawBMPText(offset_x+off_x2,y,z,ite->name,color);
 		if(not_available)
 			g_system.DrawBMPText(offset_x+320,y,z,"N/A",color);
@@ -794,7 +794,7 @@ void CCOptionSelecter::Draw()
 	delete [] tmp_str;
 }
 
-//ƒtƒF[ƒhƒAƒEƒgƒ¿’l‚ğæ“¾‚·‚é
+//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆÎ±å€¤ã‚’å–å¾—ã™ã‚‹
 BYTE CCOptionSelecter::GetFadeOut()
 {
 	DWORD tmp = counter*4;
@@ -826,7 +826,7 @@ void CCOptionSelecter::SetRandom()
 {
 	if (m_ref_cinfo->fav_opts.size()!= 0)
 	{
-		//favoriteİ’è‚Å‚Ìƒ‰ƒ“ƒ_ƒ€
+		//favoriteè¨­å®šã§ã®ãƒ©ãƒ³ãƒ€ãƒ 
 		m_current_favorite = (rand()%m_ref_cinfo->fav_opts.size());
 		DWORD current_favorite = m_current_favorite;
 		Initialize( m_ref_cinfo->fav_opts[m_current_favorite].opt );
@@ -834,7 +834,7 @@ void CCOptionSelecter::SetRandom()
 		return;
 	}
 
-	//Freeƒ‰ƒ“ƒ_ƒ€
+	//Freeãƒ©ãƒ³ãƒ€ãƒ 
 	int k;
 	for(k=0;k<32;k++){
 		enabled[k]=FALSE;
@@ -856,19 +856,19 @@ void CCOptionSelecter::SetRandom()
 	{
 		for(i=dlist.begin();i!=dlist.end();i++)
 		{
-			if(i->point > current_point){//ƒ|ƒCƒ“ƒgƒ`ƒFƒbƒN
+			if(i->point > current_point){//ãƒã‚¤ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
 				dlist.erase(i);
 				break;
 			}
-			else if(ret & i->exclusive){//‹£‡ƒ`ƒFƒbƒN
+			else if(ret & i->exclusive){//ç«¶åˆãƒã‚§ãƒƒã‚¯
 				dlist.erase(i);
 				break;
 			}
 			else if(rand()%4==0 )
 			{
-				if( (i->depends&ret)==i->depends )//ˆË‘¶ƒ`ƒFƒbƒN
+				if( (i->depends&ret)==i->depends )//ä¾å­˜ãƒã‚§ãƒƒã‚¯
 				{
-					//ƒtƒ‰ƒO‰ÁZ
+					//ãƒ•ãƒ©ã‚°åŠ ç®—
 					current_point -= i->point;
 					ret |= i->flag;
 					//gbl.ods("%s %d %d %X",i->name,i->point,current_point,i->flag);
@@ -885,12 +885,12 @@ void CCOptionSelecter::SetRandom()
 			}
 		}
 		if(breaker++>1000){
-			gbl.ods("CCOptionSelecter::SetRandom ‹­§ƒuƒŒ[ƒN\n");
+			gbl.ods("CCOptionSelecter::SetRandom å¼·åˆ¶ãƒ–ãƒ¬ãƒ¼ã‚¯\n");
 			break;
 		}
 	}
 
-	//ƒlƒKƒeƒBƒuƒIƒvƒVƒ‡ƒ“‘Îô
+	//ãƒã‚¬ãƒ†ã‚£ãƒ–ã‚ªãƒ—ã‚·ãƒ§ãƒ³å¯¾ç­–
 	dlist.clear();
 	for(i2=list->begin();i2!=list->end();i2++){
 		dlist.push_back(*i2);
@@ -898,12 +898,12 @@ void CCOptionSelecter::SetRandom()
 	for(i=dlist.begin();i!=dlist.end();i++)
 	{
 		if(ret&i->flag)continue;
-		if(i->point <= current_point && i->point>0){//ƒ|ƒCƒ“ƒgƒ`ƒFƒbƒN
-			if(ret & i->exclusive){//‹£‡ƒ`ƒFƒbƒN
+		if(i->point <= current_point && i->point>0){//ãƒã‚¤ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
+			if(ret & i->exclusive){//ç«¶åˆãƒã‚§ãƒƒã‚¯
 			}
-			else if( (i->depends&ret)==i->depends )//ˆË‘¶ƒ`ƒFƒbƒN
+			else if( (i->depends&ret)==i->depends )//ä¾å­˜ãƒã‚§ãƒƒã‚¯
 			{
-				//ƒtƒ‰ƒO‰ÁZ
+				//ãƒ•ãƒ©ã‚°åŠ ç®—
 				current_point -= i->point;
 				ret |= i->flag;
 				//gbl.ods("%s %d %d %X",i->name,i->point,current_point,i->flag);
@@ -915,7 +915,7 @@ void CCOptionSelecter::SetRandom()
 	//return ret;
 }
 
-//0:"Free" , 0`:favoriteİ’è–¼
+//0:"Free" , 0ï½:favoriteè¨­å®šå
 char* CCOptionSelecter::GetCurrentSetName()
 {
 	if(m_current_favorite==0)return "Free";
@@ -923,7 +923,7 @@ char* CCOptionSelecter::GetCurrentSetName()
 	return m_ref_cinfo->fav_opts[ m_current_favorite-1 ].name;
 }
 
-//‘O‰ñ‘I‘ğƒtƒ‰ƒO‚Éİ’è‚·‚é
+//å‰å›é¸æŠãƒ•ãƒ©ã‚°ã«è¨­å®šã™ã‚‹
 void CCOptionSelecter::ApplyToPreviousSelect()
 {
 	m_ref_cinfo->previous_favorite = m_current_favorite;
@@ -932,7 +932,7 @@ void CCOptionSelecter::ApplyToPreviousSelect()
 
 
 /*****************************************************************
-	ƒLƒƒƒ‰‘I‘ğƒIƒvƒVƒ‡ƒ“ƒZƒŒƒNƒ^[i’Pƒ‰»”Åj
+	ã‚­ãƒ£ãƒ©é¸æŠã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚»ãƒ¬ã‚¯ã‚¿ãƒ¼ï¼ˆå˜ç´”åŒ–ç‰ˆï¼‰
 ******************************************************************/
 
 CCSimpleOptionSelecter::CCSimpleOptionSelecter(CCL_CHARACTERINFO *cinfo,DWORD maxp)
@@ -941,7 +941,7 @@ CCSimpleOptionSelecter::CCSimpleOptionSelecter(CCL_CHARACTERINFO *cinfo,DWORD ma
 
 }
 
-//ƒpƒbƒh“ü—Í‚ğˆ—‚·‚é
+//ãƒ‘ãƒƒãƒ‰å…¥åŠ›ã‚’å‡¦ç†ã™ã‚‹
 BOOL CCSimpleOptionSelecter::HandlePad(DWORD inputIndex)
 {
 	counter++;
@@ -949,7 +949,7 @@ BOOL CCSimpleOptionSelecter::HandlePad(DWORD inputIndex)
 
 	DWORD input = g_input.GetKey(inputIndex,0);
 
-	//ª«“ü—Íˆ—
+	//â†‘â†“å…¥åŠ›å‡¦ç†
 	if(input & KEYSTA_UP2){
 		m_current_favorite--;
 		if(m_current_favorite == 0xFFFFFFFF){
@@ -967,7 +967,7 @@ BOOL CCSimpleOptionSelecter::HandlePad(DWORD inputIndex)
 		else
 			commit_enabled=TRUE;
 	}
-	else if(input & (KEYSTA_DOWN2 | KEYSTA_BB2)){				// B‚Å‚à‘€ì‰Â”\‚É
+	else if(input & (KEYSTA_DOWN2 | KEYSTA_BB2)){				// Bã§ã‚‚æ“ä½œå¯èƒ½ã«
 		m_current_favorite++;
 		if(m_current_favorite == m_ref_cinfo->fav_opts.size()+1){
 			m_current_favorite = 0;
@@ -993,11 +993,11 @@ BOOL CCSimpleOptionSelecter::HandlePad(DWORD inputIndex)
 	BOOL leftON  = (input&KEYSTA_ALEFT) && (key1&KEYSTA_ALEFT) && (key2&KEYSTA_ALEFT) && (key3&KEYSTA_ALEFT2);
 	BOOL rightON = (input&KEYSTA_ARIGHT) && (key1&KEYSTA_ARIGHT) && (key2&KEYSTA_ARIGHT) && (key3&KEYSTA_ARIGHT2);
 
-	//B“ü—Íˆ—(optset•ÏX)
+	//Bå…¥åŠ›å‡¦ç†(optsetå¤‰æ›´)
 	if(input & KEYSTA_BB2)
 	{
 	}
-	//optsetİ’è‚©‚çã‰ºƒL[‚ª“ü‚Á‚½‚çFree
+	//optsetè¨­å®šã‹ã‚‰ä¸Šä¸‹ã‚­ãƒ¼ãŒå…¥ã£ãŸã‚‰Free
 	/*if(m_current_favorite!=0){
 		if(current_selected != list->size())
 		{
@@ -1005,11 +1005,11 @@ BOOL CCSimpleOptionSelecter::HandlePad(DWORD inputIndex)
 		}
 	}*/
 
-	//C“ü—Íˆ—(ƒ‰ƒ“ƒ_ƒ€)
+	//Cå…¥åŠ›å‡¦ç†(ãƒ©ãƒ³ãƒ€ãƒ )
 	if( input&(KEYSTA_BC2) && !m_ref_cinfo->fav_opts.empty() )
 	{
 /*		SetRandom();
-		current_selected = list->size();//OKˆÊ’u‚ÉƒJ[ƒ\ƒ‹ˆÚ“®
+		current_selected = list->size();//OKä½ç½®ã«ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 */		m_current_favorite = (rand() % m_ref_cinfo->fav_opts.size()) +1;
 
 		DWORD current_favorite = m_current_favorite;
@@ -1025,7 +1025,7 @@ BOOL CCSimpleOptionSelecter::HandlePad(DWORD inputIndex)
 	// ON/OFF
 	if(input&(KEYSTA_BA2))
 	{
-		if((commit_enabled||g_config.IsLimiterCut()) && input&(KEYSTA_BA2)){//A“ü—Íˆ—(Œˆ’è)
+		if((commit_enabled||g_config.IsLimiterCut()) && input&(KEYSTA_BA2)){//Aå…¥åŠ›å‡¦ç†(æ±ºå®š)
 			state=1;
 			counter=0;
 			return TRUE;

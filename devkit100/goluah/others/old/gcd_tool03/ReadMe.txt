@@ -1,95 +1,95 @@
-================================================================================
-    MICROSOFT FOUNDATION CLASS ���C�u���� : gcd_tool03 �v���W�F�N�g�̊T�v
+﻿================================================================================
+    MICROSOFT FOUNDATION CLASS ライブラリ : gcd_tool03 プロジェクトの概要
 ===============================================================================
 
 
 
-    �A�v���P�[�V���� �E�B�U�[�h���쐬���� gcd_tool03 �ɂ� Microsoft 
-    Foundation Classes �̊�{�I�Ȏg������������Ă��܂��B�A�v���P�[�V�����쐬�̂ЂȌ^�Ƃ��Ă��g��
-    ���������B
-    ���̃t�@�C���ɂ� gcd_tool03 �A�v���P�[�V�������\�����Ă���e�t�@�C���̊T�v��������
-    �܂�Ă��܂��B
+    アプリケーション ウィザードが作成した gcd_tool03 には Microsoft 
+    Foundation Classes の基本的な使い方が示されています。アプリケーション作成のひな型としてお使い
+    ください。
+    このファイルには gcd_tool03 アプリケーションを構成している各ファイルの概要説明が含
+    まれています。
 
 gcd_tool03.vcproj
-    ����̓A�v���P�[�V���� �E�B�U�[�h�Ő������ꂽ VC++ �v���W�F�N�g�̃��C�� �v���W�F�N�g �t�@�C	    ���ł��B�t�@�C�����������ꂽ Visual C++ �̃o�[�W������񂪊܂܂�Ă��܂��B�܂��A�A�v���P�[�V	    ���� �E�B�U�[�h�őI�������v���b�g�t�H�[���A�\������уv���W�F�N�g�@�\�Ɋւ�������܂܂�		    �Ă��܂��B
+    これはアプリケーション ウィザードで生成された VC++ プロジェクトのメイン プロジェクト ファイ	    ルです。ファイルが生成された Visual C++ のバージョン情報が含まれています。また、アプリケーシ	    ョン ウィザードで選択したプラットフォーム、構成およびプロジェクト機能に関する情報も含まれ		    ています。
 
 
 gcd_tool03.h
-    ���̃t�@�C���̓A�v���P�[�V�����̒��S�ƂȂ�w�b�_�[ �t�@�C���ł��B���̃t�@�C���ɂ́AResource.h 
-    ���܂݁A���̃v���W�F�N�g����̃w�b�_���܂܂�Ă��āACgcd_tool03App �A�v���P�[�V���� �N���X
-    �̐錾�����܂��B
+    このファイルはアプリケーションの中心となるヘッダー ファイルです。このファイルには、Resource.h 
+    も含み、他のプロジェクト特定のヘッダが含まれていて、Cgcd_tool03App アプリケーション クラス
+    の宣言をします。
 
 gcd_tool03.cpp
-    ���̃t�@�C���� Cgcd_tool03App �A�v���P�[�V�����N���X���܂ރA�v���P�[�V�����̒��S�ƂȂ�\�[
-    �X�t�@�C���ł��B
+    このファイルは Cgcd_tool03App アプリケーションクラスを含むアプリケーションの中心となるソー
+    スファイルです。
 
 gcd_tool03.rc
-    ���̃t�@�C���̓v���O�������g�p���� Microsoft Windows �̃��\�[�X��񋓂��܂��B���̃t�@�C���� RES 
-    �T�u�f�B���N�g���ɕۑ�����Ă���A�C�R���A�r�b�g�}�b�v�A�J�[�\�����܂݂܂��B���̃t�@�C���́A
-    Microsoft Visual C++ �Œ��ڕҏW�\�ł��B�v���W�F�N�g ���\�[�X�� 1041 �ɂ���܂��B
+    このファイルはプログラムが使用する Microsoft Windows のリソースを列挙します。このファイルは RES 
+    サブディレクトリに保存されているアイコン、ビットマップ、カーソルを含みます。このファイルは、
+    Microsoft Visual C++ で直接編集可能です。プロジェクト リソースは 1041 にあります。
 
 res\gcd_tool03.ico
-    ���̃t�@�C���́A�A�v���P�[�V�����̃A�C�R���Ƃ��Ďg�p�����A�C�R���t�@�C���ł��B���̃A�C�R����
-    ���\�[�X �t�@�C�� gcd_tool03.rc �ɂ���ăC���N���[�h����܂��B
+    このファイルは、アプリケーションのアイコンとして使用されるアイコンファイルです。このアイコンは
+    リソース ファイル gcd_tool03.rc によってインクルードされます。
 
 res\gcd_tool03.rc2
-    ���̃t�@�C���� Microsoft Visual C++ �ɂ���ĕҏW����Ȃ����\�[�X���܂�ł��܂��B���̃t�@�C����
-    ���\�[�X �G�f�B�^�ŕҏW����Ȃ����ׂẴ��\�[�X���L�q���Ă��������B
+    このファイルは Microsoft Visual C++ によって編集されないリソースを含んでいます。このファイルに
+    リソース エディタで編集されないすべてのリソースを記述してください。
 
 /////////////////////////////////////////////////////////////////////////////
 
-�A�v���P�[�V���� �E�B�U�[�h�� 1 �̃_�C�A���O �N���X���쐬���܂� :
+アプリケーション ウィザードは 1 つのダイアログ クラスを作成します :
 gcd_tool03Dlg.h, gcd_tool03Dlg.cpp - the dialog
-    T�����̃t�@�C���� Cgcd_tool03Dlg �N���X���܂݂܂��B���̃N���X�̓A�v���P�[�V������ 
-    ���C�� �_�C�A���O�̓�����`���܂��B�_�C�A���O �e���v���[�g�� Microsoft Visual C++ �ŕҏW 
-    �\�� gcd_tool03.rc �Ɋ܂܂�܂��B
+    Tこれらのファイルは Cgcd_tool03Dlg クラスを含みます。このクラスはアプリケーションの 
+    メイン ダイアログの動作を定義します。ダイアログ テンプレートは Microsoft Visual C++ で編集 
+    可能な gcd_tool03.rc に含まれます。
 /////////////////////////////////////////////////////////////////////////////
 
-���̑��̋@�\ :
+その他の機能 :
 
-ActiveX �R���g���[��
-    �A�v���P�[�V������ ActiveX �R���g���[���̎g�p�Ɋւ���T�|�[�g���܂݂܂��B
+ActiveX コントロール
+    アプリケーションは ActiveX コントロールの使用に関するサポートを含みます。
 /////////////////////////////////////////////////////////////////////////////
 
-���̑��̕W���t�@�C�� :
+その他の標準ファイル :
 
 StdAfx.h, StdAfx.cpp
-    �����̃t�@�C���͊��ɃR���p�C�����ꂽ�w�b�_�[ �t�@�C�� (PCH) gcd_tool03.pch ����ɃR�� 
-    �p�C�����ꂽ�^�̃t�@�C�� StdAfx.obj ���r���h���邽�߂Ɏg����t�@�C���ł��B
+    これらのファイルは既にコンパイルされたヘッダー ファイル (PCH) gcd_tool03.pch や既にコン 
+    パイルされた型のファイル StdAfx.obj をビルドするために使われるファイルです。
 
 Resource.h
-    ���̃t�@�C���͐V�K���\�[�X ID ���`����W���w�b�_�[ �t�@�C���ł��BMicrosoft Visual C++ �͂��� 
-    �t�@�C���̓ǂݍ��ƍX�V���s���܂��B
+    このファイルは新規リソース ID を定義する標準ヘッダー ファイルです。Microsoft Visual C++ はこの 
+    ファイルの読み込と更新を行います。
 
 /////////////////////////////////////////////////////////////////////////////
 
-���̑��̒��� :
+その他の注意 :
 
-�A�v���P�[�V���� �E�B�U�[�h�� "TODO:" �Ŏn�܂�R�����g���g�p���āA�ǉ�������J�X�^�C�Y�̕K�v�� 
-    �\�[�X �R�[�h�̕����������܂��B
+アプリケーション ウィザードは "TODO:" で始まるコメントを使用して、追加したりカスタイズの必要な 
+    ソース コードの部分を示します。
 
-�A�v���P�[�V�����ŋ��L DLL ���� MFC ���g�p����ꍇ��A�A�v���P�[�V�������I�y���[�e�B���O �V�X�e���Ō��ݎg�p���Ă��錾��ȊO�̌�����g�p���Ă���ꍇ�́AWin\System �f�B���N�g���ɂ��� Microsoft Visual C++ CD-ROM ����A���[�J���C�Y���ꂽ���\�[�X�ɑΉ����� MFC70XXX.DLL �� system �܂��� system32 �f�B���N�g���ɃR�s�[���āA�t�@�C������ MFCLOC.DLL �ɂ���K�v������܂��B("XXX" �͌���̏ȗ��`�������܂��B�Ⴆ�΁AMFC70JPN.DLL �͓��{��ɖ|�󂳂ꂽ���\�[�X���܂݂܂��B) ���̗�𖳎�����ƃA�v���P�[�V�������̂������� UI �v�f�̓I�y���[�e�B���O �V�X�e���̌���̂܂܎c��܂��B
+アプリケーションで共有 DLL 内で MFC を使用する場合や、アプリケーションがオペレーティング システムで現在使用している言語以外の言語を使用している場合は、Win\System ディレクトリにある Microsoft Visual C++ CD-ROM から、ローカライズされたリソースに対応する MFC70XXX.DLL を system または system32 ディレクトリにコピーして、ファイル名を MFCLOC.DLL にする必要があります。("XXX" は言語の省略形を示します。例えば、MFC70JPN.DLL は日本語に翻訳されたリソースを含みます。) この例を無視するとアプリケーション内のいくつかの UI 要素はオペレーティング システムの言語のまま残ります。
 
 /////////////////////////////////////////////////////////////////////////////
 
 
 
-�E�E�E�ȏ�AVisualStudio���������������e�L�X�g�B
+・・・以上、VisualStudioが自動生成したテキスト。
 
 
-��gcd_tool3 �v���W�F�N�g
+■gcd_tool3 プロジェクト
 
-gcd�t�@�C���̐������s���B
+gcdファイルの整理を行う。
 
-�E�s�v�ȋ�`��`�̍폜
-�@�r�b�g�}�b�v�𒲂ׂāA��`��`�̈���̃s�N�Z�������ׂē����F���������`���폜����B
+・不要な矩形定義の削除
+　ビットマップを調べて、定義矩形領域内のピクセルがすべて同じ色だったら定義を削除する。
 
-�E��`��`�̐���
-�@��`��`���Ȃ���Ă��Ȃ��i��`�̖ʐς�0�A�����ȃr�b�g�}�b�v�ԍ��E��`�̈���Q�Ƃ��Ă���j��
-�폜���A���̔ԍ����߂�B�����ɃZ���f�[�^�̎Q�Ƃ��Ă����`�ԍ���ύX����B
+・矩形定義の整理
+　矩形定義がなされていない（矩形の面積が0、無効なビットマップ番号・矩形領域を参照している）を
+削除し、その番号をつめる。同時にセルデータの参照している矩形番号を変更する。
 
-�E�Z����`�̐���
-�@��`�̕��Ɠ��l�B
+・セル定義の整理
+　矩形の方と同様。
 
 
 

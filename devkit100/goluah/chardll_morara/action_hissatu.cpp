@@ -1,16 +1,16 @@
-
+ï»¿
 /*==============================================================
 
-	s“®ŠÖ”iƒRƒ}ƒ“ƒh‹Zj
+	è¡Œå‹•é–¢æ•°ï¼ˆã‚³ãƒãƒ³ãƒ‰æŠ€ï¼‰
 
 ================================================================*/
 #include "character.h"
 
 
 /*--------------------------------------------------------------
-	ƒWƒFƒmƒTƒCƒhEƒAƒŒiãj
+	ã‚¸ã‚§ãƒã‚µã‚¤ãƒ‰ãƒ»ã‚¢ãƒ¬ï¼ˆå¼±ï¼‰
 ----------------------------------------------------------------*/
-//’nã•”•ª
+//åœ°ä¸Šéƒ¨åˆ†
 void CCharacter::act_genocide1g()
 {
 	if(pdat->counter==0){movex(45);}
@@ -20,7 +20,7 @@ void CCharacter::act_genocide1g()
 	if(pdat->counter>2)ChangeAction(ACTID_GENOCIDE1J);
 }
 
-//‹ó’†•”•ª
+//ç©ºä¸­éƒ¨åˆ†
 void CCharacter::act_genocide1j()
 {
 	if(ccounter==0)PlayMySound(wave_gcut);
@@ -53,9 +53,9 @@ void CCharacter::act_genocide1j()
 }
 
 /*--------------------------------------------------------------
-	ƒWƒFƒmƒTƒCƒhEƒAƒŒi’†j
+	ã‚¸ã‚§ãƒã‚µã‚¤ãƒ‰ãƒ»ã‚¢ãƒ¬ï¼ˆä¸­ï¼‰
 ----------------------------------------------------------------*/
-//’nã•”•ª
+//åœ°ä¸Šéƒ¨åˆ†
 void CCharacter::act_genocide2g()
 {
 	if(pdat->counter==0){movex(45);}
@@ -65,7 +65,7 @@ void CCharacter::act_genocide2g()
 	if(pdat->counter>3)ChangeAction(ACTID_GENOCIDE2J);
 }
 
-//‹ó’†•”•ª
+//ç©ºä¸­éƒ¨åˆ†
 void CCharacter::act_genocide2j()
 {
 	if(ccounter==0)PlayMySound(wave_gcut);
@@ -102,9 +102,9 @@ void CCharacter::act_genocide2j()
 }
 
 /*--------------------------------------------------------------
-	ƒWƒFƒmƒTƒCƒhEƒAƒŒi‹­j
+	ã‚¸ã‚§ãƒã‚µã‚¤ãƒ‰ãƒ»ã‚¢ãƒ¬ï¼ˆå¼·ï¼‰
 ----------------------------------------------------------------*/
-//’nã•”•ª
+//åœ°ä¸Šéƒ¨åˆ†
 void CCharacter::act_genocide3g()
 {
 	pdat->muteki = TRUE;
@@ -116,7 +116,7 @@ void CCharacter::act_genocide3g()
 	else ChangeAction(ACTID_GENOCIDE3J);
 }
 
-//‹ó’†•”•ª
+//ç©ºä¸­éƒ¨åˆ†
 void CCharacter::act_genocide3j()
 {
 	if(ccounter==0)PlayMySound(wave_gcut);
@@ -151,7 +151,7 @@ void CCharacter::act_genocide3j()
 }
 
 /*--------------------------------------------------------------
-	ƒWƒFƒmƒTƒCƒhEƒAƒŒi’…’nŒ„j
+	ã‚¸ã‚§ãƒã‚µã‚¤ãƒ‰ãƒ»ã‚¢ãƒ¬ï¼ˆç€åœ°æ™‚éš™ï¼‰
 ----------------------------------------------------------------*/
 void CCharacter::act_landingg()
 {
@@ -163,7 +163,7 @@ void CCharacter::act_landingg()
 
 
 /*--------------------------------------------------------------
-	ƒWƒFƒmƒTƒCƒhEƒAƒŒiƒK[ƒhƒLƒƒƒ“ƒZƒ‹j
+	ã‚¸ã‚§ãƒã‚µã‚¤ãƒ‰ãƒ»ã‚¢ãƒ¬ï¼ˆã‚¬ãƒ¼ãƒ‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«ï¼‰
 ----------------------------------------------------------------*/
 void CCharacter::act_gcancel1()
 {
@@ -208,7 +208,7 @@ void CCharacter::act_gcancel3()
 }
 
 /*--------------------------------------------------------------
-	’n‘–‚èiãj
+	åœ°èµ°ã‚Šï¼ˆå¼±ï¼‰
 ----------------------------------------------------------------*/
 void CCharacter::act_chiba1()
 {
@@ -236,7 +236,7 @@ void CCharacter::act_chiba1()
 }
 
 /*--------------------------------------------------------------
-	’n‘–‚èi~j
+	åœ°èµ°ã‚Šï¼ˆå¨ï¼‰
 ----------------------------------------------------------------*/
 void CCharacter::act_chiba2()
 {
@@ -264,7 +264,7 @@ void CCharacter::act_chiba2()
 }
 
 /*--------------------------------------------------------------
-	’n‘–‚èi‹­j
+	åœ°èµ°ã‚Šï¼ˆå¼·ï¼‰
 ----------------------------------------------------------------*/
 void CCharacter::act_chiba3()
 {
@@ -293,7 +293,7 @@ void CCharacter::act_chiba3()
 
 
 /*--------------------------------------------------------------
-	ƒ~ƒjƒKƒ“
+	ãƒŸãƒ‹ã‚¬ãƒ³
 ----------------------------------------------------------------*/
 void CCharacter::act_minigun()
 {
@@ -324,7 +324,7 @@ void CCharacter::act_minigun()
 	else ChangeAction(ACTID_MINIGUN2);
 }
 
-void CCharacter::act_minigun2()//I—¹Œ„
+void CCharacter::act_minigun2()//çµ‚äº†éš™
 {
 	if(pdat->counter < 10)cell(CELL_MINIGUN3);
 	else if(pdat->counter < 20)cell(CELL_MINIGUN2);
@@ -334,7 +334,7 @@ void CCharacter::act_minigun2()//I—¹Œ„
 
 
 /*--------------------------------------------------------------
-	ƒWƒFƒmƒTƒCƒhEƒAƒŒi’Ç‰Á“ü—Íj
+	ã‚¸ã‚§ãƒã‚µã‚¤ãƒ‰ãƒ»ã‚¢ãƒ¬ï¼ˆè¿½åŠ å…¥åŠ›ï¼‰
 ----------------------------------------------------------------*/
 void CCharacter::act_genocide_up()
 {

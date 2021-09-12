@@ -1,33 +1,33 @@
-
+ï»¿
 /*==============================================================
 
-	s“®ŠÖ”
+	è¡Œå‹•é–¢æ•°
 
 ================================================================*/
 #include "character.h"
 #include <math.h>
 
 //*********************************************************
-//@@’Êí“®ì
+//ã€€ã€€é€šå¸¸å‹•ä½œ
 //*********************************************************
 
-void CCharacter::act_neutral()//ƒjƒ…[ƒgƒ‰ƒ‹
+void CCharacter::act_neutral()//ãƒ‹ãƒ¥ãƒ¼ãƒˆãƒ©ãƒ«
 {
 	pdat->cnow = CELL_NEUTRAL;
 }
 
-void CCharacter::act_crouch()//‚µ‚á‚ª‚İ
+void CCharacter::act_crouch()//ã—ã‚ƒãŒã¿
 {
 	pdat->cnow = CELL_CROUCH;
 }
 
-void CCharacter::act_rakka()//—‰º
+void CCharacter::act_rakka()//è½ä¸‹
 {
 	JiyuuRakka(3,TRUE);
 	pdat->cnow = CELL_JAMP1;
 }
 
-void CCharacter::act_tojyo()//“oê
+void CCharacter::act_tojyo()//ç™»å ´
 {
 	if(pdat->counter == 0){
 		movex(-300);
@@ -62,7 +62,7 @@ void CCharacter::act_tojyo()//“oê
 	}
 }
 
-void CCharacter::act_win()//Ÿ—˜
+void CCharacter::act_win()//å‹åˆ©
 {
 	if(pdat->counter==0){
 		PlayMySound(wave_win);
@@ -91,7 +91,7 @@ void CCharacter::act_win()//Ÿ—˜
 		case 5:pdat->cnow=CELL_WALK2;pdat->muki=TRUE;break;
 		}
 	}
-	else if(pdat->counter < z_end + a_spd*1 ){pdat->cnow=CELL_WINDANCE_A1;pdat->muki=TRUE;}//‚à‚É‚å‚à‚É‚å
+	else if(pdat->counter < z_end + a_spd*1 ){pdat->cnow=CELL_WINDANCE_A1;pdat->muki=TRUE;}//ã‚‚ã«ã‚‡ã‚‚ã«ã‚‡
 	else if(pdat->counter < z_end + a_spd*2 ){pdat->cnow=CELL_WINDANCE_A2;pdat->muki=TRUE;}
 	else if(pdat->counter < z_end + a_spd*3 ){pdat->cnow=CELL_WINDANCE_A3;pdat->muki=TRUE;}
 	else if(pdat->counter < z_end + a_spd*4 ){pdat->cnow=CELL_WINDANCE_A4;pdat->muki=TRUE;}
@@ -118,7 +118,7 @@ void CCharacter::act_win()//Ÿ—˜
 	else if(pdat->counter < z_end + a_spd*25){pdat->cnow=CELL_WINDANCE_A2;pdat->muki=FALSE;}
 	else if(pdat->counter < z_end + a_spd*26){pdat->cnow=CELL_WINDANCE_A1;pdat->muki=FALSE;}
 
-	else if(pdat->counter < a_end + b_spd*1 ){pdat->cnow=CELL_WINDANCE_B1;pdat->muki=TRUE;}//‚à‚É‚å‚à‚É‚å‚Q
+	else if(pdat->counter < a_end + b_spd*1 ){pdat->cnow=CELL_WINDANCE_B1;pdat->muki=TRUE;}//ã‚‚ã«ã‚‡ã‚‚ã«ã‚‡ï¼’
 	else if(pdat->counter < a_end + b_spd*2 ){pdat->cnow=CELL_WINDANCE_B2;pdat->muki=TRUE;}
 	else if(pdat->counter < a_end + b_spd*3 ){pdat->cnow=CELL_WINDANCE_B3;pdat->muki=TRUE;}
 	else if(pdat->counter < a_end + b_spd*4 ){pdat->cnow=CELL_WINDANCE_B2;pdat->muki=TRUE;}
@@ -137,12 +137,12 @@ void CCharacter::act_win()//Ÿ—˜
 	else if(pdat->counter < a_end + b_spd*17){pdat->cnow=CELL_WINDANCE_B2;pdat->muki=FALSE;}
 	else if(pdat->counter < a_end + b_spd*18){pdat->cnow=CELL_WINDANCE_B1;pdat->muki=FALSE;}
 
-	else if(pdat->counter < b_end + 1){pdat->cnow=CELL_WINDANCE_A1;pdat->muki=TRUE;}//‚·[‚¢
+	else if(pdat->counter < b_end + 1){pdat->cnow=CELL_WINDANCE_A1;pdat->muki=TRUE;}//ã™ãƒ¼ã„
 	else if(pdat->counter < b_end + 1 + s_len){pdat->cnow=CELL_WINDANCE_SUI;pdat->muki=TRUE;movex(s_spd);}
-	else if(pdat->counter < b_end + 2 + s_len){pdat->cnow=CELL_WINDANCE_A1;pdat->muki=FALSE;}//‚·[‚¢
+	else if(pdat->counter < b_end + 2 + s_len){pdat->cnow=CELL_WINDANCE_A1;pdat->muki=FALSE;}//ã™ãƒ¼ã„
 	else if(pdat->counter < b_end + 2 + s_len*2){pdat->cnow=CELL_WINDANCE_SUI;pdat->muki=FALSE;movex(-1*s_spd);}
 
-	else if(pdat->counter < s_end + c_spd*1 ){pdat->cnow=CELL_WINDANCE_C1;pdat->muki=TRUE;}//‚à‚É‚å‚à‚É‚å‚R
+	else if(pdat->counter < s_end + c_spd*1 ){pdat->cnow=CELL_WINDANCE_C1;pdat->muki=TRUE;}//ã‚‚ã«ã‚‡ã‚‚ã«ã‚‡ï¼“
 	else if(pdat->counter < s_end + c_spd*2 ){pdat->cnow=CELL_WINDANCE_C2;pdat->muki=TRUE;}
 	else if(pdat->counter < s_end + c_spd*3 ){pdat->cnow=CELL_WINDANCE_C3;pdat->muki=TRUE;}
 	else if(pdat->counter < s_end + c_spd*4 ){pdat->cnow=CELL_WINDANCE_C2;pdat->muki=TRUE;}
@@ -161,7 +161,7 @@ void CCharacter::act_win()//Ÿ—˜
 	else if(pdat->counter < s_end + c_spd*17){pdat->cnow=CELL_WINDANCE_C2;pdat->muki=FALSE;}
 	else if(pdat->counter < s_end + c_spd*18){pdat->cnow=CELL_WINDANCE_C1;pdat->muki=FALSE;}
 
-	else if(pdat->counter == c_end){//‚Ò‚å[‚ñ
+	else if(pdat->counter == c_end){//ã´ã‚‡ãƒ¼ã‚“
 		pdat->vy = -6;
 		pdat->y += pdat->vy;
 		pdat->cnow=CELL_WINDANCE_J1;pdat->muki=TRUE;
@@ -180,44 +180,44 @@ void CCharacter::act_win()//Ÿ—˜
 		Message2System(MSGOBJ2SYS_WINPOSEEND,0);
 }
 
-void CCharacter::act_timeoverlose()//ƒ^ƒCƒ€ƒI[ƒo[
+void CCharacter::act_timeoverlose()//ã‚¿ã‚¤ãƒ ã‚ªãƒ¼ãƒãƒ¼
 {
 	pdat->cnow = CELL_TLOSE;
 }
 
-void CCharacter::act_walkf()//‘Oi
+void CCharacter::act_walkf()//å‰é€²
 {
 	pdat->cnow = CELL_WALK1+(pdat->counter/4)%3;
 	movex(3);
 }
 
-void CCharacter::act_walkb()//Œã‘Ş
+void CCharacter::act_walkb()//å¾Œé€€
 {
 	pdat->cnow = CELL_WALKB1+(pdat->counter/4)%3;
 	movex(-3);
 }
 
-void CCharacter::act_jamps()//ƒWƒƒƒ“ƒv—\”õ“®ì
+void CCharacter::act_jamps()//ã‚¸ãƒ£ãƒ³ãƒ—äºˆå‚™å‹•ä½œ
 {
 	if(pdat->counter >2)pdat->aid = ACTID_JAMPC;
 	pdat->cnow = CELL_JAMP;
 }
 
-void CCharacter::act_jampc()//‚’¼ƒWƒƒƒ“ƒv
+void CCharacter::act_jampc()//å‚ç›´ã‚¸ãƒ£ãƒ³ãƒ—
 {
 	if(pdat->counter == 0){pdat->vy=-34;pdat->vx=0;}
 	pdat->cnow = CELL_JAMP1;
 	JiyuuRakka(3,TRUE);
 }
 
-void CCharacter::act_jampf()//‘OƒWƒƒƒ“ƒv
+void CCharacter::act_jampf()//å‰ã‚¸ãƒ£ãƒ³ãƒ—
 {
 	if(pdat->counter == 0){pdat->vy=-34;pdat->vx=6;}
 	pdat->cnow = CELL_JAMP1;
 	JiyuuRakka(3, TRUE);;
 }
 
-void CCharacter::act_jampb()//ŒãƒWƒƒƒ“ƒv
+void CCharacter::act_jampb()//å¾Œã‚¸ãƒ£ãƒ³ãƒ—
 {
 	if(pdat->counter == 0){pdat->vy=-34;pdat->vx=-6;}
 	pdat->cnow = CELL_JAMP1;
@@ -225,37 +225,37 @@ void CCharacter::act_jampb()//ŒãƒWƒƒƒ“ƒv
 }
 
 //*********************************************************
-//@‚»‚Ì‘¼
+//ã€€ãã®ä»–
 //*********************************************************
 void CCharacter::act_taiki()
 {
 	if(pdat->counter<2)pdat->cnow=CELL_CROUCH;
 	else pdat->cnow= CELL_JAMP1;
-	CCharacterBase::act_taiki();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
+	CCharacterBase::act_taiki();//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åŸºæœ¬ã‚¯ãƒ©ã‚¹ã®å‹•ä½œã‚’æµç”¨
 }
 
 void CCharacter::act_koutai_out()
 {
 	if(pdat->counter<2)pdat->cnow=CELL_CROUCH;
 	else pdat->cnow= CELL_JAMP1;
-	CCharacterBase::act_koutai_out();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
+	CCharacterBase::act_koutai_out();//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åŸºæœ¬ã‚¯ãƒ©ã‚¹ã®å‹•ä½œã‚’æµç”¨
 }
 
 void CCharacter::act_koutai_in()
 {
 	pdat->cnow= CELL_JAMP1;
-	CCharacterBase::act_koutai_in();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
+	CCharacterBase::act_koutai_in();//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åŸºæœ¬ã‚¯ãƒ©ã‚¹ã®å‹•ä½œã‚’æµç”¨
 }
 
 void CCharacter::act_koutai()
 {
 	pdat->cnow= CELL_JAMP1;
-	CCharacterBase::act_koutai();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
+	CCharacterBase::act_koutai();//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åŸºæœ¬ã‚¯ãƒ©ã‚¹ã®å‹•ä½œã‚’æµç”¨
 }
 
 void CCharacter::act_koutai2()
 {
-	//CCharacterBase::act_koutai2();//ƒLƒƒƒ‰ƒNƒ^[Šî–{ƒNƒ‰ƒX‚Ì“®ì‚ğ—¬—p
+	//CCharacterBase::act_koutai2();//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼åŸºæœ¬ã‚¯ãƒ©ã‚¹ã®å‹•ä½œã‚’æµç”¨
 	if(pdat->counter < 60){
 		switch((pdat->counter/4)%6){
 		case 0:pdat->cnow=CELL_WALK3;pdat->muki=FALSE;break;
@@ -274,7 +274,7 @@ void CCharacter::act_koutai2()
 
 
 //*********************************************************
-//@@’Ç‰Á“®ì
+//ã€€ã€€è¿½åŠ å‹•ä½œ
 //*********************************************************
 
 

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 
 #include "define_macro.h"
 #include "global.h"
@@ -6,7 +6,7 @@
 
 void CBattleTaskDemo::Initialize()
 {
-	// ƒ‰ƒ“ƒ_ƒ€‚È‘ÎíðŒ‚ðÝ’è
+	// ãƒ©ãƒ³ãƒ€ãƒ ãªå¯¾æˆ¦æ¡ä»¶ã‚’è¨­å®š
 	g_battleinfo.Initialize();
 	InitRandomCharacters();
 
@@ -17,13 +17,13 @@ void CBattleTaskDemo::Initialize()
 
 	CBattleTask::Initialize();
 
-	// BGM‚ð–Â‚ç‚³‚È‚¢
+	// BGMã‚’é³´ã‚‰ã•ãªã„
 	g_sound.BGMStop();
 }
 
 BOOL CBattleTaskDemo::Execute(DWORD time)
 {
-	// ƒL[“ü—Í‚©ˆê’èŽžŠÔŒo‰ß‚Åƒfƒ‚ƒ‚[ƒh’†Ž~
+	// ã‚­ãƒ¼å…¥åŠ›ã‹ä¸€å®šæ™‚é–“çµŒéŽã§ãƒ‡ãƒ¢ãƒ¢ãƒ¼ãƒ‰ä¸­æ­¢
 	if (bf_counter >= DEMOBATTLE_LIMITTIME ||
 		g_input.GetAllKey() & KEYSTA_ANYKEY ||
 		round != 1)

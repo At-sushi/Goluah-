@@ -1,7 +1,7 @@
-/*============================================================================
+ï»¿/*============================================================================
 
-	GOBJECT “à•”ˆ—ƒNƒ‰ƒX
-	ƒƒbƒZ[ƒW‘—M‚ÆAƒƒbƒZ[ƒW‚ÌƒfƒtƒHƒ‹ƒgˆ—
+	GOBJECT å†…éƒ¨å‡¦ç†ã‚¯ãƒ©ã‚¹
+	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡ã¨ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå‡¦ç†
 
 ==============================================================================*/
 #include "stdafx.h"
@@ -21,14 +21,14 @@ CGObject::CGObject(DWORD object_id)
 	ZeroMemory(&data ,sizeof(GOBJECT));
 	ActionIDChanged(TRUE,TRUE);
 
-	//ƒpƒ‰ƒ[ƒ^‚ğ‘S‚ÄƒŠƒZƒbƒg
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å…¨ã¦ãƒªã‚»ãƒƒãƒˆ
 	comcounter=0;
 	comguard = 0;
 	ZeroMemory(&cy,sizeof(CATCHYOU));
-	hitcount=0;//˜A‘±‹Zƒqƒbƒg”
-	sexydamage=0;//˜A‘±‹Z’~Ïƒ_ƒ[ƒW
-	sexydamage_anim=0;//˜A‘±‹Z’~Ïƒ_ƒ[ƒW
-	sexydamage_haba=0;//˜A‘±‹Z’~Ïƒ_ƒ[ƒW
+	hitcount=0;//é€£ç¶šæŠ€ãƒ’ãƒƒãƒˆæ•°
+	sexydamage=0;//é€£ç¶šæŠ€è“„ç©ãƒ€ãƒ¡ãƒ¼ã‚¸
+	sexydamage_anim=0;//é€£ç¶šæŠ€è“„ç©ãƒ€ãƒ¡ãƒ¼ã‚¸
+	sexydamage_haba=0;//é€£ç¶šæŠ€è“„ç©ãƒ€ãƒ¡ãƒ¼ã‚¸
 	siver=0;
 
 	com_level = battleTask->GetCurrentComLevel();
@@ -101,10 +101,10 @@ DWORD CGObject::Message(DWORD type,DWORD prm)
 	CGObject *pobj=NULL;
 	DWORD ret =0;
 
-	//‘Oˆ—
+	//å‰å‡¦ç†
 	switch(type){
 	case GOBJMSG_COMMAND:
-		if(data.objtype & GOBJFLG_TAIKI)//‘Ò‹@’†‚ÍƒRƒ}ƒ“ƒhˆ—‚ğ‚µ‚È‚¢
+		if(data.objtype & GOBJFLG_TAIKI)//å¾…æ©Ÿä¸­ã¯ã‚³ãƒãƒ³ãƒ‰å‡¦ç†ã‚’ã—ãªã„
 			return(0);
 		break;
 	case GOBJMSG_ACTION:
@@ -128,7 +128,7 @@ DWORD CGObject::Message(DWORD type,DWORD prm)
 		break;
 	}
 
-	//ƒRƒ“ƒsƒ…[ƒ^§Œä
+	//ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿åˆ¶å¾¡
 	if(type==GOBJMSG_COMMAND){
 		if(data.objtype&GOBJFLG_COMPUTER){
 			ActionIDChanged(TRUE);
@@ -137,20 +137,20 @@ DWORD CGObject::Message(DWORD type,DWORD prm)
 			return(0);
 		}
 	}
-	if(type==GOBJMSG_ACTION && data.aid == ACTID_NAGERARE)//“Š‚°‚ç‚ê’†‚Å‚ ‚é
+	if(type==GOBJMSG_ACTION && data.aid == ACTID_NAGERARE)//æŠ•ã’ã‚‰ã‚Œä¸­ã§ã‚ã‚‹
 	{
 		pobj = (CGObject*)battleTask->GetGObject(cy.oid);
-		if(pobj==NULL)//ˆÙí
+		if(pobj==NULL)//ç•°å¸¸
 		{
-			g_system.Log("CGObject::Message “Š‚°‚ç‚ê’†‚É“Š‚°‘¤ƒIƒuƒWƒFƒNƒgæ“¾¸”s",SYSLOG_WARNING);
+			g_system.Log("CGObject::Message æŠ•ã’ã‚‰ã‚Œä¸­ã«æŠ•ã’å´ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå–å¾—å¤±æ•—",SYSLOG_WARNING);
 			data.aid=ACTID_FUTTOBI;
 			ActionIDChanged(TRUE,TRUE);
 			return(0);
 		}
 		ret=pobj->Message(cy.actmsg,data.id);
-		if(ret!=0){//“Š‚°‚©‚çŠJ•ú‚³‚ê‚é
+		if(ret!=0){//æŠ•ã’ã‹ã‚‰é–‹æ”¾ã•ã‚Œã‚‹
 			data.aid=ret;
-			if(data.hp<=0){//€–S
+			if(data.hp<=0){//æ­»äº¡
 				if( g_battleinfo.GetBattleType() ==TAISENKEISIKI_GOCYAMAZE)
 					data.aid=ACTID_FINALDOWN;
 				else
@@ -170,15 +170,15 @@ DWORD CGObject::Message(DWORD type,DWORD prm)
 	}
 	ret = MessageDirect(type,prm);
 
-	//ƒfƒtƒHƒ‹ƒgˆ—
+	//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå‡¦ç†
 	if(ret==0){
-		switch(type){//ƒƒbƒZ[ƒW‚É‚æ‚Á‚ÄƒfƒtƒHƒ‹ƒg‚Ì“®ì‚ªˆÙ‚È‚éƒb
-		case GOBJMSG_DRAW://ƒZƒ‹•`‰æ
+		switch(type){//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«ã‚ˆã£ã¦ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®å‹•ä½œãŒç•°ãªã‚‹ãƒƒ
+		case GOBJMSG_DRAW://ã‚»ãƒ«æç”»
 			Defmsg_Draw();
 			break;
 		case GOBJMSG_TOUCHA:
 			return(Defmsg_TouchA());
-		case GOBJMSG_TOUCHB://UŒ‚‚ª“–‚½‚Á‚½iUŒ‚—Í‚Ìoffj
+		case GOBJMSG_TOUCHB://æ”»æ’ƒãŒå½“ãŸã£ãŸï¼ˆæ”»æ’ƒåŠ›ã®offï¼‰
 			data.kougeki = FALSE;
 			break;
 		case GOBJMSG_ACTION:
@@ -187,7 +187,7 @@ DWORD CGObject::Message(DWORD type,DWORD prm)
 		case GOBJMSG_CLIPX:
 			if(data.objtype & GOBJFLG_CLIPX2){
 				data.x += *((int*)prm);
-				if((data.aid&ACTID_KURAI || data.aid&ACTID_GUARD) && !(data.aid&ACTID_KUCYU)){//“G‚ğ‰Ÿ‚µ–ß‚·
+				if((data.aid&ACTID_KURAI || data.aid&ACTID_GUARD) && !(data.aid&ACTID_KUCYU)){//æ•µã‚’æŠ¼ã—æˆ»ã™
 					if(data.atk2.flags&ATKINFO2_ATTACKERBACK){
 						pobj = battleTask->GetGObject( data.atk2.oid );
 						if(pobj!=NULL){
@@ -206,7 +206,7 @@ DWORD CGObject::Message(DWORD type,DWORD prm)
 		}
 	}
 
-	//Œãˆ—
+	//å¾Œå‡¦ç†
 	switch(type){
 	case GOBJMSG_COMMAND:
 		ActionIDChanged(FALSE);
@@ -223,15 +223,15 @@ DWORD CGObject::Message(DWORD type,DWORD prm)
 	return(ret);
 }
 
-// ƒfƒtƒHƒ‹ƒgƒƒbƒZ[ƒWˆ— *********************************************************
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç† *********************************************************
 
-void CGObject::Defmsg_Draw()//•`‰æBcell‚ğ•`‰æ‚·‚é‚Ì‚İ
+void CGObject::Defmsg_Draw()//æç”»ã€‚cellã‚’æç”»ã™ã‚‹ã®ã¿
 {
 	BOOL rev_x=FALSE;
 	if(data.revx)rev_x=!rev_x;
 	if(data.muki)rev_x=!rev_x;
 
-	//•`‰æ‚Ìİ’è
+	//æç”»ã®è¨­å®š
 	if(data.alphamode!=0)g_draw.SetAlphaMode(data.alphamode);
 	if(data.objtype & GOBJFLG_DISPZAHYO)battleTask->SetTransform(FALSE);
 
@@ -246,39 +246,39 @@ void CGObject::Defmsg_Draw()//•`‰æBcell‚ğ•`‰æ‚·‚é‚Ì‚İ
 		(g_draw.devtypenow == D3DDEVTYPE_HAL || data.objtype & GOBJFLG_DISPZAHYO) ? (int)data.y : (int)data.y + 440,data.z,
 		data.rot,rev_x,data.revy,data.color,data.magx,data.magy,shadow);
 
-	//•`‰æ‚Ìİ’èEŒ³‚É–ß‚µ‚Ä‚¨‚­
+	//æç”»ã®è¨­å®šãƒ»å…ƒã«æˆ»ã—ã¦ãŠã
 	if(data.objtype & GOBJFLG_DISPZAHYO)battleTask->SetTransform(TRUE);
 	if(data.alphamode!=0)g_draw.SetAlphaMode(0);
 }
 
-DWORD CGObject::Defmsg_TouchA()//‘Šè‚ÌUŒ‚‚É“–‚½‚Á‚½‚Æ‚«‚Ìˆ—
+DWORD CGObject::Defmsg_TouchA()//ç›¸æ‰‹ã®æ”»æ’ƒã«å½“ãŸã£ãŸã¨ãã®å‡¦ç†
 {
-	//‹ò‚ç‚Á‚½UŒ‚î•ñ¨ data.atk2
+	//å–°ã‚‰ã£ãŸæ”»æ’ƒæƒ…å ±â†’ data.atk2
 	ATTACKINFO *info = data.atk2.info1;
 
-	DWORD keyinput = CExport::GetKeyInput(data.id);//ƒIƒuƒWƒFƒNƒgid‚ğgetkeyinput‚É‘ã“ü‚µ‚Äw’èƒLƒƒƒ‰‚ÌƒL[“ü—ÍƒCƒ“ƒfƒbƒNƒX’l‚ğæ“¾
-	DWORD key_now = g_input.GetKeyEx(keyinput,0);	//’¼‚Á‚½EEEH
+	DWORD keyinput = CExport::GetKeyInput(data.id);//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆidã‚’getkeyinputã«ä»£å…¥ã—ã¦æŒ‡å®šã‚­ãƒ£ãƒ©ã®ã‚­ãƒ¼å…¥åŠ›ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤ã‚’å–å¾—
+	DWORD key_now = g_input.GetKeyEx(keyinput,0);	//ç›´ã£ãŸãƒ»ãƒ»ãƒ»ï¼Ÿ
 
-	// ‘Ò‹@/‘Ş”ğ’†‚Í–³‹‚µ‚¿‚á‚¤
+	// å¾…æ©Ÿ/é€€é¿ä¸­ã¯ç„¡è¦–ã—ã¡ã‚ƒã†
 	if(data.aid & ACTID_INOUT)return(TOUCHA_AVOID);
-	//“Š‚°’†‚Í–³‹‚µ‚¿‚á‚¤
+	//æŠ•ã’ä¸­ã¯ç„¡è¦–ã—ã¡ã‚ƒã†
 	if(data.aid & ACTID_NAGE)return(TOUCHA_AVOID);
 
-	//AQ–h~?
+	//AQé˜²æ­¢?
 	if(data.aid==ACTID_DOWN2)return(TOUCHA_AVOID);
-	//‹ò‚ç‚¢A‚Ü‚½‚ÍƒK[ƒh’†
+	//å–°ã‚‰ã„ã€ã¾ãŸã¯ã‚¬ãƒ¼ãƒ‰ä¸­
 	if(data.aid & ACTID_KURAI || data.aid & ACTID_GUARD){
-		if(data.aid & ACTID_KUCYU){////ƒWƒƒƒ“ƒv“®ì’†
+		if(data.aid & ACTID_KUCYU){////ã‚¸ãƒ£ãƒ³ãƒ—å‹•ä½œä¸­
 			if(data.aid & ACTID_GUARD)return(TOUCHA_GUARDJ);
 			else return(TOUCHA_KURAIJ);
 		}
-		else if(data.aid & ACTID_SYAGAMI){//‚µ‚á‚ª‚İ’†
+		else if(data.aid & ACTID_SYAGAMI){//ã—ã‚ƒãŒã¿ä¸­
 			if(!(info->guard & GUARDINFO_XCROUCH)){
 				if(data.aid & ACTID_GUARD)return(TOUCHA_GUARDC);
 				else return(TOUCHA_KURAIC);
 			}
 		}
-		else{//—§‚¿
+		else{//ç«‹ã¡
 			if(!(info->guard & GUARDINFO_XSTAND)){
 				if(data.aid & ACTID_GUARD)return(TOUCHA_GUARDS);
 				else return(TOUCHA_KURAIS);
@@ -286,19 +286,19 @@ DWORD CGObject::Defmsg_TouchA()//‘Šè‚ÌUŒ‚‚É“–‚½‚Á‚½‚Æ‚«‚Ìˆ—
 		}
 	}
 
-	//UŒ‚“®ì’†i–³ğŒ‚É‹ò‚ç‚¤j
+	//æ”»æ’ƒå‹•ä½œä¸­ï¼ˆç„¡æ¡ä»¶ã«å–°ã‚‰ã†ï¼‰
 	if((data.aid & ACTID_ATTACK) || (data.aid & ACTID_KURAI)){
-		if(data.aid & ACTID_KUCYU){//ƒWƒƒƒ“ƒv“®ì’†
+		if(data.aid & ACTID_KUCYU){//ã‚¸ãƒ£ãƒ³ãƒ—å‹•ä½œä¸­
 			return(TOUCHA_KURAIJ);
 		}
-		else if(data.aid & ACTID_SYAGAMI){//‚µ‚á‚ª‚İ’†
+		else if(data.aid & ACTID_SYAGAMI){//ã—ã‚ƒãŒã¿ä¸­
 			return(TOUCHA_KURAIC);
 		}
 		else return(TOUCHA_KURAIS);
 	}
 
-	//Šî–{“®ì’†iƒŒƒo[i— j‚ª“ü‚Á‚Ä‚ê‚ÎƒK[ƒhj
-	if(data.aid & ACTID_KUCYU){//ƒWƒƒƒ“ƒv“®ì’†
+	//åŸºæœ¬å‹•ä½œä¸­ï¼ˆãƒ¬ãƒãƒ¼ï¼ˆè£ï¼‰ãŒå…¥ã£ã¦ã‚Œã°ã‚¬ãƒ¼ãƒ‰ï¼‰
+	if(data.aid & ACTID_KUCYU){//ã‚¸ãƒ£ãƒ³ãƒ—å‹•ä½œä¸­
 		if((data.aid==ACTID_RAKKA) && (key_now & KEYSTA_BACK)){
 			return(TOUCHA_GUARDJ);
 		}
@@ -333,7 +333,7 @@ DWORD CGObject::Defmsg_TouchA()//‘Šè‚ÌUŒ‚‚É“–‚½‚Á‚½‚Æ‚«‚Ìˆ—
 	return(TOUCHA_AVOID);
 }
 
-void CGObject::ActionIDChanged(BOOL ck,BOOL force)//s“®ID‚ª•Ï‚í‚Á‚½‚Æ‚«‚Ìˆ—
+void CGObject::ActionIDChanged(BOOL ck,BOOL force)//è¡Œå‹•IDãŒå¤‰ã‚ã£ãŸã¨ãã®å‡¦ç†
 {
 	if(!force){
 		if(ck){actid_prv=data.aid;return;}
@@ -357,7 +357,7 @@ void CGObject::ActionIDChanged(BOOL ck,BOOL force)//s“®ID‚ª•Ï‚í‚Á‚½‚Æ‚«‚Ìˆ—
 }
 
 //******************************************************************
-//  ƒfƒtƒHƒ‹ƒg‹ò‚ç‚¢“®ì
+//  ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå–°ã‚‰ã„å‹•ä½œ
 //******************************************************************
 
 //======================================================================================
@@ -389,55 +389,55 @@ void CGObject::Defmsg_Action()
 	if(data.aid & ACTID_GUARD)data.nagerare =FALSE;
 
 	switch(data.aid){
-	case ACTID_DAMAGE1		:dact_damages1(&data);break;//—§‚¿‹ò‚ç‚¢i¬j
-	case ACTID_DAMAGE2		:dact_damages2(&data);break;//—§‚¿‹ò‚ç‚¢i’†j
-	case ACTID_DAMAGE3		:dact_damages3(&data);break;//—§‚¿‹ò‚ç‚¢i‘åj
-	case ACTID_DAMAGEC1		:dact_damagec1(&data);break;//‚µ‚á‚ª‚İ‹ò‚ç‚¢i¬j
-	case ACTID_DAMAGEC2		:dact_damagec2(&data);break;//‚µ‚á‚ª‚İ‹ò‚ç‚¢i’†j
-	case ACTID_DAMAGEC3		:dact_damagec3(&data);break;//‚µ‚á‚ª‚İ‹ò‚ç‚¢i‘åj
-	case ACTID_DAMAGEJ1		:dact_damagej1(&data);break;//‹ó’†‹ò‚ç‚¢i¬j
-	case ACTID_DAMAGEJ2		:dact_damagej2(&data);break;//‹ó’†‹ò‚ç‚¢i’†j
-	case ACTID_DAMAGEJ3		:dact_damagej3(&data);break;//‹ó’†‹ò‚ç‚¢i‘åj
-	case ACTID_DOWN			:dact_down(&data);break;//“]“|
-	case ACTID_DOWN2		:dact_down2(&data);break;//Q‚Ä‚é
-	case ACTID_FINALDOWN	:dact_finaldown(&data);break;//‹N‚«ã‚ª‚è
-	case ACTID_FUTTOBI		:dact_futtobi(&data);break;//‚Ó‚Á‚Æ‚Ñ
-	case ACTID_BOUND		:dact_bound(&data);break;//ƒoƒEƒ“ƒh
-	case ACTID_OKIAGARI		:dact_okiagari(&data);break;//‚¨‚«‚ ‚ª‚è
-	case ACTID_FINALBOUND	:dact_finalbound(&data);break;//‚ÉƒoƒEƒ“ƒh
+	case ACTID_DAMAGE1		:dact_damages1(&data);break;//ç«‹ã¡å–°ã‚‰ã„ï¼ˆå°ï¼‰
+	case ACTID_DAMAGE2		:dact_damages2(&data);break;//ç«‹ã¡å–°ã‚‰ã„ï¼ˆä¸­ï¼‰
+	case ACTID_DAMAGE3		:dact_damages3(&data);break;//ç«‹ã¡å–°ã‚‰ã„ï¼ˆå¤§ï¼‰
+	case ACTID_DAMAGEC1		:dact_damagec1(&data);break;//ã—ã‚ƒãŒã¿å–°ã‚‰ã„ï¼ˆå°ï¼‰
+	case ACTID_DAMAGEC2		:dact_damagec2(&data);break;//ã—ã‚ƒãŒã¿å–°ã‚‰ã„ï¼ˆä¸­ï¼‰
+	case ACTID_DAMAGEC3		:dact_damagec3(&data);break;//ã—ã‚ƒãŒã¿å–°ã‚‰ã„ï¼ˆå¤§ï¼‰
+	case ACTID_DAMAGEJ1		:dact_damagej1(&data);break;//ç©ºä¸­å–°ã‚‰ã„ï¼ˆå°ï¼‰
+	case ACTID_DAMAGEJ2		:dact_damagej2(&data);break;//ç©ºä¸­å–°ã‚‰ã„ï¼ˆä¸­ï¼‰
+	case ACTID_DAMAGEJ3		:dact_damagej3(&data);break;//ç©ºä¸­å–°ã‚‰ã„ï¼ˆå¤§ï¼‰
+	case ACTID_DOWN			:dact_down(&data);break;//è»¢å€’
+	case ACTID_DOWN2		:dact_down2(&data);break;//å¯ã¦ã‚‹
+	case ACTID_FINALDOWN	:dact_finaldown(&data);break;//èµ·ãä¸ŠãŒã‚Š
+	case ACTID_FUTTOBI		:dact_futtobi(&data);break;//ãµã£ã¨ã³
+	case ACTID_BOUND		:dact_bound(&data);break;//ãƒã‚¦ãƒ³ãƒ‰
+	case ACTID_OKIAGARI		:dact_okiagari(&data);break;//ãŠãã‚ãŒã‚Š
+	case ACTID_FINALBOUND	:dact_finalbound(&data);break;//æ°ã«ãƒã‚¦ãƒ³ãƒ‰
 	case ACTID_FINALDOWN2	:dact_finaldown2(&data);break;
-	case ACTID_FUTTOBI2		:dact_futtobi2(&data);break;//‚Ô‚Á‚Æ‚Ñ2
-	case ACTID_DAMAGE1A		:dact_damages1a(&data);break;//—§‚¿‹ò‚ç‚¢i¬jA‚Ì‚¯‚¼‚è‚È‚µ
-	case ACTID_DAMAGE2A		:dact_damages2a(&data);break;//—§‚¿‹ò‚ç‚¢i’†jA‚Ì‚¯‚¼‚è‚È‚µ
-	case ACTID_DAMAGE3A		:dact_damages3a(&data);break;//—§‚¿‹ò‚ç‚¢i‘åjA‚Ì‚¯‚¼‚è‚È‚µ
-	case ACTID_DAMAGEC1A	:dact_damagec1a(&data);break;//‚µ‚á‚ª‚İ‹ò‚ç‚¢i¬jA‚Ì‚¯‚¼‚è‚È‚µ
-	case ACTID_DAMAGEC2A	:dact_damagec2a(&data);break;//‚µ‚á‚ª‚İ‹ò‚ç‚¢i’†jA‚Ì‚¯‚¼‚è‚È‚µ
-	case ACTID_DAMAGEC3A	:dact_damagec3a(&data);break;//‚µ‚á‚ª‚İ‹ò‚ç‚¢i‘åjA‚Ì‚¯‚¼‚è‚È‚µ
-	case ACTID_TATAKITUKE1A	:dact_tatakituke1a(&data);break;//^‰º’@‚«‚Â‚¯AƒoƒEƒ“ƒh‚ ‚è
-	case ACTID_TATAKITUKE2A	:dact_tatakituke2a(&data);break;//@@V@@@AV@@@‚È‚µ
-	case ACTID_TATAKITUKE1B	:dact_tatakituke1b(&data);break;//Î‚ß’@‚«‚Â‚¯AƒoƒEƒ“ƒh‚ ‚è
-	case ACTID_TATAKITUKE2B	:dact_tatakituke2b(&data);break;//@@V@@@AV@@@‚È‚µ
-	case ACTID_KAITENFINISH	:dact_kaitenfinish(&data);break;//‰ñ“]ƒtƒBƒjƒbƒVƒ…
-	case ACTID_USERHIT1		:dact_userhit1();break;//ƒ†[ƒU[’è‹`‹ò‚ç‚¢(’nã)
-	case ACTID_USERHIT2		:dact_userhit2();break;//ƒ†[ƒU[’è‹`‹ò‚ç‚¢(‹ó’†)
+	case ACTID_FUTTOBI2		:dact_futtobi2(&data);break;//ã¶ã£ã¨ã³2
+	case ACTID_DAMAGE1A		:dact_damages1a(&data);break;//ç«‹ã¡å–°ã‚‰ã„ï¼ˆå°ï¼‰ã€ã®ã‘ãã‚Šãªã—
+	case ACTID_DAMAGE2A		:dact_damages2a(&data);break;//ç«‹ã¡å–°ã‚‰ã„ï¼ˆä¸­ï¼‰ã€ã®ã‘ãã‚Šãªã—
+	case ACTID_DAMAGE3A		:dact_damages3a(&data);break;//ç«‹ã¡å–°ã‚‰ã„ï¼ˆå¤§ï¼‰ã€ã®ã‘ãã‚Šãªã—
+	case ACTID_DAMAGEC1A	:dact_damagec1a(&data);break;//ã—ã‚ƒãŒã¿å–°ã‚‰ã„ï¼ˆå°ï¼‰ã€ã®ã‘ãã‚Šãªã—
+	case ACTID_DAMAGEC2A	:dact_damagec2a(&data);break;//ã—ã‚ƒãŒã¿å–°ã‚‰ã„ï¼ˆä¸­ï¼‰ã€ã®ã‘ãã‚Šãªã—
+	case ACTID_DAMAGEC3A	:dact_damagec3a(&data);break;//ã—ã‚ƒãŒã¿å–°ã‚‰ã„ï¼ˆå¤§ï¼‰ã€ã®ã‘ãã‚Šãªã—
+	case ACTID_TATAKITUKE1A	:dact_tatakituke1a(&data);break;//çœŸä¸‹å©ãã¤ã‘ã€ãƒã‚¦ãƒ³ãƒ‰ã‚ã‚Š
+	case ACTID_TATAKITUKE2A	:dact_tatakituke2a(&data);break;//ã€€ã€€ã€ƒã€€ã€€ã€€ã€ã€ƒã€€ã€€ã€€ãªã—
+	case ACTID_TATAKITUKE1B	:dact_tatakituke1b(&data);break;//æ–œã‚å©ãã¤ã‘ã€ãƒã‚¦ãƒ³ãƒ‰ã‚ã‚Š
+	case ACTID_TATAKITUKE2B	:dact_tatakituke2b(&data);break;//ã€€ã€€ã€ƒã€€ã€€ã€€ã€ã€ƒã€€ã€€ã€€ãªã—
+	case ACTID_KAITENFINISH	:dact_kaitenfinish(&data);break;//å›è»¢ãƒ•ã‚£ãƒ‹ãƒƒã‚·ãƒ¥
+	case ACTID_USERHIT1		:dact_userhit1();break;//ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©å–°ã‚‰ã„(åœ°ä¸Š)
+	case ACTID_USERHIT2		:dact_userhit2();break;//ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©å–°ã‚‰ã„(ç©ºä¸­)
 
-	case ACTID_GUARD1		:dact_guards1(&data);break;//—§‚¿ƒK[ƒhi¬j
-	case ACTID_GUARD2		:dact_guards2(&data);break;//—§‚¿ƒK[ƒhi’†j
-	case ACTID_GUARD3		:dact_guards3(&data);break;//—§‚¿ƒK[ƒhi‘åj
-	case ACTID_GUARDC1		:dact_guardc1(&data);break;//‚µ‚á‚ª‚İƒK[ƒhi¬j
-	case ACTID_GUARDC2		:dact_guardc2(&data);break;//‚µ‚á‚ª‚İƒK[ƒhi’†j
-	case ACTID_GUARDC3		:dact_guardc3(&data);break;//‚µ‚á‚ª‚İƒK[ƒhi‘åj
-	case ACTID_GUARDJ1		:dact_guardj1(&data);break;//‹ó’†ƒK[ƒhi¬j
-	case ACTID_GUARDJ2		:dact_guardj2(&data);break;//‹ó’†ƒK[ƒhi’†j
-	case ACTID_GUARDJ3		:dact_guardj3(&data);break;//‹ó’†ƒK[ƒhi‘åj
-	case ACTID_USERGUARD1	:dact_userguard1();break;//ƒ†[ƒU[’è‹`ƒK[ƒh(’nã)
-	case ACTID_USERGUARD2	:dact_userguard2();break;//ƒ†[ƒU[’è‹`ƒK[ƒh(‹ó’†)
+	case ACTID_GUARD1		:dact_guards1(&data);break;//ç«‹ã¡ã‚¬ãƒ¼ãƒ‰ï¼ˆå°ï¼‰
+	case ACTID_GUARD2		:dact_guards2(&data);break;//ç«‹ã¡ã‚¬ãƒ¼ãƒ‰ï¼ˆä¸­ï¼‰
+	case ACTID_GUARD3		:dact_guards3(&data);break;//ç«‹ã¡ã‚¬ãƒ¼ãƒ‰ï¼ˆå¤§ï¼‰
+	case ACTID_GUARDC1		:dact_guardc1(&data);break;//ã—ã‚ƒãŒã¿ã‚¬ãƒ¼ãƒ‰ï¼ˆå°ï¼‰
+	case ACTID_GUARDC2		:dact_guardc2(&data);break;//ã—ã‚ƒãŒã¿ã‚¬ãƒ¼ãƒ‰ï¼ˆä¸­ï¼‰
+	case ACTID_GUARDC3		:dact_guardc3(&data);break;//ã—ã‚ƒãŒã¿ã‚¬ãƒ¼ãƒ‰ï¼ˆå¤§ï¼‰
+	case ACTID_GUARDJ1		:dact_guardj1(&data);break;//ç©ºä¸­ã‚¬ãƒ¼ãƒ‰ï¼ˆå°ï¼‰
+	case ACTID_GUARDJ2		:dact_guardj2(&data);break;//ç©ºä¸­ã‚¬ãƒ¼ãƒ‰ï¼ˆä¸­ï¼‰
+	case ACTID_GUARDJ3		:dact_guardj3(&data);break;//ç©ºä¸­ã‚¬ãƒ¼ãƒ‰ï¼ˆå¤§ï¼‰
+	case ACTID_USERGUARD1	:dact_userguard1();break;//ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©ã‚¬ãƒ¼ãƒ‰(åœ°ä¸Š)
+	case ACTID_USERGUARD2	:dact_userguard2();break;//ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©ã‚¬ãƒ¼ãƒ‰(ç©ºä¸­)
 	default:return;
 	}
 }
 
-//‹ò‚ç‚¢“®ì======================================================================================
-void CGObject::dact_damages1(GOBJECT* pdat)//—§‚¿‹ò‚ç‚¢(ã)
+//å–°ã‚‰ã„å‹•ä½œ======================================================================================
+void CGObject::dact_damages1(GOBJECT* pdat)//ç«‹ã¡å–°ã‚‰ã„(å¼±)
 {
 	if(pdat->counter==0){
 		pdat->vx=-3;
@@ -459,7 +459,7 @@ void CGObject::dact_damages1(GOBJECT* pdat)//—§‚¿‹ò‚ç‚¢(ã)
 		pdat->cnow = DCELL_DAMAGES4;}
 }
 
-void CGObject::dact_damages2(GOBJECT* pdat)//—§‚¿‹ò‚ç‚¢(’†)
+void CGObject::dact_damages2(GOBJECT* pdat)//ç«‹ã¡å–°ã‚‰ã„(ä¸­)
 {
 	if(pdat->counter==0){
 		pdat->vx=-5;
@@ -481,7 +481,7 @@ void CGObject::dact_damages2(GOBJECT* pdat)//—§‚¿‹ò‚ç‚¢(’†)
 		pdat->cnow = DCELL_DAMAGES4;}
 }
 
-void CGObject::dact_damages3(GOBJECT* pdat)//—§‚¿‹ò‚ç‚¢(‹­)
+void CGObject::dact_damages3(GOBJECT* pdat)//ç«‹ã¡å–°ã‚‰ã„(å¼·)
 {
 	if(pdat->counter==0){
 		pdat->vx=-7;
@@ -503,7 +503,7 @@ void CGObject::dact_damages3(GOBJECT* pdat)//—§‚¿‹ò‚ç‚¢(‹­)
 		pdat->cnow = DCELL_DAMAGES4;}
 }
 
-void CGObject::dact_damagec1(GOBJECT* pdat)//‚µ‚á‚ª‚İ‹ò‚ç‚¢(ã)
+void CGObject::dact_damagec1(GOBJECT* pdat)//ã—ã‚ƒãŒã¿å–°ã‚‰ã„(å¼±)
 {
 	if(pdat->counter==0){
 		pdat->vx=-3;
@@ -525,7 +525,7 @@ void CGObject::dact_damagec1(GOBJECT* pdat)//‚µ‚á‚ª‚İ‹ò‚ç‚¢(ã)
 		pdat->cnow = DCELL_DAMAGEC4;}
 }
 
-void CGObject::dact_damagec2(GOBJECT* pdat)//‚µ‚á‚ª‚İ‹ò‚ç‚¢(’†)
+void CGObject::dact_damagec2(GOBJECT* pdat)//ã—ã‚ƒãŒã¿å–°ã‚‰ã„(ä¸­)
 {
 	if(pdat->counter==0){
 		pdat->vx=-5;
@@ -548,7 +548,7 @@ void CGObject::dact_damagec2(GOBJECT* pdat)//‚µ‚á‚ª‚İ‹ò‚ç‚¢(’†)
 	else pdat->aid = ACTID_CROUCH;
 }
 
-void CGObject::dact_damagec3(GOBJECT* pdat)//‚µ‚á‚ª‚İ‹ò‚ç‚¢(‹­)
+void CGObject::dact_damagec3(GOBJECT* pdat)//ã—ã‚ƒãŒã¿å–°ã‚‰ã„(å¼·)
 {
 	if(pdat->counter==0){
 		pdat->vx=-7;
@@ -570,7 +570,7 @@ void CGObject::dact_damagec3(GOBJECT* pdat)//‚µ‚á‚ª‚İ‹ò‚ç‚¢(‹­)
 		pdat->cnow = DCELL_DAMAGEC4;}
 }
 
-void CGObject::dact_damages1a(GOBJECT* pdat)//—§‚¿‹ò‚ç‚¢(ã)A‚Ì‚¯‚¼‚è‚È‚µ
+void CGObject::dact_damages1a(GOBJECT* pdat)//ç«‹ã¡å–°ã‚‰ã„(å¼±)ã€ã®ã‘ãã‚Šãªã—
 {
 	if(pdat->counter==0){
 		pdat->vx=-5;
@@ -592,7 +592,7 @@ void CGObject::dact_damages1a(GOBJECT* pdat)//—§‚¿‹ò‚ç‚¢(ã)A‚Ì‚¯‚¼‚è‚È‚µ
 		pdat->cnow = DCELL_DAMAGES4;}
 }
 
-void CGObject::dact_damages2a(GOBJECT* pdat)//—§‚¿‹ò‚ç‚¢(’†)A‚Ì‚¯‚¼‚è‚È‚µ
+void CGObject::dact_damages2a(GOBJECT* pdat)//ç«‹ã¡å–°ã‚‰ã„(ä¸­)ã€ã®ã‘ãã‚Šãªã—
 {
 	if(pdat->counter==0){
 		pdat->vx=-7;
@@ -614,7 +614,7 @@ void CGObject::dact_damages2a(GOBJECT* pdat)//—§‚¿‹ò‚ç‚¢(’†)A‚Ì‚¯‚¼‚è‚È‚µ
 		pdat->cnow = DCELL_DAMAGES4;}
 }
 
-void CGObject::dact_damages3a(GOBJECT* pdat)//—§‚¿‹ò‚ç‚¢(‹­)A‚Ì‚¯‚¼‚è‚È‚µ
+void CGObject::dact_damages3a(GOBJECT* pdat)//ç«‹ã¡å–°ã‚‰ã„(å¼·)ã€ã®ã‘ãã‚Šãªã—
 {
 	if(pdat->counter==0){
 		pdat->vx=-9;
@@ -636,7 +636,7 @@ void CGObject::dact_damages3a(GOBJECT* pdat)//—§‚¿‹ò‚ç‚¢(‹­)A‚Ì‚¯‚¼‚è‚È‚µ
 		pdat->cnow = DCELL_DAMAGES4;}
 }
 
-void CGObject::dact_damagec1a(GOBJECT* pdat)//‚µ‚á‚ª‚İ‹ò‚ç‚¢(ã)A‚Ì‚¯‚¼‚è‚È‚µ
+void CGObject::dact_damagec1a(GOBJECT* pdat)//ã—ã‚ƒãŒã¿å–°ã‚‰ã„(å¼±)ã€ã®ã‘ãã‚Šãªã—
 {
 	if(pdat->counter==0){
 		pdat->vx=-5;
@@ -658,7 +658,7 @@ void CGObject::dact_damagec1a(GOBJECT* pdat)//‚µ‚á‚ª‚İ‹ò‚ç‚¢(ã)A‚Ì‚¯‚¼‚è‚È‚µ
 		pdat->cnow = DCELL_DAMAGEC4;}
 }
 
-void CGObject::dact_damagec2a(GOBJECT* pdat)//‚µ‚á‚ª‚İ‹ò‚ç‚¢(’†)A‚Ì‚¯‚¼‚è‚È‚µ
+void CGObject::dact_damagec2a(GOBJECT* pdat)//ã—ã‚ƒãŒã¿å–°ã‚‰ã„(ä¸­)ã€ã®ã‘ãã‚Šãªã—
 {
 	if(pdat->counter==0){
 		pdat->vx=-7;
@@ -681,7 +681,7 @@ void CGObject::dact_damagec2a(GOBJECT* pdat)//‚µ‚á‚ª‚İ‹ò‚ç‚¢(’†)A‚Ì‚¯‚¼‚è‚È‚µ
 	else pdat->aid = ACTID_CROUCH;
 }
 
-void CGObject::dact_damagec3a(GOBJECT* pdat)//‚µ‚á‚ª‚İ‹ò‚ç‚¢(‹­)A‚Ì‚¯‚¼‚è‚È‚µ
+void CGObject::dact_damagec3a(GOBJECT* pdat)//ã—ã‚ƒãŒã¿å–°ã‚‰ã„(å¼·)ã€ã®ã‘ãã‚Šãªã—
 {
 	if(pdat->counter==0){
 		pdat->vx=-9;
@@ -703,7 +703,7 @@ void CGObject::dact_damagec3a(GOBJECT* pdat)//‚µ‚á‚ª‚İ‹ò‚ç‚¢(‹­)A‚Ì‚¯‚¼‚è‚È‚µ
 		pdat->cnow = DCELL_DAMAGEC4;}
 }
 
-void CGObject::dact_damagej1(GOBJECT* pdat)//‹ó’†‹ò‚ç‚¢(ã)
+void CGObject::dact_damagej1(GOBJECT* pdat)//ç©ºä¸­å–°ã‚‰ã„(å¼±)
 {
 	if(pdat->counter==0){
 		pdat->vx=-4;
@@ -720,7 +720,7 @@ void CGObject::dact_damagej1(GOBJECT* pdat)//‹ó’†‹ò‚ç‚¢(ã)
 	}
 }
 
-void CGObject::dact_damagej2(GOBJECT* pdat)//‹ó’†‹ò‚ç‚¢(’†)
+void CGObject::dact_damagej2(GOBJECT* pdat)//ç©ºä¸­å–°ã‚‰ã„(ä¸­)
 {
 	if(pdat->counter==0){
 		pdat->vx=-6;
@@ -739,7 +739,7 @@ void CGObject::dact_damagej2(GOBJECT* pdat)//‹ó’†‹ò‚ç‚¢(’†)
 	}
 }
 
-void CGObject::dact_damagej3(GOBJECT* pdat)//‹ó’†‹ò‚ç‚¢(‹­)
+void CGObject::dact_damagej3(GOBJECT* pdat)//ç©ºä¸­å–°ã‚‰ã„(å¼·)
 {
 	if(pdat->counter==0){
 		pdat->vx=-7;
@@ -759,7 +759,7 @@ void CGObject::dact_damagej3(GOBJECT* pdat)//‹ó’†‹ò‚ç‚¢(‹­)
 	}
 }
 
-void CGObject::dact_down(GOBJECT* pdat)//“]“|
+void CGObject::dact_down(GOBJECT* pdat)//è»¢å€’
 {
 	pdat->muteki=TRUE;
 	pdat->nagerare=FALSE;
@@ -782,7 +782,7 @@ void CGObject::dact_down(GOBJECT* pdat)//“]“|
 	}
 }
 
-void CGObject::dact_down2(GOBJECT* pdat)//ƒ_ƒEƒ“
+void CGObject::dact_down2(GOBJECT* pdat)//ãƒ€ã‚¦ãƒ³
 {
 	pdat->muteki=TRUE;
 	pdat->nagerare=FALSE;
@@ -793,7 +793,7 @@ void CGObject::dact_down2(GOBJECT* pdat)//ƒ_ƒEƒ“
 	if(pdat->counter > 25)pdat->aid = ACTID_OKIAGARI;
 }
 
-void CGObject::dact_finaldown(GOBJECT* pdat)//‚É
+void CGObject::dact_finaldown(GOBJECT* pdat)//æ°ã«
 {
 	pdat->muteki=TRUE;
 	pdat->nagerare=FALSE;
@@ -817,7 +817,7 @@ void CGObject::dact_finaldown(GOBJECT* pdat)//‚É
 	}
 }
 
-void CGObject::dact_futtobi(GOBJECT* pdat)//‚Ó‚Á‚Æ‚Ñ
+void CGObject::dact_futtobi(GOBJECT* pdat)//ãµã£ã¨ã³
 {
 	if(pdat->counter==0){
 		pdat->vx=-12;
@@ -837,7 +837,7 @@ void CGObject::dact_futtobi(GOBJECT* pdat)//‚Ó‚Á‚Æ‚Ñ
 	}
 }
 
-void CGObject::dact_futtobi2(GOBJECT* pdat)//‚Ó‚Á‚Æ‚Ñ(ƒGƒŠƒAƒ‹•—–¡)
+void CGObject::dact_futtobi2(GOBJECT* pdat)//ãµã£ã¨ã³(ã‚¨ãƒªã‚¢ãƒ«é¢¨å‘³)
 {
 	if(pdat->counter==0){
 		DmgMovex(pdat, -30);
@@ -858,7 +858,7 @@ void CGObject::dact_futtobi2(GOBJECT* pdat)//‚Ó‚Á‚Æ‚Ñ(ƒGƒŠƒAƒ‹•—–¡)
 	}
 }
 
-void CGObject::dact_bound(GOBJECT* pdat)//ƒoƒEƒ“ƒh
+void CGObject::dact_bound(GOBJECT* pdat)//ãƒã‚¦ãƒ³ãƒ‰
 {
 	pdat->muteki=TRUE;
 	pdat->nagerare=FALSE;
@@ -879,7 +879,7 @@ void CGObject::dact_bound(GOBJECT* pdat)//ƒoƒEƒ“ƒh
 	}
 }
 
-void CGObject::dact_okiagari(GOBJECT* pdat)//‚¨‚«‚ ‚ª‚è
+void CGObject::dact_okiagari(GOBJECT* pdat)//ãŠãã‚ãŒã‚Š
 {
 	pdat->muteki=TRUE;
 	pdat->nagerare=FALSE;
@@ -896,7 +896,7 @@ void CGObject::dact_okiagari(GOBJECT* pdat)//‚¨‚«‚ ‚ª‚è
 	
 }
 
-void CGObject::dact_finalbound(GOBJECT* pdat)//ƒoƒEƒ“ƒh
+void CGObject::dact_finalbound(GOBJECT* pdat)//ãƒã‚¦ãƒ³ãƒ‰
 {
 	pdat->muteki=TRUE;
 	pdat->nagerare=FALSE;
@@ -928,7 +928,7 @@ void CGObject::dact_finaldown2(GOBJECT* pdat)
 	}
 }
 
-void CGObject::dact_tatakituke(GOBJECT* pdat)//ƒ^ƒ^ƒLƒcƒP
+void CGObject::dact_tatakituke(GOBJECT* pdat)//ã‚¿ã‚¿ã‚­ãƒ„ã‚±
 {
 	DmgMovex(pdat,pdat->vx);
 	pdat->y+=pdat->vy;
@@ -989,7 +989,7 @@ void CGObject::dact_tatakituke2b(GOBJECT* pdat)
 	}
 }
 
-void CGObject::dact_kaitenfinish(GOBJECT* pdat)//‰ñ“]‚µ‚Ä‚Ô‚Á‚Æ‚Ô
+void CGObject::dact_kaitenfinish(GOBJECT* pdat)//å›è»¢ã—ã¦ã¶ã£ã¨ã¶
 {
 	if(TRUE)//pdat->counter==0){
 	{
@@ -1008,9 +1008,9 @@ void CGObject::dact_kaitenfinish(GOBJECT* pdat)//‰ñ“]‚µ‚Ä‚Ô‚Á‚Æ‚Ô
 	}
 }
 
-//ƒK[ƒh“®ì================================================================================
+//ã‚¬ãƒ¼ãƒ‰å‹•ä½œ================================================================================
 
-void CGObject::dact_guards1(GOBJECT* pdat)//—§‚¿ƒK[ƒh(ã)
+void CGObject::dact_guards1(GOBJECT* pdat)//ç«‹ã¡ã‚¬ãƒ¼ãƒ‰(å¼±)
 {
 	if(pdat->counter < 2){
 		pdat->cnow = DCELL_GUARDS1;DmgMovex(pdat,-2);}
@@ -1023,7 +1023,7 @@ void CGObject::dact_guards1(GOBJECT* pdat)//—§‚¿ƒK[ƒh(ã)
 	else pdat->aid = ACTID_NEUTRAL;
 }
 
-void CGObject::dact_guards2(GOBJECT* pdat)//—§‚¿ƒK[ƒh(’†)
+void CGObject::dact_guards2(GOBJECT* pdat)//ç«‹ã¡ã‚¬ãƒ¼ãƒ‰(ä¸­)
 {
 	if(pdat->counter < 4){
 		pdat->cnow = DCELL_GUARDS1;DmgMovex(pdat,-2);}
@@ -1036,7 +1036,7 @@ void CGObject::dact_guards2(GOBJECT* pdat)//—§‚¿ƒK[ƒh(’†)
 	else pdat->aid = ACTID_NEUTRAL;
 }
 
-void CGObject::dact_guards3(GOBJECT* pdat)//—§‚¿ƒK[ƒh(‹­)
+void CGObject::dact_guards3(GOBJECT* pdat)//ç«‹ã¡ã‚¬ãƒ¼ãƒ‰(å¼·)
 {
 	if(pdat->counter < 4){
 		pdat->cnow = DCELL_GUARDS1;DmgMovex(pdat,-2);}
@@ -1049,7 +1049,7 @@ void CGObject::dact_guards3(GOBJECT* pdat)//—§‚¿ƒK[ƒh(‹­)
 	else pdat->aid = ACTID_NEUTRAL;
 }
 
-void CGObject::dact_guardc1(GOBJECT* pdat)//‚µ‚á‚ª‚İƒK[ƒh(ã)
+void CGObject::dact_guardc1(GOBJECT* pdat)//ã—ã‚ƒãŒã¿ã‚¬ãƒ¼ãƒ‰(å¼±)
 {
 	if(pdat->counter < 2){
 		pdat->cnow = DCELL_GUARDC1;DmgMovex(pdat,-2);}
@@ -1062,7 +1062,7 @@ void CGObject::dact_guardc1(GOBJECT* pdat)//‚µ‚á‚ª‚İƒK[ƒh(ã)
 	else pdat->aid = ACTID_CROUCH;
 }
 
-void CGObject::dact_guardc2(GOBJECT* pdat)//‚µ‚á‚ª‚İƒK[ƒh(’†)
+void CGObject::dact_guardc2(GOBJECT* pdat)//ã—ã‚ƒãŒã¿ã‚¬ãƒ¼ãƒ‰(ä¸­)
 {
 	if(pdat->counter < 4){
 		pdat->cnow = DCELL_GUARDC1;DmgMovex(pdat,-2);}
@@ -1075,7 +1075,7 @@ void CGObject::dact_guardc2(GOBJECT* pdat)//‚µ‚á‚ª‚İƒK[ƒh(’†)
 	else pdat->aid = ACTID_CROUCH;
 }
 
-void CGObject::dact_guardc3(GOBJECT* pdat)//‚µ‚á‚ª‚İƒK[ƒh(‹­)
+void CGObject::dact_guardc3(GOBJECT* pdat)//ã—ã‚ƒãŒã¿ã‚¬ãƒ¼ãƒ‰(å¼·)
 {
 	if(pdat->counter < 4){
 		pdat->cnow = DCELL_GUARDC1;DmgMovex(pdat,-2);}
@@ -1088,7 +1088,7 @@ void CGObject::dact_guardc3(GOBJECT* pdat)//‚µ‚á‚ª‚İƒK[ƒh(‹­)
 	else pdat->aid = ACTID_CROUCH;
 }
 
-void CGObject::dact_guardj1(GOBJECT* pdat)//‹ó’†ƒK[ƒh(ã)
+void CGObject::dact_guardj1(GOBJECT* pdat)//ç©ºä¸­ã‚¬ãƒ¼ãƒ‰(å¼±)
 {
 	if(pdat->counter < 2){
 		pdat->cnow = DCELL_GUARDJ1;DmgMovex(pdat,-2);}
@@ -1103,7 +1103,7 @@ void CGObject::dact_guardj1(GOBJECT* pdat)//‹ó’†ƒK[ƒh(ã)
 	}
 }
 
-void CGObject::dact_guardj2(GOBJECT* pdat)//‹ó’†ƒK[ƒh(’†)
+void CGObject::dact_guardj2(GOBJECT* pdat)//ç©ºä¸­ã‚¬ãƒ¼ãƒ‰(ä¸­)
 {
 	if(pdat->counter < 3){
 		pdat->cnow = DCELL_GUARDJ1;DmgMovex(pdat,-2);}
@@ -1118,7 +1118,7 @@ void CGObject::dact_guardj2(GOBJECT* pdat)//‹ó’†ƒK[ƒh(’†)
 	}
 }
 
-void CGObject::dact_guardj3(GOBJECT* pdat)//‹ó’†ƒK[ƒh(‹­)
+void CGObject::dact_guardj3(GOBJECT* pdat)//ç©ºä¸­ã‚¬ãƒ¼ãƒ‰(å¼·)
 {
 	if(pdat->counter < 4){
 		pdat->cnow = DCELL_GUARDJ1;DmgMovex(pdat,-2);}
@@ -1136,7 +1136,7 @@ void CGObject::dact_guardj3(GOBJECT* pdat)//‹ó’†ƒK[ƒh(‹­)
 void CGObject::dact_userhit1()
 {
 	CGObject *pobj = (CGObject*)battleTask->GetGObject(userhit_attacker);
-	if(pobj==NULL){//ˆÙí
+	if(pobj==NULL){//ç•°å¸¸
 		data.aid=ACTID_FUTTOBI;
 		ActionIDChanged(TRUE,TRUE);
 		return;
@@ -1147,7 +1147,7 @@ void CGObject::dact_userhit1()
 void CGObject::dact_userhit2()
 {
 	CGObject *pobj = (CGObject*)battleTask->GetGObject(userhit_attacker);
-	if(pobj==NULL){//ˆÙí
+	if(pobj==NULL){//ç•°å¸¸
 		data.aid=ACTID_FUTTOBI;
 		ActionIDChanged(TRUE,TRUE);
 		return;
@@ -1158,7 +1158,7 @@ void CGObject::dact_userhit2()
 void CGObject::dact_userguard1()
 {
 	CGObject *pobj = (CGObject*)battleTask->GetGObject(userhit_attacker);
-	if(pobj==NULL){//ˆÙí
+	if(pobj==NULL){//ç•°å¸¸
 		data.aid=ACTID_NEUTRAL;
 		ActionIDChanged(TRUE,TRUE);
 		return;
@@ -1169,7 +1169,7 @@ void CGObject::dact_userguard1()
 void CGObject::dact_userguard2()
 {
 	CGObject *pobj = (CGObject*)battleTask->GetGObject(userhit_attacker);
-	if(pobj==NULL){//ˆÙí
+	if(pobj==NULL){//ç•°å¸¸
 		data.aid=ACTID_NEUTRAL;
 		ActionIDChanged(TRUE,TRUE);
 		return;
@@ -1179,10 +1179,10 @@ void CGObject::dact_userguard2()
 
 
 //******************************************************************
-//  ƒRƒ“ƒsƒ…[ƒ^ƒRƒ}ƒ“ƒhˆ—
+//  ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿ã‚³ãƒãƒ³ãƒ‰å‡¦ç†
 //******************************************************************
 
-inline DWORD choiranw(DWORD *waz)//6‚Â‚ÌDWORD”z—ñ‚Ì‚¤‚¿A0‚Å‚È‚¢‚à‚Ì‚ğƒ‰ƒ“ƒ_ƒ€‚É‘I‘ğ
+inline DWORD choiranw(DWORD *waz)//6ã¤ã®DWORDé…åˆ—ã®ã†ã¡ã€0ã§ãªã„ã‚‚ã®ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã«é¸æŠ
 {
 	int r=timeGetTime()%6;
 	if(waz[r]!=0)return(waz[r]);
@@ -1214,14 +1214,14 @@ inline DWORD choiranw(DWORD *waz)//6‚Â‚ÌDWORD”z—ñ‚Ì‚¤‚¿A0‚Å‚È‚¢‚à‚Ì‚ğƒ‰ƒ“ƒ_ƒ€‚É
 void CGObject::ComCommand()
 {
 	int IsStopping = (data.counter == comhint_counterprev);
-	DWORD wnext=0;//Ÿ‚Éo‚µ‚½‚¢‹Z
+	DWORD wnext=0;//æ¬¡ã«å‡ºã—ãŸã„æŠ€
 
 	comhint_counterprev = data.counter;
 	if(data.winfo==NULL)return;
 	if(battleTask->GetState() != BFSTATE_FIGHTING && battleTask->GetState()!= BFSTATE_FIGHTING )return;
 	if(data.msghandler == NULL)return;
 
-	double guardratio;//ƒK[ƒh‚·‚éŠm—¦
+	double guardratio;//ã‚¬ãƒ¼ãƒ‰ã™ã‚‹ç¢ºç‡
 	switch(com_level){
 	case DIFF_VERYEASY	:guardratio=0.2;break;
 	case DIFF_EASY		:guardratio=0.4;break;
@@ -1233,19 +1233,19 @@ void CGObject::ComCommand()
 	default:guardratio=0.8;break;
 	}
 
-	//‹ò‚ç‚¢¥ƒK[ƒh“®ì‚É‚È‚Á‚½‚çƒ†[ƒU[w’è‚ğƒNƒŠƒA
+	//å–°ã‚‰ã„ï½¥ã‚¬ãƒ¼ãƒ‰å‹•ä½œã«ãªã£ãŸã‚‰ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šã‚’ã‚¯ãƒªã‚¢
 	if((data.aid & ACTID_KURAI) || (data.aid & ACTID_GUARD))
 	{
 		comhint_delay = -1;
 	}
 
-	//ƒ†[ƒU[w’ès“®
+	//ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šè¡Œå‹•
 	if(comhint_delay>=0 && !IsStopping)
 	{
 		comhint_delay--;
 		if(comhint_delay<=0)
 		{
-			//‘JˆÚ
+			//é·ç§»
 			if( comhint_aid!=0 )
 			{
 				if (MessageDirect(GOBJMSG_COMMANDCOM,comhint_aid))
@@ -1258,7 +1258,7 @@ void CGObject::ComCommand()
 				}
 				else if (comhint_capacity > 0)
 				{
-					// o—ˆ‚é‚Ü‚Å”S‚é
+					// å‡ºæ¥ã‚‹ã¾ã§ç²˜ã‚‹
 					comhint_delay = 0;
 					comhint_capacity--;
 				}
@@ -1276,12 +1276,12 @@ void CGObject::ComCommand()
 	DWORD thinkret = MessageDirect(GOBJMSG_COMTHINK, 0);
 	if (thinkret != 0)
 	{
-		// ƒ†[ƒU[w’èvlƒ‹[ƒ`ƒ“
+		// ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šæ€è€ƒãƒ«ãƒ¼ãƒãƒ³
 		if ( MessageDirect(GOBJMSG_COMMANDCOM, thinkret) )
 		{
 			data.aid = thinkret;
 
-			// ”O‚Ì‚½‚ß‚±‚Á‚¿‚àİ’è
+			// å¿µã®ãŸã‚ã“ã£ã¡ã‚‚è¨­å®š
 			comcounter=10;
 			comguard=50*guardratio;
 		}
@@ -1293,13 +1293,13 @@ void CGObject::ComCommand()
 	GOBJECT *pedat;
 	pedat = (GOBJECT*)battleTask->GetGObjectInfo(data.eid);
 	if(pedat!=NULL){
-		maai = (int)(data.x - pedat->x);//‘Šè‚Æ‚ÌŠÔ‡‚¢
+		maai = (int)(data.x - pedat->x);//ç›¸æ‰‹ã¨ã®é–“åˆã„
 		if(maai<0)maai*=(-1);
 	}
 	else return;
 
-	if(data.aid & ACTID_KUCYU){//ƒWƒƒƒ“ƒv’†‚Ìê‡
-		if( (maai<=comreach[1] && abs(data.y - pedat->y) <= comreach[1])/* && rand()%5!=0*/ ){//80%‚ÌŠm—¦‚ÅUŒ‚‚ğo‚·
+	if(data.aid & ACTID_KUCYU){//ã‚¸ãƒ£ãƒ³ãƒ—ä¸­ã®å ´åˆ
+		if( (maai<=comreach[1] && abs(data.y - pedat->y) <= comreach[1])/* && rand()%5!=0*/ ){//80%ã®ç¢ºç‡ã§æ”»æ’ƒã‚’å‡ºã™
 			wnext = choiranw(data.winfo->att_jamp);
 			if(wnext!=0){
 				if(MessageDirect(GOBJMSG_COMMANDCOM,wnext))data.aid=wnext;
@@ -1307,18 +1307,18 @@ void CGObject::ComCommand()
 			comguard=30*guardratio;
 			comcounter=40;
 		}
-		else{//–hŒä‚ğŒÅ‚ß‚é
+		else{//é˜²å¾¡ã‚’å›ºã‚ã‚‹
 			comguard=60*guardratio;
 			comcounter=30;
 		}
 	}
-	else{//’nã
+	else{//åœ°ä¸Š
 		if(maai > comreach[2]){//case "E"
 			#ifdef _DBG_COMCOMMAND
-			gbl.ods("ComCommand : ’´‰“‹——£");
+			gbl.ods("ComCommand : è¶…é è·é›¢");
 			#endif
 			switch(rand()%4){
-			case 0://”ò‚Ñ“¹‹ï‚ğ•ú‚Â
+			case 0://é£›ã³é“å…·ã‚’æ”¾ã¤
 				wnext=choiranw(data.winfo->att_bullet);
 				if(wnext!=0){
 					if(MessageDirect(GOBJMSG_COMMANDCOM,wnext)){
@@ -1329,7 +1329,7 @@ void CGObject::ComCommand()
 					}
 				}
 				break;
-			case 1://‘Oi
+			case 1://å‰é€²
 				wnext=data.winfo->walkf;
 				if(wnext!=0){
 					if(MessageDirect(GOBJMSG_COMMANDCOM,wnext)){
@@ -1340,7 +1340,7 @@ void CGObject::ComCommand()
 					}
 				}
 				break;
-			case 2://‘Oƒ_ƒbƒVƒ…
+			case 2://å‰ãƒ€ãƒƒã‚·ãƒ¥
 				wnext=data.winfo->dashf;
 				if(wnext!=0){
 					if(MessageDirect(GOBJMSG_COMMANDCOM,wnext)){
@@ -1365,10 +1365,10 @@ void CGObject::ComCommand()
 		}
 		else if(maai > comreach[1]){//case "D"
 			#ifdef _DBG_COMCOMMAND
-			gbl.ods("ComCommand : ‰“‹——£");
+			gbl.ods("ComCommand : é è·é›¢");
 			#endif
 			switch(rand()%8){
-			case 0://‘Oi
+			case 0://å‰é€²
 				wnext=data.winfo->walkf;
 				if(wnext!=0){
 					if(MessageDirect(GOBJMSG_COMMANDCOM,wnext)){
@@ -1379,7 +1379,7 @@ void CGObject::ComCommand()
 					}
 				}
 				break;
-			case 1://‘OƒWƒƒƒ“ƒv
+			case 1://å‰ã‚¸ãƒ£ãƒ³ãƒ—
 				wnext=data.winfo->jampf;
 				if(wnext!=0){
 					if(MessageDirect(GOBJMSG_COMMANDCOM,wnext)){
@@ -1391,7 +1391,7 @@ void CGObject::ComCommand()
 				}
 				break;
 			case 2:
-			case 3://’·ƒŠ[ƒ`UŒ‚
+			case 3://é•·ãƒªãƒ¼ãƒæ”»æ’ƒ
 				wnext=choiranw(data.winfo->att_long);
 				if(wnext!=0){
 					if(MessageDirect(GOBJMSG_COMMANDCOM,wnext)){
@@ -1402,7 +1402,7 @@ void CGObject::ComCommand()
 					}
 				}
 				break;
-			case 4://”ò‚Ñ“¹‹ï
+			case 4://é£›ã³é“å…·
 				wnext=choiranw(data.winfo->att_bullet);
 				if(wnext!=0){
 					if(MessageDirect(GOBJMSG_COMMANDCOM,wnext)){
@@ -1413,7 +1413,7 @@ void CGObject::ComCommand()
 					}
 				}
 				break;
-			case 5://ƒ_ƒbƒVƒ…
+			case 5://ãƒ€ãƒƒã‚·ãƒ¥
 				{
 					wnext=data.winfo->dashf;
 					if(wnext!=0){
@@ -1426,7 +1426,7 @@ void CGObject::ComCommand()
 					}
 				}
 				break;
-			case 6://‘OƒWƒƒƒ“ƒvi”ò‚Ñ‚İj
+			case 6://å‰ã‚¸ãƒ£ãƒ³ãƒ—ï¼ˆé£›ã³è¾¼ã¿ï¼‰
 				if (pedat->aid & ACTID_ATTACK)
 				{
 					wnext=data.winfo->jampf;
@@ -1440,7 +1440,7 @@ void CGObject::ComCommand()
 					}
 				}
 				break;
-			default://ƒjƒ…[ƒgƒ‰ƒ‹
+			default://ãƒ‹ãƒ¥ãƒ¼ãƒˆãƒ©ãƒ«
 				wnext=ACTID_NEUTRAL;
 				if(wnext!=0){
 					if(MessageDirect(GOBJMSG_COMMANDCOM,wnext)){
@@ -1454,10 +1454,10 @@ void CGObject::ComCommand()
 		}
 		else if(pedat!=NULL && pedat->y < -50){//case "C"
 			#ifdef _DBG_COMCOMMAND
-			gbl.ods("ComCommand : “G‹ó’†");
+			gbl.ods("ComCommand : æ•µç©ºä¸­");
 			#endif
 			switch(rand()%5){
-			case 0://‘Oi
+			case 0://å‰é€²
 				wnext=data.winfo->walkf;
 				if(wnext!=0){
 					if(MessageDirect(GOBJMSG_COMMANDCOM,wnext)){
@@ -1468,7 +1468,7 @@ void CGObject::ComCommand()
 					}
 				}
 				break;
-			case 1://‘OƒWƒƒƒ“ƒv
+			case 1://å‰ã‚¸ãƒ£ãƒ³ãƒ—
 				wnext=data.winfo->jampf;
 				if(wnext!=0){
 					if(MessageDirect(GOBJMSG_COMMANDCOM,wnext)){
@@ -1480,7 +1480,7 @@ void CGObject::ComCommand()
 				}
 				break;
 			case 2:
-			case 3://‘Î‹ó‹Z
+			case 3://å¯¾ç©ºæŠ€
 				wnext=choiranw(data.winfo->att_tai);
 				if(wnext!=0){
 					if(MessageDirect(GOBJMSG_COMMANDCOM,wnext)){
@@ -1491,7 +1491,7 @@ void CGObject::ComCommand()
 					}
 				}
 				break;
-			default://ƒjƒ…[ƒgƒ‰ƒ‹
+			default://ãƒ‹ãƒ¥ãƒ¼ãƒˆãƒ©ãƒ«
 				wnext=ACTID_NEUTRAL;
 				if(wnext!=0){
 					if(MessageDirect(GOBJMSG_COMMANDCOM,wnext)){
@@ -1505,10 +1505,10 @@ void CGObject::ComCommand()
 		}
 		else if(maai>comreach[0]){//case "B"
 			#ifdef _DBG_COMCOMMAND
-			gbl.ods("ComCommand : ’†‹——£");
+			gbl.ods("ComCommand : ä¸­è·é›¢");
 			#endif
 			switch(rand()%6){
-			case 0://‘Oi
+			case 0://å‰é€²
 				if ( com_level <= DIFF_EASY || !(pedat->aid & ACTID_ATTACK) )
 				{
 					wnext=data.winfo->walkf;
@@ -1522,7 +1522,7 @@ void CGObject::ComCommand()
 					}
 				}
 				break;
-			/*case 1://‘OƒWƒƒƒ“ƒv
+			/*case 1://å‰ã‚¸ãƒ£ãƒ³ãƒ—
 				wnext=data.winfo->jampf;
 				if(wnext!=0){
 					if(MessageDirect(GOBJMSG_COMMANDCOM,wnext)){
@@ -1534,7 +1534,7 @@ void CGObject::ComCommand()
 				}
 				break;*/
 			case 2:
-			case 3://’†ƒŠ[ƒ`UŒ‚
+			case 3://ä¸­ãƒªãƒ¼ãƒæ”»æ’ƒ
 				wnext=choiranw(data.winfo->att_middle);
 				if(wnext!=0){
 					if(MessageDirect(GOBJMSG_COMMANDCOM,wnext)){
@@ -1545,7 +1545,7 @@ void CGObject::ComCommand()
 					}
 				}
 				break;
-			case 4://ƒ_ƒbƒVƒ…
+			case 4://ãƒ€ãƒƒã‚·ãƒ¥
 				if ( com_level <= DIFF_EASY || !(pedat->aid & ACTID_ATTACK) )
 				{
 					wnext=data.winfo->dashf;
@@ -1559,7 +1559,7 @@ void CGObject::ComCommand()
 					}
 				}
 				break;
-			case 5://Œã‘Ş
+			case 5://å¾Œé€€
 				if(pedat->aid & ACTID_ATTACK){
 					wnext=data.winfo->walkb;
 					if(wnext!=0){
@@ -1572,7 +1572,7 @@ void CGObject::ComCommand()
 					}
 				}
 				break;
-			/*case 6://Œã‘Ş
+			/*case 6://å¾Œé€€
 				wnext=data.winfo->walkb;
 				if(wnext!=0){
 					if(MessageDirect(GOBJMSG_COMMANDCOM,wnext)){
@@ -1583,7 +1583,7 @@ void CGObject::ComCommand()
 					}
 				}
 				break;
-			case 7://ŒãƒWƒƒƒ“ƒv
+			case 7://å¾Œã‚¸ãƒ£ãƒ³ãƒ—
 				wnext=data.winfo->jampb;
 				if(wnext!=0){
 					if(MessageDirect(GOBJMSG_COMMANDCOM,wnext)){
@@ -1594,7 +1594,7 @@ void CGObject::ComCommand()
 					}
 				}
 				break;*/
-			default://ƒjƒ…[ƒgƒ‰ƒ‹
+			default://ãƒ‹ãƒ¥ãƒ¼ãƒˆãƒ©ãƒ«
 				wnext=ACTID_NEUTRAL;
 				if(MessageDirect(GOBJMSG_COMMANDCOM,wnext)){
 					comcounter=30;
@@ -1606,10 +1606,10 @@ void CGObject::ComCommand()
 		}
 		else{//case "A"
 			#ifdef _DBG_COMCOMMAND
-			gbl.ods("ComCommand : ‹ß‹——£");
+			gbl.ods("ComCommand : è¿‘è·é›¢");
 			#endif
 			switch(rand()%7){
-			case 0://‘Oi
+			case 0://å‰é€²
 				if(com_level<=DIFF_NORMAL)
 				{
 					wnext=data.winfo->walkf;
@@ -1620,7 +1620,7 @@ void CGObject::ComCommand()
 						return;
 					}
 				}
-				else {//“Š‚°
+				else {//æŠ•ã’
 					wnext=choiranw(data.winfo->nageid);
 					if(wnext!=0){
 						if(MessageDirect(GOBJMSG_COMMANDCOM,wnext)){
@@ -1659,7 +1659,7 @@ void CGObject::ComCommand()
 				}
 				break;
 			case 3:
-			case 5://’ZƒŠ[ƒ`UŒ‚
+			case 5://çŸ­ãƒªãƒ¼ãƒæ”»æ’ƒ
 				wnext=choiranw(data.winfo->att_short);
 				if(wnext!=0){
 					if(MessageDirect(GOBJMSG_COMMANDCOM,wnext)){
@@ -1670,7 +1670,7 @@ void CGObject::ComCommand()
 					}
 				}
 				break;
-			case 4://Œã‘Ş
+			case 4://å¾Œé€€
 				if (pedat->aid & ACTID_ATTACK)
 				{
 					wnext=data.winfo->walkb;
@@ -1684,7 +1684,7 @@ void CGObject::ComCommand()
 					}
 				}
 				break;
-			/*case 4://Œãƒ_ƒbƒVƒ…
+			/*case 4://å¾Œãƒ€ãƒƒã‚·ãƒ¥
 				if(com_level>=DIFF_NORMAL){
 					wnext=data.winfo->dashb;
 					if(wnext!=0){
@@ -1697,7 +1697,7 @@ void CGObject::ComCommand()
 					}
 				}
 				break;
-			case 5://ŒãƒWƒƒƒ“ƒv
+			case 5://å¾Œã‚¸ãƒ£ãƒ³ãƒ—
 				if(com_level>=DIFF_EASY){
 					wnext=data.winfo->jampb;
 					if(wnext!=0){
@@ -1710,7 +1710,7 @@ void CGObject::ComCommand()
 					}
 				}
 				break;*/
-			default://ƒjƒ…[ƒgƒ‰ƒ‹
+			default://ãƒ‹ãƒ¥ãƒ¼ãƒˆãƒ©ãƒ«
 				wnext=ACTID_NEUTRAL;
 				if(com_level>=DIFF_VERYHARD){
 					wnext=choiranw(data.winfo->nageid);

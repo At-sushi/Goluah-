@@ -1,4 +1,4 @@
-
+ï»¿
 #include "stage.h"
 
 
@@ -7,7 +7,7 @@
 #include "stage.h"
 
 // StageInfo ================================================
-//‹N“®‚ÉŒÄ‚Ño‚³‚ê‚éB
+//èµ·å‹•æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã€‚
 EXPORT BOOL StageInfo(LPVOID info)
 {
 	SDI_STAGEINFO *pif = (SDI_STAGEINFO*)info;
@@ -16,7 +16,7 @@ EXPORT BOOL StageInfo(LPVOID info)
 }
 
 // CreateStage ================================================
-//ƒ[ƒh‚ÉŒÄ‚Ño‚³‚ê‚éB
+//ãƒ­ãƒ¼ãƒ‰æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã€‚
 EXPORT DWORD CreateStage(PVOID info)
 {
 	CStage *pstg = new CStage((SDI_STAGEINFO2*)info);

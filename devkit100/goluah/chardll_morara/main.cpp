@@ -1,7 +1,7 @@
-
+ï»¿
 /*=====================================================================================
 
-	ƒLƒƒƒ‰ƒNƒ^[¶¬
+	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
 
 	Goluah!! Copyright (C) 2001-2004 aki, 2014-2015 logger, 2004-2015 At-sushi
 
@@ -13,16 +13,16 @@
 
 =======================================================================================*/
 
-#include "character.h"		//ƒ‚ƒ‰ƒ‰[
-extern CCharacterBase* CreateMorarael(CDI_CHARACTERINFO2* info);	//ƒ‚ƒ‰ƒ‰ƒGƒ‹
+#include "character.h"		//ãƒ¢ãƒ©ãƒ©ãƒ¼
+extern CCharacterBase* CreateMorarael(CDI_CHARACTERINFO2* info);	//ãƒ¢ãƒ©ãƒ©ã‚¨ãƒ«
 
 
 CHARACTER_LOAD_OPTION option[] = {
-	// ƒLƒƒƒ‰ƒNƒ^[‚ÌƒIƒvƒVƒ‡ƒ“‚ð‚±‚±‚É‘‚¢‚Ä‚­‚¾‚³‚¢BiÅ‘å32ŒÂj
-	// ‚È‚¨AƒIƒvƒVƒ‡ƒ“‚ÆƒIƒvƒVƒ‡ƒ“‚ÌŠÔ‚ÍƒRƒ“ƒ}(,)‚Å‹æØ‚Á‚Ä‚­‚¾‚³‚¢B
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’ã“ã“ã«æ›¸ã„ã¦ãã ã•ã„ã€‚ï¼ˆæœ€å¤§32å€‹ï¼‰
+	// ãªãŠã€ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã¨ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®é–“ã¯ã‚³ãƒ³ãƒž(,)ã§åŒºåˆ‡ã£ã¦ãã ã•ã„ã€‚
 
-	// ‹L“ü“à—eF
-	// @{ ƒtƒ‰ƒO, ‹£‡‚·‚éµÌß¼®Ý,ˆË‘¶‚·‚éµÌß¼®Ý, ƒIƒvƒVƒ‡ƒ“–¼, Á”ïƒ|ƒCƒ“ƒg }
+	// è¨˜å…¥å†…å®¹ï¼š
+	// ã€€{ ãƒ•ãƒ©ã‚°, ç«¶åˆã™ã‚‹ï½µï¾Œï¾Ÿï½¼ï½®ï¾,ä¾å­˜ã™ã‚‹ï½µï¾Œï¾Ÿï½¼ï½®ï¾, ã‚ªãƒ—ã‚·ãƒ§ãƒ³å, æ¶ˆè²»ãƒã‚¤ãƒ³ãƒˆ }
 	{ OPTIONS_EXTRA_ATTACK		,OPTIONS_MORARAEL_MODE, 0, "Extra Attack"	, 3},
 	{ OPTIONS_AUTO_GUARD		,OPTIONS_MORARAEL_MODE, 0, "Auto Guard"		, 5},
 	{ OPTIONS_G_CUTTER_PLUS		,OPTIONS_MORARAEL_MODE, 0, "G.Cutter +"		, 4},
@@ -36,27 +36,27 @@ CHARACTER_LOAD_OPTION option[] = {
 
 //**************************************************************************************
 //  Character Information
-//@‚±‚±‚ÉƒLƒƒƒ‰ƒNƒ^[‚Ì–¼‘O‚ð‹Lq‚µ‚Ü‚·
+//ã€€ã“ã“ã«ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®åå‰ã‚’è¨˜è¿°ã—ã¾ã™
 //**************************************************************************************
 
-CCharacterInfo CharInfo("ƒ‚ƒ‰ƒ‰[",		// ƒLƒƒƒ‰ƒNƒ^[‚Ì–¼‘OiÅ‘å31ƒoƒCƒgj
-						CDI_VERSION,		// ƒLƒƒƒ‰ƒNƒ^[DLLƒCƒ“ƒ^[ƒtƒFƒCƒX‚Ìƒo[ƒWƒ‡ƒ“
-						option,				// ƒIƒvƒVƒ‡ƒ“\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-						sizeof(option) / sizeof(CHARACTER_LOAD_OPTION), // ƒIƒvƒVƒ‡ƒ“‚Ì”
-						15,					// ƒIƒvƒVƒ‡ƒ“Å‘åƒ|ƒCƒ“ƒg”
-						FALSE);				// ƒlƒbƒg‘Îí‘Î‰ž‚©‚Ç‚¤‚© «—ˆ‚ÌŠg’£‚Ì‚½‚ß‚É—pˆÓ‚³‚ê‚Ä‚¢‚éBŒ»Ý‚Í0‚ð“n‚³‚È‚¯‚ê‚Î‚È‚ç‚È‚¢iÎj
+CCharacterInfo CharInfo("ãƒ¢ãƒ©ãƒ©ãƒ¼",		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®åå‰ï¼ˆæœ€å¤§31ãƒã‚¤ãƒˆï¼‰
+						CDI_VERSION,		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼DLLã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+						option,				// ã‚ªãƒ—ã‚·ãƒ§ãƒ³æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+						sizeof(option) / sizeof(CHARACTER_LOAD_OPTION), // ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®æ•°
+						15,					// ã‚ªãƒ—ã‚·ãƒ§ãƒ³æœ€å¤§ãƒã‚¤ãƒ³ãƒˆæ•°
+						FALSE);				// ãƒãƒƒãƒˆå¯¾æˆ¦å¯¾å¿œã‹ã©ã†ã‹ å°†æ¥ã®æ‹¡å¼µã®ãŸã‚ã«ç”¨æ„ã•ã‚Œã¦ã„ã‚‹ã€‚ç¾åœ¨ã¯0ã‚’æ¸¡ã•ãªã‘ã‚Œã°ãªã‚‰ãªã„ï¼ˆç¬‘ï¼‰
 
 char* CharDirectory = NULL;
 
 
 
-//ƒLƒƒƒ‰ƒNƒ^[“o˜^ˆ—i’Êí’Ê‚èj
+//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ç™»éŒ²å‡¦ç†ï¼ˆé€šå¸¸é€šã‚Šï¼‰
 extern "C" BOOL CharacterInfo(LPVOID info) 
 {
 	return CharInfo.DllCharacterInfo(info);
 }
 
-//ƒLƒƒƒ‰ƒNƒ^[¶¬ˆ—iØ‚è‘Ö‚¦j
+//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ç”Ÿæˆå‡¦ç†ï¼ˆåˆ‡ã‚Šæ›¿ãˆï¼‰
 extern "C" DWORD CreateCharacter(PVOID info) 
 {
 	CharInfo.DllCreateCharacter(info);
@@ -64,11 +64,11 @@ extern "C" DWORD CreateCharacter(PVOID info)
 	
 	CCharacterBase *pc;
 	if(cinfo->options_flag&OPTIONS_MORARAEL_MODE){
-		//ƒ‚ƒ‰ƒ‰ƒGƒ‹ƒ‚[ƒh
+		//ãƒ¢ãƒ©ãƒ©ã‚¨ãƒ«ãƒ¢ãƒ¼ãƒ‰
 		pc = CreateMorarael((CDI_CHARACTERINFO2*)info);
 	}
 	else{
-		//ƒ‚ƒ‰ƒ‰[ƒ‚[ƒh
+		//ãƒ¢ãƒ©ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰
 		pc = new CCharacter((CDI_CHARACTERINFO2*)info);
 	}
 	pc->InitializeCharacter();

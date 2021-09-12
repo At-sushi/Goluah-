@@ -1,9 +1,9 @@
-
+ï»¿
 /*========================================================================
 	
-	ƒXƒe[ƒWŠÇ—
+	ã‚¹ãƒ†ãƒ¼ã‚¸ç®¡ç†
 
-	ƒfƒBƒŒƒNƒgƒŠ‚©‚çƒXƒe[ƒW‚ÌƒŠƒXƒg‚ğì¬‚µ‚ÄŠÇ—‚·‚éB
+	ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‹ã‚‰ã‚¹ãƒ†ãƒ¼ã‚¸ã®ãƒªã‚¹ãƒˆã‚’ä½œæˆã—ã¦ç®¡ç†ã™ã‚‹ã€‚
 
 ==========================================================================*/
 
@@ -15,7 +15,7 @@
 
 
 /*-------------------------------------------------------------------------
-	¶¬”jŠü
+	ç”Ÿæˆç ´æ£„
 ---------------------------------------------------------------------------*/
 CStageList::CStageList()
 {
@@ -31,12 +31,12 @@ void CStageList::Destroy()
 
 /*!
 *
-*	‰Šú‰»
+*	åˆæœŸåŒ–
 *	
-*	1) ƒTƒuƒfƒBƒŒƒNƒgƒŠi“s‡ãRING‚Æ‚¢‚¤‚±‚Æ‚É‚È‚Á‚Ä‚¢‚éj‚Ìˆê——‚ğ¶¬
-*	2) ŠeƒfƒBƒŒƒNƒgƒŠ‚ÉŠÖ‚µ‚ÄƒXƒe[ƒW‚ğŒŸõ
-*		2.5) ŒŸõ‚µ‚½ŠeƒXƒe[ƒWƒfƒBƒŒƒNƒgƒŠ‚Ì³“–«‚ğŒŸØ
-*	3) ƒXƒe[ƒW‚ª1ŒÂ‚àŒ©‚Â‚©‚ç‚È‚©‚Á‚½ƒŠƒ“ƒO‚ÍƒŠƒXƒg‚©‚çíœ
+*	1) ã‚µãƒ–ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªï¼ˆéƒ½åˆä¸ŠRINGã¨ã„ã†ã“ã¨ã«ãªã£ã¦ã„ã‚‹ï¼‰ã®ä¸€è¦§ã‚’ç”Ÿæˆ
+*	2) å„ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«é–¢ã—ã¦ã‚¹ãƒ†ãƒ¼ã‚¸ã‚’æ¤œç´¢
+*		2.5) æ¤œç´¢ã—ãŸå„ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®æ­£å½“æ€§ã‚’æ¤œè¨¼
+*	3) ã‚¹ãƒ†ãƒ¼ã‚¸ãŒ1å€‹ã‚‚è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸãƒªãƒ³ã‚°ã¯ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤
 */
 void CStageList::Initialize()
 {
@@ -64,7 +64,7 @@ void CStageList::Initialize()
 }
 
 
-//stage ˆÈ‰º‚ÌƒTƒuƒfƒBƒŒƒNƒgƒŠ‚ğƒŠƒ“ƒO‚Æ‚µ‚Ä“o˜^
+//stage ä»¥ä¸‹ã®ã‚µãƒ–ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’ãƒªãƒ³ã‚°ã¨ã—ã¦ç™»éŒ²
 void CStageList::InitializeRingList()
 {
 	HANDLE hFind;
@@ -88,7 +88,7 @@ void CStageList::InitializeRingList()
 }
 
 
-//ƒŠƒ“ƒOiƒTƒuƒfƒBƒŒƒNƒgƒŠjˆê‚Â•ª‚ÌŒŸõˆ—
+//ãƒªãƒ³ã‚°ï¼ˆã‚µãƒ–ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªï¼‰ä¸€ã¤åˆ†ã®æ¤œç´¢å‡¦ç†
 void CStageList::InitializeRing(DWORD index)
 {
 	HANDLE hFind;
@@ -115,7 +115,7 @@ void CStageList::InitializeRing(DWORD index)
 }
 
 
-//ƒXƒe[ƒWˆê‚Â•ª‚Ì³“–«ƒ`ƒFƒbƒN
+//ã‚¹ãƒ†ãƒ¼ã‚¸ä¸€ã¤åˆ†ã®æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 BOOL CStageList::VerifyStageDir(char *dir,DWORD ring)
 {
 	char path[256];
@@ -124,13 +124,13 @@ BOOL CStageList::VerifyStageDir(char *dir,DWORD ring)
 	CSL_DAMEINFO dame;
 	ZeroMemory(&dame,sizeof(dame));
 
-	//–¼‘O‚ğƒkƒN
+	//åå‰ã‚’ãƒŒã‚¯
 	char sname[256];
 	ZeroMemory(sname,sizeof(sname));
 	sprintf(path,"%s\\name.txt",dir);
 	HANDLE hFile = CreateFile(path,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
 	if(hFile==INVALID_HANDLE_VALUE){
-		//¸”s
+		//å¤±æ•—
 		strcpy(dame.dir,dir);
 		dame.damereas=CSL_DAME_NONAME;
 		damelist.push_back(dame);
@@ -143,7 +143,7 @@ BOOL CStageList::VerifyStageDir(char *dir,DWORD ring)
 		sprintf(sname,"STAGE%d",infolist.size()+1);
 	}
 	
-	//DLL‚ª‚ ‚Á‚½‚çƒo[ƒWƒ‡ƒ“ƒ`ƒFƒbƒN
+	//DLLãŒã‚ã£ãŸã‚‰ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒã‚§ãƒƒã‚¯
 	sprintf(path,"%s\\stage.dll",dir);
 	HINSTANCE hLib = LoadLibrary(path);
 	PFUNC_STAGEINFO pfsinfo=NULL;
@@ -153,14 +153,14 @@ BOOL CStageList::VerifyStageDir(char *dir,DWORD ring)
 		pfsinfo=(PFUNC_STAGEINFO)GetProcAddress(hLib, "StageInfo");
 		if(pfsinfo!=NULL){
 			if(pfsinfo(&sinfo)){
-				if(sinfo.ver < 680){//DLL‚ªŒÃ‚¢
+				if(sinfo.ver < 680){//DLLãŒå¤ã„
 					strcpy(dame.dir,dir);
 					dame.damereas=CSL_DAME_OLDDLL;
 					dame.ver=sinfo.ver;
 					damelist.push_back(dame);
 					return(FALSE);
 				}
-				if(sinfo.ver > SDI_VERSION){//DLL‚ªV‚µ‚¢
+				if(sinfo.ver > SDI_VERSION){//DLLãŒæ–°ã—ã„
 					strcpy(dame.dir,dir);
 					dame.damereas=CSL_DAME_NEWDLL;
 					dame.ver=sinfo.ver;
@@ -168,14 +168,14 @@ BOOL CStageList::VerifyStageDir(char *dir,DWORD ring)
 					return(FALSE);
 				}
 			}
-			else{//ŠÖ”Às‚É¸”s
+			else{//é–¢æ•°å®Ÿè¡Œã«å¤±æ•—
 				strcpy(dame.dir,dir);
 				dame.damereas=CSL_DAME_PROC2;
 				damelist.push_back(dame);
 				return(FALSE);
 			}
 		}
-		else{//ŠÖ”ƒ|ƒCƒ“ƒ^æ“¾¸”s
+		else{//é–¢æ•°ãƒã‚¤ãƒ³ã‚¿å–å¾—å¤±æ•—
 				strcpy(dame.dir,dir);
 				dame.damereas=CSL_DAME_PROC;
 				damelist.push_back(dame);
@@ -185,14 +185,14 @@ BOOL CStageList::VerifyStageDir(char *dir,DWORD ring)
 		RELEASEDLL(hLib);
 	}
 
-	//‚¨‚Á‚¯[
-	//î•ñ•¡Ê
+	//ãŠã£ã‘ãƒ¼
+	//æƒ…å ±è¤‡å†™
 	CSL_STAGEINFO newitem;
 	ZeroMemory(&newitem,sizeof(CSL_STAGEINFO));
 	strcpy(newitem.dir,dir);
 	strcpy(newitem.name,sname);
 	newitem.ver=sinfo.ver;
-	//ƒŠƒXƒg’Ç‰Á
+	//ãƒªã‚¹ãƒˆè¿½åŠ 
 	ringlist[ring].ring2serial.push_back( (DWORD)infolist.size() );
 	infolist.push_back(newitem);
 
@@ -200,7 +200,7 @@ BOOL CStageList::VerifyStageDir(char *dir,DWORD ring)
 }
 
 //********************************************************************
-// Get`Œn
+// Getï½ç³»
 //********************************************************************
 
 int CStageList::GetStageCount()

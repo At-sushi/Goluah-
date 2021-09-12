@@ -1,6 +1,6 @@
-/*===============================================================
+ï»¿/*===============================================================
 
-	ƒqƒbƒgƒ}[ƒN“™
+	ãƒ’ãƒƒãƒˆãƒãƒ¼ã‚¯ç­‰
 
 =================================================================*/
 #pragma once
@@ -8,7 +8,7 @@
 
 
 /*!
-*	@brief ƒGƒtƒFƒNƒg•`‰æƒIƒuƒWƒFƒNƒgEƒqƒbƒgƒ}[ƒN(ã)
+*	@brief ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»ãƒ’ãƒƒãƒˆãƒãƒ¼ã‚¯(å¼±)
 *	@ingroup Battle
 */
 class CFxHitmark1 : public CSystemFxBase
@@ -19,7 +19,7 @@ public:
 };
 
 /*!
-*	@brief ƒGƒtƒFƒNƒg•`‰æƒIƒuƒWƒFƒNƒgEƒqƒbƒgƒ}[ƒN(’†)
+*	@brief ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»ãƒ’ãƒƒãƒˆãƒãƒ¼ã‚¯(ä¸­)
 *	@ingroup Battle
 */
 class CFxHitmark2 : public CSystemFxBase
@@ -30,7 +30,7 @@ public:
 };
 
 /*!
-*	@brief ƒGƒtƒFƒNƒg•`‰æƒIƒuƒWƒFƒNƒgEƒqƒbƒgƒ}[ƒN(‹­)
+*	@brief ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»ãƒ’ãƒƒãƒˆãƒãƒ¼ã‚¯(å¼·)
 *	@ingroup Battle
 */
 class CFxHitmark3 : public CSystemFxBase
@@ -41,7 +41,7 @@ public:
 };
 
 /*!
-*	@brief ƒGƒtƒFƒNƒg•`‰æƒIƒuƒWƒFƒNƒgEƒqƒbƒgƒ}[ƒN(Œƒ)
+*	@brief ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»ãƒ’ãƒƒãƒˆãƒãƒ¼ã‚¯(æ¿€)
 *	@ingroup Battle
 */
 class CFxHitmark4 : public CSystemFxBase
@@ -52,7 +52,7 @@ public:
 };
 
 /*!
-*	@brief ƒGƒtƒFƒNƒg•`‰æƒIƒuƒWƒFƒNƒgEƒK[ƒhƒ}[ƒN(í‚èƒ_ƒ[ƒW‚È‚µ)
+*	@brief ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»ã‚¬ãƒ¼ãƒ‰ãƒãƒ¼ã‚¯(å‰Šã‚Šãƒ€ãƒ¡ãƒ¼ã‚¸ãªã—)
 *	@ingroup Battle
 */
 class CFxGuardmark1 : public CSystemFxBase
@@ -65,7 +65,7 @@ public:
 };
 
 /*!
-*	@brief ƒGƒtƒFƒNƒg•`‰æƒIƒuƒWƒFƒNƒgEƒK[ƒhƒ}[ƒN(í‚èƒ_ƒ[ƒW‚ ‚è)
+*	@brief ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»ã‚¬ãƒ¼ãƒ‰ãƒãƒ¼ã‚¯(å‰Šã‚Šãƒ€ãƒ¡ãƒ¼ã‚¸ã‚ã‚Š)
 *	@ingroup Battle
 */
 class CFxGuardmark2 : public CFxGuardmark1
@@ -76,7 +76,7 @@ public:
 
 
 /*!
-*	@brief ƒGƒtƒFƒNƒg•`‰æƒIƒuƒWƒFƒNƒgE’Í‚İƒ}[ƒN
+*	@brief ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»æ´ã¿ãƒãƒ¼ã‚¯
 *	@ingroup Battle
 */
 class CFxCatchmark : public CSystemFxBase
@@ -86,7 +86,7 @@ public:
 };
 
 /*!
-*	@brief ƒGƒtƒFƒNƒg•`‰æƒIƒuƒWƒFƒNƒgE’n–ÊÕŒ‚”g
+*	@brief ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ»åœ°é¢è¡æ’ƒæ³¢
 *	@ingroup Battle
 */
 class CFxGndCircle : public CSystemFxBase

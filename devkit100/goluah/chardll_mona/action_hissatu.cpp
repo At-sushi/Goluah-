@@ -1,13 +1,13 @@
-
+ï»¿
 /*==============================================================
 
-	s“®ŠÖ”i•KE‹Zj
+	è¡Œå‹•é–¢æ•°ï¼ˆå¿…æ®ºæŠ€ï¼‰
 
 ================================================================*/
 #include "character.h"
 
 /*------------------------------------------------------------------
-					—³Šªù•—‹qE‚à‚Ç‚«(ã)
+					ç«œå·»æ—‹é¢¨å®¢ãƒ»ã‚‚ã©ã(å¼±)
 --------------------------------------------------------------------*/
 
 void CCharacter::act_tatumaki1(DWORD atkid)
@@ -42,7 +42,7 @@ void CCharacter::act_tatumaki1(DWORD atkid)
 
 
 /*------------------------------------------------------------------
-					—³Šªù•—‹qE‚à‚Ç‚«(’†)
+					ç«œå·»æ—‹é¢¨å®¢ãƒ»ã‚‚ã©ã(ä¸­)
 --------------------------------------------------------------------*/
 void CCharacter::act_tatumaki2(DWORD atkid)
 {
@@ -76,7 +76,7 @@ void CCharacter::act_tatumaki2(DWORD atkid)
 
 
 /*------------------------------------------------------------------
-					—³Šªù•—‹qE‚à‚Ç‚«(‹­)
+					ç«œå·»æ—‹é¢¨å®¢ãƒ»ã‚‚ã©ã(å¼·)
 --------------------------------------------------------------------*/
 void CCharacter::act_tatumaki3(DWORD atkid)
 {
@@ -110,7 +110,7 @@ void CCharacter::act_tatumaki3(DWORD atkid)
 
 
 /*------------------------------------------------------------------
-					—³Šªù•—‹qE‚à‚Ç‚«(—‰ºE’…’n)
+					ç«œå·»æ—‹é¢¨å®¢ãƒ»ã‚‚ã©ã(è½ä¸‹ãƒ»ç€åœ°)
 --------------------------------------------------------------------*/
 void CCharacter::act_tatumakir()
 {
@@ -132,7 +132,7 @@ void CCharacter::act_landing()
 }
 
 /*------------------------------------------------------------------
-					ƒK[ƒhƒLƒƒƒ“ƒZƒ‹—³Šªù•—‹r
+					ã‚¬ãƒ¼ãƒ‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«ç«œå·»æ—‹é¢¨è„š
 --------------------------------------------------------------------*/
 void CCharacter::act_gcancel1()
 {
@@ -199,7 +199,7 @@ void CCharacter::act_gcancel3j()
 
 
 /*------------------------------------------------------------------
-					uƒŒvuƒCvuƒNv(ã)
+					ã€Œãƒ¬ã€ã€Œã‚¤ã€ã€Œã‚¯ã€(å¼±)
 --------------------------------------------------------------------*/
 void CCharacter::act_reiku1a()
 {
@@ -263,7 +263,7 @@ void CCharacter::act_reiku1c()
 
 
 /*------------------------------------------------------------------
-					uƒŒvuƒCvuƒNv(’†)
+					ã€Œãƒ¬ã€ã€Œã‚¤ã€ã€Œã‚¯ã€(ä¸­)
 --------------------------------------------------------------------*/
 void CCharacter::act_reiku2a()
 {
@@ -324,7 +324,7 @@ void CCharacter::act_reiku2c()
 
 
 /*------------------------------------------------------------------
-					uƒŒvuƒCvuƒNv(‹­)
+					ã€Œãƒ¬ã€ã€Œã‚¤ã€ã€Œã‚¯ã€(å¼·)
 --------------------------------------------------------------------*/
 void CCharacter::act_reiku3a()
 {
@@ -400,11 +400,11 @@ void CCharacter::act_reiku3cs()
 }
 
 /*------------------------------------------------------------------
-					uƒŒvuƒCvuƒNv(ƒRƒ“ƒsƒ…[ƒ^—p)
+					ã€Œãƒ¬ã€ã€Œã‚¤ã€ã€Œã‚¯ã€(ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿ç”¨)
 --------------------------------------------------------------------* /
 void CCharacter::act_reikucom()
 {
-	if(pdat->counter<13)//uƒŒv
+	if(pdat->counter<13)//ã€Œãƒ¬ã€
 	{
 		if(ccounter==0)PlayMySound(wave_reiku_re);
 
@@ -415,7 +415,7 @@ void CCharacter::act_reikucom()
 			pefe_re->Go(pdat->muki,pdat->x,pdat->y-50,0);
 		}
 	}
-	else if(pdat->counter < 13+13)//uƒCv
+	else if(pdat->counter < 13+13)//ã€Œã‚¤ã€
 	{
 		if(ccounter==13)PlayMySound(wave_reiku_i);
 
@@ -426,7 +426,7 @@ void CCharacter::act_reikucom()
 			pefe_i->Go(pdat->muki,pdat->x,pdat->y-50,0);
 		}
 	}
-	else//uƒNv
+	else//ã€Œã‚¯ã€
 	{
 		if(ccounter==13+13)PlayMySound(wave_reiku_ku);
 
@@ -447,9 +447,9 @@ void CCharacter::act_reikucom()
 
 
 /*------------------------------------------------------------------
-	”g“®Œi”ò‚Î‚È‚¢j
+	æ³¢å‹•æ‹³ï¼ˆé£›ã°ãªã„ï¼‰
 --------------------------------------------------------------------*/
-//ã
+//å¼±
 void CCharacter::act_hadou1a()
 {
 	if(ccounter==0)PlayMySound(wave_hado1);
@@ -476,7 +476,7 @@ void CCharacter::act_hadou1a()
 	}
 }
 
-//’†
+//ä¸­
 void CCharacter::act_hadou2a()
 {
 	if(ccounter==0)PlayMySound(wave_hado1);
@@ -502,7 +502,7 @@ void CCharacter::act_hadou2a()
 	}
 }
 
-//‹­
+//å¼·
 void CCharacter::act_hadou3a()
 {
 	if(ccounter==0)PlayMySound(wave_hado1);
@@ -529,9 +529,9 @@ void CCharacter::act_hadou3a()
 }
 
 /*------------------------------------------------------------------
-	”g“®Œi”ò‚Ôj
+	æ³¢å‹•æ‹³ï¼ˆé£›ã¶ï¼‰
 --------------------------------------------------------------------*/
-//ã
+//å¼±
 void CCharacter::act_hadou1b()
 {
 	if(ccounter==0)PlayMySound(wave_hado2);
@@ -557,7 +557,7 @@ void CCharacter::act_hadou1b()
 	}
 }
 
-//’†
+//ä¸­
 void CCharacter::act_hadou2b()
 {
 	if(ccounter==0)PlayMySound(wave_hado2);
@@ -583,7 +583,7 @@ void CCharacter::act_hadou2b()
 	}
 }
 
-//‹­
+//å¼·
 void CCharacter::act_hadou3b()
 {
 	if(ccounter==0)PlayMySound(wave_hado2);
@@ -611,9 +611,9 @@ void CCharacter::act_hadou3b()
 
 
 /*------------------------------------------------------------------
-	ƒOƒbƒoƒCEƒtƒH[ƒGƒo[
+	ã‚°ãƒƒãƒã‚¤ãƒ»ãƒ•ã‚©ãƒ¼ã‚¨ãƒãƒ¼
 --------------------------------------------------------------------*/
-//n“®¨‘Oi
+//å§‹å‹•â†’å‰é€²
 void CCharacter::act_goodbye1()
 {
 	if(ccounter==0)PlayMySound(wave_goodbye);
@@ -636,7 +636,7 @@ void CCharacter::act_goodbye1()
 	// CREATE_GOBJ_FX( CShadowEffect(this, 0x330000FF) )
 }
 
-//ƒqƒbƒg¨‘Å‚¿ã‚°
+//ãƒ’ãƒƒãƒˆâ†’æ‰“ã¡ä¸Šã’
 void CCharacter::act_goodbye2()
 {
 	if(ccounter<1)cell(CELL_GOODBYE3);

@@ -1,6 +1,6 @@
-
+ï»¿
 /*--------------------------------------------------------------
-	dat‚ÌŠC
+	datã®æµ·
 ----------------------------------------------------------------*/
 #pragma once
 
@@ -36,7 +36,7 @@ public:
 	void Action();
 
 public:
-	DWORD oid;//ƒIƒuƒWƒFƒNƒgID
+	DWORD oid;//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆID
 	GOBJECT *pdat;
 	std::vector<CStageObjectBase*> objlist;
 };

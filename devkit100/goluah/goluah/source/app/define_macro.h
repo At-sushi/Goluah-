@@ -1,7 +1,7 @@
-
+Ôªø
 /*============================================================================
 
-	É}ÉNÉç íËã`
+	„Éû„ÇØ„É≠ ÂÆöÁæ©
 
 ==============================================================================*/
 #pragma once
@@ -17,19 +17,19 @@
 #endif
 
 #ifndef DELETECLASS
-#define DELETECLASS(a)		if(a){delete(a);a=NULL;}				//!< ÉNÉâÉXîjä¸
+#define DELETECLASS(a)		if(a){delete(a);a=NULL;}				//!< „ÇØ„É©„ÇπÁ†¥Ê£Ñ
 #endif
 
 #ifndef RELEASEDLL
-#define RELEASEDLL(a)		if(a){FreeLibrary(a);a=NULL;}			//!< DLLäJï˙
+#define RELEASEDLL(a)		if(a){FreeLibrary(a);a=NULL;}			//!< DLLÈñãÊîæ
 #endif
 
 #ifndef RELSURFACE
-#define RELSURFACE(x)		if(x){g_draw.RelSurface(x);x=NULL;}		//!< CDirectDrawÉTÅ[ÉtÉFÉCÉXäJï˙
+#define RELSURFACE(x)		if(x){g_draw.RelSurface(x);x=NULL;}		//!< CDirectDraw„Çµ„Éº„Éï„Çß„Ç§„ÇπÈñãÊîæ
 #endif
 
 #ifndef FREEMALM
-#define FREEMALM(a)			if(a){free(a);a=NULL;}					//!< mallocÇ≈ämï€Ç≥ÇÍÇΩÉÅÉÇÉääJï˙
+#define FREEMALM(a)			if(a){free(a);a=NULL;}					//!< malloc„ÅßÁ¢∫‰øù„Åï„Çå„Åü„É°„É¢„É™ÈñãÊîæ
 #endif
 
 #ifndef RELEASE
@@ -45,7 +45,7 @@
 #endif
 
 #ifndef foreach
-#define foreach(a,b,c)		for(b::iterator c=a.begin();c!=a.end();c++)//!< STLÉäÉXÉgëSêîîΩïú
+#define foreach(a,b,c)		for(b::iterator c=a.begin();c!=a.end();c++)//!< STL„É™„Çπ„ÉàÂÖ®Êï∞ÂèçÂæ©
 #endif
 
 #ifndef DELETE_ARRAY
@@ -57,7 +57,7 @@
 #endif
 
 #ifndef OPT2ALT
-#define OPT2ALT(a)		(((a)&CHARACTER_LOAD_OPTION_FACENUMBERMASK)>>28)//!< faceïœçXíléÊìæ
+#define OPT2ALT(a)		(((a)&CHARACTER_LOAD_OPTION_FACENUMBERMASK)>>28)//!< faceÂ§âÊõ¥ÂÄ§ÂèñÂæó
 #endif
 
 #ifndef DMY_STR

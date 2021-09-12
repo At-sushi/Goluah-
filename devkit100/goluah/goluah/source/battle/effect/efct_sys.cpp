@@ -1,6 +1,6 @@
-/*===============================================================
+ï»¿/*===============================================================
 
-	ƒVƒXƒeƒ€ƒGƒtƒFƒNƒg
+	ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 
 =================================================================*/
 #include "stdafx.h"
@@ -10,7 +10,7 @@
 
 
 /*****************************************************************
-	ƒ‰ƒEƒ“ƒh•\¦ƒx[ƒX
+	ãƒ©ã‚¦ãƒ³ãƒ‰è¡¨ç¤ºãƒ™ãƒ¼ã‚¹
 ******************************************************************/
 
 void CFxRoundBase::Update()
@@ -24,13 +24,13 @@ BOOL CFxRoundBase::DrawF()
 
 	float t2;
 	if(pdat->counter < 20 * 1.5){
-		t2 = 10.0f - pdat->counter/(2.0f * 1.5);
+		t2 = 10.0f - pdat->counter/(2.0f * 1.5f);
 	}
 	else if(pdat->counter < 40 * 1.5){
 		t2 = 1.0f;
 	}
 	else{
-		t2 = 1.0f - (pdat->counter-40 * 1.5)/(12.0f * 1.5);
+		t2 = 1.0f - (pdat->counter-40 * 1.5f)/(12.0f * 1.5f);
 	}
 
 	char str[] = "ROUND";
@@ -65,7 +65,7 @@ void CFxRoundBase::DrawOneCharacter(float x,float y,char c,float t,float t2)
 	char str[2] = {c,'\0'};
 	float tx,ty,scaX,scaY;
 
-	//‘å‘Ì
+	//å¤§ä½“
 	const float font_size = 60;
 
 	scaX = t*4.5f;
@@ -119,7 +119,7 @@ BOOL CFxKO::DrawF()
 {
 	g_draw.SetTransform(FALSE);
 
-	//LTMƒ}ƒgƒŠƒNƒXİ’è(’PˆÊs—ñ)
+	//LTMãƒãƒˆãƒªã‚¯ã‚¹è¨­å®š(å˜ä½è¡Œåˆ—)
 	D3DXMATRIX mati;
 	D3DXMatrixIdentity(&mati);
 	g_draw.d3ddev->SetTransform(D3DTS_WORLD,&mati);
@@ -134,7 +134,7 @@ BOOL CFxKO::DrawF()
 	MYVERTEX3D v2[4];
 	MYVERTEX3D *v;
 
-	//’¸“_Fİ’è
+	//é ‚ç‚¹è‰²è¨­å®š
 	v1[0].color = (DWORD)(128*m_t);
 	v1[0].color <<= 24;
 	v1[0].color |= 0x00FF3333;
@@ -144,7 +144,7 @@ BOOL CFxKO::DrawF()
 	v2[0].color |= 0x00FF3333;
 	v2[1].color = v2[2].color = v2[3].color = v2[0].color;
 
-	//ƒeƒNƒXƒ`ƒƒUVİ’è
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£UVè¨­å®š
 	v1[0].tu = v2[0].tu = 0.0f;
 	v1[0].tv = v2[0].tv = 0.0f;
 	v1[1].tu = v2[1].tu = 1.0f;
@@ -160,7 +160,7 @@ BOOL CFxKO::DrawF()
 	}
 	
 	g_draw.d3ddev->SetTexture(0,GetTexture(SYSFXTEX_KO_K));
-	//'K'(”¼“§–¾)
+	//'K'(åŠé€æ˜)
 	v = v1;
 	for(i=0;i<2;i++)
 	{
@@ -183,14 +183,14 @@ BOOL CFxKO::DrawF()
 		v[3].x = x + w*0.5f;
 		v[3].y = y + h*0.5f;
 		
-		//•`‰æ
+		//æç”»
 		g_draw.d3ddev->DrawPrimitiveUP(
 					D3DPT_TRIANGLESTRIP,
 					2,
 					v,
 					sizeof(MYVERTEX3D));
 	}
-	//'K'(‰ÁZ)
+	//'K'(åŠ ç®—)
 	g_draw.SetAlphaMode(GBLEND_KASAN);
 	v = v2;
 	for(i=0;i<2;i++)
@@ -214,7 +214,7 @@ BOOL CFxKO::DrawF()
 		v[3].x = x + w*0.5f;
 		v[3].y = y + h*0.5f;
 		
-		//•`‰æ
+		//æç”»
 		g_draw.d3ddev->DrawPrimitiveUP(
 					D3DPT_TRIANGLESTRIP,
 					2,
@@ -224,7 +224,7 @@ BOOL CFxKO::DrawF()
 
 	
 	g_draw.d3ddev->SetTexture(0,GetTexture(SYSFXTEX_KO_O));
-	//'O'(”¼“§–¾)
+	//'O'(åŠé€æ˜)
 	g_draw.SetAlphaMode(0);
 	v = v1;
 	for(i=0;i<2;i++)
@@ -248,14 +248,14 @@ BOOL CFxKO::DrawF()
 		v[3].x = x + w*0.5f;
 		v[3].y = y + h*0.5f;
 		
-		//•`‰æ
+		//æç”»
 		g_draw.d3ddev->DrawPrimitiveUP(
 					D3DPT_TRIANGLESTRIP,
 					2,
 					v,
 					sizeof(MYVERTEX3D));
 	}
-	//'O'(‰ÁZ)
+	//'O'(åŠ ç®—)
 	g_draw.SetAlphaMode(GBLEND_KASAN);
 	v = v2;
 	for(i=0;i<2;i++)
@@ -279,7 +279,7 @@ BOOL CFxKO::DrawF()
 		v[3].x = x + w*0.5f;
 		v[3].y = y + h*0.5f;
 		
-		//•`‰æ
+		//æç”»
 		g_draw.d3ddev->DrawPrimitiveUP(
 					D3DPT_TRIANGLESTRIP,
 					2,
@@ -317,7 +317,7 @@ CFxFight::Tri2::~Tri2(){ t2count--; }
 */
 
 /*----------------------------------------------------------------
-	¶¬ˆ—
+	ç”Ÿæˆæ™‚å‡¦ç†
 ------------------------------------------------------------------*/
 BOOL CFxFight::Create(int prm1,int prm2,int prm3)
 {
@@ -327,23 +327,23 @@ BOOL CFxFight::Create(int prm1,int prm2,int prm3)
 	LineList llist;
 	TriList  tlist;
 
-	//ƒŠƒXƒg¶¬
+	//ãƒªã‚¹ãƒˆç”Ÿæˆ
 	Create_F(vlist,llist,tlist,-20.0f);
 	Create_I(vlist,llist,tlist,-10.0f);
 	Create_G(vlist,llist,tlist,  0.0f);
 	Create_H(vlist,llist,tlist, 10.0f);
 	Create_T(vlist,llist,tlist, 20.0f);
 
-	//‚Î‚ç‚Î‚ç–Œ
+	//ã°ã‚‰ã°ã‚‰äº‹ä»¶
 	static UINT ndiv = 32;
 	for(UINT i=0;i<ndiv;i++){
 		Divide(vlist,llist,tlist);
 	}
 
-	//•`‰æ—pƒŠƒXƒg‚É•ÏŠ·
+	//æç”»ç”¨ãƒªã‚¹ãƒˆã«å¤‰æ›
 	CreateTri2(vlist,llist,tlist,list);
 
-	//ƒŠƒXƒg”jŠü
+	//ãƒªã‚¹ãƒˆç ´æ£„
 	VertList::iterator iv = vlist.begin();
 	VertList::iterator ive= vlist.end();
 	for(;iv!=ive;iv++){
@@ -360,19 +360,19 @@ BOOL CFxFight::Create(int prm1,int prm2,int prm3)
 		delete (*it);
 	}
 
-	//gbl.ods("šFxFigft v:%d , l:%d , t:%d",vcount,lcount,tcount);
+	//gbl.ods("â˜…FxFigft v:%d , l:%d , t:%d",vcount,lcount,tcount);
 
 	return TRUE;
 }
 
 
-//’¸“_İ’èƒ}ƒNƒ
+//é ‚ç‚¹è¨­å®šãƒã‚¯ãƒ­
 #define DEFVERT(a,b,c)	{					\
 	v[a]->x = b;							\
 	v[a]->y = c;							\
 }
 
-//ƒgƒ‰ƒCƒAƒ“ƒOƒ‹İ’èƒ}ƒNƒ
+//ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«è¨­å®šãƒã‚¯ãƒ­
 #define DEFTRI(a,b,c)	{					\
 	t=new Tri; tlist.push_back(t);			\
 	l1 = new Line;	llist.push_back(l1);	\
@@ -390,7 +390,7 @@ BOOL CFxFight::Create(int prm1,int prm2,int prm3)
 }
 
 /*----------------------------------------------------------------
-	•¶šuFv¶¬
+	æ–‡å­—ã€ŒFã€ç”Ÿæˆ
 ------------------------------------------------------------------*/
 void CFxFight::Create_F(VertList& vlist,LineList& llist,TriList& tlist,float offset)
 {
@@ -436,7 +436,7 @@ void CFxFight::Create_F(VertList& vlist,LineList& llist,TriList& tlist,float off
 
 
 /*----------------------------------------------------------------
-	•¶šuIv¶¬
+	æ–‡å­—ã€ŒIã€ç”Ÿæˆ
 ------------------------------------------------------------------*/
 void CFxFight::Create_I(VertList& vlist,LineList& llist,TriList& tlist,float offset)
 {
@@ -466,7 +466,7 @@ void CFxFight::Create_I(VertList& vlist,LineList& llist,TriList& tlist,float off
 		v[i]->y -= 4.5f;
 	}
 
-	//£
+	//â–²
 	t  = new Tri;	tlist.push_back(t);
 	l1 = new Line;	llist.push_back(l1);
 	l2 = new Line;	llist.push_back(l2);
@@ -484,7 +484,7 @@ void CFxFight::Create_I(VertList& vlist,LineList& llist,TriList& tlist,float off
 	l3->v[0] = v[2];
 	l3->v[1] = v[0];
 
-	//£
+	//â–²
 	t  = new Tri;	tlist.push_back(t);
 	l1 = new Line;	llist.push_back(l1);
 	l2 = new Line;	llist.push_back(l2);
@@ -507,7 +507,7 @@ void CFxFight::Create_I(VertList& vlist,LineList& llist,TriList& tlist,float off
 
 
 /*----------------------------------------------------------------
-	•¶šuGv¶¬
+	æ–‡å­—ã€ŒGã€ç”Ÿæˆ
 ------------------------------------------------------------------*/
 void CFxFight::Create_G(VertList& vlist,LineList& llist,TriList& tlist,float offset)
 {
@@ -563,7 +563,7 @@ void CFxFight::Create_G(VertList& vlist,LineList& llist,TriList& tlist,float off
 
 
 /*----------------------------------------------------------------
-	•¶šuHv¶¬
+	æ–‡å­—ã€ŒHã€ç”Ÿæˆ
 ------------------------------------------------------------------*/
 void CFxFight::Create_H(VertList& vlist,LineList& llist,TriList& tlist,float offset)
 {
@@ -615,7 +615,7 @@ void CFxFight::Create_H(VertList& vlist,LineList& llist,TriList& tlist,float off
 
 
 /*----------------------------------------------------------------
-	•¶šuTv¶¬
+	æ–‡å­—ã€ŒTã€ç”Ÿæˆ
 ------------------------------------------------------------------*/
 void CFxFight::Create_T(VertList& vlist,LineList& llist,TriList& tlist,float offset)
 {
@@ -658,7 +658,7 @@ void CFxFight::Create_T(VertList& vlist,LineList& llist,TriList& tlist,float off
 }
 
 /*----------------------------------------------------------------
-	’¸“_•ªŠ„ˆ—
+	é ‚ç‚¹åˆ†å‰²å‡¦ç†
 ------------------------------------------------------------------*/
 void CFxFight::Divide(VertList& vlist,LineList& llist,TriList& tlist)
 {
@@ -666,10 +666,10 @@ void CFxFight::Divide(VertList& vlist,LineList& llist,TriList& tlist)
 	float ratio;
 	float inv_ratio;
 
-	//“K“–‚Èƒ‰ƒCƒ“(1)‚ğ‘I‚Ô
+	//é©å½“ãªãƒ©ã‚¤ãƒ³(1)ã‚’é¸ã¶
 	Line *l1 = llist[ rand()%llist.size() ];
 
-	//ƒ‰ƒCƒ“‚ÉŒ‹‚Ñ•t‚¯‚ç‚ê‚½¢‚ğŒ©‚Â‚¯‚é
+	//ãƒ©ã‚¤ãƒ³ã«çµã³ä»˜ã‘ã‚‰ã‚ŒãŸâ–³ã‚’è¦‹ã¤ã‘ã‚‹
 	Tri *t_old = NULL;
 	UINT l1_index;
 	TriList::iterator it = tlist.begin();
@@ -688,11 +688,11 @@ void CFxFight::Divide(VertList& vlist,LineList& llist,TriList& tlist)
 		return;
 	}
 
-	//‘I‘ğ‚³‚ê‚½¢‚ÉŒ‹‚Ñ•t‚¯‚ç‚ê‚½‚à‚¤ˆê‚Â‚Ìƒ‰ƒCƒ“(2)‚ğ’T‚·
+	//é¸æŠã•ã‚ŒãŸâ–³ã«çµã³ä»˜ã‘ã‚‰ã‚ŒãŸã‚‚ã†ä¸€ã¤ã®ãƒ©ã‚¤ãƒ³(2)ã‚’æ¢ã™
 	UINT l2_index = (l1_index + rand()%2 + 1)%3;
 	Line *l2 = t_old->l[l2_index];
 
-	//•ªŠ„‚ğ‚¨‚±‚È‚í‚È‚¢ƒ‰ƒCƒ“(0)‚ğ‘I‘ğ
+	//åˆ†å‰²ã‚’ãŠã“ãªã‚ãªã„ãƒ©ã‚¤ãƒ³(0)ã‚’é¸æŠ
 	UINT l0_index = 3;
 	switch(l1_index){
 		case 0:
@@ -720,7 +720,7 @@ void CFxFight::Divide(VertList& vlist,LineList& llist,TriList& tlist)
 	}
 	Line *l0 = t_old->l[l0_index];
 
-	//2ƒ‰ƒCƒ“‚ª‹¤’Ê‚É‚Â’¸“_(v0)
+	//2ãƒ©ã‚¤ãƒ³ãŒå…±é€šã«æŒã¤é ‚ç‚¹(v0)
 	Vert *v0;
 	if(l1->v[0]==l2->v[0])v0=l2->v[0];
 	else if(l1->v[0]==l2->v[1])v0=l2->v[1];
@@ -731,7 +731,7 @@ void CFxFight::Divide(VertList& vlist,LineList& llist,TriList& tlist)
 		return;
 	}
 
-	//2ƒ‰ƒCƒ“‚Åd•¡‚µ‚Ä‚¢‚È‚¢’¸“_(v31,v32)
+	//2ãƒ©ã‚¤ãƒ³ã§é‡è¤‡ã—ã¦ã„ãªã„é ‚ç‚¹(v31,v32)
 	Vert *v31;
 	if(l1->v[0]==v0)		v31 = l1->v[1];
 	else if(l1->v[1]==v0)	v31 = l1->v[0];
@@ -747,7 +747,7 @@ void CFxFight::Divide(VertList& vlist,LineList& llist,TriList& tlist)
 		return;
 	}
 
-	//ƒ‰ƒCƒ“(1)‚ğ•ªŠ„‚·‚éiv1¶¬@ƒ‰ƒCƒ“(1)Fv0-v1 , ¶¬ƒ‰ƒCƒ“(3)Fv1-v31j
+	//ãƒ©ã‚¤ãƒ³(1)ã‚’åˆ†å‰²ã™ã‚‹ï¼ˆv1ç”Ÿæˆã€€ãƒ©ã‚¤ãƒ³(1)ï¼šv0-v1 , ç”Ÿæˆãƒ©ã‚¤ãƒ³(3)ï¼šv1-v31ï¼‰
 	ratio = ((rand()%99999)/100000.0f)*0.8f + 0.1f;
 	inv_ratio = 1.0f-ratio;
 	Vert *v1 = new Vert;
@@ -759,7 +759,7 @@ void CFxFight::Divide(VertList& vlist,LineList& llist,TriList& tlist)
 	l3->v[0] = v1;
 	l3->v[1] = v31;
 
-	//ƒ‰ƒCƒ“(2)‚ğ•ªŠ„‚·‚éiv2¶¬@ƒ‰ƒCƒ“(2)Fv0-v2 , ¶¬ƒ‰ƒCƒ“(4)Fv2-v32j
+	//ãƒ©ã‚¤ãƒ³(2)ã‚’åˆ†å‰²ã™ã‚‹ï¼ˆv2ç”Ÿæˆã€€ãƒ©ã‚¤ãƒ³(2)ï¼šv0-v2 , ç”Ÿæˆãƒ©ã‚¤ãƒ³(4)ï¼šv2-v32ï¼‰
 	ratio = ((rand()%99999)/100000.0f)*0.8f + 0.1f;
 	inv_ratio = 1.0f-ratio;
 	Vert *v2 = new Vert;
@@ -771,7 +771,7 @@ void CFxFight::Divide(VertList& vlist,LineList& llist,TriList& tlist)
 	l4->v[0] = v2;
 	l4->v[1] = v32;
 
-	//ƒ‰ƒCƒ“(5)¶¬@iv1-v2j
+	//ãƒ©ã‚¤ãƒ³(5)ç”Ÿæˆã€€ï¼ˆv1-v2ï¼‰
 	Line *l51 = new Line;
 	l51->v[0] = v1;
 	l51->v[1] = v2;
@@ -779,7 +779,7 @@ void CFxFight::Divide(VertList& vlist,LineList& llist,TriList& tlist)
 	l52->v[0] = l51->v[0];
 	l52->v[1] = l51->v[1];
 
-	//ƒ‰ƒCƒ“(6)¶¬@iv1-v32 or v2-v31j
+	//ãƒ©ã‚¤ãƒ³(6)ç”Ÿæˆã€€ï¼ˆv1-v32 or v2-v31ï¼‰
 	Line *l61 = new Line;
 	BOOL left = rand()%2==0 ? TRUE : FALSE;
 	if(left){
@@ -794,7 +794,7 @@ void CFxFight::Divide(VertList& vlist,LineList& llist,TriList& tlist)
 	l62->v[0] = l61->v[0];
 	l62->v[1] = l61->v[1];
 
-	//¢old•ÏXiƒ‰ƒCƒ“ 1,2,0 ¨ 1,2,5j
+	//â–³oldå¤‰æ›´ï¼ˆãƒ©ã‚¤ãƒ³ 1,2,0 â†’ 1,2,5ï¼‰
 	if(t_old->l[0]==l0)		t_old->l[0] = l51;
 	else if(t_old->l[1]==l0)t_old->l[1] = l51;
 	else if(t_old->l[2]==l0)t_old->l[2] = l51;
@@ -803,19 +803,19 @@ void CFxFight::Divide(VertList& vlist,LineList& llist,TriList& tlist)
 		return;
 	}
 
-	//¢¶¬iƒ‰ƒCƒ“ 5,6, 4or3 j
+	//â–³ç”Ÿæˆï¼ˆãƒ©ã‚¤ãƒ³ 5,6, 4or3 ï¼‰
 	Tri *t_new1 = new Tri;
 	t_new1->l[0] = left ? l4 : l3;
 	t_new1->l[1] = l52;
 	t_new1->l[2] = l61;
 
-	//¢¶¬iƒ‰ƒCƒ“ 6,0, 3or4j
+	//â–³ç”Ÿæˆï¼ˆãƒ©ã‚¤ãƒ³ 6,0, 3or4ï¼‰
 	Tri *t_new2 = new Tri;
 	t_new2->l[0] = left ? l3 : l4;
 	t_new2->l[1] = l62;
 	t_new2->l[2] = l0;
 
-	//V‹K‚É¶¬‚³‚ê‚½ƒ‚ƒm‚ğƒŠƒXƒg‚É“Ë‚Á‚Ş
+	//æ–°è¦ã«ç”Ÿæˆã•ã‚ŒãŸãƒ¢ãƒã‚’ãƒªã‚¹ãƒˆã«çªã£è¾¼ã‚€
 	vlist.push_back(v1);
 	vlist.push_back(v2);
 	llist.push_back(l3);
@@ -829,7 +829,7 @@ void CFxFight::Divide(VertList& vlist,LineList& llist,TriList& tlist)
 }
 
 /*----------------------------------------------------------------
-	ƒeƒ“ƒ|ƒ‰ƒŠ¢ƒŠƒXƒg‚©‚çA–{”Ô—p‚Ì¢ƒŠƒXƒg‚ğì‚é
+	ãƒ†ãƒ³ãƒãƒ©ãƒªâ–³ãƒªã‚¹ãƒˆã‹ã‚‰ã€æœ¬ç•ªç”¨ã®â–³ãƒªã‚¹ãƒˆã‚’ä½œã‚‹
 ------------------------------------------------------------------*/
 void CFxFight::CreateTri2(VertList& vlist,LineList& llist,TriList& tlist,Tri2List& list_out)
 {
@@ -890,7 +890,7 @@ void CFxFight::CreateTri2(VertList& vlist,LineList& llist,TriList& tlist,Tri2Lis
 }
 
 /*----------------------------------------------------------------
-	XV
+	æ›´æ–°
 ------------------------------------------------------------------*/
 void CFxFight::Update()
 {
@@ -905,7 +905,7 @@ void CFxFight::Update()
 		return;
 	}
 	if(pdat->counter < dur1){
-		//FXV
+		//è‰²æ›´æ–°
 		t = pdat->counter / dur1;
 		m_alpha = (DWORD)(255*t);
 		m_red = 0xFF;
@@ -915,7 +915,7 @@ void CFxFight::Update()
 		return;
 	}
 	if(pdat->counter < dur1+dur3){
-		//FXV
+		//è‰²æ›´æ–°
 		t = (pdat->counter-dur1)/dur3 ;
 		m_alpha = 255;
 		m_red = 0xFF;
@@ -924,14 +924,14 @@ void CFxFight::Update()
 		return;
 	}
 
-	//FXV
+	//è‰²æ›´æ–°
 	t = (pdat->counter-dur1-dur3)/dur2 ;
 	m_alpha = (DWORD)(255*(1.0f-t));
 	m_red   = 255;
 	m_green = (DWORD)(255*t);
 	m_blue  = (DWORD)(255*t);
 
-	//ˆÊ’u¥‰ñ“]XV
+	//ä½ç½®ï½¥å›è»¢æ›´æ–°
 	Tri2List::iterator i = list.begin();
 	Tri2List::iterator ie= list.end();
 	for(;i!=ie;i++)
@@ -944,13 +944,13 @@ void CFxFight::Update()
 
 
 /*----------------------------------------------------------------
-	•`‰æ
+	æç”»
 ------------------------------------------------------------------*/
 BOOL CFxFight::DrawF()
 {
 	g_draw.SetTransform(FALSE);
-	g_draw.d3ddev->SetTexture(0,NULL);				//ƒeƒNƒXƒ`ƒƒ–³‚µ
-	g_draw.d3ddev->SetVertexShader( FVF_3DVERTEX );	//’¸“_‚ÌƒtƒH[ƒ}ƒbƒg‚ğw’è
+	g_draw.d3ddev->SetTexture(0,NULL);				//ãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—
+	g_draw.d3ddev->SetVertexShader( FVF_3DVERTEX );	//é ‚ç‚¹ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æŒ‡å®š
 
 	DWORD color = 0;
 	color |= m_alpha << 24;
@@ -971,17 +971,17 @@ BOOL CFxFight::DrawF()
 	{
 		Tri2 *t = (*i);
 
-		//F‚ğİ’è
+		//è‰²ã‚’è¨­å®š
 		t->pos[0].color = color;
 		t->pos[1].color = color;
 		t->pos[2].color = color;
 
-		//ƒ}ƒgƒŠƒNƒXİ’è
+		//ãƒãƒˆãƒªã‚¯ã‚¹è¨­å®š
 		D3DXMatrixTranslation(&matt , (*i)->ctr.x , (*i)->ctr.y , (*i)->ctr.z );
 		mat = (*i)->mat * matt * matb;
 		g_draw.d3ddev->SetTransform(D3DTS_WORLD,&mat);
 		
-		//•`‰æ
+		//æç”»
 		g_draw.d3ddev->DrawPrimitiveUP(
 					D3DPT_TRIANGLESTRIP,
 					1,
@@ -995,11 +995,11 @@ BOOL CFxFight::DrawF()
 }
 
 /*----------------------------------------------------------------
-	”jŠü
+	ç ´æ£„
 ------------------------------------------------------------------*/
 void CFxFight::Destroy()
 {
-	//ƒŠƒXƒg‚ğ”jŠü
+	//ãƒªã‚¹ãƒˆã‚’ç ´æ£„
 	Tri2List::iterator i = list.begin();
 	Tri2List::iterator ie= list.end();
 	for(;i!=ie;i++)
@@ -1008,7 +1008,7 @@ void CFxFight::Destroy()
 	}
 	list.clear();
 
-//	gbl.ods("šCFxFight t2:%d",t2count);
+//	gbl.ods("â˜…CFxFight t2:%d",t2count);
 }
 
 
@@ -1061,7 +1061,7 @@ void CFxTimeOver::DrawOneCharacter(float x,float y,char c,float t,float t2)
 	char str[2] = {c,'\0'};
 	float tx,ty,scaX,scaY;
 
-	//‘å‘Ì
+	//å¤§ä½“
 	const float font_size = 60;
 
 	scaX = t*3.2f;

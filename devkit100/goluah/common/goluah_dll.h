@@ -1,51 +1,51 @@
-// Goluah!! •ªŠ„DLL—pƒCƒ“ƒ^[ƒtƒF[ƒX‚Æ‚©‚»‚Ì‚Ù‚©
+ï»¿// Goluah!! åˆ†å‰²DLLç”¨ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã¨ã‹ãã®ã»ã‹
 
-// —v‚·‚é‚Éƒˆ‰¼‘zŠÖ”‚È–ó‚¾‚ª
+// è¦ã™ã‚‹ã«ç´”ç²‹ä»®æƒ³é–¢æ•°ãªè¨³ã ãŒ
 #define IF(a)	virtual a = 0
 
 class ISystem
 {
-	//ƒT[ƒrƒX
-	IF(double DrawBMPText(double x,double y,float z,char *str,DWORD col));	//!< ƒrƒbƒgƒ}ƒbƒvƒeƒLƒXƒg‚ğ•`‰æ
-	IF(double DrawBMPTextEx(double x,double y,float z,char *str,			//!< ƒrƒbƒgƒ}ƒbƒvƒeƒLƒXƒg‚ğ•`‰æ(ŠgkEƒvƒƒ|[ƒVƒ‡ƒiƒ‹ƒIƒvƒVƒ‡ƒ“‚Â‚«)
+	//ã‚µãƒ¼ãƒ“ã‚¹
+	IF(double DrawBMPText(double x,double y,float z,char *str,DWORD col));	//!< ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ†ã‚­ã‚¹ãƒˆã‚’æç”»
+	IF(double DrawBMPTextEx(double x,double y,float z,char *str,			//!< ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ†ã‚­ã‚¹ãƒˆã‚’æç”»(æ‹¡ç¸®ãƒ»ãƒ—ãƒ­ãƒãƒ¼ã‚·ãƒ§ãƒŠãƒ«ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã¤ã)
 		DWORD col,float scaX,float scaY,DWORD flags));
 
 	//fps
-	IF(DWORD GetFPS());														//!< ÀÛƒtƒŒ[ƒ€ƒŒ[ƒgæ“¾
+	IF(DWORD GetFPS());														//!< å®Ÿéš›ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆå–å¾—
 
-	//ƒ^ƒXƒN
-	IF(void AddTask(CTaskBase* task));										//!< V‹Kƒ^ƒXƒN’Ç‰Á
-	IF(CExclusiveTaskBase* GetCurrentMainTask());							//!< Œ»İ‚Ì”r‘¼ƒ^ƒXƒN‚ğæ“¾
+	//ã‚¿ã‚¹ã‚¯
+	IF(void AddTask(CTaskBase* task));										//!< æ–°è¦ã‚¿ã‚¹ã‚¯è¿½åŠ 
+	IF(CExclusiveTaskBase* GetCurrentMainTask());							//!< ç¾åœ¨ã®æ’ä»–ã‚¿ã‚¹ã‚¯ã‚’å–å¾—
 
-	//ƒVƒXƒeƒ€ƒOƒ‰ƒtƒBƒbƒN‚ğæ“¾
-	IF(MYSURFACE** GetSystemGraphicSurface());								//!< ƒVƒXƒeƒ€‚Æ‚µ‚Ä•Û‚³‚ê‚Ä‚¢‚éGCD—p‚Ìƒrƒbƒgƒ}ƒbƒv”z—ñ‚ğæ“¾
-	IF(GCD_RECT* GetSystemGraphicRect());									//!< ƒVƒXƒeƒ€‚Æ‚µ‚Ä•Û‚³‚ê‚Ä‚¢‚éGCD‚Ì‹éŒ`”z—ñ‚ğæ“¾
-	IF(GCD_CELL2* GetSystemGraphicCell());									//!< ƒVƒXƒeƒ€‚Æ‚µ‚Ä•Û‚³‚ê‚Ä‚¢‚éGCD‚ÌƒZƒ‹”z—ñ‚ğæ“¾
-	IF(GCD_HANTEI* GetSystemGraphicHantei());								//!< ƒVƒXƒeƒ€‚Æ‚µ‚Ä•Û‚³‚ê‚Ä‚¢‚éGCD‚Ì‚ ‚½‚è”»’è‹éŒ`”z—ñ‚ğæ“¾
+	//ã‚·ã‚¹ãƒ†ãƒ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’å–å¾—
+	IF(MYSURFACE** GetSystemGraphicSurface());								//!< ã‚·ã‚¹ãƒ†ãƒ ã¨ã—ã¦ä¿æŒã•ã‚Œã¦ã„ã‚‹GCDç”¨ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—é…åˆ—ã‚’å–å¾—
+	IF(GCD_RECT* GetSystemGraphicRect());									//!< ã‚·ã‚¹ãƒ†ãƒ ã¨ã—ã¦ä¿æŒã•ã‚Œã¦ã„ã‚‹GCDã®çŸ©å½¢é…åˆ—ã‚’å–å¾—
+	IF(GCD_CELL2* GetSystemGraphicCell());									//!< ã‚·ã‚¹ãƒ†ãƒ ã¨ã—ã¦ä¿æŒã•ã‚Œã¦ã„ã‚‹GCDã®ã‚»ãƒ«é…åˆ—ã‚’å–å¾—
+	IF(GCD_HANTEI* GetSystemGraphicHantei());								//!< ã‚·ã‚¹ãƒ†ãƒ ã¨ã—ã¦ä¿æŒã•ã‚Œã¦ã„ã‚‹GCDã®ã‚ãŸã‚Šåˆ¤å®šçŸ©å½¢é…åˆ—ã‚’å–å¾—
 };
 
 class IDraw
 {
 
-	//¡‚»‚Ì‘¼•`‰æ
-	//ƒ‰ƒCƒ“•`‰æ
+	//â– ãã®ä»–æç”»
+	//ãƒ©ã‚¤ãƒ³æç”»
 	IF(void DrawLine(int sx,int sy,int gx,int gy,DWORD col));
-	//ƒoƒbƒNƒoƒbƒtƒ@‚ÌƒNƒŠƒA
+	//ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚¯ãƒªã‚¢
 	IF(void ClearBackBuffer());
-	//‰~‚Ì•`‰æ
+	//å††ã®æç”»
 	IF(void DrawCircle(int x,int y,int rad,int w,
 		float z=0,DWORD color=0xFF55AAFF,BOOL toumei=FALSE,float rot=0,BOOL rot_y=TRUE,BOOL hosei=TRUE));
-	//‚È‚É‚±‚êH
+	//ãªã«ã“ã‚Œï¼Ÿ
 	IF(void Draw3DText());
-	//ƒeƒLƒXƒg•`‰æ
+	//ãƒ†ã‚­ã‚¹ãƒˆæç”»
 	IF(void DrawBlueText(RECT& r,char *text,int len,DWORD method,DWORD size));
 	IF(void DrawRedText(RECT& r,char *text,int len,DWORD method,DWORD size));
 
-	//¡•Ö—˜ŠÖ”H
-	IF(void SetAlphaMode(DWORD alphamode));//ƒ¿ƒuƒŒƒ“ƒh‚Ìƒ‚[ƒh‚ğİ’è
-	IF(void EnableZ(BOOL test=TRUE,BOOL write=TRUE));//ZƒeƒXƒgEƒ‰ƒCƒg‚Ì—LŒøE–³Œø‚ğİ’è
+	//â– ä¾¿åˆ©é–¢æ•°ï¼Ÿ
+	IF(void SetAlphaMode(DWORD alphamode));//Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ã®ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®š
+	IF(void EnableZ(BOOL test=TRUE,BOOL write=TRUE));//Zãƒ†ã‚¹ãƒˆãƒ»ãƒ©ã‚¤ãƒˆã®æœ‰åŠ¹ãƒ»ç„¡åŠ¹ã‚’è¨­å®š
 
-	//¡À•W•ÏŠ·ƒ}ƒgƒŠƒNƒXŠÖ˜A
+	//â– åº§æ¨™å¤‰æ›ãƒãƒˆãƒªã‚¯ã‚¹é–¢é€£
 	//for directx8
 	IF(void ResetTransformMatrix());//view & projection
 	IF(void SetTransform(BOOL b));

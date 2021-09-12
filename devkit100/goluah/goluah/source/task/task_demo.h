@@ -1,8 +1,8 @@
-/*!
+ï»¿/*!
 *	@file
-*	@brief ƒXƒg[ƒŠ[’†ŠÔƒfƒ‚ ƒ^ƒXƒN(ver0.5)
+*	@brief ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ä¸­é–“ãƒ‡ãƒ¢ ã‚¿ã‚¹ã‚¯(ver0.5)
 *
-*	‹Œ—ˆ‚ÌƒXƒg[ƒŠ[’†ŠÔƒfƒ‚ƒXƒNƒŠƒvƒg‚ÌÄ¶
+*	æ—§æ¥ã®ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ä¸­é–“ãƒ‡ãƒ¢ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®å†ç”Ÿ
 */
 #pragma once
 
@@ -11,20 +11,20 @@
 */
 /*@{*/
 
-//! ƒXƒg[ƒŠ[’†ŠÔƒfƒ‚E‚PƒuƒƒbƒN•ªî•ñ
+//! ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ä¸­é–“ãƒ‡ãƒ¢ãƒ»ï¼‘ãƒ–ãƒ­ãƒƒã‚¯åˆ†æƒ…å ±
 struct DEMODAT
 {
-	char bitmap[4][64];	//!< •\Ž¦ƒrƒbƒgƒ}ƒbƒviƒfƒtƒHƒ‹ƒgF‚È‚µj
-	BOOL bgmmid;		//!< –¢Žg—p
-	char bgm[64];		//!< Ä¶BGMiƒfƒtƒHƒ‹ƒgF•ÏX–³‚µj
-	char wavsnd[64];	//!< Ä¶ƒTƒEƒ“ƒhiƒfƒtƒHƒ‹ƒgF‚È‚µj//–¢ŽÀ‘•
-	char msg[1024];		//!< •\Ž¦ƒƒbƒZ[ƒWiƒfƒtƒHƒ‹ƒgF‚È‚µj
-	int spdmsg;			//!< ƒƒbƒZ[ƒW•\Ž¦ƒXƒs[ƒhiƒfƒtƒHƒ‹ƒgF“K“–j
-	int dur;			//!< •\Ž¦ŽžŠÔiƒfƒtƒHƒ‹ƒgF•¶Žš—ñ•\Ž¦‚É‡‚í‚¹‚ÄŽ©“®“I‚ÉÝ’èj
-	DWORD bmpdisp;		//!< «ƒtƒ‰ƒO
-	double bgmpos;		//!< BGMŠJŽnˆÊ’u
-	int num_select;		//!< ‘I‘ðŽˆ‚Ì”i0=‘I‘ðŽˆ‚È‚µj
-	int select_base;	//!< ‘I‘ð•Ï”‚ðƒVƒtƒg‚·‚é—Ê
+	char bitmap[4][64];	//!< è¡¨ç¤ºãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆï¼šãªã—ï¼‰
+	BOOL bgmmid;		//!< æœªä½¿ç”¨
+	char bgm[64];		//!< å†ç”ŸBGMï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆï¼šå¤‰æ›´ç„¡ã—ï¼‰
+	char wavsnd[64];	//!< å†ç”Ÿã‚µã‚¦ãƒ³ãƒ‰ï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆï¼šãªã—ï¼‰//æœªå®Ÿè£…
+	char msg[1024];		//!< è¡¨ç¤ºãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆï¼šãªã—ï¼‰
+	int spdmsg;			//!< ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚¹ãƒ”ãƒ¼ãƒ‰ï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆï¼šé©å½“ï¼‰
+	int dur;			//!< è¡¨ç¤ºæ™‚é–“ï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆï¼šæ–‡å­—åˆ—è¡¨ç¤ºã«åˆã‚ã›ã¦è‡ªå‹•çš„ã«è¨­å®šï¼‰
+	DWORD bmpdisp;		//!< â†“ãƒ•ãƒ©ã‚°
+	double bgmpos;		//!< BGMé–‹å§‹ä½ç½®
+	int num_select;		//!< é¸æŠžè‚¢ã®æ•°ï¼ˆ0=é¸æŠžè‚¢ãªã—ï¼‰
+	int select_base;	//!< é¸æŠžå¤‰æ•°ã‚’ã‚·ãƒ•ãƒˆã™ã‚‹é‡
 };
 
 #define DEMOBMPDISP_MOVEL	0x00000001
@@ -36,7 +36,7 @@ struct DEMODAT
 #define DEMOBMPDISP_FIXR	0x00000040
 #define DEMOBMPDISP_FIXB	0x00000080
 
-//! ƒXƒg[ƒŠ[’†ŠÔƒfƒ‚
+//! ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ä¸­é–“ãƒ‡ãƒ¢
 class CTDemo : public CExclusiveTaskBase
 {
 public:
@@ -58,13 +58,13 @@ private:
 	int InitDemoDat(char *filepath);
 	DWORD GetGyoDemo(char *strin,char *strout,DWORD *susumu);
 
-//•Ï”
+//å¤‰æ•°
 public:
 private:
 	DEMODAT *demodat;
 	char errc[256];
 	DWORD counter;
-	DWORD counter2;	//ƒeƒLƒXƒg’·‚³ƒCƒ“ƒNƒŠƒƒ“ƒg—p
+	DWORD counter2;	//ãƒ†ã‚­ã‚¹ãƒˆé•·ã•ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆç”¨
 	char fpath[256];
 	MYSURFACE *ms;
 	MYSURFACE* chr[3];
@@ -76,18 +76,18 @@ private:
 	char* m_script_filename;
 	char* m_current_dir;
 
-	//‚à‚Æ‚à‚Æ‚ªstatic
+	//ã‚‚ã¨ã‚‚ã¨ãŒstatic
 	int bmpw,bmph;
 	DWORD playingdemodat;
 
-	//‚à‚Æ‚à‚Æauto
+	//ã‚‚ã¨ã‚‚ã¨auto
 	DWORD txtlen;
-	BOOL  multibyte_flag;//ƒeƒLƒXƒg‚ª2ƒoƒCƒg•¶Žš‚¾‚Á‚½ê‡AŽŸ‚ÉƒEƒFƒCƒgƒCƒ“ƒ^[ƒoƒ‹‚ª“ž’B‚µ‚Ä‚à•¶Žš‚ð’Ç‰Á‚µ‚È‚¢
+	BOOL  multibyte_flag;//ãƒ†ã‚­ã‚¹ãƒˆãŒ2ãƒã‚¤ãƒˆæ–‡å­—ã ã£ãŸå ´åˆã€æ¬¡ã«ã‚¦ã‚§ã‚¤ãƒˆã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«ãŒåˆ°é”ã—ã¦ã‚‚æ–‡å­—ã‚’è¿½åŠ ã—ãªã„
 	int yurex,yurey;
 	RECT r_all;
 	RECT r_serif;
 	int select;
-	int select_base;	// ÅI“I‚È‚â‚Â
+	int select_base;	// æœ€çµ‚çš„ãªã‚„ã¤
 };
 
 /*@{*/

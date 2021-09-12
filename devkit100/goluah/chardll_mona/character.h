@@ -1,7 +1,7 @@
-
+ï»¿
 /*==============================================================
 
-	ƒLƒƒƒ‰ƒNƒ^[’è‹`ƒwƒbƒ_
+	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼å®šç¾©ãƒ˜ãƒƒãƒ€
 
 ================================================================*/
 #pragma once
@@ -11,7 +11,7 @@
 
 #include "aki3d.h"
 #include "gobjbase.h"
-#include "cell.h"// ’ÊíAare_editer‚Å¶¬‚µ‚½ƒwƒbƒ_[ƒtƒ@ƒCƒ‹‚ğ‚±‚±‚Éinclude‚µ‚Ü‚·
+#include "cell.h"// é€šå¸¸ã€are_editerã§ç”Ÿæˆã—ãŸãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã“ã“ã«includeã—ã¾ã™
 
 class CReiku_Re;
 class CReiku_I;
@@ -25,13 +25,13 @@ class CRocket;
 #define NEEDGAUGE_REV	(0.5)
 #define NEEDGAUGE_GC	(0.3)
 
-// ƒGƒtƒFƒNƒg—pƒIƒuƒWƒFƒNƒgì¬ƒ}ƒNƒ
+// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆä½œæˆãƒã‚¯ãƒ­
 #define CREATE_GOBJ_FX(obj)			{ CGoluahObject* pointer = new obj; if ( pointer && !pointer->GetGObject() )\
 										{ delete pointer; }\
 									}
 
 /*--------------------------------------------------------------
-	ƒƒCƒ“ƒLƒƒƒ‰ƒNƒ^[ƒNƒ‰ƒX
+	ãƒ¡ã‚¤ãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚¯ãƒ©ã‚¹
 ----------------------------------------------------------------*/
 
 #define MAXNUM_ATTACKINFO	(34)
@@ -44,7 +44,7 @@ public:
 
 protected:
 	//*********************************************
-	//  ƒI[ƒo[ƒ‰ƒCƒh‚·‚éŠÖ”
+	//  ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã™ã‚‹é–¢æ•°
 	//*********************************************
 
 	DWORD Message(DWORD msg,LPVOID pd,DWORD prm);
@@ -63,46 +63,46 @@ protected:
 	DWORD TouchB(ATTACKINFO *info,BOOL hit);
 	DWORD TouchC(ATTACKINFO *info,DWORD tc_eid);
 
-	//’Êí“®ì
-	void act_neutral();	//ƒjƒ…[ƒgƒ‰ƒ‹
-	void act_crouch();	//‚µ‚á‚ª‚İ
-	void act_rakka();	//—‰º
-	void act_tojyo();	//“oê
-	void act_win();		//Ÿ—˜
-	void act_walkf();	//‘Oi
-	void act_walkb();	//Œã‘Ş
-	void act_jamps();	//ƒWƒƒƒ“ƒv—\”õ“®ì
-	void act_jampc();	//‚’¼ƒWƒƒƒ“ƒv
-	void act_jampf();	//‘OƒWƒƒƒ“ƒv
-	void act_jampb();	//ŒãƒWƒƒƒ“ƒv
-	void act_strikercomeon();//ƒJƒ‚!
-	void act_timeoverlose();//ƒ^ƒCƒ€ƒI[ƒo[
-	//’Êí.UŒ‚
-	void act_att_sa();	//—§ã
-	void act_att_sb();	//—§’†
-	void act_att_sc();	//—§‹­
-	void act_att_ca();	//‹üã
-	void act_att_cb();	//‹ü’†
-	void act_att_cc();	//‹ü‹­
-	void act_att_ja();	//”òã
-	void act_att_jb();	//”ò’†
-	void act_att_jc();	//”ò‹­
-	//‚»‚Ì‘¼
+	//é€šå¸¸å‹•ä½œ
+	void act_neutral();	//ãƒ‹ãƒ¥ãƒ¼ãƒˆãƒ©ãƒ«
+	void act_crouch();	//ã—ã‚ƒãŒã¿
+	void act_rakka();	//è½ä¸‹
+	void act_tojyo();	//ç™»å ´
+	void act_win();		//å‹åˆ©
+	void act_walkf();	//å‰é€²
+	void act_walkb();	//å¾Œé€€
+	void act_jamps();	//ã‚¸ãƒ£ãƒ³ãƒ—äºˆå‚™å‹•ä½œ
+	void act_jampc();	//å‚ç›´ã‚¸ãƒ£ãƒ³ãƒ—
+	void act_jampf();	//å‰ã‚¸ãƒ£ãƒ³ãƒ—
+	void act_jampb();	//å¾Œã‚¸ãƒ£ãƒ³ãƒ—
+	void act_strikercomeon();//ã‚«ãƒ¢!
+	void act_timeoverlose();//ã‚¿ã‚¤ãƒ ã‚ªãƒ¼ãƒãƒ¼
+	//é€šå¸¸.æ”»æ’ƒ
+	void act_att_sa();	//ç«‹å¼±
+	void act_att_sb();	//ç«‹ä¸­
+	void act_att_sc();	//ç«‹å¼·
+	void act_att_ca();	//å±ˆå¼±
+	void act_att_cb();	//å±ˆä¸­
+	void act_att_cc();	//å±ˆå¼·
+	void act_att_ja();	//é£›å¼±
+	void act_att_jb();	//é£›ä¸­
+	void act_att_jc();	//é£›å¼·
+	//ãã®ä»–
 	void act_taiki();
 	void act_koutai_out();
 	void act_koutai_in();
 	void act_koutai();
 	void act_koutai2();
 
-	//‰Šú‰»ŠÖŒW
-	void InitAnalyzeOptions();	//ƒIƒvƒVƒ‡ƒ“ƒtƒ‰ƒO•ªŠ„
-	void InitParameters();		//ƒpƒ‰ƒ[ƒ^‰Šú‰»
-	void InitAttackInfo();		//UŒ‚—Íî•ñ‚Ì‰Šú‰»
-	void InitWazInfo();			//‹Zî•ñ‚Ì‰Šú‰»
-	void InitBullets();			//”ò“¹‹ï‰Šú‰»
+	//åˆæœŸåŒ–é–¢ä¿‚
+	void InitAnalyzeOptions();	//ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãƒ•ãƒ©ã‚°åˆ†å‰²
+	void InitParameters();		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
+	void InitAttackInfo();		//æ”»æ’ƒåŠ›æƒ…å ±ã®åˆæœŸåŒ–
+	void InitWazInfo();			//æŠ€æƒ…å ±ã®åˆæœŸåŒ–
+	void InitBullets();			//é£›é“å…·åˆæœŸåŒ–
 
 	//*********************************************
-	//@CCharacterƒNƒ‰ƒX“Æ©‚ÌŠÖ”
+	//ã€€CCharacterã‚¯ãƒ©ã‚¹ç‹¬è‡ªã®é–¢æ•°
 	//*********************************************
 private:
 	void StartAttack(DWORD atk_info_id);
@@ -110,129 +110,129 @@ private:
 	BOOL EnemyAction(DWORD eid,DWORD hid);
 	BOOL ComLevelCk(UINT level);
 
-	//’Ç‰Ás“®ŠÖ”
-	void act_att_sd();		//¨’†
-	void act_att_se();		//¨‹­
-	void act_tatumaki1(DWORD atkid);	//—³Šª(ã)
-	void act_tatumaki2(DWORD atkid);	//—³Šª(’†)
-	void act_tatumaki3(DWORD atkid);	//—³Šª(‹­)
-	void act_tatumakir();	//—³Šª—‰º
-	void act_landing();		//—³Šª’…’n
-	void act_reiku1a();		//ƒŒƒCƒN(ã)
+	//è¿½åŠ è¡Œå‹•é–¢æ•°
+	void act_att_sd();		//â†’ä¸­
+	void act_att_se();		//â†’å¼·
+	void act_tatumaki1(DWORD atkid);	//ç«œå·»(å¼±)
+	void act_tatumaki2(DWORD atkid);	//ç«œå·»(ä¸­)
+	void act_tatumaki3(DWORD atkid);	//ç«œå·»(å¼·)
+	void act_tatumakir();	//ç«œå·»è½ä¸‹
+	void act_landing();		//ç«œå·»ç€åœ°
+	void act_reiku1a();		//ãƒ¬ã‚¤ã‚¯(å¼±)
 	void act_reiku1b();
 	void act_reiku1c();
-	void act_reiku2a();		//ƒŒƒCƒN(’†)
+	void act_reiku2a();		//ãƒ¬ã‚¤ã‚¯(ä¸­)
 	void act_reiku2b();
 	void act_reiku2c();
-	void act_reiku3a();		//ƒŒƒCƒN(‹­)
+	void act_reiku3a();		//ãƒ¬ã‚¤ã‚¯(å¼·)
 	void act_reiku3b();
 	void act_reiku3c();
-	void act_reiku3cs();	//ƒŒƒCƒN’…’nŒãŒ„
-	void act_dashf();		//‘O•ûƒ_ƒbƒVƒ…
-	void act_dashb();		//Œã•ûƒ_ƒbƒVƒ…
-	void act_nage();		//“Š‚°
-	void act_hadou1a();		//”g“®Œi”ò‚Î‚È‚¢Œnj
+	void act_reiku3cs();	//ãƒ¬ã‚¤ã‚¯ç€åœ°å¾Œéš™
+	void act_dashf();		//å‰æ–¹ãƒ€ãƒƒã‚·ãƒ¥
+	void act_dashb();		//å¾Œæ–¹ãƒ€ãƒƒã‚·ãƒ¥
+	void act_nage();		//æŠ•ã’
+	void act_hadou1a();		//æ³¢å‹•æ‹³ï¼ˆé£›ã°ãªã„ç³»ï¼‰
 	void act_hadou2a();
 	void act_hadou3a();
-	void act_hadou1b();		//”g“®Œi”ò‚ÔŒnj
+	void act_hadou1b();		//æ³¢å‹•æ‹³ï¼ˆé£›ã¶ç³»ï¼‰
 	void act_hadou2b();
 	void act_hadou3b();
-	void act_gcancel1();	//ƒK[ƒhƒLƒƒƒ“ƒZƒ‹
+	void act_gcancel1();	//ã‚¬ãƒ¼ãƒ‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	void act_gcancel2();
 	void act_gcancel3();
 	void act_gcancel1j();
 	void act_gcancel2j();
 	void act_gcancel3j();
-	void act_2nd_step();	//2’iƒWƒƒƒ“ƒv
-	void act_ajamp();		//ƒGƒŠƒAƒ‹n“®ƒWƒƒƒ“ƒv
-	void act_goodbye1();	//ƒOƒbƒoƒCEƒtƒH[ƒGƒo[
-	void act_goodbye2();	//ƒOƒbƒoƒCEƒtƒH[ƒGƒo[
+	void act_2nd_step();	//2æ®µã‚¸ãƒ£ãƒ³ãƒ—
+	void act_ajamp();		//ã‚¨ãƒªã‚¢ãƒ«å§‹å‹•ã‚¸ãƒ£ãƒ³ãƒ—
+	void act_goodbye1();	//ã‚°ãƒƒãƒã‚¤ãƒ»ãƒ•ã‚©ãƒ¼ã‚¨ãƒãƒ¼
+	void act_goodbye2();	//ã‚°ãƒƒãƒã‚¤ãƒ»ãƒ•ã‚©ãƒ¼ã‚¨ãƒãƒ¼
 	void act_striker_in();
 	void act_striker_dash();
 	void act_striker_attack();
 	void act_striker_out();
 
-	//“G‘¤s“®
-	DWORD eact_nage(GOBJECT* pedat);	//“Š‚°
-	void eact_aerialpop(GOBJECT* pedat);//ƒGƒŠƒAƒ‹E•‚‚©‚¹ƒqƒbƒg
-	void eact_aerialhit1(GOBJECT* pedat);//ƒGƒŠƒAƒ‹E‹ó’†ƒqƒbƒg
-	void eact_aerialhit2(GOBJECT* pedat);//ƒGƒŠƒAƒ‹E‹ó’†ƒqƒbƒg
-	void eact_aerialhit3(GOBJECT* pedat);//ƒGƒŠƒAƒ‹E‹ó’†ƒqƒbƒg
+	//æ•µå´è¡Œå‹•
+	DWORD eact_nage(GOBJECT* pedat);	//æŠ•ã’
+	void eact_aerialpop(GOBJECT* pedat);//ã‚¨ãƒªã‚¢ãƒ«ãƒ»æµ®ã‹ã›ãƒ’ãƒƒãƒˆ
+	void eact_aerialhit1(GOBJECT* pedat);//ã‚¨ãƒªã‚¢ãƒ«ãƒ»ç©ºä¸­ãƒ’ãƒƒãƒˆ
+	void eact_aerialhit2(GOBJECT* pedat);//ã‚¨ãƒªã‚¢ãƒ«ãƒ»ç©ºä¸­ãƒ’ãƒƒãƒˆ
+	void eact_aerialhit3(GOBJECT* pedat);//ã‚¨ãƒªã‚¢ãƒ«ãƒ»ç©ºä¸­ãƒ’ãƒƒãƒˆ
 
-	//UŒ‚—Íî•ñ
+	//æ”»æ’ƒåŠ›æƒ…å ±
 	ATTACKINFO aif[MAXNUM_ATTACKINFO];
 
 
-	//”ò“¹‹ï
-	CReiku_Re*		pefe_re;	//ƒŒƒCƒNƒGƒtƒFƒNƒguƒŒv
-	CReiku_I*		pefe_i;		//ƒŒƒCƒNƒGƒtƒFƒNƒguƒCv
-	CReiku_Ku*		pefe_ku;	//ƒŒƒCƒNƒGƒtƒFƒNƒguƒNv
-	CDashWind*		pefe_dash;	//ƒ_ƒbƒVƒ…•—ƒGƒtƒFƒNƒg
-	CHadouKen*		pbul_hadou;	//”g“®Œ
-	CGoodbye*		pbul_goodbye;//ƒOƒbƒoƒCF
+	//é£›é“å…·
+	CReiku_Re*		pefe_re;	//ãƒ¬ã‚¤ã‚¯ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€Œãƒ¬ã€
+	CReiku_I*		pefe_i;		//ãƒ¬ã‚¤ã‚¯ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€Œã‚¤ã€
+	CReiku_Ku*		pefe_ku;	//ãƒ¬ã‚¤ã‚¯ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€Œã‚¯ã€
+	CDashWind*		pefe_dash;	//ãƒ€ãƒƒã‚·ãƒ¥æ™‚é¢¨ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	CHadouKen*		pbul_hadou;	//æ³¢å‹•æ‹³
+	CGoodbye*		pbul_goodbye;//ã‚°ãƒƒãƒã‚¤F
 //	CRocket*		pbul_rocket;
 //	CEraser99*		pbul_eraser99;
 
-	//ƒIƒvƒVƒ‡ƒ“
+	//ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 	BOOL			m_opt_hpp30;	//HP+30%
-	BOOL			m_opt_exAttack;	//’Ç‰Á“ü—Í‹Z
-	BOOL			m_opt_hadou;	//”g“®Œ
-	BOOL			m_opt_AAttack;	//ƒGƒŠƒAƒ‹
-	BOOL			m_opt_AStep;	//2’iƒWƒƒƒ“ƒv
-	BOOL			m_opt_gcancel;	//ƒK[ƒhƒLƒƒƒ“ƒZƒ‹
+	BOOL			m_opt_exAttack;	//è¿½åŠ å…¥åŠ›æŠ€
+	BOOL			m_opt_hadou;	//æ³¢å‹•æ‹³
+	BOOL			m_opt_AAttack;	//ã‚¨ãƒªã‚¢ãƒ«
+	BOOL			m_opt_AStep;	//2æ®µã‚¸ãƒ£ãƒ³ãƒ—
+	BOOL			m_opt_gcancel;	//ã‚¬ãƒ¼ãƒ‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 
-	//“®ìƒtƒ‰ƒO
-	BOOL			m_2nd_step_flag;//2’iƒWƒƒƒ“ƒv‰Â”\ƒtƒ‰ƒO
-	BOOL			m_aerial;		//ƒGƒŠƒAƒ‹’†ƒtƒ‰ƒO
+	//å‹•ä½œãƒ•ãƒ©ã‚°
+	BOOL			m_2nd_step_flag;//2æ®µã‚¸ãƒ£ãƒ³ãƒ—å¯èƒ½ãƒ•ãƒ©ã‚°
+	BOOL			m_aerial;		//ã‚¨ãƒªã‚¢ãƒ«ä¸­ãƒ•ãƒ©ã‚°
 };
 
 extern LPTSTR CharDirectory;
 
-//s“®ID‚ğ‚±‚±‚É’Ç‰Á‚·‚é
-#define ACTID_ATT_SD			(ACTID_ATTACK  | 0x0001)								//—§’†AƒŒƒo[‘O“ü‚ê
-#define ACTID_ATT_SE			(ACTID_ATTACK  | 0x0002)								//—§‹­AƒŒƒo[‘O“ü‚ê
-#define ACTID_TATUMAKI1			(ACTID_ATTACK  | ACTID_HISSATU | ACTID_KUCYU | 0x0003)	//—³Šªiãj
-#define ACTID_TATUMAKI2			(ACTID_ATTACK  | ACTID_HISSATU | ACTID_KUCYU | 0x0004)	//—³Šªi’†j
-#define ACTID_TATUMAKI3			(ACTID_ATTACK  | ACTID_HISSATU | ACTID_KUCYU | 0x0005)	//—³Šªi‹­j
-#define ACTID_TATUMAKIR			(ACTID_HISSATU | ACTID_KUCYU   | 0x0006)				//—³Šªi—‰ºj
-#define ACTID_LANDING			(ACTID_HISSATU | 0x0007)								//—³Šªi’…’nj
-#define ACTID_REIKU1A			(ACTID_ATTACK  | ACTID_HISSATU | 0x0008)				//ƒŒƒCƒN(ã)
+//è¡Œå‹•IDã‚’ã“ã“ã«è¿½åŠ ã™ã‚‹
+#define ACTID_ATT_SD			(ACTID_ATTACK  | 0x0001)								//ç«‹ä¸­ã€ãƒ¬ãƒãƒ¼å‰å…¥ã‚Œ
+#define ACTID_ATT_SE			(ACTID_ATTACK  | 0x0002)								//ç«‹å¼·ã€ãƒ¬ãƒãƒ¼å‰å…¥ã‚Œ
+#define ACTID_TATUMAKI1			(ACTID_ATTACK  | ACTID_HISSATU | ACTID_KUCYU | 0x0003)	//ç«œå·»ï¼ˆå¼±ï¼‰
+#define ACTID_TATUMAKI2			(ACTID_ATTACK  | ACTID_HISSATU | ACTID_KUCYU | 0x0004)	//ç«œå·»ï¼ˆä¸­ï¼‰
+#define ACTID_TATUMAKI3			(ACTID_ATTACK  | ACTID_HISSATU | ACTID_KUCYU | 0x0005)	//ç«œå·»ï¼ˆå¼·ï¼‰
+#define ACTID_TATUMAKIR			(ACTID_HISSATU | ACTID_KUCYU   | 0x0006)				//ç«œå·»ï¼ˆè½ä¸‹ï¼‰
+#define ACTID_LANDING			(ACTID_HISSATU | 0x0007)								//ç«œå·»ï¼ˆç€åœ°ï¼‰
+#define ACTID_REIKU1A			(ACTID_ATTACK  | ACTID_HISSATU | 0x0008)				//ãƒ¬ã‚¤ã‚¯(å¼±)
 #define ACTID_REIKU1B			(ACTID_ATTACK  | ACTID_HISSATU | 0x0009)
 #define ACTID_REIKU1C			(ACTID_ATTACK  | ACTID_HISSATU | 0x000A)
-#define ACTID_REIKU2A			(ACTID_ATTACK  | ACTID_HISSATU | 0x000B)				//ƒŒƒCƒN(’†)
+#define ACTID_REIKU2A			(ACTID_ATTACK  | ACTID_HISSATU | 0x000B)				//ãƒ¬ã‚¤ã‚¯(ä¸­)
 #define ACTID_REIKU2B			(ACTID_ATTACK  | ACTID_HISSATU | 0x000C)
 #define ACTID_REIKU2C			(ACTID_ATTACK  | ACTID_HISSATU | 0x000D)
-#define ACTID_REIKU3A			(ACTID_ATTACK  | ACTID_HISSATU | 0x000E)				//ƒŒƒCƒN(‹­)
+#define ACTID_REIKU3A			(ACTID_ATTACK  | ACTID_HISSATU | 0x000E)				//ãƒ¬ã‚¤ã‚¯(å¼·)
 #define ACTID_REIKU3B			(ACTID_ATTACK  | ACTID_HISSATU | 0x000F)
 #define ACTID_REIKU3C			(ACTID_ATTACK  | ACTID_HISSATU | ACTID_KUCYU | 0x0010)
-#define ACTID_REIKU3CS			(ACTID_HISSATU | 0x0011)								//ƒŒƒCƒN’…’nŒãŒ„
-//#define ACTID_REIKUCOM			(ACTID_ATTACK  | ACTID_HISSATU | 0x0012)				//ƒŒƒCƒN(COM)
-#define ACTID_DASHF				(0x0013)												//‘Oƒ_ƒbƒVƒ…
-#define ACTID_DASHB				(0x0014)												//Œãƒ_ƒbƒVƒ…
-#define ACTID_NAGE1				(ACTID_ATTACK  | ACTID_NAGE    | 0x0015)				//“Š‚°
-#define ACTID_HADOU1A			(ACTID_ATTACK  | ACTID_HISSATU | 0x0016)				//”g“®ŒA(ã)
-#define ACTID_HADOU2A			(ACTID_ATTACK  | ACTID_HISSATU | 0x0017)				//”g“®ŒA(~)
-#define ACTID_HADOU3A			(ACTID_ATTACK  | ACTID_HISSATU | 0x0018)				//”g“®ŒA(‹­)
-#define ACTID_HADOU1B			(ACTID_ATTACK  | ACTID_HISSATU | 0x0019)				//”g“®ŒB(ã)
-#define ACTID_HADOU2B			(ACTID_ATTACK  | ACTID_HISSATU | 0x001A)				//”g“®ŒB(~)
-#define ACTID_HADOU3B			(ACTID_ATTACK  | ACTID_HISSATU | 0x001B)				//”g“®ŒB(‹­)
-#define ACTID_GCANCEL1			(ACTID_ATTACK  | ACTID_HISSATU | 0x001C)				//ƒK[ƒLƒƒƒ“(ã)
-#define ACTID_GCANCEL2			(ACTID_ATTACK  | ACTID_HISSATU | 0x001D)				//ƒK[ƒLƒƒƒ“(’†)
-#define ACTID_GCANCEL3			(ACTID_ATTACK  | ACTID_HISSATU | 0x001E)				//ƒK[ƒLƒƒƒ“(‹­)
-#define ACTID_GOODBYE1			(ACTID_ATTACK  | ACTID_HISSATU | 0x001F)				//ƒOƒbƒoƒCEƒtƒH[ƒGƒo[(n“®¨‘Oi)
-#define ACTID_2ND_STEP			(ACTID_KUCYU   | 0x0020)								//2’iƒWƒƒƒ“ƒv”­“®
-#define ACTID_AJAMP				(ACTID_KUCYU   | 0x0021)								//ƒGƒŠƒAƒ‹n“®ƒWƒƒƒ“ƒv
-#define ACTID_GOODBYE2			(ACTID_ATTACK  | ACTID_HISSATU | 0x0022)				//ƒOƒbƒoƒCEƒtƒH[ƒGƒo[(ƒqƒbƒg¨‘Å‚¿ã‚°)
-#define ACTID_STRIKER_IN		(ACTID_INOUT   | 0x0023)								//x‰‡UŒ‚E‰æ–Ê“à‚É“ü‚Á‚Ä‚­‚é
-#define ACTID_STRIKER_DASH		(ACTID_INOUT   | 0x0024)								//x‰‡UŒ‚E‘Šè‚Ì‚Ù‚¤‚É‚¿‚å‚Á‚Æi‚Ş
-#define ACTID_STRIKER_ATTACK	(ACTID_INOUT   | 0x0025)								//x‰‡UŒ‚EUŒ‚
-#define ACTID_STRIKER_OUT		(ACTID_INOUT   | 0x0026)								//x‰‡UŒ‚E’…’nA‚¨‹A‚è‚Í‚±‚¿‚ç
-#define ACTID_GCANCEL1J			(ACTID_ATTACK  | ACTID_HISSATU | ACTID_KUCYU | 0x0027)	//ƒK[ƒLƒƒƒ“(ã) - ”­“®Œãs“®
-#define ACTID_GCANCEL2J			(ACTID_ATTACK  | ACTID_HISSATU | ACTID_KUCYU | 0x0028)	//ƒK[ƒLƒƒƒ“(’†) - ”­“®Œãs“®
-#define ACTID_GCANCEL3J			(ACTID_ATTACK  | ACTID_HISSATU | ACTID_KUCYU | 0x0029)	//ƒK[ƒLƒƒƒ“(‹­) - ”­“®Œãs“®
+#define ACTID_REIKU3CS			(ACTID_HISSATU | 0x0011)								//ãƒ¬ã‚¤ã‚¯ç€åœ°å¾Œéš™
+//#define ACTID_REIKUCOM			(ACTID_ATTACK  | ACTID_HISSATU | 0x0012)				//ãƒ¬ã‚¤ã‚¯(COM)
+#define ACTID_DASHF				(0x0013)												//å‰ãƒ€ãƒƒã‚·ãƒ¥
+#define ACTID_DASHB				(0x0014)												//å¾Œãƒ€ãƒƒã‚·ãƒ¥
+#define ACTID_NAGE1				(ACTID_ATTACK  | ACTID_NAGE    | 0x0015)				//æŠ•ã’
+#define ACTID_HADOU1A			(ACTID_ATTACK  | ACTID_HISSATU | 0x0016)				//æ³¢å‹•æ‹³A(å¼±)
+#define ACTID_HADOU2A			(ACTID_ATTACK  | ACTID_HISSATU | 0x0017)				//æ³¢å‹•æ‹³A(å¨)
+#define ACTID_HADOU3A			(ACTID_ATTACK  | ACTID_HISSATU | 0x0018)				//æ³¢å‹•æ‹³A(å¼·)
+#define ACTID_HADOU1B			(ACTID_ATTACK  | ACTID_HISSATU | 0x0019)				//æ³¢å‹•æ‹³B(å¼±)
+#define ACTID_HADOU2B			(ACTID_ATTACK  | ACTID_HISSATU | 0x001A)				//æ³¢å‹•æ‹³B(å¨)
+#define ACTID_HADOU3B			(ACTID_ATTACK  | ACTID_HISSATU | 0x001B)				//æ³¢å‹•æ‹³B(å¼·)
+#define ACTID_GCANCEL1			(ACTID_ATTACK  | ACTID_HISSATU | 0x001C)				//ã‚¬ãƒ¼ã‚­ãƒ£ãƒ³(å¼±)
+#define ACTID_GCANCEL2			(ACTID_ATTACK  | ACTID_HISSATU | 0x001D)				//ã‚¬ãƒ¼ã‚­ãƒ£ãƒ³(ä¸­)
+#define ACTID_GCANCEL3			(ACTID_ATTACK  | ACTID_HISSATU | 0x001E)				//ã‚¬ãƒ¼ã‚­ãƒ£ãƒ³(å¼·)
+#define ACTID_GOODBYE1			(ACTID_ATTACK  | ACTID_HISSATU | 0x001F)				//ã‚°ãƒƒãƒã‚¤ãƒ»ãƒ•ã‚©ãƒ¼ã‚¨ãƒãƒ¼(å§‹å‹•â†’å‰é€²)
+#define ACTID_2ND_STEP			(ACTID_KUCYU   | 0x0020)								//2æ®µã‚¸ãƒ£ãƒ³ãƒ—ç™ºå‹•
+#define ACTID_AJAMP				(ACTID_KUCYU   | 0x0021)								//ã‚¨ãƒªã‚¢ãƒ«å§‹å‹•ã‚¸ãƒ£ãƒ³ãƒ—
+#define ACTID_GOODBYE2			(ACTID_ATTACK  | ACTID_HISSATU | 0x0022)				//ã‚°ãƒƒãƒã‚¤ãƒ»ãƒ•ã‚©ãƒ¼ã‚¨ãƒãƒ¼(ãƒ’ãƒƒãƒˆâ†’æ‰“ã¡ä¸Šã’)
+#define ACTID_STRIKER_IN		(ACTID_INOUT   | 0x0023)								//æ”¯æ´æ”»æ’ƒãƒ»ç”»é¢å†…ã«å…¥ã£ã¦ãã‚‹
+#define ACTID_STRIKER_DASH		(ACTID_INOUT   | 0x0024)								//æ”¯æ´æ”»æ’ƒãƒ»ç›¸æ‰‹ã®ã»ã†ã«ã¡ã‚‡ã£ã¨é€²ã‚€
+#define ACTID_STRIKER_ATTACK	(ACTID_INOUT   | 0x0025)								//æ”¯æ´æ”»æ’ƒãƒ»æ”»æ’ƒ
+#define ACTID_STRIKER_OUT		(ACTID_INOUT   | 0x0026)								//æ”¯æ´æ”»æ’ƒãƒ»ç€åœ°ã€ãŠå¸°ã‚Šã¯ã“ã¡ã‚‰
+#define ACTID_GCANCEL1J			(ACTID_ATTACK  | ACTID_HISSATU | ACTID_KUCYU | 0x0027)	//ã‚¬ãƒ¼ã‚­ãƒ£ãƒ³(å¼±) - ç™ºå‹•å¾Œè¡Œå‹•
+#define ACTID_GCANCEL2J			(ACTID_ATTACK  | ACTID_HISSATU | ACTID_KUCYU | 0x0028)	//ã‚¬ãƒ¼ã‚­ãƒ£ãƒ³(ä¸­) - ç™ºå‹•å¾Œè¡Œå‹•
+#define ACTID_GCANCEL3J			(ACTID_ATTACK  | ACTID_HISSATU | ACTID_KUCYU | 0x0029)	//ã‚¬ãƒ¼ã‚­ãƒ£ãƒ³(å¼·) - ç™ºå‹•å¾Œè¡Œå‹•
 
-//UŒ‚—Í”Ô†‚ğ‚±‚±‚É’è‹`‚·‚é
-#define ATTACKINFO_STAND_A		0	//’Êí‹ZFX
+//æ”»æ’ƒåŠ›ç•ªå·ã‚’ã“ã“ã«å®šç¾©ã™ã‚‹
+#define ATTACKINFO_STAND_A		0	//é€šå¸¸æŠ€è‰²ã€…
 #define ATTACKINFO_STAND_B		1
 #define ATTACKINFO_STAND_C		2
 #define ATTACKINFO_CROUCH_A		3
@@ -241,23 +241,23 @@ extern LPTSTR CharDirectory;
 #define ATTACKINFO_JAMP_A		6
 #define ATTACKINFO_JAMP_B		7
 #define ATTACKINFO_JAMP_C		8
-#define ATTACKINFO_STAND_D		9	//¨’†
-#define ATTACKINFO_STAND_E		10	//¨‹­
-#define ATTACKINFO_TATUMAKI1	11	//—³Šª(ã)
-#define ATTACKINFO_TATUMAKI2	12	//—³Šª(’†)
-#define ATTACKINFO_TATUMAKI3	13	//—³Šª(‹­)
-#define ATTACKINFO_REIKU		14	//ƒŒƒCƒN(’Êí)
-#define ATTACKINFO_REIKU_FINISH	15	//ƒŒƒCƒN(ƒtƒBƒjƒbƒVƒ…)
-#define ATTACKINFO_NAGE			16	//“Š‚°
-#define ATTACKINFO_HADOU1A		17	//”g“®Œi”ò‚Î‚È‚¢Œnj
+#define ATTACKINFO_STAND_D		9	//â†’ä¸­
+#define ATTACKINFO_STAND_E		10	//â†’å¼·
+#define ATTACKINFO_TATUMAKI1	11	//ç«œå·»(å¼±)
+#define ATTACKINFO_TATUMAKI2	12	//ç«œå·»(ä¸­)
+#define ATTACKINFO_TATUMAKI3	13	//ç«œå·»(å¼·)
+#define ATTACKINFO_REIKU		14	//ãƒ¬ã‚¤ã‚¯(é€šå¸¸)
+#define ATTACKINFO_REIKU_FINISH	15	//ãƒ¬ã‚¤ã‚¯(ãƒ•ã‚£ãƒ‹ãƒƒã‚·ãƒ¥)
+#define ATTACKINFO_NAGE			16	//æŠ•ã’
+#define ATTACKINFO_HADOU1A		17	//æ³¢å‹•æ‹³ï¼ˆé£›ã°ãªã„ç³»ï¼‰
 #define ATTACKINFO_HADOU2A		18
 #define ATTACKINFO_HADOU3A		19
-#define ATTACKINFO_HADOU1B		20	//”g“®Œi”ò‚ÔŒnj
+#define ATTACKINFO_HADOU1B		20	//æ³¢å‹•æ‹³ï¼ˆé£›ã¶ç³»ï¼‰
 #define ATTACKINFO_HADOU2B		21
 #define ATTACKINFO_HADOU3B		22
-#define ATTACKINFO_GOODBYE1		23 //ƒOƒbƒoƒCEƒtƒH[ƒGƒo[
+#define ATTACKINFO_GOODBYE1		23 //ã‚°ãƒƒãƒã‚¤ãƒ»ãƒ•ã‚©ãƒ¼ã‚¨ãƒãƒ¼
 #define ATTACKINFO_GOODBYE2		24
-#define ATTACKINFO_AERIALPOP	25 //ƒGƒŠƒAƒ‹ŠÖŒW
+#define ATTACKINFO_AERIALPOP	25 //ã‚¨ãƒªã‚¢ãƒ«é–¢ä¿‚
 #define ATTACKINFO_AERIAL_A		26
 #define ATTACKINFO_AERIAL_B		27
 #define ATTACKINFO_AERIAL_C		28
@@ -265,48 +265,48 @@ extern LPTSTR CharDirectory;
 #define ATTACKINFO_STRIKER		30
 #define ATTACKINFO_GCANCEL		31
 #define ATTACKINFO_ROCKET		32
-#define ATTACKINFO_ERASER99		33//‚¢‚Á‚Ï‚¢‚¢‚Á‚Ï‚¢
+#define ATTACKINFO_ERASER99		33//ã„ã£ã±ã„ã„ã£ã±ã„
 
-//UŒ‚IDiƒQ[ƒW‚ğ‘‚â‚·‚Æ‚«‚Æ‚©‚Ég—pj
+//æ”»æ’ƒIDï¼ˆã‚²ãƒ¼ã‚¸ã‚’å¢—ã‚„ã™ã¨ãã¨ã‹ã«ä½¿ç”¨ï¼‰
 #define ATTACK_WEAK				1
 #define ATTACK_MIDDLE			2
 #define ATTACK_STRONG			3
 #define ATTACK_HISSATU			4
-#define ATTACK_GOODBYE			5//ƒOƒbƒoƒCƒqƒbƒg
-#define ATTACK_STRIKER			6//ƒXƒgƒ‰ƒCƒJ[ƒ_ƒbƒVƒ…ƒqƒbƒg
+#define ATTACK_GOODBYE			5//ã‚°ãƒƒãƒã‚¤ãƒ’ãƒƒãƒˆ
+#define ATTACK_STRIKER			6//ã‚¹ãƒˆãƒ©ã‚¤ã‚«ãƒ¼ãƒ€ãƒƒã‚·ãƒ¥ãƒ’ãƒƒãƒˆ
 
-//ƒ`ƒF[ƒ“ƒRƒ“ƒ{ƒtƒ‰ƒO
-//#define CHAIN_SA	0x00010000//ƒx[ƒX‚Å’è‹`
+//ãƒã‚§ãƒ¼ãƒ³ã‚³ãƒ³ãƒœãƒ•ãƒ©ã‚°
+//#define CHAIN_SA	0x00010000//ãƒ™ãƒ¼ã‚¹ã§å®šç¾©
 //#define CHAIN_SB	0x00020000
 //#define CHAIN_SC	0x00040000
 //#define CHAIN_CA	0x00080000
 //#define CHAIN_CB	0x00100000
 //#define CHAIN_CC	0x00200000
-#define CHAIN_SD	0x00000001//’Ç‰Á•ª
+#define CHAIN_SD	0x00000001//è¿½åŠ åˆ†
 #define CHAIN_SE	0x00000002
 #define CHAIN_JA	0x00000010
 #define CHAIN_JB	0x00000020
 #define CHAIN_JC	0x00000040
 
-#define CHAIN_JAMPS (CHAIN_JA | CHAIN_JB | CHAIN_JC)//2’iƒWƒƒƒ“ƒvˆêŠ‡ƒNƒŠƒA—p
+#define CHAIN_JAMPS (CHAIN_JA | CHAIN_JB | CHAIN_JC)//2æ®µã‚¸ãƒ£ãƒ³ãƒ—æ™‚ä¸€æ‹¬ã‚¯ãƒªã‚¢ç”¨
 
-//ƒ†[ƒU[ƒqƒbƒgEID’è‹`
+//ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ’ãƒƒãƒˆãƒ»IDå®šç¾©
 #define USERHIT_FLAG			(0x80)
 #define USERHIT_AERIALPOP		(0x01 | USERHIT_FLAG)
 #define USERHIT_AERIAL1			(0x02 | USERHIT_FLAG)
 #define USERHIT_AERIAL2			(0x03 | USERHIT_FLAG)
 #define USERHIT_AERIAL3			(0x04 | USERHIT_FLAG)
 
-//ƒ†[ƒU[’è‹`ƒƒbƒZ[ƒW
-#define GOBJMSG_NAGE			(GOBJMSG_USERDEFINE | 0x0001)	//“Š‚°—p
-#define GOBJMSG_HADOUHIT		(GOBJMSG_USERDEFINE | 0x0002)	//”g“®Œƒqƒbƒg
-#define GOBJMSG_HADOUGUARD		(GOBJMSG_USERDEFINE | 0x0003)	//”g“®ŒƒK[ƒh
-#define GOBJMSG_AERIALPOP		(GOBJMSG_USERDEFINE | USERHIT_AERIALPOP)	//ƒGƒŠƒAƒ‹E•‚‚©‚¹
-#define GOBJMSG_AERIALHIT1		(GOBJMSG_USERDEFINE | USERHIT_AERIAL1)		//ƒGƒŠƒAƒ‹Eƒqƒbƒg
-#define GOBJMSG_AERIALHIT2		(GOBJMSG_USERDEFINE | USERHIT_AERIAL2)		//ƒGƒŠƒAƒ‹Eƒqƒbƒg
-#define GOBJMSG_AERIALHIT3		(GOBJMSG_USERDEFINE | USERHIT_AERIAL3)		//ƒGƒŠƒAƒ‹Eƒqƒbƒg
+//ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+#define GOBJMSG_NAGE			(GOBJMSG_USERDEFINE | 0x0001)	//æŠ•ã’ç”¨
+#define GOBJMSG_HADOUHIT		(GOBJMSG_USERDEFINE | 0x0002)	//æ³¢å‹•æ‹³ãƒ’ãƒƒãƒˆ
+#define GOBJMSG_HADOUGUARD		(GOBJMSG_USERDEFINE | 0x0003)	//æ³¢å‹•æ‹³ã‚¬ãƒ¼ãƒ‰
+#define GOBJMSG_AERIALPOP		(GOBJMSG_USERDEFINE | USERHIT_AERIALPOP)	//ã‚¨ãƒªã‚¢ãƒ«ãƒ»æµ®ã‹ã›
+#define GOBJMSG_AERIALHIT1		(GOBJMSG_USERDEFINE | USERHIT_AERIAL1)		//ã‚¨ãƒªã‚¢ãƒ«ãƒ»ãƒ’ãƒƒãƒˆ
+#define GOBJMSG_AERIALHIT2		(GOBJMSG_USERDEFINE | USERHIT_AERIAL2)		//ã‚¨ãƒªã‚¢ãƒ«ãƒ»ãƒ’ãƒƒãƒˆ
+#define GOBJMSG_AERIALHIT3		(GOBJMSG_USERDEFINE | USERHIT_AERIAL3)		//ã‚¨ãƒªã‚¢ãƒ«ãƒ»ãƒ’ãƒƒãƒˆ
 
-//ƒIƒvƒVƒ‡ƒ“’è‹`
+//ã‚ªãƒ—ã‚·ãƒ§ãƒ³å®šç¾©
 #define OPTIONS_CHAIN_COMBO		0x00000001
 #define OPTIONS_EXTRA_ATTACK	0x00000002
 #define OPTIONS_AERIAL_ATTACK	0x00000004
@@ -316,20 +316,20 @@ extern LPTSTR CharDirectory;
 #define OPTIONS_HADOUKEN		0x00000040
 #define OPTIONS_HPPLUS30		0x00000080
 
-//ŠÔ‡‚¢
+//é–“åˆã„
 #define MAAI_SHORT				(50)
 #define MAAI_MIDDLE				(120)
 #define MAAI_LONG				(220)
 #define MAAI_NAGE				(20)
 
-//ƒ}ƒNƒ’è‹`
-#define cell(a)		pdat->cnow=a	// "CELL_" ‚ª‚¤‚´‚¢EEE
+//ãƒã‚¯ãƒ­å®šç¾©
+#define cell(a)		pdat->cnow=a	// "CELL_" ãŒã†ã–ã„ãƒ»ãƒ»ãƒ»
 #define ccounter	pdat->counter
 #define ALLGUARDFLAG		(GUARDINFO_XSTAND | GUARDINFO_XCROUCH | GUARDINFO_XJAMP)
 #define CANNOT_GUARD(a)		((a&ALLGUARDFLAG)==0)
-#define ALL_RIGHT			TRUE//ƒI[ƒ‰ƒC
+#define ALL_RIGHT			TRUE//ã‚ªãƒ¼ãƒ©ã‚¤
 
-//wav”Ô†
+//wavç•ªå·
 #define wave_tojyo			4
 #define wave_win			5
 #define wave_body_ga		6
@@ -346,10 +346,10 @@ extern LPTSTR CharDirectory;
 #define wave_striker_call	17
 
 /*-------------------------------------------------------------------
-	”ò“¹‹ï“™
+	é£›é“å…·ç­‰
 ---------------------------------------------------------------------*/
 
-//¡ƒŒƒCƒN
+//â– ãƒ¬ã‚¤ã‚¯
 class CReiku_Base : public CBulletBase
 {
 public:
@@ -375,7 +375,7 @@ class CReiku_Ku : public CReiku_Base
 public:CReiku_Ku(CCharacter *parent);
 };
 
-//¡ƒ_ƒbƒVƒ…‚Ì•—
+//â– ãƒ€ãƒƒã‚·ãƒ¥æ™‚ã®é¢¨
 class CDashWind : public CBulletBase
 {
 public:
@@ -384,7 +384,7 @@ public:
 	void act_bomb();
 };
 
-//¡”g“®Œiƒx[ƒXj
+//â– æ³¢å‹•æ‹³ï¼ˆãƒ™ãƒ¼ã‚¹ï¼‰
 class CHadouKen : public CBulletBase
 {
 public:
@@ -393,7 +393,7 @@ public:
 	virtual void GoB(BOOL muki,double x,double y,double vx,ATTACKINFO *atk){}
 };
 
-//¡”g“®Œi”ò‚Î‚È‚¢•ûj
+//â– æ³¢å‹•æ‹³ï¼ˆé£›ã°ãªã„æ–¹ï¼‰
 class CHadouKenA : public CHadouKen
 {
 public:
@@ -410,7 +410,7 @@ protected:
 	float m_duration;
 };
 
-//¡”g“®Œi”ò‚Ô•ûj
+//â– æ³¢å‹•æ‹³ï¼ˆé£›ã¶æ–¹ï¼‰
 class CHadouKenB : public CHadouKen
 {
 public:
@@ -423,7 +423,7 @@ protected:
 	void Hit();
 };
 
-//¡ƒOƒbƒoƒCƒtƒH[ƒGƒo[
+//â– ã‚°ãƒƒãƒã‚¤ãƒ•ã‚©ãƒ¼ã‚¨ãƒãƒ¼
 class CGoodbye : public CHadouKenA
 {
 public:
@@ -436,7 +436,7 @@ protected:
 
 };
 
-//¡ƒƒPƒbƒg?
+//â– ãƒ­ã‚±ãƒƒãƒˆ?
 #define ROCKET_BOMB_NUM		64
 
 class CRocket : public CBulletBase
@@ -472,7 +472,7 @@ friend class CEraser99;
 
 };
 
-//¡ƒCƒŒƒCƒT[99
+//â– ã‚¤ãƒ¬ã‚¤ã‚µãƒ¼99
 
 #define ERASER99_NUM_CONPART	(128)
 #define ERASER99_NUM_RAY		(64)
@@ -491,11 +491,11 @@ protected:
 	void act_run();
 	void act_bomb();
 
-	//‚ ‚½‚Á‚Ä‚àÁ‚¦‚È‚¢
+	//ã‚ãŸã£ã¦ã‚‚æ¶ˆãˆãªã„
 	void Hit(){pdat->kougeki= FALSE;}
 	DWORD Sousai(DWORD prm){return TRUE;}
 	
-	//û‘©—±q
+	//åæŸç²’å­
 	CParticle* m_part;
 	struct ParticleInfo
 	{
@@ -509,10 +509,10 @@ protected:
 	};
 	ParticleInfo m_info[ERASER99_NUM_CONPART];
 
-	//”­“®‰ŒiƒƒPƒbƒg—¬—pj
+	//ç™ºå‹•æ™‚ç…™ï¼ˆãƒ­ã‚±ãƒƒãƒˆæµç”¨ï¼‰
 	CRocket*	obj_rkt;
 
-	//Œõü–{‘Ì
+	//å…‰ç·šæœ¬ä½“
 	CParticle* m_part_ray;
 	struct RayPartInfo
 	{

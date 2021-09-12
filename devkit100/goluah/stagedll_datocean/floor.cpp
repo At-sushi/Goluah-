@@ -1,6 +1,6 @@
-
+ï»¿
 /*--------------------------------------------------------------
-	‚ä‚©
+	ã‚†ã‹
 ----------------------------------------------------------------*/
 #pragma once
 #include "floor.h"
@@ -180,14 +180,14 @@ void CFloor::Draw()
 	aki3d.SetBlend_Normal();
 	LPDIRECT3DDEVICE8 d3ddev = aki3d.GetD3DDev();
 
-	d3ddev->SetTransform(D3DTS_WORLD,	&mati);		//À•W•ÏŠ·ƒ}ƒgƒŠƒNƒXw’è
+	d3ddev->SetTransform(D3DTS_WORLD,	&mati);		//åº§æ¨™å¤‰æ›ãƒãƒˆãƒªã‚¯ã‚¹æŒ‡å®š
 	d3ddev->SetStreamSource(0, pvb, sizeof(MYVERTEX3D));
-	d3ddev->SetVertexShader( FVF_3DVERTEX );		//’¸“_‚ÌƒtƒH[ƒ}ƒbƒg‚ğw’è
+	d3ddev->SetVertexShader( FVF_3DVERTEX );		//é ‚ç‚¹ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æŒ‡å®š
 	d3ddev->SetIndices(pindex, 0);
 
 	aki3d.EnableZ();
-	//•`‰æ
-	d3ddev->SetTexture(0,tex);						//ƒeƒNƒXƒ`ƒƒ[İ’è
+	//æç”»
+	d3ddev->SetTexture(0,tex);						//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼è¨­å®š
 	d3ddev->DrawIndexedPrimitive(
 									D3DPT_TRIANGLELIST,	//D3DPRIMITIVETYPE PrimitiveType,
 									0,					//UINT MinVertexIndex,
@@ -199,7 +199,7 @@ void CFloor::Draw()
 	aki3d.EnableZ(TRUE,FALSE);
 	aki3d.SetBlend_Add();
 
-	d3ddev->SetTexture(0,uf_tex);						//ƒeƒNƒXƒ`ƒƒ[İ’è
+	d3ddev->SetTexture(0,uf_tex);						//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼è¨­å®š
 
 	static BOOL err = FALSE;
 //	try{

@@ -1,4 +1,4 @@
-
+ï»¿
 
 #include <d3d8.h>
 
@@ -23,7 +23,7 @@ CConfig::~CConfig()
 }
 
 //*****************************************************************
-//  Get‚È‚ñ‚½‚ç
+//  Getãªã‚“ãŸã‚‰
 //*****************************************************************
 
 D3DFORMAT CConfig::TexFormat()
@@ -59,7 +59,7 @@ char* CConfig::GetSShotFileTypeStr()
 }
 
 //*****************************************************************
-//  Set‚È‚ñ‚½‚ç
+//  Setãªã‚“ãŸã‚‰
 //*****************************************************************
 
 void CConfig::SetTimeLimit(UINT tl)
@@ -104,7 +104,7 @@ void CConfig::SetTexFormat(D3DFORMAT tf)
 
 
 //*****************************************************************
-//  ƒfƒtƒHƒ‹ƒgİ’è‚É‚·‚é
+//  ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆè¨­å®šã«ã™ã‚‹
 //*****************************************************************
 
 void CConfig::SetDefaultConfigKB()
@@ -152,7 +152,7 @@ void CConfig::SetDefaultConfigAss()
 
 void CConfig::SetDefaultConfig2()
 {
-	// •`‰æŠÖŒW
+	//â–¡æç”»é–¢ä¿‚
 	SetHalfMode( FALSE );
 	SetFullScreen( FALSE );
 	SetTexFormat( D3DFMT_A1R5G5B5 );
@@ -160,7 +160,7 @@ void CConfig::SetDefaultConfig2()
 	SetHardwereVP( FALSE );
 	SetNoAlphaTest( FALSE );
 
-	// ƒQ[ƒ€İ’è
+	//â–¡ã‚²ãƒ¼ãƒ è¨­å®š
 	SetDebugMode( FALSE );
 	SetShowMovie( TRUE );
 	SetShowInfo( TRUE );
@@ -171,7 +171,7 @@ void CConfig::SetDefaultConfig2()
 	SetLimiterCut( FALSE );
 	SetGameSpeed( GSPEED_NEW );
 
-	// ƒVƒXƒeƒ€İ’è
+	//â–¡ã‚·ã‚¹ãƒ†ãƒ è¨­å®š
 	SetUseDInput( TRUE );
 	SetUseDSound( TRUE );
 	SetUseDShow( TRUE );
@@ -187,7 +187,7 @@ void CConfig::SetDefaultConfig2()
 }
 
 //*****************************************************************
-//  İ’è‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İ
+//  è¨­å®šã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã¿
 //*****************************************************************
 
 void CConfig::ReInitialize()
@@ -218,21 +218,21 @@ BOOL CConfig::LoadConfig()
 	}
 	DWORD br;
 
-	//ƒL[ƒ{[ƒh
+	//ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰
 	DWORD ret=ReadFile(hFile,&keycfg,sizeof(KEYCONFIG),&br,NULL);
 	if(!ret || br!=sizeof(KEYCONFIG)){
 		CloseHandle(hFile);
 		return(FALSE);
 	}
 
-	//ƒpƒbƒh
+	//ãƒ‘ãƒƒãƒ‰
 	ret=ReadFile(hFile,&padcfg,sizeof(PADCONFIG),&br,NULL);
 	if(!ret || br!=sizeof(PADCONFIG)){
 		CloseHandle(hFile);
 		return(FALSE);
 	}
 
-	//Š„‚è“–‚Ä
+	//å‰²ã‚Šå½“ã¦
 	ret=ReadFile(hFile,&inputAssign,sizeof(INPUT2PLAYER),&br,NULL);
 	if(!ret || br!=sizeof(INPUT2PLAYER)){
 		CloseHandle(hFile);
@@ -292,19 +292,19 @@ BOOL CConfig::LoadConfig2()
 	DWORD lc_key2 = GetLimcutKey();
 	if( (lc_key^('aki')) == lc_key2 )
 	{
-		OutputDebugString("ƒL[ˆê’vAŒÀŠE“Ë”j‹–‰Â\n");
+		OutputDebugString("ã‚­ãƒ¼ä¸€è‡´ã€é™ç•Œçªç ´è¨±å¯\n");
 		limcut_pass = TRUE;
 		limiter_cut_enable = 1;
 	}
 	else if( lc_key==lc_key2 )
 	{
-		OutputDebugString("ƒL[ˆê’v\n");
+		OutputDebugString("ã‚­ãƒ¼ä¸€è‡´\n");
 		limcut_pass = TRUE;
 		limiter_cut_enable = 0;
 	}
 	else
 	{
-		OutputDebugString("ƒL[•sˆê’v\n");
+		OutputDebugString("ã‚­ãƒ¼ä¸ä¸€è‡´\n");
 		limiter_cut = 0;
 		limiter_cut_enable = 0;
 		limcut_pass = FALSE;
@@ -314,7 +314,7 @@ BOOL CConfig::LoadConfig2()
 }
 
 //*****************************************************************
-//  İ’è‚ğƒtƒ@ƒCƒ‹‚É‘‚«‚İ
+//  è¨­å®šã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãè¾¼ã¿
 //*****************************************************************
 
 BOOL CConfig::SaveConfig()
@@ -332,21 +332,21 @@ BOOL CConfig::SaveConfig()
 	}
 	DWORD br;
 
-	//ƒL[ƒ{[ƒh
+	//ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰
 	DWORD ret=WriteFile(hFile,&keycfg,sizeof(KEYCONFIG),&br,NULL);
 	if(!ret || br!=sizeof(KEYCONFIG)){
 		CloseHandle(hFile);
 		return FALSE;
 	}
 
-	//ƒpƒbƒh
+	//ãƒ‘ãƒƒãƒ‰
 	ret=WriteFile(hFile,&padcfg,sizeof(PADCONFIG),&br,NULL);
 	if(!ret || br!=sizeof(PADCONFIG)){
 		CloseHandle(hFile);
 		return FALSE;
 	}
 
-	//“ü—ÍŠ„‚è“–‚Ä
+	//å…¥åŠ›å‰²ã‚Šå½“ã¦
 	ret=WriteFile(hFile,&inputAssign,sizeof(INPUT2PLAYER),&br,NULL);
 	if(!ret || br!=sizeof(INPUT2PLAYER)){
 		CloseHandle(hFile);

@@ -1,7 +1,7 @@
-
+ï»¿
 /*=======================================================================================
 
-	ƒIƒvƒVƒ‡ƒ“‘I‘ğ
+	ã‚ªãƒ—ã‚·ãƒ§ãƒ³é¸æŠ
 
 =========================================================================================*/
 #pragma once
@@ -11,13 +11,13 @@
 #include "task_select.h"
 
 /*!
-*	@brief ƒIƒvƒVƒ‡ƒ“‘I‘ğƒx[ƒX(’Pƒ”Å)
+*	@brief ã‚ªãƒ—ã‚·ãƒ§ãƒ³é¸æŠãƒ™ãƒ¼ã‚¹(å˜ç´”ç‰ˆ)
 *	@ingroup Tasks
 *	@sa CTOptionSelecter
 *
-*	ƒvƒŠƒZƒbƒg‚ÆƒJƒXƒ^ƒ€w’è
-*	ƒJƒXƒ^ƒ€İ’è‚ÌÛ‚É“à•”‚ÅCTOptionSelecter‚ğŒÄ‚Ño‚µ‚Ü‚·B
-*	ƒJƒXƒ^ƒ€İ’è‚ğ•ÊƒNƒ‰ƒX‚Å‚â‚ë‚¤‚Æ‚µ‚Ä¸”s‚µ‚½•¨B
+*	ãƒ—ãƒªã‚»ãƒƒãƒˆã¨ã‚«ã‚¹ã‚¿ãƒ æŒ‡å®š
+*	ã‚«ã‚¹ã‚¿ãƒ è¨­å®šã®éš›ã«å†…éƒ¨ã§CTOptionSelecterã‚’å‘¼ã³å‡ºã—ã¾ã™ã€‚
+*	ã‚«ã‚¹ã‚¿ãƒ è¨­å®šã‚’åˆ¥ã‚¯ãƒ©ã‚¹ã§ã‚„ã‚ã†ã¨ã—ã¦å¤±æ•—ã—ãŸç‰©ã€‚
 */
 class CTSimpleOptionSelecter : public CTOptionSelecter
 {
@@ -28,7 +28,7 @@ public:
 	virtual BOOL Execute(DWORD time);
 	virtual void Draw();
 
-	//‘€ìEİ’è
+	//æ“ä½œãƒ»è¨­å®š
 	virtual int  SetAndShow(DWORD cindex,DWORD kindex);
 	virtual void SetPos(float x,float y)
 	{
@@ -36,14 +36,14 @@ public:
 		CTOptionSelecter::SetPos(x, y);
 	}
 	virtual float GetHeight();
-	const CTOptionSelecter* GetCustomSelecter()	{ return &m_customselect; }	//!< OnOptionSelectŒü‚¯‚Ìb’è‘[’u
+	const CTOptionSelecter* GetCustomSelecter()	{ return &m_customselect; }	//!< OnOptionSelectå‘ã‘ã®æš«å®šæªç½®
 
 protected:
-	virtual void EndSelect();//!<‘I‘ğI—¹‚Ìˆ—
+	virtual void EndSelect();//!<é¸æŠçµ‚äº†æ™‚ã®å‡¦ç†
 	CCSimpleOptionSelecter* GetSelecter()	{ return dynamic_cast<CCSimpleOptionSelecter*>(m_selecter); }
 
 protected:
-	CTOptionSelecter m_customselect;	//!<ƒJƒXƒ^ƒ€‘I‘ğ‚Ég‚¤ƒIƒvƒVƒ‡ƒ“ƒZƒŒƒNƒ^[
-	BOOL  custom_mode;					//!<ƒJƒXƒ^ƒ€iFreej‘I‘ğƒ‚[ƒh‚©‚Ç‚¤‚©
+	CTOptionSelecter m_customselect;	//!<ã‚«ã‚¹ã‚¿ãƒ é¸æŠã«ä½¿ã†ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚»ãƒ¬ã‚¯ã‚¿ãƒ¼
+	BOOL  custom_mode;					//!<ã‚«ã‚¹ã‚¿ãƒ ï¼ˆFreeï¼‰é¸æŠãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹
 };
 

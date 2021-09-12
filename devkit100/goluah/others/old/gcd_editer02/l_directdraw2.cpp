@@ -1,6 +1,6 @@
-
+ï»¿
 //*******************************************************************************
-//  l_directdraw2.cpp ƒrƒbƒgƒ}ƒbƒv‚Ìƒ[ƒhŠÖ˜A
+//  l_directdraw2.cpp ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ãƒ­ãƒ¼ãƒ‰é–¢é€£
 //*******************************************************************************
 
 #include <windows.h>
@@ -21,13 +21,13 @@ extern int g_DISPLAYHEIGHT;
 
 extern CONFIG2 config2;
 
-// ƒrƒbƒgƒ}ƒbƒv‚ğMYSURFACE‚Æ‚µ‚Äƒ[ƒh *******************************************
+// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’MYSURFACEã¨ã—ã¦ãƒ­ãƒ¼ãƒ‰ *******************************************
 MYSURFACE* CDirectDraw::CreateSurfaceFrom256BMP(char *filename,char *palname,BOOL dmy)
 {
 	BOOL bret;
 	DWORD i,j;
 
-	//–¢g—p‚Ì‚à‚Ì‚ğ’T‚·
+	//æœªä½¿ç”¨ã®ã‚‚ã®ã‚’æ¢ã™
 	int e=-1;
 	for(i=0;i<MAXNUMGOLUAHTEXTURES;i++){
 		if(!ms[i].valid){
@@ -36,33 +36,33 @@ MYSURFACE* CDirectDraw::CreateSurfaceFrom256BMP(char *filename,char *palname,BOO
 		}
 	}
 	if(e<0){
-		OutputDebugString("warning:ƒeƒNƒXƒ`ƒƒ”‚ªMAX‚ğ’´‚¦‚Ä‚¢‚Ü‚·\n");
+		OutputDebugString("warning:ãƒ†ã‚¯ã‚¹ãƒãƒ£æ•°ãŒMAXã‚’è¶…ãˆã¦ã„ã¾ã™\n");
 		return(NULL);
 	}
 
-	//ƒrƒbƒgƒ}ƒbƒv‚Ìƒrƒbƒg‚ğ“Ç‚İ‚İ
+	//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ãƒ“ãƒƒãƒˆã‚’èª­ã¿è¾¼ã¿
 	MYPALLET *bmpbits;
 	DWORD bmpwidth,bmpheight;
 	bret = Load256Bitmapbits(&bmpbits,&bmpwidth,&bmpheight,filename,palname);
 	if(!bret){
-		OutputDebugString("Load256Bitmapbits‚É¸”s\n");
+		OutputDebugString("Load256Bitmapbitsã«å¤±æ•—\n");
 		return(NULL);
 	}
 	ms[e].wg = (float)bmpwidth;
 	ms[e].hg = (float)bmpheight;
 
-	//ƒrƒbƒgƒ}ƒbƒv‚Ì•ªŠ„‚Ìd•û‚ğŒˆ’è
+	//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®åˆ†å‰²ã®ä»•æ–¹ã‚’æ±ºå®š
 	bret = AssignTextureDiv(&ms[e],bmpwidth,bmpheight);
 	if(!bret){
-		OutputDebugString("AssignTextureDiv‚É¸”s\n");
+		OutputDebugString("AssignTextureDivã«å¤±æ•—\n");
 		return(NULL);
 	}
 
-	//w’èƒTƒCƒY‚ÌƒeƒNƒXƒ`ƒƒ‚ğì¬
+	//æŒ‡å®šã‚µã‚¤ã‚ºã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½œæˆ
 	LPVOID pointer;
 	pointer = malloc( sizeof(LPDIRECT3DTEXTURE8)*(ms[e].xsufnum*ms[e].ysufnum+1));
 	ZeroMemory(pointer,sizeof(LPDIRECT3DTEXTURE8)*(ms[e].xsufnum*ms[e].ysufnum+1));
-	ms[e].pTex = (LPDIRECT3DTEXTURE8*)pointer;//ƒ|ƒCƒ“ƒ^‚ğŠm•Û‚·‚é—Ìˆæ‚ğŠm•Û
+	ms[e].pTex = (LPDIRECT3DTEXTURE8*)pointer;//ãƒã‚¤ãƒ³ã‚¿ã‚’ç¢ºä¿ã™ã‚‹é ˜åŸŸã‚’ç¢ºä¿
 	for(i=0;i<ms[e].ysufnum;i++){
 		for(j=0;j<ms[e].xsufnum;j++){
 			d3ddev->CreateTexture(
@@ -81,12 +81,12 @@ MYSURFACE* CDirectDraw::CreateSurfaceFrom256BMP(char *filename,char *palname,BOO
 
 //	char msg[256];
 
-	//ƒeƒNƒXƒ`ƒƒ‚Éƒrƒbƒgƒ}ƒbƒv‚ğƒRƒs[
-//	OutputDebugString("¥ƒeƒNƒXƒ`ƒƒ‚Éƒrƒbƒgƒ}ƒbƒv‚ğƒRƒs[\n");
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’ã‚³ãƒ”ãƒ¼
+//	OutputDebugString("â–¼ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’ã‚³ãƒ”ãƒ¼\n");
 	DWORD damex,damey;
 	for(i=0;i<ms[e].ysufnum;i++){//okasi?
 		for(j=0;j<ms[e].xsufnum ;j++){
-			//ƒRƒs[Às
+			//ã‚³ãƒ”ãƒ¼å®Ÿè¡Œ
 //			sprintf(msg,"%d : %d,%d - offset%d/%d ...",i*ms[e].xsufnum + j,i,j,ofx,ofy);
 //			OutputDebugString(msg);
 			if(i==ms[e].ysufnum-1){damey=dameyoy;}
@@ -99,22 +99,22 @@ MYSURFACE* CDirectDraw::CreateSurfaceFrom256BMP(char *filename,char *palname,BOO
 		}
 	}
 
-	//Œãn––
+	//å¾Œå§‹æœ«
 	free(bmpbits);
 
-	//¬Œ÷
+	//æˆåŠŸ
 	ms[e].valid=TRUE;
 /*
 #ifdef _DEBUG
 	//test
-	OutputDebugString("¥CreateSurfaceFromBMP - complete\n");
+	OutputDebugString("â–¼CreateSurfaceFromBMP - complete\n");
 	char msg[256];
 	int numemptytex=0;
 	for(i=0;i<MAXNUMGOLUAHTEXTURES;i++)
 		if(!ms[i].valid)numemptytex++;
-	sprintf(msg,"(msc‚è%d)\n",numemptytex);
+	sprintf(msg,"(msæ®‹ã‚Š%d)\n",numemptytex);
 	OutputDebugString(msg);
-	sprintf(msg,"ƒeƒNƒXƒ`ƒƒ”F%dx%d (x/ysufnum)\n",ms[e].xsufnum,ms[e].ysufnum);
+	sprintf(msg,"ãƒ†ã‚¯ã‚¹ãƒãƒ£æ•°ï¼š%dx%d (x/ysufnum)\n",ms[e].xsufnum,ms[e].ysufnum);
 	OutputDebugString(msg);
 	sprintf(msg,"index-x : ");//indexx
 	OutputDebugString(msg);
@@ -154,18 +154,18 @@ MYSURFACE* CDirectDraw::CreateSurfaceFrom256BMP(char *filename,char *palname,BOO
 	sprintf(msg,"");
 	for(i=0;i<ms[e].xsufnum*ms[e].ysufnum;i++){
 		if(i%ms[e].xsufnum==0)sprintf(&msg[strlen(msg)],"\n");
-		if(ms[e].pTex[i]!=NULL)sprintf(&msg[strlen(msg)],"œ");
-		else sprintf(&msg[strlen(msg)],"›");
+		if(ms[e].pTex[i]!=NULL)sprintf(&msg[strlen(msg)],"â—");
+		else sprintf(&msg[strlen(msg)],"â—‹");
 	}
 	sprintf(&msg[strlen(msg)],"\n");
 	OutputDebugString(msg);
 
-#endif //ªdebug//
+#endif //â†‘debug//
 */
 	return(&ms[e]);
 }
 
-//ƒeƒNƒXƒ`ƒƒ‚ÌƒT[ƒtƒF[ƒX‚É‘‚«‚İ*******************************************************************************
+//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã«æ›¸ãè¾¼ã¿*******************************************************************************
 BOOL CDirectDraw::CopyBB2TS(MYPALLET *pbb,DWORD bbpitch,DWORD offset_x,DWORD offset_y,LPDIRECT3DTEXTURE8 ptex,DWORD damex,DWORD damey)
 {
 	if(pbb==NULL)return(FALSE);
@@ -173,16 +173,16 @@ BOOL CDirectDraw::CopyBB2TS(MYPALLET *pbb,DWORD bbpitch,DWORD offset_x,DWORD off
 
 	LPDIRECT3DSURFACE8 psuf=NULL;
 	if(D3D_OK != ptex->GetSurfaceLevel(0,&psuf)){
-		OutputDebugString("CopyBB2TS / GetSurfaceLevel‚É¸”s\n");
+		OutputDebugString("CopyBB2TS / GetSurfaceLevelã«å¤±æ•—\n");
 		return(FALSE);
 	}
 
-	//•‚Æ‚‚³AƒtƒH[ƒ}ƒbƒg‚ğæ“¾
+	//å¹…ã¨é«˜ã•ã€ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’å–å¾—
 	D3DFORMAT fmt;
 	DWORD sw,sh;
 	D3DSURFACE_DESC dsc;
 	if(D3D_OK != psuf->GetDesc(&dsc)){
-		OutputDebugString("CopyBB2TS / GetDesc‚É¸”s\n");
+		OutputDebugString("CopyBB2TS / GetDescã«å¤±æ•—\n");
 		RELEASE(psuf);
 		return(FALSE);
 	}
@@ -197,15 +197,15 @@ BOOL CDirectDraw::CopyBB2TS(MYPALLET *pbb,DWORD bbpitch,DWORD offset_x,DWORD off
 	sprintf(msg,"surface %dx%d ",sw,sh);
 	OutputDebugString(msg);*/
 
-	//ƒT[ƒtƒFƒCƒX‚ÌƒƒbƒN
+	//ã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã®ãƒ­ãƒƒã‚¯
 	D3DLOCKED_RECT lr;
 	if(D3D_OK != psuf->LockRect(&lr,NULL,0)){
-		OutputDebugString("CopyBB2TS / LockRect‚É¸”s\n");
+		OutputDebugString("CopyBB2TS / LockRectã«å¤±æ•—\n");
 		RELEASE(psuf);
 		return(FALSE);
 	}
 
-	//ƒRƒs[
+	//ã‚³ãƒ”ãƒ¼
 	DWORD i,j;
 	PBYTE pline;
 	int onepixsize;
@@ -215,7 +215,7 @@ BOOL CDirectDraw::CopyBB2TS(MYPALLET *pbb,DWORD bbpitch,DWORD offset_x,DWORD off
 //		if(outtest && j>96 )OutputDebugString(msg);
 		for(i=0;i<sw;i++){
 			switch(fmt){
-			case D3DFMT_R5G6B5://‚±‚ê‚Í‘½•ªg‚¦‚È‚¢
+			case D3DFMT_R5G6B5://ã“ã‚Œã¯å¤šåˆ†ä½¿ãˆãªã„
 				onepixsize = CopyOne_R5G6B5(pbb[(j+offset_y)*bbpitch+i+offset_x],pline);
 				break;
 			case D3DFMT_A8R8G8B8:
@@ -233,7 +233,7 @@ BOOL CDirectDraw::CopyBB2TS(MYPALLET *pbb,DWORD bbpitch,DWORD offset_x,DWORD off
 				onepixsize = CopyOne_A8R3G3B2(pbb[(j+offset_y)*bbpitch+i+offset_x],pline);
 				break;
 			default:
-				OutputDebugString("CopyBB2TS / ‚±‚ÌƒtƒH[ƒ}ƒbƒg‚ÍƒRƒs[‚Å‚«‚É‚á‚¢\n");
+				OutputDebugString("CopyBB2TS / ã“ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ã‚³ãƒ”ãƒ¼ã§ãã«ã‚ƒã„\n");
 				psuf->UnlockRect();
 				RELEASE(psuf);
 				return(FALSE);
@@ -252,7 +252,7 @@ BOOL CDirectDraw::CopyBB2TS(MYPALLET *pbb,DWORD bbpitch,DWORD offset_x,DWORD off
 	return(TRUE);
 }
 
-// 1 ƒsƒNƒZƒ‹‚Ì‘‚«‚İˆ—********************************************************************************
+// 1 ãƒ”ã‚¯ã‚»ãƒ«ã®æ›¸ãè¾¼ã¿å‡¦ç†********************************************************************************
 DWORD CDirectDraw::CopyOne_R5G6B5(MYPALLET src,PBYTE dst)
 {
 	WORD *pdst;
@@ -370,7 +370,7 @@ DWORD CDirectDraw::CopyOne_A8R8G8B8(MYPALLET src,PBYTE dst)
 	return(4);
 }
 
-//•ªŠ„•û–@Œˆ’è*********************************************************************************
+//åˆ†å‰²æ–¹æ³•æ±ºå®š*********************************************************************************
 BOOL CDirectDraw::AssignTextureDiv(MYSURFACE *pmsf,DWORD width,DWORD height)
 {
 	DWORD i;
@@ -378,7 +378,7 @@ BOOL CDirectDraw::AssignTextureDiv(MYSURFACE *pmsf,DWORD width,DWORD height)
 	DWORD ntx,nty,numsufx=0,numsufy=0;
 	BOOL bloop;
 	
-	//ƒˆƒR•ûŒü
+	//ãƒ¨ã‚³æ–¹å‘
 	bloop=TRUE;
 	DWORD bmpwidthr = width;
 	DWORD asstexsize = maxtexturewidth;
@@ -391,8 +391,8 @@ BOOL CDirectDraw::AssignTextureDiv(MYSURFACE *pmsf,DWORD width,DWORD height)
 			numsufx++;
 			if(numsufx==MYSUF_MAXNUMTEX)return(FALSE);
 		}
-		if(bmpwidthr==0)bloop=FALSE;//‚«‚Á‚¿‚èI‚í‚Á‚½‚ç‚»‚ê‚ÅI—¹
-		else if(asstexsize <= MINIMUM_TEXSIZE){//ÅŒã‚Í×‚©‚¢‚©‚çÈ—ª‚¾
+		if(bmpwidthr==0)bloop=FALSE;//ãã£ã¡ã‚Šçµ‚ã‚ã£ãŸã‚‰ãã‚Œã§çµ‚äº†
+		else if(asstexsize <= MINIMUM_TEXSIZE){//æœ€å¾Œã¯ç´°ã‹ã„ã‹ã‚‰çœç•¥ã 
 			pmsf->xsufsize[numsufx]=asstexsize;
 			numsufx++;
 			bloop=FALSE;
@@ -406,7 +406,7 @@ BOOL CDirectDraw::AssignTextureDiv(MYSURFACE *pmsf,DWORD width,DWORD height)
 		pmsf->xsufindx[i] = pmsf->xsufindx[i-1] + pmsf->xsufsize[i-1];
 	}
 
-	//ƒ^ƒe•ûŒü
+	//ã‚¿ãƒ†æ–¹å‘
 	bloop=TRUE;
 	DWORD bmpheightr = height;
 	asstexsize = maxtextureheight;
@@ -419,8 +419,8 @@ BOOL CDirectDraw::AssignTextureDiv(MYSURFACE *pmsf,DWORD width,DWORD height)
 			numsufy++;
 			if(numsufy==MYSUF_MAXNUMTEX)return(FALSE);
 		}
-		if(bmpheightr==0)bloop=FALSE;//‚«‚Á‚¿‚èI‚í‚Á‚½‚ç‚»‚ê‚ÅI—¹
-		else if(asstexsize <= MINIMUM_TEXSIZE){//ÅŒã‚Í×‚©‚¢‚©‚çÈ—ª‚¾
+		if(bmpheightr==0)bloop=FALSE;//ãã£ã¡ã‚Šçµ‚ã‚ã£ãŸã‚‰ãã‚Œã§çµ‚äº†
+		else if(asstexsize <= MINIMUM_TEXSIZE){//æœ€å¾Œã¯ç´°ã‹ã„ã‹ã‚‰çœç•¥ã 
 			pmsf->ysufsize[numsufy]=MINIMUM_TEXSIZE;
 			numsufy++;
 			bloop=FALSE;
@@ -439,7 +439,7 @@ BOOL CDirectDraw::AssignTextureDiv(MYSURFACE *pmsf,DWORD width,DWORD height)
 #ifdef _DEBUG
 	DWORD totalx=0,totaly=0;
 	char msg[256];
-	sprintf(msg,"¥AssignTextureDiv( %d x %d - %d x %d )\n",width,height,pmsf->xsufnum,pmsf->ysufnum);
+	sprintf(msg,"â–¼AssignTextureDiv( %d x %d - %d x %d )\n",width,height,pmsf->xsufnum,pmsf->ysufnum);
 	OutputDebugString(msg);
 	OutputDebugString("x : ");
 	for(i=0;i<MYSUF_MAXNUMTEX;i++){
@@ -462,48 +462,48 @@ BOOL CDirectDraw::AssignTextureDiv(MYSURFACE *pmsf,DWORD width,DWORD height)
 	return(TRUE);
 }
 
-//256ƒrƒbƒgƒ}ƒbƒv‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İæ‚è*****************************************************************************
+//256ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿å–ã‚Š*****************************************************************************
 BOOL CDirectDraw::Load256Bitmapbits(MYPALLET **pbits,DWORD *width,DWORD *height,char *bmpfilename,char *palfilename)
 {
 	BOOL ret2;
 
-	//‚Æ‚è‚ ‚¦‚¸ƒpƒŒƒbƒg‚ğŠm•Û
+	//ã¨ã‚Šã‚ãˆãšãƒ‘ãƒ¬ãƒƒãƒˆã‚’ç¢ºä¿
 	MYPALLET pal[256];
 	if(palfilename==NULL)palfilename=bmpfilename;
 	ret2 = GetPallet(palfilename,pal);
 	if(!ret2){
-		OutputDebugString("¦CDirectDraw::Load256Bitmapbits ƒpƒŒƒbƒgæ“¾‚É¸”s\n");
+		OutputDebugString("â€»CDirectDraw::Load256Bitmapbits ãƒ‘ãƒ¬ãƒƒãƒˆå–å¾—ã«å¤±æ•—\n");
 		return(FALSE);
 	}
 
-	//ƒrƒbƒgƒ}ƒbƒv‚Ìƒrƒbƒg‚ğæ“¾~
-	//ƒrƒbƒgƒ}ƒbƒv‚ğƒ[ƒh
+	//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ãƒ“ãƒƒãƒˆã‚’å–å¾—~
+	//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’ãƒ­ãƒ¼ãƒ‰
 	HANDLE hFile;
 	DWORD ret,br,err=FALSE;
 
 	if(bmpfilename==NULL){
-		OutputDebugString("CDirectDraw::Load256Bitmapbits : ƒtƒ@ƒCƒ‹–¼‚ªNULL‚Æ‚Í‚Ç‚¤‚¢‚¤‚±‚Æ‚¾H\n");
+		OutputDebugString("CDirectDraw::Load256Bitmapbits : ãƒ•ã‚¡ã‚¤ãƒ«åãŒNULLã¨ã¯ã©ã†ã„ã†ã“ã¨ã ï¼Ÿ\n");
 	}
 
-	//ƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“
+	//ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³
 	hFile=CreateFile(bmpfilename,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
 	if(hFile==INVALID_HANDLE_VALUE){
 		OutputDebugString("CDirectDraw::Load256Bitmapbits : ");
 		OutputDebugString(bmpfilename);
-		OutputDebugString("‚ªŠJ‚¯‚Ü‚¹‚ñ‚Å‚µ‚½B\n");
+		OutputDebugString("ãŒé–‹ã‘ã¾ã›ã‚“ã§ã—ãŸã€‚\n");
 		return(NULL);
 	}
-	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//”O‚Ì‚½‚ßƒtƒ@ƒCƒ‹‚Ìæ“ª‚ÉˆÚ“®
+	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//å¿µã®ãŸã‚ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã«ç§»å‹•
 
-	//Ì§²Ùƒwƒbƒ_‚Ì“Ç‚İo‚µ
+	//ï¾Œï½§ï½²ï¾™ãƒ˜ãƒƒãƒ€ã®èª­ã¿å‡ºã—
 	BITMAPFILEHEADER fileheader;
 	ret=ReadFile(hFile,&fileheader,sizeof(BITMAPFILEHEADER),&br,NULL);
 	if(!ret || br!=sizeof(BITMAPFILEHEADER)){
-		OutputDebugString("CDirectDraw::Load256Bitmapbits : ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s(1)\n");
+		OutputDebugString("CDirectDraw::Load256Bitmapbits : ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—(1)\n");
 		err=TRUE;
 	}
 	if(fileheader.bfType != 0x4d42){//"BM"
-		OutputDebugString("CDirectDraw::Load256Bitmapbits : ‚Â[‚©‚±‚Ìƒtƒ@ƒCƒ‹‚Íƒrƒbƒgƒ}ƒbƒv‚Å‚Í‚È‚¢\n");
+		OutputDebugString("CDirectDraw::Load256Bitmapbits : ã¤ãƒ¼ã‹ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã§ã¯ãªã„\n");
 		err=TRUE;
 	}
 	if(err){
@@ -511,23 +511,23 @@ BOOL CDirectDraw::Load256Bitmapbits(MYPALLET **pbits,DWORD *width,DWORD *height,
 		return(NULL);
 	}
 
-	//BITMAPINFOHEADER‚Ì“Ç‚İ‚İ
+	//BITMAPINFOHEADERã®èª­ã¿è¾¼ã¿
 	BITMAPINFOHEADER infohed;
 	ret=ReadFile(hFile,&infohed,sizeof(BITMAPINFOHEADER),&br,NULL);
 	if(!ret || br!=sizeof(BITMAPINFOHEADER)){
-		OutputDebugString("CDirectDraw::Load256Bitmapbits : ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s(2)\n");
+		OutputDebugString("CDirectDraw::Load256Bitmapbits : ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—(2)\n");
 		err=TRUE;
 	}
 	if(infohed.biSize != sizeof(BITMAPINFOHEADER)){
-		OutputDebugString("CDirectDraw::Load256Bitmapbits : BITMAPINFOHEADER‚ÌƒTƒCƒY‚ª‡‚í‚È‚¢\n");
+		OutputDebugString("CDirectDraw::Load256Bitmapbits : BITMAPINFOHEADERã®ã‚µã‚¤ã‚ºãŒåˆã‚ãªã„\n");
 		err=TRUE;
 	}
 	if(infohed.biBitCount != 8){
-		OutputDebugString("CDirectDraw::Load256Bitmapbits : ‚Â[‚©‚±‚Ìƒtƒ@ƒCƒ‹‚Í256‚Å‚Í‚È‚¢\n");
+		OutputDebugString("CDirectDraw::Load256Bitmapbits : ã¤ãƒ¼ã‹ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯256ã§ã¯ãªã„\n");
 		err=TRUE;
 	}
 	if(infohed.biCompression != BI_RGB){
-		OutputDebugString("CDirectDraw::Load256Bitmapbits : ˆ³k‚ª‚©‚©‚Á‚Ä‚¢‚é‚ç‚µ‚¢\n");
+		OutputDebugString("CDirectDraw::Load256Bitmapbits : åœ§ç¸®ãŒã‹ã‹ã£ã¦ã„ã‚‹ã‚‰ã—ã„\n");
 		err=TRUE;
 	}
 	if(err){
@@ -535,28 +535,28 @@ BOOL CDirectDraw::Load256Bitmapbits(MYPALLET **pbits,DWORD *width,DWORD *height,
 		return(NULL);
 	}
 
-	//ƒpƒŒƒbƒg‚Í“Ç‚İ‚Æ‚Î‚µ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã¯èª­ã¿ã¨ã°ã—
 	SetFilePointer(hFile,sizeof(RGBQUAD)*infohed.biClrUsed,NULL,FILE_CURRENT);
 
 	if(infohed.biClrUsed == 0){
 		infohed.biClrUsed=256;
 	}
 
-	//ƒrƒbƒgƒ}ƒbƒvƒrƒbƒg‚ÌƒTƒCƒY‚ğŒvZ‚·‚é(ƒrƒbƒgƒ}ƒbƒv‚Ì•‚Í4‚Ì”{”‚ÅŠi”[‚³‚ê‚Ä‚¢‚é‚ç‚µ‚¢)
+	//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ“ãƒƒãƒˆã®ã‚µã‚¤ã‚ºã‚’è¨ˆç®—ã™ã‚‹(ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®å¹…ã¯4ã®å€æ•°ã§æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã‚‰ã—ã„)
 	DWORD linesize = infohed.biWidth;
 	if(infohed.biWidth%4 != 0)linesize +=  ( 4 - infohed.biWidth%4 );
 	DWORD sizeimage = linesize * infohed.biHeight;
-	//ƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Äƒrƒbƒgƒ}ƒbƒvƒrƒbƒg‚ğ“Ç‚İ‚Ş
+	//ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ“ãƒƒãƒˆã‚’èª­ã¿è¾¼ã‚€
 	LPBYTE bits = (LPBYTE)(malloc(sizeimage));
 	ret=ReadFile(hFile,bits,sizeimage,&br,NULL);
 	CloseHandle(hFile);
 	if(!ret || br!=sizeimage){
-		OutputDebugString("CDirectDraw::Load256Bitmapbits : ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s(3)\n");
+		OutputDebugString("CDirectDraw::Load256Bitmapbits : ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—(3)\n");
 		free(bits);
 		return(NULL);
 	}
 
-	//ƒrƒbƒgƒ}ƒbƒv‚Ì‘å‚«‚³‚É‚ ‚í‚¹‚ÄV‚½‚Éƒƒ‚ƒŠ—Ìˆæ‚ğì¬‚·‚é
+	//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®å¤§ãã•ã«ã‚ã‚ã›ã¦æ–°ãŸã«ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ä½œæˆã™ã‚‹
 	LPVOID pnewbits2;
 	DWORD ishalf=1;
 	if(config2.flag & CONFIG2_HALFMODE)ishalf=2;
@@ -564,7 +564,7 @@ BOOL CDirectDraw::Load256Bitmapbits(MYPALLET **pbits,DWORD *width,DWORD *height,
 	MYPALLET *retbit;
 	retbit = (MYPALLET*)pnewbits2;
 
-	//‚»‚±‚Éƒf[ƒ^‚ğƒRƒs[
+	//ãã“ã«ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼
 	LONG i,j;
 	PBYTE plinenow;
 	DWORD halfcopy=0;
@@ -572,7 +572,7 @@ BOOL CDirectDraw::Load256Bitmapbits(MYPALLET **pbits,DWORD *width,DWORD *height,
 		plinenow = bits;
 		plinenow += linesize*i;
 		for(j=0;j<infohed.biWidth;j++){
-			if(config2.flag & CONFIG2_HALFMODE){//”¼•ª‚µ‚©ƒRƒs[‚µ‚È‚¢
+			if(config2.flag & CONFIG2_HALFMODE){//åŠåˆ†ã—ã‹ã‚³ãƒ”ãƒ¼ã—ãªã„
 				if(i%2==0 && j%2==0){
 					retbit[halfcopy] = pal[ plinenow[j] ];
 					halfcopy++;
@@ -584,7 +584,7 @@ BOOL CDirectDraw::Load256Bitmapbits(MYPALLET **pbits,DWORD *width,DWORD *height,
 		}
 	}
 
-	//Š®—¹
+	//å®Œäº†
 	free(bits);
 
 	if(config2.flag & CONFIG2_HALFMODE){
@@ -598,40 +598,40 @@ BOOL CDirectDraw::Load256Bitmapbits(MYPALLET **pbits,DWORD *width,DWORD *height,
 	return(TRUE);
 }
 
-//256ƒrƒbƒgƒ}ƒbƒv‚ÌƒpƒŒƒbƒg‚Ì‚İ‚ğ“Ç‚İ‚İ***************************************************************
-BOOL CDirectDraw::GetPallet(char *filename,MYPALLET *pal)//256‚‚‚‚ƒtƒ@ƒCƒ‹‚©‚çAƒpƒŒƒbƒg‚¾‚¯‚ğæ‚èo‚·
+//256ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ãƒ‘ãƒ¬ãƒƒãƒˆã®ã¿ã‚’èª­ã¿è¾¼ã¿***************************************************************
+BOOL CDirectDraw::GetPallet(char *filename,MYPALLET *pal)//256ï½‚ï½ï½ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã€ãƒ‘ãƒ¬ãƒƒãƒˆã ã‘ã‚’å–ã‚Šå‡ºã™
 {
 	HANDLE hFile;
 	DWORD ret,br,err=FALSE;
 
 	if(filename==NULL){
-		OutputDebugString("CDirectDraw::GetPallet : ƒtƒ@ƒCƒ‹–¼‚ªNULL‚Æ‚Í‚Ç‚¤‚¢‚¤‚±‚Æ‚¾H\n");
+		OutputDebugString("CDirectDraw::GetPallet : ãƒ•ã‚¡ã‚¤ãƒ«åãŒNULLã¨ã¯ã©ã†ã„ã†ã“ã¨ã ï¼Ÿ\n");
 		return(FALSE);
 	}
 	if(pal==NULL){
-		OutputDebugString("CDirectDraw::GetPallet : ƒpƒŒƒbƒg‚ªNULL‚Æ‚Í‚Ç‚¤‚¢‚¤‚±‚Æ‚¾H\n");
+		OutputDebugString("CDirectDraw::GetPallet : ãƒ‘ãƒ¬ãƒƒãƒˆãŒNULLã¨ã¯ã©ã†ã„ã†ã“ã¨ã ï¼Ÿ\n");
 		return(FALSE);
 	}
 
-	//ƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“
+	//ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³
 	hFile=CreateFile(filename,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
 	if(hFile==INVALID_HANDLE_VALUE){
 		OutputDebugString("CDirectDraw::GetPallet : ");
 		OutputDebugString(filename);
-		OutputDebugString("‚ªŠJ‚¯‚Ü‚¹‚ñ‚Å‚µ‚½B\n");
+		OutputDebugString("ãŒé–‹ã‘ã¾ã›ã‚“ã§ã—ãŸã€‚\n");
 		return(NULL);
 	}
-	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//”O‚Ì‚½‚ßƒtƒ@ƒCƒ‹‚Ìæ“ª‚ÉˆÚ“®
+	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//å¿µã®ãŸã‚ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã«ç§»å‹•
 
-	//Ì§²Ùƒwƒbƒ_‚Ì“Ç‚İo‚µ
+	//ï¾Œï½§ï½²ï¾™ãƒ˜ãƒƒãƒ€ã®èª­ã¿å‡ºã—
 	BITMAPFILEHEADER fileheader;
 	ret=ReadFile(hFile,&fileheader,sizeof(BITMAPFILEHEADER),&br,NULL);
 	if(!ret || br!=sizeof(BITMAPFILEHEADER)){
-		OutputDebugString("CDirectDraw::GetPallet : ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s(1)\n");
+		OutputDebugString("CDirectDraw::GetPallet : ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—(1)\n");
 		err=TRUE;
 	}
 	if(fileheader.bfType != 0x4d42){//"BM"
-		OutputDebugString("CDirectDraw::GetPallet : ‚Â[‚©‚±‚Ìƒtƒ@ƒCƒ‹‚Íƒrƒbƒgƒ}ƒbƒv‚Å‚Í‚È‚¢\n");
+		OutputDebugString("CDirectDraw::GetPallet : ã¤ãƒ¼ã‹ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã§ã¯ãªã„\n");
 		err=TRUE;
 	}
 	if(err){
@@ -639,23 +639,23 @@ BOOL CDirectDraw::GetPallet(char *filename,MYPALLET *pal)//256‚‚‚‚ƒtƒ@ƒCƒ‹‚©‚ç
 		return(FALSE);
 	}
 
-	//BITMAPINFOHEADER‚Ì“Ç‚İ‚İ
+	//BITMAPINFOHEADERã®èª­ã¿è¾¼ã¿
 	BITMAPINFOHEADER infohed;
 	ret=ReadFile(hFile,&infohed,sizeof(BITMAPINFOHEADER),&br,NULL);
 	if(!ret || br!=sizeof(BITMAPINFOHEADER)){
-		OutputDebugString("CDirectDraw::GetPallet : ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s(2)\n");
+		OutputDebugString("CDirectDraw::GetPallet : ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—(2)\n");
 		err=TRUE;
 	}
 	if(infohed.biSize != sizeof(BITMAPINFOHEADER)){
-		OutputDebugString("CDirectDraw::GetPallet : BITMAPINFOHEADER‚ÌƒTƒCƒY‚ª‡‚í‚È‚¢\n");
+		OutputDebugString("CDirectDraw::GetPallet : BITMAPINFOHEADERã®ã‚µã‚¤ã‚ºãŒåˆã‚ãªã„\n");
 		err=TRUE;
 	}
 	if(infohed.biBitCount != 8){
-		OutputDebugString("CDirectDraw::GetPallet : ‚Â[‚©‚±‚Ìƒtƒ@ƒCƒ‹‚Í256‚Å‚Í‚È‚¢\n");
+		OutputDebugString("CDirectDraw::GetPallet : ã¤ãƒ¼ã‹ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯256ã§ã¯ãªã„\n");
 		err=TRUE;
 	}
 	if(infohed.biCompression != BI_RGB){
-		OutputDebugString("CDirectDraw::GetPallet : ˆ³k‚ª‚©‚©‚Á‚Ä‚¢‚é‚ç‚µ‚¢\n");
+		OutputDebugString("CDirectDraw::GetPallet : åœ§ç¸®ãŒã‹ã‹ã£ã¦ã„ã‚‹ã‚‰ã—ã„\n");
 		err=TRUE;
 	}
 	if(infohed.biClrUsed == 0){
@@ -666,23 +666,23 @@ BOOL CDirectDraw::GetPallet(char *filename,MYPALLET *pal)//256‚‚‚‚ƒtƒ@ƒCƒ‹‚©‚ç
 		return(FALSE);
 	}
 
-	//‚¢‚æ‚¢‚æƒpƒŒƒbƒg‚Ì“Ç‚İ‚İ
+	//ã„ã‚ˆã„ã‚ˆãƒ‘ãƒ¬ãƒƒãƒˆã®èª­ã¿è¾¼ã¿
 	RGBQUAD dpal[256];
 	ZeroMemory(dpal,sizeof(RGBQUAD)*256);
 	ret=ReadFile(hFile,dpal,sizeof(RGBQUAD)*infohed.biClrUsed,&br,NULL);
 	CloseHandle(hFile);
 	if(!ret || br!=sizeof(RGBQUAD)*infohed.biClrUsed){
-		OutputDebugString("CDirectDraw::GetPallet : ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s(3)\n");
+		OutputDebugString("CDirectDraw::GetPallet : ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—(3)\n");
 		return(FALSE);
 	}
-	//255”Ô–Ú‚ÌF‚Í‹­§“I‚É•i“§‰ßFj
+	//255ç•ªç›®ã®è‰²ã¯å¼·åˆ¶çš„ã«é»’ï¼ˆé€éè‰²ï¼‰
 	dpal[255].rgbBlue  =0;
 	dpal[255].rgbGreen =0;
 	dpal[255].rgbRed   =0;
 
 	for(int i=0;i<256;i++){
-		if(dpal[i].rgbRed==0 && dpal[i].rgbGreen==0 && dpal[i].rgbBlue==0)pal[i].alpha = 0;//“§–¾
-		else pal[i].alpha = 0xFF;//•s“§–¾
+		if(dpal[i].rgbRed==0 && dpal[i].rgbGreen==0 && dpal[i].rgbBlue==0)pal[i].alpha = 0;//é€æ˜
+		else pal[i].alpha = 0xFF;//ä¸é€æ˜
 		pal[i].red = dpal[i].rgbRed;
 		pal[i].green = dpal[i].rgbGreen;
 		pal[i].blue = dpal[i].rgbBlue;
@@ -696,7 +696,7 @@ BOOL CDirectDraw::GetPallet(char *filename,MYPALLET *pal)//256‚‚‚‚ƒtƒ@ƒCƒ‹‚©‚ç
 	return(TRUE);
 }
 
-//ŠJ•ú********************************************************************
+//é–‹æ”¾********************************************************************
 
 void CDirectDraw::RelSurface(MYSURFACE *s)
 {

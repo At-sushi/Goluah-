@@ -1,73 +1,73 @@
+﻿
+　ソースコード等いろいろセットです。
 
-�@�\�[�X�R�[�h�����낢��Z�b�g�ł��B
+■構成
 
-���\��
-
-dlltemplate/	�L�����N�^�[DLL�����\�[�X�t�@�C��
-dlltemplate_stage/	�X�e�[�WDLL�����\�[�X�t�@�C��
-goluah/		�{�̊֘A�\�[�X�ꎮ
-manual/		�쐬�}�j���A��
-tools/		����֘A�c�[��
+dlltemplate/	キャラクターDLL初期ソースファイル
+dlltemplate_stage/	ステージDLL初期ソースファイル
+goluah/		本体関連ソース一式
+manual/		作成マニュアル
+tools/		製作関連ツール
 
 
-���Â��J���Z�b�g���g�p���Đ��쒆�̕���
+■古い開発セットを使用して製作中の方へ
 
-�@ver0.95 ���� ver0.99�ւ̈ڍs�́A�ȉ��̃t�@�C���̍����ւ��ōs�����Ƃ��ł��܂��B
+　ver0.95 から ver0.99への移行は、以下のファイルの差し替えで行うことができます。
 	gobject.h , gobjbase.h , gobjbase.cpp 
-�����ւ������ł��܂������͂��ł����A����܂����d�ȃ`�F�b�N��������킯�ł͂Ȃ��̂ŁA
-�Ƃ���ǂ���ʂ�Ȃ��Ƃ��낪�o�邩������܂��񂪁A�蓮�ŉ������Ă��������B
+差し替えだけでうまくいくはずですが、あんまし厳重なチェックをやったわけではないので、
+ところどころ通らないところが出るかもしれませんが、手動で解決してください。
 
-�@2004.04.10 �ǋL : ���LDLL�͔�g�p�ƂȂ�܂����B
-�@2004.05.04 �ǋL : ver1.0�ւ̑Ή������l�ł��B
+　2004.04.10 追記 : 共有DLLは非使用となりました。
+　2004.05.04 追記 : ver1.0への対応も同様です。
 
-�@���Aver0.95��0.99�� �V�X�e��-DLL�Ԃł���肷��\���̂̈ꕔ���Ȃ��Ȃ����̂ŁA
-ver0.99�̃V�X�e���� 0.8 < ver < 0.99 ��DLL���󂯕t���܂���B��L�̈ڍs��Ƃ̌�A
-���r���h���s���Ă��������B
-
-
-������
-
-�@VisualStudio.net / VisualC++.net �� VC
-�@Borland C Compiler �� BCC
+　尚、ver0.95→0.99で システム-DLL間でやり取りする構造体の一部がなくなったので、
+ver0.99のシステムは 0.8 < ver < 0.99 のDLLを受け付けません。上記の移行作業の後、
+リビルドを行ってください。
 
 
-��BCC�Ɋւ���
+■略称
 
-�@BCC���g�p����ꍇ�ABCC Developer �iBCC�̃R���p�C���E�����J�𗘗p����t���[��
-�����J�����E�E�E�ŁA�����Ă�H�j���g�p������̂Ɖ��肵�Ęb��i�߂Ă��܂��B
-
-
-���{�́A�����L�����N�^�[�̃\�[�X�Ɋւ���
-
-�@VC�̃v���W�F�N�g�œ����Ă��܂��B�ڂ����͒���ReadMe.txt���Q�Ƃ��Ă��������B
-
-�@������Direct3D�i�{�̂͑���Input,Sound,Show�j�̃��C�u�����������N����K�v������܂��B
-�@BCC�𗘗p���ăr���h���s�����ꍇ�ADirectXSDK���C���X�g�[������Ă����Ƃ��Ă��A
-�R���p�C���͒ʂ��Ă������N���ʂ�Ȃ��̂ŁAexe�Adll �𐶐����邱�Ƃ͂ł��܂���B
-�iVC/BCC�ł̃��C�u�����̌`���̈Ⴂ�ɂ��悤�ł��B�����������炪��΂��
-�@�ł���̂�������Ȃ����ǁA���̂Ƃ���킩��܂���B�j
-
-�@�e�v���W�F�N�g���ƂɓK�؂ȃv���v���Z�b�T�̒�`��������K�v������܂��B
-
-�@�c�[���ނ�MFC�Ƃ��̊֌W�Ńr���h�ł��Ȃ������B
+　VisualStudio.net / VisualC++.net → VC
+　Borland C Compiler → BCC
 
 
-�����W���[����`�t�@�C��(.def)�Ɋւ���
+■BCCに関して
 
-�@DLL�̃r���h�ɂ�VC��BCC�̂ǂ��������g���Ǝv���܂����A���҂Ń��W���[����`�t�@�C����
-�ʁX�ɗp�ӂ��Ă��܂��B�i�R���p�C����ɐ��������֐������قȂ�悤�ł��H�j
+　BCCを使用する場合、BCC Developer （BCCのコンパイラ・リンカを利用するフリーの
+統合開発環境・・・で、合ってる？）を使用するものと仮定して話を進めています。
 
-�@VC���g�p����ꍇ�F
-�@�@�@character_vc.def ���v���W�F�N�g����Q�Ƃł���ꏊ�ɒu���A
-�@�@�@�v���W�F�N�g�̃v���p�e�B�������J������ �ݒ�ŁA���W���[����`�t�@�C����
-�@�@�@character_vc.def ���w�肵�Ă��������B
 
-�@BCC���g�p����ꍇ�F
-�@�@�@character_bcc.def ���v���W�F�N�g�ɒǉ����܂��B
+■本体、初期キャラクターのソースに関して
 
-�@2004.04.10 �ǋL:
-�@�X�e�[�W�̏ꍇ���l��stage_vc.def�Astage_bcc.def ��񋟂��Ă��܂��B
-�g�����͓��l�ł��B
+　VCのプロジェクトで入っています。詳しくは中のReadMe.txtを参照してください。
+
+　これらはDirect3D（本体は他にInput,Sound,Show）のライブラリをリンクする必要があります。
+　BCCを利用してビルドを行った場合、DirectXSDKがインストールされていたとしても、
+コンパイルは通ってもリンクが通らないので、exe、dll を生成することはできません。
+（VC/BCCでのライブラリの形式の違いによるようです。もしかしたらがんばれば
+　できるのかもしれないけど、今のところわかりません。）
+
+　各プロジェクトごとに適切なプリプロセッサの定義を加える必要があります。
+
+　ツール類もMFCとかの関係でビルドできないかも。
+
+
+■モジュール定義ファイル(.def)に関して
+
+　DLLのビルドにはVCかBCCのどっちかを使うと思いますが、両者でモジュール定義ファイルを
+別々に用意しています。（コンパイル後に生成される関数名が異なるようです？）
+
+　VCを使用する場合：
+　　　character_vc.def をプロジェクトから参照できる場所に置き、
+　　　プロジェクトのプロパティ→リンカ→入力 設定で、モジュール定義ファイルに
+　　　character_vc.def を指定してください。
+
+　BCCを使用する場合：
+　　　character_bcc.def をプロジェクトに追加します。
+
+　2004.04.10 追記:
+　ステージの場合同様にstage_vc.def、stage_bcc.def を提供しています。
+使い方は同様です。
 
 --------------------------------------------------------------------------------
 2004/05/05 aki ( sarasiage@hotmail.com )

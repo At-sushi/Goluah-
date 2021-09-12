@@ -1,6 +1,6 @@
-/*===============================================================
+ï»¿/*===============================================================
 
-	ƒqƒbƒgƒ}[ƒN“™
+	ãƒ’ãƒƒãƒˆãƒãƒ¼ã‚¯ç­‰
 
 =================================================================*/
 #include "stdafx.h"
@@ -9,7 +9,7 @@
 #include "system_cell.h"
 
 /*---------------------------------------------------------------
-	ƒqƒbƒgƒ}[ƒN(ã)
+	ãƒ’ãƒƒãƒˆãƒãƒ¼ã‚¯(å¼±)
 -----------------------------------------------------------------*/
 void CFxHitmark1::Update()
 {
@@ -32,12 +32,13 @@ void CFxHitmark1::Update()
 }
 
 static BOOL DrawHitmark(const GOBJECT* pdat) {
-	UINT counter = pdat->counter * 0.75;
+	// ãªãœã“ã“ã ã‘UINTãªã®ã‹
+	UINT counter = static_cast<UINT>(pdat->counter * 0.75);
 
-	if (counter < 15){//‰~
+	if (counter < 15){//å††
 		g_draw.SetAlphaMode(GBLEND_KASAN);
 		g_draw.DrawCircle((int)pdat->x, (int)pdat->y, (counter + 4) * 5,
-			30, 0, 0x00CC33FF + (((0xAA) * 255 * 255 * 255) & 0xFF000000), TRUE);
+			30, 0, 0xAACC33FF, TRUE);
 		g_draw.SetAlphaMode(0);
 	}
 	if (counter >= 20)return(TRUE);
@@ -47,19 +48,19 @@ static BOOL DrawHitmark(const GOBJECT* pdat) {
 
 BOOL CFxHitmark1::Draw()
 {
-	UINT counter = pdat->counter * 0.75;
+	UINT counter = static_cast<UINT>(pdat->counter * 0.75);
 
-	if (counter < 12){//‰~
+	if (counter < 12){//å††
 		g_draw.SetAlphaMode(GBLEND_KASAN);
 		g_draw.DrawCircle((int)pdat->x, (int)pdat->y, (counter + 4) * 5,
-			30, 0, 0x00CC33FF + (((0xAA) * 255 * 255 * 255) & 0xFF000000), TRUE);
+			30, 0, 0xAACC33FF, TRUE);
 		g_draw.SetAlphaMode(0);
 	}
 	return pdat->counter<12 ? FALSE : TRUE;
 }
 
 /*---------------------------------------------------------------
-	ƒqƒbƒgƒ}[ƒN(’†)
+	ãƒ’ãƒƒãƒˆãƒãƒ¼ã‚¯(ä¸­)
 -----------------------------------------------------------------*/
 void CFxHitmark2::Update()
 {
@@ -81,7 +82,7 @@ void CFxHitmark2::Update()
 }
 
 /*---------------------------------------------------------------
-	ƒqƒbƒgƒ}[ƒN(‹­)
+	ãƒ’ãƒƒãƒˆãƒãƒ¼ã‚¯(å¼·)
 -----------------------------------------------------------------*/
 void CFxHitmark3::Update()
 {
@@ -103,7 +104,7 @@ void CFxHitmark3::Update()
 }
 
 /*---------------------------------------------------------------
-	ƒqƒbƒgƒ}[ƒN(Œƒ)
+	ãƒ’ãƒƒãƒˆãƒãƒ¼ã‚¯(æ¿€)
 -----------------------------------------------------------------*/
 void CFxHitmark4::Update()
 {
@@ -143,7 +144,7 @@ BOOL CFxHitmark4::Draw()
 }
 
 /*---------------------------------------------------------------
-	ƒK[ƒhƒ}[ƒN(í‚èƒ_ƒ[ƒW‚È‚µ)
+	ã‚¬ãƒ¼ãƒ‰ãƒãƒ¼ã‚¯(å‰Šã‚Šãƒ€ãƒ¡ãƒ¼ã‚¸ãªã—)
 -----------------------------------------------------------------*/
 void CFxGuardmark1::Update()
 {
@@ -153,7 +154,7 @@ void CFxGuardmark1::Update()
 
 BOOL CFxGuardmark1::Draw()
 {
-	DWORD counter = pdat->counter * 1.25;
+	DWORD counter = static_cast<DWORD>(pdat->counter * 1.25);
 	if(counter<12){
 		if(pdat->muki){
 			g_draw.DrawCircle((int)pdat->x,(int)pdat->y,(counter+3)*5,
@@ -168,11 +169,11 @@ BOOL CFxGuardmark1::Draw()
 }
 
 /*---------------------------------------------------------------
-	ƒK[ƒhƒ}[ƒN(í‚èƒ_ƒ[ƒW‚ ‚è)
+	ã‚¬ãƒ¼ãƒ‰ãƒãƒ¼ã‚¯(å‰Šã‚Šãƒ€ãƒ¡ãƒ¼ã‚¸ã‚ã‚Š)
 -----------------------------------------------------------------*/
 BOOL CFxGuardmark2::Draw()
 {
-	DWORD counter = pdat->counter * 1.25;
+	DWORD counter = static_cast<DWORD>(pdat->counter * 1.25);
 	if(counter<12){
 		if(pdat->muki){
 			g_draw.DrawCircle((int)pdat->x,(int)pdat->y,(counter+3)*5,
@@ -187,7 +188,7 @@ BOOL CFxGuardmark2::Draw()
 }
 
 /*---------------------------------------------------------------
-	’Í‚İƒ}[ƒN
+	æ´ã¿ãƒãƒ¼ã‚¯
 -----------------------------------------------------------------*/
 void CFxCatchmark::Update()
 {
@@ -202,7 +203,7 @@ void CFxCatchmark::Update()
 
 
 /*---------------------------------------------------------------
-	’n–ÊÕŒ‚”g
+	åœ°é¢è¡æ’ƒæ³¢
 -----------------------------------------------------------------*/
 void CFxGndCircle::Update()
 {

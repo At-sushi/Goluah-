@@ -1,4 +1,4 @@
-#include <windows.h>
+ï»¿#include <windows.h>
 #include <stdio.h>
 #include "define.h"
 
@@ -24,27 +24,27 @@ BOOL GCDLoadDlg(GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,GCD_CELLNAMES
 	ZeroMemory(&ofn,sizeof(OPENFILENAME));
 	ofn.lStructSize = sizeof(OPENFILENAME);
 	ofn.hwndOwner = ghwnd;
-	ofn.lpstrFilter = "ƒf[ƒ^(*.gcd)\0*.gcd\0‚·‚×‚Ä(*.*)\0*.*\0\0";
+	ofn.lpstrFilter = "ãƒ‡ãƒ¼ã‚¿(*.gcd)\0*.gcd\0ã™ã¹ã¦(*.*)\0*.*\0\0";
 	ofn.lpstrFile = filepath;
 	ofn.nMaxFile =256;
 	ofn.lpstrFileTitle = filename;
 	ofn.nMaxFileTitle = 64;
 	ofn.Flags = OFN_FILEMUSTEXIST;
-	ofn.lpstrTitle = "ŠJ‚­";
+	ofn.lpstrTitle = "é–‹ã";
 
 	if(!GetOpenFileName(&ofn))return(FALSE);
 
 	int i,j;
 
 	switch(GCDLoad(filepath,pcdat,prdat,phdat,pfhnames)){
-	case 0://¬Œ÷
-		for(i=strlen(filepath);i>0;i--){//ƒOƒ[ƒoƒ‹ datfilepath ‚É“Ç‚İ‚ñ‚¾gcdƒtƒ@ƒCƒ‹‚ÌƒpƒX‚ğƒRƒs[
+	case 0://æˆåŠŸ
+		for(i=strlen(filepath);i>0;i--){//ã‚°ãƒ­ãƒ¼ãƒãƒ« datfilepath ã«èª­ã¿è¾¼ã‚“ã gcdãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹ã‚’ã‚³ãƒ”ãƒ¼
 		if(filepath[i]=='\\'){
 			j=i;
 			i=0;}}
 		for(;j>=0;j--){datfilepath[j] = filepath[j];}
 		return(TRUE);
-	default:MessageBox(ghwnd,"“Ç‚É¸”s‚µ‚Ü‚µ‚½","",MB_OK);
+	default:MessageBox(ghwnd,"èª­è¾¼ã«å¤±æ•—ã—ã¾ã—ãŸ","",MB_OK);
 	}
 	
 	return(FALSE);
@@ -71,40 +71,40 @@ int GCDLoad(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,GC
 	if(hFile==INVALID_HANDLE_VALUE){
 		return(1);
 	}
-	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//ƒtƒ@ƒCƒ‹æ“ª‚ÉˆÚ“®
-	//ƒwƒbƒ_•”‚Ì“Ç‚İo‚µ
+	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//ãƒ•ã‚¡ã‚¤ãƒ«å…ˆé ­ã«ç§»å‹•
+	//ãƒ˜ãƒƒãƒ€éƒ¨ã®èª­ã¿å‡ºã—
 	DWORD br;
 	DWORD ret=ReadFile(hFile,&fhed,sizeof(GCD_FILEHEADER),&br,NULL);
 	if(!ret || br!=sizeof(GCD_FILEHEADER)){
 		CloseHandle(hFile);
 		return(2);
 	}
-	//ƒtƒ@ƒCƒ‹‚ÌŒŸØ
+	//ãƒ•ã‚¡ã‚¤ãƒ«ã®æ¤œè¨¼
 	if(fhed.ver != GCD_VERSION){
 		CloseHandle(hFile);
 		return(3);
 	}
 
-	//ƒZƒ‹–¼‚ğ“Ç‚İo‚µ
+	//ã‚»ãƒ«åã‚’èª­ã¿å‡ºã—
 	ret=ReadFile(hFile,&fh_names,sizeof(GCD_CELLNAMES),&br,NULL);
 	if(!ret || br!=sizeof(GCD_CELLNAMES)){
 		CloseHandle(hFile);
 		return(4);
 	}
 
-	//‹éŒ`
+	//çŸ©å½¢
 	ret=ReadFile(hFile,dm_rdat,sizeof(GCD_RECT)*GCDMAX_RECTANGLES,&br,NULL);
 	if(!ret || br!=sizeof(GCD_RECT)*GCDMAX_RECTANGLES){
 		CloseHandle(hFile);
 		return(5);
 	}
-	//‚b‚d‚k‚k
+	//ï¼£ï¼¥ï¼¬ï¼¬
 	ret=ReadFile(hFile,dm_cdat,sizeof(GCD_CELL2)*GCDMAX_CELLS,&br,NULL);
 	if(!ret || br!=sizeof(GCD_CELL2)*GCDMAX_CELLS){
 		CloseHandle(hFile);
 		return(6);
 	}
-	//‚ ‚½‚è”»’è
+	//ã‚ãŸã‚Šåˆ¤å®š
 	ret=ReadFile(hFile,dm_hdat,sizeof(GCD_HANTEI)*GCDMAX_CELLS,&br,NULL);
 	if(!ret || br!=sizeof(GCD_HANTEI)*GCDMAX_CELLS){
 		CloseHandle(hFile);
@@ -113,7 +113,7 @@ int GCDLoad(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,GC
 
 	CloseHandle(hFile);
 
-	//ƒRƒs[
+	//ã‚³ãƒ”ãƒ¼
 	
 	if(pfhnames!=NULL){
 		memcpy(pfhnames,&fh_names,sizeof(GCD_CELLNAMES));
@@ -140,17 +140,17 @@ BOOL GCDSaveDlg(GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,GCD_CELLNAMES
 	ZeroMemory(&ofn,sizeof(OPENFILENAME));
 	ofn.lStructSize = sizeof(OPENFILENAME);
 	ofn.hwndOwner = ghwnd;
-	ofn.lpstrFilter = "ƒf[ƒ^(*.gcd)\0*.gcd\0‚·‚×‚Ä(*.*)\0*.*\0\0";
+	ofn.lpstrFilter = "ãƒ‡ãƒ¼ã‚¿(*.gcd)\0*.gcd\0ã™ã¹ã¦(*.*)\0*.*\0\0";
 	ofn.lpstrFile = filepath;
 	ofn.nMaxFile =256;
 	ofn.lpstrFileTitle = filename;
 	ofn.nMaxFileTitle = 64;
 	ofn.Flags = 0;
-	ofn.lpstrTitle = "•Û‘¶";
+	ofn.lpstrTitle = "ä¿å­˜";
 
 	if(!GetOpenFileName(&ofn))return(FALSE);
 
-	//Šg’£q‚ğ–³—‚â‚è.gcd‚É
+	//æ‹¡å¼µå­ã‚’ç„¡ç†ã‚„ã‚Š.gcdã«
 	int len=strlen(filepath);
 	if(len>4){
 		if(!( filepath[len-4]=='.' &&
@@ -167,12 +167,12 @@ BOOL GCDSaveDlg(GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,GCD_CELLNAMES
 
 	switch(GCDSave(filepath,pcdat,prdat,phdat,pfhnames)){
 	case 0:return(TRUE);
-	case 1:MessageBox(ghwnd,"ƒtƒ@ƒCƒ‹ƒI[ƒvƒ“‚É¸”s","•Û‘¶‚É¸”s",MB_OK);break;
-	case 2:MessageBox(ghwnd,"‘‚«‚İ¸”s(2)","•Û‘¶‚É¸”s",MB_OK);break;
-	case 3:MessageBox(ghwnd,"‘‚«‚İ¸”s(3)","•Û‘¶‚É¸”s",MB_OK);break;
-	case 4:MessageBox(ghwnd,"‘‚«‚İ¸”s(4)","•Û‘¶‚É¸”s",MB_OK);break;
-	case 5:MessageBox(ghwnd,"‘‚«‚İ¸”s(5)","•Û‘¶‚É¸”s",MB_OK);break;
-	case 6:MessageBox(ghwnd,"‘‚«‚İ¸”s(6)","•Û‘¶‚É¸”s",MB_OK);break;
+	case 1:MessageBox(ghwnd,"ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³ã«å¤±æ•—","ä¿å­˜ã«å¤±æ•—",MB_OK);break;
+	case 2:MessageBox(ghwnd,"æ›¸ãè¾¼ã¿å¤±æ•—(2)","ä¿å­˜ã«å¤±æ•—",MB_OK);break;
+	case 3:MessageBox(ghwnd,"æ›¸ãè¾¼ã¿å¤±æ•—(3)","ä¿å­˜ã«å¤±æ•—",MB_OK);break;
+	case 4:MessageBox(ghwnd,"æ›¸ãè¾¼ã¿å¤±æ•—(4)","ä¿å­˜ã«å¤±æ•—",MB_OK);break;
+	case 5:MessageBox(ghwnd,"æ›¸ãè¾¼ã¿å¤±æ•—(5)","ä¿å­˜ã«å¤±æ•—",MB_OK);break;
+	case 6:MessageBox(ghwnd,"æ›¸ãè¾¼ã¿å¤±æ•—(6)","ä¿å­˜ã«å¤±æ•—",MB_OK);break;
 	}
 	return(FALSE);
 }
@@ -188,12 +188,12 @@ int GCDSave(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,GC
 	if(hFile==INVALID_HANDLE_VALUE){
 		return(1);
 	}
-	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//ƒtƒ@ƒCƒ‹æ“ª‚ÉˆÚ“®
+	SetFilePointer(hFile,0,NULL,FILE_BEGIN);//ãƒ•ã‚¡ã‚¤ãƒ«å…ˆé ­ã«ç§»å‹•
 
-	//ƒtƒ@ƒCƒ‹ƒwƒbƒ_‚Ì€”õ
+	//ãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€ã®æº–å‚™
 	fhed.size = sizeof(GCD_FILEHEADER);
 	fhed.ver  = GCD_VERSION;
-	//ƒwƒbƒ_•”‚Ì‘‚«‚İ
+	//ãƒ˜ãƒƒãƒ€éƒ¨ã®æ›¸ãè¾¼ã¿
 	DWORD br;
 	DWORD ret=WriteFile(hFile,&fhed,sizeof(GCD_FILEHEADER),&br,NULL);
 	if(!ret || br!=sizeof(GCD_FILEHEADER)){
@@ -201,29 +201,29 @@ int GCDSave(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,GC
 		return(2);
 	}
 
-	//ƒZƒ‹–¼‚Ì€”õ
+	//ã‚»ãƒ«åã®æº–å‚™
 	if(pfhnames!=NULL)memcpy(&fh_names,pfhnames,sizeof(GCD_CELLNAMES));
 	else ZeroMemory(&pfhnames,sizeof(GCD_CELLNAMES));
-	//ƒZƒ‹–¼‚Ì‘‚«‚İ
+	//ã‚»ãƒ«åã®æ›¸ãè¾¼ã¿
 	ret=WriteFile(hFile,&fh_names,sizeof(GCD_CELLNAMES),&br,NULL);
 	if(!ret || br!=sizeof(GCD_CELLNAMES)){
 		CloseHandle(hFile);
 		return(3);
 	}
 
-	//‹éŒ`
+	//çŸ©å½¢
 	ret=WriteFile(hFile,prdat,sizeof(GCD_RECT)*GCDMAX_RECTANGLES,&br,NULL);
 	if(!ret || br!=sizeof(GCD_RECT)*GCDMAX_RECTANGLES){
 		CloseHandle(hFile);
 		return(4);
 	}
-	//‚b‚d‚k‚k
+	//ï¼£ï¼¥ï¼¬ï¼¬
 	ret=WriteFile(hFile,pcdat,sizeof(GCD_CELL2)*GCDMAX_CELLS,&br,NULL);
 	if(!ret || br!=sizeof(GCD_CELL2)*GCDMAX_CELLS){
 		CloseHandle(hFile);
 		return(5);
 	}
-	//‚ ‚½‚è”»’è
+	//ã‚ãŸã‚Šåˆ¤å®š
 	ret=WriteFile(hFile,phdat,sizeof(GCD_HANTEI)*GCDMAX_CELLS,&br,NULL);
 	if(!ret || br!=sizeof(GCD_HANTEI)*GCDMAX_CELLS){
 		CloseHandle(hFile);
@@ -237,24 +237,24 @@ int GCDSave(char *filename,GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,GC
 
 BOOL GCDSaveHeader(GCD_CELLNAMES *pfhnames)
 {
-	//•Û‘¶‚·‚éƒtƒ@ƒCƒ‹‚ğ‘I‘ğ‚³‚¹‚é
+	//ä¿å­˜ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é¸æŠã•ã›ã‚‹
 	char filepath[256]="";
 	char filename[64];
 	OPENFILENAME ofn;
 	ZeroMemory(&ofn,sizeof(OPENFILENAME));
 	ofn.lStructSize = sizeof(OPENFILENAME);
 	ofn.hwndOwner = ghwnd;
-	ofn.lpstrFilter = "C/C++ƒwƒbƒ_ƒtƒ@ƒCƒ‹(*.h)\0*.h\0‚·‚×‚Ä(*.*)\0*.*\0\0";
+	ofn.lpstrFilter = "C/C++ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«(*.h)\0*.h\0ã™ã¹ã¦(*.*)\0*.*\0\0";
 	ofn.lpstrFile = filepath;
 	ofn.nMaxFile =256;
 	ofn.lpstrFileTitle = filename;
 	ofn.nMaxFileTitle = 64;
 	ofn.Flags = 0;
-	ofn.lpstrTitle = "•Û‘¶";
+	ofn.lpstrTitle = "ä¿å­˜";
 
 	if(!GetOpenFileName(&ofn))return(FALSE);
 
-	//Šg’£q‚ğ–³—‚â‚è.h‚É
+	//æ‹¡å¼µå­ã‚’ç„¡ç†ã‚„ã‚Š.hã«
 	int len=strlen(filepath);
 	if(len>4){
 		if(!( filepath[len-4]=='.' &&
@@ -265,11 +265,11 @@ BOOL GCDSaveHeader(GCD_CELLNAMES *pfhnames)
 		}
 	}
 
-	//•Û‘¶
+	//ä¿å­˜
 	HANDLE hFile = CreateFile(filepath,
 		GENERIC_WRITE,0,NULL,OPEN_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);
 	if(hFile==INVALID_HANDLE_VALUE){
-		MessageBox(ghwnd,"Ì§²Ù‚ªŠJ‚¯‚È‚©‚Á‚½","SaveFile()",MB_OK);
+		MessageBox(ghwnd,"ï¾Œï½§ï½²ï¾™ãŒé–‹ã‘ãªã‹ã£ãŸ","SaveFile()",MB_OK);
 		return(FALSE);
 	}
 
@@ -294,14 +294,14 @@ BOOL GCDSaveHeader(GCD_CELLNAMES *pfhnames)
 
 void GCDSetInitialData(GCD_CELL2 *pcdat,GCD_RECT *prdat,GCD_HANTEI *phdat,GCD_CELLNAMES *pfhnames)
 {
-	//ˆê’U‘S•”ƒNƒŠƒA
+	//ä¸€æ—¦å…¨éƒ¨ã‚¯ãƒªã‚¢
 	if(pfhnames!=NULL)
 		ZeroMemory(&pfhnames,sizeof(&pfhnames));
 	ZeroMemory(prdat,sizeof(GCD_RECT)*GCDMAX_RECTANGLES);
 	ZeroMemory(pcdat,sizeof(GCD_CELL2)*GCDMAX_CELLS);
 	ZeroMemory(phdat,sizeof(GCD_HANTEI)*GCDMAX_CELLS);
 
-	//Šg‘å—¦ƒZƒbƒg
+	//æ‹¡å¤§ç‡ã‚»ãƒƒãƒˆ
 	int i,j;
 	for(i=0;i<GCDMAX_CELLS;i++){
 		for(j=0;j<8;j++){

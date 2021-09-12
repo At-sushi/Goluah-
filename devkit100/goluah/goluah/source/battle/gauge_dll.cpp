@@ -1,11 +1,11 @@
-
+ï»¿
 /*===================================================================
 
-	‘Ì—ÍƒQ[ƒW
-	ƒLƒƒƒ‰ƒNƒ^ŠçEŸ—˜ƒJƒEƒ“ƒgEFPS
-	ƒpƒ[ƒQ[ƒW
+	ä½“åŠ›ã‚²ãƒ¼ã‚¸
+	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿é¡”ãƒ»å‹åˆ©ã‚«ã‚¦ãƒ³ãƒˆãƒ»FPS
+	ãƒ‘ãƒ¯ãƒ¼ã‚²ãƒ¼ã‚¸
 
-	¥¥¥“™Aí“¬‚ÌƒVƒXƒeƒ€î•ñ•`‰æŠÖŒW
+	ï½¥ï½¥ï½¥ç­‰ã€æˆ¦é—˜æ™‚ã®ã‚·ã‚¹ãƒ†ãƒ æƒ…å ±æç”»é–¢ä¿‚
 
 =====================================================================*/
 
@@ -17,7 +17,7 @@
 
 
 /*-------------------------------------------------------------------
-	¶¬”jŠü
+	ç”Ÿæˆç ´æ£„
 ---------------------------------------------------------------------*/
 CGauge::CGauge(DI_FUNCTIONS_S* pfs, DI_FUNCTIONS_O* pfo, DI_FUNCTIONS_D* pfd)
 {
@@ -32,7 +32,7 @@ CGauge::CGauge(DI_FUNCTIONS_S* pfs, DI_FUNCTIONS_O* pfo, DI_FUNCTIONS_D* pfd)
 	funcd=pfd;
 }
 
-void CGauge::CleanUp()//ŠJ•ú‚·‚é•K—v‚Ì‚ ‚é‚à‚Ì‚ğ ŠJ•ú‚·‚é
+void CGauge::CleanUp()//é–‹æ”¾ã™ã‚‹å¿…è¦ã®ã‚ã‚‹ã‚‚ã®ã‚’ é–‹æ”¾ã™ã‚‹
 {
 	for(int i=0;i<2;i++){
 		for(int j=0;j<3;j++){
@@ -43,18 +43,18 @@ void CGauge::CleanUp()//ŠJ•ú‚·‚é•K—v‚Ì‚ ‚é‚à‚Ì‚ğ ŠJ•ú‚·‚é
 
 
 /*-------------------------------------------------------------------
-	‰Šú‰»
+	åˆæœŸåŒ–
 ---------------------------------------------------------------------*/
 void CGauge::Initialize()
 {
-	CleanUp();//‚Ü‚¸‚ÍˆÈ‘O‚Ìƒf[ƒ^‚ğƒNƒŠƒA
+	CleanUp();//ã¾ãšã¯ä»¥å‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¯ãƒªã‚¢
 
 //	battleTask = dynamic_cast<CBattleTaskBase*>( g_system.GetCurrentMainTask() );
 //	if(!battleTask)throw;
 
 //	DWORD num_teammember = g_battleinfo.GetNumTeam();
 
-	//•Ï”‚Ì‰Šú‰»
+	//å¤‰æ•°ã®åˆæœŸåŒ–
 	activegauge[0] = activegauge[1] = 0;
 
 	DWORD i,j;
@@ -70,12 +70,12 @@ void CGauge::Initialize()
 			}
 			pgauge_prv[i][j]=0;
 			numprv[i][j]=0;
-			pg_draw[i][j]=FALSE;//ƒpƒ[ƒQ[ƒW‚ğ•`‰æ‚·‚é‚©‚Ç‚¤‚©
-			pg_dx[i][j]=-200;//ƒpƒ[ƒQ[ƒW‚Ì‚¸‚ç‚µ•
+			pg_draw[i][j]=FALSE;//ãƒ‘ãƒ¯ãƒ¼ã‚²ãƒ¼ã‚¸ã‚’æç”»ã™ã‚‹ã‹ã©ã†ã‹
+			pg_dx[i][j]=-200;//ãƒ‘ãƒ¯ãƒ¼ã‚²ãƒ¼ã‚¸ã®ãšã‚‰ã—å¹…
 		}
 	}
 
-	//ƒJƒI‚Ì“Ç‚İ‚İ
+	//ã‚«ã‚ªã®èª­ã¿è¾¼ã¿
 	char filename[256],palname[256];
 	for(i=0;i<2;i++){
 		for(j=0;j<g_battleinfo.GetNumTeam(i);j++){
@@ -95,7 +95,7 @@ void CGauge::Initialize()
 
 
 /*-------------------------------------------------------------------
-	ƒQ[ƒW‚ÌAí“¬ƒIƒuƒWƒFƒNƒg‚Æ‚µ‚Ä‚ÌƒƒbƒZ[ƒWƒnƒ“ƒhƒ‰
+	ã‚²ãƒ¼ã‚¸ã®ã€æˆ¦é—˜ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¨ã—ã¦ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ©
 ---------------------------------------------------------------------*/
 DWORD CGauge::GaugeObjectMessage(DWORD msg,LPVOID pdat,DWORD prm)
 {
@@ -116,7 +116,7 @@ DWORD CGauge::GaugeObjectMessage(DWORD msg,LPVOID pdat,DWORD prm)
 
 
 /*-------------------------------------------------------------------
-	ƒtƒŒ[ƒ€‚²‚Æ‚ÌUpdateˆ—
+	ãƒ•ãƒ¬ãƒ¼ãƒ ã”ã¨ã®Updateå‡¦ç†
 ---------------------------------------------------------------------*/
 void CGauge::Action()
 {
@@ -129,7 +129,7 @@ void CGauge::Action()
 	
 	for(j=0;j<2;j++){
 		for(i=0;i<(int)(*funcs->getteamnum2)(j);i++){
-			//prv ‚ÌXV
+			//prv ã®æ›´æ–°
 			pdat= (GOBJECT*)(*funco->getinfo)( (*funco->getcharid)(j,i) );
 			if(pdat!=NULL){
 				if(pgauge_prv[j][i] < pdat->gauge){
@@ -141,7 +141,7 @@ void CGauge::Action()
 					if(pgauge_prv[j][i] < pdat->gauge)pgauge_prv[j][i] = pdat->gauge;
 				}
 			}
-			//ƒpƒ[ƒQ[ƒW‚ÌˆÚ“®
+			//ãƒ‘ãƒ¯ãƒ¼ã‚²ãƒ¼ã‚¸ã®ç§»å‹•
 			if(funcs->gettaisenkeisiki()!=TAISENKEISIKI_GOCYAMAZE){
 				if((int)funco->getactivechar(j) == i){
 					pg_dx[j][i] += 5;
@@ -160,15 +160,15 @@ void CGauge::Action()
 
 
 /*-------------------------------------------------------------------
-	•`‰æ
+	æç”»
 ---------------------------------------------------------------------*/
 void CGauge::Draw()
 {
-	//‘S‘Ì‚Ì˜g(?)
+	//å…¨ä½“ã®æ (?)
 	(*funcd->settrans)(FALSE);
 	funcd->celldraw(g_system.GetSystemGraphicSurface(),g_system.GetSystemGraphicCell(),g_system.GetSystemGraphicRect(),CELL_HPGWAKU1,320,43,-0.05f,0);
 	funcd->celldraw(g_system.GetSystemGraphicSurface(),g_system.GetSystemGraphicCell(),g_system.GetSystemGraphicRect(),CELL_HPGWAKU2,320,40,-0.04f,0);
-	//ŠÔ§ŒÀorFPS
+	//æ™‚é–“åˆ¶é™orFPS
 	if(!g_system.sw_showfps){
 		if(battleTask->limittime >= 0)
 			battleTask->DrawNumber(battleTask->limittime,310,45,FALSE,-0.055f);
@@ -202,7 +202,7 @@ void CGauge::Draw()
 	else battleTask->DrawNumber(g_system.GetFPS(),310,45,FALSE,-0.055f);
 
 	switch(funcs->gettaisenkeisiki()){
-	case TAISENKEISIKI_GOCYAMAZE://‚²‚Á‚¿‚á‚Ü‚º
+	case TAISENKEISIKI_GOCYAMAZE://ã”ã£ã¡ã‚ƒã¾ãœ
 		DrawHPGauge1();
 		DrawPowerGauge1();
 		break;
@@ -215,10 +215,10 @@ void CGauge::Draw()
 }
 
 // private **************************************************************
-//@‘Ì—ÍƒQ[ƒW•`‰æ
+//ã€€ä½“åŠ›ã‚²ãƒ¼ã‚¸æç”»
 //***********************************************************************
 
-void CGauge::DrawHPGauge1()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æiTAISENKEISIKI_GOCYAMAZEj
+void CGauge::DrawHPGauge1()//ä½“åŠ›ã‚²ãƒ¼ã‚¸ã®æç”»ï¼ˆTAISENKEISIKI_GOCYAMAZEï¼‰
 {
 	int i;
 	D3DXMATRIX mati;
@@ -231,7 +231,7 @@ void CGauge::DrawHPGauge1()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æiTAISENKEISIKI_GOCYAMAZEj
 	((LPDIRECT3DDEVICE8)funcd->getd3dd())->SetTexture(0,NULL);
 	((LPDIRECT3DDEVICE8)funcd->getd3dd())->SetTransform(D3DTS_WORLD,&mati);
 
-	//•‚Á‚Û‚¢”wŒi
+	//é»’ã£ã½ã„èƒŒæ™¯
 	vb[0].x = (float)( 320.0/240.0 - 50.0/240.0 );
 	vb[0].y = (float)( 0.172 - 0.04 - 0.02*(g_battleinfo.GetNumTeam(0)-1));
 	vb[1].x = (float)( 320.0/240.0 - 50.0/240.0 );
@@ -247,7 +247,7 @@ void CGauge::DrawHPGauge1()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æiTAISENKEISIKI_GOCYAMAZEj
 		vb[i].tu = vb[i].tv = 0;
 	}
 	((LPDIRECT3DDEVICE8)funcd->getd3dd())->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vb,sizeof(MYVERTEX3D));
-	//•‚Á‚Û‚¢”wŒi(2p)
+	//é»’ã£ã½ã„èƒŒæ™¯(2p)
 	vb[0].x = (float)( 320.0/240.0 + 50.0/240.0 );
 	vb[0].y = (float)( 0.172 - 0.04 - 0.02*(g_battleinfo.GetNumTeam(1)-1));
 	vb[1].x = (float)( 320.0/240.0 + 50.0/240.0 );
@@ -275,10 +275,10 @@ void CGauge::DrawHPGauge1()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æiTAISENKEISIKI_GOCYAMAZEj
 		case 3:turiage_y=-0.075;break;
 		default:turiage_y=0;
 		}
-		//1p‘¤‘Ì—Í–_
+		//1på´ä½“åŠ›æ£’
 		pdat = (GOBJECT*)(*funco->getinfo)( (*funco->getcharid(0,j) );
 		if(pdat!=NULL){
-			//‘Ì—Í
+			//ä½“åŠ›
 			if(pdat->hpmax!=0){
 				gauge_prv2[0][j] -= 20;
 					if(gauge_prv2[0][j] < pdat->hp)gauge_prv2[0][j] = pdat->hp;
@@ -302,7 +302,7 @@ void CGauge::DrawHPGauge1()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æiTAISENKEISIKI_GOCYAMAZEj
 				}
 				g_draw.d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vb,sizeof(MYVERTEX3D));
 			
-				//Œ¸‚Á‚½•ª
+				//æ¸›ã£ãŸåˆ†
 				if(pdat->hp < (int)pdat->hpmax)
 				{
 					for(i=0;i<4;i++){
@@ -334,10 +334,10 @@ void CGauge::DrawHPGauge1()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æiTAISENKEISIKI_GOCYAMAZEj
 		case 3:turiage_y=-0.075;break;
 		default:turiage_y=0;
 		}
-		//2p‘¤‘Ì—Í–_
+		//2på´ä½“åŠ›æ£’
 		pdat = (GOBJECT*)(GOBJECT*)(*funco->getinfo)( (*funco->getcharid(1,j) );
 		if(pdat!=NULL){
-			//‘Ì—Í
+			//ä½“åŠ›
 			if(pdat->hpmax!=0){
 				gauge_prv2[1][j] -= 20;
 					if(gauge_prv2[1][j] < pdat->hp)gauge_prv2[1][j] = pdat->hp;
@@ -361,7 +361,7 @@ void CGauge::DrawHPGauge1()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æiTAISENKEISIKI_GOCYAMAZEj
 				}
 				g_draw.d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vb,sizeof(MYVERTEX3D));
 			
-				//Œ¸‚Á‚½•ª
+				//æ¸›ã£ãŸåˆ†
 				if(pdat->hp < (int)pdat->hpmax)
 				{
 					for(i=0;i<4;i++){
@@ -391,12 +391,12 @@ void CGauge::DrawHPGauge1()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æiTAISENKEISIKI_GOCYAMAZEj
 	MYRECT3D rdst;
 	RECT rsrc;
 	rsrc.top=rsrc.left=0;
-	//ƒJƒI(1p)
+	//ã‚«ã‚ª(1p)
 	for(j=0;j<g_battleinfo.GetNumTeam(0);j++){
 		if(dds_face[0][j]!=NULL){
 			int kx = 0, ky = 0;
 
-			// —h‚ê
+			// æºã‚Œ
 			CGObject* pobj = battleTask->GetCharacterObject(0,j);
 			if (pobj && pobj->siver)
 			{
@@ -422,12 +422,12 @@ void CGauge::DrawHPGauge1()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æiTAISENKEISIKI_GOCYAMAZEj
 			else g_draw.MyBlt3D(dds_face[0][j],rsrc,rdst,0,0xFFFFFFFF);
 		}
 	}
-	//ƒJƒI(2p)
+	//ã‚«ã‚ª(2p)
 	for(j=0;j<g_battleinfo.GetNumTeam(1);j++){
 		if(dds_face[1][j]!=NULL){
 			int kx = 0, ky = 0;
 
-			// —h‚ê
+			// æºã‚Œ
 			CGObject* pobj = battleTask->GetCharacterObject(1,j);
 			if (pobj && pobj->siver)
 			{
@@ -453,7 +453,7 @@ void CGauge::DrawHPGauge1()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æiTAISENKEISIKI_GOCYAMAZEj
 		}
 	}
 
-	//Ÿ—˜ƒ}[ƒN
+	//å‹åˆ©ãƒãƒ¼ã‚¯
 	DWORD wincount;
 	//1p
 	wincount = battleTask->GetWinCount(0);
@@ -469,7 +469,7 @@ void CGauge::DrawHPGauge1()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æiTAISENKEISIKI_GOCYAMAZEj
 	}
 }
 
-void CGauge::DrawHPGauge2()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æi2vs2j
+void CGauge::DrawHPGauge2()//ä½“åŠ›ã‚²ãƒ¼ã‚¸ã®æç”»ï¼ˆ2vs2ï¼‰
 {
 	int i;
 	D3DXMATRIX mati;
@@ -482,7 +482,7 @@ void CGauge::DrawHPGauge2()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æi2vs2j
 	g_draw.d3ddev->SetTexture(0,NULL);
 	g_draw.d3ddev->SetTransform(D3DTS_WORLD,&mati);
 
-	//•‚Á‚Û‚¢”wŒi
+	//é»’ã£ã½ã„èƒŒæ™¯
 	vb[0].x = (float)( 320.0/240.0 - 50.0/240.0 );
 	vb[0].y = (float)( 0.172 - 0.04 - 0.02*(g_battleinfo.GetNumTeam(0)-1));
 	vb[1].x = (float)( 320.0/240.0 - 50.0/240.0 );
@@ -498,7 +498,7 @@ void CGauge::DrawHPGauge2()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æi2vs2j
 		vb[i].tu = vb[i].tv = 0;
 	}
 	g_draw.d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vb,sizeof(MYVERTEX3D));
-	//•‚Á‚Û‚¢”wŒi(2p)
+	//é»’ã£ã½ã„èƒŒæ™¯(2p)
 	vb[0].x = (float)( 320.0/240.0 + 50.0/240.0 );
 	vb[0].y = (float)( 0.172 - 0.04 - 0.02*(g_battleinfo.GetNumTeam(1)-1));
 	vb[1].x = (float)( 320.0/240.0 + 50.0/240.0 );
@@ -526,10 +526,10 @@ void CGauge::DrawHPGauge2()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æi2vs2j
 		case 3:turiage_y=-0.075;break;
 		default:turiage_y=0;
 		}
-		//1p‘¤‘Ì—Í–_
+		//1på´ä½“åŠ›æ£’
 		pdat = (GOBJECT*)(GOBJECT*)(*funco->getinfo)( (*funco->getcharid(0,j) );
 		if(pdat!=NULL){
-			//‘Ì—Í
+			//ä½“åŠ›
 			if(pdat->hpmax!=0){
 				gauge_prv2[0][j] -= 20;
 					if(gauge_prv2[0][j] < pdat->hp)gauge_prv2[0][j] = pdat->hp;
@@ -557,7 +557,7 @@ void CGauge::DrawHPGauge2()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æi2vs2j
 				}
 				g_draw.d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vb,sizeof(MYVERTEX3D));
 			
-				//Œ¸‚Á‚½•ª
+				//æ¸›ã£ãŸåˆ†
 				if(pdat->hp < (int)pdat->hpmax)
 				{
 					for(i=0;i<4;i++){
@@ -590,10 +590,10 @@ void CGauge::DrawHPGauge2()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æi2vs2j
 		case 3:turiage_y=-0.075;break;
 		default:turiage_y=0;
 		}
-		//2p‘¤‘Ì—Í–_
+		//2på´ä½“åŠ›æ£’
 		pdat = (GOBJECT*)(GOBJECT*)(*funco->getinfo)( (*funco->getcharid(1,j) );
 		if(pdat!=NULL){
-			//‘Ì—Í
+			//ä½“åŠ›
 			if(pdat->hpmax!=0){
 				gauge_prv2[1][j] -= 20;
 					if(gauge_prv2[1][j] < pdat->hp)gauge_prv2[1][j] = pdat->hp;
@@ -620,7 +620,7 @@ void CGauge::DrawHPGauge2()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æi2vs2j
 				}
 				g_draw.d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vb,sizeof(MYVERTEX3D));
 			
-				//Œ¸‚Á‚½•ª
+				//æ¸›ã£ãŸåˆ†
 				if(pdat->hp < (int)pdat->hpmax)
 				{
 					for(i=0;i<4;i++){
@@ -649,12 +649,12 @@ void CGauge::DrawHPGauge2()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æi2vs2j
 	MYRECT3D rdst;
 	RECT rsrc;
 	rsrc.top=rsrc.left=0;
-	//ƒJƒI(1p)
+	//ã‚«ã‚ª(1p)
 	for(j=0;j<g_battleinfo.GetNumTeam(0);j++){
 		if(dds_face[0][j]!=NULL){
 			int kx = 0, ky = 0;
 
-			// —h‚ê
+			// æºã‚Œ
 			CGObject* pobj = battleTask->GetCharacterObject(0,j);
 			if (pobj && pobj->siver)
 			{
@@ -691,11 +691,11 @@ void CGauge::DrawHPGauge2()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æi2vs2j
 		}
 	}
 	for(j=0;j<g_battleinfo.GetNumTeam(1);j++){
-		//ƒJƒI(2p)
+		//ã‚«ã‚ª(2p)
 		if(dds_face[1][j]!=NULL){
 			int kx = 0, ky = 0;
 
-			// —h‚ê
+			// æºã‚Œ
 			CGObject* pobj = battleTask->GetCharacterObject(1,j);
 			if (pobj && pobj->siver)
 			{
@@ -731,7 +731,7 @@ void CGauge::DrawHPGauge2()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æi2vs2j
 			}
 		}
 	}
-	//ƒXƒgƒ‰ƒCƒJ[ƒ}[ƒN
+	//ã‚¹ãƒˆãƒ©ã‚¤ã‚«ãƒ¼ãƒãƒ¼ã‚¯
 	DWORD wincount;
 	//1p
 	wincount = battleTask->GetStrikerCount(0);
@@ -748,7 +748,7 @@ void CGauge::DrawHPGauge2()//‘Ì—ÍƒQ[ƒW‚Ì•`‰æi2vs2j
 }
 
 //****************************************************************************
-//@ƒpƒ[ƒQ[ƒW‚Ì•`‰æ
+//ã€€ãƒ‘ãƒ¯ãƒ¼ã‚²ãƒ¼ã‚¸ã®æç”»
 //****************************************************************************
 
 void CGauge::DrawPowerGauge1()
@@ -805,7 +805,7 @@ void CGauge::DrawPowerGauge1()
 	}
 }
 
-//ŒğŠ·‚ ‚è
+//äº¤æ›ã‚ã‚Š
 void CGauge::DrawPowerGauge2()
 {
 	GOBJECT *pdat;
@@ -827,7 +827,7 @@ void CGauge::DrawPowerGauge2()
 	}
 }
 
-//ƒQ[ƒWEƒ^ƒCƒv1(•¡”ƒXƒgƒbƒN‰Â”\‚ÈƒQ[ƒW)
+//ã‚²ãƒ¼ã‚¸ãƒ»ã‚¿ã‚¤ãƒ—1(è¤‡æ•°ã‚¹ãƒˆãƒƒã‚¯å¯èƒ½ãªã‚²ãƒ¼ã‚¸)
 void CGauge::DrawPowerGaugeType1(BOOL player,int pindex,int x,int y)
 {
 	int j;
@@ -842,20 +842,20 @@ void CGauge::DrawPowerGaugeType1(BOOL player,int pindex,int x,int y)
 
 	if(!player){
 		j=0;
-		//ƒvƒŒƒCƒ„[1‘¤
-		g_draw.CellDraw(g_system.GetSystemGraphicSurface(),g_system.GetSystemGraphicCell(),g_system.GetSystemGraphicRect(),CELL_PG2_BLANKL,x+10,y+470,0.0f,0,FALSE,FALSE,gcolor);//ƒƒN
+		//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼1å´
+		g_draw.CellDraw(g_system.GetSystemGraphicSurface(),g_system.GetSystemGraphicCell(),g_system.GetSystemGraphicRect(),CELL_PG2_BLANKL,x+10,y+470,0.0f,0,FALSE,FALSE,gcolor);//ãƒ¯ã‚¯
 		pdat = (GOBJECT*)(GOBJECT*)(*funco->getinfo)( (*funco->getcharid( j,pindex ) );
 		if(pdat!=NULL){
-			num = (int)pdat->gauge;//ƒQ[ƒW‚Ì®”•”•ª
-			//®”•”•ª‚ª‘‚¦‚Ä‚½‚ç‰¹‚ğ–Â‚ç‚·
+			num = (int)pdat->gauge;//ã‚²ãƒ¼ã‚¸ã®æ•´æ•°éƒ¨åˆ†
+			//æ•´æ•°éƒ¨åˆ†ãŒå¢—ãˆã¦ãŸã‚‰éŸ³ã‚’é³´ã‚‰ã™
 			if(num > (int)numprv[j][pindex])g_system.PlaySystemSound(SYSTEMSOUND_CHARGE);
 			numprv[j][pindex] = num;
 			num = (int)pgauge_prv[j][pindex];
 			battleTask->DrawNumber3(pdat->gauge,x+35,y+445,0.0f);
-			if(pdat->gauge == pdat->gaugemax){//ƒQ[ƒWƒ}ƒbƒNƒX!!
+			if(pdat->gauge == pdat->gaugemax){//ã‚²ãƒ¼ã‚¸ãƒãƒƒã‚¯ã‚¹!!
 				g_draw.CellDraw(g_system.GetSystemGraphicSurface(),g_system.GetSystemGraphicCell(),g_system.GetSystemGraphicRect(),CELL_PG2_MAX,x+65,y+448,0.0f,0,FALSE,FALSE,gcolor);
 			}
-			else {//–_‚ğ•`‚­
+			else {//æ£’ã‚’æã
 				rpg.right = rpg.left+(int)((pgauge_prv[j][pindex] - num)*87);
 				g_draw.CheckBlt(g_system.GetSystemGraphicSurface()[1],x+66,y+448,rpg,FALSE,FALSE,0,0.0f,gcolor);
 			}
@@ -864,20 +864,20 @@ void CGauge::DrawPowerGaugeType1(BOOL player,int pindex,int x,int y)
 	else{
 		j=1;
 		x*=-1;
-		//ƒvƒŒƒCƒ„[2‘¤
-		g_draw.CellDraw(g_system.GetSystemGraphicSurface(),g_system.GetSystemGraphicCell(),g_system.GetSystemGraphicRect(),CELL_PG2_BLANKR,x+630,y+470,0.0f,0,FALSE,FALSE,gcolor);//ƒƒN
+		//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼2å´
+		g_draw.CellDraw(g_system.GetSystemGraphicSurface(),g_system.GetSystemGraphicCell(),g_system.GetSystemGraphicRect(),CELL_PG2_BLANKR,x+630,y+470,0.0f,0,FALSE,FALSE,gcolor);//ãƒ¯ã‚¯
 		pdat = (GOBJECT*)(GOBJECT*)(*funco->getinfo)( (*funco->getcharid( j,pindex ));
 		if(pdat!=NULL){
-			num = (int)pdat->gauge;//ƒQ[ƒW‚Ì®”•”•ª
-			//®”•”•ª‚ª‘‚¦‚Ä‚½‚ç‰¹‚ğ–Â‚ç‚·
+			num = (int)pdat->gauge;//ã‚²ãƒ¼ã‚¸ã®æ•´æ•°éƒ¨åˆ†
+			//æ•´æ•°éƒ¨åˆ†ãŒå¢—ãˆã¦ãŸã‚‰éŸ³ã‚’é³´ã‚‰ã™
 			if(num > (int)numprv[j][pindex])g_system.PlaySystemSound(SYSTEMSOUND_CHARGE);
 			numprv[j][pindex] = num;
 			num = (int)pgauge_prv[j][pindex];
 			battleTask->DrawNumber3(pdat->gauge,x+600,y+445,0.0f);
-			if(pdat->gauge == pdat->gaugemax){//ƒQ[ƒWƒ}ƒbƒNƒX!!
+			if(pdat->gauge == pdat->gaugemax){//ã‚²ãƒ¼ã‚¸ãƒãƒƒã‚¯ã‚¹!!
 				g_draw.CellDraw(g_system.GetSystemGraphicSurface(),g_system.GetSystemGraphicCell(),g_system.GetSystemGraphicRect(),CELL_PG2_MAX,x+487,y+448,0.0f,0,FALSE,FALSE,gcolor);
 			}
-			else {//–_‚ğ•`‚­
+			else {//æ£’ã‚’æã
 				rpg.right = rpg.left+(int)((pgauge_prv[j][pindex] - num)*87);
 				g_draw.CheckBlt(g_system.GetSystemGraphicSurface()[1],x+575-(rpg.right-rpg.left),y+448,rpg,FALSE,FALSE,0,0.0f,gcolor);
 			}
@@ -885,7 +885,7 @@ void CGauge::DrawPowerGaugeType1(BOOL player,int pindex,int x,int y)
 	}
 }
 
-//ƒQ[ƒWEƒ^ƒCƒv2i0-100“‚ÈƒQ[ƒWj
+//ã‚²ãƒ¼ã‚¸ãƒ»ã‚¿ã‚¤ãƒ—2ï¼ˆ0-100ï¼…ãªã‚²ãƒ¼ã‚¸ï¼‰
 void CGauge::DrawPowerGaugeType2(BOOL player,int pindex,int x,int y,BOOL pow)
 {
 	int j;
@@ -902,48 +902,48 @@ void CGauge::DrawPowerGaugeType2(BOOL player,int pindex,int x,int y,BOOL pow)
 
 	if(!player){
 		j=0;
-		//ƒvƒŒƒCƒ„[1‘¤
-		if(pow)g_draw.CellDraw(g_system.GetSystemGraphicSurface(),g_system.GetSystemGraphicCell(),g_system.GetSystemGraphicRect(),CELL_PG1_POW,x+18,y+455,0.0f,0,FALSE,FALSE,gcolor);//uƒpƒEƒbv
+		//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼1å´
+		if(pow)g_draw.CellDraw(g_system.GetSystemGraphicSurface(),g_system.GetSystemGraphicCell(),g_system.GetSystemGraphicRect(),CELL_PG1_POW,x+18,y+455,0.0f,0,FALSE,FALSE,gcolor);//ã€Œãƒ‘ã‚¦ãƒƒã€
 		else x-=40;
 		pdat = (GOBJECT*)(GOBJECT*)(*funco->getinfo)( (*funco->getcharid( j,pindex ));
 		if(pdat!=NULL){
 			num = (int)pdat->gauge;
 			if(num > (int)numprv[j][pindex])g_system.PlaySystemSound(SYSTEMSOUND_CHARGE);
 			numprv[j][pindex] = num;
-			if(pdat->gauge == pdat->gaugemax){//ƒQ[ƒWƒ}ƒbƒNƒX
+			if(pdat->gauge == pdat->gaugemax){//ã‚²ãƒ¼ã‚¸ãƒãƒƒã‚¯ã‚¹
 				if((timeGetTime()/50)%2==0)cell_max=CELL_PG1_MAX1;
 				else cell_max=CELL_PG1_MAX2;
 				g_draw.CellDraw(g_system.GetSystemGraphicSurface(),g_system.GetSystemGraphicCell(),g_system.GetSystemGraphicRect(),cell_max,x+45,y+455,0.0f,0,FALSE,FALSE,gcolor);
 			}
 			else {
-				g_draw.CellDraw(g_system.GetSystemGraphicSurface(),g_system.GetSystemGraphicCell(),g_system.GetSystemGraphicRect(),CELL_PG1_BLANK,x+45,y+455,0.0f,0,FALSE,FALSE,gcolor);//ƒƒN
+				g_draw.CellDraw(g_system.GetSystemGraphicSurface(),g_system.GetSystemGraphicCell(),g_system.GetSystemGraphicRect(),CELL_PG1_BLANK,x+45,y+455,0.0f,0,FALSE,FALSE,gcolor);//ãƒ¯ã‚¯
 				rpg.right = rpg.left+(int)((pgauge_prv[j][pindex])*132);
-				g_draw.CheckBlt(g_system.GetSystemGraphicSurface()[1],x+48,y+452,rpg,FALSE,FALSE,0,0.0f,gcolor);//–_
-				battleTask->DrawNumber4(pgauge_prv[j][pindex],x+97,y+454,0.0f);//ƒp[ƒZƒ“ƒe[ƒW
+				g_draw.CheckBlt(g_system.GetSystemGraphicSurface()[1],x+48,y+452,rpg,FALSE,FALSE,0,0.0f,gcolor);//æ£’
+				battleTask->DrawNumber4(pgauge_prv[j][pindex],x+97,y+454,0.0f);//ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸
 			}
 		}
 	}
 	else{
 		j=1;
 		x*=-1;
-		//ƒvƒŒƒCƒ„[2‘¤
-		if(pow)g_draw.CellDraw(g_system.GetSystemGraphicSurface(),g_system.GetSystemGraphicCell(),g_system.GetSystemGraphicRect(),CELL_PG1_POW,x+612,y+455,0.0f,0,FALSE,FALSE,gcolor);//uƒpƒEƒbv
+		//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼2å´
+		if(pow)g_draw.CellDraw(g_system.GetSystemGraphicSurface(),g_system.GetSystemGraphicCell(),g_system.GetSystemGraphicRect(),CELL_PG1_POW,x+612,y+455,0.0f,0,FALSE,FALSE,gcolor);//ã€Œãƒ‘ã‚¦ãƒƒã€
 		else x+=40;
 		pdat = (GOBJECT*)(GOBJECT*)(*funco->getinfo)( (*funco->getcharid( j,pindex ));
 		if(pdat!=NULL){
 			num = (int)pdat->gauge;
 			if(num > (int)numprv[j][pindex])g_system.PlaySystemSound(SYSTEMSOUND_CHARGE);
 			numprv[j][pindex] = num;
-			if(pdat->gauge == pdat->gaugemax){//ƒQ[ƒWƒ}ƒbƒNƒX
+			if(pdat->gauge == pdat->gaugemax){//ã‚²ãƒ¼ã‚¸ãƒãƒƒã‚¯ã‚¹
 				if((timeGetTime()/50)%2==0)cell_max=CELL_PG1_MAX1;
 				else cell_max=CELL_PG1_MAX2;
 				g_draw.CellDraw(g_system.GetSystemGraphicSurface(),g_system.GetSystemGraphicCell(),g_system.GetSystemGraphicRect(),cell_max,x+452,y+455,0.0f,0,FALSE,FALSE,gcolor);
 			}
 			else {
-				g_draw.CellDraw(g_system.GetSystemGraphicSurface(),g_system.GetSystemGraphicCell(),g_system.GetSystemGraphicRect(),CELL_PG1_BLANK,x+452,y+455,0.0f,0,FALSE,FALSE,gcolor);//ƒƒN
+				g_draw.CellDraw(g_system.GetSystemGraphicSurface(),g_system.GetSystemGraphicCell(),g_system.GetSystemGraphicRect(),CELL_PG1_BLANK,x+452,y+455,0.0f,0,FALSE,FALSE,gcolor);//ãƒ¯ã‚¯
 				rpg.right = rpg.left+(int)((pgauge_prv[j][pindex])*132);
-				g_draw.CheckBlt(g_system.GetSystemGraphicSurface()[1],x+588-(rpg.right-rpg.left),y+452,rpg,FALSE,FALSE,0,0.0f,gcolor);//–_
-				battleTask->DrawNumber4(pgauge_prv[j][pindex],x+505,y+454,0.0f);//ƒp[ƒZƒ“ƒe[ƒW
+				g_draw.CheckBlt(g_system.GetSystemGraphicSurface()[1],x+588-(rpg.right-rpg.left),y+452,rpg,FALSE,FALSE,0,0.0f,gcolor);//æ£’
+				battleTask->DrawNumber4(pgauge_prv[j][pindex],x+505,y+454,0.0f);//ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸
 			}
 		}
 	}

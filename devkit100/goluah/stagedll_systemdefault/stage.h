@@ -1,14 +1,14 @@
-#pragma once
+ï»¿#pragma once
 
 #include <windows.h>
 #include <stdio.h>
 #include "gobjbase.h"
 
 /*!
-*	@brief ƒfƒtƒHƒ‹ƒgƒXƒe[ƒWƒNƒ‰ƒX
+*	@brief ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚¹ãƒ†ãƒ¼ã‚¸ã‚¯ãƒ©ã‚¹
 *
-*	ƒXƒe[ƒWƒfƒBƒŒƒNƒgƒŠ‚Ìimage1.bmp‚ğƒ[ƒh‚µA”wŒi‚Æ‚µ‚Ä•\¦‚·‚éB
-*	Å‚àƒVƒ“ƒvƒ‹‚È”wŒiBƒVƒXƒeƒ€ƒfƒtƒHƒ‹ƒg—pB
+*	ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®image1.bmpã‚’ãƒ­ãƒ¼ãƒ‰ã—ã€èƒŒæ™¯ã¨ã—ã¦è¡¨ç¤ºã™ã‚‹ã€‚
+*	æœ€ã‚‚ã‚·ãƒ³ãƒ—ãƒ«ãªèƒŒæ™¯ã€‚ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆç”¨ã€‚
 */
 
 class CStage : public CStageBase
