@@ -1,6 +1,6 @@
 ﻿/*----------------------------------------------------------------------
 
-	ポーズ画面
+        ポーズ画面
 
 ------------------------------------------------------------------------*/
 
@@ -8,360 +8,309 @@
 #include "task_pause.h"
 #include "global.h"
 
-void CTBattlePause::Initialize()
-{
-	tex_fb = NULL;
-	tex_pause = NULL;
+void CTBattlePause::Initialize() {
+  tex_fb = NULL;
+  tex_pause = NULL;
 
-	tex_fb = g_draw.GetFrontBufferCopy();
-	D3DXCreateTextureFromFileA(g_draw.d3ddev,"system\\texture\\pause.png",&tex_pause);
+  tex_fb = g_draw.GetFrontBufferCopy();
+  D3DXCreateTextureFromFileA(g_draw.d3ddev, "system\\texture\\pause.png", &tex_pause);
 
-	m_counter = 0;
-	m_face_counter[0] = 0;
-	m_face_counter[1] = 0;
+  m_counter = 0;
+  m_face_counter[0] = 0;
+  m_face_counter[1] = 0;
 
-	CBattleTaskBase* battleTask = dynamic_cast<CBattleTaskBase*>( g_system.GetCurrentMainTask() );
-	if(!battleTask)
-	{
-		m_face_idx[0] = 0;
-		m_face_idx[1] = 0;
-	}
-	else
-	{
-		m_face_idx[0] = battleTask->GetActiveCharacterID(0);
-		m_face_idx[1] = battleTask->GetActiveCharacterID(1);
-	}
+  CBattleTaskBase *battleTask = dynamic_cast<CBattleTaskBase *>(g_system.GetCurrentMainTask());
+  if (!battleTask) {
+    m_face_idx[0] = 0;
+    m_face_idx[1] = 0;
+  } else {
+    m_face_idx[0] = battleTask->GetActiveCharacterID(0);
+    m_face_idx[1] = battleTask->GetActiveCharacterID(1);
+  }
 
-	m_kill_flag = FALSE;
-	m_inst_on[0] = m_inst_on[1] = FALSE;
+  m_kill_flag = FALSE;
+  m_inst_on[0] = m_inst_on[1] = FALSE;
 
-	ms_inst[0] = ms_inst[1] = NULL;
+  ms_inst[0] = ms_inst[1] = NULL;
 }
 
-void CTBattlePause::Terminate()
-{
-	RELEASE(tex_fb);
-	RELEASE(tex_pause);
+void CTBattlePause::Terminate() {
+  RELEASE(tex_fb);
+  RELEASE(tex_pause);
 
-	g_draw.RelSurface( ms_inst[0] );
-	g_draw.RelSurface( ms_inst[1] );
+  g_draw.RelSurface(ms_inst[0]);
+  g_draw.RelSurface(ms_inst[1]);
 }
 
-BOOL CTBattlePause::Execute(DWORD time)
-{
-	m_counter ++;
+BOOL CTBattlePause::Execute(DWORD time) {
+  m_counter++;
 
-	for(UINT i=0;i<2;i++)
-	{
-		DWORD key = 0;
+  for (UINT i = 0; i < 2; i++) {
+    DWORD key = 0;
 
-		if(m_inst_on[i])
-		{
-			m_face_counter[i] ++;
-		}
+    if (m_inst_on[i]) {
+      m_face_counter[i]++;
+    }
 
-		//そのチームでのキー入力の総和をとる
-		for(UINT j=0;j<MAXNUM_TEAM;j++)
-		{
-			UINT ki = g_battleinfo.GetKeyAssign(i,j);
-			if(!(ki&CASSIGN_SPECIFIC))
-			{
-				key |= g_input.GetKey(ki,0);
-			}
-		}
+    //そのチームでのキー入力の総和をとる
+    for (UINT j = 0; j < MAXNUM_TEAM; j++) {
+      UINT ki = g_battleinfo.GetKeyAssign(i, j);
+      if (!(ki & CASSIGN_SPECIFIC)) {
+        key |= g_input.GetKey(ki, 0);
+      }
+    }
 
-		if(m_inst_on[i])
-		{
-			if(key & KEYSTA_LEFT2)
-			{
-				m_face_idx[i] --;
-				m_face_idx[i] = (m_face_idx[i]+g_battleinfo.GetNumTeam(i)) % g_battleinfo.GetNumTeam(i);
-				m_face_counter[i] = 0;
-				ChangeInst(i);
-			}
-			if(key & KEYSTA_RIGHT2)
-			{
-				m_face_idx[i] ++;
-				m_face_idx[i] %= g_battleinfo.GetNumTeam(i);
-				m_face_counter[i] = 0;
-				ChangeInst(i);
-			}
-		}
+    if (m_inst_on[i]) {
+      if (key & KEYSTA_LEFT2) {
+        m_face_idx[i]--;
+        m_face_idx[i] = (m_face_idx[i] + g_battleinfo.GetNumTeam(i)) % g_battleinfo.GetNumTeam(i);
+        m_face_counter[i] = 0;
+        ChangeInst(i);
+      }
+      if (key & KEYSTA_RIGHT2) {
+        m_face_idx[i]++;
+        m_face_idx[i] %= g_battleinfo.GetNumTeam(i);
+        m_face_counter[i] = 0;
+        ChangeInst(i);
+      }
+    }
 
-		if((key & KEYSTA_BA2) || (key & KEYSTA_BB2) || (key & KEYSTA_BC2)/* || (key & KEYSTA_BD2)*/)
-		{
-			m_inst_on[i] = !m_inst_on[i];
-			if(!m_inst_on[i])
-			{
-				g_draw.RelSurface( ms_inst[i] );
-				ms_inst[i] = NULL;
-				m_face_counter[i] = 0;
-			}
-			else
-			{
-				ChangeInst(i);
-			}
-		}
-	}
+    if ((key & KEYSTA_BA2) || (key & KEYSTA_BB2) || (key & KEYSTA_BC2) /* || (key & KEYSTA_BD2)*/) {
+      m_inst_on[i] = !m_inst_on[i];
+      if (!m_inst_on[i]) {
+        g_draw.RelSurface(ms_inst[i]);
+        ms_inst[i] = NULL;
+        m_face_counter[i] = 0;
+      } else {
+        ChangeInst(i);
+      }
+    }
+  }
 
-	return m_kill_flag ? FALSE : TRUE;
+  return m_kill_flag ? FALSE : TRUE;
 }
 
-void CTBattlePause::Draw()
-{
-	g_draw.EnableZ(FALSE,FALSE);
-	g_draw.SetTransform(FALSE);
-	g_draw.d3ddev->SetVertexShader(FVF_3DVERTEX);
+void CTBattlePause::Draw() {
+  g_draw.EnableZ(FALSE, FALSE);
+  g_draw.SetTransform(FALSE);
+  g_draw.d3ddev->SetVertexShader(FVF_3DVERTEX);
 
-	float ar = 320.0f/240.0f;
+  float ar = 320.0f / 240.0f;
 
-	MYVERTEX3D vb[4];
+  MYVERTEX3D vb[4];
 
-	vb[0].z = 0.0f;
-	vb[1].z = 0.0f;
-	vb[2].z = 0.0f;
-	vb[3].z = 0.0f;
+  vb[0].z = 0.0f;
+  vb[1].z = 0.0f;
+  vb[2].z = 0.0f;
+  vb[3].z = 0.0f;
 
-	vb[0].tu = 0.0f;
-	vb[1].tu = 0.0f;
-	vb[2].tu = 1.0f;
-	vb[3].tu = 1.0f;
-	
-	vb[0].tv = 0.0f;
-	vb[1].tv = 1.0f;
-	vb[2].tv = 0.0f;
-	vb[3].tv = 1.0f;
+  vb[0].tu = 0.0f;
+  vb[1].tu = 0.0f;
+  vb[2].tu = 1.0f;
+  vb[3].tu = 1.0f;
 
-	//フロントバッファをコピーしたやつ
-	if(tex_fb)
-	{
-		DWORD col;
-		
-		col = 255 - (m_counter>100 ? 100 : m_counter);
-		vb[0].color = 
-		vb[1].color = 0xFF000000 | (col<<16) | (col<<8) | col;
+  vb[0].tv = 0.0f;
+  vb[1].tv = 1.0f;
+  vb[2].tv = 0.0f;
+  vb[3].tv = 1.0f;
 
-		col = 255 - (m_counter>100 ? 100 : m_counter);
-		vb[2].color = 
-		vb[3].color = 0xFF000000 | (col<<16) | (col<<8) | col;
+  //フロントバッファをコピーしたやつ
+  if (tex_fb) {
+    DWORD col;
 
-		vb[0].x =  0.0f*ar;
-		vb[1].x =  0.0f*ar;
-		vb[2].x =  2.0f*ar;
-		vb[3].x =  2.0f*ar;
+    col = 255 - (m_counter > 100 ? 100 : m_counter);
+    vb[0].color = vb[1].color = 0xFF000000 | (col << 16) | (col << 8) | col;
 
-		vb[0].y =  0.0f;
-		vb[1].y =  2.0f;
-		vb[2].y =  0.0f;
-		vb[3].y =  2.0f;
+    col = 255 - (m_counter > 100 ? 100 : m_counter);
+    vb[2].color = vb[3].color = 0xFF000000 | (col << 16) | (col << 8) | col;
 
-		g_draw.d3ddev->SetTexture(0,tex_fb);
-		g_draw.d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vb,sizeof(MYVERTEX3D));
-	}
-	
-	//"Pause - Press F7 Key"
-	g_draw.SetAlphaMode(GBLEND_KASAN);
-	if(tex_pause)
-	{
-		vb[0].color = 
-		vb[1].color = 
-		vb[2].color = 
-		vb[3].color = 0xFF55FF33;
+    vb[0].x = 0.0f * ar;
+    vb[1].x = 0.0f * ar;
+    vb[2].x = 2.0f * ar;
+    vb[3].x = 2.0f * ar;
 
-		vb[0].x =  (320.0f-128.0f)/240.0f;
-		vb[1].x =  (320.0f-128.0f)/240.0f;
-		vb[2].x =  (320.0f+128.0f)/240.0f;
-		vb[3].x =  (320.0f+128.0f)/240.0f;
+    vb[0].y = 0.0f;
+    vb[1].y = 2.0f;
+    vb[2].y = 0.0f;
+    vb[3].y = 2.0f;
 
-		vb[0].y =  (105.0f-32.0f)/240.0f;
-		vb[1].y =  (105.0f+32.0f)/240.0f;
-		vb[2].y =  (105.0f-32.0f)/240.0f;
-		vb[3].y =  (105.0f+32.0f)/240.0f;
+    g_draw.d3ddev->SetTexture(0, tex_fb);
+    g_draw.d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, vb, sizeof(MYVERTEX3D));
+  }
 
-		g_draw.d3ddev->SetTexture(0,tex_pause);
-		g_draw.d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vb,sizeof(MYVERTEX3D));
-	}
-	g_draw.SetAlphaMode(0);
+  //"Pause - Press F7 Key"
+  g_draw.SetAlphaMode(GBLEND_KASAN);
+  if (tex_pause) {
+    vb[0].color = vb[1].color = vb[2].color = vb[3].color = 0xFF55FF33;
 
-	if(!m_inst_on)return;
+    vb[0].x = (320.0f - 128.0f) / 240.0f;
+    vb[1].x = (320.0f - 128.0f) / 240.0f;
+    vb[2].x = (320.0f + 128.0f) / 240.0f;
+    vb[3].x = (320.0f + 128.0f) / 240.0f;
 
-	int alt;
-	int t;
-	MYSURFACE *dds_face;
-	RECT r_face;
-	int x,y;
+    vb[0].y = (105.0f - 32.0f) / 240.0f;
+    vb[1].y = (105.0f + 32.0f) / 240.0f;
+    vb[2].y = (105.0f - 32.0f) / 240.0f;
+    vb[3].y = (105.0f + 32.0f) / 240.0f;
 
-	for(t=1;t>=0;t--)
-	{
-		if(!m_inst_on[t])continue;
+    g_draw.d3ddev->SetTexture(0, tex_pause);
+    g_draw.d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, vb, sizeof(MYVERTEX3D));
+  }
+  g_draw.SetAlphaMode(0);
 
-/*
-オプション状況を表示しようとしていた残骸。
-イテレータが分からず＝オプション名が拾ってこれず凍結中。
-0と1だけでいいのであればすぐ表示できるはず。
-		DWORD k=0;
-		DWORD setting_now = g_battleinfo.GetCharacterOption(t,m_face_idx[t]);//これは簡単に拾えるが・・・
-		char *strl;
-		strl = new char[64];
+  if (!m_inst_on)
+    return;
 
-		int nisin[28],i;	//face用の部分は計算しないから28でおｋ
-		DWORD jyu = setting_now;
-		double xxx = 300.0;
-		double yyy = 20.0;
+  int alt;
+  int t;
+  MYSURFACE *dds_face;
+  RECT r_face;
+  int x, y;
 
-		for(i=0; i<28; i++){
-		    nisin[i] = jyu % 2;
-			jyu = jyu / 2;
-			if(nisin[i]==1)	{
-				～～～i番目のオプション名取ってDrawBMPTextする～～～
-				もうiteじゃなくてGetOpt的な関数作ったほうが早い気がする
-			}
-	    }
-			sprintf(strl,"%d",ite);
-			g_system.DrawBMPTextEx(xxx,yyy,0.0f,ite->name,0xFFFFFFFF,0.8f,0.8f,0);
-			yyy += 10.0;
-	    }
+  for (t = 1; t >= 0; t--) {
+    if (!m_inst_on[t])
+      continue;
 
-		2進数に変換→各桁forで回して1のとこはリストから名前引っ張ってくる
-		for(ite=m_selecter->list->begin();ite!=m_selecter->list->end();ite++){
-			not_available = FALSE;
+    /*
+    オプション状況を表示しようとしていた残骸。
+    イテレータが分からず＝オプション名が拾ってこれず凍結中。
+    0と1だけでいいのであればすぐ表示できるはず。
+                    DWORD k=0;
+                    DWORD setting_now =
+    g_battleinfo.GetCharacterOption(t,m_face_idx[t]);//これは簡単に拾えるが・・・ char *strl; strl = new
+    char[64];
 
-		//描画
-			text_flag = SYSBMPTXT_PROP;
-			if(k==m_selecter->enabled[k])text_flag |= SYSBMPTXT_SHADE_B;
-			g_system.DrawBMPText(420.0,300.0,0.0f,strl,0xFF99AADD);
-			y+=1.0f;
-			k++;
-		}
-*/
-		//デカ顔
+                    int nisin[28],i;	//face用の部分は計算しないから28でおｋ
+                    DWORD jyu = setting_now;
+                    double xxx = 300.0;
+                    double yyy = 20.0;
 
-		alt = OPT2ALT(g_battleinfo.GetCharacterOption(t,m_face_idx[t]));
-		dds_face = gbl.GetBigFace(g_battleinfo.GetCharacter(t,m_face_idx[t]),g_battleinfo.GetColor(t,m_face_idx[t]),alt);
+                    for(i=0; i<28; i++){
+                        nisin[i] = jyu % 2;
+                            jyu = jyu / 2;
+                            if(nisin[i]==1)	{
+                                    ～～～i番目のオプション名取ってDrawBMPTextする～～～
+                                    もうiteじゃなくてGetOpt的な関数作ったほうが早い気がする
+                            }
+                }
+                            sprintf(strl,"%d",ite);
+                            g_system.DrawBMPTextEx(xxx,yyy,0.0f,ite->name,0xFFFFFFFF,0.8f,0.8f,0);
+                            yyy += 10.0;
+                }
 
-		if(!dds_face)continue;
+                    2進数に変換→各桁forで回して1のとこはリストから名前引っ張ってくる
+                    for(ite=m_selecter->list->begin();ite!=m_selecter->list->end();ite++){
+                            not_available = FALSE;
 
-		r_face.top = 0;
-		r_face.left = 0;
-		r_face.right = (int)dds_face->wg;
-		r_face.bottom = (int)dds_face->hg;
+                    //描画
+                            text_flag = SYSBMPTXT_PROP;
+                            if(k==m_selecter->enabled[k])text_flag |= SYSBMPTXT_SHADE_B;
+                            g_system.DrawBMPText(420.0,300.0,0.0f,strl,0xFF99AADD);
+                            y+=1.0f;
+                            k++;
+                    }
+    */
+    //デカ顔
 
-		if(t==0){
-			x = m_face_counter[t]*30 - (int)dds_face->wg;
-			if(x>0)x=0;
-		}
-		else{
-			x = 640 - m_face_counter[t]*30;
-			if(x< 640-(int)dds_face->wg)x=640-(int)dds_face->wg;
-		}
+    alt = OPT2ALT(g_battleinfo.GetCharacterOption(t, m_face_idx[t]));
+    dds_face = gbl.GetBigFace(g_battleinfo.GetCharacter(t, m_face_idx[t]),
+                              g_battleinfo.GetColor(t, m_face_idx[t]), alt);
 
-		g_draw.CheckBlt(
-					dds_face,
-					x,
-					240-(DWORD)dds_face->hg/2,
-					r_face,
-					t==0 ? FALSE : TRUE,
-					FALSE,
-					0,
-					-0.01f,
-					0xFFFFFFFF);
-		//inst
-		if(ms_inst[t])
-		{
-			r_face.top = 0;
-			r_face.left = 0;
-			r_face.right = (int)ms_inst[t]->wg;
-			r_face.bottom = (int)ms_inst[t]->hg;
+    if (!dds_face)
+      continue;
 
-			DWORD alpha ;
-			static int shiftY=0;
-			x = t==0 ? 20 : 620-(int)ms_inst[t]->wg;
-			y = 450-(DWORD)ms_inst[t]->hg+shiftY;
-			if(y >320 ) y = 320;
+    r_face.top = 0;
+    r_face.left = 0;
+    r_face.right = (int)dds_face->wg;
+    r_face.bottom = (int)dds_face->hg;
 
-			DWORD key = 0;
-				for(UINT j=0;j<MAXNUM_TEAM;j++){
-					UINT ki = g_battleinfo.GetKeyAssign(t,j);
-					if(!(ki&CASSIGN_SPECIFIC)){
-					key |= g_input.GetKey(ki,0);
-					}
-				if(key & KEYSTA_UP)
-					shiftY+=1;
-				else if (key & KEYSTA_DOWN)
-					shiftY-=1;
-				else if(key & KEYSTA_BD2)
-					shiftY=0;
-			}
+    if (t == 0) {
+      x = m_face_counter[t] * 30 - (int)dds_face->wg;
+      if (x > 0)
+        x = 0;
+    } else {
+      x = 640 - m_face_counter[t] * 30;
+      if (x < 640 - (int)dds_face->wg)
+        x = 640 - (int)dds_face->wg;
+    }
 
-			//下地
-			int mgn = 0;
-			vb[0].x =  (x-mgn)/240.0f;
-			vb[1].x =  (x-mgn)/240.0f;
-			vb[2].x =  (x+mgn+ms_inst[t]->wg)/240.0f;
-			vb[3].x =  (x+mgn+ms_inst[t]->wg)/240.0f;
+    g_draw.CheckBlt(dds_face, x, 240 - (DWORD)dds_face->hg / 2, r_face, t == 0 ? FALSE : TRUE, FALSE, 0,
+                    -0.01f, 0xFFFFFFFF);
+    // inst
+    if (ms_inst[t]) {
+      r_face.top = 0;
+      r_face.left = 0;
+      r_face.right = (int)ms_inst[t]->wg;
+      r_face.bottom = (int)ms_inst[t]->hg;
 
-			vb[0].y =  (y-mgn)/240.0f;
-			vb[1].y =  (y+mgn+ms_inst[t]->hg)/240.0f;
-			vb[2].y =  (y-mgn)/240.0f;
-			vb[3].y =  (y+mgn+ms_inst[t]->hg)/240.0f;
-			
-			vb[0].z = 
-			vb[1].z = 
-			vb[2].z = 
-			vb[3].z = -0.02f;
-			
-			alpha = m_face_counter[t]*10>220 ? 220 : m_face_counter[t]*10;
+      DWORD alpha;
+      static int shiftY = 0;
+      x = t == 0 ? 20 : 620 - (int)ms_inst[t]->wg;
+      y = 450 - (DWORD)ms_inst[t]->hg + shiftY;
+      if (y > 320)
+        y = 320;
 
-			vb[0].color = 
-			vb[1].color = 
-			vb[2].color = 
-			vb[3].color = alpha<<24 | 0x00FFFFFF;
-			
-			D3DXMATRIX mat;
-			D3DXMatrixIdentity(&mat);
-			g_draw.d3ddev->SetTransform(D3DTS_WORLD,&mat);
+      DWORD key = 0;
+      for (UINT j = 0; j < MAXNUM_TEAM; j++) {
+        UINT ki = g_battleinfo.GetKeyAssign(t, j);
+        if (!(ki & CASSIGN_SPECIFIC)) {
+          key |= g_input.GetKey(ki, 0);
+        }
+        if (key & KEYSTA_UP)
+          shiftY += 1;
+        else if (key & KEYSTA_DOWN)
+          shiftY -= 1;
+        else if (key & KEYSTA_BD2)
+          shiftY = 0;
+      }
 
-			g_draw.d3ddev->SetTexture(0,NULL);
-			g_draw.d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,vb,sizeof(MYVERTEX3D));
+      //下地
+      int mgn = 0;
+      vb[0].x = (x - mgn) / 240.0f;
+      vb[1].x = (x - mgn) / 240.0f;
+      vb[2].x = (x + mgn + ms_inst[t]->wg) / 240.0f;
+      vb[3].x = (x + mgn + ms_inst[t]->wg) / 240.0f;
 
-			//ビットマップ
-			alpha = m_face_counter[t]*10>255 ? 255 : m_face_counter[t]*10;
-			g_draw.CheckBlt(
-					ms_inst[t],
-					x,
-					y,
-					r_face,
-					FALSE,
-					FALSE,
-					0,
-					-0.03f,
-					alpha<<24 | 0x00FFFFFF );
-		}
-	}
+      vb[0].y = (y - mgn) / 240.0f;
+      vb[1].y = (y + mgn + ms_inst[t]->hg) / 240.0f;
+      vb[2].y = (y - mgn) / 240.0f;
+      vb[3].y = (y + mgn + ms_inst[t]->hg) / 240.0f;
+
+      vb[0].z = vb[1].z = vb[2].z = vb[3].z = -0.02f;
+
+      alpha = m_face_counter[t] * 10 > 220 ? 220 : m_face_counter[t] * 10;
+
+      vb[0].color = vb[1].color = vb[2].color = vb[3].color = alpha << 24 | 0x00FFFFFF;
+
+      D3DXMATRIX mat;
+      D3DXMatrixIdentity(&mat);
+      g_draw.d3ddev->SetTransform(D3DTS_WORLD, &mat);
+
+      g_draw.d3ddev->SetTexture(0, NULL);
+      g_draw.d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, vb, sizeof(MYVERTEX3D));
+
+      //ビットマップ
+      alpha = m_face_counter[t] * 10 > 255 ? 255 : m_face_counter[t] * 10;
+      g_draw.CheckBlt(ms_inst[t], x, y, r_face, FALSE, FALSE, 0, -0.03f, alpha << 24 | 0x00FFFFFF);
+    }
+  }
 }
 
+void CTBattlePause::ChangeInst(UINT t) {
+  char *filepath = new char[256];
+  char altstr[2] = {'\0', '\0'};
+  int alt = OPT2ALT(g_battleinfo.GetCharacterOption(t, m_face_idx[t]));
+  if (alt != 0) {
+    altstr[0] = 'a' + alt - 1;
+  }
+  UINT char_index = g_battleinfo.GetCharacter(t, m_face_idx[t]);
 
-void CTBattlePause::ChangeInst(UINT t)
-{
-	char *filepath = new char[256];
-	char altstr[2] ={'\0','\0'};
-	int alt = OPT2ALT(g_battleinfo.GetCharacterOption(t,m_face_idx[t]));
-	if(alt!=0)
-	{
-		altstr[0] = 'a' + alt - 1;
-	}
-	UINT char_index = g_battleinfo.GetCharacter(t,m_face_idx[t]);
-	
-	sprintf(filepath,"%s\\inst%s",
-		g_charlist.GetCharacterDir(char_index),
-		altstr);
+  sprintf(filepath, "%s\\inst%s", g_charlist.GetCharacterDir(char_index), altstr);
 
-	ms_inst[t] = g_draw.CreateSurfaceFrom256Image(filepath);
-	if(!ms_inst[t])
-	{
-		ms_inst[t] = g_draw.CreateSurfaceFrom256Image("system\\inst");
-	}
+  ms_inst[t] = g_draw.CreateSurfaceFrom256Image(filepath);
+  if (!ms_inst[t]) {
+    ms_inst[t] = g_draw.CreateSurfaceFrom256Image("system\\inst");
+  }
 
-	DELETE_ARRAY(filepath);
+  DELETE_ARRAY(filepath);
 }
-

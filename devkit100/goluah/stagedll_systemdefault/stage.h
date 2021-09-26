@@ -5,19 +5,19 @@
 #include "gobjbase.h"
 
 /*!
-*	@brief デフォルトステージクラス
-*
-*	ステージディレクトリのimage1.bmpをロードし、背景として表示する。
-*	最もシンプルな背景。システムデフォルト用。
-*/
+ *	@brief デフォルトステージクラス
+ *
+ *	ステージディレクトリのimage1.bmpをロードし、背景として表示する。
+ *	最もシンプルな背景。システムデフォルト用。
+ */
 
-class CStage : public CStageBase
-{
+class CStage : public CStageBase {
 public:
-	CStage(SDI_STAGEINFO2 *info);
-	~CStage();
-	void InitializeStage();
+  CStage(SDI_STAGEINFO2 *info);
+  ~CStage();
+  void InitializeStage();
+
 protected:
-	DWORD DrawBack();
-	MYSURFACE* bitmap;
+  DWORD DrawBack();
+  MYSURFACE *bitmap;
 };

@@ -12,11 +12,16 @@
 
     Goluah!! Copyright (C) 2001-2004 aki, 2014-2021 logger, 2004-2021 At-sushi
 
-    This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+    This program is free software; you can redistribute it and/or modify it under the terms of the GNU General
+Public License as published by the Free Software Foundation; either version 2 of the License, or (at your
+option) any later version.
 
-    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
+for more details.
 
-    You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+    You should have received a copy of the GNU General Public License along with this program; if not, write
+to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 =========================================================================================*/
 
@@ -42,23 +47,27 @@ size_t num_allocs = 0;
 #endif
 
 //デフォルトの設定ファイルパス
-#define MYSOUND_LIST		"list.txt"
-#define MYSOUND_PATH		"sound"
-#define WIN_SERIFU_TXT		"serifu.txt"
+#define MYSOUND_LIST "list.txt"
+#define MYSOUND_PATH "sound"
+#define WIN_SERIFU_TXT "serifu.txt"
 
 #include <vector>
 //#include <algorithm>
 
-//global func
-BOOL File2Mem(char* filename,char** buff,UINT *len);
+// global func
+BOOL File2Mem(char *filename, char **buff, UINT *len);
 int GetRandNum(int num);
 
-//macro
-#define DELETE_ARRAY(p)		if((p)){ delete [] (p); (p)=NULL; }
+// macro
+#define DELETE_ARRAY(p)                                                                                      \
+  if ((p)) {                                                                                                 \
+    delete[](p);                                                                                             \
+    (p) = NULL;                                                                                              \
+  }
 
 // 最低限交換性のあるバージョン
-#define DTB_LEASTVER	1060
-#define STB_LEASTVER	1060
+#define DTB_LEASTVER 1060
+#define STB_LEASTVER 1060
 
 /*! **************************************************************************
 
@@ -89,62 +98,64 @@ int GetRandNum(int num);
     キャラクターの情報を設定してクラスを構築します。
     作った後は、特に問題がなければマクロ任せにしてしまいましょうヽ(ﾟ∀ﾟ)ﾉ。
 */
-CCharacterInfo::CCharacterInfo(LPCTSTR CharName/* = "名無しさん" */, DWORD CdiVersion/* = CDI_VERSION */, CHARACTER_LOAD_OPTION* Options/* = NULL */,
-        int num_Options/* = 0 */, DWORD max_option_point/* = 0 */, BOOL isNetworkable/* = FALSE */, DWORD DtbVersion/* = DTB_VERSION */)
-{
-    version = DtbVersion;
-    if(version > DTB_VERSION || version < DTB_LEASTVER){ 
-#		ifdef _DEBUG
-            char dbgmsg[256];
-            sprintf(dbgmsg,"CCharacterInfo:DTBバージョン違い(%d!=%d)\n",version,DTB_VERSION);
-            OutputDebugString(dbgmsg);
-#		endif
-        m_Error=TRUE;
-        return;
+CCharacterInfo::CCharacterInfo(LPCTSTR CharName /* = "名無しさん" */,
+                               DWORD CdiVersion /* = CDI_VERSION */,
+                               CHARACTER_LOAD_OPTION *Options /* = NULL */,
+                               int num_Options /* = 0 */,
+                               DWORD max_option_point /* = 0 */,
+                               BOOL isNetworkable /* = FALSE */,
+                               DWORD DtbVersion /* = DTB_VERSION */) {
+  version = DtbVersion;
+  if (version > DTB_VERSION || version < DTB_LEASTVER) {
+#ifdef _DEBUG
+    char dbgmsg[256];
+    sprintf(dbgmsg, "CCharacterInfo:DTBバージョン違い(%d!=%d)\n", version, DTB_VERSION);
+    OutputDebugString(dbgmsg);
+#endif
+    m_Error = TRUE;
+    return;
+  }
+  version = CdiVersion;
+
+  m_Error = FALSE;
+
+  m_MaxPoint = max_option_point;
+  m_isNetworkable = isNetworkable;
+
+  if (CharName) {
+    int length = lstrlen(CharName);
+
+    if (length >= 32)
+      length = 32 - 1;
+    charactername = new char[length + 1];
+    if (charactername) {
+      strncpy(charactername, CharName, length);
+      charactername[length] = '\0';
     }
-    version = CdiVersion;
+  } else
+    charactername = NULL;
 
-    m_Error = FALSE;
-
-    m_MaxPoint = max_option_point;
-    m_isNetworkable = isNetworkable;
-
-    if (CharName) {
-        int length = lstrlen(CharName);
-
-        if (length >= 32) length = 32 - 1;
-        charactername = new char[length + 1];
-        if (charactername)
-        {
-            strncpy(charactername, CharName, length);
-            charactername[length] = '\0';
-        }
-    }
-    else charactername = NULL;
-
-    if (Options) {
-        m_Options = new CHARACTER_LOAD_OPTION[num_Options];
-        if (m_Options) {
-            for (int i = 0; i < num_Options; i++)
-                m_Options[i] = *(Options + i);
-            m_NumOptions = num_Options;
-        }
-        else m_NumOptions = 0;
-    }
-    else {
-        m_NumOptions = 0;
-        m_Options = NULL;
-    }
+  if (Options) {
+    m_Options = new CHARACTER_LOAD_OPTION[num_Options];
+    if (m_Options) {
+      for (int i = 0; i < num_Options; i++)
+        m_Options[i] = *(Options + i);
+      m_NumOptions = num_Options;
+    } else
+      m_NumOptions = 0;
+  } else {
+    m_NumOptions = 0;
+    m_Options = NULL;
+  }
 }
 
 //! あぼんぬ
-CCharacterInfo::~CCharacterInfo()
-{
-    if (charactername)
-        delete [] charactername;
+CCharacterInfo::~CCharacterInfo() {
+  if (charactername)
+    delete[] charactername;
 
-    if (m_Options)
-        delete [] m_Options;
+  if (m_Options)
+    delete[] m_Options;
 }
 
 /*!
@@ -153,22 +164,22 @@ CCharacterInfo::~CCharacterInfo()
     マクロから呼び出され、本体にキャラの情報を送信してます。
     意識して使う必要はあんまり無いです。
 */
-BOOL CCharacterInfo::DllCharacterInfo(LPVOID info)
-{
-    if(m_Error)return FALSE;
+BOOL CCharacterInfo::DllCharacterInfo(LPVOID info) {
+  if (m_Error)
+    return FALSE;
 
-    CDI_CHARACTERINFO *pif = (CDI_CHARACTERINFO*)info;
-    if (charactername)
-        lstrcpy(pif->name,charactername);//名前
-    pif->ver=version;//バージョン
+  CDI_CHARACTERINFO *pif = (CDI_CHARACTERINFO *)info;
+  if (charactername)
+    lstrcpy(pif->name, charactername); //名前
+  pif->ver = version;                  //バージョン
 
-    if(pif->system_version!=0){
-        if (m_isNetworkable)
-            pif->caps |= CHARACTER_CAPS_NET;
-        SetOptionItems(pif);
-    }
+  if (pif->system_version != 0) {
+    if (m_isNetworkable)
+      pif->caps |= CHARACTER_CAPS_NET;
+    SetOptionItems(pif);
+  }
 
-    return(TRUE);
+  return (TRUE);
 }
 
 /*!
@@ -178,13 +189,12 @@ BOOL CCharacterInfo::DllCharacterInfo(LPVOID info)
     クラス構築はマクロがやってるし。
     これも、意識して使う必要は無いです。
 */
-void CCharacterInfo::DllCreateCharacter(PVOID info)
-{
-    CDI_CHARACTERINFO2 *info2 = (CDI_CHARACTERINFO2*)info;
+void CCharacterInfo::DllCreateCharacter(PVOID info) {
+  CDI_CHARACTERINFO2 *info2 = (CDI_CHARACTERINFO2 *)info;
 
-    funco = info2->funco;
-    funcs = info2->funcs;
-    funcd = info2->funcd;
+  funco = info2->funco;
+  funcs = info2->funcs;
+  funcd = info2->funcd;
 }
 
 /*!
@@ -193,12 +203,11 @@ void CCharacterInfo::DllCreateCharacter(PVOID info)
     オプション情報を構造体からさばいて、本体に送信します。
     これまた、意識して使う必要は無いです。
 */
-void CCharacterInfo::SetOptionItems(CDI_CHARACTERINFO* pif)
-{
-    pif->max_option_point = m_MaxPoint;
+void CCharacterInfo::SetOptionItems(CDI_CHARACTERINFO *pif) {
+  pif->max_option_point = m_MaxPoint;
 
-    for (int i = 0; i < m_NumOptions; i++)
-        pif->options[i] = m_Options[i];
+  for (int i = 0; i < m_NumOptions; i++)
+    pif->options[i] = m_Options[i];
 }
 
 /*! **************************************************************************
@@ -219,8 +228,8 @@ void CCharacterInfo::SetOptionItems(CDI_CHARACTERINFO* pif)
 */
 /* ************************************************************************** */
 
-CGoluahObject* CGoluahObject::pObjToDelete = NULL;
-CGoluahObject* CGoluahObject::pObjDeleting = NULL;
+CGoluahObject *CGoluahObject::pObjToDelete = NULL;
+CGoluahObject *CGoluahObject::pObjDeleting = NULL;
 
 /*!
     @brief 構築
@@ -228,27 +237,21 @@ CGoluahObject* CGoluahObject::pObjDeleting = NULL;
                     この処理は、オブジェクトフラグではなく、システム内部のオブジェクト管理機構によって処理されます。
                     生成後に変更することはできません。
 */
-CGoluahObject::CGoluahObject(BOOL is_effect/* = FALSE */)
-: velocity(0)
-{
-    if(is_effect)
-    {
-        oid = (*funco->objcreate_fx)();//エフェクト用オブジェクトを生成
-    }
-    else
-    {
-        oid = (*funco->objcreate)();//オブジェクトを生成
-    }
+CGoluahObject::CGoluahObject(BOOL is_effect /* = FALSE */) : velocity(0) {
+  if (is_effect) {
+    oid = (*funco->objcreate_fx)(); //エフェクト用オブジェクトを生成
+  } else {
+    oid = (*funco->objcreate)(); //オブジェクトを生成
+  }
 
-    pdat = (GOBJECT*)(*funco->getinfo)(oid);//データへのポインタをget
-    if(pdat!=NULL){
-        pdat->pobjdat_u = this;
-        pdat->msghandler= gMessageToObject;//メッセージ処理関数
-    }
-    base_z				= 0;
-    g_chardir = "";//?　…aki氏ｽﾏｿ、ただの初期化です。
+  pdat = (GOBJECT *)(*funco->getinfo)(oid); //データへのポインタをget
+  if (pdat != NULL) {
+    pdat->pobjdat_u = this;
+    pdat->msghandler = gMessageToObject; //メッセージ処理関数
+  }
+  base_z = 0;
+  g_chardir = ""; //?　…aki氏ｽﾏｿ、ただの初期化です。
 }
-
 
 /*!
     @brief 破棄
@@ -256,14 +259,13 @@ CGoluahObject::CGoluahObject(BOOL is_effect/* = FALSE */)
     破棄はメッセージ処理関数が GOBJMSG_DELETEを受信したときに行われるので、
     それ以外の場所でdeleteしてはいけません。
 */
-CGoluahObject::~CGoluahObject()
-{
-    if (pObjToDelete == this)
-        pObjToDelete = NULL;
-    else if (pdat != NULL) {
-        pObjDeleting = this;
-        funco->objdelete(pdat->id);
-    }
+CGoluahObject::~CGoluahObject() {
+  if (pObjToDelete == this)
+    pObjToDelete = NULL;
+  else if (pdat != NULL) {
+    pObjDeleting = this;
+    funco->objdelete(pdat->id);
+  }
 }
 
 /*!
@@ -271,41 +273,52 @@ CGoluahObject::~CGoluahObject()
 
     いくつかの基本的なメッセージに関して、仮想関数に処理を振り分けます。
 */
-DWORD CGoluahObject::Message(DWORD msg,LPVOID pd,DWORD prm)
-{
-    switch(msg){
-    case GOBJMSG_ACTION: {
-        auto res = Action();
+DWORD CGoluahObject::Message(DWORD msg, LPVOID pd, DWORD prm) {
+  switch (msg) {
+  case GOBJMSG_ACTION: {
+    auto res = Action();
 
-        // movex処理
-        if (!(pdat->aid & ACTID_SYSTEM)) {
-            pdat->vx += (velocity - pdat->vx) * 0.25;
-            pdat->x += pdat->muki ? -pdat->vx : pdat->vx;
-            velocity = 0.0;
-        }
-
-        return(res);
+    // movex処理
+    if (!(pdat->aid & ACTID_SYSTEM)) {
+      pdat->vx += (velocity - pdat->vx) * 0.25;
+      pdat->x += pdat->muki ? -pdat->vx : pdat->vx;
+      velocity = 0.0;
     }
 
-    case GOBJMSG_CNGAID:	ActionIDChanged();return(TRUE);
-    case GOBJMSG_COMMAND:	Command();return(TRUE);
-    case GOBJMSG_COMMANDCOM:return(CommandCOM(prm));
-    case GOBJMSG_TOUCHA:	return(TouchA(pdat->atk2.info1,prm));
-    case GOBJMSG_TOUCHB:	return(TouchB(pdat->atk,prm));
-    case GOBJMSG_TOUCHC:	return(TouchC(pdat->atk,prm));
-    case GOBJMSG_COMTHINK:	return(ComThink());
-    case GOBJMSG_DRAW:		return(Draw());
-    case GOBJMSG_DRAWFRONT:	return(DrawFront());
-    case GOBJMSG_DRAWBACK:	return(DrawBack());
-    case GOBJMSG_CNGROUND:	return(OnChangeRound());
-    default:
-        //あとのメッセージはデフォルト処理に任せる
-        return(0);
-    }
+    return (res);
+  }
 
-    return(TRUE);
+  case GOBJMSG_CNGAID:
+    ActionIDChanged();
+    return (TRUE);
+  case GOBJMSG_COMMAND:
+    Command();
+    return (TRUE);
+  case GOBJMSG_COMMANDCOM:
+    return (CommandCOM(prm));
+  case GOBJMSG_TOUCHA:
+    return (TouchA(pdat->atk2.info1, prm));
+  case GOBJMSG_TOUCHB:
+    return (TouchB(pdat->atk, prm));
+  case GOBJMSG_TOUCHC:
+    return (TouchC(pdat->atk, prm));
+  case GOBJMSG_COMTHINK:
+    return (ComThink());
+  case GOBJMSG_DRAW:
+    return (Draw());
+  case GOBJMSG_DRAWFRONT:
+    return (DrawFront());
+  case GOBJMSG_DRAWBACK:
+    return (DrawBack());
+  case GOBJMSG_CNGROUND:
+    return (OnChangeRound());
+  default:
+    //あとのメッセージはデフォルト処理に任せる
+    return (0);
+  }
+
+  return (TRUE);
 }
-
 
 /*!
     @brief 共通メッセージ処理関数
@@ -314,42 +327,42 @@ DWORD CGoluahObject::Message(DWORD msg,LPVOID pd,DWORD prm)
     また、GOBJECT.pobjdat_u はクラスのポインタとして使用されるので、継承クラスで
     この値を変更してはいけません。
 */
-DWORD CGoluahObject::gMessageToObject(DWORD msg,LPVOID pd,DWORD prm)
-{
-    if(pd==NULL)return(0);
-    GOBJECT *pdat = (GOBJECT*)pd;
-    CGoluahObject *pc = (CGoluahObject*)(pdat->pobjdat_u);
+DWORD CGoluahObject::gMessageToObject(DWORD msg, LPVOID pd, DWORD prm) {
+  if (pd == NULL)
+    return (0);
+  GOBJECT *pdat = (GOBJECT *)pd;
+  CGoluahObject *pc = (CGoluahObject *)(pdat->pobjdat_u);
 
-    if(pc!=NULL){
-        DWORD result;
+  if (pc != NULL) {
+    DWORD result;
 
-        if (pObjDeleting == pc) {	// 手動解放時エラー防止
-            if(msg==GOBJMSG_DELETE) pObjDeleting = NULL;
-            return 1;	// デフォルト動作は行いません
-        }
-
-        // メッセージを処理
-        result = pc->Message(msg,pd,prm);
-
-        // 真・改ざんストッパー　書き換えられませんよ。。。（￣ー￣）ﾆﾔﾘｯ
-        pdat->id = pc->oid;
-        pdat->pobjdat_u = pc;
-        pdat->msghandler = gMessageToObject;
-        pc->pdat = pdat;
-
-        if(msg==GOBJMSG_DELETE){
-            #ifdef _DEBUG
-                OutputDebugString("DLL GOBJMSG_DELETEメッセージ来ました\n");
-            #endif
-            pObjToDelete = pc;
-            delete(pc);
-        }
-        return(result);
+    if (pObjDeleting == pc) { // 手動解放時エラー防止
+      if (msg == GOBJMSG_DELETE)
+        pObjDeleting = NULL;
+      return 1; // デフォルト動作は行いません
     }
 
-    return(0);
-}
+    // メッセージを処理
+    result = pc->Message(msg, pd, prm);
 
+    // 真・改ざんストッパー　書き換えられませんよ。。。（￣ー￣）ﾆﾔﾘｯ
+    pdat->id = pc->oid;
+    pdat->pobjdat_u = pc;
+    pdat->msghandler = gMessageToObject;
+    pc->pdat = pdat;
+
+    if (msg == GOBJMSG_DELETE) {
+#ifdef _DEBUG
+      OutputDebugString("DLL GOBJMSG_DELETEメッセージ来ました\n");
+#endif
+      pObjToDelete = pc;
+      delete (pc);
+    }
+    return (result);
+  }
+
+  return (0);
+}
 
 /*!
     @brief GOBJMSG_ACTIONメッセージ処理関数
@@ -357,9 +370,7 @@ DWORD CGoluahObject::gMessageToObject(DWORD msg,LPVOID pd,DWORD prm)
     基本的に1フレに1回呼び出されます。
     継承して、このなか（のさらに分岐した関数）でキャラクターや飛び道具等のアニメーションを記述します。
 */
-DWORD CGoluahObject::Action(){
-    return(TRUE);
-}
+DWORD CGoluahObject::Action() { return (TRUE); }
 
 /*!
     @brief GOBJMSG_COMMANDメッセージ処理関数
@@ -367,7 +378,7 @@ DWORD CGoluahObject::Action(){
     コマンド判定処理を行うために、基本的に1フレに1回呼び出されます。
     継承して、このなか（のさらに分岐した関数）でコマンド処理を実装します。
 */
-void CGoluahObject::Command(){}
+void CGoluahObject::Command() {}
 
 /*!
     @brief GOBJMSG_COMMANDCOMメッセージ処理関数
@@ -378,7 +389,7 @@ void CGoluahObject::Command(){}
     @param wid 技の行動ID
     @return 0:非許可, 0以外:許可
 */
-DWORD CGoluahObject::CommandCOM(DWORD wid){return(FALSE);}
+DWORD CGoluahObject::CommandCOM(DWORD wid) { return (FALSE); }
 
 /*!
     @brief GOBJMSG_TOUCHAメッセージ処理関数
@@ -392,9 +403,8 @@ DWORD CGoluahObject::CommandCOM(DWORD wid){return(FALSE);}
     @param ta_eid 攻撃者のオブジェクトID
     @return TOUCHA_～のリターンコード
 */
-DWORD CGoluahObject::TouchA(ATTACKINFO *info,DWORD ta_eid)
-{
-    return(0);//デフォルトのガード判定処理
+DWORD CGoluahObject::TouchA(ATTACKINFO *info, DWORD ta_eid) {
+  return (0); //デフォルトのガード判定処理
 }
 
 /*!
@@ -408,10 +418,9 @@ DWORD CGoluahObject::TouchA(ATTACKINFO *info,DWORD ta_eid)
     @param hit TRUE:ヒットした, FALSE:ガードされた
     @return 常に0
 */
-DWORD CGoluahObject::TouchB(ATTACKINFO *info,BOOL hit)
-{
-    pdat->kougeki=FALSE;//攻撃力の無効化
-    return(0);
+DWORD CGoluahObject::TouchB(ATTACKINFO *info, BOOL hit) {
+  pdat->kougeki = FALSE; //攻撃力の無効化
+  return (0);
 }
 
 /*!
@@ -425,7 +434,7 @@ DWORD CGoluahObject::TouchB(ATTACKINFO *info,BOOL hit)
     @param tc_eid 被害者のオブジェクトID
     @return TOUCHC_～のリターンコード
 */
-DWORD CGoluahObject::TouchC(ATTACKINFO *info,DWORD tc_eid){return(0);}
+DWORD CGoluahObject::TouchC(ATTACKINFO *info, DWORD tc_eid) { return (0); }
 
 /*!
     @brief GOBJMSG_TOUCHCメッセージ処理関数
@@ -436,7 +445,6 @@ DWORD CGoluahObject::TouchC(ATTACKINFO *info,DWORD tc_eid){return(0);}
     @return 移行する動作のACTID
 */
 DWORD CGoluahObject::ComThink() { return 0; }
-
 
 /*-----------------------------------------------------------------------------
     そのたもろもろ
@@ -449,9 +457,8 @@ DWORD CGoluahObject::ComThink() { return 0; }
     CGoluahObject::ActionIDChanged は、z値(GOBJECT::z)を、基準z位置(CGoluahObject::base_z)に
     戻します。
 */
-void CGoluahObject::ActionIDChanged()
-{
-    pdat->z=base_z;//z座標を基準値に戻す
+void CGoluahObject::ActionIDChanged() {
+  pdat->z = base_z; // z座標を基準値に戻す
 }
 
 /*!
@@ -463,10 +470,7 @@ void CGoluahObject::ActionIDChanged()
 
     @return FALSE:オブジェクトの消去、TRUE:次のラウンドへ持ち越し
 */
-BOOL CGoluahObject::OnChangeRound()
-{
-    return(TRUE);
-}
+BOOL CGoluahObject::OnChangeRound() { return (TRUE); }
 
 /*!
     @brief オブジェクトの向きを判定してxオフセット値を作成
@@ -480,10 +484,11 @@ BOOL CGoluahObject::OnChangeRound()
     @param x オフセット量(+は前方、-は後方)
     @return 向きを考慮したオフセット量
 */
-double CGoluahObject::zurex(double x)
-{
-    if(pdat->muki)return(x*-1);
-    else return(x);
+double CGoluahObject::zurex(double x) {
+  if (pdat->muki)
+    return (x * -1);
+  else
+    return (x);
 }
 
 /*!
@@ -492,10 +497,11 @@ double CGoluahObject::zurex(double x)
     double版のものを int にオーバーロードしたものです。
     double版を参照してください。
 */
-int CGoluahObject::zurex(int x)
-{
-    if(pdat->muki)return(x*-1);
-    else return(x);
+int CGoluahObject::zurex(int x) {
+  if (pdat->muki)
+    return (x * -1);
+  else
+    return (x);
 }
 
 /*!
@@ -507,10 +513,7 @@ int CGoluahObject::zurex(int x)
 
     @param dx 移動量(+は前方、-は後方)
 */
-void CGoluahObject::movex(double dx)
-{
-    velocity += dx;
-}
+void CGoluahObject::movex(double dx) { velocity += dx; }
 
 /*!
     @brief オブジェクトの向きを判定してX方向移動
@@ -518,10 +521,7 @@ void CGoluahObject::movex(double dx)
     double版のものを int にオーバーロードしたものです。
     double版を参照してください。
 */
-void CGoluahObject::movex(int dx)
-{
-    movex((double)dx);
-}
+void CGoluahObject::movex(int dx) { movex((double)dx); }
 
 /*!
     @brief オブジェクトプロパティの追加
@@ -533,10 +533,7 @@ void CGoluahObject::movex(int dx)
 
     @param prop 追加するオブジェクトプロパティフラグ
 */
-void CGoluahObject::AddProperty(DWORD prop)
-{
-    pdat->objtype |= prop;
-}
+void CGoluahObject::AddProperty(DWORD prop) { pdat->objtype |= prop; }
 
 /*!
     @brief オブジェクトプロパティの削除
@@ -547,10 +544,7 @@ void CGoluahObject::AddProperty(DWORD prop)
 
     @param prop 削除するオブジェクトプロパティフラグ
 */
-void CGoluahObject::RemoveProperty(DWORD prop)
-{
-    pdat->objtype &= ~(prop);
-}
+void CGoluahObject::RemoveProperty(DWORD prop) { pdat->objtype &= ~(prop); }
 
 /*!
     @brief オブジェクトプロパティの全設定
@@ -561,10 +555,7 @@ void CGoluahObject::RemoveProperty(DWORD prop)
 
     @param prop 設定するオブジェクトプロパティフラグ
 */
-void CGoluahObject::SetProperty(DWORD prop)
-{
-    pdat->objtype = prop;
-}
+void CGoluahObject::SetProperty(DWORD prop) { pdat->objtype = prop; }
 
 /*!
     @brief GOBJMSG_DRAWFRONTメッセージ関数
@@ -576,7 +567,7 @@ void CGoluahObject::SetProperty(DWORD prop)
 
     @return TRUE:デフォルトのセル描画を行わせる,FALSE:デフォルト描画を行わない
 */
-DWORD CGoluahObject::DrawFront(){return(FALSE);}
+DWORD CGoluahObject::DrawFront() { return (FALSE); }
 
 /*!
     @brief GOBJMSG_DRAWBACKメッセージ関数
@@ -588,7 +579,7 @@ DWORD CGoluahObject::DrawFront(){return(FALSE);}
 
     @return TRUE:デフォルトのセル描画を行わせる,FALSE:デフォルト描画を行わない
 */
-DWORD CGoluahObject::DrawBack(){return(FALSE);}
+DWORD CGoluahObject::DrawBack() { return (FALSE); }
 
 /*!
     @brief GOBJMSG_DRAWメッセージ処理
@@ -601,7 +592,7 @@ DWORD CGoluahObject::DrawBack(){return(FALSE);}
 
     @return FALSE:デフォルトのセル描画を行わせる,TRUE:デフォルト描画を行わない
 */
-DWORD CGoluahObject::Draw(){return(FALSE);}
+DWORD CGoluahObject::Draw() { return (FALSE); }
 
 /*!
     @brief 行動ID変更処理
@@ -616,12 +607,11 @@ DWORD CGoluahObject::Draw(){return(FALSE);}
 
     @param actid 変更する新しい行動ID値
 */
-void CGoluahObject::ChangeAction(DWORD actid)
-{
-    if(pdat->aid!=actid){
-        pdat->aid=actid;
-        funco->actidchanged(pdat->id);
-    }
+void CGoluahObject::ChangeAction(DWORD actid) {
+  if (pdat->aid != actid) {
+    pdat->aid = actid;
+    funco->actidchanged(pdat->id);
+  }
 }
 
 /*!
@@ -629,18 +619,17 @@ void CGoluahObject::ChangeAction(DWORD actid)
 
     delete処理が独自なので、ついでにこっちも。
 */
-void* CGoluahObject::operator new(size_t size)
-{
-#	ifdef _DEBUG
-        void* result = malloc(size);
+void *CGoluahObject::operator new(size_t size) {
+#ifdef _DEBUG
+  void *result = malloc(size);
 
-        if (result)
-            num_allocs += size;
+  if (result)
+    num_allocs += size;
 
-        return result;
-#	else
-        return malloc(size);
-#	endif //_DEBUG
+  return result;
+#else
+  return malloc(size);
+#endif //_DEBUG
 }
 
 /*!
@@ -648,15 +637,13 @@ void* CGoluahObject::operator new(size_t size)
 
     アサーションがウザイので、自前で書きました。
 */
-void CGoluahObject::operator delete(void* p, size_t size)
-{
-#		ifdef _DEBUG
-            num_allocs -= size;
-#		endif
+void CGoluahObject::operator delete(void *p, size_t size) {
+#ifdef _DEBUG
+  num_allocs -= size;
+#endif
 
-    free(p);
+  free(p);
 }
-
 
 /*-----------------------------------------------------------------------------
     システム関連の関数
@@ -673,9 +660,7 @@ void CGoluahObject::operator delete(void* p, size_t size)
     システムが保持するキー入力のログから、指定フレーム数分過去の値を取得します。
     通常は0(現在)の入力を取得します。
 */
-DWORD CGoluahObject::GetKey(DWORD keyinput, DWORD interval) {
-    return funcs->getkey(keyinput, interval);
-}
+DWORD CGoluahObject::GetKey(DWORD keyinput, DWORD interval) { return funcs->getkey(keyinput, interval); }
 /*!
     @brief キー入力検索
     @sa GKEYSTATES
@@ -689,7 +674,7 @@ DWORD CGoluahObject::GetKey(DWORD keyinput, DWORD interval) {
     コマンド判定を行うときに使用します。
 */
 int CGoluahObject::SeekKey(DWORD keyinput, int offset, int delay, DWORD keystate) {
-    return funcs->seekkey(keyinput,  offset,  delay, keystate);
+  return funcs->seekkey(keyinput, offset, delay, keystate);
 }
 /*!
     @brief 勝利台詞設定
@@ -701,9 +686,7 @@ int CGoluahObject::SeekKey(DWORD keyinput, int offset, int delay, DWORD keystate
     通常は、外部テキストから設定を読み込んで設定する、CCharacterBase::LoadAndSetKatiSerif
     を使用します。
 */
-void CGoluahObject::SetKatiSerif(DWORD tid, char* serif) {
-    funcs->setkatiserif(tid, serif);
-}
+void CGoluahObject::SetKatiSerif(DWORD tid, char *serif) { funcs->setkatiserif(tid, serif); }
 /*!
     @brief システムエフェクト発生
     @sa DI_FUNCTIONS_S::addeffect
@@ -717,7 +700,7 @@ void CGoluahObject::SetKatiSerif(DWORD tid, char* serif) {
     それぞれのエフェクトのIDと引数の意味はSYSTEM_EFFECT_IDsを参照。
 */
 void CGoluahObject::AddEffect(DWORD EffectID, int prm1, int prm2, DWORD prm3) {
-    funcs->addeffect(EffectID, prm1, prm2, prm3);
+  funcs->addeffect(EffectID, prm1, prm2, prm3);
 }
 /*!
     @brief システムサウンド再生
@@ -728,9 +711,7 @@ void CGoluahObject::AddEffect(DWORD EffectID, int prm1, int prm2, DWORD prm3) {
     システムで用意されているサウンドを再生する。
     引数はSYSTEM_SOUND_IDsを参照のこと。
 */
-void CGoluahObject::PlaySysSound(DWORD SoundNo) {
-    funcs->playsyssound(SoundNo);
-}
+void CGoluahObject::PlaySysSound(DWORD SoundNo) { funcs->playsyssound(SoundNo); }
 /*!
     @brief wavサウンドロード
     @param pathname ファイル名(本体実行ファイルからの相対)
@@ -742,9 +723,7 @@ void CGoluahObject::PlaySysSound(DWORD SoundNo) {
     wavサウンドをロードする。
     戻り値で与えられたポインタは、必ずCGoluahObject::KillMySoundで破棄すること。
 */
-LPVOID CGoluahObject::LoadMySound(char* pathname) {
-    return funcs->loadmysound(pathname);
-}
+LPVOID CGoluahObject::LoadMySound(char *pathname) { return funcs->loadmysound(pathname); }
 /*!
     @brief wavサウンド再生
     @param psound サウンドのポインタ
@@ -753,9 +732,7 @@ LPVOID CGoluahObject::LoadMySound(char* pathname) {
 
     LoadMySoundでロードしたwavサウンドを再生する。
 */
-void CGoluahObject::PlayMySound(LPVOID psound) {
-    funcs->playmysound(psound);
-}
+void CGoluahObject::PlayMySound(LPVOID psound) { funcs->playmysound(psound); }
 /*!
     @brief wavサウンド破棄
     @param psound サウンドのポインタ
@@ -764,9 +741,7 @@ void CGoluahObject::PlayMySound(LPVOID psound) {
 
     LoadMySoundでロードしたwavサウンドをアンロードする
 */
-void CGoluahObject::KillMySound(LPVOID psound) {
-    funcs->killmysound(psound);
-}
+void CGoluahObject::KillMySound(LPVOID psound) { funcs->killmysound(psound); }
 
 /*!
     @brief システムへメッセージ送信
@@ -779,9 +754,7 @@ void CGoluahObject::KillMySound(LPVOID psound) {
     システムへメッセージを送信します。送信できるメッセージの値とそれぞれの意味に関してはMESSAGE_OBJ2SYSを参照。
     試合進行に関係するイベントや、支援攻撃、交代等の要請などがこれにあたります。
 */
-DWORD CGoluahObject::Message2System(DWORD mes, DWORD prm) {
-    return funcs->msg2system(pdat->id, mes, prm);
-}
+DWORD CGoluahObject::Message2System(DWORD mes, DWORD prm) { return funcs->msg2system(pdat->id, mes, prm); }
 
 /*!
     @brief 敵の名前を取得する
@@ -792,9 +765,7 @@ DWORD CGoluahObject::Message2System(DWORD mes, DWORD prm) {
     取得できる敵の名前は、対戦形式が同時対戦の場合不定です。
     それ以外の場合は最後にKOされたキャラクターの名前が取得されます。
 */
-char* CGoluahObject::GetEnemyName(DWORD tid) {
-    return funcs->getenemyname(tid);
-}
+char *CGoluahObject::GetEnemyName(DWORD tid) { return funcs->getenemyname(tid); }
 
 /*!
     @brief オブジェクト所有キャラの名前を取得する
@@ -802,9 +773,7 @@ char* CGoluahObject::GetEnemyName(DWORD tid) {
     @return 指定キャラの名前文字列
     @sa DI_FUNCTIONS_O::getcharname
 */
-char* CGoluahObject::GetCharacterName(DWORD oid) {
-    return funco->getcharname(oid);
-}
+char *CGoluahObject::GetCharacterName(DWORD oid) { return funco->getcharname(oid); }
 
 /*!
     @brief オブジェクト所有キャラのキー入力インデックス値を取得する
@@ -812,10 +781,7 @@ char* CGoluahObject::GetCharacterName(DWORD oid) {
     @return 指定キャラのキー入力インデックス値
     @sa DI_FUNCTIONS_O::getkeyinput
 */
-DWORD CGoluahObject::GetKeyInput(DWORD oid) {
-    return funco->getkeyinput(oid);
-}
-
+DWORD CGoluahObject::GetKeyInput(DWORD oid) { return funco->getkeyinput(oid); }
 
 /*!
     @brief 現在の表示中心位置Xを取得
@@ -825,9 +791,7 @@ DWORD CGoluahObject::GetKeyInput(DWORD oid) {
     ステージの表示位置はキャラクターの移動によって変化します。
     この関数はステージの現在の表示中心位置のX座標を取得します。
 */
-double CGoluahObject::GetDisplayCenter_X() {
-    return funcs->getdispcenterx();
-}
+double CGoluahObject::GetDisplayCenter_X() { return funcs->getdispcenterx(); }
 /*!
     @brief 現在の表示中心位置Yを取得
     @return 表示中心Y座標
@@ -836,9 +800,7 @@ double CGoluahObject::GetDisplayCenter_X() {
     ステージの表示位置はキャラクターの移動によって変化します。
     この関数はステージの現在の表示中心位置のX座標を取得します。
 */
-double CGoluahObject::GetDisplayCenter_Y() {
-    return funcs->getdispcentery();
-}
+double CGoluahObject::GetDisplayCenter_Y() { return funcs->getdispcentery(); }
 /*!
     @brief チームの人数を取得
     @return TEAM_PLAYER1側のチーム人数
@@ -849,9 +811,7 @@ double CGoluahObject::GetDisplayCenter_Y() {
     違うので、この関数の使用は避けてください。
     代替機能としてCGoluahObject::GetTeamNum2を使用します。
 */
-DWORD CGoluahObject::GetTeamNum() {
-    return funcs->getteamnum();
-}
+DWORD CGoluahObject::GetTeamNum() { return funcs->getteamnum(); }
 /*!
     @brief 試合形式取得
     @return TAISENKEISIKI_～の値
@@ -860,9 +820,7 @@ DWORD CGoluahObject::GetTeamNum() {
 
     現在の試合形式を取得する。
 */
-DWORD CGoluahObject::GetTaisenKeisiki() {
-    return funcs->gettaisenkeisiki();
-}
+DWORD CGoluahObject::GetTaisenKeisiki() { return funcs->gettaisenkeisiki(); }
 /*!
     @brief 敵のface変更値を取得する
     @param tid 自分側のチームID
@@ -876,9 +834,7 @@ DWORD CGoluahObject::GetTaisenKeisiki() {
     どのイメージが使用されているかを返します。
     勝利台詞設定時などに利用します。
 */
-BYTE CGoluahObject::GetEnemyFace(DWORD tid) {
-    return funcs->getenemyface(tid);
-}
+BYTE CGoluahObject::GetEnemyFace(DWORD tid) { return funcs->getenemyface(tid); }
 /*!
     @brief チームの人数を取得
     @param tid 人数を取得するチームのチームID
@@ -889,10 +845,7 @@ BYTE CGoluahObject::GetEnemyFace(DWORD tid) {
     tidには通常自分のチームID(GOBJECT::tid)を指定します。
     敵チームに関して調べたい場合はCGoluahObject::EnemyTIDを使用します。
 */
-DWORD CGoluahObject::GetTeamNum2(DWORD tid)
-{
-    return funcs->getteamnum2(tid);
-}
+DWORD CGoluahObject::GetTeamNum2(DWORD tid) { return funcs->getteamnum2(tid); }
 
 /*!
     @brief チームIDを敵側のチームIDに変換
@@ -903,10 +856,7 @@ DWORD CGoluahObject::GetTeamNum2(DWORD tid)
     チームIDを敵側のチームIDに変換します。
 
 */
-DWORD CGoluahObject::TID2EnemyTID(DWORD tid)
-{
-    return funcs->tid2etid(tid);
-}
+DWORD CGoluahObject::TID2EnemyTID(DWORD tid) { return funcs->tid2etid(tid); }
 /*!
     @brief 敵側のチームIDを取得
     @return 敵のチームID
@@ -914,10 +864,7 @@ DWORD CGoluahObject::TID2EnemyTID(DWORD tid)
     自分のチームID(GOBJECT::tid)をCGoluahObject::TID2EnemyTID(DWORD tid)につっこんで
     敵側のチームIDを取します。
 */
-DWORD CGoluahObject::EnemyTID()
-{
-    return TID2EnemyTID(pdat->tid);
-}
+DWORD CGoluahObject::EnemyTID() { return TID2EnemyTID(pdat->tid); }
 /*!
     @brief ネットワークモードかどうかを取得する
     @return 現在は常にFALSE
@@ -925,116 +872,97 @@ DWORD CGoluahObject::EnemyTID()
 
     現在は常にFALSEが返ります
 */
-BOOL CGoluahObject::IsNetwork(){
-    return funcs->is_net();
+BOOL CGoluahObject::IsNetwork() { return funcs->is_net(); }
+
+/*!
+ *	@brief タグのセット
+ *	@param tag エラー発生時にログに出力される文字列
+ *	@sa DI_FUNCTIONS_S::pushtag
+ *
+ *	例外発生時、この関数によって設定された文字列がエラーログに追加されます。
+ *	例外を投げるバグの発生しそうな場所を PushTag , PopTag で囲むことによって、
+ *	エラー発生個所の特定に役立つかもしれない。
+ *	設定したタグはスタック式に保持されるので、この関数を複数回実行することも可能です。
+ *	システムはこの関数で渡された文字列のコピーは作成しないので、
+ *	この関数で設定する文字列は破棄されない場所に確保してください。
+ */
+void CGoluahObject::PushTag(const char *tag) { funcs->pushtag(tag); }
+
+/*!
+ *	@brief タグの除去
+ *	@sa CGoluahObject::PushTag
+ *	@sa DI_FUNCTIONS_S::poptag
+ *
+ *	最後にPushされたタグを削除します
+ */
+void CGoluahObject::PopTag() { funcs->poptag(); }
+
+/*!
+ *	@brief ログ出力([error]) + 書式
+ */
+void CGoluahObject::LogError(const char *fmt, ...) {
+  va_list args;
+  va_start(args, fmt);
+  char buffer[512];
+  vsprintf(buffer, fmt, args);
+  funcs->logerror(buffer);
+  va_end(args);
 }
 
 /*!
-*	@brief タグのセット
-*	@param tag エラー発生時にログに出力される文字列
-*	@sa DI_FUNCTIONS_S::pushtag
-*
-*	例外発生時、この関数によって設定された文字列がエラーログに追加されます。
-*	例外を投げるバグの発生しそうな場所を PushTag , PopTag で囲むことによって、
-*	エラー発生個所の特定に役立つかもしれない。
-*	設定したタグはスタック式に保持されるので、この関数を複数回実行することも可能です。
-*	システムはこの関数で渡された文字列のコピーは作成しないので、
-*	この関数で設定する文字列は破棄されない場所に確保してください。
-*/
-void CGoluahObject::PushTag(const char* tag)
-{
-    funcs->pushtag( tag );
+ *	@brief ログ出力([warning]) + 書式
+ */
+void CGoluahObject::LogWarning(const char *fmt, ...) {
+  va_list args;
+  va_start(args, fmt);
+  char buffer[512];
+  vsprintf(buffer, fmt, args);
+  funcs->logwarning(buffer);
+  va_end(args);
 }
 
 /*!
-*	@brief タグの除去
-*	@sa CGoluahObject::PushTag
-*	@sa DI_FUNCTIONS_S::poptag
-*
-*	最後にPushされたタグを削除します
-*/
-void CGoluahObject::PopTag()
-{
-    funcs->poptag();
+ *	@brief ログ出力([debug]) + 書式
+ */
+void CGoluahObject::LogDebug(const char *fmt, ...) {
+  va_list args;
+  va_start(args, fmt);
+  char buffer[512];
+  vsprintf(buffer, fmt, args);
+  funcs->logdebug(buffer);
+  va_end(args);
 }
 
 /*!
-*	@brief ログ出力([error]) + 書式
-*/
-void CGoluahObject::LogError(const char* fmt,...)
-{
-    va_list args;
-    va_start(args, fmt);
-    char buffer[512];
-    vsprintf(buffer, fmt, args);
-    funcs->logerror( buffer );
-    va_end(args);
+ *	@brief ログ出力([info]) + 書式
+ */
+void CGoluahObject::LogInfo(const char *fmt, ...) {
+  va_list args;
+  va_start(args, fmt);
+  char buffer[512];
+  vsprintf(buffer, fmt, args);
+  funcs->loginfo(buffer);
+  va_end(args);
 }
 
 /*!
-*	@brief ログ出力([warning]) + 書式
-*/
-void CGoluahObject::LogWarning(const char* fmt,...)
-{
-    va_list args;
-    va_start(args, fmt);
-    char buffer[512];
-    vsprintf(buffer, fmt, args);
-    funcs->logwarning( buffer );
-    va_end(args);
-}
+ * @brief BGMの一時停止
+ * @sa CGoluahObject::BGMResume
+ * @sa DI_FUNCTIONS_S::bgm_pause
+ *
+ * BGMの再生を一時停止します。BGMResumeで再開します。
+ * 独自BGMなどの演出に。
+ */
+void CGoluahObject::BGMPause() { funcs->bgm_pause(); }
 
 /*!
-*	@brief ログ出力([debug]) + 書式
-*/
-void CGoluahObject::LogDebug(const char* fmt,...)
-{
-    va_list args;
-    va_start(args, fmt);
-    char buffer[512];
-    vsprintf(buffer, fmt, args);
-    funcs->logdebug( buffer );
-    va_end(args);
-}
-
-/*!
-*	@brief ログ出力([info]) + 書式
-*/
-void CGoluahObject::LogInfo(const char* fmt,...)
-{
-    va_list args;
-    va_start(args, fmt);
-    char buffer[512];
-    vsprintf(buffer, fmt, args);
-    funcs->loginfo( buffer );
-    va_end(args);
-}
-
-/*!
-* @brief BGMの一時停止
-* @sa CGoluahObject::BGMResume
-* @sa DI_FUNCTIONS_S::bgm_pause
-*
-* BGMの再生を一時停止します。BGMResumeで再開します。
-* 独自BGMなどの演出に。
-*/
-void CGoluahObject::BGMPause()
-{
-funcs->bgm_pause();
-}
-
-/*!
-* @brief BGMの再開
-* @sa CGoluahObject::BGMPause
-* @sa DI_FUNCTIONS_S::bgm_resume
-*
-* BGMPauseで停止したBGMの再生を再開します。
-*/
-void CGoluahObject::BGMResume()
-{
-funcs->bgm_resume();
-}
-
+ * @brief BGMの再開
+ * @sa CGoluahObject::BGMPause
+ * @sa DI_FUNCTIONS_S::bgm_resume
+ *
+ * BGMPauseで停止したBGMの再生を再開します。
+ */
+void CGoluahObject::BGMResume() { funcs->bgm_resume(); }
 
 /*-----------------------------------------------------------------------------
     オブジェクト関連の関数
@@ -1050,12 +978,12 @@ funcs->bgm_resume();
     成功した場合は相手が投げられ状態になるので、投げられ行動を適切に処理しないと
     試合進行に異常をきたすので注意してください。
 */
-BOOL   CGoluahObject::ObjCatch(DWORD eid,DWORD msg_nage) {
-    CATCHYOU cy;
+BOOL CGoluahObject::ObjCatch(DWORD eid, DWORD msg_nage) {
+  CATCHYOU cy;
 
-    cy.oid = pdat->id;
-    cy.actmsg = msg_nage;
-    return funco->objcatch(eid, &cy);
+  cy.oid = pdat->id;
+  cy.actmsg = msg_nage;
+  return funco->objcatch(eid, &cy);
 }
 /*!
     @brief オブジェクト情報(GOBJECT)取得
@@ -1065,9 +993,7 @@ BOOL   CGoluahObject::ObjCatch(DWORD eid,DWORD msg_nage) {
 
     指定IDのオブジェクトのオブジェクト情報を取得します。
 */
-GOBJECT* CGoluahObject::GetInfo(DWORD oid) {
-    return (GOBJECT*)funco->getinfo(oid);
-}
+GOBJECT *CGoluahObject::GetInfo(DWORD oid) { return (GOBJECT *)funco->getinfo(oid); }
 
 /*!
     @brief 強制的にダメージを与える
@@ -1080,9 +1006,7 @@ GOBJECT* CGoluahObject::GetInfo(DWORD oid) {
     この関数で相手にダメージを与えます。攻撃情報は自オブジェクトに設定されたものが使用されるので、
     普通に攻撃をするとき同様、StartAttackを使用して攻撃力情報を設定します。
 */
-void   CGoluahObject::AddDamage(DWORD eid,int x,int y) {
-    funco->adddamage(pdat->id, eid, x, y);
-}
+void CGoluahObject::AddDamage(DWORD eid, int x, int y) { funco->adddamage(pdat->id, eid, x, y); }
 /*!
     @brief 行動IDが変化したときの処理を明示的に行う
     @sa DI_FUNCTIONS_O::actidchanged
@@ -1095,9 +1019,7 @@ void   CGoluahObject::AddDamage(DWORD eid,int x,int y) {
     行動IDを変更した後でこの関数を呼び出すことにより、上記のような処理を行います。
     一応単体でも定義、普通に使うならChangeActionの使用をおすすめします。
 */
-void   CGoluahObject::ActIDChanged() {
-    funco->actidchanged(pdat->id);
-}
+void CGoluahObject::ActIDChanged() { funco->actidchanged(pdat->id); }
 /*!
     @brief 現在アクティブなキャラクターの情報を取得
     @param tid チーム
@@ -1107,18 +1029,14 @@ void   CGoluahObject::ActIDChanged() {
     "アクティブなキャラクター"は、対戦形式にもよりますが、
     基本的に画面に出て戦ってるキャラクターが返る、っぽい？あいまいな定義です。
 */
-GOBJECT*  CGoluahObject::GetActiveCharacter(DWORD tid) {
-    return (GOBJECT*)funco->getactivechar(tid);
-}
+GOBJECT *CGoluahObject::GetActiveCharacter(DWORD tid) { return (GOBJECT *)funco->getactivechar(tid); }
 /*!
     @brief 現在アクティブな敵キャラクターの情報
     @return 敵チームの現在キャラクターのオブジェクト情報
 
     CGoluahObject::GetActiveCharacter 参照
 */
-GOBJECT*  CGoluahObject::GetActiveEnemy() {
-    return GetActiveCharacter( EnemyTID() );
-}
+GOBJECT *CGoluahObject::GetActiveEnemy() { return GetActiveCharacter(EnemyTID()); }
 /*!
     @brief オブジェクト消滅
     @sa DI_FUNCTIONS_O::suicide
@@ -1126,9 +1044,7 @@ GOBJECT*  CGoluahObject::GetActiveEnemy() {
     オブジェクトを破棄します。
     注意：「エフェクト扱い」ではないオブジェクトをこの関数で破棄するのは非推奨です。
 */
-void   CGoluahObject::Suicide() {
-    funco->suicide(pdat->id);
-}
+void CGoluahObject::Suicide() { funco->suicide(pdat->id); }
 
 /*!
     @brief 間合いをget(水平)
@@ -1140,9 +1056,7 @@ void   CGoluahObject::Suicide() {
     間合いは重なり判定の距離で計算されます。
     オブジェクトが回転を含む場合、正しい値は得られません。
 */
-DWORD  CGoluahObject::GetMaai_H(DWORD oid, DWORD eoid) {
-    return funco->getmaai_h(oid, eoid);
-}
+DWORD CGoluahObject::GetMaai_H(DWORD oid, DWORD eoid) { return funco->getmaai_h(oid, eoid); }
 /*!
     @brief 間合いをget(垂直)
     @param oid オブジェクトその1
@@ -1150,9 +1064,7 @@ DWORD  CGoluahObject::GetMaai_H(DWORD oid, DWORD eoid) {
     @return 指定2オブジェクト間の間合い
     @sa DI_FUNCTIONS_O::getmaai_v
 */
-DWORD  CGoluahObject::GetMaai_V(DWORD oid, DWORD eoid) {
-    return funco->getmaai_v(oid, eoid);
-}
+DWORD CGoluahObject::GetMaai_V(DWORD oid, DWORD eoid) { return funco->getmaai_v(oid, eoid); }
 
 /*!
     @brief キャラクターのオブジェクトID
@@ -1161,9 +1073,7 @@ DWORD  CGoluahObject::GetMaai_V(DWORD oid, DWORD eoid) {
     @return キャラクターのオブジェクトID
     @sa DI_FUNCTIONS_O::getcharid
 */
-DWORD  CGoluahObject::GetCharacterID(DWORD tid,DWORD index) {
-    return funco->getcharid(tid, index);
-}
+DWORD CGoluahObject::GetCharacterID(DWORD tid, DWORD index) { return funco->getcharid(tid, index); }
 /*!
     @brief COMレベル取得
     @return COM制御の場合のレベル(難易度)
@@ -1174,9 +1084,7 @@ DWORD  CGoluahObject::GetCharacterID(DWORD tid,DWORD index) {
     参考にしてください。
     また、連続技をやらせる場合には CGoluahObject::SetComAct を推奨します
 */
-DWORD  CGoluahObject::GetComLevel(){
-    return funco->getcomlevel(oid);
-}
+DWORD CGoluahObject::GetComLevel() { return funco->getcomlevel(oid); }
 /*!
     @brief COMリーチ設定
     @param idx COMIDX_NEAR:短,COMIDX_MIDDLE:中,COMIDX_LONG:長
@@ -1187,9 +1095,7 @@ DWORD  CGoluahObject::GetComLevel(){
     システム側で技情報構造体に設定された技のうち、どれを選択するかの判断に影響します。
     設定を行わない場合はver0.8以前で使用されていた固定値が使用されます。
 */
-void   CGoluahObject::SetComReach(DWORD idx,int length){
-    funco->setcomreach(oid,idx,length);
-}
+void CGoluahObject::SetComReach(DWORD idx, int length) { funco->setcomreach(oid, idx, length); }
 /*!
     @brief COM行動設定
     @param aid 次に起こすべき行動の行動ID(0の場合行動を抑制する)
@@ -1200,9 +1106,7 @@ void   CGoluahObject::SetComReach(DWORD idx,int length){
     この関数で指定した発動遅延時間の間は別の行動に移行しません（ガード・喰らい等を除く）
     ただし、ガードくらい等の攻撃不能な行動に遷移した場合はこの設定はクリアされます。
 */
-void   CGoluahObject::SetComAct(DWORD aid,int delay){
-    funco->setcomact(oid,aid,delay);
-}
+void CGoluahObject::SetComAct(DWORD aid, int delay) { funco->setcomact(oid, aid, delay); }
 /*!
     @brief COM自動行動抑制
     @param delay 抑制する時間
@@ -1212,9 +1116,7 @@ void   CGoluahObject::SetComAct(DWORD aid,int delay){
     行動遷移が起こってから攻撃力が発生するまでに時間のかかる技の場合、
     その間に別の技をキャンセルして出さないようにディレイを持たせるために使用します。
 */
-void   CGoluahObject::ComDelay(int delay){
-    SetComAct(0,delay);
-}
+void CGoluahObject::ComDelay(int delay) { SetComAct(0, delay); }
 /*!
     @brief オブジェクトがローカルであるかどうか
     @return 現在は常にTRUE
@@ -1222,43 +1124,41 @@ void   CGoluahObject::ComDelay(int delay){
     もし仮にネットワーク対戦の機能が実装された場合、オブジェクトのあたり判定等は、
     そのオブジェクトがローカルなシステムの管理のものであるかどうかを判断する必要があります。
 */
-BOOL CGoluahObject::IsLocal(){
-    return funco->obj_is_local(oid);
-}
+BOOL CGoluahObject::IsLocal() { return funco->obj_is_local(oid); }
 
-void CGoluahObject::dact_damages1(GOBJECT *p)		{funco->dact_damages1(p);}
-void CGoluahObject::dact_damages2(GOBJECT *p)		{funco->dact_damages2(p);}
-void CGoluahObject::dact_damages3(GOBJECT *p)		{funco->dact_damages3(p);}
-void CGoluahObject::dact_damagec1(GOBJECT *p)		{funco->dact_damagec1(p);}
-void CGoluahObject::dact_damagec2(GOBJECT *p)		{funco->dact_damagec2(p);}
-void CGoluahObject::dact_damagec3(GOBJECT *p)		{funco->dact_damagec3(p);}
-void CGoluahObject::dact_damagej1(GOBJECT *p)		{funco->dact_damagej1(p);}
-void CGoluahObject::dact_damagej2(GOBJECT *p)		{funco->dact_damagej2(p);}
-void CGoluahObject::dact_damagej3(GOBJECT *p)		{funco->dact_damagej3(p);}
-void CGoluahObject::dact_damages1a(GOBJECT *p)		{funco->dact_damages1a(p);}
-void CGoluahObject::dact_damages2a(GOBJECT *p)		{funco->dact_damages2a(p);}
-void CGoluahObject::dact_damages3a(GOBJECT *p)		{funco->dact_damages3a(p);}
-void CGoluahObject::dact_damagec1a(GOBJECT *p)		{funco->dact_damagec1a(p);}
-void CGoluahObject::dact_damagec2a(GOBJECT *p)		{funco->dact_damagec2a(p);}
-void CGoluahObject::dact_damagec3a(GOBJECT *p)		{funco->dact_damagec3a(p);}
-void CGoluahObject::dact_guards1(GOBJECT *p)		{funco->dact_guards1(p);}
-void CGoluahObject::dact_guards2(GOBJECT *p)		{funco->dact_guards2(p);}
-void CGoluahObject::dact_guards3(GOBJECT *p)		{funco->dact_guards3(p);}
-void CGoluahObject::dact_guardc1(GOBJECT *p)		{funco->dact_guardc1(p);}
-void CGoluahObject::dact_guardc2(GOBJECT *p)		{funco->dact_guardc2(p);}
-void CGoluahObject::dact_guardc3(GOBJECT *p)		{funco->dact_guardc3(p);}
-void CGoluahObject::dact_guardj1(GOBJECT *p)		{funco->dact_guardj1(p);}
-void CGoluahObject::dact_guardj2(GOBJECT *p)		{funco->dact_guardj2(p);}
-void CGoluahObject::dact_guardj3(GOBJECT *p)		{funco->dact_guardj3(p);}
-void CGoluahObject::dact_down(GOBJECT *p)			{funco->dact_down(p);}
-void CGoluahObject::dact_down2(GOBJECT *p)			{funco->dact_down2(p);}
-void CGoluahObject::dact_okiagari(GOBJECT *p)		{funco->dact_okiagari(p);}
-void CGoluahObject::dact_futtobi(GOBJECT *p)		{funco->dact_futtobi(p);}
-void CGoluahObject::dact_futtobi2(GOBJECT *p)		{funco->dact_futtobi2(p);}
-void CGoluahObject::dact_tatakituke1a(GOBJECT *p)	{funco->dact_tatakituke1a(p);}
-void CGoluahObject::dact_tatakituke1b(GOBJECT *p)	{funco->dact_tatakituke2b(p);}
-void CGoluahObject::dact_tatakituke2a(GOBJECT *p)	{funco->dact_tatakituke1a(p);}
-void CGoluahObject::dact_tatakituke2b(GOBJECT *p)	{funco->dact_tatakituke2b(p);}
+void CGoluahObject::dact_damages1(GOBJECT *p) { funco->dact_damages1(p); }
+void CGoluahObject::dact_damages2(GOBJECT *p) { funco->dact_damages2(p); }
+void CGoluahObject::dact_damages3(GOBJECT *p) { funco->dact_damages3(p); }
+void CGoluahObject::dact_damagec1(GOBJECT *p) { funco->dact_damagec1(p); }
+void CGoluahObject::dact_damagec2(GOBJECT *p) { funco->dact_damagec2(p); }
+void CGoluahObject::dact_damagec3(GOBJECT *p) { funco->dact_damagec3(p); }
+void CGoluahObject::dact_damagej1(GOBJECT *p) { funco->dact_damagej1(p); }
+void CGoluahObject::dact_damagej2(GOBJECT *p) { funco->dact_damagej2(p); }
+void CGoluahObject::dact_damagej3(GOBJECT *p) { funco->dact_damagej3(p); }
+void CGoluahObject::dact_damages1a(GOBJECT *p) { funco->dact_damages1a(p); }
+void CGoluahObject::dact_damages2a(GOBJECT *p) { funco->dact_damages2a(p); }
+void CGoluahObject::dact_damages3a(GOBJECT *p) { funco->dact_damages3a(p); }
+void CGoluahObject::dact_damagec1a(GOBJECT *p) { funco->dact_damagec1a(p); }
+void CGoluahObject::dact_damagec2a(GOBJECT *p) { funco->dact_damagec2a(p); }
+void CGoluahObject::dact_damagec3a(GOBJECT *p) { funco->dact_damagec3a(p); }
+void CGoluahObject::dact_guards1(GOBJECT *p) { funco->dact_guards1(p); }
+void CGoluahObject::dact_guards2(GOBJECT *p) { funco->dact_guards2(p); }
+void CGoluahObject::dact_guards3(GOBJECT *p) { funco->dact_guards3(p); }
+void CGoluahObject::dact_guardc1(GOBJECT *p) { funco->dact_guardc1(p); }
+void CGoluahObject::dact_guardc2(GOBJECT *p) { funco->dact_guardc2(p); }
+void CGoluahObject::dact_guardc3(GOBJECT *p) { funco->dact_guardc3(p); }
+void CGoluahObject::dact_guardj1(GOBJECT *p) { funco->dact_guardj1(p); }
+void CGoluahObject::dact_guardj2(GOBJECT *p) { funco->dact_guardj2(p); }
+void CGoluahObject::dact_guardj3(GOBJECT *p) { funco->dact_guardj3(p); }
+void CGoluahObject::dact_down(GOBJECT *p) { funco->dact_down(p); }
+void CGoluahObject::dact_down2(GOBJECT *p) { funco->dact_down2(p); }
+void CGoluahObject::dact_okiagari(GOBJECT *p) { funco->dact_okiagari(p); }
+void CGoluahObject::dact_futtobi(GOBJECT *p) { funco->dact_futtobi(p); }
+void CGoluahObject::dact_futtobi2(GOBJECT *p) { funco->dact_futtobi2(p); }
+void CGoluahObject::dact_tatakituke1a(GOBJECT *p) { funco->dact_tatakituke1a(p); }
+void CGoluahObject::dact_tatakituke1b(GOBJECT *p) { funco->dact_tatakituke2b(p); }
+void CGoluahObject::dact_tatakituke2a(GOBJECT *p) { funco->dact_tatakituke1a(p); }
+void CGoluahObject::dact_tatakituke2b(GOBJECT *p) { funco->dact_tatakituke2b(p); }
 
 /*!
     @brief COMレンジ設定
@@ -1268,10 +1168,7 @@ void CGoluahObject::dact_tatakituke2b(GOBJECT *p)	{funco->dact_tatakituke2b(p);}
     COM判定で基本となる間合いを設定します。
     まだ試験中です、使わない方が良さげ。
 */
-void   CGoluahObject::SetComRange(DWORD idx){
-    funco->setcomrange(oid,idx);
-}
-
+void CGoluahObject::SetComRange(DWORD idx) { funco->setcomrange(oid, idx); }
 
 /*-----------------------------------------------------------------------------
     描画関連の関数
@@ -1283,9 +1180,7 @@ void   CGoluahObject::SetComRange(DWORD idx){
 
     IDirect3D*を取得します。取得しても使い道ないかもしれないけど...
 */
-LPDIRECT3D8 CGoluahObject::GetD3D() {
-    return (LPDIRECT3D8)funcd->getd3d();
-}
+LPDIRECT3D8 CGoluahObject::GetD3D() { return (LPDIRECT3D8)funcd->getd3d(); }
 /*!
     @brief IDirect3DDevice* の取得
     @sa DI_FUNCTIONS_D::getd3dd
@@ -1293,9 +1188,7 @@ LPDIRECT3D8 CGoluahObject::GetD3D() {
     IDirect3DDevice* を取得します。
     IDirect3DDevice*によって可能な操作はDirectXのSDKを参照してください。
 */
-LPDIRECT3DDEVICE8 CGoluahObject::GetD3DDevice() {
-    return (LPDIRECT3DDEVICE8)funcd->getd3dd();
-}
+LPDIRECT3DDEVICE8 CGoluahObject::GetD3DDevice() { return (LPDIRECT3DDEVICE8)funcd->getd3dd(); }
 /*!
     @brief ver0.70形式セルデータ読み込み(非推奨)
     @sa CGoluahObject::CreateCellData
@@ -1313,8 +1206,11 @@ LPDIRECT3DDEVICE8 CGoluahObject::GetD3DDevice() {
     この関数ではver0.9形式のGCDデータを読み込むことはできません。
     かわりにCGoluahObject::CreateCellDataを使用してください。
 */
-void   CGoluahObject::LoadCellData(char* pathname,GCD_CELL2_070* pCells,GCD_RECT* pRects,GCD_HANTEI* pHanteis) {
-    funcd->loadcelldat(pathname, pCells, pRects, pHanteis);
+void CGoluahObject::LoadCellData(char *pathname,
+                                 GCD_CELL2_070 *pCells,
+                                 GCD_RECT *pRects,
+                                 GCD_HANTEI *pHanteis) {
+  funcd->loadcelldat(pathname, pCells, pRects, pHanteis);
 }
 /*!
     @brief ビットマップ読み込み
@@ -1327,8 +1223,8 @@ void   CGoluahObject::LoadCellData(char* pathname,GCD_CELL2_070* pCells,GCD_RECT
     PathNameのファイルが持つパレットは通常無視されます。
     ロードしたイメージは必ずCGoluahObject::UnloadBitMapで破棄してください。
 */
-MYSURFACE* CGoluahObject::LoadBitmap(char* PathName,char* PalletFileName) {
-    return (MYSURFACE*)funcd->loadbmp(PathName, PalletFileName);
+MYSURFACE *CGoluahObject::LoadBitmap(char *PathName, char *PalletFileName) {
+  return (MYSURFACE *)funcd->loadbmp(PathName, PalletFileName);
 }
 /*!
     @brief ビットマップ後始末
@@ -1338,9 +1234,7 @@ MYSURFACE* CGoluahObject::LoadBitmap(char* PathName,char* PalletFileName) {
 
     読み込んだビットマップをアンロードします
 */
-void   CGoluahObject::UnloadBitMap(MYSURFACE* Bitmap) {
-    funcd->unloadbmp(Bitmap);
-}
+void CGoluahObject::UnloadBitMap(MYSURFACE *Bitmap) { funcd->unloadbmp(Bitmap); }
 /*!
     @brief セル描画
     @param pBmps 使用するビットマップ配列
@@ -1366,37 +1260,33 @@ void   CGoluahObject::UnloadBitMap(MYSURFACE* Bitmap) {
     @sa CGoluahObject::SetTransform
     @sa CGoluahObject::SetParentMatrix
 */
-void   CGoluahObject::CellDraw(MYSURFACE** pBmps,GCD_CELL2* cdat,GCD_RECT* rdat,
-    DWORD cnum,int x,int y,float z,int Rotate,BOOL ReverseX,BOOL ReverseY,DWORD Color,float magx,float magy) 
-{
-    funcd->celldraw((void**)pBmps, cdat, rdat,
-     cnum, x, y, z, Rotate, ReverseX, ReverseY, Color, magx, magy);
+void CGoluahObject::CellDraw(MYSURFACE **pBmps,
+                             GCD_CELL2 *cdat,
+                             GCD_RECT *rdat,
+                             DWORD cnum,
+                             int x,
+                             int y,
+                             float z,
+                             int Rotate,
+                             BOOL ReverseX,
+                             BOOL ReverseY,
+                             DWORD Color,
+                             float magx,
+                             float magy) {
+  funcd->celldraw((void **)pBmps, cdat, rdat, cnum, x, y, z, Rotate, ReverseX, ReverseY, Color, magx, magy);
 }
 /*!
     @brief セル描画
     @sa CGoluahObject::SetTransform
     @sa CGoluahObject::SetParentMatrix
-    
+
     通常はオブジェクトメッセージGOBJMSG_DRAWでFALSEを返すことにより同様の描画が行われますが、
     1オブジェクトで一度に２つ以上のセルを描画したい場合などにこの関数を利用することができます。
 */
-void   CGoluahObject::CellDraw(GOBJECT *objdat)
-{
-    funcd->celldraw(
-        (void**)objdat->pmsarr,
-        objdat->pcdat,
-        objdat->prdat,
-        objdat->cnow,
-        (int)objdat->x,
-        (int)objdat->y,
-        objdat->z,
-        objdat->rot,
-        objdat->muki ? (!objdat->revx) : objdat->revx,
-        objdat->revy,
-        objdat->color,
-        objdat->magx,
-        objdat->magy
-        );
+void CGoluahObject::CellDraw(GOBJECT *objdat) {
+  funcd->celldraw((void **)objdat->pmsarr, objdat->pcdat, objdat->prdat, objdat->cnow, (int)objdat->x,
+                  (int)objdat->y, objdat->z, objdat->rot, objdat->muki ? (!objdat->revx) : objdat->revx,
+                  objdat->revy, objdat->color, objdat->magx, objdat->magy);
 }
 /*!
     @brief ビットマップ描画
@@ -1419,11 +1309,17 @@ void   CGoluahObject::CellDraw(GOBJECT *objdat)
     @sa CGoluahObject::SetBlend
     @sa CGoluahObject::SetParentMatrix
 */
-void   CGoluahObject::CkBlt(MYSURFACE* pBmp,int x1,int y1,RECT bltrect,
-    double magx,double magy,BOOL revx,BOOL revy,float z,DWORD color)
-{
-    funcd->ckblt(pBmp, x1, y1, bltrect,
-     magx,  magy, revx, revy, z, color);
+void CGoluahObject::CkBlt(MYSURFACE *pBmp,
+                          int x1,
+                          int y1,
+                          RECT bltrect,
+                          double magx,
+                          double magy,
+                          BOOL revx,
+                          BOOL revy,
+                          float z,
+                          DWORD color) {
+  funcd->ckblt(pBmp, x1, y1, bltrect, magx, magy, revx, revy, z, color);
 }
 /*!
     @brief ビットマップ描画(2)
@@ -1440,9 +1336,8 @@ void   CGoluahObject::CkBlt(MYSURFACE* pBmp,int x1,int y1,RECT bltrect,
 
     CGoluahObject::LoadBitmapでロードしたビットマップを描画します。
 */
-void   CGoluahObject::Blt3D(MYSURFACE* pBmp,RECT bltrect,MYRECT3D rect,DWORD color)
-{
-    funcd->blt3d( pBmp, bltrect, rect, color);
+void CGoluahObject::Blt3D(MYSURFACE *pBmp, RECT bltrect, MYRECT3D rect, DWORD color) {
+  funcd->blt3d(pBmp, bltrect, rect, color);
 }
 /*!
     @brief 描画時座標変換設定
@@ -1453,9 +1348,7 @@ void   CGoluahObject::Blt3D(MYSURFACE* pBmp,RECT bltrect,MYRECT3D rect,DWORD col
     この関数でFALSEを指定するとウィンドウの左上を(0,0)とした座標系で描画されるようになります。
     変更した場合は、描画後にTRUEに戻しておくこと。
 */
-void   CGoluahObject::SetTransform(BOOL BonVoyage) {
-    funcd->settrans(BonVoyage);
-}
+void CGoluahObject::SetTransform(BOOL BonVoyage) { funcd->settrans(BonVoyage); }
 /*!
     @brief αブレンドの仕方を変更
     @sa DI_FUNCTIONS_D::setblend
@@ -1464,9 +1357,7 @@ void   CGoluahObject::SetTransform(BOOL BonVoyage) {
     α合成の方法を指定できます。ビットマップ描画に影響します。
     変更した場合は、描画後にGBLEND_HANTOUMEIに戻しておくこと。
 */
-void   CGoluahObject::SetBlend(DWORD type) {
-    funcd->setblend(type);
-}
+void CGoluahObject::SetBlend(DWORD type) { funcd->setblend(type); }
 /*!
     @brief 描画時座標変換行列設定
     @sa DI_FUNCTIONS_D::setparentmat
@@ -1481,8 +1372,8 @@ void   CGoluahObject::SetBlend(DWORD type) {
     変更した場合はOldMatrixで返される元の変換行列に戻します。
     通常は単位行列が設定されています。
 */
-void   CGoluahObject::SetParentMatrix(LPD3DXMATRIX pMatrix,BOOL erase,LPD3DXMATRIX OldMatrix) {
-    funcd->setparentmat( pMatrix, erase, OldMatrix);
+void CGoluahObject::SetParentMatrix(LPD3DXMATRIX pMatrix, BOOL erase, LPD3DXMATRIX OldMatrix) {
+  funcd->setparentmat(pMatrix, erase, OldMatrix);
 }
 /*!
     @brief GCDデータロード
@@ -1495,8 +1386,12 @@ void   CGoluahObject::SetParentMatrix(LPD3DXMATRIX pMatrix,BOOL erase,LPD3DXMATR
     変更を行う場合、将来GCDのフォーマットが変更され、
     ユーザーがGCDをいじったときに誤動作を起こす可能性があります。（別にかまわないかも?）
 */
-DWORD  CGoluahObject::CreateCellData(char* filename,GCD_CELL2 **cdat,GCD_RECT **rdat,GCD_HANTEI **hdat) {//セルデータ読み込み。ver0.90以降ではLoadCellDatからこちらに変更するべき
-    return funcd->create_celldat(filename, (void**)cdat, (void**)rdat, (void**)hdat);
+DWORD CGoluahObject::CreateCellData(
+    char *filename,
+    GCD_CELL2 **cdat,
+    GCD_RECT **rdat,
+    GCD_HANTEI **hdat) { //セルデータ読み込み。ver0.90以降ではLoadCellDatからこちらに変更するべき
+  return funcd->create_celldat(filename, (void **)cdat, (void **)rdat, (void **)hdat);
 }
 /*!
     @brief GCDデータ破棄
@@ -1505,8 +1400,10 @@ DWORD  CGoluahObject::CreateCellData(char* filename,GCD_CELL2 **cdat,GCD_RECT **
 
     CGoluahObject::CreateCellDataでロードしたGCDデータを破棄します。
 */
-void   CGoluahObject::DestroyCellData(GCD_CELL2 **cdat,GCD_RECT **rdat,GCD_HANTEI **hdat) {//CreateCellDatで生成されたバッファをクリア
-    funcd->destroy_celldat( (void**)cdat, (void**)rdat, (void**)hdat);
+void CGoluahObject::DestroyCellData(GCD_CELL2 **cdat,
+                                    GCD_RECT **rdat,
+                                    GCD_HANTEI **hdat) { // CreateCellDatで生成されたバッファをクリア
+  funcd->destroy_celldat((void **)cdat, (void **)rdat, (void **)hdat);
 }
 /*!
     @brief PNG/BMP形式画像読み込み
@@ -1520,8 +1417,8 @@ void   CGoluahObject::DestroyCellData(GCD_CELL2 **cdat,GCD_RECT **rdat,GCD_HANTE
     拡張子を除いたファイル名から、.pngと.bmpの２種類のタイプから自動選択して読み込みます(PNG優先）。
     あとは、ほとんどLoadBitmapと変わりません。
 */
-MYSURFACE* CGoluahObject::LoadImage(char* PathName, char* PalletFileName) {
-    return (MYSURFACE*)funcd->loadimage(PathName, PalletFileName);
+MYSURFACE *CGoluahObject::LoadImage(char *PathName, char *PalletFileName) {
+  return (MYSURFACE *)funcd->loadimage(PathName, PalletFileName);
 }
 /*!
     @brief GCDデータロード（２）
@@ -1533,10 +1430,13 @@ MYSURFACE* CGoluahObject::LoadImage(char* PathName, char* PalletFileName) {
     拡張子を除いたファイル名から、.gcm（圧縮）と.gcd（非圧縮）の２種類のタイプから自動選択して読み込みます(圧縮側優先）。
     それ以外は、CreateCellDataと変わりません。
 */
-DWORD  CGoluahObject::CreateCellData2(char* filename,GCD_CELL2 **cdat,GCD_RECT **rdat,GCD_HANTEI **hdat) {//セルデータ読み込み。ver0.90以降ではLoadCellDatからこちらに変更するべき
-    return funcd->create_celldat2(filename, (void**)cdat, (void**)rdat, (void**)hdat);
+DWORD CGoluahObject::CreateCellData2(
+    char *filename,
+    GCD_CELL2 **cdat,
+    GCD_RECT **rdat,
+    GCD_HANTEI **hdat) { //セルデータ読み込み。ver0.90以降ではLoadCellDatからこちらに変更するべき
+  return funcd->create_celldat2(filename, (void **)cdat, (void **)rdat, (void **)hdat);
 }
-
 
 /*!
     @class CCharacterBase
@@ -1559,17 +1459,16 @@ DWORD  CGoluahObject::CreateCellData2(char* filename,GCD_CELL2 **cdat,GCD_RECT *
     @brief 構築(1)
     @param info CreateCharacterの引数でシステムから受け取った構造体
 */
-CCharacterBase::CCharacterBase(CDI_CHARACTERINFO2 *info) : CGoluahObject(FALSE)
-{
-    parent_char = NULL;
+CCharacterBase::CCharacterBase(CDI_CHARACTERINFO2 *info) : CGoluahObject(FALSE) {
+  parent_char = NULL;
 
-    GetGObject()->tid	= info->tid;//チームID
-    keyinput			= info->keyinput;//何番からキー入力を受け取るか
-    pal_number			= info->color;//パレット番号
-    g_chardir			= info->dir;
-    option_flags		= info->options_flag;
+  GetGObject()->tid = info->tid; //チームID
+  keyinput = info->keyinput;     //何番からキー入力を受け取るか
+  pal_number = info->color;      //パレット番号
+  g_chardir = info->dir;
+  option_flags = info->options_flag;
 
-    CCharacterBaseCreate();
+  CCharacterBaseCreate();
 }
 
 /*!
@@ -1578,57 +1477,55 @@ CCharacterBase::CCharacterBase(CDI_CHARACTERINFO2 *info) : CGoluahObject(FALSE)
 
     飛び道具等のオブジェクトを生成するために使います
 */
-CCharacterBase::CCharacterBase(CCharacterBase *parent/* = NULL */) : CGoluahObject(FALSE)
-{
-    parent_char = parent;
+CCharacterBase::CCharacterBase(CCharacterBase *parent /* = NULL */) : CGoluahObject(FALSE) {
+  parent_char = parent;
 
-    if(parent!=NULL){
-        keyinput = parent->keyinput;//何番からキー入力を受け取るか
-        pal_number = parent->pal_number;//パレット番号
-        GetGObject()->tid		= parent->GetGObject()->tid;//チームID
-        g_chardir = parent->g_chardir;
-    }
-    else {
-        keyinput = 0;//何番からキー入力を受け取るか
-        pal_number = 0;//パレット番号
-        GetGObject()->tid		= 0;//チームID
-    }
+  if (parent != NULL) {
+    keyinput = parent->keyinput;                   //何番からキー入力を受け取るか
+    pal_number = parent->pal_number;               //パレット番号
+    GetGObject()->tid = parent->GetGObject()->tid; //チームID
+    g_chardir = parent->g_chardir;
+  } else {
+    keyinput = 0;          //何番からキー入力を受け取るか
+    pal_number = 0;        //パレット番号
+    GetGObject()->tid = 0; //チームID
+  }
 
-    CCharacterBaseCreate();
+  CCharacterBaseCreate();
 }
 
 /*!
     @brief コンストラクタの共通処理
 */
-void CCharacterBase::CCharacterBaseCreate()
-{
-    mysounds = NULL;
-    mysound_numbers = 0;
+void CCharacterBase::CCharacterBaseCreate() {
+  mysounds = NULL;
+  mysound_numbers = 0;
 
-    GOBJECT* pdat = GetGObject();
+  GOBJECT *pdat = GetGObject();
 
-    for(int i=0;i<GCDMAX_IMAGES;i++)bitmaps[i]=NULL;
-    cells=NULL;
-    hantei=NULL;
-    rects=NULL;
-    mysounds = NULL;
+  for (int i = 0; i < GCDMAX_IMAGES; i++)
+    bitmaps[i] = NULL;
+  cells = NULL;
+  hantei = NULL;
+  rects = NULL;
+  mysounds = NULL;
 
-    pdat->objtype	= GOBJTYPE_CHARACTER;//オブジェクトタイプ
-    pdat->winfo		= &(this->waz);
-    ZeroMemory(pdat->winfo,sizeof(WAZAINFO));
+  pdat->objtype = GOBJTYPE_CHARACTER; //オブジェクトタイプ
+  pdat->winfo = &(this->waz);
+  ZeroMemory(pdat->winfo, sizeof(WAZAINFO));
 
-    base_z	=ZZAHYO_CHARACTER;
-    front_z	=ZZAHYO_CHARACTER_F;
-    back_z	=ZZAHYO_CHARACTER_B;
+  base_z = ZZAHYO_CHARACTER;
+  front_z = ZZAHYO_CHARACTER_F;
+  back_z = ZZAHYO_CHARACTER_B;
 
-    chainComboEnabled = TRUE;	//チェーンコンボ有効
-    isSuperArmer = FALSE;		//スーパーアーマー無効
-    isAutoGuard = FALSE;		//オートガード無効
+  chainComboEnabled = TRUE; //チェーンコンボ有効
+  isSuperArmer = FALSE;     //スーパーアーマー無効
+  isAutoGuard = FALSE;      //オートガード無効
 
-    base_voice_damage1 = 1;
-    base_voice_damage2 = 2;
-    base_voice_damage3 = 3;
-    base_voice_ko = 0;
+  base_voice_damage1 = 1;
+  base_voice_damage2 = 2;
+  base_voice_damage3 = 3;
+  base_voice_ko = 0;
 }
 
 /*!
@@ -1637,24 +1534,23 @@ void CCharacterBase::CCharacterBaseCreate()
     CreateCharacter時にマクロから自動実行される手筈になっています。
     順番が具合悪い場合はオーバーライドしてください
 */
-void CCharacterBase::InitializeCharacter()
-{
-    InitParameters();
-    InitAttackInfo();
-    InitGCDandBMP();
-    InitWazInfo();
-    InitMySound();
-    InitBullets();
+void CCharacterBase::InitializeCharacter() {
+  InitParameters();
+  InitAttackInfo();
+  InitGCDandBMP();
+  InitWazInfo();
+  InitMySound();
+  InitBullets();
 }
 
 /*!
     @brief 破棄
 */
-CCharacterBase::~CCharacterBase()
-{
-    ReleaseGCDandBMP();
-    ReleaseMySound();
-    if(mysounds) free(mysounds);
+CCharacterBase::~CCharacterBase() {
+  ReleaseGCDandBMP();
+  ReleaseMySound();
+  if (mysounds)
+    free(mysounds);
 }
 
 /*!
@@ -1662,568 +1558,655 @@ CCharacterBase::~CCharacterBase()
 
     メッセージ処理を、適切な仮想関数に振り分けます
 */
-DWORD CCharacterBase::Message(DWORD msg,LPVOID pd,DWORD prm)
-{
-    switch(msg){
-    case GOBJMSG_DOTOJYO://登場
-        ChangeAction( ACTID_TOJYO );return(TRUE);
-    case GOBJMSG_DOYOUWIN://勝利
-        ChangeAction( ACTID_SYORI );return(TRUE);
-    case GOBJMSG_DOTIMEOVERLOSE:
-        ChangeAction( ACTID_TIMEOVERLOSE );return(TRUE);
-    case GOBJMSG_TAIKI://待機しとけメッセージ
-        ChangeAction( ACTID_TAIKI );
-        break;
-    case GOBJMSG_ACTION:
-        {
-            DWORD result;
+DWORD CCharacterBase::Message(DWORD msg, LPVOID pd, DWORD prm) {
+  switch (msg) {
+  case GOBJMSG_DOTOJYO: //登場
+    ChangeAction(ACTID_TOJYO);
+    return (TRUE);
+  case GOBJMSG_DOYOUWIN: //勝利
+    ChangeAction(ACTID_SYORI);
+    return (TRUE);
+  case GOBJMSG_DOTIMEOVERLOSE:
+    ChangeAction(ACTID_TIMEOVERLOSE);
+    return (TRUE);
+  case GOBJMSG_TAIKI: //待機しとけメッセージ
+    ChangeAction(ACTID_TAIKI);
+    break;
+  case GOBJMSG_ACTION: {
+    DWORD result;
 
-            PreAction();
-            result = CGoluahObject::Message(msg, pd, prm);
-            PostAction();
-            return result;
-        }
-    case GOBJMSG_KOUTAI://交代しろメッセージ
-        if(GetGObject()->aid == ACTID_TAIKICYU){
-            ChangeAction( ACTID_KOUTAIIN );
-            return(TRUE);
-        }
-        return(0);
-    case GOBJMSG_KOUTAI2://交代しろメッセージ2（のんびりと登場ポーズを決めてて良し）
-        ChangeAction( ACTID_KOUTAI );
-        break;
-    case GOBJMSG_CLIPX:
-        if(GetGObject()->aid == ACTID_KOUTAI)return(TRUE);//交代時はクリップ処理をしない
-        else return(0);
-    default:
-        //あとのメッセージはオブジェクト基本クラスに任せる
-        return(CGoluahObject::Message(msg,pd,prm));
+    PreAction();
+    result = CGoluahObject::Message(msg, pd, prm);
+    PostAction();
+    return result;
+  }
+  case GOBJMSG_KOUTAI: //交代しろメッセージ
+    if (GetGObject()->aid == ACTID_TAIKICYU) {
+      ChangeAction(ACTID_KOUTAIIN);
+      return (TRUE);
     }
-    return(0);
+    return (0);
+  case GOBJMSG_KOUTAI2: //交代しろメッセージ2（のんびりと登場ポーズを決めてて良し）
+    ChangeAction(ACTID_KOUTAI);
+    break;
+  case GOBJMSG_CLIPX:
+    if (GetGObject()->aid == ACTID_KOUTAI)
+      return (TRUE); //交代時はクリップ処理をしない
+    else
+      return (0);
+  default:
+    //あとのメッセージはオブジェクト基本クラスに任せる
+    return (CGoluahObject::Message(msg, pd, prm));
+  }
+  return (0);
 }
-
 
 /*!
     @brief GOBJMSG_ACTION メッセージ処理
 
     CCharacterBaseで定義されている基本行動へ処理を振り分けます
 */
-DWORD CCharacterBase::Action()
-{
-    switch(GetGObject()->aid){
-    case ACTID_NEUTRAL	:act_neutral();break;//default actions
-    case ACTID_CROUCH	:act_crouch();break;
-    case ACTID_RAKKA	:act_rakka();break;
-    case ACTID_TOJYO	:act_tojyo();break;
-    case ACTID_SYORI	:act_win();break;
-    case ACTID_WALKF	:act_walkf();break;//normal actions
-    case ACTID_WALKB	:act_walkb();break;
-    case ACTID_JAMPS	:act_jamps();break;
-    case ACTID_JAMPC	:act_jampc();break;
-    case ACTID_JAMPF	:act_jampf();break;
-    case ACTID_JAMPB	:act_jampb();break;
-    case ACTID_RAKKA2	:act_rakka2();break;
-    case ACTID_TUKAMI:	// fallthrough
-    case ACTID_ATT_SA	:act_att_sa();ChainCombo(CHAIN_SA);break;//attack actions
-    case ACTID_ATT_SB	:act_att_sb();ChainCombo(CHAIN_SB);break;
-    case ACTID_ATT_SC	:act_att_sc();ChainCombo(CHAIN_SC);break;
-    case ACTID_ATT_CA	:act_att_ca();ChainCombo(CHAIN_CA);break;
-    case ACTID_ATT_CB	:act_att_cb();ChainCombo(CHAIN_CB);break;
-    case ACTID_ATT_CC	:act_att_cc();ChainCombo(CHAIN_CC);break;
-    case ACTID_ATT_JA	:act_att_ja();break;
-    case ACTID_ATT_JB	:act_att_jb();break;
-    case ACTID_ATT_JC	:act_att_jc();break;
-    case ACTID_TAIKI	:act_taiki();break;
-    case ACTID_KOUTAIOUT:act_koutai_out();break;
-    case ACTID_KOUTAIIN	:act_koutai_in();break;
-    case ACTID_KOUTAI	:act_koutai();break;
-    case ACTID_KOUTAI2	:act_koutai2();break;
-    case ACTID_TAIKICYU	:act_taikicyu();break;
-    case ACTID_STRIKERCOMEON:act_strikercomeon();break;
-    case ACTID_TIMEOVERLOSE	:act_timeoverlose();break;
-    case ACTID_GUARDS	:act_guards(); break;
-    case ACTID_GUARDC	:act_guardc(); break;
-    case ACTID_GUARDJ	:act_guardj(); break;
-    //case ACTID_SYORI2IN		:act_win2_in();break;
-    //case ACTID_SYORI2POSE	:act_win2_pose();break;
-    default:	return(0);
-    }
-    return(CGoluahObject::Action());
+DWORD CCharacterBase::Action() {
+  switch (GetGObject()->aid) {
+  case ACTID_NEUTRAL:
+    act_neutral();
+    break; // default actions
+  case ACTID_CROUCH:
+    act_crouch();
+    break;
+  case ACTID_RAKKA:
+    act_rakka();
+    break;
+  case ACTID_TOJYO:
+    act_tojyo();
+    break;
+  case ACTID_SYORI:
+    act_win();
+    break;
+  case ACTID_WALKF:
+    act_walkf();
+    break; // normal actions
+  case ACTID_WALKB:
+    act_walkb();
+    break;
+  case ACTID_JAMPS:
+    act_jamps();
+    break;
+  case ACTID_JAMPC:
+    act_jampc();
+    break;
+  case ACTID_JAMPF:
+    act_jampf();
+    break;
+  case ACTID_JAMPB:
+    act_jampb();
+    break;
+  case ACTID_RAKKA2:
+    act_rakka2();
+    break;
+  case ACTID_TUKAMI: // fallthrough
+  case ACTID_ATT_SA:
+    act_att_sa();
+    ChainCombo(CHAIN_SA);
+    break; // attack actions
+  case ACTID_ATT_SB:
+    act_att_sb();
+    ChainCombo(CHAIN_SB);
+    break;
+  case ACTID_ATT_SC:
+    act_att_sc();
+    ChainCombo(CHAIN_SC);
+    break;
+  case ACTID_ATT_CA:
+    act_att_ca();
+    ChainCombo(CHAIN_CA);
+    break;
+  case ACTID_ATT_CB:
+    act_att_cb();
+    ChainCombo(CHAIN_CB);
+    break;
+  case ACTID_ATT_CC:
+    act_att_cc();
+    ChainCombo(CHAIN_CC);
+    break;
+  case ACTID_ATT_JA:
+    act_att_ja();
+    break;
+  case ACTID_ATT_JB:
+    act_att_jb();
+    break;
+  case ACTID_ATT_JC:
+    act_att_jc();
+    break;
+  case ACTID_TAIKI:
+    act_taiki();
+    break;
+  case ACTID_KOUTAIOUT:
+    act_koutai_out();
+    break;
+  case ACTID_KOUTAIIN:
+    act_koutai_in();
+    break;
+  case ACTID_KOUTAI:
+    act_koutai();
+    break;
+  case ACTID_KOUTAI2:
+    act_koutai2();
+    break;
+  case ACTID_TAIKICYU:
+    act_taikicyu();
+    break;
+  case ACTID_STRIKERCOMEON:
+    act_strikercomeon();
+    break;
+  case ACTID_TIMEOVERLOSE:
+    act_timeoverlose();
+    break;
+  case ACTID_GUARDS:
+    act_guards();
+    break;
+  case ACTID_GUARDC:
+    act_guardc();
+    break;
+  case ACTID_GUARDJ:
+    act_guardj();
+    break;
+  // case ACTID_SYORI2IN		:act_win2_in();break;
+  // case ACTID_SYORI2POSE	:act_win2_pose();break;
+  default:
+    return (0);
+  }
+  return (CGoluahObject::Action());
 }
-
 
 /*!
     @brief GOBJMSG_ACTION メッセージ 前処理
 
     定期的に行わなければならない何らかの処理を行います
 */
-void CCharacterBase::PreAction()
-{
-    //チェーンコンボリストクリア
-    if(!(GetGObject()->aid & 0xFFFD0000)){
-        if(GetGObject()->counter > 2)chainlist=0;
+void CCharacterBase::PreAction() {
+  //チェーンコンボリストクリア
+  if (!(GetGObject()->aid & 0xFFFD0000)) {
+    if (GetGObject()->counter > 2)
+      chainlist = 0;
+  }
+
+  //振り向き処理を行います。これ以外の動作でもやりたい場合はオーバーライドして追加してください
+  if (pdat->aid == ACTID_NEUTRAL || pdat->aid == ACTID_CROUCH || pdat->aid == ACTID_TOJYO ||
+      !(pdat->aid & (ACTID_KUCYU | ACTID_ATTACK | ACTID_NAGE | ACTID_HISSATU | ACTID_SYSTEM | ACTID_INOUT))) {
+    Furimuki();
+  }
+
+  //ダメージ声再生
+  if (pdat->hp > 0)
+    final_voice_flag = FALSE;
+  if (pdat->counter == 0 && !final_voice_flag) {
+    switch (pdat->aid) {
+    //小喰らい
+    case ACTID_DAMAGE1:
+    case ACTID_DAMAGEC1:
+    case ACTID_DAMAGE1A:
+    case ACTID_DAMAGEC1A:
+    case ACTID_DAMAGEJ1:
+      if (GetRandNum(5) == 0)
+        PlayMySound(base_voice_damage1);
+      break;
+    //中喰らい
+    case ACTID_DAMAGE2:
+    case ACTID_DAMAGEC2:
+    case ACTID_DAMAGE2A:
+    case ACTID_DAMAGEC2A:
+    case ACTID_DAMAGEJ2:
+      if (GetRandNum(4) == 0)
+        PlayMySound(base_voice_damage2);
+      break;
+    //強喰らい
+    case ACTID_DAMAGE3:
+    case ACTID_DAMAGEC3:
+    case ACTID_DAMAGE3A:
+    case ACTID_DAMAGEC3A:
+    case ACTID_DAMAGEJ3:
+      if (GetRandNum(3) == 0)
+        PlayMySound(base_voice_damage3);
+      break;
+
+    //その他喰らい
+    case ACTID_DOWN:
+    case ACTID_FUTTOBI:
+    case ACTID_FUTTOBI2:
+    case ACTID_TATAKITUKE1A:
+    case ACTID_TATAKITUKE2A:
+    case ACTID_TATAKITUKE1B:
+    case ACTID_TATAKITUKE2B:
+      if (GetRandNum(2) == 0)
+        PlayMySound(base_voice_damage3);
+      break;
+
+    // KO
+    case ACTID_FINALDOWN:  //死
+    case ACTID_FINALDOWN2: //氏
+    case ACTID_KAITENFINISH:
+      final_voice_flag = TRUE;
+      PlayMySound(base_voice_ko);
+      break;
     }
-
-    //振り向き処理を行います。これ以外の動作でもやりたい場合はオーバーライドして追加してください
-    if(pdat->aid==ACTID_NEUTRAL ||
-       pdat->aid==ACTID_CROUCH  ||
-       pdat->aid==ACTID_TOJYO   ||
-       !(pdat->aid & (ACTID_KUCYU | ACTID_ATTACK | ACTID_NAGE | ACTID_HISSATU | ACTID_SYSTEM | ACTID_INOUT))
-       )
-    {
-        Furimuki();
-    }
-
-    //ダメージ声再生
-    if(pdat->hp > 0)final_voice_flag = FALSE;
-    if(pdat->counter==0 && !final_voice_flag)
-    {
-        switch(pdat->aid)
-        {
-        //小喰らい
-        case ACTID_DAMAGE1	:
-        case ACTID_DAMAGEC1	:
-        case ACTID_DAMAGE1A	:
-        case ACTID_DAMAGEC1A:
-        case ACTID_DAMAGEJ1	:
-            if(GetRandNum(5)==0)PlayMySound(base_voice_damage1);
-            break;
-        //中喰らい
-        case ACTID_DAMAGE2	:
-        case ACTID_DAMAGEC2	:
-        case ACTID_DAMAGE2A	:
-        case ACTID_DAMAGEC2A:
-        case ACTID_DAMAGEJ2	:
-            if(GetRandNum(4)==0)PlayMySound(base_voice_damage2);
-            break;
-        //強喰らい
-        case ACTID_DAMAGE3	:
-        case ACTID_DAMAGEC3	:
-        case ACTID_DAMAGE3A	:
-        case ACTID_DAMAGEC3A:
-        case ACTID_DAMAGEJ3	:
-            if(GetRandNum(3)==0)PlayMySound(base_voice_damage3);
-            break;
-
-        //その他喰らい
-        case ACTID_DOWN			:
-        case ACTID_FUTTOBI		:
-        case ACTID_FUTTOBI2		:
-        case ACTID_TATAKITUKE1A	:
-        case ACTID_TATAKITUKE2A	:
-        case ACTID_TATAKITUKE1B	:
-        case ACTID_TATAKITUKE2B	:
-            if(GetRandNum(2)==0)PlayMySound(base_voice_damage3);
-            break;
-
-        //KO
-        case ACTID_FINALDOWN	://死
-        case ACTID_FINALDOWN2	://氏
-        case ACTID_KAITENFINISH	:
-            final_voice_flag = TRUE;
-            PlayMySound(base_voice_ko);
-            break;
-        }
-    }
+  }
 }
 /*!
     @brief GOBJMSG_ACTION メッセージ 後処理
 
     定期的に行わなければならない何らかの処理を行います
 */
-void CCharacterBase::PostAction()
-{
-    //チェーンコンボリストクリア
-    if(!(GetGObject()->aid & 0xFFFD0000)){
-        if(GetGObject()->counter > 2)chainlist=0;
-    }
+void CCharacterBase::PostAction() {
+  //チェーンコンボリストクリア
+  if (!(GetGObject()->aid & 0xFFFD0000)) {
+    if (GetGObject()->counter > 2)
+      chainlist = 0;
+  }
 
-    //振り向き処理を行います。これ以外の動作でもやりたい場合はオーバーライドして追加してください
-    if(pdat->aid==ACTID_NEUTRAL ||
-       pdat->aid==ACTID_CROUCH
-       )
-    {
-        Furimuki();
-    }
+  //振り向き処理を行います。これ以外の動作でもやりたい場合はオーバーライドして追加してください
+  if (pdat->aid == ACTID_NEUTRAL || pdat->aid == ACTID_CROUCH) {
+    Furimuki();
+  }
 }
-
 
 /*!
     @brief GOBJMSG_COMMAND メッセージ処理
 
     行動IDにより、Command系の仮想関数に処理を振り分けます
 */
-void CCharacterBase::Command()
-{
-    DWORD key_now = (*funcs->getkey)(keyinput,0);
-    BOOL callstriker=FALSE;
-    GOBJECT* pdat = GetGObject();
+void CCharacterBase::Command() {
+  DWORD key_now = (*funcs->getkey)(keyinput, 0);
+  BOOL callstriker = FALSE;
+  GOBJECT *pdat = GetGObject();
 
-    if(pdat->aid & ACTID_SYSTEM){//システム定義動作中なので、基本的にはいじらない
-        Command_OnSystem(key_now);
-        return;
-    }
-    if(pdat->aid == ACTID_TOJYO || pdat->aid==ACTID_SYORI)return;
-    if(pdat->aid == ACTID_TIMEOVERLOSE)return;
-    if(pdat->aid & ACTID_NAGE)return;
-    if(pdat->aid & ACTID_INOUT)return;
+  if (pdat->aid & ACTID_SYSTEM) { //システム定義動作中なので、基本的にはいじらない
+    Command_OnSystem(key_now);
+    return;
+  }
+  if (pdat->aid == ACTID_TOJYO || pdat->aid == ACTID_SYORI)
+    return;
+  if (pdat->aid == ACTID_TIMEOVERLOSE)
+    return;
+  if (pdat->aid & ACTID_NAGE)
+    return;
+  if (pdat->aid & ACTID_INOUT)
+    return;
 
-    //ストライカーを呼ぶ
-    if( (key_now&KEYSTA_FOWORD) && (key_now&KEYSTA_DOWN) && (key_now&KEYSTA_BD2) ){
-        if(Message2System(MSGOBJ2SYS_STRIKER1,0)){
-            ADDEFFECT(EFCTID_COMEON,(int)pdat->x,(int)pdat->y-100,pdat->muki);
-            callstriker=TRUE;
-        }
+  //ストライカーを呼ぶ
+  if ((key_now & KEYSTA_FOWORD) && (key_now & KEYSTA_DOWN) && (key_now & KEYSTA_BD2)) {
+    if (Message2System(MSGOBJ2SYS_STRIKER1, 0)) {
+      ADDEFFECT(EFCTID_COMEON, (int)pdat->x, (int)pdat->y - 100, pdat->muki);
+      callstriker = TRUE;
     }
-    else if( (key_now&KEYSTA_BACK) && (key_now&KEYSTA_DOWN) && (key_now&KEYSTA_BD2) ){
-        if(Message2System(MSGOBJ2SYS_STRIKER2,0)){
-            ADDEFFECT(EFCTID_COMEON,(int)pdat->x,(int)pdat->y-100,pdat->muki);
-            callstriker=TRUE;
-        }
+  } else if ((key_now & KEYSTA_BACK) && (key_now & KEYSTA_DOWN) && (key_now & KEYSTA_BD2)) {
+    if (Message2System(MSGOBJ2SYS_STRIKER2, 0)) {
+      ADDEFFECT(EFCTID_COMEON, (int)pdat->x, (int)pdat->y - 100, pdat->muki);
+      callstriker = TRUE;
     }
+  }
 
-    if(pdat->aid & ACTID_HISSATU){//必殺技中（基本的にいじるべからず）
-        Command_OnHissatuAttacking(key_now);
-        return;
-    }
+  if (pdat->aid & ACTID_HISSATU) { //必殺技中（基本的にいじるべからず）
+    Command_OnHissatuAttacking(key_now);
+    return;
+  }
 
-    //必殺技コマンド判定
-    if (Command_Hissatu(key_now))
-        return;
+  //必殺技コマンド判定
+  if (Command_Hissatu(key_now))
+    return;
 
-    if(pdat->aid & ACTID_ATTACK){//攻撃動作中（基本的にいじらない。チェーンコンボ出すならここでいじる）
-        Command_OnAttacking(key_now);
-        return;
-    }
+  if (pdat->aid & ACTID_ATTACK) { //攻撃動作中（基本的にいじらない。チェーンコンボ出すならここでいじる）
+    Command_OnAttacking(key_now);
+    return;
+  }
 
-    //基本動作中
-    if (Command_OnNormal(key_now) || pdat->aid & ACTID_KUCYU)
-        return;
+  //基本動作中
+  if (Command_OnNormal(key_now) || pdat->aid & ACTID_KUCYU)
+    return;
 
-    //ストライカー
-    if(callstriker){
-        pdat->aid = ACTID_STRIKERCOMEON;
-        return;
+  //ストライカー
+  if (callstriker) {
+    pdat->aid = ACTID_STRIKERCOMEON;
+    return;
+  }
+  //こーたい
+  else if ((key_now & KEYSTA_FOWORD) && (key_now & KEYSTA_BD2) && !(key_now & KEYSTA_DOWN)) {
+    if (Message2System(MSGOBJ2SYS_KOUTAI1, 0)) {
+      pdat->aid = ACTID_KOUTAIOUT;
+      return;
     }
-    //こーたい
-    else if( (key_now&KEYSTA_FOWORD) && (key_now&KEYSTA_BD2) && !(key_now&KEYSTA_DOWN) ){
-        if(Message2System(MSGOBJ2SYS_KOUTAI1,0)){
-            pdat->aid = ACTID_KOUTAIOUT;
-            return;
-        }
+  } else if ((key_now & KEYSTA_BACK) && (key_now & KEYSTA_BD2) && !(key_now & KEYSTA_DOWN)) {
+    if (Message2System(MSGOBJ2SYS_KOUTAI2, 0)) {
+      pdat->aid = ACTID_KOUTAIOUT;
+      return;
     }
-    else if( (key_now&KEYSTA_BACK) && (key_now&KEYSTA_BD2) && !(key_now&KEYSTA_DOWN) ){
-        if(Message2System(MSGOBJ2SYS_KOUTAI2,0)){
-            pdat->aid = ACTID_KOUTAIOUT;
-            return;
-        }
-    }
+  }
 
-    if(pdat->aid==ACTID_STRIKERCOMEON){//入力がなければポーズキメ
-        if(!(key_now & (KEYSTA_UP2|KEYSTA_DOWN2|KEYSTA_FOWORD2|KEYSTA_BACK2))){
-            return;
-        }
+  if (pdat->aid == ACTID_STRIKERCOMEON) { //入力がなければポーズキメ
+    if (!(key_now & (KEYSTA_UP2 | KEYSTA_DOWN2 | KEYSTA_FOWORD2 | KEYSTA_BACK2))) {
+      return;
     }
+  }
 
-    Command_Normal(key_now);
+  Command_Normal(key_now);
 }
-
 
 /*!
     @brief GOBJMSG_COMMAND メッセージ 部分処理（必殺技中）
 */
-BOOL CCharacterBase::Command_Hissatu(DWORD keyinfo)
-{
-    return FALSE;
-}
-
+BOOL CCharacterBase::Command_Hissatu(DWORD keyinfo) { return FALSE; }
 
 /*!
     @brief GOBJMSG_COMMAND メッセージ 部分処理（通常動作中）
 */
-BOOL CCharacterBase::Command_Normal(DWORD keyinfo)
-{
-    GOBJECT* pdat = GetGObject();
+BOOL CCharacterBase::Command_Normal(DWORD keyinfo) {
+  GOBJECT *pdat = GetGObject();
 
-    if(keyinfo & KEYSTA_UP){
-        pdat->aid = ACTID_JAMPS;
-    }
-    else if(keyinfo & KEYSTA_DOWN){//しゃがみ
-        pdat->aid = ACTID_CROUCH;
-    }
-    else if(keyinfo & KEYSTA_FOWORD){//前歩き
-        pdat->aid = ACTID_WALKF;
-    }
-    else if(keyinfo & KEYSTA_BACK){//後ろ歩き
-        pdat->aid = ACTID_WALKB;
-    }
-    else{//ニュートラルポーズ
-        pdat->aid = ACTID_NEUTRAL;
-    }
+  if (keyinfo & KEYSTA_UP) {
+    pdat->aid = ACTID_JAMPS;
+  } else if (keyinfo & KEYSTA_DOWN) { //しゃがみ
+    pdat->aid = ACTID_CROUCH;
+  } else if (keyinfo & KEYSTA_FOWORD) { //前歩き
+    pdat->aid = ACTID_WALKF;
+  } else if (keyinfo & KEYSTA_BACK) { //後ろ歩き
+    pdat->aid = ACTID_WALKB;
+  } else { //ニュートラルポーズ
+    pdat->aid = ACTID_NEUTRAL;
+  }
 
-    return TRUE;
+  return TRUE;
 }
 
 /*!
     @brief GOBJMSG_COMMAND メッセージ 部分処理（システム動作中）
 */
-BOOL CCharacterBase::Command_OnSystem(DWORD keyinfo)
-{
-    return FALSE;
-}
+BOOL CCharacterBase::Command_OnSystem(DWORD keyinfo) { return FALSE; }
 
 /*!
     @brief GOBJMSG_COMMAND メッセージ 部分処理（必殺攻撃動作中）
 */
-BOOL CCharacterBase::Command_OnHissatuAttacking(DWORD keyinfo)
-{
-    return FALSE;
-}
+BOOL CCharacterBase::Command_OnHissatuAttacking(DWORD keyinfo) { return FALSE; }
 
 /*!
     @brief GOBJMSG_COMMAND メッセージ 部分処理（通常攻撃動作中）
 */
-BOOL CCharacterBase::Command_OnAttacking(DWORD keyinfo)
-{
-    GOBJECT* pdat = GetGObject();
+BOOL CCharacterBase::Command_OnAttacking(DWORD keyinfo) {
+  GOBJECT *pdat = GetGObject();
 
-    if(pdat->aid & ACTID_KUCYU){////ジャンプ動作中
-        return FALSE;
-    }
-    else{
-        if(chainComboEnabled && keyinfo & 0x22220000){
-            if(keyinfo & KEYSTA_DOWN){
-                if(keyinfo & KEYSTA_BC2){if(ChainCombo(CHAIN_CC)){ChangeAction(ACTID_ATT_CC);return TRUE;}}
-                else if(keyinfo & KEYSTA_BB2){if(ChainCombo(CHAIN_CB)){ChangeAction(ACTID_ATT_CB);return TRUE;}}
-                else if(keyinfo & KEYSTA_BA2){if(ChainCombo(CHAIN_CA)){ChangeAction(ACTID_ATT_CA);return TRUE;}}
-            }
-            else{
-                if(keyinfo & KEYSTA_BC2){if(ChainCombo(CHAIN_SC)){ChangeAction(ACTID_ATT_SC);return TRUE;}}
-                else if(keyinfo & KEYSTA_BB2){if(ChainCombo(CHAIN_SB)){ChangeAction(ACTID_ATT_SB);return TRUE;}}
-                else if(keyinfo & KEYSTA_BA2){if(ChainCombo(CHAIN_SA)){ChangeAction(ACTID_ATT_SA);return TRUE;}}
-            }
-        }
-    }
-
+  if (pdat->aid & ACTID_KUCYU) { ////ジャンプ動作中
     return FALSE;
+  } else {
+    if (chainComboEnabled && keyinfo & 0x22220000) {
+      if (keyinfo & KEYSTA_DOWN) {
+        if (keyinfo & KEYSTA_BC2) {
+          if (ChainCombo(CHAIN_CC)) {
+            ChangeAction(ACTID_ATT_CC);
+            return TRUE;
+          }
+        } else if (keyinfo & KEYSTA_BB2) {
+          if (ChainCombo(CHAIN_CB)) {
+            ChangeAction(ACTID_ATT_CB);
+            return TRUE;
+          }
+        } else if (keyinfo & KEYSTA_BA2) {
+          if (ChainCombo(CHAIN_CA)) {
+            ChangeAction(ACTID_ATT_CA);
+            return TRUE;
+          }
+        }
+      } else {
+        if (keyinfo & KEYSTA_BC2) {
+          if (ChainCombo(CHAIN_SC)) {
+            ChangeAction(ACTID_ATT_SC);
+            return TRUE;
+          }
+        } else if (keyinfo & KEYSTA_BB2) {
+          if (ChainCombo(CHAIN_SB)) {
+            ChangeAction(ACTID_ATT_SB);
+            return TRUE;
+          }
+        } else if (keyinfo & KEYSTA_BA2) {
+          if (ChainCombo(CHAIN_SA)) {
+            ChangeAction(ACTID_ATT_SA);
+            return TRUE;
+          }
+        }
+      }
+    }
+  }
+
+  return FALSE;
 }
 
 /*!
     @brief GOBJMSG_COMMAND メッセージ 部分処理（通常動作）
 */
-BOOL CCharacterBase::Command_OnNormal(DWORD keyinfo)
-{
-    GOBJECT* pdat = GetGObject();
+BOOL CCharacterBase::Command_OnNormal(DWORD keyinfo) {
+  GOBJECT *pdat = GetGObject();
 
-
-    //オートガード処理。攻撃・喰らい中以外は無条件ガード
-    BOOL auto_guard = FALSE;
-    if (isAutoGuard)
-    {
-        if (IsCom())
-        {
-            auto_guard = (rand() % 2) ? TRUE : FALSE;
-        }
-        else
-        {
-            DWORD crnt_key = GetKey(0);
-            if ((crnt_key&KEYSTA_FOWORD) || (crnt_key&KEYSTA_UP))
-            {
-                auto_guard = FALSE;
-            }
-            else auto_guard = TRUE;
-        }
+  //オートガード処理。攻撃・喰らい中以外は無条件ガード
+  BOOL auto_guard = FALSE;
+  if (isAutoGuard) {
+    if (IsCom()) {
+      auto_guard = (rand() % 2) ? TRUE : FALSE;
+    } else {
+      DWORD crnt_key = GetKey(0);
+      if ((crnt_key & KEYSTA_FOWORD) || (crnt_key & KEYSTA_UP)) {
+        auto_guard = FALSE;
+      } else
+        auto_guard = TRUE;
     }
+  }
 
-    if (pdat->aid & ACTID_KUCYU){//ジャンプ動作中
-        if(keyinfo & 0x22220000){
-            if(keyinfo & KEYSTA_BC2){pdat->aid = ACTID_ATT_JC;return TRUE;}
-            else if(keyinfo & KEYSTA_BB2){pdat->aid = ACTID_ATT_JB;return TRUE;}
-            else if(keyinfo & KEYSTA_BA2){pdat->aid = ACTID_ATT_JA;return TRUE;}
-        }
-        else if ((auto_guard || keyinfo & KEYSTA_BACK) && GetInfo(pdat->eid)->aid & ACTID_ATTACK){//後ろ歩き
-            pdat->aid = ACTID_GUARDJ;
-            return TRUE;
-        }
-        return FALSE;
+  if (pdat->aid & ACTID_KUCYU) { //ジャンプ動作中
+    if (keyinfo & 0x22220000) {
+      if (keyinfo & KEYSTA_BC2) {
+        pdat->aid = ACTID_ATT_JC;
+        return TRUE;
+      } else if (keyinfo & KEYSTA_BB2) {
+        pdat->aid = ACTID_ATT_JB;
+        return TRUE;
+      } else if (keyinfo & KEYSTA_BA2) {
+        pdat->aid = ACTID_ATT_JA;
+        return TRUE;
+      }
+    } else if ((auto_guard || keyinfo & KEYSTA_BACK) && GetInfo(pdat->eid)->aid & ACTID_ATTACK) { //後ろ歩き
+      pdat->aid = ACTID_GUARDJ;
+      return TRUE;
     }
-
-    //地上動作中
-        if(keyinfo & KEYSTA_DOWN){
-            if(keyinfo & KEYSTA_BC2){pdat->aid = ACTID_ATT_CC;return TRUE;}
-            else if(keyinfo & KEYSTA_BB2){pdat->aid = ACTID_ATT_CB;return TRUE;}
-            else if(keyinfo & KEYSTA_BA2){pdat->aid = ACTID_ATT_CA;return TRUE;}
-            else if ((auto_guard || keyinfo & KEYSTA_BACK) && GetInfo(pdat->eid)->aid & ACTID_ATTACK){//後ろ歩き
-                pdat->aid = ACTID_GUARDC;
-                return TRUE;
-            }
-        }
-        else{
-            if(keyinfo & KEYSTA_BC2){
-                pdat->aid = ACTID_ATT_SC;return TRUE;
-            }
-            else if(keyinfo & KEYSTA_BB2){
-                pdat->aid = ACTID_ATT_SB;return TRUE;
-            }
-            else if(keyinfo & KEYSTA_BA2){
-                pdat->aid = ACTID_ATT_SA;return TRUE;
-            }
-            else if ((auto_guard || keyinfo & KEYSTA_BACK) && GetInfo(pdat->eid)->aid & ACTID_ATTACK){//後ろ歩き
-                pdat->aid = ACTID_GUARDS;
-                return TRUE;
-            }
-        }
-
-    if(pdat->aid == ACTID_JAMPS){
-        if(keyinfo & KEYSTA_FOWORD){//前ジャンプ
-            pdat->aid = ACTID_JAMPF;
-            return TRUE;
-        }
-        else if(keyinfo & KEYSTA_BACK){//後ジャンプ
-            pdat->aid = ACTID_JAMPB;
-            return TRUE;
-        }
-    }
-
     return FALSE;
-}
+  }
 
+  //地上動作中
+  if (keyinfo & KEYSTA_DOWN) {
+    if (keyinfo & KEYSTA_BC2) {
+      pdat->aid = ACTID_ATT_CC;
+      return TRUE;
+    } else if (keyinfo & KEYSTA_BB2) {
+      pdat->aid = ACTID_ATT_CB;
+      return TRUE;
+    } else if (keyinfo & KEYSTA_BA2) {
+      pdat->aid = ACTID_ATT_CA;
+      return TRUE;
+    } else if ((auto_guard || keyinfo & KEYSTA_BACK) && GetInfo(pdat->eid)->aid & ACTID_ATTACK) { //後ろ歩き
+      pdat->aid = ACTID_GUARDC;
+      return TRUE;
+    }
+  } else {
+    if (keyinfo & KEYSTA_BC2) {
+      pdat->aid = ACTID_ATT_SC;
+      return TRUE;
+    } else if (keyinfo & KEYSTA_BB2) {
+      pdat->aid = ACTID_ATT_SB;
+      return TRUE;
+    } else if (keyinfo & KEYSTA_BA2) {
+      pdat->aid = ACTID_ATT_SA;
+      return TRUE;
+    } else if ((auto_guard || keyinfo & KEYSTA_BACK) && GetInfo(pdat->eid)->aid & ACTID_ATTACK) { //後ろ歩き
+      pdat->aid = ACTID_GUARDS;
+      return TRUE;
+    }
+  }
+
+  if (pdat->aid == ACTID_JAMPS) {
+    if (keyinfo & KEYSTA_FOWORD) { //前ジャンプ
+      pdat->aid = ACTID_JAMPF;
+      return TRUE;
+    } else if (keyinfo & KEYSTA_BACK) { //後ジャンプ
+      pdat->aid = ACTID_JAMPB;
+      return TRUE;
+    }
+  }
+
+  return FALSE;
+}
 
 /*!
     @brief GOBJMSG_TOUCHA メッセージ 処理
 */
-DWORD CCharacterBase::TouchA(ATTACKINFO *info,DWORD ta_eid)
-{
-    GOBJECT* pdat = GetGObject();
+DWORD CCharacterBase::TouchA(ATTACKINFO *info, DWORD ta_eid) {
+  GOBJECT *pdat = GetGObject();
 
-    // 待機/退避中は無視しちゃう
-    if(pdat->aid & ACTID_INOUT)return(TOUCHA_AVOID);
-    //投げ中は無視しちゃう
-    if(pdat->aid & ACTID_NAGE)return(TOUCHA_AVOID);
+  // 待機/退避中は無視しちゃう
+  if (pdat->aid & ACTID_INOUT)
+    return (TOUCHA_AVOID);
+  //投げ中は無視しちゃう
+  if (pdat->aid & ACTID_NAGE)
+    return (TOUCHA_AVOID);
 
-    //スーパーアーマー処理。攻撃を無視
-    if(isSuperArmer){
-        if(pdat->hp>0){
-            AddEffect(EFCTID_SUPERARMER,(int)pdat->x,(int)(pdat->y-50.0f),pdat->muki);
-            return TOUCHA_MUSI;
-        }
+  //スーパーアーマー処理。攻撃を無視
+  if (isSuperArmer) {
+    if (pdat->hp > 0) {
+      AddEffect(EFCTID_SUPERARMER, (int)pdat->x, (int)(pdat->y - 50.0f), pdat->muki);
+      return TOUCHA_MUSI;
     }
+  }
 
-
-    //AQ防止?
-    if (pdat->aid == ACTID_DOWN2)return(TOUCHA_AVOID);
-    //喰らい、またはガード中
-    if (pdat->aid & ACTID_KURAI || pdat->aid & ACTID_GUARD){
-        if (pdat->aid & ACTID_KUCYU){////ジャンプ動作中
-            if (pdat->aid & ACTID_GUARD)return(TOUCHA_GUARDJ);
-            else return(TOUCHA_KURAIJ);
-        }
-        else if (pdat->aid & ACTID_SYAGAMI){//しゃがみ中
-            if (!(info->guard & GUARDINFO_XCROUCH)){
-                if (pdat->aid & ACTID_GUARD)return(TOUCHA_GUARDC);
-                else return(TOUCHA_KURAIC);
-            }
-        }
-        else{//立ち
-            if (!(info->guard & GUARDINFO_XSTAND)){
-                if (pdat->aid & ACTID_GUARD)return(TOUCHA_GUARDS);
-                else return(TOUCHA_KURAIS);
-            }
-        }
+  // AQ防止?
+  if (pdat->aid == ACTID_DOWN2)
+    return (TOUCHA_AVOID);
+  //喰らい、またはガード中
+  if (pdat->aid & ACTID_KURAI || pdat->aid & ACTID_GUARD) {
+    if (pdat->aid & ACTID_KUCYU) { ////ジャンプ動作中
+      if (pdat->aid & ACTID_GUARD)
+        return (TOUCHA_GUARDJ);
+      else
+        return (TOUCHA_KURAIJ);
+    } else if (pdat->aid & ACTID_SYAGAMI) { //しゃがみ中
+      if (!(info->guard & GUARDINFO_XCROUCH)) {
+        if (pdat->aid & ACTID_GUARD)
+          return (TOUCHA_GUARDC);
+        else
+          return (TOUCHA_KURAIC);
+      }
+    } else { //立ち
+      if (!(info->guard & GUARDINFO_XSTAND)) {
+        if (pdat->aid & ACTID_GUARD)
+          return (TOUCHA_GUARDS);
+        else
+          return (TOUCHA_KURAIS);
+      }
     }
+  }
 
-    if (pdat->aid & ACTID_KUCYU)return(TOUCHA_KURAIJ);
-    else if (pdat->aid & ACTID_SYAGAMI)return(TOUCHA_KURAIC);
-    else return(TOUCHA_KURAIS);
+  if (pdat->aid & ACTID_KUCYU)
+    return (TOUCHA_KURAIJ);
+  else if (pdat->aid & ACTID_SYAGAMI)
+    return (TOUCHA_KURAIC);
+  else
+    return (TOUCHA_KURAIS);
 }
 
 /*!
     @brief GGOBJMSG_COMMANDCOM メッセージ 処理
 */
-DWORD CCharacterBase::CommandCOM(DWORD wid)
-{
-    GOBJECT* pdat = GetGObject();
+DWORD CCharacterBase::CommandCOM(DWORD wid) {
+  GOBJECT *pdat = GetGObject();
 
-    if(pdat->aid & ACTID_SYSTEM)return(CmdCom_OnSystem(wid));
-    if(pdat->aid == ACTID_TOJYO || pdat->aid==ACTID_SYORI)return(FALSE);
-    if(pdat->aid & ACTID_NAGE)return(FALSE);
-    if(pdat->aid & ACTID_INOUT)return(FALSE);
-    
-    if(pdat->aid & ACTID_HISSATU){//必殺技中（基本的にいじるべからず）
-        return(CmdCom_OnHissatuAttacking(wid));
-    }
+  if (pdat->aid & ACTID_SYSTEM)
+    return (CmdCom_OnSystem(wid));
+  if (pdat->aid == ACTID_TOJYO || pdat->aid == ACTID_SYORI)
+    return (FALSE);
+  if (pdat->aid & ACTID_NAGE)
+    return (FALSE);
+  if (pdat->aid & ACTID_INOUT)
+    return (FALSE);
 
-    if(pdat->aid & ACTID_KUCYU){
-        return(CmdCom_OnKucyu(wid));
-    }
-    else{
-        return(CmdCom_OnNormal(wid));
-    }
+  if (pdat->aid & ACTID_HISSATU) { //必殺技中（基本的にいじるべからず）
+    return (CmdCom_OnHissatuAttacking(wid));
+  }
+
+  if (pdat->aid & ACTID_KUCYU) {
+    return (CmdCom_OnKucyu(wid));
+  } else {
+    return (CmdCom_OnNormal(wid));
+  }
 }
 
 /*!
     @brief GGOBJMSG_COMMANDCOMメッセージ 部分処理
 */
-DWORD CCharacterBase::CmdCom_OnSystem(DWORD wid)
-{
-    return(FALSE);
+DWORD CCharacterBase::CmdCom_OnSystem(DWORD wid) { return (FALSE); }
+
+/*!
+    @brief GGOBJMSG_COMMANDCOMメッセージ 部分処理
+*/
+DWORD CCharacterBase::CmdCom_OnHissatuAttacking(DWORD wid) { return (FALSE); }
+
+/*!
+    @brief GGOBJMSG_COMMANDCOMメッセージ 部分処理
+*/
+DWORD CCharacterBase::CmdCom_OnKucyu(DWORD wid) {
+  //投げは継承側で処理しないといけないので、ダメ
+  if (wid & ACTID_NAGE)
+    return (FALSE);
+
+  if (GetGObject()->aid & ACTID_ATTACK) { //空中攻撃中
+    if (wid & ACTID_HISSATU && wid & ACTID_KUCYU)
+      return (TRUE); //空中必殺技ならOK
+    return (FALSE);  //それ以外はだめ
+  } else {           //空中通常動作中
+    if (wid & ACTID_ATTACK && wid & ACTID_KUCYU)
+      return (TRUE); //空中通常技ならOK
+    return (FALSE);  //それ以外はだめ
+  }
 }
 
 /*!
     @brief GGOBJMSG_COMMANDCOMメッセージ 部分処理
 */
-DWORD CCharacterBase::CmdCom_OnHissatuAttacking(DWORD wid)
-{
-    return(FALSE);
-}
+DWORD CCharacterBase::CmdCom_OnNormal(DWORD wid) {
+  //投げは継承側で処理しないといけないので、ダメ
+  if (wid & ACTID_NAGE)
+    return (FALSE);
 
-/*!
-    @brief GGOBJMSG_COMMANDCOMメッセージ 部分処理
-*/
-DWORD CCharacterBase::CmdCom_OnKucyu(DWORD wid)
-{
-    //投げは継承側で処理しないといけないので、ダメ
-    if(wid&ACTID_NAGE)return(FALSE);
-
-    if(GetGObject()->aid & ACTID_ATTACK){//空中攻撃中
-        if(wid&ACTID_HISSATU && wid&ACTID_KUCYU)return(TRUE);//空中必殺技ならOK
-        return(FALSE);//それ以外はだめ
+  if (GetGObject()->aid & ACTID_ATTACK) { //地上攻撃中
+    if (wid & ACTID_NAGE)
+      return (FALSE); // 投げ技でのキャンセルは不可
+    if (wid & ACTID_HISSATU && !(wid & ACTID_KUCYU))
+      return (TRUE); //地上必殺技ならOK
+    if (chainComboEnabled) {
+      switch (wid) {
+      case ACTID_ATT_SA:
+        return (ChainCombo(CHAIN_SA));
+      case ACTID_ATT_SB:
+        return (ChainCombo(CHAIN_SB));
+      case ACTID_ATT_SC:
+        return (ChainCombo(CHAIN_SC));
+      case ACTID_ATT_CA:
+        return (ChainCombo(CHAIN_CA));
+      case ACTID_ATT_CB:
+        return (ChainCombo(CHAIN_CB));
+      case ACTID_ATT_CC:
+        return (ChainCombo(CHAIN_CC));
+      }
     }
-    else{//空中通常動作中
-        if(wid&ACTID_ATTACK && wid&ACTID_KUCYU)return(TRUE);//空中通常技ならOK
-        return(FALSE);//それ以外はだめ
-    }
-}
-
-/*!
-    @brief GGOBJMSG_COMMANDCOMメッセージ 部分処理
-*/
-DWORD CCharacterBase::CmdCom_OnNormal(DWORD wid)
-{
-    //投げは継承側で処理しないといけないので、ダメ
-    if(wid&ACTID_NAGE)return(FALSE);
-
-    if(GetGObject()->aid & ACTID_ATTACK){//地上攻撃中
-        if(wid&ACTID_NAGE)return(FALSE);// 投げ技でのキャンセルは不可
-        if(wid&ACTID_HISSATU && !(wid&ACTID_KUCYU))return(TRUE);//地上必殺技ならOK
-        if(chainComboEnabled)
-        {
-            switch(wid)
-            {
-            case ACTID_ATT_SA:return( ChainCombo(CHAIN_SA) );
-            case ACTID_ATT_SB:return( ChainCombo(CHAIN_SB) );
-            case ACTID_ATT_SC:return( ChainCombo(CHAIN_SC) );
-            case ACTID_ATT_CA:return( ChainCombo(CHAIN_CA) );
-            case ACTID_ATT_CB:return( ChainCombo(CHAIN_CB) );
-            case ACTID_ATT_CC:return( ChainCombo(CHAIN_CC) );
-            }
-        }
-        return(FALSE);//だめ
-    }
-    else{//地上通常動作
-        if(wid&ACTID_KUCYU && wid&ACTID_ATTACK)return(FALSE);//空中攻撃はだめ
-        return(TRUE);//それ以外ならOK
-    }
+    return (FALSE); //だめ
+  } else {          //地上通常動作
+    if (wid & ACTID_KUCYU && wid & ACTID_ATTACK)
+      return (FALSE); //空中攻撃はだめ
+    return (TRUE);    //それ以外ならOK
+  }
 }
 
 /*!
@@ -2232,10 +2215,7 @@ DWORD CCharacterBase::CmdCom_OnNormal(DWORD wid)
     実際のキャラクタークラスではこの関数をオーバーライドして
     攻撃力情報を初期化する処理を記述してください
 */
-void CCharacterBase::InitAttackInfo()
-{
-}
-
+void CCharacterBase::InitAttackInfo() {}
 
 /*!
     @brief GCD/BMP ロード
@@ -2243,54 +2223,54 @@ void CCharacterBase::InitAttackInfo()
     キャラクターフォルダの cell.gcd と image1～12.bmp をロードします。
     別のファイル名のファイルを使用したい場合はオーバーライドして処理を変更します。
 */
-void CCharacterBase::InitGCDandBMP()
-{
-    int i;
-    GOBJECT* pdat = GetGObject();
-    if(pdat==NULL)return;
-    char filename[256],palname[256];
+void CCharacterBase::InitGCDandBMP() {
+  int i;
+  GOBJECT *pdat = GetGObject();
+  if (pdat == NULL)
+    return;
+  char filename[256], palname[256];
 
 #ifdef _DEBUG
-    if(pal_number==0)
-        OutputDebugString("キャラDLL [warning] : パレット番号が0です。");
+  if (pal_number == 0)
+    OutputDebugString("キャラDLL [warning] : パレット番号が0です。");
 #endif
 
-    //"image?.bmp" を読み込む
-    sprintf(palname,"%s\\pal%d",g_chardir,pal_number);
-    for(i=0;i<GCDMAX_IMAGES;i++){
-        sprintf(filename,"%s\\image%d",g_chardir,i+1);
-        bitmaps[i] = (MYSURFACE*) ( (*funcd->loadimage)(filename,palname) );
-    }
+  //"image?.bmp" を読み込む
+  sprintf(palname, "%s\\pal%d", g_chardir, pal_number);
+  for (i = 0; i < GCDMAX_IMAGES; i++) {
+    sprintf(filename, "%s\\image%d", g_chardir, i + 1);
+    bitmaps[i] = (MYSURFACE *)((*funcd->loadimage)(filename, palname));
+  }
 
-    //"cell.gcd"を読み込み
-    sprintf(filename,"%s\\cell",g_chardir);
-    funcd->create_celldat2(filename, (void**)&cells, (void**)&rects, (void**)&hantei);
+  //"cell.gcd"を読み込み
+  sprintf(filename, "%s\\cell", g_chardir);
+  funcd->create_celldat2(filename, (void **)&cells, (void **)&rects, (void **)&hantei);
 
-    //pdatに入れておく
-    pdat->phdat			= hantei;
-    pdat->pmsarr		= bitmaps;
-    pdat->pcdat			= cells;
-    pdat->prdat			= rects;
+  // pdatに入れておく
+  pdat->phdat = hantei;
+  pdat->pmsarr = bitmaps;
+  pdat->pcdat = cells;
+  pdat->prdat = rects;
 }
 
 /*!
     @brief GCD/BMP アンロード
     @sa InitGCDandBMP
 */
-void CCharacterBase::ReleaseGCDandBMP()
-{
-    for(int i=0;i<GCDMAX_IMAGES;i++){
-        if(bitmaps[i]!=NULL){
-            funcd->unloadbmp(bitmaps[i]);
-        }
+void CCharacterBase::ReleaseGCDandBMP() {
+  for (int i = 0; i < GCDMAX_IMAGES; i++) {
+    if (bitmaps[i] != NULL) {
+      funcd->unloadbmp(bitmaps[i]);
     }
-    if(cells!=NULL) {
-        funcd->destroy_celldat((void**)&cells, (void**)&rects, (void**)&hantei);
-    }
-    else {
-        if(hantei!=NULL)free(hantei);
-        if(rects!=NULL)free(rects);
-    }
+  }
+  if (cells != NULL) {
+    funcd->destroy_celldat((void **)&cells, (void **)&rects, (void **)&hantei);
+  } else {
+    if (hantei != NULL)
+      free(hantei);
+    if (rects != NULL)
+      free(rects);
+  }
 }
 
 /* !
@@ -2310,123 +2290,119 @@ void CCharacterBase::ReleaseGCDandBMP()
     @param path_name サウンドの読み込みを行う基準パス(NULLの場合、"sound")
     @param list_name サウンド番号とwavファイル名の対応を記述した定義ファイル名(NULLの場合"list.txt")
 */
-void CCharacterBase::InitMySound(char* path_name,char* list_name)
-{
-    ReleaseMySound();
+void CCharacterBase::InitMySound(char *path_name, char *list_name) {
+  ReleaseMySound();
 
-    if(!path_name)path_name = MYSOUND_PATH;
-    if(!list_name)list_name = MYSOUND_LIST;
+  if (!path_name)
+    path_name = MYSOUND_PATH;
+  if (!list_name)
+    list_name = MYSOUND_LIST;
 
-    unsigned int i;
-    char *filename = new char [256];
-    char *buff = NULL;
-    std::vector<char*>		name_list;
-    std::vector<int>	number_list;
-    std::vector<LPVOID>	sound_list;
-//	std::vector<MYSOUND>	sound_list;
+  unsigned int i;
+  char *filename = new char[256];
+  char *buff = NULL;
+  std::vector<char *> name_list;
+  std::vector<int> number_list;
+  std::vector<LPVOID> sound_list;
+  //	std::vector<MYSOUND>	sound_list;
 
-    do
-    {
-        //テキストからファイル名のリストを取得
-        UINT bufflen;
-        sprintf(filename, "%s\\%s\\%s",GetCharDir(),path_name,list_name);
-        File2Mem(filename, &buff, &bufflen);
-        if(!buff)break;
+  do {
+    //テキストからファイル名のリストを取得
+    UINT bufflen;
+    sprintf(filename, "%s\\%s\\%s", GetCharDir(), path_name, list_name);
+    File2Mem(filename, &buff, &bufflen);
+    if (!buff)
+      break;
 
-        //てんぽらり～な変数
-        char* s = buff;
-        char* tmpstr = NULL;
-        int tmpno = 0;
+    //てんぽらり～な変数
+    char *s = buff;
+    char *tmpstr = NULL;
+    int tmpno = 0;
 
-        //ファイル名のリストを取得
-        while((UINT)(s-buff)<bufflen-1)
-        {
-            if(*s=='#')
-            {
-                tmpstr = new char [32];
-                s++;
-                if(2==sscanf( s,"%d %s",&tmpno,tmpstr) && tmpno >= 0)
-                {
-                    name_list.push_back(tmpstr);
-                    number_list.push_back(tmpno);
+    //ファイル名のリストを取得
+    while ((UINT)(s - buff) < bufflen - 1) {
+      if (*s == '#') {
+        tmpstr = new char[32];
+        s++;
+        if (2 == sscanf(s, "%d %s", &tmpno, tmpstr) && tmpno >= 0) {
+          name_list.push_back(tmpstr);
+          number_list.push_back(tmpno);
 
-/*					MYSOUND tmpms;
+          /*					MYSOUND tmpms;
 
-                    tmpms.number	= tmpno;
-                    tmpms.sound		= NULL;
-                    sound_list.push_back(tmpms);*/
-                }
-                else
-                {
-                    DELETE_ARRAY(tmpstr);
-                }
-            }
-            else
-            {
-                s++;
-                if(*(s - 1) & 0x80)s++;
-            }
+                              tmpms.number	= tmpno;
+                              tmpms.sound		= NULL;
+                              sound_list.push_back(tmpms);*/
+        } else {
+          DELETE_ARRAY(tmpstr);
         }
-        if(name_list.size()==0)break;
-
-        //サウンドをロード
-        int success_num = 0;
-        for(i=0;i<name_list.size();i++)
-        {
-            sprintf(filename,"%s\\%s\\%s.wav",GetCharDir(),path_name,name_list[i]);
-            sound_list.push_back( (*funcs->loadmysound)(filename) );
-            if(sound_list[i])success_num++;
-
-            /*if(i < sound_list.size())
-            {
-                sound_list[i].sound = (*funcs->loadmysound)(filename);
-                if (sound_list[i].sound) success_num++;
-            }*/
-        }
-        if(success_num==0)break;
-
-        // データをソート
-//		std::stable_sort< std::vector< MYSOUND >::iterator >(sound_list.begin(), sound_list.end(), mscomp);
-
-        //配列を用意して、成功したやつだけ保持しておく
-        mysounds = new LPVOID [success_num+1];
-        mysound_numbers = new int [success_num];
-        /*mysounds = (LPMYSOUND)malloc( sizeof(MYSOUND) * success_num);
-        mysound_numbers = success_num;*/
-        success_num = 0;//使いまわし
-        for(i=0;i<name_list.size();i++)
-        {
-            if(sound_list[i])
-            {
-                mysounds[success_num] = sound_list[i];
-                mysound_numbers[success_num] = number_list[i];
-                success_num++;
-            }
-
-/*			// サウンドがNULLの場合はパス。
-            if ( (i < sound_list.size()) && sound_list[i].sound )
-            {
-                if ( ( (i > 0) && (sound_list[i - 1].number == sound_list[i].number) ) )
-                {
-                    // 同じ番号があるので失敗、配列を１減らす。
-                    mysound_numbers--;
-                    mysounds = (LPMYSOUND)realloc(mysounds, sizeof(MYSOUND) * mysound_numbers);
-                    KillMySound(sound_list[i].sound);	// 使わないのであぼんぬ
-                }
-                else
-                {
-                    mysounds[success_num] = sound_list[i];
-                    success_num++;
-                }
-            }*/
-        }
-        //終端検知用
-        mysounds[success_num] = NULL;
+      } else {
+        s++;
+        if (*(s - 1) & 0x80)
+          s++;
+      }
     }
-    while(0);
-    DELETE_ARRAY( buff );
-    DELETE_ARRAY( filename );
-    for(i=0;i<name_list.size();i++)DELETE_ARRAY( name_list[i] );
+    if (name_list.size() == 0)
+      break;
+
+    //サウンドをロード
+    int success_num = 0;
+    for (i = 0; i < name_list.size(); i++) {
+      sprintf(filename, "%s\\%s\\%s.wav", GetCharDir(), path_name, name_list[i]);
+      sound_list.push_back((*funcs->loadmysound)(filename));
+      if (sound_list[i])
+        success_num++;
+
+      /*if(i < sound_list.size())
+      {
+          sound_list[i].sound = (*funcs->loadmysound)(filename);
+          if (sound_list[i].sound) success_num++;
+      }*/
+    }
+    if (success_num == 0)
+      break;
+
+    // データをソート
+    //		std::stable_sort< std::vector< MYSOUND >::iterator >(sound_list.begin(), sound_list.end(),
+    //mscomp);
+
+    //配列を用意して、成功したやつだけ保持しておく
+    mysounds = new LPVOID[success_num + 1];
+    mysound_numbers = new int[success_num];
+    /*mysounds = (LPMYSOUND)malloc( sizeof(MYSOUND) * success_num);
+    mysound_numbers = success_num;*/
+    success_num = 0; //使いまわし
+    for (i = 0; i < name_list.size(); i++) {
+      if (sound_list[i]) {
+        mysounds[success_num] = sound_list[i];
+        mysound_numbers[success_num] = number_list[i];
+        success_num++;
+      }
+
+      /*			// サウンドがNULLの場合はパス。
+                  if ( (i < sound_list.size()) && sound_list[i].sound )
+                  {
+                      if ( ( (i > 0) && (sound_list[i - 1].number == sound_list[i].number) ) )
+                      {
+                          // 同じ番号があるので失敗、配列を１減らす。
+                          mysound_numbers--;
+                          mysounds = (LPMYSOUND)realloc(mysounds, sizeof(MYSOUND) * mysound_numbers);
+                          KillMySound(sound_list[i].sound);	// 使わないのであぼんぬ
+                      }
+                      else
+                      {
+                          mysounds[success_num] = sound_list[i];
+                          success_num++;
+                      }
+                  }*/
+    }
+    //終端検知用
+    mysounds[success_num] = NULL;
+  } while (0);
+  DELETE_ARRAY(buff);
+  DELETE_ARRAY(filename);
+  for (i = 0; i < name_list.size(); i++)
+    DELETE_ARRAY(name_list[i]);
 }
 
 /*!
@@ -2436,64 +2412,61 @@ void CCharacterBase::InitMySound(char* path_name,char* list_name)
 
     numberで指定された番号のサウンドを再生します。
 */
-void CCharacterBase::PlayMySound(DWORD number)
-{
-    if(!mysounds)return;
+void CCharacterBase::PlayMySound(DWORD number) {
+  if (!mysounds)
+    return;
 
-    UINT i=0;
-    while(mysounds[i])
-    {
-        if(mysound_numbers[i]==number)
-        {
-            funcs->playmysound(mysounds[i]);
-            return;
-        }
-        i++;
+  UINT i = 0;
+  while (mysounds[i]) {
+    if (mysound_numbers[i] == number) {
+      funcs->playmysound(mysounds[i]);
+      return;
     }
+    i++;
+  }
 
-    // 二分探索を使って検索
-/*	UINT i=0, j=mysound_numbers-1;
-    while(i <= j)
-    {
-        UINT cent = (i + j) / 2;
+  // 二分探索を使って検索
+  /*	UINT i=0, j=mysound_numbers-1;
+      while(i <= j)
+      {
+          UINT cent = (i + j) / 2;
 
-        if (mysounds[cent].number < number)
-            i = cent + 1;
-        else if (mysounds[cent].number > number)
-            j = cent - 1;
-        else
-        {
-            // 発見
-            funcs->playmysound(mysounds[cent].sound);
-            return;
-        }
-    }*/
+          if (mysounds[cent].number < number)
+              i = cent + 1;
+          else if (mysounds[cent].number > number)
+              j = cent - 1;
+          else
+          {
+              // 発見
+              funcs->playmysound(mysounds[cent].sound);
+              return;
+          }
+      }*/
 }
 
 /*!
     @brief サウンド破棄
     @sa InitMySound
 */
-void CCharacterBase::ReleaseMySound()
-{
-    if(!mysounds)return;
+void CCharacterBase::ReleaseMySound() {
+  if (!mysounds)
+    return;
 
-    UINT i=0;
-    while(mysounds[i])
-    {
-        funcs->killmysound(mysounds[i]);
-        i++;
-    }
-    DELETE_ARRAY( mysounds );
-    DELETE_ARRAY( mysound_numbers );
+  UINT i = 0;
+  while (mysounds[i]) {
+    funcs->killmysound(mysounds[i]);
+    i++;
+  }
+  DELETE_ARRAY(mysounds);
+  DELETE_ARRAY(mysound_numbers);
 
-/*	for(UINT i=0; i < mysound_numbers; i++)
-    {
-        funcs->killmysound(mysounds[i].sound);
-    }
-    free(mysounds);
-    mysounds = NULL;
-    mysound_numbers = 0;*/
+  /*	for(UINT i=0; i < mysound_numbers; i++)
+      {
+          funcs->killmysound(mysounds[i].sound);
+      }
+      free(mysounds);
+      mysounds = NULL;
+      mysound_numbers = 0;*/
 }
 
 /*!
@@ -2503,16 +2476,15 @@ void CCharacterBase::ReleaseMySound()
     @param cyakuchi y座標が0以上に達した際に、行動遷移を行うかどうか
     @param toaid y座標が0以上に達した際に遷移する行動ID
 */
-void CCharacterBase::JiyuuRakka(double acc_g,BOOL cyakuchi,DWORD toaid)
-{
-    GOBJECT* pdat = GetGObject();
+void CCharacterBase::JiyuuRakka(double acc_g, BOOL cyakuchi, DWORD toaid) {
+  GOBJECT *pdat = GetGObject();
 
-    movex(pdat->vx);
-    pdat->y += pdat->vy;
-    pdat->vy += acc_g;
-    if(cyakuchi){
-        CyakuchiHantei(toaid);
-    }
+  movex(pdat->vx);
+  pdat->y += pdat->vy;
+  pdat->vy += acc_g;
+  if (cyakuchi) {
+    CyakuchiHantei(toaid);
+  }
 }
 
 /*!
@@ -2521,22 +2493,21 @@ void CCharacterBase::JiyuuRakka(double acc_g,BOOL cyakuchi,DWORD toaid)
 
     y座標が0以上のとき、着地していると判定されます
 */
-void CCharacterBase::CyakuchiHantei(DWORD toaid)
-{
-    GOBJECT* pdat = GetGObject();
+void CCharacterBase::CyakuchiHantei(DWORD toaid) {
+  GOBJECT *pdat = GetGObject();
 
-    if(pdat->y > 0){
-        pdat->y=0;
-        pdat->aid=toaid;
-        Furimuki();
-    }
+  if (pdat->y > 0) {
+    pdat->y = 0;
+    pdat->aid = toaid;
+    Furimuki();
+  }
 }
 
 /*-----------------------------------------------------------------------------
     Z位置操作
 -------------------------------------------------------------------------------*/
-void CCharacterBase::ZBack(){GetGObject()->z=back_z;}
-void CCharacterBase::ZFront(){GetGObject()->z=front_z;}
+void CCharacterBase::ZBack() { GetGObject()->z = back_z; }
+void CCharacterBase::ZFront() { GetGObject()->z = front_z; }
 
 /*!
     @brief 振り向き 処理
@@ -2544,25 +2515,26 @@ void CCharacterBase::ZFront(){GetGObject()->z=front_z;}
 
     ターゲットオブジェクトを基準にしてx座標を判定してオブジェクトの向きを変更します。
 */
-BOOL CCharacterBase::Furimuki()
-{
-    GOBJECT* pdat = GetGObject();
-    BOOL muki_prev = pdat->muki;
-    GOBJECT *pedat = (GOBJECT*)(*funco->getinfo)(pdat->eid);
+BOOL CCharacterBase::Furimuki() {
+  GOBJECT *pdat = GetGObject();
+  BOOL muki_prev = pdat->muki;
+  GOBJECT *pedat = (GOBJECT *)(*funco->getinfo)(pdat->eid);
 
-    if(pdat==NULL)return(FALSE);
-    if(pedat==NULL)return(FALSE);
+  if (pdat == NULL)
+    return (FALSE);
+  if (pedat == NULL)
+    return (FALSE);
 
-    if(pdat->x > pedat->x )
-        pdat->muki = TRUE;
-    else
-        pdat->muki = FALSE;
+  if (pdat->x > pedat->x)
+    pdat->muki = TRUE;
+  else
+    pdat->muki = FALSE;
 
-    if (muki_prev != pdat->muki) {
-        pdat->vx *= -1;
-        return(TRUE);
-    }
-    else return(FALSE);
+  if (muki_prev != pdat->muki) {
+    pdat->vx *= -1;
+    return (TRUE);
+  } else
+    return (FALSE);
 }
 
 /*-----------------------------------------------------------------------------
@@ -2577,13 +2549,14 @@ BOOL CCharacterBase::Furimuki()
 
     @return TRUE:その技を出してもよし, FALSE:だめ
 */
-BOOL CCharacterBase::ChainCombo(DWORD chainid)
-{
-    if(!chainComboEnabled)return FALSE;
-    if(chainlist & chainid)return(FALSE);
+BOOL CCharacterBase::ChainCombo(DWORD chainid) {
+  if (!chainComboEnabled)
+    return FALSE;
+  if (chainlist & chainid)
+    return (FALSE);
 
-    chainlist |= chainid;
-    return(TRUE);
+  chainlist |= chainid;
+  return (TRUE);
 }
 
 /*!
@@ -2593,14 +2566,14 @@ BOOL CCharacterBase::ChainCombo(DWORD chainid)
     ChainComboとの違いは、指定フラグを すでに出したリストに加えるかどうか。
     この関数では指定チェーンコンボIDをリストに加えず、チェックのみを行う。
 */
-BOOL CCharacterBase::ChainCheck(DWORD chainid)
-{
-    if(!chainComboEnabled)return FALSE;
-    if(chainlist & chainid)return(FALSE);
+BOOL CCharacterBase::ChainCheck(DWORD chainid) {
+  if (!chainComboEnabled)
+    return FALSE;
+  if (chainlist & chainid)
+    return (FALSE);
 
-    return(TRUE);
+  return (TRUE);
 }
-
 
 /*!
     @brief 技情報初期化
@@ -2609,29 +2582,29 @@ BOOL CCharacterBase::ChainCheck(DWORD chainid)
     CCharacterBase::InitWazInfo を呼び出すと、歩きやジャンプ等の基本的な
     行動の設定を行います。
 */
-void CCharacterBase::InitWazInfo()
-{
-    waz.walkf = ACTID_WALKF;
-    waz.walkb = ACTID_WALKB;
-    waz.jampf = ACTID_JAMPF;
-    waz.jampb = ACTID_JAMPB;
+void CCharacterBase::InitWazInfo() {
+  waz.walkf = ACTID_WALKF;
+  waz.walkb = ACTID_WALKB;
+  waz.jampf = ACTID_JAMPF;
+  waz.jampb = ACTID_JAMPB;
 
-    waz.att_jamp[0] = ACTID_ATT_JC;//ジャンプ攻撃
-    waz.att_jamp[1] = ACTID_ATT_JB;
-    waz.att_jamp[2] = ACTID_ATT_JA;
+  waz.att_jamp[0] = ACTID_ATT_JC; //ジャンプ攻撃
+  waz.att_jamp[1] = ACTID_ATT_JB;
+  waz.att_jamp[2] = ACTID_ATT_JA;
 }
 
 /*!
     @brief パワーゲージ増加
     @param dp 増加量(マイナスも可)
 */
-void CCharacterBase::AddPowerGauge(double dp)
-{
-    GOBJECT* pdat = GetGObject();
+void CCharacterBase::AddPowerGauge(double dp) {
+  GOBJECT *pdat = GetGObject();
 
-    pdat->gauge += dp;
-    if(pdat->gauge<0)pdat->gauge = 0;
-    else if(pdat->gauge > pdat->gaugemax)pdat->gauge = pdat->gaugemax;
+  pdat->gauge += dp;
+  if (pdat->gauge < 0)
+    pdat->gauge = 0;
+  else if (pdat->gauge > pdat->gaugemax)
+    pdat->gauge = pdat->gaugemax;
 }
 
 /*-----------------------------------------------------------------------------
@@ -2643,18 +2616,21 @@ void CCharacterBase::AddPowerGauge(double dp)
     @param dt コマンド受付時間
     @return TRUE:コマンド成立
 */
-BOOL CCharacterBase::com236(int dt)//葉同権コマンド
+BOOL CCharacterBase::com236(int dt) //葉同権コマンド
 {
-    int ofst=0;
+  int ofst = 0;
 
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_FOWORD);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_DOWN | KEYSTA_FOWORD);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_DOWN);
-    if(ofst<0)return(FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN | KEYSTA_FOWORD);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN);
+  if (ofst < 0)
+    return (FALSE);
 
-    return(TRUE);
+  return (TRUE);
 }
 
 /*!
@@ -2662,24 +2638,30 @@ BOOL CCharacterBase::com236(int dt)//葉同権コマンド
     @param dt コマンド受付時間
     @return TRUE:コマンド成立
 */
-BOOL CCharacterBase::com236236(int dt)//葉同権コマンドx2
+BOOL CCharacterBase::com236236(int dt) //葉同権コマンドx2
 {
-    int ofst=0;
+  int ofst = 0;
 
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_FOWORD);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_DOWN | KEYSTA_FOWORD);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_DOWN);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_FOWORD);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_DOWN | KEYSTA_FOWORD);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_DOWN);
-    if(ofst<0)return(FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN | KEYSTA_FOWORD);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN | KEYSTA_FOWORD);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN);
+  if (ofst < 0)
+    return (FALSE);
 
-    return(TRUE);
+  return (TRUE);
 }
 
 /*!
@@ -2687,18 +2669,21 @@ BOOL CCharacterBase::com236236(int dt)//葉同権コマンドx2
     @param dt コマンド受付時間
     @return TRUE:コマンド成立
 */
-BOOL CCharacterBase::com623(int dt)//しょーりゅーこまんど
+BOOL CCharacterBase::com623(int dt) //しょーりゅーこまんど
 {
-    int ofst=0;
+  int ofst = 0;
 
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_DOWN | KEYSTA_FOWORD);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_DOWN);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_FOWORD);
-    if(ofst<0)return(FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN | KEYSTA_FOWORD);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD);
+  if (ofst < 0)
+    return (FALSE);
 
-    return(TRUE);
+  return (TRUE);
 }
 
 /*!
@@ -2706,18 +2691,21 @@ BOOL CCharacterBase::com623(int dt)//しょーりゅーこまんど
     @param dt コマンド受付時間
     @return TRUE:コマンド成立
 */
-BOOL CCharacterBase::com214(int dt)//逆はどー
+BOOL CCharacterBase::com214(int dt) //逆はどー
 {
-    int ofst=0;
+  int ofst = 0;
 
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_BACK);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_DOWN | KEYSTA_BACK);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_DOWN);
-    if(ofst<0)return(FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_BACK);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN | KEYSTA_BACK);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN);
+  if (ofst < 0)
+    return (FALSE);
 
-    return(TRUE);
+  return (TRUE);
 }
 
 /*!
@@ -2725,18 +2713,20 @@ BOOL CCharacterBase::com214(int dt)//逆はどー
     @param dt コマンド受付時間
     @return TRUE:コマンド成立
 */
-BOOL CCharacterBase::com421(int dt)
-{
-    int ofst=0;
+BOOL CCharacterBase::com421(int dt) {
+  int ofst = 0;
 
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_DOWN | KEYSTA_BACK);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_DOWN);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_BACK);
-    if(ofst<0)return(FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN | KEYSTA_BACK);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_BACK);
+  if (ofst < 0)
+    return (FALSE);
 
-    return(TRUE);
+  return (TRUE);
 }
 
 /*!
@@ -2744,20 +2734,24 @@ BOOL CCharacterBase::com421(int dt)
     @param dt コマンド受付時間
     @return TRUE:コマンド成立
 */
-BOOL CCharacterBase::com426(int dt)//よが
+BOOL CCharacterBase::com426(int dt) //よが
 {
-    int ofst=0;
+  int ofst = 0;
 
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_FOWORD);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_DOWN | KEYSTA_FOWORD);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_DOWN | KEYSTA_BACK);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_BACK);
-    if(ofst<0)return(FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN | KEYSTA_FOWORD);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN | KEYSTA_BACK);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_BACK);
+  if (ofst < 0)
+    return (FALSE);
 
-    return(TRUE);
+  return (TRUE);
 }
 
 /*!
@@ -2765,23 +2759,26 @@ BOOL CCharacterBase::com426(int dt)//よが
     @param dt コマンド受付時間
     @return TRUE:コマンド成立
 */
-BOOL CCharacterBase::com66(int dt)//ダッシュコマンド
+BOOL CCharacterBase::com66(int dt) //ダッシュコマンド
 {
-    int ofst=0;
+  int ofst = 0;
 
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_FOWORD2|KEYSTA_FOWORD);
-    if(ofst<0)return(FALSE);
-    ofst+=1;
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_FOWORD2|KEYSTA_FOWORD);
-    if(ofst<0)return(FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD2 | KEYSTA_FOWORD);
+  if (ofst < 0)
+    return (FALSE);
+  ofst += 1;
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD2 | KEYSTA_FOWORD);
+  if (ofst < 0)
+    return (FALSE);
 
-    return(TRUE);
+  return (TRUE);
 }
 
-BOOL CCharacterBase::com66i(int dt)//バックダッシュコマンド
+BOOL CCharacterBase::com66i(int dt) //バックダッシュコマンド
 {
-    if(!(GetKey(0)&KEYSTA_FOWORD2))return FALSE;
-    return com66(dt);
+  if (!(GetKey(0) & KEYSTA_FOWORD2))
+    return FALSE;
+  return com66(dt);
 }
 
 /*!
@@ -2789,48 +2786,51 @@ BOOL CCharacterBase::com66i(int dt)//バックダッシュコマンド
     @param dt コマンド受付時間
     @return TRUE:コマンド成立
 */
-BOOL CCharacterBase::com44(int dt)//バックダッシュコマンド
+BOOL CCharacterBase::com44(int dt) //バックダッシュコマンド
 {
-    int ofst=0;
+  int ofst = 0;
 
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_BACK2|KEYSTA_BACK);
-    if(ofst<0)return(FALSE);
-    ofst+=1;
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_BACK2|KEYSTA_BACK);
-    if(ofst<0)return(FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_BACK2 | KEYSTA_BACK);
+  if (ofst < 0)
+    return (FALSE);
+  ofst += 1;
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_BACK2 | KEYSTA_BACK);
+  if (ofst < 0)
+    return (FALSE);
 
-    return(TRUE);
+  return (TRUE);
 }
 
-BOOL CCharacterBase::com44i(int dt)//バックダッシュコマンド
+BOOL CCharacterBase::com44i(int dt) //バックダッシュコマンド
 {
-    if(!(GetKey(0)&KEYSTA_BACK2))return FALSE;
-    return com44(dt);
+  if (!(GetKey(0) & KEYSTA_BACK2))
+    return FALSE;
+  return com44(dt);
 }
-
 
 /*!
     @brief コマンド判定(↓↓)
     @param dt コマンド受付時間
     @return TRUE:コマンド成立
 */
-BOOL CCharacterBase::com22(int dt)
-{
-    int ofst=0;
+BOOL CCharacterBase::com22(int dt) {
+  int ofst = 0;
 
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_DOWN2|KEYSTA_DOWN);
-    if(ofst<0)return(FALSE);
-    ofst+=1;
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_DOWN2|KEYSTA_DOWN);
-    if(ofst<0)return(FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN2 | KEYSTA_DOWN);
+  if (ofst < 0)
+    return (FALSE);
+  ofst += 1;
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN2 | KEYSTA_DOWN);
+  if (ofst < 0)
+    return (FALSE);
 
-    return(TRUE);
+  return (TRUE);
 }
 
-BOOL CCharacterBase::com22i(int dt)
-{
-    if(!(GetKey(0)&KEYSTA_DOWN2))return FALSE;
-    return com22(dt);
+BOOL CCharacterBase::com22i(int dt) {
+  if (!(GetKey(0) & KEYSTA_DOWN2))
+    return FALSE;
+  return com22(dt);
 }
 
 /*!
@@ -2838,44 +2838,48 @@ BOOL CCharacterBase::com22i(int dt)
     @param maai 限界間合い
     @return TRUE:オッケー
 */
-BOOL CCharacterBase::NageHantei(DWORD maai)//投げの判定
+BOOL CCharacterBase::NageHantei(DWORD maai) //投げの判定
 {
-    DWORD hm;
-    GOBJECT *pedat= (GOBJECT*)(*funco->getinfo)(GetGObject()->eid);
-    if(pedat==NULL)return(FALSE);
+  DWORD hm;
+  GOBJECT *pedat = (GOBJECT *)(*funco->getinfo)(GetGObject()->eid);
+  if (pedat == NULL)
+    return (FALSE);
 
-    if(pedat->aid & ACTID_KUCYU)//相手が空中判定
-        return(FALSE);
+  if (pedat->aid & ACTID_KUCYU) //相手が空中判定
+    return (FALSE);
 
-    hm = (*funco->getmaai_h)(GetGObject()->id,pedat->id);
-    if(hm > maai)
-        return(FALSE);
+  hm = (*funco->getmaai_h)(GetGObject()->id, pedat->id);
+  if (hm > maai)
+    return (FALSE);
 
-    return(TRUE);
+  return (TRUE);
 }
-
 
 /*!
     @brief コマンド判定( ↓＼→＼↓／←)
     @param dt コマンド受付時間
     @return TRUE:コマンド成立
 */
-BOOL CCharacterBase::com2363214(int dt)
-{
-    int ofst=0;
+BOOL CCharacterBase::com2363214(int dt) {
+  int ofst = 0;
 
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_BACK);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_BACK | KEYSTA_DOWN);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_FOWORD | KEYSTA_DOWN);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_FOWORD);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_DOWN);
-    if(ofst<0)return(FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_BACK);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_BACK | KEYSTA_DOWN);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD | KEYSTA_DOWN);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN);
+  if (ofst < 0)
+    return (FALSE);
 
-    return(TRUE);
+  return (TRUE);
 }
 
 /*!
@@ -2883,26 +2887,32 @@ BOOL CCharacterBase::com2363214(int dt)
     @param dt コマンド受付時間
     @return TRUE:コマンド成立
 */
-BOOL CCharacterBase::com62426(int dt)
-{
-    int ofst=0;
+BOOL CCharacterBase::com62426(int dt) {
+  int ofst = 0;
 
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_FOWORD);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_DOWN | KEYSTA_FOWORD);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_DOWN | KEYSTA_BACK);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_BACK);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_DOWN | KEYSTA_BACK);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_DOWN | KEYSTA_FOWORD);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_FOWORD);
-    if(ofst<0)return(FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN | KEYSTA_FOWORD);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN | KEYSTA_BACK);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_BACK);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN | KEYSTA_BACK);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN | KEYSTA_FOWORD);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD);
+  if (ofst < 0)
+    return (FALSE);
 
-    return(TRUE);
+  return (TRUE);
 }
 
 /*!
@@ -2910,22 +2920,26 @@ BOOL CCharacterBase::com62426(int dt)
     @param dt コマンド受付時間
     @return TRUE:コマンド成立
 */
-BOOL CCharacterBase::com6426(int dt)
-{
-    int ofst=0;
+BOOL CCharacterBase::com6426(int dt) {
+  int ofst = 0;
 
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_FOWORD);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_DOWN | KEYSTA_FOWORD);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_DOWN | KEYSTA_BACK);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_BACK);
-    if(ofst<0)return(FALSE);
-    ofst=(*funcs->seekkey)(keyinput,ofst,dt,KEYSTA_FOWORD);
-    if(ofst<0)return(FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN | KEYSTA_FOWORD);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_DOWN | KEYSTA_BACK);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_BACK);
+  if (ofst < 0)
+    return (FALSE);
+  ofst = (*funcs->seekkey)(keyinput, ofst, dt, KEYSTA_FOWORD);
+  if (ofst < 0)
+    return (FALSE);
 
-    return(TRUE);
+  return (TRUE);
 }
 
 /*!--------------------------------------------------------------------------------------
@@ -2936,29 +2950,22 @@ BOOL CCharacterBase::com6426(int dt)
 
     特定のレベルを基準とし、連続技を出させるかどうか決めるときに使います。
 ----------------------------------------------------------------------------------------*/
-BOOL CCharacterBase::ComLevelCk(UINT level)
-{
-    int crnt_level = GetComLevel();
-    int v = GetRandNum(100);
-    int r;
-    const int rat_base = 80;
+BOOL CCharacterBase::ComLevelCk(UINT level) {
+  int crnt_level = GetComLevel();
+  int v = GetRandNum(100);
+  int r;
+  const int rat_base = 80;
 
-    if((level==0) || crnt_level==level)
-    {
-        r = rat_base;
-    }
-    else if(crnt_level<(int)level)
-    {
-        r = rat_base*crnt_level/level;
-    }
-    else
-    {
-        r = rat_base + (100-rat_base)*(crnt_level-level)/7;
-    }
+  if ((level == 0) || crnt_level == level) {
+    r = rat_base;
+  } else if (crnt_level < (int)level) {
+    r = rat_base * crnt_level / level;
+  } else {
+    r = rat_base + (100 - rat_base) * (crnt_level - level) / 7;
+  }
 
-    return (r>=v) ? TRUE : FALSE;
+  return (r >= v) ? TRUE : FALSE;
 }
-
 
 /*-----------------------------------------------------------------------------
     基本的な行動関数
@@ -2971,49 +2978,46 @@ BOOL CCharacterBase::ComLevelCk(UINT level)
     交代して画面内にはいってくる(1)
     登場ポーズはしない。
 */
-void CCharacterBase::act_koutai_in()
-{
-    GOBJECT* pdat = GetGObject();
+void CCharacterBase::act_koutai_in() {
+  GOBJECT *pdat = GetGObject();
 
-    if(pdat->counter==0){
-        pdat->objtype |= GOBJTYPE_DISPLAY;//画面内にいる
-    }
+  if (pdat->counter == 0) {
+    pdat->objtype |= GOBJTYPE_DISPLAY; //画面内にいる
+  }
 
-    GOBJECT *pedat;
-    if(pdat->counter==0){
-        if(pdat->tid==TEAM_PLAYER1)
-            pedat = GetActiveCharacter(TEAM_PLAYER2);
-        else
-            pedat = GetActiveCharacter(TEAM_PLAYER1);
-        if(pedat!=NULL){
-            if(pedat->x>0){
-                pdat->x = pedat->x -(320+400);
-                pdat->muki=FALSE;
-                pdat->vx=14;
-            }
-            else{
-                pdat->x = pedat->x +(320+400);
-                pdat->muki=TRUE;
-                pdat->vx=14;
-            }
-        }
-        else {
-            pdat->x=0;
-            pdat->vx=0;
-        }
-        pdat->y = -400;
-        pdat->vy= 0;
+  GOBJECT *pedat;
+  if (pdat->counter == 0) {
+    if (pdat->tid == TEAM_PLAYER1)
+      pedat = GetActiveCharacter(TEAM_PLAYER2);
+    else
+      pedat = GetActiveCharacter(TEAM_PLAYER1);
+    if (pedat != NULL) {
+      if (pedat->x > 0) {
+        pdat->x = pedat->x - (320 + 400);
+        pdat->muki = FALSE;
+        pdat->vx = 14;
+      } else {
+        pdat->x = pedat->x + (320 + 400);
+        pdat->muki = TRUE;
+        pdat->vx = 14;
+      }
+    } else {
+      pdat->x = 0;
+      pdat->vx = 0;
     }
-    movex(pdat->vx);
-    pdat->y += pdat->vy;
-    pdat->vy++;
+    pdat->y = -400;
+    pdat->vy = 0;
+  }
+  movex(pdat->vx);
+  pdat->y += pdat->vy;
+  pdat->vy++;
 
-    if(pdat->y > 0){
-        pdat->objtype &= ~GOBJFLG_TAIKI;//待機フラグを消す
-        AddProperty( GOBJFLG_TOBETARGET );//ターゲットになる
-        pdat->y=0;
-        pdat->aid = ACTID_NEUTRAL;
-    }
+  if (pdat->y > 0) {
+    pdat->objtype &= ~GOBJFLG_TAIKI; //待機フラグを消す
+    AddProperty(GOBJFLG_TOBETARGET); //ターゲットになる
+    pdat->y = 0;
+    pdat->aid = ACTID_NEUTRAL;
+  }
 }
 
 /*!
@@ -3021,160 +3025,147 @@ void CCharacterBase::act_koutai_in()
 
     画面外にぴょーんってでてって待機する
 */
-void CCharacterBase::act_koutai_out()
-{
-    GOBJECT* pdat = GetGObject();
+void CCharacterBase::act_koutai_out() {
+  GOBJECT *pdat = GetGObject();
 
-    if(pdat->counter==0){
-        pdat->objtype &= GOBJTYPE_NODISPLAY;//画面外へいけるようにしておく
-        pdat->objtype |= GOBJFLG_TAIKI;//待機フラグを立てる
-        RemoveProperty( GOBJFLG_TOBETARGET );//ターゲットにはならない
-    }
+  if (pdat->counter == 0) {
+    pdat->objtype &= GOBJTYPE_NODISPLAY; //画面外へいけるようにしておく
+    pdat->objtype |= GOBJFLG_TAIKI;      //待機フラグを立てる
+    RemoveProperty(GOBJFLG_TOBETARGET);  //ターゲットにはならない
+  }
 
-    if(pdat->counter < 2){
-        pdat->vx = -12;
-        pdat->vy = -16;
-    }
-    else {
-        pdat->revx=TRUE;
-        movex(pdat->vx);
-        pdat->y += pdat->vy;
-        pdat->vy++;
-        if(pdat->x > 1500 || pdat->x <-1500)pdat->aid = ACTID_TAIKICYU;
-    }
+  if (pdat->counter < 2) {
+    pdat->vx = -12;
+    pdat->vy = -16;
+  } else {
+    pdat->revx = TRUE;
+    movex(pdat->vx);
+    pdat->y += pdat->vy;
+    pdat->vy++;
+    if (pdat->x > 1500 || pdat->x < -1500)
+      pdat->aid = ACTID_TAIKICYU;
+  }
 }
 
 /*!
     @brief 交代行動(out)
     画面外に飛んでって待機する
 */
-void CCharacterBase::act_taiki()
-{
-    GOBJECT* pdat = GetGObject();
+void CCharacterBase::act_taiki() {
+  GOBJECT *pdat = GetGObject();
 
-    if(pdat->counter==0){
-        pdat->objtype &= GOBJTYPE_NODISPLAY;//画面外へいけるようにしておく
-        AddProperty( GOBJFLG_TAIKI );//待機フラグを立てる
-        RemoveProperty( GOBJFLG_TOBETARGET );//ターゲットにはならない
-    }
+  if (pdat->counter == 0) {
+    pdat->objtype &= GOBJTYPE_NODISPLAY; //画面外へいけるようにしておく
+    AddProperty(GOBJFLG_TAIKI);          //待機フラグを立てる
+    RemoveProperty(GOBJFLG_TOBETARGET);  //ターゲットにはならない
+  }
 
-    if(pdat->counter < 2){
-        pdat->vx = -12;
-        pdat->vy = -20;
-    }
-    else {
-        pdat->revx=TRUE;
-        movex(pdat->vx);
-        pdat->y += pdat->vy;
-        pdat->vy++;
-        if(pdat->x > 1500 || pdat->x <-1500)pdat->aid = ACTID_TAIKICYU;
-    }
+  if (pdat->counter < 2) {
+    pdat->vx = -12;
+    pdat->vy = -20;
+  } else {
+    pdat->revx = TRUE;
+    movex(pdat->vx);
+    pdat->y += pdat->vy;
+    pdat->vy++;
+    if (pdat->x > 1500 || pdat->x < -1500)
+      pdat->aid = ACTID_TAIKICYU;
+  }
 }
-
 
 /*!
     @brief 交代行動(in) 登場ポーズあり・登場ポーズ
 */
-void CCharacterBase::act_koutai2()
-{
-    act_tojyo();
+void CCharacterBase::act_koutai2() {
+  act_tojyo();
 
-    if(GetGObject()->counter<150 || GetGObject()->aid==ACTID_NEUTRAL){
-        GetGObject()->aid = ACTID_NEUTRAL;
-        (*funcs->msg2system)(GetGObject()->id,MSGOBJ2SYS_KOUTAIEND,0);
-    }
+  if (GetGObject()->counter < 150 || GetGObject()->aid == ACTID_NEUTRAL) {
+    GetGObject()->aid = ACTID_NEUTRAL;
+    (*funcs->msg2system)(GetGObject()->id, MSGOBJ2SYS_KOUTAIEND, 0);
+  }
 }
 
 /*!
     @brief 交代行動(in) 登場ポーズあり・発動
 */
-void CCharacterBase::act_koutai()
-{
-    GOBJECT* pdat = GetGObject();
+void CCharacterBase::act_koutai() {
+  GOBJECT *pdat = GetGObject();
 
-    pdat->objtype |= GOBJTYPE_DISPLAY;//画面内にいる
+  pdat->objtype |= GOBJTYPE_DISPLAY; //画面内にいる
 
-    GOBJECT *pedat;
-    if(pdat->counter==0){
-        if(pdat->tid==TEAM_PLAYER1)
-            pedat = GetActiveCharacter(TEAM_PLAYER2);
-        else
-            pedat = GetActiveCharacter(TEAM_PLAYER1);
-        if(pedat!=NULL){
-            if(pedat->x>0){
-                pdat->x = pedat->x -(320+400);
-                pdat->muki=FALSE;
-                pdat->vx=14;
-            }
-            else{
-                pdat->x = pedat->x +(320+400);
-                pdat->muki=TRUE;
-                pdat->vx=14;
-            }
-        }
-        else {
-            pdat->x=0;
-            pdat->vx=0;
-        }
-        pdat->y = -400;
-        pdat->vy= 0;
+  GOBJECT *pedat;
+  if (pdat->counter == 0) {
+    if (pdat->tid == TEAM_PLAYER1)
+      pedat = GetActiveCharacter(TEAM_PLAYER2);
+    else
+      pedat = GetActiveCharacter(TEAM_PLAYER1);
+    if (pedat != NULL) {
+      if (pedat->x > 0) {
+        pdat->x = pedat->x - (320 + 400);
+        pdat->muki = FALSE;
+        pdat->vx = 14;
+      } else {
+        pdat->x = pedat->x + (320 + 400);
+        pdat->muki = TRUE;
+        pdat->vx = 14;
+      }
+    } else {
+      pdat->x = 0;
+      pdat->vx = 0;
     }
-    movex(pdat->vx);
-    pdat->y += pdat->vy;
-    pdat->vy++;
+    pdat->y = -400;
+    pdat->vy = 0;
+  }
+  movex(pdat->vx);
+  pdat->y += pdat->vy;
+  pdat->vy++;
 
-    if(pdat->y > 0){
-        pdat->objtype &= ~GOBJFLG_TAIKI;//待機フラグを消す
-        AddProperty( GOBJFLG_TOBETARGET );//ターゲットになる
-        pdat->y=0;
-        pdat->aid = ACTID_KOUTAI2;//登場ポーズ
-    }
+  if (pdat->y > 0) {
+    pdat->objtype &= ~GOBJFLG_TAIKI; //待機フラグを消す
+    AddProperty(GOBJFLG_TOBETARGET); //ターゲットになる
+    pdat->y = 0;
+    pdat->aid = ACTID_KOUTAI2; //登場ポーズ
+  }
 }
 
 /*!
     @brief 待機中行動
 */
-void CCharacterBase::act_taikicyu(){}
+void CCharacterBase::act_taikicyu() {}
 
 /*!
     @brief 支援攻撃呼び出し行動
 */
-void CCharacterBase::act_strikercomeon()
-{
-    ChangeAction(ACTID_NEUTRAL);
-}
+void CCharacterBase::act_strikercomeon() { ChangeAction(ACTID_NEUTRAL); }
 
 /*!
     @brief タイムオーバー負け行動
 */
-void CCharacterBase::act_timeoverlose()
+void CCharacterBase::act_timeoverlose() { ChangeAction(ACTID_NEUTRAL); }
+
+void CCharacterBase::act_guards() //立ちガード(中)
 {
-    ChangeAction(ACTID_NEUTRAL);
+  if (pdat->counter < 16) {
+    pdat->cnow = DCELL_GUARDS1;
+  } else
+    pdat->aid = ACTID_NEUTRAL;
 }
 
-void CCharacterBase::act_guards()    //立ちガード(中)
+void CCharacterBase::act_guardc() //しゃがみガード(中)
 {
-    if (pdat->counter < 16){
-        pdat->cnow = DCELL_GUARDS1;
-    }
-    else pdat->aid = ACTID_NEUTRAL;
+  if (pdat->counter < 16) {
+    pdat->cnow = DCELL_GUARDC1;
+  } else
+    pdat->aid = ACTID_NEUTRAL;
 }
 
-void CCharacterBase::act_guardc()    //しゃがみガード(中)
+void CCharacterBase::act_guardj() //空中ガード(中)
 {
-    if (pdat->counter < 16){
-        pdat->cnow = DCELL_GUARDC1;
-    }
-    else pdat->aid = ACTID_NEUTRAL;
-}
-
-void CCharacterBase::act_guardj()    //空中ガード(中)
-{
-    if (pdat->counter < 16){
-        pdat->cnow = DCELL_GUARDJ1;
-        JiyuuRakka(2, TRUE, ACTID_NEUTRAL);    // 落下
-    }
-    else pdat->aid = ACTID_RAKKA;
+  if (pdat->counter < 16) {
+    pdat->cnow = DCELL_GUARDJ1;
+    JiyuuRakka(2, TRUE, ACTID_NEUTRAL); // 落下
+  } else
+    pdat->aid = ACTID_RAKKA;
 }
 
 /*!
@@ -3224,8 +3215,7 @@ void CCharacterBase::act_guardj()    //空中ガード(中)
 /*!
     @brief 空中ダメージ復帰後落下
 */
-void CCharacterBase::act_rakka2(){act_rakka();}
-
+void CCharacterBase::act_rakka2() { act_rakka(); }
 
 /*-----------------------------------------------------------------------------
     勝利台詞 取得/設定 処理
@@ -3239,131 +3229,117 @@ void CCharacterBase::act_rakka2(){act_rakka();}
 
     @param filename 勝利台詞設定テキストファイル名(NULLの場合"serifu.txt")
 */
-void CCharacterBase::LoadAndSetKatiSerif(char* filename)
-{
-    if(!filename)filename = WIN_SERIFU_TXT;
+void CCharacterBase::LoadAndSetKatiSerif(char *filename) {
+  if (!filename)
+    filename = WIN_SERIFU_TXT;
 
-    char* filepath = new char[256];
-    char* tmpname = new char[64];
-    char* katiserifu = new char[256];
-    char* buff = NULL;
-    UINT  bufflen;
-    std::vector<char*>	str_points;
-    std::vector<char*>	str_points_r;
-    do
-    {
-        //ファイルをメモリ上にロード
-        sprintf(filepath,"%s\\%s",g_chardir,filename);
-        File2Mem(filepath,&buff,&bufflen);
-        if(!buff)break;
-        
-        char* enemyname = GetEnemyName(pdat->tid);
-        int   enemyface = GetEnemyFace(pdat->tid);
+  char *filepath = new char[256];
+  char *tmpname = new char[64];
+  char *katiserifu = new char[256];
+  char *buff = NULL;
+  UINT bufflen;
+  std::vector<char *> str_points;
+  std::vector<char *> str_points_r;
+  do {
+    //ファイルをメモリ上にロード
+    sprintf(filepath, "%s\\%s", g_chardir, filename);
+    File2Mem(filepath, &buff, &bufflen);
+    if (!buff)
+      break;
 
-        //設定を検出し、設定開始位置を記憶する
-        char* s = buff;
-        char* s_point;
-        int tmpface;
-        while((UINT)(s-buff)<bufflen-1)
-        {
-            if(*s=='#')
-            {
-                s++;
-                s_point = s;
-                int scaret = sscanf( s,"%s %d",tmpname,&tmpface);
-                if(scaret == 1)
-                {
-                    tmpface = 0;
-                }
-                if(scaret>0)
-                {
-                    //ランダム用
-                    if( strcmp(tmpname,"random")==0 ){
-                        str_points_r.push_back(s_point);
-                    }
-                    //指定台詞
-                    else if( tmpface==enemyface && enemyname && strcmp(tmpname,enemyname)==0){
-                        str_points.push_back(s_point);
-                    }
-                }
-            }
-            else
-            {
-                s++;
-                if(*s & 0x80)s++;
-            }
+    char *enemyname = GetEnemyName(pdat->tid);
+    int enemyface = GetEnemyFace(pdat->tid);
+
+    //設定を検出し、設定開始位置を記憶する
+    char *s = buff;
+    char *s_point;
+    int tmpface;
+    while ((UINT)(s - buff) < bufflen - 1) {
+      if (*s == '#') {
+        s++;
+        s_point = s;
+        int scaret = sscanf(s, "%s %d", tmpname, &tmpface);
+        if (scaret == 1) {
+          tmpface = 0;
         }
-
-
-        //使用する台詞を選択
-        if(str_points.size()>0)
-        {
-            s_point = str_points[ GetRandNum((int)str_points.size()) ];
+        if (scaret > 0) {
+          //ランダム用
+          if (strcmp(tmpname, "random") == 0) {
+            str_points_r.push_back(s_point);
+          }
+          //指定台詞
+          else if (tmpface == enemyface && enemyname && strcmp(tmpname, enemyname) == 0) {
+            str_points.push_back(s_point);
+          }
         }
-        else if(str_points_r.size()>0)
-        {
-            s_point = str_points_r[ GetRandNum((int)str_points_r.size()) ];
-        }
-        else break;
+      } else {
+        s++;
+        if (*s & 0x80)
+          s++;
+      }
+    }
 
-        //台詞を読み込み
-        s = s_point;
-        ZeroMemory(katiserifu,256);
-        while(TRUE)
-        {
-            //改行するまで進む
-            if(*s=='\n')
-            {
-                s++;
-                break;
-            }
-            if((*s==0x0d && *(s+1)==0x0a))
-            {
-                s+=2;
-                break;
-            }
+    //使用する台詞を選択
+    if (str_points.size() > 0) {
+      s_point = str_points[GetRandNum((int)str_points.size())];
+    } else if (str_points_r.size() > 0) {
+      s_point = str_points_r[GetRandNum((int)str_points_r.size())];
+    } else
+      break;
 
-            s++;
+    //台詞を読み込み
+    s = s_point;
+    ZeroMemory(katiserifu, 256);
+    while (TRUE) {
+      //改行するまで進む
+      if (*s == '\n') {
+        s++;
+        break;
+      }
+      if ((*s == 0x0d && *(s + 1) == 0x0a)) {
+        s += 2;
+        break;
+      }
 
-            //見つからなかった？
-            if((UINT)(s-buff)>=bufflen-2)
-            {
-                s=NULL;
-                break;
-            }
-        }
-        if(!s)break;
+      s++;
 
-        UINT strcount=0;
-        while(TRUE)
-        {
-            //コピー
-            katiserifu[strcount] = *s;
-            strcount++;
-            if(strcount>254)break;
+      //見つからなかった？
+      if ((UINT)(s - buff) >= bufflen - 2) {
+        s = NULL;
+        break;
+      }
+    }
+    if (!s)
+      break;
 
-            s++;
+    UINT strcount = 0;
+    while (TRUE) {
+      //コピー
+      katiserifu[strcount] = *s;
+      strcount++;
+      if (strcount > 254)
+        break;
 
-            //次の#が見つかってしまったら終了
-            if(*s=='#')
-            {
-                break;
-            }
+      s++;
 
-            //終端に到達
-            if((UINT)(s-buff)>=bufflen)
-            {
-                break;
-            }
-        }
-        funcs->setkatiserif(pdat->tid,katiserifu);
+      //次の#が見つかってしまったら終了
+      if (*s == '#') {
+        break;
+      }
 
-    }while(0);
+      //終端に到達
+      if ((UINT)(s - buff) >= bufflen) {
+        break;
+      }
+    }
+    funcs->setkatiserif(pdat->tid, katiserifu);
 
-    DELETE_ARRAY(buff);
-    DELETE_ARRAY(filepath);
-    DELETE_ARRAY(tmpname);
-    DELETE_ARRAY(katiserifu);
+  } while (0);
+
+  DELETE_ARRAY(buff);
+  DELETE_ARRAY(filepath);
+  DELETE_ARRAY(tmpname);
+  DELETE_ARRAY(katiserifu);
 }
 
 /*!
@@ -3383,130 +3359,116 @@ void CCharacterBase::LoadAndSetKatiSerif(char* filename)
     描画時に標準のビットマップとGCD、サウンド等が利用できます。
 */
 
-
 /*!
     @brief 構築(非推奨)
 */
-CBulletBase::CBulletBase(GOBJECT *parent/* = NULL */) : CGoluahObject(FALSE)
-{
-    parent_obj = parent;
-    parent_class = NULL;
+CBulletBase::CBulletBase(GOBJECT *parent /* = NULL */) : CGoluahObject(FALSE) {
+  parent_obj = parent;
+  parent_class = NULL;
 
-    CBulletBaseCreate();
+  CBulletBaseCreate();
 }
 
 /*!
     @brief 構築(推奨)
 */
-CBulletBase::CBulletBase(CCharacterBase *parent) : CGoluahObject(FALSE)
-{
-    if(parent!=NULL){
-        parent_class = parent;
-        parent_obj = parent->GetGObject();
-        g_chardir = parent->GetCharDir();
-    }
-    else {
-        parent_class=NULL;
-        parent_obj=NULL;
-    }
-    CBulletBaseCreate();
+CBulletBase::CBulletBase(CCharacterBase *parent) : CGoluahObject(FALSE) {
+  if (parent != NULL) {
+    parent_class = parent;
+    parent_obj = parent->GetGObject();
+    g_chardir = parent->GetCharDir();
+  } else {
+    parent_class = NULL;
+    parent_obj = NULL;
+  }
+  CBulletBaseCreate();
 }
-
 
 /*!
     @brief コンストラクタ共通処理
 */
-void CBulletBase::CBulletBaseCreate()
-{
-    GOBJECT* pdat = GetGObject();
+void CBulletBase::CBulletBaseCreate() {
+  GOBJECT *pdat = GetGObject();
 
-    if(parent_obj!=NULL){
-        pdat->tid = parent_obj->tid;//チームID
-        pdat->pmsarr = parent_obj->pmsarr;//gcdは親と同じものを使えるようにしておく
-        pdat->pcdat = parent_obj->pcdat;
-        pdat->prdat = parent_obj->prdat;
-        pdat->phdat = parent_obj->phdat;
+  if (parent_obj != NULL) {
+    pdat->tid = parent_obj->tid;       //チームID
+    pdat->pmsarr = parent_obj->pmsarr; // gcdは親と同じものを使えるようにしておく
+    pdat->pcdat = parent_obj->pcdat;
+    pdat->prdat = parent_obj->prdat;
+    pdat->phdat = parent_obj->phdat;
 
-        pdat->x = parent_obj->x;
-        pdat->y = parent_obj->y;
-        pdat->muki = parent_obj->muki;
+    pdat->x = parent_obj->x;
+    pdat->y = parent_obj->y;
+    pdat->muki = parent_obj->muki;
+  }
 
-    }
+  pdat->aid = CBB_STATE_IDLE;
+  pdat->objtype = GOBJTYPE_BULLET; //オブジェクトタイプ
+  base_z = ZZAHYO_BULLET1;
 
-    pdat->aid = CBB_STATE_IDLE;
-    pdat->objtype	= GOBJTYPE_BULLET;//オブジェクトタイプ
-    base_z=ZZAHYO_BULLET1;
+  ZeroMemory(&atkinfo, sizeof(ATTACKINFO));
+  pdat->atk = &atkinfo;
 
-    ZeroMemory(&atkinfo,sizeof(ATTACKINFO));
-    pdat->atk = &atkinfo;
-
-    hitmsg = 0;
-    grdmsg = 0;
+  hitmsg = 0;
+  grdmsg = 0;
 }
-
 
 /*-----------------------------------------------------------------------------
     メッセージ処理関数
 -------------------------------------------------------------------------------*/
-DWORD CBulletBase::Message(DWORD msg,LPVOID pd,DWORD prm)
-{
-    switch(msg){
-    case GOBJMSG_SOUSAI:return( Sousai(prm) );
-    default:
-        //あとのメッセージはオブジェクト基本クラスに任せる
-        return(CGoluahObject::Message(msg,pd,prm));
-    }
-    return(0);
+DWORD CBulletBase::Message(DWORD msg, LPVOID pd, DWORD prm) {
+  switch (msg) {
+  case GOBJMSG_SOUSAI:
+    return (Sousai(prm));
+  default:
+    //あとのメッセージはオブジェクト基本クラスに任せる
+    return (CGoluahObject::Message(msg, pd, prm));
+  }
+  return (0);
 }
 
 /*!
     @brief GOBJMSG_DRAW メッセージ処理
     idle時は描画しない。idle以外はデフォルトの描画処理。
 */
-DWORD CBulletBase::Draw()
-{
-    if(GetGObject()->aid==CBB_STATE_IDLE)return TRUE;
-    return 0;
+DWORD CBulletBase::Draw() {
+  if (GetGObject()->aid == CBB_STATE_IDLE)
+    return TRUE;
+  return 0;
 }
 
 /*!
     @brief GOBJMSG_TOUCHB メッセージ処理（他オブジェクトへの衝突）
 */
-DWORD CBulletBase::TouchB(ATTACKINFO *info,BOOL hit)
-{
-    Hit();
-    if(parent_class){
-        if(hit){
-            if (hitmsg!=0)
-                parent_class->Message(hitmsg,parent_obj,hitprm);
-            else
-                parent_class->TouchB(info, hit);
-        }
-        else if(grdmsg!=0){
-            parent_class->Message(grdmsg,parent_obj,grdprm);
-        }
-        else
-            parent_class->TouchB(info, hit);
-    }
-    return(TRUE);
+DWORD CBulletBase::TouchB(ATTACKINFO *info, BOOL hit) {
+  Hit();
+  if (parent_class) {
+    if (hit) {
+      if (hitmsg != 0)
+        parent_class->Message(hitmsg, parent_obj, hitprm);
+      else
+        parent_class->TouchB(info, hit);
+    } else if (grdmsg != 0) {
+      parent_class->Message(grdmsg, parent_obj, grdprm);
+    } else
+      parent_class->TouchB(info, hit);
+  }
+  return (TRUE);
 }
 
-void CBulletBase::Hit()
-{
-    pdat->kougeki = FALSE;
-    Bomb();
+void CBulletBase::Hit() {
+  pdat->kougeki = FALSE;
+  Bomb();
 }
 
 /*!
     @brief GOBJMSG_SOUSAI メッセージ処理（他飛道具への衝突）
 */
-DWORD CBulletBase::Sousai(DWORD prm)
-{
-    GetGObject()->kougeki=FALSE;//攻撃力無効化
-    GetGObject()->aid = CBB_STATE_BOMB;
-    return(TRUE);
+DWORD CBulletBase::Sousai(DWORD prm) {
+  GetGObject()->kougeki = FALSE; //攻撃力無効化
+  GetGObject()->aid = CBB_STATE_BOMB;
+  return (TRUE);
 }
-
 
 /*!
     @brief GOBJMSG_CNGROUND メッセージ処理
@@ -3514,10 +3476,9 @@ DWORD CBulletBase::Sousai(DWORD prm)
     ラウンド変化。FALSEを返すと消されちゃう。
     CBulletBaseはTRUEを返し、Hide()します。
 */
-BOOL CBulletBase::OnChangeRound()
-{
-    Hide();
-    return TRUE;//通常、消えない
+BOOL CBulletBase::OnChangeRound() {
+  Hide();
+  return TRUE; //通常、消えない
 }
 
 /*-----------------------------------------------------------------------------
@@ -3525,75 +3486,68 @@ BOOL CBulletBase::OnChangeRound()
 -------------------------------------------------------------------------------*/
 
 //!オブジェクト破棄
-void CBulletBase::Suicide()
-{
-    Hide();
-}
+void CBulletBase::Suicide() { Hide(); }
 
 //!消滅アニメーションへ移行
-void CBulletBase::Bomb()
-{
-    ChangeAction(CBB_STATE_BOMB);
-}
+void CBulletBase::Bomb() { ChangeAction(CBB_STATE_BOMB); }
 
 //!隠す
-void CBulletBase::Hide()
-{
-    ChangeAction(CBB_STATE_IDLE);
-}
+void CBulletBase::Hide() { ChangeAction(CBB_STATE_IDLE); }
 
 //!飛ばす
-BOOL CBulletBase::Go(BOOL muki,double x,double y,double vx,double vy)
-{
-    GOBJECT* pdat = GetGObject();
+BOOL CBulletBase::Go(BOOL muki, double x, double y, double vx, double vy) {
+  GOBJECT *pdat = GetGObject();
 
-    if (pdat->aid == CBB_STATE_IDLE)
-    {
-        pdat->muki = muki;
-        SetPos(x,y);
-        pdat->vx = vx;
-        pdat->vy = vy;
-        ChangeAction(CBB_STATE_RUN);
-        return TRUE;
-    }
+  if (pdat->aid == CBB_STATE_IDLE) {
+    pdat->muki = muki;
+    SetPos(x, y);
+    pdat->vx = vx;
+    pdat->vy = vy;
+    ChangeAction(CBB_STATE_RUN);
+    return TRUE;
+  }
 
-    return FALSE;
+  return FALSE;
 }
 
 /*!
     @brief サウンド再生
     もし親クラスがあれば、そちらのほうに処理を丸投げ
 */
-void CBulletBase::PlayMySound(DWORD number)
-{
-    if(parent_class!=NULL)parent_class->PlayMySound(number);
+void CBulletBase::PlayMySound(DWORD number) {
+  if (parent_class != NULL)
+    parent_class->PlayMySound(number);
 }
 
 /*!
     @brief GOBJMSG_ACTION メッセージ処理
 */
-DWORD CBulletBase::Action()
-{
-    switch(GetGObject()->aid){
-    case CBB_STATE_IDLE:	act_idle();break;
-    case CBB_STATE_RUN:		act_run();break;
-    case CBB_STATE_BOMB:	act_bomb();break;
-    case CBB_STATE_RUN2:	act_run2();break;
-    }
-    return(CGoluahObject::Action());
+DWORD CBulletBase::Action() {
+  switch (GetGObject()->aid) {
+  case CBB_STATE_IDLE:
+    act_idle();
+    break;
+  case CBB_STATE_RUN:
+    act_run();
+    break;
+  case CBB_STATE_BOMB:
+    act_bomb();
+    break;
+  case CBB_STATE_RUN2:
+    act_run2();
+    break;
+  }
+  return (CGoluahObject::Action());
 }
 
 //!アイドル時処理
-void CBulletBase::act_idle()
-{
-    GOBJECT* pdat = GetGObject();
+void CBulletBase::act_idle() {
+  GOBJECT *pdat = GetGObject();
 
-    pdat->x = 99999;
-    pdat->y = 99999;
-    pdat->kougeki = FALSE;
+  pdat->x = 99999;
+  pdat->y = 99999;
+  pdat->kougeki = FALSE;
 }
-
-
 
 /*!
     @class CClassicalBullet
@@ -3611,133 +3565,138 @@ void CBulletBase::act_idle()
 /*!
     @brief 構築
 */
-CClassicalBullet::CClassicalBullet( CCharacterBase *parent,CDI_CHARACTERINFO2 *info,BULLETINFO_A *bulinfo,
-                                   BYTE userID,BYTE userNo) : CBulletBase(parent)
-{
-    array_len_r = 0;
-    array_len_d = 0;
+CClassicalBullet::CClassicalBullet(
+    CCharacterBase *parent, CDI_CHARACTERINFO2 *info, BULLETINFO_A *bulinfo, BYTE userID, BYTE userNo)
+    : CBulletBase(parent) {
+  array_len_r = 0;
+  array_len_d = 0;
 
-    //配列の長さを取得する
-    while(bulinfo->cell_run[array_len_r]>0)array_len_r++;
-    while(bulinfo->cell_dis[array_len_d]>0)array_len_d++;
+  //配列の長さを取得する
+  while (bulinfo->cell_run[array_len_r] > 0)
+    array_len_r++;
+  while (bulinfo->cell_dis[array_len_d] > 0)
+    array_len_d++;
 
-    //メモり確保&配列をコピーする
-    DWORD i;
-    if(array_len_r==0)pcr=NULL;
-    else{
-        pcr = new int[array_len_r];
-        for(i=0;i<array_len_r;i++){
-            pcr[i] = bulinfo->cell_run[i];
-        }
+  //メモり確保&配列をコピーする
+  DWORD i;
+  if (array_len_r == 0)
+    pcr = NULL;
+  else {
+    pcr = new int[array_len_r];
+    for (i = 0; i < array_len_r; i++) {
+      pcr[i] = bulinfo->cell_run[i];
     }
-    if(array_len_d==0)pcd=NULL;
-    else{
-        pcd = new int[array_len_d];
-        for(i=0;i<array_len_d;i++){
-            pcd[i] = bulinfo->cell_dis[i];
-        }
+  }
+  if (array_len_d == 0)
+    pcd = NULL;
+  else {
+    pcd = new int[array_len_d];
+    for (i = 0; i < array_len_d; i++) {
+      pcd[i] = bulinfo->cell_dis[i];
     }
+  }
 
-    //旧攻撃情報配列から新攻撃情報配列に変換する
-    atkinfo.damage = bulinfo->atk.damage;
-    atkinfo.kezuri = bulinfo->atk.kezuri;
-    atkinfo.guard = bulinfo->atk.guard;
-    atkinfo.hit = bulinfo->atk.hit;
-    atkinfo.muki = FALSE;//旧構造体とはちょっと意味が違う
+  //旧攻撃情報配列から新攻撃情報配列に変換する
+  atkinfo.damage = bulinfo->atk.damage;
+  atkinfo.kezuri = bulinfo->atk.kezuri;
+  atkinfo.guard = bulinfo->atk.guard;
+  atkinfo.hit = bulinfo->atk.hit;
+  atkinfo.muki = FALSE; //旧構造体とはちょっと意味が違う
 
-    //パラメータコピー
-    ax = bulinfo->ax;
-    ay = bulinfo->ay;
-    vx = bulinfo->vx;
-    vy = bulinfo->vy;
-    spd_r = bulinfo->spd_run;
-    spd_d = bulinfo->spd_dis;
-    lifedur = bulinfo->dur;
-    flags = bulinfo->type;
+  //パラメータコピー
+  ax = bulinfo->ax;
+  ay = bulinfo->ay;
+  vx = bulinfo->vx;
+  vy = bulinfo->vy;
+  spd_r = bulinfo->spd_run;
+  spd_d = bulinfo->spd_dis;
+  lifedur = bulinfo->dur;
+  flags = bulinfo->type;
 
-    //フラグ処理 
-    if( !(flags&BULLETA_VSHUMAN) )RemoveProperty(GOBJFLG_ATTACK);
-    if( !(flags&BULLETA_VSBULLET) )RemoveProperty(GOBJFLG_ZBULLET);
-    if( flags&BULLETA_DRAWBACK )base_z=ZZAHYO_BULLET3;
-    if( flags&BULLETA_DRAWMIDDLE )base_z=ZZAHYO_BULLET2;
-    if( flags&BULLETA_DISPZAHYO )AddProperty(GOBJFLG_DISPZAHYO);
-    if( flags&BULLETA_DONOTSTOP )AddProperty(GOBJFLG_DONOTSTOP);
+  //フラグ処理
+  if (!(flags & BULLETA_VSHUMAN))
+    RemoveProperty(GOBJFLG_ATTACK);
+  if (!(flags & BULLETA_VSBULLET))
+    RemoveProperty(GOBJFLG_ZBULLET);
+  if (flags & BULLETA_DRAWBACK)
+    base_z = ZZAHYO_BULLET3;
+  if (flags & BULLETA_DRAWMIDDLE)
+    base_z = ZZAHYO_BULLET2;
+  if (flags & BULLETA_DISPZAHYO)
+    AddProperty(GOBJFLG_DISPZAHYO);
+  if (flags & BULLETA_DONOTSTOP)
+    AddProperty(GOBJFLG_DONOTSTOP);
 }
 
 /*!
     @brief 破棄
 */
-CClassicalBullet::~CClassicalBullet()
-{
-    if(pcr)delete [] pcr;
-    if(pcd)delete [] pcd;
+CClassicalBullet::~CClassicalBullet() {
+  if (pcr)
+    delete[] pcr;
+  if (pcd)
+    delete[] pcd;
 }
-
 
 /*!
     @brief その他
 */
-BOOL CClassicalBullet::Go(BOOL muki,double x,double y)
-{	
-    return CBulletBase::Go(muki,x,y,vx,vy);
-}
+BOOL CClassicalBullet::Go(BOOL muki, double x, double y) { return CBulletBase::Go(muki, x, y, vx, vy); }
 
 //!ヒット時処理
-void CClassicalBullet::Hit()
-{
-    if(flags&BULLETA_DONOTDIE)ChangeAction(CBB_STATE_RUN2);
-    else ChangeAction(CBB_STATE_BOMB);
+void CClassicalBullet::Hit() {
+  if (flags & BULLETA_DONOTDIE)
+    ChangeAction(CBB_STATE_RUN2);
+  else
+    ChangeAction(CBB_STATE_BOMB);
 }
 
 //!飛翔時処理
-void CClassicalBullet::act_run()
-{
-    if(spd_r==0 || array_len_r==0 || pcr==NULL)return;
-    GOBJECT* pdat = GetGObject();
-    DWORD counter2 = pdat->counter%(spd_r * array_len_r);
-    DWORD index = counter2 /= spd_r;
+void CClassicalBullet::act_run() {
+  if (spd_r == 0 || array_len_r == 0 || pcr == NULL)
+    return;
+  GOBJECT *pdat = GetGObject();
+  DWORD counter2 = pdat->counter % (spd_r * array_len_r);
+  DWORD index = counter2 /= spd_r;
 
-    pdat->cnow = pcr[index];
+  pdat->cnow = pcr[index];
 
-    pdat->vx += ax;
-    pdat->vy += ay;
-    movex( pdat->vx );
-    pdat->y += pdat->vy;
+  pdat->vx += ax;
+  pdat->vy += ay;
+  movex(pdat->vx);
+  pdat->y += pdat->vy;
 
-    pdat->kougeki=TRUE;
-    if(pdat->counter > lifedur){
-        ChangeAction(CBB_STATE_BOMB);
+  pdat->kougeki = TRUE;
+  if (pdat->counter > lifedur) {
+    ChangeAction(CBB_STATE_BOMB);
+  } else if (flags & BULLETA_XJIMENN) {
+    if (pdat->y > 0) {
+      pdat->y = 0;
+      ChangeAction(CBB_STATE_BOMB);
     }
-    else if(flags&BULLETA_XJIMENN){
-        if(pdat->y>0){
-            pdat->y = 0;
-            ChangeAction(CBB_STATE_BOMB);
-        }
-    }
+  }
 }
 
 //!飛翔時処理(ヒット後)
-void CClassicalBullet::act_run2()
-{
-    act_run();
-    GetGObject()->kougeki=FALSE;
+void CClassicalBullet::act_run2() {
+  act_run();
+  GetGObject()->kougeki = FALSE;
 }
 
 //!ヒット後処理
-void CClassicalBullet::act_bomb()
-{
-    GetGObject()->kougeki = FALSE;
+void CClassicalBullet::act_bomb() {
+  GetGObject()->kougeki = FALSE;
 
-    DWORD index = 0;
+  DWORD index = 0;
 
-    if(!(spd_d==0 || pcd==NULL)){
-        index = GetGObject()->counter / spd_d;
-    }
-    if(index >= array_len_d || array_len_d==0 || (spd_d==0 || pcd==NULL)){
-        Hide();
-        return;
-    }
-    GetGObject()->cnow = pcd[index];
+  if (!(spd_d == 0 || pcd == NULL)) {
+    index = GetGObject()->counter / spd_d;
+  }
+  if (index >= array_len_d || array_len_d == 0 || (spd_d == 0 || pcd == NULL)) {
+    Hide();
+    return;
+  }
+  GetGObject()->cnow = pcd[index];
 }
 
 /*!
@@ -3761,15 +3720,14 @@ void CClassicalBullet::act_bomb()
 
     通常はこちらを使ってください。
 */
-CBulletList::CBulletList()
-{
-    m_pBullet = NULL;
-    pNext = NULL;
-    ListCount = 0;
-    x = 0;
-    y = 0;
-    vx = 0;
-    vy = 0;
+CBulletList::CBulletList() {
+  m_pBullet = NULL;
+  pNext = NULL;
+  ListCount = 0;
+  x = 0;
+  y = 0;
+  vx = 0;
+  vy = 0;
 }
 
 /*!
@@ -3778,22 +3736,20 @@ CBulletList::CBulletList()
 
     使う機会はあんまり無いと思う。
 */
-CBulletList::CBulletList(CBulletBase *pBullet)
-{
-    if (pBullet){
-        m_pBullet = pBullet;
-        ListCount = 1;
-    }
-    else {
-        m_pBullet = NULL;
-        ListCount = 0;
-    }
+CBulletList::CBulletList(CBulletBase *pBullet) {
+  if (pBullet) {
+    m_pBullet = pBullet;
+    ListCount = 1;
+  } else {
+    m_pBullet = NULL;
+    ListCount = 0;
+  }
 
-    pNext = NULL;
-    x = 0;
-    y = 0;
-    vx = 0;
-    vy = 0;
+  pNext = NULL;
+  x = 0;
+  y = 0;
+  vx = 0;
+  vy = 0;
 }
 
 /*!
@@ -3801,10 +3757,9 @@ CBulletList::CBulletList(CBulletBase *pBullet)
 
     リスト内の飛び道具に手は加えません。
 */
-CBulletList::~CBulletList()
-{
-    if (pNext)
-        delete pNext;
+CBulletList::~CBulletList() {
+  if (pNext)
+    delete pNext;
 }
 
 /*!
@@ -3815,25 +3770,21 @@ CBulletList::~CBulletList()
     CCharacterBase::InitBullets内で全部まとめてやっちゃうことをお勧めします。
     なお一度追加すると元に戻せません、ご注意ください。
 */
-void CBulletList::Add(CBulletBase *pBullet)
-{
-    if (pBullet)
-    {
-        if (m_pBullet == NULL) {
-            m_pBullet = pBullet;
-            if (m_pBullet)
-                ListCount++;
-        }
-        else if (pNext == NULL) {
-            pNext = new CBulletList(pBullet);
-            if (pNext)
-                ListCount++;
-        }
-        else {
-            pNext->Add(pBullet);
-            ListCount = pNext->GetCount() + 1;
-        }
+void CBulletList::Add(CBulletBase *pBullet) {
+  if (pBullet) {
+    if (m_pBullet == NULL) {
+      m_pBullet = pBullet;
+      if (m_pBullet)
+        ListCount++;
+    } else if (pNext == NULL) {
+      pNext = new CBulletList(pBullet);
+      if (pNext)
+        ListCount++;
+    } else {
+      pNext->Add(pBullet);
+      ListCount = pNext->GetCount() + 1;
     }
+  }
 }
 
 /*!
@@ -3844,17 +3795,16 @@ void CBulletList::Add(CBulletBase *pBullet)
     リスト内から発射可能な飛び道具を探し、発射します。
     複数が発射可能な場合は、先に登録されたものが優先されます。
 */
-BOOL CBulletList::Go(BOOL muki, double x, double y, double vx, double vy)
-{
-    if (m_pBullet == NULL)
-        return FALSE;
+BOOL CBulletList::Go(BOOL muki, double x, double y, double vx, double vy) {
+  if (m_pBullet == NULL)
+    return FALSE;
 
-    if (m_pBullet->Go(muki, x, y, vx, vy))
-        return TRUE;
-    else if (pNext)
-        return pNext->Go(muki, x, y, vx, vy);
-    else
-        return FALSE;
+  if (m_pBullet->Go(muki, x, y, vx, vy))
+    return TRUE;
+  else if (pNext)
+    return pNext->Go(muki, x, y, vx, vy);
+  else
+    return FALSE;
 }
 
 /*!
@@ -3865,17 +3815,16 @@ BOOL CBulletList::Go(BOOL muki, double x, double y, double vx, double vy)
     詳しくは(1)を参照。
     省略されたvxとvyには、SetSpeedで設定された速度が使用されます。
 */
-BOOL CBulletList::Go(BOOL muki, double x, double y)
-{
-    if (m_pBullet == NULL)
-        return FALSE;
+BOOL CBulletList::Go(BOOL muki, double x, double y) {
+  if (m_pBullet == NULL)
+    return FALSE;
 
-    if (m_pBullet->Go(muki, x, y, vx, vy))
-        return TRUE;
-    else if (pNext)
-        return pNext->Go(muki, x, y);
-    else
-        return FALSE;
+  if (m_pBullet->Go(muki, x, y, vx, vy))
+    return TRUE;
+  else if (pNext)
+    return pNext->Go(muki, x, y);
+  else
+    return FALSE;
 }
 
 /*!
@@ -3887,17 +3836,16 @@ BOOL CBulletList::Go(BOOL muki, double x, double y)
     省略されたxとyには、SetPosで設定された座標が、
     省略されたvxとvyには、SetSpeedで設定された速度がそれぞれ使用されます。
 */
-BOOL CBulletList::Go(BOOL muki)
-{
-    if (m_pBullet == NULL)
-        return FALSE;
+BOOL CBulletList::Go(BOOL muki) {
+  if (m_pBullet == NULL)
+    return FALSE;
 
-    if (m_pBullet->Go(muki, x, y, vx, vy))
-        return TRUE;
-    else if (pNext)
-        return pNext->Go(muki);
-    else
-        return FALSE;
+  if (m_pBullet->Go(muki, x, y, vx, vy))
+    return TRUE;
+  else if (pNext)
+    return pNext->Go(muki);
+  else
+    return FALSE;
 }
 
 /*!
@@ -3907,13 +3855,12 @@ BOOL CBulletList::Go(BOOL muki)
     リストに含まれている、全ての飛び道具を発射します。
     省略されたvxとvyには、各々のSetSpeedで設定された速度が使用されます。
 */
-void CBulletList::Go_All(BOOL muki, double x, double y)
-{
-    if (m_pBullet)
-        m_pBullet->Go(muki, x, y, vx, vy);
+void CBulletList::Go_All(BOOL muki, double x, double y) {
+  if (m_pBullet)
+    m_pBullet->Go(muki, x, y, vx, vy);
 
-    if (pNext)
-        pNext->Go_All(muki, x, y);
+  if (pNext)
+    pNext->Go_All(muki, x, y);
 }
 
 /*!
@@ -3924,13 +3871,12 @@ void CBulletList::Go_All(BOOL muki, double x, double y)
     省略されたxとyには、各々のSetPosで設定された座標が、
     省略されたvxとvyには、各々のSetSpeedで設定された速度がそれぞれ使用されます。
 */
-void CBulletList::Go_All(BOOL muki)
-{
-    if (m_pBullet)
-        m_pBullet->Go(muki, x, y, vx, vy);
+void CBulletList::Go_All(BOOL muki) {
+  if (m_pBullet)
+    m_pBullet->Go(muki, x, y, vx, vy);
 
-    if (pNext)
-        pNext->Go_All(muki);
+  if (pNext)
+    pNext->Go_All(muki);
 }
 
 /*
@@ -3964,35 +3910,26 @@ void CBulletList::Go_All(BOOL muki)
 
 *****************************************************************************/
 
-CEffectBase::CEffectBase() : CGoluahObject(TRUE)
-{
-    ceffectbase_private_duration = 20;
+CEffectBase::CEffectBase() : CGoluahObject(TRUE) { ceffectbase_private_duration = 20; }
+
+CEffectBase::~CEffectBase() {}
+
+DWORD CEffectBase::Action() {
+  float time = pdat->counter / ceffectbase_private_duration;
+  if (time >= 1.0f) {
+    Suicide();
+  } else {
+    Update(time);
+  }
+  return TRUE;
 }
 
-CEffectBase::~CEffectBase()
-{
+void CEffectBase::SetDuration(UINT dur) {
+  if (dur == 0) {
+    dur = 1;
+  }
+  ceffectbase_private_duration = (float)dur;
 }
-
-DWORD CEffectBase::Action()
-{
-    float time = pdat->counter / ceffectbase_private_duration;
-    if(time>=1.0f)
-    {
-        Suicide();
-    }
-    else
-    {
-        Update( time );
-    }
-    return TRUE;
-}
-
-void CEffectBase::SetDuration(UINT dur)
-{
-    if(dur==0){dur=1;}
-    ceffectbase_private_duration = (float)dur;
-}
-
 
 /* **************************************************************************
 
@@ -4000,108 +3937,96 @@ void CEffectBase::SetDuration(UINT dur)
 
  ************************************************************************** */
 
-void CStageBase::SetupStageDLL(SDI_STAGEINFO2 *info)
-{
-    funco = info->funco;
-    funcs = info->funcs;
-    funcd = info->funcd;
+void CStageBase::SetupStageDLL(SDI_STAGEINFO2 *info) {
+  funco = info->funco;
+  funcs = info->funcs;
+  funcd = info->funcd;
 }
 
-BOOL CStageBase::CheckSTB(DWORD Version/* = STB_VERSION */)
-{
-    if(Version > STB_VERSION || Version < STB_LEASTVER){ 
-#		ifdef _DEBUG
-            char *dbgmsg = new char[256];
-            sprintf(dbgmsg,"CCharacterInfo:STBバージョン違い(%d!=%d)\n",Version,STB_VERSION);
-            OutputDebugString(dbgmsg);
-            delete [] dbgmsg;
-#		endif
-        return FALSE;
-    }
+BOOL CStageBase::CheckSTB(DWORD Version /* = STB_VERSION */) {
+  if (Version > STB_VERSION || Version < STB_LEASTVER) {
+#ifdef _DEBUG
+    char *dbgmsg = new char[256];
+    sprintf(dbgmsg, "CCharacterInfo:STBバージョン違い(%d!=%d)\n", Version, STB_VERSION);
+    OutputDebugString(dbgmsg);
+    delete[] dbgmsg;
+#endif
+    return FALSE;
+  }
 
-    return TRUE;
+  return TRUE;
 }
 
 CStageBase::CStageBase(SDI_STAGEINFO2 *info)
-                : CGoluahObject(TRUE)//あたり判定は行わない。
+    : CGoluahObject(TRUE) //あたり判定は行わない。
 {
-    g_chardir = info->dir;
-    pdat->tid = info->tid;
+  g_chardir = info->dir;
+  pdat->tid = info->tid;
 }
 
-
-CStageBase::~CStageBase()
-{
-}
+CStageBase::~CStageBase() {}
 /* **************************************************************************
 
   残像エフェクト
 
  ************************************************************************** */
 
-CShadowEffect::CShadowEffect(CCharacterBase* pParent,
-                  DWORD color /* = 0x00888888 */,
-                  DWORD BlendType /* = GBLEND_HANTOUMEI */,
-                  UINT Duration /* = 20 */)
-{
-    GOBJECT* ppdat;
+CShadowEffect::CShadowEffect(CCharacterBase *pParent,
+                             DWORD color /* = 0x00888888 */,
+                             DWORD BlendType /* = GBLEND_HANTOUMEI */,
+                             UINT Duration /* = 20 */) {
+  GOBJECT *ppdat;
 
-    if (!pdat)
-        return;
+  if (!pdat)
+    return;
 
-    if (!pParent)
-    {
-        Suicide();
-        return;
-    }
+  if (!pParent) {
+    Suicide();
+    return;
+  }
 
-    ppdat = pParent->GetGObject();
+  ppdat = pParent->GetGObject();
 
-    pdat->tid = ppdat->tid;
-    pdat->objtype = GOBJFLG_DONOTSTOP;
+  pdat->tid = ppdat->tid;
+  pdat->objtype = GOBJFLG_DONOTSTOP;
 
-    pdat->pcdat = ppdat->pcdat;
-    pdat->prdat = ppdat->prdat;
-    pdat->phdat = ppdat->phdat;
-    pdat->pmsarr = ppdat->pmsarr;
+  pdat->pcdat = ppdat->pcdat;
+  pdat->prdat = ppdat->prdat;
+  pdat->phdat = ppdat->phdat;
+  pdat->pmsarr = ppdat->pmsarr;
 
-    pdat->counter = 0;
-    pdat->cnow = ppdat->cnow;
-    pdat->x = ppdat->x;
-    pdat->y = ppdat->y;
-    pdat->z = ZZAHYO_EFFECT1;
-    pdat->rot = ppdat->rot;
-    pdat->revx = ppdat->revx;
-    pdat->revy = ppdat->revy;
-    pdat->muki = ppdat->muki;
-    pdat->magx = ppdat->magx;
-    pdat->magy = ppdat->magy;
+  pdat->counter = 0;
+  pdat->cnow = ppdat->cnow;
+  pdat->x = ppdat->x;
+  pdat->y = ppdat->y;
+  pdat->z = ZZAHYO_EFFECT1;
+  pdat->rot = ppdat->rot;
+  pdat->revx = ppdat->revx;
+  pdat->revy = ppdat->revy;
+  pdat->muki = ppdat->muki;
+  pdat->magx = ppdat->magx;
+  pdat->magy = ppdat->magy;
 
-    // メンバ初期化
-    m_color = color;
-    m_BlendType = BlendType;
-    SetDuration(Duration);
+  // メンバ初期化
+  m_color = color;
+  m_BlendType = BlendType;
+  SetDuration(Duration);
 }
 
-CShadowEffect::~CShadowEffect(void)
-{
+CShadowEffect::~CShadowEffect(void) {}
+
+void CShadowEffect::Update(float time) {
+  // コリンズのソースよりお借りしました、21スレの335さんサンクスコ。
+  pdat->color = (m_color & 0x00FFFFFF) | ((DWORD)(255.0 - time * 20.0 * 25.0) << 24);
 }
 
-void CShadowEffect::Update(float time)
-{
-    // コリンズのソースよりお借りしました、21スレの335さんサンクスコ。
-    pdat->color = (m_color & 0x00FFFFFF) | ( (DWORD)(255.0 - time * 20.0 * 25.0) << 24 );
+DWORD CShadowEffect::Draw(void) {
+  SetBlend(m_BlendType);
+  CellDraw(pdat);
+  SetBlend(GBLEND_HANTOUMEI);
+
+  return TRUE;
 }
-
-DWORD CShadowEffect::Draw(void)
-{
-    SetBlend(m_BlendType);
-    CellDraw(pdat);
-    SetBlend(GBLEND_HANTOUMEI);
-
-    return TRUE;
-}
-
 
 /* **************************************************************************
 
@@ -4114,35 +4039,29 @@ DWORD CShadowEffect::Draw(void)
 
     ランダム種ぽ
 */
-BOOL APIENTRY DllMain(HANDLE hModule, DWORD dwReason, LPVOID lpReserved)
-{
-    switch (dwReason)
-    {
-    case DLL_PROCESS_ATTACH:
-#		ifdef _DEBUG
-            num_allocs = 0;
-#		endif
-        srand(GetTickCount());
-        break;
+BOOL APIENTRY DllMain(HANDLE hModule, DWORD dwReason, LPVOID lpReserved) {
+  switch (dwReason) {
+  case DLL_PROCESS_ATTACH:
+#ifdef _DEBUG
+    num_allocs = 0;
+#endif
+    srand(GetTickCount());
+    break;
 
-    case DLL_PROCESS_DETACH:
-#		ifdef _DEBUG
-            if (num_allocs > 0)
-            {
-                DebugPrintf("DLL:おまいら、メモリリークが発生してます。\n総数：%dバイト", (int)num_allocs);
-            }
-#		endif
-        break;
+  case DLL_PROCESS_DETACH:
+#ifdef _DEBUG
+    if (num_allocs > 0) {
+      DebugPrintf("DLL:おまいら、メモリリークが発生してます。\n総数：%dバイト", (int)num_allocs);
     }
+#endif
+    break;
+  }
 
-    return TRUE;
+  return TRUE;
 }
 
 //!ランダムナンバー発生
-inline int GetRandNum(int num)
-{
-    return(rand()%num);
-}
+inline int GetRandNum(int num) { return (rand() % num); }
 
 /*!
     @brief ファイル読み込み
@@ -4156,26 +4075,26 @@ inline int GetRandNum(int num)
     @param len		[out] 読み込んだバイト数
     @return	TRUE:成功 , FALSE:残念
 */
-BOOL File2Mem(char* filepath,char** buff,UINT *len)
-{
-    *buff = NULL;
-    *len = 0;
+BOOL File2Mem(char *filepath, char **buff, UINT *len) {
+  *buff = NULL;
+  *len = 0;
 
-    //ファイルのオープン
-    HANDLE hFile = CreateFile(filepath,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
-    if(hFile==INVALID_HANDLE_VALUE)return(FALSE);
+  //ファイルのオープン
+  HANDLE hFile = CreateFile(filepath, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+  if (hFile == INVALID_HANDLE_VALUE)
+    return (FALSE);
 
-    //領域確保
-    *len = GetFileSize(hFile,NULL);
-    *buff = new char [(*len)+1];
-    ZeroMemory(*buff,sizeof(char)*((*len)+1));
+  //領域確保
+  *len = GetFileSize(hFile, NULL);
+  *buff = new char[(*len) + 1];
+  ZeroMemory(*buff, sizeof(char) * ((*len) + 1));
 
-    //ファイルの読み込み
-    DWORD br;
-    ReadFile(hFile,*buff,*len,&br,NULL);
-    CloseHandle(hFile);
+  //ファイルの読み込み
+  DWORD br;
+  ReadFile(hFile, *buff, *len, &br, NULL);
+  CloseHandle(hFile);
 
-    return TRUE;
+  return TRUE;
 }
 
 /*!
@@ -4184,21 +4103,19 @@ BOOL File2Mem(char* filepath,char** buff,UINT *len)
     フォーマットつき(printfとかといっしょ)で
     OutputDebugStringを行います。
 */
-void DebugPrintf(char* fmt,...)
-{
-    va_list args;
-    va_start(args, fmt);
+void DebugPrintf(char *fmt, ...) {
+  va_list args;
+  va_start(args, fmt);
 
-    char buffer[512];
-    vsprintf(buffer, fmt, args);
+  char buffer[512];
+  vsprintf(buffer, fmt, args);
 
-    OutputDebugString(buffer);
-    OutputDebugString("\n");
+  OutputDebugString(buffer);
+  OutputDebugString("\n");
 
-    va_end(args);
+  va_end(args);
 }
 
+void DebugPrintfDummy(char *fmt, ...) {}
 
-void DebugPrintfDummy(char* fmt,...){}
-
-#endif//RUNTIME_BUILD_OFF
+#endif // RUNTIME_BUILD_OFF

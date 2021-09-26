@@ -1,5 +1,3 @@
 ﻿#include "task.h"
 
-CFade::CFade(void)
-{
-}
+CFade::CFade(void) {}

@@ -1,7 +1,7 @@
 ﻿
 /*===========================================================
 
-	勝利画面タスク
+        勝利画面タスク
 
 =============================================================*/
 
@@ -10,256 +10,237 @@
 #include "global.h"
 #include "task_win.h"
 
-
 /*------------------------------------------------------------
-	構築
+        構築
 --------------------------------------------------------------*/
-CYouWin::CYouWin()
-{
-	int j;
-	for(j=0;j<MAXNUM_TEAM;j++){
-		dds_face[j]=NULL;
-	}
+CYouWin::CYouWin() {
+  int j;
+  for (j = 0; j < MAXNUM_TEAM; j++) {
+    dds_face[j] = NULL;
+  }
 
-	m_text_from_story=NULL;
+  m_text_from_story = NULL;
 }
 
 //しゅーりょー
-CYouWin::~CYouWin()
-{
-	DELETEARRAY(m_text_from_story);
+CYouWin::~CYouWin() { DELETEARRAY(m_text_from_story); }
+
+/*------------------------------------------------------------
+        タスク初期化
+--------------------------------------------------------------*/
+void CYouWin::Initialize() {
+  char filename[256], palname[256], *dir;
+  wt = 0;
+  if (g_battleresult.GetWinner()) {
+    wt = 1;
+  }
+  m_text = m_text_from_story ? m_text_from_story : g_battleresult.GetKatiSerif();
+  m_textlen = FALSE;
+
+  //カオの読み込み
+  for (UINT j = 0; j < g_battleresult.GetWinnerCount(); j++) {
+    DWORD alt = OPT2ALT(g_battleinfo.GetCharacterOption(wt, j));
+    char altstr[3] = {'\0', '\0'};
+    if (alt != 0)
+      altstr[0] = 'a' + (char)alt - 1;
+    dir = g_charlist.GetCharacterDir(g_battleresult.GetCharacter(j));
+    sprintf(filename, "%s\\face3%s", dir, altstr);
+    sprintf(palname, "%s\\pal%d", dir, g_battleresult.GetColor(j));
+    dds_face[j] = g_draw.CreateSurfaceFrom256Image(filename, palname);
+  }
+
+  //フロントバッファのコピー取得
+  tex_fb = g_draw.GetFrontBufferCopy();
+
+  //順番
+  jun[0] = 0; // sc_battlefield->active_character[ wt ];//固定
+  if (jun[0] == 0) {
+    jun[1] = 1;
+    jun[2] = 2;
+  } else if (jun[0] == 1) {
+    jun[1] = 0;
+    jun[2] = 2;
+  } else {
+    jun[1] = 0;
+    jun[2] = 1;
+  }
+  // zオーダー
+  f_z[jun[0]] = 0;
+  f_z[jun[1]] = 0.01f;
+  f_z[jun[2]] = 0.02f;
+
+  counter = 0;
+  show_text = FALSE;
+
+  g_sound.BGMPlay(".\\system\\bgm\\win", FALSE);
 }
 
 /*------------------------------------------------------------
-	タスク初期化
+        タスク終了
 --------------------------------------------------------------*/
-void CYouWin::Initialize()
-{
-	char filename[256],palname[256],*dir;
-	wt = 0;
-	if(g_battleresult.GetWinner()){
-		wt=1;
-	}
-	m_text = m_text_from_story ? m_text_from_story : g_battleresult.GetKatiSerif();
-	m_textlen=FALSE;
+void CYouWin::Terminate() { CleanUp(); }
 
-	//カオの読み込み
-	for(UINT j=0;j<g_battleresult.GetWinnerCount();j++)
-	{
-		DWORD alt = OPT2ALT( g_battleinfo.GetCharacterOption(wt,j) );
-		char altstr[3]={'\0','\0'};
-		if(alt!=0)altstr[0]='a'+(char)alt-1;
-		dir = g_charlist.GetCharacterDir(g_battleresult.GetCharacter(j));
-		sprintf(filename,"%s\\face3%s",dir,altstr);
-		sprintf(palname,"%s\\pal%d",dir,g_battleresult.GetColor(j));
-		dds_face[j] = g_draw.CreateSurfaceFrom256Image(filename,palname);
-	}
+/*------------------------------------------------------------
+        タスク一実行
+--------------------------------------------------------------*/
+BOOL CYouWin::Execute(DWORD time) {
+  counter++;
 
-	//フロントバッファのコピー取得
-	tex_fb = g_draw.GetFrontBufferCopy();
+  switch (g_battleresult.GetWinnerCount()) {
+  case 3:
+    f_x[jun[2]] = 1800 - counter * 40; //キャラ3の動き
+    if (f_x[jun[2]] < 250) {
+      f_x[jun[2]] = 250;
+    }
+    f_x[jun[1]] = -1800 + counter * 40; //キャラ2の動き
+    if (f_x[jun[1]] > -200) {
+      f_x[jun[1]] = -200;
+    }
+    f_x[jun[0]] = 700 - counter * 40; //キャラ1の動き
+    if (f_x[jun[0]] < 0) {
+      f_x[jun[0]] = 0;
+    }
+    if (f_x[jun[0]] == 0)
+      show_text = TRUE;
+    break;
+  case 2:
+    f_x[jun[1]] = -1800 + counter * 40; //キャラ2の動き
+    if (f_x[jun[1]] > 200) {
+      f_x[jun[1]] = 200;
+    }
+    f_x[jun[0]] = 700 - counter * 40; //キャラ1の動き
+    if (f_x[jun[0]] < -100) {
+      f_x[jun[0]] = -100;
+    }
+    if (f_x[jun[1]] == 200)
+      show_text = TRUE;
+    break;
+  case 1:
+    f_x[0] = 700 - counter * 40; //キャラ1の動き
+    if (f_x[0] < 0) {
+      f_x[0] = 0;
+    }
+    if (f_x[0] == 0)
+      show_text = TRUE;
+    break;
+  }
 
-	//順番
-	jun[0] = 0;//sc_battlefield->active_character[ wt ];//固定
-	if(jun[0]==0){
-		jun[1] = 1;
-		jun[2] = 2;
-	}
-	else if(jun[0]==1){
-		jun[1] = 0;
-		jun[2] = 2;
-	}
-	else{
-		jun[1] = 0;
-		jun[2] = 1;
-	}
-	//zオーダー
-	f_z[jun[0]]=0;
-	f_z[jun[1]]=0.01f;
-	f_z[jun[2]]=0.02f;
+  int n = 3;
+  while (show_text && n > 0) {
+    if (m_textlen == strlen(m_text))
+      break;
+    m_textlen += (m_text[m_textlen] & 0x80) ? 2 : 1;
+    n--;
+  }
 
-	counter=0;
-	show_text = FALSE;
+  if (show_text && g_input.GetAllKey()) {
+    return FALSE; //終了
+  }
 
-	g_sound.BGMPlay(".\\system\\bgm\\win",FALSE);
+  return TRUE;
 }
 
 /*------------------------------------------------------------
-	タスク終了
+        破棄
 --------------------------------------------------------------*/
-void CYouWin::Terminate()
-{
-	CleanUp();
+void CYouWin::CleanUp() {
+  int j;
+  for (j = 0; j < 3; j++) {
+    RELSURFACE(dds_face[j]);
+  }
+
+  RELEASE(tex_fb);
 }
 
 /*------------------------------------------------------------
-	タスク一実行
+        描画
 --------------------------------------------------------------*/
-BOOL CYouWin::Execute(DWORD time)
-{
-	counter++;
+void CYouWin::Draw() {
+  g_draw.SetTransform(FALSE);
+  g_draw.ResetParentMatrix();
 
-	switch(g_battleresult.GetWinnerCount()){
-	case 3:
-		f_x[jun[2]] = 1800 - counter*40;//キャラ3の動き
-		if(f_x[jun[2]] < 250){
-			f_x[jun[2]] = 250;
-		}
-		f_x[jun[1]] = -1800 + counter*40;//キャラ2の動き
-		if(f_x[jun[1]] > -200){
-			f_x[jun[1]] = -200;
-		}
-		f_x[jun[0]] = 700 - counter*40;//キャラ1の動き
-		if(f_x[jun[0]] < 0){
-			f_x[jun[0]]=0;
-		}
-		if(f_x[jun[0]]==0)
-			show_text=TRUE;
-		break;
-	case 2:
-		f_x[jun[1]] = -1800 + counter*40;//キャラ2の動き
-		if(f_x[jun[1]] > 200){
-			f_x[jun[1]] = 200;
-		}
-		f_x[jun[0]] = 700 - counter*40;//キャラ1の動き
-		if(f_x[jun[0]] < -100){
-			f_x[jun[0]]=-100;
-		}
-		if(f_x[jun[1]]==200)
-			show_text=TRUE;
-		break;
-	case 1:
-		f_x[0] = 700 - counter*40;//キャラ1の動き
-		if(f_x[0] < 0){
-			f_x[0]=0;
-		}
-		if(f_x[0]==0)
-			show_text=TRUE;
-		break;
-	}
+  //フロントバッファコピー描画
+  {
+    MYVERTEX3D *vb;
 
-	int n=3;
-	while(show_text && n>0){
-		if(m_textlen==strlen(m_text))break;
-		m_textlen += (m_text[m_textlen]&0x80) ? 2 : 1;
-		n--;
-	}
+    if (!g_draw.pMyVertex || FAILED(g_draw.pMyVertex->Lock(0, 0, (BYTE **)&vb, D3DLOCK_DISCARD)))
+      return;
 
-	if(show_text && g_input.GetAllKey() ){
-		return FALSE;//終了
-	}
+    vb[0].z = 0.0f;
+    vb[1].z = 0.0f;
+    vb[2].z = 0.0f;
+    vb[3].z = 0.0f;
 
-	return TRUE;
-}
+    vb[0].tu = 0.0f;
+    vb[1].tu = 0.0f;
+    vb[2].tu = 1.0f;
+    vb[3].tu = 1.0f;
 
+    vb[0].tv = 0.0f;
+    vb[1].tv = 1.0f * 360.0f / 480.0f;
+    vb[2].tv = 0.0f;
+    vb[3].tv = 1.0f * 360.0f / 480.0f;
 
-/*------------------------------------------------------------
-	破棄
---------------------------------------------------------------*/
-void CYouWin::CleanUp()
-{
-	int j;
-	for(j=0;j<3;j++){
-		RELSURFACE(dds_face[j]);
-	}
+    vb[0].color = vb[1].color = vb[2].color = vb[3].color = 0xFF555555;
 
-	RELEASE(tex_fb);
-}
+    vb[0].x = 0.0f;
+    vb[1].x = 0.0f;
+    vb[2].x = 2.0f * 320.0f / 240.0f;
+    vb[3].x = 2.0f * 320.0f / 240.0f;
 
+    vb[0].y = 0.0f;
+    vb[1].y = 2.0f * 360.0f / 480.0f;
+    vb[2].y = 0.0f;
+    vb[3].y = 2.0f * 360.0f / 480.0f;
 
-/*------------------------------------------------------------
-	描画
---------------------------------------------------------------*/
-void CYouWin::Draw()
-{
-	g_draw.SetTransform(FALSE);
-	g_draw.ResetParentMatrix();
+    if (g_draw.pMyVertex)
+      g_draw.pMyVertex->Unlock();
 
-	//フロントバッファコピー描画
-	{
-		MYVERTEX3D* vb;
+    g_draw.EnableZ(FALSE, FALSE);
+    g_draw.d3ddev->SetStreamSource(0, g_draw.pMyVertex, sizeof(MYVERTEX3D));
+    g_draw.d3ddev->SetVertexShader(FVF_3DVERTEX);
+    g_draw.d3ddev->SetTexture(0, tex_fb);
+    g_draw.d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP, 0, 2);
+  }
 
-		if ( !g_draw.pMyVertex || FAILED(g_draw.pMyVertex->Lock(0, 0, (BYTE**)&vb, D3DLOCK_DISCARD)) )
-			return;
+  RECT r;
+  r.left = r.top = 0;
 
-		vb[0].z = 0.0f;
-		vb[1].z = 0.0f;
-		vb[2].z = 0.0f;
-		vb[3].z = 0.0f;
+  for (int i = 0; i < 3; i++) {
+    if (dds_face[i] != NULL) {
+      r.right = (long)dds_face[i]->wg;
+      r.bottom = (long)dds_face[i]->hg;
+      g_draw.CheckBlt(dds_face[i], f_x[i], (int)(360 - dds_face[i]->hg), r, FALSE, FALSE, 0, f_z[i]);
+    }
+  }
 
-		vb[0].tu = 0.0f;
-		vb[1].tu = 0.0f;
-		vb[2].tu = 1.0f;
-		vb[3].tu = 1.0f;
-		
-		vb[0].tv = 0.0f;
-		vb[1].tv = 1.0f*360.0f/480.0f;
-		vb[2].tv = 0.0f;
-		vb[3].tv = 1.0f*360.0f/480.0f;
-		
-		vb[0].color = 
-		vb[1].color = 
-		vb[2].color = 
-		vb[3].color = 0xFF555555;
+  if (show_text && m_textlen > 0) {
+    r.left = 0;
+    r.top = 360;
+    r.right = 640;
+    r.bottom = 480;
+    char *disptxt = new char[m_textlen + 1];
+    memcpy(disptxt, m_text, m_textlen);
+    disptxt[m_textlen] = '\0';
 
-		vb[0].x =  0.0f;
-		vb[1].x =  0.0f;
-		vb[2].x =  2.0f*320.0f/240.0f;
-		vb[3].x =  2.0f*320.0f/240.0f;
+    if (wt == 0)
+      g_draw.DrawBlueText(r, disptxt, -1, DT_LEFT | DT_WORDBREAK, 3);
+    else
+      g_draw.DrawRedText(r, disptxt, -1, DT_LEFT | DT_WORDBREAK, 3);
 
-		vb[0].y =  0.0f;
-		vb[1].y =  2.0f*360.0f/480.0f;
-		vb[2].y =  0.0f;
-		vb[3].y =  2.0f*360.0f/480.0f;
-
-		if (g_draw.pMyVertex) g_draw.pMyVertex->Unlock();
-
-		g_draw.EnableZ(FALSE,FALSE);
-		g_draw.d3ddev->SetStreamSource(0, g_draw.pMyVertex, sizeof(MYVERTEX3D));
-		g_draw.d3ddev->SetVertexShader(FVF_3DVERTEX);
-		g_draw.d3ddev->SetTexture(0,tex_fb);
-		g_draw.d3ddev->DrawPrimitive(D3DPT_TRIANGLESTRIP,0,2);
-	}
-
-	
-	RECT r;
-	r.left=r.top=0;
-
-	for(int i=0;i<3;i++){
-		if(dds_face[i]!=NULL){
-			r.right = (long)dds_face[i]->wg;
-			r.bottom = (long)dds_face[i]->hg;
-			g_draw.CheckBlt(dds_face[i],f_x[i],(int)(360-dds_face[i]->hg),r,
-				FALSE,FALSE,0,f_z[i]);
-		}
-	}
-
-	if(show_text && m_textlen>0)
-	{
-		r.left=0;
-		r.top=360;
-		r.right=640;
-		r.bottom=480;
-		char *disptxt = new char[m_textlen+1];
-		memcpy(disptxt,m_text,m_textlen);
-		disptxt[m_textlen]='\0';
-		
-		if(wt==0) g_draw.DrawBlueText(r,disptxt,-1,DT_LEFT|DT_WORDBREAK,3);
-		else	  g_draw.DrawRedText(r,disptxt,-1,DT_LEFT|DT_WORDBREAK,3);
-
-		delete [] disptxt;
-	}
+    delete[] disptxt;
+  }
 }
 
 /*------------------------------------------------------------
-	ストーリーから、テキストの設定
+        ストーリーから、テキストの設定
 --------------------------------------------------------------*/
-void CYouWin::SetStoryText(char *txt)
-{
-	DELETEARRAY(m_text_from_story);
+void CYouWin::SetStoryText(char *txt) {
+  DELETEARRAY(m_text_from_story);
 
-	if(!txt)return;
+  if (!txt)
+    return;
 
-	m_text_from_story = new char [ strlen(txt)+1 ];
-	strcpy(m_text_from_story,txt);
+  m_text_from_story = new char[strlen(txt) + 1];
+  strcpy(m_text_from_story, txt);
 }
-

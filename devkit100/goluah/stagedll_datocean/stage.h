@@ -1,6 +1,6 @@
 ﻿
 /*--------------------------------------------------------------
-	datの海
+        datの海
 ----------------------------------------------------------------*/
 #pragma once
 
@@ -16,37 +16,37 @@
 
 #include "aki3d.h"
 
-class CStageObjectBase
-{
+class CStageObjectBase {
 public:
-	virtual ~CStageObjectBase(){}
-	virtual void Init() = 0;
-	virtual void Update() = 0;
-	virtual void Draw() = 0;
-	virtual void Release() = 0;
+  virtual ~CStageObjectBase() {}
+  virtual void Init() = 0;
+  virtual void Update() = 0;
+  virtual void Draw() = 0;
+  virtual void Release() = 0;
 };
 
-class CStage
-{
+class CStage {
 public:
-	CStage(SDI_STAGEINFO2 *info);
-	~CStage();
-	DWORD Message(DWORD msg,LPVOID pdatg,DWORD prm);
-	void Draw();
-	void Action();
+  CStage(SDI_STAGEINFO2 *info);
+  ~CStage();
+  DWORD Message(DWORD msg, LPVOID pdatg, DWORD prm);
+  void Draw();
+  void Action();
 
 public:
-	DWORD oid;//オブジェクトID
-	GOBJECT *pdat;
-	std::vector<CStageObjectBase*> objlist;
+  DWORD oid; //オブジェクトID
+  GOBJECT *pdat;
+  std::vector<CStageObjectBase *> objlist;
 };
-
 
 #ifndef RELEASE
-#define RELEASE(a) if(a!=NULL){a->Release();a=NULL;}
+#define RELEASE(a)                                                                                           \
+  if (a != NULL) {                                                                                           \
+    a->Release();                                                                                            \
+    a = NULL;                                                                                                \
+  }
 #endif
 
 #ifndef EXPORT
 #define EXPORT extern "C" __declspec(dllexport)
 #endif
-

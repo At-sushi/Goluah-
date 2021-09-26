@@ -1,31 +1,28 @@
 ﻿/*--------------------------------------------------------------
-	人魂みたいなの(落下)
+        人魂みたいなの(落下)
 ----------------------------------------------------------------*/
 #pragma once
 #include "stage.h"
 
+#define NUM_SOUL_DOWN 96
 
-#define NUM_SOUL_DOWN	96
-
-class CSoulDown : public CStageObjectBase
-{
+class CSoulDown : public CStageObjectBase {
 public:
-	CSoulDown();
-	void Init();
-	void Update();
-	void Draw();
-	void Release();
+  CSoulDown();
+  void Init();
+  void Update();
+  void Draw();
+  void Release();
 
-	CParticle* m_soul;
-	struct SoulParameter
-	{
-		float time;
-		float time_end;
-		V3d pos;
-		V3d vel;
-		V3d acc;
-		float width;
-		void Reset();
-	};
-	SoulParameter m_soulp[NUM_SOUL_DOWN];
+  CParticle *m_soul;
+  struct SoulParameter {
+    float time;
+    float time_end;
+    V3d pos;
+    V3d vel;
+    V3d acc;
+    float width;
+    void Reset();
+  };
+  SoulParameter m_soulp[NUM_SOUL_DOWN];
 };

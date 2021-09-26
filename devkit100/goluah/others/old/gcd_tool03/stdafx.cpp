@@ -3,5 +3,3 @@
 // stdafx.obj にはプリコンパイル済み方情報が含まれます。
 
 #include "stdafx.h"
-
-

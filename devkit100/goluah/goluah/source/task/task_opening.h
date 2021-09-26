@@ -1,7 +1,7 @@
 ﻿
 /*===============================================================
 
-	オープニングムービー再生　タスク
+        オープニングムービー再生　タスク
 
 =================================================================*/
 #pragma once
@@ -9,23 +9,22 @@
 #include "task.h"
 
 /*!
-*	@brief オープニングムービー再生
-*	@ingroup Tasks
-*/
-class CTOpening : public CExclusiveTaskBase
-{
+ *	@brief オープニングムービー再生
+ *	@ingroup Tasks
+ */
+class CTOpening : public CExclusiveTaskBase {
 public:
-	CTOpening();
-	~CTOpening();
+  CTOpening();
+  ~CTOpening();
 
-	void Initialize();
-	BOOL Execute(DWORD time);
-	void Terminate();
-	DWORD GetID(){return 'OpMv';}
-	BOOL IsOK() { return opok; }
+  void Initialize();
+  BOOL Execute(DWORD time);
+  void Terminate();
+  DWORD GetID() { return 'OpMv'; }
+  BOOL IsOK() { return opok; }
 
 private:
-	BOOL opok;
-	UINT counter;
-	BOOL IMEOld;
+  BOOL opok;
+  UINT counter;
+  BOOL IMEOld;
 };
