@@ -192,6 +192,7 @@ protected:
   BOOL ObjCatch(DWORD eid, DWORD msg_nage);      //投げとかで相手をつかむ
   static GOBJECT *GetInfo(DWORD oid);            //情報ゲッツ
   void AddDamage(DWORD eid, int x, int y);       //(主に投げのとき)強制的にダメージを与える
+  void ActIDChanged();                           //行動IDが変化したときの処理を明示的に行う
   static GOBJECT *GetActiveCharacter(DWORD tid); //現在アクティブなキャラクターの情報
   GOBJECT *GetActiveEnemy();                     //現在アクティブな敵キャラクターの情報
   void Suicide();                                //オブジェクト消滅
