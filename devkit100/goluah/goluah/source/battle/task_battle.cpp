@@ -1682,26 +1682,24 @@ DWORD CBattleTask::MessageFromObject(DWORD oid, DWORD msg, DWORD prm) {
 
 BOOL CBattleTask::CatchObject(DWORD eoid, LPVOID cy) {
   if (eoid == 0 || cy == NULL)
-    return (FALSE);
+    return FALSE;
 
   CGObject *peobj = (CGObject *)GetGObject(eoid);
   if (peobj == NULL)
-    return (FALSE);
+    return FALSE;
 
   if (!(peobj->data.objtype & GOBJFLG_NAGERARE))
-    return (FALSE); //相手が投げられフラグを持っていなかったら失敗
-  if (!peobj->data.nagerare)
-    return (FALSE);
-  if (peobj->nage_muteki_cnt > 0)
+    return FALSE; //相手が投げられフラグを持っていなかったら失敗
+  else if (!peobj->data.nagerare)
     return FALSE;
-  if (peobj->data.counter == 0)
-    return (FALSE); //相手が行動遷移直後だったら止めておく
-  if (peobj->data.aid & ACTID_GUARD)
-    return (FALSE); //ガード中も、一応ダメってことにしておく
-  if (peobj->data.aid & ACTID_NAGE)
-    return (FALSE); //投げ中も、一応ダメってことにしておく
-  if (peobj->data.aid & ACTID_INOUT)
-    return (FALSE); //交代orストライカー攻撃中
+  else if (peobj->nage_muteki_cnt > 0)
+    return FALSE;
+  else if (peobj->data.counter == 0)
+    return FALSE; //相手が行動遷移直後だったら止めておく
+  else if (peobj->data.aid & (ACTID_GUARD | ACTID_NAGE | ACTID_INOUT))
+    return FALSE; // 投げてはいけない状態
+  else if (peobj->data.aid & ACTID_KURAI && peobj->data.counter > 1)
+    return FALSE; // くらい中（１フレームだけ有効なのは打撃投げ対策）
 
   if (!(peobj->data.aid & ACTID_KURAI)) {
     peobj->hitcount = 0;
