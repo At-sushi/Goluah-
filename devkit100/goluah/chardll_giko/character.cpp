@@ -781,8 +781,8 @@ void CCharacter::InitAttackInfo() {
   //・遠当て
 
   i = ATTACKINFO_TOATE;
-  aif[i].hit = HITINFO_MARK4 | HITINFO_FUTTOBI | HITINFO_SNDHIT3 | HITINFO_EFCTSINDO; //ヒット情報
-  aif[i].guard = GUARDINFO_REACT3 | GUARDINFO_XJAMP;
+  aif[i].hit = HITINFO_MARK4 | HITINFO_SIV3 | HITINFO_FUTTOBI | HITINFO_SNDHIT3 | HITINFO_EFCTSINDO; //ヒット情報
+  aif[i].guard = GUARDINFO_REACT3 | GUARDINFO_SIV3 | GUARDINFO_XJAMP;
   aif[i].id = ATTACK_HISSATU; //ゲージ増加時に使用するID
   aif[i].damage = 100;        //ダメージ
   aif[i].kezuri = 10;         //削り
