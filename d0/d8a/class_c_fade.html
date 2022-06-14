@@ -1,64 +1,116 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Goluah!!: クラス CFade</title>
-<link href="../../doxygen.css" rel="stylesheet" type="text/css">
-<link href="../../tabs.css" rel="stylesheet" type="text/css">
-</head><body>
-<!-- 作成： Doxygen 1.5.3 -->
-<div class="tabs">
-  <ul>
-    <li><a href="../../main.html"><span>メインページ</span></a></li>
-    <li><a href="../../modules.html"><span>モジュール</span></a></li>
-    <li class="current"><a href="../../annotated.html"><span>クラス</span></a></li>
-    <li><a href="../../files.html"><span>ファイル</span></a></li>
-  </ul>
-</div>
-<div class="tabs">
-  <ul>
-    <li><a href="../../annotated.html"><span>構成</span></a></li>
-    <li><a href="../../hierarchy.html"><span>クラス階層</span></a></li>
-    <li><a href="../../functions.html"><span>構成メンバ</span></a></li>
-  </ul>
-</div>
-<h1>クラス CFade</h1><!-- doxytag: class="CFade" --><!-- doxytag: inherits="CBackgroundTaskBase" --><code>#include &lt;task_fade.h&gt;</code>
-<p>
-<div class="dynheader">
-CFadeに対する継承グラフ</div>
-<div class="dynsection">
-<p><center><img src="../../d7/d50/class_c_fade__inherit__graph.png" border="0" usemap="#d0/db5/_c_fade__inherit__map" alt="Inheritance graph"></center>
-<map name="d0/db5/_c_fade__inherit__map">
-<area shape="rect" href="../../de/d2f/class_c_background_task_base.html" title="a�C�Ce��?a??a?1a?�P" alt="" coords="5,80,168,107"><area shape="rect" href="../../df/d1d/class_c_task_base.html" title="a?oa?��a??a?1a?�P" alt="" coords="41,5,132,32"></map>
-<center><font size="2">[<a target="top" href="../../graph_legend.html">凡例</a>]</font></center></div>
-<div class="dynheader">
-CFadeのコラボレーション図</div>
-<div class="dynsection">
-<p><center><img src="../../de/dce/class_c_fade__coll__graph.png" border="0" usemap="#d2/d78/_c_fade__coll__map" alt="Collaboration graph"></center>
-<map name="d2/d78/_c_fade__coll__map">
-<area shape="rect" href="../../de/d2f/class_c_background_task_base.html" title="a�C�Ce��?a??a?1a?�P" alt="" coords="5,80,168,107"><area shape="rect" href="../../df/d1d/class_c_task_base.html" title="a?oa?��a??a?1a?�P" alt="" coords="41,5,132,32"></map>
-<center><font size="2">[<a target="top" href="../../graph_legend.html">凡例</a>]</font></center></div>
-
-<p>
-<a href="../../d5/dac/class_c_fade-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
-<tr><td></td></tr>
-<tr><td colspan="2"><br><h2>Public メソッド</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a23186d1c36b828609a75316d13415c8"></a><!-- doxytag: member="CFade::Initialize" ref="a23186d1c36b828609a75316d13415c8" args="()" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d8a/class_c_fade.html#a23186d1c36b828609a75316d13415c8">Initialize</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ExecuteまたはDrawがコールされる前に1度だけコールされる <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="cc1fb2198e586849e9190b8bdca1de13"></a><!-- doxytag: member="CFade::Execute" ref="cc1fb2198e586849e9190b8bdca1de13" args="(DWORD time)" -->
-virtual BOOL&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d8a/class_c_fade.html#cc1fb2198e586849e9190b8bdca1de13">Execute</a> (DWORD time)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">毎フレームコールされる <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="49773be4a46cb3e271c885eee14df75b"></a><!-- doxytag: member="CFade::Draw" ref="49773be4a46cb3e271c885eee14df75b" args="()" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d8a/class_c_fade.html#49773be4a46cb3e271c885eee14df75b">Draw</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">描画時にコールされる <br></td></tr>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Goluah!!: CFade クラス</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="../../goluah2.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Goluah!!
+   &#160;<span id="projectnumber">1.21a draft</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
 </table>
-<hr><a name="_details"></a><h2>説明</h2>
-このクラスは、まだほとんど手つかず。 画面のフェードアウト／フェードインに使う予定です。 <hr>このクラスの説明は次のファイルから生成されました:<ul>
-<li>devkit100/goluah/goluah/source/task/task_fade.h<li>devkit100/goluah/goluah/source/task/task_fade.cpp</ul>
-<hr size="1"><address style="text-align: right;"><small>Goluah!!に対してWed Oct 13 14:02:13 2010に生成されました。&nbsp;
-<a href="http://www.doxygen.org/index.html">
-<img src="../../doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.3 </small></address>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.13 -->
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('../../',false,false,'search.php','検索');
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="../../d5/dac/class_c_fade-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">CFade クラス</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;task_fade.h&gt;</code></p>
+<div class="dynheader">
+CFade の継承関係図</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d7/d50/class_c_fade__inherit__graph.png" border="0" usemap="#_c_fade_inherit__map" alt="Inheritance graph"/></div>
+<map name="_c_fade_inherit__map" id="_c_fade_inherit__map">
+</map>
+<center><span class="legend">[<a href="../../graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+CFade 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="../../de/dce/class_c_fade__coll__graph.png" border="0" usemap="#_c_fade_coll__map" alt="Collaboration graph"/></div>
+<map name="_c_fade_coll__map" id="_c_fade_coll__map">
+</map>
+<center><span class="legend">[<a href="../../graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:aa23186d1c36b828609a75316d13415c8"><td class="memItemLeft" align="right" valign="top"><a id="aa23186d1c36b828609a75316d13415c8"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d8a/class_c_fade.html#aa23186d1c36b828609a75316d13415c8">Initialize</a> ()</td></tr>
+<tr class="memdesc:aa23186d1c36b828609a75316d13415c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">ExecuteまたはDrawがコールされる前に1度だけコールされる <br /></td></tr>
+<tr class="separator:aa23186d1c36b828609a75316d13415c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc1fb2198e586849e9190b8bdca1de13"><td class="memItemLeft" align="right" valign="top"><a id="acc1fb2198e586849e9190b8bdca1de13"></a>
+virtual BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d8a/class_c_fade.html#acc1fb2198e586849e9190b8bdca1de13">Execute</a> (DWORD time)</td></tr>
+<tr class="memdesc:acc1fb2198e586849e9190b8bdca1de13"><td class="mdescLeft">&#160;</td><td class="mdescRight">毎フレームコールされる <br /></td></tr>
+<tr class="separator:acc1fb2198e586849e9190b8bdca1de13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49773be4a46cb3e271c885eee14df75b"><td class="memItemLeft" align="right" valign="top"><a id="a49773be4a46cb3e271c885eee14df75b"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d8a/class_c_fade.html#a49773be4a46cb3e271c885eee14df75b">Draw</a> ()</td></tr>
+<tr class="memdesc:a49773be4a46cb3e271c885eee14df75b"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画時にコールされる <br /></td></tr>
+<tr class="separator:a49773be4a46cb3e271c885eee14df75b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_c_task_base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_c_task_base')"><img src="../../closed.png" alt="-"/>&#160;基底クラス <a class="el" href="../../df/d1d/class_c_task_base.html">CTaskBase</a> に属する継承公開メンバ関数</td></tr>
+<tr class="memitem:af62a0e55e0f088cc12d634d986d58ee1 inherit pub_methods_class_c_task_base"><td class="memItemLeft" align="right" valign="top"><a id="af62a0e55e0f088cc12d634d986d58ee1"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d1d/class_c_task_base.html#af62a0e55e0f088cc12d634d986d58ee1">Terminate</a> ()</td></tr>
+<tr class="memdesc:af62a0e55e0f088cc12d634d986d58ee1 inherit pub_methods_class_c_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">タスクのリストから外されるときにコールされる（その直後、deleteされる） <br /></td></tr>
+<tr class="separator:af62a0e55e0f088cc12d634d986d58ee1 inherit pub_methods_class_c_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f357afd2b6d876d650ef7e155d9cca0 inherit pub_methods_class_c_task_base"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d1d/class_c_task_base.html#a5f357afd2b6d876d650ef7e155d9cca0">WndMessage</a> (HWND hWnd, UINT msg, WPARAM wparam, LPARAM lparam)</td></tr>
+<tr class="separator:a5f357afd2b6d876d650ef7e155d9cca0 inherit pub_methods_class_c_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a596d7da74e5e3f76573c2f6050f7ace2 inherit pub_methods_class_c_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a596d7da74e5e3f76573c2f6050f7ace2"></a>
+virtual DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d1d/class_c_task_base.html#a596d7da74e5e3f76573c2f6050f7ace2">GetID</a> ()</td></tr>
+<tr class="memdesc:a596d7da74e5e3f76573c2f6050f7ace2 inherit pub_methods_class_c_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">0以外を返すようにした場合、マネージャに同じIDを持つタスクがAddされたとき破棄される <br /></td></tr>
+<tr class="separator:a596d7da74e5e3f76573c2f6050f7ace2 inherit pub_methods_class_c_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a308209955560cafa64e74094f7483190 inherit pub_methods_class_c_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a308209955560cafa64e74094f7483190"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d1d/class_c_task_base.html#a308209955560cafa64e74094f7483190">GetDrawPriority</a> ()</td></tr>
+<tr class="memdesc:a308209955560cafa64e74094f7483190 inherit pub_methods_class_c_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画プライオリティ。低いほど手前に（後に）描画。マイナスならば表示しない <br /></td></tr>
+<tr class="separator:a308209955560cafa64e74094f7483190 inherit pub_methods_class_c_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+その他の継承メンバ</h2></td></tr>
+<tr class="inherit_header pub_static_methods_class_c_task_base"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_c_task_base')"><img src="../../closed.png" alt="-"/>&#160;基底クラス <a class="el" href="../../df/d1d/class_c_task_base.html">CTaskBase</a> に属する継承静的公開メンバ関数</td></tr>
+<tr class="memitem:af3854ccfe7e5371cf57aef91d0e26c77 inherit pub_static_methods_class_c_task_base"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d1d/class_c_task_base.html#af3854ccfe7e5371cf57aef91d0e26c77">CompByDrawPriority</a> (<a class="el" href="../../df/d1d/class_c_task_base.html">CTaskBase</a> *arg1, <a class="el" href="../../df/d1d/class_c_task_base.html">CTaskBase</a> *arg2)</td></tr>
+<tr class="separator:af3854ccfe7e5371cf57aef91d0e26c77 inherit pub_static_methods_class_c_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>このクラスは、まだほとんど手つかず。 画面のフェードアウト／フェードインに使う予定です。 </p>
+</div><hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>C:/Users/soji_2/Goluah-/devkit100/goluah/goluah/source/task/task_fade.h</li>
+<li>C:/Users/soji_2/Goluah-/devkit100/goluah/goluah/source/task/task_fade.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
 </body>
 </html>

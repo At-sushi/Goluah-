@@ -1,149 +1,203 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Goluah!!: クラス CTaskStoryMode</title>
-<link href="../../doxygen.css" rel="stylesheet" type="text/css">
-<link href="../../tabs.css" rel="stylesheet" type="text/css">
-</head><body>
-<!-- 作成： Doxygen 1.5.3 -->
-<div class="tabs">
-  <ul>
-    <li><a href="../../main.html"><span>メインページ</span></a></li>
-    <li><a href="../../modules.html"><span>モジュール</span></a></li>
-    <li class="current"><a href="../../annotated.html"><span>クラス</span></a></li>
-    <li><a href="../../files.html"><span>ファイル</span></a></li>
-  </ul>
-</div>
-<div class="tabs">
-  <ul>
-    <li><a href="../../annotated.html"><span>構成</span></a></li>
-    <li><a href="../../hierarchy.html"><span>クラス階層</span></a></li>
-    <li><a href="../../functions.html"><span>構成メンバ</span></a></li>
-  </ul>
-</div>
-<h1>クラス CTaskStoryMode<br>
-<small>
-[<a class="el" href="../../d1/dc9/group___tasks.html">Tasks</a>]</small>
-</h1><!-- doxytag: class="CTaskStoryMode" --><!-- doxytag: inherits="CExclusiveTaskBase" -->ストーリーモード本体  
-<a href="#_details">[詳細]</a>
-<p>
-<code>#include &lt;task_storymode.h&gt;</code>
-<p>
-<div class="dynheader">
-CTaskStoryModeに対する継承グラフ</div>
-<div class="dynsection">
-<p><center><img src="../../d5/dae/class_c_task_story_mode__inherit__graph.png" border="0" usemap="#d4/dba/_c_task_story_mode__inherit__map" alt="Inheritance graph"></center>
-<map name="d4/dba/_c_task_story_mode__inherit__map">
-<area shape="rect" href="../../da/da5/class_c_exclusive_task_base.html" title="a??a��?a??a?1a?�P" alt="" coords="5,80,152,107"><area shape="rect" href="../../df/d1d/class_c_task_base.html" title="a?oa?��a??a?1a?�P" alt="" coords="33,5,124,32"></map>
-<center><font size="2">[<a target="top" href="../../graph_legend.html">凡例</a>]</font></center></div>
-<div class="dynheader">
-CTaskStoryModeのコラボレーション図</div>
-<div class="dynsection">
-<p><center><img src="../../dc/dee/class_c_task_story_mode__coll__graph.png" border="0" usemap="#d6/d69/_c_task_story_mode__coll__map" alt="Collaboration graph"></center>
-<map name="d6/d69/_c_task_story_mode__coll__map">
-<area shape="rect" href="../../da/da5/class_c_exclusive_task_base.html" title="a??a��?a??a?1a?�P" alt="" coords="219,5,365,32"><area shape="rect" href="../../df/d1d/class_c_task_base.html" title="a?oa?��a??a?1a?�P" alt="" coords="5,5,96,32"><area shape="rect" href="../../db/de7/class_c_task_story_mode_1_1_c_random_character_getter.html" title="a?ca?3a?�a??a?&#45;a?��a?ca?�Pa??a??a??a??a?�Pa?ca?1" alt="" coords="148,56,436,83"><area shape="rect" href="../../d6/d0e/class_c_task_story_mode_1_1_c_random_stage_getter.html" title="a?ca?3a?�a??a?1a??a??a?�Ca??a??a?�Pa?ca?1" alt="" coords="160,107,424,133"></map>
-<center><font size="2">[<a target="top" href="../../graph_legend.html">凡例</a>]</font></center></div>
-
-<p>
-<a href="../../d7/d7a/class_c_task_story_mode-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
-<tr><td></td></tr>
-<tr><td colspan="2"><br><h2>Public メソッド</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d55716cc809795ae13205796914ff7cc"></a><!-- doxytag: member="CTaskStoryMode::Initialize" ref="d55716cc809795ae13205796914ff7cc" args="()" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#d55716cc809795ae13205796914ff7cc">Initialize</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ExecuteまたはDrawがコールされる前に1度だけコールされる <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="865e89ce580541d04cfa60dd81701742"></a><!-- doxytag: member="CTaskStoryMode::Execute" ref="865e89ce580541d04cfa60dd81701742" args="(DWORD time)" -->
-BOOL&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#865e89ce580541d04cfa60dd81701742">Execute</a> (DWORD time)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">毎フレームコールされる <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bc900704b2bc664b86e27b9ff625703a"></a><!-- doxytag: member="CTaskStoryMode::Terminate" ref="bc900704b2bc664b86e27b9ff625703a" args="()" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#bc900704b2bc664b86e27b9ff625703a">Terminate</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">タスクのリストから外されるときにコールされる（その直後、deleteされる） <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f2c0ffadaeb5a219a27f820234d6cb7e"></a><!-- doxytag: member="CTaskStoryMode::GetID" ref="f2c0ffadaeb5a219a27f820234d6cb7e" args="()" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#f2c0ffadaeb5a219a27f820234d6cb7e">GetID</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">0以外を返すようにした場合、マネージャに同じIDを持つタスクがAddされたとき破棄される <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3723dc9a8ff6b0500d6cf41dec1c2296"></a><!-- doxytag: member="CTaskStoryMode::Activate" ref="3723dc9a8ff6b0500d6cf41dec1c2296" args="(DWORD prvTaskID)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#3723dc9a8ff6b0500d6cf41dec1c2296">Activate</a> (DWORD prvTaskID)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Executeが再開されるときに呼ばれる <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="27b13331fbd7ceca998f774ec8d97e63"></a><!-- doxytag: member="CTaskStoryMode::Inactivate" ref="27b13331fbd7ceca998f774ec8d97e63" args="(DWORD nextTaskID)" -->
-BOOL&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#27b13331fbd7ceca998f774ec8d97e63">Inactivate</a> (DWORD nextTaskID)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">他の排他タスクが開始したときに呼ばれる <br></td></tr>
-<tr><td colspan="2"><br><h2>Protected メソッド</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4d859dba2c72c20871e072b6bf1f3d10"></a><!-- doxytag: member="CTaskStoryMode::StartNextTask" ref="4d859dba2c72c20871e072b6bf1f3d10" args="()" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#4d859dba2c72c20871e072b6bf1f3d10">StartNextTask</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">次のストーリー要素の開始 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5357c9aa9af7343aae185a25fbbc4fe3"></a><!-- doxytag: member="CTaskStoryMode::StartVSTask" ref="5357c9aa9af7343aae185a25fbbc4fe3" args="()" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#5357c9aa9af7343aae185a25fbbc4fe3">StartVSTask</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">試合 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="cad0c46bb38e878cc97adc96f669d685"></a><!-- doxytag: member="CTaskStoryMode::StartDemoTask" ref="cad0c46bb38e878cc97adc96f669d685" args="()" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#cad0c46bb38e878cc97adc96f669d685">StartDemoTask</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">デモ <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5c1379860132fa2fad458dad818fdd95"></a><!-- doxytag: member="CTaskStoryMode::StartStaffTask" ref="5c1379860132fa2fad458dad818fdd95" args="()" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#5c1379860132fa2fad458dad818fdd95">StartStaffTask</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">スタッフロール <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4636147e7838e3a076b37161d875fa7e"></a><!-- doxytag: member="CTaskStoryMode::StartContinueTask" ref="4636147e7838e3a076b37161d875fa7e" args="()" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#4636147e7838e3a076b37161d875fa7e">StartContinueTask</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">コンティニュー <br></td></tr>
-<tr><td colspan="2"><br><h2>Protected 変数</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b2e1ef6442f87191688f238ecf6e5a06"></a><!-- doxytag: member="CTaskStoryMode::m_story_index" ref="b2e1ef6442f87191688f238ecf6e5a06" args="" -->
-UINT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#b2e1ef6442f87191688f238ecf6e5a06">m_story_index</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ストーリー番号 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0b08bf7cbd022ce3e1b00ba39d17016c"></a><!-- doxytag: member="CTaskStoryMode::m_keyindex" ref="0b08bf7cbd022ce3e1b00ba39d17016c" args="" -->
-UINT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#0b08bf7cbd022ce3e1b00ba39d17016c">m_keyindex</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">プレイヤーのキー入力番号 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9ef1256fe6cba3bba3b21d6b5e826bff"></a><!-- doxytag: member="CTaskStoryMode::m_setting" ref="9ef1256fe6cba3bba3b21d6b5e826bff" args="" -->
-CStoryList::CStoryInfo *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#9ef1256fe6cba3bba3b21d6b5e826bff">m_setting</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ストーリー初期設定 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="64325e25fcfbd17047bafefdc51dd341"></a><!-- doxytag: member="CTaskStoryMode::scr_list" ref="64325e25fcfbd17047bafefdc51dd341" args="" -->
-SScriptElementList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#64325e25fcfbd17047bafefdc51dd341">scr_list</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">スクリプトリスト <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="14160cb9ec2dec20b127a6e2ac88e051"></a><!-- doxytag: member="CTaskStoryMode::scr_i" ref="14160cb9ec2dec20b127a6e2ac88e051" args="" -->
-SScriptElementList::iterator&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#14160cb9ec2dec20b127a6e2ac88e051">scr_i</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">現在のスクリプトブロック <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="35e887d98a3a50de80d8851c36706e36"></a><!-- doxytag: member="CTaskStoryMode::m_continue_num" ref="35e887d98a3a50de80d8851c36706e36" args="" -->
-int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#35e887d98a3a50de80d8851c36706e36">m_continue_num</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">コンティニュー回数 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e7228c79d0860779d69d849715f6d485"></a><!-- doxytag: member="CTaskStoryMode::m_prev_task_id" ref="e7228c79d0860779d69d849715f6d485" args="" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#e7228c79d0860779d69d849715f6d485">m_prev_task_id</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">前回タスクID <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3e6dc65b61aca4d083092c30791ad717"></a><!-- doxytag: member="CTaskStoryMode::selectflag" ref="3e6dc65b61aca4d083092c30791ad717" args="" -->
-int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#3e6dc65b61aca4d083092c30791ad717">selectflag</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">選択肢フラグ <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0283297a054cba0bb803ad7775b57a61"></a><!-- doxytag: member="CTaskStoryMode::in_select" ref="0283297a054cba0bb803ad7775b57a61" args="" -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#0283297a054cba0bb803ad7775b57a61">in_select</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">select分岐後かどうか <br></td></tr>
-<tr><td colspan="2"><br><h2>構成</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/de7/class_c_task_story_mode_1_1_c_random_character_getter.html">CRandomCharacterGetter</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ランダムキャラクター取得クラス  <a href="../../db/de7/class_c_task_story_mode_1_1_c_random_character_getter.html#_details">[詳細]</a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d0e/class_c_task_story_mode_1_1_c_random_stage_getter.html">CRandomStageGetter</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ランダムステージ取得クラス  <a href="../../d6/d0e/class_c_task_story_mode_1_1_c_random_stage_getter.html#_details">[詳細]</a><br></td></tr>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Goluah!!: CTaskStoryMode クラス</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="../../goluah2.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Goluah!!
+   &#160;<span id="projectnumber">1.21a draft</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
 </table>
-<hr><a name="_details"></a><h2>説明</h2>
-ストーリーモード本体 
-<p>
-Activate時に前タスクや、ストーリークラスの情報から 判断して適切な次のタスクを起動する。 <hr>このクラスの説明は次のファイルから生成されました:<ul>
-<li>devkit100/goluah/goluah/source/task/task_storymode.h<li>devkit100/goluah/goluah/source/task/task_storymode.cpp</ul>
-<hr size="1"><address style="text-align: right;"><small>Goluah!!に対してWed Oct 13 14:02:51 2010に生成されました。&nbsp;
-<a href="http://www.doxygen.org/index.html">
-<img src="../../doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.3 </small></address>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.13 -->
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('../../',false,false,'search.php','検索');
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">クラス</a> &#124;
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pro-methods">限定公開メンバ関数</a> &#124;
+<a href="#pro-attribs">限定公開変数類</a> &#124;
+<a href="../../d7/d7a/class_c_task_story_mode-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">CTaskStoryMode クラス<div class="ingroups"><a class="el" href="../../d1/dc9/group___tasks.html">Tasks</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>ストーリーモード本体Activate時に前タスクや、ストーリークラスの情報から 判断して適切な次のタスクを起動する。  
+ <a href="../../d3/dec/class_c_task_story_mode.html#details">[詳解]</a></p>
+
+<p><code>#include &lt;task_storymode.h&gt;</code></p>
+<div class="dynheader">
+CTaskStoryMode の継承関係図</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/dae/class_c_task_story_mode__inherit__graph.png" border="0" usemap="#_c_task_story_mode_inherit__map" alt="Inheritance graph"/></div>
+<map name="_c_task_story_mode_inherit__map" id="_c_task_story_mode_inherit__map">
+</map>
+<center><span class="legend">[<a href="../../graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+CTaskStoryMode 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dc/dee/class_c_task_story_mode__coll__graph.png" border="0" usemap="#_c_task_story_mode_coll__map" alt="Collaboration graph"/></div>
+<map name="_c_task_story_mode_coll__map" id="_c_task_story_mode_coll__map">
+</map>
+<center><span class="legend">[<a href="../../graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+クラス</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/de7/class_c_task_story_mode_1_1_c_random_character_getter.html">CRandomCharacterGetter</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ランダムキャラクター取得クラスストーリー中でなるべく同じキャラクターが出ないようにするために使用。  <a href="../../db/de7/class_c_task_story_mode_1_1_c_random_character_getter.html#details">[詳解]</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d0e/class_c_task_story_mode_1_1_c_random_stage_getter.html">CRandomStageGetter</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ランダムステージ取得クラスストーリー中でなるべく同じステージが出ないようにするためのクラス。  <a href="../../d6/d0e/class_c_task_story_mode_1_1_c_random_stage_getter.html#details">[詳解]</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:ad55716cc809795ae13205796914ff7cc"><td class="memItemLeft" align="right" valign="top"><a id="ad55716cc809795ae13205796914ff7cc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#ad55716cc809795ae13205796914ff7cc">Initialize</a> ()</td></tr>
+<tr class="memdesc:ad55716cc809795ae13205796914ff7cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">ExecuteまたはDrawがコールされる前に1度だけコールされる <br /></td></tr>
+<tr class="separator:ad55716cc809795ae13205796914ff7cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a865e89ce580541d04cfa60dd81701742"><td class="memItemLeft" align="right" valign="top"><a id="a865e89ce580541d04cfa60dd81701742"></a>
+BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#a865e89ce580541d04cfa60dd81701742">Execute</a> (DWORD time)</td></tr>
+<tr class="memdesc:a865e89ce580541d04cfa60dd81701742"><td class="mdescLeft">&#160;</td><td class="mdescRight">毎フレームコールされる <br /></td></tr>
+<tr class="separator:a865e89ce580541d04cfa60dd81701742"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc900704b2bc664b86e27b9ff625703a"><td class="memItemLeft" align="right" valign="top"><a id="abc900704b2bc664b86e27b9ff625703a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#abc900704b2bc664b86e27b9ff625703a">Terminate</a> ()</td></tr>
+<tr class="memdesc:abc900704b2bc664b86e27b9ff625703a"><td class="mdescLeft">&#160;</td><td class="mdescRight">タスクのリストから外されるときにコールされる（その直後、deleteされる） <br /></td></tr>
+<tr class="separator:abc900704b2bc664b86e27b9ff625703a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2c0ffadaeb5a219a27f820234d6cb7e"><td class="memItemLeft" align="right" valign="top"><a id="af2c0ffadaeb5a219a27f820234d6cb7e"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#af2c0ffadaeb5a219a27f820234d6cb7e">GetID</a> ()</td></tr>
+<tr class="memdesc:af2c0ffadaeb5a219a27f820234d6cb7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">0以外を返すようにした場合、マネージャに同じIDを持つタスクがAddされたとき破棄される <br /></td></tr>
+<tr class="separator:af2c0ffadaeb5a219a27f820234d6cb7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3723dc9a8ff6b0500d6cf41dec1c2296"><td class="memItemLeft" align="right" valign="top"><a id="a3723dc9a8ff6b0500d6cf41dec1c2296"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#a3723dc9a8ff6b0500d6cf41dec1c2296">Activate</a> (DWORD prvTaskID)</td></tr>
+<tr class="memdesc:a3723dc9a8ff6b0500d6cf41dec1c2296"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executeが再開されるときに呼ばれる <br /></td></tr>
+<tr class="separator:a3723dc9a8ff6b0500d6cf41dec1c2296"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27b13331fbd7ceca998f774ec8d97e63"><td class="memItemLeft" align="right" valign="top"><a id="a27b13331fbd7ceca998f774ec8d97e63"></a>
+BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#a27b13331fbd7ceca998f774ec8d97e63">Inactivate</a> (DWORD nextTaskID)</td></tr>
+<tr class="memdesc:a27b13331fbd7ceca998f774ec8d97e63"><td class="mdescLeft">&#160;</td><td class="mdescRight">他の排他タスクが開始したときに呼ばれる <br /></td></tr>
+<tr class="separator:a27b13331fbd7ceca998f774ec8d97e63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_c_exclusive_task_base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_c_exclusive_task_base')"><img src="../../closed.png" alt="-"/>&#160;基底クラス <a class="el" href="../../da/da5/class_c_exclusive_task_base.html">CExclusiveTaskBase</a> に属する継承公開メンバ関数</td></tr>
+<tr class="memitem:a7b60724019a9c1576b19f4c3eb045fba inherit pub_methods_class_c_exclusive_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a7b60724019a9c1576b19f4c3eb045fba"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/da5/class_c_exclusive_task_base.html#a7b60724019a9c1576b19f4c3eb045fba">GetDrawPriority</a> ()</td></tr>
+<tr class="memdesc:a7b60724019a9c1576b19f4c3eb045fba inherit pub_methods_class_c_exclusive_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画プライオリティ取得メソッド <br /></td></tr>
+<tr class="separator:a7b60724019a9c1576b19f4c3eb045fba inherit pub_methods_class_c_exclusive_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_c_task_base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_c_task_base')"><img src="../../closed.png" alt="-"/>&#160;基底クラス <a class="el" href="../../df/d1d/class_c_task_base.html">CTaskBase</a> に属する継承公開メンバ関数</td></tr>
+<tr class="memitem:afa3b7f7233f217491ec51478d86ae3a3 inherit pub_methods_class_c_task_base"><td class="memItemLeft" align="right" valign="top"><a id="afa3b7f7233f217491ec51478d86ae3a3"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d1d/class_c_task_base.html#afa3b7f7233f217491ec51478d86ae3a3">Draw</a> ()</td></tr>
+<tr class="memdesc:afa3b7f7233f217491ec51478d86ae3a3 inherit pub_methods_class_c_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画時にコールされる <br /></td></tr>
+<tr class="separator:afa3b7f7233f217491ec51478d86ae3a3 inherit pub_methods_class_c_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f357afd2b6d876d650ef7e155d9cca0 inherit pub_methods_class_c_task_base"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d1d/class_c_task_base.html#a5f357afd2b6d876d650ef7e155d9cca0">WndMessage</a> (HWND hWnd, UINT msg, WPARAM wparam, LPARAM lparam)</td></tr>
+<tr class="separator:a5f357afd2b6d876d650ef7e155d9cca0 inherit pub_methods_class_c_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+限定公開メンバ関数</h2></td></tr>
+<tr class="memitem:a4d859dba2c72c20871e072b6bf1f3d10"><td class="memItemLeft" align="right" valign="top"><a id="a4d859dba2c72c20871e072b6bf1f3d10"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#a4d859dba2c72c20871e072b6bf1f3d10">StartNextTask</a> ()</td></tr>
+<tr class="memdesc:a4d859dba2c72c20871e072b6bf1f3d10"><td class="mdescLeft">&#160;</td><td class="mdescRight">次のストーリー要素の開始 <br /></td></tr>
+<tr class="separator:a4d859dba2c72c20871e072b6bf1f3d10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5357c9aa9af7343aae185a25fbbc4fe3"><td class="memItemLeft" align="right" valign="top"><a id="a5357c9aa9af7343aae185a25fbbc4fe3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#a5357c9aa9af7343aae185a25fbbc4fe3">StartVSTask</a> ()</td></tr>
+<tr class="memdesc:a5357c9aa9af7343aae185a25fbbc4fe3"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合 <br /></td></tr>
+<tr class="separator:a5357c9aa9af7343aae185a25fbbc4fe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acad0c46bb38e878cc97adc96f669d685"><td class="memItemLeft" align="right" valign="top"><a id="acad0c46bb38e878cc97adc96f669d685"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#acad0c46bb38e878cc97adc96f669d685">StartDemoTask</a> ()</td></tr>
+<tr class="memdesc:acad0c46bb38e878cc97adc96f669d685"><td class="mdescLeft">&#160;</td><td class="mdescRight">デモ <br /></td></tr>
+<tr class="separator:acad0c46bb38e878cc97adc96f669d685"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c1379860132fa2fad458dad818fdd95"><td class="memItemLeft" align="right" valign="top"><a id="a5c1379860132fa2fad458dad818fdd95"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#a5c1379860132fa2fad458dad818fdd95">StartStaffTask</a> ()</td></tr>
+<tr class="memdesc:a5c1379860132fa2fad458dad818fdd95"><td class="mdescLeft">&#160;</td><td class="mdescRight">スタッフロール <br /></td></tr>
+<tr class="separator:a5c1379860132fa2fad458dad818fdd95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4636147e7838e3a076b37161d875fa7e"><td class="memItemLeft" align="right" valign="top"><a id="a4636147e7838e3a076b37161d875fa7e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#a4636147e7838e3a076b37161d875fa7e">StartContinueTask</a> ()</td></tr>
+<tr class="memdesc:a4636147e7838e3a076b37161d875fa7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンティニュー <br /></td></tr>
+<tr class="separator:a4636147e7838e3a076b37161d875fa7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+限定公開変数類</h2></td></tr>
+<tr class="memitem:ab2e1ef6442f87191688f238ecf6e5a06"><td class="memItemLeft" align="right" valign="top"><a id="ab2e1ef6442f87191688f238ecf6e5a06"></a>
+UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#ab2e1ef6442f87191688f238ecf6e5a06">m_story_index</a></td></tr>
+<tr class="memdesc:ab2e1ef6442f87191688f238ecf6e5a06"><td class="mdescLeft">&#160;</td><td class="mdescRight">ストーリー番号 <br /></td></tr>
+<tr class="separator:ab2e1ef6442f87191688f238ecf6e5a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b08bf7cbd022ce3e1b00ba39d17016c"><td class="memItemLeft" align="right" valign="top"><a id="a0b08bf7cbd022ce3e1b00ba39d17016c"></a>
+UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#a0b08bf7cbd022ce3e1b00ba39d17016c">m_keyindex</a></td></tr>
+<tr class="memdesc:a0b08bf7cbd022ce3e1b00ba39d17016c"><td class="mdescLeft">&#160;</td><td class="mdescRight">プレイヤーのキー入力番号 <br /></td></tr>
+<tr class="separator:a0b08bf7cbd022ce3e1b00ba39d17016c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ef1256fe6cba3bba3b21d6b5e826bff"><td class="memItemLeft" align="right" valign="top"><a id="a9ef1256fe6cba3bba3b21d6b5e826bff"></a>
+CStoryList::CStoryInfo *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#a9ef1256fe6cba3bba3b21d6b5e826bff">m_setting</a></td></tr>
+<tr class="memdesc:a9ef1256fe6cba3bba3b21d6b5e826bff"><td class="mdescLeft">&#160;</td><td class="mdescRight">ストーリー初期設定 <br /></td></tr>
+<tr class="separator:a9ef1256fe6cba3bba3b21d6b5e826bff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64325e25fcfbd17047bafefdc51dd341"><td class="memItemLeft" align="right" valign="top"><a id="a64325e25fcfbd17047bafefdc51dd341"></a>
+SScriptElementList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#a64325e25fcfbd17047bafefdc51dd341">scr_list</a></td></tr>
+<tr class="memdesc:a64325e25fcfbd17047bafefdc51dd341"><td class="mdescLeft">&#160;</td><td class="mdescRight">スクリプトリスト <br /></td></tr>
+<tr class="separator:a64325e25fcfbd17047bafefdc51dd341"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14160cb9ec2dec20b127a6e2ac88e051"><td class="memItemLeft" align="right" valign="top"><a id="a14160cb9ec2dec20b127a6e2ac88e051"></a>
+SScriptElementList::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#a14160cb9ec2dec20b127a6e2ac88e051">scr_i</a></td></tr>
+<tr class="memdesc:a14160cb9ec2dec20b127a6e2ac88e051"><td class="mdescLeft">&#160;</td><td class="mdescRight">現在のスクリプトブロック <br /></td></tr>
+<tr class="separator:a14160cb9ec2dec20b127a6e2ac88e051"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35e887d98a3a50de80d8851c36706e36"><td class="memItemLeft" align="right" valign="top"><a id="a35e887d98a3a50de80d8851c36706e36"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#a35e887d98a3a50de80d8851c36706e36">m_continue_num</a></td></tr>
+<tr class="memdesc:a35e887d98a3a50de80d8851c36706e36"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンティニュー回数 <br /></td></tr>
+<tr class="separator:a35e887d98a3a50de80d8851c36706e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7228c79d0860779d69d849715f6d485"><td class="memItemLeft" align="right" valign="top"><a id="ae7228c79d0860779d69d849715f6d485"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#ae7228c79d0860779d69d849715f6d485">m_prev_task_id</a></td></tr>
+<tr class="memdesc:ae7228c79d0860779d69d849715f6d485"><td class="mdescLeft">&#160;</td><td class="mdescRight">前回タスクID <br /></td></tr>
+<tr class="separator:ae7228c79d0860779d69d849715f6d485"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e6dc65b61aca4d083092c30791ad717"><td class="memItemLeft" align="right" valign="top"><a id="a3e6dc65b61aca4d083092c30791ad717"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#a3e6dc65b61aca4d083092c30791ad717">selectflag</a></td></tr>
+<tr class="memdesc:a3e6dc65b61aca4d083092c30791ad717"><td class="mdescLeft">&#160;</td><td class="mdescRight">選択肢フラグ <br /></td></tr>
+<tr class="separator:a3e6dc65b61aca4d083092c30791ad717"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0283297a054cba0bb803ad7775b57a61"><td class="memItemLeft" align="right" valign="top"><a id="a0283297a054cba0bb803ad7775b57a61"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dec/class_c_task_story_mode.html#a0283297a054cba0bb803ad7775b57a61">in_select</a></td></tr>
+<tr class="memdesc:a0283297a054cba0bb803ad7775b57a61"><td class="mdescLeft">&#160;</td><td class="mdescRight">select分岐後かどうか <br /></td></tr>
+<tr class="separator:a0283297a054cba0bb803ad7775b57a61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+その他の継承メンバ</h2></td></tr>
+<tr class="inherit_header pub_static_methods_class_c_task_base"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_c_task_base')"><img src="../../closed.png" alt="-"/>&#160;基底クラス <a class="el" href="../../df/d1d/class_c_task_base.html">CTaskBase</a> に属する継承静的公開メンバ関数</td></tr>
+<tr class="memitem:af3854ccfe7e5371cf57aef91d0e26c77 inherit pub_static_methods_class_c_task_base"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d1d/class_c_task_base.html#af3854ccfe7e5371cf57aef91d0e26c77">CompByDrawPriority</a> (<a class="el" href="../../df/d1d/class_c_task_base.html">CTaskBase</a> *arg1, <a class="el" href="../../df/d1d/class_c_task_base.html">CTaskBase</a> *arg2)</td></tr>
+<tr class="separator:af3854ccfe7e5371cf57aef91d0e26c77 inherit pub_static_methods_class_c_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>ストーリーモード本体</p>
+<p>Activate時に前タスクや、ストーリークラスの情報から 判断して適切な次のタスクを起動する。 </p>
+</div><hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>C:/Users/soji_2/Goluah-/devkit100/goluah/goluah/source/task/task_storymode.h</li>
+<li>C:/Users/soji_2/Goluah-/devkit100/goluah/goluah/source/task/task_storymode.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
 </body>
 </html>

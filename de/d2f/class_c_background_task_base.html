@@ -1,59 +1,115 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Goluah!!: クラス CBackgroundTaskBase</title>
-<link href="../../doxygen.css" rel="stylesheet" type="text/css">
-<link href="../../tabs.css" rel="stylesheet" type="text/css">
-</head><body>
-<!-- 作成： Doxygen 1.5.3 -->
-<div class="tabs">
-  <ul>
-    <li><a href="../../main.html"><span>メインページ</span></a></li>
-    <li><a href="../../modules.html"><span>モジュール</span></a></li>
-    <li class="current"><a href="../../annotated.html"><span>クラス</span></a></li>
-    <li><a href="../../files.html"><span>ファイル</span></a></li>
-  </ul>
-</div>
-<div class="tabs">
-  <ul>
-    <li><a href="../../annotated.html"><span>構成</span></a></li>
-    <li><a href="../../hierarchy.html"><span>クラス階層</span></a></li>
-    <li><a href="../../functions.html"><span>構成メンバ</span></a></li>
-  </ul>
-</div>
-<h1>クラス CBackgroundTaskBase<br>
-<small>
-[<a class="el" href="../../d1/dc9/group___tasks.html">Tasks</a>]</small>
-</h1><!-- doxytag: class="CBackgroundTaskBase" --><!-- doxytag: inherits="CTaskBase" -->常駐タスク  
-<a href="#_details">[詳細]</a>
-<p>
-<code>#include &lt;task.h&gt;</code>
-<p>
-<div class="dynheader">
-CBackgroundTaskBaseに対する継承グラフ</div>
-<div class="dynsection">
-<p><center><img src="../../dc/dc3/class_c_background_task_base__inherit__graph.png" border="0" usemap="#d3/d76/_c_background_task_base__inherit__map" alt="Inheritance graph"></center>
-<map name="d3/d76/_c_background_task_base__inherit__map">
-<area shape="rect" href="../../dd/d74/class_c_b_g_m_loop_message_listener.html" title="BGMa?��a??a??c?�Na?|a?��a?3a??a?|a?!a??a?��a??a?�Ca??a??a?�Pa?ca?1" alt="" coords="5,155,197,181"><area shape="rect" href="../../d0/d8a/class_c_fade.html" title="CFade" alt="" coords="221,155,283,181"><area shape="rect" href="../../da/d2f/class_c_input_recover_listener.html" title="CDirectInputc?�Na??a??a?3a??a??a??a?�Pa?ca?1" alt="" coords="307,155,464,181"><area shape="rect" href="../../dc/d6a/class_c_t_big_face_cache.html" title="a??a?��e!?a??a??a?�Pa?ca?1" alt="" coords="488,155,616,181"><area shape="rect" href="../../df/d1d/class_c_task_base.html" title="a?oa?��a??a?1a?�P" alt="" coords="273,5,364,32"></map>
-<center><font size="2">[<a target="top" href="../../graph_legend.html">凡例</a>]</font></center></div>
-<div class="dynheader">
-CBackgroundTaskBaseのコラボレーション図</div>
-<div class="dynsection">
-<p><center><img src="../../d1/de6/class_c_background_task_base__coll__graph.png" border="0" usemap="#d5/dc3/_c_background_task_base__coll__map" alt="Collaboration graph"></center>
-<map name="d5/dc3/_c_background_task_base__coll__map">
-<area shape="rect" href="../../df/d1d/class_c_task_base.html" title="a?oa?��a??a?1a?�P" alt="" coords="41,5,132,32"></map>
-<center><font size="2">[<a target="top" href="../../graph_legend.html">凡例</a>]</font></center></div>
-
-<p>
-<a href="../../d1/d18/class_c_background_task_base-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
-<tr><td></td></tr>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Goluah!!: CBackgroundTaskBase クラス</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="../../goluah2.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Goluah!!
+   &#160;<span id="projectnumber">1.21a draft</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
 </table>
-<hr><a name="_details"></a><h2>説明</h2>
-常駐タスク 
-<p>
-・基本タスクと違い、排他タスクが変更されても破棄されない ・Enabledでないときには Execute , WndMessage をコールしない <hr>このクラスの説明は次のファイルから生成されました:<ul>
-<li>devkit100/goluah/goluah/source/system/<a class="el" href="../../db/da4/task_8h.html">task.h</a></ul>
-<hr size="1"><address style="text-align: right;"><small>Goluah!!に対してWed Oct 13 14:01:37 2010に生成されました。&nbsp;
-<a href="http://www.doxygen.org/index.html">
-<img src="../../doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.3 </small></address>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.13 -->
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('../../',false,false,'search.php','検索');
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="../../d1/d18/class_c_background_task_base-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">CBackgroundTaskBase クラス<div class="ingroups"><a class="el" href="../../d1/dc9/group___tasks.html">Tasks</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>常駐タスク  
+ <a href="../../de/d2f/class_c_background_task_base.html#details">[詳解]</a></p>
+
+<p><code>#include &lt;task.h&gt;</code></p>
+<div class="dynheader">
+CBackgroundTaskBase の継承関係図</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dc/dc3/class_c_background_task_base__inherit__graph.png" border="0" usemap="#_c_background_task_base_inherit__map" alt="Inheritance graph"/></div>
+<map name="_c_background_task_base_inherit__map" id="_c_background_task_base_inherit__map">
+</map>
+<center><span class="legend">[<a href="../../graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+CBackgroundTaskBase 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d1/de6/class_c_background_task_base__coll__graph.png" border="0" usemap="#_c_background_task_base_coll__map" alt="Collaboration graph"/></div>
+<map name="_c_background_task_base_coll__map" id="_c_background_task_base_coll__map">
+</map>
+<center><span class="legend">[<a href="../../graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+その他の継承メンバ</h2></td></tr>
+<tr class="inherit_header pub_methods_class_c_task_base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_c_task_base')"><img src="../../closed.png" alt="-"/>&#160;基底クラス <a class="el" href="../../df/d1d/class_c_task_base.html">CTaskBase</a> に属する継承公開メンバ関数</td></tr>
+<tr class="memitem:a14692034224660acb43031a837506a89 inherit pub_methods_class_c_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a14692034224660acb43031a837506a89"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d1d/class_c_task_base.html#a14692034224660acb43031a837506a89">Initialize</a> ()</td></tr>
+<tr class="memdesc:a14692034224660acb43031a837506a89 inherit pub_methods_class_c_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">ExecuteまたはDrawがコールされる前に1度だけコールされる <br /></td></tr>
+<tr class="separator:a14692034224660acb43031a837506a89 inherit pub_methods_class_c_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86d920cebbf66a4d8b2ab290e6d117ea inherit pub_methods_class_c_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a86d920cebbf66a4d8b2ab290e6d117ea"></a>
+virtual BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d1d/class_c_task_base.html#a86d920cebbf66a4d8b2ab290e6d117ea">Execute</a> (DWORD time)</td></tr>
+<tr class="memdesc:a86d920cebbf66a4d8b2ab290e6d117ea inherit pub_methods_class_c_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">毎フレームコールされる <br /></td></tr>
+<tr class="separator:a86d920cebbf66a4d8b2ab290e6d117ea inherit pub_methods_class_c_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af62a0e55e0f088cc12d634d986d58ee1 inherit pub_methods_class_c_task_base"><td class="memItemLeft" align="right" valign="top"><a id="af62a0e55e0f088cc12d634d986d58ee1"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d1d/class_c_task_base.html#af62a0e55e0f088cc12d634d986d58ee1">Terminate</a> ()</td></tr>
+<tr class="memdesc:af62a0e55e0f088cc12d634d986d58ee1 inherit pub_methods_class_c_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">タスクのリストから外されるときにコールされる（その直後、deleteされる） <br /></td></tr>
+<tr class="separator:af62a0e55e0f088cc12d634d986d58ee1 inherit pub_methods_class_c_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa3b7f7233f217491ec51478d86ae3a3 inherit pub_methods_class_c_task_base"><td class="memItemLeft" align="right" valign="top"><a id="afa3b7f7233f217491ec51478d86ae3a3"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d1d/class_c_task_base.html#afa3b7f7233f217491ec51478d86ae3a3">Draw</a> ()</td></tr>
+<tr class="memdesc:afa3b7f7233f217491ec51478d86ae3a3 inherit pub_methods_class_c_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画時にコールされる <br /></td></tr>
+<tr class="separator:afa3b7f7233f217491ec51478d86ae3a3 inherit pub_methods_class_c_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f357afd2b6d876d650ef7e155d9cca0 inherit pub_methods_class_c_task_base"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d1d/class_c_task_base.html#a5f357afd2b6d876d650ef7e155d9cca0">WndMessage</a> (HWND hWnd, UINT msg, WPARAM wparam, LPARAM lparam)</td></tr>
+<tr class="separator:a5f357afd2b6d876d650ef7e155d9cca0 inherit pub_methods_class_c_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a596d7da74e5e3f76573c2f6050f7ace2 inherit pub_methods_class_c_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a596d7da74e5e3f76573c2f6050f7ace2"></a>
+virtual DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d1d/class_c_task_base.html#a596d7da74e5e3f76573c2f6050f7ace2">GetID</a> ()</td></tr>
+<tr class="memdesc:a596d7da74e5e3f76573c2f6050f7ace2 inherit pub_methods_class_c_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">0以外を返すようにした場合、マネージャに同じIDを持つタスクがAddされたとき破棄される <br /></td></tr>
+<tr class="separator:a596d7da74e5e3f76573c2f6050f7ace2 inherit pub_methods_class_c_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a308209955560cafa64e74094f7483190 inherit pub_methods_class_c_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a308209955560cafa64e74094f7483190"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d1d/class_c_task_base.html#a308209955560cafa64e74094f7483190">GetDrawPriority</a> ()</td></tr>
+<tr class="memdesc:a308209955560cafa64e74094f7483190 inherit pub_methods_class_c_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画プライオリティ。低いほど手前に（後に）描画。マイナスならば表示しない <br /></td></tr>
+<tr class="separator:a308209955560cafa64e74094f7483190 inherit pub_methods_class_c_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_methods_class_c_task_base"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_c_task_base')"><img src="../../closed.png" alt="-"/>&#160;基底クラス <a class="el" href="../../df/d1d/class_c_task_base.html">CTaskBase</a> に属する継承静的公開メンバ関数</td></tr>
+<tr class="memitem:af3854ccfe7e5371cf57aef91d0e26c77 inherit pub_static_methods_class_c_task_base"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d1d/class_c_task_base.html#af3854ccfe7e5371cf57aef91d0e26c77">CompByDrawPriority</a> (<a class="el" href="../../df/d1d/class_c_task_base.html">CTaskBase</a> *arg1, <a class="el" href="../../df/d1d/class_c_task_base.html">CTaskBase</a> *arg2)</td></tr>
+<tr class="separator:af3854ccfe7e5371cf57aef91d0e26c77 inherit pub_static_methods_class_c_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>常駐タスク </p>
+<p>・基本タスクと違い、排他タスクが変更されても破棄されない ・Enabledでないときには Execute , WndMessage をコールしない </p>
+</div><hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>C:/Users/soji_2/Goluah-/devkit100/goluah/goluah/source/system/<a class="el" href="../../db/da4/task_8h.html">task.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
 </body>
 </html>

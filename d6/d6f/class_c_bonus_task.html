@@ -1,59 +1,519 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Goluah!!: クラス CBonusTask</title>
-<link href="../../doxygen.css" rel="stylesheet" type="text/css">
-<link href="../../tabs.css" rel="stylesheet" type="text/css">
-</head><body>
-<!-- 作成： Doxygen 1.5.3 -->
-<div class="tabs">
-  <ul>
-    <li><a href="../../main.html"><span>メインページ</span></a></li>
-    <li><a href="../../modules.html"><span>モジュール</span></a></li>
-    <li class="current"><a href="../../annotated.html"><span>クラス</span></a></li>
-    <li><a href="../../files.html"><span>ファイル</span></a></li>
-  </ul>
-</div>
-<div class="tabs">
-  <ul>
-    <li><a href="../../annotated.html"><span>構成</span></a></li>
-    <li><a href="../../hierarchy.html"><span>クラス階層</span></a></li>
-    <li><a href="../../functions.html"><span>構成メンバ</span></a></li>
-  </ul>
-</div>
-<h1>クラス CBonusTask</h1><!-- doxytag: class="CBonusTask" --><!-- doxytag: inherits="CBattleTask" -->ボーナスステージの作りかけ…みたい  
-<a href="#_details">[詳細]</a>
-<p>
-<code>#include &lt;task_Bonus.h&gt;</code>
-<p>
-<div class="dynheader">
-CBonusTaskに対する継承グラフ</div>
-<div class="dynsection">
-<p><center><img src="../../d8/d8e/class_c_bonus_task__inherit__graph.png" border="0" usemap="#df/d19/_c_bonus_task__inherit__map" alt="Inheritance graph"></center>
-<map name="df/d19/_c_bonus_task__inherit__map">
-<area shape="rect" href="../../d9/d51/class_c_battle_task.html" title="e�?a�C�Cc??a?|e??a??a?1a?�P" alt="" coords="32,229,125,256"><area shape="rect" href="../../da/d13/class_c_battle_task_base.html" title="a?|e??a??a?1a?�Pa??a??a?1a?�Pa?ca?1" alt="" coords="16,155,141,181"><area shape="rect" href="../../da/da5/class_c_exclusive_task_base.html" title="a??a��?a??a?1a?�P" alt="" coords="5,80,152,107"><area shape="rect" href="../../df/d1d/class_c_task_base.html" title="a?oa?��a??a?1a?�P" alt="" coords="33,5,124,32"></map>
-<center><font size="2">[<a target="top" href="../../graph_legend.html">凡例</a>]</font></center></div>
-<div class="dynheader">
-CBonusTaskのコラボレーション図</div>
-<div class="dynsection">
-<p><center><img src="../../dc/d40/class_c_bonus_task__coll__graph.png" border="0" usemap="#dd/dd0/_c_bonus_task__coll__map" alt="Collaboration graph"></center>
-<map name="dd/dd0/_c_bonus_task__coll__map">
-<area shape="rect" href="../../d9/d51/class_c_battle_task.html" title="e�?a�C�Cc??a?|e??a??a?1a?�P" alt="" coords="985,191,1079,217"><area shape="rect" href="../../da/d13/class_c_battle_task_base.html" title="a?|e??a??a?1a?�Pa??a??a?1a?�Pa?ca?1" alt="" coords="499,229,624,256"><area shape="rect" href="../../d9/da5/class_c_gauge.html" title="ec|a??a�C&#45;a?Rc?��e?��a�C?a?Re!�Nc?oc3��a?�Ne?��" alt="" coords="756,133,828,160"><area shape="rect" href="../../dd/dcc/class_c_effect_list.html" title="a?�Na??a?��a?�Pa??c??a??a?��a??c?��a?�Pa?ca?1" alt="" coords="749,224,835,251"><area shape="rect" href="../../da/da5/class_c_exclusive_task_base.html" title="a??a��?a??a?1a?�P" alt="" coords="241,185,388,212"><area shape="rect" href="../../df/d1d/class_c_task_base.html" title="a?oa?��a??a?1a?�P" alt="" coords="29,36,120,63"><area shape="rect" href="../../d3/d21/class_c_t_battle_pause.html" title="ec|a??a??a??a??a?oa??a??a?�Na??a?Ra??a??i?\a??c?��a??e!?a??" alt="" coords="736,7,848,33"><area shape="rect" href="../../d9/dcf/struct_s_d_i___s_t_a_g_e_i_n_f_o2.html" title="CreateStagee?��a?��a?��a�C!a??a??a??a��?e�?a??" alt="" coords="247,333,383,360"><area shape="rect" href="../../de/d8c/struct_d_i___f_u_n_c_t_i_o_n_s___o.html" title="a?aa??a?�Ca?��a?�Pa??e?��a?��a??a??a?3a??a?��a??a??" alt="" coords="5,404,144,431"><area shape="rect" href="../../d4/d1f/struct_c_d_i___c_h_a_r_a_c_t_e_r_i_n_f_o2.html" title="CreateCharacter a?Ra??a?��a?��a�C!a??a??a??a��?e�?a??" alt="" coords="227,236,403,263"><area shape="rect" href="../../df/dfd/struct_d_i___f_u_n_c_t_i_o_n_s___s.html" title="a?�Ea?1a??a??e?��a?��a??a??a?3a??a?��a??a??" alt="" coords="7,220,143,247"><area shape="rect" href="../../dd/d10/struct_d_i___f_u_n_c_t_i_o_n_s___d.html" title="a??c?��c3��e?��a?��a??a??a?3a??a?��a??a??" alt="" coords="5,169,144,196"><area shape="rect" href="../../d2/d26/struct_m_y_s_u_r_f_a_c_e.html" title="c?��e?aa?��a??a??a?3a??a?&#45;a?��a??a??a?��a??a?1" alt="" coords="508,24,615,51"></map>
-<center><font size="2">[<a target="top" href="../../graph_legend.html">凡例</a>]</font></center></div>
-
-<p>
-<a href="../../d6/d84/class_c_bonus_task-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
-<tr><td></td></tr>
-<tr><td colspan="2"><br><h2>Public メソッド</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="faa43e8f12327e727ee5b5f915b2b3ab"></a><!-- doxytag: member="CBonusTask::Initialize" ref="faa43e8f12327e727ee5b5f915b2b3ab" args="(void)" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d6f/class_c_bonus_task.html#faa43e8f12327e727ee5b5f915b2b3ab">Initialize</a> (void)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ExecuteまたはDrawがコールされる前に1度だけコールされる <br></td></tr>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Goluah!!: CBonusTask クラス</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="../../goluah2.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Goluah!!
+   &#160;<span id="projectnumber">1.21a draft</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
 </table>
-<hr><a name="_details"></a><h2>説明</h2>
-ボーナスステージの作りかけ…みたい <hr>このクラスの説明は次のファイルから生成されました:<ul>
-<li>devkit100/goluah/goluah/source/battle/task_Bonus.h<li>devkit100/goluah/goluah/source/battle/task_Bonus.cpp</ul>
-<hr size="1"><address style="text-align: right;"><small>Goluah!!に対してWed Oct 13 14:01:48 2010に生成されました。&nbsp;
-<a href="http://www.doxygen.org/index.html">
-<img src="../../doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.3 </small></address>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.13 -->
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('../../',false,false,'search.php','検索');
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="../../d6/d84/class_c_bonus_task-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">CBonusTask クラス</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>ボーナスステージの作りかけ…みたい  
+ <a href="../../d6/d6f/class_c_bonus_task.html#details">[詳解]</a></p>
+
+<p><code>#include &lt;task_Bonus.h&gt;</code></p>
+<div class="dynheader">
+CBonusTask の継承関係図</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d8/d8e/class_c_bonus_task__inherit__graph.png" border="0" usemap="#_c_bonus_task_inherit__map" alt="Inheritance graph"/></div>
+<map name="_c_bonus_task_inherit__map" id="_c_bonus_task_inherit__map">
+</map>
+<center><span class="legend">[<a href="../../graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+CBonusTask 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dc/d40/class_c_bonus_task__coll__graph.png" border="0" usemap="#_c_bonus_task_coll__map" alt="Collaboration graph"/></div>
+<map name="_c_bonus_task_coll__map" id="_c_bonus_task_coll__map">
+</map>
+<center><span class="legend">[<a href="../../graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:afaa43e8f12327e727ee5b5f915b2b3ab"><td class="memItemLeft" align="right" valign="top"><a id="afaa43e8f12327e727ee5b5f915b2b3ab"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d6f/class_c_bonus_task.html#afaa43e8f12327e727ee5b5f915b2b3ab">Initialize</a> (void)</td></tr>
+<tr class="memdesc:afaa43e8f12327e727ee5b5f915b2b3ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">ExecuteまたはDrawがコールされる前に1度だけコールされる <br /></td></tr>
+<tr class="separator:afaa43e8f12327e727ee5b5f915b2b3ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_c_battle_task"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_c_battle_task')"><img src="../../closed.png" alt="-"/>&#160;基底クラス <a class="el" href="../../d9/d51/class_c_battle_task.html">CBattleTask</a> に属する継承公開メンバ関数</td></tr>
+<tr class="memitem:a0d538d0c85e0841f08432bbc4f9c6b0e inherit pub_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a0d538d0c85e0841f08432bbc4f9c6b0e"></a>
+virtual BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a0d538d0c85e0841f08432bbc4f9c6b0e">Execute</a> (DWORD time)</td></tr>
+<tr class="memdesc:a0d538d0c85e0841f08432bbc4f9c6b0e inherit pub_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">毎フレームコールされる <br /></td></tr>
+<tr class="separator:a0d538d0c85e0841f08432bbc4f9c6b0e inherit pub_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72d9f4e0ea7041dcacb6f9b2b41a59eb inherit pub_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a72d9f4e0ea7041dcacb6f9b2b41a59eb">Draw</a> ()</td></tr>
+<tr class="memdesc:a72d9f4e0ea7041dcacb6f9b2b41a59eb inherit pub_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画時にコールされる  <a href="../../d9/d51/class_c_battle_task.html#a72d9f4e0ea7041dcacb6f9b2b41a59eb">[詳解]</a><br /></td></tr>
+<tr class="separator:a72d9f4e0ea7041dcacb6f9b2b41a59eb inherit pub_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad93f13951d764d1e216fb922ac9c3a4d inherit pub_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="ad93f13951d764d1e216fb922ac9c3a4d"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#ad93f13951d764d1e216fb922ac9c3a4d">WndMessage</a> (HWND hWnd, UINT msg, WPARAM wparam, LPARAM lparam)</td></tr>
+<tr class="memdesc:ad93f13951d764d1e216fb922ac9c3a4d inherit pub_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">F7でポーズ <br /></td></tr>
+<tr class="separator:ad93f13951d764d1e216fb922ac9c3a4d inherit pub_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec54995ac5aa6ea9de853d6ab21a320d inherit pub_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="aec54995ac5aa6ea9de853d6ab21a320d"></a>
+virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#aec54995ac5aa6ea9de853d6ab21a320d">GetDisplayCenterX</a> ()</td></tr>
+<tr class="memdesc:aec54995ac5aa6ea9de853d6ab21a320d inherit pub_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">表示中心X取得 <br /></td></tr>
+<tr class="separator:aec54995ac5aa6ea9de853d6ab21a320d inherit pub_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab73eb6c7c80a9e260a5f940fbb8138c4 inherit pub_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="ab73eb6c7c80a9e260a5f940fbb8138c4"></a>
+virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#ab73eb6c7c80a9e260a5f940fbb8138c4">GetDisplayCenterY</a> ()</td></tr>
+<tr class="memdesc:ab73eb6c7c80a9e260a5f940fbb8138c4 inherit pub_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">表示中心Y取得 <br /></td></tr>
+<tr class="separator:ab73eb6c7c80a9e260a5f940fbb8138c4 inherit pub_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac710428f78aa6d83ee6d48c159315d9e inherit pub_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="ac710428f78aa6d83ee6d48c159315d9e"></a>
+virtual BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#ac710428f78aa6d83ee6d48c159315d9e">IsNetwork</a> ()</td></tr>
+<tr class="memdesc:ac710428f78aa6d83ee6d48c159315d9e inherit pub_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">ネットワークかどうか <br /></td></tr>
+<tr class="separator:ac710428f78aa6d83ee6d48c159315d9e inherit pub_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a440a648b09588aa55abcce376e024ac3 inherit pub_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a440a648b09588aa55abcce376e024ac3"></a>
+virtual BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a440a648b09588aa55abcce376e024ac3">IsLocal</a> (BYTE dllid)</td></tr>
+<tr class="memdesc:a440a648b09588aa55abcce376e024ac3 inherit pub_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定DLLがローカルかどうか <br /></td></tr>
+<tr class="separator:a440a648b09588aa55abcce376e024ac3 inherit pub_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42eaf8c03865f0f67dd31bd2d2be015a inherit pub_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a42eaf8c03865f0f67dd31bd2d2be015a"></a>
+virtual BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a42eaf8c03865f0f67dd31bd2d2be015a">Atari</a> (DWORD a_id, DWORD k_id, <a class="el" href="../../de/d08/struct_m_y2_d_v_e_c_t_o_r.html">MY2DVECTOR</a> &amp;kas_point)</td></tr>
+<tr class="memdesc:a42eaf8c03865f0f67dd31bd2d2be015a inherit pub_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">攻撃ヒット時処理 <br /></td></tr>
+<tr class="separator:a42eaf8c03865f0f67dd31bd2d2be015a inherit pub_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc4de01ce81c7ba5c57fd4ebb833fedd inherit pub_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="adc4de01ce81c7ba5c57fd4ebb833fedd"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#adc4de01ce81c7ba5c57fd4ebb833fedd">HitStop</a> (DWORD len, DWORD oid)</td></tr>
+<tr class="memdesc:adc4de01ce81c7ba5c57fd4ebb833fedd inherit pub_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">ヒットストップエフェクト処理 <br /></td></tr>
+<tr class="separator:adc4de01ce81c7ba5c57fd4ebb833fedd inherit pub_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f67aac6f57b4c97258e7a4778791f0a inherit pub_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a1f67aac6f57b4c97258e7a4778791f0a"></a>
+<a class="el" href="../../df/d3a/class_c_g_object.html">CGObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a1f67aac6f57b4c97258e7a4778791f0a">GetGObject</a> (DWORD id)</td></tr>
+<tr class="memdesc:a1f67aac6f57b4c97258e7a4778791f0a inherit pub_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定IDオブジェクト取得 <br /></td></tr>
+<tr class="separator:a1f67aac6f57b4c97258e7a4778791f0a inherit pub_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addbc67fb0c74af20fc57041db37a88d3 inherit pub_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="addbc67fb0c74af20fc57041db37a88d3"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#addbc67fb0c74af20fc57041db37a88d3">CreateGObject</a> ()</td></tr>
+<tr class="memdesc:addbc67fb0c74af20fc57041db37a88d3 inherit pub_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">オブジェクト生成 <br /></td></tr>
+<tr class="separator:addbc67fb0c74af20fc57041db37a88d3 inherit pub_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b981ea2ab92c367fed1b9ecd6a196d5 inherit pub_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a8b981ea2ab92c367fed1b9ecd6a196d5"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a8b981ea2ab92c367fed1b9ecd6a196d5">CreateGObjectFx</a> ()</td></tr>
+<tr class="memdesc:a8b981ea2ab92c367fed1b9ecd6a196d5 inherit pub_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">オブジェクト生成(エフェクト) <br /></td></tr>
+<tr class="separator:a8b981ea2ab92c367fed1b9ecd6a196d5 inherit pub_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb0d226ecaa28e3300fc5cb3e3cd4bac inherit pub_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="acb0d226ecaa28e3300fc5cb3e3cd4bac"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#acb0d226ecaa28e3300fc5cb3e3cd4bac">DeleteGObject</a> (DWORD oid)</td></tr>
+<tr class="memdesc:acb0d226ecaa28e3300fc5cb3e3cd4bac inherit pub_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">オブジェクト破棄 <br /></td></tr>
+<tr class="separator:acb0d226ecaa28e3300fc5cb3e3cd4bac inherit pub_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e46114b838b1d40c72fc49859b3b9f5 inherit pub_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a0e46114b838b1d40c72fc49859b3b9f5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a0e46114b838b1d40c72fc49859b3b9f5">SuicideGObject</a> (DWORD oid)</td></tr>
+<tr class="memdesc:a0e46114b838b1d40c72fc49859b3b9f5 inherit pub_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">オブジェクト破棄予約 <br /></td></tr>
+<tr class="separator:a0e46114b838b1d40c72fc49859b3b9f5 inherit pub_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade0667291a876f23580523f0598a6115 inherit pub_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="ade0667291a876f23580523f0598a6115"></a>
+<a class="el" href="../../df/d3a/class_c_g_object.html">CGObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#ade0667291a876f23580523f0598a6115">GetCharacterObject</a> (DWORD j, DWORD i)</td></tr>
+<tr class="memdesc:ade0667291a876f23580523f0598a6115 inherit pub_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">キャラクターのオブジェクト取得（ゲージ等で必要） <br /></td></tr>
+<tr class="separator:ade0667291a876f23580523f0598a6115 inherit pub_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_c_battle_task_base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_c_battle_task_base')"><img src="../../closed.png" alt="-"/>&#160;基底クラス <a class="el" href="../../da/d13/class_c_battle_task_base.html">CBattleTaskBase</a> に属する継承公開メンバ関数</td></tr>
+<tr class="memitem:af61cdf6a108b3dc37ba3bc8085393a8b inherit pub_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="af61cdf6a108b3dc37ba3bc8085393a8b"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#af61cdf6a108b3dc37ba3bc8085393a8b">Terminate</a> ()</td></tr>
+<tr class="memdesc:af61cdf6a108b3dc37ba3bc8085393a8b inherit pub_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">タスクのリストから外されるときにコールされる（その直後、deleteされる） <br /></td></tr>
+<tr class="separator:af61cdf6a108b3dc37ba3bc8085393a8b inherit pub_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84d4571b4287c2d5bd7ad9770929e109 inherit pub_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a84d4571b4287c2d5bd7ad9770929e109"></a>
+virtual DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a84d4571b4287c2d5bd7ad9770929e109">GetID</a> ()</td></tr>
+<tr class="memdesc:a84d4571b4287c2d5bd7ad9770929e109 inherit pub_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">0以外を返すようにした場合、マネージャに同じIDを持つタスクがAddされたとき破棄される <br /></td></tr>
+<tr class="separator:a84d4571b4287c2d5bd7ad9770929e109 inherit pub_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac76d86a91ba7a8e709358912f60fb9db inherit pub_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="ac76d86a91ba7a8e709358912f60fb9db"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#ac76d86a91ba7a8e709358912f60fb9db">AddDamage</a> (DWORD oid, DWORD eoid, int x, int y)</td></tr>
+<tr class="memdesc:ac76d86a91ba7a8e709358912f60fb9db inherit pub_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">GetObjectを利用する <br /></td></tr>
+<tr class="separator:ac76d86a91ba7a8e709358912f60fb9db inherit pub_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a733d3c344aefa7a20e4a8bfd25164d8a inherit pub_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a733d3c344aefa7a20e4a8bfd25164d8a"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a733d3c344aefa7a20e4a8bfd25164d8a">GetMaai</a> (DWORD oid, DWORD eoid, BOOL v)</td></tr>
+<tr class="memdesc:a733d3c344aefa7a20e4a8bfd25164d8a inherit pub_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">GetObjectを利用する <br /></td></tr>
+<tr class="separator:a733d3c344aefa7a20e4a8bfd25164d8a inherit pub_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a635038a37dba005a0a29fd22fe33ca5c inherit pub_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a635038a37dba005a0a29fd22fe33ca5c"></a>
+GOBJECT *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a635038a37dba005a0a29fd22fe33ca5c">GetGObjectInfo</a> (DWORD oid)</td></tr>
+<tr class="memdesc:a635038a37dba005a0a29fd22fe33ca5c inherit pub_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">GetObjectを利用する <br /></td></tr>
+<tr class="separator:a635038a37dba005a0a29fd22fe33ca5c inherit pub_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3b43d91fba2fa8da5156ca08c060634 inherit pub_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="aa3b43d91fba2fa8da5156ca08c060634"></a>
+GOBJECT *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#aa3b43d91fba2fa8da5156ca08c060634">GetCharacterInfo</a> (DWORD j, DWORD i)</td></tr>
+<tr class="memdesc:aa3b43d91fba2fa8da5156ca08c060634 inherit pub_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">GetObjectを利用する <br /></td></tr>
+<tr class="separator:aa3b43d91fba2fa8da5156ca08c060634 inherit pub_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc38d136b031cea70f1650ff8ef75e76 inherit pub_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="adc38d136b031cea70f1650ff8ef75e76"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#adc38d136b031cea70f1650ff8ef75e76">GetWinCount</a> (DWORD tid)</td></tr>
+<tr class="memdesc:adc38d136b031cea70f1650ff8ef75e76 inherit pub_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">勝利カウント数を取得 <br /></td></tr>
+<tr class="separator:adc38d136b031cea70f1650ff8ef75e76 inherit pub_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa9f29133c31a6d1356c5155fd2a7dc5 inherit pub_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="aaa9f29133c31a6d1356c5155fd2a7dc5"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#aaa9f29133c31a6d1356c5155fd2a7dc5">GetStrikerCount</a> (DWORD tid)</td></tr>
+<tr class="memdesc:aaa9f29133c31a6d1356c5155fd2a7dc5 inherit pub_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">残りストライカー数を取得 <br /></td></tr>
+<tr class="separator:aaa9f29133c31a6d1356c5155fd2a7dc5 inherit pub_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a240acaad5d079ca043b91c0c426318a1 inherit pub_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a240acaad5d079ca043b91c0c426318a1"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a240acaad5d079ca043b91c0c426318a1">GetKatiSerif</a> ()</td></tr>
+<tr class="memdesc:a240acaad5d079ca043b91c0c426318a1 inherit pub_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">勝利台詞を取得 <br /></td></tr>
+<tr class="separator:a240acaad5d079ca043b91c0c426318a1 inherit pub_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf38f1cfccde53787d47d826f6542962 inherit pub_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="abf38f1cfccde53787d47d826f6542962"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#abf38f1cfccde53787d47d826f6542962">SetKatiSerif</a> (DWORD tid, char *serif)</td></tr>
+<tr class="memdesc:abf38f1cfccde53787d47d826f6542962 inherit pub_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">勝利台詞を設定 <br /></td></tr>
+<tr class="separator:abf38f1cfccde53787d47d826f6542962 inherit pub_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ea3b2501bd9765c6f3d41c3808a62c2 inherit pub_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a3ea3b2501bd9765c6f3d41c3808a62c2"></a>
+void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a3ea3b2501bd9765c6f3d41c3808a62c2">GetActiveCharacterInfo</a> (DWORD tid)</td></tr>
+<tr class="memdesc:a3ea3b2501bd9765c6f3d41c3808a62c2 inherit pub_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">「アクティブ」なキャラクタの取得 <br /></td></tr>
+<tr class="separator:a3ea3b2501bd9765c6f3d41c3808a62c2 inherit pub_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88cfc847530c8215fceb2ede7bfe0fc7 inherit pub_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a88cfc847530c8215fceb2ede7bfe0fc7"></a>
+<a class="el" href="../../d9/d6c/group___battle.html#gafc55c998411da8d628c40fd008452cc9">BattleTaskState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a88cfc847530c8215fceb2ede7bfe0fc7">GetState</a> ()</td></tr>
+<tr class="memdesc:a88cfc847530c8215fceb2ede7bfe0fc7 inherit pub_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合状態取得 <br /></td></tr>
+<tr class="separator:a88cfc847530c8215fceb2ede7bfe0fc7 inherit pub_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac807284079d6df23b7be1bffd0cc5178 inherit pub_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="ac807284079d6df23b7be1bffd0cc5178"></a>
+GOBJECT *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#ac807284079d6df23b7be1bffd0cc5178">GetActiveCharacter</a> (DWORD team)</td></tr>
+<tr class="memdesc:ac807284079d6df23b7be1bffd0cc5178 inherit pub_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">"アクティブ"なキャラクターを返す <br /></td></tr>
+<tr class="separator:ac807284079d6df23b7be1bffd0cc5178 inherit pub_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4144e718305f29a1aa11aea6392a266e inherit pub_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a4144e718305f29a1aa11aea6392a266e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a4144e718305f29a1aa11aea6392a266e">DrawNumber3</a> (double numd, int x, int y, float z)</td></tr>
+<tr class="memdesc:a4144e718305f29a1aa11aea6392a266e inherit pub_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">ゲージ1用 数字描画 <br /></td></tr>
+<tr class="separator:a4144e718305f29a1aa11aea6392a266e inherit pub_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1198877ccf696f95e8c55ebc0e21c2f inherit pub_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="ac1198877ccf696f95e8c55ebc0e21c2f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#ac1198877ccf696f95e8c55ebc0e21c2f">DrawNumber4</a> (double numd, int x, int y, float z)</td></tr>
+<tr class="memdesc:ac1198877ccf696f95e8c55ebc0e21c2f inherit pub_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">ゲージ2用 数字描画 <br /></td></tr>
+<tr class="separator:ac1198877ccf696f95e8c55ebc0e21c2f inherit pub_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed0c1d1df188860602d87eb22c6082f8 inherit pub_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="aed0c1d1df188860602d87eb22c6082f8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#aed0c1d1df188860602d87eb22c6082f8">DrawNumber7</a> (double numd, int x, int y, float z)</td></tr>
+<tr class="memdesc:aed0c1d1df188860602d87eb22c6082f8 inherit pub_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">ゲージ1用 数字描画 <br /></td></tr>
+<tr class="separator:aed0c1d1df188860602d87eb22c6082f8 inherit pub_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a296b4beb296c95921e2311e7414a25d9 inherit pub_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a296b4beb296c95921e2311e7414a25d9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a296b4beb296c95921e2311e7414a25d9">DrawNumber8</a> (double numd, int x, int y, float z)</td></tr>
+<tr class="memdesc:a296b4beb296c95921e2311e7414a25d9 inherit pub_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">ゲージ2用 数字描画 <br /></td></tr>
+<tr class="separator:a296b4beb296c95921e2311e7414a25d9 inherit pub_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8211c6396b97ab5942266cda5868a334 inherit pub_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a8211c6396b97ab5942266cda5868a334"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a8211c6396b97ab5942266cda5868a334">Notify_Exception</a> (<a class="el" href="../../df/d3a/class_c_g_object.html">CGObject</a> *obj, DWORD msgid, DWORD prm)</td></tr>
+<tr class="memdesc:a8211c6396b97ab5942266cda5868a334 inherit pub_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">DLLが例外を起こしたときの処理 <br /></td></tr>
+<tr class="separator:a8211c6396b97ab5942266cda5868a334 inherit pub_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa03bed41962e9570ac250d034a944dbe inherit pub_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="aa03bed41962e9570ac250d034a944dbe"></a>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#aa03bed41962e9570ac250d034a944dbe">GetBattleStateString</a> ()</td></tr>
+<tr class="memdesc:aa03bed41962e9570ac250d034a944dbe inherit pub_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合状態IDを、文字列に変換して返す <br /></td></tr>
+<tr class="separator:aa03bed41962e9570ac250d034a944dbe inherit pub_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fdcbf95fa50a1a9fb8c13043a68a56a inherit pub_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a2fdcbf95fa50a1a9fb8c13043a68a56a"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a2fdcbf95fa50a1a9fb8c13043a68a56a">SetCurrentDLLID</a> (BYTE dllID)</td></tr>
+<tr class="memdesc:a2fdcbf95fa50a1a9fb8c13043a68a56a inherit pub_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">CGObjectの生成時に呼ばれ、DLLのIDを返す <br /></td></tr>
+<tr class="separator:a2fdcbf95fa50a1a9fb8c13043a68a56a inherit pub_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95309f397b39cf583c084b87ba3efcab inherit pub_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a95309f397b39cf583c084b87ba3efcab"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a95309f397b39cf583c084b87ba3efcab">SetCurrentDLLIDSystem</a> ()</td></tr>
+<tr class="memdesc:a95309f397b39cf583c084b87ba3efcab inherit pub_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">CGObjectがDLLの関数を呼び出す前後に呼ばれ、現在のDLLIDを設定する <br /></td></tr>
+<tr class="separator:a95309f397b39cf583c084b87ba3efcab inherit pub_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_c_exclusive_task_base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_c_exclusive_task_base')"><img src="../../closed.png" alt="-"/>&#160;基底クラス <a class="el" href="../../da/da5/class_c_exclusive_task_base.html">CExclusiveTaskBase</a> に属する継承公開メンバ関数</td></tr>
+<tr class="memitem:a89e8b4cdbbd64e852c5745bd3aeb3d55 inherit pub_methods_class_c_exclusive_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a89e8b4cdbbd64e852c5745bd3aeb3d55"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/da5/class_c_exclusive_task_base.html#a89e8b4cdbbd64e852c5745bd3aeb3d55">Activate</a> (DWORD prvTaskID)</td></tr>
+<tr class="memdesc:a89e8b4cdbbd64e852c5745bd3aeb3d55 inherit pub_methods_class_c_exclusive_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executeが再開されるときに呼ばれる <br /></td></tr>
+<tr class="separator:a89e8b4cdbbd64e852c5745bd3aeb3d55 inherit pub_methods_class_c_exclusive_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc9a7f300e05345fd1c23367783cd016 inherit pub_methods_class_c_exclusive_task_base"><td class="memItemLeft" align="right" valign="top"><a id="adc9a7f300e05345fd1c23367783cd016"></a>
+virtual BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/da5/class_c_exclusive_task_base.html#adc9a7f300e05345fd1c23367783cd016">Inactivate</a> (DWORD nextTaskID)</td></tr>
+<tr class="memdesc:adc9a7f300e05345fd1c23367783cd016 inherit pub_methods_class_c_exclusive_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">他の排他タスクが開始したときに呼ばれる <br /></td></tr>
+<tr class="separator:adc9a7f300e05345fd1c23367783cd016 inherit pub_methods_class_c_exclusive_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b60724019a9c1576b19f4c3eb045fba inherit pub_methods_class_c_exclusive_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a7b60724019a9c1576b19f4c3eb045fba"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/da5/class_c_exclusive_task_base.html#a7b60724019a9c1576b19f4c3eb045fba">GetDrawPriority</a> ()</td></tr>
+<tr class="memdesc:a7b60724019a9c1576b19f4c3eb045fba inherit pub_methods_class_c_exclusive_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画プライオリティ取得メソッド <br /></td></tr>
+<tr class="separator:a7b60724019a9c1576b19f4c3eb045fba inherit pub_methods_class_c_exclusive_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+その他の継承メンバ</h2></td></tr>
+<tr class="inherit_header pub_static_methods_class_c_battle_task_base"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_c_battle_task_base')"><img src="../../closed.png" alt="-"/>&#160;基底クラス <a class="el" href="../../da/d13/class_c_battle_task_base.html">CBattleTaskBase</a> に属する継承静的公開メンバ関数</td></tr>
+<tr class="memitem:ac705590d61a4c7d8d029d0d8931ade93 inherit pub_static_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="ac705590d61a4c7d8d029d0d8931ade93"></a>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#ac705590d61a4c7d8d029d0d8931ade93">MessageID2String</a> (DWORD id)</td></tr>
+<tr class="memdesc:ac705590d61a4c7d8d029d0d8931ade93 inherit pub_static_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">オブジェクトメッセージのIDを、文字列に変換 <br /></td></tr>
+<tr class="separator:ac705590d61a4c7d8d029d0d8931ade93 inherit pub_static_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_methods_class_c_task_base"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_c_task_base')"><img src="../../closed.png" alt="-"/>&#160;基底クラス <a class="el" href="../../df/d1d/class_c_task_base.html">CTaskBase</a> に属する継承静的公開メンバ関数</td></tr>
+<tr class="memitem:af3854ccfe7e5371cf57aef91d0e26c77 inherit pub_static_methods_class_c_task_base"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d1d/class_c_task_base.html#af3854ccfe7e5371cf57aef91d0e26c77">CompByDrawPriority</a> (<a class="el" href="../../df/d1d/class_c_task_base.html">CTaskBase</a> *arg1, <a class="el" href="../../df/d1d/class_c_task_base.html">CTaskBase</a> *arg2)</td></tr>
+<tr class="separator:af3854ccfe7e5371cf57aef91d0e26c77 inherit pub_static_methods_class_c_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_class_c_battle_task_base"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_c_battle_task_base')"><img src="../../closed.png" alt="-"/>&#160;基底クラス <a class="el" href="../../da/d13/class_c_battle_task_base.html">CBattleTaskBase</a> に属する継承公開変数類</td></tr>
+<tr class="memitem:a03e363c0472bc98b6cc2e5a244924ca1 inherit pub_attribs_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a03e363c0472bc98b6cc2e5a244924ca1"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a03e363c0472bc98b6cc2e5a244924ca1">limittime</a></td></tr>
+<tr class="memdesc:a03e363c0472bc98b6cc2e5a244924ca1 inherit pub_attribs_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">制限時間(マイナスは∞) <br /></td></tr>
+<tr class="separator:a03e363c0472bc98b6cc2e5a244924ca1 inherit pub_attribs_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_class_c_battle_task"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_c_battle_task')"><img src="../../closed.png" alt="-"/>&#160;基底クラス <a class="el" href="../../d9/d51/class_c_battle_task.html">CBattleTask</a> に属する継承限定公開メンバ関数</td></tr>
+<tr class="memitem:a58e2c944d7969223771a814439e13c8b inherit pro_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a58e2c944d7969223771a814439e13c8b"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a58e2c944d7969223771a814439e13c8b">InitializeObjectList</a> ()</td></tr>
+<tr class="memdesc:a58e2c944d7969223771a814439e13c8b inherit pro_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">オブジェクトリストの初期化 <br /></td></tr>
+<tr class="separator:a58e2c944d7969223771a814439e13c8b inherit pro_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84aa890fa7527c18547f59edf9ca430a inherit pro_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a84aa890fa7527c18547f59edf9ca430a"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a84aa890fa7527c18547f59edf9ca430a">InitializeSubTasks</a> ()</td></tr>
+<tr class="memdesc:a84aa890fa7527c18547f59edf9ca430a inherit pro_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合時に使う支援クラス等を初期化 <br /></td></tr>
+<tr class="separator:a84aa890fa7527c18547f59edf9ca430a inherit pro_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a9ed23a586ad8d303c6bf8353559f53 inherit pro_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a6a9ed23a586ad8d303c6bf8353559f53"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a6a9ed23a586ad8d303c6bf8353559f53">InitializeParameters</a> ()</td></tr>
+<tr class="memdesc:a6a9ed23a586ad8d303c6bf8353559f53 inherit pro_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合開始前パラメータ初期化 <br /></td></tr>
+<tr class="separator:a6a9ed23a586ad8d303c6bf8353559f53 inherit pro_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a395eace0af42656350bde2838fd8fad9 inherit pro_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a395eace0af42656350bde2838fd8fad9"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a395eace0af42656350bde2838fd8fad9">TerminateObjectList</a> ()</td></tr>
+<tr class="memdesc:a395eace0af42656350bde2838fd8fad9 inherit pro_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">オブジェクトリスト破棄 <br /></td></tr>
+<tr class="separator:a395eace0af42656350bde2838fd8fad9 inherit pro_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c472e4dead012c0b4bd059229fb4d64 inherit pro_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a5c472e4dead012c0b4bd059229fb4d64"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a5c472e4dead012c0b4bd059229fb4d64">TerminateDestroySubTasks</a> ()</td></tr>
+<tr class="memdesc:a5c472e4dead012c0b4bd059229fb4d64 inherit pro_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合時に使った支援クラス等を破棄 <br /></td></tr>
+<tr class="separator:a5c472e4dead012c0b4bd059229fb4d64 inherit pro_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55567f26819e64d80baaec40d93f098e inherit pro_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a55567f26819e64d80baaec40d93f098e"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a55567f26819e64d80baaec40d93f098e">T_Command</a> ()</td></tr>
+<tr class="memdesc:a55567f26819e64d80baaec40d93f098e inherit pro_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">COMMAND メッセージを送信する <br /></td></tr>
+<tr class="separator:a55567f26819e64d80baaec40d93f098e inherit pro_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29415173ed729928071f4f9147f3c38d inherit pro_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a29415173ed729928071f4f9147f3c38d"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a29415173ed729928071f4f9147f3c38d">T_Action</a> (BOOL stop)</td></tr>
+<tr class="memdesc:a29415173ed729928071f4f9147f3c38d inherit pro_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">Action メッセージを送信する <br /></td></tr>
+<tr class="separator:a29415173ed729928071f4f9147f3c38d inherit pro_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca7eb006747cdc769854d6ad60eac6c1 inherit pro_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="aca7eb006747cdc769854d6ad60eac6c1"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#aca7eb006747cdc769854d6ad60eac6c1">T_Sousai</a> ()</td></tr>
+<tr class="memdesc:aca7eb006747cdc769854d6ad60eac6c1 inherit pro_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">飛道具相殺用 矩形あたり判定処理 <br /></td></tr>
+<tr class="separator:aca7eb006747cdc769854d6ad60eac6c1 inherit pro_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb00f5b226b45efb0ee56b7de3aad219 inherit pro_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="aeb00f5b226b45efb0ee56b7de3aad219"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#aeb00f5b226b45efb0ee56b7de3aad219">T_AtariHantei</a> ()</td></tr>
+<tr class="memdesc:aeb00f5b226b45efb0ee56b7de3aad219 inherit pro_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">攻撃用　　　 矩形あたり判定処理 <br /></td></tr>
+<tr class="separator:aeb00f5b226b45efb0ee56b7de3aad219 inherit pro_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10b586bcfb1272cc1ce2c0f93c123536 inherit pro_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a10b586bcfb1272cc1ce2c0f93c123536"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a10b586bcfb1272cc1ce2c0f93c123536">T_KasanariHantei</a> ()</td></tr>
+<tr class="memdesc:a10b586bcfb1272cc1ce2c0f93c123536 inherit pro_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">重なり判定用 矩形あたり判定処理 <br /></td></tr>
+<tr class="separator:a10b586bcfb1272cc1ce2c0f93c123536 inherit pro_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afac1238fc0663d3fa42ea2f276384a13 inherit pro_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="afac1238fc0663d3fa42ea2f276384a13"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#afac1238fc0663d3fa42ea2f276384a13">T_ChangeTarget</a> ()</td></tr>
+<tr class="memdesc:afac1238fc0663d3fa42ea2f276384a13 inherit pro_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">オブジェクトターゲット変更処理 <br /></td></tr>
+<tr class="separator:afac1238fc0663d3fa42ea2f276384a13 inherit pro_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad387c7069b9f3c63eb545596a172a3da inherit pro_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="ad387c7069b9f3c63eb545596a172a3da"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#ad387c7069b9f3c63eb545596a172a3da">T_UpdateStatus</a> ()</td></tr>
+<tr class="memdesc:ad387c7069b9f3c63eb545596a172a3da inherit pro_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合の状態更新 <br /></td></tr>
+<tr class="separator:ad387c7069b9f3c63eb545596a172a3da inherit pro_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae85f3dfd9738b8b41696841257a3ac8b inherit pro_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="ae85f3dfd9738b8b41696841257a3ac8b"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#ae85f3dfd9738b8b41696841257a3ac8b">StartRound</a> ()</td></tr>
+<tr class="memdesc:ae85f3dfd9738b8b41696841257a3ac8b inherit pro_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">ラウンド開始時パラメータリセット処理 <br /></td></tr>
+<tr class="separator:ae85f3dfd9738b8b41696841257a3ac8b inherit pro_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a97666af03497304473ca603ce7fcaa inherit pro_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a9a97666af03497304473ca603ce7fcaa"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a9a97666af03497304473ca603ce7fcaa">T_UpdateStatus_WaitForEndPose</a> ()</td></tr>
+<tr class="memdesc:a9a97666af03497304473ca603ce7fcaa inherit pro_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合進行管理・登場ポーズ終了待ち <br /></td></tr>
+<tr class="separator:a9a97666af03497304473ca603ce7fcaa inherit pro_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7e9b33e29a94bce09721c8d3f0134a5 inherit pro_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="ad7e9b33e29a94bce09721c8d3f0134a5"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#ad7e9b33e29a94bce09721c8d3f0134a5">T_UpdateStatus_RoundCall</a> ()</td></tr>
+<tr class="memdesc:ad7e9b33e29a94bce09721c8d3f0134a5 inherit pro_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合進行管理・ラウンドコール終了待ち <br /></td></tr>
+<tr class="separator:ad7e9b33e29a94bce09721c8d3f0134a5 inherit pro_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6796f801e553d77d7fc9e296c2e00b9c inherit pro_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a6796f801e553d77d7fc9e296c2e00b9c"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a6796f801e553d77d7fc9e296c2e00b9c">T_UpdateStatus_Fighting</a> ()</td></tr>
+<tr class="memdesc:a6796f801e553d77d7fc9e296c2e00b9c inherit pro_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合進行管理・戦闘状態 <br /></td></tr>
+<tr class="separator:a6796f801e553d77d7fc9e296c2e00b9c inherit pro_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28e6db00b0a89c14a7b98c7f99fbe108 inherit pro_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a28e6db00b0a89c14a7b98c7f99fbe108"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a28e6db00b0a89c14a7b98c7f99fbe108">T_UpdateStatus_Finished</a> ()</td></tr>
+<tr class="memdesc:a28e6db00b0a89c14a7b98c7f99fbe108 inherit pro_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合進行管理・KO、キャラクタの最終ダウン終了待ち <br /></td></tr>
+<tr class="separator:a28e6db00b0a89c14a7b98c7f99fbe108 inherit pro_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab08b232b5f7fdd33fc36e94c2d5933ff inherit pro_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="ab08b232b5f7fdd33fc36e94c2d5933ff"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#ab08b232b5f7fdd33fc36e94c2d5933ff">T_UpdateStatus_WaitForEndWin</a> ()</td></tr>
+<tr class="memdesc:ab08b232b5f7fdd33fc36e94c2d5933ff inherit pro_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合進行管理・勝利ポーズ終了待ち <br /></td></tr>
+<tr class="separator:ab08b232b5f7fdd33fc36e94c2d5933ff inherit pro_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f5f9857b9f1db54ad34ff6b5471221c inherit pro_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a1f5f9857b9f1db54ad34ff6b5471221c"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a1f5f9857b9f1db54ad34ff6b5471221c">T_UpdateStatus_DoubleKO</a> ()</td></tr>
+<tr class="memdesc:a1f5f9857b9f1db54ad34ff6b5471221c inherit pro_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合進行管理・ダブルKO表示終了待ち <br /></td></tr>
+<tr class="separator:a1f5f9857b9f1db54ad34ff6b5471221c inherit pro_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53f49f43e971db2a2e8ee282b07319c6 inherit pro_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a53f49f43e971db2a2e8ee282b07319c6"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a53f49f43e971db2a2e8ee282b07319c6">T_UpdateStatus_TimeOver</a> ()</td></tr>
+<tr class="memdesc:a53f49f43e971db2a2e8ee282b07319c6 inherit pro_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合進行管理・タイムオーバー表示終了待ち <br /></td></tr>
+<tr class="separator:a53f49f43e971db2a2e8ee282b07319c6 inherit pro_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c7928a7d18b924f6868c6d81cbab050 inherit pro_methods_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a2c7928a7d18b924f6868c6d81cbab050"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a2c7928a7d18b924f6868c6d81cbab050">Update_DeadFlag</a> ()</td></tr>
+<tr class="memdesc:a2c7928a7d18b924f6868c6d81cbab050 inherit pro_methods_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">死亡フラグ更新 <br /></td></tr>
+<tr class="separator:a2c7928a7d18b924f6868c6d81cbab050 inherit pro_methods_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_class_c_battle_task_base"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_c_battle_task_base')"><img src="../../closed.png" alt="-"/>&#160;基底クラス <a class="el" href="../../da/d13/class_c_battle_task_base.html">CBattleTaskBase</a> に属する継承限定公開メンバ関数</td></tr>
+<tr class="memitem:a565beb3decfb83cf409745f926a1ccca inherit pro_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a565beb3decfb83cf409745f926a1ccca"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a565beb3decfb83cf409745f926a1ccca">InitializeDLLLoadInfo</a> ()</td></tr>
+<tr class="memdesc:a565beb3decfb83cf409745f926a1ccca inherit pro_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">DLLロード時に渡す構造体を初期化する <br /></td></tr>
+<tr class="separator:a565beb3decfb83cf409745f926a1ccca inherit pro_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b024baeabdfe493c7b88d1d549e5fc2 inherit pro_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a1b024baeabdfe493c7b88d1d549e5fc2"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a1b024baeabdfe493c7b88d1d549e5fc2">InitializeLoadDLLs</a> ()</td></tr>
+<tr class="memdesc:a1b024baeabdfe493c7b88d1d549e5fc2 inherit pro_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">DLLをロードする <br /></td></tr>
+<tr class="separator:a1b024baeabdfe493c7b88d1d549e5fc2 inherit pro_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab12c5a6724689dab61a06717a472e6a inherit pro_methods_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="aab12c5a6724689dab61a06717a472e6a"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#aab12c5a6724689dab61a06717a472e6a">TerminateUnloadDLLs</a> ()</td></tr>
+<tr class="memdesc:aab12c5a6724689dab61a06717a472e6a inherit pro_methods_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">DLLアンロード <br /></td></tr>
+<tr class="separator:aab12c5a6724689dab61a06717a472e6a inherit pro_methods_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_class_c_battle_task"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_c_battle_task')"><img src="../../closed.png" alt="-"/>&#160;基底クラス <a class="el" href="../../d9/d51/class_c_battle_task.html">CBattleTask</a> に属する継承限定公開変数類</td></tr>
+<tr class="memitem:a0f90885225e8e6709baaafc7d79a9478 inherit pro_attribs_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a0f90885225e8e6709baaafc7d79a9478"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a0f90885225e8e6709baaafc7d79a9478">hprecratio</a> [2][MAXNUM_TEAM]</td></tr>
+<tr class="memdesc:a0f90885225e8e6709baaafc7d79a9478 inherit pro_attribs_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">自由交代制のときの体力回復率 <br /></td></tr>
+<tr class="separator:a0f90885225e8e6709baaafc7d79a9478 inherit pro_attribs_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9100e62c61d537d3d57f10be00f451a2 inherit pro_attribs_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a9100e62c61d537d3d57f10be00f451a2"></a>
+BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a9100e62c61d537d3d57f10be00f451a2">battle_end</a></td></tr>
+<tr class="memdesc:a9100e62c61d537d3d57f10be00f451a2 inherit pro_attribs_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">タスクをヌけるのに使用 <br /></td></tr>
+<tr class="separator:a9100e62c61d537d3d57f10be00f451a2 inherit pro_attribs_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6510ee1a22c991334ee48f952be8264c inherit pro_attribs_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a6510ee1a22c991334ee48f952be8264c"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a6510ee1a22c991334ee48f952be8264c">debugmsgbuff</a></td></tr>
+<tr class="memdesc:a6510ee1a22c991334ee48f952be8264c inherit pro_attribs_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">デバッグテキスト表示用バッファ <br /></td></tr>
+<tr class="separator:a6510ee1a22c991334ee48f952be8264c inherit pro_attribs_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28c0557b9f197ecfd0923bfed6357ed7 inherit pro_attribs_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a28c0557b9f197ecfd0923bfed6357ed7"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a28c0557b9f197ecfd0923bfed6357ed7">disp_center_x</a></td></tr>
+<tr class="memdesc:a28c0557b9f197ecfd0923bfed6357ed7 inherit pro_attribs_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">表示中心 <br /></td></tr>
+<tr class="separator:a28c0557b9f197ecfd0923bfed6357ed7 inherit pro_attribs_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae0c332462abbe33b2f7d62df7807088 inherit pro_attribs_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="aae0c332462abbe33b2f7d62df7807088"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#aae0c332462abbe33b2f7d62df7807088">score</a> [2]</td></tr>
+<tr class="memdesc:aae0c332462abbe33b2f7d62df7807088 inherit pro_attribs_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">スコレ <br /></td></tr>
+<tr class="separator:aae0c332462abbe33b2f7d62df7807088 inherit pro_attribs_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77fa4ac2b42379f0e1dc052d3566b9b9 inherit pro_attribs_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a77fa4ac2b42379f0e1dc052d3566b9b9"></a>
+<a class="el" href="../../d3/d21/class_c_t_battle_pause.html">CTBattlePause</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a77fa4ac2b42379f0e1dc052d3566b9b9">m_pause_task</a></td></tr>
+<tr class="memdesc:a77fa4ac2b42379f0e1dc052d3566b9b9 inherit pro_attribs_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">ポーズ時の描画・操作 <br /></td></tr>
+<tr class="separator:a77fa4ac2b42379f0e1dc052d3566b9b9 inherit pro_attribs_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedc5027355ef08bfb052dba9cf9e5561 inherit pro_attribs_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="aedc5027355ef08bfb052dba9cf9e5561"></a>
+UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#aedc5027355ef08bfb052dba9cf9e5561">strikercall_counter</a> [2]</td></tr>
+<tr class="memdesc:aedc5027355ef08bfb052dba9cf9e5561 inherit pro_attribs_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">支援攻撃要請用カウンタ <br /></td></tr>
+<tr class="separator:aedc5027355ef08bfb052dba9cf9e5561 inherit pro_attribs_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f0728ba52254fbd4b3badbef9310358 inherit pro_attribs_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a9f0728ba52254fbd4b3badbef9310358"></a>
+std::ofstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a9f0728ba52254fbd4b3badbef9310358">RepFile</a></td></tr>
+<tr class="memdesc:a9f0728ba52254fbd4b3badbef9310358 inherit pro_attribs_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">リプレイ保存ファイルデータ <br /></td></tr>
+<tr class="separator:a9f0728ba52254fbd4b3badbef9310358 inherit pro_attribs_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac97137d492e82640c600b278f00d8978 inherit pro_attribs_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="ac97137d492e82640c600b278f00d8978"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#ac97137d492e82640c600b278f00d8978">winner_oid</a></td></tr>
+<tr class="memdesc:ac97137d492e82640c600b278f00d8978 inherit pro_attribs_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">勝利ポーズ終了待ち対象 <br /></td></tr>
+<tr class="separator:ac97137d492e82640c600b278f00d8978 inherit pro_attribs_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a095ecaad6977588961c1224496a386fd inherit pro_attribs_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a095ecaad6977588961c1224496a386fd"></a>
+BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a095ecaad6977588961c1224496a386fd">m_winpose_end</a></td></tr>
+<tr class="memdesc:a095ecaad6977588961c1224496a386fd inherit pro_attribs_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">勝利ポーズ終了・↑一人分しか見てない <br /></td></tr>
+<tr class="separator:a095ecaad6977588961c1224496a386fd inherit pro_attribs_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1106787c49df823c8a5f6a5f6f620524 inherit pro_attribs_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a1106787c49df823c8a5f6a5f6f620524"></a>
+BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a1106787c49df823c8a5f6a5f6f620524">m_finaldown_end</a> [2]</td></tr>
+<tr class="memdesc:a1106787c49df823c8a5f6a5f6f620524 inherit pro_attribs_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">ダウン完了フラグ <br /></td></tr>
+<tr class="separator:a1106787c49df823c8a5f6a5f6f620524 inherit pro_attribs_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87d974a92eb61601a2380426b42c947f inherit pro_attribs_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a87d974a92eb61601a2380426b42c947f"></a>
+BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a87d974a92eb61601a2380426b42c947f">m_tojyo_end</a> [2][MAXNUM_TEAM]</td></tr>
+<tr class="memdesc:a87d974a92eb61601a2380426b42c947f inherit pro_attribs_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">登場ポーズ終了フラグ。KOFLike時のウェイトにも使用 <br /></td></tr>
+<tr class="separator:a87d974a92eb61601a2380426b42c947f inherit pro_attribs_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c7f85cc2b0584071d7a3b2ab8117052 inherit pro_attribs_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a9c7f85cc2b0584071d7a3b2ab8117052"></a>
+BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a9c7f85cc2b0584071d7a3b2ab8117052">m_all_dead</a> [2]</td></tr>
+<tr class="memdesc:a9c7f85cc2b0584071d7a3b2ab8117052 inherit pro_attribs_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">死亡フラグ <br /></td></tr>
+<tr class="separator:a9c7f85cc2b0584071d7a3b2ab8117052 inherit pro_attribs_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb5c98a6b673098f009797ea32d8ce43 inherit pro_attribs_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="afb5c98a6b673098f009797ea32d8ce43"></a>
+BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#afb5c98a6b673098f009797ea32d8ce43">m_dead_one</a> [2][MAXNUM_TEAM]</td></tr>
+<tr class="memdesc:afb5c98a6b673098f009797ea32d8ce43 inherit pro_attribs_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">死亡フラグ <br /></td></tr>
+<tr class="separator:afb5c98a6b673098f009797ea32d8ce43 inherit pro_attribs_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71b8f60209ea358ffd860f4d4c0c9b43 inherit pro_attribs_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a71b8f60209ea358ffd860f4d4c0c9b43"></a>
+BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a71b8f60209ea358ffd860f4d4c0c9b43">m_active_dead</a> [2]</td></tr>
+<tr class="memdesc:a71b8f60209ea358ffd860f4d4c0c9b43 inherit pro_attribs_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">死亡フラグ <br /></td></tr>
+<tr class="separator:a71b8f60209ea358ffd860f4d4c0c9b43 inherit pro_attribs_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6764ff15f2ac5a7dc938cfc0ec0e5b18 inherit pro_attribs_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a6764ff15f2ac5a7dc938cfc0ec0e5b18"></a>
+BYTE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a6764ff15f2ac5a7dc938cfc0ec0e5b18">m_round_winner</a></td></tr>
+<tr class="memdesc:a6764ff15f2ac5a7dc938cfc0ec0e5b18 inherit pro_attribs_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">0/1:勝利チーム , 2:ダブルKO <br /></td></tr>
+<tr class="separator:a6764ff15f2ac5a7dc938cfc0ec0e5b18 inherit pro_attribs_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6181d44e636ac026697ec403b17d9fc7 inherit pro_attribs_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a6181d44e636ac026697ec403b17d9fc7"></a>
+std::vector&lt; <a class="el" href="../../df/d3a/class_c_g_object.html">CGObject</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a6181d44e636ac026697ec403b17d9fc7">p_objects</a></td></tr>
+<tr class="memdesc:a6181d44e636ac026697ec403b17d9fc7 inherit pro_attribs_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">オブジェクト操作クラスのポインタ <br /></td></tr>
+<tr class="separator:a6181d44e636ac026697ec403b17d9fc7 inherit pro_attribs_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71199aed9b0dd27625ca49f2b3057ea7 inherit pro_attribs_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a71199aed9b0dd27625ca49f2b3057ea7"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a71199aed9b0dd27625ca49f2b3057ea7">object_regindex</a></td></tr>
+<tr class="memdesc:a71199aed9b0dd27625ca49f2b3057ea7 inherit pro_attribs_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">次に生成するオブジェクトのインデックス <br /></td></tr>
+<tr class="separator:a71199aed9b0dd27625ca49f2b3057ea7 inherit pro_attribs_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09147d3722ce781ee0c7200310e5e7da inherit pro_attribs_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a09147d3722ce781ee0c7200310e5e7da"></a>
+std::vector&lt; WORD &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a09147d3722ce781ee0c7200310e5e7da">object_regno</a></td></tr>
+<tr class="memdesc:a09147d3722ce781ee0c7200310e5e7da inherit pro_attribs_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">そのインデックスでいくつのオブジェクトが生成されてきたか <br /></td></tr>
+<tr class="separator:a09147d3722ce781ee0c7200310e5e7da inherit pro_attribs_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a666fae522e1ee4811d971e3a650fc9b3 inherit pro_attribs_class_c_battle_task"><td class="memItemLeft" align="right" valign="top"><a id="a666fae522e1ee4811d971e3a650fc9b3"></a>
+std::deque&lt; DWORD &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d51/class_c_battle_task.html#a666fae522e1ee4811d971e3a650fc9b3">suicide_list</a></td></tr>
+<tr class="memdesc:a666fae522e1ee4811d971e3a650fc9b3 inherit pro_attribs_class_c_battle_task"><td class="mdescLeft">&#160;</td><td class="mdescRight">消滅オブジェクトリスト <br /></td></tr>
+<tr class="separator:a666fae522e1ee4811d971e3a650fc9b3 inherit pro_attribs_class_c_battle_task"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_class_c_battle_task_base"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_c_battle_task_base')"><img src="../../closed.png" alt="-"/>&#160;基底クラス <a class="el" href="../../da/d13/class_c_battle_task_base.html">CBattleTaskBase</a> に属する継承限定公開変数類</td></tr>
+<tr class="memitem:a58ba8218f94cea56c78ad217cf6476b1 inherit pro_attribs_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a58ba8218f94cea56c78ad217cf6476b1"></a>
+HINSTANCE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a58ba8218f94cea56c78ad217cf6476b1">hlib_c</a> [2][MAXNUM_TEAM]</td></tr>
+<tr class="memdesc:a58ba8218f94cea56c78ad217cf6476b1 inherit pro_attribs_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">キャラクターのDLL インスタンスハンドル <br /></td></tr>
+<tr class="separator:a58ba8218f94cea56c78ad217cf6476b1 inherit pro_attribs_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad33bd3159592b7435c76e384bd95d5ac inherit pro_attribs_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="ad33bd3159592b7435c76e384bd95d5ac"></a>
+HINSTANCE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#ad33bd3159592b7435c76e384bd95d5ac">hlib_s</a></td></tr>
+<tr class="memdesc:ad33bd3159592b7435c76e384bd95d5ac inherit pro_attribs_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">ステージのDLL インスタンスハンドル <br /></td></tr>
+<tr class="separator:ad33bd3159592b7435c76e384bd95d5ac inherit pro_attribs_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a283f8c16e31ba66ac03c44a8f3f8d635 inherit pro_attribs_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a283f8c16e31ba66ac03c44a8f3f8d635"></a>
+LPDIRECTSOUNDBUFFER&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a283f8c16e31ba66ac03c44a8f3f8d635">dsb_round</a></td></tr>
+<tr class="memdesc:a283f8c16e31ba66ac03c44a8f3f8d635 inherit pro_attribs_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">サウンド 「ラウンド～」 <br /></td></tr>
+<tr class="separator:a283f8c16e31ba66ac03c44a8f3f8d635 inherit pro_attribs_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4398b157bf7a4be039e3d2a64891ee59 inherit pro_attribs_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a4398b157bf7a4be039e3d2a64891ee59"></a>
+LPDIRECTSOUNDBUFFER&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a4398b157bf7a4be039e3d2a64891ee59">dsb_fight</a></td></tr>
+<tr class="memdesc:a4398b157bf7a4be039e3d2a64891ee59 inherit pro_attribs_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">サウンド 「ファイト」 <br /></td></tr>
+<tr class="separator:a4398b157bf7a4be039e3d2a64891ee59 inherit pro_attribs_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab8033222f6c6e141be8aa1abc48f81d inherit pro_attribs_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="aab8033222f6c6e141be8aa1abc48f81d"></a>
+LPDIRECTSOUNDBUFFER&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#aab8033222f6c6e141be8aa1abc48f81d">dsb_ko</a></td></tr>
+<tr class="memdesc:aab8033222f6c6e141be8aa1abc48f81d inherit pro_attribs_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">サウンド 「ＫＯ」 <br /></td></tr>
+<tr class="separator:aab8033222f6c6e141be8aa1abc48f81d inherit pro_attribs_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d0970c2568092b6355836a69e19d709 inherit pro_attribs_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a5d0970c2568092b6355836a69e19d709"></a>
+LPDIRECTSOUNDBUFFER&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a5d0970c2568092b6355836a69e19d709">dsb_timeover</a></td></tr>
+<tr class="memdesc:a5d0970c2568092b6355836a69e19d709 inherit pro_attribs_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">サウンド 「タイムオーバー」 <br /></td></tr>
+<tr class="separator:a5d0970c2568092b6355836a69e19d709 inherit pro_attribs_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a530111113b3d86c381f7c1655e81cda9 inherit pro_attribs_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a530111113b3d86c381f7c1655e81cda9"></a>
+CDI_CHARACTERINFO2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a530111113b3d86c381f7c1655e81cda9">m_cinfo</a> [2][MAXNUM_TEAM]</td></tr>
+<tr class="memdesc:a530111113b3d86c381f7c1655e81cda9 inherit pro_attribs_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">DLLとやり取りするキャラクター情報 <br /></td></tr>
+<tr class="separator:a530111113b3d86c381f7c1655e81cda9 inherit pro_attribs_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10f00c661ab293947f6b5e1be64f0b0a inherit pro_attribs_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a10f00c661ab293947f6b5e1be64f0b0a"></a>
+SDI_STAGEINFO2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a10f00c661ab293947f6b5e1be64f0b0a">m_sinfo</a></td></tr>
+<tr class="memdesc:a10f00c661ab293947f6b5e1be64f0b0a inherit pro_attribs_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">DLLとやり取りするステージ情報 <br /></td></tr>
+<tr class="separator:a10f00c661ab293947f6b5e1be64f0b0a inherit pro_attribs_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a738e28f30f38b8ba2fd8e516dccc03b9 inherit pro_attribs_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a738e28f30f38b8ba2fd8e516dccc03b9"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a738e28f30f38b8ba2fd8e516dccc03b9">charobjid</a> [2][MAXNUM_TEAM]</td></tr>
+<tr class="memdesc:a738e28f30f38b8ba2fd8e516dccc03b9 inherit pro_attribs_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">キャラクターのオブジェクトID <br /></td></tr>
+<tr class="separator:a738e28f30f38b8ba2fd8e516dccc03b9 inherit pro_attribs_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad88c1b81559a66a78051e26639611851 inherit pro_attribs_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="ad88c1b81559a66a78051e26639611851"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#ad88c1b81559a66a78051e26639611851">active_character</a> [2]</td></tr>
+<tr class="memdesc:ad88c1b81559a66a78051e26639611851 inherit pro_attribs_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">アクティブな（現在戦闘中の）キャラクターのIndex <br /></td></tr>
+<tr class="separator:ad88c1b81559a66a78051e26639611851 inherit pro_attribs_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dc8771fa3a024683e89a0978bba8366 inherit pro_attribs_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a0dc8771fa3a024683e89a0978bba8366"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a0dc8771fa3a024683e89a0978bba8366">stgobjid</a></td></tr>
+<tr class="memdesc:a0dc8771fa3a024683e89a0978bba8366 inherit pro_attribs_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">ステージのオブジェクトID <br /></td></tr>
+<tr class="separator:a0dc8771fa3a024683e89a0978bba8366 inherit pro_attribs_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f04a2d49629c58d77e46db65f681388 inherit pro_attribs_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a8f04a2d49629c58d77e46db65f681388"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a8f04a2d49629c58d77e46db65f681388">round</a></td></tr>
+<tr class="memdesc:a8f04a2d49629c58d77e46db65f681388 inherit pro_attribs_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">ラウンド数 <br /></td></tr>
+<tr class="separator:a8f04a2d49629c58d77e46db65f681388 inherit pro_attribs_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33276f5a95b97d7091335260168fb836 inherit pro_attribs_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a33276f5a95b97d7091335260168fb836"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a33276f5a95b97d7091335260168fb836">wincount</a> [2]</td></tr>
+<tr class="memdesc:a33276f5a95b97d7091335260168fb836 inherit pro_attribs_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">勝利数 <br /></td></tr>
+<tr class="separator:a33276f5a95b97d7091335260168fb836 inherit pro_attribs_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0add45a57a7e42a0607b30cf1ef69d9d inherit pro_attribs_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a0add45a57a7e42a0607b30cf1ef69d9d"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a0add45a57a7e42a0607b30cf1ef69d9d">strikercount</a> [2]</td></tr>
+<tr class="memdesc:a0add45a57a7e42a0607b30cf1ef69d9d inherit pro_attribs_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">支援攻撃可能数 <br /></td></tr>
+<tr class="separator:a0add45a57a7e42a0607b30cf1ef69d9d inherit pro_attribs_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a115c95ac3a1164eaed6cb05803ce2803 inherit pro_attribs_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a115c95ac3a1164eaed6cb05803ce2803"></a>
+<a class="el" href="../../d9/d6c/group___battle.html#gafc55c998411da8d628c40fd008452cc9">BattleTaskState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a115c95ac3a1164eaed6cb05803ce2803">bf_state</a></td></tr>
+<tr class="memdesc:a115c95ac3a1164eaed6cb05803ce2803 inherit pro_attribs_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合の状態 <br /></td></tr>
+<tr class="separator:a115c95ac3a1164eaed6cb05803ce2803 inherit pro_attribs_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1b4d52788f23f5f1f0f10da0640b829 inherit pro_attribs_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="ab1b4d52788f23f5f1f0f10da0640b829"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#ab1b4d52788f23f5f1f0f10da0640b829">bf_counter</a></td></tr>
+<tr class="memdesc:ab1b4d52788f23f5f1f0f10da0640b829 inherit pro_attribs_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">メインカウンタ <br /></td></tr>
+<tr class="separator:ab1b4d52788f23f5f1f0f10da0640b829 inherit pro_attribs_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a603a97b917f15be9f44006fb36fd30ed inherit pro_attribs_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="a603a97b917f15be9f44006fb36fd30ed"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a603a97b917f15be9f44006fb36fd30ed">bf_hitdisp</a> [2]</td></tr>
+<tr class="memdesc:a603a97b917f15be9f44006fb36fd30ed inherit pro_attribs_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">ヒット数カウント表示カウンタ <br /></td></tr>
+<tr class="separator:a603a97b917f15be9f44006fb36fd30ed inherit pro_attribs_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa618be89ac8ab7da874e036dcfbbe1be inherit pro_attribs_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top"><a id="aa618be89ac8ab7da874e036dcfbbe1be"></a>
+Config2_Difficulty&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#aa618be89ac8ab7da874e036dcfbbe1be">m_current_com_level</a></td></tr>
+<tr class="memdesc:aa618be89ac8ab7da874e036dcfbbe1be inherit pro_attribs_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">CGObjectが生成時に使用するCOMレベル <br /></td></tr>
+<tr class="separator:aa618be89ac8ab7da874e036dcfbbe1be inherit pro_attribs_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73552412ac8fed81e95d8cdc70432951 inherit pro_attribs_class_c_battle_task_base"><td class="memItemLeft" align="right" valign="top">BYTE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d13/class_c_battle_task_base.html#a73552412ac8fed81e95d8cdc70432951">m_crnt_dllid</a></td></tr>
+<tr class="memdesc:a73552412ac8fed81e95d8cdc70432951 inherit pro_attribs_class_c_battle_task_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">DLL-ID  <a href="../../da/d13/class_c_battle_task_base.html#a73552412ac8fed81e95d8cdc70432951">[詳解]</a><br /></td></tr>
+<tr class="separator:a73552412ac8fed81e95d8cdc70432951 inherit pro_attribs_class_c_battle_task_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>ボーナスステージの作りかけ…みたい </p>
+</div><hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>C:/Users/soji_2/Goluah-/devkit100/goluah/goluah/source/battle/task_Bonus.h</li>
+<li>C:/Users/soji_2/Goluah-/devkit100/goluah/goluah/source/battle/task_Bonus.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
 </body>
 </html>

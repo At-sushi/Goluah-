@@ -1,197 +1,232 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Goluah!!: クラス CStoryList</title>
-<link href="../../doxygen.css" rel="stylesheet" type="text/css">
-<link href="../../tabs.css" rel="stylesheet" type="text/css">
-</head><body>
-<!-- 作成： Doxygen 1.5.3 -->
-<div class="tabs">
-  <ul>
-    <li><a href="../../main.html"><span>メインページ</span></a></li>
-    <li><a href="../../modules.html"><span>モジュール</span></a></li>
-    <li class="current"><a href="../../annotated.html"><span>クラス</span></a></li>
-    <li><a href="../../files.html"><span>ファイル</span></a></li>
-  </ul>
-</div>
-<div class="tabs">
-  <ul>
-    <li><a href="../../annotated.html"><span>構成</span></a></li>
-    <li><a href="../../hierarchy.html"><span>クラス階層</span></a></li>
-    <li><a href="../../functions.html"><span>構成メンバ</span></a></li>
-  </ul>
-</div>
-<h1>クラス CStoryList<br>
-<small>
-[<a class="el" href="../../d6/da4/group__global.html">Global</a>]</small>
-</h1><!-- doxytag: class="CStoryList" -->ストーリーリスト保持 Initializeはキャラクターリスト・ステージリストが構築された後に行うこと  
-<a href="#_details">[詳細]</a>
-<p>
-<code>#include &lt;storylist.h&gt;</code>
-<p>
-
-<p>
-<a href="../../db/d03/class_c_story_list-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
-<tr><td></td></tr>
-<tr><td colspan="2"><br><h2>Public メソッド</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#d2e614ba85b247aba755083a90791bd1">Initialize</a> ()</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="81e3e466aecf9ed8aab40e5f879895b8"></a><!-- doxytag: member="CStoryList::GetAllStoryNum" ref="81e3e466aecf9ed8aab40e5f879895b8" args="()" -->
-UINT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#81e3e466aecf9ed8aab40e5f879895b8">GetAllStoryNum</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">全ストーリー数を取得 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2570c4d5a205f0947c033ae83ccf665f"></a><!-- doxytag: member="CStoryList::StartStory" ref="2570c4d5a205f0947c033ae83ccf665f" args="(UINT index)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#2570c4d5a205f0947c033ae83ccf665f">StartStory</a> (UINT index)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">指定インデックスのストーリーを開始する <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ef1c79a2b073e0e966bbe836de7dd210"></a><!-- doxytag: member="CStoryList::GetStoryName" ref="ef1c79a2b073e0e966bbe836de7dd210" args="(UINT index)" -->
-char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#ef1c79a2b073e0e966bbe836de7dd210">GetStoryName</a> (UINT index)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">指定インデックスのストーリー名を取得する <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7e177a2bf2e8e1b5110acb671dc8a4b0"></a><!-- doxytag: member="CStoryList::GetStoryBrief" ref="7e177a2bf2e8e1b5110acb671dc8a4b0" args="(UINT index)" -->
-char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#7e177a2bf2e8e1b5110acb671dc8a4b0">GetStoryBrief</a> (UINT index)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">指定インデックスのストーリー概要を取得する <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="72a45f3d836c6c8fc7b348c44d5997cc"></a><!-- doxytag: member="CStoryList::GetStoryDir" ref="72a45f3d836c6c8fc7b348c44d5997cc" args="(UINT index)" -->
-char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#72a45f3d836c6c8fc7b348c44d5997cc">GetStoryDir</a> (UINT index)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">指定インデックスのストーリーディレクトリを取得する <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#d4891e34535bfc8f7c76be9d0819791d">GetStoryIconPath</a> (UINT index, char *dst)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">指定インデックスのストーリーアイコンファイル名を取得する  <a href="#d4891e34535bfc8f7c76be9d0819791d"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#00883966869b69fa5823fb68deb32fd2">GetStoryPreviewPath</a> (UINT index, char *dst)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">指定インデックスのストーリープレビューファイル名を取得する  <a href="#00883966869b69fa5823fb68deb32fd2"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d32e5d9380dcf6c2b863dec8054bd2a9"></a><!-- doxytag: member="CStoryList::GetStoryInfo" ref="d32e5d9380dcf6c2b863dec8054bd2a9" args="(UINT index)" -->
-CStoryInfo *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#d32e5d9380dcf6c2b863dec8054bd2a9">GetStoryInfo</a> (UINT index)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">指定インデックスのストーリー情報を取得 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e2b709a073f1d9c7785e247ac9b282b7"></a><!-- doxytag: member="CStoryList::Ring2Index" ref="e2b709a073f1d9c7785e247ac9b282b7" args="(UINT ridx, UINT idx)" -->
-int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#e2b709a073f1d9c7785e247ac9b282b7">Ring2Index</a> (UINT ridx, UINT idx)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ディレクトリインデックス+ディレクトリ内インデックスから、全体通し番号を取得 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6f996fc6339fce117b626f2b0c9f0cac"></a><!-- doxytag: member="CStoryList::GetRingNum" ref="6f996fc6339fce117b626f2b0c9f0cac" args="()" -->
-UINT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#6f996fc6339fce117b626f2b0c9f0cac">GetRingNum</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ディレクトリ数取得 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="129cc8d2006a8706751f903c087a2999"></a><!-- doxytag: member="CStoryList::GetRingCount" ref="129cc8d2006a8706751f903c087a2999" args="(UINT idx)" -->
-int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#129cc8d2006a8706751f903c087a2999">GetRingCount</a> (UINT idx)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">指定インデックスのディレクトリ内にあるストーリー数取得 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a23580043b0e639d99c76b473d1491f8"></a><!-- doxytag: member="CStoryList::GetErrorCount" ref="a23580043b0e639d99c76b473d1491f8" args="()" -->
-int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#a23580043b0e639d99c76b473d1491f8">GetErrorCount</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">読み込みに失敗したストーリー数取得 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2c5f97ab4b359bc38a41497e910c694f"></a><!-- doxytag: member="CStoryList::GetErrorStr" ref="2c5f97ab4b359bc38a41497e910c694f" args="(UINT idx)" -->
-char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#2c5f97ab4b359bc38a41497e910c694f">GetErrorStr</a> (UINT idx)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">読み込み失敗理由取得 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="95a3303a53488f75909c035280b14b81"></a><!-- doxytag: member="CStoryList::GetErrorDir" ref="95a3303a53488f75909c035280b14b81" args="(UINT idx)" -->
-char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#95a3303a53488f75909c035280b14b81">GetErrorDir</a> (UINT idx)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">読み込み失敗ディレクトリ <br></td></tr>
-<tr><td colspan="2"><br><h2>Static Protected メソッド</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6b2e8014f4d1204b794b156ff9af3dd1"></a><!-- doxytag: member="CStoryList::GetSettingsFromScriptList" ref="6b2e8014f4d1204b794b156ff9af3dd1" args="(SScriptElementList &amp;scr)" -->
-static <br>
-<a class="el" href="../../d9/d21/class_c_story_element___settings.html">CStoryElement_Settings</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#6b2e8014f4d1204b794b156ff9af3dd1">GetSettingsFromScriptList</a> (SScriptElementList &amp;scr)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">settings要素取得 <br></td></tr>
-<tr><td colspan="2"><br><h2>Protected 変数</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ccb966f927c893c3506a08d5b295d045"></a><!-- doxytag: member="CStoryList::dlist" ref="ccb966f927c893c3506a08d5b295d045" args="" -->
-CStoryInfoList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#ccb966f927c893c3506a08d5b295d045">dlist</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">検証失敗リスト。brief にダメ理由を入れる。 <br></td></tr>
-<tr><td colspan="2"><br><h2>構成</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d6a/struct_c_story_list_1_1_c_story_ring_info.html">CStoryRingInfo</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ディレクトリリスト要素  <a href="../../d3/d6a/struct_c_story_list_1_1_c_story_ring_info.html#_details">[詳細]</a><br></td></tr>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Goluah!!: CStoryList クラス</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="../../goluah2.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Goluah!!
+   &#160;<span id="projectnumber">1.21a draft</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
 </table>
-<hr><a name="_details"></a><h2>説明</h2>
-ストーリーリスト保持 Initializeはキャラクターリスト・ステージリストが構築された後に行うこと <hr><h2>関数</h2>
-<a class="anchor" name="d2e614ba85b247aba755083a90791bd1"></a><!-- doxytag: member="CStoryList::Initialize" ref="d2e614ba85b247aba755083a90791bd1" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CStoryList::Initialize           </td>
-          <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td width="100%"></td>
-        </tr>
-      </table>
 </div>
-<div class="memdoc">
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.13 -->
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('../../',false,false,'search.php','検索');
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">クラス</a> &#124;
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pro-static-methods">静的限定公開メンバ関数</a> &#124;
+<a href="#pro-attribs">限定公開変数類</a> &#124;
+<a href="../../db/d03/class_c_story_list-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">CStoryList クラス<div class="ingroups"><a class="el" href="../../d6/da4/group__global.html">Global</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
 
-<p>
-初期化 キャラクターやステージの存在チェックが行われるため、 キャラクター・ステージのリスト初期化の後に実行すること 
-</div>
-</div><p>
-<a class="anchor" name="d4891e34535bfc8f7c76be9d0819791d"></a><!-- doxytag: member="CStoryList::GetStoryIconPath" ref="d4891e34535bfc8f7c76be9d0819791d" args="(UINT index, char *dst)" -->
+<p>ストーリーリスト保持 Initializeはキャラクターリスト・ステージリストが構築された後に行うこと  
+ <a href="../../d0/d33/class_c_story_list.html#details">[詳解]</a></p>
+
+<p><code>#include &lt;storylist.h&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+クラス</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d6a/struct_c_story_list_1_1_c_story_ring_info.html">CStoryRingInfo</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ディレクトリリスト要素  <a href="../../d3/d6a/struct_c_story_list_1_1_c_story_ring_info.html#details">[詳解]</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:ad2e614ba85b247aba755083a90791bd1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#ad2e614ba85b247aba755083a90791bd1">Initialize</a> ()</td></tr>
+<tr class="separator:ad2e614ba85b247aba755083a90791bd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81e3e466aecf9ed8aab40e5f879895b8"><td class="memItemLeft" align="right" valign="top"><a id="a81e3e466aecf9ed8aab40e5f879895b8"></a>
+UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#a81e3e466aecf9ed8aab40e5f879895b8">GetAllStoryNum</a> ()</td></tr>
+<tr class="memdesc:a81e3e466aecf9ed8aab40e5f879895b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">全ストーリー数を取得 <br /></td></tr>
+<tr class="separator:a81e3e466aecf9ed8aab40e5f879895b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2570c4d5a205f0947c033ae83ccf665f"><td class="memItemLeft" align="right" valign="top"><a id="a2570c4d5a205f0947c033ae83ccf665f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#a2570c4d5a205f0947c033ae83ccf665f">StartStory</a> (UINT index)</td></tr>
+<tr class="memdesc:a2570c4d5a205f0947c033ae83ccf665f"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定インデックスのストーリーを開始する <br /></td></tr>
+<tr class="separator:a2570c4d5a205f0947c033ae83ccf665f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef1c79a2b073e0e966bbe836de7dd210"><td class="memItemLeft" align="right" valign="top"><a id="aef1c79a2b073e0e966bbe836de7dd210"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#aef1c79a2b073e0e966bbe836de7dd210">GetStoryName</a> (UINT index)</td></tr>
+<tr class="memdesc:aef1c79a2b073e0e966bbe836de7dd210"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定インデックスのストーリー名を取得する <br /></td></tr>
+<tr class="separator:aef1c79a2b073e0e966bbe836de7dd210"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e177a2bf2e8e1b5110acb671dc8a4b0"><td class="memItemLeft" align="right" valign="top"><a id="a7e177a2bf2e8e1b5110acb671dc8a4b0"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#a7e177a2bf2e8e1b5110acb671dc8a4b0">GetStoryBrief</a> (UINT index)</td></tr>
+<tr class="memdesc:a7e177a2bf2e8e1b5110acb671dc8a4b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定インデックスのストーリー概要を取得する <br /></td></tr>
+<tr class="separator:a7e177a2bf2e8e1b5110acb671dc8a4b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72a45f3d836c6c8fc7b348c44d5997cc"><td class="memItemLeft" align="right" valign="top"><a id="a72a45f3d836c6c8fc7b348c44d5997cc"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#a72a45f3d836c6c8fc7b348c44d5997cc">GetStoryDir</a> (UINT index)</td></tr>
+<tr class="memdesc:a72a45f3d836c6c8fc7b348c44d5997cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定インデックスのストーリーディレクトリを取得する <br /></td></tr>
+<tr class="separator:a72a45f3d836c6c8fc7b348c44d5997cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4891e34535bfc8f7c76be9d0819791d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#ad4891e34535bfc8f7c76be9d0819791d">GetStoryIconPath</a> (UINT index, char *dst)</td></tr>
+<tr class="memdesc:ad4891e34535bfc8f7c76be9d0819791d"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定インデックスのストーリーアイコンファイル名を取得する  <a href="#ad4891e34535bfc8f7c76be9d0819791d">[詳解]</a><br /></td></tr>
+<tr class="separator:ad4891e34535bfc8f7c76be9d0819791d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00883966869b69fa5823fb68deb32fd2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#a00883966869b69fa5823fb68deb32fd2">GetStoryPreviewPath</a> (UINT index, char *dst)</td></tr>
+<tr class="memdesc:a00883966869b69fa5823fb68deb32fd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定インデックスのストーリープレビューファイル名を取得する  <a href="#a00883966869b69fa5823fb68deb32fd2">[詳解]</a><br /></td></tr>
+<tr class="separator:a00883966869b69fa5823fb68deb32fd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad32e5d9380dcf6c2b863dec8054bd2a9"><td class="memItemLeft" align="right" valign="top"><a id="ad32e5d9380dcf6c2b863dec8054bd2a9"></a>
+CStoryInfo *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#ad32e5d9380dcf6c2b863dec8054bd2a9">GetStoryInfo</a> (UINT index)</td></tr>
+<tr class="memdesc:ad32e5d9380dcf6c2b863dec8054bd2a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定インデックスのストーリー情報を取得 <br /></td></tr>
+<tr class="separator:ad32e5d9380dcf6c2b863dec8054bd2a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2b709a073f1d9c7785e247ac9b282b7"><td class="memItemLeft" align="right" valign="top"><a id="ae2b709a073f1d9c7785e247ac9b282b7"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#ae2b709a073f1d9c7785e247ac9b282b7">Ring2Index</a> (UINT ridx, UINT idx)</td></tr>
+<tr class="memdesc:ae2b709a073f1d9c7785e247ac9b282b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">ディレクトリインデックス+ディレクトリ内インデックスから、全体通し番号を取得 <br /></td></tr>
+<tr class="separator:ae2b709a073f1d9c7785e247ac9b282b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f996fc6339fce117b626f2b0c9f0cac"><td class="memItemLeft" align="right" valign="top"><a id="a6f996fc6339fce117b626f2b0c9f0cac"></a>
+UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#a6f996fc6339fce117b626f2b0c9f0cac">GetRingNum</a> ()</td></tr>
+<tr class="memdesc:a6f996fc6339fce117b626f2b0c9f0cac"><td class="mdescLeft">&#160;</td><td class="mdescRight">ディレクトリ数取得 <br /></td></tr>
+<tr class="separator:a6f996fc6339fce117b626f2b0c9f0cac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a129cc8d2006a8706751f903c087a2999"><td class="memItemLeft" align="right" valign="top"><a id="a129cc8d2006a8706751f903c087a2999"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#a129cc8d2006a8706751f903c087a2999">GetRingCount</a> (UINT idx)</td></tr>
+<tr class="memdesc:a129cc8d2006a8706751f903c087a2999"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定インデックスのディレクトリ内にあるストーリー数取得 <br /></td></tr>
+<tr class="separator:a129cc8d2006a8706751f903c087a2999"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa23580043b0e639d99c76b473d1491f8"><td class="memItemLeft" align="right" valign="top"><a id="aa23580043b0e639d99c76b473d1491f8"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#aa23580043b0e639d99c76b473d1491f8">GetErrorCount</a> ()</td></tr>
+<tr class="memdesc:aa23580043b0e639d99c76b473d1491f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">読み込みに失敗したストーリー数取得 <br /></td></tr>
+<tr class="separator:aa23580043b0e639d99c76b473d1491f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c5f97ab4b359bc38a41497e910c694f"><td class="memItemLeft" align="right" valign="top"><a id="a2c5f97ab4b359bc38a41497e910c694f"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#a2c5f97ab4b359bc38a41497e910c694f">GetErrorStr</a> (UINT idx)</td></tr>
+<tr class="memdesc:a2c5f97ab4b359bc38a41497e910c694f"><td class="mdescLeft">&#160;</td><td class="mdescRight">読み込み失敗理由取得 <br /></td></tr>
+<tr class="separator:a2c5f97ab4b359bc38a41497e910c694f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95a3303a53488f75909c035280b14b81"><td class="memItemLeft" align="right" valign="top"><a id="a95a3303a53488f75909c035280b14b81"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#a95a3303a53488f75909c035280b14b81">GetErrorDir</a> (UINT idx)</td></tr>
+<tr class="memdesc:a95a3303a53488f75909c035280b14b81"><td class="mdescLeft">&#160;</td><td class="mdescRight">読み込み失敗ディレクトリ <br /></td></tr>
+<tr class="separator:a95a3303a53488f75909c035280b14b81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-methods"></a>
+静的限定公開メンバ関数</h2></td></tr>
+<tr class="memitem:a6b2e8014f4d1204b794b156ff9af3dd1"><td class="memItemLeft" align="right" valign="top"><a id="a6b2e8014f4d1204b794b156ff9af3dd1"></a>
+static <a class="el" href="../../d9/d21/class_c_story_element___settings.html">CStoryElement_Settings</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#a6b2e8014f4d1204b794b156ff9af3dd1">GetSettingsFromScriptList</a> (SScriptElementList &amp;scr)</td></tr>
+<tr class="memdesc:a6b2e8014f4d1204b794b156ff9af3dd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">settings要素取得 <br /></td></tr>
+<tr class="separator:a6b2e8014f4d1204b794b156ff9af3dd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+限定公開変数類</h2></td></tr>
+<tr class="memitem:accb966f927c893c3506a08d5b295d045"><td class="memItemLeft" align="right" valign="top"><a id="accb966f927c893c3506a08d5b295d045"></a>
+CStoryInfoList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d33/class_c_story_list.html#accb966f927c893c3506a08d5b295d045">dlist</a></td></tr>
+<tr class="memdesc:accb966f927c893c3506a08d5b295d045"><td class="mdescLeft">&#160;</td><td class="mdescRight">検証失敗リスト。brief にダメ理由を入れる。 <br /></td></tr>
+<tr class="separator:accb966f927c893c3506a08d5b295d045"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>ストーリーリスト保持 Initializeはキャラクターリスト・ステージリストが構築された後に行うこと </p>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="ad4891e34535bfc8f7c76be9d0819791d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4891e34535bfc8f7c76be9d0819791d">&#9670;&nbsp;</a></span>GetStoryIconPath()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CStoryList::GetStoryIconPath           </td>
+          <td class="memname">void CStoryList::GetStoryIconPath </td>
           <td>(</td>
-          <td class="paramtype">UINT&nbsp;</td>
-          <td class="paramname"> <em>index</em>, </td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&nbsp;</td>
-          <td class="paramname"> <em>dst</em></td><td>&nbsp;</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>dst</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td width="100%"></td>
+          <td></td><td></td>
         </tr>
       </table>
-</div>
-<div class="memdoc">
+</div><div class="memdoc">
 
-<p>
-指定インデックスのストーリーアイコンファイル名を取得する 
-<p>
-指定インデックスのアイコンファイル名を取得する 
+<p>指定インデックスのストーリーアイコンファイル名を取得する </p>
+<p>指定インデックスのアイコンファイル名を取得する </p>
+
 </div>
-</div><p>
-<a class="anchor" name="00883966869b69fa5823fb68deb32fd2"></a><!-- doxytag: member="CStoryList::GetStoryPreviewPath" ref="00883966869b69fa5823fb68deb32fd2" args="(UINT index, char *dst)" -->
+</div>
+<a id="a00883966869b69fa5823fb68deb32fd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00883966869b69fa5823fb68deb32fd2">&#9670;&nbsp;</a></span>GetStoryPreviewPath()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CStoryList::GetStoryPreviewPath           </td>
+          <td class="memname">void CStoryList::GetStoryPreviewPath </td>
           <td>(</td>
-          <td class="paramtype">UINT&nbsp;</td>
-          <td class="paramname"> <em>index</em>, </td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&nbsp;</td>
-          <td class="paramname"> <em>dst</em></td><td>&nbsp;</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>dst</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td width="100%"></td>
+          <td></td><td></td>
         </tr>
       </table>
-</div>
-<div class="memdoc">
+</div><div class="memdoc">
 
-<p>
-指定インデックスのストーリープレビューファイル名を取得する 
-<p>
-指定インデックスのプレビューファイル名を取得する 
+<p>指定インデックスのストーリープレビューファイル名を取得する </p>
+<p>指定インデックスのプレビューファイル名を取得する </p>
+
 </div>
-</div><p>
-<hr>このクラスの説明は次のファイルから生成されました:<ul>
-<li>devkit100/goluah/goluah/source/dataHandler/storylist.h<li>devkit100/goluah/goluah/source/dataHandler/storylist.cpp</ul>
-<hr size="1"><address style="text-align: right;"><small>Goluah!!に対してWed Oct 13 14:02:48 2010に生成されました。&nbsp;
-<a href="http://www.doxygen.org/index.html">
-<img src="../../doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.3 </small></address>
+</div>
+<a id="ad2e614ba85b247aba755083a90791bd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2e614ba85b247aba755083a90791bd1">&#9670;&nbsp;</a></span>Initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CStoryList::Initialize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>初期化 キャラクターやステージの存在チェックが行われるため、 キャラクター・ステージのリスト初期化の後に実行すること </p>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>C:/Users/soji_2/Goluah-/devkit100/goluah/goluah/source/dataHandler/storylist.h</li>
+<li>C:/Users/soji_2/Goluah-/devkit100/goluah/goluah/source/dataHandler/storylist.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
 </body>
 </html>

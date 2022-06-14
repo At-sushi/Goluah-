@@ -1,121 +1,150 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Goluah!!: クラス CStageList</title>
-<link href="../../doxygen.css" rel="stylesheet" type="text/css">
-<link href="../../tabs.css" rel="stylesheet" type="text/css">
-</head><body>
-<!-- 作成： Doxygen 1.5.3 -->
-<div class="tabs">
-  <ul>
-    <li><a href="../../main.html"><span>メインページ</span></a></li>
-    <li><a href="../../modules.html"><span>モジュール</span></a></li>
-    <li class="current"><a href="../../annotated.html"><span>クラス</span></a></li>
-    <li><a href="../../files.html"><span>ファイル</span></a></li>
-  </ul>
-</div>
-<div class="tabs">
-  <ul>
-    <li><a href="../../annotated.html"><span>構成</span></a></li>
-    <li><a href="../../hierarchy.html"><span>クラス階層</span></a></li>
-    <li><a href="../../functions.html"><span>構成メンバ</span></a></li>
-  </ul>
-</div>
-<h1>クラス CStageList</h1><!-- doxytag: class="CStageList" -->ステージリスト管理クラス本体  
-<a href="#_details">[詳細]</a>
-<p>
-<code>#include &lt;stagelist.h&gt;</code>
-<p>
-
-<p>
-<a href="../../d8/db1/class_c_stage_list-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
-<tr><td></td></tr>
-<tr><td colspan="2"><br><h2>Public メソッド</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#18ac4b2a135468513329008a316e1b51">Initialize</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ディレクトリを検索し、リストを初期化  <a href="#18ac4b2a135468513329008a316e1b51"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5b877afc84968058534cdf9e40ab8ce9"></a><!-- doxytag: member="CStageList::Destroy" ref="5b877afc84968058534cdf9e40ab8ce9" args="()" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#5b877afc84968058534cdf9e40ab8ce9">Destroy</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">リストを破棄 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a5a82f99225a29ab785c4fc7becb5233"></a><!-- doxytag: member="CStageList::GetStageCount" ref="a5a82f99225a29ab785c4fc7becb5233" args="()" -->
-int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#a5a82f99225a29ab785c4fc7becb5233">GetStageCount</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">検索されたステージ数を返す <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="15167823b9f76009cd3d630462710227"></a><!-- doxytag: member="CStageList::GetStageDir" ref="15167823b9f76009cd3d630462710227" args="(int index)" -->
-char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#15167823b9f76009cd3d630462710227">GetStageDir</a> (int index)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ステージのディレクトリを返す <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d713c61bc7c77c61ba26c4937513b898"></a><!-- doxytag: member="CStageList::GetStageName" ref="d713c61bc7c77c61ba26c4937513b898" args="(int index)" -->
-char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#d713c61bc7c77c61ba26c4937513b898">GetStageName</a> (int index)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ステージの名前を返す <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bce161a8c4d20f99219b41f056e0de62"></a><!-- doxytag: member="CStageList::GetStageVer" ref="bce161a8c4d20f99219b41f056e0de62" args="(int index)" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#bce161a8c4d20f99219b41f056e0de62">GetStageVer</a> (int index)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ステージのバージョンを返す <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="906922fae04c05ebbd3f76d10b50495b"></a><!-- doxytag: member="CStageList::FindStage" ref="906922fae04c05ebbd3f76d10b50495b" args="(char *name)" -->
-int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#906922fae04c05ebbd3f76d10b50495b">FindStage</a> (char *name)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">名前で検索（なかった場合-1） <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bc0a2fdf82873b05544c68c7edd53083"></a><!-- doxytag: member="CStageList::GetDameStageCount" ref="bc0a2fdf82873b05544c68c7edd53083" args="()" -->
-int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#bc0a2fdf82873b05544c68c7edd53083">GetDameStageCount</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">検索に失敗したステージ数を返す <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6243ee5e5054c968aa92301584f5fa7f"></a><!-- doxytag: member="CStageList::GetDameStageDir" ref="6243ee5e5054c968aa92301584f5fa7f" args="(int index)" -->
-char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#6243ee5e5054c968aa92301584f5fa7f">GetDameStageDir</a> (int index)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">失敗理由を文字列で返す <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="07406d9ed859a3e2ed46be224453dd14"></a><!-- doxytag: member="CStageList::GetDameStageReason" ref="07406d9ed859a3e2ed46be224453dd14" args="(int index)" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#07406d9ed859a3e2ed46be224453dd14">GetDameStageReason</a> (int index)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">検索失敗理由を理由ID値で返す <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="db8583c3dced098dfb867e31f05db1d7"></a><!-- doxytag: member="CStageList::GetDameStageVer" ref="db8583c3dced098dfb867e31f05db1d7" args="(int index)" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#db8583c3dced098dfb867e31f05db1d7">GetDameStageVer</a> (int index)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">検索失敗ステージ・バージョンを返す <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2f357955b284b17f8f0ceef0d607790e"></a><!-- doxytag: member="CStageList::Ring2Serial" ref="2f357955b284b17f8f0ceef0d607790e" args="(DWORD ring, DWORD rindex)" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#2f357955b284b17f8f0ceef0d607790e">Ring2Serial</a> (DWORD ring, DWORD rindex)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">リング内でのインデックスを全体でのインデックスに変換 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a929b20d89d13b7b4affaaa3cd61051d"></a><!-- doxytag: member="CStageList::GetStageCountRing" ref="a929b20d89d13b7b4affaaa3cd61051d" args="(DWORD rindex)" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#a929b20d89d13b7b4affaaa3cd61051d">GetStageCountRing</a> (DWORD rindex)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">指定リングにステージがいくつあるか返す <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="fbf31d6b3a1ecc9428ea8ff00dd4a8cb"></a><!-- doxytag: member="CStageList::GetRingNum" ref="fbf31d6b3a1ecc9428ea8ff00dd4a8cb" args="()" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#fbf31d6b3a1ecc9428ea8ff00dd4a8cb">GetRingNum</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">リングの個数を返す <br></td></tr>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Goluah!!: CStageList クラス</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="../../goluah2.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Goluah!!
+   &#160;<span id="projectnumber">1.21a draft</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
 </table>
-<hr><a name="_details"></a><h2>説明</h2>
-ステージリスト管理クラス本体 
-<p>
-グローバルにひとつだけインスタンスがある。 ステージに関する情報まとめ。 <hr><h2>関数</h2>
-<a class="anchor" name="18ac4b2a135468513329008a316e1b51"></a><!-- doxytag: member="CStageList::Initialize" ref="18ac4b2a135468513329008a316e1b51" args="()" -->
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.13 -->
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('../../',false,false,'search.php','検索');
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="../../d8/db1/class_c_stage_list-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">CStageList クラス</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>ステージリスト管理クラス本体  
+ <a href="../../d7/d89/class_c_stage_list.html#details">[詳解]</a></p>
+
+<p><code>#include &lt;stagelist.h&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a18ac4b2a135468513329008a316e1b51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#a18ac4b2a135468513329008a316e1b51">Initialize</a> ()</td></tr>
+<tr class="memdesc:a18ac4b2a135468513329008a316e1b51"><td class="mdescLeft">&#160;</td><td class="mdescRight">ディレクトリを検索し、リストを初期化  <a href="#a18ac4b2a135468513329008a316e1b51">[詳解]</a><br /></td></tr>
+<tr class="separator:a18ac4b2a135468513329008a316e1b51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b877afc84968058534cdf9e40ab8ce9"><td class="memItemLeft" align="right" valign="top"><a id="a5b877afc84968058534cdf9e40ab8ce9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#a5b877afc84968058534cdf9e40ab8ce9">Destroy</a> ()</td></tr>
+<tr class="memdesc:a5b877afc84968058534cdf9e40ab8ce9"><td class="mdescLeft">&#160;</td><td class="mdescRight">リストを破棄 <br /></td></tr>
+<tr class="separator:a5b877afc84968058534cdf9e40ab8ce9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5a82f99225a29ab785c4fc7becb5233"><td class="memItemLeft" align="right" valign="top"><a id="aa5a82f99225a29ab785c4fc7becb5233"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#aa5a82f99225a29ab785c4fc7becb5233">GetStageCount</a> ()</td></tr>
+<tr class="memdesc:aa5a82f99225a29ab785c4fc7becb5233"><td class="mdescLeft">&#160;</td><td class="mdescRight">検索されたステージ数を返す <br /></td></tr>
+<tr class="separator:aa5a82f99225a29ab785c4fc7becb5233"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15167823b9f76009cd3d630462710227"><td class="memItemLeft" align="right" valign="top"><a id="a15167823b9f76009cd3d630462710227"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#a15167823b9f76009cd3d630462710227">GetStageDir</a> (int index)</td></tr>
+<tr class="memdesc:a15167823b9f76009cd3d630462710227"><td class="mdescLeft">&#160;</td><td class="mdescRight">ステージのディレクトリを返す <br /></td></tr>
+<tr class="separator:a15167823b9f76009cd3d630462710227"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad713c61bc7c77c61ba26c4937513b898"><td class="memItemLeft" align="right" valign="top"><a id="ad713c61bc7c77c61ba26c4937513b898"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#ad713c61bc7c77c61ba26c4937513b898">GetStageName</a> (int index)</td></tr>
+<tr class="memdesc:ad713c61bc7c77c61ba26c4937513b898"><td class="mdescLeft">&#160;</td><td class="mdescRight">ステージの名前を返す <br /></td></tr>
+<tr class="separator:ad713c61bc7c77c61ba26c4937513b898"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abce161a8c4d20f99219b41f056e0de62"><td class="memItemLeft" align="right" valign="top"><a id="abce161a8c4d20f99219b41f056e0de62"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#abce161a8c4d20f99219b41f056e0de62">GetStageVer</a> (int index)</td></tr>
+<tr class="memdesc:abce161a8c4d20f99219b41f056e0de62"><td class="mdescLeft">&#160;</td><td class="mdescRight">ステージのバージョンを返す <br /></td></tr>
+<tr class="separator:abce161a8c4d20f99219b41f056e0de62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a906922fae04c05ebbd3f76d10b50495b"><td class="memItemLeft" align="right" valign="top"><a id="a906922fae04c05ebbd3f76d10b50495b"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#a906922fae04c05ebbd3f76d10b50495b">FindStage</a> (char *name)</td></tr>
+<tr class="memdesc:a906922fae04c05ebbd3f76d10b50495b"><td class="mdescLeft">&#160;</td><td class="mdescRight">名前で検索（なかった場合-1） <br /></td></tr>
+<tr class="separator:a906922fae04c05ebbd3f76d10b50495b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc0a2fdf82873b05544c68c7edd53083"><td class="memItemLeft" align="right" valign="top"><a id="abc0a2fdf82873b05544c68c7edd53083"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#abc0a2fdf82873b05544c68c7edd53083">GetDameStageCount</a> ()</td></tr>
+<tr class="memdesc:abc0a2fdf82873b05544c68c7edd53083"><td class="mdescLeft">&#160;</td><td class="mdescRight">検索に失敗したステージ数を返す <br /></td></tr>
+<tr class="separator:abc0a2fdf82873b05544c68c7edd53083"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6243ee5e5054c968aa92301584f5fa7f"><td class="memItemLeft" align="right" valign="top"><a id="a6243ee5e5054c968aa92301584f5fa7f"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#a6243ee5e5054c968aa92301584f5fa7f">GetDameStageDir</a> (int index)</td></tr>
+<tr class="memdesc:a6243ee5e5054c968aa92301584f5fa7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">失敗理由を文字列で返す <br /></td></tr>
+<tr class="separator:a6243ee5e5054c968aa92301584f5fa7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07406d9ed859a3e2ed46be224453dd14"><td class="memItemLeft" align="right" valign="top"><a id="a07406d9ed859a3e2ed46be224453dd14"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#a07406d9ed859a3e2ed46be224453dd14">GetDameStageReason</a> (int index)</td></tr>
+<tr class="memdesc:a07406d9ed859a3e2ed46be224453dd14"><td class="mdescLeft">&#160;</td><td class="mdescRight">検索失敗理由を理由ID値で返す <br /></td></tr>
+<tr class="separator:a07406d9ed859a3e2ed46be224453dd14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb8583c3dced098dfb867e31f05db1d7"><td class="memItemLeft" align="right" valign="top"><a id="adb8583c3dced098dfb867e31f05db1d7"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#adb8583c3dced098dfb867e31f05db1d7">GetDameStageVer</a> (int index)</td></tr>
+<tr class="memdesc:adb8583c3dced098dfb867e31f05db1d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">検索失敗ステージ・バージョンを返す <br /></td></tr>
+<tr class="separator:adb8583c3dced098dfb867e31f05db1d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f357955b284b17f8f0ceef0d607790e"><td class="memItemLeft" align="right" valign="top"><a id="a2f357955b284b17f8f0ceef0d607790e"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#a2f357955b284b17f8f0ceef0d607790e">Ring2Serial</a> (DWORD ring, DWORD rindex)</td></tr>
+<tr class="memdesc:a2f357955b284b17f8f0ceef0d607790e"><td class="mdescLeft">&#160;</td><td class="mdescRight">リング内でのインデックスを全体でのインデックスに変換 <br /></td></tr>
+<tr class="separator:a2f357955b284b17f8f0ceef0d607790e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa929b20d89d13b7b4affaaa3cd61051d"><td class="memItemLeft" align="right" valign="top"><a id="aa929b20d89d13b7b4affaaa3cd61051d"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#aa929b20d89d13b7b4affaaa3cd61051d">GetStageCountRing</a> (DWORD rindex)</td></tr>
+<tr class="memdesc:aa929b20d89d13b7b4affaaa3cd61051d"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定リングにステージがいくつあるか返す <br /></td></tr>
+<tr class="separator:aa929b20d89d13b7b4affaaa3cd61051d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbf31d6b3a1ecc9428ea8ff00dd4a8cb"><td class="memItemLeft" align="right" valign="top"><a id="afbf31d6b3a1ecc9428ea8ff00dd4a8cb"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d89/class_c_stage_list.html#afbf31d6b3a1ecc9428ea8ff00dd4a8cb">GetRingNum</a> ()</td></tr>
+<tr class="memdesc:afbf31d6b3a1ecc9428ea8ff00dd4a8cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">リングの個数を返す <br /></td></tr>
+<tr class="separator:afbf31d6b3a1ecc9428ea8ff00dd4a8cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>ステージリスト管理クラス本体 </p>
+<p>グローバルにひとつだけインスタンスがある。 ステージに関する情報まとめ。 </p>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="a18ac4b2a135468513329008a316e1b51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18ac4b2a135468513329008a316e1b51">&#9670;&nbsp;</a></span>Initialize()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CStageList::Initialize           </td>
+          <td class="memname">void CStageList::Initialize </td>
           <td>(</td>
-          <td class="paramname">          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td width="100%"></td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
-</div>
-<div class="memdoc">
+</div><div class="memdoc">
 
-<p>
-ディレクトリを検索し、リストを初期化 
-<p>
-初期化<p>
-1) サブディレクトリ（都合上RINGということになっている）の一覧を生成 2) 各ディレクトリに関してステージを検索 2.5) 検索した各ステージディレクトリの正当性を検証 3) ステージが1個も見つからなかったリングはリストから削除 
+<p>ディレクトリを検索し、リストを初期化 </p>
+<p>初期化</p>
+<p>1) サブディレクトリ（都合上RINGということになっている）の一覧を生成 2) 各ディレクトリに関してステージを検索 2.5) 検索した各ステージディレクトリの正当性を検証 3) ステージが1個も見つからなかったリングはリストから削除 </p>
+
 </div>
-</div><p>
-<hr>このクラスの説明は次のファイルから生成されました:<ul>
-<li>devkit100/goluah/goluah/source/dataHandler/stagelist.h<li>devkit100/goluah/goluah/source/dataHandler/stagelist.cpp</ul>
-<hr size="1"><address style="text-align: right;"><small>Goluah!!に対してWed Oct 13 14:02:47 2010に生成されました。&nbsp;
-<a href="http://www.doxygen.org/index.html">
-<img src="../../doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.3 </small></address>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>C:/Users/soji_2/Goluah-/devkit100/goluah/goluah/source/dataHandler/stagelist.h</li>
+<li>C:/Users/soji_2/Goluah-/devkit100/goluah/goluah/source/dataHandler/stagelist.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
 </body>
 </html>

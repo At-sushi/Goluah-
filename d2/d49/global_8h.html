@@ -1,150 +1,190 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Goluah!!: devkit100/goluah/goluah/source/global/global.h</title>
-<link href="../../doxygen.css" rel="stylesheet" type="text/css">
-<link href="../../tabs.css" rel="stylesheet" type="text/css">
-</head><body>
-<!-- 作成： Doxygen 1.5.3 -->
-<div class="tabs">
-  <ul>
-    <li><a href="../../main.html"><span>メインページ</span></a></li>
-    <li><a href="../../modules.html"><span>モジュール</span></a></li>
-    <li><a href="../../annotated.html"><span>クラス</span></a></li>
-    <li class="current"><a href="../../files.html"><span>ファイル</span></a></li>
-  </ul>
-</div>
-<h1>devkit100/goluah/goluah/source/global/global.h</h1>グローバル関数 グローバル変数　など <a href="#_details">[詳細]</a>
-<p>
-<code>#include &quot;stdafx.h&quot;</code><br>
-<code>#include &quot;<a class="el" href="../../df/dbe/dx__draw_8h.html">dx_draw.h</a>&quot;</code><br>
-<code>#include &quot;<a class="el" href="../../d5/d98/dx__input_8h.html">dx_input.h</a>&quot;</code><br>
-<code>#include &quot;<a class="el" href="../../d3/d54/dx__sound_8h.html">dx_sound.h</a>&quot;</code><br>
-<code>#include &quot;<a class="el" href="../../dd/dd2/dx__play_8h.html">dx_play.h</a>&quot;</code><br>
-<code>#include &quot;<a class="el" href="../../dc/db2/system_8h.html">system.h</a>&quot;</code><br>
-<code>#include &quot;<a class="el" href="../../db/d16/config_8h.html">config.h</a>&quot;</code><br>
-<code>#include &quot;log2file.h&quot;</code><br>
-<code>#include &quot;<a class="el" href="../../db/db5/export_8h.html">export.h</a>&quot;</code><br>
-<code>#include &quot;storylist.h&quot;</code><br>
-<code>#include &quot;stagelist.h&quot;</code><br>
-<code>#include &quot;<a class="el" href="../../d4/dbd/charlist_8h.html">charlist.h</a>&quot;</code><br>
-<code>#include &quot;<a class="el" href="../../df/d33/battle__load__info_8h.html">battle_load_info.h</a>&quot;</code><br>
-<code>#include &quot;<a class="el" href="../../d6/d29/bigface__cache_8h.html">bigface_cache.h</a>&quot;</code><br>
-
-<p>
-<div class="dynheader">
-global.hのインクルード依存関係図</div>
-<div class="dynsection">
-<p><center><img src="../../d0/dbb/global_8h__incl.png" border="0" usemap="#devkit100/goluah/goluah/source/global/global.h_map" alt=""></center>
-<map name="devkit100/goluah/goluah/source/global/global.h_map">
-<area shape="rect" href="../../df/dbe/dx__draw_8h.html" title="a?��a?&#45;a??a??a?��e?��a?�� a?��a?&#45;a??a??a?��a??a?��a��a?aa?c" alt="" coords="344,155,427,181"><area shape="rect" href="../../d5/d98/dx__input_8h.html" title="a?��a?&#45;a??a??a?��e?��a?�� a?��a?&#45;a??a??a?��a??a?��a��a?aa?c" alt="" coords="40,80,123,107"><area shape="rect" href="../../db/d16/config_8h.html" title="CDirectInput" alt="" coords="5,155,75,181"><area shape="rect" href="../../d3/d54/dx__sound_8h.html" title="a?��a?&#45;a??a??a?��e?��a?�� a?��a?&#45;a??a??a?��a??a?��a��a?aa?c" alt="" coords="248,80,339,107"><area shape="rect" href="../../dd/dd2/dx__play_8h.html" title="a?��a?&#45;a??a??a?��e?��a?�� a?��a?&#45;a??a??a?��a??a?��a��a?aa?c" alt="" coords="147,80,224,107"><area shape="rect" href="../../dc/db2/system_8h.html" title="a?��a?&#45;a??a??a?��e?��a?�� a?��a?&#45;a??a??a?��a??a?��a��a?aa?c" alt="" coords="555,80,629,107"><area shape="rect" href="../../db/db5/export_8h.html" title="a?��a?&#45;a??a??a?��e?��a?�� a?��a?&#45;a??a??a?��a??a?��a��a?aa?c" alt="" coords="653,80,723,107"><area shape="rect" href="../../d4/dbd/charlist_8h.html" title="a?��a?&#45;a??a??a?��e?��a?�� a?��a?&#45;a??a??a?��a??a?��a��a?aa?c" alt="" coords="896,80,971,107"><area shape="rect" href="../../df/d33/battle__load__info_8h.html" title="a?��a?&#45;a??a??a?��e?��a?�� a?��a?&#45;a??a??a?��a??a?��a��a?aa?c" alt="" coords="747,80,872,107"><area shape="rect" href="../../d6/d29/bigface__cache_8h.html" title="a?��a?&#45;a??a??a?��e?��a?�� a?��a?&#45;a??a??a?��a??a?��a��a?aa?c" alt="" coords="413,80,531,107"><area shape="rect" href="../../d9/d62/define__gcd_8h.html" title="DXa??c?��c3��" alt="" coords="483,229,581,256"><area shape="rect" title="DirectPlay" alt="" coords="137,155,233,181"><area shape="rect" href="../../db/da4/task_8h.html" title="a?�Ea?1a??a??a?�Pa?ca?1c&#45;?a?RaR?c?c a?!a??a?3a?�Ea?1a??a??a�?a?2a??a??a?�Ne?��a?Rc�ʁ}a?��..." alt="" coords="503,155,561,181"><area shape="rect" href="../../d7/d82/gobject_8h.html" title="DLLa?��a�P?a??a?|a??a??a??a??e?��a?��a?RaR?c?c" alt="" coords="651,155,725,181"></map>
-</div>
-
-<p>
-<div class="dynheader">
-このグラフは、どのファイルから直接、間接的にインクルードされているかを示しています。</div>
-<div class="dynsection">
-<p><center><img src="../../d5/d7f/global_8h__dep__incl.png" border="0" usemap="#devkit100/goluah/goluah/source/global/global.hdep_map" alt=""></center>
-<map name="devkit100/goluah/goluah/source/global/global.hdep_map">
-<area shape="rect" href="../../dc/da8/script__story_8cpp.html" title="a?��a?&#45;a??a??a?��e?��a?�� a?��a?&#45;a??a??a?��a??a?��a��a?aa?c" alt="" coords="5,80,349,107"><area shape="rect" href="../../d1/dfd/dx__input_8cpp.html" title="a?��a?&#45;a??a??a?��e?��a?�� a?��a?&#45;a??a??a?��a??a?��a��a?aa?c" alt="" coords="373,80,672,107"><area shape="rect" href="../../db/d00/dx__play_8cpp.html" title="a?��a?&#45;a??a??a?��e?��a?�� a?��a?&#45;a??a??a?��a??a?��a��a?aa?c" alt="" coords="696,80,992,107"><area shape="rect" href="../../d4/d54/dx__sound_8cpp.html" title="a?��a?&#45;a??a??a?��e?��a?�� a?��a?&#45;a??a??a?��a??a?��a��a?aa?c" alt="" coords="1016,80,1323,107"></map>
-</div>
-<table border="0" cellpadding="0" cellspacing="0">
-<tr><td></td></tr>
-<tr><td colspan="2"><br><h2>構成</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dd1/class_aki_global.html">AkiGlobal</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">雑用いろいろクラス  <a href="../../de/dd1/class_aki_global.html#_details">[詳細]</a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d08/struct_m_y2_d_v_e_c_t_o_r.html">MY2DVECTOR</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">2Dベクトル構造体。矩形衝突判定関数で使用  <a href="../../de/d08/struct_m_y2_d_v_e_c_t_o_r.html#_details">[詳細]</a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db4/class_aki_file.html">AkiFile</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ファイルアクセス支援クラス？  <a href="../../d0/db4/class_aki_file.html#_details">[詳細]</a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d34/struct_a_r_g_b.html">ARGB</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="../../d5/d34/struct_a_r_g_b.html" title="ARGB ←→ DWORD 変換クラス">ARGB</a> ←→ DWORD 変換クラス  <a href="../../d5/d34/struct_a_r_g_b.html#_details">[詳細]</a><br></td></tr>
-<tr><td colspan="2"><br><h2>変数</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="fce9bf210c23db60841ccedbe36e348e"></a><!-- doxytag: member="global.h::g_draw" ref="fce9bf210c23db60841ccedbe36e348e" args="" -->
-<a class="el" href="../../d8/da5/class_c_direct_draw.html">CDirectDraw</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#fce9bf210c23db60841ccedbe36e348e">g_draw</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">描画オブジェクト <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="07c7d9b4c52c03744360686e1cd59643"></a><!-- doxytag: member="global.h::g_input" ref="07c7d9b4c52c03744360686e1cd59643" args="" -->
-<a class="el" href="../../d1/d7a/class_c_direct_input.html">CDirectInput</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#07c7d9b4c52c03744360686e1cd59643">g_input</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">入力オブジェクト <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c11b81628df9f86cdfb67d14a6f73f54"></a><!-- doxytag: member="global.h::g_sound" ref="c11b81628df9f86cdfb67d14a6f73f54" args="" -->
-<a class="el" href="../../dc/db7/class_c_direct_sound.html">CDirectSound</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#c11b81628df9f86cdfb67d14a6f73f54">g_sound</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">音系オブジェクト <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a8b81bf3dbb79b5be058e7ae8947a62e"></a><!-- doxytag: member="global.h::g_play" ref="a8b81bf3dbb79b5be058e7ae8947a62e" args="" -->
-<a class="el" href="../../d0/d0f/class_c_direct_play.html">CDirectPlay</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#a8b81bf3dbb79b5be058e7ae8947a62e">g_play</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">通信オブジェクト　消滅 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b0f5c68e228c85f055ff24d948620a80"></a><!-- doxytag: member="global.h::g_system" ref="b0f5c68e228c85f055ff24d948620a80" args="" -->
-<a class="el" href="../../dc/dd5/class_c_system.html">CSystem</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#b0f5c68e228c85f055ff24d948620a80">g_system</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">システムオブジェクト <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8192dd46cea5b9dd19f18c5e30f91926"></a><!-- doxytag: member="global.h::gbl" ref="8192dd46cea5b9dd19f18c5e30f91926" args="" -->
-<a class="el" href="../../de/dd1/class_aki_global.html">AkiGlobal</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#8192dd46cea5b9dd19f18c5e30f91926">gbl</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">グローバル関数の入れ物 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="04cbf2dfd20649d9a20213cdc4440eae"></a><!-- doxytag: member="global.h::g_log2file" ref="04cbf2dfd20649d9a20213cdc4440eae" args="" -->
-<a class="el" href="../../de/d9d/class_c_log2_file.html">CLog2File</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#04cbf2dfd20649d9a20213cdc4440eae">g_log2file</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ファイルへログ保存クラス <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bb3d6e880460638b09c36bc3657492f0"></a><!-- doxytag: member="global.h::g_exp" ref="bb3d6e880460638b09c36bc3657492f0" args="" -->
-<a class="el" href="../../db/dd8/class_c_export.html">CExport</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#bb3d6e880460638b09c36bc3657492f0">g_exp</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">DLLへの関数提供クラス <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="628d14930a677ad360ffd2bdc4807817"></a><!-- doxytag: member="global.h::g_storylist" ref="628d14930a677ad360ffd2bdc4807817" args="" -->
-<a class="el" href="../../d0/d33/class_c_story_list.html">CStoryList</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#628d14930a677ad360ffd2bdc4807817">g_storylist</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ストーリーリスト管理クラス <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8a146e556d51decb9b2222fe030002a6"></a><!-- doxytag: member="global.h::g_stagelist" ref="8a146e556d51decb9b2222fe030002a6" args="" -->
-<a class="el" href="../../d7/d89/class_c_stage_list.html">CStageList</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#8a146e556d51decb9b2222fe030002a6">g_stagelist</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ステージリスト管理クラス <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ca1e52199b78f07bc4e683ec3b7862d1"></a><!-- doxytag: member="global.h::g_charlist" ref="ca1e52199b78f07bc4e683ec3b7862d1" args="" -->
-<a class="el" href="../../d7/d1d/class_c_character_list.html">CCharacterList</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#ca1e52199b78f07bc4e683ec3b7862d1">g_charlist</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">キャラクターリスト管理クラス <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9a0b24fe71874c7d15ce7ce5830cb965"></a><!-- doxytag: member="global.h::g_battleinfo" ref="9a0b24fe71874c7d15ce7ce5830cb965" args="" -->
-<a class="el" href="../../d0/ddf/class_c_battle_load_info.html">CBattleLoadInfo</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#9a0b24fe71874c7d15ce7ce5830cb965">g_battleinfo</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">試合情報クラス <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1eeadb2f7ed2d5e3d68ad4f307ab39f8"></a><!-- doxytag: member="global.h::g_battleresult" ref="1eeadb2f7ed2d5e3d68ad4f307ab39f8" args="" -->
-<a class="el" href="../../d9/df4/class_c_battle_result_info.html">CBattleResultInfo</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#1eeadb2f7ed2d5e3d68ad4f307ab39f8">g_battleresult</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">試合結果情報クラス <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7cd721856ece31f4ba1510e19379d84a"></a><!-- doxytag: member="global.h::AppName" ref="7cd721856ece31f4ba1510e19379d84a" args="[]" -->
-char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#7cd721856ece31f4ba1510e19379d84a">AppName</a> []</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">アプリケーション名 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ee4e0d614b250dbb971311360de30024"></a><!-- doxytag: member="global.h::g_programexit" ref="ee4e0d614b250dbb971311360de30024" args="" -->
-BOOL&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#ee4e0d614b250dbb971311360de30024">g_programexit</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">メインループ終了フラグ <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c055ff62d4d63e28e99513a4ab638056"></a><!-- doxytag: member="global.h::g_rcClient" ref="c055ff62d4d63e28e99513a4ab638056" args="" -->
-RECT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#c055ff62d4d63e28e99513a4ab638056">g_rcClient</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">window modeのときに必要(?) <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5006d623027400d40f32705e34fd1679"></a><!-- doxytag: member="global.h::g_DISPLAYWIDTH" ref="5006d623027400d40f32705e34fd1679" args="" -->
-int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#5006d623027400d40f32705e34fd1679">g_DISPLAYWIDTH</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">生成ウインドウサイズ（幅） <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f60f99dda5ef0e89757c2486768d1c53"></a><!-- doxytag: member="global.h::g_DISPLAYHEIGHT" ref="f60f99dda5ef0e89757c2486768d1c53" args="" -->
-int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#f60f99dda5ef0e89757c2486768d1c53">g_DISPLAYHEIGHT</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">生成ウインドウサイズ（高さ） <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="713517dda6dab8e6ae45b4b03e195206"></a><!-- doxytag: member="global.h::g_muki" ref="713517dda6dab8e6ae45b4b03e195206" args="[MAXNUM_KEYI]" -->
-BOOL&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#713517dda6dab8e6ae45b4b03e195206">g_muki</a> [MAXNUM_KEYI]</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">キー入力の向き <br></td></tr>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Goluah!!: C:/Users/soji_2/Goluah-/devkit100/goluah/goluah/source/global/global.h ファイル</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="../../goluah2.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Goluah!!
+   &#160;<span id="projectnumber">1.21a draft</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
 </table>
-<hr><a name="_details"></a><h2>説明</h2>
-グローバル関数 グローバル変数　など 
-<p>
-実体は global.cpp にて定義する <hr size="1"><address style="text-align: right;"><small>Goluah!!に対してWed Oct 13 14:01:17 2010に生成されました。&nbsp;
-<a href="http://www.doxygen.org/index.html">
-<img src="../../doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.3 </small></address>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.13 -->
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('../../',false,false,'search.php','検索');
+});
+</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_d522931ffa1371640980b621734a4381.html">Users</a></li><li class="navelem"><a class="el" href="../../dir_4c522038318d856a30140b7fc3c7e1cd.html">soji_2</a></li><li class="navelem"><a class="el" href="../../dir_600e335f6d1480b927e4b3c45745f622.html">Goluah-</a></li><li class="navelem"><a class="el" href="../../dir_ed94a87614c81d3108bce644404c8b4c.html">devkit100</a></li><li class="navelem"><a class="el" href="../../dir_5cc13280eededf086b33892a95c86270.html">goluah</a></li><li class="navelem"><a class="el" href="../../dir_95ecdf2361519a8fb2e3e8a04311d050.html">goluah</a></li><li class="navelem"><a class="el" href="../../dir_bffc155e65b19037c217be094c678b6c.html">source</a></li><li class="navelem"><a class="el" href="../../dir_1181cf2b528d512d37fab0df806dc594.html">global</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">クラス</a> &#124;
+<a href="#var-members">変数</a>  </div>
+  <div class="headertitle">
+<div class="title">global.h ファイル</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>グローバル関数 グローバル変数　など  
+<a href="#details">[詳解]</a></p>
+<div class="textblock"><code>#include &quot;stdafx.h&quot;</code><br />
+<code>#include &quot;dx_draw.h&quot;</code><br />
+<code>#include &quot;dx_input.h&quot;</code><br />
+<code>#include &quot;dx_sound.h&quot;</code><br />
+<code>#include &quot;dx_play.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../dc/db2/system_8h.html">system.h</a>&quot;</code><br />
+<code>#include &quot;config.h&quot;</code><br />
+<code>#include &quot;log2file.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../db/db5/export_8h.html">export.h</a>&quot;</code><br />
+<code>#include &quot;storylist.h&quot;</code><br />
+<code>#include &quot;stagelist.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d4/dbd/charlist_8h.html">charlist.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../df/d33/battle__load__info_8h.html">battle_load_info.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d6/d29/bigface__cache_8h.html">bigface_cache.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+global.h の依存先関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d0/dbb/global_8h__incl.png" border="0" usemap="#_c_1_2_users_2soji__2_2_goluah-_2devkit100_2goluah_2goluah_2source_2global_2global_8h" alt=""/></div>
+<map name="_c_1_2_users_2soji__2_2_goluah-_2devkit100_2goluah_2goluah_2source_2global_2global_8h" id="_c_1_2_users_2soji__2_2_goluah-_2devkit100_2goluah_2goluah_2source_2global_2global_8h">
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+被依存関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d5/d7f/global_8h__dep__incl.png" border="0" usemap="#_c_1_2_users_2soji__2_2_goluah-_2devkit100_2goluah_2goluah_2source_2global_2global_8hdep" alt=""/></div>
+<map name="_c_1_2_users_2soji__2_2_goluah-_2devkit100_2goluah_2goluah_2source_2global_2global_8hdep" id="_c_1_2_users_2soji__2_2_goluah-_2devkit100_2goluah_2goluah_2source_2global_2global_8hdep">
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+クラス</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dd1/class_aki_global.html">AkiGlobal</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">雑用いろいろクラス  <a href="../../de/dd1/class_aki_global.html#details">[詳解]</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d08/struct_m_y2_d_v_e_c_t_o_r.html">MY2DVECTOR</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">2Dベクトル構造体。矩形衝突判定関数で使用  <a href="../../de/d08/struct_m_y2_d_v_e_c_t_o_r.html#details">[詳解]</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db4/class_aki_file.html">AkiFile</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ファイルアクセス支援クラス？  <a href="../../d0/db4/class_aki_file.html#details">[詳解]</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d34/struct_a_r_g_b.html">ARGB</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="../../d5/d34/struct_a_r_g_b.html" title="ARGB ←→ DWORD 変換クラス ">ARGB</a> ←→ DWORD 変換クラス  <a href="../../d5/d34/struct_a_r_g_b.html#details">[詳解]</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+変数</h2></td></tr>
+<tr class="memitem:afce9bf210c23db60841ccedbe36e348e"><td class="memItemLeft" align="right" valign="top"><a id="afce9bf210c23db60841ccedbe36e348e"></a>
+CDirectDraw&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#afce9bf210c23db60841ccedbe36e348e">g_draw</a></td></tr>
+<tr class="memdesc:afce9bf210c23db60841ccedbe36e348e"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画オブジェクト <br /></td></tr>
+<tr class="separator:afce9bf210c23db60841ccedbe36e348e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07c7d9b4c52c03744360686e1cd59643"><td class="memItemLeft" align="right" valign="top"><a id="a07c7d9b4c52c03744360686e1cd59643"></a>
+CDirectInput&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#a07c7d9b4c52c03744360686e1cd59643">g_input</a></td></tr>
+<tr class="memdesc:a07c7d9b4c52c03744360686e1cd59643"><td class="mdescLeft">&#160;</td><td class="mdescRight">入力オブジェクト <br /></td></tr>
+<tr class="separator:a07c7d9b4c52c03744360686e1cd59643"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac11b81628df9f86cdfb67d14a6f73f54"><td class="memItemLeft" align="right" valign="top"><a id="ac11b81628df9f86cdfb67d14a6f73f54"></a>
+CDirectSound&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#ac11b81628df9f86cdfb67d14a6f73f54">g_sound</a></td></tr>
+<tr class="memdesc:ac11b81628df9f86cdfb67d14a6f73f54"><td class="mdescLeft">&#160;</td><td class="mdescRight">音系オブジェクト <br /></td></tr>
+<tr class="separator:ac11b81628df9f86cdfb67d14a6f73f54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8b81bf3dbb79b5be058e7ae8947a62e"><td class="memItemLeft" align="right" valign="top"><a id="aa8b81bf3dbb79b5be058e7ae8947a62e"></a>
+CDirectPlay&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#aa8b81bf3dbb79b5be058e7ae8947a62e">g_play</a></td></tr>
+<tr class="memdesc:aa8b81bf3dbb79b5be058e7ae8947a62e"><td class="mdescLeft">&#160;</td><td class="mdescRight">通信オブジェクト　消滅 <br /></td></tr>
+<tr class="separator:aa8b81bf3dbb79b5be058e7ae8947a62e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0f5c68e228c85f055ff24d948620a80"><td class="memItemLeft" align="right" valign="top"><a id="ab0f5c68e228c85f055ff24d948620a80"></a>
+<a class="el" href="../../dc/dd5/class_c_system.html">CSystem</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#ab0f5c68e228c85f055ff24d948620a80">g_system</a></td></tr>
+<tr class="memdesc:ab0f5c68e228c85f055ff24d948620a80"><td class="mdescLeft">&#160;</td><td class="mdescRight">システムオブジェクト <br /></td></tr>
+<tr class="separator:ab0f5c68e228c85f055ff24d948620a80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8192dd46cea5b9dd19f18c5e30f91926"><td class="memItemLeft" align="right" valign="top"><a id="a8192dd46cea5b9dd19f18c5e30f91926"></a>
+<a class="el" href="../../de/dd1/class_aki_global.html">AkiGlobal</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#a8192dd46cea5b9dd19f18c5e30f91926">gbl</a></td></tr>
+<tr class="memdesc:a8192dd46cea5b9dd19f18c5e30f91926"><td class="mdescLeft">&#160;</td><td class="mdescRight">グローバル関数の入れ物 <br /></td></tr>
+<tr class="separator:a8192dd46cea5b9dd19f18c5e30f91926"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04cbf2dfd20649d9a20213cdc4440eae"><td class="memItemLeft" align="right" valign="top"><a id="a04cbf2dfd20649d9a20213cdc4440eae"></a>
+<a class="el" href="../../de/d9d/class_c_log2_file.html">CLog2File</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#a04cbf2dfd20649d9a20213cdc4440eae">g_log2file</a></td></tr>
+<tr class="memdesc:a04cbf2dfd20649d9a20213cdc4440eae"><td class="mdescLeft">&#160;</td><td class="mdescRight">ファイルへログ保存クラス <br /></td></tr>
+<tr class="separator:a04cbf2dfd20649d9a20213cdc4440eae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb3d6e880460638b09c36bc3657492f0"><td class="memItemLeft" align="right" valign="top"><a id="abb3d6e880460638b09c36bc3657492f0"></a>
+<a class="el" href="../../db/dd8/class_c_export.html">CExport</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#abb3d6e880460638b09c36bc3657492f0">g_exp</a></td></tr>
+<tr class="memdesc:abb3d6e880460638b09c36bc3657492f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">DLLへの関数提供クラス <br /></td></tr>
+<tr class="separator:abb3d6e880460638b09c36bc3657492f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a628d14930a677ad360ffd2bdc4807817"><td class="memItemLeft" align="right" valign="top"><a id="a628d14930a677ad360ffd2bdc4807817"></a>
+<a class="el" href="../../d0/d33/class_c_story_list.html">CStoryList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#a628d14930a677ad360ffd2bdc4807817">g_storylist</a></td></tr>
+<tr class="memdesc:a628d14930a677ad360ffd2bdc4807817"><td class="mdescLeft">&#160;</td><td class="mdescRight">ストーリーリスト管理クラス <br /></td></tr>
+<tr class="separator:a628d14930a677ad360ffd2bdc4807817"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a146e556d51decb9b2222fe030002a6"><td class="memItemLeft" align="right" valign="top"><a id="a8a146e556d51decb9b2222fe030002a6"></a>
+<a class="el" href="../../d7/d89/class_c_stage_list.html">CStageList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#a8a146e556d51decb9b2222fe030002a6">g_stagelist</a></td></tr>
+<tr class="memdesc:a8a146e556d51decb9b2222fe030002a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">ステージリスト管理クラス <br /></td></tr>
+<tr class="separator:a8a146e556d51decb9b2222fe030002a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca1e52199b78f07bc4e683ec3b7862d1"><td class="memItemLeft" align="right" valign="top"><a id="aca1e52199b78f07bc4e683ec3b7862d1"></a>
+<a class="el" href="../../d7/d1d/class_c_character_list.html">CCharacterList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#aca1e52199b78f07bc4e683ec3b7862d1">g_charlist</a></td></tr>
+<tr class="memdesc:aca1e52199b78f07bc4e683ec3b7862d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">キャラクターリスト管理クラス <br /></td></tr>
+<tr class="separator:aca1e52199b78f07bc4e683ec3b7862d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a0b24fe71874c7d15ce7ce5830cb965"><td class="memItemLeft" align="right" valign="top"><a id="a9a0b24fe71874c7d15ce7ce5830cb965"></a>
+<a class="el" href="../../d0/ddf/class_c_battle_load_info.html">CBattleLoadInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#a9a0b24fe71874c7d15ce7ce5830cb965">g_battleinfo</a></td></tr>
+<tr class="memdesc:a9a0b24fe71874c7d15ce7ce5830cb965"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合情報クラス <br /></td></tr>
+<tr class="separator:a9a0b24fe71874c7d15ce7ce5830cb965"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1eeadb2f7ed2d5e3d68ad4f307ab39f8"><td class="memItemLeft" align="right" valign="top"><a id="a1eeadb2f7ed2d5e3d68ad4f307ab39f8"></a>
+<a class="el" href="../../d9/df4/class_c_battle_result_info.html">CBattleResultInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#a1eeadb2f7ed2d5e3d68ad4f307ab39f8">g_battleresult</a></td></tr>
+<tr class="memdesc:a1eeadb2f7ed2d5e3d68ad4f307ab39f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合結果情報クラス <br /></td></tr>
+<tr class="separator:a1eeadb2f7ed2d5e3d68ad4f307ab39f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cd721856ece31f4ba1510e19379d84a"><td class="memItemLeft" align="right" valign="top"><a id="a7cd721856ece31f4ba1510e19379d84a"></a>
+char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#a7cd721856ece31f4ba1510e19379d84a">AppName</a> []</td></tr>
+<tr class="memdesc:a7cd721856ece31f4ba1510e19379d84a"><td class="mdescLeft">&#160;</td><td class="mdescRight">アプリケーション名 <br /></td></tr>
+<tr class="separator:a7cd721856ece31f4ba1510e19379d84a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee4e0d614b250dbb971311360de30024"><td class="memItemLeft" align="right" valign="top"><a id="aee4e0d614b250dbb971311360de30024"></a>
+BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#aee4e0d614b250dbb971311360de30024">g_programexit</a></td></tr>
+<tr class="memdesc:aee4e0d614b250dbb971311360de30024"><td class="mdescLeft">&#160;</td><td class="mdescRight">メインループ終了フラグ <br /></td></tr>
+<tr class="separator:aee4e0d614b250dbb971311360de30024"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac055ff62d4d63e28e99513a4ab638056"><td class="memItemLeft" align="right" valign="top"><a id="ac055ff62d4d63e28e99513a4ab638056"></a>
+RECT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#ac055ff62d4d63e28e99513a4ab638056">g_rcClient</a></td></tr>
+<tr class="memdesc:ac055ff62d4d63e28e99513a4ab638056"><td class="mdescLeft">&#160;</td><td class="mdescRight">window modeのときに必要(?) <br /></td></tr>
+<tr class="separator:ac055ff62d4d63e28e99513a4ab638056"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5006d623027400d40f32705e34fd1679"><td class="memItemLeft" align="right" valign="top"><a id="a5006d623027400d40f32705e34fd1679"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#a5006d623027400d40f32705e34fd1679">g_DISPLAYWIDTH</a></td></tr>
+<tr class="memdesc:a5006d623027400d40f32705e34fd1679"><td class="mdescLeft">&#160;</td><td class="mdescRight">生成ウインドウサイズ（幅） <br /></td></tr>
+<tr class="separator:a5006d623027400d40f32705e34fd1679"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af60f99dda5ef0e89757c2486768d1c53"><td class="memItemLeft" align="right" valign="top"><a id="af60f99dda5ef0e89757c2486768d1c53"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#af60f99dda5ef0e89757c2486768d1c53">g_DISPLAYHEIGHT</a></td></tr>
+<tr class="memdesc:af60f99dda5ef0e89757c2486768d1c53"><td class="mdescLeft">&#160;</td><td class="mdescRight">生成ウインドウサイズ（高さ） <br /></td></tr>
+<tr class="separator:af60f99dda5ef0e89757c2486768d1c53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a713517dda6dab8e6ae45b4b03e195206"><td class="memItemLeft" align="right" valign="top"><a id="a713517dda6dab8e6ae45b4b03e195206"></a>
+BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d49/global_8h.html#a713517dda6dab8e6ae45b4b03e195206">g_muki</a> [MAXNUM_KEYI]</td></tr>
+<tr class="memdesc:a713517dda6dab8e6ae45b4b03e195206"><td class="mdescLeft">&#160;</td><td class="mdescRight">キー入力の向き <br /></td></tr>
+<tr class="separator:a713517dda6dab8e6ae45b4b03e195206"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>グローバル関数 グローバル変数　など </p>
+<p>実体は global.cpp にて定義する </p>
+</div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
 </body>
 </html>

@@ -1,93 +1,124 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Goluah!!: クラス CBattleResultInfo</title>
-<link href="../../doxygen.css" rel="stylesheet" type="text/css">
-<link href="../../tabs.css" rel="stylesheet" type="text/css">
-</head><body>
-<!-- 作成： Doxygen 1.5.3 -->
-<div class="tabs">
-  <ul>
-    <li><a href="../../main.html"><span>メインページ</span></a></li>
-    <li><a href="../../modules.html"><span>モジュール</span></a></li>
-    <li class="current"><a href="../../annotated.html"><span>クラス</span></a></li>
-    <li><a href="../../files.html"><span>ファイル</span></a></li>
-  </ul>
-</div>
-<div class="tabs">
-  <ul>
-    <li><a href="../../annotated.html"><span>構成</span></a></li>
-    <li><a href="../../hierarchy.html"><span>クラス階層</span></a></li>
-    <li><a href="../../functions.html"><span>構成メンバ</span></a></li>
-  </ul>
-</div>
-<h1>クラス CBattleResultInfo<br>
-<small>
-[<a class="el" href="../../d6/da4/group__global.html">Global</a>]</small>
-</h1><!-- doxytag: class="CBattleResultInfo" -->戦闘タスク終了時の情報 <a class="el" href="../../d0/ddf/class_c_battle_load_info.html" title="戦闘タスク開始に必要な情報保持クラス グローバルに1つだけ存在して、�...">CBattleLoadInfo</a> と同じような位置づけで、こっちは勝敗や 勝利せりふ等、終了時の情報を保持する  
-<a href="#_details">[詳細]</a>
-<p>
-<code>#include &lt;battle_load_info.h&gt;</code>
-<p>
-
-<p>
-<a href="../../d9/df8/class_c_battle_result_info-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
-<tr><td></td></tr>
-<tr><td colspan="2"><br><h2>Public メソッド</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="dc700dc5bac135bce204322694e0cc90"></a><!-- doxytag: member="CBattleResultInfo::Initialize" ref="dc700dc5bac135bce204322694e0cc90" args="(BYTE wteam)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#dc700dc5bac135bce204322694e0cc90">Initialize</a> (BYTE wteam)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">CBattleLoadInfoから情報をコピーして準備する <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="cc46bdb5415234b392e3f50eae838dad"></a><!-- doxytag: member="CBattleResultInfo::SetKatiSerif" ref="cc46bdb5415234b392e3f50eae838dad" args="(DWORD team, char *str)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#cc46bdb5415234b392e3f50eae838dad">SetKatiSerif</a> (DWORD team, char *str)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">勝利台詞設定 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b4dcd375c51a3c4d30a247f40cd41889"></a><!-- doxytag: member="CBattleResultInfo::GetWinner" ref="b4dcd375c51a3c4d30a247f40cd41889" args="()" -->
-BOOL&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#b4dcd375c51a3c4d30a247f40cd41889">GetWinner</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">勝利チームゲト <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1d7e4f2ee5fdbf64a09380b65e6dfe51"></a><!-- doxytag: member="CBattleResultInfo::GetWinnerCount" ref="1d7e4f2ee5fdbf64a09380b65e6dfe51" args="()" -->
-UINT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#1d7e4f2ee5fdbf64a09380b65e6dfe51">GetWinnerCount</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">勝利側チーム人数 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9c1e188c557fb0cb230c2f5d1577e5ae"></a><!-- doxytag: member="CBattleResultInfo::GetKatiSerif" ref="9c1e188c557fb0cb230c2f5d1577e5ae" args="(DWORD team=3)" -->
-char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#9c1e188c557fb0cb230c2f5d1577e5ae">GetKatiSerif</a> (DWORD team=3)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">台詞ゲト <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="869776942251f4e0c7d1f657abd7a9e7"></a><!-- doxytag: member="CBattleResultInfo::GetCharacter" ref="869776942251f4e0c7d1f657abd7a9e7" args="(DWORD index)" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#869776942251f4e0c7d1f657abd7a9e7">GetCharacter</a> (DWORD index)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">キャラクタゲト <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e2c0a467be3264d9ed22cc7e931e5dc6"></a><!-- doxytag: member="CBattleResultInfo::GetColor" ref="e2c0a467be3264d9ed22cc7e931e5dc6" args="(UINT index)" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#e2c0a467be3264d9ed22cc7e931e5dc6">GetColor</a> (UINT index)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">勝った方のカラー <br></td></tr>
-<tr><td colspan="2"><br><h2>Protected 変数</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c29ca3336649fc5bcfd73c334da85be3"></a><!-- doxytag: member="CBattleResultInfo::m_winner" ref="c29ca3336649fc5bcfd73c334da85be3" args="" -->
-BYTE&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#c29ca3336649fc5bcfd73c334da85be3">m_winner</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">勝利チーム(0or1) <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="abda41d92c98c63a8123b7ec57797929"></a><!-- doxytag: member="CBattleResultInfo::m_serif" ref="abda41d92c98c63a8123b7ec57797929" args="[2][256]" -->
-char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#abda41d92c98c63a8123b7ec57797929">m_serif</a> [2][256]</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">台詞 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="083497b7a302926f909d318a656cab13"></a><!-- doxytag: member="CBattleResultInfo::m_character" ref="083497b7a302926f909d318a656cab13" args="[MAXNUM_TEAM]" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#083497b7a302926f909d318a656cab13">m_character</a> [MAXNUM_TEAM]</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">キャラクタ <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="892d9938fcc0a09457041e92cc61569e"></a><!-- doxytag: member="CBattleResultInfo::m_color" ref="892d9938fcc0a09457041e92cc61569e" args="[MAXNUM_TEAM]" -->
-UINT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#892d9938fcc0a09457041e92cc61569e">m_color</a> [MAXNUM_TEAM]</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">カラー <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8d06a3ef5e8fa2469cf7ca521a6480b0"></a><!-- doxytag: member="CBattleResultInfo::m_winner_count" ref="8d06a3ef5e8fa2469cf7ca521a6480b0" args="" -->
-UINT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#8d06a3ef5e8fa2469cf7ca521a6480b0">m_winner_count</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">勝利側チーム人数 <br></td></tr>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Goluah!!: CBattleResultInfo クラス</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="../../goluah2.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Goluah!!
+   &#160;<span id="projectnumber">1.21a draft</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
 </table>
-<hr><a name="_details"></a><h2>説明</h2>
-戦闘タスク終了時の情報 <a class="el" href="../../d0/ddf/class_c_battle_load_info.html" title="戦闘タスク開始に必要な情報保持クラス グローバルに1つだけ存在して、�...">CBattleLoadInfo</a> と同じような位置づけで、こっちは勝敗や 勝利せりふ等、終了時の情報を保持する <hr>このクラスの説明は次のファイルから生成されました:<ul>
-<li>devkit100/goluah/goluah/source/global/<a class="el" href="../../df/d33/battle__load__info_8h.html">battle_load_info.h</a><li>devkit100/goluah/goluah/source/global/battle_load_info.cpp</ul>
-<hr size="1"><address style="text-align: right;"><small>Goluah!!に対してWed Oct 13 14:01:39 2010に生成されました。&nbsp;
-<a href="http://www.doxygen.org/index.html">
-<img src="../../doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.3 </small></address>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.13 -->
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('../../',false,false,'search.php','検索');
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pro-attribs">限定公開変数類</a> &#124;
+<a href="../../d9/df8/class_c_battle_result_info-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">CBattleResultInfo クラス<div class="ingroups"><a class="el" href="../../d6/da4/group__global.html">Global</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>戦闘タスク終了時の情報 <a class="el" href="../../d0/ddf/class_c_battle_load_info.html" title="戦闘タスク開始に必要な情報保持クラス グローバルに1つだけ存在して、タスク間で試合情報を受け渡すための�...">CBattleLoadInfo</a> と同じような位置づけで、こっちは勝敗や 勝利せりふ等、終了時の情報を保持する  
+ <a href="../../d9/df4/class_c_battle_result_info.html#details">[詳解]</a></p>
+
+<p><code>#include &lt;battle_load_info.h&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:adc700dc5bac135bce204322694e0cc90"><td class="memItemLeft" align="right" valign="top"><a id="adc700dc5bac135bce204322694e0cc90"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#adc700dc5bac135bce204322694e0cc90">Initialize</a> (BYTE wteam)</td></tr>
+<tr class="memdesc:adc700dc5bac135bce204322694e0cc90"><td class="mdescLeft">&#160;</td><td class="mdescRight">CBattleLoadInfoから情報をコピーして準備する <br /></td></tr>
+<tr class="separator:adc700dc5bac135bce204322694e0cc90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc46bdb5415234b392e3f50eae838dad"><td class="memItemLeft" align="right" valign="top"><a id="acc46bdb5415234b392e3f50eae838dad"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#acc46bdb5415234b392e3f50eae838dad">SetKatiSerif</a> (DWORD team, char *str)</td></tr>
+<tr class="memdesc:acc46bdb5415234b392e3f50eae838dad"><td class="mdescLeft">&#160;</td><td class="mdescRight">勝利台詞設定 <br /></td></tr>
+<tr class="separator:acc46bdb5415234b392e3f50eae838dad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4dcd375c51a3c4d30a247f40cd41889"><td class="memItemLeft" align="right" valign="top"><a id="ab4dcd375c51a3c4d30a247f40cd41889"></a>
+BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#ab4dcd375c51a3c4d30a247f40cd41889">GetWinner</a> ()</td></tr>
+<tr class="memdesc:ab4dcd375c51a3c4d30a247f40cd41889"><td class="mdescLeft">&#160;</td><td class="mdescRight">勝利チームゲト <br /></td></tr>
+<tr class="separator:ab4dcd375c51a3c4d30a247f40cd41889"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d7e4f2ee5fdbf64a09380b65e6dfe51"><td class="memItemLeft" align="right" valign="top"><a id="a1d7e4f2ee5fdbf64a09380b65e6dfe51"></a>
+UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#a1d7e4f2ee5fdbf64a09380b65e6dfe51">GetWinnerCount</a> ()</td></tr>
+<tr class="memdesc:a1d7e4f2ee5fdbf64a09380b65e6dfe51"><td class="mdescLeft">&#160;</td><td class="mdescRight">勝利側チーム人数 <br /></td></tr>
+<tr class="separator:a1d7e4f2ee5fdbf64a09380b65e6dfe51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c1e188c557fb0cb230c2f5d1577e5ae"><td class="memItemLeft" align="right" valign="top"><a id="a9c1e188c557fb0cb230c2f5d1577e5ae"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#a9c1e188c557fb0cb230c2f5d1577e5ae">GetKatiSerif</a> (DWORD team=3)</td></tr>
+<tr class="memdesc:a9c1e188c557fb0cb230c2f5d1577e5ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">台詞ゲト <br /></td></tr>
+<tr class="separator:a9c1e188c557fb0cb230c2f5d1577e5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a869776942251f4e0c7d1f657abd7a9e7"><td class="memItemLeft" align="right" valign="top"><a id="a869776942251f4e0c7d1f657abd7a9e7"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#a869776942251f4e0c7d1f657abd7a9e7">GetCharacter</a> (DWORD index)</td></tr>
+<tr class="memdesc:a869776942251f4e0c7d1f657abd7a9e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">キャラクタゲト <br /></td></tr>
+<tr class="separator:a869776942251f4e0c7d1f657abd7a9e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2c0a467be3264d9ed22cc7e931e5dc6"><td class="memItemLeft" align="right" valign="top"><a id="ae2c0a467be3264d9ed22cc7e931e5dc6"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#ae2c0a467be3264d9ed22cc7e931e5dc6">GetColor</a> (UINT index)</td></tr>
+<tr class="memdesc:ae2c0a467be3264d9ed22cc7e931e5dc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">勝った方のカラー <br /></td></tr>
+<tr class="separator:ae2c0a467be3264d9ed22cc7e931e5dc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+限定公開変数類</h2></td></tr>
+<tr class="memitem:ac29ca3336649fc5bcfd73c334da85be3"><td class="memItemLeft" align="right" valign="top"><a id="ac29ca3336649fc5bcfd73c334da85be3"></a>
+BYTE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#ac29ca3336649fc5bcfd73c334da85be3">m_winner</a></td></tr>
+<tr class="memdesc:ac29ca3336649fc5bcfd73c334da85be3"><td class="mdescLeft">&#160;</td><td class="mdescRight">勝利チーム(0or1) <br /></td></tr>
+<tr class="separator:ac29ca3336649fc5bcfd73c334da85be3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabda41d92c98c63a8123b7ec57797929"><td class="memItemLeft" align="right" valign="top"><a id="aabda41d92c98c63a8123b7ec57797929"></a>
+char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#aabda41d92c98c63a8123b7ec57797929">m_serif</a> [2][256]</td></tr>
+<tr class="memdesc:aabda41d92c98c63a8123b7ec57797929"><td class="mdescLeft">&#160;</td><td class="mdescRight">台詞 <br /></td></tr>
+<tr class="separator:aabda41d92c98c63a8123b7ec57797929"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a083497b7a302926f909d318a656cab13"><td class="memItemLeft" align="right" valign="top"><a id="a083497b7a302926f909d318a656cab13"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#a083497b7a302926f909d318a656cab13">m_character</a> [MAXNUM_TEAM]</td></tr>
+<tr class="memdesc:a083497b7a302926f909d318a656cab13"><td class="mdescLeft">&#160;</td><td class="mdescRight">キャラクタ <br /></td></tr>
+<tr class="separator:a083497b7a302926f909d318a656cab13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a892d9938fcc0a09457041e92cc61569e"><td class="memItemLeft" align="right" valign="top"><a id="a892d9938fcc0a09457041e92cc61569e"></a>
+UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#a892d9938fcc0a09457041e92cc61569e">m_color</a> [MAXNUM_TEAM]</td></tr>
+<tr class="memdesc:a892d9938fcc0a09457041e92cc61569e"><td class="mdescLeft">&#160;</td><td class="mdescRight">カラー <br /></td></tr>
+<tr class="separator:a892d9938fcc0a09457041e92cc61569e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d06a3ef5e8fa2469cf7ca521a6480b0"><td class="memItemLeft" align="right" valign="top"><a id="a8d06a3ef5e8fa2469cf7ca521a6480b0"></a>
+UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df4/class_c_battle_result_info.html#a8d06a3ef5e8fa2469cf7ca521a6480b0">m_winner_count</a></td></tr>
+<tr class="memdesc:a8d06a3ef5e8fa2469cf7ca521a6480b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">勝利側チーム人数 <br /></td></tr>
+<tr class="separator:a8d06a3ef5e8fa2469cf7ca521a6480b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>戦闘タスク終了時の情報 <a class="el" href="../../d0/ddf/class_c_battle_load_info.html" title="戦闘タスク開始に必要な情報保持クラス グローバルに1つだけ存在して、タスク間で試合情報を受け渡すための�...">CBattleLoadInfo</a> と同じような位置づけで、こっちは勝敗や 勝利せりふ等、終了時の情報を保持する </p>
+</div><hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>C:/Users/soji_2/Goluah-/devkit100/goluah/goluah/source/global/<a class="el" href="../../df/d33/battle__load__info_8h.html">battle_load_info.h</a></li>
+<li>C:/Users/soji_2/Goluah-/devkit100/goluah/goluah/source/global/battle_load_info.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
 </body>
 </html>

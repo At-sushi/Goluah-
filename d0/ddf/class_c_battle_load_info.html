@@ -1,327 +1,358 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>Goluah!!: クラス CBattleLoadInfo</title>
-<link href="../../doxygen.css" rel="stylesheet" type="text/css">
-<link href="../../tabs.css" rel="stylesheet" type="text/css">
-</head><body>
-<!-- 作成： Doxygen 1.5.3 -->
-<div class="tabs">
-  <ul>
-    <li><a href="../../main.html"><span>メインページ</span></a></li>
-    <li><a href="../../modules.html"><span>モジュール</span></a></li>
-    <li class="current"><a href="../../annotated.html"><span>クラス</span></a></li>
-    <li><a href="../../files.html"><span>ファイル</span></a></li>
-  </ul>
-</div>
-<div class="tabs">
-  <ul>
-    <li><a href="../../annotated.html"><span>構成</span></a></li>
-    <li><a href="../../hierarchy.html"><span>クラス階層</span></a></li>
-    <li><a href="../../functions.html"><span>構成メンバ</span></a></li>
-  </ul>
-</div>
-<h1>クラス CBattleLoadInfo<br>
-<small>
-[<a class="el" href="../../d6/da4/group__global.html">Global</a>]</small>
-</h1><!-- doxytag: class="CBattleLoadInfo" -->戦闘タスク開始に必要な情報保持クラス グローバルに1つだけ存在して、タスク間で試合情報を受け渡すためのクラス。  
-<a href="#_details">[詳細]</a>
-<p>
-<code>#include &lt;battle_load_info.h&gt;</code>
-<p>
-
-<p>
-<a href="../../dc/d6d/class_c_battle_load_info-members.html">すべてのメンバ一覧</a><table border="0" cellpadding="0" cellspacing="0">
-<tr><td></td></tr>
-<tr><td colspan="2"><br><h2>Public メソッド</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="221db46c31178da5c13991201386cde3"></a><!-- doxytag: member="CBattleLoadInfo::Initialize" ref="221db46c31178da5c13991201386cde3" args="()" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#221db46c31178da5c13991201386cde3">Initialize</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">全項目を指定無しに設定する <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3e9a673427207876d990d4b70e229156"></a><!-- doxytag: member="CBattleLoadInfo::ResolveRandom" ref="3e9a673427207876d990d4b70e229156" args="()" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#3e9a673427207876d990d4b70e229156">ResolveRandom</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">指定無し項目をランダム指定とみなし、有効な値を割り当てる <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#9343a86e6b58a87963d91cdb54921855">SetBattleType</a> (BYTE type)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">対戦形式を指定（TAISENKEISIKI_〜）  <a href="#9343a86e6b58a87963d91cdb54921855"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#e8b8b6d651c2613018a4610adb80a81b">SetLimitTime</a> (int val)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">制限時間設定  <a href="#e8b8b6d651c2613018a4610adb80a81b"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#63cc3d446dc178d18b571bf55a8bb24a">AddCharacter</a> (DWORD team, DWORD cindex, DWORD color, BYTE key, DWORD option)</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a6c302652af94fafb57b182c49ec5a18"></a><!-- doxytag: member="CBattleLoadInfo::SetStage" ref="a6c302652af94fafb57b182c49ec5a18" args="(DWORD stage_index)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#a6c302652af94fafb57b182c49ec5a18">SetStage</a> (DWORD stage_index)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ステージを設定 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d1e3bd78fb64480064e733d8a67b469a"></a><!-- doxytag: member="CBattleLoadInfo::SetStoryBGM" ref="d1e3bd78fb64480064e733d8a67b469a" args="(char *filepath)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#d1e3bd78fb64480064e733d8a67b469a">SetStoryBGM</a> (char *filepath)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ストーリーから指定されたBGM <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#9130ac70123d2b27658f9fd16c111f39">SetComLevel</a> (DWORD team, DWORD cindex, int level, BOOL is_related)</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e4234000f213cd48ba01abc796e6663a"></a><!-- doxytag: member="CBattleLoadInfo::GetBattleType" ref="e4234000f213cd48ba01abc796e6663a" args="()" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#e4234000f213cd48ba01abc796e6663a">GetBattleType</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">対戦形式を取得 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7c06feef2e5120d488fc2b3191d5bb0f"></a><!-- doxytag: member="CBattleLoadInfo::GetLimitTime" ref="7c06feef2e5120d488fc2b3191d5bb0f" args="()" -->
-int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#7c06feef2e5120d488fc2b3191d5bb0f">GetLimitTime</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">制限時間取得 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2a0c9662d8873a0e6c578703722a1a9d"></a><!-- doxytag: member="CBattleLoadInfo::GetNumTeam" ref="2a0c9662d8873a0e6c578703722a1a9d" args="(DWORD team)" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#2a0c9662d8873a0e6c578703722a1a9d">GetNumTeam</a> (DWORD team)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">1チームの人数を取得 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="fa4ce61112aa89f5f7369adfdc2a2958"></a><!-- doxytag: member="CBattleLoadInfo::GetCharacter" ref="fa4ce61112aa89f5f7369adfdc2a2958" args="(DWORD team, DWORD member_index)" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#fa4ce61112aa89f5f7369adfdc2a2958">GetCharacter</a> (DWORD team, DWORD member_index)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">キャラクタを取得 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f7194020edcfa589306967c14fa72c31"></a><!-- doxytag: member="CBattleLoadInfo::GetCharacterIsCOM" ref="f7194020edcfa589306967c14fa72c31" args="(DWORD team, DWORD member_index)" -->
-BOOL&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#f7194020edcfa589306967c14fa72c31">GetCharacterIsCOM</a> (DWORD team, DWORD member_index)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">コンピュータかどうかを取得 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="95f6bf9ac202871fde559ba82bec08a5"></a><!-- doxytag: member="CBattleLoadInfo::GetColor" ref="95f6bf9ac202871fde559ba82bec08a5" args="(DWORD team, DWORD member_index)" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#95f6bf9ac202871fde559ba82bec08a5">GetColor</a> (DWORD team, DWORD member_index)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">カラーを取得 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="99e8ffe9d0134d7eba01a03a24435b49"></a><!-- doxytag: member="CBattleLoadInfo::GetCharacterOption" ref="99e8ffe9d0134d7eba01a03a24435b49" args="(DWORD team, DWORD member_index)" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#99e8ffe9d0134d7eba01a03a24435b49">GetCharacterOption</a> (DWORD team, DWORD member_index)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">オプションを取得 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7617aa7818da924deade350e6aad04de"></a><!-- doxytag: member="CBattleLoadInfo::GetStage" ref="7617aa7818da924deade350e6aad04de" args="()" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#7617aa7818da924deade350e6aad04de">GetStage</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ステージを取得 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8abadd7488e2213135799db56381e5a1"></a><!-- doxytag: member="CBattleLoadInfo::GetStoryBGM" ref="8abadd7488e2213135799db56381e5a1" args="()" -->
-char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#8abadd7488e2213135799db56381e5a1">GetStoryBGM</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ストーリーで指定されたBGM取得（設定されていない場合NULL） <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3feecc58f605c43040572553dfa87393"></a><!-- doxytag: member="CBattleLoadInfo::GetComLevel" ref="3feecc58f605c43040572553dfa87393" args="(DWORD team, DWORD member_idx)" -->
-<a class="el" href="../../d6/da4/group__global.html#ge49b65fa582b3d4b311441b3e6fff278">Config2_Difficulty</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#3feecc58f605c43040572553dfa87393">GetComLevel</a> (DWORD team, DWORD member_idx)</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">COMレベル取得 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4de884bb63b570b463d6e8be30214d7c"></a><!-- doxytag: member="CBattleLoadInfo::GetAllKey" ref="4de884bb63b570b463d6e8be30214d7c" args="()" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#4de884bb63b570b463d6e8be30214d7c">GetAllKey</a> ()</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">試合に関わってる全プレイヤーキー入力の和をゲット <br></td></tr>
-<tr><td colspan="2"><br><h2>Protected 変数</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="41719a8a72878861c8953050bfbf386f"></a><!-- doxytag: member="CBattleLoadInfo::m_limittime" ref="41719a8a72878861c8953050bfbf386f" args="" -->
-int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#41719a8a72878861c8953050bfbf386f">m_limittime</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">制限時間 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0322c82ed942f54224653141f46e7d77"></a><!-- doxytag: member="CBattleLoadInfo::m_type" ref="0322c82ed942f54224653141f46e7d77" args="" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#0322c82ed942f54224653141f46e7d77">m_type</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">対戦形式 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="69511f4bbb27d2b2f8a1dde904e4c1bf"></a><!-- doxytag: member="CBattleLoadInfo::m_num_team" ref="69511f4bbb27d2b2f8a1dde904e4c1bf" args="[2]" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#69511f4bbb27d2b2f8a1dde904e4c1bf">m_num_team</a> [2]</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">1チーム何人か <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="84b148a2f46189e1793606f2a7ae207e"></a><!-- doxytag: member="CBattleLoadInfo::m_char" ref="84b148a2f46189e1793606f2a7ae207e" args="[2][MAXNUM_TEAM]" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#84b148a2f46189e1793606f2a7ae207e">m_char</a> [2][MAXNUM_TEAM]</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">選択されたキャラクター <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d9f6582a66019865df428dc886b0c9ef"></a><!-- doxytag: member="CBattleLoadInfo::m_options" ref="d9f6582a66019865df428dc886b0c9ef" args="[2][MAXNUM_TEAM]" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#d9f6582a66019865df428dc886b0c9ef">m_options</a> [2][MAXNUM_TEAM]</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">選択されたオプション設定 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9543ca3a05dc32de50f354f0018d8b19"></a><!-- doxytag: member="CBattleLoadInfo::m_color" ref="9543ca3a05dc32de50f354f0018d8b19" args="[2][MAXNUM_TEAM]" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#9543ca3a05dc32de50f354f0018d8b19">m_color</a> [2][MAXNUM_TEAM]</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">選択されたキャラクター色 <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b638a296444060472185de28bee425f2"></a><!-- doxytag: member="CBattleLoadInfo::m_key_assign" ref="b638a296444060472185de28bee425f2" args="[2][MAXNUM_TEAM]" -->
-BYTE&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#b638a296444060472185de28bee425f2">m_key_assign</a> [2][MAXNUM_TEAM]</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">コンピュータかどうか <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="12b1c45dbcfbc926b57d642cb86a0d19"></a><!-- doxytag: member="CBattleLoadInfo::m_stage" ref="12b1c45dbcfbc926b57d642cb86a0d19" args="" -->
-DWORD&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#12b1c45dbcfbc926b57d642cb86a0d19">m_stage</a></td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">選択されたステージ <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="17ec0e9eba26cbe81afb9606bfd74414"></a><!-- doxytag: member="CBattleLoadInfo::m_storybgm" ref="17ec0e9eba26cbe81afb9606bfd74414" args="[256]" -->
-char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#17ec0e9eba26cbe81afb9606bfd74414">m_storybgm</a> [256]</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ストーリーから指定されたBGM <br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6c3df84fd53108d3297318d14b334ca3"></a><!-- doxytag: member="CBattleLoadInfo::m_com_level" ref="6c3df84fd53108d3297318d14b334ca3" args="[2][MAXNUM_TEAM]" -->
-<a class="el" href="../../d6/da4/group__global.html#ge49b65fa582b3d4b311441b3e6fff278">Config2_Difficulty</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#6c3df84fd53108d3297318d14b334ca3">m_com_level</a> [2][MAXNUM_TEAM]</td></tr>
-
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">コンピュータ難易度。g_configから取得した値+ストーリーモードでの指定値 <br></td></tr>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Goluah!!: CBattleLoadInfo クラス</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="../../goluah2.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Goluah!!
+   &#160;<span id="projectnumber">1.21a draft</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
 </table>
-<hr><a name="_details"></a><h2>説明</h2>
-戦闘タスク開始に必要な情報保持クラス グローバルに1つだけ存在して、タスク間で試合情報を受け渡すためのクラス。 <hr><h2>関数</h2>
-<a class="anchor" name="9343a86e6b58a87963d91cdb54921855"></a><!-- doxytag: member="CBattleLoadInfo::SetBattleType" ref="9343a86e6b58a87963d91cdb54921855" args="(BYTE type)" -->
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.13 -->
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('../../',false,false,'search.php','検索');
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pro-attribs">限定公開変数類</a> &#124;
+<a href="../../dc/d6d/class_c_battle_load_info-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">CBattleLoadInfo クラス<div class="ingroups"><a class="el" href="../../d6/da4/group__global.html">Global</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>戦闘タスク開始に必要な情報保持クラス グローバルに1つだけ存在して、タスク間で試合情報を受け渡すためのクラス。  
+ <a href="../../d0/ddf/class_c_battle_load_info.html#details">[詳解]</a></p>
+
+<p><code>#include &lt;battle_load_info.h&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a221db46c31178da5c13991201386cde3"><td class="memItemLeft" align="right" valign="top"><a id="a221db46c31178da5c13991201386cde3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#a221db46c31178da5c13991201386cde3">Initialize</a> ()</td></tr>
+<tr class="memdesc:a221db46c31178da5c13991201386cde3"><td class="mdescLeft">&#160;</td><td class="mdescRight">全項目を指定無しに設定する <br /></td></tr>
+<tr class="separator:a221db46c31178da5c13991201386cde3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e9a673427207876d990d4b70e229156"><td class="memItemLeft" align="right" valign="top"><a id="a3e9a673427207876d990d4b70e229156"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#a3e9a673427207876d990d4b70e229156">ResolveRandom</a> ()</td></tr>
+<tr class="memdesc:a3e9a673427207876d990d4b70e229156"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定無し項目をランダム指定とみなし、有効な値を割り当てる <br /></td></tr>
+<tr class="separator:a3e9a673427207876d990d4b70e229156"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9343a86e6b58a87963d91cdb54921855"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#a9343a86e6b58a87963d91cdb54921855">SetBattleType</a> (BYTE type)</td></tr>
+<tr class="memdesc:a9343a86e6b58a87963d91cdb54921855"><td class="mdescLeft">&#160;</td><td class="mdescRight">対戦形式を指定（TAISENKEISIKI_～）  <a href="#a9343a86e6b58a87963d91cdb54921855">[詳解]</a><br /></td></tr>
+<tr class="separator:a9343a86e6b58a87963d91cdb54921855"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8b8b6d651c2613018a4610adb80a81b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#ae8b8b6d651c2613018a4610adb80a81b">SetLimitTime</a> (int val)</td></tr>
+<tr class="memdesc:ae8b8b6d651c2613018a4610adb80a81b"><td class="mdescLeft">&#160;</td><td class="mdescRight">制限時間設定  <a href="#ae8b8b6d651c2613018a4610adb80a81b">[詳解]</a><br /></td></tr>
+<tr class="separator:ae8b8b6d651c2613018a4610adb80a81b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63cc3d446dc178d18b571bf55a8bb24a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#a63cc3d446dc178d18b571bf55a8bb24a">AddCharacter</a> (DWORD team, DWORD cindex, DWORD color, BYTE key, DWORD option)</td></tr>
+<tr class="separator:a63cc3d446dc178d18b571bf55a8bb24a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6c302652af94fafb57b182c49ec5a18"><td class="memItemLeft" align="right" valign="top"><a id="aa6c302652af94fafb57b182c49ec5a18"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#aa6c302652af94fafb57b182c49ec5a18">SetStage</a> (DWORD stage_index)</td></tr>
+<tr class="memdesc:aa6c302652af94fafb57b182c49ec5a18"><td class="mdescLeft">&#160;</td><td class="mdescRight">ステージを設定 <br /></td></tr>
+<tr class="separator:aa6c302652af94fafb57b182c49ec5a18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1e3bd78fb64480064e733d8a67b469a"><td class="memItemLeft" align="right" valign="top"><a id="ad1e3bd78fb64480064e733d8a67b469a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#ad1e3bd78fb64480064e733d8a67b469a">SetStoryBGM</a> (char *filepath)</td></tr>
+<tr class="memdesc:ad1e3bd78fb64480064e733d8a67b469a"><td class="mdescLeft">&#160;</td><td class="mdescRight">ストーリーから指定されたBGM <br /></td></tr>
+<tr class="separator:ad1e3bd78fb64480064e733d8a67b469a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9130ac70123d2b27658f9fd16c111f39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#a9130ac70123d2b27658f9fd16c111f39">SetComLevel</a> (DWORD team, DWORD cindex, int level, BOOL is_related)</td></tr>
+<tr class="separator:a9130ac70123d2b27658f9fd16c111f39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4234000f213cd48ba01abc796e6663a"><td class="memItemLeft" align="right" valign="top"><a id="ae4234000f213cd48ba01abc796e6663a"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#ae4234000f213cd48ba01abc796e6663a">GetBattleType</a> ()</td></tr>
+<tr class="memdesc:ae4234000f213cd48ba01abc796e6663a"><td class="mdescLeft">&#160;</td><td class="mdescRight">対戦形式を取得 <br /></td></tr>
+<tr class="separator:ae4234000f213cd48ba01abc796e6663a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c06feef2e5120d488fc2b3191d5bb0f"><td class="memItemLeft" align="right" valign="top"><a id="a7c06feef2e5120d488fc2b3191d5bb0f"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#a7c06feef2e5120d488fc2b3191d5bb0f">GetLimitTime</a> ()</td></tr>
+<tr class="memdesc:a7c06feef2e5120d488fc2b3191d5bb0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">制限時間取得 <br /></td></tr>
+<tr class="separator:a7c06feef2e5120d488fc2b3191d5bb0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a0c9662d8873a0e6c578703722a1a9d"><td class="memItemLeft" align="right" valign="top"><a id="a2a0c9662d8873a0e6c578703722a1a9d"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#a2a0c9662d8873a0e6c578703722a1a9d">GetNumTeam</a> (DWORD team)</td></tr>
+<tr class="memdesc:a2a0c9662d8873a0e6c578703722a1a9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">1チームの人数を取得 <br /></td></tr>
+<tr class="separator:a2a0c9662d8873a0e6c578703722a1a9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa4ce61112aa89f5f7369adfdc2a2958"><td class="memItemLeft" align="right" valign="top"><a id="afa4ce61112aa89f5f7369adfdc2a2958"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#afa4ce61112aa89f5f7369adfdc2a2958">GetCharacter</a> (DWORD team, DWORD member_index)</td></tr>
+<tr class="memdesc:afa4ce61112aa89f5f7369adfdc2a2958"><td class="mdescLeft">&#160;</td><td class="mdescRight">キャラクタを取得 <br /></td></tr>
+<tr class="separator:afa4ce61112aa89f5f7369adfdc2a2958"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7194020edcfa589306967c14fa72c31"><td class="memItemLeft" align="right" valign="top"><a id="af7194020edcfa589306967c14fa72c31"></a>
+BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#af7194020edcfa589306967c14fa72c31">GetCharacterIsCOM</a> (DWORD team, DWORD member_index)</td></tr>
+<tr class="memdesc:af7194020edcfa589306967c14fa72c31"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンピュータかどうかを取得 <br /></td></tr>
+<tr class="separator:af7194020edcfa589306967c14fa72c31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95f6bf9ac202871fde559ba82bec08a5"><td class="memItemLeft" align="right" valign="top"><a id="a95f6bf9ac202871fde559ba82bec08a5"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#a95f6bf9ac202871fde559ba82bec08a5">GetColor</a> (DWORD team, DWORD member_index)</td></tr>
+<tr class="memdesc:a95f6bf9ac202871fde559ba82bec08a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">カラーを取得 <br /></td></tr>
+<tr class="separator:a95f6bf9ac202871fde559ba82bec08a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99e8ffe9d0134d7eba01a03a24435b49"><td class="memItemLeft" align="right" valign="top"><a id="a99e8ffe9d0134d7eba01a03a24435b49"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#a99e8ffe9d0134d7eba01a03a24435b49">GetCharacterOption</a> (DWORD team, DWORD member_index)</td></tr>
+<tr class="memdesc:a99e8ffe9d0134d7eba01a03a24435b49"><td class="mdescLeft">&#160;</td><td class="mdescRight">オプションを取得 <br /></td></tr>
+<tr class="separator:a99e8ffe9d0134d7eba01a03a24435b49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7617aa7818da924deade350e6aad04de"><td class="memItemLeft" align="right" valign="top"><a id="a7617aa7818da924deade350e6aad04de"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#a7617aa7818da924deade350e6aad04de">GetStage</a> ()</td></tr>
+<tr class="memdesc:a7617aa7818da924deade350e6aad04de"><td class="mdescLeft">&#160;</td><td class="mdescRight">ステージを取得 <br /></td></tr>
+<tr class="separator:a7617aa7818da924deade350e6aad04de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8abadd7488e2213135799db56381e5a1"><td class="memItemLeft" align="right" valign="top"><a id="a8abadd7488e2213135799db56381e5a1"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#a8abadd7488e2213135799db56381e5a1">GetStoryBGM</a> ()</td></tr>
+<tr class="memdesc:a8abadd7488e2213135799db56381e5a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">ストーリーで指定されたBGM取得（設定されていない場合NULL） <br /></td></tr>
+<tr class="separator:a8abadd7488e2213135799db56381e5a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3feecc58f605c43040572553dfa87393"><td class="memItemLeft" align="right" valign="top"><a id="a3feecc58f605c43040572553dfa87393"></a>
+Config2_Difficulty&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#a3feecc58f605c43040572553dfa87393">GetComLevel</a> (DWORD team, DWORD member_idx)</td></tr>
+<tr class="memdesc:a3feecc58f605c43040572553dfa87393"><td class="mdescLeft">&#160;</td><td class="mdescRight">COMレベル取得 <br /></td></tr>
+<tr class="separator:a3feecc58f605c43040572553dfa87393"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4de884bb63b570b463d6e8be30214d7c"><td class="memItemLeft" align="right" valign="top"><a id="a4de884bb63b570b463d6e8be30214d7c"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#a4de884bb63b570b463d6e8be30214d7c">GetAllKey</a> ()</td></tr>
+<tr class="memdesc:a4de884bb63b570b463d6e8be30214d7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">試合に関わってる全プレイヤーキー入力の和をゲット <br /></td></tr>
+<tr class="separator:a4de884bb63b570b463d6e8be30214d7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+限定公開変数類</h2></td></tr>
+<tr class="memitem:a41719a8a72878861c8953050bfbf386f"><td class="memItemLeft" align="right" valign="top"><a id="a41719a8a72878861c8953050bfbf386f"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#a41719a8a72878861c8953050bfbf386f">m_limittime</a></td></tr>
+<tr class="memdesc:a41719a8a72878861c8953050bfbf386f"><td class="mdescLeft">&#160;</td><td class="mdescRight">制限時間 <br /></td></tr>
+<tr class="separator:a41719a8a72878861c8953050bfbf386f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0322c82ed942f54224653141f46e7d77"><td class="memItemLeft" align="right" valign="top"><a id="a0322c82ed942f54224653141f46e7d77"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#a0322c82ed942f54224653141f46e7d77">m_type</a></td></tr>
+<tr class="memdesc:a0322c82ed942f54224653141f46e7d77"><td class="mdescLeft">&#160;</td><td class="mdescRight">対戦形式 <br /></td></tr>
+<tr class="separator:a0322c82ed942f54224653141f46e7d77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69511f4bbb27d2b2f8a1dde904e4c1bf"><td class="memItemLeft" align="right" valign="top"><a id="a69511f4bbb27d2b2f8a1dde904e4c1bf"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#a69511f4bbb27d2b2f8a1dde904e4c1bf">m_num_team</a> [2]</td></tr>
+<tr class="memdesc:a69511f4bbb27d2b2f8a1dde904e4c1bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">1チーム何人か <br /></td></tr>
+<tr class="separator:a69511f4bbb27d2b2f8a1dde904e4c1bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84b148a2f46189e1793606f2a7ae207e"><td class="memItemLeft" align="right" valign="top"><a id="a84b148a2f46189e1793606f2a7ae207e"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#a84b148a2f46189e1793606f2a7ae207e">m_char</a> [2][MAXNUM_TEAM]</td></tr>
+<tr class="memdesc:a84b148a2f46189e1793606f2a7ae207e"><td class="mdescLeft">&#160;</td><td class="mdescRight">選択されたキャラクター <br /></td></tr>
+<tr class="separator:a84b148a2f46189e1793606f2a7ae207e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9f6582a66019865df428dc886b0c9ef"><td class="memItemLeft" align="right" valign="top"><a id="ad9f6582a66019865df428dc886b0c9ef"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#ad9f6582a66019865df428dc886b0c9ef">m_options</a> [2][MAXNUM_TEAM]</td></tr>
+<tr class="memdesc:ad9f6582a66019865df428dc886b0c9ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">選択されたオプション設定 <br /></td></tr>
+<tr class="separator:ad9f6582a66019865df428dc886b0c9ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9543ca3a05dc32de50f354f0018d8b19"><td class="memItemLeft" align="right" valign="top"><a id="a9543ca3a05dc32de50f354f0018d8b19"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#a9543ca3a05dc32de50f354f0018d8b19">m_color</a> [2][MAXNUM_TEAM]</td></tr>
+<tr class="memdesc:a9543ca3a05dc32de50f354f0018d8b19"><td class="mdescLeft">&#160;</td><td class="mdescRight">選択されたキャラクター色 <br /></td></tr>
+<tr class="separator:a9543ca3a05dc32de50f354f0018d8b19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab638a296444060472185de28bee425f2"><td class="memItemLeft" align="right" valign="top"><a id="ab638a296444060472185de28bee425f2"></a>
+BYTE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#ab638a296444060472185de28bee425f2">m_key_assign</a> [2][MAXNUM_TEAM]</td></tr>
+<tr class="memdesc:ab638a296444060472185de28bee425f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンピュータかどうか <br /></td></tr>
+<tr class="separator:ab638a296444060472185de28bee425f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12b1c45dbcfbc926b57d642cb86a0d19"><td class="memItemLeft" align="right" valign="top"><a id="a12b1c45dbcfbc926b57d642cb86a0d19"></a>
+DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#a12b1c45dbcfbc926b57d642cb86a0d19">m_stage</a></td></tr>
+<tr class="memdesc:a12b1c45dbcfbc926b57d642cb86a0d19"><td class="mdescLeft">&#160;</td><td class="mdescRight">選択されたステージ <br /></td></tr>
+<tr class="separator:a12b1c45dbcfbc926b57d642cb86a0d19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17ec0e9eba26cbe81afb9606bfd74414"><td class="memItemLeft" align="right" valign="top"><a id="a17ec0e9eba26cbe81afb9606bfd74414"></a>
+char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#a17ec0e9eba26cbe81afb9606bfd74414">m_storybgm</a> [256]</td></tr>
+<tr class="memdesc:a17ec0e9eba26cbe81afb9606bfd74414"><td class="mdescLeft">&#160;</td><td class="mdescRight">ストーリーから指定されたBGM <br /></td></tr>
+<tr class="separator:a17ec0e9eba26cbe81afb9606bfd74414"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c3df84fd53108d3297318d14b334ca3"><td class="memItemLeft" align="right" valign="top"><a id="a6c3df84fd53108d3297318d14b334ca3"></a>
+Config2_Difficulty&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/ddf/class_c_battle_load_info.html#a6c3df84fd53108d3297318d14b334ca3">m_com_level</a> [2][MAXNUM_TEAM]</td></tr>
+<tr class="memdesc:a6c3df84fd53108d3297318d14b334ca3"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンピュータ難易度。g_configから取得した値+ストーリーモードでの指定値 <br /></td></tr>
+<tr class="separator:a6c3df84fd53108d3297318d14b334ca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>戦闘タスク開始に必要な情報保持クラス グローバルに1つだけ存在して、タスク間で試合情報を受け渡すためのクラス。 </p>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="a63cc3d446dc178d18b571bf55a8bb24a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63cc3d446dc178d18b571bf55a8bb24a">&#9670;&nbsp;</a></span>AddCharacter()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CBattleLoadInfo::SetBattleType           </td>
+          <td class="memname">void CBattleLoadInfo::AddCharacter </td>
           <td>(</td>
-          <td class="paramtype">BYTE&nbsp;</td>
-          <td class="paramname"> <em>type</em>          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td width="100%"></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-対戦形式を指定（TAISENKEISIKI_〜） 
-<p>
-対戦形式を指定 <dl compact><dt><b>引数:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>type</em>&nbsp;</td><td>対戦形式(TAISENKEISIKI_〜値) </td></tr>
-  </table>
-</dl>
-
-</div>
-</div><p>
-<a class="anchor" name="e8b8b6d651c2613018a4610adb80a81b"></a><!-- doxytag: member="CBattleLoadInfo::SetLimitTime" ref="e8b8b6d651c2613018a4610adb80a81b" args="(int val)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CBattleLoadInfo::SetLimitTime           </td>
-          <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>val</em>          </td>
-          <td>&nbsp;)&nbsp;</td>
-          <td width="100%"></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-制限時間設定 
-<p>
-制限時間設定 <dl compact><dt><b>引数:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>val</em>&nbsp;</td><td>設定値。マイナスは制限なしを表す。 </td></tr>
-  </table>
-</dl>
-
-</div>
-</div><p>
-<a class="anchor" name="63cc3d446dc178d18b571bf55a8bb24a"></a><!-- doxytag: member="CBattleLoadInfo::AddCharacter" ref="63cc3d446dc178d18b571bf55a8bb24a" args="(DWORD team, DWORD cindex, DWORD color, BYTE key, DWORD option)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CBattleLoadInfo::AddCharacter           </td>
-          <td>(</td>
-          <td class="paramtype">DWORD&nbsp;</td>
-          <td class="paramname"> <em>team</em>, </td>
+          <td class="paramtype">DWORD&#160;</td>
+          <td class="paramname"><em>team</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">DWORD&nbsp;</td>
-          <td class="paramname"> <em>cindex</em>, </td>
+          <td class="paramtype">DWORD&#160;</td>
+          <td class="paramname"><em>cindex</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">DWORD&nbsp;</td>
-          <td class="paramname"> <em>color</em>, </td>
+          <td class="paramtype">DWORD&#160;</td>
+          <td class="paramname"><em>color</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">BYTE&nbsp;</td>
-          <td class="paramname"> <em>key</em>, </td>
+          <td class="paramtype">BYTE&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">DWORD&nbsp;</td>
-          <td class="paramname"> <em>option</em></td><td>&nbsp;</td>
+          <td class="paramtype">DWORD&#160;</td>
+          <td class="paramname"><em>option</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td width="100%"></td>
+          <td></td><td></td>
         </tr>
       </table>
-</div>
-<div class="memdoc">
-
-<p>
-参加キャラクタ指定 呼び出した回数でチームの人数が決まります。<p>
-<dl compact><dt><b>引数:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>team</em>&nbsp;</td><td>TEAM_PLAYER1/TEAM_PLAYER2 , というか、0/1 </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>cindex</em>&nbsp;</td><td>設定キャラクターインデックス </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>color</em>&nbsp;</td><td>設定色番号 </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>key</em>&nbsp;</td><td>使用キー入力番号.または、CASSIGN_COM(コンピュータ制御) </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>option</em>&nbsp;</td><td>設定オプション </td></tr>
+</div><div class="memdoc">
+<p>参加キャラクタ指定 呼び出した回数でチームの人数が決まります。</p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">team</td><td>TEAM_PLAYER1/TEAM_PLAYER2 , というか、0/1 </td></tr>
+    <tr><td class="paramname">cindex</td><td>設定キャラクターインデックス </td></tr>
+    <tr><td class="paramname">color</td><td>設定色番号 </td></tr>
+    <tr><td class="paramname">key</td><td>使用キー入力番号.または、CASSIGN_COM(コンピュータ制御) </td></tr>
+    <tr><td class="paramname">option</td><td>設定オプション </td></tr>
   </table>
+  </dd>
 </dl>
-<dl compact><dt><b>引数: </b></dt><dd>
-<table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em>team</em>&nbsp;</td><td>
-キャラクタ追加 </td></tr>
-</table>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">team</td><td>キャラクタ追加 </td></tr>
+  </table>
+  </dd>
 </dl>
+
 </div>
-</div><p>
-<a class="anchor" name="9130ac70123d2b27658f9fd16c111f39"></a><!-- doxytag: member="CBattleLoadInfo::SetComLevel" ref="9130ac70123d2b27658f9fd16c111f39" args="(DWORD team, DWORD cindex, int level, BOOL is_related)" -->
+</div>
+<a id="a9343a86e6b58a87963d91cdb54921855"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9343a86e6b58a87963d91cdb54921855">&#9670;&nbsp;</a></span>SetBattleType()</h2>
+
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CBattleLoadInfo::SetComLevel           </td>
+          <td class="memname">void CBattleLoadInfo::SetBattleType </td>
           <td>(</td>
-          <td class="paramtype">DWORD&nbsp;</td>
-          <td class="paramname"> <em>team</em>, </td>
+          <td class="paramtype">BYTE&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>対戦形式を指定（TAISENKEISIKI_～） </p>
+<p>対戦形式を指定 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>対戦形式(TAISENKEISIKI_～値) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9130ac70123d2b27658f9fd16c111f39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9130ac70123d2b27658f9fd16c111f39">&#9670;&nbsp;</a></span>SetComLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBattleLoadInfo::SetComLevel </td>
+          <td>(</td>
+          <td class="paramtype">DWORD&#160;</td>
+          <td class="paramname"><em>team</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">DWORD&nbsp;</td>
-          <td class="paramname"> <em>cindex</em>, </td>
+          <td class="paramtype">DWORD&#160;</td>
+          <td class="paramname"><em>cindex</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>level</em>, </td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>level</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">BOOL&nbsp;</td>
-          <td class="paramname"> <em>is_related</em></td><td>&nbsp;</td>
+          <td class="paramtype">BOOL&#160;</td>
+          <td class="paramname"><em>is_related</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td width="100%"></td>
+          <td></td><td></td>
         </tr>
       </table>
-</div>
-<div class="memdoc">
-
-<p>
-COMレベル設定<p>
-<dl compact><dt><b>引数:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>team</em>&nbsp;</td><td>チーム </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>cindex</em>&nbsp;</td><td>チーム内の何人目に対して設定するか(0〜) </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>level</em>&nbsp;</td><td>設定レベル </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>is_related</em>&nbsp;</td><td>TRUEの場合、コンフィグからの相対（マイナス値もアリ） </td></tr>
+</div><div class="memdoc">
+<p>COMレベル設定</p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">team</td><td>チーム </td></tr>
+    <tr><td class="paramname">cindex</td><td>チーム内の何人目に対して設定するか(0～) </td></tr>
+    <tr><td class="paramname">level</td><td>設定レベル </td></tr>
+    <tr><td class="paramname">is_related</td><td>TRUEの場合、コンフィグからの相対（マイナス値もアリ） </td></tr>
   </table>
+  </dd>
 </dl>
-<dl compact><dt><b>引数: </b></dt><dd>
-<table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em>cindex</em>&nbsp;</td><td>
-COMのレベル </td></tr>
-</table>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cindex</td><td>COMのレベル </td></tr>
+  </table>
+  </dd>
 </dl>
+
 </div>
-</div><p>
-<hr>このクラスの説明は次のファイルから生成されました:<ul>
-<li>devkit100/goluah/goluah/source/global/<a class="el" href="../../df/d33/battle__load__info_8h.html">battle_load_info.h</a><li>devkit100/goluah/goluah/source/global/battle_load_info.cpp</ul>
-<hr size="1"><address style="text-align: right;"><small>Goluah!!に対してWed Oct 13 14:01:37 2010に生成されました。&nbsp;
-<a href="http://www.doxygen.org/index.html">
-<img src="../../doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.3 </small></address>
+</div>
+<a id="ae8b8b6d651c2613018a4610adb80a81b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8b8b6d651c2613018a4610adb80a81b">&#9670;&nbsp;</a></span>SetLimitTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CBattleLoadInfo::SetLimitTime </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>val</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>制限時間設定 </p>
+<p>制限時間設定 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">val</td><td>設定値。マイナスは制限なしを表す。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>C:/Users/soji_2/Goluah-/devkit100/goluah/goluah/source/global/<a class="el" href="../../df/d33/battle__load__info_8h.html">battle_load_info.h</a></li>
+<li>C:/Users/soji_2/Goluah-/devkit100/goluah/goluah/source/global/battle_load_info.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
 </body>
 </html>
