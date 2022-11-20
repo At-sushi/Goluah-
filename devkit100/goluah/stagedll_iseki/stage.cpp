@@ -78,11 +78,8 @@ void CStage::InitVrtx() //頂点座標初期化
   vb_water[3].tu = 30;
   vb_water[3].tv = 30;
 
-  // UV転置用のバッファ
-  std::copy(std::begin(vb_water), std::end(vb_water), std::begin(vb_water_uvtrans));
-
   //水面・手前
-  vb_maewater[0].color = vb_maewater[1].color = vb_maewater[2].color = vb_maewater[3].color = 0xAAFFFFFF;
+  vb_maewater[0].color = vb_maewater[1].color = vb_maewater[2].color = vb_maewater[3].color = 0x55FFFFFF;
   vb_maewater[0].y = vb_maewater[1].y = vb_maewater[2].y = vb_maewater[3].y = WATERHEIGHT;
   vb_maewater[0].x = -50;
   vb_maewater[0].z = -5;
@@ -100,6 +97,10 @@ void CStage::InitVrtx() //頂点座標初期化
   vb_maewater[2].tv = 10;
   vb_maewater[3].tu = 30;
   vb_maewater[3].tv = 10;
+
+  // UV転置用のバッファ
+  std::copy(std::begin(vb_water), std::end(vb_water), std::begin(vb_water_uvtrans));
+  std::copy(std::begin(vb_maewater), std::end(vb_maewater), std::begin(vb_maewater_uvtrans));
 
   srand(timeGetTime());
 
@@ -323,7 +324,7 @@ DWORD CStage::Draw() {
   if (!d3ddev)
     return FALSE;
 
-  //座標変換-なし
+  // 座標変換-なし
   D3DXMATRIX mati;
   D3DXMatrixIdentity(&mati);
   d3ddev->SetTransform(D3DTS_WORLD, &mati);
@@ -333,9 +334,12 @@ DWORD CStage::Draw() {
 
   d3ddev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
 
-  //水面
+  // 水面
   d3ddev->SetTexture(0, ptex_water);
   d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, vb_maewater, sizeof(MYVERTEX3D));
+
+  // UV転置
+  d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, vb_maewater_uvtrans, sizeof(MYVERTEX3D));
 
   d3ddev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 
@@ -357,6 +361,8 @@ DWORD CStage::Action() {
 
     vb_water_uvtrans[i].tu += 0.0002f;
     vb_water_uvtrans[i].tv += 0.0005f;
+    vb_maewater_uvtrans[i].tu += 0.0002f;
+    vb_maewater_uvtrans[i].tv += 0.0005f;
   }
   return TRUE;
 }
