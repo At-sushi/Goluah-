@@ -59,7 +59,7 @@ void CStage::InitVrtx() //頂点座標初期化
   LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
 
   //水面
-  vb_water[0].color = vb_water[1].color = vb_water[2].color = vb_water[3].color = 0xAAFFFFFF;
+  vb_water[0].color = vb_water[1].color = vb_water[2].color = vb_water[3].color = 0x55FFFFFF;
   vb_water[0].y = vb_water[1].y = vb_water[2].y = vb_water[3].y = WATERHEIGHT;
   vb_water[0].x = -50;
   vb_water[0].z = 50;
@@ -200,16 +200,21 @@ DWORD CStage::DrawBack() {
 void CStage::DrawWater() {
   LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
 
-  //座標変換-なし
-  D3DXMATRIX mati;
+  // 座標変換-なし
+  D3DXMATRIXA16 mati;
   D3DXMatrixIdentity(&mati);
   d3ddev->SetTransform(D3DTS_WORLD, &mati);
 
   d3ddev->SetTextureStageState(0, D3DTSS_ADDRESSU, D3DTADDRESS_MIRROR);
   d3ddev->SetTextureStageState(0, D3DTSS_ADDRESSV, D3DTADDRESS_MIRROR);
 
-  //水面
+  // 水面
   d3ddev->SetTexture(0, ptex_water);
+  d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, vb_water, sizeof(MYVERTEX3D));
+    
+  // 回転したものを再描画
+  D3DXMatrixRotationY(&mati, 90);
+  d3ddev->SetTransform(D3DTS_WORLD, &mati);
   d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, vb_water, sizeof(MYVERTEX3D));
 
   d3ddev->SetTextureStageState(0, D3DTSS_ADDRESSU, D3DTADDRESS_WRAP);
