@@ -31,7 +31,7 @@ protected:
 
   //水面
   LPDIRECT3DTEXTURE8 ptex_water;
-  MYVERTEX3D vb_water[4], vb_water_trans[4];
+  MYVERTEX3D vb_water[4], vb_water_uvtrans[4];
 
   //地面
   LPDIRECT3DVERTEXBUFFER8 vb_jimen[NUM_JIMEN_Z];

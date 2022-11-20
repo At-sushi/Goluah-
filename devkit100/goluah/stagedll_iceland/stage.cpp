@@ -2,6 +2,8 @@
 
 #include "stage.h"
 #include <math.h>
+#include <algorithm>
+#include <iterator>
 
 SET_STAGEINFO(CStage)
 
@@ -79,7 +81,7 @@ void CStage::InitVrtx() //頂点座標初期化
   vb_water[3].tv = 30;
 
   // UV転置用のバッファ
-  vb_water_trans = vb_water;
+  std::copy(std::begin(vb_water), std::end(vb_water), std::begin(vb_water_uvtrans));
 
   srand(timeGetTime());
   //	DWORD tmp;
@@ -216,7 +218,7 @@ void CStage::DrawWater() {
   d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, vb_water, sizeof(MYVERTEX3D));
     
   // UV転置したものを再描画
-  d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, vb_water_trans, sizeof(MYVERTEX3D));
+  d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, vb_water_uvtrans, sizeof(MYVERTEX3D));
 
   d3ddev->SetTextureStageState(0, D3DTSS_ADDRESSU, D3DTADDRESS_WRAP);
   d3ddev->SetTextureStageState(0, D3DTSS_ADDRESSV, D3DTADDRESS_WRAP);
@@ -266,8 +268,8 @@ DWORD CStage::Action() {
     vb_water[i].tu += 0.0005f;
     vb_water[i].tv += 0.0002f;
 
-    vb_water_trans[i].tu += 0.0002f;
-    vb_water_trans[i].tv += 0.0005f;
+    vb_water_uvtrans[i].tu += 0.0002f;
+    vb_water_uvtrans[i].tv += 0.0005f;
   }
   return TRUE;
 }
