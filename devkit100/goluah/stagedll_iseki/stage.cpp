@@ -2,6 +2,8 @@
 
 #include "stage.h"
 #include <math.h>
+#include <algorithm>
+#include <iterator>
 
 #define WATERHEIGHT -0.025f
 const float g_jimenheightarr[15][16] = //地面の高さ
@@ -57,7 +59,7 @@ void CStage::InitVrtx() //頂点座標初期化
   LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
 
   //水面
-  vb_water[0].color = vb_water[1].color = vb_water[2].color = vb_water[3].color = 0xAAFFFFFF;
+  vb_water[0].color = vb_water[1].color = vb_water[2].color = vb_water[3].color = 0x55FFFFFF;
   vb_water[0].y = vb_water[1].y = vb_water[2].y = vb_water[3].y = WATERHEIGHT;
   vb_water[0].x = -50;
   vb_water[0].z = 50;
@@ -75,6 +77,9 @@ void CStage::InitVrtx() //頂点座標初期化
   vb_water[2].tv = 30;
   vb_water[3].tu = 30;
   vb_water[3].tv = 30;
+
+  // UV転置用のバッファ
+  std::copy(std::begin(vb_water), std::end(vb_water), std::begin(vb_water_uvtrans));
 
   //水面・手前
   vb_maewater[0].color = vb_maewater[1].color = vb_maewater[2].color = vb_maewater[3].color = 0xAAFFFFFF;
@@ -274,6 +279,9 @@ void CStage::DrawWater() {
   //水面
   d3ddev->SetTexture(0, ptex_water);
   d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, vb_water, sizeof(MYVERTEX3D));
+    
+  // UV転置したものを再描画
+  d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, vb_water_uvtrans, sizeof(MYVERTEX3D));
 }
 
 void CStage::DrawSky() {
@@ -344,8 +352,11 @@ DWORD CStage::Action() {
   for (int i = 0; i < 4; i++) {
     vb_water[i].tu += 0.0005f;
     vb_water[i].tv += 0.0002f;
-    vb_maewater[i].tu += 0.0002f;
-    vb_maewater[i].tv += 0.0005f;
+    vb_maewater[i].tu += 0.0005f;
+    vb_maewater[i].tv += 0.0002f;
+
+    vb_water_uvtrans[i].tu += 0.0002f;
+    vb_water_uvtrans[i].tv += 0.0005f;
   }
   return TRUE;
 }
