@@ -58,7 +58,7 @@ void CStage::InitVrtx() //頂点座標初期化
   MYVERTEX3D *vtx_tmp = NULL;
   LPDIRECT3DDEVICE8 d3ddev = GetD3DDevice();
 
-  //水面
+  // 水面
   vb_water[0].color = vb_water[1].color = vb_water[2].color = vb_water[3].color = 0x55FFFFFF;
   vb_water[0].y = vb_water[1].y = vb_water[2].y = vb_water[3].y = WATERHEIGHT;
   vb_water[0].x = -50;
@@ -77,6 +77,9 @@ void CStage::InitVrtx() //頂点座標初期化
   vb_water[2].tv = 30;
   vb_water[3].tu = 30;
   vb_water[3].tv = 30;
+
+  // UV転置用のバッファ
+  vb_water_trans = vb_water;
 
   srand(timeGetTime());
   //	DWORD tmp;
@@ -212,10 +215,8 @@ void CStage::DrawWater() {
   d3ddev->SetTexture(0, ptex_water);
   d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, vb_water, sizeof(MYVERTEX3D));
     
-  // 回転したものを再描画
-  D3DXMatrixRotationY(&mati, 90);
-  d3ddev->SetTransform(D3DTS_WORLD, &mati);
-  d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, vb_water, sizeof(MYVERTEX3D));
+  // UV転置したものを再描画
+  d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, vb_water_trans, sizeof(MYVERTEX3D));
 
   d3ddev->SetTextureStageState(0, D3DTSS_ADDRESSU, D3DTADDRESS_WRAP);
   d3ddev->SetTextureStageState(0, D3DTSS_ADDRESSV, D3DTADDRESS_WRAP);
@@ -264,6 +265,9 @@ DWORD CStage::Action() {
   for (int i = 0; i < 4; i++) {
     vb_water[i].tu += 0.0005f;
     vb_water[i].tv += 0.0002f;
+
+    vb_water_trans[i].tu += 0.0002f;
+    vb_water_trans[i].tv += 0.0005f;
   }
   return TRUE;
 }

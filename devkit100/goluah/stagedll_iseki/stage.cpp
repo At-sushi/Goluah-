@@ -344,8 +344,8 @@ DWORD CStage::Action() {
   for (int i = 0; i < 4; i++) {
     vb_water[i].tu += 0.0005f;
     vb_water[i].tv += 0.0002f;
-    vb_maewater[i].tu += 0.0005f;
-    vb_maewater[i].tv += 0.0002f;
+    vb_maewater[i].tu += 0.0002f;
+    vb_maewater[i].tv += 0.0005f;
   }
   return TRUE;
 }
