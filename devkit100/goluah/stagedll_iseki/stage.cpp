@@ -361,8 +361,8 @@ DWORD CStage::Action() {
 
     vb_water_uvtrans[i].tu += 0.0002f;
     vb_water_uvtrans[i].tv += 0.0005f;
-    vb_maewater_uvtrans[i].tu += 0.0002f;
-    vb_maewater_uvtrans[i].tv += 0.0005f;
+    vb_maewater_uvtrans[i].tu += 0.00021f;
+    vb_maewater_uvtrans[i].tv += 0.00051f;
   }
   return TRUE;
 }
